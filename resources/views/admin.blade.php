@@ -29,21 +29,22 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin/core.css')}}" >
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin/components.css')}}" >
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin/colors.css')}}" >
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/extras/animate.min.css')}}" >
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/loaders/pace.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/libraries/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/libraries/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/core/libraries/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/core/libraries/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/loaders/blockui.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/nicescroll.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/drilldown.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
+    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/editors/summernote/summernote.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/prism.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/ripple.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/buttons/hover_dropdown.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/forms/selects/bootstrap_select.min.js') }}"></script>
     <!-- /Theme JS files -->
 
     <!-- Html5 Shim and Respond.js IE8 support of Html5 elements and media queries -->

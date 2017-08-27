@@ -5,11 +5,16 @@
 	<div class="page-content">
 		<!-- Main content -->
 		<div class="content-wrapper">
+
 			<!-- Simple login form -->
 			<div class="panel panel-body login-form">
 				<div class="text-center">
 					<h5 class="content-group">SIMO <small class="display-block">Sistem Informasi Manajemen Organisasi</small></h5>
 				</div>
+
+				<message :show="error.show" :isError="true">
+	          		<p>{{error.message}}</p>
+	        	</message>
 
 				<div class="form-group has-feedback has-feedback-left">
 					<input type="text" class="form-control" placeholder="Username" v-model="username" @keyup.enter="login">
@@ -26,7 +31,8 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block" @click.prevent="login">Login <i class="icon-circle-right2 position-right"></i></button>
+					<button type="button" class="btn btn-primary btn-block" disabled v-if="loading"><i class="icon-spinner2 spinner"></i></button>
+					<button type="button" class="btn btn-primary btn-block" @click.prevent="login" v-else>Login <i class="icon-circle-right2 position-right"></i></button>
 				</div>
 			</div>
 			<!-- /simple login form -->
@@ -39,25 +45,47 @@
 </div></template>
 
 <script type="text/javascript">
-	export default {
-		methods: {
-			login(){
-				axios.post('/login',{
-					username: this.username,
-					password: this.password
-				})
-				.then(response => {
-					this.$router.push('/');
-				}).catch(error => {
-					console.log(error);
-				})
-			}
-		},
-		data(){
-			return {
-				username: "",
-				password: ""
+import Message from "../components/message.vue";
+import Progress from '../assets/plugins/loaders/progressbar.min.js'
+export default {
+	components: {
+        Message
+
+    },
+	mounted(){
+		Progress.progressbar();
+	},
+	methods: {
+		login(){
+			this.error.show = false;
+			this.loading = true;
+			axios.post('/login',{
+				username: this.username,
+				password: this.password
+			})
+			.then(response => {
+				this.$router.push('/');
+			}).catch(error => {
+				this.error.show = true;
+                if (error.response.status === 422) {  
+                    this.error.message = "Username atau password anda salah."
+                }else{
+                    this.error.message = error.response.data.message
+                }
+                this.loading = false;
+			});
+		}
+	},
+	data(){
+		return {
+			username: "",
+			password: "",
+			loading: false,
+			error: {
+				show: false,
+				message: ''
 			}
 		}
 	}
+}
 </script>

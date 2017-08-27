@@ -1,33 +1,15 @@
-import dashview from './views/dashview.vue';
+import header from './components/header.vue';
 import login from './views/login.vue';
 import dashboard from './views/dashboard.vue';
-import artikelindex from './views/artikel/index.vue';
+import artikel from './views/artikel/index.vue';
+import artikel_form from './views/artikel/form.vue';
 
 const routes = [
-	{
-		path: '/login',
-		component: login
-	},
-	{
-		path: '/',
-		component: dashview,
-		children:[
-			{
-				path: 'dashboard',
-				alias: '',
-				component: dashboard,
-				name: 'dashboard',
-				meta: {description: 'Overview'}
-			},
-			{
-				path: 'artikel',
-				alias: '',
-				component: artikelindex,
-				name: 'artikelindex',
-				meta: {description: 'Artikel'}
-			}
-		]
-	}
+	{ path: '/login',name: 'login', components: { default: login } },
+	{ path: '/',name: 'dashboard', components: { default: dashboard,'header': header } },
+	{ path: '/artikel',name: 'artikel', components: { default: artikel, 'header': header }},
+	{ path: '/artikel/create',name: 'artikelCreate', components: { default: artikel_form, 'header': header} },
+	{ path: '/artikel/:id/edit',name: 'artikelEdit', components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } }
 ]
 
 export default routes

@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->get('/profile', 'ProfileController@getUser');
 
-Route::middleware('auth:api')->get('/artikel_all', 'ArtikelController@get_artikel_all');
-Route::middleware('auth:api')->get('/get_artikel', 'ArtikelController@get_artikel');
+//artikel
+Route::resource('artikel', 'ArtikelController');
+Route::middleware('auth:api')->get('/get_artikel_kategori', 'ArtikelKategoriController@get_artikel_kategori');

@@ -6,23 +6,50 @@ use Illuminate\Http\Request;
 
 class ArtikelController extends Controller{
 
-	protected $kelaspath = 'artikel';
-	protected $imagepath = 'images/artikel';
-
-	public function get_artikel_all()
+	public function __construct()
 	{
-		$datas = Artikel::with('kategoriartikel')
-                ->orderBy('judul','asc')
-                ->get();
-
-        return $datas;
+		// $this->middleware('auth');
 	}
 
-	public function get_artikel()
+	public function index()
 	{
 		return response()
 			->json([
-				'model' => Artikel::with('kategoriartikel')->filterPaginateOrder()
+				'model' => Artikel::with('Artikel_Kategori')->filterPaginateOrder()
 			]);
+	}
+
+	public function create()
+	{
+		return response()
+            ->json([
+                'form' => Artikel::initialize(),
+                'option' => []
+            ]);
+	}
+
+	public function store(Request $request)
+	{
+
+	}
+
+	public function show($id)
+	{
+
+	}
+
+	public function edit($id)
+	{
+
+	}
+
+	public function update(Request $request, $id)
+	{
+
+	}
+
+	public function destroy($id)
+	{
+
 	}
 }

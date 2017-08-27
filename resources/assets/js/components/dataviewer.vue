@@ -8,7 +8,7 @@
                     <i class="icon-search4 text-muted text-size-base"></i>
                 </div>
                 <select class="form-control" v-model="params.search_column" style="width:30%;">
-                    <option v-for="(column, index) in filter" :value="column" :selected="index === 0">Berdasarkan {{column}}</option>
+                    <option v-for="filter in filters" :value="filter.key">Berdasarkan {{filter.title}}</option>
                 </select>
             </div>
             <div class="input-group-btn">
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="table-reponsive">
+    <div class="table-responsive">
         <table class="table">
             <thead class="bg-primary">
                 <tr>
@@ -25,14 +25,13 @@
                             <span>{{item.title}}</span>
                             <span v-if="params.column === item.key">
                                 <span v-if="params.direction === 'asc'">&#x25B2;</span>
+                                <span v-else>&#x25BC;</span>
                             </span>
-                            <span v-else>&#x25BC;</span>
                         </div>
                         <div v-else>
                             <span>{{item.title}}</span>
                         </div>
                     </th>
-                    <th class="text-center" style="width: 30px;"><i class="icon-menu-open2"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -40,8 +39,8 @@
             </tbody>
         </table>
     </div>
-    <div class="panel-footer">
-        <div class="heading-elements">
+    <div class="panel-footer has-visible-elements">
+        <div class="heading-elements visible-elements">
             <span class="heading-text">
                 <ul class="list-inline">
                     <li>
@@ -54,12 +53,9 @@
                     <li>Menampilkan {{model.from}} - {{model.to}} entri dari {{model.total}} entri</li>
                 </ul>
             </span>
-            <ul class="pagination pagination-flat pagination-xs pull-right">
-                <li><a @click="prev" >←</a></li>
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a @click="next">→</a></li>
+            <ul class="pager pull-right" style="padding-top: 8px;">
+                <li><a @click="prev"><i class="icon-arrow-left13"></i></a></li>
+                <li><a @click="next"><i class="icon-arrow-right14"></i></a></li>
             </ul>
         </div>
     </div>
@@ -70,10 +66,9 @@
     import axios from 'axios'
 
     export default {
-        props: ['source', 'thead', 'filter', 'create', 'title'],
+        props: ['source', 'thead', 'filters', 'create', 'title'],
         data() {
             return {
-                showFilter: false,
                 model: {
                     data: []
                 },
@@ -82,7 +77,7 @@
                     direction: 'desc',
                     per_page: 10,
                     page: 1,
-                    search_column: 'id',
+                    search_column: 'nama',
                     search_operator : 'like',
                     search_query_1: '',
                     search_query_2: ''
@@ -91,9 +86,6 @@
         },
         beforeMount() {
             this.fetchData()
-        },
-        mounted(){
-
         },
         methods: {
             next() {
@@ -127,6 +119,7 @@
                 axios.get(this.buildURL())
                     .then(function(response) {
                         Vue.set(vm.$data, 'model', response.data.model)
+
                     })
                     .catch(function(error) {
                         console.log(error)

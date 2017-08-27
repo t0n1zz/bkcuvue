@@ -2,17 +2,20 @@
 <div>
 <!-- Page header -->
 <div class="page-header">
-	<div class="page-header-content">
+	<div class="page-header-content has-visible-elements">
 		<div class="page-title">
 			<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Artikel</span> - Mengelola data artikel</h4>
 			<ul class="breadcrumb breadcrumb-caret position-right">
-				<li><router-link to="/">Dashboard</router-link></li>
+				<router-link :to="{ name:'dashboard' }" tag="li"><a>Dashboard</a></router-link>
 				<li class="active">Artikel</li>
 			</ul>
 		</div>
-		<div class="heading-elements">
+		<div class="heading-elements visible-elements">
 			<div class="heading-btn-group">
-				<a @click="$router.push('/artikel/tambah')" class="btn btn-link btn-float has-text text-size-small"><i class="icon-plus-circle2 text-indigo-400"></i><span>Tambah Artikel</span></a>
+				<router-link :to="{ name:'artikelCreate' }" class="btn btn-link btn-float has-text text-size-small">
+					<i class="icon-plus-circle2 text-indigo-400"></i>
+					<span>Tambah Artikel</span>
+				</router-link>
 			</div>
 		</div>
 	</div>
@@ -22,30 +25,16 @@
 <div class="page-container">
 	<div class="page-content">
 		<div class="content-wrapper">
-			<data-viewer :source="source" :thead="thead" :filter="filter" :title="title">
-	        <template scope="props">
-	        	<tr>
-		        	<td>{{props.item.judul}}</td>
-		        	<td>{{props.item.kategoriartikel.name}}</td>
-		        	<td>{{props.item.penulis}}</td>
-		        	<td>{{props.item.created_at}}</td>
-		        	<td class="text-center">
-						<ul class="icons-list">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="icon-menu9"></i>
-								</a>
-
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li><a @click="$router.push('/artikel/ubah/' + props.item.id)"><i class="icon-pencil5"></i> Ubah</a></li>
-									<li><a ><i class="icon-trash"></i> Hapus</a></li>
-								</ul>
-							</li>
-						</ul>
-					</td>
-	        	</tr>
-	        </template>
-	    </data-viewer>
+			<data-viewer :source="source" :thead="thead" :filters="filters" :title="title">
+		        <template scope="props">
+		        	<tr>
+			        	<td>{{props.item.nama}}</td>
+			        	<td>{{props.item.artikel__kategori.nama}}</td>
+			        	<td>{{props.item.penulis}}</td>
+			        	<td>{{props.item.created_at}}</td>
+		        	</tr>
+		        </template>
+		    </data-viewer>
 		</div>
 	</div>
 </div>
@@ -53,25 +42,30 @@
 </div>
 </template>
 <script type="text/javascript">
-import appjs from '../../js/app.js'
-import moment from 'moment';
+import corefunc from '../../assets/core/app.js'
+import moment from 'moment'
 import DataViewer from '../../components/dataviewer.vue'
+
 export default{
 	name: 'ArtikelIndex',
 	components:{
 		DataViewer
 	},
-	created(){
-		appjs.app_function();
+	mounted(){
+		corefunc.core_function();
 	},
 	data(){
 		return{
 			title: "Artikel",
-			source: '/api/get_artikel',
-			filter: ['judul','kategori','penulis'],
+			source: '/api/artikel',
+			filters: [
+                {title: 'Judul', key: 'nama'},
+                {title: 'Kategori', key: 'artikel_kategori.nama'},
+                {title: 'Penulis', key: 'penulis'},
+            ],
 			thead: [
-                {title: 'Judul', key: 'judul', sort: true},
-                {title: 'Kategori', key: 'kategoriartikel.name', sort: true},
+                {title: 'Judul', key: 'nama', sort: true},
+                {title: 'Kategori', key: 'artikel_kategori_id', sort: true},
                 {title: 'Penulis', key: 'penulis', sort: true},
                 {title: 'Tgl. Tulis', key: 'created_at', sort: true}
             ],

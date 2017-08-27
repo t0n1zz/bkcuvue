@@ -11,11 +11,11 @@ class Artikel extends Model {
     protected $table = 'artikel';
     
     protected $fillable = [
-        'judul','content','kategori','penulis','status','gambar','pilihan'
+        'nama','content','artikel_kategori_id','penulis','terbitkan','gambar','utamakan'
     ];
 
     protected $filter = [
-        'id','judul','content','kategori','penulis','status','gambar','pilihan','created_at'
+        'id','nama','content','artikel_kategori_id','penulis','terbitkan','gambar','utamakan','created_at','artikel_kategori.nama'
     ];
 
     public function getNameAttribute($value){
@@ -25,7 +25,7 @@ class Artikel extends Model {
     public static function initialize()
     {
         return [
-            'judul' => '', 'content' => '', 'kategori' => '', 'penulis' => '', 'status' => false, 'pilihan' => false, 'gambar' => ''
+            'nama' => '', 'content' => '', 'artikel_kategori_id' => '', 'penulis' => '', 'terbitkan' => 'false', 'utamakan' => 'false', 'gambar' => ''
         ];
     }
 
@@ -34,9 +34,9 @@ class Artikel extends Model {
         'pilihan' => 'boolean',
     ];
 
-    public function KategoriArtikel()
+    public function Artikel_Kategori()
     {
-        return $this->belongsTo('App\KategoriArtikel','kategori','id');
+        return $this->belongsTo('App\Artikel_Kategori','artikel_kategori_id','id');
     }
 
 }
