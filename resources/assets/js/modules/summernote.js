@@ -8,16 +8,14 @@ module.exports = {
             type: String,
             required: true,
         },
-        height: {
-            type: String,
-            default: '150'
+        config: {
+            type: Object,
+            default: {}
         }
     },
     mounted() {
-        let config = {
-            height: this.height
-        };
         let vm = this;
+        let config = this.config;
         config.callbacks = {
             onInit: function () {
                 $(vm.$el).summernote("code", vm.model);

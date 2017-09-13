@@ -1,7 +1,7 @@
 <template><div>
 <div class="navbar navbar-inverse bg-primary">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html"><strong>SIMO</strong></a>
+		<router-link :to="{ name: 'dashboard' }" class="navbar-brand"><strong>SIMO</strong></router-link>
 
 		<ul class="nav navbar-nav pull-right visible-xs-block">
 			<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>

@@ -8,10 +8,10 @@ class Artikel_Kategori extends Model {
     protected $table = 'artikel_kategori';
     
     public static $rules = [
-        'nama' => 'required|between:3,50'
+        'nama' => 'required|between:3,50',
     ];
     
-    protected $fillable = ['nama','jumlah'];
+    protected $fillable = ['nama','deskripsi'];
 
     public function getNameAttribute($value){
         return !empty($value) ? $value : '-';

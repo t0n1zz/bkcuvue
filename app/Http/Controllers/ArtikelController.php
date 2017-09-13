@@ -8,7 +8,7 @@ class ArtikelController extends Controller{
 
 	public function __construct()
 	{
-		// $this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	public function index()
@@ -24,13 +24,21 @@ class ArtikelController extends Controller{
 		return response()
             ->json([
                 'form' => Artikel::initialize(),
+                'rules' => Artikel::$rules,
                 'option' => []
             ]);
 	}
 
 	public function store(Request $request)
 	{
+		$this->validate($request,Artikel::$rules);
 
+		$kelas = Artikel::create($request->all());
+
+		return response()
+			->json([
+				'saved' => true
+			]);	
 	}
 
 	public function show($id)

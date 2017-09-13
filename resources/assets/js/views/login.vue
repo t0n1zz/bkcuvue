@@ -17,7 +17,7 @@
 	        	</message>
 
 				<div class="form-group has-feedback has-feedback-left">
-					<input type="text" class="form-control" placeholder="Username" v-model="username" @keyup.enter="login">
+					<input type="text" class="form-control" placeholder="Username" v-model="username" @keyup.enter="login" autofocus>
 					<div class="form-control-feedback">
 						<i class="icon-user text-muted"></i>
 					</div>

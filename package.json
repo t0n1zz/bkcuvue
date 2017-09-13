@@ -21,6 +21,9 @@
     "vuetable-2": "^1.6.5"
   },
   "dependencies": {
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "uiv": "^0.11.9",
+    "vee-validate": "^2.0.0-rc.14",
+    "vue-strap": "^1.1.37"
   }
 }

@@ -3,8 +3,10 @@ import Admin from './admin.vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
 import Axios from 'axios';
+import VeeValidate from 'vee-validate';
  
 Vue.use(VueRouter);
+Vue.use(VeeValidate);
 
 window.axios = Axios;
 axios.defaults.headers.common = {

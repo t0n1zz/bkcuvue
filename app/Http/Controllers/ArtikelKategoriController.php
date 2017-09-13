@@ -10,7 +10,18 @@ class ArtikelKategoriController extends Controller{
 	{
 		return response()
 			->json([
-				'model' => Artikel_Kategori::get()
+				'model' => Artikel_Kategori::where('id','!=',1)->select('id','nama')->orderby('nama','asc')->get()
 			]);
+	}
+
+	public function store(Request $request)
+	{
+		$kelas = Artikel_Kategori::create($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'id' => $kelas->id
+			]);	
 	}
 }

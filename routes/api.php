@@ -20,5 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->get('/profile', 'ProfileController@getUser');
 
 //artikel
-Route::resource('artikel', 'ArtikelController');
+Route::middleware('auth:api')->get('/artikel', 'ArtikelController@index');
+Route::middleware('auth:api')->get('/artikel/create', 'ArtikelController@create');
+Route::middleware('auth:api')->post('/artikel/store', 'ArtikelController@store');
+// Route::resource('artikel', 'ArtikelController');
+
+//artikel kategori
 Route::middleware('auth:api')->get('/get_artikel_kategori', 'ArtikelKategoriController@get_artikel_kategori');
+Route::middleware('auth:api')->post('/artikel_kategori/store', 'ArtikelKategoriController@store');

@@ -9,6 +9,13 @@ class Artikel extends Model {
     use FilterPaginateOrder;
 
     protected $table = 'artikel';
+
+    public static $rules = [
+        'nama' => 'required|min:5',
+        'penulis' => 'required',
+        'artikel_kategori_id' => 'required',
+        'content' => 'required|min:10'
+    ];
     
     protected $fillable = [
         'nama','content','artikel_kategori_id','penulis','terbitkan','gambar','utamakan'
@@ -25,7 +32,7 @@ class Artikel extends Model {
     public static function initialize()
     {
         return [
-            'nama' => '', 'content' => '', 'artikel_kategori_id' => '', 'penulis' => '', 'terbitkan' => 'false', 'utamakan' => 'false', 'gambar' => ''
+            'nama' => '', 'content' => '', 'artikel_kategori_id' => '1', 'penulis' => '', 'terbitkan' => '0', 'utamakan' => '0', 'gambar' => ''
         ];
     }
 
