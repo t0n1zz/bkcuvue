@@ -23,6 +23,9 @@ Route::middleware('auth:api')->get('/profile', 'ProfileController@getUser');
 Route::middleware('auth:api')->get('/artikel', 'ArtikelController@index');
 Route::middleware('auth:api')->get('/artikel/create', 'ArtikelController@create');
 Route::middleware('auth:api')->post('/artikel/store', 'ArtikelController@store');
+Route::middleware('auth:api')->delete('/artikel/{id}', 'ArtikelController@destroy');
+Route::middleware('auth:api')->post('/artikel/updateTerbitkan/{id}', 'ArtikelController@updateTerbitkan');
+Route::middleware('auth:api')->post('/artikel/updateUtamakan/{id}', 'ArtikelController@updateUtamakan');
 // Route::resource('artikel', 'ArtikelController');
 
 //artikel kategori

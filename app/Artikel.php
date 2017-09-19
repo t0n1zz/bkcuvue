@@ -43,7 +43,7 @@ class Artikel extends Model {
 
     public function Artikel_Kategori()
     {
-        return $this->belongsTo('App\Artikel_Kategori','artikel_kategori_id','id');
+        return $this->belongsTo('App\Artikel_Kategori','artikel_kategori_id','id')->select('id','nama');
     }
 
 }

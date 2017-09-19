@@ -12,10 +12,16 @@
 		</div>
 		<div class="heading-elements visible-elements">
 			<div class="heading-btn-group">
-				<router-link :to="{ name:'artikelCreate' }" class="btn btn-link btn-float has-text text-size-small">
-					<i class="icon-plus-circle2 text-indigo-400"></i>
-					<span>Tambah Artikel</span>
+				<router-link :to="{ name:'artikelCreate' }"  class="btn btn-primary btn-icon">
+					<i class="icon-plus3" data-popup="tooltip" title="TAMBAH ARTIKEL" ></i>
 				</router-link>
+				<button type="button" data-popup="tooltip" title="Memilih jumlah entri yang ditampilkan" class="btn btn-info btn-icon dropdown-toggle" data-toggle="dropdown">Artikel BKCU &nbsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">Artikel Dari</li>
+                    <li class="divider"></li>
+                    <li v-for="n in 50" ><a >CU A</a></li>
+                </ul>
 			</div>
 		</div>
 	</div>
@@ -25,19 +31,20 @@
 <div class="page-container">
 	<div class="page-content">
 		<div class="content-wrapper">
-			<data-viewer :source="source" :thead="thead" :filters="filters" :title="title">
+			<!-- panel -->
+			<data-viewer :source="source" :thead="thead">
 		        <template scope="props">
 		        	<tr class="cursor-pointer" @click="modalMenuOpen(props.item)">
-		        		<td>
+		        		<td v-if="!thead[0].hide">
 		        			<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 		        			<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 	        			</td>
-			        	<td>{{props.item.nama}}</td>
-			        	<td>{{props.item.artikel__kategori.nama}}</td>
-			        	<td>{{props.item.penulis}}</td>
-			        	<td v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-			        	<td v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-			        	<td class="text-nowrap">{{props.item.created_at | publishDate}}</td>
+			        	<td v-if="!thead[1].hide">{{props.item.nama}}</td>
+			        	<td v-if="!thead[2].hide">{{props.item.artikel__kategori.nama}}</td>
+			        	<td v-if="!thead[3].hide">{{props.item.penulis}}</td>
+			        	<td v-if="!thead[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
+			        	<td v-if="!thead[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
+			        	<td v-if="!thead[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
 		        	</tr>
 		        </template>
 		    </data-viewer>
@@ -48,138 +55,215 @@
 
 <!-- modal -->
 <!-- table-context-menu -->
-<app-modal  :show="modalShow" :isConfirm="modalConfrim"  @close="modalMenuClose">
-<div slot="modal-body">
-	<div class="panel panel-flat blog-horizontal blog-horizontal-2">
-		<div class="panel-body">
-			<div class="thumb">
-				<img :src="'/images/artikel/' + modalData.gambar + '.jpg'" class="img-rounded img-responsive" v-if="modalData.gambar">
-    			<img :src="'/images/image-article.jpg'" class="img-rounded img-responsive" v-else>
+<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" @close="modalMenuClose">
+	<div slot="modal-body">
+		<div class="panel panel-flat blog-horizontal blog-horizontal-2">
+			<div class="panel-body">
+				<div class="thumb">
+					<img :src="'/images/artikel/' + modal.data.gambar + '.jpg'" class="img-rounded img-responsive" v-if="modal.data.gambar">
+	    			<img :src="'/images/image-article.jpg'" class="img-rounded img-responsive" v-else>
+				</div>
+				<div class="blog-preview">
+					<h5 class="blog-title text-semibold">{{modal.data.nama}}</h5>
+					<p v-if="modal.data.content">{{ modal.data.content | trimString }}</p>
+				</div>
 			</div>
-			<div class="blog-preview">
-				<h5 class="blog-title text-semibold">{{modalData.nama}}</h5>
-				<p v-if="modalData.content">{{ modalData.content | trimString }}</p>
+			<div class="panel-footer panel-footer-condensed">
+				<div class="heading-elements visible-elements">
+					<ul class="list-inline list-inline-separate heading-text text-muted">
+						<li>{{modal.data.created_at | publishDate}}</li>
+						<li>Penulis: {{ modal.data.penulis }}</li>
+						<li v-if="modal.data.artikel__kategori">Kategori: {{ modal.data.artikel__kategori.nama }}</li>
+						<li>Terbit: <span v-html="$options.filters.checkStatus2(modal.data.terbitkan)"></span></li>
+						<li>Utama: <span v-html="$options.filters.checkStatus2(modal.data.utamakan)"></span></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="panel-footer panel-footer-condensed">
-			<div class="heading-elements visible-elements">
-				<ul class="list-inline list-inline-separate heading-text text-muted">
-					<li>{{modalData.created_at | publishDate}}</li>
-					<li>Penulis: {{ modalData.penulis }}</li>
-					<li v-if="modalData.artikel__kategori">Kategori: {{ modalData.artikel__kategori.nama }}</li>
-					<li>Terbit: <span v-html="$options.filters.checkStatus2(modalData.terbitkan)"></span></li>
-					<li>Utama: <span v-html="$options.filters.checkStatus2(modalData.utamakan)"></span></li>
-				</ul>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="list-unstyled">
+					<a class="list-group-item"><i class="icon-reading"></i> Baca</a>
+					<a class="list-group-item"><i class="icon-pencil5"></i> Ubah</a>
+					<a class="list-group-item" @click.prevent="modalMenuHapus"><i class="icon-bin2"></i> Hapus</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="list-unstyled">
+					<a class="list-group-item" @click.prevent="modalMenuStatus('Terbitkan')" ><i class="icon-file-upload"></i> 
+						<span v-if="modal.data.terbitkan == 0">Terbitkan</span> 
+						<span v-else>Tidak Terbitkan</span></a>
+					<a class="list-group-item" @click.prevent="modalMenuStatus('Utamakan')"><i class="icon-pushpin"></i> 
+						<span v-if="modal.data.utamakan == 0">Utamakan</span> 
+						<span v-else>Tidak Utamakan</span></a>
+				</div>
 			</div>
 		</div>
+		<hr>
 	</div>
-	<hr>
-	<div class="row">
-		<div class="col-sm-6">
-			<div class="list-unstyled">
-				<a class="list-group-item"><i class="icon-reading"></i> Baca</a>
-				<a class="list-group-item"><i class="icon-pencil5"></i> Ubah</a>
-				<a class="list-group-item" @click.prevent="modalMenuHapus"><i class="icon-bin2"></i> Hapus</a>
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="list-unstyled">
-				<a class="list-group-item"><i class="icon-file-upload"></i> Terbitkan</a>
-				<a class="list-group-item"><i class="icon-pushpin"></i> Utamakan</a>
-			</div>
-		</div>
+	<div slot="modal-confirm" class="text-center">
+		<span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
+		<h2>{{modal.miniTitle}}</h2>
+		<ul class="list-inline">
+	        <li><button type="button" class="btn btn-link legitRipple" @click="modal.state = ''">Batal</button></li>
+	        <li><button type="button" class="btn btn-warning" @click="modalConfirmOk(modal.miniType)"><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
+	    </ul>
 	</div>
-	<hr>
-</div>
-<div slot="modal-confirm" class="text-center">
-	<span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
-	<h2>{{modalConfirmTitle}}</h2>
-	<ul class="list-inline">
-        <li><button class="btn btn-link legitRipple" @click.prevent="modalConfrim = false">Batal</button></li>
-        <li><button class="btn btn-warning"><i class="icon-checkmark5"></i> Iya, Hapus</button></li>
-    </ul>
-</div>
-<div slot="modal-footer">
-	<button class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button>
-</div>
+	<div slot="modal-result" class="text-center">
+		<span class="text-primary" v-if="modal.miniType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
+		<span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
+		<h2>{{modal.miniTitle}}</h2>
+		<ul class="list-inline">
+	        <li><button type="button" class="btn btn-default" @click="modalMenuClose">Tutup</button></li>
+	    </ul>
+	</div>
+	<div slot="modal-footer">
+		<button class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button>
+	</div>
 </app-modal>
 
 </div>
 </template>
 <script type="text/javascript">
+import {bus} from '../../app';
 import corefunc from '../../assets/core/app.js'
 import moment from 'moment'
 import DataViewer from '../../components/dataviewer.vue'
-import appModal from '../../components/modal'  
+import appModal from '../../components/modal'
 
 export default{
 	name: 'ArtikelIndex',
 	components:{
 		DataViewer,
-		appModal
+		appModal,
 	},
 	mounted(){
 		corefunc.core_function();
 	},
 	data(){
 		return{
-			title: "Artikel",
 			source: '/api/artikel',
-			filters: [
-                {title: 'Judul', key: 'nama'},
-                {title: 'Kategori', key: 'artikel_kategori.nama'},
-                {title: 'Penulis', key: 'penulis'},
-            ],
+			source2 : '',
 			thead: [
-				{title: 'Foto', key: 'gambar', sort: false},
-                {title: 'Judul', key: 'nama', sort: true},
-                {title: 'Kategori', key: 'artikel_kategori_id', sort: true},
-                {title: 'Penulis', key: 'penulis', sort: true},
-                {title: 'Terbitkan', key: 'terbitkan', sort: true},
-                {title: 'Utamakan', key: 'utamakan', sort: true},
-                {title: 'Tgl. Tulis', key: 'created_at', sort: true}
+				{title: 'Foto', key: 'gambar', type: 'string', sort: false, hide: false},
+                {title: 'Judul', key: 'nama', type: 'string', filterKey:'nama', sort: true, hide: false},
+                {title: 'Kategori', key: 'artikel_kategori_id', type: 'string', filterKey:'artikel_kategori.nama',groupKey: 'artikel__kategori.nama', sort: true, hide: false },
+                {title: 'Penulis', key: 'penulis', type: 'string', filterKey:'penulis', groupKey: 'penulis',sort: true, hide: false},
+                {title: 'Terbitkan', key: 'terbitkan', type: 'string', sort: true, hide: false},
+                {title: 'Utamakan', key: 'utamakan', type: 'string', sort: true, hide: false},
+                {title: 'Tgl. Tulis', key: 'created_at', type: 'string', sort: true, hide: false}
             ],
-            modalShow: false,
-            modalConfrim: false,
-            modalConfirmTitle: '',
-            modalColor:'',
-			modalData:''
+            modal: {
+                show: false,
+                size:'',
+                color:'',
+                data: '',
+                state:'',
+                miniTitle:'',
+                miniButton:'',
+                miniType:''
+            }
 		}
 	},
 	methods: {
 	    modalMenuOpen(data){
-	    	this.modalShow= true;
-	    	this.modalColor="bg-primary"
-	    	this.modalData = data;
+	    	this.modal.show= true;
+	    	this.modal.data = data;
 	    },
 	    modalMenuClose(){
-	    	this.modalShow = false
-	    	this.modalConfrim = false
+	    	if(this.modal.miniType == "success"){
+	    		this.modal.miniType = '';
+	    		bus.$emit('fetchData');
+	    	}
+
+	    	this.modal.show = false;
+	    	this.modal.state = '';
 	    },
 	    modalMenuHapus(){
-	    	this.modalConfirmTitle = "Hapus Artikel Ini?"
-	    	this.modalConfrim = true
+	    	this.modal.miniTitle = "Hapus Artikel Ini?";
+	    	this.modal.miniButton ="Iya, Hapus";
+	    	this.modal.miniType ="Hapus";
+	    	this.modal.state = 'confirm';
+	    },
+	    modalMenuStatus(status){
+	    	var statusmessage = '';
+	    	if(status == "Terbitkan"){
+	    		if(this.modal.data.terbitkan == 0){
+	    			statusmessage = "Terbitkan";
+	    		}else{
+	    			statusmessage = "Tidak Terbitkan";
+	    		}
+	    		this.source2 = "updateTerbitkan";
+	    	}else{
+	    		if(this.modal.data.utamakan == 0){
+	    			statusmessage = "Utamakan";
+	    		}else{
+	    			statusmessage = "Tidak Utamakan";
+	    		}
+	    		this.source2 = "updateUtamakan";
+	    	}
+
+	    	this.modal.miniTitle = statusmessage + " Artikel Ini?";
+			this.modal.miniButton ="Iya, " + statusmessage;
+	    	this.modal.miniType =status;
+	    	this.modal.state = 'confirm';
+	    },
+	    modalError(){
+	    	this.modal.miniTitle = "Ops terjadi kesalahan :(";
+	    	this.modal.miniType = "error";
+	    	this.modal.state = 'result';
+	    },
+	    modalSuccess(title){
+	    	this.modal.miniTitle = title;
+	    	this.modal.miniType = "success";
+	    	this.modal.state = 'result';
+	    },
+	    modalConfirmOk(value){
+	    	var vm = this
+	    	vm.modal.state = "loading";
+	    	if(value == 'Hapus'){
+                axios.delete(`${this.source}/${this.modal.data.id}`)
+                    .then(function(response) {
+                        if(response.data.deleted) {
+                            vm.modalSuccess(response.data.message);
+                        }
+                    })
+                    .catch(function(error) {
+                        vm.modalError();
+                    })
+	    	}else if(value == "Terbitkan" || value == "Utamakan" ){
+	    		axios.post(`${this.source}/${this.source2}/${this.modal.data.id}`)
+                    .then(function(response) {
+                        if(response.data.saved) {
+                            vm.modalSuccess(response.data.message);
+                        }
+                    })
+                    .catch(function(error) {
+                        vm.modalError();
+                    })
+	    	}
 	    }
 	},
 	filters: {
 	    publishDate: function(value){
-	       return moment(value).format('DD MMMM YYYY')
+	       return moment(value).format('DD MMMM YYYY');
 	    },
 	    trimString: function(string){
 	    	return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
 	    },
 	    checkStatus: function(value){
 	    	if(value > 0){
-	    		return '<span class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>'
+	    		return '<span class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>';
 	    	}else{
-	    		return '<span class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>'
+	    		return '<span class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>';
 	    	}
 	    },
 	    checkStatus2: function(value){
 	    	if(value > 0){
-	    		return '<i class="icon-check"></i>'
+	    		return '<i class="icon-check"></i>';
 	    	}else{
-	    		return '<i class="icon-cross3"></i>'
+	    		return '<i class="icon-cross3"></i>';
 	    	}
 	    },
 	    checkImages: function(value){

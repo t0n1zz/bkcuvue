@@ -24,6 +24,7 @@
     "moment": "^2.18.1",
     "uiv": "^0.11.9",
     "vee-validate": "^2.0.0-rc.14",
+    "vue-json-excel": "0.0.7",
     "vue-strap": "^1.1.37"
   }
 }

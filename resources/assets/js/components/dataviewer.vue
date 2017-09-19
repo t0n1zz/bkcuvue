@@ -7,38 +7,117 @@
                     <div class="input-group-addon">
                         <i class="icon-search4 text-muted"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Masukkan pencarian" v-model="params.search_query_1" @keyup.enter="resetPage">
+                    <input type="text" class="form-control" placeholder="Masukkan pencarian" v-model="params.search_query_1" @keyup.enter="resetPage(params.per_page)">
                 </div>
             </div>
             <div class="col-md-3 pb-10">
                 <div class="input-group">
                     <select class="bootstrap-select" v-model="params.search_column" data-width="100%">
-                        <option v-for="filter in filters" :value="filter.key">Berdasarkan {{filter.title}}</option>
+                        <option v-for="column in thead" v-if="column.filterKey != null" :value="column.filterKey">Berdasarkan {{column.title}}</option>
                     </select>
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-primary" @click="resetPage"> Cari</button>
+                    <div class="input-group-btn" v-if="loading">
+                        <button type="button" class="btn btn-success btn-block" disabled ><i class="icon-spinner2 spinner"></i></button>
+                    </div>
+                    <div class="input-group-btn" v-else>
+                        <button type="button" class="btn btn-success" @click="resetPage(params.per_page)"> Cari</button>
+                        <button type="button" class="btn btn-default btn-icon" @click="refreshData" :class="{'disabled' : !isReset}"><i class="icon-x"></i></button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <select v-model="params.per_page" class="bootstrap-select" data-style="bg-info" data-width="100%" @change="resetPage">
-                    <option value="10" selected>Tampilkan 10 entri</option>
-                    <option value="25">Tampilkan 25 entri</option>
-                    <option value="50">Tampilkan 50 entri</option>
-                </select>
-            </div>
-            <div class="col-md-1">
-                <button type="button" class="btn btn-info btn-block" @click="refreshData" :class="{'disabled' : !isReset}"><i class="icon-sync"></i></button>
+            <div class="col-md-12">
+                <div class="btn-toolbar"  v-if="loading">
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
+                            <i class="icon-spinner2 spinner"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
+                            <i class="icon-spinner2 spinner"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
+                            <i class="icon-spinner2 spinner"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
+                            <i class="icon-spinner2 spinner"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="btn-toolbar" v-else>
+                    <!-- row button -->
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="KOLOM" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-table2"></i> &nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-content">
+                            <li class="dropdown-header">Kolom yang ditampilkan</li>
+                            <li class="divider"></li>
+                            <li ><a @click.prevent="showAllColumn">Semua Kolom</a></li>
+                            <slot name="button-kolom"></slot>
+                            <li class="divider"></li>
+                            <li v-for="(item,index) in thead" :class="{'active' : !item.hide}"><a @click.prevent="hideColumn(index)">{{item.title}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="ENTRI" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>&nbsp; {{params.per_page}} &nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Entri yang ditampilkan</li>
+                            <li class="divider"></li>
+                            <li :class="{'active' : params.per_page === 10}"><a @click.prevent="resetPage(10)">10 Entri</a></li>
+                            <li :class="{'active' : params.per_page === 25}"><a @click.prevent="resetPage(25)">25 Entri</a></li>
+                            <li :class="{'active' : params.per_page === 50}"><a @click.prevent="resetPage(50)">50 Entri</a></li>
+                            <slot name="button-entri"></slot>
+                        </ul>
+                    </div>
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="KELOMPOK" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-grid6"></i>&nbsp; {{groupTitle}} &nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Kelompokkan berdasarkan</li>
+                            <li class="divider"></li>
+                            <li><a @click.prevent="unGroupRow">Tidak dikelompokkan</a></li>
+                            <li class="divider"></li>
+                            <li v-for="(column,index) in thead" v-if="column.groupKey != null" :class="{'active' : column.groupKey === groupKey}"><a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group pb-5">
+                        <button type="button" data-popup="tooltip" title="DOWNLOAD EXCEL" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-file-excel"></i>&nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Download data ke excel</li>
+                            <li class="divider"></li>
+                            <li>
+                                <json-excel
+                                    :data   = "excel.data"
+                                    :fieldsx = "excel.fields"
+                                    :meta   = "excel.meta"
+                                    name    = "fileExcel.xls"
+                                >Data di tabel</json-excel>      
+                            </li>
+                            <li><a @click.prevent="modalMenuOpen">Semua Data</a></li>
+                        </ul>
+                    </div>
+                    <!-- slot button -->
+                    <slot name="button"></slot>
+                </div>
             </div>
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <thead class="bg-primary">
                 <tr class="text-nowrap">
-                    <th v-for="item in thead">
+                    <th v-for="item in thead" v-if="!item.hide">
                         <div @click="sort(item.key)" v-if="item.sort" class="cursor-pointer">
                             <span>{{item.title}}</span>
                             <span v-if="params.column === item.key">
@@ -53,13 +132,37 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <slot v-for="item in model.data" :item="item"></slot>
+            <tbody v-if="loading">
+                <tr>
+                    <td :colspan="thead.length">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+                                <span class="sr-only">100% Complete</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
+            <tbody v-for="(items,index) in groupData" v-else>
+                <tr class="active border-double" v-if="isGroup">
+                  <td :colspan="thead.length">
+                    <b>{{index}}</b>
+                  </td>
+                </tr>
+                <slot v-for="item in items" :item="item"></slot>
+            </tbody>  
         </table>
     </div>
     <div class="panel-footer has-visible-elements">
-        <div class="heading-elements visible-elements">
+        <div class="heading-elements visible-elements" v-if="loading">
+            <span class="heading-text text-semibold">Menampilkan <i class="icon-spinner2 spinner"></i> - <i class="icon-spinner2 spinner"></i> entri dari {{model.total}} entri</span>
+            <ul class="pagination pagination-flat pagination-xs pull-right">
+                <li class="disabled"><a><i class="icon-arrow-left12"></i></a></li>
+                <li class="active"><a><i class="icon-spinner2 spinner"></i></a></li>
+                <li class="disabled"><a><i class="icon-arrow-right13"></i></a></li>
+            </ul>
+        </div>
+        <div class="heading-elements visible-elements" v-else>
             <span class="heading-text text-semibold">Menampilkan {{model.from}} - {{model.to}} entri dari {{model.total}} entri</span>
             <ul class="pagination pagination-flat pagination-xs pull-right">
                 <li :class="{'disabled' : !model.prev_page_url}"><a @click.prevent="prev"><i class="icon-arrow-left12"></i></a></li>
@@ -69,17 +172,65 @@
         </div>
     </div>
 </div>
+
+<!-- modal -->
+<!-- table-context-menu -->
+<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" @close="modalMenuClose">
+    <div slot="modal-confirm" class="text-center">
+        <span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
+        <h2>{{modal.miniTitle}}</h2>
+        <div class="well well-sm">{{modal.miniContent}}</div>
+        <br/>
+        <ul class="list-inline">
+            <li><button type="button" class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button></li>
+            <li><button type="button" class="btn btn-warning" @click="modalConfirmOk()"><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
+        </ul>
+    </div>
+    <div slot="modal-result" class="text-center">
+        <span class="text-primary" v-if="modal.miniType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
+        <span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
+        <h2>{{modal.miniTitle}}</h2>
+        <ul class="list-inline">
+            <li  v-if="modal.miniType === 'error'"><button type="button" class="btn btn-default" @click="modalMenuClose">Tutup</button></li>
+            <li v-else><json-excel
+                :data    = "excel.data"
+                :fieldsx = "excel.fields"
+                :meta    = "excel.meta"
+                name     = "fileExcel.xls"
+                class    ="btn btn-default"
+                ><i class="icon-download10"></i> Download Excel</json-excel></li>
+        </ul>
+    </div>
+</app-modal>
 </div></template>
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
+    import Vue from 'vue';
+    import axios from 'axios';
+    import _ from 'lodash';
+    import JsonExcel from 'vue-json-excel';
+    import appModal from '../components/modal'
+    import {bus} from '../app';
 
     export default {
-        props: ['source', 'thead', 'filters', 'create', 'title'],
+        props: ['source', 'thead'],
+        components:{
+            appModal,
+            JsonExcel
+        },
         data() {
             return {
                 model: {
                     data: []
+                },
+                excel: {
+                    fields: {},
+                    data : [],
+                    meta: [
+                        [{
+                            "key": "charset",
+                            "value": "utf-8"
+                        }]
+                    ]
                 },
                 params: {
                     column: 'id',
@@ -91,6 +242,22 @@
                     search_query_1: '',
                     search_query_2: ''
                 },
+                modal: {
+                    show: false,
+                    size:'',
+                    color:'',
+                    data: '',
+                    state:'confirm',
+                    miniTitle:'',
+                    miniContent:'',
+                    miniButton:'',
+                    miniType:''
+                },
+                loading: false,
+                isGroup: false,
+                groupKey : '',
+                groupTitle:'',
+                groupData: [],
                 isReset: false,
                 startPage: 0,
                 endPage: 0,
@@ -100,82 +267,165 @@
             }
         },
         beforeMount() {
-            this.fetchData()
+            this.fetchData();
         },
         mounted() {
-            $('.bootstrap-select').selectpicker();
+            $('.bootstrap-select').selectpicker();  
+        },
+        created(){
+            bus.$on('fetchData',() =>{
+                this.fetchData();
+            });
         },
         methods: {
+            modalMenuOpen(){
+                this.modal.show= true;
+                this.modal.miniTitle = "Yakin akan mendownload semua data ke excel?"
+                this.modal.miniContent = "Download akan lebih lama tergantung dari jumlah data"
+                this.modal.miniButton = "Ya, Download semua"
+                this.modal.state = 'confirm';
+            },
+            modalConfirmOk(){
+                this.modal.show= true;
+                this.modal.miniType = "success"
+                this.modal.miniTitle = "Silahkan tekan tombol download"
+                this.modal.state = 'result';
+            },
+            modalMenuClose(){
+                this.modal.show = false;
+                this.modal.state = 'confirm';
+            },
             calculatePagination(){
-                this.startPage = this.params.page < 3 ? 1 : this.params.page - 1
-                this.endPage = 4 + this.startPage
-                this.endPage = this.model.last_page < this.endPage ? this.model.last_page : this.endPage
-                this.diffPage = this.startPage - this.endPage + 4
+                this.startPage = this.params.page < 3 ? 1 : this.params.page - 1;
+                this.endPage = 4 + this.startPage;
+                this.endPage = this.model.last_page < this.endPage ? this.model.last_page : this.endPage;
+                this.diffPage = this.startPage - this.endPage + 4;
                 this.startPage -= this.startPage - this.diffPage > 0 ? this.diffPage : 0;
-                this.pages.length = 0
+                this.pages.length = 0;
                 for(this.i = this.startPage; this.i<=this.endPage; this.i++){
-                    this.pages.push(this.i)
+                    this.pages.push(this.i);
                 }
+            },
+            field_excel(vm){
+                vm.excel.fields = {};
+                vm.thead.forEach(function(column){
+                    if(!column.hide){
+                        vm.excel.fields[column.title] = column.type;
+                    }
+                });
+                vm.excel.data = _.chain(vm.model.data).map(function(item){
+                    var object = {};
+                    vm.thead.forEach(function(key){
+                        if(!key.hide){
+                            if(key.groupKey){
+                                object[key.title] = _.get(item, key.groupKey);
+                            }else{
+                                object[key.title] = _.get(item, key.key);
+                            }   
+                        }
+                    })
+                    return object;
+                }).value();
+            },
+            hideColumn(index){
+                if(this.thead[index].hide === false)
+                    this.thead[index].hide = true;
+                else
+                    this.thead[index].hide = false;
+                this.field_excel(this);
+            },
+            showAllColumn(index){
+                for (var t in this.thead){
+                    if(t != index)
+                       this.thead[t].hide = false;
+                }
+                this.field_excel(this);
+            },
+            groupRow(groupKey,sortKey,title,index){
+                if(this.groupKey != groupKey){
+                    this.isGroup = true;
+                    this.groupKey = groupKey;
+                    this.groupTitle = title;
+                    this.thead[index].hide = true;
+                    this.sort(sortKey);
+                }
+                this.showAllColumn(index);
+            },
+            unGroupRow(){
+                if(this.isGroup){
+                    this.isGroup = false;
+                    this.groupKey = '';
+                    this.groupTitle = '';
+                }
+                this.showAllColumn();
             },
             next() {
                 if(this.model.next_page_url) {
-                    this.params.page++
-                    this.fetchData()
+                    this.params.page++;
+                    this.fetchData();
                 }     
             },
             prev() {
                 if(this.model.prev_page_url) {
-                    this.params.page--
-                    this.fetchData()
+                    this.params.page--;
+                    this.fetchData();
                 }
             },
             goToPage(value){
                 if(this.params.page != value){
-                    this.params.page = value
-                    this.fetchData()
+                    this.params.page = value;
+                    this.fetchData();
                 }
             },
             sort(column) {
                 if(column === this.params.column) {
                     if(this.params.direction === 'desc') {
-                        this.params.direction = 'asc'
+                        this.params.direction = 'asc';
                     } else {
-                        this.params.direction = 'desc'
+                        this.params.direction = 'desc';
                     }
                 } else {
-                    this.params.column = column
-                    this.params.direction = 'asc'
+                    this.params.column = column;
+                    this.params.direction = 'asc';
                 }
-
-                this.fetchData()
+                this.params.page = 1;
+                this.fetchData();
             },
-            resetPage(){
-                this.params.page = 1
-                this.isReset = true
-                this.fetchData()
+            resetPage(value){
+                this.params.per_page = value;
+                this.params.page = 1;
+                this.isReset = true;
+                this.fetchData();
             },
             refreshData(){
-                this.params.page = 1
-                this.params.per_page = 10
-                this.params.search_query_1 = ''
-                this.params.search_column = 'nama'
-                this.isReset = false
-                this.fetchData()
+                this.params.page = 1;
+                this.params.per_page = 10;
+                this.params.search_query_1 = '';
+                this.params.search_column = 'nama';
+                this.isReset = false;
+                this.fetchData();
             },
             fetchData() {
-                var vm = this
+                var vm = this;
+                vm.loading = true;
                 axios.get(this.buildURL())
                     .then(function(response) {
-                        Vue.set(vm.$data, 'model', response.data.model)
-                        vm.calculatePagination()
+                        Vue.set(vm.$data, 'model', response.data.model);
+                        vm.calculatePagination();
+                        vm.groupData = _.groupBy(vm.model.data,vm.groupKey);
+                        vm.field_excel(vm);
+                        vm.loading = false;
                     })
                     .catch(function(error) {
-                        console.log(error)
+                        vm.loading = false;
+                        if(vm.modal.show){
+                            vm.modal.miniType = 'error';
+                        }
                     })    
             },
             buildURL() {
-                var p = this.params
-                return `${this.source}?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`
+                var p = this.params;
+                return `${this.source}?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`;
             }
         }
     }

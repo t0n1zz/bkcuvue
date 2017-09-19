@@ -21,17 +21,25 @@
 				<div class="modal-body">
 					<transition name="modal-effect"
 						enter-active-class="animated flipInX"
-						leave-active-class="animated flipOutX"
 						mode="out-in"
 					>
-						<div v-if="!isConfirm" key="notConfirm">
+						<div v-if="state === 'confirm'" key="confirm">
+							<slot name="modal-confirm"></slot>
+						</div>
+						<div v-else-if="state === 'result'" key="result">
+							<slot name="modal-result"></slot>
+						</div>
+						<div v-else-if="state === 'loading'" key="loading">
+							<div class="text-center">
+								<i class="icon-spinner spinner" style="font-size: 5em"></i>
+								<h2>Mohon tunggu sebentar...</h2>
+							</div>
+						</div>
+						<div v-else key="normal">
 							<slot name="modal-body" ></slot>
 							<div class="modal-footer no-padding">
 								<slot name="modal-footer"></slot>
 							</div>
-						</div>
-						<div v-else key="confirm">
-							<slot name="modal-confirm" ></slot>
 						</div>
 					</transition>
 				</div>				
@@ -45,7 +53,7 @@
 
 <script>
 export default{
-	props: ['show','color','size','isConfirm'],
+	props: ['show','color','size','state'],
 	data(){
 		return{
 			created: false,

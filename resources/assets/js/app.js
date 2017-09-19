@@ -8,6 +8,8 @@ import VeeValidate from 'vee-validate';
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
 
+
+
 window.axios = Axios;
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
@@ -31,8 +33,11 @@ router.beforeEach((to, from, next) => {
         next();
     }
 })
- 
+
+export const bus = new Vue();
+
 const app = new Vue({
     router,
     render: h => h(Admin)
 }).$mount('#app');
+

@@ -12,8 +12,8 @@
 					<h5 class="content-group">SIMO <small class="display-block">Sistem Informasi Manajemen Organisasi</small></h5>
 				</div>
 
-				<message :show="error.show" :isError="true">
-	          		<p>{{error.message}}</p>
+				<message :show="message.show" :type="message.type">
+	          		<p>{{message.content}}</p>
 	        	</message>
 
 				<div class="form-group has-feedback has-feedback-left">
@@ -50,14 +50,13 @@ import Progress from '../assets/plugins/loaders/progressbar.min.js'
 export default {
 	components: {
         Message
-
     },
 	mounted(){
 		Progress.progressbar();
 	},
 	methods: {
 		login(){
-			this.error.show = false;
+			this.message.show = false;
 			this.loading = true;
 			axios.post('/login',{
 				username: this.username,
@@ -66,11 +65,12 @@ export default {
 			.then(response => {
 				this.$router.push('/');
 			}).catch(error => {
-				this.error.show = true;
+				this.message.show = true;
+				this.message.type = 'bg-danger';
                 if (error.response.status === 422) {  
-                    this.error.message = "Username atau password anda salah."
+                    this.message.content = "Username atau password anda salah.";
                 }else{
-                    this.error.message = error.response.data.message
+                    this.message.content = error.response.data.message;
                 }
                 this.loading = false;
 			});
@@ -81,9 +81,10 @@ export default {
 			username: "",
 			password: "",
 			loading: false,
-			error: {
+			message: {
 				show: false,
-				message: ''
+				type: '',
+				content: ''
 			}
 		}
 	}
