@@ -7,7 +7,7 @@
                     <div class="input-group-addon">
                         <i class="icon-search4 text-muted"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Masukkan pencarian" v-model="params.search_query_1" @keyup.enter="resetPage(params.per_page)">
+                    <input type="text" class="form-control" placeholder="Masukkan pencarian" v-model="params.search_query_1" @keyup.enter="searchData()">
                 </div>
             </div>
             <div class="col-md-3 pb-10">
@@ -15,19 +15,19 @@
                     <select class="bootstrap-select" v-model="params.search_column" data-width="100%">
                         <option v-for="column in thead" v-if="column.filterKey != null" :value="column.filterKey">Berdasarkan {{column.title}}</option>
                     </select>
-                    <div class="input-group-btn" v-if="loading">
+                    <div class="input-group-btn" v-if="state === 'loading'">
                         <button type="button" class="btn btn-success btn-block" disabled ><i class="icon-spinner2 spinner"></i></button>
                     </div>
                     <div class="input-group-btn" v-else>
-                        <button type="button" class="btn btn-success" @click="resetPage(params.per_page)"> Cari</button>
-                        <button type="button" class="btn btn-default btn-icon" @click="refreshData" :class="{'disabled' : !isReset}"><i class="icon-x"></i></button>
+                        <button type="button" class="btn btn-success" @click="searchData()"> Cari</button>
+                        <button type="button" class="btn btn-default btn-icon" @click="searchReset" :class="{'disabled' : !isSearch}"><i class="icon-x"></i></button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="btn-toolbar"  v-if="loading">
+                <div class="btn-toolbar"  v-if="state === 'loading'">
                     <div class="btn-group pb-5">
                         <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
                             <i class="icon-spinner2 spinner"></i>
@@ -71,22 +71,24 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Entri yang ditampilkan</li>
                             <li class="divider"></li>
-                            <li :class="{'active' : params.per_page === 10}"><a @click.prevent="resetPage(10)">10 Entri</a></li>
-                            <li :class="{'active' : params.per_page === 25}"><a @click.prevent="resetPage(25)">25 Entri</a></li>
-                            <li :class="{'active' : params.per_page === 50}"><a @click.prevent="resetPage(50)">50 Entri</a></li>
+                            <li :class="{'active' : params.per_page === 10}"><a @click.prevent="entriPage(10)">10 Entri</a></li>
+                            <li :class="{'active' : params.per_page === 25}"><a @click.prevent="entriPage(25)">25 Entri</a></li>
+                            <li :class="{'active' : params.per_page === 50}"><a @click.prevent="entriPage(50)">50 Entri</a></li>
+                            <li class="divider" v-if="model.total > 50"></li>
+                            <li v-if="model.total > 50"><a @click.prevent="modalEntriOpen">Semua Entri</a></li>
                             <slot name="button-entri"></slot>
                         </ul>
                     </div>
                     <div class="btn-group pb-5">
                         <button type="button" data-popup="tooltip" title="KELOMPOK" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-grid6"></i>&nbsp; {{groupTitle}} &nbsp;<span class="caret"></span>
+                            <i class="icon-grid6"></i>&nbsp; {{group.title}} &nbsp;<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Kelompokkan berdasarkan</li>
                             <li class="divider"></li>
                             <li><a @click.prevent="unGroupRow">Tidak dikelompokkan</a></li>
                             <li class="divider"></li>
-                            <li v-for="(column,index) in thead" v-if="column.groupKey != null" :class="{'active' : column.groupKey === groupKey}"><a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a></li>
+                            <li v-for="(column,index) in thead" v-if="column.groupKey != null" :class="{'active' : column.groupKey === group.key}"><a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-group pb-5">
@@ -132,7 +134,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody v-if="loading">
+            <tbody v-if="state === 'loading'">
                 <tr>
                     <td :colspan="thead.length">
                         <div class="progress">
@@ -143,8 +145,8 @@
                     </td>
                 </tr>
             </tbody>
-            <tbody v-for="(items,index) in groupData" v-else>
-                <tr class="active border-double" v-if="isGroup">
+            <tbody class="pre-scrollable" v-for="(items,index) in group.data" v-else>
+                <tr class="active border-double" v-if="group.show">
                   <td :colspan="thead.length">
                     <b>{{index}}</b>
                   </td>
@@ -154,7 +156,7 @@
         </table>
     </div>
     <div class="panel-footer has-visible-elements">
-        <div class="heading-elements visible-elements" v-if="loading">
+        <div class="heading-elements visible-elements" v-if="state === 'loading'">
             <span class="heading-text text-semibold">Menampilkan <i class="icon-spinner2 spinner"></i> - <i class="icon-spinner2 spinner"></i> entri dari {{model.total}} entri</span>
             <ul class="pagination pagination-flat pagination-xs pull-right">
                 <li class="disabled"><a><i class="icon-arrow-left12"></i></a></li>
@@ -174,7 +176,7 @@
 </div>
 
 <!-- modal -->
-<!-- table-context-menu -->
+<!-- download excel -->
 <app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" @close="modalMenuClose">
     <div slot="modal-confirm" class="text-center">
         <span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
@@ -183,16 +185,20 @@
         <br/>
         <ul class="list-inline">
             <li><button type="button" class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button></li>
-            <li><button type="button" class="btn btn-warning" @click="modalConfirmOk()"><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
+            <li v-if="modal.name === 'entri'"><button type="button" class="btn btn-warning" @click="modalConfirmOkEntri()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
+            <li v-else><button type="button" class="btn btn-warning" @click="modalConfirmOk()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
         </ul>
     </div>
     <div slot="modal-result" class="text-center">
         <span class="text-primary" v-if="modal.miniType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
         <span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
         <h2>{{modal.miniTitle}}</h2>
-        <ul class="list-inline">
-            <li  v-if="modal.miniType === 'error'"><button type="button" class="btn btn-default" @click="modalMenuClose">Tutup</button></li>
-            <li v-else><json-excel
+        <ul class="list-inline" v-if="modal.miniType === 'error'">
+            <li ><button type="button" class="btn btn-default" @click="modalMenuClose">Tutup</button></li>
+        </ul>
+        <ul class="list-inline" v-else>
+            <li><button type="button" class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button></li>
+            <li><json-excel
                 :data    = "excel.data"
                 :fieldsx = "excel.fields"
                 :meta    = "excel.meta"
@@ -202,6 +208,9 @@
         </ul>
     </div>
 </app-modal>
+
+<!-- modal entri -->
+
 </div></template>
 <script>
     import Vue from 'vue';
@@ -243,6 +252,7 @@
                     search_query_2: ''
                 },
                 modal: {
+                    name:'',
                     show: false,
                     size:'',
                     color:'',
@@ -253,17 +263,16 @@
                     miniButton:'',
                     miniType:''
                 },
-                loading: false,
-                isGroup: false,
-                groupKey : '',
-                groupTitle:'',
-                groupData: [],
-                isReset: false,
-                startPage: 0,
-                endPage: 0,
-                diffPage: 0,
-                pages: [],
-                i: 0
+                group: {
+                    show: false,
+                    key: '',
+                    title: '',
+                    data: []
+                },
+                state: '',
+                isSearch: false,
+                isExcelAll: false,
+                pages: []
             }
         },
         beforeMount() {
@@ -280,30 +289,50 @@
         methods: {
             modalMenuOpen(){
                 this.modal.show= true;
+                this.modal.name='excel';
+                this.modal.state = 'confirm';
                 this.modal.miniTitle = "Yakin akan mendownload semua data ke excel?"
                 this.modal.miniContent = "Download akan lebih lama tergantung dari jumlah data"
                 this.modal.miniButton = "Ya, Download semua"
+            },
+            modalEntriOpen(){
+                this.modal.show= true;
+                this.modal.name='entri';
                 this.modal.state = 'confirm';
+                this.modal.miniTitle = "Yakin akan menampilkan semua entri?"
+                this.modal.miniContent = "Menampilkan terlalu banyak entri dapat mengurangi performa pengoperasian aplikasi ini"
+                this.modal.miniButton = "Ya, Tampilkan semua"
             },
             modalConfirmOk(){
+                this.isExcelAll = true;
                 this.modal.show= true;
                 this.modal.miniType = "success"
                 this.modal.miniTitle = "Silahkan tekan tombol download"
-                this.modal.state = 'result';
+                this.entriPage(this.model.total);
+            },
+            modalConfirmOkEntri(){
+                this.modal.show= false;
+                this.entriPage(this.model.total);
             },
             modalMenuClose(){
                 this.modal.show = false;
                 this.modal.state = 'confirm';
             },
             calculatePagination(){
-                this.startPage = this.params.page < 3 ? 1 : this.params.page - 1;
-                this.endPage = 4 + this.startPage;
-                this.endPage = this.model.last_page < this.endPage ? this.model.last_page : this.endPage;
-                this.diffPage = this.startPage - this.endPage + 4;
-                this.startPage -= this.startPage - this.diffPage > 0 ? this.diffPage : 0;
+                var i = 0;
+                var startPage = 0;
+                var endPage = 0;
+                var diffPage = 0;
+
+                startPage = this.params.page < 3 ? 1 : this.params.page - 1;
+                endPage = 4 + startPage;
+                endPage = this.model.last_page < endPage ? this.model.last_page : endPage;
+                diffPage = startPage - endPage + 4;
+                startPage -= startPage - diffPage > 0 ? diffPage : 0;
                 this.pages.length = 0;
-                for(this.i = this.startPage; this.i<=this.endPage; this.i++){
-                    this.pages.push(this.i);
+                
+                for(i = startPage; i<=endPage; i++){
+                    this.pages.push(i);
                 }
             },
             field_excel(vm){
@@ -326,6 +355,8 @@
                     })
                     return object;
                 }).value();
+                vm.isExcelAll = false;
+                vm.params.per_page = 10;
             },
             hideColumn(index){
                 if(this.thead[index].hide === false)
@@ -342,20 +373,20 @@
                 this.field_excel(this);
             },
             groupRow(groupKey,sortKey,title,index){
-                if(this.groupKey != groupKey){
-                    this.isGroup = true;
-                    this.groupKey = groupKey;
-                    this.groupTitle = title;
+                if(this.group.key != groupKey){
+                    this.group.show = true;
+                    this.group.key = groupKey;
+                    this.group.title = title;
                     this.thead[index].hide = true;
                     this.sort(sortKey);
                 }
                 this.showAllColumn(index);
             },
             unGroupRow(){
-                if(this.isGroup){
-                    this.isGroup = false;
-                    this.groupKey = '';
-                    this.groupTitle = '';
+                if(this.group.show){
+                    this.group.show = false;
+                    this.group.key = '';
+                    this.group.title = '';
                 }
                 this.showAllColumn();
             },
@@ -391,10 +422,21 @@
                 this.params.page = 1;
                 this.fetchData();
             },
-            resetPage(value){
+            entriPage(value){
                 this.params.per_page = value;
                 this.params.page = 1;
-                this.isReset = true;
+                this.fetchData();
+            },
+            searchData(){
+                this.isSearch = true;
+                this.params.page = 1;
+                this.fetchData();
+            },
+            searchReset(){
+                this.params.search_query_1 = '';
+                this.params.search_query_2 = '';
+                this.params.page = 1;
+                this.isSearch = false;
                 this.fetchData();
             },
             refreshData(){
@@ -407,17 +449,27 @@
             },
             fetchData() {
                 var vm = this;
-                vm.loading = true;
+                
+                if(vm.isExcelAll){
+                    vm.modal.state = 'loading';
+                }else{
+                    vm.state = 'loading';
+                }
                 axios.get(this.buildURL())
                     .then(function(response) {
                         Vue.set(vm.$data, 'model', response.data.model);
-                        vm.calculatePagination();
-                        vm.groupData = _.groupBy(vm.model.data,vm.groupKey);
+                        if(!vm.isExcelAll){
+                            vm.group.data = _.groupBy(vm.model.data,vm.group.key);
+                            vm.calculatePagination();
+                        }else{
+                            vm.modal.state = 'result';
+                        }
                         vm.field_excel(vm);
-                        vm.loading = false;
+                        vm.state = '';
                     })
                     .catch(function(error) {
-                        vm.loading = false;
+                        vm.state = '';
+                        vm.modal.state = 'result';
                         if(vm.modal.show){
                             vm.modal.miniType = 'error';
                         }
