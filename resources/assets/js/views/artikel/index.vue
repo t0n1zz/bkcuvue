@@ -4,7 +4,7 @@
 <div class="page-header">
 	<div class="page-header-content has-visible-elements">
 		<div class="page-title">
-			<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Artikel</span> - Mengelola data artikel</h4>
+			<h4><i class="icon-magazine position-left"></i> <span class="text-semibold">Artikel</span> - Mengelola data artikel</h4>
 			<ul class="breadcrumb breadcrumb-caret position-right">
 				<router-link :to="{ name:'dashboard' }" tag="li"><a>Dashboard</a></router-link>
 				<li class="active">Artikel</li>
@@ -12,16 +12,9 @@
 		</div>
 		<div class="heading-elements visible-elements">
 			<div class="heading-btn-group">
-				<router-link :to="{ name:'artikelCreate' }"  class="btn btn-primary btn-icon">
-					<i class="icon-plus3" data-popup="tooltip" title="TAMBAH ARTIKEL" ></i>
+				<router-link :to="{ name:'artikelCreate' }"  class="btn btn-primary">
+					<i class="icon-plus22" ></i>
 				</router-link>
-				<button type="button" data-popup="tooltip" title="Memilih jumlah entri yang ditampilkan" class="btn btn-info btn-icon dropdown-toggle" data-toggle="dropdown">Artikel BKCU &nbsp;<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">Artikel Dari</li>
-                    <li class="divider"></li>
-                    <li v-for="n in 50" ><a >CU A</a></li>
-                </ul>
 			</div>
 		</div>
 	</div>
@@ -32,7 +25,7 @@
 	<div class="page-content">
 		<div class="content-wrapper">
 			<!-- panel -->
-			<data-viewer :source="source" :thead="thead">
+			<data-viewer :source="source" :thead="thead" :toolbarButton="4">
 		        <template scope="props">
 		        	<tr class="cursor-pointer" @click="modalMenuOpen(props.item)">
 		        		<td v-if="!thead[0].hide">

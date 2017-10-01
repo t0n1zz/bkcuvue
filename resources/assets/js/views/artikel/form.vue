@@ -3,7 +3,7 @@
 <div class="page-header">
 	<div class="page-header-content has-visible-elements">
 		<div class="page-title">
-			<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{title}}</span> - {{ title2 }}</h4>
+			<h4><i class="icon-plus22 position-left"></i> <span class="text-semibold">{{title}}</span> - {{ title2 }}</h4>
 			<ul class="breadcrumb breadcrumb-caret position-right">
 				<router-link :to="{ name:'dashboard' }" tag="li"><a>Dashboard</a></router-link>
 				<router-link :to="{ name:'artikel' }" tag="li"><a>Artikel</a></router-link>
@@ -12,9 +12,8 @@
 		</div>
 		<div class="heading-elements visible-elements">
 			<div class="heading-btn-group">
-				<router-link :to="{ name:'artikel'}" class="btn btn-link btn-float has-text text-size-small">
-					<i class="icon-magazine text-indigo-400"></i>
-					<span>Artikel</span>
+				<router-link :to="{ name:'artikel'}" class="btn btn-primary">
+					<i class="icon-magazine"></i>
 				</router-link>
 			</div>
 		</div>
@@ -27,10 +26,10 @@
 <div class="panel panel-flat">
 	<div class="panel-body">
 		<form @submit.prevent="save">
-			<div class="row">
+			<div class="row">	
 				<div class="col-md-4">
 					<div class="form-group has-feedback" :class="{'has-error' : errors.has('nama')}">
-						<label class="text-semibold" :class="{ 'text-danger' : errors.has('nama')}">Judul:</label>
+						<h5 :class="{ 'text-danger' : errors.has('nama')}">Judul:</h5>
 						<input type="text" name="nama" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'" v-model="form.nama">
 						<div class="form-control-feedback" v-if="errors.has('nama')">
 							<i class="icon-cancel-circle2"></i>
@@ -40,7 +39,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="form-group has-feedback" :class="{ 'has-error' : errors.has('penulis')}">
-						<label class="text-semibold" :class="{ 'text-danger' : errors.has('penulis')}">Penulis:</label>
+						<h5 :class="{ 'text-danger' : errors.has('penulis')}">Penulis:</h5>
 						<input type="text" name="penulis" class="form-control" placeholder="Silahkan masukkan nama penulis" v-validate="'required|min:5'" v-model="form.penulis">
 						<div class="form-control-feedback" v-if="errors.has('penulis')">
 							<i class="icon-cancel-circle2"></i>
@@ -50,7 +49,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label class="text-semibold">Kategori:</label>
+						<h5>Kategori:</h5>
 						<div class="input-group">
 							<select class="bootstrap-select" v-model="form.artikel_kategori_id" data-width="100%">
 								<option disabled value="1">Silahkan pilih kategori</option>
@@ -58,7 +57,7 @@
 								<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.nama}}</option>
 							</select>
 							<div class="input-group-btn">
-								<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalkategori"><i class="icon-plus22"></i></button>
+								<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Kategori"><i class="icon-plus22"></i></button>
 							</div>
 						</div>
 						<small class="text-muted">&nbsp;</small>
@@ -66,7 +65,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label class="display-block text-semibold">Terbitkan:</label>
+						<h5>Terbitkan:</h5>
 						<label class="radio-inline">
 							<input type="radio" name="terbitkan" class="styled" value="1" v-model="form.terbitkan">
 							Ya
@@ -75,12 +74,11 @@
 							<input type="radio" name="terbitkan" class="styled" value="0" v-model="form.terbitkan">
 							Tidak
 						</label>
-						<!-- <small class="text-danger" v-if="errors.terbitkan">{{errors.terbitkan[0]}}</small> -->
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label class="display-block text-semibold">Utamakan:</label>
+						<h5>Utamakan:</h5>
 						<label class="radio-inline">
 							<input type="radio" name="diutamakan" class="styled" value="1" v-model="form.utamakan">
 							Ya
@@ -90,34 +88,23 @@
 							<input type="radio" name="diutamakan" class="styled" value="0" v-model="form.utamakan">
 							Tidak
 						</label>
-						<!-- <small class="text-danger" v-if="errors.utamakan">{{errors.utamakan[0]}}</small> -->
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-						<label class="display-block text-semibold">Gambar Utama:</label>
-						<label class="radio-inline">
-							<input type="radio" name="gambarUtama" class="styled" value="1" v-model="form.gambar">
-							Ya
-						</label>
-
-						<label class="radio-inline">
-							<input type="radio" name="gambarUtama" class="styled" value="0" v-model="form.gambar">
-							Tidak
-						</label>
-						<!-- <small class="text-danger" v-if="errors.utamakan">{{errors.utamakan[0]}}</small> -->
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-						<label class="text-semibold">Isi Artikel:</label>
+						<h5>Gambar Utama:</h5>
+						<app-image-upload v-model="form.gambar"></app-image-upload>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<h5>Isi Artikel:</h5>
 						<app-summernote
 						    name="editor"
 						    :model="form.content"
-						    v-on:change="value => { form.content = value }"
 						    :config="summernoteconfig"
+						    @change="value => { form.content = value }"
 						  ></app-summernote>
-						<!-- <small class="text-danger" v-if="errors.content">{{errors.content[0]}}</small> -->
 					</div>		
 				</div>
 			</div>
@@ -133,7 +120,7 @@
 
 <!-- modal -->
 <!-- tambah kategori -->
-<app-modal :color="modalColor" :show="modalShow" @close="modalShow = false">
+<app-modal :color="modal.color" :show="modal.show" @close="modalClose">
 <div slot="modal-title"><i class="icon-plus22"></i> Tambah Kategori</div>
 <div slot="modal-body">
 	<div class="well bg-primary text-center">
@@ -159,7 +146,7 @@
 	</div>
 </div>
 <div slot="modal-footer">
-	<button class="btn btn-link legitRipple" @click="modalShow = false">Batal</button>
+	<button class="btn btn-link legitRipple" @click="modalClose">Batal</button>
 	<button type="submit" class="btn btn-primary" @click="saveKategori">Simpan <i class="icon-arrow-right14 position-right"></i></button>
 </div>
 </app-modal>
@@ -169,14 +156,16 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-import corefunc from '../../assets/core/app.js'
-import uniformfunc from '../../assets/plugins/forms/styling/uniform.min.js'
+import coreFunc from '../../assets/core/app.js'
+import uniformFunc from '../../assets/plugins/forms/styling/uniform.min.js'
 import appSummernote from '../../modules/summernote.js'
 import appModal from '../../components/modal'
+import appImageUpload from '../../components/ImageUpload.vue'
 
 export default{
 	components: {
 		appSummernote,
+		appImageUpload,
 		appModal
 	},
 	data(){
@@ -185,6 +174,29 @@ export default{
 			formKategori: {
 				nama: '',
 				deskripsi: ''
+			},
+			modal: {
+                name:'',
+                show: false,
+                size:'',
+                color:'',
+                data: '',
+                state:'',
+                miniTitle:'',
+                miniContent:'',
+                miniButton:'',
+                miniType:''
+            },
+    		summernoteconfig:{
+				height: 200,
+				toolbar: [
+					['style', ['bold', 'italic', 'underline', 'clear']],
+	                ['font', ['strikethrough', 'superscript', 'subscript']],
+	                ['fontsize', ['fontsize']],
+	                ['color', ['color']],
+	                ['para', ['ul', 'ol', 'paragraph']],
+	                ['insert', ['gxcode']],
+				]
 			},
 			option: {},
 			rules : {},
@@ -195,20 +207,7 @@ export default{
 			redirect: '/artikel',
 			store: '/api/artikel/store',
 			storeKategori : '/api/artikel_kategori/store',
-			method: 'post',
-			modalShow: false,
-			modalColor:'',
-			summernoteconfig:{
-				height: 200,
-				toolbar: [
-					['style', ['bold', 'italic', 'underline', 'clear']],
-	                ['font', ['strikethrough', 'superscript', 'subscript']],
-	                ['fontsize', ['fontsize']],
-	                ['color', ['color']],
-	                ['para', ['ul', 'ol', 'paragraph']],
-	                ['insert', ['gxcode']],
-				]
-			}
+			method: 'post'
 		}
 	},
 	beforeMount(){
@@ -223,27 +222,27 @@ export default{
 		this.fetchData();
 	},
 	mounted(){
-		corefunc.core_function();
-		uniformfunc.uniform_function();
+		coreFunc.core_function();
+		uniformFunc.uniform_function();
 
-		$('.bootstrap-select').selectpicker();
-		$(".styled, .multiselect-container input").uniform({
-	        radioClass: 'choice'
-	    });
+		this.other();
 	},
 	updated(){
 		$('.bootstrap-select').selectpicker('refresh');
 	},
 	methods: {
 		fetchKategori(){
-			var vm = this
-			var url = '/api/get_artikel_kategori'
+			var vm = this;
+			var url = '/api/get_artikel_kategori';
+			vm.modal.state = 'loading';
             axios.get(url)
                 .then(function(response) {
                     Vue.set(vm.$data, 'modelKategori',  response.data.model)
+                    vm.modal.state = 'result';
                 })
                 .catch(function(error) {
-                    console.log(error)
+                	vm.modal.state = 'result';
+                    vm.modal.miniType = 'error';
                 })
 		},
 		fetchData(){
@@ -282,11 +281,30 @@ export default{
 					vm.modalShow = false;
 				})
 		},
-		modalkategori(){
-			 this.modalShow= true;
-			 this.modalColor="bg-primary"
+		processFile(event) {
+		    this.form.gambar = event.target.files[0]
+		    console.log(event.target.files[0].name);
+		},
+		modalClose(){
+			this.modal.show = false;
+		},
+		modalOpen_Kategori(){
+			 this.modal.show= true;
+			 this.modal.color="bg-primary"
 			 this.formKategori.nama= '';
 			 this.formKategori.deskripsi= '';
+		},
+		other(){
+			// bootstrap select
+			$('.bootstrap-select').selectpicker();
+			// radio checkbox
+			$(".styled, .multiselect-container input").uniform({
+		        radioClass: 'choice'
+		    });
+			// file input
+			$(".file-styled").uniform({
+				fileButtonClass: 'action btn btn-default'
+			});
 		}
 	}
 	

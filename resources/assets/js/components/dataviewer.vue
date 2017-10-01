@@ -28,22 +28,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-toolbar"  v-if="state === 'loading'">
-                    <div class="btn-group pb-5">
-                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
-                            <i class="icon-spinner2 spinner"></i>
-                        </button>
-                    </div>
-                    <div class="btn-group pb-5">
-                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
-                            <i class="icon-spinner2 spinner"></i>
-                        </button>
-                    </div>
-                    <div class="btn-group pb-5">
-                        <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
-                            <i class="icon-spinner2 spinner"></i>
-                        </button>
-                    </div>
-                    <div class="btn-group pb-5">
+                    <div class="btn-group pb-5" v-for="n in toolbarButton">
                         <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
                             <i class="icon-spinner2 spinner"></i>
                         </button>
@@ -145,7 +130,7 @@
                     </td>
                 </tr>
             </tbody>
-            <tbody class="pre-scrollable" v-for="(items,index) in group.data" v-else>
+            <tbody v-for="(items,index) in group.data" v-else>
                 <tr class="active border-double" v-if="group.show">
                   <td :colspan="thead.length">
                     <b>{{index}}</b>
@@ -221,7 +206,7 @@
     import {bus} from '../app';
 
     export default {
-        props: ['source', 'thead'],
+        props: ['source', 'thead','toolbarButton'],
         components:{
             appModal,
             JsonExcel
@@ -355,8 +340,6 @@
                     })
                     return object;
                 }).value();
-                vm.isExcelAll = false;
-                vm.params.per_page = 10;
             },
             hideColumn(index){
                 if(this.thead[index].hide === false)
@@ -423,9 +406,11 @@
                 this.fetchData();
             },
             entriPage(value){
-                this.params.per_page = value;
-                this.params.page = 1;
-                this.fetchData();
+                if(this.params.per_page != value){
+                    this.params.per_page = value;
+                    this.params.page = 1;
+                    this.fetchData();
+                }
             },
             searchData(){
                 this.isSearch = true;
@@ -463,6 +448,8 @@
                             vm.calculatePagination();
                         }else{
                             vm.modal.state = 'result';
+                            vm.isExcelAll = false;
+                            vm.params.per_page = 10;
                         }
                         vm.field_excel(vm);
                         vm.state = '';
