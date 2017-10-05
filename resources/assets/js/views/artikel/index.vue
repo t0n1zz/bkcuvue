@@ -108,7 +108,7 @@
 		<span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
 		<h2>{{modal.miniTitle}}</h2>
 		<ul class="list-inline">
-	        <li><button type="button" class="btn btn-default" @click="modalMenuClose">Tutup</button></li>
+	        <li><button type="button" class="btn btn-default" @click="modalMenuClose">OK</button></li>
 	    </ul>
 	</div>
 	<div slot="modal-footer">

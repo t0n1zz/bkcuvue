@@ -145,6 +145,14 @@
 		<small class="text-muted" :class="{ 'text-danger' : errors.has('kategoriDeskripsi')}"><i class="icon-arrow-small-right"></i> Deskripsi kategori harus diisi dan minimal 5 karakter</small>
 	</div>
 </div>
+<div slot="modal-result" class="text-center">
+	<span class="text-primary" v-if="modal.miniType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
+	<span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
+	<h2>{{modal.miniTitle}}</h2>
+	<ul class="list-inline">
+        <li><button type="button" class="btn btn-default" @click="modalResultButton">OK</button></li>
+    </ul>
+</div>
 <div slot="modal-footer">
 	<button class="btn btn-link legitRipple" @click="modalClose">Batal</button>
 	<button type="submit" class="btn btn-primary" @click="saveKategori">Simpan <i class="icon-arrow-right14 position-right"></i></button>
@@ -227,11 +235,11 @@ export default{
 	},
 	beforeMount(){
 		if(this.$route.meta.mode === 'edit'){
-			this.title = "Ubah artikel"
-			this.title2 = "Mengubah artikel"
-			this.initialize = '/api/artikel/' + this.$route.params.id + '/edit'
-			this.store = '/api/artikel/update/' + this.$route.params.id
-			this.method = 'put'
+			this.title = "Ubah artikel";
+			this.title2 = "Mengubah artikel";
+			this.initialize = '/api/artikel/' + this.$route.params.id + '/edit';
+			this.store = '/api/artikel/update/' + this.$route.params.id;
+			this.method = 'put';
 		}
 		this.fetchKategori();
 		this.fetchData();
@@ -252,7 +260,7 @@ export default{
 			vm.modal.state = 'loading';
             axios.get(url)
                 .then(function(response) {
-                    Vue.set(vm.$data, 'modelKategori',  response.data.model)
+                    Vue.set(vm.$data, 'modelKategori',  response.data.model);
                     vm.modal.state = 'result';
                 })
                 .catch(function(error) {
@@ -264,37 +272,40 @@ export default{
 			var vm = this
 			axios.get(this.initialize)
 				.then(function(response){
-					Vue.set(vm.$data, 'form', response.data.form)
-					Vue.set(vm.$data, 'rules', response.data.rules)
-					Vue.set(vm.$data, 'option', response.data.option)
+					Vue.set(vm.$data, 'form', response.data.form);
+					Vue.set(vm.$data, 'rules', response.data.rules);
+					Vue.set(vm.$data, 'option', response.data.option);
 				})
 				.catch(function(error){
-					console.log(error)
+					console.log(error);
 				})
 		},
 		save(){
-			var vm = this
-			const form = toMulipartedForm(vm.form, vm.$route.meta.mode)
-			axios[this.method](this.store, form)
+			var vm = this;
+			vm.modal.show= true;
+			vm.modal.state = 'loading';
+			const form = toMulipartedForm(vm.form, vm.$route.meta.mode);
+			axios[vm.method](vm.store, form)
 				.then(function(response){
 					if(response.data.saved){
-						vm.$router.push(vm.redirect)
+						vm.$router.push(vm.redirect);
 					}
 				})
 				.catch(function(error){
-					Vue.set(vm.$data, 'errors' , error.response.data)
+					Vue.set(vm.$data, 'errors' , error.response.data);
 				})
 		},
 		saveKategori(){
 			var vm = this
+			vm.modal.state = 'loading';
 			axios.post(this.storeKategori, this.formKategori)
 				.then(function(response){
-					vm.modalShow = false;
+					vm.modal.show = false;
 					vm.fetchKategori();
 					vm.form.artikel_kategori_id = response.data.id;
 				})
 				.catch(function(error){
-					vm.modalShow = false;
+					vm.modal.show = false;
 				})
 		},
 		processFile(event) {
@@ -306,10 +317,15 @@ export default{
 		},
 		modalOpen_Kategori(){
 			 this.modal.show= true;
-			 this.modal.color="bg-primary"
+			 this.modal.color="bg-primary";
 			 this.formKategori.nama= '';
 			 this.formKategori.deskripsi= '';
 		},
+		modalSuccess(title){
+	    	this.modal.miniTitle = title;
+	    	this.modal.miniType = "success";
+	    	this.modal.state = 'result';
+	    },
 		other(){
 			// bootstrap select
 			$('.bootstrap-select').selectpicker();

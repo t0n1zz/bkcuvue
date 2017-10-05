@@ -32,7 +32,10 @@ class ArtikelController extends Controller{
 	{
 		$this->validate($request,Artikel::$rules);
 
-		$fileName = $this->image_processing($request);
+		if(!empty($request->gambar))
+			$fileName = $this->image_processing($request);
+		else
+			$fileName = '';
 
 		$kelas = Artikel::create($request->except('gambar') + [
 			'gambar' => $fileName
@@ -138,15 +141,18 @@ class ArtikelController extends Controller{
 	private function image_processing($request)
 	{
 		$this->validate($request, [
-    		'gambar' => 'image',
+    		'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
     	]);
 
 		$path = public_path($this->imagepath);
 		$imageData = $request->gambar;
 		list($width, $height) = getimagesize($imageData);
 
-		$fileName =  $this->getFileName($request->nama,$request->gambar);
-		dd($fileName);
+		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->nama),10,'') . '_' .uniqid();
+		$fileName =  $formatedName. '.jpg';
+		$fileName2 =  $formatedName. 'n.jpg';
+
+		//image
 		if($width > 720){
             Image::make($imageData->getRealPath())->resize(720, null,
                 function ($constraint) {
@@ -157,12 +163,13 @@ class ArtikelController extends Controller{
             Image::make($imageData->getRealPath())->save($path . $fileName);
         }
 
-		return $fileName;
-	}
+        //thumbnail image
+        Image::make($imageData->getRealPath())->resize(200, 200,
+                function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save($path . $fileName2);
 
-	private function getFileName($nama,$file)
-    {
-    	$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$nama),10,'');
-    	return $formatedName . '_' .uniqid(). '.' .$file->extension();
-    }
+		return $formatedName;
+	}
 }
