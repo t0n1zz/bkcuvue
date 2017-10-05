@@ -25,7 +25,7 @@
 <div class="content-wrapper">
 <div class="panel panel-flat">
 	<div class="panel-body">
-		<form @submit.prevent="save">
+		<form @submit.prevent="save" enctype="multipart/form-data">
 			<div class="row">	
 				<div class="col-md-4">
 					<div class="form-group has-feedback" :class="{'has-error' : errors.has('nama')}">
@@ -158,6 +158,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import coreFunc from '../../assets/core/app.js'
 import uniformFunc from '../../assets/plugins/forms/styling/uniform.min.js'
+import { toMulipartedForm } from '../../helpers/form'
 import appSummernote from '../../modules/summernote.js'
 import appModal from '../../components/modal'
 import appImageUpload from '../../components/ImageUpload.vue'
@@ -189,13 +190,27 @@ export default{
             },
     		summernoteconfig:{
 				height: 200,
+				popover: {
+	                image: [
+	                    ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+	                    /* ['float', ['floatLeft', 'floatRight', 'floatNone']], */
+	                    /* Those are the old regular float buttons */
+	                    ['floatBS', ['floatBSLeft', 'floatBSNone', 'floatBSRight']],
+	                    /* Those come from the BS plugin, in any order, you can even keep both! */
+	                    ['custom', ['imageAttributes', 'imageShape']],
+	                    ['remove', ['removeMedia']],
+	                ],
+	            },
 				toolbar: [
-					['style', ['bold', 'italic', 'underline', 'clear']],
-	                ['font', ['strikethrough', 'superscript', 'subscript']],
-	                ['fontsize', ['fontsize']],
+					['style', ['addclass','bold', 'italic', 'underline', 'hr']],
+	                ['font', ['strikethrough', 'superscript', 'subscript','clear']],
 	                ['color', ['color']],
-	                ['para', ['ul', 'ol', 'paragraph']],
-	                ['insert', ['gxcode']],
+	                ['para', ['ul', 'ol']],
+	                ['paragraph',['paragraph']],
+	                ['table',['table']],
+	                ['insert',['link','picture','video']] ,
+	                ['misc',['fullscreen']],
+	                ['misc2',['undo','redo']]
 				]
 			},
 			option: {},
@@ -259,7 +274,8 @@ export default{
 		},
 		save(){
 			var vm = this
-			axios[this.method](this.store, this.form)
+			const form = toMulipartedForm(vm.form, vm.$route.meta.mode)
+			axios[this.method](this.store, form)
 				.then(function(response){
 					if(response.data.saved){
 						vm.$router.push(vm.redirect)

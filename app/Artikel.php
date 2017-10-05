@@ -18,7 +18,7 @@ class Artikel extends Model {
     ];
     
     protected $fillable = [
-        'nama','content','artikel_kategori_id','penulis','terbitkan','gambar','utamakan'
+        'nama','content','artikel_kategori_id','penulis','terbitkan','gambar','gambar_thumb','utamakan'
     ];
 
     protected $filter = [

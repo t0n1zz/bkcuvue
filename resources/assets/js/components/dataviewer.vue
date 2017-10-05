@@ -9,7 +9,7 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Masukkan pencarian" v-model="params.search_query_1" @keyup.enter="searchData()">
                 </div>
-            </div>
+        </div>
             <div class="col-md-3 pb-10">
                 <div class="input-group">
                     <select class="bootstrap-select" v-model="params.search_column" data-width="100%">

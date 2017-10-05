@@ -3,8 +3,12 @@ namespace App\Http\Controllers;
 
 use App\Artikel;
 use Illuminate\Http\Request;
+use File;
+use Image; 
 
 class ArtikelController extends Controller{
+
+	protected $imagepath = 'images/artikel/';
 
 	public function index()
 	{
@@ -28,7 +32,11 @@ class ArtikelController extends Controller{
 	{
 		$this->validate($request,Artikel::$rules);
 
-		$kelas = Artikel::create($request->all());
+		$fileName = $this->image_processing($request);
+
+		$kelas = Artikel::create($request->except('gambar') + [
+			'gambar' => $fileName
+		]);
 
 		return response()
 			->json([
@@ -126,4 +134,35 @@ class ArtikelController extends Controller{
 				'message' => 'Artikel berhasil dihapus'
 			]);
 	}
+
+	private function image_processing($request)
+	{
+		$this->validate($request, [
+    		'gambar' => 'image',
+    	]);
+
+		$path = public_path($this->imagepath);
+		$imageData = $request->gambar;
+		list($width, $height) = getimagesize($imageData);
+
+		$fileName =  $this->getFileName($request->nama,$request->gambar);
+		dd($fileName);
+		if($width > 720){
+            Image::make($imageData->getRealPath())->resize(720, null,
+                function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save($path . $filename);
+        }else{
+            Image::make($imageData->getRealPath())->save($path . $fileName);
+        }
+
+		return $fileName;
+	}
+
+	private function getFileName($nama,$file)
+    {
+    	$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$nama),10,'');
+    	return $formatedName . '_' .uniqid(). '.' .$file->extension();
+    }
 }
