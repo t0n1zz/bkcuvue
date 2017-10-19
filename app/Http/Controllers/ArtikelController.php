@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Artikel;
+use App\EloquentVueTables;
 use Illuminate\Http\Request;
 use File;
 use Image; 
@@ -12,9 +13,11 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-		return response()
+    	 $table_data = Artikel::with('Artikel_Kategori')->select('id','nama','penulis','gambar','utamakan','terbitkan','created_at','artikel_kategori_id')->filterPaginateOrder();
+
+    	return response()
 			->json([
-				'model' => Artikel::with('Artikel_Kategori')->select('id','nama','penulis','gambar','utamakan','terbitkan','created_at','artikel_kategori_id')->filterPaginateOrder()
+				'model' => $table_data
 			]);
 	}
 

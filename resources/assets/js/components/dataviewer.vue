@@ -2,25 +2,23 @@
 <div class="panel panel-flat">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-9 pb-10">
+            <div class="col-md-12 pb-15">
                 <div class="input-group">
                     <div class="input-group-addon">
                         <i class="icon-search4 text-muted"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Masukkan pencarian" v-model="params.search_query_1" @keyup.enter="searchData()">
-                </div>
-        </div>
-            <div class="col-md-3 pb-10">
-                <div class="input-group">
-                    <select class="bootstrap-select" v-model="params.search_column" data-width="100%">
-                        <option v-for="column in thead" v-if="column.filterKey != null" :value="column.filterKey">Berdasarkan {{column.title}}</option>
-                    </select>
-                    <div class="input-group-btn" v-if="state === 'loading'">
-                        <button type="button" class="btn btn-success btn-block" disabled ><i class="icon-spinner2 spinner"></i></button>
-                    </div>
-                    <div class="input-group-btn" v-else>
-                        <button type="button" class="btn btn-success" @click="searchData()"> Cari</button>
-                        <button type="button" class="btn btn-default btn-icon" @click="searchReset" :class="{'disabled' : !isSearch}"><i class="icon-x"></i></button>
+                    <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1">
+                    <div class="input-group-btn">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                             Berdasarkan {{searchColumn}} &nbsp;<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">Pencarian berdasarkan</li>
+                                <li class="divider"></li>
+                                <li v-for="column in filterData" v-if="column.key != null" :class="{'active' : params.search_column === column.key}"><a @click.prevent="searchColumnData(column.key,column.title,column.operator)">{{column.title}}</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,7 +44,7 @@
                             <li ><a @click.prevent="showAllColumn">Semua Kolom</a></li>
                             <slot name="button-kolom"></slot>
                             <li class="divider"></li>
-                            <li v-for="(item,index) in thead" :class="{'active' : !item.hide}"><a @click.prevent="hideColumn(index)">{{item.title}}</a></li>
+                            <li v-for="(item,index) in columnData" :class="{'active' : !item.hide}"><a @click.prevent="hideColumn(index)">{{item.title}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-group pb-5">
@@ -73,7 +71,7 @@
                             <li class="divider"></li>
                             <li><a @click.prevent="unGroupRow">Tidak dikelompokkan</a></li>
                             <li class="divider"></li>
-                            <li v-for="(column,index) in thead" v-if="column.groupKey != null" :class="{'active' : column.groupKey === group.key}"><a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a></li>
+                            <li v-for="(column,index) in columnData" v-if="column.groupKey != null" :class="{'active' : column.groupKey === group.key}"><a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-group pb-5">
@@ -91,7 +89,7 @@
                                     name    = "fileExcel.xls"
                                 >Data di tabel</json-excel>      
                             </li>
-                            <li><a @click.prevent="modalMenuOpen">Semua Data</a></li>
+                            <li><a @click.prevent="modalExcelOpen">Semua Data</a></li>
                         </ul>
                     </div>
                     <!-- slot button -->
@@ -104,7 +102,7 @@
         <table class="table table-hover table-striped">
             <thead class="bg-primary">
                 <tr class="text-nowrap">
-                    <th v-for="item in thead" v-if="!item.hide">
+                    <th v-for="item in columnData" v-if="!item.hide">
                         <div @click="sort(item.key)" v-if="item.sort" class="cursor-pointer">
                             <span>{{item.title}}</span>
                             <span v-if="params.column === item.key">
@@ -121,7 +119,7 @@
             </thead>
             <tbody v-if="state === 'loading'">
                 <tr>
-                    <td :colspan="thead.length">
+                    <td :colspan="columnData.length">
                         <div class="progress">
                             <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
                                 <span class="sr-only">100% Complete</span>
@@ -132,7 +130,7 @@
             </tbody>
             <tbody v-for="(items,index) in group.data" v-else>
                 <tr class="active border-double" v-if="group.show">
-                  <td :colspan="thead.length">
+                  <td :colspan="columnData.length">
                     <b>{{index}}</b>
                   </td>
                 </tr>
@@ -162,16 +160,16 @@
 
 <!-- modal -->
 <!-- download excel -->
-<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" @close="modalMenuClose">
+<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" @close="modalClose">
     <div slot="modal-confirm" class="text-center">
         <span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
         <h2>{{modal.miniTitle}}</h2>
         <div class="well well-sm">{{modal.miniContent}}</div>
         <br/>
         <ul class="list-inline">
-            <li><button type="button" class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button></li>
+            <li><button type="button" class="btn btn-link legitRipple" @click="modalClose">Batal</button></li>
             <li v-if="modal.name === 'entri'"><button type="button" class="btn btn-warning" @click="modalConfirmOkEntri()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
-            <li v-else><button type="button" class="btn btn-warning" @click="modalConfirmOk()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
+            <li v-else><button type="button" class="btn btn-warning" @click="modalConfirmOkExcel()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
         </ul>
     </div>
     <div slot="modal-result" class="text-center">
@@ -179,10 +177,10 @@
         <span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
         <h2>{{modal.miniTitle}}</h2>
         <ul class="list-inline" v-if="modal.miniType === 'error'">
-            <li ><button type="button" class="btn btn-default" @click="modalMenuClose">Tutup</button></li>
+            <li ><button type="button" class="btn btn-default" @click="modalClose">Tutup</button></li>
         </ul>
         <ul class="list-inline" v-else>
-            <li><button type="button" class="btn btn-link legitRipple" @click="modalMenuClose">Batal</button></li>
+            <li><button type="button" class="btn btn-link legitRipple" @click="modalClose">Batal</button></li>
             <li><json-excel
                 :data    = "excel.data"
                 :fieldsx = "excel.fields"
@@ -206,7 +204,7 @@
     import {bus} from '../app';
 
     export default {
-        props: ['source', 'thead','toolbarButton'],
+        props: ['source', 'columnData','toolbarButton','filterData'],
         components:{
             appModal,
             JsonExcel
@@ -216,6 +214,19 @@
                 model: {
                     data: []
                 },
+                params: {
+                    column: 'id',
+                    direction: 'desc',
+                    per_page: 10,
+                    page: 1,
+                    search_column: '',
+                    search_operator : 'like',
+                    search_query_1: '',
+                    search_query_2: ''
+                },
+                searchQuery1: '',
+                searchQuery2: '',
+                searchColumn:'',
                 excel: {
                     fields: {},
                     data : [],
@@ -225,16 +236,6 @@
                             "value": "utf-8"
                         }]
                     ]
-                },
-                params: {
-                    column: 'id',
-                    direction: 'desc',
-                    per_page: 10,
-                    page: 1,
-                    search_column: 'nama',
-                    search_operator : 'like',
-                    search_query_1: '',
-                    search_query_2: ''
                 },
                 modal: {
                     name:'',
@@ -267,91 +268,49 @@
             $('.bootstrap-select').selectpicker();  
         },
         created(){
+            this.params.search_column = this.filterData[0].key;
+            this.params.search_operator = this.filterData[0].operator;
+            this.searchColumn = this.filterData[0].title;
+
             bus.$on('fetchData',() =>{
                 this.fetchData();
             });
         },
+        watch: {
+            searchQuery1: function(search_query){
+                this.params.search_query_1 = search_query;
+                this.searchData();
+            }
+        },
         methods: {
-            modalMenuOpen(){
-                this.modal.show= true;
-                this.modal.name='excel';
-                this.modal.state = 'confirm';
-                this.modal.miniTitle = "Yakin akan mendownload semua data ke excel?"
-                this.modal.miniContent = "Download akan lebih lama tergantung dari jumlah data"
-                this.modal.miniButton = "Ya, Download semua"
-            },
-            modalEntriOpen(){
-                this.modal.show= true;
-                this.modal.name='entri';
-                this.modal.state = 'confirm';
-                this.modal.miniTitle = "Yakin akan menampilkan semua entri?"
-                this.modal.miniContent = "Menampilkan terlalu banyak entri dapat mengurangi performa pengoperasian aplikasi ini"
-                this.modal.miniButton = "Ya, Tampilkan semua"
-            },
-            modalConfirmOk(){
-                this.isExcelAll = true;
-                this.modal.show= true;
-                this.modal.miniType = "success"
-                this.modal.miniTitle = "Silahkan tekan tombol download"
-                this.entriPage(this.model.total);
-            },
-            modalConfirmOkEntri(){
-                this.modal.show= false;
-                this.entriPage(this.model.total);
-            },
-            modalMenuClose(){
-                this.modal.show = false;
-                this.modal.state = 'confirm';
-            },
-            calculatePagination(){
-                var i = 0;
-                var startPage = 0;
-                var endPage = 0;
-                var diffPage = 0;
-
-                startPage = this.params.page < 3 ? 1 : this.params.page - 1;
-                endPage = 4 + startPage;
-                endPage = this.model.last_page < endPage ? this.model.last_page : endPage;
-                diffPage = startPage - endPage + 4;
-                startPage -= startPage - diffPage > 0 ? diffPage : 0;
-                this.pages.length = 0;
-                
-                for(i = startPage; i<=endPage; i++){
-                    this.pages.push(i);
+            searchData: _.debounce(
+                function(){
+                    var vm = this;
+                    vm.isSearch = true;
+                    vm.params.page = 1;
+                    vm.fetchData();
+                },
+            500),
+            searchColumnData(value,name,operator = 'like'){
+                if(this.params.search_column != value){
+                    this.params.search_column = value;
+                    this.params.search_operator = operator;
+                    this.searchColumn = name;
+                    this.params.page = 1;
+                    this.fetchData();
                 }
             },
-            field_excel(vm){
-                vm.excel.fields = {};
-                vm.thead.forEach(function(column){
-                    if(!column.hide){
-                        vm.excel.fields[column.title] = column.type;
-                    }
-                });
-                vm.excel.data = _.chain(vm.model.data).map(function(item){
-                    var object = {};
-                    vm.thead.forEach(function(key){
-                        if(!key.hide){
-                            if(key.groupKey){
-                                object[key.title] = _.get(item, key.groupKey);
-                            }else{
-                                object[key.title] = _.get(item, key.key);
-                            }   
-                        }
-                    })
-                    return object;
-                }).value();
-            },
             hideColumn(index){
-                if(this.thead[index].hide === false)
-                    this.thead[index].hide = true;
+                if(this.columnData[index].hide === false)
+                    this.columnData[index].hide = true;
                 else
-                    this.thead[index].hide = false;
+                    this.columnData[index].hide = false;
                 this.field_excel(this);
             },
             showAllColumn(index){
-                for (var t in this.thead){
+                for (var t in this.columnData){
                     if(t != index)
-                       this.thead[t].hide = false;
+                       this.columnData[t].hide = false;
                 }
                 this.field_excel(this);
             },
@@ -360,7 +319,7 @@
                     this.group.show = true;
                     this.group.key = groupKey;
                     this.group.title = title;
-                    this.thead[index].hide = true;
+                    this.columnData[index].hide = true;
                     this.sort(sortKey);
                 }
                 this.showAllColumn(index);
@@ -372,24 +331,6 @@
                     this.group.title = '';
                 }
                 this.showAllColumn();
-            },
-            next() {
-                if(this.model.next_page_url) {
-                    this.params.page++;
-                    this.fetchData();
-                }     
-            },
-            prev() {
-                if(this.model.prev_page_url) {
-                    this.params.page--;
-                    this.fetchData();
-                }
-            },
-            goToPage(value){
-                if(this.params.page != value){
-                    this.params.page = value;
-                    this.fetchData();
-                }
             },
             sort(column) {
                 if(column === this.params.column) {
@@ -412,25 +353,61 @@
                     this.fetchData();
                 }
             },
-            searchData(){
-                this.isSearch = true;
-                this.params.page = 1;
-                this.fetchData();
+            field_excel(vm){
+                vm.excel.fields = {};
+                vm.columnData.forEach(function(column){
+                    if(!column.hide){
+                        vm.excel.fields[column.title] = column.excelType;
+                    }
+                });
+                vm.excel.data = _.chain(vm.model.data).map(function(item){
+                    var object = {};
+                    vm.columnData.forEach(function(key){
+                        if(!key.hide){
+                            if(key.groupKey){
+                                object[key.title] = _.get(item, key.groupKey);
+                            }else{
+                                object[key.title] = _.get(item, key.key);
+                            }   
+                        }
+                    })
+                    return object;
+                }).value();
             },
-            searchReset(){
-                this.params.search_query_1 = '';
-                this.params.search_query_2 = '';
-                this.params.page = 1;
-                this.isSearch = false;
-                this.fetchData();
+            calculatePagination(){
+                var i = 0;
+                var startPage = 0;
+                var endPage = 0;
+                var diffPage = 0;
+
+                startPage = this.params.page < 3 ? 1 : this.params.page - 1;
+                endPage = 4 + startPage;
+                endPage = this.model.last_page < endPage ? this.model.last_page : endPage;
+                diffPage = startPage - endPage + 4;
+                startPage -= startPage - diffPage > 0 ? diffPage : 0;
+                this.pages.length = 0;
+                
+                for(i = startPage; i<=endPage; i++){
+                    this.pages.push(i);
+                }
             },
-            refreshData(){
-                this.params.page = 1;
-                this.params.per_page = 10;
-                this.params.search_query_1 = '';
-                this.params.search_column = 'nama';
-                this.isReset = false;
-                this.fetchData();
+            next() {
+                if(this.model.next_page_url) {
+                    this.params.page++;
+                    this.fetchData();
+                }     
+            },
+            prev() {
+                if(this.model.prev_page_url) {
+                    this.params.page--;
+                    this.fetchData();
+                }
+            },
+            goToPage(value){
+                if(this.params.page != value){
+                    this.params.page = value;
+                    this.fetchData();
+                }
             },
             fetchData() {
                 var vm = this;
@@ -440,7 +417,7 @@
                 }else{
                     vm.state = 'loading';
                 }
-                axios.get(this.buildURL())
+                axios.get(vm.buildURL())
                     .then(function(response) {
                         Vue.set(vm.$data, 'model', response.data.model);
                         if(!vm.isExcelAll){
@@ -465,6 +442,37 @@
             buildURL() {
                 var p = this.params;
                 return `${this.source}?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`;
+            },
+            modalExcelOpen(){
+                this.modal.show= true;
+                this.modal.name='excel';
+                this.modal.state = 'confirm';
+                this.modal.miniTitle = "Yakin akan mendownload semua data ke excel?"
+                this.modal.miniContent = "Download akan lebih lama tergantung dari jumlah data"
+                this.modal.miniButton = "Ya, Download semua"
+            },
+            modalEntriOpen(){
+                this.modal.show= true;
+                this.modal.name='entri';
+                this.modal.state = 'confirm';
+                this.modal.miniTitle = "Yakin akan menampilkan semua entri?"
+                this.modal.miniContent = "Menampilkan terlalu banyak entri dapat mengurangi performa pengoperasian aplikasi ini"
+                this.modal.miniButton = "Ya, Tampilkan semua"
+            },
+            modalConfirmOkExcel(){
+                this.isExcelAll = true;
+                this.modal.show= true;
+                this.modal.miniType = "success"
+                this.modal.miniTitle = "Silahkan tekan tombol download"
+                this.entriPage(this.model.total);
+            },
+            modalConfirmOkEntri(){
+                this.modal.show= false;
+                this.entriPage(this.model.total);
+            },
+            modalClose(){
+                this.modal.show = false;
+                this.modal.state = 'confirm';
             }
         }
     }

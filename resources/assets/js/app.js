@@ -4,16 +4,18 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 import Axios from 'axios';
 import VeeValidate from 'vee-validate';
- 
+import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+
 Vue.use(VueRouter);
-Vue.use(VeeValidate);
-
-
+Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
+Vue.use(ServerTable);
 
 window.axios = Axios;
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': 'Bearer',
+    'Accept': 'application/json',
 };
 
 const router = new VueRouter({

@@ -35,7 +35,7 @@
 								<h2>Mohon tunggu sebentar...</h2>
 							</div>
 						</div>
-						<div v-else key="normal">
+				 		<div v-else key="normal">
 							<slot name="modal-body" ></slot>
 							<div class="modal-footer no-padding">
 								<slot name="modal-footer"></slot>

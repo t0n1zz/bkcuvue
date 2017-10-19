@@ -120,8 +120,8 @@
 
 <!-- modal -->
 <!-- tambah kategori -->
-<app-modal :color="modal.color" :show="modal.show" @close="modalClose">
-<div slot="modal-title"><i class="icon-plus22"></i> Tambah Kategori</div>
+<app-modal :color="modal.color" :state="modal.state" :show="modal.show" @close="modalClose">
+<div slot="modal-title" v-if="modal.state == ''"><i class="icon-plus22"></i> Tambah Kategori</div>
 <div slot="modal-body">
 	<div class="well bg-primary text-center">
 		<h5>Tidak menemukan kategori yang cocok untuk artikel anda?</h5>
@@ -197,7 +197,7 @@ export default{
                 miniType:''
             },
     		summernoteconfig:{
-				height: 200,
+				height: 400,
 				popover: {
 	                image: [
 	                    ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
@@ -230,7 +230,8 @@ export default{
 			redirect: '/artikel',
 			store: '/api/artikel/store',
 			storeKategori : '/api/artikel_kategori/store',
-			method: 'post'
+			method: 'post',
+			state: ''
 		}
 	},
 	beforeMount(){
@@ -257,15 +258,11 @@ export default{
 		fetchKategori(){
 			var vm = this;
 			var url = '/api/get_artikel_kategori';
-			vm.modal.state = 'loading';
             axios.get(url)
                 .then(function(response) {
                     Vue.set(vm.$data, 'modelKategori',  response.data.model);
-                    vm.modal.state = 'result';
                 })
                 .catch(function(error) {
-                	vm.modal.state = 'result';
-                    vm.modal.miniType = 'error';
                 })
 		},
 		fetchData(){
@@ -284,28 +281,43 @@ export default{
 			var vm = this;
 			vm.modal.show= true;
 			vm.modal.state = 'loading';
+			vm.state = "save";
 			const form = toMulipartedForm(vm.form, vm.$route.meta.mode);
 			axios[vm.method](vm.store, form)
 				.then(function(response){
 					if(response.data.saved){
-						vm.$router.push(vm.redirect);
+						vm.modal.state = 'result';
+						vm.modal.miniType = 'success';
 					}
 				})
 				.catch(function(error){
+					vm.modal.state = 'result';
+					vm.modal.miniType = 'error';
 					Vue.set(vm.$data, 'errors' , error.response.data);
 				})
 		},
 		saveKategori(){
 			var vm = this
 			vm.modal.state = 'loading';
+			vm.state = 'saveKategori';
 			axios.post(this.storeKategori, this.formKategori)
 				.then(function(response){
-					vm.modal.show = false;
-					vm.fetchKategori();
-					vm.form.artikel_kategori_id = response.data.id;
+					if(response.data.saved){
+						vm.modal.state = 'result';
+                    	vm.modal.miniType = 'success';
+                    	vm.modal.miniTitle = response.data.message;
+						vm.fetchKategori();
+						vm.form.artikel_kategori_id = response.data.id;
+					}else{
+						vm.modal.state = 'result';
+                    	vm.modal.miniType = 'error';
+                    	vm.modal.miniTitle = 'Oops.. terjadi kesalahan, silahkan coba lagi';
+					}
 				})
 				.catch(function(error){
-					vm.modal.show = false;
+					vm.modal.state = 'result';
+                    vm.modal.miniType = 'error';
+                    vm.modal.miniTitle = 'Oops.. terjadi kesalahan, silahkan coba lagi';
 				})
 		},
 		processFile(event) {
@@ -317,14 +329,26 @@ export default{
 		},
 		modalOpen_Kategori(){
 			 this.modal.show= true;
+			 this.modal.state= '';
 			 this.modal.color="bg-primary";
 			 this.formKategori.nama= '';
 			 this.formKategori.deskripsi= '';
 		},
 		modalSuccess(title){
 	    	this.modal.miniTitle = title;
-	    	this.modal.miniType = "success";
+	    	this.modal.miniType = 'success';
 	    	this.modal.state = 'result';
+	    },
+	    modalResultButton(){
+	    	if(this.state == 'save'){
+	    		if(this.modal.miniType == 'success'){
+	    			this.$router.push(this.redirect);
+	    		}else{
+	    			this.modal.show = false;
+	    		}
+	    	}else{
+	    		this.modal.show = false;
+	    	}
 	    },
 		other(){
 			// bootstrap select

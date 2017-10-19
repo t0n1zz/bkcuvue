@@ -25,19 +25,19 @@
 	<div class="page-content">
 		<div class="content-wrapper">
 			<!-- panel -->
-			<data-viewer :source="source" :thead="thead" :toolbarButton="4">
+			<data-viewer :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4">
 		        <template scope="props">
 		        	<tr class="cursor-pointer" @click="modalMenuOpen(props.item)">
-		        		<td v-if="!thead[0].hide">
+		        		<td v-if="!columnData[0].hide">
 		        			<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 		        			<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 	        			</td>
-			        	<td v-if="!thead[1].hide">{{props.item.nama}}</td>
-			        	<td v-if="!thead[2].hide">{{props.item.artikel__kategori.nama}}</td>
-			        	<td v-if="!thead[3].hide">{{props.item.penulis}}</td>
-			        	<td v-if="!thead[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-			        	<td v-if="!thead[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-			        	<td v-if="!thead[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
+			        	<td v-if="!columnData[1].hide">{{props.item.nama}}</td>
+			        	<td v-if="!columnData[2].hide">{{props.item.artikel__kategori.nama}}</td>
+			        	<td v-if="!columnData[3].hide">{{props.item.penulis}}</td>
+			        	<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
+			        	<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
+			        	<td v-if="!columnData[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
 		        	</tr>
 		        </template>
 		    </data-viewer>
@@ -138,14 +138,20 @@ export default{
 		return{
 			source: '/api/artikel',
 			source2 : '',
-			thead: [
-				{title: 'Foto', key: 'gambar', type: 'string', sort: false, hide: false},
-                {title: 'Judul', key: 'nama', type: 'string', filterKey:'nama', sort: true, hide: false},
-                {title: 'Kategori', key: 'artikel_kategori_id', type: 'string', filterKey:'artikel_kategori.nama',groupKey: 'artikel__kategori.nama', sort: true, hide: false },
-                {title: 'Penulis', key: 'penulis', type: 'string', filterKey:'penulis', groupKey: 'penulis',sort: true, hide: false},
-                {title: 'Terbitkan', key: 'terbitkan', type: 'string', sort: true, hide: false},
-                {title: 'Utamakan', key: 'utamakan', type: 'string', sort: true, hide: false},
-                {title: 'Tgl. Tulis', key: 'created_at', type: 'string', sort: true, hide: false}
+			filterData: [
+				{title:'Judul',key:'nama', operator:'like'},
+				{title:'Kategori',key:'artikel_kategori.nama', operator:'like'},
+				{title:'Penulis', key:'penulis', operator:'like'},
+				{title: 'Tgl. Tulis', key:'created_at', operator:'between'}
+			],
+			columnData: [
+				{title: 'Foto', key: 'gambar', excelType: 'string', sort: false, hide: false},
+                {title: 'Judul', key: 'nama', excelType: 'string', sort: true, hide: false},
+                {title: 'Kategori', key: 'artikel_kategori_id', groupKey: 'artikel__kategori.nama', excelType: 'string', sort: true, hide: false },
+                {title: 'Penulis', key: 'penulis', groupKey: 'penulis', excelType: 'string',sort: true, hide: false},
+                {title: 'Terbitkan', key: 'terbitkan', excelType: 'string', sort: true, hide: false},
+                {title: 'Utamakan', key: 'utamakan', excelType: 'string', sort: true, hide: false},
+                {title: 'Tgl. Tulis', key: 'created_at', texcelType: 'string', sort: true, hide: false}
             ],
             modal: {
                 show: false,
