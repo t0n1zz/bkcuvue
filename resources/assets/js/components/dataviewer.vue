@@ -44,7 +44,7 @@
                             <li ><a @click.prevent="showAllColumn">Semua Kolom</a></li>
                             <slot name="button-kolom"></slot>
                             <li class="divider"></li>
-                            <li v-for="(item,index) in columnData" :class="{'active' : !item.hide}"><a @click.prevent="hideColumn(index)">{{item.title}}</a></li>
+                            <li v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null"><a @click.prevent="hideColumn(index)">{{column.title}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-group pb-5">
@@ -134,7 +134,7 @@
                     <b>{{index}}</b>
                   </td>
                 </tr>
-                <slot v-for="item in items" :item="item"></slot>
+                <slot v-for="item in items" :item="item"></slot> 
             </tbody>  
         </table>
     </div>

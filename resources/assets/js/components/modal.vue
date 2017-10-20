@@ -23,17 +23,25 @@
 						enter-active-class="animated flipInX"
 						mode="out-in"
 					>
-						<div v-if="state === 'confirm'" key="confirm">
-							<slot name="modal-confirm"></slot>
+						<div v-if="state === 'confirm'" key="confirm" class="text-center">
+							<span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
+							<h2>{{modalTitle}}</h2>
+							<ul class="list-inline">
+						        <li><button type="button" class="btn btn-link legitRipple" @click="close">Batal</button></li>
+						        <li><button type="button" class="btn btn-warning" @click="confirmOk"><i class="icon-checkmark5"></i> {{modalButton}}</button></li>
+						    </ul>
 						</div>
-						<div v-else-if="state === 'result'" key="result">
-							<slot name="modal-result"></slot>
+						<div v-else-if="state === 'result'" key="result" class="text-center">
+							<span class="text-primary" v-if="resultType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
+							<span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
+							<h2>{{modalTitle}}</h2>
+							<ul class="list-inline">
+						        <li><button type="button" class="btn btn-default" @click="resultOk">{{modalButton}}</button></li>
+						    </ul>
 						</div>
-						<div v-else-if="state === 'loading'" key="loading">
-							<div class="text-center">
-								<i class="icon-spinner spinner" style="font-size: 5em"></i>
-								<h2>Mohon tunggu sebentar...</h2>
-							</div>
+						<div v-else-if="state === 'loading'" key="loading" class="text-center">
+							<i class="icon-spinner spinner" style="font-size: 5em"></i>
+							<h2>Mohon tunggu sebentar...</h2>
 						</div>
 				 		<div v-else key="normal">
 							<slot name="modal-body" ></slot>
@@ -53,7 +61,7 @@
 
 <script>
 export default{
-	props: ['show','color','size','state'],
+	props: ['show','color','size','state','modalTitle','modalButton','resultType'],
 	data(){
 		return{
 			created: false,
@@ -69,6 +77,12 @@ export default{
 	methods: {
 		close(){
 			this.$emit('close');
+		},
+		confirmOk(){
+			this.$emit('confirmOk');
+		},
+		resultOk(){
+			this.$emit('resultOk');
 		},
 		beforeEnter(){
 			this.created = true
