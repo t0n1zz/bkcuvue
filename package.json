@@ -13,8 +13,10 @@
     "axios": "^0.16.2",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.0.1",
     "jquery": "^3.1.1",
@@ -29,6 +31,7 @@
     "uiv": "^0.11.9",
     "vee-validate": "^2.0.0-rc.14",
     "vue-json-excel": "0.0.7",
-    "vue-strap": "^1.1.37"
+    "vue-strap": "^1.1.37",
+    "vuex": "^3.0.1"
   }
 }

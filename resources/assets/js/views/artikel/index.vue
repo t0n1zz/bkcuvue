@@ -21,39 +21,10 @@
 			<data-viewer :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4">
 				<template slot="button">
 					<div class="btn-group pb-5">
-						<router-link :to="{ name:'artikelCreate' }" title="TAMBAH ARTIKEL"  class="btn btn-default btn-icon">
-							<i class="icon-plus3" ></i> Tambah
-						</router-link>
+						<a class="btn btn-default btn-icon" @click="modalFormOpen('Tambah Artikel')"><i class="icon-plus3" ></i> Tambah</a>
                     </div>
 				</template>
-		        <template scope="props"><tr>
-	        		<td class="text-center">
-	        			<ul class="icons-list">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="icon-menu9"></i>
-								</a>
-								<ul class="dropdown-menu dropdown-menu">
-									<li><a><i class="icon-reading"></i> Baca Artikel</a></li>
-									<li><a @click="modalMenuOpen(props.item)"><i class="icon-pencil5"></i> Ubah Artikel</a></li>
-									<li>
-										<a @click="modalConfirmOpen(props.item,'updateTerbitkan')"><i class="icon-file-upload"></i> 
-											<span v-if="props.item.terbitkan == 0">Terbitkan</span>
-											<span v-else>Tidak terbitkan</span>
-										</a>
-									</li>
-									<li>
-										<a @click="modalConfirmOpen(props.item,'updateUtamakan')"><i class="icon-pushpin"></i> 
-											<span v-if="props.item.utamakan == 0">Utamakaan</span>
-											<span v-else>Tidak utamakan</span>
-										</a>
-									</li>
-									<li class="divider"></li>
-									<li><a class="text-danger" @click="modalConfirmOpen(props.item,'Hapus')"><i class="icon-bin2"></i> Hapus Artikel</a></li>
-								</ul>
-							</li>
-						</ul>
-	        		</td>
+		        <template scope="props"><tr class="cursor-pointer" @click="modalMenuOpen(props.item)">
 	        		<td v-if="!columnData[0].hide">
 	        			<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 	        			<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
@@ -61,8 +32,8 @@
 		        	<td v-if="!columnData[1].hide">{{props.item.nama}}</td>
 		        	<td v-if="!columnData[2].hide">{{props.item.artikel__kategori.nama}}</td>
 		        	<td v-if="!columnData[3].hide">{{props.item.penulis}}</td>
-		        	<td class="text-center cursor-pointer" v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)" @click="modalConfirmOpen(props.item,'updateTerbitkan')"></td>
-		        	<td class="text-center cursor-pointer" v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"  @click="modalConfirmOpen(props.item,'updateUtamakan')"></td>
+		        	<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
+		        	<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
 		        	<td v-if="!columnData[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
 		        </tr></template>
 		    </data-viewer>
@@ -73,32 +44,94 @@
 
 <!-- modal -->
 <!-- table-context-menu -->
-<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" :modalTitle="modal.title" :modalButton="modal.button" :resultType="modal.resultType" @close="modalClose" @confirmOk="modalConfirmOk" @resultOk="modalClose">
+<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" :modalTitle="modal.title" :modalButton="modal.button" :resultType="modal.resultType" @close="modalClose" @batal="modalBatal" @confirmOk="modalConfirmOk" @resultOk="modalClose">
+	<template slot="modal-body1">
+		<div class="panel panel-flat blog-horizontal blog-horizontal-2">
+			<div class="panel-body">
+				<div class="thumb">
+					<img :src="'/images/artikel/' + modal.data.gambar + '.jpg'" class="img-rounded img-responsive" v-if="modal.data.gambar">
+					<img :src="'/images/image-article.jpg'" class="img-rounded img-responsive" v-else>
+				</div>
+				<div class="table-responsive blog-preview">
+					<table class="table table-xs">
+						<tbody class="text-left">
+							<tr>
+								<td><b>Judul:</b></td>
+								<td>{{ modal.data.nama }}</td>
+							</tr>
+							<tr>
+								<td><b>Kategori:</b></td>
+								<td v-if="modal.data.artikel__kategori">{{modal.data.artikel__kategori.nama}}</td>
+								<td v-else>-</td>
+							</tr>
+							<tr>
+								<td><b>Penulis:</b></td>
+								<td>{{ modal.data.penulis }}</td>
+							</tr>
+							<tr>
+								<td><b>Terbitkan:</b></td>
+								<td><span v-html="$options.filters.checkStatus(modal.data.terbitkan)"></span></td>
+							</tr>
+							<tr>
+								<td><b>Utamakan:</b></td>
+								<td><span v-html="$options.filters.checkStatus(modal.data.utamakan)"></span></td>
+							</tr>
+							<tr>
+								<td><b>Tgl. Tulis:</b></td>
+								<td>{{ modal.data.created_at | publishDate }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="list-unstyled">
+					<a class="list-group-item"><i class="icon-reading"></i> Baca</a>
+					<a class="list-group-item"><i class="icon-pencil5"></i> Ubah</a>
+					<a class="list-group-item" @click.prevent="modalConfirmOpen('hapus')"><i class="icon-bin2"></i> Hapus</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="list-unstyled">
+					<a class="list-group-item" @click.prevent="modalConfirmOpen('updateTerbitkan')" ><i class="icon-file-upload"></i> 
+						<span v-if="modal.data.terbitkan == 0">Terbitkan</span> 
+						<span v-else>Tidak Terbitkan</span></a>
+					<a class="list-group-item" @click.prevent="modalConfirmOpen('updateUtamakan')"><i class="icon-pushpin"></i> 
+						<span v-if="modal.data.utamakan == 0">Utamakan</span> 
+						<span v-else>Tidak Utamakan</span></a>
+					<a class="list-group-item" @click.prevent="modalClose"><i class="icon-cross"></i> Batal</a>
+				</div>
+			</div>
+		</div>
+	</template>
 	<template slot="modal-title">
-		<i class="icon-pencil5"></i> {{ modal.title }}
+		{{ modal.title }}
 	</template>
-	<template slot="modal-body">
-		
-	</template>
-	<template slot="modal-footer">
-		<button class="btn btn-link legitRipple" @click="modalClose">Batal</button>
+	<template slot="modal-body2">
+		<app-form></app-form>
 	</template>
 </app-modal>
 
 </div>
 </template>
 <script type="text/javascript">
+import { mapGetters, mapMutations } from 'vuex';
+import * as types from '../../store/types';
 import {bus} from '../../app';
-import corefunc from '../../assets/core/app.js'
-import moment from 'moment'
-import DataViewer from '../../components/dataviewer.vue'
-import appModal from '../../components/modal'
+import corefunc from '../../assets/core/app.js';
+import moment from 'moment';
+import DataViewer from '../../components/dataviewer.vue';
+import appModal from '../../components/modal';
+import appForm from './form.vue';
 
 export default{
 	name: 'ArtikelIndex',
 	components:{
 		DataViewer,
 		appModal,
+		appForm,
 	},
 	mounted(){
 		corefunc.core_function();
@@ -114,7 +147,6 @@ export default{
 				{title: 'Tgl. Tulis', key:'created_at', operator:'between'}
 			],
 			columnData: [
-				{title: 'Menu', sort: false},
 				{title: 'Foto', key: 'gambar', excelType: 'string', sort: false, hide: false},
                 {title: 'Judul', key: 'nama', excelType: 'string', sort: true, hide: false},
                 {title: 'Kategori', key: 'artikel_kategori_id', groupKey: 'artikel__kategori.nama', excelType: 'string', sort: true, hide: false },
@@ -133,81 +165,134 @@ export default{
                 button:'',
                 formTitle:'',
                 formValue:'',
+                formId:'',
+                formPlaceholder:'',
                 formType:'',
                 resultType:''
             }
 		}
 	},
+	computed: {
+		...mapGetters({
+			getModalShow: types.getModalShow,
+			getModalState: types.getModalState
+		})
+	},
 	methods: {
-		modalFormOpen(){
-			this.modal.show = true;
+		...mapMutations({
+			mutateModalShow: types.mutateModalShow,
+			mutateModalState: types.mutateModalState
+		}),
+		modalFormOpen(modalTitle){
+			var vm = this;
+
+			vm.mutateModalShow(true);
+			vm.mutateModalState('normal2');
+			vm.modal.color = 'bg-primary';
+			vm.modal.size = 'modal-full';
+			vm.modal.title = modalTitle;
 		},
-		modalConfirmOpen(data,type,title,button){
-			this.modal.show = true;
-			this.modal.state = 'confirm';
-			this.modal.data = data;
-	    	this.source2 = type;
+		modalMenuOpen(data){
+			var vm = this;
+
+			vm.mutateModalShow(true);
+			vm.mutateModalState('normal1');
+			vm.modal.color = '';
+			vm.modal.size = '';
+			vm.modal.title = '';
+			vm.modal.data = data;
+		},
+		modalConfirmOpen(type){
+			var vm = this;
+
+			vm.mutateModalState('confirm');
+			vm.modal.title = '';
+	    	vm.source2 = type;
 
 	    	if(type == 'hapus'){
-	    		this.modal.title = 'Hapus artikel ini?';
-	    		this.modal.button = 'Iya, Hapus';
+	    		vm.modal.title = 'Hapus artikel ini?';
+	    		vm.modal.button = 'Iya, Hapus';
 	    	}else if(type == 'updateTerbitkan'){
-	    		if(data.terbitkan == 0){
-	    			this.modal.title = 'Terbitkan artikel ini?';
-	    			this.modal.button = 'Iya, terbitkan';
+	    		if(vm.modal.data.terbitkan == 0){
+	    			vm.modal.title = 'Terbitkan artikel ini?';
+	    			vm.modal.button = 'Iya, terbitkan';
 	    		}else{
-	    			this.modal.title = 'Tidak terbitkan artikel ini?';
-	    			this.modal.button = 'Iya, tidak terbitkan';
+	    			vm.modal.title = 'Tidak terbitkan artikel ini?';
+	    			vm.modal.button = 'Iya, tidak terbitkan';
 	    		}
 	    	}else if(type == 'updateUtamakan'){
-	    		if(data.utamakan == 0){
-	    			this.modal.title = 'Utamakan artikel ini?';
-	    			this.modal.button = 'Iya, utamakan';
+	    		if(vm.modal.data.utamakan == 0){
+	    			vm.modal.title = 'Utamakan artikel ini?';
+	    			vm.modal.button = 'Iya, utamakan';
 	    		}else{
-	    			this.modal.title = 'Tidak utamakan artikel ini?';
-	    			this.modal.button = 'Iya, tidak utamakan';
+	    			vm.modal.title = 'Tidak utamakan artikel ini?';
+	    			vm.modal.button = 'Iya, tidak utamakan';
 	    		}
 	    	}
 		},
+		modalSave(){
+			var vm = this;
+			vm.mutateModalState('loading');
+			axios.put(`${vm.source}/update/${vm.modal.formId}`, vm.modal.formValue)
+				.then(function(response){
+					if(response.data.saved){
+						vm.modalSuccess(response.data.message);
+					}else{
+						vm.modalError();
+					}
+				})
+				.catch(function(error){
+					vm.modalError();
+				})
+		},
 	    modalError(){
-	    	this.modal.title = "Ops terjadi kesalahan :(";
-	    	this.modal.resultType = "error";
-	    	this.modal.state = 'result';
-	    	this.modal.button = 'Ok';
+	    	var vm = this;
+
+	    	vm.modal.title = "Ops terjadi kesalahan :(";
+	    	vm.mutateModalState('error');
+	    	vm.modal.button = 'Ok';
 	    },
 	    modalSuccess(title){
-	    	this.modal.title = title;
-	    	this.modal.resultType = "success";
-	    	this.modal.state = 'result';
-	    	this.modal.button = 'Ok';
+	    	var vm = this;
+
+	    	vm.modal.title = title;
+	    	vm.mutateModalState('success');
+	    	vm.modal.button = 'Ok';
+	    },
+	    modalBatal(){
+	    	var vm = this;
+	    	vm.mutateModalState('normal1');
+	    	vm.modal.title= '';
 	    },
 	    modalClose(){
-	    	if(this.modal.resultType == "success"){
-	    		this.modal.resultType = '';
+	    	var vm = this;
+	    	if(vm.getModalState == "success"){
 	    		bus.$emit('fetchData');
 	    	}
-
-	    	this.modal.show = false;
-	    	this.modal.state = '';
+	    	vm.mutateModalShow(false);
 	    },
 	    modalConfirmOk(){
-	    	var vm = this
-	    	vm.modal.state = "loading";
-	    	if(this.source2 == 'Hapus'){
-                axios.delete(`${this.source}/${this.modal.data.id}`)
+	    	var vm = this;
+	    	vm.mutateModalState('loading');
+	    	if(vm.source2 == 'hapus'){
+                axios.delete(`${vm.source}/${vm.modal.data.id}`)
                     .then(function(response) {
                         if(response.data.deleted) {
                             vm.modalSuccess(response.data.message);
+                        }else{
+                        	vm.modalError();
                         }
                     })
                     .catch(function(error) {
                         vm.modalError();
                     })
-	    	}else if(this.source2 == "updateTerbitkan" || this.source2 == "updateUtamakan" ){
-	    		axios.post(`${this.source}/${this.source2}/${this.modal.data.id}`)
+	    	}else if(vm.source2 == "updateTerbitkan" || vm.source2 == "updateUtamakan" ){
+	    		axios.post(`${vm.source}/${vm.source2}/${vm.modal.data.id}`)
                     .then(function(response) {
                         if(response.data.saved) {
                             vm.modalSuccess(response.data.message);
+                        }else{
+                        	vm.modalError();
                         }
                     })
                     .catch(function(error) {
@@ -230,7 +315,7 @@ export default{
 	    		return '<span class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>';
 	    	}
 	    },
-	    checkStatus2: function(value){
+	    checkModal: function(value){
 	    	if(value > 0){
 	    		return '<i class="icon-check"></i>';
 	    	}else{

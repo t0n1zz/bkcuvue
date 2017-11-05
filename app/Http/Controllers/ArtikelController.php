@@ -74,8 +74,8 @@ class ArtikelController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request,Artikel::$rules);
-
+		// $this->validate($request,Artikel::$rules);
+		dd($request->all());
 		$kelas = Artikel::findOrFail($id);
 		$kelas->update($request->all());
 

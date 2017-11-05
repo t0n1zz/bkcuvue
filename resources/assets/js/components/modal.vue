@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class="modal-mask" @click="close" v-show="created">
+	<div class="modal-mask" @click="mutateModalShow(false)" v-show="created">
 	<transition name="modal-effect"
 		enter-active-class="animated bounceInUp"
 		leave-active-class="animated bounceOutDown"
@@ -8,45 +8,56 @@
 		v-on:enter="beforeEnter"
 		v-on:after-leave="afterLeave"
 	>	
-	<div class="modal-show" v-if="show">
+	<div class="modal-show" v-if="getModalShow">
 		<div class="modal-dialog"  :class="size" @click.stop>
 			<div class="modal-content">
 				<div class="modal-header" :class="color">
-					<button type="button" class="close" @click="close">&times;</button>
-					<h6 class="modal-title">
+					<h6 class="modal-title" v-if="getModalState === 'normal1' || getModalState === 'normal2'">
 						<slot name="modal-title"></slot>
 					</h6>
 				</div>
-
+				
 				<div class="modal-body">
 					<transition name="modal-effect"
 						enter-active-class="animated flipInX"
 						mode="out-in"
 					>
-						<div v-if="state === 'confirm'" key="confirm" class="text-center">
+						<div v-if="getModalState === 'confirm'" key="confirm" class="text-center">
 							<span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
 							<h2>{{modalTitle}}</h2>
 							<ul class="list-inline">
-						        <li><button type="button" class="btn btn-link legitRipple" @click="close">Batal</button></li>
+						        <li><button type="button" class="btn btn-default" @click="batal"><i class="icon-cross"></i> Batal</button></li>
 						        <li><button type="button" class="btn btn-warning" @click="confirmOk"><i class="icon-checkmark5"></i> {{modalButton}}</button></li>
 						    </ul>
 						</div>
-						<div v-else-if="state === 'result'" key="result" class="text-center">
-							<span class="text-primary" v-if="resultType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
-							<span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
+						<div v-else-if="getModalState === 'success'" key="success" class="text-center">
+							<span class="text-primary"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
 							<h2>{{modalTitle}}</h2>
 							<ul class="list-inline">
-						        <li><button type="button" class="btn btn-default" @click="resultOk">{{modalButton}}</button></li>
+						        <li><button type="button" class="btn btn-default" @click="successOk">{{modalButton}}</button></li>
 						    </ul>
 						</div>
-						<div v-else-if="state === 'loading'" key="loading" class="text-center">
+						<div v-else-if="getModalState === 'error'" key="error" class="text-center">
+							<span class="text-danger"><i class="icon-close2" style="font-size: 5em"></i></span>
+							<h2>{{modalTitle}}</h2>
+							<ul class="list-inline">
+						        <li><button type="button" class="btn btn-default" @click="errorOk">{{modalButton}}</button></li>
+						    </ul>
+						</div>
+						<div v-else-if="getModalState === 'loading'" key="loading" class="text-center">
 							<i class="icon-spinner spinner" style="font-size: 5em"></i>
 							<h2>Mohon tunggu sebentar...</h2>
 						</div>
-				 		<div v-else key="normal">
-							<slot name="modal-body" ></slot>
+				 		<div v-else-if="getModalState === 'normal1'" key="normal1">
+							<slot name="modal-body1"></slot>
 							<div class="modal-footer no-padding">
-								<slot name="modal-footer"></slot>
+								<slot name="modal-footer1"></slot>
+							</div>
+						</div>
+						<div v-else-if="getModalState === 'normal2'" key="normal2">
+							<slot name="modal-body2"></slot>
+							<div class="modal-footer no-padding">
+								<slot name="modal-footer2"></slot>
 							</div>
 						</div>
 					</transition>
@@ -60,23 +71,38 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+import * as types from '../store/types';
+
 export default{
-	props: ['show','color','size','state','modalTitle','modalButton','resultType'],
+	props: ['color','size','state','modalTitle','modalButton','resultType'],
 	data(){
 		return{
 			created: false,
 		}
 	},
+	computed: {
+		...mapGetters({
+			getModalShow: types.getModalShow,
+			getModalState: types.getModalState
+		})
+	},
 	mounted(){
 	  document.addEventListener("keydown", (e) => {
 	      if (this.show && e.keyCode == 27) {
-	        this.close();
+	        this.mutateModalShow(false);
 	      }
 	  });   
 	},
 	methods: {
+		...mapMutations({
+			mutateModalShow: types.mutateModalShow,
+		}),
 		close(){
 			this.$emit('close');
+		},
+		batal(){
+			this.$emit('batal');
 		},
 		confirmOk(){
 			this.$emit('confirmOk');
@@ -85,11 +111,11 @@ export default{
 			this.$emit('resultOk');
 		},
 		beforeEnter(){
-			this.created = true
+			this.created = true;
 			document.body.classList.add("modal-open"); 
 		},
 		afterLeave(){
-			this.created = false
+			this.created = false;
 			document.body.classList.remove("modal-open"); 
 		}
 	}
