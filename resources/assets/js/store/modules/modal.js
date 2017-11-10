@@ -4,11 +4,11 @@ const state = {
 	modalShow: false,
     modalSize:'',
     modalColor:'',
-    modalData: '',
     modalState:'',
     modalTitle:'',
+    modalContent:'',
     modalButton:'',
-    modalResultType:''
+    modalData: '',
 };
 
 const getters = {
@@ -17,7 +17,25 @@ const getters = {
     },
     [types.getModalState]: state => {
         return state.modalState;
-    }
+    },
+    [types.getModalSize]: state => {
+        return state.modalSize;
+    },
+    [types.getModalColor]: state => {
+        return state.modalColor;
+    },
+    [types.getModalTitle]: state => {
+        return state.modalTitle;
+    },
+    [types.getModalContent]: state => {
+        return state.modalContent;
+    },
+    [types.getModalButton]: state => {
+        return state.modalButton;
+    },
+    [types.getModalData]: state => {
+        return state.modalData;
+    },
 };
 
 const mutations = {
@@ -26,6 +44,24 @@ const mutations = {
     },
     [types.mutateModalState]: (state,payload) => {
         state.modalState = payload;
+    },
+    [types.mutateModalSize]: (state,payload) => {
+        state.modalSize = payload;
+    },
+    [types.mutateModalColor]: (state,payload) => {
+        state.modalColor = payload;
+    },
+    [types.mutateModalTitle]: (state,payload) => {
+        state.modalTitle = payload;
+    },
+    [types.mutateModalContent]: (state,payload) => {
+        state.modalContent = payload;
+    },
+    [types.mutateModalButton]: (state,payload) => {
+        state.modalButton = payload;
+    },
+    [types.mutateModalData]: (state,payload) => {
+        state.modalData = payload;
     }
 };
 

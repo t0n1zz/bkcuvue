@@ -9,9 +9,10 @@
 		v-on:after-leave="afterLeave"
 	>	
 	<div class="modal-show" v-if="getModalShow">
-		<div class="modal-dialog"  :class="size" @click.stop>
+		<div class="modal-dialog"  :class="getModalSize" @click.stop>
 			<div class="modal-content">
-				<div class="modal-header" :class="color">
+				<div class="modal-header" :class="getModalColor">
+					<button type="button" class="close" @click="mutateModalShow(false)">&times;</button>
 					<h6 class="modal-title" v-if="getModalState === 'normal1' || getModalState === 'normal2'">
 						<slot name="modal-title"></slot>
 					</h6>
@@ -24,24 +25,26 @@
 					>
 						<div v-if="getModalState === 'confirm'" key="confirm" class="text-center">
 							<span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
-							<h2>{{modalTitle}}</h2>
+							<h2>{{ getModalTitle }}</h2>
+							<div class="well well-sm" v-if="getModalContent">{{ getModalContent }}</div>
+							<br>
 							<ul class="list-inline">
-						        <li><button type="button" class="btn btn-default" @click="batal"><i class="icon-cross"></i> Batal</button></li>
-						        <li><button type="button" class="btn btn-warning" @click="confirmOk"><i class="icon-checkmark5"></i> {{modalButton}}</button></li>
+						        <li><button type="button" class="btn btn-default" @click="batal"><i class="icon-arrow-left5"></i> Batal</button></li>
+						        <li><button type="button" class="btn btn-warning" @click="confirmOk"><i class="icon-checkmark5"></i> {{ getModalButton }}</button></li>
 						    </ul>
 						</div>
 						<div v-else-if="getModalState === 'success'" key="success" class="text-center">
 							<span class="text-primary"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
-							<h2>{{modalTitle}}</h2>
+							<h2>{{ getModalTitle }}</h2>
 							<ul class="list-inline">
-						        <li><button type="button" class="btn btn-default" @click="successOk">{{modalButton}}</button></li>
+						        <li><button type="button" class="btn btn-default" @click="successOk">{{ getModalButton }}</button></li>
 						    </ul>
 						</div>
 						<div v-else-if="getModalState === 'error'" key="error" class="text-center">
 							<span class="text-danger"><i class="icon-close2" style="font-size: 5em"></i></span>
-							<h2>{{modalTitle}}</h2>
+							<h2>{{ getModalTitle }}</h2>
 							<ul class="list-inline">
-						        <li><button type="button" class="btn btn-default" @click="errorOk">{{modalButton}}</button></li>
+						        <li><button type="button" class="btn btn-default" @click="errorOk">{{ getModalButton }}</button></li>
 						    </ul>
 						</div>
 						<div v-else-if="getModalState === 'loading'" key="loading" class="text-center">
@@ -75,7 +78,6 @@ import { mapGetters, mapMutations } from 'vuex';
 import * as types from '../store/types';
 
 export default{
-	props: ['color','size','state','modalTitle','modalButton','resultType'],
 	data(){
 		return{
 			created: false,
@@ -84,12 +86,17 @@ export default{
 	computed: {
 		...mapGetters({
 			getModalShow: types.getModalShow,
-			getModalState: types.getModalState
+			getModalState: types.getModalState,
+			getModalSize: types.getModalSize,
+			getModalColor: types.getModalColor,
+			getModalTitle: types.getModalTitle,
+			getModalContent: types.getModalContent,
+			getModalButton: types.getModalButton,
 		})
 	},
 	mounted(){
 	  document.addEventListener("keydown", (e) => {
-	      if (this.show && e.keyCode == 27) {
+	      if (this.getModalShow && e.keyCode == 27) {
 	        this.mutateModalShow(false);
 	      }
 	  });   
@@ -98,17 +105,17 @@ export default{
 		...mapMutations({
 			mutateModalShow: types.mutateModalShow,
 		}),
-		close(){
-			this.$emit('close');
-		},
 		batal(){
 			this.$emit('batal');
 		},
 		confirmOk(){
 			this.$emit('confirmOk');
 		},
-		resultOk(){
-			this.$emit('resultOk');
+		successOk(){
+			this.$emit('successOk');
+		},
+		errorOk(){
+			this.$emit('errorOk');
 		},
 		beforeEnter(){
 			this.created = true;
@@ -122,7 +129,7 @@ export default{
 }
 </script>
 
-<style>
+<style scoped>
 .modal-mask {
     position: fixed;
     z-index: 9998;

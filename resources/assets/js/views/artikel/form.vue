@@ -83,7 +83,7 @@
 			</div>
 		</div>
 		<div class="text-right">
-			<button type="button" class="btn btn-default" @click="mutateModalShow(false)"><i class="icon-cross"></i> Batal</button>
+			<button type="button" class="btn btn-default" @click="mutateModalShow(false)"><i class="icon-cross"></i> Tutup</button>
 			<button type="submit" class="btn btn-primary">Simpan <i class="icon-arrow-right14 position-right"></i></button>
 		</div>
 	</form>
@@ -100,7 +100,6 @@ import appSummernote from '../../modules/summernote.js'
 import appImageUpload from '../../components/ImageUpload.vue'
 
 export default{
-	props: ['close','toolbarButton','filterData'],
 	components: {
 		appSummernote,
 		appImageUpload
@@ -112,18 +111,6 @@ export default{
 				deskripsi: ''
 			},
 			form: {},
-			modal: {
-                name:'',
-                show: false,
-                size:'',
-                color:'',
-                data: '',
-                state:'',
-                miniTitle:'',
-                miniContent:'',
-                miniButton:'',
-                miniType:''
-            },
     		summernoteconfig:{
 				height: 400,
 				popover: {
@@ -152,10 +139,7 @@ export default{
 			option: {},
 			rules : {},
 			modelKategori: [],
-			title: 'Tambah artikel',
-			title2: 'Menambah artikel',
 			initialize: '/api/artikel/create',
-			redirect: '/artikel',
 			store: '/api/artikel/store',
 			storeKategori : '/api/artikel_kategori/store',
 			method: 'post',
@@ -164,8 +148,6 @@ export default{
 	},
 	beforeMount(){
 		if(this.$route.meta.mode === 'edit'){
-			this.title = "Ubah artikel";
-			this.title2 = "Mengubah artikel";
 			this.initialize = '/api/artikel/' + this.$route.params.id + '/edit';
 			this.store = '/api/artikel/update/' + this.$route.params.id;
 			this.method = 'put';
@@ -175,7 +157,6 @@ export default{
 	},
 	mounted(){
 		uniformFunc.uniform_function();
-
 		this.other();
 	},
 	updated(){
@@ -211,22 +192,25 @@ export default{
 		},
 		save(){
 			var vm = this;
-			vm.modal.show= true;
-			vm.modal.state = 'loading';
-			vm.state = "save";
 			const form = toMulipartedForm(vm.form, vm.$route.meta.mode);
 			axios[vm.method](vm.store, form)
 				.then(function(response){
 					if(response.data.saved){
-						vm.mutateModalState('success');
+						vm.success(response.data.message);
 					}else{
-						vm.mutateModalState('error');
+						vm.error();
 					}
 				})
 				.catch(function(error){
-					vm.mutateModalState('error');
+					vm.error();
 					Vue.set(vm.$data, 'errors' , error.response.data);
 				})
+		},
+		success(message){
+			this.$emit('success',message);
+		},
+		error(){
+			this.$emit('error');
 		},
 		saveKategori(){
 			var vm = this

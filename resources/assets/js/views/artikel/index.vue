@@ -24,17 +24,22 @@
 						<a class="btn btn-default btn-icon" @click="modalFormOpen('Tambah Artikel')"><i class="icon-plus3" ></i> Tambah</a>
                     </div>
 				</template>
-		        <template scope="props"><tr class="cursor-pointer" @click="modalMenuOpen(props.item)">
-	        		<td v-if="!columnData[0].hide">
+		        <template scope="props"><tr>
+		        	<td v-if="!columnData[0].hide">
+		        		<a @click.prevent="modalMenuOpen(props.item)">
+		        			<i class="icon-menu9"></i>
+		        		</a>
+		        	</td>
+	        		<td v-if="!columnData[1].hide">
 	        			<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 	        			<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
         			</td>
-		        	<td v-if="!columnData[1].hide">{{props.item.nama}}</td>
-		        	<td v-if="!columnData[2].hide">{{props.item.artikel__kategori.nama}}</td>
-		        	<td v-if="!columnData[3].hide">{{props.item.penulis}}</td>
-		        	<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-		        	<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-		        	<td v-if="!columnData[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
+		        	<td v-if="!columnData[2].hide">{{props.item.nama}}</td>
+		        	<td v-if="!columnData[3].hide">{{props.item.artikel__kategori.nama}}</td>
+		        	<td v-if="!columnData[4].hide">{{props.item.penulis}}</td>
+		        	<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
+		        	<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
+		        	<td v-if="!columnData[7].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
 		        </tr></template>
 		    </data-viewer>
 		</div>
@@ -44,12 +49,12 @@
 
 <!-- modal -->
 <!-- table-context-menu -->
-<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" :modalTitle="modal.title" :modalButton="modal.button" :resultType="modal.resultType" @close="modalClose" @batal="modalBatal" @confirmOk="modalConfirmOk" @resultOk="modalClose">
+<app-modal @batal="modalBatal" @confirmOk="modalConfirmOk" @successOk="modalTutup" @errorOk="modalTutup">
 	<template slot="modal-body1">
 		<div class="panel panel-flat blog-horizontal blog-horizontal-2">
 			<div class="panel-body">
 				<div class="thumb">
-					<img :src="'/images/artikel/' + modal.data.gambar + '.jpg'" class="img-rounded img-responsive" v-if="modal.data.gambar">
+					<img :src="'/images/artikel/' + getModalData.gambar + '.jpg'" class="img-rounded img-responsive" v-if="getModalData.gambar">
 					<img :src="'/images/image-article.jpg'" class="img-rounded img-responsive" v-else>
 				</div>
 				<div class="table-responsive blog-preview">
@@ -57,28 +62,28 @@
 						<tbody class="text-left">
 							<tr>
 								<td><b>Judul:</b></td>
-								<td>{{ modal.data.nama }}</td>
+								<td>{{ getModalData.nama }}</td>
 							</tr>
 							<tr>
 								<td><b>Kategori:</b></td>
-								<td v-if="modal.data.artikel__kategori">{{modal.data.artikel__kategori.nama}}</td>
+								<td v-if="getModalData.artikel__kategori">{{getModalData.artikel__kategori.nama}}</td>
 								<td v-else>-</td>
 							</tr>
 							<tr>
 								<td><b>Penulis:</b></td>
-								<td>{{ modal.data.penulis }}</td>
+								<td>{{ getModalData.penulis }}</td>
 							</tr>
 							<tr>
 								<td><b>Terbitkan:</b></td>
-								<td><span v-html="$options.filters.checkStatus(modal.data.terbitkan)"></span></td>
+								<td><span v-html="$options.filters.checkStatus(getModalData.terbitkan)"></span></td>
 							</tr>
 							<tr>
 								<td><b>Utamakan:</b></td>
-								<td><span v-html="$options.filters.checkStatus(modal.data.utamakan)"></span></td>
+								<td><span v-html="$options.filters.checkStatus(getModalData.utamakan)"></span></td>
 							</tr>
 							<tr>
 								<td><b>Tgl. Tulis:</b></td>
-								<td>{{ modal.data.created_at | publishDate }}</td>
+								<td>{{ getModalData.created_at | publishDate }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -96,21 +101,21 @@
 			<div class="col-sm-6">
 				<div class="list-unstyled">
 					<a class="list-group-item" @click.prevent="modalConfirmOpen('updateTerbitkan')" ><i class="icon-file-upload"></i> 
-						<span v-if="modal.data.terbitkan == 0">Terbitkan</span> 
+						<span v-if="getModalData.terbitkan == 0">Terbitkan</span> 
 						<span v-else>Tidak Terbitkan</span></a>
 					<a class="list-group-item" @click.prevent="modalConfirmOpen('updateUtamakan')"><i class="icon-pushpin"></i> 
-						<span v-if="modal.data.utamakan == 0">Utamakan</span> 
+						<span v-if="getModalData.utamakan == 0">Utamakan</span> 
 						<span v-else>Tidak Utamakan</span></a>
-					<a class="list-group-item" @click.prevent="modalClose"><i class="icon-cross"></i> Batal</a>
+					<a class="list-group-item" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
 				</div>
 			</div>
 		</div>
 	</template>
 	<template slot="modal-title">
-		{{ modal.title }}
+		{{ getModalTitle }}
 	</template>
 	<template slot="modal-body2">
-		<app-form></app-form>
+		<app-form @error="modalError" @success="modalSuccess"></app-form>
 	</template>
 </app-modal>
 
@@ -147,6 +152,7 @@ export default{
 				{title: 'Tgl. Tulis', key:'created_at', operator:'between'}
 			],
 			columnData: [
+				{title: 'Menu', key: 'menu', excelType: 'string', sort: false, hide: false},
 				{title: 'Foto', key: 'gambar', excelType: 'string', sort: false, hide: false},
                 {title: 'Judul', key: 'nama', excelType: 'string', sort: true, hide: false},
                 {title: 'Kategori', key: 'artikel_kategori_id', groupKey: 'artikel__kategori.nama', excelType: 'string', sort: true, hide: false },
@@ -154,79 +160,68 @@ export default{
                 {title: 'Terbitkan', key: 'terbitkan', excelType: 'string', sort: true, hide: false},
                 {title: 'Utamakan', key: 'utamakan', excelType: 'string', sort: true, hide: false},
                 {title: 'Tgl. Tulis', key: 'created_at', texcelType: 'string', sort: true, hide: false}
-            ],
-            modal: {
-                show: false,
-                size:'',
-                color:'',
-                data: '',
-                state:'',
-                title:'',
-                button:'',
-                formTitle:'',
-                formValue:'',
-                formId:'',
-                formPlaceholder:'',
-                formType:'',
-                resultType:''
-            }
+            ]
 		}
 	},
 	computed: {
 		...mapGetters({
 			getModalShow: types.getModalShow,
-			getModalState: types.getModalState
+			getModalState: types.getModalState,
+			getModalTitle: types.getModalTitle,
+			getModalData: types.getModalData
 		})
 	},
 	methods: {
 		...mapMutations({
 			mutateModalShow: types.mutateModalShow,
-			mutateModalState: types.mutateModalState
+			mutateModalState: types.mutateModalState,
+			mutateModalSize: types.mutateModalSize,
+			mutateModalColor: types.mutateModalColor,
+			mutateModalTitle: types.mutateModalTitle,
+			mutateModalButton: types.mutateModalButton,
+			mutateModalData: types.mutateModalData
 		}),
 		modalFormOpen(modalTitle){
 			var vm = this;
-
 			vm.mutateModalShow(true);
 			vm.mutateModalState('normal2');
-			vm.modal.color = 'bg-primary';
-			vm.modal.size = 'modal-full';
-			vm.modal.title = modalTitle;
+			vm.mutateModalColor('bg-primary');
+			vm.mutateModalSize('modal-full');
+			vm.mutateModalTitle(modalTitle);
 		},
 		modalMenuOpen(data){
 			var vm = this;
-
 			vm.mutateModalShow(true);
 			vm.mutateModalState('normal1');
-			vm.modal.color = '';
-			vm.modal.size = '';
-			vm.modal.title = '';
-			vm.modal.data = data;
+			vm.mutateModalSize('');
+			vm.mutateModalColor('');
+			vm.mutateModalTitle('');
+			vm.mutateModalData(data);
 		},
 		modalConfirmOpen(type){
 			var vm = this;
-
 			vm.mutateModalState('confirm');
-			vm.modal.title = '';
+			vm.mutateModalTitle('');
 	    	vm.source2 = type;
 
 	    	if(type == 'hapus'){
-	    		vm.modal.title = 'Hapus artikel ini?';
-	    		vm.modal.button = 'Iya, Hapus';
+	    		vm.mutateModalTitle('Hapus artikel ini?');
+	    		vm.mutateModalButton('Iya, Hapus');
 	    	}else if(type == 'updateTerbitkan'){
-	    		if(vm.modal.data.terbitkan == 0){
-	    			vm.modal.title = 'Terbitkan artikel ini?';
-	    			vm.modal.button = 'Iya, terbitkan';
+	    		if(vm.getModalData.terbitkan == 0){
+	    			vm.mutateModalTitle('Terbitkan artikel ini?');
+	    			vm.mutateModalButton('Iya, terbitkan');
 	    		}else{
-	    			vm.modal.title = 'Tidak terbitkan artikel ini?';
-	    			vm.modal.button = 'Iya, tidak terbitkan';
+	    			vm.mutateModalTitle('Tidak terbitkan artikel ini?');
+	    			vm.mutateModalButton('Iya, tidak terbitkan');
 	    		}
 	    	}else if(type == 'updateUtamakan'){
-	    		if(vm.modal.data.utamakan == 0){
-	    			vm.modal.title = 'Utamakan artikel ini?';
-	    			vm.modal.button = 'Iya, utamakan';
+	    		if(vm.getModalData.utamakan == 0){
+	    			vm.mutateModalTitle('Utamakan artikel ini?');
+	    			vm.mutateModalButton('Iya, utamakan');
 	    		}else{
-	    			vm.modal.title = 'Tidak utamakan artikel ini?';
-	    			vm.modal.button = 'Iya, tidak utamakan';
+	    			vm.mutateModalTitle('Tidak utamakan artikel ini?');
+	    			vm.mutateModalButton('Iya, tidak utamakan');
 	    		}
 	    	}
 		},
@@ -247,24 +242,26 @@ export default{
 		},
 	    modalError(){
 	    	var vm = this;
-
-	    	vm.modal.title = "Ops terjadi kesalahan :(";
+	    	vm.mutateModalTitle('Oops terjadi kesalahan :(');
 	    	vm.mutateModalState('error');
-	    	vm.modal.button = 'Ok';
+	    	vm.mutateModalSize('');
+	    	vm.mutateModalColor('');
+	    	vm.mutateModalTitle('Ok');
 	    },
 	    modalSuccess(title){
 	    	var vm = this;
-
-	    	vm.modal.title = title;
+	    	vm.mutateModalTitle(title);
 	    	vm.mutateModalState('success');
-	    	vm.modal.button = 'Ok';
+	    	vm.mutateModalSize('');
+	    	vm.mutateModalColor('');
+	    	vm.mutateModalButton('Ok');
 	    },
 	    modalBatal(){
 	    	var vm = this;
 	    	vm.mutateModalState('normal1');
-	    	vm.modal.title= '';
+	    	vm.mutateModalTitle('');
 	    },
-	    modalClose(){
+	    modalTutup(){
 	    	var vm = this;
 	    	if(vm.getModalState == "success"){
 	    		bus.$emit('fetchData');
