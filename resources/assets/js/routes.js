@@ -9,7 +9,7 @@ const routes = [
 	{ path: '/',name: 'dashboard', components: { default: dashboard,'header': header } },
 	{ path: '/artikel',name: 'artikel', components: { default: artikel, 'header': header }},
 	{ path: '/artikel/create',name: 'artikelCreate', components: { default: artikel_form, 'header': header} },
-	{ path: '/artikel/:id/edit',name: 'artikelEdit', components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } }
+	{ path: '/artikel/edit/:id',name: 'artikelEdit', components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } }
 ]
 
 export default routes

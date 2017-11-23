@@ -9,6 +9,10 @@ const state = {
     modalContent:'',
     modalButton:'',
     modalData: '',
+    modalExcelData: '',
+    modalExcelFields: '',
+    modalExcelMeta: '',
+    modalExcelFilename: ''
 };
 
 const getters = {
@@ -36,6 +40,18 @@ const getters = {
     [types.getModalData]: state => {
         return state.modalData;
     },
+    [types.getModalExcelData]: state => {
+        return state.modalExcelData;
+    },
+    [types.getModalExcelFields]: state => {
+        return state.modalExcelFields;
+    },
+    [types.getModalExcelMeta]: state => {
+        return state.modalExcelMeta;
+    },
+    [types.getModalExcelFilename]: state => {
+        return state.modalExcelFilename;
+    },
 };
 
 const mutations = {
@@ -62,6 +78,18 @@ const mutations = {
     },
     [types.mutateModalData]: (state,payload) => {
         state.modalData = payload;
+    },
+    [types.mutateModalExcelData]: (state,payload) => {
+        state.modalExcelData = payload;
+    },
+    [types.mutateModalExcelFields]: (state,payload) => {
+        state.modalExcelFields = payload;
+    },
+    [types.mutateModalExcelMeta]: (state,payload) => {
+        state.modalExcelMeta = payload;
+    },
+    [types.mutateModalExcelFilename]: (state,payload) => {
+        state.modalExcelFilename = payload;
     }
 };
 

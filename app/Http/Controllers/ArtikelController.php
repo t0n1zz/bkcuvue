@@ -5,7 +5,7 @@ use App\Artikel;
 use App\EloquentVueTables;
 use Illuminate\Http\Request;
 use File;
-use Image; 
+use Image;
 
 class ArtikelController extends Controller{
 
@@ -48,7 +48,7 @@ class ArtikelController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => 'Artikel berhasil ditambah'
-			]);	
+			]);
 	}
 
 	public function show($id)
@@ -65,11 +65,11 @@ class ArtikelController extends Controller{
 	{
 		$kelas = Artikel::findOrFail($id);
 
-        return response()
-            ->json([
-                'form' => $kelas,
-                'option' => []
-            ]);
+		return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
 	}
 
 	public function update(Request $request, $id)
@@ -83,7 +83,7 @@ class ArtikelController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => 'Artikel berhasil diubah'
-			]);	
+			]);
 	}
 
 	public function updateTerbitkan(Request $request, $id)
@@ -104,7 +104,7 @@ class ArtikelController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => $message
-			]);	
+			]);
 	}
 
 	public function updateUtamakan(Request $request, $id)
@@ -125,7 +125,7 @@ class ArtikelController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => $message
-			]);	
+			]);
 	}
 
 	public function destroy($id)

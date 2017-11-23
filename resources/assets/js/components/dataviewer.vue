@@ -57,8 +57,10 @@
                             <li :class="{'active' : params.per_page === 10}"><a @click.prevent="entriPage(10)">10 Entri</a></li>
                             <li :class="{'active' : params.per_page === 25}"><a @click.prevent="entriPage(25)">25 Entri</a></li>
                             <li :class="{'active' : params.per_page === 50}"><a @click.prevent="entriPage(50)">50 Entri</a></li>
-                            <li class="divider" v-if="model.total > 50"></li>
-                            <li v-if="model.total > 50"><a @click.prevent="modalEntriOpen">Semua Entri</a></li>
+                            <li class="divider" v-if="model.total > 10"></li>
+                            <li v-if="model.total > 10">
+                              <input type="text" class="form-control">
+                            </li>
                             <slot name="button-entri"></slot>
                         </ul>
                     </div>
@@ -87,7 +89,7 @@
                                     :fieldsx = "excel.fields"
                                     :meta   = "excel.meta"
                                     name    = "fileExcel.xls"
-                                >Data di tabel</json-excel>      
+                                >Data di tabel</json-excel>
                             </li>
                             <li><a @click.prevent="modalExcelOpen">Semua Data</a></li>
                         </ul>
@@ -134,8 +136,8 @@
                     <b>{{index}}</b>
                   </td>
                 </tr>
-                <slot v-for="item in items" :item="item"></slot> 
-            </tbody>  
+                <slot v-for="item in items" :item="item"></slot>
+            </tbody>
         </table>
     </div>
     <div class="panel-footer has-visible-elements">
@@ -159,321 +161,280 @@
 </div>
 
 <!-- modal -->
-<!-- download excel -->
-<app-modal  :show="modal.show" :state="modal.state" :size="modal.size" :color="modal.color" @close="modalClose">
-    <div slot="modal-confirm" class="text-center">
-        <span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
-        <h2>{{modal.miniTitle}}</h2>
-        <div class="well well-sm">{{modal.miniContent}}</div>
-        <br/>
-        <ul class="list-inline">
-            <li><button type="button" class="btn btn-link legitRipple" @click="modalClose">Batal</button></li>
-            <li v-if="modal.name === 'entri'"><button type="button" class="btn btn-warning" @click="modalConfirmOkEntri()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
-            <li v-else><button type="button" class="btn btn-warning" @click="modalConfirmOkExcel()" ><i class="icon-checkmark5"></i> {{modal.miniButton}}</button></li>
-        </ul>
-    </div>
-    <div slot="modal-result" class="text-center">
-        <span class="text-primary" v-if="modal.miniType === 'success'"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
-        <span class="text-danger" v-else><i class="icon-close2" style="font-size: 5em"></i></span>
-        <h2>{{modal.miniTitle}}</h2>
-        <ul class="list-inline" v-if="modal.miniType === 'error'">
-            <li ><button type="button" class="btn btn-default" @click="modalClose">Tutup</button></li>
-        </ul>
-        <ul class="list-inline" v-else>
-            <li><button type="button" class="btn btn-link legitRipple" @click="modalClose">Batal</button></li>
-            <li><json-excel
-                :data    = "excel.data"
-                :fieldsx = "excel.fields"
-                :meta    = "excel.meta"
-                name     = "fileExcel.xls"
-                class    ="btn btn-default"
-                ><i class="icon-download10"></i> Download Excel</json-excel></li>
-        </ul>
-    </div>
-</app-modal>
-
-<!-- modal entri -->
-
+<app-modal 
+  :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton"
+  @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @errorOk="modalTutup"
+  >
+  <div slot="modal-body1" class="text-center">
+    <span class="text-primary"><i class="icon-checkmark-circle2" style="font-size: 5em"></i></span>
+    <h2>Silahkan tekan tombol download</h2>
+    <ul class="list-inline">
+      <li><button type="button" class="btn btn-default" @click="modalTutup"><i class="icon-cross"></i> Tutup</button></li>
+      <li><json-excel
+              :data    = "excel.data"
+              :fieldsx = "excel.fields"
+              :meta    = "excel.meta"
+              :name    = "excel.filename"
+              class    ="btn btn-default"
+              ><i class="icon-download10"></i> Download Excel</json-excel></li>
+    </ul>
+  </div>
+</app-modal>    
 </div></template>
 <script>
-    import Vue from 'vue';
-    import axios from 'axios';
-    import _ from 'lodash';
-    import JsonExcel from 'vue-json-excel';
-    import appModal from '../components/modal'
-    import {bus} from '../app';
+import Vue from 'vue';
+import axios from 'axios';
+import _ from 'lodash';
+import jsonExcel from 'vue-json-excel';
+import appModal from '../components/modal';
+import {
+  bus
+} from '../app';
 
-    export default {
-        props: ['source', 'columnData','toolbarButton','filterData'],
-        components:{
-            appModal,
-            JsonExcel
-        },
-        data() {
-            return {
-                model: {
-                    data: []
-                },
-                params: {
-                    column: 'id',
-                    direction: 'desc',
-                    per_page: 10,
-                    page: 1,
-                    search_column: '',
-                    search_operator : 'like',
-                    search_query_1: '',
-                    search_query_2: ''
-                },
-                searchQuery1: '',
-                searchQuery2: '',
-                searchColumn:'',
-                excel: {
-                    fields: {},
-                    data : [],
-                    meta: [
-                        [{
-                            "key": "charset",
-                            "value": "utf-8"
-                        }]
-                    ]
-                },
-                modal: {
-                    name:'',
-                    show: false,
-                    size:'',
-                    color:'',
-                    data: '',
-                    state:'confirm',
-                    miniTitle:'',
-                    miniContent:'',
-                    miniButton:'',
-                    miniType:''
-                },
-                group: {
-                    show: false,
-                    key: '',
-                    title: '',
-                    data: []
-                },
-                state: '',
-                isSearch: false,
-                isExcelAll: false,
-                pages: []
-            }
-        },
-        beforeMount() {
-            this.fetchData();
-        },
-        mounted() {
-            $('.bootstrap-select').selectpicker();  
-        },
-        created(){
-            this.params.search_column = this.filterData[0].key;
-            this.params.search_operator = this.filterData[0].operator;
-            this.searchColumn = this.filterData[0].title;
-
-            bus.$on('fetchData',() =>{
-                this.fetchData();
-            });
-        },
-        watch: {
-            searchQuery1: function(search_query){
-                this.params.search_query_1 = search_query;
-                this.searchData();
-            }
-        },
-        methods: {
-            searchData: _.debounce(
-                function(){
-                    var vm = this;
-                    vm.isSearch = true;
-                    vm.params.page = 1;
-                    vm.fetchData();
-                },
-            500),
-            searchColumnData(value,name,operator = 'like'){
-                if(this.params.search_column != value){
-                    this.params.search_column = value;
-                    this.params.search_operator = operator;
-                    this.searchColumn = name;
-                    this.params.page = 1;
-                    this.fetchData();
-                }
-            },
-            hideColumn(index){
-                if(this.columnData[index].hide === false)
-                    this.columnData[index].hide = true;
-                else
-                    this.columnData[index].hide = false;
-                this.field_excel(this);
-            },
-            showAllColumn(index){
-                for (var t in this.columnData){
-                    if(t != index)
-                       this.columnData[t].hide = false;
-                }
-                this.field_excel(this);
-            },
-            groupRow(groupKey,sortKey,title,index){
-                if(this.group.key != groupKey){
-                    this.group.show = true;
-                    this.group.key = groupKey;
-                    this.group.title = title;
-                    this.columnData[index].hide = true;
-                    this.sort(sortKey);
-                }
-                this.showAllColumn(index);
-            },
-            unGroupRow(){
-                if(this.group.show){
-                    this.group.show = false;
-                    this.group.key = '';
-                    this.group.title = '';
-                }
-                this.showAllColumn();
-            },
-            sort(column) {
-                if(column === this.params.column) {
-                    if(this.params.direction === 'desc') {
-                        this.params.direction = 'asc';
-                    } else {
-                        this.params.direction = 'desc';
-                    }
-                } else {
-                    this.params.column = column;
-                    this.params.direction = 'asc';
-                }
-                this.params.page = 1;
-                this.fetchData();
-            },
-            entriPage(value){
-                if(this.params.per_page != value){
-                    this.params.per_page = value;
-                    this.params.page = 1;
-                    this.fetchData();
-                }
-            },
-            field_excel(vm){
-                vm.excel.fields = {};
-                vm.columnData.forEach(function(column){
-                    if(!column.hide){
-                        vm.excel.fields[column.title] = column.excelType;
-                    }
-                });
-                vm.excel.data = _.chain(vm.model.data).map(function(item){
-                    var object = {};
-                    vm.columnData.forEach(function(key){
-                        if(!key.hide){
-                            if(key.groupKey){
-                                object[key.title] = _.get(item, key.groupKey);
-                            }else{
-                                object[key.title] = _.get(item, key.key);
-                            }   
-                        }
-                    })
-                    return object;
-                }).value();
-            },
-            calculatePagination(){
-                var i = 0;
-                var startPage = 0;
-                var endPage = 0;
-                var diffPage = 0;
-
-                startPage = this.params.page < 3 ? 1 : this.params.page - 1;
-                endPage = 4 + startPage;
-                endPage = this.model.last_page < endPage ? this.model.last_page : endPage;
-                diffPage = startPage - endPage + 4;
-                startPage -= startPage - diffPage > 0 ? diffPage : 0;
-                this.pages.length = 0;
-                
-                for(i = startPage; i<=endPage; i++){
-                    this.pages.push(i);
-                }
-            },
-            next() {
-                if(this.model.next_page_url) {
-                    this.params.page++;
-                    this.fetchData();
-                }     
-            },
-            prev() {
-                if(this.model.prev_page_url) {
-                    this.params.page--;
-                    this.fetchData();
-                }
-            },
-            goToPage(value){
-                if(this.params.page != value){
-                    this.params.page = value;
-                    this.fetchData();
-                }
-            },
-            fetchData() {
-                var vm = this;
-                
-                if(vm.isExcelAll){
-                    vm.modal.state = 'loading';
-                }else{
-                    vm.state = 'loading';
-                }
-                axios.get(vm.buildURL())
-                    .then(function(response) {
-                        Vue.set(vm.$data, 'model', response.data.model);
-                        if(!vm.isExcelAll){
-                            vm.group.data = _.groupBy(vm.model.data,vm.group.key);
-                            vm.calculatePagination();
-                        }else{
-                            vm.modal.state = 'result';
-                            vm.isExcelAll = false;
-                            vm.params.per_page = 10;
-                        }
-                        vm.field_excel(vm);
-                        vm.state = '';
-                    })
-                    .catch(function(error) {
-                        vm.state = '';
-                        vm.modal.state = 'result';
-                        if(vm.modal.show){
-                            vm.modal.miniType = 'error';
-                        }
-                    })    
-            },
-            buildURL() {
-                var p = this.params;
-                return `${this.source}?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`;
-            },
-            modalExcelOpen(){
-                this.modal.show= true;
-                this.modal.name='excel';
-                this.modal.state = 'confirm';
-                this.modal.miniTitle = "Yakin akan mendownload semua data ke excel?"
-                this.modal.miniContent = "Download akan lebih lama tergantung dari jumlah data"
-                this.modal.miniButton = "Ya, Download semua"
-            },
-            modalEntriOpen(){
-                this.modal.show= true;
-                this.modal.name='entri';
-                this.modal.state = 'confirm';
-                this.modal.miniTitle = "Yakin akan menampilkan semua entri?"
-                this.modal.miniContent = "Menampilkan terlalu banyak entri dapat mengurangi performa pengoperasian aplikasi ini"
-                this.modal.miniButton = "Ya, Tampilkan semua"
-            },
-            modalConfirmOkExcel(){
-                this.isExcelAll = true;
-                this.modal.show= true;
-                this.modal.miniType = "success"
-                this.modal.miniTitle = "Silahkan tekan tombol download"
-                this.entriPage(this.model.total);
-            },
-            modalConfirmOkEntri(){
-                this.modal.show= false;
-                this.entriPage(this.model.total);
-            },
-            modalClose(){
-                this.modal.show = false;
-                this.modal.state = 'confirm';
-            }
-        }
+export default {
+  props: ['source', 'columnData', 'toolbarButton', 'filterData'],
+  components: {
+    jsonExcel,
+    appModal
+  },
+  data() {
+    return {
+      model: {
+        data: []
+      },
+      pages: [],
+      params: {
+        column: 'id',
+        direction: 'desc',
+        per_page: 10,
+        page: 1,
+        search_column: '',
+        search_operator: 'like',
+        search_query_1: '',
+        search_query_2: ''
+      },
+      searchQuery1: '',
+      searchQuery2: '',
+      searchColumn: '',
+      excel: {
+        fields: {},
+        data: [],
+        meta: [
+          [{
+            "key": "charset",
+            "value": "utf-8"
+          }]
+        ],
+        filename: 'Artikel.xls'
+      },
+      group: {
+        show: false,
+        key: '',
+        title: '',
+        data: []
+      },
+      state: '',
+      isSearch: false,
+      isExcelAll: false,
+      modalShow: false,
+      modalState: '',
+      modalTitle: '',
+      modalButton: ''
     }
+  },
+  beforeMount() {
+    this.fetchData();
+  },
+  mounted() {
+    $('.bootstrap-select').selectpicker();
+  },
+  created() {
+    this.params.search_column = this.filterData[0].key;
+    this.params.search_operator = this.filterData[0].operator;
+    this.searchColumn = this.filterData[0].title;
+
+    bus.$on('fetchData', () => {
+      this.fetchData();
+    });
+  },
+  watch: {
+    searchQuery1: function(search_query) {
+      this.params.search_query_1 = search_query;
+      this.searchData();
+    }
+  },
+  methods: {
+    modalExcelOpen() {
+      this.modalShow = true;
+      this.modalState = 'confirm-tutup';
+      this.modalTitle = 'Yakin akan mendownload semua data ke excel?';
+      this.modalContent = 'Download akan lebih lama tergantung dari jumlah data';
+      this.modalButton = 'Ya, download semua';
+    },
+    modalConfirmOk() {
+      this.isExcelAll = true;
+      this.entriPage(this.model.total);
+    },
+    modalTutup() {
+      this.modalShow = false;
+    },
+    searchData: _.debounce(
+      function() {
+        this.isSearch = true;
+        this.params.page = 1;
+        this.fetchData();
+      },
+      500),
+    searchColumnData(value, name, operator = 'like') {
+      if (this.params.search_column != value) {
+        this.params.search_column = value;
+        this.params.search_operator = operator;
+        this.searchColumn = name;
+        this.params.page = 1;
+        this.fetchData();
+      }
+    },
+    hideColumn(index) {
+      if (this.columnData[index].hide === false)
+        this.columnData[index].hide = true;
+      else
+        this.columnData[index].hide = false;
+      this.field_excel(this);
+    },
+    showAllColumn(index) {
+      for (var t in this.columnData) {
+        if (t != index)
+          this.columnData[t].hide = false;
+      }
+      this.field_excel(this);
+    },
+    groupRow(groupKey, sortKey, title, index) {
+      if (this.group.key != groupKey) {
+        this.group.show = true;
+        this.group.key = groupKey;
+        this.group.title = title;
+        this.columnData[index].hide = true;
+        this.sort(sortKey);
+      }
+      this.showAllColumn(index);
+    },
+    unGroupRow() {
+      if (this.group.show) {
+        this.group.show = false;
+        this.group.key = '';
+        this.group.title = '';
+      }
+      this.showAllColumn();
+    },
+    sort(column) {
+      if (column === this.params.column) {
+        if (this.params.direction === 'desc') {
+          this.params.direction = 'asc';
+        } else {
+          this.params.direction = 'desc';
+        }
+      } else {
+        this.params.column = column;
+        this.params.direction = 'asc';
+      }
+      this.params.page = 1;
+      this.fetchData();
+    },
+    entriPage(value) {
+      if (this.params.per_page != value) {
+        this.params.per_page = value;
+        this.params.page = 1;
+        this.fetchData();
+      }
+    },
+    field_excel(vm) {
+      vm.excel.fields = {};
+      vm.columnData.forEach(function(column) {
+        if (!column.hide) {
+          vm.excel.fields[column.title] = column.excelType;
+        }
+      });
+      vm.excel.data = _.chain(vm.model.data).map(function(item) {
+        var object = {};
+        vm.columnData.forEach(function(key) {
+          if (!key.hide) {
+            if (key.groupKey) {
+              object[key.title] = _.get(item, key.groupKey);
+            } else {
+              object[key.title] = _.get(item, key.key);
+            }
+          }
+        })
+        return object;
+      }).value();
+    },
+    calculatePagination() {
+      var i = 0;
+      var startPage = 0;
+      var endPage = 0;
+      var diffPage = 0;
+
+      startPage = this.params.page < 3 ? 1 : this.params.page - 1;
+      endPage = 4 + startPage;
+      endPage = this.model.last_page < endPage ? this.model.last_page : endPage;
+      diffPage = startPage - endPage + 4;
+      startPage -= startPage - diffPage > 0 ? diffPage : 0;
+      this.pages.length = 0;
+
+      for (i = startPage; i <= endPage; i++) {
+        this.pages.push(i);
+      }
+    },
+    next() {
+      if (this.model.next_page_url) {
+        this.params.page++;
+        this.fetchData();
+      }
+    },
+    prev() {
+      if (this.model.prev_page_url) {
+        this.params.page--;
+        this.fetchData();
+      }
+    },
+    goToPage(value) {
+      if (this.params.page != value) {
+        this.params.page = value;
+        this.fetchData();
+      }
+    },
+    fetchData() {
+      var vm = this;
+      if (vm.isExcelAll) {
+        vm.modalState = 'loading';
+      } else {
+        vm.state = 'loading';
+      }
+      axios.get(vm.buildURL())
+        .then(function(response) {
+          Vue.set(vm.$data, 'model', response.data.model);
+          if (!vm.isExcelAll) {
+            vm.group.data = _.groupBy(vm.model.data, vm.group.key);
+            vm.calculatePagination();
+          } else {
+            vm.modalState = 'normal1';
+            vm.isExcelAll = false;
+            vm.params.per_page = 10;
+          }
+          vm.field_excel(vm);
+          vm.state = '';
+        })
+        .catch(function(error) {
+          vm.state = '';
+          if (vm.modalShow) {
+            vm.modalState = 'error';
+          }
+        })
+    },
+    buildURL() {
+      var p = this.params;
+      return `${this.source}?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`;
+    }
+  }
+}
 </script>

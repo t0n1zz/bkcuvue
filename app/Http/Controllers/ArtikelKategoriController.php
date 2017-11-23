@@ -21,6 +21,7 @@ class ArtikelKategoriController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
+				'message' => 'Kategori artikel berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}
