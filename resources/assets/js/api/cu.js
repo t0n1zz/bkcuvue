@@ -14,6 +14,10 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/cu/' + id);
   },
 
+  getCUPus: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/pus/' + id);
+  },
+
   storeCU: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/cu/store', form);
   },

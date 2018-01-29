@@ -18,7 +18,7 @@ class PusController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = Pus::where('id','!=',1)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = Pus::where('id','!=',0)->select('id','nama')->orderby('nama','asc')->get();
 
 		return response()
 			->json([

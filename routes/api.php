@@ -24,12 +24,25 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     //artikel kategori
     Route::get('/artikel_kategori', 'ArtikelKategoriController@index');
     Route::get('/artikel_kategori_all', 'ArtikelKategoriController@indexAll');
+    Route::get('/artikel_kategori/cu/{id}', 'ArtikelKategoriController@indexCU');
     Route::post('/artikel_kategori/store', 'ArtikelKategoriController@store');
+
+    //artikel penulis
+    Route::get('/artikel_penulis', 'ArtikelPenulisController@index');
+    Route::get('/artikel_penulis_all', 'ArtikelPenulisController@indexAll');
+    Route::get('/artikel_penulis/cu/{id}', 'ArtikelPenulisController@indexCU');
+    Route::post('/artikel_penulis/store', 'ArtikelPenulisController@store');
 
     // cu
     Route::get('/cu', 'CUController@index');
     Route::get('/cu_all', 'CUController@indexAll');
+    Route::get('/cu/pus/{id}', 'CUController@indexPus');
     Route::post('/cu/store', 'CUController@store');
+
+    // puskopdit
+    Route::get('/pus', 'PusController@index');
+    Route::get('/pus_all', 'PusController@indexAll');
+    Route::post('/pus/store', 'PusController@store');
 });
 
 // Route::resource('artikel', 'ArtikelController');

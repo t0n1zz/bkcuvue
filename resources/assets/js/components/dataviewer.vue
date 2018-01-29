@@ -67,15 +67,18 @@
                   <li :class="{'active' : params.per_page === 10}">
                     <a @click.prevent="entriPage(10)">10 Entri</a>
                   </li>
-                  <li :class="{'active' : params.per_page === 25}">
+                  <li :class="{'active' : params.per_page === 25}" v-if="itemData.total > 10">
                     <a @click.prevent="entriPage(25)">25 Entri</a>
                   </li>
-                  <li :class="{'active' : params.per_page === 50}">
+                  <li :class="{'active' : params.per_page === 50}" v-if="itemData.total > 25">
                     <a @click.prevent="entriPage(50)">50 Entri</a>
+                  </li>
+                  <li :class="{'active' : params.per_page === 100}" v-if="itemData.total > 50">
+                    <a @click.prevent="entriPage(100)">100 Entri</a>
                   </li>
                   <li class="divider" v-if="itemData.total > 10"></li>
                   <li v-if="itemData.total > 10">
-                    <input type="text" class="form-control">
+                    
                   </li>
                   <slot name="button-entri"></slot>
                 </ul>

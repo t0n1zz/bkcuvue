@@ -26,6 +26,16 @@ class ArtikelKategoriController extends Controller{
 			]);
 	}
 
+	public function indexCU($id)
+	{
+		$table_data = Artikel_Kategori::where('id_cu','=',$id)->select('id','nama')->orderby('nama','asc')->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 	public function store(Request $request)
 	{
 		$kelas = Artikel_Kategori::create($request->all());

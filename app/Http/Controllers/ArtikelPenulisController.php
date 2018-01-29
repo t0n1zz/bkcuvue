@@ -24,6 +24,16 @@ class ArtikelPenulisController extends Controller{
 			->json([
 				'model' => $table_data
 			]);
+  }
+  
+  public function indexCU($id)
+	{
+		$table_data = Artikel_Penulis::where('id_cu','=',$id)->select('id','nama')->orderby('nama','asc')->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function store(Request $request)

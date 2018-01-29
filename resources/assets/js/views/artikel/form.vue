@@ -5,8 +5,8 @@
 			<div class="page-header-content has-visible-elements">
 				<div class="page-title">
 					<h4>
-						<i class="icon-plus3 position-left"></i>
-						<span class="text-semibold">Tambah Artikel</span> - Menambah artikel baru</h4>
+						<i class="position-left" :class="titleIcon"></i>
+						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
 					<ul class="breadcrumb breadcrumb-caret position-right">
 						<router-link :to="{ name:'dashboard' }" tag="li">
 							<a>Dashboard</a>
@@ -14,7 +14,7 @@
 						<router-link :to="{ name:'artikel' }" tag="li">
 							<a>Artikel</a>
 						</router-link>
-						<li class="active">Tambah Artikel</li>
+						<li class="active">{{ title }}</li>
 					</ul>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 									<div class="col-md-4">
 										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_pus')}">
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_pus')}">Puskopdit:</h5>
-											<select class="bootstrap-select" name="id_pus" v-model="form.id_pus" data-width="100%" v-validate="'required'">
+											<select class="bootstrap-select" name="id_pus" v-model="form.id_pus" data-width="100%" v-validate="'required'" @change="changePus">
 												<option disabled value="">Silahkan pilih Puskopdit</option>
 												<option data-divider="true"></option>
 												<option v-for="pus in modelPus" :value="pus.id">{{pus.nama}}</option>
@@ -73,30 +73,20 @@
 									<div class="col-md-4">
 										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_cu')}">
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_cu')}">CU:</h5>
-											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'">
-												<option disabled value="">Silahkan pilih CU</option>
-												<option value="bkcu">Puskopdit BKCU Kalimantan</option>
-												<option data-divider="true"></option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
-											</select>
-											<div class="form-control-feedback" v-if="errors.has('form-1.id_cu')">
-												<i class="icon-cancel-circle2"></i>
+											<div v-if="modelCULoadStat === 'loading'">
+													<i class="icon-spinner spinner"></i>
 											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.id_cu')}">
-												<i class="icon-arrow-small-right"></i> CU harus diisi</small>
-										</div>
-									</div>
-
-									<!-- CU -->
-									<div class="col-md-4">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_cu')}">
-											<h5 :class="{ 'text-danger' : errors.has('form-1.id_cu')}">CU:</h5>
-											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'">
-												<option disabled value="">Silahkan pilih CU</option>
-												<option value="bkcu">Puskopdit BKCU Kalimantan</option>
-												<option data-divider="true"></option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
-											</select>
+											<div v-else>
+												<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" @change="changeCU">
+													<option disabled value="">Silahkan pilih CU</option>
+													<option value="pus">Puskopdit</option>
+													<option data-divider="true"></option>
+													<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+													<option v-if='modelCU.length === 0'>
+														<span class="text-warning"><i class="icon-warning22"></i>CU tidak ditemukan, pastikan anda sudah memilih Puskopdit terlebih dahulu.</span>
+													</option>
+												</select>
+											</div>
 											<div class="form-control-feedback" v-if="errors.has('form-1.id_cu')">
 												<i class="icon-cancel-circle2"></i>
 											</div>
@@ -109,17 +99,24 @@
 									<div class="col-md-4">
 										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_artikel_penulis')}">
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_artikel_penulis')}">Penulis:</h5>
-											<div class="input-group">
-												<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'">
-													<option disabled value="">Silahkan pilih penulis</option>
-													<option data-divider="true"></option>
-													<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.nama}}</option>
-													<option v-if='modelPenulis === undefined'><span class="text-warning"><i class="icon-warning22"></i>Penulis tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu.</span></option>
-												</select>
-												<div class="input-group-btn">
-													<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Penulis">
-														<i class="icon-plus22"></i>
-													</button>
+											<div v-if="modelPenulisLoadStat === 'loading'">
+													<i class="icon-spinner spinner"></i>
+											</div>
+											<div v-else>
+												<div class="input-group">
+													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'">
+														<option disabled value="">Silahkan pilih penulis</option>
+														<option data-divider="true"></option>
+														<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.nama}}</option>
+														<option v-if='modelPenulis.length === 0'>
+															<span class="text-warning"><i class="icon-warning22"></i>Penulis tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu.</span>
+														</option>
+													</select>
+													<div class="input-group-btn">
+														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Penulis">
+															<i class="icon-plus22"></i>
+														</button>
+													</div>
 												</div>
 											</div>
 											<div class="form-control-feedback" v-if="errors.has('form-1.id_artikel_penulis')">
@@ -134,17 +131,24 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<h5>Kategori:</h5>
-											<div class="input-group">
-												<select class="bootstrap-select" v-model="form.id_artikel_kategori" data-width="100%">
-													<option disabled value="1">Silahkan pilih kategori</option>
-													<option data-divider="true"></option>
-													<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.nama}}</option>
-													<option v-if='modelKategori === undefined'><span class="text-warning"><i class="icon-warning22"></i>Kategori tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu.</span></option>
-												</select>
-												<div class="input-group-btn">
-													<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Kategori">
-														<i class="icon-plus22"></i>
-													</button>
+											<div v-if="modelKategoriLoadStat === 'loading'">
+													<i class="icon-spinner spinner"></i>
+											</div>
+											<div v-else>
+												<div class="input-group">
+													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%">
+														<option disabled value="1">Silahkan pilih kategori</option>
+														<option data-divider="true"></option>
+														<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.nama}}</option>
+														<option v-if='modelKategori.length === 0'>
+															<span class="text-warning"><i class="icon-warning22"></i>Kategori tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu.</span>
+														</option>
+													</select>
+													<div class="input-group-btn">
+														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Kategori">
+															<i class="icon-plus22"></i>
+														</button>
+													</div>
 												</div>
 											</div>
 											<small class="text-muted">&nbsp;</small>
@@ -293,6 +297,10 @@
 		},
 		data() {
 			return {
+				title: 'Tambah Artikel',
+				titleDesc: 'Menambah artikel baru',
+				titleIcon: 'icon-plus3',
+				puskopdit: '',
 				formKategori: {
 					nama: '',
 					deskripsi: ''
@@ -372,12 +380,16 @@
 		methods: {
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch('editArtikel',this.$route.params.id);		
+					this.$store.dispatch('editArtikel',this.$route.params.id);	
+					this.title = 'Ubah Artikel';
+					this.titleDesc = 'Mengubah artikel';
+					this.titleIcon = 'icon-pencil5';	
 				} else {
 					this.$store.dispatch('createArtikel');
 				}
-				this.$store.dispatch('loadArtikelKategoriAll');	
-				this.$store.dispatch('loadCUAll');	
+				// this.$store.dispatch('loadArtikelKategoriAll');
+				this.$store.dispatch('loadPusAll');	
+				// this.$store.dispatch('loadCUAll');	
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -398,6 +410,13 @@
 			},
 			saveKategori() {
 				this.$store.dispatch('storeArtikelKategori',this.formKategori);
+			},
+			changePus(){
+				this.$store.dispatch('loadCUPus', this.form.id_pus);
+			},
+			changeCU(){
+				this.$store.dispatch('loadArtikelPenulisCU', this.form.id_cu);	
+				this.$store.dispatch('loadArtikelKategoriCU', this.form.id_cu);
 			},
 			modalTutup() {
 				if(this.updateKategoriStat === 'success'){
@@ -472,7 +491,10 @@
 				return this.$store.getters.getArtikelKategoriUpdateStat;
 			},
 			modelPenulis() {
-				return this.$store.getters.getPenulisS;
+				return this.$store.getters.getArtikelPenulisS;
+			},
+			modelPenulisLoadStat() {
+				return this.$store.getters.getArtikelPenulisLoadStatS;
 			},
 			modelPus() {
 				return this.$store.getters.getPusS;
@@ -480,10 +502,13 @@
 			modelCU() {
 				return this.$store.getters.getCUS;
 			},
+			modelCULoadStat() {
+				return this.$store.getters.getCULoadStatS;
+			},
 			modelKategori() {
 				return this.$store.getters.getArtikelKategoriS;
 			},
-			modalKategoriLoadStat() {
+			modelKategoriLoadStat() {
 				return this.$store.getters.getArtikelKategoriLoadStatS;
 			}
 		}

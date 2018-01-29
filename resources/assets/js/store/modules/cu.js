@@ -50,6 +50,19 @@ export const CU = {
           commit('setCULoadStat', 'fail');
         });
     },
+    loadCUPus( {commit}, id ){
+      commit('setCULoadStatS', 'loading');
+      
+      CUAPI.getCUPus( id )
+        .then( function( response ){
+          commit('setCUS', response.data.model );
+          commit('setCULoadStatS', 'success');
+        })
+        .catch( error => {
+          commit('setCUS', error.response);
+          commit('setCULoadStatS', 'fail');
+        });
+    },
     storeCU( {commit, state, dispatch}, form ){
       commit('setCUUpdateStat', 'loading');
 

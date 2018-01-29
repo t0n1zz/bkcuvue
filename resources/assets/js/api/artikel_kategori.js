@@ -14,6 +14,10 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/artikel_kategori/' + id);
   },
 
+  getArtikelKategoriCU: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikel_kategori/cu/' + id);
+  },
+
   storeArtikelKategori: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/artikel_kategori/store', form);
   },

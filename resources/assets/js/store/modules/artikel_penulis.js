@@ -50,6 +50,19 @@ export const artikelPenulis = {
           commit('setArtikelPenulisLoadStat', 'fail');
         });
     },
+    loadArtikelPenulisCU( {commit}, id ){
+      commit('setArtikelPenulisLoadStatS', 'loading');
+      
+      ArtikelPenulisAPI.getArtikelPenulisCU( id )
+        .then( function( response ){
+          commit('setArtikelPenulisS', response.data.model);
+          commit('setArtikelPenulisLoadStatS', 'success');
+        })
+        .catch( error => {
+          commit('setArtikelPenulisS', error.response);
+          commit('setArtikelPenulisLoadStatS', 'fail');
+        });
+    },
     storeArtikelPenulis( {commit, state, dispatch}, form ){
       commit('setArtikelPenulisUpdateStat', 'loading');
 

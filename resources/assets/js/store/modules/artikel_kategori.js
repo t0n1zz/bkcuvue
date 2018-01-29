@@ -50,6 +50,19 @@ export const artikelKategori = {
           commit('setArtikelKategoriLoadStat', 'fail');
         });
     },
+    loadArtikelKategoriCU( {commit}, id ){
+      commit('setArtikelKategoriLoadStatS', 'loading');
+      
+      ArtikelKategoriAPI.getArtikelKategoriCU( id )
+        .then( function( response ){
+          commit('setArtikelKategoriS', response.data.model );
+          commit('setArtikelKategoriLoadStatS', 'success');
+        })
+        .catch( error => {
+          commit('setArtikelKategoriS', error.response);
+          commit('setArtikelKategoriLoadStatS', 'fail');
+        });
+    },
     storeArtikelKategori( {commit, state, dispatch}, form ){
       commit('setArtikelKategoriUpdateStat', 'loading');
 

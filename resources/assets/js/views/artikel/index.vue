@@ -5,13 +5,13 @@
 			<div class="page-header-content has-visible-elements">
 				<div class="page-title">
 					<h4>
-						<i class="icon-magazine position-left"></i>
-						<span class="text-semibold">Artikel</span> - Mengelola data artikel</h4>
+						<i class="position-left" :class="titleIcon"></i>
+						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
 					<ul class="breadcrumb breadcrumb-caret position-right">
 						<router-link :to="{ name:'dashboard' }" tag="li">
 							<a>Dashboard</a>
 						</router-link>
-						<li class="active">Artikel</li>
+						<li class="active">{{ title }}</li>
 					</ul>
 				</div>
 			</div>
@@ -36,44 +36,66 @@
 
 						<!-- button -->
 						<template slot="button">
+
+							<!-- tambah -->
 							<div class="btn-group pb-5">
 								<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon">
 									<i class="icon-plus3"></i> Tambah
 								</router-link>
 							</div>
 
-							<!-- ubah: v-if to handle before selectedItem.id available -->
+							<!-- ubah-->
 							<div class="btn-group pb-5" v-if="selectedItem.id">
 								<router-link :to="{ name:'artikelEdit', params: { id: selectedItem.id }}" class="btn btn-default btn-icon">
 									<i class="icon-pencil5"></i> Ubah
 								</router-link>
 							</div>
 							<div class="btn-group pb-5" v-else>
-								<a class="btn btn-default btn-icon disabled">
+								<button class="btn btn-default btn-icon disabled">
 									<i class="icon-pencil5"></i> Ubah
-								</a>
+								</button>
 							</div>
 
-							<div class="btn-group pb-5">
-								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon"
-									:class="{'disabled': !selectedItem.id}">
+							<!-- hapus -->
+							<div class="btn-group pb-5" v-if="selectedItem.id">
+								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" :class="{'disabled': !selectedItem.id}">
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-else>
+								<button class="btn btn-default btn-icon disabled">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+
+							<!-- terbitkan -->
+							<div class="btn-group pb-5" v-if="selectedItem.id">
 								<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"
 									:class="{'disabled': !selectedItem.id}">
 									<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
 									<span v-else>Terbitkan</span>
 								</button>
 							</div>
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-else>
+								<button class="btn btn-default btn-icon disabled">
+									<i class="icon-file-upload"></i> Terbitkan
+								</button>
+							</div>
+
+							<!-- utamakan -->
+							<div class="btn-group pb-5" v-if="selectedItem.id">
 								<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon"
 									:class="{'disabled': !selectedItem.id}">
 									<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
 									<span v-else>Utamakan</span>
 								</button>
 							</div>
+							<div class="btn-group pb-5" v-else>
+								<button class="btn btn-default btn-icon disabled">
+									<i class="icon-pushpin"></i> Utamakan
+								</button>
+							</div>
+
 						</template>
 
 						<!-- table content -->
@@ -129,6 +151,9 @@
 		},
 		data() {
 			return {
+				title: 'Artikel',
+				titleDesc: 'Mengelola data artikel',
+				titleIcon: 'icon-magazine',
 				source: '',
 				selectedItem: [],
 				params: {

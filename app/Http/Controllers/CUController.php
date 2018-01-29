@@ -18,7 +18,17 @@ class CUController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = CU::where('id','!=',1)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = CU::where('id','!=',0)->select('id','nama')->orderby('nama','asc')->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+  }
+  
+  public function indexPus($id)
+	{
+		$table_data = CU::where('id_pus','=',$id)->select('id','nama')->orderby('nama','asc')->get();
 
 		return response()
 			->json([
