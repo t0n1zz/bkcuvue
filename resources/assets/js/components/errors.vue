@@ -18,7 +18,7 @@ export default {
             default: true
         },
         type: {
-            default: 'bg-danger'
+            default: ''
         }
     }
 }

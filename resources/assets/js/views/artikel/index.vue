@@ -6,7 +6,7 @@
 				<div class="page-title">
 					<h4>
 						<i class="icon-magazine position-left"></i>
-				 		<span class="text-semibold">Artikel</span> - Mengelola data artikel</h4>
+						<span class="text-semibold">Artikel</span> - Mengelola data artikel</h4>
 					<ul class="breadcrumb breadcrumb-caret position-right">
 						<router-link :to="{ name:'dashboard' }" tag="li">
 							<a>Dashboard</a>
@@ -21,32 +21,78 @@
 		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
-					<!-- panel -->
-					<data-viewer :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4">
+
+					<!-- message -->
+					<message v-if="itemDataStat === 'fail'">
+						<p><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan: </p>
+						<br/>
+						<pre class="pre-scrollable">{{ itemData }}</pre>
+					</message>
+
+					<!-- main panel -->
+					<data-viewer :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+					:params="params"
+					@fetch="fetch">
+
+						<!-- button -->
 						<template slot="button">
 							<div class="btn-group pb-5">
 								<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon">
 									<i class="icon-plus3"></i> Tambah
 								</router-link>
 							</div>
+
+							<!-- ubah: v-if to handle before selectedItem.id available -->
+							<div class="btn-group pb-5" v-if="selectedItem.id">
+								<router-link :to="{ name:'artikelEdit', params: { id: selectedItem.id }}" class="btn btn-default btn-icon">
+									<i class="icon-pencil5"></i> Ubah
+								</router-link>
+							</div>
+							<div class="btn-group pb-5" v-else>
+								<a class="btn btn-default btn-icon disabled">
+									<i class="icon-pencil5"></i> Ubah
+								</a>
+							</div>
+
+							<div class="btn-group pb-5">
+								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon"
+									:class="{'disabled': !selectedItem.id}">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+							<div class="btn-group pb-5">
+								<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"
+									:class="{'disabled': !selectedItem.id}">
+									<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
+									<span v-else>Terbitkan</span>
+								</button>
+							</div>
+							<div class="btn-group pb-5">
+								<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon"
+									:class="{'disabled': !selectedItem.id}">
+									<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
+									<span v-else>Utamakan</span>
+								</button>
+							</div>
 						</template>
+
+						<!-- table content -->
 						<template scope="props">
-							<tr>
+							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
-									<a @click.prevent="modalMenuOpen(props.item)">
-										<i class="icon-menu9"></i>
-									</a>
-								</td>
-								<td v-if="!columnData[1].hide">
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[2].hide">{{props.item.nama}}</td>
-								<td v-if="!columnData[3].hide">{{props.item.artikel__kategori.nama}}</td>
-								<td v-if="!columnData[4].hide">{{props.item.penulis}}</td>
-								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-								<td v-if="!columnData[7].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
+								<td v-if="!columnData[1].hide">{{props.item.nama}}</td>
+								<td v-if="!columnData[2].hide">
+									<span v-if="props.item.artikel__kategori !== null">{{props.item.artikel__kategori.nama}}</span>
+								</td>
+								<td v-if="!columnData[3].hide">
+									<span v-if="props.item.artikel__penulis !== null">{{props.item.artikel__penulis.nama}}</span>
+								</td>
+								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
+								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
+								<td v-if="!columnData[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
 							</tr>
 						</template>
 					</data-viewer>
@@ -57,133 +103,44 @@
 
 		<!-- modal -->
 		<!-- table-context-menu -->
-		<app-modal 
-		:show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton"
-		@batal="modalBatal" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @errorOk="modalTutup"
-		>
-			<template slot="modal-title">
-				{{ modalTitle }}
-			</template>
-			<template slot="modal-body1">
-				<div class="panel panel-flat blog-horizontal blog-horizontal-2">
-					<div class="panel-body">
-						<div class="thumb">
-							<img :src="'/images/artikel/' + modalData.gambar + '.jpg'" class="img-rounded img-responsive" v-if="modalData.gambar">
-							<img :src="'/images/image-article.jpg'" class="img-rounded img-responsive" v-else>
-						</div>
-						<div class="table-responsive blog-preview">
-							<table class="table table-xs">
-								<tbody class="text-left">
-									<tr>
-										<td>
-											<b>Judul:</b>
-										</td>
-										<td>{{ modalData.nama }}</td>
-									</tr>
-									<tr>
-										<td>
-											<b>Kategori:</b>
-										</td>
-										<td v-if="modalData.artikel__kategori">{{modalData.artikel__kategori.nama}}</td>
-										<td v-else>-</td>
-									</tr>
-									<tr>
-										<td>
-											<b>Penulis:</b>
-										</td>
-										<td>{{ modalData.penulis }}</td>
-									</tr>
-									<tr>
-										<td>
-											<b>Terbitkan:</b>
-										</td>
-										<td>
-											<span v-html="$options.filters.checkStatus(modalData.terbitkan)"></span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<b>Utamakan:</b>
-										</td>
-										<td>
-											<span v-html="$options.filters.checkStatus(modalData.utamakan)"></span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<b>Tgl. Tulis:</b>
-										</td>
-										<td>{{ modalData.created_at | publishDate }}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="list-unstyled">
-							<a class="list-group-item">
-								<i class="icon-reading"></i> Baca</a>
-							<a @click.prevent="modalEdit(modalData.id)" class="list-group-item">
-								<i class="icon-pencil5"></i> Ubah</a>
-							<a class="list-group-item" @click.prevent="modalConfirmOpen('hapus')">
-								<i class="icon-bin2"></i> Hapus</a>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="list-unstyled">
-							<a class="list-group-item" @click.prevent="modalConfirmOpen('updateTerbitkan')">
-								<i class="icon-file-upload"></i>
-								<span v-if="modalData.terbitkan == 0">Terbitkan</span>
-								<span v-else>Tidak Terbitkan</span>
-							</a>
-							<a class="list-group-item" @click.prevent="modalConfirmOpen('updateUtamakan')">
-								<i class="icon-pushpin"></i>
-								<span v-if="modalData.utamakan == 0">Utamakan</span>
-								<span v-else>Tidak Utamakan</span>
-							</a>
-						</div>
-					</div>
-					<div class="col-sm-12">
-						<hr>
-					</div>
-				</div>
-			</template>
-			<template slot="modal-body2">
-				<app-form @error="modalError" @success="modalSuccess">
-				</app-form>
-			</template>
-			<template slot="modal-footer1">
-				<button class="btn btn-default" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
-			</template>
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup"
+		  @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup">
 		</app-modal>
 
 	</div>
 </template>
 
 <script>
-	import {
-		bus
-	} from '../../app';
 	import corefunc from '../../assets/core/app.js';
 	import moment from 'moment';
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
+	import message from "../../components/message.vue";
 
 	export default {
 		name: 'ArtikelIndex',
 		components: {
 			DataViewer,
 			appModal,
+			message
 		},
 		mounted() {
 			corefunc.core_function();
 		},
 		data() {
 			return {
-				source: '/api/artikel',
-				source2: '',
+				source: '',
+				selectedItem: [],
+				params: {
+          column: 'id',
+          direction: 'desc',
+          per_page: 10,
+          page: 1,
+          search_column: 'nama',
+          search_operator: 'like',
+          search_query_1: '',
+          search_query_2: ''
+        },
 				filterData: [{
 						title: 'Judul',
 						key: 'nama',
@@ -205,13 +162,7 @@
 						operator: 'between'
 					}
 				],
-				columnData: [{
-						title: 'Menu',
-						key: 'menu',
-						excelType: 'string',
-						sort: false,
-						hide: false
-					},
+				columnData: [
 					{
 						title: 'Foto',
 						key: 'gambar',
@@ -228,7 +179,7 @@
 					},
 					{
 						title: 'Kategori',
-						key: 'artikel_kategori_id',
+						key: 'id_artikel_kategori',
 						groupKey: 'artikel__kategori.nama',
 						excelType: 'string',
 						sort: true,
@@ -236,8 +187,8 @@
 					},
 					{
 						title: 'Penulis',
-						key: 'penulis',
-						groupKey: 'penulis',
+						key: 'id_artikel_penulis',
+						groupKey: 'artikel__penulis.nama',
 						excelType: 'string',
 						sort: true,
 						hide: false
@@ -265,111 +216,88 @@
 					}
 				],
 				modalShow: false,
-				modalData: [],
-				modalTitle: '',
 				modalState: '',
+				modalTitle: '',
 				modalButton: ''
 			}
 		},
+		watch: {
+      updateStat(value) {
+				this.modalState = value;
+				this.modalButton = 'Ok';
+				
+				if(value === "success"){
+					this.modalTitle = this.updateMessage;
+					this.fetch();
+				}else{
+					this.modalTitle = 'Oops terjadi kesalahan :(';
+				}
+      }
+    },
 		methods: {
-			modalMenuOpen(data) {
-				this.modalShow = true;
-				this.modalState = 'normal1';
-				this.modalTitle = '';
-				this.modalData = data;
+			fetch(){
+				this.$store.dispatch('loadArtikelS', this.params);
 			},
-			modalConfirmOpen(type) {
-				this.modalState = 'confirm-batal';
-				this.source2 = type;
+			selectedRow(item){
+				this.selectedItem = item;
+			},
+			modalConfirmOpen(source) {
+				this.modalShow = true;
+				this.modalState = 'confirm-tutup';
+				this.source = source;
 
-				if (type == 'hapus') {
+				if (source == 'hapus') {
 					this.modalTitle = 'Hapus artikel ini?';
 					this.modalButton = 'Iya, Hapus';
-				} else if (type == 'updateTerbitkan') {
-					if (this.modalData.terbitkan == 0) {
+				} else if (source == 'updateTerbitkan') {
+					if (this.selectedItem.terbitkan == 0) {
 						this.modalTitle = 'Terbitkan artikel ini?';
 						this.modalButton = 'Iya, terbitkan';
 					} else {
 						this.modalTitle = 'Tidak terbitkan artikel ini?';
 						this.modalButton = 'Iya, tidak terbitkan';
 					}
-				} else if (type == 'updateUtamakan') {
-					if (this.modalData.utamakan == 0) {
+				} else if (source == 'updateUtamakan') {
+					if (this.selectedItem.utamakan == 0) {
 						this.modalTitle = 'Utamakan artikel ini?';
 						this.modalButton = 'Iya, utamakan';
 					} else {
 						this.modalTitle = 'Tidak utamakan artikel ini?';
-						this.modalTitle = 'Iya, tidak utamakan';
+						this.modalButton = 'Iya, tidak utamakan';
 					}
 				}
 			},
-			modalSave() {
-				var vm = this;
-				vm.mutateModalState('loading');
-				axios.put(`${vm.source}/update/${vm.modal.formId}`, vm.modal.formValue)
-					.then(function (response) {
-						if (response.data.saved) {
-							vm.modalSuccess(response.data.message);
-						} else {
-							vm.modalError();
-						}
-					})
-					.catch(function (error) {
-						vm.modalError();
-					})
-			},
-			modalEdit(id){
+			modalEdit(id) {
 				this.modalShow = false;
 				this.$router.push('/artikel/edit/' + id);
 			},
-			modalError() {
-				this.modalTitle = 'Oops terjadi kesalahan :(';
-				this.modalState = 'error';
-				this.modalButton = 'Ok';
-			},
-			modalSuccess(title) {
-				this.modalTitle = title;
-				this.modalState = 'success';
-				this.modalButton = 'Ok';
-			},
-			modalBatal() {
-				this.modalState = 'normal1';
-				this.modalTitle = '';
-			},
 			modalTutup() {
-				if (this.modalState == "success") {
-					bus.$emit('fetchData');
-				}
-		 		this.modalShow = false;
+				this.modalShow = false;
+				this.$store.dispatch('resetArtikelUpdateStat');
 			},
 			modalConfirmOk() {
 				var vm = this;
-				vm.modalState ='loading';
-				if (vm.source2 == 'hapus') {
-					axios.delete(`${vm.source}/${vm.modalData.id}`)
-						.then(function (response) {
-							if (response.data.deleted) {
-								vm.modalSuccess(response.data.message);
-							} else {
-								vm.modalError();
-							}
-						})
-						.catch(function (error) {
-							vm.modalError();
-						})
-				} else if (vm.source2 == "updateTerbitkan" || vm.source2 == "updateUtamakan") {
-					axios.post(`${vm.source}/${vm.source2}/${vm.modalData.id}`)
-						.then(function (response) {
-							if (response.data.saved) {
-								vm.modalSuccess(response.data.message);
-							} else {
-								vm.modalError();
-							}
-						})
-						.catch(function (error) {
-							vm.modalError();
-						})
+				if (vm.source == 'hapus') {
+					this.$store.dispatch('deleteArtikel', this.selectedItem.id);
+				} else if (vm.source == "updateTerbitkan"){
+					this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
+				} else if (vm.source == "updateUtamakan") {
+					this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
 				}
+			}
+		},
+		computed: {
+			itemData(){
+				return this.$store.getters.getArtikelS;
+			},
+			itemDataStat(){
+				return this.$store.getters.getArtikelLoadStatS;
+			},
+			updateStat() {
+				return this.$store.getters.getArtikelUpdateStat;
+			},
+			updateMessage() {
+				return this.$store.getters.getArtikelUpdateMessage;
 			}
 		},
 		filters: {

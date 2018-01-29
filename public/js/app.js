@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 132);
+/******/ 	return __webpack_require__(__webpack_require__.s = 133);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1896,7 +1896,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(153)("./" + name);
+            __webpack_require__(154)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4541,7 +4541,7 @@ return hooks;
 
 
 var bind = __webpack_require__(127);
-var isBuffer = __webpack_require__(157);
+var isBuffer = __webpack_require__(158);
 
 /*global toString:true*/
 
@@ -15138,148 +15138,23 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return getModalShow; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return getModalState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return getModalSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getModalColor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return getModalTitle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getModalContent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getModalButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getModalData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getModalExcelData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getModalExcelFields; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return getModalExcelMeta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getModalExcelFilename; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return mutateModalShow; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return mutateModalState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return mutateModalSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return mutateModalColor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return mutateModalTitle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return mutateModalContent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return mutateModalButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return mutateModalData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return mutateModalExcelData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return mutateModalExcelFields; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return mutateModalExcelMeta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return mutateModalExcelFilename; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return actionModalShow; });
-// Getters
-var getModalShow = 'modal/getModalShow';
-var getModalState = 'modal/getModalState';
-var getModalSize = 'modal/getModalSize';
-var getModalColor = 'modal/getModalColor';
-var getModalTitle = 'modal/getModalTitle';
-var getModalContent = 'modal/getModalContent';
-var getModalButton = 'modal/getModalButton';
-var getModalData = 'modal/getModalData';
-var getModalExcelData = 'modal/getModalExcelData';
-var getModalExcelFields = 'modal/getModalExcelFields';
-var getModalExcelMeta = 'modal/getModalExcelMeta';
-var getModalExcelFilename = 'modal/getModalExcelFilename';
-
-// Mutations
-var mutateModalShow = 'modal/mutateModalShow';
-var mutateModalState = 'modal/mutateModalState';
-var mutateModalSize = 'modal/mutateModalSize';
-var mutateModalColor = 'modal/mutateModalColor';
-var mutateModalTitle = 'modal/mutateModalTitle';
-var mutateModalContent = 'modal/mutateModalContent';
-var mutateModalButton = 'modal/mutateModalButton';
-var mutateModalData = 'modal/mutateModalData';
-var mutateModalExcelData = 'modal/mutateModalExcelData';
-var mutateModalExcelFields = 'modal/mutateModalExcelFields';
-var mutateModalExcelMeta = 'modal/mutateModalExcelMeta';
-var mutateModalExcelFilename = 'modal/mutateModalExcelFilename';
-
-// Actions
-var actionModalShow = 'modal/actionModalShow';
+module.exports = __webpack_require__(157);
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_vue__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__admin_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_store__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate__ = __webpack_require__(203);
-
-
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_6_vee_validate__["a" /* default */], { fieldsBagName: 'formFields' });
-
-window.axios = __WEBPACK_IMPORTED_MODULE_5_axios___default.a;
-axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest',
-    'Authorization': 'Bearer',
-    'Accept': 'application/json'
-};
-
-var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
-    base: '/admin',
-    mode: 'history',
-    routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */]
-});
-
-router.beforeEach(function (to, from, next) {
-    if (to.fullPath !== "/login") {
-        axios.get('/api/profile').then(function (response) {
-            next();
-        }).catch(function (error) {
-            router.push('/login');
-        });
-    } else {
-        next();
-    }
-});
-
-var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
-
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    store: __WEBPACK_IMPORTED_MODULE_4__store_store__["a" /* store */],
-    router: router,
-    render: function render(h) {
-        return h(__WEBPACK_IMPORTED_MODULE_1__admin_vue___default.a);
-    }
-}).$mount('#app');
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(156);
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
-var normalizeHeaderName = __webpack_require__(160);
+var normalizeHeaderName = __webpack_require__(161);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -15369,22 +15244,22 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(159)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(160)))
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(179)
+  __webpack_require__(180)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(184)
+var __vue_script__ = __webpack_require__(185)
 /* template */
-var __vue_template__ = __webpack_require__(185)
+var __vue_template__ = __webpack_require__(186)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -15422,7 +15297,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 9 */
+/* 7 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 var g;
@@ -15446,6 +15327,52 @@ try {
 // easier to handle this case. if(!global) { ...}
 
 module.exports = g;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(145)
+/* template */
+var __vue_template__ = __webpack_require__(146)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/message.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] message.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-43276224", Component.options)
+  } else {
+    hotAPI.reload("data-v-43276224", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
@@ -27159,12 +27086,12 @@ module.exports = function bind(fn, thisArg) {
 
 
 var utils = __webpack_require__(1);
-var settle = __webpack_require__(161);
-var buildURL = __webpack_require__(163);
-var parseHeaders = __webpack_require__(164);
-var isURLSameOrigin = __webpack_require__(165);
+var settle = __webpack_require__(162);
+var buildURL = __webpack_require__(164);
+var parseHeaders = __webpack_require__(165);
+var isURLSameOrigin = __webpack_require__(166);
 var createError = __webpack_require__(129);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(166);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(167);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -27261,7 +27188,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(167);
+      var cookies = __webpack_require__(168);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -27345,7 +27272,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(162);
+var enhanceError = __webpack_require__(163);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -27403,14 +27330,102 @@ module.exports = Cancel;
 
 /***/ }),
 /* 132 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(5);
-module.exports = __webpack_require__(204);
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BKCU_CONFIG; });
+var api_url = '';
 
+switch ("development") {
+  case 'development':
+    api_url = 'https://bkcuvue.dev/api/v1';
+    break;
+  case 'production':
+    api_url = 'https://puskopditbkcukalimantan.org/admins/api/v1';
+    break;
+}
+
+var BKCU_CONFIG = {
+  API_URL: api_url
+};
 
 /***/ }),
 /* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(134);
+module.exports = __webpack_require__(208);
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_vue__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__admin_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_store__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate__ = __webpack_require__(207);
+
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_6_vee_validate__["a" /* default */], { fieldsBagName: 'formFields' });
+
+window.axios = __WEBPACK_IMPORTED_MODULE_5_axios___default.a;
+axios.defaults.headers.common = { 'X-Requested-With': 'XMLHttpRequest' };
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
+    base: '/admins',
+    mode: 'history',
+    routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */]
+});
+
+router.beforeEach(function (to, from, next) {
+    window.scrollTo(0, 0);
+    if (to.fullPath !== "/login") {
+        axios.get('/api/profile').then(function (response) {
+            next();
+        }).catch(function (error) {
+            router.push('/login');
+        });
+    } else {
+        next();
+    }
+});
+
+var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
+
+var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+    store: __WEBPACK_IMPORTED_MODULE_4__store_store__["a" /* store */],
+    router: router,
+    render: function render(h) {
+        return h(__WEBPACK_IMPORTED_MODULE_1__admin_vue___default.a);
+    }
+}).$mount('#app');
+
+/***/ }),
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -27418,7 +27433,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(134)
+var __vue_template__ = __webpack_require__(136)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -27456,7 +27471,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -27506,7 +27521,7 @@ if (false) {
 }
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30018,19 +30033,19 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_header_vue__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_header_vue__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_header_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_login_vue__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_login_vue__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__views_login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_dashboard_vue__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_dashboard_vue__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_dashboard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue__);
 
 
@@ -30043,15 +30058,15 @@ var routes = [{ path: '/login', name: 'login', components: { default: __WEBPACK_
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(138)
+var __vue_script__ = __webpack_require__(140)
 /* template */
-var __vue_template__ = __webpack_require__(140)
+var __vue_template__ = __webpack_require__(142)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -30089,12 +30104,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__ = __webpack_require__(141);
 //
 //
 //
@@ -30180,7 +30195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30239,7 +30254,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30505,15 +30520,15 @@ if (false) {
 }
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(142)
+var __vue_script__ = __webpack_require__(144)
 /* template */
-var __vue_template__ = __webpack_require__(147)
+var __vue_template__ = __webpack_require__(148)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -30551,14 +30566,22 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_message_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__ = __webpack_require__(147);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30654,53 +30677,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 143 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(144)
-/* template */
-var __vue_template__ = __webpack_require__(145)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/message.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] message.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-43276224", Component.options)
-  } else {
-    hotAPI.reload("data-v-43276224", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30725,13 +30702,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: true
         },
         type: {
-            default: ''
+            default: 'bg-danger'
         }
     }
 });
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30787,7 +30764,7 @@ if (false) {
 }
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30841,7 +30818,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30969,7 +30946,7 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._v("Login "),
+                        _vm._v("Login\n\t\t\t\t\t\t\t"),
                         _c("i", {
                           staticClass: "icon-circle-right2 position-right"
                         })
@@ -30991,7 +30968,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h5", { staticClass: "content-group" }, [
-        _vm._v("SIMO "),
+        _vm._v("SIMO\n\t\t\t\t\t\t\t"),
         _c("small", { staticClass: "display-block" }, [
           _vm._v("Sistem Informasi Manajemen Organisasi")
         ])
@@ -31025,15 +31002,15 @@ if (false) {
 }
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(149)
+var __vue_script__ = __webpack_require__(150)
 /* template */
-var __vue_template__ = __webpack_require__(150)
+var __vue_template__ = __webpack_require__(151)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -31071,7 +31048,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31109,7 +31086,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -31160,15 +31137,15 @@ if (false) {
 }
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(152)
+var __vue_script__ = __webpack_require__(153)
 /* template */
-var __vue_template__ = __webpack_require__(187)
+var __vue_template__ = __webpack_require__(188)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -31206,71 +31183,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_core_app_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_dataviewer_vue__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_dataviewer_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_modal__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_core_app_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
 //
 //
 //
@@ -31393,16 +31319,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'ArtikelIndex',
 	components: {
-		DataViewer: __WEBPACK_IMPORTED_MODULE_3__components_dataviewer_vue___default.a,
-		appModal: __WEBPACK_IMPORTED_MODULE_4__components_modal___default.a
+		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
+		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a
 	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_1__assets_core_app_js__["a" /* default */].core_function();
+		__WEBPACK_IMPORTED_MODULE_0__assets_core_app_js__["a" /* default */].core_function();
 	},
 	data: function data() {
 		return {
-			source: '/api/artikel',
-			source2: '',
+			source: '',
+			selectedItem: [],
+			params: {
+				column: 'id',
+				direction: 'desc',
+				per_page: 10,
+				page: 1,
+				search_column: 'nama',
+				search_operator: 'like',
+				search_query_1: '',
+				search_query_2: ''
+			},
 			filterData: [{
 				title: 'Judul',
 				key: 'nama',
@@ -31421,12 +31358,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				operator: 'between'
 			}],
 			columnData: [{
-				title: 'Menu',
-				key: 'menu',
-				excelType: 'string',
-				sort: false,
-				hide: false
-			}, {
 				title: 'Foto',
 				key: 'gambar',
 				excelType: 'string',
@@ -31440,15 +31371,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				hide: false
 			}, {
 				title: 'Kategori',
-				key: 'artikel_kategori_id',
+				key: 'id_artikel_kategori',
 				groupKey: 'artikel__kategori.nama',
 				excelType: 'string',
 				sort: true,
 				hide: false
 			}, {
 				title: 'Penulis',
-				key: 'penulis',
-				groupKey: 'penulis',
+				key: 'id_artikel_penulis',
+				groupKey: 'artikel__penulis.nama',
 				excelType: 'string',
 				sort: true,
 				hide: false
@@ -31472,111 +31403,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				hide: false
 			}],
 			modalShow: false,
-			modalData: [],
-			modalTitle: '',
 			modalState: '',
+			modalTitle: '',
 			modalButton: ''
 		};
 	},
 
-	methods: {
-		modalMenuOpen: function modalMenuOpen(data) {
-			this.modalShow = true;
-			this.modalState = 'normal1';
-			this.modalTitle = '';
-			this.modalData = data;
-		},
-		modalConfirmOpen: function modalConfirmOpen(type) {
-			this.modalState = 'confirm-batal';
-			this.source2 = type;
+	watch: {
+		updateStat: function updateStat(value) {
+			this.modalState = value;
+			this.modalButton = 'Ok';
 
-			if (type == 'hapus') {
+			if (value === "success") {
+				this.modalTitle = this.updateMessage;
+				this.fetch();
+			} else {
+				this.modalTitle = 'Oops terjadi kesalahan :(';
+			}
+		}
+	},
+	methods: {
+		fetch: function fetch() {
+			this.$store.dispatch('loadArtikelS', this.params);
+		},
+		selectedRow: function selectedRow(item) {
+			this.selectedItem = item;
+		},
+		modalConfirmOpen: function modalConfirmOpen(source) {
+			this.modalShow = true;
+			this.modalState = 'confirm-tutup';
+			this.source = source;
+
+			if (source == 'hapus') {
 				this.modalTitle = 'Hapus artikel ini?';
 				this.modalButton = 'Iya, Hapus';
-			} else if (type == 'updateTerbitkan') {
-				if (this.modalData.terbitkan == 0) {
+			} else if (source == 'updateTerbitkan') {
+				if (this.selectedItem.terbitkan == 0) {
 					this.modalTitle = 'Terbitkan artikel ini?';
 					this.modalButton = 'Iya, terbitkan';
 				} else {
 					this.modalTitle = 'Tidak terbitkan artikel ini?';
 					this.modalButton = 'Iya, tidak terbitkan';
 				}
-			} else if (type == 'updateUtamakan') {
-				if (this.modalData.utamakan == 0) {
+			} else if (source == 'updateUtamakan') {
+				if (this.selectedItem.utamakan == 0) {
 					this.modalTitle = 'Utamakan artikel ini?';
 					this.modalButton = 'Iya, utamakan';
 				} else {
 					this.modalTitle = 'Tidak utamakan artikel ini?';
-					this.modalTitle = 'Iya, tidak utamakan';
+					this.modalButton = 'Iya, tidak utamakan';
 				}
 			}
-		},
-		modalSave: function modalSave() {
-			var vm = this;
-			vm.mutateModalState('loading');
-			axios.put(vm.source + '/update/' + vm.modal.formId, vm.modal.formValue).then(function (response) {
-				if (response.data.saved) {
-					vm.modalSuccess(response.data.message);
-				} else {
-					vm.modalError();
-				}
-			}).catch(function (error) {
-				vm.modalError();
-			});
 		},
 		modalEdit: function modalEdit(id) {
 			this.modalShow = false;
 			this.$router.push('/artikel/edit/' + id);
 		},
-		modalError: function modalError() {
-			this.modalTitle = 'Oops terjadi kesalahan :(';
-			this.modalState = 'error';
-			this.modalButton = 'Ok';
-		},
-		modalSuccess: function modalSuccess(title) {
-			this.modalTitle = title;
-			this.modalState = 'success';
-			this.modalButton = 'Ok';
-		},
-		modalBatal: function modalBatal() {
-			this.modalState = 'normal1';
-			this.modalTitle = '';
-		},
 		modalTutup: function modalTutup() {
-			if (this.modalState == "success") {
-				__WEBPACK_IMPORTED_MODULE_0__app__["bus"].$emit('fetchData');
-			}
 			this.modalShow = false;
+			this.$store.dispatch('resetArtikelUpdateStat');
 		},
 		modalConfirmOk: function modalConfirmOk() {
 			var vm = this;
-			vm.modalState = 'loading';
-			if (vm.source2 == 'hapus') {
-				axios.delete(vm.source + '/' + vm.modalData.id).then(function (response) {
-					if (response.data.deleted) {
-						vm.modalSuccess(response.data.message);
-					} else {
-						vm.modalError();
-					}
-				}).catch(function (error) {
-					vm.modalError();
-				});
-			} else if (vm.source2 == "updateTerbitkan" || vm.source2 == "updateUtamakan") {
-				axios.post(vm.source + '/' + vm.source2 + '/' + vm.modalData.id).then(function (response) {
-					if (response.data.saved) {
-						vm.modalSuccess(response.data.message);
-					} else {
-						vm.modalError();
-					}
-				}).catch(function (error) {
-					vm.modalError();
-				});
+			if (vm.source == 'hapus') {
+				this.$store.dispatch('deleteArtikel', this.selectedItem.id);
+			} else if (vm.source == "updateTerbitkan") {
+				this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
+			} else if (vm.source == "updateUtamakan") {
+				this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
 			}
+		}
+	},
+	computed: {
+		itemData: function itemData() {
+			return this.$store.getters.getArtikelS;
+		},
+		itemDataStat: function itemDataStat() {
+			return this.$store.getters.getArtikelLoadStatS;
+		},
+		updateStat: function updateStat() {
+			return this.$store.getters.getArtikelUpdateStat;
+		},
+		updateMessage: function updateMessage() {
+			return this.$store.getters.getArtikelUpdateMessage;
 		}
 	},
 	filters: {
 		publishDate: function publishDate(value) {
-			return __WEBPACK_IMPORTED_MODULE_2_moment___default()(value).format('DD MMMM YYYY');
+			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD MMMM YYYY');
 		},
 		trimString: function trimString(string) {
 			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
@@ -31602,7 +31516,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -31851,18 +31765,18 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 153;
+webpackContext.id = 154;
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(155)
+var __vue_script__ = __webpack_require__(156)
 /* template */
-var __vue_template__ = __webpack_require__(186)
+var __vue_template__ = __webpack_require__(187)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -31900,22 +31814,21 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_json_excel__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_json_excel__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_json_excel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app__ = __webpack_require__(5);
 //
 //
 //
@@ -32099,7 +32012,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32108,27 +32071,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['source', 'columnData', 'toolbarButton', 'filterData'],
+  props: ['source', 'columnData', 'filterData', 'itemData', 'itemDataStat', 'toolbarButton', 'params'],
   components: {
     jsonExcel: __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default.a,
     appModal: __WEBPACK_IMPORTED_MODULE_4__components_modal___default.a
   },
   data: function data() {
     return {
-      model: {
-        data: []
-      },
       pages: [],
-      params: {
-        column: 'id',
-        direction: 'desc',
-        per_page: 10,
-        page: 1,
-        search_column: '',
-        search_operator: 'like',
-        search_query_1: '',
-        search_query_2: ''
-      },
       searchQuery1: '',
       searchQuery2: '',
       searchColumn: '',
@@ -32144,10 +32094,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       group: {
         show: false,
         key: '',
-        title: '',
-        data: []
+        title: ''
       },
-      state: '',
       isSearch: false,
       isExcelAll: false,
       modalShow: false,
@@ -32156,50 +32104,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       modalButton: ''
     };
   },
-  beforeMount: function beforeMount() {
-    this.fetchData();
-  },
   mounted: function mounted() {
     $('.bootstrap-select').selectpicker();
   },
   created: function created() {
-    var _this = this;
-
     this.params.search_column = this.filterData[0].key;
     this.params.search_operator = this.filterData[0].operator;
     this.searchColumn = this.filterData[0].title;
 
-    __WEBPACK_IMPORTED_MODULE_5__app__["bus"].$on('fetchData', function () {
-      _this.fetchData();
-    });
+    this.fetch();
   },
 
   watch: {
     searchQuery1: function searchQuery1(search_query) {
       this.params.search_query_1 = search_query;
       this.searchData();
+    },
+    groupData: function groupData() {
+      this.calculatePagination();
+      this.field_excel();
     }
   },
   methods: {
-    modalExcelOpen: function modalExcelOpen() {
-      this.modalShow = true;
-      this.modalState = 'confirm-tutup';
-      this.modalTitle = 'Yakin akan mendownload semua data ke excel?';
-      this.modalContent = 'Download akan lebih lama tergantung dari jumlah data';
-      this.modalButton = 'Ya, download semua';
-    },
-    modalConfirmOk: function modalConfirmOk() {
-      this.isExcelAll = true;
-      this.entriPage(this.model.total);
-    },
-    modalTutup: function modalTutup() {
-      this.modalShow = false;
+    fetch: function fetch() {
+      this.$emit('fetch');
     },
 
+
+    // excel data
+    field_excel: function field_excel() {
+      var vm = this;
+      vm.excel.fields = {};
+      vm.columnData.forEach(function (column) {
+        if (!column.hide) {
+          vm.excel.fields[column.title] = column.excelType;
+        }
+      });
+      vm.excel.data = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.chain(vm.itemData.data).map(function (item) {
+        var object = {};
+        vm.columnData.forEach(function (key) {
+          if (!key.hide) {
+            if (key.groupKey) {
+              object[key.title] = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.get(item, key.groupKey);
+            } else {
+              object[key.title] = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.get(item, key.key);
+            }
+          }
+        });
+        return object;
+      }).value();
+    },
+
+
+    // search
     searchData: __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.debounce(function () {
       this.isSearch = true;
       this.params.page = 1;
-      this.fetchData();
+      this.fetch();
     }, 500),
     searchColumnData: function searchColumnData(value, name) {
       var operator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'like';
@@ -32209,9 +32170,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.params.search_operator = operator;
         this.searchColumn = name;
         this.params.page = 1;
-        this.fetchData();
+        this.fetch();
       }
     },
+
+
+    // show column
     hideColumn: function hideColumn(index) {
       if (this.columnData[index].hide === false) this.columnData[index].hide = true;else this.columnData[index].hide = false;
       this.field_excel(this);
@@ -32222,6 +32186,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.field_excel(this);
     },
+
+
+    // grouping row
     groupRow: function groupRow(groupKey, sortKey, title, index) {
       if (this.group.key != groupKey) {
         this.group.show = true;
@@ -32240,6 +32207,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.showAllColumn();
     },
+
+
+    //sorting
     sort: function sort(column) {
       if (column === this.params.column) {
         if (this.params.direction === 'desc') {
@@ -32252,35 +32222,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.params.direction = 'asc';
       }
       this.params.page = 1;
-      this.fetchData();
+      this.fetch();
     },
+
+
+    // pagination
     entriPage: function entriPage(value) {
       if (this.params.per_page != value) {
         this.params.per_page = value;
         this.params.page = 1;
-        this.fetchData();
+        this.fetch();
       }
-    },
-    field_excel: function field_excel(vm) {
-      vm.excel.fields = {};
-      vm.columnData.forEach(function (column) {
-        if (!column.hide) {
-          vm.excel.fields[column.title] = column.excelType;
-        }
-      });
-      vm.excel.data = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.chain(vm.model.data).map(function (item) {
-        var object = {};
-        vm.columnData.forEach(function (key) {
-          if (!key.hide) {
-            if (key.groupKey) {
-              object[key.title] = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.get(item, key.groupKey);
-            } else {
-              object[key.title] = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.get(item, key.key);
-            }
-          }
-        });
-        return object;
-      }).value();
     },
     calculatePagination: function calculatePagination() {
       var i = 0;
@@ -32290,7 +32242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       startPage = this.params.page < 3 ? 1 : this.params.page - 1;
       endPage = 4 + startPage;
-      endPage = this.model.last_page < endPage ? this.model.last_page : endPage;
+      endPage = this.itemData.last_page < endPage ? this.itemData.last_page : endPage;
       diffPage = startPage - endPage + 4;
       startPage -= startPage - diffPage > 0 ? diffPage : 0;
       this.pages.length = 0;
@@ -32300,58 +32252,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     next: function next() {
-      if (this.model.next_page_url) {
+      if (this.itemData.next_page_url) {
         this.params.page++;
-        this.fetchData();
+        this.fetch();
       }
     },
     prev: function prev() {
-      if (this.model.prev_page_url) {
+      if (this.itemData.prev_page_url) {
         this.params.page--;
-        this.fetchData();
+        this.fetch();
       }
     },
     goToPage: function goToPage(value) {
       if (this.params.page != value) {
         this.params.page = value;
-        this.fetchData();
+        this.fetch();
       }
     },
-    fetchData: function fetchData() {
-      var vm = this;
-      if (vm.isExcelAll) {
-        vm.modalState = 'loading';
-      } else {
-        vm.state = 'loading';
-      }
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(vm.buildURL()).then(function (response) {
-        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(vm.$data, 'model', response.data.model);
-        if (!vm.isExcelAll) {
-          vm.group.data = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.groupBy(vm.model.data, vm.group.key);
-          vm.calculatePagination();
-        } else {
-          vm.modalState = 'normal1';
-          vm.isExcelAll = false;
-          vm.params.per_page = 10;
-        }
-        vm.field_excel(vm);
-        vm.state = '';
-      }).catch(function (error) {
-        vm.state = '';
-        if (vm.modalShow) {
-          vm.modalState = 'error';
-        }
-      });
+
+
+    // modal
+    modalExcelOpen: function modalExcelOpen() {
+      this.modalShow = true;
+      this.modalState = 'confirm-tutup';
+      this.modalTitle = 'Yakin akan mendownload semua data ke excel?';
+      this.modalContent = 'Download akan lebih lama tergantung dari jumlah data';
+      this.modalButton = 'Ya, download semua';
     },
-    buildURL: function buildURL() {
-      var p = this.params;
-      return this.source + '?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2;
+    modalConfirmOk: function modalConfirmOk() {
+      this.isExcelAll = true;
+      this.entriPage(this.itemData.total);
+    },
+    modalTutup: function modalTutup() {
+      this.modalShow = false;
+    }
+  },
+  computed: {
+    groupData: function groupData() {
+      return __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.groupBy(this.itemData.data, this.group.key);
     }
   }
 });
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32359,8 +32303,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(127);
-var Axios = __webpack_require__(158);
-var defaults = __webpack_require__(7);
+var Axios = __webpack_require__(159);
+var defaults = __webpack_require__(5);
 
 /**
  * Create an instance of Axios
@@ -32394,14 +32338,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(131);
-axios.CancelToken = __webpack_require__(173);
+axios.CancelToken = __webpack_require__(174);
 axios.isCancel = __webpack_require__(130);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(174);
+axios.spread = __webpack_require__(175);
 
 module.exports = axios;
 
@@ -32410,7 +32354,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports) {
 
 /*!
@@ -32437,18 +32381,18 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(5);
 var utils = __webpack_require__(1);
-var InterceptorManager = __webpack_require__(168);
-var dispatchRequest = __webpack_require__(169);
-var isAbsoluteURL = __webpack_require__(171);
-var combineURLs = __webpack_require__(172);
+var InterceptorManager = __webpack_require__(169);
+var dispatchRequest = __webpack_require__(170);
+var isAbsoluteURL = __webpack_require__(172);
+var combineURLs = __webpack_require__(173);
 
 /**
  * Create a new instance of Axios
@@ -32530,7 +32474,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -32720,7 +32664,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32739,7 +32683,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32772,7 +32716,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32800,7 +32744,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32875,7 +32819,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32919,7 +32863,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32994,7 +32938,7 @@ module.exports = (
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33037,7 +32981,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33097,7 +33041,7 @@ module.exports = (
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33156,16 +33100,16 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var transformData = __webpack_require__(170);
+var transformData = __webpack_require__(171);
 var isCancel = __webpack_require__(130);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(5);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -33242,7 +33186,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33269,7 +33213,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33290,7 +33234,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33311,7 +33255,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33375,7 +33319,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33409,7 +33353,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -50498,18 +50442,18 @@ module.exports = function spread(callback) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(11)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(11)(module)))
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(177)
+var __vue_script__ = __webpack_require__(178)
 /* template */
-var __vue_template__ = __webpack_require__(178)
+var __vue_template__ = __webpack_require__(179)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -50547,7 +50491,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50653,7 +50597,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50681,17 +50625,17 @@ if (false) {
 }
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(180);
+var content = __webpack_require__(181);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(182)("c439ca88", content, false);
+var update = __webpack_require__(183)("c439ca88", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -50707,10 +50651,10 @@ if(false) {
 }
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(181)(undefined);
+exports = module.exports = __webpack_require__(182)(undefined);
 // imports
 
 
@@ -50721,7 +50665,7 @@ exports.push([module.i, "\n.modal-mask[data-v-7167970a] {\n\tposition: fixed;\n\
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports) {
 
 /*
@@ -50803,7 +50747,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -50822,7 +50766,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(183)
+var listToStyles = __webpack_require__(184)
 
 /*
 type StyleObject = {
@@ -51024,7 +50968,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports) {
 
 /**
@@ -51057,11 +51001,12 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -51180,18 +51125,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				return '';
 			}
 		},
-		content: {
-			type: String,
-			default: function _default() {
-				return '';
-			}
-		},
 		button: {
 			type: String,
 			default: function _default() {
 				return 'Ok';
 			}
-		}
+		},
+		content: ''
 	},
 	data: function data() {
 		return {
@@ -51209,6 +51149,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	methods: {
+		backgroundClick: function backgroundClick() {
+			this.$emit('backgroundClick');
+		},
 		tutup: function tutup() {
 			this.$emit('tutup');
 		},
@@ -51221,8 +51164,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		successOk: function successOk() {
 			this.$emit('successOk');
 		},
-		errorOk: function errorOk() {
-			this.$emit('errorOk');
+		failOk: function failOk() {
+			this.$emit('failOk');
 		},
 		beforeEnter: function beforeEnter() {
 			this.created = true;
@@ -51236,7 +51179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51256,7 +51199,7 @@ var render = function() {
           }
         ],
         staticClass: "modal-mask",
-        on: { click: _vm.tutup }
+        on: { click: _vm.backgroundClick }
       },
       [
         _c(
@@ -51432,9 +51375,18 @@ var render = function() {
                                         _vm._v(" "),
                                         _vm.content
                                           ? _c(
-                                              "div",
-                                              { staticClass: "well well-sm" },
-                                              [_vm._v(_vm._s(_vm.content))]
+                                              "pre",
+                                              {
+                                                staticClass: "pre-scrollable",
+                                                attrs: { id: "stack" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  ">" +
+                                                    _vm._s(_vm.content) +
+                                                    "<"
+                                                )
+                                              ]
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
@@ -51530,11 +51482,11 @@ var render = function() {
                                           )
                                         ]
                                       )
-                                    : _vm.state === "error"
+                                    : _vm.state === "fail"
                                       ? _c(
                                           "div",
                                           {
-                                            key: "error",
+                                            key: "fail",
                                             staticClass: "text-center"
                                           },
                                           [
@@ -51543,7 +51495,8 @@ var render = function() {
                                               { staticClass: "text-danger" },
                                               [
                                                 _c("i", {
-                                                  staticClass: "icon-close2",
+                                                  staticClass:
+                                                    "icon-cancel-circle2",
                                                   staticStyle: {
                                                     "font-size": "5em"
                                                   }
@@ -51554,6 +51507,19 @@ var render = function() {
                                             _c("h2", [
                                               _vm._v(_vm._s(_vm.title))
                                             ]),
+                                            _vm._v(" "),
+                                            _vm.content
+                                              ? _c(
+                                                  "pre",
+                                                  {
+                                                    staticClass:
+                                                      "pre-scrollable"
+                                                  },
+                                                  [_vm._v(_vm._s(_vm.content))]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _c("br"),
                                             _vm._v(" "),
                                             _c(
                                               "ul",
@@ -51566,7 +51532,7 @@ var render = function() {
                                                       staticClass:
                                                         "btn btn-default",
                                                       attrs: { type: "button" },
-                                                      on: { click: _vm.errorOk }
+                                                      on: { click: _vm.failOk }
                                                     },
                                                     [_vm._v(_vm._s(_vm.button))]
                                                   )
@@ -51665,7 +51631,7 @@ if (false) {
 }
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51717,9 +51683,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\r\n                             Berdasarkan " +
+                          "\n                  Berdasarkan " +
                             _vm._s(_vm.searchColumn) +
-                            "  "
+                            "  \n                  "
                         ),
                         _c("span", { staticClass: "caret" })
                       ]
@@ -51777,7 +51743,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
-              _vm.state === "loading"
+              _vm.itemDataStat === "loading"
                 ? _c(
                     "div",
                     { staticClass: "btn-toolbar" },
@@ -51787,309 +51753,325 @@ var render = function() {
                       ])
                     })
                   )
-                : _c(
-                    "div",
-                    { staticClass: "btn-toolbar" },
-                    [
-                      _c("div", { staticClass: "btn-group pb-5" }, [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          { staticClass: "dropdown-menu dropdown-content" },
-                          [
-                            _c("li", { staticClass: "dropdown-header" }, [
-                              _vm._v("Kolom yang ditampilkan")
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "divider" }),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.showAllColumn($event)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Semua Kolom")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm._t("button-kolom"),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "divider" }),
-                            _vm._v(" "),
-                            _vm._l(_vm.columnData, function(column, index) {
-                              return column.hide != null
-                                ? _c(
-                                    "li",
-                                    { class: { active: !column.hide } },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.hideColumn(index)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v(_vm._s(column.title))]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e()
-                            })
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "btn-group pb-5" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-default btn-icon dropdown-toggle",
-                            attrs: {
-                              type: "button",
-                              "data-popup": "tooltip",
-                              title: "ENTRI",
-                              "data-toggle": "dropdown"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-menu7" }),
-                            _vm._v("  " + _vm._s(_vm.params.per_page) + "  "),
-                            _c("span", { staticClass: "caret" })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          { staticClass: "dropdown-menu" },
-                          [
-                            _c("li", { staticClass: "dropdown-header" }, [
-                              _vm._v("Entri yang ditampilkan")
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "divider" }),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { class: { active: _vm.params.per_page === 10 } },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.entriPage(10)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("10 Entri")]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { class: { active: _vm.params.per_page === 25 } },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.entriPage(25)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("25 Entri")]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { class: { active: _vm.params.per_page === 50 } },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.entriPage(50)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("50 Entri")]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm.model.total > 10
-                              ? _c("li", { staticClass: "divider" })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.model.total > 10
-                              ? _c("li", [
-                                  _c("input", {
-                                    staticClass: "form-control",
-                                    attrs: { type: "text" }
-                                  })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm._t("button-entri")
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "btn-group pb-5" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-default btn-icon dropdown-toggle",
-                            attrs: {
-                              type: "button",
-                              "data-popup": "tooltip",
-                              title: "KELOMPOK",
-                              "data-toggle": "dropdown"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-grid6" }),
-                            _vm._v("  " + _vm._s(_vm.group.title) + "  "),
-                            _c("span", { staticClass: "caret" })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          { staticClass: "dropdown-menu" },
-                          [
-                            _c("li", { staticClass: "dropdown-header" }, [
-                              _vm._v("Kelompokkan berdasarkan")
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "divider" }),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.unGroupRow($event)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Tidak dikelompokkan")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "divider" }),
-                            _vm._v(" "),
-                            _vm._l(_vm.columnData, function(column, index) {
-                              return column.groupKey != null
-                                ? _c(
-                                    "li",
-                                    {
-                                      class: {
-                                        active:
-                                          column.groupKey === _vm.group.key
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.groupRow(
-                                                column.groupKey,
-                                                column.key,
-                                                column.title,
-                                                index
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [_vm._v(_vm._s(column.title))]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e()
-                            })
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "btn-group pb-5" }, [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "dropdown-menu" }, [
-                          _c("li", { staticClass: "dropdown-header" }, [
-                            _vm._v("Download data ke excel")
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "divider" }),
+                : _vm.itemDataStat === "success"
+                  ? _c(
+                      "div",
+                      { staticClass: "btn-toolbar" },
+                      [
+                        _c("div", { staticClass: "btn-group pb-5" }, [
+                          _vm._m(2),
                           _vm._v(" "),
                           _c(
-                            "li",
+                            "ul",
+                            { staticClass: "dropdown-menu dropdown-content" },
                             [
-                              _c(
-                                "json-excel",
-                                {
-                                  attrs: {
-                                    data: _vm.excel.data,
-                                    fieldsx: _vm.excel.fields,
-                                    meta: _vm.excel.meta,
-                                    name: "fileExcel.xls"
-                                  }
-                                },
-                                [_vm._v("Data di tabel")]
-                              )
+                              _c("li", { staticClass: "dropdown-header" }, [
+                                _vm._v("Kolom yang ditampilkan")
+                              ]),
+                              _vm._v(" "),
+                              _c("li", { staticClass: "divider" }),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.showAllColumn($event)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Semua Kolom")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._t("button-kolom"),
+                              _vm._v(" "),
+                              _c("li", { staticClass: "divider" }),
+                              _vm._v(" "),
+                              _vm._l(_vm.columnData, function(column, index) {
+                                return column.hide != null
+                                  ? _c(
+                                      "li",
+                                      { class: { active: !column.hide } },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.hideColumn(index)
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(column.title))]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              })
                             ],
-                            1
+                            2
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "btn-group pb-5" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-default btn-icon dropdown-toggle",
+                              attrs: {
+                                type: "button",
+                                "data-popup": "tooltip",
+                                title: "ENTRI",
+                                "data-toggle": "dropdown"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-menu7" }),
+                              _vm._v(
+                                "  " +
+                                  _vm._s(_vm.params.per_page) +
+                                  "  \n                "
+                              ),
+                              _c("span", { staticClass: "caret" })
+                            ]
                           ),
                           _vm._v(" "),
-                          _c("li", [
+                          _c(
+                            "ul",
+                            { staticClass: "dropdown-menu" },
+                            [
+                              _c("li", { staticClass: "dropdown-header" }, [
+                                _vm._v("Entri yang ditampilkan")
+                              ]),
+                              _vm._v(" "),
+                              _c("li", { staticClass: "divider" }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  class: { active: _vm.params.per_page === 10 }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.entriPage(10)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("10 Entri")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  class: { active: _vm.params.per_page === 25 }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.entriPage(25)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("25 Entri")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  class: { active: _vm.params.per_page === 50 }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.entriPage(50)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("50 Entri")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.itemData.total > 10
+                                ? _c("li", { staticClass: "divider" })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.itemData.total > 10
+                                ? _c("li", [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: { type: "text" }
+                                    })
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm._t("button-entri")
+                            ],
+                            2
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "btn-group pb-5" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-default btn-icon dropdown-toggle",
+                              attrs: {
+                                type: "button",
+                                "data-popup": "tooltip",
+                                title: "KELOMPOK",
+                                "data-toggle": "dropdown"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-grid6" }),
+                              _vm._v(
+                                "  " +
+                                  _vm._s(_vm.group.title) +
+                                  "  \n                "
+                              ),
+                              _c("span", { staticClass: "caret" })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "ul",
+                            { staticClass: "dropdown-menu" },
+                            [
+                              _c("li", { staticClass: "dropdown-header" }, [
+                                _vm._v("Kelompokkan berdasarkan")
+                              ]),
+                              _vm._v(" "),
+                              _c("li", { staticClass: "divider" }),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.unGroupRow($event)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Tidak dikelompokkan")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", { staticClass: "divider" }),
+                              _vm._v(" "),
+                              _vm._l(_vm.columnData, function(column, index) {
+                                return column.groupKey != null
+                                  ? _c(
+                                      "li",
+                                      {
+                                        class: {
+                                          active:
+                                            column.groupKey === _vm.group.key
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.groupRow(
+                                                  column.groupKey,
+                                                  column.key,
+                                                  column.title,
+                                                  index
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(column.title))]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              })
+                            ],
+                            2
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "btn-group pb-5" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("ul", { staticClass: "dropdown-menu" }, [
+                            _c("li", { staticClass: "dropdown-header" }, [
+                              _vm._v("Download data ke excel")
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "divider" }),
+                            _vm._v(" "),
                             _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.modalExcelOpen($event)
+                              "li",
+                              [
+                                _c(
+                                  "json-excel",
+                                  {
+                                    attrs: {
+                                      data: _vm.excel.data,
+                                      fieldsx: _vm.excel.fields,
+                                      meta: _vm.excel.meta,
+                                      name: "fileExcel.xls"
+                                    }
+                                  },
+                                  [_vm._v("Data di tabel")]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c(
+                                "a",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.modalExcelOpen($event)
+                                    }
                                   }
-                                }
-                              },
-                              [_vm._v("Semua Data")]
-                            )
+                                },
+                                [_vm._v("Semua Data")]
+                              )
+                            ])
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._t("button")
-                    ],
-                    2
-                  )
+                        ]),
+                        _vm._v(" "),
+                        _vm._t("button")
+                      ],
+                      2
+                    )
+                  : _vm._e()
             ])
           ])
         ]),
@@ -52097,7 +52079,7 @@ var render = function() {
         _c("div", { staticClass: "table-responsive" }, [
           _c(
             "table",
-            { staticClass: "table table-hover table-striped" },
+            { staticClass: "table table-striped" },
             [
               _c("thead", { staticClass: "bg-primary" }, [
                 _c(
@@ -52140,7 +52122,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm.state === "loading"
+              _vm.itemDataStat === "loading"
                 ? _c("tbody", [
                     _c("tr", [
                       _c("td", { attrs: { colspan: _vm.columnData.length } }, [
@@ -52148,127 +52130,155 @@ var render = function() {
                       ])
                     ])
                   ])
-                : _vm._l(_vm.group.data, function(items, index) {
-                    return _c(
-                      "tbody",
-                      [
-                        _vm.group.show
-                          ? _c("tr", { staticClass: "active border-double" }, [
-                              _c(
-                                "td",
-                                { attrs: { colspan: _vm.columnData.length } },
-                                [_c("b", [_vm._v(_vm._s(index))])]
+                : _vm.itemDataStat === "success"
+                  ? _vm._l(_vm.groupData, function(items, index) {
+                      return _c(
+                        "tbody",
+                        [
+                          _vm.group.show
+                            ? _c(
+                                "tr",
+                                { staticClass: "active border-double" },
+                                [
+                                  _c(
+                                    "td",
+                                    {
+                                      attrs: { colspan: _vm.columnData.length }
+                                    },
+                                    [_c("b", [_vm._v(_vm._s(index))])]
+                                  )
+                                ]
                               )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._l(items, function(item) {
-                          return _vm._t("default", null, { item: item })
-                        })
-                      ],
-                      2
-                    )
-                  })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(items, function(item) {
+                            return _vm._t("default", null, { item: item })
+                          })
+                        ],
+                        2
+                      )
+                    })
+                  : _vm.itemDataStat === 3
+                    ? _c("tbody", [
+                        _c("tr", [
+                          _c(
+                            "td",
+                            { attrs: { colspan: _vm.columnData.length } },
+                            [
+                              _vm._v(
+                                "\n              Oops.. Terjadi kesalahan, silahkan coba lagi.\n            "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    : _vm._e()
             ],
             2
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "panel-footer has-visible-elements" }, [
-          _vm.state === "loading"
+          _vm.itemDataStat === "loading"
             ? _c("div", { staticClass: "heading-elements visible-elements" }, [
                 _c("span", { staticClass: "heading-text text-semibold" }, [
-                  _vm._v("Menampilkan "),
+                  _vm._v("Menampilkan\n          "),
                   _c("i", { staticClass: "icon-spinner2 spinner" }),
-                  _vm._v(" - "),
+                  _vm._v(" -\n          "),
                   _c("i", { staticClass: "icon-spinner2 spinner" }),
-                  _vm._v(" entri dari " + _vm._s(_vm.model.total) + " entri")
+                  _vm._v(" entri dari " + _vm._s(_vm.itemData.total) + " entri")
                 ]),
                 _vm._v(" "),
                 _vm._m(5)
               ])
-            : _c("div", { staticClass: "heading-elements visible-elements" }, [
-                _c("span", { staticClass: "heading-text text-semibold" }, [
-                  _vm._v(
-                    "Menampilkan " +
-                      _vm._s(_vm.model.from) +
-                      " - " +
-                      _vm._s(_vm.model.to) +
-                      " entri dari " +
-                      _vm._s(_vm.model.total) +
-                      " entri"
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  {
-                    staticClass:
-                      "pagination pagination-flat pagination-xs pull-right"
-                  },
+            : _vm.itemDataStat === "success"
+              ? _c(
+                  "div",
+                  { staticClass: "heading-elements visible-elements" },
                   [
-                    _c(
-                      "li",
-                      { class: { disabled: !_vm.model.prev_page_url } },
-                      [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.prev($event)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "icon-arrow-left12" })]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm._l(_vm.pages, function(n) {
-                      return _c(
-                        "li",
-                        { class: { active: _vm.params.page == n } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.goToPage(n)
-                                }
-                              }
-                            },
-                            [_vm._v(_vm._s(n))]
-                          )
-                        ]
+                    _c("span", { staticClass: "heading-text text-semibold" }, [
+                      _vm._v(
+                        "Menampilkan " +
+                          _vm._s(_vm.itemData.from) +
+                          " - " +
+                          _vm._s(_vm.itemData.to) +
+                          " entri dari " +
+                          _vm._s(_vm.itemData.total) +
+                          " entri"
                       )
-                    }),
+                    ]),
                     _vm._v(" "),
                     _c(
-                      "li",
-                      { class: { disabled: !_vm.model.next_page_url } },
+                      "ul",
+                      {
+                        staticClass:
+                          "pagination pagination-flat pagination-xs pull-right"
+                      },
                       [
                         _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.next($event)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "icon-arrow-right13" })]
+                          "li",
+                          { class: { disabled: !_vm.itemData.prev_page_url } },
+                          [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.prev($event)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "icon-arrow-left12" })]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(_vm.pages, function(n) {
+                          return _c(
+                            "li",
+                            { class: { active: _vm.params.page == n } },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.goToPage(n)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(n))]
+                              )
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { class: { disabled: !_vm.itemData.next_page_url } },
+                          [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.next($event)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "icon-arrow-right13" })]
+                            )
+                          ]
                         )
-                      ]
+                      ],
+                      2
                     )
-                  ],
-                  2
+                  ]
                 )
-              ])
+              : _vm._e()
         ])
       ]),
       _vm._v(" "),
@@ -52389,7 +52399,7 @@ var staticRenderFns = [
       },
       [
         _c("i", { staticClass: "icon-table2" }),
-        _vm._v("  "),
+        _vm._v("  \n                "),
         _c("span", { staticClass: "caret" })
       ]
     )
@@ -52411,7 +52421,7 @@ var staticRenderFns = [
       },
       [
         _c("i", { staticClass: "icon-file-excel" }),
-        _vm._v(" "),
+        _vm._v(" \n                "),
         _c("span", { staticClass: "caret" })
       ]
     )
@@ -52465,7 +52475,7 @@ if (false) {
 }
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52504,6 +52514,21 @@ var render = function() {
             "div",
             { staticClass: "content-wrapper" },
             [
+              _vm.itemDataStat === "fail"
+                ? _c("message", [
+                    _c("p", [
+                      _c("i", { staticClass: "icon-cancel-circle2" }),
+                      _vm._v(" Oops terjadi kesalahan: ")
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("pre", { staticClass: "pre-scrollable" }, [
+                      _vm._v(_vm._s(_vm.itemData))
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "data-viewer",
                 {
@@ -52511,106 +52536,122 @@ var render = function() {
                     source: _vm.source,
                     columnData: _vm.columnData,
                     filterData: _vm.filterData,
-                    toolbarButton: 4
+                    toolbarButton: 4,
+                    itemData: _vm.itemData,
+                    itemDataStat: _vm.itemDataStat,
+                    params: _vm.params
                   },
+                  on: { fetch: _vm.fetch },
                   scopedSlots: _vm._u([
                     {
                       key: "default",
                       fn: function(props) {
                         return [
-                          _c("tr", [
-                            !_vm.columnData[0].hide
-                              ? _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          _vm.modalMenuOpen(props.item)
-                                        }
-                                      }
-                                    },
-                                    [_c("i", { staticClass: "icon-menu9" })]
-                                  )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[1].hide
-                              ? _c("td", [
-                                  props.item.gambar
-                                    ? _c("img", {
-                                        staticClass:
-                                          "img-rounded img-responsive img-sm",
-                                        attrs: {
-                                          src:
-                                            "/images/artikel/" +
-                                            props.item.gambar +
-                                            "n.jpg"
-                                        }
-                                      })
-                                    : _c("img", {
-                                        staticClass:
-                                          "img-rounded img-responsive img-sm",
-                                        attrs: {
-                                          src: "/images/image-articlen.jpg"
-                                        }
-                                      })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[2].hide
-                              ? _c("td", [_vm._v(_vm._s(props.item.nama))])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[3].hide
-                              ? _c("td", [
-                                  _vm._v(
-                                    _vm._s(props.item.artikel__kategori.nama)
-                                  )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[4].hide
-                              ? _c("td", [_vm._v(_vm._s(props.item.penulis))])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[5].hide
-                              ? _c("td", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.checkStatus(
-                                        props.item.terbitkan
+                          _c(
+                            "tr",
+                            {
+                              class: {
+                                info: _vm.selectedItem.id === props.item.id
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectedRow(props.item)
+                                }
+                              }
+                            },
+                            [
+                              !_vm.columnData[0].hide
+                                ? _c("td", [
+                                    props.item.gambar
+                                      ? _c("img", {
+                                          staticClass:
+                                            "img-rounded img-responsive img-sm",
+                                          attrs: {
+                                            src:
+                                              "/images/artikel/" +
+                                              props.item.gambar +
+                                              "n.jpg"
+                                          }
+                                        })
+                                      : _c("img", {
+                                          staticClass:
+                                            "img-rounded img-responsive img-sm",
+                                          attrs: {
+                                            src: "/images/image-articlen.jpg"
+                                          }
+                                        })
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[1].hide
+                                ? _c("td", [_vm._v(_vm._s(props.item.nama))])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[2].hide
+                                ? _c("td", [
+                                    props.item.artikel__kategori !== null
+                                      ? _c("span", [
+                                          _vm._v(
+                                            _vm._s(
+                                              props.item.artikel__kategori.nama
+                                            )
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[3].hide
+                                ? _c("td", [
+                                    props.item.artikel__penulis !== null
+                                      ? _c("span", [
+                                          _vm._v(
+                                            _vm._s(
+                                              props.item.artikel__penulis.nama
+                                            )
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[4].hide
+                                ? _c("td", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.checkStatus(
+                                          props.item.terbitkan
+                                        )
+                                      )
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[5].hide
+                                ? _c("td", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.checkStatus(
+                                          props.item.utamakan
+                                        )
+                                      )
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[6].hide
+                                ? _c("td", { staticClass: "text-nowrap" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("publishDate")(
+                                          props.item.created_at
+                                        )
                                       )
                                     )
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[6].hide
-                              ? _c("td", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.checkStatus(
-                                        props.item.utamakan
-                                      )
-                                    )
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.columnData[7].hide
-                              ? _c("td", { staticClass: "text-nowrap" }, [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm._f("publishDate")(
-                                        props.item.created_at
-                                      )
-                                    )
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
+                                  ])
+                                : _vm._e()
+                            ]
+                          )
                         ]
                       }
                     }
@@ -52638,7 +52679,110 @@ var render = function() {
                           )
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.selectedItem.id
+                        ? _c(
+                            "div",
+                            { staticClass: "btn-group pb-5" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-default btn-icon",
+                                  attrs: {
+                                    to: {
+                                      name: "artikelEdit",
+                                      params: { id: _vm.selectedItem.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "icon-pencil5" }),
+                                  _vm._v(" Ubah\n\t\t\t\t\t\t\t")
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        : _c("div", { staticClass: "btn-group pb-5" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-default btn-icon disabled"
+                              },
+                              [
+                                _c("i", { staticClass: "icon-pencil5" }),
+                                _vm._v(" Ubah\n\t\t\t\t\t\t\t")
+                              ]
+                            )
+                          ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "btn-group pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default btn-icon",
+                            class: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("hapus")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-bin2" }),
+                            _vm._v(" Hapus\n\t\t\t\t\t\t\t")
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "btn-group pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default btn-icon",
+                            class: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("updateTerbitkan")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-file-upload" }),
+                            _vm._v(" "),
+                            _vm.selectedItem.terbitkan === 1
+                              ? _c("span", [_vm._v("Tidak Terbitkan")])
+                              : _c("span", [_vm._v("Terbitkan")])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "btn-group pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default btn-icon",
+                            class: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("updateUtamakan")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-pushpin" }),
+                            _vm._v(" "),
+                            _vm.selectedItem.utamakan === 1
+                              ? _c("span", [_vm._v("Tidak Utamakan")])
+                              : _c("span", [_vm._v("Utamakan")])
+                          ]
+                        )
+                      ])
                     ]
                   )
                 ],
@@ -52650,267 +52794,20 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            button: _vm.modalButton
-          },
-          on: {
-            batal: _vm.modalBatal,
-            tutup: _vm.modalTutup,
-            confirmOk: _vm.modalConfirmOk,
-            successOk: _vm.modalTutup,
-            errorOk: _vm.modalTutup
-          }
+      _c("app-modal", {
+        attrs: {
+          show: _vm.modalShow,
+          state: _vm.modalState,
+          title: _vm.modalTitle,
+          button: _vm.modalButton
         },
-        [
-          _c(
-            "template",
-            { attrs: { slot: "modal-title" }, slot: "modal-title" },
-            [_vm._v("\n\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t")]
-          ),
-          _vm._v(" "),
-          _c(
-            "template",
-            { attrs: { slot: "modal-body1" }, slot: "modal-body1" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "panel panel-flat blog-horizontal blog-horizontal-2"
-                },
-                [
-                  _c("div", { staticClass: "panel-body" }, [
-                    _c("div", { staticClass: "thumb" }, [
-                      _vm.modalData.gambar
-                        ? _c("img", {
-                            staticClass: "img-rounded img-responsive",
-                            attrs: {
-                              src:
-                                "/images/artikel/" +
-                                _vm.modalData.gambar +
-                                ".jpg"
-                            }
-                          })
-                        : _c("img", {
-                            staticClass: "img-rounded img-responsive",
-                            attrs: { src: "/images/image-article.jpg" }
-                          })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "table-responsive blog-preview" },
-                      [
-                        _c("table", { staticClass: "table table-xs" }, [
-                          _c("tbody", { staticClass: "text-left" }, [
-                            _c("tr", [
-                              _c("td", [_c("b", [_vm._v("Judul:")])]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(_vm.modalData.nama))])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_c("b", [_vm._v("Kategori:")])]),
-                              _vm._v(" "),
-                              _vm.modalData.artikel__kategori
-                                ? _c("td", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.modalData.artikel__kategori.nama
-                                      )
-                                    )
-                                  ])
-                                : _c("td", [_vm._v("-")])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_c("b", [_vm._v("Penulis:")])]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(_vm.modalData.penulis))])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_c("b", [_vm._v("Terbitkan:")])]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("span", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.checkStatus(
-                                        _vm.modalData.terbitkan
-                                      )
-                                    )
-                                  }
-                                })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_c("b", [_vm._v("Utamakan:")])]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("span", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.checkStatus(
-                                        _vm.modalData.utamakan
-                                      )
-                                    )
-                                  }
-                                })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_c("b", [_vm._v("Tgl. Tulis:")])]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("publishDate")(
-                                      _vm.modalData.created_at
-                                    )
-                                  )
-                                )
-                              ])
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "list-unstyled" }, [
-                    _c("a", { staticClass: "list-group-item" }, [
-                      _c("i", { staticClass: "icon-reading" }),
-                      _vm._v(" Baca")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "list-group-item",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.modalEdit(_vm.modalData.id)
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-pencil5" }),
-                        _vm._v(" Ubah")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "list-group-item",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.modalConfirmOpen("hapus")
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "icon-bin2" }), _vm._v(" Hapus")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "list-unstyled" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "list-group-item",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.modalConfirmOpen("updateTerbitkan")
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-file-upload" }),
-                        _vm._v(" "),
-                        _vm.modalData.terbitkan == 0
-                          ? _c("span", [_vm._v("Terbitkan")])
-                          : _c("span", [_vm._v("Tidak Terbitkan")])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "list-group-item",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.modalConfirmOpen("updateUtamakan")
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-pushpin" }),
-                        _vm._v(" "),
-                        _vm.modalData.utamakan == 0
-                          ? _c("span", [_vm._v("Utamakan")])
-                          : _c("span", [_vm._v("Tidak Utamakan")])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-12" }, [_c("hr")])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "template",
-            { attrs: { slot: "modal-body2" }, slot: "modal-body2" },
-            [
-              _c("app-form", {
-                on: { error: _vm.modalError, success: _vm.modalSuccess }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "template",
-            { attrs: { slot: "modal-footer1" }, slot: "modal-footer1" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.modalTutup($event)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-              )
-            ]
-          )
-        ],
-        2
-      )
+        on: {
+          tutup: _vm.modalTutup,
+          confirmOk: _vm.modalConfirmOk,
+          successOk: _vm.modalTutup,
+          failOk: _vm.modalTutup
+        }
+      })
     ],
     1
   )
@@ -52938,15 +52835,15 @@ if (false) {
 }
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(189)
+var __vue_script__ = __webpack_require__(190)
 /* template */
-var __vue_template__ = __webpack_require__(196)
+var __vue_template__ = __webpack_require__(197)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -52984,24 +52881,26 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_plugins_forms_styling_uniform_min_js__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_form__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_plugins_forms_styling_uniform_min_js__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_form__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__modules_summernote_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_message_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_message_vue__);
 //
 //
 //
@@ -53156,6 +53055,126 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -53170,7 +53189,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		appModal: __WEBPACK_IMPORTED_MODULE_7__components_modal___default.a,
 		appSummernote: __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js___default.a,
-		appImageUpload: __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue___default.a
+		appImageUpload: __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_8__components_message_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -53179,7 +53199,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				deskripsi: ''
 			},
 			utama: '',
-			form: {},
 			summernoteconfig: {
 				height: 400,
 				popover: {
@@ -53196,39 +53215,101 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			modalState: '',
 			modalTitle: '',
 			modalColor: '',
-			option: {},
-			rules: {},
-			modelKategori: [],
-			initialize: '/api/artikel/create',
-			store: '/api/artikel/store',
-			storeKategori: '/api/artikel_kategori/store',
-			method: 'post',
-			state: ''
+			modalContent: '',
+			redirect: '/artikel/',
+			submited: false
 		};
-	},
-	beforeMount: function beforeMount() {
-		if (this.$route.meta.mode === 'edit') {
-			this.initialize = '/api/artikel/edit/' + this.$route.params.id;
-			this.store = '/api/artikel/update/' + this.$route.params.id;
-			this.method = 'put';
-		}
-		this.fetchKategori();
-		this.fetchData();
 	},
 	mounted: function mounted() {
 		__WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__["a" /* default */].core_function();
 		__WEBPACK_IMPORTED_MODULE_3__assets_plugins_forms_styling_uniform_min_js__["a" /* default */].uniform_function();
 		this.other();
 	},
+	created: function created() {
+		this.fetch();
+	},
 	updated: function updated() {
 		$('.bootstrap-select').selectpicker('refresh');
 		$.uniform.update();
 	},
 
+	watch: {
+		updateStat: function updateStat(value) {
+			this.modalShow = true;
+			this.modalState = value;
+			this.modalColor = '';
+
+			if (value === "success") {
+				this.modalTitle = this.updateResponse.message;
+			} else {
+				this.modalTitle = 'Oops terjadi kesalahan :(';
+				this.modalContent = this.updateResponse;
+			}
+		},
+		updateKategoriStat: function updateKategoriStat(value) {
+			this.modalState = value;
+			this.modalColor = '';
+
+			if (value === "success") {
+				this.modalTitle = this.updateKategoriResponse.message;
+			} else {
+				this.modalTitle = 'Oops terjadi kesalahan :(';
+				this.modalContent = this.updateKategoriResponse.message;
+			}
+		}
+	},
 	methods: {
+		fetch: function fetch() {
+			if (this.$route.meta.mode === 'edit') {
+				this.$store.dispatch('editArtikel', this.$route.params.id);
+			} else {
+				this.$store.dispatch('createArtikel');
+			}
+			this.$store.dispatch('loadArtikelKategoriAll');
+			this.$store.dispatch('loadCUAll');
+		},
+		save: function save() {
+			var _this = this;
+
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
+
+			this.$validator.validateAll('form-1').then(function (result) {
+				if (result) {
+					if (_this.$route.meta.mode === 'edit') {
+						_this.$store.dispatch('updateArtikel', [_this.$route.params.id, formData]);
+					} else {
+						_this.$store.dispatch('storeArtikel', formData);
+					}
+					_this.submited = false;
+				} else {
+					window.scrollTo(0, 0);
+					_this.submited = true;
+				}
+			});
+		},
+		saveKategori: function saveKategori() {
+			this.$store.dispatch('storeArtikelKategori', this.formKategori);
+		},
 		modalTutup: function modalTutup() {
+			if (this.updateKategoriStat === 'success') {
+				this.$store.dispatch('loadArtikelKategoriAll');
+				this.form.artikel_kategori_id = this.updateKategoriResponse.id;
+			} else if (this.updateStat === 'success') {
+				this.$router.push(this.redirect);
+			}
+
 			this.modalShow = false;
 		},
+		modalBackgroundClick: function modalBackgroundClick() {
+			if (this.modalState === 'success') {
+				this.modalTutup;
+			} else if (this.modalState === 'loading') {
+				// do nothing
+			} else {
+				this.modalShow = false;
+			}
+		},
+		modalOpen_Penulis: function modalOpen_Penulis() {},
 		modalOpen_Kategori: function modalOpen_Kategori() {
 			this.modalShow = true;
 			this.modalState = 'normal1';
@@ -53236,74 +53317,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.modalTitle = 'Tambah kategori artikel';
 			this.formKategori.nama = '';
 			this.formKategori.deskripsi = '';
-		},
-		modalSuccess: function modalSuccess(title) {
-			this.modalState = 'success';
-			this.modalTitle = title;
-			this.modalColor = '';
-		},
-		modalError: function modalError() {
-			this.modalState = 'error';
-			this.modalTitle = 'Oops terjadi kesalahan :(';
-			this.modalColor = '';
-		},
-		modalResultButton: function modalResultButton() {
-			if (this.state == 'save') {
-				if (this.modalState == 'success') {
-					this.$router.push(this.redirect);
-				} else {
-					this.modalShow = false;
-				}
-			} else {
-				this.modalShow = false;
-			}
-		},
-		fetchKategori: function fetchKategori() {
-			var vm = this;
-			var url = '/api/get_artikel_kategori';
-			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(url).then(function (response) {
-				__WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(vm.$data, 'modelKategori', response.data.model);
-			}).catch(function (error) {});
-		},
-		fetchData: function fetchData() {
-			var vm = this;
-			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.initialize).then(function (response) {
-				__WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(vm.$data, 'form', response.data.form);
-				__WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(vm.$data, 'rules', response.data.rules);
-				__WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(vm.$data, 'option', response.data.option);
-			}).catch(function (error) {});
-		},
-		save: function save() {
-			var vm = this;
-			vm.state = "save";
-			vm.modalState = 'loading';
-			var form = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_form__["a" /* toMulipartedForm */])(vm.form, vm.$route.meta.mode);
-			__WEBPACK_IMPORTED_MODULE_1_axios___default.a[vm.method](vm.store, form).then(function (response) {
-				if (response.data.saved) {
-					vm.modalSuccess(response.data.message);
-				} else {
-					vm.error();
-				}
-			}).catch(function (error) {
-				vm.modalError();
-				__WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(vm.$data, 'errors', error.response.data);
-			});
-		},
-		saveKategori: function saveKategori() {
-			var vm = this;
-			vm.modalState = 'loading';
-			vm.state = 'saveKategori';
-			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(this.storeKategori, this.formKategori).then(function (response) {
-				if (response.data.saved) {
-					vm.fetchKategori();
-					vm.form.artikel_kategori_id = response.data.id;
-					vm.modalSuccess(response.data.message);
-				} else {
-					vm.modalError();
-				}
-			}).catch(function (error) {
-				vm.modalError();
-			});
 		},
 		processFile: function processFile(event) {
 			this.form.gambar = event.target.files[0];
@@ -53321,11 +53334,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				fileButtonClass: 'action btn btn-default'
 			});
 		}
+	},
+	computed: {
+		form: function form() {
+			return this.$store.getters.getArtikel;
+		},
+		formStat: function formStat() {
+			return this.$store.getters.getArtikelLoadStat;
+		},
+		rules: function rules() {
+			return this.$store.getters.getArtikelRules;
+		},
+		option: function option() {
+			return this.$store.getters.getArtikelOption;
+		},
+		updateResponse: function updateResponse() {
+			return this.$store.getters.getArtikelUpdate;
+		},
+		updateStat: function updateStat() {
+			return this.$store.getters.getArtikelUpdateStat;
+		},
+		updateKategoriResponse: function updateKategoriResponse() {
+			return this.$store.getters.getArtikelKategoriUpdate;
+		},
+		updateKategoriStat: function updateKategoriStat() {
+			return this.$store.getters.getArtikelKategoriUpdateStat;
+		},
+		modelPenulis: function modelPenulis() {
+			return this.$store.getters.getPenulisS;
+		},
+		modelPus: function modelPus() {
+			return this.$store.getters.getPusS;
+		},
+		modelCU: function modelCU() {
+			return this.$store.getters.getCUS;
+		},
+		modelKategori: function modelKategori() {
+			return this.$store.getters.getArtikelKategoriS;
+		},
+		modalKategoriLoadStat: function modalKategoriLoadStat() {
+			return this.$store.getters.getArtikelKategoriLoadStatS;
+		}
 	}
 });
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53516,7 +53570,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53559,7 +53613,7 @@ function objectToFormData(obj, form, namespace) {
 }
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -53582,7 +53636,7 @@ module.exports = {
         var config = this.config;
         config.callbacks = {
             onInit: function onInit() {
-                $(vm.$el).summernote("code", vm.model);
+                $(vm.$el).summernote("code", '');
             },
             onChange: function onChange() {
                 vm.$emit('change', $(vm.$el).summernote('code'));
@@ -53591,20 +53645,31 @@ module.exports = {
                 vm.$emit('change', $(vm.$el).summernote('code'));
             }
         };
-        $(this.$el).summernote(config);
+        $(vm.$el).summernote(config);
+    },
+
+    watch: {
+        formStat: function formStat(value) {
+            $(this.$el).summernote("code", this.model);
+        }
+    },
+    computed: {
+        formStat: function formStat() {
+            return this.$store.getters.getArtikelLoadStat;
+        }
     }
 };
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(194)
+var __vue_script__ = __webpack_require__(195)
 /* template */
-var __vue_template__ = __webpack_require__(195)
+var __vue_template__ = __webpack_require__(196)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -53642,7 +53707,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53670,26 +53735,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			image: '',
-			state: ''
+			image: ''
 		};
 	},
 
 	props: {
-		image_temp: '',
+		image_loc: {
+			type: [String],
+			default: ''
+		},
+		image_type: {
+			type: [String],
+			default: '.jpg'
+		},
+		image_temp: {
+			default: ''
+		},
 		value: {
 			type: [String, File],
 			default: null
 		}
 	},
 	methods: {
-		ubahImage: function ubahImage() {
-			this.state = 'ubah';
-		},
 		upload: function upload(e) {
 			var files = e.target.files || e.dataTransfer.files;
 			if (!files.length) return;
@@ -53707,14 +53782,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		close: function close() {
 			this.$emit('input', null);
-			this.image = '';
+			this.image = '/images/no_image.jpg';
 			this.$refs.fileInput.value = null;
 		}
 	}
 });
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53725,92 +53800,41 @@ var render = function() {
     _c("div", { staticClass: "panel panel-flat" }, [
       _c("div", { staticClass: "panel-heading" }, [
         _c("div", { staticClass: "heading-elements" }, [
-          _vm.image
-            ? _c("ul", { staticClass: "icons-list" }, [
-                _c("li", [
-                  _c("a", {
-                    attrs: { "data-action": "close" },
-                    on: { click: _vm.close }
-                  })
-                ])
-              ])
-            : _vm._e()
+          _c("ul", { staticClass: "icons-list" }, [
+            _c("li", [
+              _c("a", {
+                attrs: { "data-action": "close" },
+                on: { click: _vm.close }
+              })
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
-      _vm.image_temp && _vm.state === ""
-        ? _c("div", { staticClass: "panel-body text-center" }, [
-            _c("img", {
+      _c("div", { staticClass: "panel-body text-center" }, [
+        _vm.image === "" && _vm.image_temp === ""
+          ? _c("img", {
               staticStyle: { width: "15em" },
-              attrs: { src: _vm.image_temp }
+              attrs: { src: "/images/no_image.jpg" }
             })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.state === "ubah",
-              expression: "state === 'ubah'"
-            }
-          ],
-          staticClass: "panel-body text-center"
-        },
-        [
-          _vm.image
+          : _vm.image === "" && _vm.image_temp !== ""
             ? _c("img", {
                 staticStyle: { width: "15em" },
-                attrs: { src: _vm.image }
+                attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type }
               })
             : _c("img", {
                 staticStyle: { width: "15em" },
-                attrs: { src: "/images/no_image.jpg" }
+                attrs: { src: _vm.image }
               })
-        ]
-      )
+      ])
     ]),
     _vm._v(" "),
-    _vm.image_temp && _vm.state === ""
-      ? _c(
-          "button",
-          {
-            staticClass: "btn btn-default",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.ubahImage($event)
-              }
-            }
-          },
-          [_vm._v("Ubah")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.state === "ubah",
-            expression: "state === 'ubah'"
-          }
-        ]
-      },
-      [
-        _c("input", {
-          ref: "fileInput",
-          staticClass: "file-styled",
-          attrs: { type: "file", accept: "image/*" },
-          on: { change: _vm.upload }
-        })
-      ]
-    )
+    _c("input", {
+      ref: "fileInput",
+      staticClass: "file-styled",
+      attrs: { type: "file", accept: "image/*" },
+      on: { change: _vm.upload }
+    })
   ])
 }
 var staticRenderFns = []
@@ -53824,7 +53848,7 @@ if (false) {
 }
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53865,458 +53889,941 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "page-container" }, [
         _c("div", { staticClass: "page-content" }, [
-          _c("div", { staticClass: "content-wrapper" }, [
-            _c("div", { staticClass: "panel panel-flat" }, [
-              _c("div", { staticClass: "panel-body" }, [
-                _c(
-                  "form",
-                  {
-                    attrs: { enctype: "multipart/form-data" },
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        _vm.save($event)
+          _c(
+            "div",
+            { staticClass: "content-wrapper" },
+            [
+              _vm.submited
+                ? _c("message", { attrs: { show: _vm.errors.any() } }, [
+                    _c("p", [
+                      _c("i", { staticClass: "icon-cancel-circle2" }),
+                      _vm._v(" Oops terjadi kesalahan:")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.errors.items, function(error) {
+                        return _c("li", [_vm._v(_vm._s(error.msg))])
+                      })
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "panel panel-flat" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c(
+                    "form",
+                    {
+                      attrs: {
+                        enctype: "multipart/form-data",
+                        "data-vv-scope": "form-1"
+                      },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.save($event)
+                        }
                       }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group has-feedback",
-                            class: { "has-error": _vm.errors.has("nama") }
-                          },
-                          [
-                            _c(
-                              "h5",
-                              {
-                                class: { "text-danger": _vm.errors.has("nama") }
-                              },
-                              [_vm._v("Judul:")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|min:5",
-                                  expression: "'required|min:5'"
-                                },
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.nama,
-                                  expression: "form.nama"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "nama",
-                                placeholder: "Silahkan masukkan judul artikel"
-                              },
-                              domProps: { value: _vm.form.nama },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.form.nama = $event.target.value
-                                }
+                    },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.nama")
                               }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.has("nama")
-                              ? _c(
-                                  "div",
-                                  { staticClass: "form-control-feedback" },
-                                  [
-                                    _c("i", {
-                                      staticClass: "icon-cancel-circle2"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c(
-                              "small",
-                              {
-                                staticClass: "text-muted",
-                                class: { "text-danger": _vm.errors.has("nama") }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "icon-arrow-small-right"
-                                }),
-                                _vm._v(
-                                  " Nama harus diisi dan minimal 5 karakter"
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group has-feedback",
-                            class: { "has-error": _vm.errors.has("penulis") }
-                          },
-                          [
-                            _c(
-                              "h5",
-                              {
-                                class: {
-                                  "text-danger": _vm.errors.has("penulis")
-                                }
-                              },
-                              [_vm._v("Penulis:")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
+                            },
+                            [
+                              _c(
+                                "h5",
                                 {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required|min:5",
-                                  expression: "'required|min:5'"
-                                },
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.penulis,
-                                  expression: "form.penulis"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "penulis",
-                                placeholder: "Silahkan masukkan nama penulis"
-                              },
-                              domProps: { value: _vm.form.penulis },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                                  class: {
+                                    "text-danger": _vm.errors.has("form-1.nama")
                                   }
-                                  _vm.form.penulis = $event.target.value
+                                },
+                                [_vm._v("Judul:")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5",
+                                    expression: "'required|min:5'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.nama,
+                                    expression: "form.nama"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "nama",
+                                  placeholder: "Silahkan masukkan judul artikel"
+                                },
+                                domProps: { value: _vm.form.nama },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.form.nama = $event.target.value
+                                  }
                                 }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.nama")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has("form-1.nama")
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(
+                                    " Judul harus diisi dan minimal 5 karakter"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.id_pus")
                               }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.has("penulis")
-                              ? _c(
-                                  "div",
-                                  { staticClass: "form-control-feedback" },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_pus"
+                                    )
+                                  }
+                                },
+                                [_vm._v("Puskopdit:")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.id_pus,
+                                      expression: "form.id_pus"
+                                    },
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
+                                    }
+                                  ],
+                                  staticClass: "bootstrap-select",
+                                  attrs: {
+                                    name: "id_pus",
+                                    "data-width": "100%"
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.form.id_pus = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "" } },
+                                    [_vm._v("Silahkan pilih Puskopdit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", {
+                                    attrs: { "data-divider": "true" }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.modelPus, function(pus) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: pus.id } },
+                                      [_vm._v(_vm._s(pus.nama))]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.id_pus")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_pus"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(" Puskopdit harus diisi")
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.id_cu")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_cu"
+                                    )
+                                  }
+                                },
+                                [_vm._v("CU:")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.id_cu,
+                                      expression: "form.id_cu"
+                                    },
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
+                                    }
+                                  ],
+                                  staticClass: "bootstrap-select",
+                                  attrs: {
+                                    name: "id_cu",
+                                    "data-width": "100%"
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.form.id_cu = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "" } },
+                                    [_vm._v("Silahkan pilih CU")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "bkcu" } }, [
+                                    _vm._v("Puskopdit BKCU Kalimantan")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", {
+                                    attrs: { "data-divider": "true" }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.modelCU, function(cu) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: cu.id } },
+                                      [_vm._v(_vm._s(cu.nama))]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.id_cu")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_cu"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(" CU harus diisi")
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.id_cu")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_cu"
+                                    )
+                                  }
+                                },
+                                [_vm._v("CU:")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.id_cu,
+                                      expression: "form.id_cu"
+                                    },
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
+                                    }
+                                  ],
+                                  staticClass: "bootstrap-select",
+                                  attrs: {
+                                    name: "id_cu",
+                                    "data-width": "100%"
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.form.id_cu = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "" } },
+                                    [_vm._v("Silahkan pilih CU")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "bkcu" } }, [
+                                    _vm._v("Puskopdit BKCU Kalimantan")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", {
+                                    attrs: { "data-divider": "true" }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.modelCU, function(cu) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: cu.id } },
+                                      [_vm._v(_vm._s(cu.nama))]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.id_cu")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_cu"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(" CU harus diisi")
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "form-1.id_artikel_penulis"
+                                )
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_artikel_penulis"
+                                    )
+                                  }
+                                },
+                                [_vm._v("Penulis:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "input-group" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_artikel_penulis,
+                                        expression: "form.id_artikel_penulis"
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
+                                    staticClass: "bootstrap-select",
+                                    attrs: {
+                                      name: "id_artikel_penulis",
+                                      "data-width": "100%"
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.form.id_artikel_penulis = $event
+                                          .target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      }
+                                    }
+                                  },
                                   [
-                                    _c("i", {
-                                      staticClass: "icon-cancel-circle2"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [_vm._v("Silahkan pilih penulis")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("option", {
+                                      attrs: { "data-divider": "true" }
+                                    }),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelPenulis, function(penulis) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: penulis.id } },
+                                        [_vm._v(_vm._s(penulis.nama))]
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _vm.modelPenulis === undefined
+                                      ? _c("option", [_vm._m(1)])
+                                      : _vm._e()
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group-btn" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-default",
+                                      attrs: {
+                                        type: "button",
+                                        "data-popup": "tooltip",
+                                        title: "Tambah kategori"
+                                      },
+                                      on: { click: _vm.modalOpen_Penulis }
+                                    },
+                                    [_c("i", { staticClass: "icon-plus22" })]
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.id_artikel_penulis")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_artikel_penulis"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(" Penulis harus dipilih")
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Kategori:")]),
                             _vm._v(" "),
-                            _c(
-                              "small",
-                              {
-                                staticClass: "text-muted",
-                                class: {
-                                  "text-danger": _vm.errors.has("penulis")
-                                }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "icon-arrow-small-right"
-                                }),
-                                _vm._v(
-                                  " Penulis harus diisi dan minimal 5 karakter"
+                            _c("div", { staticClass: "input-group" }, [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.id_artikel_kategori,
+                                      expression: "form.id_artikel_kategori"
+                                    }
+                                  ],
+                                  staticClass: "bootstrap-select",
+                                  attrs: { "data-width": "100%" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.form.id_artikel_kategori = $event
+                                        .target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "1" } },
+                                    [_vm._v("Silahkan pilih kategori")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", {
+                                    attrs: { "data-divider": "true" }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.modelKategori, function(kategori) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: kategori.id } },
+                                      [_vm._v(_vm._s(kategori.nama))]
+                                    )
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.modelKategori === undefined
+                                    ? _c("option", [_vm._m(2)])
+                                    : _vm._e()
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "input-group-btn" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-default",
+                                    attrs: {
+                                      type: "button",
+                                      "data-popup": "tooltip",
+                                      title: "Tambah kategori"
+                                    },
+                                    on: { click: _vm.modalOpen_Kategori }
+                                  },
+                                  [_c("i", { staticClass: "icon-plus22" })]
                                 )
-                              ]
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("h5", [_vm._v("Kategori:")]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "input-group" }, [
-                            _c(
-                              "select",
-                              {
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Terbitkan:")]),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "radio-inline" }, [
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.artikel_kategori_id,
-                                    expression: "form.artikel_kategori_id"
+                                    value: _vm.form.terbitkan,
+                                    expression: "form.terbitkan"
                                   }
                                 ],
-                                staticClass: "bootstrap-select",
-                                attrs: { "data-width": "100%" },
+                                staticClass: "styled",
+                                attrs: {
+                                  type: "radio",
+                                  name: "terbitkan",
+                                  value: "1"
+                                },
+                                domProps: {
+                                  checked: _vm._q(_vm.form.terbitkan, "1")
+                                },
                                 on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.form.artikel_kategori_id = $event.target
-                                      .multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                  __c: function($event) {
+                                    _vm.form.terbitkan = "1"
                                   }
                                 }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  { attrs: { disabled: "", value: "1" } },
-                                  [_vm._v("Silahkan pilih kategori")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", {
-                                  attrs: { "data-divider": "true" }
-                                }),
-                                _vm._v(" "),
-                                _vm._l(_vm.modelKategori, function(kategori) {
-                                  return _c(
-                                    "option",
-                                    { domProps: { value: kategori.id } },
-                                    [_vm._v(_vm._s(kategori.nama))]
-                                  )
-                                })
-                              ],
-                              2
-                            ),
+                              }),
+                              _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
+                            ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "input-group-btn" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-default",
-                                  attrs: {
-                                    type: "button",
-                                    "data-popup": "tooltip",
-                                    title: "Tambah kategori"
-                                  },
-                                  on: { click: _vm.modalOpen_Kategori }
+                            _c("label", { staticClass: "radio-inline" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.terbitkan,
+                                    expression: "form.terbitkan"
+                                  }
+                                ],
+                                staticClass: "styled",
+                                attrs: {
+                                  type: "radio",
+                                  name: "terbitkan",
+                                  value: "0"
                                 },
-                                [_c("i", { staticClass: "icon-plus22" })]
-                              )
+                                domProps: {
+                                  checked: _vm._q(_vm.form.terbitkan, "0")
+                                },
+                                on: {
+                                  __c: function($event) {
+                                    _vm.form.terbitkan = "0"
+                                  }
+                                }
+                              }),
+                              _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
                             ])
-                          ]),
-                          _vm._v(" "),
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v(" ")
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("h5", [_vm._v("Terbitkan:")]),
-                          _vm._v(" "),
-                          _c("label", { staticClass: "radio-inline" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.terbitkan,
-                                  expression: "form.terbitkan"
-                                }
-                              ],
-                              staticClass: "styled",
-                              attrs: {
-                                type: "radio",
-                                name: "terbitkan",
-                                value: "1"
-                              },
-                              domProps: {
-                                checked: _vm._q(_vm.form.terbitkan, "1")
-                              },
-                              on: {
-                                __c: function($event) {
-                                  _vm.form.terbitkan = "1"
-                                }
-                              }
-                            }),
-                            _vm._v("\r\n\t\t\t\t\t\tYa\r\n\t\t\t\t\t")
-                          ]),
-                          _vm._v(" "),
-                          _c("label", { staticClass: "radio-inline" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.terbitkan,
-                                  expression: "form.terbitkan"
-                                }
-                              ],
-                              staticClass: "styled",
-                              attrs: {
-                                type: "radio",
-                                name: "terbitkan",
-                                value: "0"
-                              },
-                              domProps: {
-                                checked: _vm._q(_vm.form.terbitkan, "0")
-                              },
-                              on: {
-                                __c: function($event) {
-                                  _vm.form.terbitkan = "0"
-                                }
-                              }
-                            }),
-                            _vm._v("\r\n\t\t\t\t\t\tTidak\r\n\t\t\t\t\t")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("h5", [_vm._v("Utamakan:")]),
-                          _vm._v(" "),
-                          _c("label", { staticClass: "radio-inline" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.utamakan,
-                                  expression: "form.utamakan"
-                                }
-                              ],
-                              staticClass: "styled",
-                              attrs: { type: "radio", name: "utamakan" },
-                              domProps: {
-                                value: 1,
-                                checked: _vm._q(_vm.form.utamakan, 1)
-                              },
-                              on: {
-                                __c: function($event) {
-                                  _vm.form.utamakan = 1
-                                }
-                              }
-                            }),
-                            _vm._v("\r\n\t\t\t\t\t\tYa\r\n\t\t\t\t\t")
-                          ]),
-                          _vm._v(" "),
-                          _c("label", { staticClass: "radio-inline" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.utamakan,
-                                  expression: "form.utamakan"
-                                }
-                              ],
-                              staticClass: "styled",
-                              attrs: { type: "radio", name: "utamakan" },
-                              domProps: {
-                                value: 0,
-                                checked: _vm._q(_vm.form.utamakan, 0)
-                              },
-                              on: {
-                                __c: function($event) {
-                                  _vm.form.utamakan = 0
-                                }
-                              }
-                            }),
-                            _vm._v("\r\n\t\t\t\t\t\tTidak\r\n\t\t\t\t\t")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("h5", [_vm._v("Gambar Utama:")]),
-                            _vm._v(" "),
-                            _c("app-image-upload", {
-                              attrs: {
-                                image_temp:
-                                  "/images/artikel/" + _vm.form.gambar + ".jpg"
-                              },
-                              model: {
-                                value: _vm.form.gambar,
-                                callback: function($$v) {
-                                  _vm.form.gambar = $$v
-                                },
-                                expression: "form.gambar"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("h5", [_vm._v("Isi Artikel:")]),
-                            _vm._v(" "),
-                            _c("app-summernote", {
-                              attrs: {
-                                name: "editor",
-                                model: _vm.form.content,
-                                config: _vm.summernoteconfig
-                              },
-                              on: {
-                                change: function(value) {
-                                  _vm.form.content = value
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "text-right" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "btn btn-default",
-                            attrs: { type: "button", to: { name: "artikel" } }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-arrow-left13" }),
-                            _vm._v(" Batal\r\n\t\t\t")
-                          ]
-                        ),
+                        ]),
                         _vm._v(" "),
-                        _vm._m(1)
-                      ],
-                      1
-                    )
-                  ]
-                )
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Utamakan:")]),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "radio-inline" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.utamakan,
+                                    expression: "form.utamakan"
+                                  }
+                                ],
+                                staticClass: "styled",
+                                attrs: { type: "radio", name: "utamakan" },
+                                domProps: {
+                                  value: 1,
+                                  checked: _vm._q(_vm.form.utamakan, 1)
+                                },
+                                on: {
+                                  __c: function($event) {
+                                    _vm.form.utamakan = 1
+                                  }
+                                }
+                              }),
+                              _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
+                            ]),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "radio-inline" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.utamakan,
+                                    expression: "form.utamakan"
+                                  }
+                                ],
+                                staticClass: "styled",
+                                attrs: { type: "radio", name: "utamakan" },
+                                domProps: {
+                                  value: 0,
+                                  checked: _vm._q(_vm.form.utamakan, 0)
+                                },
+                                on: {
+                                  __c: function($event) {
+                                    _vm.form.utamakan = 0
+                                  }
+                                }
+                              }),
+                              _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("h5", [_vm._v("Gambar Utama:")]),
+                              _vm._v(" "),
+                              _c("app-image-upload", {
+                                attrs: {
+                                  image_loc: "/images/artikel/",
+                                  image_temp: _vm.form.gambar
+                                },
+                                model: {
+                                  value: _vm.form.gambar,
+                                  callback: function($$v) {
+                                    _vm.form.gambar = $$v
+                                  },
+                                  expression: "form.gambar"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("h5", [_vm._v("Isi Artikel:")]),
+                              _vm._v(" "),
+                              _c("app-summernote", {
+                                attrs: {
+                                  name: "editor",
+                                  model: _vm.form.content,
+                                  config: _vm.summernoteconfig
+                                },
+                                on: {
+                                  change: function(value) {
+                                    _vm.form.content = value
+                                  }
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "text-right" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-default",
+                              attrs: { type: "button", to: { name: "artikel" } }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-arrow-left13" }),
+                              _vm._v(" Batal\n\t\t\t\t\t\t\t\t")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: {
+                                type: "submit",
+                                disabled: _vm.errors.any("form-1")
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-floppy-disk" }),
+                              _vm._v(" Simpan")
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ])
               ])
-            ])
-          ])
+            ],
+            1
+          )
         ])
       ]),
       _vm._v(" "),
@@ -54326,20 +54833,23 @@ var render = function() {
           attrs: {
             show: _vm.modalShow,
             state: _vm.modalState,
+            title: _vm.modalTitle,
+            content: _vm.modalContent,
             color: _vm.modalColor
           },
           on: {
             batal: _vm.modalTutup,
             tutup: _vm.modalTutup,
             successOk: _vm.modalTutup,
-            errorOk: _vm.modalTutup
+            failOk: _vm.modalTutup,
+            backgroundClick: _vm.modalBackgroundClick
           }
         },
         [
           _c(
             "template",
             { attrs: { slot: "modal-title" }, slot: "modal-title" },
-            [_vm._v("\r\n\t\t" + _vm._s(_vm.modalTitle) + "\r\n\t")]
+            [_vm._v("\n\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t")]
           ),
           _vm._v(" "),
           _c(
@@ -54353,7 +54863,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(
-                  "\r\n\t\t\tSilahkan tambahkan sendiri dan jangan lupa berikan deskripsi kategori tersebut.\r\n\t\t"
+                  "\n\t\t\t\tSilahkan tambahkan sendiri dan jangan lupa berikan deskripsi kategori tersebut.\n\t\t\t"
                 )
               ]),
               _vm._v(" "),
@@ -54556,11 +55066,64 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-      [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
-    )
+    return _c("span", { staticClass: "text-warning" }, [
+      _c("i", { staticClass: "icon-warning22" }),
+      _vm._v(
+        "Penulis tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu."
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-warning" }, [
+      _c("i", { staticClass: "icon-warning22" }),
+      _vm._v(
+        "Kategori tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu."
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "well well-sm bg-info" }, [
+        _c("i", { staticClass: "icon-info22" }),
+        _vm._v(" Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
   }
 ]
 render._withStripped = true
@@ -54573,18 +55136,27 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_modal__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getters__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mutations__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_artikel__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_artikel_kategori__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_artikel_penulis__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_cu__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_pus__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getters__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__mutations__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__actions__ = __webpack_require__(206);
+
+
+
+
+
 
 
 
@@ -54597,16 +55169,20 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: {},
-	getters: __WEBPACK_IMPORTED_MODULE_3__getters__["a" /* default */],
-	mutations: __WEBPACK_IMPORTED_MODULE_4__mutations__["a" /* default */],
-	actions: __WEBPACK_IMPORTED_MODULE_5__actions__["a" /* default */],
+	getters: __WEBPACK_IMPORTED_MODULE_7__getters__["a" /* default */],
+	mutations: __WEBPACK_IMPORTED_MODULE_8__mutations__["a" /* default */],
+	actions: __WEBPACK_IMPORTED_MODULE_9__actions__["a" /* default */],
 	modules: {
-		modal: __WEBPACK_IMPORTED_MODULE_2__modules_modal__["a" /* default */]
+		artikel: __WEBPACK_IMPORTED_MODULE_2__modules_artikel__["a" /* artikel */],
+		artikelKategori: __WEBPACK_IMPORTED_MODULE_3__modules_artikel_kategori__["a" /* artikelKategori */],
+		artikelPenulis: __WEBPACK_IMPORTED_MODULE_4__modules_artikel_penulis__["a" /* artikelPenulis */],
+		CU: __WEBPACK_IMPORTED_MODULE_5__modules_cu__["a" /* CU */],
+		pus: __WEBPACK_IMPORTED_MODULE_6__modules_pus__["a" /* pus */]
 	}
 });
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55551,144 +56127,3588 @@ var index_esm = {
 
 
 /***/ }),
-/* 199 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(4);
-var _getters, _mutations;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var state = {
-    modalShow: false,
-    modalSize: '',
-    modalColor: '',
-    modalState: '',
-    modalTitle: '',
-    modalContent: '',
-    modalButton: '',
-    modalData: '',
-    modalExcelData: '',
-    modalExcelFields: '',
-    modalExcelMeta: '',
-    modalExcelFilename: ''
-};
-
-var getters = (_getters = {}, _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["j" /* getModalShow */], function (state) {
-    return state.modalShow;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["l" /* getModalState */], function (state) {
-    return state.modalState;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["k" /* getModalSize */], function (state) {
-    return state.modalSize;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["c" /* getModalColor */], function (state) {
-    return state.modalColor;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["m" /* getModalTitle */], function (state) {
-    return state.modalTitle;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["d" /* getModalContent */], function (state) {
-    return state.modalContent;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["b" /* getModalButton */], function (state) {
-    return state.modalButton;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["e" /* getModalData */], function (state) {
-    return state.modalData;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["f" /* getModalExcelData */], function (state) {
-    return state.modalExcelData;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["g" /* getModalExcelFields */], function (state) {
-    return state.modalExcelFields;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["i" /* getModalExcelMeta */], function (state) {
-    return state.modalExcelMeta;
-}), _defineProperty(_getters, __WEBPACK_IMPORTED_MODULE_0__types__["h" /* getModalExcelFilename */], function (state) {
-    return state.modalExcelFilename;
-}), _getters);
-
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["v" /* mutateModalShow */], function (state, payload) {
-    state.modalShow = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["x" /* mutateModalState */], function (state, payload) {
-    state.modalState = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["w" /* mutateModalSize */], function (state, payload) {
-    state.modalSize = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["o" /* mutateModalColor */], function (state, payload) {
-    state.modalColor = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["y" /* mutateModalTitle */], function (state, payload) {
-    state.modalTitle = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["p" /* mutateModalContent */], function (state, payload) {
-    state.modalContent = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["n" /* mutateModalButton */], function (state, payload) {
-    state.modalButton = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["q" /* mutateModalData */], function (state, payload) {
-    state.modalData = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["r" /* mutateModalExcelData */], function (state, payload) {
-    state.modalExcelData = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["s" /* mutateModalExcelFields */], function (state, payload) {
-    state.modalExcelFields = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["u" /* mutateModalExcelMeta */], function (state, payload) {
-    state.modalExcelMeta = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__types__["t" /* mutateModalExcelFilename */], function (state, payload) {
-    state.modalExcelFilename = payload;
-}), _mutations);
-
-var actions = _defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__types__["a" /* actionModalShow */], function (_ref, payload) {
-    var commit = _ref.commit;
-
-    commit(__WEBPACK_IMPORTED_MODULE_0__types__["v" /* mutateModalShow */], payload);
-});
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    state: state,
-    getters: getters,
-    mutations: mutations,
-    actions: actions
-});
-
-/***/ }),
 /* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(4);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikel; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__ = __webpack_require__(201);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 
-/* harmony default export */ __webpack_exports__["a"] = ({});
+
+var artikel = {
+  state: {
+    artikelS: [],
+    artikelLoadStatS: '',
+    artikel: {},
+    artikelLoadStat: '',
+    artikelUpdate: '',
+    artikelUpdateStat: '',
+    artikelRules: [],
+    artikelOption: []
+  },
+
+  actions: {
+    loadArtikelS: function loadArtikelS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setArtikelLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].getArtikelS(p).then(function (response) {
+        commit('setArtikelS', response.data.model);
+        commit('setArtikelLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setArtikelS', error.response);
+        commit('setArtikelLoadStatS', 'fail');
+      });
+    },
+    loadArtikel: function loadArtikel(_ref2, id) {
+      var commit = _ref2.commit;
+
+      commit('setArtikelLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].getArtikel(id).then(function (response) {
+        commit('setArtikel', response.data);
+        commit('setArtikelLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setArtikelS', error.response);
+        commit('setArtikelLoadStatS', 'fail');
+      });
+    },
+    createArtikel: function createArtikel(_ref3) {
+      var commit = _ref3.commit;
+
+      commit('setArtikelLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].createArtikel().then(function (response) {
+        commit('setArtikel', response.data.form);
+        commit('setArtikelRules', response.data.rules);
+        commit('setArtikelOption', response.data.option);
+        commit('setArtikelLoadStat', 'success');
+      }).catch(function () {
+        commit('setArtikel', []);
+        commit('setArtikelRules', []);
+        commit('setArtikelOption', []);
+        commit('setArtikelLoadStat', 'fail');
+      });
+    },
+    storeArtikel: function storeArtikel(_ref4, form) {
+      var _this = this;
+
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setArtikelUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].storeArtikel(form).then(function (response) {
+        if (response.data.saved) {
+          commit('setArtikelUpdate', response.data);
+          commit('setArtikelUpdateStat', 'success');
+        } else {
+          commit('setArtikelUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this.errors = error.response.data;
+          commit('setArtikelUpdate', _this.errors);
+        } else {
+          commit('setArtikelUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setArtikelUpdateStat', 'fail');
+      });
+    },
+    editArtikel: function editArtikel(_ref5, id) {
+      var commit = _ref5.commit;
+
+      commit('setArtikelLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].editArtikel(id).then(function (response) {
+        commit('setArtikel', response.data.form);
+        commit('setArtikelRules', response.data.rules);
+        commit('setArtikelOption', response.data.option);
+        commit('setArtikelLoadStat', 'success');
+      }).catch(function () {
+        commit('setArtikel', []);
+        commit('setArtikelRules', []);
+        commit('setArtikelOption', []);
+        commit('setArtikelLoadStat', 'fail');
+      });
+    },
+    updateArtikel: function updateArtikel(_ref6, _ref7) {
+      var _this2 = this;
+
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      var _ref8 = _slicedToArray(_ref7, 2),
+          id = _ref8[0],
+          form = _ref8[1];
+
+      commit('setArtikelUpdateStat', form);
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].updateArtikel(id, form).then(function (response) {
+        if (response.data.saved) {
+          commit('setArtikelUpdate', response.data);
+          commit('setArtikelUpdateStat', 'success');
+        } else {
+          commit('setArtikelUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this2.errors = error.response.data;
+          commit('setArtikelUpdate', _this2.errors);
+        } else {
+          commit('setArtikelUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setArtikelUpdateStat', 'fail');
+      });
+    },
+    updateArtikelTerbitkan: function updateArtikelTerbitkan(_ref9, id) {
+      var _this3 = this;
+
+      var commit = _ref9.commit,
+          state = _ref9.state,
+          dispatch = _ref9.dispatch;
+
+      commit('setArtikelUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].updateTerbitkan(id).then(function (response) {
+        commit('setArtikelUpdate', response.data);
+        commit('setArtikelUpdateStat', 'success');
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this3.errors = error.response.data;
+          commit('setArtikelUpdate', _this3.errors);
+          commit('setArtikelUpdateStat', 'fail');
+        }
+      });
+    },
+    updateArtikelUtamakan: function updateArtikelUtamakan(_ref10, id) {
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
+
+      commit('setArtikelUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].updateUtamakan(id).then(function (response) {
+        commit('setArtikelUpdate', response.data);
+        commit('setArtikelUpdateStat', 'success');
+      }).catch(function (error) {
+        commit('setArtikelS', error.response);
+        commit('setArtikelLoadStatS', 'fail');
+      });
+    },
+    deleteArtikel: function deleteArtikel(_ref11, id) {
+      var commit = _ref11.commit,
+          state = _ref11.state,
+          dispatch = _ref11.dispatch;
+
+      commit('setArtikelUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].deleteArtikel(id).then(function (response) {
+        commit('setArtikelUpdate', response.data);
+        commit('setArtikelUpdateStat', 'success');
+      }).catch(function (error) {
+        commit('setArtikelS', error.response);
+        commit('setArtikelLoadStatS', 'fail');
+      });
+    },
+    resetArtikelUpdateStat: function resetArtikelUpdateStat(_ref12) {
+      var commit = _ref12.commit;
+
+      commit('setArtikelUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setArtikelS: function setArtikelS(state, artikelS) {
+      state.artikelS = artikelS;
+    },
+    setArtikelLoadStatS: function setArtikelLoadStatS(state, status) {
+      state.artikelLoadStatS = status;
+    },
+    setArtikel: function setArtikel(state, artikel) {
+      state.artikel = artikel;
+    },
+    setArtikelLoadStat: function setArtikelLoadStat(state, status) {
+      state.artikelLoadStat = status;
+    },
+    setArtikelUpdateStat: function setArtikelUpdateStat(state, status) {
+      state.artikelUpdateStat = status;
+    },
+    setArtikelUpdate: function setArtikelUpdate(state, data) {
+      state.artikelUpdate = data;
+    },
+    setArtikelRules: function setArtikelRules(state, rules) {
+      state.artikelRules = rules;
+    },
+    setArtikelOption: function setArtikelOption(state, option) {
+      state.artikelOption = option;
+    }
+  },
+
+  getters: {
+    getArtikelS: function getArtikelS(state) {
+      return state.artikelS;
+    },
+    getArtikelLoadStatS: function getArtikelLoadStatS(state) {
+      return state.artikelLoadStatS;
+    },
+    getArtikel: function getArtikel(state) {
+      return state.artikel;
+    },
+    getArtikelLoadStat: function getArtikelLoadStat(state) {
+      return state.artikelLoadStat;
+    },
+    getArtikelUpdateStat: function getArtikelUpdateStat(state) {
+      return state.artikelUpdateStat;
+    },
+    getArtikelUpdate: function getArtikelUpdate(state) {
+      return state.artikelUpdate;
+    },
+    getArtikelRules: function getArtikelRules(state) {
+      return state.artikelRules;
+    },
+    getArtikelOption: function getArtikelOption(state) {
+      return state.artikelOption;
+    }
+  }
+};
 
 /***/ }),
 /* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
 
 
-/* harmony default export */ __webpack_exports__["a"] = ({});
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getArtikelS: function getArtikelS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getArtikel: function getArtikel(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/' + id);
+  },
+
+  createArtikel: function createArtikel() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/create');
+  },
+
+  storeArtikel: function storeArtikel(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/store', form);
+  },
+
+  editArtikel: function editArtikel(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/edit/' + id);
+  },
+
+  updateArtikel: function updateArtikel(id, form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/update/' + id, form);
+  },
+
+  updateTerbitkan: function updateTerbitkan(id) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/updateTerbitkan/' + id);
+  },
+
+  updateUtamakan: function updateUtamakan(id) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/updateUtamakan/' + id);
+  },
+
+  deleteArtikel: function deleteArtikel(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/' + id);
+  }
+});
 
 /***/ }),
 /* 202 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(4);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikelKategori; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__ = __webpack_require__(203);
 
 
-/* harmony default export */ __webpack_exports__["a"] = ({});
+var artikelKategori = {
+  state: {
+    artikelKategoriS: [],
+    artikelKategoriLoadStatS: '',
+    artikelKategori: {},
+    artikelKategoriLoadStat: '',
+    artikelKategoriUpdate: [],
+    artikelKategoriUpdateStat: ''
+  },
+
+  actions: {
+    loadArtikelKategoriS: function loadArtikelKategoriS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setArtikelKategoriLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__["a" /* default */].getArtikelKategoriS(p).then(function (response) {
+        commit('setArtikelKategoriS', response.data.model);
+        commit('setArtikelKategoriLoadStatS', 'success');
+      }).catch(function () {
+        commit('setArtikelKategoriS', []);
+        commit('setArtikelKategoriLoadStatS', 'fail');
+      });
+    },
+    loadArtikelKategoriAll: function loadArtikelKategoriAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setArtikelKategoriLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__["a" /* default */].getArtikelKategoriAll().then(function (response) {
+        commit('setArtikelKategoriS', response.data.model);
+        commit('setArtikelKategoriLoadStatS', 'success');
+      }).catch(function () {
+        commit('setArtikelKategoriS', []);
+        commit('setArtikelKategoriLoadStatS', 'fail');
+      });
+    },
+    loadArtikelKategori: function loadArtikelKategori(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setArtikelKategoriLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__["a" /* default */].getArtikelKategori(id).then(function (response) {
+        commit('setArtikelKategori', response.data);
+        commit('setArtikelKategoriLoadStat', 'success');
+      }).catch(function () {
+        commit('setArtikelKategori', []);
+        commit('setArtikelKategoriLoadStat', 'fail');
+      });
+    },
+    storeArtikelKategori: function storeArtikelKategori(_ref4, form) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setArtikelKategoriUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__["a" /* default */].storeArtikelKategori(form).then(function (response) {
+        commit('setArtikelKategoriUpdate', response.data);
+        commit('setArtikelKategoriUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelKategoriUpdate', response.data);
+        commit('setArtikelKategoriUpdateStat', 'fail');
+      });
+    },
+    updateArtikelKategori: function updateArtikelKategori(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setArtikelKategoriUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__["a" /* default */].updateArtikelKategori(form).then(function (response) {
+        commit('setArtikelKategoriUpdate', response.data);
+        commit('setArtikelKategoriUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelKategoriUpdate', response.data);
+        commit('setArtikelKategoriUpdateStat', 'fail');
+      });
+    },
+    deleteArtikelKategori: function deleteArtikelKategori(_ref6, id) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setArtikelKategoriUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__["a" /* default */].deleteArtikelKategori(id).then(function (response) {
+        commit('setArtikelKategoriUpdate', response.data);
+        commit('setArtikelKategoriUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelKategoriUpdate', response.data);
+        commit('setArtikelKategoriUpdateStat', 'fail');
+      });
+    },
+    resetArtikelKategoriUpdateStat: function resetArtikelKategoriUpdateStat(_ref7) {
+      var commit = _ref7.commit;
+
+      commit('setArtikelKategoriUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setArtikelKategoriS: function setArtikelKategoriS(state, artikelKategoriS) {
+      state.artikelKategoriS = artikelKategoriS;
+    },
+    setArtikelKategoriLoadStatS: function setArtikelKategoriLoadStatS(state, status) {
+      state.artikelKategoriLoadStatS = status;
+    },
+    setArtikelKategori: function setArtikelKategori(state, artikelKategori) {
+      state.artikelKategori = artikelKategori;
+    },
+    setArtikelKategoriLoadStat: function setArtikelKategoriLoadStat(state, status) {
+      state.artikelKategoriLoadStat = status;
+    },
+    setArtikelKategoriUpdate: function setArtikelKategoriUpdate(state, data) {
+      state.artikelKategoriUpdate = data;
+    },
+    setArtikelKategoriUpdateStat: function setArtikelKategoriUpdateStat(state, status) {
+      state.artikelKategoriUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getArtikelKategoriS: function getArtikelKategoriS(state) {
+      return state.artikelKategoriS;
+    },
+    getArtikelKategoriLoadStatS: function getArtikelKategoriLoadStatS(state) {
+      return state.artikelKategoriLoadStatS;
+    },
+    getArtikelKategori: function getArtikelKategori(state) {
+      return state.artikelKategori;
+    },
+    getArtikelKategoriLoadStat: function getArtikelKategoriLoadStat(state) {
+      return state.artikelKategoriLoadStat;
+    },
+    getArtikelKategoriUpdateStat: function getArtikelKategoriUpdateStat(state) {
+      return state.artikelKategoriUpdateStat;
+    },
+    getArtikelKategoriUpdate: function getArtikelKategoriUpdate(state) {
+      return state.artikelKategoriUpdate;
+    }
+  }
+};
 
 /***/ }),
 /* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getArtikelKategoriS: function getArtikelKategoriS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_kategori' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getArtikelKategoriAll: function getArtikelKategoriAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_kategori_all');
+  },
+
+  getArtikelKategori: function getArtikelKategori(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_kategori/' + id);
+  },
+
+  storeArtikelKategori: function storeArtikelKategori(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_kategori/store', form);
+  },
+
+  updateArtikelKategori: function updateArtikelKategori(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_kategori/update/' + id, form);
+  },
+
+  deleteArtikelKategori: function deleteArtikelKategori(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_kategori/' + id);
+  }
+});
+
+/***/ }),
+/* 204 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({});
+
+/***/ }),
+/* 205 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({});
+
+/***/ }),
+/* 206 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({});
+
+/***/ }),
+/* 207 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* unused harmony export install */
 /* unused harmony export use */
+/* unused harmony export directive */
+/* unused harmony export mixin */
 /* unused harmony export mapFields */
 /* unused harmony export Validator */
 /* unused harmony export ErrorBag */
 /* unused harmony export Rules */
 /* unused harmony export version */
 /**
- * vee-validate v2.0.0-rc.18
- * (c) 2017 Abdelrahman Awad
- * @license MIT
+  * vee-validate v2.0.3
+  * (c) 2018 Abdelrahman Awad
+  * @license MIT
+  */
+// 
+
+/**
+ * Gets the data attribute. the name must be kebab-case.
  */
+var getDataAttribute = function (el, name) { return el.getAttribute(("data-vv-" + name)); };
+
+/**
+ * Checks if the value is either null or undefined.
+ */
+var isNullOrUndefined = function (value) {
+  return value === null || value === undefined;
+};
+
+/**
+ * Sets the data attribute.
+ */
+var setDataAttribute = function (el, name, value) { return el.setAttribute(("data-vv-" + name), value); };
+
+/**
+ * Creates the default flags object.
+ */
+var createFlags = function () { return ({
+  untouched: true,
+  touched: false,
+  dirty: false,
+  pristine: true,
+  valid: null,
+  invalid: null,
+  validated: false,
+  pending: false,
+  required: false
+}); };
+
+/**
+ * Shallow object comparison.
+ */
+var isEqual = function (lhs, rhs) {
+  if (lhs instanceof RegExp && rhs instanceof RegExp) {
+    return isEqual(lhs.source, rhs.source) && isEqual(lhs.flags, rhs.flags);
+  }
+
+  if (Array.isArray(lhs) && Array.isArray(rhs)) {
+    if (lhs.length !== rhs.length) { return false; }
+
+    for (var i = 0; i < lhs.length; i++) {
+      if (!isEqual(lhs[i], rhs[i])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  // if both are objects, compare each key recursively.
+  if (isObject(lhs) && isObject(rhs)) {
+    return Object.keys(lhs).every(function (key) {
+      return isEqual(lhs[key], rhs[key]);
+    }) && Object.keys(rhs).every(function (key) {
+      return isEqual(lhs[key], rhs[key]);
+    });
+  }
+
+  return lhs === rhs;
+};
+
+/**
+ * Determines the input field scope.
+ */
+var getScope = function (el) {
+  var scope = getDataAttribute(el, 'scope');
+  if (isNullOrUndefined(scope) && el.form) {
+    scope = getDataAttribute(el.form, 'scope');
+  }
+
+  return !isNullOrUndefined(scope) ? scope : null;
+};
+
+/**
+ * Gets the value in an object safely.
+ */
+var getPath = function (path, target, def) {
+  if ( def === void 0 ) def = undefined;
+
+  if (!path || !target) { return def; }
+
+  var value = target;
+  path.split('.').every(function (prop) {
+    if (! Object.prototype.hasOwnProperty.call(value, prop) && value[prop] === undefined) {
+      value = def;
+
+      return false;
+    }
+
+    value = value[prop];
+
+    return true;
+  });
+
+  return value;
+};
+
+/**
+ * Checks if path exists within an object.
+ */
+var hasPath = function (path, target) {
+  var obj = target;
+  return path.split('.').every(function (prop) {
+    if (! Object.prototype.hasOwnProperty.call(obj, prop)) {
+      return false;
+    }
+
+    obj = obj[prop];
+
+    return true;
+  });
+};
+
+/**
+ * Parses a rule string expression.
+ */
+var parseRule = function (rule) {
+  var params = [];
+  var name = rule.split(':')[0];
+
+  if (~rule.indexOf(':')) {
+    params = rule.split(':').slice(1).join(':').split(',');
+  }
+
+  return { name: name, params: params };
+};
+
+/**
+ * Debounces a function.
+ */
+var debounce = function (fn, wait, immediate) {
+  if ( wait === void 0 ) wait = 0;
+  if ( immediate === void 0 ) immediate = false;
+
+  if (wait === 0) {
+    return fn;
+  }
+
+  var timeout;
+
+  return function () {
+    var args = [], len = arguments.length;
+    while ( len-- ) args[ len ] = arguments[ len ];
+
+    var later = function () {
+      timeout = null;
+      if (!immediate) { fn.apply(void 0, args); }
+    };
+    /* istanbul ignore next */
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    /* istanbul ignore next */
+    if (callNow) { fn.apply(void 0, args); }
+  };
+};
+
+/**
+ * Normalizes the given rules expression.
+ */
+var normalizeRules = function (rules) {
+  // if falsy value return an empty object.
+  if (!rules) {
+    return {};
+  }
+
+  if (isObject(rules)) {
+    // $FlowFixMe
+    return Object.keys(rules).reduce(function (prev, curr) {
+      var params = [];
+      // $FlowFixMe
+      if (rules[curr] === true) {
+        params = [];
+      } else if (Array.isArray(rules[curr])) {
+        params = rules[curr];
+      } else {
+        params = [rules[curr]];
+      }
+
+      // $FlowFixMe
+      if (rules[curr] !== false) {
+        prev[curr] = params;
+      }
+
+      return prev;
+    }, {});
+  }
+
+  if (typeof rules !== 'string') {
+    warn('rules must be either a string or an object.');
+    return {};
+  }
+
+  return rules.split('|').reduce(function (prev, rule) {
+    var parsedRule = parseRule(rule);
+    if (!parsedRule.name) {
+      return prev;
+    }
+
+    prev[parsedRule.name] = parsedRule.params;
+    return prev;
+  }, {});
+};
+
+/**
+ * Emits a warning to the console.
+ */
+var warn = function (message) {
+  console.warn(("[vee-validate] " + message)); // eslint-disable-line
+};
+
+/**
+ * Creates a branded error object.
+ */
+var createError = function (message) { return new Error(("[vee-validate] " + message)); };
+
+/**
+ * Checks if the value is an object.
+ */
+var isObject = function (obj) { return obj !== null && obj && typeof obj === 'object' && ! Array.isArray(obj); };
+
+/**
+ * Checks if a function is callable.
+ */
+var isCallable = function (func) { return typeof func === 'function'; };
+
+/**
+ * Check if element has the css class on it.
+ */
+var hasClass = function (el, className) {
+  if (el.classList) {
+    return el.classList.contains(className);
+  }
+
+  return !!el.className.match(new RegExp(("(\\s|^)" + className + "(\\s|$)")));
+};
+
+/**
+ * Adds the provided css className to the element.
+ */
+var addClass = function (el, className) {
+  if (el.classList) {
+    el.classList.add(className);
+    return;
+  }
+
+  if (!hasClass(el, className)) {
+    el.className += " " + className;
+  }
+};
+
+/**
+ * Remove the provided css className from the element.
+ */
+var removeClass = function (el, className) {
+  if (el.classList) {
+    el.classList.remove(className);
+    return;
+  }
+
+  if (hasClass(el, className)) {
+    var reg = new RegExp(("(\\s|^)" + className + "(\\s|$)"));
+    el.className = el.className.replace(reg, ' ');
+  }
+};
+
+/**
+ * Adds or removes a class name on the input depending on the status flag.
+ */
+var toggleClass = function (el, className, status) {
+  if (!el || !className) { return; }
+
+  if (status) {
+    return addClass(el, className);
+  }
+
+  removeClass(el, className);
+};
+
+/**
+ * Converts an array-like object to array, provides a simple polyfill for Array.from
+ */
+var toArray = function (arrayLike) {
+  if (isCallable(Array.from)) {
+    return Array.from(arrayLike);
+  }
+
+  var array = [];
+  var length = arrayLike.length;
+  for (var i = 0; i < length; i++) {
+    array.push(arrayLike[i]);
+  }
+
+  return array;
+};
+
+/**
+ * Assign polyfill from the mdn.
+ */
+var assign = function (target) {
+  var others = [], len = arguments.length - 1;
+  while ( len-- > 0 ) others[ len ] = arguments[ len + 1 ];
+
+  /* istanbul ignore else */
+  if (isCallable(Object.assign)) {
+    return Object.assign.apply(Object, [ target ].concat( others ));
+  }
+
+  /* istanbul ignore next */
+  if (target == null) {
+    throw new TypeError('Cannot convert undefined or null to object');
+  }
+
+  /* istanbul ignore next */
+  var to = Object(target);
+  /* istanbul ignore next */
+  others.forEach(function (arg) {
+    // Skip over if undefined or null
+    if (arg != null) {
+      Object.keys(arg).forEach(function (key) {
+        to[key] = arg[key];
+      });
+    }
+  });
+  /* istanbul ignore next */
+  return to;
+};
+
+var id = 0;
+var idTemplate = '{id}';
+
+/**
+ * Generates a unique id.
+ */
+var uniqId = function () {
+  // handle too many uses of uniqId, although unlikely.
+  if (id >= 9999) {
+    id = 0;
+    // shift the template.
+    idTemplate = idTemplate.replace('{id}', '_{id}');
+  }
+
+  id++;
+  var newId = idTemplate.replace('{id}', String(id));
+
+  return newId;
+};
+
+/**
+ * finds the first element that satisfies the predicate callback, polyfills array.find
+ */
+var find = function (arrayLike, predicate) {
+  var array = Array.isArray(arrayLike) ? arrayLike : toArray(arrayLike);
+  for (var i = 0; i < array.length; i++) {
+    if (predicate(array[i])) {
+      return array[i];
+    }
+  }
+
+  return undefined;
+};
+
+/**
+ * Returns a suitable event name for the input element.
+ */
+var getInputEventName = function (el) {
+  if (el && (el.tagName === 'SELECT' || ~['radio', 'checkbox', 'file'].indexOf(el.type))) {
+    return 'change';
+  }
+
+  return 'input';
+};
+
+var isBuiltInComponent = function (vnode) {
+  if (!vnode) {
+    return false;
+  }
+
+  var tag = vnode.componentOptions.tag;
+
+  return /keep-alive|transition|transition-group/.test(tag);
+};
+
+var makeEventsArray = function (events) {
+  return (typeof events === 'string' && events.length) ? events.split('|') : [];
+};
+
+var makeDelayObject = function (events, delay, delayConfig) {
+  if (typeof delay === 'number') {
+    return events.reduce(function (prev, e) {
+      prev[e] = delay;
+      return prev;
+    }, {});
+  }
+
+  return events.reduce(function (prev, e) {
+    if (typeof delay === 'object' && e in delay) {
+      prev[e] = delay[e];
+      return prev;
+    }
+
+    if (typeof delayConfig === 'number') {
+      prev[e] = delayConfig;
+      return prev;
+    }
+
+    prev[e] = (delayConfig && delayConfig[e]) || 0;
+
+    return prev;
+  }, {});
+};
+
+var deepParseInt = function (input) {
+  if (typeof input === 'number') { return input; }
+
+  if (typeof input === 'string') { return parseInt(input); }
+
+  var map = {};
+  for (var element in input) {
+    map[element] = parseInt(input[element]);
+  }
+
+  return map;
+};
+
+var merge = function (target, source) {
+  if (! (isObject(target) && isObject(source))) {
+    return target;
+  }
+
+  Object.keys(source).forEach(function (key) {
+    if (isObject(source[key])) {
+      if (! target[key]) {
+        assign(target, ( obj = {}, obj[key] = {}, obj ));
+        var obj;
+      }
+
+      merge(target[key], source[key]);
+      return;
+    }
+
+    assign(target, ( obj$1 = {}, obj$1[key] = source[key], obj$1 ));
+    var obj$1;
+  });
+
+  return target;
+};
+
+// 
+
+var ErrorBag = function ErrorBag () {
+  this.items = [];
+};
+
+/**
+ * Adds an error to the internal array.
+ */
+ErrorBag.prototype.add = function add (error) {
+  // handle old signature.
+  if (arguments.length > 1) {
+    error = {
+      field: arguments[0],
+      msg: arguments[1],
+      rule: arguments[2],
+      scope: !isNullOrUndefined(arguments[3]) ? arguments[3] : null,
+      regenerate: null
+    };
+  }
+
+  error.scope = !isNullOrUndefined(error.scope) ? error.scope : null;
+  this.items.push(error);
+};
+
+/**
+ * Regenrates error messages if they have a generator function.
+ */
+ErrorBag.prototype.regenerate = function regenerate () {
+  this.items.forEach(function (i) {
+    i.msg = isCallable(i.regenerate) ? i.regenerate() : i.msg;
+  });
+};
+
+/**
+ * Updates a field error with the new field scope.
+ */
+ErrorBag.prototype.update = function update (id, error) {
+  var item = find(this.items, function (i) { return i.id === id; });
+  if (!item) {
+    return;
+  }
+
+  var idx = this.items.indexOf(item);
+  this.items.splice(idx, 1);
+  item.scope = error.scope;
+  this.items.push(item);
+};
+
+/**
+ * Gets all error messages from the internal array.
+ */
+ErrorBag.prototype.all = function all (scope) {
+  if (isNullOrUndefined(scope)) {
+    return this.items.map(function (e) { return e.msg; });
+  }
+
+  return this.items.filter(function (e) { return e.scope === scope; }).map(function (e) { return e.msg; });
+};
+
+/**
+ * Checks if there are any errors in the internal array.
+ */
+ErrorBag.prototype.any = function any (scope) {
+  if (isNullOrUndefined(scope)) {
+    return !!this.items.length;
+  }
+
+  return !!this.items.filter(function (e) { return e.scope === scope; }).length;
+};
+
+/**
+ * Removes all items from the internal array.
+ */
+ErrorBag.prototype.clear = function clear (scope) {
+    var this$1 = this;
+
+  if (isNullOrUndefined(scope)) {
+    scope = null;
+  }
+
+  for (var i = 0; i < this.items.length; ++i) {
+    if (this$1.items[i].scope === scope) {
+      this$1.items.splice(i, 1);
+      --i;
+    }
+  }
+};
+
+/**
+ * Collects errors into groups or for a specific field.
+ */
+ErrorBag.prototype.collect = function collect (field, scope, map) {
+    if ( map === void 0 ) map = true;
+
+  if (!field) {
+    var collection = {};
+    this.items.forEach(function (e) {
+      if (! collection[e.field]) {
+        collection[e.field] = [];
+      }
+
+      collection[e.field].push(map ? e.msg : e);
+    });
+
+    return collection;
+  }
+
+  field = !isNullOrUndefined(field) ? String(field) : field;
+  if (isNullOrUndefined(scope)) {
+    return this.items.filter(function (e) { return e.field === field; }).map(function (e) { return (map ? e.msg : e); });
+  }
+
+  return this.items.filter(function (e) { return e.field === field && e.scope === scope; })
+    .map(function (e) { return (map ? e.msg : e); });
+};
+/**
+ * Gets the internal array length.
+ */
+ErrorBag.prototype.count = function count () {
+  return this.items.length;
+};
+
+/**
+ * Finds and fetches the first error message for the specified field id.
+ */
+ErrorBag.prototype.firstById = function firstById (id) {
+  var error = find(this.items, function (i) { return i.id === id; });
+
+  return error ? error.msg : null;
+};
+
+/**
+ * Gets the first error message for a specific field.
+ */
+ErrorBag.prototype.first = function first (field, scope) {
+    var this$1 = this;
+    if ( scope === void 0 ) scope = null;
+
+  field = !isNullOrUndefined(field) ? String(field) : field;
+  var selector = this._selector(field);
+  var scoped = this._scope(field);
+
+  if (scoped) {
+    var result = this.first(scoped.name, scoped.scope);
+    // if such result exist, return it. otherwise it could be a field.
+    // with dot in its name.
+    if (result) {
+      return result;
+    }
+  }
+
+  if (selector) {
+    return this.firstByRule(selector.name, selector.rule, scope);
+  }
+
+  for (var i = 0; i < this.items.length; ++i) {
+    if (this$1.items[i].field === field && (this$1.items[i].scope === scope)) {
+      return this$1.items[i].msg;
+    }
+  }
+
+  return null;
+};
+
+/**
+ * Returns the first error rule for the specified field
+ */
+ErrorBag.prototype.firstRule = function firstRule (field, scope) {
+  var errors = this.collect(field, scope, false);
+
+  return (errors.length && errors[0].rule) || null;
+};
+
+/**
+ * Checks if the internal array has at least one error for the specified field.
+ */
+ErrorBag.prototype.has = function has (field, scope) {
+    if ( scope === void 0 ) scope = null;
+
+  return !!this.first(field, scope);
+};
+
+/**
+ * Gets the first error message for a specific field and a rule.
+ */
+ErrorBag.prototype.firstByRule = function firstByRule (name, rule, scope) {
+    if ( scope === void 0 ) scope = null;
+
+  var error = this.collect(name, scope, false).filter(function (e) { return e.rule === rule; })[0];
+
+  return (error && error.msg) || null;
+};
+
+/**
+ * Gets the first error message for a specific field that not match the rule.
+ */
+ErrorBag.prototype.firstNot = function firstNot (name, rule, scope) {
+    if ( rule === void 0 ) rule = 'required';
+    if ( scope === void 0 ) scope = null;
+
+  var error = this.collect(name, scope, false).filter(function (e) { return e.rule !== rule; })[0];
+
+  return (error && error.msg) || null;
+};
+
+/**
+ * Removes errors by matching against the id.
+ */
+ErrorBag.prototype.removeById = function removeById (id) {
+    var this$1 = this;
+
+  for (var i = 0; i < this.items.length; ++i) {
+    if (this$1.items[i].id === id) {
+      this$1.items.splice(i, 1);
+      --i;
+    }
+  }
+};
+
+/**
+ * Removes all error messages associated with a specific field.
+ */
+ErrorBag.prototype.remove = function remove (field, scope, id) {
+    var this$1 = this;
+
+  field = !isNullOrUndefined(field) ? String(field) : field;
+  var removeCondition = function (e) {
+    if (e.id && id) {
+      return e.id === id;
+    }
+
+    if (!isNullOrUndefined(scope)) {
+      return e.field === field && e.scope === scope;
+    }
+
+    return e.field === field && e.scope === null;
+  };
+
+  for (var i = 0; i < this.items.length; ++i) {
+    if (removeCondition(this$1.items[i])) {
+      this$1.items.splice(i, 1);
+      --i;
+    }
+  }
+};
+
+/**
+ * Get the field attributes if there's a rule selector.
+ */
+ErrorBag.prototype._selector = function _selector (field) {
+  if (field.indexOf(':') > -1) {
+    var ref = field.split(':');
+      var name = ref[0];
+      var rule = ref[1];
+
+    return { name: name, rule: rule };
+  }
+
+  return null;
+};
+
+/**
+ * Get the field scope if specified using dot notation.
+ */
+ErrorBag.prototype._scope = function _scope (field) {
+  if (field.indexOf('.') > -1) {
+    var ref = field.split('.');
+      var scope = ref[0];
+      var name = ref.slice(1);
+
+    return { name: name.join('.'), scope: scope };
+  }
+
+  return null;
+};
+
+// 
+
+var LOCALE = 'en';
+
+var Dictionary = function Dictionary (dictionary) {
+  if ( dictionary === void 0 ) dictionary = {};
+
+  this.container = {};
+  this.merge(dictionary);
+};
+
+var prototypeAccessors$2 = { locale: {} };
+
+prototypeAccessors$2.locale.get = function () {
+  return LOCALE;
+};
+
+prototypeAccessors$2.locale.set = function (value) {
+  LOCALE = value || 'en';
+};
+
+Dictionary.prototype.hasLocale = function hasLocale (locale) {
+  return !!this.container[locale];
+};
+
+Dictionary.prototype.setDateFormat = function setDateFormat (locale, format) {
+  if (!this.container[locale]) {
+    this.container[locale] = {};
+  }
+
+  this.container[locale].dateFormat = format;
+};
+
+Dictionary.prototype.getDateFormat = function getDateFormat (locale) {
+  if (!this.container[locale] || !this.container[locale].dateFormat) {
+    return null;
+  }
+
+  return this.container[locale].dateFormat;
+};
+
+Dictionary.prototype.getMessage = function getMessage (locale, key, data) {
+  var message = null;
+  if (!this.hasMessage(locale, key)) {
+    message = this._getDefaultMessage(locale);
+  } else {
+    message = this.container[locale].messages[key];
+  }
+
+  return isCallable(message) ? message.apply(void 0, data) : message;
+};
+
+/**
+ * Gets a specific message for field. falls back to the rule message.
+ */
+Dictionary.prototype.getFieldMessage = function getFieldMessage (locale, field, key, data) {
+  if (!this.hasLocale(locale)) {
+    return this.getMessage(locale, key, data);
+  }
+
+  var dict = this.container[locale].custom && this.container[locale].custom[field];
+  if (!dict || !dict[key]) {
+    return this.getMessage(locale, key, data);
+  }
+
+  var message = dict[key];
+  return isCallable(message) ? message.apply(void 0, data) : message;
+};
+
+Dictionary.prototype._getDefaultMessage = function _getDefaultMessage (locale) {
+  if (this.hasMessage(locale, '_default')) {
+    return this.container[locale].messages._default;
+  }
+
+  return this.container.en.messages._default;
+};
+
+Dictionary.prototype.getAttribute = function getAttribute (locale, key, fallback) {
+    if ( fallback === void 0 ) fallback = '';
+
+  if (!this.hasAttribute(locale, key)) {
+    return fallback;
+  }
+
+  return this.container[locale].attributes[key];
+};
+
+Dictionary.prototype.hasMessage = function hasMessage (locale, key) {
+  return !! (
+    this.hasLocale(locale) &&
+          this.container[locale].messages &&
+          this.container[locale].messages[key]
+  );
+};
+
+Dictionary.prototype.hasAttribute = function hasAttribute (locale, key) {
+  return !! (
+    this.hasLocale(locale) &&
+          this.container[locale].attributes &&
+          this.container[locale].attributes[key]
+  );
+};
+
+Dictionary.prototype.merge = function merge$1 (dictionary) {
+  merge(this.container, dictionary);
+};
+
+Dictionary.prototype.setMessage = function setMessage (locale, key, message) {
+  if (! this.hasLocale(locale)) {
+    this.container[locale] = {
+      messages: {},
+      attributes: {}
+    };
+  }
+
+  this.container[locale].messages[key] = message;
+};
+
+Dictionary.prototype.setAttribute = function setAttribute (locale, key, attribute) {
+  if (! this.hasLocale(locale)) {
+    this.container[locale] = {
+      messages: {},
+      attributes: {}
+    };
+  }
+
+  this.container[locale].attributes[key] = attribute;
+};
+
+Object.defineProperties( Dictionary.prototype, prototypeAccessors$2 );
+
+// 
+
+var normalizeValue = function (value) {
+  if (isObject(value)) {
+    return Object.keys(value).reduce(function (prev, key) {
+      prev[key] = normalizeValue(value[key]);
+
+      return prev;
+    }, {});
+  }
+
+  if (isCallable(value)) {
+    return value('{0}', ['{1}', '{2}', '{3}']);
+  }
+
+  return value;
+};
+
+var normalizeFormat = function (locale) {
+  // normalize messages
+  var messages = normalizeValue(locale.messages);
+  var custom = normalizeValue(locale.custom);
+
+  return {
+    messages: messages,
+    custom: custom,
+    attributes: locale.attributes,
+    dateFormat: locale.dateFormat
+  };
+};
+
+var I18nDictionary = function I18nDictionary (i18n, rootKey) {
+  this.i18n = i18n;
+  this.rootKey = rootKey;
+};
+
+var prototypeAccessors$3 = { locale: {} };
+
+prototypeAccessors$3.locale.get = function () {
+  return this.i18n.locale;
+};
+
+prototypeAccessors$3.locale.set = function (value) {
+  warn('Cannot set locale from the validator when using vue-i18n, use i18n.locale setter instead');
+};
+
+I18nDictionary.prototype.getDateFormat = function getDateFormat (locale) {
+  return this.i18n.getDateTimeFormat(locale || this.locale);
+};
+
+I18nDictionary.prototype.setDateFormat = function setDateFormat (locale, value) {
+  this.i18n.setDateTimeFormat(locale || this.locale, value);
+};
+
+I18nDictionary.prototype.getMessage = function getMessage (locale, key, data) {
+  var path = (this.rootKey) + ".messages." + key;
+  if (!this.i18n.te(path)) {
+    return this.i18n.t(((this.rootKey) + ".messages._default"), locale, data);
+  }
+
+  return this.i18n.t(path, locale, data);
+};
+
+I18nDictionary.prototype.getAttribute = function getAttribute (locale, key, fallback) {
+    if ( fallback === void 0 ) fallback = '';
+
+  var path = (this.rootKey) + ".attributes." + key;
+  if (!this.i18n.te(path)) {
+    return fallback;
+  }
+
+  return this.i18n.t(path, locale);
+};
+
+I18nDictionary.prototype.getFieldMessage = function getFieldMessage (locale, field, key, data) {
+  var path = (this.rootKey) + ".custom." + field + "." + key;
+  if (this.i18n.te(path)) {
+    return this.i18n.t(path);
+  }
+
+  return this.getMessage(locale, key, data);
+};
+
+I18nDictionary.prototype.merge = function merge$1 (dictionary) {
+    var this$1 = this;
+
+  Object.keys(dictionary).forEach(function (localeKey) {
+    // i18n doesn't deep merge
+    // first clone the existing locale (avoid mutations to locale)
+    var clone = merge({}, getPath((localeKey + "." + (this$1.rootKey)), this$1.i18n.messages, {}));
+    // Merge cloned locale with new one
+    var locale = merge(clone, normalizeFormat(dictionary[localeKey]));
+    this$1.i18n.mergeLocaleMessage(localeKey, ( obj = {}, obj[this$1.rootKey] = locale, obj ));
+      var obj;
+    if (locale.dateFormat) {
+      this$1.i18n.setDateTimeFormat(localeKey, locale.dateFormat);
+    }
+  });
+};
+
+I18nDictionary.prototype.setMessage = function setMessage (locale, key, value) {
+  this.merge(( obj$1 = {}, obj$1[locale] = {
+      messages: ( obj = {}, obj[key] = value, obj )
+    }, obj$1 ));
+    var obj;
+    var obj$1;
+};
+
+I18nDictionary.prototype.setAttribute = function setAttribute (locale, key, value) {
+  this.merge(( obj$1 = {}, obj$1[locale] = {
+      attributes: ( obj = {}, obj[key] = value, obj )
+    }, obj$1 ));
+    var obj;
+    var obj$1;
+};
+
+Object.defineProperties( I18nDictionary.prototype, prototypeAccessors$3 );
+
+// 
+
+var defaultConfig = {
+  locale: 'en',
+  delay: 0,
+  errorBagName: 'errors',
+  dictionary: null,
+  strict: true,
+  fieldsBagName: 'fields',
+  classes: false,
+  classNames: null,
+  events: 'input|blur',
+  inject: true,
+  fastExit: true,
+  aria: true,
+  validity: false,
+  i18n: null,
+  i18nRootKey: 'validation'
+};
+
+var currentConfig = assign({}, defaultConfig);
+var dependencies = {
+  dictionary: new Dictionary({
+    en: {
+      messages: {},
+      attributes: {},
+      custom: {}
+    }
+  })
+};
+
+var Config = function Config () {};
+
+var staticAccessors$1 = { default: {},current: {} };
+
+staticAccessors$1.default.get = function () {
+  return defaultConfig;
+};
+
+staticAccessors$1.current.get = function () {
+  return currentConfig;
+};
+
+Config.dependency = function dependency (key) {
+  return dependencies[key];
+};
+
+/**
+ * Merges the config with a new one.
+ */
+Config.merge = function merge$$1 (config) {
+  currentConfig = assign({}, currentConfig, config);
+  if (currentConfig.i18n) {
+    Config.register('dictionary', new I18nDictionary(currentConfig.i18n, currentConfig.i18nRootKey));
+  }
+};
+
+/**
+ * Registers a dependency.
+ */
+Config.register = function register (key, value) {
+  dependencies[key] = value;
+};
+
+/**
+ * Resolves the working config from a Vue instance.
+ */
+Config.resolve = function resolve (context) {
+  var selfConfig = getPath('$options.$_veeValidate', context, {});
+
+  return assign({}, Config.current, selfConfig);
+};
+
+Object.defineProperties( Config, staticAccessors$1 );
+
+/**
+ * Generates the options required to construct a field.
+ */
+var Generator = function Generator () {};
+
+Generator.generate = function generate (el, binding, vnode) {
+  var model = Generator.resolveModel(binding, vnode);
+  var options = Config.resolve(vnode.context);
+
+  return {
+    name: Generator.resolveName(el, vnode),
+    el: el,
+    listen: !binding.modifiers.disable,
+    scope: Generator.resolveScope(el, binding, vnode),
+    vm: Generator.makeVM(vnode.context),
+    expression: binding.value,
+    component: vnode.child,
+    classes: options.classes,
+    classNames: options.classNames,
+    getter: Generator.resolveGetter(el, vnode, model),
+    events: Generator.resolveEvents(el, vnode) || options.events,
+    model: model,
+    delay: Generator.resolveDelay(el, vnode, options),
+    rules: Generator.resolveRules(el, binding),
+    initial: !!binding.modifiers.initial,
+    validity: options.validity,
+    aria: options.aria,
+    initialValue: Generator.resolveInitialValue(vnode)
+  };
+};
+
+Generator.getCtorConfig = function getCtorConfig (vnode) {
+  if (!vnode.child) { return null; }
+
+  var config = getPath('child.$options.$_veeValidate', vnode);
+
+  return config;
+};
+
+/**
+ * Resolves the rules defined on an element.
+ */
+Generator.resolveRules = function resolveRules (el, binding) {
+  if (!binding.value && (!binding || !binding.expression)) {
+    return getDataAttribute(el, 'rules');
+  }
+
+  if (~['string', 'object'].indexOf(typeof binding.value.rules)) {
+    return binding.value.rules;
+  }
+
+  return binding.value;
+};
+
+/**
+ * @param {*} vnode
+ */
+Generator.resolveInitialValue = function resolveInitialValue (vnode) {
+  var model = vnode.data.model || find(vnode.data.directives, function (d) { return d.name === 'model'; });
+
+  return model && model.value;
+};
+
+/**
+ * Creates a non-circular partial VM instance from a Vue instance.
+ * @param {*} vm
+ */
+Generator.makeVM = function makeVM (vm) {
+  return {
+    get $el () {
+      return vm.$el;
+    },
+    get $refs () {
+      return vm.$refs;
+    },
+    $watch: vm.$watch ? vm.$watch.bind(vm) : function () {},
+    $validator: vm.$validator ? {
+      errors: vm.$validator.errors,
+      validate: vm.$validator.validate.bind(vm.$validator),
+      update: vm.$validator.update.bind(vm.$validator)
+    } : null
+  };
+};
+
+/**
+ * Resolves the delay value.
+ * @param {*} el
+ * @param {*} vnode
+ * @param {Object} options
+ */
+Generator.resolveDelay = function resolveDelay (el, vnode, options) {
+  var delay = getDataAttribute(el, 'delay');
+  var globalDelay = (options && 'delay' in options) ? options.delay : 0;
+
+  if (!delay && vnode.child && vnode.child.$attrs) {
+    delay = vnode.child.$attrs['data-vv-delay'];
+  }
+
+  if (!isObject(globalDelay)) {
+    return deepParseInt(delay || globalDelay);
+  }
+
+  globalDelay.input = delay || 0;
+
+  return deepParseInt(globalDelay);
+};
+
+/**
+ * Resolves the events to validate in response to.
+ * @param {*} el
+ * @param {*} vnode
+ */
+Generator.resolveEvents = function resolveEvents (el, vnode) {
+  var events = getDataAttribute(el, 'validate-on');
+
+  if (!events && vnode.child && vnode.child.$attrs) {
+    events = vnode.child.$attrs['data-vv-validate-on'];
+  }
+
+  if (!events && vnode.child) {
+    var config = Generator.getCtorConfig(vnode);
+    events = config && config.events;
+  }
+
+  return events;
+};
+
+/**
+ * Resolves the scope for the field.
+ * @param {*} el
+ * @param {*} binding
+ */
+Generator.resolveScope = function resolveScope (el, binding, vnode) {
+    if ( vnode === void 0 ) vnode = {};
+
+  var scope = null;
+  if (vnode.child && isNullOrUndefined(scope)) {
+    scope = vnode.child.$attrs && vnode.child.$attrs['data-vv-scope'];
+  }
+
+  return !isNullOrUndefined(scope) ? scope : getScope(el);
+};
+
+/**
+ * Checks if the node directives contains a v-model or a specified arg.
+ * Args take priority over models.
+ *
+ * @return {Object}
+ */
+Generator.resolveModel = function resolveModel (binding, vnode) {
+  if (binding.arg) {
+    return binding.arg;
+  }
+
+  var model = vnode.data.model || find(vnode.data.directives, function (d) { return d.name === 'model'; });
+  if (!model) {
+    return null;
+  }
+
+  var watchable = /^[a-z_]+[0-9]*(\w*\.[a-z_]\w*)*$/i.test(model.expression) && hasPath(model.expression, vnode.context);
+  if (!watchable) {
+    return null;
+  }
+
+  return model.expression;
+};
+
+/**
+   * Resolves the field name to trigger validations.
+   * @return {String} The field name.
+   */
+Generator.resolveName = function resolveName (el, vnode) {
+  var name = getDataAttribute(el, 'name');
+
+  if (!name && !vnode.child) {
+    return el.name;
+  }
+
+  if (!name && vnode.child && vnode.child.$attrs) {
+    name = vnode.child.$attrs['data-vv-name'] || vnode.child.$attrs['name'];
+  }
+
+  if (!name && vnode.child) {
+    var config = Generator.getCtorConfig(vnode);
+    if (config && isCallable(config.name)) {
+      var boundGetter = config.name.bind(vnode.child);
+
+      return boundGetter();
+    }
+
+    return vnode.child.name;
+  }
+
+  return name;
+};
+
+/**
+ * Returns a value getter input type.
+ */
+Generator.resolveGetter = function resolveGetter (el, vnode, model) {
+  if (model) {
+    return function () {
+      return getPath(model, vnode.context);
+    };
+  }
+
+  if (vnode.child) {
+    var path = getDataAttribute(el, 'value-path') || (vnode.child.$attrs && vnode.child.$attrs['data-vv-value-path']);
+    if (path) {
+      return function () {
+        return getPath(path, vnode.child);
+      };
+    }
+
+    var config = Generator.getCtorConfig(vnode);
+    if (config && isCallable(config.value)) {
+      var boundGetter = config.value.bind(vnode.child);
+
+      return function () {
+        return boundGetter();
+      };
+    }
+
+    return function () {
+      return vnode.child.value;
+    };
+  }
+
+  switch (el.type) {
+  case 'checkbox': return function () {
+    var els = document.querySelectorAll(("input[name=\"" + (el.name) + "\"]"));
+
+    els = toArray(els).filter(function (el) { return el.checked; });
+    if (!els.length) { return undefined; }
+
+    return els.map(function (checkbox) { return checkbox.value; });
+  };
+  case 'radio': return function () {
+    var els = document.querySelectorAll(("input[name=\"" + (el.name) + "\"]"));
+    var elm = find(els, function (el) { return el.checked; });
+
+    return elm && elm.value;
+  };
+  case 'file': return function (context) {
+    return toArray(el.files);
+  };
+  case 'select-multiple': return function () {
+    return toArray(el.options).filter(function (opt) { return opt.selected; }).map(function (opt) { return opt.value; });
+  };
+  default: return function () {
+    return el && el.value;
+  };
+  }
+};
+
+// 
+
+var DEFAULT_OPTIONS = {
+  targetOf: null,
+  initial: false,
+  scope: null,
+  listen: true,
+  name: null,
+  rules: {},
+  vm: null,
+  classes: false,
+  validity: true,
+  aria: true,
+  events: 'input|blur',
+  delay: 0,
+  classNames: {
+    touched: 'touched', // the control has been blurred
+    untouched: 'untouched', // the control hasn't been blurred
+    valid: 'valid', // model is valid
+    invalid: 'invalid', // model is invalid
+    pristine: 'pristine', // control has not been interacted with
+    dirty: 'dirty' // control has been interacted with
+  }
+};
+
+var Field = function Field (el, options) {
+  if ( options === void 0 ) options = {};
+
+  this.id = uniqId();
+  this.el = el;
+  this.updated = false;
+  this.dependencies = [];
+  this.watchers = [];
+  this.events = [];
+  this.delay = 0;
+  this.rules = {};
+  this._cacheId(options);
+  this.classNames = assign({}, DEFAULT_OPTIONS.classNames);
+  options = assign({}, DEFAULT_OPTIONS, options);
+  this._delay = !isNullOrUndefined(options.delay) ? options.delay : 0; // cache initial delay
+  this.validity = options.validity;
+  this.aria = options.aria;
+  this.flags = createFlags();
+  this.vm = options.vm;
+  this.component = options.component;
+  this.ctorConfig = this.component ? getPath('$options.$_veeValidate', this.component) : undefined;
+  this.update(options);
+  this.updated = false;
+};
+
+var prototypeAccessors$1 = { validator: {},isRequired: {},isDisabled: {},alias: {},value: {},rejectsFalse: {} };
+
+prototypeAccessors$1.validator.get = function () {
+  if (!this.vm || !this.vm.$validator) {
+    warn('No validator instance detected.');
+    return { validate: function () {} };
+  }
+
+  return this.vm.$validator;
+};
+
+prototypeAccessors$1.isRequired.get = function () {
+  return !!this.rules.required;
+};
+
+prototypeAccessors$1.isDisabled.get = function () {
+  return !!(this.component && this.component.disabled) || !!(this.el && this.el.disabled);
+};
+
+/**
+ * Gets the display name (user-friendly name).
+ */
+prototypeAccessors$1.alias.get = function () {
+  if (this._alias) {
+    return this._alias;
+  }
+
+  var alias = null;
+  if (this.el) {
+    alias = getDataAttribute(this.el, 'as');
+  }
+
+  if (!alias && this.component) {
+    return this.component.$attrs && this.component.$attrs['data-vv-as'];
+  }
+
+  return alias;
+};
+
+/**
+ * Gets the input value.
+ */
+
+prototypeAccessors$1.value.get = function () {
+  if (!isCallable(this.getter)) {
+    return undefined;
+  }
+
+  return this.getter();
+};
+
+/**
+ * If the field rejects false as a valid value for the required rule.
+ */
+
+prototypeAccessors$1.rejectsFalse.get = function () {
+  if (this.component && this.ctorConfig) {
+    return !!this.ctorConfig.rejectsFalse;
+  }
+
+  if (!this.el) {
+    return false;
+  }
+
+  return this.el.type === 'checkbox';
+};
+
+/**
+ * Determines if the instance matches the options provided.
+ */
+Field.prototype.matches = function matches (options) {
+  if (options.id) {
+    return this.id === options.id;
+  }
+
+  if (options.name === undefined && options.scope === undefined) {
+    return true;
+  }
+
+  if (options.scope === undefined) {
+    return this.name === options.name;
+  }
+
+  if (options.name === undefined) {
+    return this.scope === options.scope;
+  }
+
+  return options.name === this.name && options.scope === this.scope;
+};
+
+/**
+ * Caches the field id.
+ */
+Field.prototype._cacheId = function _cacheId (options) {
+  if (this.el && !options.targetOf) {
+    setDataAttribute(this.el, 'id', this.id); // cache field id if it is independent and has a root element.
+  }
+};
+
+/**
+ * Updates the field with changed data.
+ */
+Field.prototype.update = function update (options) {
+  this.targetOf = options.targetOf || null;
+  this.initial = options.initial || this.initial || false;
+
+  // update errors scope if the field scope was changed.
+  if (!isNullOrUndefined(options.scope) && options.scope !== this.scope && isCallable(this.validator.update)) {
+    this.validator.update(this.id, { scope: options.scope });
+  }
+  this.scope = !isNullOrUndefined(options.scope) ? options.scope
+    : !isNullOrUndefined(this.scope) ? this.scope : null;
+  this.name = (!isNullOrUndefined(options.name) ? String(options.name) : options.name) || this.name || null;
+  this.rules = options.rules !== undefined ? normalizeRules(options.rules) : this.rules;
+  this.model = options.model || this.model;
+  this.listen = options.listen !== undefined ? options.listen : this.listen;
+  this.classes = (options.classes || this.classes || false) && !this.component;
+  this.classNames = isObject(options.classNames) ? merge(this.classNames, options.classNames) : this.classNames;
+  this.getter = isCallable(options.getter) ? options.getter : this.getter;
+  this._alias = options.alias || this._alias;
+  this.events = (options.events) ? makeEventsArray(options.events) : this.events;
+  this.delay = (options.delay) ? makeDelayObject(this.events, options.delay, this._delay) : makeDelayObject(this.events, this.delay, this._delay);
+  this.updateDependencies();
+  this.addActionListeners();
+
+  // update required flag flags
+  if (options.rules !== undefined) {
+    this.flags.required = this.isRequired;
+  }
+
+  // validate if it was validated before and field was updated and there was a rules mutation.
+  if (this.flags.validated && options.rules !== undefined && this.updated) {
+    this.validator.validate(("#" + (this.id)));
+  }
+
+  this.updated = true;
+  this.addValueListeners();
+
+  // no need to continue.
+  if (!this.el) {
+    return;
+  }
+
+  this.updateClasses();
+  this.updateAriaAttrs();
+};
+
+/**
+ * Resets field flags and errors.
+ */
+Field.prototype.reset = function reset () {
+    var this$1 = this;
+
+  var defaults = createFlags();
+  Object.keys(this.flags).filter(function (flag) { return flag !== 'required'; }).forEach(function (flag) {
+    this$1.flags[flag] = defaults[flag];
+  });
+
+  this.addActionListeners();
+  this.updateClasses();
+  this.updateAriaAttrs();
+  this.updateCustomValidity();
+};
+
+/**
+ * Sets the flags and their negated counterparts, and updates the classes and re-adds action listeners.
+ */
+Field.prototype.setFlags = function setFlags (flags) {
+    var this$1 = this;
+
+  var negated = {
+    pristine: 'dirty',
+    dirty: 'pristine',
+    valid: 'invalid',
+    invalid: 'valid',
+    touched: 'untouched',
+    untouched: 'touched'
+  };
+
+  Object.keys(flags).forEach(function (flag) {
+    this$1.flags[flag] = flags[flag];
+    // if it has a negation and was not specified, set it as well.
+    if (negated[flag] && flags[negated[flag]] === undefined) {
+      this$1.flags[negated[flag]] = !flags[flag];
+    }
+  });
+
+  if (
+    flags.untouched !== undefined ||
+    flags.touched !== undefined ||
+    flags.dirty !== undefined ||
+    flags.pristine !== undefined
+  ) {
+    this.addActionListeners();
+  }
+  this.updateClasses();
+  this.updateAriaAttrs();
+  this.updateCustomValidity();
+};
+
+/**
+ * Determines if the field requires references to target fields.
+*/
+Field.prototype.updateDependencies = function updateDependencies () {
+    var this$1 = this;
+
+  // reset dependencies.
+  this.dependencies.forEach(function (d) { return d.field.destroy(); });
+  this.dependencies = [];
+
+  // we get the selectors for each field.
+  var fields = Object.keys(this.rules).reduce(function (prev, r) {
+    if (Validator.isTargetRule(r)) {
+      var selector = this$1.rules[r][0];
+      if (r === 'confirmed' && !selector) {
+        selector = (this$1.name) + "_confirmation";
+      }
+
+      prev.push({ selector: selector, name: r });
+    }
+
+    return prev;
+  }, []);
+
+  if (!fields.length || !this.vm || !this.vm.$el) { return; }
+
+  // must be contained within the same component, so we use the vm root element constrain our dom search.
+  fields.forEach(function (ref) {
+      var selector = ref.selector;
+      var name = ref.name;
+
+    var el = null;
+    // vue ref selector.
+    if (selector[0] === '$') {
+      var ref$1 = this$1.vm.$refs[selector.slice(1)];
+      el = Array.isArray(ref$1) ? ref$1[0] : ref$1;
+    } else {
+      try {
+        // try query selector
+        el = this$1.vm.$el.querySelector(selector);
+      } catch (err) {
+        el = null;
+      }
+    }
+
+    if (!el) {
+      try {
+        el = this$1.vm.$el.querySelector(("input[name=\"" + selector + "\"]"));
+      } catch (err) {
+        el = null;
+      }
+    }
+
+    if (!el) {
+      return;
+    }
+
+    var options = {
+      vm: this$1.vm,
+      classes: this$1.classes,
+      classNames: this$1.classNames,
+      delay: this$1.delay,
+      scope: this$1.scope,
+      events: this$1.events.join('|'),
+      initial: this$1.initial,
+      targetOf: this$1.id
+    };
+
+    // probably a component.
+    if (isCallable(el.$watch)) {
+      options.component = el;
+      options.el = el.$el;
+      options.getter = Generator.resolveGetter(el.$el, { child: el });
+    } else {
+      options.el = el;
+      options.getter = Generator.resolveGetter(el, {});
+    }
+
+    this$1.dependencies.push({ name: name, field: new Field(options.el, options) });
+  });
+};
+
+/**
+ * Removes listeners.
+ */
+Field.prototype.unwatch = function unwatch (tag) {
+    if ( tag === void 0 ) tag = null;
+
+  if (!tag) {
+    this.watchers.forEach(function (w) { return w.unwatch(); });
+    this.watchers = [];
+    return;
+  }
+
+  this.watchers.filter(function (w) { return tag.test(w.tag); }).forEach(function (w) { return w.unwatch(); });
+  this.watchers = this.watchers.filter(function (w) { return !tag.test(w.tag); });
+};
+
+/**
+ * Updates the element classes depending on each field flag status.
+ */
+Field.prototype.updateClasses = function updateClasses () {
+  if (!this.classes || this.isDisabled) { return; }
+
+  toggleClass(this.el, this.classNames.dirty, this.flags.dirty);
+  toggleClass(this.el, this.classNames.pristine, this.flags.pristine);
+  toggleClass(this.el, this.classNames.touched, this.flags.touched);
+  toggleClass(this.el, this.classNames.untouched, this.flags.untouched);
+  // make sure we don't set any classes if the state is undetermined.
+  if (!isNullOrUndefined(this.flags.valid) && this.flags.validated) {
+    toggleClass(this.el, this.classNames.valid, this.flags.valid);
+  }
+
+  if (!isNullOrUndefined(this.flags.invalid) && this.flags.validated) {
+    toggleClass(this.el, this.classNames.invalid, this.flags.invalid);
+  }
+};
+
+/**
+ * Adds the listeners required for automatic classes and some flags.
+ */
+Field.prototype.addActionListeners = function addActionListeners () {
+    var this$1 = this;
+
+  // remove previous listeners.
+  this.unwatch(/class/);
+
+  var onBlur = function () {
+    this$1.flags.touched = true;
+    this$1.flags.untouched = false;
+    if (this$1.classes) {
+      toggleClass(this$1.el, this$1.classNames.touched, true);
+      toggleClass(this$1.el, this$1.classNames.untouched, false);
+    }
+
+    // only needed once.
+    this$1.unwatch(/^class_blur$/);
+  };
+
+  var inputEvent = getInputEventName(this.el);
+  var onInput = function () {
+    this$1.flags.dirty = true;
+    this$1.flags.pristine = false;
+    if (this$1.classes) {
+      toggleClass(this$1.el, this$1.classNames.pristine, false);
+      toggleClass(this$1.el, this$1.classNames.dirty, true);
+    }
+
+    // only needed once.
+    this$1.unwatch(/^class_input$/);
+  };
+
+  if (this.component && isCallable(this.component.$once)) {
+    this.component.$once('input', onInput);
+    this.component.$once('blur', onBlur);
+    this.watchers.push({
+      tag: 'class_input',
+      unwatch: function () {
+        this$1.component.$off('input', onInput);
+      }
+    });
+    this.watchers.push({
+      tag: 'class_blur',
+      unwatch: function () {
+        this$1.component.$off('blur', onBlur);
+      }
+    });
+    return;
+  }
+
+  if (!this.el) { return; }
+
+  this.el.addEventListener(inputEvent, onInput);
+  // Checkboxes and radio buttons on Mac don't emit blur naturally, so we listen on click instead.
+  var blurEvent = ['radio', 'checkbox'].indexOf(this.el.type) === -1 ? 'blur' : 'click';
+  this.el.addEventListener(blurEvent, onBlur);
+  this.watchers.push({
+    tag: 'class_input',
+    unwatch: function () {
+      this$1.el.removeEventListener(inputEvent, onInput);
+    }
+  });
+
+  this.watchers.push({
+    tag: 'class_blur',
+    unwatch: function () {
+      this$1.el.removeEventListener(blurEvent, onBlur);
+    }
+  });
+};
+
+/**
+ * Adds the listeners required for validation.
+ */
+Field.prototype.addValueListeners = function addValueListeners () {
+    var this$1 = this;
+
+  this.unwatch(/^input_.+/);
+  if (!this.listen) { return; }
+
+  var fn = this.targetOf ? function () {
+    this$1.validator.validate(("#" + (this$1.targetOf)));
+  } : function () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+    // if its a DOM event, resolve the value, otherwise use the first parameter as the value.
+    if (args.length === 0 || (isCallable(Event) && args[0] instanceof Event) || (args[0] && args[0].srcElement)) {
+      args[0] = this$1.value;
+    }
+    this$1.validator.validate(("#" + (this$1.id)), args[0]);
+  };
+
+  var inputEvent = getInputEventName(this.el);
+  // replace input event with suitable one.
+  var events = this.events.map(function (e) {
+    return e === 'input' ? inputEvent : e;
+  });
+
+  // if there is a watchable model and an on input validation is requested.
+  if (this.model && events.indexOf(inputEvent) !== -1) {
+    var debouncedFn = debounce(fn, this.delay[inputEvent]);
+    var unwatch = this.vm.$watch(this.model, function () {
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+
+      this$1.flags.pending = true;
+      debouncedFn.apply(void 0, args);
+    });
+    this.watchers.push({
+      tag: 'input_model',
+      unwatch: unwatch
+    });
+    // filter out input event as it is already handled by the watcher API.
+    events = events.filter(function (e) { return e !== inputEvent; });
+  }
+
+  // Add events.
+  events.forEach(function (e) {
+    var debouncedFn = debounce(fn, this$1.delay[e]);
+    var validate = function () {
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+
+      this$1.flags.pending = true;
+      debouncedFn.apply(void 0, args);
+    };
+
+    this$1._addComponentEventListener(e, validate);
+    this$1._addHTMLEventListener(e, validate);
+  });
+};
+
+Field.prototype._addComponentEventListener = function _addComponentEventListener (evt, validate) {
+    var this$1 = this;
+
+  if (!this.component) { return; }
+
+  this.component.$on(evt, validate);
+  this.watchers.push({
+    tag: 'input_vue',
+    unwatch: function () {
+      this$1.component.$off(evt, validate);
+    }
+  });
+};
+
+Field.prototype._addHTMLEventListener = function _addHTMLEventListener (evt, validate) {
+    var this$1 = this;
+
+  if (!this.el) { return; }
+
+  if (~['radio', 'checkbox'].indexOf(this.el.type)) {
+    var els = document.querySelectorAll(("input[name=\"" + (this.el.name) + "\"]"));
+    toArray(els).forEach(function (el) {
+      el.addEventListener(evt, validate);
+      this$1.watchers.push({
+        tag: 'input_native',
+        unwatch: function () {
+          el.removeEventListener(evt, validate);
+        }
+      });
+    });
+
+    return;
+  }
+
+  this.el.addEventListener(evt, validate);
+  this.watchers.push({
+    tag: 'input_native',
+    unwatch: function () {
+      this$1.el.removeEventListener(evt, validate);
+    }
+  });
+};
+
+/**
+ * Updates aria attributes on the element.
+ */
+Field.prototype.updateAriaAttrs = function updateAriaAttrs () {
+  if (!this.aria || !this.el || !isCallable(this.el.setAttribute)) { return; }
+
+  this.el.setAttribute('aria-required', this.isRequired ? 'true' : 'false');
+  this.el.setAttribute('aria-invalid', this.flags.invalid ? 'true' : 'false');
+};
+
+/**
+ * Updates the custom validity for the field.
+ */
+Field.prototype.updateCustomValidity = function updateCustomValidity () {
+  if (!this.validity || !this.el || !isCallable(this.el.setCustomValidity)) { return; }
+
+  this.el.setCustomValidity(this.flags.valid ? '' : (this.validator.errors.firstById(this.id) || ''));
+};
+
+/**
+ * Removes all listeners.
+ */
+Field.prototype.destroy = function destroy () {
+  this.unwatch();
+  this.dependencies.forEach(function (d) { return d.field.destroy(); });
+  this.dependencies = [];
+};
+
+Object.defineProperties( Field.prototype, prototypeAccessors$1 );
+
+// 
+
+var FieldBag = function FieldBag () {
+  this.items = [];
+};
+
+var prototypeAccessors$4 = { length: {} };
+
+/**
+ * Gets the current items length.
+ */
+
+prototypeAccessors$4.length.get = function () {
+  return this.items.length;
+};
+
+/**
+ * Finds the first field that matches the provided matcher object.
+ */
+FieldBag.prototype.find = function find$1 (matcher) {
+  return find(this.items, function (item) { return item.matches(matcher); });
+};
+
+/**
+ * Filters the items down to the matched fields.
+ */
+FieldBag.prototype.filter = function filter (matcher) {
+  // multiple matchers to be tried.
+  if (Array.isArray(matcher)) {
+    return this.items.filter(function (item) { return matcher.some(function (m) { return item.matches(m); }); });
+  }
+
+  return this.items.filter(function (item) { return item.matches(matcher); });
+};
+
+/**
+ * Maps the field items using the mapping function.
+ */
+FieldBag.prototype.map = function map (mapper) {
+  return this.items.map(mapper);
+};
+
+/**
+ * Finds and removes the first field that matches the provided matcher object, returns the removed item.
+ */
+FieldBag.prototype.remove = function remove (matcher) {
+  var item = null;
+  if (matcher instanceof Field) {
+    item = matcher;
+  } else {
+    item = this.find(matcher);
+  }
+
+  if (!item) { return null; }
+
+  var index = this.items.indexOf(item);
+  this.items.splice(index, 1);
+
+  return item;
+};
+
+/**
+ * Adds a field item to the list.
+ */
+FieldBag.prototype.push = function push (item) {
+  if (! (item instanceof Field)) {
+    throw createError('FieldBag only accepts instances of Field that has an id defined.');
+  }
+
+  if (!item.id) {
+    throw createError('Field id must be defined.');
+  }
+
+  if (this.find({ id: item.id })) {
+    throw createError(("Field with id " + (item.id) + " is already added."));
+  }
+
+  this.items.push(item);
+};
+
+Object.defineProperties( FieldBag.prototype, prototypeAccessors$4 );
+
+// 
+
+var RULES = {};
+var STRICT_MODE = true;
+var TARGET_RULES = ['confirmed', 'after', 'before'];
+var ERRORS = []; // HOLD errors references to trigger regeneration.
+
+var Validator = function Validator (validations, options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = { vm: null, fastExit: true };
+
+  this.strict = STRICT_MODE;
+  this.errors = new ErrorBag();
+  ERRORS.push(this.errors);
+  this.fields = new FieldBag();
+  this.flags = {};
+  this._createFields(validations);
+  this.paused = false;
+  this.fastExit = options.fastExit || false;
+  this.ownerId = options.vm && options.vm._uid;
+  // create it statically since we don't need constant access to the vm.
+  this.reset = options.vm && isCallable(options.vm.$nextTick) ? function (matcher) {
+    return new Promise(function (resolve) {
+      options.vm.$nextTick(function () {
+        options.vm.$nextTick(function () {
+          resolve(this$1._reset(matcher));
+        });
+      });
+    });
+  } : this._reset;
+};
+
+var prototypeAccessors = { dictionary: {},locale: {},rules: {} };
+var staticAccessors = { dictionary: {},locale: {},rules: {} };
+
+/**
+ * Getter for the dictionary.
+ */
+prototypeAccessors.dictionary.get = function () {
+  return Config.dependency('dictionary');
+};
+
+/**
+ * Static Getter for the dictionary.
+ */
+staticAccessors.dictionary.get = function () {
+  return Config.dependency('dictionary');
+};
+
+/**
+ * Getter for the current locale.
+ */
+prototypeAccessors.locale.get = function () {
+  return this.dictionary.locale;
+};
+
+/**
+ * Setter for the validator locale.
+ */
+prototypeAccessors.locale.set = function (value) {
+  Validator.locale = value;
+};
+
+/**
+* Static getter for the validator locale.
+*/
+staticAccessors.locale.get = function () {
+  return Validator.dictionary.locale;
+};
+
+/**
+ * Static setter for the validator locale.
+ */
+staticAccessors.locale.set = function (value) {
+  var hasChanged = value !== Validator.dictionary.locale;
+  Validator.dictionary.locale = value;
+  if (hasChanged) {
+    Validator.regenerate();
+  }
+};
+
+/**
+ * Getter for the rules object.
+ */
+prototypeAccessors.rules.get = function () {
+  return RULES;
+};
+
+/**
+ * Static Getter for the rules object.
+ */
+staticAccessors.rules.get = function () {
+  return RULES;
+};
+
+/**
+ * Static constructor.
+ */
+Validator.create = function create (validations, options) {
+  return new Validator(validations, options);
+};
+
+/**
+ * Adds a custom validator to the list of validation rules.
+ */
+Validator.extend = function extend (name, validator, options) {
+    if ( options === void 0 ) options = {};
+
+  Validator._guardExtend(name, validator);
+  Validator._merge(name, validator);
+  if (options && options.hasTarget) {
+    TARGET_RULES.push(name);
+  }
+};
+
+/**
+ * Regenerates error messages across all validators.
+ */
+Validator.regenerate = function regenerate () {
+  ERRORS.forEach(function (errorBag) { return errorBag.regenerate(); });
+};
+
+/**
+ * Removes a rule from the list of validators.
+ */
+Validator.remove = function remove (name) {
+  delete RULES[name];
+  var idx = TARGET_RULES.indexOf(name);
+  if (idx === -1) { return; }
+
+  TARGET_RULES.splice(idx, 1);
+};
+
+/**
+ * Checks if the given rule name is a rule that targets other fields.
+ */
+Validator.isTargetRule = function isTargetRule (name) {
+  return TARGET_RULES.indexOf(name) !== -1;
+};
+
+/**
+ * Sets the operating mode for all newly created validators.
+ * strictMode = true: Values without a rule are invalid and cause failure.
+ * strictMode = false: Values without a rule are valid and are skipped.
+ */
+Validator.setStrictMode = function setStrictMode (strictMode) {
+    if ( strictMode === void 0 ) strictMode = true;
+
+  STRICT_MODE = strictMode;
+};
+
+/**
+ * Adds and sets the current locale for the validator.
+ */
+Validator.prototype.localize = function localize (lang, dictionary) {
+  Validator.localize(lang, dictionary);
+};
+
+/**
+ * Adds and sets the current locale for the validator.
+ */
+Validator.localize = function localize (lang, dictionary) {
+  if (isObject(lang)) {
+    Validator.dictionary.merge(lang);
+    return;
+  }
+
+  // merge the dictionary.
+  if (dictionary) {
+    var locale = lang || dictionary.name;
+    dictionary = assign({}, dictionary);
+    Validator.dictionary.merge(( obj = {}, obj[locale] = dictionary, obj ));
+      var obj;
+  }
+
+  if (lang) {
+    // set the locale.
+    Validator.locale = lang;
+  }
+};
+
+/**
+ * Registers a field to be validated.
+ */
+Validator.prototype.attach = function attach (field) {
+  // deprecate: handle old signature.
+  if (arguments.length > 1) {
+    warn('This signature of the attach method has been deprecated, please consult the docs.');
+    field = assign({}, {
+      name: arguments[0],
+      rules: arguments[1]
+    }, arguments[2] || { vm: { $validator: this } });
+  }
+
+  // fixes initial value detection with v-model and select elements.
+  var value = field.initialValue;
+  if (!(field instanceof Field)) {
+    field = new Field(field.el || null, field);
+  }
+
+  this.fields.push(field);
+
+  // validate the field initially
+  if (field.initial) {
+    this.validate(("#" + (field.id)), value || field.value);
+  } else {
+    this._validate(field, value || field.value, true).then(function (result) {
+      field.flags.valid = result.valid;
+      field.flags.invalid = !result.valid;
+    });
+  }
+
+  this._addFlag(field, field.scope);
+  return field;
+};
+
+/**
+ * Sets the flags on a field.
+ */
+Validator.prototype.flag = function flag (name, flags) {
+  var field = this._resolveField(name);
+  if (! field || !flags) {
+    return;
+  }
+
+  field.setFlags(flags);
+};
+
+/**
+ * Removes a field from the validator.
+ */
+Validator.prototype.detach = function detach (name, scope) {
+  var field = name instanceof Field ? name : this._resolveField(name, scope);
+  if (!field) { return; }
+
+  field.destroy();
+  this.errors.remove(field.name, field.scope, field.id);
+  this.fields.remove(field);
+  var flags = this.flags;
+  if (!isNullOrUndefined(field.scope) && flags[("$" + (field.scope))]) {
+    delete flags[("$" + (field.scope))][field.name];
+  } else if (isNullOrUndefined(field.scope)) {
+    delete flags[field.name];
+  }
+
+  this.flags = assign({}, flags);
+};
+
+/**
+ * Adds a custom validator to the list of validation rules.
+ */
+Validator.prototype.extend = function extend (name, validator, options) {
+    if ( options === void 0 ) options = {};
+
+  Validator.extend(name, validator, options);
+};
+
+/**
+ * Updates a field, updating both errors and flags.
+ */
+Validator.prototype.update = function update (id, ref) {
+    var scope = ref.scope;
+
+  var field = this._resolveField(("#" + id));
+  if (!field) { return; }
+
+  // remove old scope.
+  this.errors.update(id, { scope: scope });
+  if (!isNullOrUndefined(field.scope) && this.flags[("$" + (field.scope))]) {
+    delete this.flags[("$" + (field.scope))][field.name];
+  } else if (isNullOrUndefined(field.scope)) {
+    delete this.flags[field.name];
+  }
+
+  this._addFlag(field, scope);
+};
+
+/**
+ * Removes a rule from the list of validators.
+ */
+Validator.prototype.remove = function remove (name) {
+  Validator.remove(name);
+};
+
+/**
+ * Validates a value against a registered field validations.
+ */
+Validator.prototype.validate = function validate (name, value, scope) {
+    var this$1 = this;
+    if ( scope === void 0 ) scope = null;
+
+  if (this.paused) { return Promise.resolve(true); }
+
+  // overload to validate all.
+  if (arguments.length === 0) {
+    return this.validateScopes();
+  }
+
+  // overload to validate scope-less fields.
+  if (arguments.length === 1 && arguments[0] === '*') {
+    return this.validateAll();
+  }
+
+  // overload to validate a scope.
+  if (arguments.length === 1 && typeof arguments[0] === 'string' && /^(.+)\.\*$/.test(arguments[0])) {
+    var matched = arguments[0].match(/^(.+)\.\*$/)[1];
+    return this.validateAll(matched);
+  }
+
+  var field = this._resolveField(name, scope);
+  if (!field) {
+    return this._handleFieldNotFound(name, scope);
+  }
+
+  field.flags.pending = true;
+  if (arguments.length === 1) {
+    value = field.value;
+  }
+
+  var silentRun = field.isDisabled;
+
+  return this._validate(field, value, silentRun).then(function (result) {
+    this$1.errors.remove(field.name, field.scope, field.id);
+    if (silentRun) {
+      return Promise.resolve(true);
+    } else if (result.errors) {
+      result.errors.forEach(function (e) { return this$1.errors.add(e); });
+    }
+
+    field.setFlags({
+      pending: false,
+      valid: result.valid,
+      validated: true
+    });
+
+    return result.valid;
+  });
+};
+
+/**
+ * Pauses the validator.
+ */
+Validator.prototype.pause = function pause () {
+  this.paused = true;
+
+  return this;
+};
+
+/**
+ * Resumes the validator.
+ */
+Validator.prototype.resume = function resume () {
+  this.paused = false;
+
+  return this;
+};
+
+/**
+ * Validates each value against the corresponding field validations.
+ */
+Validator.prototype.validateAll = function validateAll (values) {
+    var arguments$1 = arguments;
+    var this$1 = this;
+
+  if (this.paused) { return Promise.resolve(true); }
+
+  var matcher = null;
+  var providedValues = false;
+
+  if (typeof values === 'string') {
+    matcher = { scope: values };
+  } else if (isObject(values)) {
+    matcher = Object.keys(values).map(function (key) {
+      return { name: key, scope: arguments$1[1] || null };
+    });
+    providedValues = true;
+  } else if (arguments.length === 0) {
+    matcher = { scope: null }; // global scope.
+  } else if (Array.isArray(values)) {
+    matcher = values.map(function (key) {
+      return { name: key, scope: arguments$1[1] || null };
+    });
+  }
+
+  var promises = this.fields.filter(matcher).map(function (field) { return this$1.validate(
+    ("#" + (field.id)),
+    providedValues ? values[field.name] : field.value
+  ); });
+
+  return Promise.all(promises).then(function (results) { return results.every(function (t) { return t; }); });
+};
+
+/**
+ * Validates all scopes.
+ */
+Validator.prototype.validateScopes = function validateScopes () {
+    var this$1 = this;
+
+  if (this.paused) { return Promise.resolve(true); }
+
+  var promises = this.fields.map(function (field) { return this$1.validate(
+    ("#" + (field.id)),
+    field.value
+  ); });
+
+  return Promise.all(promises).then(function (results) { return results.every(function (t) { return t; }); });
+};
+
+/**
+ * Perform cleanup.
+ */
+Validator.prototype.destroy = function destroy () {
+  // Remove ErrorBag instance.
+  var idx = ERRORS.indexOf(this.errors);
+  if (idx === -1) { return; }
+
+  ERRORS.splice(idx, 1);
+};
+
+/**
+ * Creates the fields to be validated.
+ */
+Validator.prototype._createFields = function _createFields (validations) {
+    var this$1 = this;
+
+  if (!validations) { return; }
+
+  Object.keys(validations).forEach(function (field) {
+    var options = assign({}, { name: field, rules: validations[field] });
+    this$1.attach(options);
+  });
+};
+
+/**
+ * Date rules need the existence of a format, so date_format must be supplied.
+ */
+Validator.prototype._getDateFormat = function _getDateFormat (validations) {
+  var format = null;
+  if (validations.date_format && Array.isArray(validations.date_format)) {
+    format = validations.date_format[0];
+  }
+
+  return format || this.dictionary.getDateFormat(this.locale);
+};
+
+/**
+ * Checks if the passed rule is a date rule.
+ */
+Validator.prototype._isADateRule = function _isADateRule (rule) {
+  return !! ~['after', 'before', 'date_between', 'date_format'].indexOf(rule);
+};
+
+/**
+ * Formats an error message for field and a rule.
+ */
+Validator.prototype._formatErrorMessage = function _formatErrorMessage (field, rule, data, targetName) {
+    if ( data === void 0 ) data = {};
+    if ( targetName === void 0 ) targetName = null;
+
+  var name = this._getFieldDisplayName(field);
+  var params = this._getLocalizedParams(rule, targetName);
+
+  return this.dictionary.getFieldMessage(this.locale, field.name, rule.name, [name, params, data]);
+};
+
+/**
+ * Translates the parameters passed to the rule (mainly for target fields).
+ */
+Validator.prototype._getLocalizedParams = function _getLocalizedParams (rule, targetName) {
+    if ( targetName === void 0 ) targetName = null;
+
+  if (~TARGET_RULES.indexOf(rule.name) && rule.params && rule.params[0]) {
+    var localizedName = targetName || this.dictionary.getAttribute(this.locale, rule.params[0], rule.params[0]);
+    return [localizedName].concat(rule.params.slice(1));
+  }
+
+  return rule.params;
+};
+
+/**
+ * Resolves an appropriate display name, first checking 'data-as' or the registered 'prettyName'
+ */
+Validator.prototype._getFieldDisplayName = function _getFieldDisplayName (field) {
+  return field.alias || this.dictionary.getAttribute(this.locale, field.name, field.name);
+};
+
+/**
+ * Adds a field flags to the flags collection.
+ */
+Validator.prototype._addFlag = function _addFlag (field, scope) {
+    if ( scope === void 0 ) scope = null;
+
+  if (isNullOrUndefined(scope)) {
+    this.flags = assign({}, this.flags, ( obj = {}, obj[("" + (field.name))] = field.flags, obj ));
+      var obj;
+    return;
+  }
+
+  var scopeObj = assign({}, this.flags[("$" + scope)] || {}, ( obj$1 = {}, obj$1[("" + (field.name))] = field.flags, obj$1 ));
+    var obj$1;
+  this.flags = assign({}, this.flags, ( obj$2 = {}, obj$2[("$" + scope)] = scopeObj, obj$2 ));
+    var obj$2;
+};
+
+/**
+ * Resets fields that matches the matcher options or all fields if not specified.
+ */
+Validator.prototype._reset = function _reset (matcher) {
+    var this$1 = this;
+
+  return new Promise(function (resolve) {
+    if (matcher) {
+      this$1.fields.filter(matcher).forEach(function (field) {
+        field.reset(); // reset field flags.
+        this$1.errors.remove(field.name, field.scope, field.id);
+      });
+
+      return resolve();
+    }
+
+    this$1.fields.items.forEach(function (i) { return i.reset(); });
+    this$1.errors.clear();
+    resolve();
+  });
+};
+
+/**
+ * Tests a single input value against a rule.
+ */
+Validator.prototype._test = function _test (field, value, rule) {
+    var this$1 = this;
+
+  var validator = RULES[rule.name];
+  var params = Array.isArray(rule.params) ? toArray(rule.params) : [];
+  var targetName = null;
+  if (!validator || typeof validator !== 'function') {
+    throw createError(("No such validator '" + (rule.name) + "' exists."));
+  }
+
+  // has field dependencies.
+  if (TARGET_RULES.indexOf(rule.name) !== -1) {
+    var target = find(field.dependencies, function (d) { return d.name === rule.name; });
+    if (target) {
+      targetName = target.field.alias;
+      params = [target.field.value].concat(params.slice(1));
+    }
+  } else if (rule.name === 'required' && field.rejectsFalse) {
+    // invalidate false if no args were specified and the field rejects false by default.
+    params = params.length ? params : [true];
+  }
+
+  if (this._isADateRule(rule.name)) {
+    var dateFormat = this._getDateFormat(field.rules);
+    if (rule.name !== 'date_format') {
+      params.push(dateFormat);
+    }
+  }
+
+  var result = validator(value, params);
+
+  // If it is a promise.
+  if (isCallable(result.then)) {
+    return result.then(function (values) {
+      var allValid = true;
+      var data = {};
+      if (Array.isArray(values)) {
+        allValid = values.every(function (t) { return (isObject(t) ? t.valid : t); });
+      } else { // Is a single object/boolean.
+        allValid = isObject(values) ? values.valid : values;
+        data = values.data;
+      }
+
+      return {
+        valid: allValid,
+        error: allValid ? undefined : this$1._createFieldError(field, rule, data, targetName)
+      };
+    });
+  }
+
+  if (!isObject(result)) {
+    result = { valid: result, data: {} };
+  }
+
+  return {
+    valid: result.valid,
+    error: result.valid ? undefined : this._createFieldError(field, rule, result.data, targetName)
+  };
+};
+
+/**
+ * Merges a validator object into the RULES and Messages.
+ */
+Validator._merge = function _merge (name, validator) {
+  if (isCallable(validator)) {
+    RULES[name] = validator;
+    return;
+  }
+
+  RULES[name] = validator.validate;
+  if (validator.getMessage) {
+    Validator.dictionary.setMessage(this.locale, name, validator.getMessage);
+  }
+};
+
+/**
+ * Guards from extension violations.
+ */
+Validator._guardExtend = function _guardExtend (name, validator) {
+  if (isCallable(validator)) {
+    return;
+  }
+
+  if (!isCallable(validator.validate)) {
+    throw createError(
+      ("Extension Error: The validator '" + name + "' must be a function or have a 'validate' method.")
+    );
+  }
+
+  if (!isCallable(validator.getMessage) && typeof validator.getMessage !== 'string') {
+    throw createError(
+      ("Extension Error: The validator '" + name + "' object must have a 'getMessage' method or string.")
+    );
+  }
+};
+
+/**
+ * Creates a Field Error Object.
+ */
+Validator.prototype._createFieldError = function _createFieldError (field, rule, data, targetName) {
+    var this$1 = this;
+
+  return {
+    id: field.id,
+    field: field.name,
+    msg: this._formatErrorMessage(field, rule, data, targetName),
+    rule: rule.name,
+    scope: field.scope,
+    regenerate: function () {
+      return this$1._formatErrorMessage(field, rule, data, targetName);
+    }
+  };
+};
+
+/**
+ * Tries different strategies to find a field.
+ */
+Validator.prototype._resolveField = function _resolveField (name, scope) {
+  if (!isNullOrUndefined(scope)) {
+    return this.fields.find({ name: name, scope: scope });
+  }
+
+  if (name[0] === '#') {
+    return this.fields.find({ id: name.slice(1) });
+  }
+
+  if (name.indexOf('.') > -1) {
+    var ref = name.split('.');
+      var fieldScope = ref[0];
+      var fieldName = ref.slice(1);
+    var field = this.fields.find({ name: fieldName.join('.'), scope: fieldScope });
+    if (field) {
+      return field;
+    }
+  }
+
+  return this.fields.find({ name: name, scope: null });
+};
+
+/**
+ * Handles when a field is not found depending on the strict flag.
+ */
+Validator.prototype._handleFieldNotFound = function _handleFieldNotFound (name, scope) {
+  if (!this.strict) { return Promise.resolve(true); }
+
+  var fullName = isNullOrUndefined(scope) ? name : ("" + (!isNullOrUndefined(scope) ? scope + '.' : '') + name);
+  throw createError(
+    ("Validating a non-existent field: \"" + fullName + "\". Use \"attach()\" first.")
+  );
+};
+
+/**
+ * Starts the validation process.
+ */
+Validator.prototype._validate = function _validate (field, value, silent) {
+    var this$1 = this;
+    if ( silent === void 0 ) silent = false;
+
+  if (!field.isRequired && (isNullOrUndefined(value) || value === '')) {
+    return Promise.resolve({ valid: true });
+  }
+
+  var promises = [];
+  var errors = [];
+  var isExitEarly = false;
+  // use of '.some()' is to break iteration in middle by returning true
+  Object.keys(field.rules).some(function (rule) {
+    var result = this$1._test(field, value, { name: rule, params: field.rules[rule] });
+    if (isCallable(result.then)) {
+      promises.push(result);
+    } else if (this$1.fastExit && !result.valid) {
+      errors.push(result.error);
+      isExitEarly = true;
+    } else {
+      // promisify the result.
+      promises.push(new Promise(function (resolve) {
+        resolve(result);
+      }));
+    }
+
+    return isExitEarly;
+  });
+
+  if (isExitEarly) {
+    return Promise.resolve({
+      valid: false,
+      errors: errors
+    });
+  }
+
+  return Promise.all(promises).then(function (values) { return values.map(function (v) {
+    if (!v.valid) {
+      errors.push(v.error);
+    }
+
+    return v.valid;
+  }).every(function (t) { return t; }); }
+  ).then(function (result) {
+    return {
+      valid: result,
+      errors: errors
+    };
+  });
+};
+
+Object.defineProperties( Validator.prototype, prototypeAccessors );
+Object.defineProperties( Validator, staticAccessors );
+
+// 
+
+/**
+ * Checks if a parent validator instance was requested.
+ */
+var requestsValidator = function (injections) {
+  if (isObject(injections) && injections.$validator) {
+    return true;
+  }
+
+  return false;
+};
+
+/**
+ * Creates a validator instance.
+ */
+var createValidator = function (vm, options) { return new Validator(null, { vm: vm, fastExit: options.fastExit }); };
+
+var mixin = {
+  provide: function provide () {
+    if (this.$validator && !isBuiltInComponent(this.$vnode)) {
+      return {
+        $validator: this.$validator
+      };
+    }
+
+    return {};
+  },
+  beforeCreate: function beforeCreate () {
+    // if built in do nothing.
+    if (isBuiltInComponent(this.$vnode)) {
+      return;
+    }
+
+    // if its a root instance set the config if it exists.
+    if (!this.$parent) {
+      Config.merge(this.$options.$_veeValidate || {});
+    }
+
+    var options = Config.resolve(this);
+    var Vue = this.$options._base; // the vue constructor.
+    // TODO: Deprecate
+    /* istanbul ignore next */
+    if (this.$options.$validates) {
+      warn('The ctor $validates option has been deprecated please set the $_veeValidate.validator option to "new" instead');
+      this.$validator = createValidator(this, options);
+    }
+
+    // if its a root instance, inject anyways, or if it requested a new instance.
+    if (!this.$parent || (this.$options.$_veeValidate && /new/.test(this.$options.$_veeValidate.validator))) {
+      this.$validator = createValidator(this, options);
+    }
+
+    var requested = requestsValidator(this.$options.inject);
+
+    // if automatic injection is enabled and no instance was requested.
+    if (! this.$validator && options.inject && !requested) {
+      this.$validator = createValidator(this, options);
+    }
+
+    // don't inject errors or fieldBag as no validator was resolved.
+    if (! requested && ! this.$validator) {
+      return;
+    }
+
+    // There is a validator but it isn't injected, mark as reactive.
+    if (! requested && this.$validator) {
+      Vue.util.defineReactive(this.$validator, 'errors', this.$validator.errors);
+      Vue.util.defineReactive(this.$validator, 'flags', this.$validator.flags);
+    }
+
+    if (! this.$options.computed) {
+      this.$options.computed = {};
+    }
+
+    this.$options.computed[options.errorBagName || 'errors'] = function errorBagGetter () {
+      return this.$validator.errors;
+    };
+    this.$options.computed[options.fieldsBagName || 'fields'] = function fieldBagGetter () {
+      return this.$validator.flags;
+    };
+  },
+  beforeDestroy: function beforeDestroy () {
+    if (isBuiltInComponent(this.$vnode)) { return; }
+
+    // mark the validator paused to prevent delayed validation.
+    if (this.$validator && this.$validator.ownerId === this._uid) {
+      this.$validator.pause();
+      this.$validator.destroy();
+    }
+  }
+};
+
+// 
+
+/**
+ * Finds the requested field by id from the context object.
+ */
+var findField = function (el, context) {
+  if (!context || !context.$validator) {
+    return null;
+  }
+
+  return context.$validator.fields.find({ id: getDataAttribute(el, 'id') });
+};
+
+var directive = {
+  bind: function bind (el, binding, vnode) {
+    var validator = vnode.context.$validator;
+    if (! validator) {
+      warn("No validator instance is present on vm, did you forget to inject '$validator'?");
+      return;
+    }
+
+    var fieldOptions = Generator.generate(el, binding, vnode);
+    validator.attach(fieldOptions);
+  },
+  inserted: function (el, binding, vnode) {
+    var field = findField(el, vnode.context);
+    var scope = Generator.resolveScope(el, binding, vnode);
+
+    // skip if scope hasn't changed.
+    if (!field || scope === field.scope) { return; }
+
+    // only update scope.
+    field.update({ scope: scope });
+
+    // allows the field to re-evaluated once more in the update hook.
+    field.updated = false;
+  },
+  update: function (el, binding, vnode) {
+    var field = findField(el, vnode.context);
+
+    // make sure we don't do unneccasary work if no important change was done.
+    if (!field || (field.updated && isEqual(binding.value, binding.oldValue))) { return; }
+    var scope = Generator.resolveScope(el, binding, vnode);
+    var rules = Generator.resolveRules(el, binding);
+
+    field.update({
+      scope: scope,
+      rules: rules
+    });
+  },
+  unbind: function unbind (el, binding, ref) {
+    var context = ref.context;
+
+    var field = findField(el, context);
+    if (!field) { return; }
+
+    context.$validator.detach(field);
+  }
+};
+
+var Vue;
+
+function install (_Vue, options) {
+  if ( options === void 0 ) options = {};
+
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      warn('already installed, Vue.use(VeeValidate) should only be called once.');
+    }
+    return;
+  }
+
+  Vue = _Vue;
+  Config.merge(options);
+  var ref = Config.current;
+  var dictionary = ref.dictionary;
+  var i18n = ref.i18n;
+
+  if (dictionary) {
+    Validator.localize(dictionary); // merge the dictionary.
+  }
+
+  // try to watch locale changes.
+  if (i18n && i18n._vm && isCallable(i18n._vm.$watch)) {
+    i18n._vm.$watch('locale', function () {
+      Validator.regenerate();
+    });
+  }
+
+  if (!i18n && options.locale) {
+    Validator.localize(options.locale); // set the locale
+  }
+
+  Validator.setStrictMode(Config.current.strict);
+
+  Vue.mixin(mixin);
+  Vue.directive('validate', directive);
+}
+
+/**
+ * Formates file size.
+ *
+ * @param {Number|String} size
+ */
+var formatFileSize = function (size) {
+  var units = ['Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  var threshold = 1024;
+  size = Number(size) * threshold;
+  var i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(threshold));
+  return (((size / Math.pow(threshold, i)).toFixed(2) * 1) + " " + (units[i]));
+};
+
+/**
+ * Checks if vee-validate is defined globally.
+ */
+var isDefinedGlobally = function () {
+  return typeof VeeValidate !== 'undefined';
+};
+
+var messages = {
+  _default: function (field) { return ("The " + field + " value is not valid."); },
+  after: function (field, ref) {
+    var target = ref[0];
+    var inclusion = ref[1];
+
+    return ("The " + field + " must be after " + (inclusion ? 'or equal to ' : '') + target + ".");
+},
+  alpha_dash: function (field) { return ("The " + field + " field may contain alpha-numeric characters as well as dashes and underscores."); },
+  alpha_num: function (field) { return ("The " + field + " field may only contain alpha-numeric characters."); },
+  alpha_spaces: function (field) { return ("The " + field + " field may only contain alphabetic characters as well as spaces."); },
+  alpha: function (field) { return ("The " + field + " field may only contain alphabetic characters."); },
+  before: function (field, ref) {
+    var target = ref[0];
+    var inclusion = ref[1];
+
+    return ("The " + field + " must be before " + (inclusion ? 'or equal to ' : '') + target + ".");
+},
+  between: function (field, ref) {
+    var min = ref[0];
+    var max = ref[1];
+
+    return ("The " + field + " field must be between " + min + " and " + max + ".");
+},
+  confirmed: function (field) { return ("The " + field + " confirmation does not match."); },
+  credit_card: function (field) { return ("The " + field + " field is invalid."); },
+  date_between: function (field, ref) {
+    var min = ref[0];
+    var max = ref[1];
+
+    return ("The " + field + " must be between " + min + " and " + max + ".");
+},
+  date_format: function (field, ref) {
+    var format = ref[0];
+
+    return ("The " + field + " must be in the format " + format + ".");
+},
+  decimal: function (field, ref) {
+    if ( ref === void 0 ) ref = [];
+    var decimals = ref[0]; if ( decimals === void 0 ) decimals = '*';
+
+    return ("The " + field + " field must be numeric and may contain " + (!decimals || decimals === '*' ? '' : decimals) + " decimal points.");
+},
+  digits: function (field, ref) {
+    var length = ref[0];
+
+    return ("The " + field + " field must be numeric and exactly contain " + length + " digits.");
+},
+  dimensions: function (field, ref) {
+    var width = ref[0];
+    var height = ref[1];
+
+    return ("The " + field + " field must be " + width + " pixels by " + height + " pixels.");
+},
+  email: function (field) { return ("The " + field + " field must be a valid email."); },
+  ext: function (field) { return ("The " + field + " field must be a valid file."); },
+  image: function (field) { return ("The " + field + " field must be an image."); },
+  in: function (field) { return ("The " + field + " field must be a valid value."); },
+  integer: function (field) { return ("The " + field + " field must be an integer."); },
+  ip: function (field) { return ("The " + field + " field must be a valid ip address."); },
+  length: function (field, ref) {
+    var length = ref[0];
+    var max = ref[1];
+
+    if (max) {
+      return ("The " + field + " length be between " + length + " and " + max + ".");
+    }
+
+    return ("The " + field + " length must be " + length + ".");
+  },
+  max: function (field, ref) {
+    var length = ref[0];
+
+    return ("The " + field + " field may not be greater than " + length + " characters.");
+},
+  max_value: function (field, ref) {
+    var max = ref[0];
+
+    return ("The " + field + " field must be " + max + " or less.");
+},
+  mimes: function (field) { return ("The " + field + " field must have a valid file type."); },
+  min: function (field, ref) {
+    var length = ref[0];
+
+    return ("The " + field + " field must be at least " + length + " characters.");
+},
+  min_value: function (field, ref) {
+    var min = ref[0];
+
+    return ("The " + field + " field must be " + min + " or more.");
+},
+  not_in: function (field) { return ("The " + field + " field must be a valid value."); },
+  numeric: function (field) { return ("The " + field + " field may only contain numeric characters."); },
+  regex: function (field) { return ("The " + field + " field format is invalid."); },
+  required: function (field) { return ("The " + field + " field is required."); },
+  size: function (field, ref) {
+    var size = ref[0];
+
+    return ("The " + field + " size must be less than " + (formatFileSize(size)) + ".");
+},
+  url: function (field) { return ("The " + field + " field is not a valid URL."); }
+};
+
+var locale = {
+  name: 'en',
+  messages: messages,
+  attributes: {}
+};
+
+if (isDefinedGlobally()) {
+  // eslint-disable-next-line
+  VeeValidate.Validator.localize(( obj = {}, obj[locale.name] = locale, obj ));
+  var obj;
+}
+
+// 
+
+function use (plugin, options) {
+  if ( options === void 0 ) options = {};
+
+  if (!isCallable(plugin)) {
+    return warn('The plugin must be a callable function');
+  }
+
+  plugin({ Validator: Validator, ErrorBag: ErrorBag, Rules: Validator.rules }, options);
+}
+
 var MILLISECONDS_IN_HOUR = 3600000;
 var MILLISECONDS_IN_MINUTE = 60000;
 var DEFAULT_ADDITIONAL_DIGITS = 2;
@@ -55745,15 +59765,18 @@ var patterns = {
  * Function accepts complete ISO 8601 formats as well as partial implementations.
  * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
  *
+ * If the argument is null, it is treated as an invalid date.
+ *
  * If all above fails, the function passes the given argument to Date constructor.
  *
  * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
  * All *date-fns* functions will throw `RangeError` if `options.additionalDigits` is not 0, 1, 2 or undefined.
  *
- * @param {Date|String|Number} argument - the value to convert
+ * @param {*} argument - the value to convert
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - the additional number of digits in the extended year format
  * @returns {Date} the parsed date in the local time zone
+ * @throws {TypeError} 1 argument required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -55768,6 +59791,14 @@ var patterns = {
  * //=> Fri Apr 11 2014 00:00:00
  */
 function toDate (argument, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
+  if (argument === null) {
+    return new Date(NaN)
+  }
+
   var options = dirtyOptions || {};
 
   var additionalDigits = options.additionalDigits === undefined ? DEFAULT_ADDITIONAL_DIGITS : Number(options.additionalDigits);
@@ -55789,7 +59820,7 @@ function toDate (argument, dirtyOptions) {
   var year = parseYearResult.year;
   var restDateString = parseYearResult.restDateString;
 
-  var date = parseDate$1(restDateString, year);
+  var date = parseDate(restDateString, year);
 
   if (date) {
     var timestamp = date.getTime();
@@ -55872,7 +59903,7 @@ function parseYear (dateString, additionalDigits) {
   }
 }
 
-function parseDate$1 (dateString, year) {
+function parseDate (dateString, year) {
   // Invalid ISO-formatted year
   if (year === null) {
     return null
@@ -56024,6 +60055,7 @@ function dayOfISOYear (isoYear, week, day) {
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Date} the new date with the milliseconds added
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -56032,6 +60064,10 @@ function dayOfISOYear (isoYear, week, day) {
  * //=> Thu Jul 10 2014 12:45:30.750
  */
 function addMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var timestamp = toDate(dirtyDate, dirtyOptions).getTime();
   var amount = Number(dirtyAmount);
   return new Date(timestamp + amount)
@@ -56065,6 +60101,7 @@ var MILLISECONDS_IN_MINUTE$2 = 60000;
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Date} the new date with the minutes added
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -56073,6 +60110,10 @@ var MILLISECONDS_IN_MINUTE$2 = 60000;
  * //=> Thu Jul 10 2014 12:30:00
  */
 function addMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var amount = Number(dirtyAmount);
   return addMilliseconds(dirtyDate, amount * MILLISECONDS_IN_MINUTE$2, dirtyOptions)
 }
@@ -56089,10 +60130,11 @@ function addMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
  *
  * Time value of Date: http://es5.github.io/#x15.9.1.1
  *
- * @param {Date|String|Number} date - the date to check
+ * @param {*} date - the date to check
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Boolean} the date is valid
+ * @throws {TypeError} 1 argument required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -56111,6 +60153,10 @@ function addMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
  * //=> false
  */
 function isValid (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
   return !isNaN(date)
 }
@@ -56631,7 +60677,7 @@ var match = {
  * @language English
  * @iso-639-2 eng
  */
-var locale = {
+var locale$1 = {
   formatDistance: formatDistance,
   formatLong: formatLong,
   formatRelative: formatRelative,
@@ -57061,6 +61107,7 @@ var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|d
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
  * @returns {String} the formatted date string
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  * @throws {RangeError} `options.locale` must contain `localize` property
  * @throws {RangeError} `options.locale` must contain `formatLong` property
@@ -57084,22 +61131,26 @@ var defaultFormattingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|d
  * //=> '2-a de julio 2014'
  */
 function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var formatStr = String(dirtyFormatStr);
   var options = dirtyOptions || {};
 
-  var locale$$1 = options.locale || locale;
+  var locale = options.locale || locale$1;
 
-  if (!locale$$1.localize) {
+  if (!locale.localize) {
     throw new RangeError('locale must contain localize property')
   }
 
-  if (!locale$$1.formatLong) {
+  if (!locale.formatLong) {
     throw new RangeError('locale must contain formatLong property')
   }
 
-  var localeFormatters = locale$$1.formatters || {};
-  var formattingTokensRegExp = locale$$1.formattingTokensRegExp || defaultFormattingTokensRegExp;
-  var formatLong = locale$$1.formatLong;
+  var localeFormatters = locale.formatters || {};
+  var formattingTokensRegExp = locale.formattingTokensRegExp || defaultFormattingTokensRegExp;
+  var formatLong = locale.formatLong;
 
   var originalDate = toDate(dirtyDate, options);
 
@@ -57114,7 +61165,7 @@ function format (dirtyDate, dirtyFormatStr, dirtyOptions) {
   var utcDate = addUTCMinutes(originalDate, -timezoneOffset, options);
 
   var formatterOptions = cloneObject(options);
-  formatterOptions.locale = locale$$1;
+  formatterOptions.locale = locale;
   formatterOptions.formatters = formatters;
 
   // When UTC functions will be implemented, options._originalDate will likely be a part of public API.
@@ -57167,6 +61218,7 @@ function cleanEscapedString (input) {
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Date} the new date with the mintues subtracted
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -57175,6 +61227,10 @@ function cleanEscapedString (input) {
  * //=> Thu Jul 10 2014 11:30:00
  */
 function subMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var amount = Number(dirtyAmount);
   return addMinutes(dirtyDate, -amount, dirtyOptions)
 }
@@ -57192,6 +61248,7 @@ function subMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Boolean} the first date is after the second date
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -57200,6 +61257,10 @@ function subMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
  * //=> true
  */
 function isAfter (dirtyDate, dirtyDateToCompare, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
   var dateToCompare = toDate(dirtyDateToCompare, dirtyOptions);
   return date.getTime() > dateToCompare.getTime()
@@ -57218,6 +61279,7 @@ function isAfter (dirtyDate, dirtyDateToCompare, dirtyOptions) {
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Boolean} the first date is before the second date
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -57226,6 +61288,10 @@ function isAfter (dirtyDate, dirtyDateToCompare, dirtyOptions) {
  * //=> false
  */
 function isBefore (dirtyDate, dirtyDateToCompare, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var date = toDate(dirtyDate, dirtyOptions);
   var dateToCompare = toDate(dirtyDateToCompare, dirtyOptions);
   return date.getTime() < dateToCompare.getTime()
@@ -57244,6 +61310,7 @@ function isBefore (dirtyDate, dirtyDateToCompare, dirtyOptions) {
  * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
  * @returns {Boolean} the dates are equal
+ * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  *
  * @example
@@ -57255,6 +61322,10 @@ function isBefore (dirtyDate, dirtyDateToCompare, dirtyOptions) {
  * //=> false
  */
 function isEqual$1 (dirtyLeftDate, dirtyRightDate, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var dateLeft = toDate(dirtyLeftDate, dirtyOptions);
   var dateRight = toDate(dirtyRightDate, dirtyOptions);
   return dateLeft.getTime() === dateRight.getTime()
@@ -58061,6 +62132,7 @@ var defaultParsingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|ddd|
  * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
  * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
  * @returns {Date} the parsed date
+ * @throws {TypeError} 3 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
  * @throws {RangeError} `options.locale` must contain `match` property
@@ -58087,6 +62159,10 @@ var defaultParsingTokensRegExp = /(\[[^[]*])|(\\)?(x|ss|s|mm|m|hh|h|do|dddd|ddd|
  * //=> Sun Feb 28 2010 00:00:00
  */
 function parse (dirtyDateString, dirtyFormatString, dirtyBaseDate, dirtyOptions) {
+  if (arguments.length < 3) {
+    throw new TypeError('3 arguments required, but only ' + arguments.length + ' present')
+  }
+
   var dateString = String(dirtyDateString);
   var options = dirtyOptions || {};
 
@@ -58097,15 +62173,15 @@ function parse (dirtyDateString, dirtyFormatString, dirtyBaseDate, dirtyOptions)
     throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
   }
 
-  var locale$$1 = options.locale || locale;
-  var localeParsers = locale$$1.parsers || {};
-  var localeUnits = locale$$1.units || {};
+  var locale = options.locale || locale$1;
+  var localeParsers = locale.parsers || {};
+  var localeUnits = locale.units || {};
 
-  if (!locale$$1.match) {
+  if (!locale.match) {
     throw new RangeError('locale must contain match property')
   }
 
-  if (!locale$$1.formatLong) {
+  if (!locale.formatLong) {
     throw new RangeError('locale must contain formatLong property')
   }
 
@@ -58119,7 +62195,7 @@ function parse (dirtyDateString, dirtyFormatString, dirtyBaseDate, dirtyOptions)
         return cleanEscapedString$1(substring)
       }
 
-      return locale$$1.formatLong(substring)
+      return locale.formatLong(substring)
     });
 
   if (formatString === '') {
@@ -58131,9 +62207,9 @@ function parse (dirtyDateString, dirtyFormatString, dirtyBaseDate, dirtyOptions)
   }
 
   var subFnOptions = cloneObject(options);
-  subFnOptions.locale = locale$$1;
+  subFnOptions.locale = locale;
 
-  var tokens = formatString.match(locale$$1.parsingTokensRegExp || defaultParsingTokensRegExp);
+  var tokens = formatString.match(locale.parsingTokensRegExp || defaultParsingTokensRegExp);
   var tokensLength = tokens.length;
 
   // If timezone isn't specified, it will be set to the system timezone
@@ -58250,34 +62326,16 @@ function cleanEscapedString$1 (input) {
 
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
 
-/**
- * Gets the data attribute. the name must be kebab-case.
- */
-var getDataAttribute = function (el, name) { return el.getAttribute(("data-vv-" + name)); };
-
-/**
- * Checks if the value is either null or undefined.
- * @param {*} value
- */
-var isNullOrUndefined = function (value) {
-  return value === null || value === undefined;
-};
-
-/**
- * Sets the data attribute.
- * @param {*} el
- * @param {String} name
- * @param {String} value
- */
-var setDataAttribute = function (el, name, value) { return el.setAttribute(("data-vv-" + name), value); };
+// 
 
 /**
  * Custom parse behavior on top of date-fns parse function.
- * @param {String} date
- * @param {String} format
- * @return {Date|null}
  */
-var parseDate = function (date, format$$1) {
+function parseDate$1 (date, format$$1) {
+  if (typeof date !== 'string') {
+    return isValid(date) ? date : null;
+  }
+
   var parsed = parse(date, format$$1, new Date());
 
   // if date is not valid or the formatted output after parsing does not match
@@ -58287,2853 +62345,6 @@ var parseDate = function (date, format$$1) {
   }
 
   return parsed;
-};
-
-var createProxy = function (target, handler) {
-  if (typeof Proxy === 'undefined') {
-    return target;
-  }
-
-  return new Proxy(target, handler);
-};
-
-var createFlags = function () { return ({
-  untouched: true,
-  touched: false,
-  dirty: false,
-  pristine: true,
-  valid: null,
-  invalid: null,
-  validated: false,
-  pending: false,
-  required: false
-}); };
-
-/**
- * Shallow object comparison.
- *
- * @param {*} lhs
- * @param {*} rhs
- * @return {Boolean}
- */
-var isEqual = function (lhs, rhs) {
-  if (lhs instanceof RegExp && rhs instanceof RegExp) {
-    return isEqual(lhs.source, rhs.source) && isEqual(lhs.flags, rhs.flags);
-  }
-
-  if (Array.isArray(lhs) && Array.isArray(rhs)) {
-    if (lhs.length !== rhs.length) { return false; }
-
-    for (var i = 0; i < lhs.length; i++) {
-      if (!isEqual(lhs[i], rhs[i])) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  // if both are objects, compare each key recursively.
-  if (isObject(lhs) && isObject(rhs)) {
-    return Object.keys(lhs).every(function (key) {
-      return isEqual(lhs[key], rhs[key]);
-    }) && Object.keys(rhs).every(function (key) {
-      return isEqual(lhs[key], rhs[key]);
-    });
-  }
-
-  return lhs === rhs;
-};
-
-/**
- * Determines the input field scope.
- */
-var getScope = function (el) {
-  var scope = getDataAttribute(el, 'scope');
-  if (isNullOrUndefined(scope) && el.form) {
-    scope = getDataAttribute(el.form, 'scope');
-  }
-
-  return !isNullOrUndefined(scope) ? scope : null;
-};
-
-/**
- * Gets the value in an object safely.
- * @param {String} propPath
- * @param {Object} target
- * @param {*} def
- */
-var getPath = function (propPath, target, def) {
-  if ( def === void 0 ) def = undefined;
-
-  if (!propPath || !target) { return def; }
-  var value = target;
-  propPath.split('.').every(function (prop) {
-    if (! Object.prototype.hasOwnProperty.call(value, prop) && value[prop] === undefined) {
-      value = def;
-
-      return false;
-    }
-
-    value = value[prop];
-
-    return true;
-  });
-
-  return value;
-};
-
-/**
- * Checks if path exists within an object.
- *
- * @param {String} path
- * @param {Object} target
- */
-var hasPath = function (path, target) {
-  var obj = target;
-  return path.split('.').every(function (prop) {
-    if (! Object.prototype.hasOwnProperty.call(obj, prop)) {
-      return false;
-    }
-
-    obj = obj[prop];
-
-    return true;
-  });
-};
-
-/**
- * @param {String} rule
- */
-var parseRule = function (rule) {
-  var params = [];
-  var name = rule.split(':')[0];
-
-  if (~rule.indexOf(':')) {
-    params = rule.split(':').slice(1).join(':').split(',');
-  }
-
-  return { name: name, params: params };
-};
-
-/**
- * Normalizes the given rules expression.
- *
- * @param {Object|String} rules
- */
-var normalizeRules = function (rules) {
-  // if falsy value return an empty object.
-  if (!rules) {
-    return {};
-  }
-
-  var validations = {};
-  if (isObject(rules)) {
-    Object.keys(rules).forEach(function (rule) {
-      var params = [];
-      if (rules[rule] === true) {
-        params = [];
-      } else if (Array.isArray(rules[rule])) {
-        params = rules[rule];
-      } else {
-        params = [rules[rule]];
-      }
-
-      if (rules[rule] !== false) {
-        validations[rule] = params;
-      }
-    });
-
-    return validations;
-  }
-
-  if (typeof rules !== 'string') {
-    warn('rules must be either a string or an object.');
-    return {};
-  }
-
-  rules.split('|').forEach(function (rule) {
-    var parsedRule = parseRule(rule);
-    if (! parsedRule.name) {
-      return;
-    }
-
-    validations[parsedRule.name] = parsedRule.params;
-  });
-
-  return validations;
-};
-
-/**
- * Debounces a function.
- */
-var debounce = function (fn, wait, immediate) {
-  if ( wait === void 0 ) wait = 0;
-  if ( immediate === void 0 ) immediate = false;
-
-  if (wait === 0) {
-    return fn;
-  }
-
-  var timeout;
-
-  return function () {
-    var args = [], len = arguments.length;
-    while ( len-- ) args[ len ] = arguments[ len ];
-
-    var later = function () {
-      timeout = null;
-      if (!immediate) { fn.apply(void 0, args); }
-    };
-    /* istanbul ignore next */
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    /* istanbul ignore next */
-    if (callNow) { fn.apply(void 0, args); }
-  };
-};
-
-/**
- * Emits a warning to the console.
- */
-var warn = function (message) {
-  console.warn(("[vee-validate] " + message)); // eslint-disable-line
-};
-
-/**
- * Creates a branded error object.
- * @param {String} message
- */
-var createError = function (message) { return new Error(("[vee-validate] " + message)); };
-
-/**
- * Checks if the value is an object.
- */
-var isObject = function (object) { return object !== null && object && typeof object === 'object' && ! Array.isArray(object); };
-
-/**
- * Checks if a function is callable.
- */
-var isCallable = function (func) { return typeof func === 'function'; };
-
-/**
- * Check if element has the css class on it.
- */
-var hasClass = function (el, className) {
-  if (el.classList) {
-    return el.classList.contains(className);
-  }
-
-  return !!el.className.match(new RegExp(("(\\s|^)" + className + "(\\s|$)")));
-};
-
-/**
- * Adds the provided css className to the element.
- */
-var addClass = function (el, className) {
-  if (el.classList) {
-    el.classList.add(className);
-    return;
-  }
-
-  if (!hasClass(el, className)) {
-    el.className += " " + className;
-  }
-};
-
-/**
- * Remove the provided css className from the element.
- */
-var removeClass = function (el, className) {
-  if (el.classList) {
-    el.classList.remove(className);
-    return;
-  }
-
-  if (hasClass(el, className)) {
-    var reg = new RegExp(("(\\s|^)" + className + "(\\s|$)"));
-    el.className = el.className.replace(reg, ' ');
-  }
-};
-
-/**
- * Adds or removes a class name on the input depending on the status flag.
- */
-var toggleClass = function (el, className, status) {
-  if (!el || !className) { return; }
-
-  if (status) {
-    return addClass(el, className);
-  }
-
-  removeClass(el, className);
-};
-
-/**
- * Converts an array-like object to array.
- * Simple polyfill for Array.from
- */
-var toArray = function (arrayLike) {
-  if (isCallable(Array.from)) {
-    return Array.from(arrayLike);
-  }
-
-  var array = [];
-  var length = arrayLike.length;
-  for (var i = 0; i < length; i++) {
-    array.push(arrayLike[i]);
-  }
-
-  return array;
-};
-
-/**
- * Assign polyfill from the mdn.
- * @param {Object} target
- * @return {Object}
- */
-var assign = function (target) {
-  var others = [], len = arguments.length - 1;
-  while ( len-- > 0 ) others[ len ] = arguments[ len + 1 ];
-
-  /* istanbul ignore else */
-  if (isCallable(Object.assign)) {
-    return Object.assign.apply(Object, [ target ].concat( others ));
-  }
-
-  /* istanbul ignore next */
-  if (target == null) {
-    throw new TypeError('Cannot convert undefined or null to object');
-  }
-
-  /* istanbul ignore next */
-  var to = Object(target);
-  /* istanbul ignore next */
-  others.forEach(function (arg) {
-    // Skip over if undefined or null
-    if (arg != null) {
-      Object.keys(arg).forEach(function (key) {
-        to[key] = arg[key];
-      });
-    }
-  });
-  /* istanbul ignore next */
-  return to;
-};
-
-/**
- * Generates a unique id.
- * @return {String}
- */
-var uniqId = function () { return ("_" + (Math.random().toString(36).substr(2, 9))); };
-
-/**
- * polyfills array.find
- * @param {Array} array
- * @param {Function} predicate
- */
-var find = function (array, predicate) {
-  if (isObject(array)) {
-    array = toArray(array);
-  }
-  if (array.find) {
-    return array.find(predicate);
-  }
-  var result;
-  array.some(function (item) {
-    if (predicate(item)) {
-      result = item;
-      return true;
-    }
-
-    return false;
-  });
-
-  return result;
-};
-
-var getInputEventName = function (el) {
-  if (el && (el.tagName === 'SELECT' || ~['radio', 'checkbox', 'file'].indexOf(el.type))) {
-    return 'change';
-  }
-
-  return 'input';
-};
-
-var ErrorBag = function ErrorBag () {
-  this.items = [];
-};
-
-/**
-   * Adds an error to the internal array.
-   *
-   * @param {Object} error The error object.
-   */
-ErrorBag.prototype.add = function add (error) {
-  // handle old signature.
-  if (arguments.length > 1) {
-    error = {
-      field: arguments[0],
-      msg: arguments[1],
-      rule: arguments[2],
-      scope: !isNullOrUndefined(arguments[3]) ? arguments[3] : null
-    };
-  }
-
-  error.scope = !isNullOrUndefined(error.scope) ? error.scope : null;
-  this.items.push(error);
-};
-
-/**
- * Updates a field error with the new field scope.
- *
- * @param {String} id
- * @param {Object} error
- */
-ErrorBag.prototype.update = function update (id, error) {
-  var item = find(this.items, function (i) { return i.id === id; });
-  if (!item) {
-    return;
-  }
-
-  var idx = this.items.indexOf(item);
-  this.items.splice(idx, 1);
-  item.scope = error.scope;
-  this.items.push(item);
-};
-
-/**
-   * Gets all error messages from the internal array.
-   *
-   * @param {String} scope The Scope name, optional.
-   * @return {Array} errors Array of all error messages.
-   */
-ErrorBag.prototype.all = function all (scope) {
-  if (isNullOrUndefined(scope)) {
-    return this.items.map(function (e) { return e.msg; });
-  }
-
-  return this.items.filter(function (e) { return e.scope === scope; }).map(function (e) { return e.msg; });
-};
-
-/**
-   * Checks if there are any errors in the internal array.
-   * @param {String} scope The Scope name, optional.
-   * @return {boolean} result True if there was at least one error, false otherwise.
-   */
-ErrorBag.prototype.any = function any (scope) {
-  if (isNullOrUndefined(scope)) {
-    return !! this.items.length;
-  }
-
-  return !! this.items.filter(function (e) { return e.scope === scope; }).length;
-};
-
-/**
-   * Removes all items from the internal array.
-   *
-   * @param {String} scope The Scope name, optional.
-   */
-ErrorBag.prototype.clear = function clear (scope) {
-    var this$1 = this;
-
-  if (isNullOrUndefined(scope)) {
-    scope = null;
-  }
-
-  var removeCondition = function (e) { return e.scope === scope; };
-
-  for (var i = 0; i < this.items.length; ++i) {
-    if (removeCondition(this$1.items[i])) {
-      this$1.items.splice(i, 1);
-      --i;
-    }
-  }
-};
-
-/**
-   * Collects errors into groups or for a specific field.
-   *
-   * @param{string} field The field name.
-   * @param{string} scope The scope name.
-   * @param {Boolean} map If it should map the errors to strings instead of objects.
-   * @return {Array} errors The errors for the specified field.
-   */
-ErrorBag.prototype.collect = function collect (field, scope, map) {
-    if ( map === void 0 ) map = true;
-
-  if (! field) {
-    var collection = {};
-    this.items.forEach(function (e) {
-      if (! collection[e.field]) {
-        collection[e.field] = [];
-      }
-
-      collection[e.field].push(map ? e.msg : e);
-    });
-
-    return collection;
-  }
-
-  field = !isNullOrUndefined(field) ? String(field) : field;
-  if (isNullOrUndefined(scope)) {
-    return this.items.filter(function (e) { return e.field === field; }).map(function (e) { return (map ? e.msg : e); });
-  }
-
-  return this.items.filter(function (e) { return e.field === field && e.scope === scope; })
-    .map(function (e) { return (map ? e.msg : e); });
-};
-/**
-   * Gets the internal array length.
-   *
-   * @return {Number} length The internal array length.
-   */
-ErrorBag.prototype.count = function count () {
-  return this.items.length;
-};
-
-/**
- * Finds and fetches the first error message for the specified field id.
- *
- * @param {String} id
- */
-ErrorBag.prototype.firstById = function firstById (id) {
-  var error = find(this.items, function (i) { return i.id === id; });
-
-  return error ? error.msg : null;
-};
-
-/**
-   * Gets the first error message for a specific field.
-   *
-   * @param{String} field The field name.
-   * @return {String|null} message The error message.
-   */
-ErrorBag.prototype.first = function first (field, scope) {
-    var this$1 = this;
-    if ( scope === void 0 ) scope = null;
-
-  field = !isNullOrUndefined(field) ? String(field) : field;
-  var selector = this._selector(field);
-  var scoped = this._scope(field);
-
-  if (scoped) {
-    var result = this.first(scoped.name, scoped.scope);
-    // if such result exist, return it. otherwise it could be a field.
-    // with dot in its name.
-    if (result) {
-      return result;
-    }
-  }
-
-  if (selector) {
-    return this.firstByRule(selector.name, selector.rule, scope);
-  }
-
-  for (var i = 0; i < this.items.length; ++i) {
-    if (this$1.items[i].field === field && (this$1.items[i].scope === scope)) {
-      return this$1.items[i].msg;
-    }
-  }
-
-  return null;
-};
-
-/**
-   * Returns the first error rule for the specified field
-   *
-   * @param {string} field The specified field.
-   * @return {string|null} First error rule on the specified field if one is found, otherwise null
-   */
-ErrorBag.prototype.firstRule = function firstRule (field, scope) {
-  var errors = this.collect(field, scope, false);
-
-  return (errors.length && errors[0].rule) || null;
-};
-
-/**
-   * Checks if the internal array has at least one error for the specified field.
-   *
-   * @param{string} field The specified field.
-   * @return {Boolean} result True if at least one error is found, false otherwise.
-   */
-ErrorBag.prototype.has = function has (field, scope) {
-    if ( scope === void 0 ) scope = null;
-
-  return !! this.first(field, scope);
-};
-
-/**
-   * Gets the first error message for a specific field and a rule.
-   * @param {String} name The name of the field.
-   * @param {String} rule The name of the rule.
-   * @param {String} scope The name of the scope (optional).
-   */
-ErrorBag.prototype.firstByRule = function firstByRule (name, rule, scope) {
-  var error = this.collect(name, scope, false).filter(function (e) { return e.rule === rule; })[0];
-
-  return (error && error.msg) || null;
-};
-/**
-   * Gets the first error message for a specific field that not match the rule.
-   * @param {String} name The name of the field.
-   * @param {String} rule The name of the rule.
-   * @param {String} scope The name of the scope (optional).
-   */
-ErrorBag.prototype.firstNot = function firstNot (name, rule, scope) {
-    if ( rule === void 0 ) rule = 'required';
-
-  var error = this.collect(name, scope, false).filter(function (e) { return e.rule !== rule; })[0];
-
-  return (error && error.msg) || null;
-};
-
-/**
- * Removes errors by matching against the id.
- * @param {String} id
- */
-ErrorBag.prototype.removeById = function removeById (id) {
-    var this$1 = this;
-
-  for (var i = 0; i < this.items.length; ++i) {
-    if (this$1.items[i].id === id) {
-      this$1.items.splice(i, 1);
-      --i;
-    }
-  }
-};
-
-/**
-   * Removes all error messages associated with a specific field.
-   *
-   * @param{String} field The field which messages are to be removed.
-   * @param {String} scope The Scope name, optional.
-   * @param {String} id The field id, optional.
-   */
-ErrorBag.prototype.remove = function remove (field, scope, id) {
-    var this$1 = this;
-
-  field = !isNullOrUndefined(field) ? String(field) : field;
-  var removeCondition = function (e) {
-    if (e.id && id) {
-      return e.id === id;
-    }
-
-    if (!isNullOrUndefined(scope)) {
-      return e.field === field && e.scope === scope;
-    }
-
-    return e.field === field && e.scope === null;
-  };
-
-  for (var i = 0; i < this.items.length; ++i) {
-    if (removeCondition(this$1.items[i])) {
-      this$1.items.splice(i, 1);
-      --i;
-    }
-  }
-};
-
-/**
-   * Get the field attributes if there's a rule selector.
-   *
-   * @param{String} field The specified field.
-   * @return {Object|null}
-   */
-ErrorBag.prototype._selector = function _selector (field) {
-  if (field.indexOf(':') > -1) {
-    var ref = field.split(':');
-      var name = ref[0];
-      var rule = ref[1];
-
-    return { name: name, rule: rule };
-  }
-
-  return null;
-};
-
-/**
-   * Get the field scope if specified using dot notation.
-   *
-   * @param {String} field the specifie field.
-   * @return {Object|null}
-   */
-ErrorBag.prototype._scope = function _scope (field) {
-  if (field.indexOf('.') > -1) {
-    var ref = field.split('.');
-      var scope = ref[0];
-      var name = ref.slice(1);
-
-    return { name: name.join('.'), scope: scope };
-  }
-
-  return null;
-};
-
-var Dictionary = function Dictionary (dictionary) {
-  if ( dictionary === void 0 ) dictionary = {};
-
-  this.container = {};
-  this.merge(dictionary);
-};
-
-Dictionary.prototype.hasLocale = function hasLocale (locale) {
-  return !! this.container[locale];
-};
-
-Dictionary.prototype.setDateFormat = function setDateFormat (locale, format) {
-  if (!this.container[locale]) {
-    this.container[locale] = {};
-  }
-
-  this.container[locale].dateFormat = format;
-};
-
-Dictionary.prototype.getDateFormat = function getDateFormat (locale) {
-  if (!this.container[locale]) {
-    return undefined;
-  }
-
-  return this.container[locale].dateFormat;
-};
-
-Dictionary.prototype.getMessage = function getMessage (locale, key, fallback) {
-  if (! this.hasMessage(locale, key)) {
-    return fallback || this._getDefaultMessage(locale);
-  }
-
-  return this.container[locale].messages[key];
-};
-
-/**
- * Gets a specific message for field. fallsback to the rule message.
- *
- * @param {String} locale
- * @param {String} field
- * @param {String} key
- */
-Dictionary.prototype.getFieldMessage = function getFieldMessage (locale, field, key) {
-  if (! this.hasLocale(locale)) {
-    return this.getMessage(locale, key);
-  }
-
-  var dict = this.container[locale].custom && this.container[locale].custom[field];
-  if (! dict || ! dict[key]) {
-    return this.getMessage(locale, key);
-  }
-
-  return dict[key];
-};
-
-Dictionary.prototype._getDefaultMessage = function _getDefaultMessage (locale) {
-  if (this.hasMessage(locale, '_default')) {
-    return this.container[locale].messages._default;
-  }
-
-  return this.container.en.messages._default;
-};
-
-Dictionary.prototype.getAttribute = function getAttribute (locale, key, fallback) {
-    if ( fallback === void 0 ) fallback = '';
-
-  if (! this.hasAttribute(locale, key)) {
-    return fallback;
-  }
-
-  return this.container[locale].attributes[key];
-};
-
-Dictionary.prototype.hasMessage = function hasMessage (locale, key) {
-  return !! (
-    this.hasLocale(locale) &&
-          this.container[locale].messages &&
-          this.container[locale].messages[key]
-  );
-};
-
-Dictionary.prototype.hasAttribute = function hasAttribute (locale, key) {
-  return !! (
-    this.hasLocale(locale) &&
-          this.container[locale].attributes &&
-          this.container[locale].attributes[key]
-  );
-};
-
-Dictionary.prototype.merge = function merge (dictionary) {
-  this._merge(this.container, dictionary);
-};
-
-Dictionary.prototype.setMessage = function setMessage (locale, key, message) {
-  if (! this.hasLocale(locale)) {
-    this.container[locale] = {
-      messages: {},
-      attributes: {}
-    };
-  }
-
-  this.container[locale].messages[key] = message;
-};
-
-Dictionary.prototype.setAttribute = function setAttribute (locale, key, attribute) {
-  if (! this.hasLocale(locale)) {
-    this.container[locale] = {
-      messages: {},
-      attributes: {}
-    };
-  }
-
-  this.container[locale].attributes[key] = attribute;
-};
-
-Dictionary.prototype._merge = function _merge (target, source) {
-    var this$1 = this;
-
-  if (! (isObject(target) && isObject(source))) {
-    return target;
-  }
-
-  Object.keys(source).forEach(function (key) {
-    if (isObject(source[key])) {
-      if (! target[key]) {
-        assign(target, ( obj = {}, obj[key] = {}, obj ));
-          var obj;
-      }
-
-      this$1._merge(target[key], source[key]);
-      return;
-    }
-
-    assign(target, ( obj$1 = {}, obj$1[key] = source[key], obj$1 ));
-      var obj$1;
-  });
-
-  return target;
-};
-
-/**
- * Formates file size.
- *
- * @param {Number|String} size
- */
-var formatFileSize = function (size) {
-  var units = ['Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  var threshold = 1024;
-  size = Number(size) * threshold;
-  var i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(threshold));
-  return (((size / Math.pow(threshold, i)).toFixed(2) * 1) + " " + (units[i]));
-};
-
-/**
- * Checks if vee-validate is defined globally.
- */
-var isDefinedGlobally = function () {
-  return typeof VeeValidate !== 'undefined';
-};
-
-var messages = {
-  _default: function (field) { return ("The " + field + " value is not valid."); },
-  after: function (field, ref) {
-    var target = ref[0];
-    var inclusion = ref[1];
-
-    return ("The " + field + " must be after " + (inclusion ? 'or equal to ' : '') + target + ".");
-},
-  alpha_dash: function (field) { return ("The " + field + " field may contain alpha-numeric characters as well as dashes and underscores."); },
-  alpha_num: function (field) { return ("The " + field + " field may only contain alpha-numeric characters."); },
-  alpha_spaces: function (field) { return ("The " + field + " field may only contain alphabetic characters as well as spaces."); },
-  alpha: function (field) { return ("The " + field + " field may only contain alphabetic characters."); },
-  before: function (field, ref) {
-    var target = ref[0];
-    var inclusion = ref[1];
-
-    return ("The " + field + " must be before " + (inclusion ? 'or equal to ' : '') + target + ".");
-},
-  between: function (field, ref) {
-    var min = ref[0];
-    var max = ref[1];
-
-    return ("The " + field + " field must be between " + min + " and " + max + ".");
-},
-  confirmed: function (field) { return ("The " + field + " confirmation does not match."); },
-  credit_card: function (field) { return ("The " + field + " field is invalid."); },
-  date_between: function (field, ref) {
-    var min = ref[0];
-    var max = ref[1];
-
-    return ("The " + field + " must be between " + min + " and " + max + ".");
-},
-  date_format: function (field, ref) {
-    var format = ref[0];
-
-    return ("The " + field + " must be in the format " + format + ".");
-},
-  decimal: function (field, ref) {
-    if ( ref === void 0 ) ref = ['*'];
-    var decimals = ref[0];
-
-    return ("The " + field + " field must be numeric and may contain " + (!decimals || decimals === '*' ? '' : decimals) + " decimal points.");
-},
-  digits: function (field, ref) {
-    var length = ref[0];
-
-    return ("The " + field + " field must be numeric and exactly contain " + length + " digits.");
-},
-  dimensions: function (field, ref) {
-    var width = ref[0];
-    var height = ref[1];
-
-    return ("The " + field + " field must be " + width + " pixels by " + height + " pixels.");
-},
-  email: function (field) { return ("The " + field + " field must be a valid email."); },
-  ext: function (field) { return ("The " + field + " field must be a valid file."); },
-  image: function (field) { return ("The " + field + " field must be an image."); },
-  in: function (field) { return ("The " + field + " field must be a valid value."); },
-  integer: function (field) { return ("The " + field + " field must be an integer."); },
-  ip: function (field) { return ("The " + field + " field must be a valid ip address."); },
-  length: function (field, ref) {
-    var length = ref[0];
-    var max = ref[1];
-
-    if (max) {
-      return ("The " + field + " length be between " + length + " and " + max + ".");
-    }
-
-    return ("The " + field + " length must be " + length + ".");
-  },
-  max: function (field, ref) {
-    var length = ref[0];
-
-    return ("The " + field + " field may not be greater than " + length + " characters.");
-},
-  max_value: function (field, ref) {
-    var max = ref[0];
-
-    return ("The " + field + " field must be " + max + " or less.");
-},
-  mimes: function (field) { return ("The " + field + " field must have a valid file type."); },
-  min: function (field, ref) {
-    var length = ref[0];
-
-    return ("The " + field + " field must be at least " + length + " characters.");
-},
-  min_value: function (field, ref) {
-    var min = ref[0];
-
-    return ("The " + field + " field must be " + min + " or more.");
-},
-  not_in: function (field) { return ("The " + field + " field must be a valid value."); },
-  numeric: function (field) { return ("The " + field + " field may only contain numeric characters."); },
-  regex: function (field) { return ("The " + field + " field format is invalid."); },
-  required: function (field) { return ("The " + field + " field is required."); },
-  size: function (field, ref) {
-    var size = ref[0];
-
-    return ("The " + field + " size must be less than " + (formatFileSize(size)) + ".");
-},
-  url: function (field) { return ("The " + field + " field is not a valid URL."); }
-};
-
-var locale$1 = {
-  name: 'en',
-  messages: messages,
-  attributes: {}
-};
-
-if (isDefinedGlobally()) {
-  // eslint-disable-next-line
-  VeeValidate.Validator.addLocale(locale$1);
-}
-
-/**
- * Generates the options required to construct a field.
- */
-var Generator = function Generator () {};
-
-Generator.generate = function generate (el, binding, vnode, options) {
-    if ( options === void 0 ) options = {};
-
-  var model = Generator.resolveModel(binding, vnode);
-
-  return {
-    name: Generator.resolveName(el, vnode),
-    el: el,
-    listen: !binding.modifiers.disable,
-    scope: Generator.resolveScope(el, binding, vnode),
-    vm: Generator.makeVM(vnode.context),
-    expression: binding.value,
-    component: vnode.child,
-    classes: options.classes,
-    classNames: options.classNames,
-    getter: Generator.resolveGetter(el, vnode, model),
-    events: Generator.resolveEvents(el, vnode) || options.events,
-    model: model,
-    delay: Generator.resolveDelay(el, vnode, options),
-    rules: Generator.resolveRules(el, binding),
-    initial: !!binding.modifiers.initial,
-    alias: Generator.resolveAlias(el, vnode),
-    validity: options.validity,
-    aria: options.aria,
-    initialValue: Generator.resolveInitialValue(vnode)
-  };
-};
-
-/**
- *
- * @param {*} el
- * @param {*} binding
- */
-Generator.resolveRules = function resolveRules (el, binding) {
-  if (!binding || !binding.expression) {
-    return getDataAttribute(el, 'rules');
-  }
-
-  if (typeof binding.value === 'string') {
-    return binding.value;
-  }
-
-  if (~['string', 'object'].indexOf(typeof binding.value.rules)) {
-    return binding.value.rules;
-  }
-
-  return binding.value;
-};
-
-/**
- * @param {*} vnode
- */
-Generator.resolveInitialValue = function resolveInitialValue (vnode) {
-  var model = vnode.data.model || find(vnode.data.directives, function (d) { return d.name === 'model'; });
-
-  return model && model.value;
-};
-
-/**
- * Creates a non-circular partial VM instance from a Vue instance.
- * @param {*} vm
- */
-Generator.makeVM = function makeVM (vm) {
-  return {
-    get $el () {
-      return vm.$el;
-    },
-    get $refs () {
-      return vm.$refs;
-    },
-    $watch: vm.$watch ? vm.$watch.bind(vm) : function () {},
-    $validator: vm.$validator ? {
-      errors: vm.$validator.errors,
-      validate: vm.$validator.validate.bind(vm.$validator),
-      update: vm.$validator.update.bind(vm.$validator)
-    } : null
-  };
-};
-
-/**
- * Resolves the delay value.
- * @param {*} el
- * @param {*} vnode
- * @param {Object} options
- */
-Generator.resolveDelay = function resolveDelay (el, vnode, options) {
-    if ( options === void 0 ) options = {};
-
-  return getDataAttribute(el, 'delay') || (vnode.child && vnode.child.$attrs && vnode.child.$attrs['data-vv-delay']) || options.delay;
-};
-
-/**
- * Resolves the alias for the field.
- * @param {*} el
- * @param {*} vnode
- * @return {Function} alias getter
- */
-Generator.resolveAlias = function resolveAlias (el, vnode) {
-  return function () { return getDataAttribute(el, 'as') || (vnode.child && vnode.child.$attrs && vnode.child.$attrs['data-vv-as']) || el.title || null; };
-};
-
-/**
- * Resolves the events to validate in response to.
- * @param {*} el
- * @param {*} vnode
- */
-Generator.resolveEvents = function resolveEvents (el, vnode) {
-  if (vnode.child) {
-    return getDataAttribute(el, 'validate-on') || (vnode.child.$attrs && vnode.child.$attrs['data-vv-validate-on']);
-  }
-
-  return getDataAttribute(el, 'validate-on');
-};
-
-/**
- * Resolves the scope for the field.
- * @param {*} el
- * @param {*} binding
- */
-Generator.resolveScope = function resolveScope (el, binding, vnode) {
-    if ( vnode === void 0 ) vnode = {};
-
-  var scope = null;
-  if (isObject(binding.value)) {
-    scope = binding.value.scope;
-  }
-
-  if (vnode.child && isNullOrUndefined(scope)) {
-    scope = vnode.child.$attrs && vnode.child.$attrs['data-vv-scope'];
-  }
-
-  return !isNullOrUndefined(scope) ? scope : getScope(el);
-};
-
-/**
- * Checks if the node directives contains a v-model or a specified arg.
- * Args take priority over models.
- *
- * @return {Object}
- */
-Generator.resolveModel = function resolveModel (binding, vnode) {
-  if (binding.arg) {
-    return binding.arg;
-  }
-
-  if (isObject(binding.value) && binding.value.arg) {
-    return binding.value.arg;
-  }
-
-  var model = vnode.data.model || find(vnode.data.directives, function (d) { return d.name === 'model'; });
-  if (!model) {
-    return null;
-  }
-
-  var watchable = /^[a-z_]+[0-9]*(\w*\.[a-z_]\w*)*$/i.test(model.expression) && hasPath(model.expression, vnode.context);
-
-  if (!watchable) {
-    return null;
-  }
-
-  return model.expression;
-};
-
-/**
-   * Resolves the field name to trigger validations.
-   * @return {String} The field name.
-   */
-Generator.resolveName = function resolveName (el, vnode) {
-  if (vnode.child) {
-    return getDataAttribute(el, 'name') || (vnode.child.$attrs && (vnode.child.$attrs['data-vv-name'] || vnode.child.$attrs['name'])) || vnode.child.name;
-  }
-
-  return getDataAttribute(el, 'name') || el.name;
-};
-
-/**
- * Returns a value getter input type.
- */
-Generator.resolveGetter = function resolveGetter (el, vnode, model) {
-  if (model) {
-    return function () {
-      return getPath(model, vnode.context);
-    };
-  }
-
-  if (vnode.child) {
-    return function () {
-      var path = getDataAttribute(el, 'value-path') || (vnode.child.$attrs && vnode.child.$attrs['data-vv-value-path']);
-      if (path) {
-        return getPath(path, vnode.child);
-      }
-      return vnode.child.value;
-    };
-  }
-
-  switch (el.type) {
-  case 'checkbox': return function () {
-    var els = document.querySelectorAll(("input[name=\"" + (el.name) + "\"]"));
-
-    els = toArray(els).filter(function (el) { return el.checked; });
-    if (!els.length) { return undefined; }
-
-    return els.map(function (checkbox) { return checkbox.value; });
-  };
-  case 'radio': return function () {
-    var els = document.querySelectorAll(("input[name=\"" + (el.name) + "\"]"));
-    var elm = find(els, function (el) { return el.checked; });
-
-    return elm && elm.value;
-  };
-  case 'file': return function (context) {
-    return toArray(el.files);
-  };
-  case 'select-multiple': return function () {
-    return toArray(el.options).filter(function (opt) { return opt.selected; }).map(function (opt) { return opt.value; });
-  };
-  default: return function () {
-    return el && el.value;
-  };
-  }
-};
-
-var DEFAULT_OPTIONS = {
-  targetOf: null,
-  initial: false,
-  scope: null,
-  listen: true,
-  name: null,
-  active: true,
-  required: false,
-  rules: {},
-  vm: null,
-  classes: false,
-  validity: true,
-  aria: true,
-  events: 'input|blur',
-  delay: 0,
-  classNames: {
-    touched: 'touched', // the control has been blurred
-    untouched: 'untouched', // the control hasn't been blurred
-    valid: 'valid', // model is valid
-    invalid: 'invalid', // model is invalid
-    pristine: 'pristine', // control has not been interacted with
-    dirty: 'dirty' // control has been interacted with
-  }
-};
-
-var Field = function Field (el, options) {
-  if ( options === void 0 ) options = {};
-
-  this.id = uniqId();
-  this.el = el;
-  this.updated = false;
-  this.dependencies = [];
-  this.watchers = [];
-  this.events = [];
-  this.rules = {};
-  if (!this.isHeadless && !options.targetOf) {
-    setDataAttribute(this.el, 'id', this.id); // cache field id if it is independent and has a root element.
-  }
-  options = assign({}, DEFAULT_OPTIONS, options);
-  this.validity = options.validity;
-  this.aria = options.aria;
-  this.flags = createFlags();
-  this.vm = options.vm;
-  this.component = options.component;
-  this.update(options);
-  this.updated = false;
-};
-
-var prototypeAccessors$1 = { isVue: {},validator: {},isRequired: {},isDisabled: {},isHeadless: {},displayName: {},value: {},rejectsFalse: {} };
-
-prototypeAccessors$1.isVue.get = function () {
-  return !!this.component;
-};
-
-prototypeAccessors$1.validator.get = function () {
-  if (!this.vm || !this.vm.$validator) {
-    warn('No validator instance detected.');
-    return { validate: function () {} };
-  }
-
-  return this.vm.$validator;
-};
-
-prototypeAccessors$1.isRequired.get = function () {
-  return !!this.rules.required;
-};
-
-prototypeAccessors$1.isDisabled.get = function () {
-  return (this.isVue && this.component.disabled) || (this.el && this.el.disabled);
-};
-
-prototypeAccessors$1.isHeadless.get = function () {
-  return !this.el;
-};
-
-/**
- * Gets the display name (user-friendly name).
- * @return {String}
- */
-prototypeAccessors$1.displayName.get = function () {
-  return isCallable(this.alias) ? this.alias() : this.alias;
-};
-
-/**
- * Gets the input value.
- * @return {*}
- */
-prototypeAccessors$1.value.get = function () {
-  if (!isCallable(this.getter)) {
-    return undefined;
-  }
-
-  return this.getter();
-};
-
-/**
- * If the field rejects false as a valid value for the required rule.
- */
-prototypeAccessors$1.rejectsFalse.get = function () {
-  if (this.isVue || this.isHeadless) {
-    return false;
-  }
-
-  return this.el.type === 'checkbox';
-};
-
-/**
- * Determines if the instance matches the options provided.
- * @param {Object} options The matching options.
- */
-Field.prototype.matches = function matches (options) {
-  if (options.id) {
-    return this.id === options.id;
-  }
-
-  if (options.name === undefined && options.scope === undefined) {
-    return true;
-  }
-
-  if (options.scope === undefined) {
-    return this.name === options.name;
-  }
-
-  if (options.name === undefined) {
-    return this.scope === options.scope;
-  }
-
-  return options.name === this.name && options.scope === this.scope;
-};
-
-/**
- *
- * @param {Object} options
- */
-Field.prototype.update = function update (options) {
-  this.targetOf = options.targetOf || null;
-  this.initial = options.initial || this.initial || false;
-
-  // update errors scope if the field scope was changed.
-  if (this.updated && !isNullOrUndefined(options.scope) && options.scope !== this.scope && isCallable(this.validator.update)) {
-    this.validator.update(this.id, { scope: options.scope });
-  }
-  this.scope = !isNullOrUndefined(options.scope) ? options.scope
-    : !isNullOrUndefined(this.scope) ? this.scope : null;
-  this.name = (!isNullOrUndefined(options.name) ? String(options.name) : options.name) || this.name || null;
-  this.rules = options.rules !== undefined ? normalizeRules(options.rules) : this.rules;
-  this.model = options.model || this.model;
-  this.listen = options.listen !== undefined ? options.listen : this.listen;
-  this.classes = options.classes || this.classes || false;
-  this.classNames = options.classNames || this.classNames || DEFAULT_OPTIONS.classNames;
-  this.alias = options.alias || this.alias;
-  this.getter = isCallable(options.getter) ? options.getter : this.getter;
-  this.delay = options.delay || this.delay || 0;
-  this.events = typeof options.events === 'string' && options.events.length ? options.events.split('|') : this.events;
-  this.updateDependencies();
-  this.addActionListeners();
-
-  // update required flag flags
-  if (options.rules !== undefined) {
-    this.flags.required = this.isRequired;
-  }
-
-  // validate if it was validated before and field was updated and there was a rules mutation.
-  if (this.flags.validated && options.rules !== undefined && this.updated) {
-    this.validator.validate(("#" + (this.id)));
-  }
-
-  this.updated = true;
-
-  // no need to continue.
-  if (this.isHeadless) {
-    return;
-  }
-
-  this.updateClasses();
-  this.addValueListeners();
-  this.updateAriaAttrs();
-};
-
-/**
- * Resets field flags and errors.
- */
-Field.prototype.reset = function reset () {
-    var this$1 = this;
-
-  var def = createFlags();
-  Object.keys(this.flags).forEach(function (flag) {
-    this$1.flags[flag] = def[flag];
-  });
-
-  this.addActionListeners();
-  this.updateClasses();
-  if (this.validator.errors && isCallable(this.validator.errors.removeById)) {
-    this.validator.errors.removeById(this.id);
-  }
-};
-
-/**
- * Sets the flags and their negated counterparts, and updates the classes and re-adds action listeners.
- * @param {Object} flags
- */
-Field.prototype.setFlags = function setFlags (flags) {
-    var this$1 = this;
-
-  var negated = {
-    pristine: 'dirty',
-    dirty: 'pristine',
-    valid: 'invalid',
-    invalid: 'valid',
-    touched: 'untouched',
-    untouched: 'touched'
-  };
-
-  Object.keys(flags).forEach(function (flag) {
-    this$1.flags[flag] = flags[flag];
-    // if it has a negation and was not specified, set it as well.
-    if (negated[flag] && flags[negated[flag]] === undefined) {
-      this$1.flags[negated[flag]] = !flags[flag];
-    }
-  });
-
-  if (
-    flags.untouched !== undefined ||
-    flags.touched !== undefined ||
-    flags.dirty !== undefined ||
-    flags.pristine !== undefined
-  ) {
-    this.addActionListeners();
-  }
-  this.updateClasses();
-  this.updateAriaAttrs();
-  this.updateCustomValidity();
-};
-
-/**
- * Determines if the field requires references to target fields.
-*/
-Field.prototype.updateDependencies = function updateDependencies () {
-    var this$1 = this;
-
-  // reset dependencies.
-  this.dependencies.forEach(function (d) { return d.field.destroy(); });
-  this.dependencies = [];
-
-  // we get the selectors for each field.
-  var fields = Object.keys(this.rules).reduce(function (prev, r) {
-    if (r === 'confirmed') {
-      prev.push({ selector: this$1.rules[r][0] || ((this$1.name) + "_confirmation"), name: r });
-    } else if (/after|before/.test(r)) {
-      prev.push({ selector: this$1.rules[r][0], name: r });
-    }
-
-    return prev;
-  }, []);
-
-  if (!fields.length || !this.vm || !this.vm.$el) { return; }
-
-  // must be contained within the same component, so we use the vm root element constrain our dom search.
-  fields.forEach(function (ref) {
-      var selector = ref.selector;
-      var name = ref.name;
-
-    var el = null;
-    // vue ref selector.
-    if (selector[0] === '$') {
-      el = this$1.vm.$refs[selector.slice(1)];
-    } else {
-      try {
-        // try query selector
-        el = this$1.vm.$el.querySelector(selector);
-      } catch (err) {
-        el = null;
-      }
-    }
-
-    if (!el) {
-      el = this$1.vm.$el.querySelector(("input[name=\"" + selector + "\"]"));
-    }
-
-    if (!el) {
-      return;
-    }
-
-    var options = {
-      vm: this$1.vm,
-      classes: this$1.classes,
-      classNames: this$1.classNames,
-      delay: this$1.delay,
-      scope: this$1.scope,
-      events: this$1.events.join('|'),
-      initial: this$1.initial,
-      targetOf: this$1.id
-    };
-
-    // probably a component.
-    if (isCallable(el.$watch)) {
-      options.component = el;
-      options.el = el.$el;
-      options.alias = Generator.resolveAlias(el.$el, { child: el });
-      options.getter = Generator.resolveGetter(el.$el, { child: el });
-    } else {
-      options.el = el;
-      options.alias = Generator.resolveAlias(el, {});
-      options.getter = Generator.resolveGetter(el, {});
-    }
-
-    this$1.dependencies.push({ name: name, field: new Field(options.el, options) });
-  });
-};
-
-/**
- * Removes listeners.
- * @param {RegExp} tag
- */
-Field.prototype.unwatch = function unwatch (tag) {
-    if ( tag === void 0 ) tag = null;
-
-  if (!tag) {
-    this.watchers.forEach(function (w) { return w.unwatch(); });
-    this.watchers = [];
-    return;
-  }
-  this.watchers.filter(function (w) { return tag.test(w.tag); }).forEach(function (w) { return w.unwatch(); });
-  this.watchers = this.watchers.filter(function (w) { return !tag.test(w.tag); });
-};
-
-/**
- * Updates the element classes depending on each field flag status.
- */
-Field.prototype.updateClasses = function updateClasses () {
-  if (!this.classes) { return; }
-
-  toggleClass(this.el, this.classNames.dirty, this.flags.dirty);
-  toggleClass(this.el, this.classNames.pristine, this.flags.pristine);
-  toggleClass(this.el, this.classNames.valid, !!this.flags.valid);
-  toggleClass(this.el, this.classNames.invalid, !!this.flags.invalid);
-  toggleClass(this.el, this.classNames.touched, this.flags.touched);
-  toggleClass(this.el, this.classNames.untouched, this.flags.untouched);
-};
-
-/**
- * Adds the listeners required for automatic classes and some flags.
- */
-Field.prototype.addActionListeners = function addActionListeners () {
-    var this$1 = this;
-
-  // remove previous listeners.
-  this.unwatch(/class/);
-
-  var onBlur = function () {
-    this$1.flags.touched = true;
-    this$1.flags.untouched = false;
-    if (this$1.classes) {
-      toggleClass(this$1.el, this$1.classNames.touched, true);
-      toggleClass(this$1.el, this$1.classNames.untouched, false);
-    }
-
-    // only needed once.
-    this$1.unwatch(/^class_blur$/);
-  };
-
-  var inputEvent = getInputEventName(this.el);
-  var onInput = function () {
-    this$1.flags.dirty = true;
-    this$1.flags.pristine = false;
-    if (this$1.classes) {
-      toggleClass(this$1.el, this$1.classNames.pristine, false);
-      toggleClass(this$1.el, this$1.classNames.dirty, true);
-    }
-
-    // only needed once.
-    this$1.unwatch(/^class_input$/);
-  };
-
-  if (this.isVue && isCallable(this.component.$once)) {
-    this.component.$once('input', onInput);
-    this.component.$once('blur', onBlur);
-    this.watchers.push({
-      tag: 'class_input',
-      unwatch: function () {
-        this$1.component.$off('input', onInput);
-      }
-    });
-    this.watchers.push({
-      tag: 'class_blur',
-      unwatch: function () {
-        this$1.component.$off('blur', onBlur);
-      }
-    });
-    return;
-  }
-
-  if (this.isHeadless) { return; }
-
-  this.el.addEventListener(inputEvent, onInput);
-  // Checkboxes and radio buttons on Mac don't emit blur naturally, so we listen on click instead.
-  var blurEvent = ['radio', 'checkbox'].indexOf(this.el.type) === -1 ? 'blur' : 'click';
-  this.el.addEventListener(blurEvent, onBlur);
-  this.watchers.push({
-    tag: 'class_input',
-    unwatch: function () {
-      this$1.el.removeEventListener(inputEvent, onInput);
-    }
-  });
-
-  this.watchers.push({
-    tag: 'class_blur',
-    unwatch: function () {
-      this$1.el.removeEventListener(blurEvent, onBlur);
-    }
-  });
-};
-
-/**
- * Adds the listeners required for validation.
- */
-Field.prototype.addValueListeners = function addValueListeners () {
-    var this$1 = this;
-
-  this.unwatch(/^input_.+/);
-  if (!this.listen) { return; }
-
-  var fn = this.targetOf ? function () {
-    this$1.validator.validate(("#" + (this$1.targetOf)));
-  } : function () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-    // if its a DOM event, resolve the value, otherwise use the first parameter as the value.
-    if (args.length === 0 || (isCallable(Event) && args[0] instanceof Event) || args[0].srcElement) {
-      args[0] = this$1.value;
-    }
-    this$1.validator.validate(("#" + (this$1.id)), args[0]);
-  };
-
-  var validate = debounce(fn, this.delay);
-  var inputEvent = getInputEventName(this.el);
-  // replace input event with suitable one.
-  var events = this.events.map(function (e) {
-    return e === 'input' ? inputEvent : e;
-  });
-
-  // if there is a watchable model and an on input validation is requested.
-  if (this.model && events.indexOf(inputEvent) !== -1) {
-    var unwatch = this.vm.$watch(this.model, validate);
-    this.watchers.push({
-      tag: 'input_model',
-      unwatch: unwatch
-    });
-    // filter out input event as it is already handled by the watcher API.
-    events = events.filter(function (e) { return e !== inputEvent; });
-  }
-
-  // Add events.
-  events.forEach(function (e) {
-    if (this$1.isVue) {
-      this$1.component.$on(e, validate);
-      this$1.watchers.push({
-        tag: 'input_vue',
-        unwatch: function () {
-          this$1.component.$off(e, validate);
-        }
-      });
-      return;
-    }
-
-    if (~['radio', 'checkbox'].indexOf(this$1.el.type)) {
-      var els = document.querySelectorAll(("input[name=\"" + (this$1.el.name) + "\"]"));
-      toArray(els).forEach(function (el) {
-        el.addEventListener(e, validate);
-        this$1.watchers.push({
-          tag: 'input_native',
-          unwatch: function () {
-            el.removeEventListener(e, validate);
-          }
-        });
-      });
-
-      return;
-    }
-
-    this$1.el.addEventListener(e, validate);
-    this$1.watchers.push({
-      tag: 'input_native',
-      unwatch: function () {
-        this$1.el.removeEventListener(e, validate);
-      }
-    });
-  });
-};
-
-/**
- * Updates aria attributes on the element.
- */
-Field.prototype.updateAriaAttrs = function updateAriaAttrs () {
-  if (!this.aria || this.isHeadless || !isCallable(this.el.setAttribute)) { return; }
-
-  this.el.setAttribute('aria-required', this.isRequired ? 'true' : 'false');
-  this.el.setAttribute('aria-invalid', this.flags.invalid ? 'true' : 'false');
-};
-
-/**
- * Updates the custom validity for the field.
- */
-Field.prototype.updateCustomValidity = function updateCustomValidity () {
-  if (!this.validity || this.isHeadless || !isCallable(this.el.setCustomValidity)) { return; }
-
-  this.el.setCustomValidity(this.flags.valid ? '' : (this.validator.errors.firstById(this.id) || ''));
-};
-
-/**
- * Removes all listeners.
- */
-Field.prototype.destroy = function destroy () {
-  this.watchers.forEach(function (w) { return w.unwatch(); });
-  this.watchers = [];
-  this.dependencies.forEach(function (d) { return d.field.destroy(); });
-  this.dependencies = [];
-};
-
-Object.defineProperties( Field.prototype, prototypeAccessors$1 );
-
-var FieldBag = function FieldBag () {
-  this.items = [];
-};
-
-var prototypeAccessors$2 = { length: {} };
-
-/**
- * @return {Number} The current collection length.
- */
-prototypeAccessors$2.length.get = function () {
-  return this.items.length;
-};
-
-/**
- * Finds the first field that matches the provided matcher object.
- * @param {Object} matcher
- * @return {Field|undefined} The first matching item.
- */
-FieldBag.prototype.find = function find$1 (matcher) {
-  return find(this.items, function (item) { return item.matches(matcher); });
-};
-
-/**
- * @param {Object|Array} matcher
- * @return {Array} Array of matching field items.
- */
-FieldBag.prototype.filter = function filter (matcher) {
-  // multiple matchers to be tried.
-  if (Array.isArray(matcher)) {
-    return this.items.filter(function (item) { return matcher.some(function (m) { return item.matches(m); }); });
-  }
-
-  return this.items.filter(function (item) { return item.matches(matcher); });
-};
-
-/**
- * Maps the field items using the mapping function.
- *
- * @param {Function} mapper
- */
-FieldBag.prototype.map = function map (mapper) {
-  return this.items.map(mapper);
-};
-
-/**
- * Finds and removes the first field that matches the provided matcher object, returns the removed item.
- * @param {Object|Field} matcher
- * @return {Field|null}
- */
-FieldBag.prototype.remove = function remove (matcher) {
-  var item = null;
-  if (matcher instanceof Field) {
-    item = matcher;
-  } else {
-    item = this.find(matcher);
-  }
-
-  if (!item) { return null; }
-
-  var index = this.items.indexOf(item);
-  this.items.splice(index, 1);
-
-  return item;
-};
-
-/**
- * Adds a field item to the list.
- *
- * @param {Field} item
- */
-FieldBag.prototype.push = function push (item) {
-  if (! (item instanceof Field)) {
-    throw createError('FieldBag only accepts instances of Field that has an id defined.');
-  }
-
-  if (!item.id) {
-    throw createError('Field id must be defined.');
-  }
-
-  if (this.find({ id: item.id })) {
-    throw createError(("Field with id " + (item.id) + " is already added."));
-  }
-
-  this.items.push(item);
-};
-
-Object.defineProperties( FieldBag.prototype, prototypeAccessors$2 );
-
-var RULES = {};
-var LOCALE = 'en';
-var STRICT_MODE = true;
-var DICTIONARY = new Dictionary({
-  en: {
-    messages: messages,
-    attributes: {},
-    custom: {}
-  }
-});
-
-var Validator = function Validator (validations, options) {
-  var this$1 = this;
-  if ( options === void 0 ) options = { vm: null, fastExit: true };
-
-  this.strict = STRICT_MODE;
-  this.errors = new ErrorBag();
-  this.fields = new FieldBag();
-  this.flags = {};
-  this._createFields(validations);
-  this.paused = false;
-  this.fastExit = options.fastExit || false;
-  this.ownerId = options.vm && options.vm._uid;
-  // create it statically since we don't need constant access to the vm.
-  this.reset = options.vm && isCallable(options.vm.$nextTick) ? function () {
-    options.vm.$nextTick(function () {
-      this$1.fields.items.forEach(function (i) { return i.reset(); });
-      this$1.errors.clear();
-    });
-  } : function () {
-    this$1.fields.items.forEach(function (i) { return i.reset(); });
-    this$1.errors.clear();
-  };
-  /* istanbul ignore next */
-  this.clean = function () {
-    warn('validator.clean is marked for deprecation, please use validator.reset instead.');
-    this$1.reset();
-  };
-};
-
-var prototypeAccessors = { dictionary: {},locale: {},rules: {} };
-var staticAccessors = { dictionary: {},locale: {},rules: {} };
-
-/**
- * @return {Dictionary}
- */
-prototypeAccessors.dictionary.get = function () {
-  return DICTIONARY;
-};
-
-/**
- * @return {Dictionary}
- */
-staticAccessors.dictionary.get = function () {
-  return DICTIONARY;
-};
-
-/**
- * @return {String}
- */
-prototypeAccessors.locale.get = function () {
-  return LOCALE;
-};
-
-/**
- * @param {String} value
- */
-prototypeAccessors.locale.set = function (value) {
-  Validator.locale = value;
-};
-
-/**
-* @return {String}
-*/
-staticAccessors.locale.get = function () {
-  return LOCALE;
-};
-
-/**
- * @param {String} value
- */
-staticAccessors.locale.set = function (value) {
-  /* istanbul ignore if */
-  if (!DICTIONARY.hasLocale(value)) {
-    // eslint-disable-next-line
-    warn('You are setting the validator locale to a locale that is not defined in the dictionary. English messages may still be generated.');
-  }
-
-  LOCALE = value;
-};
-
-/**
- * @return {Object}
- */
-prototypeAccessors.rules.get = function () {
-  return RULES;
-};
-
-/**
- * @return {Object}
- */
-staticAccessors.rules.get = function () {
-  return RULES;
-};
-
-/**
- * Static constructor.
- *
- * @param{object} validations The validations object.
- * @return {Validator} validator A validator object.
- */
-Validator.create = function create (validations, options) {
-  return new Validator(validations, options);
-};
-
-/**
- * Adds a custom validator to the list of validation rules.
- *
- * @param{string} name The name of the validator.
- * @param{object|function} validator The validator object/function.
- */
-Validator.extend = function extend (name, validator) {
-  Validator._guardExtend(name, validator);
-  Validator._merge(name, validator);
-};
-
-/**
- * Removes a rule from the list of validators.
- * @param {String} name The name of the validator/rule.
- */
-Validator.remove = function remove (name) {
-  delete RULES[name];
-};
-
-/**
- * Sets the default locale for all validators.
- * @deprecated
- * @param {String} language The locale id.
- */
-Validator.setLocale = function setLocale (language) {
-    if ( language === void 0 ) language = 'en';
-
-  Validator.locale = language;
-};
-
-/**
- * @deprecated
- */
-Validator.installDateTimeValidators = function installDateTimeValidators () {
-  /* istanbul ignore next */
-  warn('Date validations are now installed by default, you no longer need to install it.');
-};
-
-/**
- * @deprecated
- */
-Validator.prototype.installDateTimeValidators = function installDateTimeValidators () {
-  /* istanbul ignore next */
-  warn('Date validations are now installed by default, you no longer need to install it.');
-};
-
-/**
- * Sets the operating mode for all newly created validators.
- * strictMode = true: Values without a rule are invalid and cause failure.
- * strictMode = false: Values without a rule are valid and are skipped.
- * @param {Boolean} strictMode.
- */
-Validator.setStrictMode = function setStrictMode (strictMode) {
-    if ( strictMode === void 0 ) strictMode = true;
-
-  STRICT_MODE = strictMode;
-};
-
-/**
- * Updates the dictionary, overwriting existing values and adding new ones.
- * @deprecated
- * @param{object} data The dictionary object.
- */
-Validator.updateDictionary = function updateDictionary (data) {
-  DICTIONARY.merge(data);
-};
-
-/**
- * Adds a locale object to the dictionary.
- * @deprecated
- * @param {Object} locale
- */
-Validator.addLocale = function addLocale (locale) {
-  if (! locale.name) {
-    warn('Your locale must have a name property');
-    return;
-  }
-
-  this.updateDictionary(( obj = {}, obj[locale.name] = locale, obj ));
-    var obj;
-};
-
-/**
- * Adds a locale object to the dictionary.
- * @deprecated
- * @param {Object} locale
- */
-Validator.prototype.addLocale = function addLocale (locale) {
-  Validator.addLocale(locale);
-};
-
-/**
- * Adds and sets the current locale for the validator.
- *
- * @param {String} lang
- * @param {Object} dictionary
- */
-Validator.prototype.localize = function localize (lang, dictionary) {
-  Validator.localize(lang, dictionary);
-};
-
-/**
- * Adds and sets the current locale for the validator.
- *
- * @param {String} lang
- * @param {Object} dictionary
- */
-Validator.localize = function localize (lang, dictionary) {
-  // merge the dictionary.
-  if (dictionary) {
-    dictionary = assign({}, dictionary, { name: lang });
-    Validator.addLocale(dictionary);
-  }
-
-  // set the locale.
-  Validator.locale = lang;
-};
-
-/**
- * Registers a field to be validated.
- *
- * @param{Field|Object} name The field name.
- * @return {Field}
- */
-Validator.prototype.attach = function attach (field) {
-  // deprecate: handle old signature.
-  if (arguments.length > 1) {
-    field = assign({}, {
-      name: arguments[0],
-      rules: arguments[1]
-    }, arguments[2] || { vm: { $validator: this } });
-  }
-
-  // fixes initial value detection with v-model and select elements.
-  var value = field.initialValue;
-  if (!(field instanceof Field)) {
-    field = new Field(field.el || null, field);
-  }
-
-  this.fields.push(field);
-
-  // validate the field initially
-  if (field.initial) {
-    this.validate(("#" + (field.id)), value || field.value);
-  } else {
-    this._validate(field, value || field.value, true).then(function (valid) {
-      field.flags.valid = valid;
-      field.flags.invalid = !valid;
-    });
-  }
-
-  this._addFlag(field, field.scope);
-  return field;
-};
-
-/**
- * Sets the flags on a field.
- *
- * @param {String} name
- * @param {Object} flags
- */
-Validator.prototype.flag = function flag (name, flags) {
-  var field = this._resolveField(name);
-  if (! field || !flags) {
-    return;
-  }
-
-  field.setFlags(flags);
-};
-
-/**
- * Removes a field from the validator.
- *
- * @param{String} name The name of the field.
- * @param {String} scope The name of the field scope.
- */
-Validator.prototype.detach = function detach (name, scope) {
-  var field = name instanceof Field ? name : this._resolveField(name, scope);
-  if (!field) { return; }
-
-  field.destroy();
-  this.errors.remove(field.name, field.scope, field.id);
-  this.fields.remove(field);
-  var flags = this.flags;
-  if (!isNullOrUndefined(field.scope) && flags[("$" + (field.scope))]) {
-    delete flags[("$" + (field.scope))][field.name];
-  } else if (isNullOrUndefined(field.scope)) {
-    delete flags[field.name];
-  }
-
-  this.flags = assign({}, flags);
-};
-
-/**
- * Adds a custom validator to the list of validation rules.
- *
- * @param{string} name The name of the validator.
- * @param{object|function} validator The validator object/function.
- */
-Validator.prototype.extend = function extend (name, validator) {
-  Validator.extend(name, validator);
-};
-
-/**
- * Updates a field, updating both errors and flags.
- *
- * @param {String} id
- * @param {Object} diff
- */
-Validator.prototype.update = function update (id, ref) {
-    var scope = ref.scope;
-
-  var field = this._resolveField(("#" + id));
-  this.errors.update(id, { scope: scope });
-
-  // remove old scope.
-  if (!isNullOrUndefined(field.scope) && this.flags[("$" + (field.scope))]) {
-    delete this.flags[("$" + (field.scope))][field.name];
-  } else if (isNullOrUndefined(field.scope)) {
-    delete this.flags[field.name];
-  }
-
-  this._addFlag(field, scope);
-};
-
-/**
- * Removes a rule from the list of validators.
- * @param {String} name The name of the validator/rule.
- */
-Validator.prototype.remove = function remove (name) {
-  Validator.remove(name);
-};
-
-/**
- * Sets the validator current langauge.
- *
- * @param {string} language locale or language id.
- */
-Validator.prototype.setLocale = function setLocale (language) {
-  this.locale = language;
-};
-
-/**
- * Updates the messages dictionary, overwriting existing values and adding new ones.
- * @deprecated
- * @param{object} data The messages object.
- */
-Validator.prototype.updateDictionary = function updateDictionary (data) {
-  Validator.updateDictionary(data);
-};
-
-/**
- * Validates a value against a registered field validations.
- *
- * @param{string} name the field name.
- * @param{*} value The value to be validated.
- * @param {String} scope The scope of the field.
- * @return {Promise}
- */
-Validator.prototype.validate = function validate (name, value, scope) {
-    if ( scope === void 0 ) scope = null;
-
-  if (this.paused) { return Promise.resolve(true); }
-
-  // overload to validate all.
-  if (arguments.length === 0) {
-    return this.validateScopes();
-  }
-
-  // overload to validate scopeless fields.
-  if (arguments.length === 1 && arguments[0] === '*') {
-    return this.validateAll();
-  }
-
-  // overload to validate a scope.
-  if (arguments.length === 1 && typeof arguments[0] === 'string' && /^(.+)\.\*$/.test(arguments[0])) {
-    var matched = arguments[0].match(/^(.+)\.\*$/)[1];
-    return this.validateAll(matched);
-  }
-
-  var field = this._resolveField(name, scope);
-  if (!field) {
-    return this._handleFieldNotFound(name, scope);
-  }
-
-  this.errors.remove(field.name, field.scope, field.id);
-  field.flags.pending = true;
-  if (arguments.length === 1) {
-    value = field.value;
-  }
-
-  var silentRun = field.isDisabled;
-
-  return this._validate(field, value, silentRun).then(function (result) {
-    field.setFlags({
-      pending: false,
-      valid: result,
-      validated: true
-    });
-
-    if (silentRun) {
-      return Promise.resolve(true);
-    }
-
-    return result;
-  });
-};
-
-/**
- * Pauses the validator.
- *
- * @return {Validator}
- */
-Validator.prototype.pause = function pause () {
-  this.paused = true;
-
-  return this;
-};
-
-/**
- * Resumes the validator.
- *
- * @return {Validator}
- */
-Validator.prototype.resume = function resume () {
-  this.paused = false;
-
-  return this;
-};
-
-/**
- * Validates each value against the corresponding field validations.
- * @param{Object|String} values The values to be validated.
- * @return {Promise} Returns a promise with the validation result.
- */
-Validator.prototype.validateAll = function validateAll (values) {
-    var arguments$1 = arguments;
-    var this$1 = this;
-
-  if (this.paused) { return Promise.resolve(true); }
-
-  var matcher = null;
-  var providedValues = false;
-
-  if (typeof values === 'string') {
-    matcher = { scope: values };
-  } else if (isObject(values)) {
-    matcher = Object.keys(values).map(function (key) {
-      return { name: key, scope: arguments$1[1] || null };
-    });
-    providedValues = true;
-  } else if (arguments.length === 0) {
-    matcher = { scope: null }; // global scope.
-  }
-
-  var promises = this.fields.filter(matcher).map(function (field) { return this$1.validate(
-    ("#" + (field.id)),
-    providedValues ? values[field.name] : field.value
-  ); });
-
-  return Promise.all(promises).then(function (results) { return results.every(function (t) { return t; }); });
-};
-
-/**
- * Validates all scopes.
- *
- * @returns {Promise} All promises resulted from each scope.
- */
-Validator.prototype.validateScopes = function validateScopes () {
-    var this$1 = this;
-
-  if (this.paused) { return Promise.resolve(true); }
-
-  var promises = this.fields.map(function (field) { return this$1.validate(
-    ("#" + (field.id)),
-    field.value
-  ); });
-
-  return Promise.all(promises).then(function (results) { return results.every(function (t) { return t; }); });
-};
-
-/**
- * Creates the fields to be validated.
- *
- * @param{object} validations
- * @return {object} Normalized object.
- */
-Validator.prototype._createFields = function _createFields (validations) {
-    var this$1 = this;
-
-  if (!validations) { return; }
-
-  Object.keys(validations).forEach(function (field) {
-    var options = assign({}, { name: field, rules: validations[field] });
-    this$1.attach(options);
-  });
-};
-
-/**
- * Date rules need the existance of a format, so date_format must be supplied.
- * @param {String} name The rule name.
- * @param {Array} validations the field validations.
- */
-Validator.prototype._getDateFormat = function _getDateFormat (validations) {
-  var format = null;
-  if (validations.date_format && Array.isArray(validations.date_format)) {
-    format = validations.date_format[0];
-  }
-
-  return format || this.dictionary.getDateFormat(this.locale);
-};
-
-/**
- * Checks if the passed rule is a date rule.
- */
-Validator.prototype._isADateRule = function _isADateRule (rule) {
-  return !! ~['after', 'before', 'date_between', 'date_format'].indexOf(rule);
-};
-
-/**
- * Formats an error message for field and a rule.
- *
- * @param{Field} field The field object.
- * @param{object} rule Normalized rule object.
- * @param {object} data Additional Information about the validation result.
- * @return {string} Formatted error message.
- */
-Validator.prototype._formatErrorMessage = function _formatErrorMessage (field, rule, data, targetName) {
-    if ( data === void 0 ) data = {};
-    if ( targetName === void 0 ) targetName = null;
-
-  var name = this._getFieldDisplayName(field);
-  var params = this._getLocalizedParams(rule, targetName);
-  // Defaults to english message.
-  if (!this.dictionary.hasLocale(LOCALE)) {
-    var msg$1 = this.dictionary.getFieldMessage('en', field.name, rule.name);
-
-    return isCallable(msg$1) ? msg$1(name, params, data) : msg$1;
-  }
-
-  var msg = this.dictionary.getFieldMessage(LOCALE, field.name, rule.name);
-
-  return isCallable(msg) ? msg(name, params, data) : msg;
-};
-
-/**
- * Translates the parameters passed to the rule (mainly for target fields).
- */
-Validator.prototype._getLocalizedParams = function _getLocalizedParams (rule, targetName) {
-    if ( targetName === void 0 ) targetName = null;
-
-  if (~['after', 'before', 'confirmed'].indexOf(rule.name) && rule.params && rule.params[0]) {
-    var localizedName = targetName || this.dictionary.getAttribute(LOCALE, rule.params[0], rule.params[0]);
-    return [localizedName].concat(rule.params.slice(1));
-  }
-
-  return rule.params;
-};
-
-/**
- * Resolves an appropiate display name, first checking 'data-as' or the registered 'prettyName'
- * Then the dictionary, then fallsback to field name.
- * @param {Field} field The field object.
- * @return {String} The name to be used in the errors.
- */
-Validator.prototype._getFieldDisplayName = function _getFieldDisplayName (field) {
-  return field.displayName || this.dictionary.getAttribute(LOCALE, field.name, field.name);
-};
-
-/**
- * Adds a field flags to the flags collection.
- * @param {Field} field
- * @param {String|null} scope
- */
-Validator.prototype._addFlag = function _addFlag (field, scope) {
-    if ( scope === void 0 ) scope = null;
-
-  if (isNullOrUndefined(scope)) {
-    this.flags = assign({}, this.flags, ( obj = {}, obj[("" + (field.name))] = field.flags, obj ));
-      var obj;
-    return;
-  }
-
-  var scopeObj = assign({}, this.flags[("$" + scope)] || {}, ( obj$1 = {}, obj$1[("" + (field.name))] = field.flags, obj$1 ));
-    var obj$1;
-  this.flags = assign({}, this.flags, ( obj$2 = {}, obj$2[("$" + scope)] = scopeObj, obj$2 ));
-    var obj$2;
-};
-
-/**
- * Tests a single input value against a rule.
- *
- * @param{Field} field The field under validation.
- * @param{*} valuethe value of the field.
- * @param{object} rule the rule object.
- * @return {boolean} Whether it passes the check.
- */
-Validator.prototype._test = function _test (field, value, rule, silent) {
-    var this$1 = this;
-
-  var validator = RULES[rule.name];
-  var params = Array.isArray(rule.params) ? toArray(rule.params) : [];
-  var targetName = null;
-  if (!validator || typeof validator !== 'function') {
-    throw createError(("No such validator '" + (rule.name) + "' exists."));
-  }
-
-  // has field depenencies
-  if (/(confirmed|after|before)/.test(rule.name)) {
-    var target = find(field.dependencies, function (d) { return d.name === rule.name; });
-    if (target) {
-      targetName = target.field.displayName;
-      params = [target.field.value].concat(params.slice(1));
-    }
-  } else if (rule.name === 'required' && field.rejectsFalse) {
-    // invalidate false if no args were specified and the field rejects false by default.
-    params = params.length ? params : [true];
-  }
-
-  if (this._isADateRule(rule.name)) {
-    var dateFormat = this._getDateFormat(field.rules);
-    if (rule.name !== 'date_format') {
-      params.push(dateFormat);
-    }
-  }
-
-  var result = validator(value, params);
-
-  // If it is a promise.
-  if (isCallable(result.then)) {
-    return result.then(function (values) {
-      var allValid = true;
-      var data = {};
-      if (Array.isArray(values)) {
-        allValid = values.every(function (t) { return (isObject(t) ? t.valid : t); });
-      } else { // Is a single object/boolean.
-        allValid = isObject(values) ? values.valid : values;
-        data = values.data;
-      }
-
-      if (!allValid && !silent) {
-        this$1.errors.add({
-          id: field.id,
-          field: field.name,
-          msg: this$1._formatErrorMessage(field, rule, data, targetName),
-          rule: rule.name,
-          scope: field.scope
-        });
-      }
-
-      return allValid;
-    });
-  }
-
-  if (!isObject(result)) {
-    result = { valid: result, data: {} };
-  }
-
-  if (!result.valid && !silent) {
-    this.errors.add({
-      id: field.id,
-      field: field.name,
-      msg: this._formatErrorMessage(field, rule, result.data, targetName),
-      rule: rule.name,
-      scope: field.scope
-    });
-  }
-
-  return result.valid;
-};
-
-/**
- * Merges a validator object into the RULES and Messages.
- *
- * @param{string} name The name of the validator.
- * @param{function|object} validator The validator object.
- */
-Validator._merge = function _merge (name, validator) {
-  if (isCallable(validator)) {
-    RULES[name] = validator;
-    return;
-  }
-
-  RULES[name] = validator.validate;
-  if (isCallable(validator.getMessage)) {
-    DICTIONARY.setMessage(LOCALE, name, validator.getMessage);
-  }
-
-  if (validator.messages) {
-    DICTIONARY.merge(
-      Object.keys(validator.messages).reduce(function (prev, curr) {
-        var dict = prev;
-        dict[curr] = {
-          messages: ( obj = {}, obj[name] = validator.messages[curr], obj )
-        };
-          var obj;
-
-        return dict;
-      }, {})
-    );
-  }
-};
-
-/**
- * Guards from extnsion violations.
- *
- * @param{string} name name of the validation rule.
- * @param{object} validator a validation rule object.
- */
-Validator._guardExtend = function _guardExtend (name, validator) {
-  if (isCallable(validator)) {
-    return;
-  }
-
-  if (!isCallable(validator.validate)) {
-    throw createError(
-      // eslint-disable-next-line
-      ("Extension Error: The validator '" + name + "' must be a function or have a 'validate' method.")
-    );
-  }
-
-  if (!isCallable(validator.getMessage) && !isObject(validator.messages)) {
-    throw createError(
-      // eslint-disable-next-line
-      ("Extension Error: The validator '" + name + "' must have a 'getMessage' method or have a 'messages' object.")
-    );
-  }
-};
-
-/**
- * Tries different strategies to find a field.
- * @param {String} name
- * @param {String} scope
- * @return {Field}
- */
-Validator.prototype._resolveField = function _resolveField (name, scope) {
-  if (!isNullOrUndefined(scope)) {
-    return this.fields.find({ name: name, scope: scope });
-  }
-
-  if (name[0] === '#') {
-    return this.fields.find({ id: name.slice(1) });
-  }
-
-  if (name.indexOf('.') > -1) {
-    var ref = name.split('.');
-      var fieldScope = ref[0];
-      var fieldName = ref.slice(1);
-    var field = this.fields.find({ name: fieldName.join('.'), scope: fieldScope });
-    if (field) {
-      return field;
-    }
-  }
-
-  return this.fields.find({ name: name, scope: null });
-};
-
-/**
- * Handles when a field is not found depending on the strict flag.
- *
- * @param {String} name
- * @param {String} scope
- */
-Validator.prototype._handleFieldNotFound = function _handleFieldNotFound (name, scope) {
-  if (!this.strict) { return Promise.resolve(true); }
-
-  var fullName = isNullOrUndefined(scope) ? name : ("" + (!isNullOrUndefined(scope) ? scope + '.' : '') + name);
-  throw createError(
-    ("Validating a non-existant field: \"" + fullName + "\". Use \"attach()\" first.")
-  );
-};
-
-/**
- * Starts the validation process.
- *
- * @param {Field} field
- * @param {Promise} value
- * @param {Boolean} silent
- */
-Validator.prototype._validate = function _validate (field, value, silent) {
-    var this$1 = this;
-    if ( silent === void 0 ) silent = false;
-
-  if (!field.isRequired && (isNullOrUndefined(value) || value === '')) {
-    return Promise.resolve(true);
-  }
-
-  var promises = [];
-  var isExitEarly = false;
-  // use of '.some()' is to break iteration in middle by returning true
-  Object.keys(field.rules).some(function (rule) {
-    var result = this$1._test(field, value, { name: rule, params: field.rules[rule] }, silent);
-
-    if (isCallable(result.then)) {
-      promises.push(result);
-    } else if (this$1.fastExit && !result) {
-      isExitEarly = true;
-    } else {
-      var resultAsPromise = new Promise(function (resolve) {
-        resolve(result);
-      });
-      promises.push(resultAsPromise);
-    }
-
-    return isExitEarly;
-  });
-
-  if (isExitEarly) { return Promise.resolve(false); }
-
-  return Promise.all(promises).then(function (values) { return values.every(function (t) { return t; }); });
-};
-
-Object.defineProperties( Validator.prototype, prototypeAccessors );
-Object.defineProperties( Validator, staticAccessors );
-
-var fakeFlags = createProxy({}, {
-  get: function get (target, key) {
-    // is a scope
-    if (String(key).indexOf('$') === 0) {
-      return fakeFlags;
-    }
-
-    return createFlags();
-  }
-});
-
-/**
- * Checks if a parent validator instance was requested.
- * @param {Object|Array} injections
- */
-var requestsValidator = function (injections) {
-  if (! injections) {
-    return false;
-  }
-
-  /* istanbul ignore next */
-  if (Array.isArray(injections) && ~injections.indexOf('$validator')) {
-    return true;
-  }
-
-  if (isObject(injections) && injections.$validator) {
-    return true;
-  }
-
-  return false;
-};
-
-/**
- * Creates a validator instance.
- * @param {Vue} vm
- * @param {Object} options
- */
-var createValidator = function (vm, options) { return new Validator(null, { vm: vm, fastExit: options.fastExit }); };
-
-var makeMixin = function (Vue, options) {
-  if ( options === void 0 ) options = {};
-
-  var mixin = {};
-  mixin.provide = function providesValidator () {
-    if (this.$validator) {
-      return {
-        $validator: this.$validator
-      };
-    }
-
-    return {};
-  };
-
-  mixin.beforeCreate = function beforeCreate () {
-    // if its a root instance, inject anyways, or if it requested a new instance.
-    if (this.$options.$validates || !this.$parent) {
-      this.$validator = createValidator(this, options);
-    }
-
-    var requested = requestsValidator(this.$options.inject);
-
-    // if automatic injection is enabled and no instance was requested.
-    if (! this.$validator && options.inject && !requested) {
-      this.$validator = createValidator(this, options);
-    }
-
-    // don't inject errors or fieldBag as no validator was resolved.
-    if (! requested && ! this.$validator) {
-      return;
-    }
-
-    // There is a validator but it isn't injected, mark as reactive.
-    if (! requested && this.$validator) {
-      Vue.util.defineReactive(this.$validator, 'errors', this.$validator.errors);
-      Vue.util.defineReactive(this.$validator, 'flags', this.$validator.flags);
-    }
-
-    if (! this.$options.computed) {
-      this.$options.computed = {};
-    }
-
-    this.$options.computed[options.errorBagName || 'errors'] = function errorBagGetter () {
-      return this.$validator.errors;
-    };
-    this.$options.computed[options.fieldsBagName || 'fields'] = function fieldBagGetter () {
-      if (!Object.keys(this.$validator.flags).length) {
-        return fakeFlags;
-      }
-
-      return this.$validator.flags;
-    };
-  };
-
-  mixin.beforeDestroy = function beforeDestroy () {
-    // mark the validator paused to prevent delayed validation.
-    if (this.$validator && this.$validator.ownerId === this._uid && isCallable(this.$validator.pause)) {
-      this.$validator.pause();
-    }
-  };
-
-  return mixin;
-};
-
-var config = {
-  locale: 'en',
-  delay: 0,
-  errorBagName: 'errors',
-  dictionary: null,
-  strict: true,
-  fieldsBagName: 'fields',
-  classes: false,
-  classNames: undefined,
-  events: 'input|blur',
-  inject: true,
-  fastExit: true,
-  aria: true,
-  validity: false
-};
-
-/**
- * 
- * 
- * Finds the requested field by id from the context object.
- * @param {Object} context
- * @return {Field|null}
- */
-var findField = function (el, context) {
-  if (!context || !context.$validator) {
-    return null;
-  }
-
-  return context.$validator.fields.find({ id: getDataAttribute(el, 'id') });
-};
-
-var createDirective$1 = function (options) {
-  options = assign({}, config, options);
-
-  return {
-    bind: function bind (el, binding, vnode) {
-      var validator = vnode.context.$validator;
-      if (! validator) {
-        warn("No validator instance is present on vm, did you forget to inject '$validator'?");
-        return;
-      }
-      var fieldOptions = Generator.generate(el, binding, vnode, options);
-      validator.attach(fieldOptions);
-    },
-    inserted: function (el, binding, vnode) {
-      var field = findField(el, vnode.context);
-      var scope = Generator.resolveScope(el, binding, vnode);
-
-      // skip if scope hasn't changed.
-      if (!field || scope === field.scope) { return; }
-
-      // only update scope.
-      field.update({ scope: scope });
-
-      // allows the field to re-evaluated once more in the update hook.
-      field.updated = false;
-    },
-    update: function (el, binding, vnode) {
-      var field = findField(el, vnode.context);
-
-      // make sure we don't do uneccessary work if no important change was done.
-      if (!field || (field.updated && isEqual(binding.value, binding.oldValue))) { return; }
-      var scope = Generator.resolveScope(el, binding, vnode);
-      var rules = Generator.resolveRules(el, binding);
-
-      field.update({
-        scope: scope,
-        rules: rules
-      });
-    },
-    unbind: function unbind (el, binding, ref) {
-      var context = ref.context;
-
-      var field = findField(el, context);
-      if (!field) { return; }
-
-      context.$validator.detach(field);
-    }
-  };
-};
-
-var Vue;
-
-function install (_Vue, options) {
-  if ( options === void 0 ) options = {};
-
-  if (Vue) {
-    warn('already installed, Vue.use(VeeValidate) should only be called once.');
-    return;
-  }
-
-  Vue = _Vue;
-  var config$$1 = assign({}, config, options);
-  if (config$$1.dictionary) {
-    Validator.updateDictionary(config$$1.dictionary);
-  }
-
-  if (options) {
-    if (options.locale) {
-      Validator.locale = options.locale;
-    }
-
-    if (options.strict) {
-      Validator.setStrictMode(config$$1.strict);
-    }
-  }
-
-  Vue.mixin(makeMixin(Vue, config$$1));
-  Vue.directive('validate', createDirective$1(config$$1));
-}
-
-function use (plugin, options) {
-  if ( options === void 0 ) options = {};
-
-  if (!isCallable(plugin)) {
-    return warn('The plugin must be a callable function');
-  }
-
-  plugin({ Validator: Validator, ErrorBag: ErrorBag, Rules: Validator.rules }, options);
 }
 
 var after = function (value, ref) {
@@ -61145,8 +62356,8 @@ var after = function (value, ref) {
     format = inclusion;
     inclusion = false;
   }
-  value = parseDate(value, format);
-  otherValue = parseDate(otherValue, format);
+  value = parseDate$1(value, format);
+  otherValue = parseDate$1(otherValue, format);
 
   // if either is not valid.
   if (!value || !otherValue) {
@@ -61242,8 +62453,8 @@ var alphaDash = {
 };
 
 var validate = function (value, ref) {
-  if ( ref === void 0 ) ref = [null];
-  var locale = ref[0];
+  if ( ref === void 0 ) ref = [];
+  var locale = ref[0]; if ( locale === void 0 ) locale = null;
 
   if (Array.isArray(value)) {
     return value.every(function (val) { return validate(val, [locale]); });
@@ -61258,8 +62469,8 @@ var validate = function (value, ref) {
 };
 
 var validate$1 = function (value, ref) {
-  if ( ref === void 0 ) ref = [null];
-  var locale = ref[0];
+  if ( ref === void 0 ) ref = [];
+  var locale = ref[0]; if ( locale === void 0 ) locale = null;
 
   if (Array.isArray(value)) {
     return value.every(function (val) { return validate$1(val, [locale]); });
@@ -61274,8 +62485,8 @@ var validate$1 = function (value, ref) {
 };
 
 var validate$2 = function (value, ref) {
-  if ( ref === void 0 ) ref = [null];
-  var locale = ref[0];
+  if ( ref === void 0 ) ref = [];
+  var locale = ref[0]; if ( locale === void 0 ) locale = null;
 
   if (Array.isArray(value)) {
     return value.every(function (val) { return validate$2(val, [locale]); });
@@ -61290,8 +62501,8 @@ var validate$2 = function (value, ref) {
 };
 
 var validate$3 = function (value, ref) {
-  if ( ref === void 0 ) ref = [null];
-  var locale = ref[0];
+  if ( ref === void 0 ) ref = [];
+  var locale = ref[0]; if ( locale === void 0 ) locale = null;
 
   if (Array.isArray(value)) {
     return value.every(function (val) { return validate$3(val, [locale]); });
@@ -61314,8 +62525,8 @@ var before = function (value, ref) {
     format = inclusion;
     inclusion = false;
   }
-  value = parseDate(value, format);
-  otherValue = parseDate(otherValue, format);
+  value = parseDate$1(value, format);
+  otherValue = parseDate$1(otherValue, format);
 
   // if either is not valid.
   if (!value || !otherValue) {
@@ -61339,7 +62550,7 @@ var validate$4 = function (value, ref) {
 var confirmed = function (value, other) { return String(value) === String(other); };
 
 function unwrapExports (x) {
-	return x && x.__esModule ? x['default'] : x;
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
 function createCommonjsModule(fn, module) {
@@ -61417,10 +62628,13 @@ var isCreditCard = unwrapExports(isCreditCard_1);
 
 var credit_card = function (value) { return isCreditCard(String(value)); };
 
-var validate$5 = function (value, params) {
-  var decimals = Array.isArray(params) ? (params[0] || '*') : '*';
+var validate$5 = function (value, ref) {
+  if ( ref === void 0 ) ref = [];
+  var decimals = ref[0]; if ( decimals === void 0 ) decimals = '*';
+  var separator = ref[1]; if ( separator === void 0 ) separator = '.';
+
   if (Array.isArray(value)) {
-    return value.every(function (val) { return validate$5(val, params); });
+    return value.every(function (val) { return validate$5(val, [decimals, separator]); });
   }
 
   if (value === null || value === undefined || value === '') {
@@ -61433,7 +62647,7 @@ var validate$5 = function (value, params) {
   }
 
   var regexPart = decimals === '*' ? '+' : ("{1," + decimals + "}");
-  var regex = new RegExp(("^-?\\d*(\\.\\d" + regexPart + ")?$"));
+  var regex = new RegExp(("^-?\\d*(\\" + separator + "\\d" + regexPart + ")?$"));
 
   if (! regex.test(value)) {
     return false;
@@ -61452,16 +62666,16 @@ var date_between = function (value, params) {
   var inclusivity = '()';
 
   if (params.length > 3) {
-    var assign$$1;
-    (assign$$1 = params, min = assign$$1[0], max = assign$$1[1], inclusivity = assign$$1[2], format = assign$$1[3]);
+    var assign;
+    (assign = params, min = assign[0], max = assign[1], inclusivity = assign[2], format = assign[3]);
   } else {
     var assign$1;
     (assign$1 = params, min = assign$1[0], max = assign$1[1], format = assign$1[2]);
   }
 
-  var minDate = parseDate(min, format);
-  var maxDate = parseDate(max, format);
-  var dateVal = parseDate(value, format);
+  var minDate = parseDate$1(String(min), format);
+  var maxDate = parseDate$1(String(max), format);
+  var dateVal = parseDate$1(String(value), format);
 
   if (!minDate || !maxDate || !dateVal) {
     return false;
@@ -61486,7 +62700,7 @@ var date_between = function (value, params) {
 var date_format = function (value, ref) {
   var format = ref[0];
 
-  return !!parseDate(value, format);
+  return !!parseDate$1(value, format);
 };
 
 var validate$6 = function (value, ref) {
@@ -61864,20 +63078,38 @@ module.exports = exports['default'];
 var isIP = unwrapExports(isIP_1);
 
 var ip = function (value, ref) {
-  if ( ref === void 0 ) ref = [4];
-  var version = ref[0];
+  if ( ref === void 0 ) ref = [];
+  var version = ref[0]; if ( version === void 0 ) version = 4;
+
+  if (isNullOrUndefined(value)) {
+    value = '';
+  }
 
   if (Array.isArray(value)) {
-    return value.every(function (val) { return isIP(val, [version]); });
+    return value.every(function (val) { return isIP(val, version); });
   }
 
   return isIP(value, version);
 };
 
+var is = function (value, ref) {
+  if ( ref === void 0 ) ref = [];
+  var other = ref[0];
+
+  return value === other;
+};
+
+var is_not = function (value, ref) {
+  if ( ref === void 0 ) ref = [];
+  var other = ref[0];
+
+  return value !== other;
+};
+
 /**
- * @param {Array|String} value 
+ * @param {Array|String} value
  * @param {Number} length
- * @param {Number} max 
+ * @param {Number} max
  */
 var compare = function (value, length, max) {
   if (max === undefined) {
@@ -61991,15 +63223,15 @@ var regex = function (value, ref) {
   return new RegExp(regex, flags).test(String(value));
 };
 
-var required = function (value, params) {
-  if ( params === void 0 ) params = [false];
+var required = function (value, ref) {
+  if ( ref === void 0 ) ref = [];
+  var invalidateFalse = ref[0]; if ( invalidateFalse === void 0 ) invalidateFalse = false;
 
   if (Array.isArray(value)) {
     return !! value.length;
   }
 
   // incase a field considers `false` as an empty value like checkboxes.
-  var invalidateFalse = params[0];
   if (value === false && invalidateFalse) {
     return false;
   }
@@ -62181,10 +63413,14 @@ module.exports = exports['default'];
 var isURL = unwrapExports(isURL_1);
 
 var url = function (value, ref) {
-  if ( ref === void 0 ) ref = [true];
-  var requireProtocol = ref[0];
+  if ( ref === void 0 ) ref = [];
+  var requireProtocol = ref[0]; if ( requireProtocol === void 0 ) requireProtocol = false;
 
   var options = { require_protocol: !!requireProtocol, allow_underscores: true };
+  if (isNullOrUndefined(value)) {
+    value = '';
+  }
+
   if (Array.isArray(value)) {
     return value.every(function (val) { return isURL(val, options); });
   }
@@ -62215,6 +63451,8 @@ var Rules = {
   integer: integer,
   length: length,
   ip: ip,
+  is_not: is_not,
+  is: is,
   max: max$1,
   max_value: max_value,
   mimes: mimes,
@@ -62227,6 +63465,8 @@ var Rules = {
   size: size,
   url: url
 };
+
+// 
 
 var normalize = function (fields) {
   if (Array.isArray(fields)) {
@@ -62244,12 +63484,60 @@ var normalize = function (fields) {
   return fields;
 };
 
+// Combines two flags using either AND or OR depending on the flag type.
+var combine = function (lhs, rhs) {
+  var mapper = {
+    pristine: function (lhs, rhs) { return lhs && rhs; },
+    dirty: function (lhs, rhs) { return lhs || rhs; },
+    touched: function (lhs, rhs) { return lhs || rhs; },
+    untouched: function (lhs, rhs) { return lhs && rhs; },
+    valid: function (lhs, rhs) { return lhs && rhs; },
+    invalid: function (lhs, rhs) { return lhs || rhs; },
+    pending: function (lhs, rhs) { return lhs || rhs; },
+    required: function (lhs, rhs) { return lhs || rhs; },
+    validated: function (lhs, rhs) { return lhs && rhs; }
+  };
+
+  return Object.keys(mapper).reduce(function (flags, flag) {
+    flags[flag] = mapper[flag](lhs[flag], rhs[flag]);
+
+    return flags;
+  }, {});
+};
+
+var mapScope = function (scope, deep) {
+  if ( deep === void 0 ) deep = true;
+
+  return Object.keys(scope).reduce(function (flags, field) {
+    if (!flags) {
+      flags = assign({}, scope[field]);
+      return flags;
+    }
+
+    // scope.
+    var isScope = field.indexOf('$') === 0;
+    if (deep && isScope) {
+      return combine(mapScope(scope[field]), flags);
+    } else if (!deep && isScope) {
+      return flags;
+    }
+
+    flags = combine(flags, scope[field]);
+
+    return flags;
+  }, null);
+};
+
 /**
  * Maps fields to computed functions.
- *
- * @param {Array|Object} fields
  */
 var mapFields = function (fields) {
+  if (!fields) {
+    return function () {
+      return mapScope(this.$validator.flags);
+    };
+  }
+
   var normalized = normalize(fields);
   return Object.keys(normalized).reduce(function (prev, curr) {
     var field = normalized[curr];
@@ -62257,6 +63545,11 @@ var mapFields = function (fields) {
       // if field exists
       if (this.$validator.flags[field]) {
         return this.$validator.flags[field];
+      }
+
+      // scopeless fields were selected.
+      if (normalized[curr] === '*') {
+        return mapScope(this.$validator.flags, false);
       }
 
       // if it has a scope defined
@@ -62268,8 +63561,14 @@ var mapFields = function (fields) {
       var ref = field.split('.');
       var scope = ref[0];
       var name = ref.slice(1);
+
       scope = this.$validator.flags[("$" + scope)];
       name = name.join('.');
+
+      // an entire scope was selected: scope.*
+      if (name === '*' && scope) {
+        return mapScope(scope);
+      }
 
       if (scope && scope[name]) {
         return scope[name];
@@ -62282,7 +63581,7 @@ var mapFields = function (fields) {
   }, {});
 };
 
-var version = '2.0.0-rc.18';
+var version = '2.0.3';
 
 var rulesPlugin = function (ref) {
   var Validator$$1 = ref.Validator;
@@ -62290,6 +63589,9 @@ var rulesPlugin = function (ref) {
   Object.keys(Rules).forEach(function (rule) {
     Validator$$1.extend(rule, Rules[rule]);
   });
+
+  // Merge the english messages.
+  Validator$$1.localize('en', locale);
 };
 
 use(rulesPlugin);
@@ -62297,6 +63599,8 @@ use(rulesPlugin);
 var index_esm = {
   install: install,
   use: use,
+  directive: directive,
+  mixin: mixin,
   mapFields: mapFields,
   Validator: Validator,
   ErrorBag: ErrorBag,
@@ -62309,10 +63613,585 @@ var index_esm = {
 
 
 /***/ }),
-/* 204 */
+/* 208 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikelPenulis; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__ = __webpack_require__(218);
+
+
+var artikelPenulis = {
+  state: {
+    artikelPenulisS: [],
+    artikelPenulisLoadStatS: '',
+    artikelPenulis: {},
+    artikelPenulisLoadStat: '',
+    artikelPenulisUpdate: [],
+    artikelPenulisUpdateStat: ''
+  },
+
+  actions: {
+    loadArtikelPenulisS: function loadArtikelPenulisS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setArtikelPenulisLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisS(p).then(function (response) {
+        commit('setArtikelPenulisS', response.data.model);
+        commit('setArtikelPenulisLoadStatS', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisS', []);
+        commit('setArtikelPenulisLoadStatS', 'fail');
+      });
+    },
+    loadArtikelPenulisAll: function loadArtikelPenulisAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setArtikelPenulisLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisAll().then(function (response) {
+        commit('setArtikelPenulisS', response.data.model);
+        commit('setArtikelPenulisLoadStatS', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisS', []);
+        commit('setArtikelPenulisLoadStatS', 'fail');
+      });
+    },
+    loadArtikelPenulis: function loadArtikelPenulis(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setArtikelPenulisLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulis(id).then(function (response) {
+        commit('setArtikelPenulis', response.data);
+        commit('setArtikelPenulisLoadStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulis', []);
+        commit('setArtikelPenulisLoadStat', 'fail');
+      });
+    },
+    storeArtikelPenulis: function storeArtikelPenulis(_ref4, form) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setArtikelPenulisUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].storeArtikelPenulis(form).then(function (response) {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'fail');
+      });
+    },
+    updateArtikelPenulis: function updateArtikelPenulis(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setArtikelPenulisUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].updateArtikelPenulis(form).then(function (response) {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'fail');
+      });
+    },
+    deleteArtikelPenulis: function deleteArtikelPenulis(_ref6, id) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setArtikelPenulisUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].deleteArtikelPenulis(id).then(function (response) {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'fail');
+      });
+    },
+    resetArtikelPenulisUpdateStat: function resetArtikelPenulisUpdateStat(_ref7) {
+      var commit = _ref7.commit;
+
+      commit('setArtikelPenulisUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setArtikelPenulisS: function setArtikelPenulisS(state, ArtikelPenulisS) {
+      state.artikelPenulisS = ArtikelPenulisS;
+    },
+    setArtikelPenulisLoadStatS: function setArtikelPenulisLoadStatS(state, status) {
+      state.artikelPenulisLoadStatS = status;
+    },
+    setArtikelPenulis: function setArtikelPenulis(state, ArtikelPenulis) {
+      state.artikelPenulis = ArtikelPenulis;
+    },
+    setArtikelPenulisLoadStat: function setArtikelPenulisLoadStat(state, status) {
+      state.artikelPenulisLoadStat = status;
+    },
+    setArtikelPenulisUpdate: function setArtikelPenulisUpdate(state, data) {
+      state.artikelPenulisUpdate = data;
+    },
+    setArtikelPenulisUpdateStat: function setArtikelPenulisUpdateStat(state, status) {
+      state.artikelPenulisUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getArtikelPenulisS: function getArtikelPenulisS(state) {
+      return state.artikelPenulisS;
+    },
+    getArtikelPenulisLoadStatS: function getArtikelPenulisLoadStatS(state) {
+      return state.artikelPenulisLoadStatS;
+    },
+    getArtikelPenulis: function getArtikelPenulis(state) {
+      return state.artikelPenulis;
+    },
+    getArtikelPenulisLoadStat: function getArtikelPenulisLoadStat(state) {
+      return state.artikelPenulisLoadStat;
+    },
+    getArtikelPenulisUpdateStat: function getArtikelPenulisUpdateStat(state) {
+      return state.artikelPenulisUpdateStat;
+    },
+    getArtikelPenulisUpdate: function getArtikelPenulisUpdate(state) {
+      return state.artikelPenulisUpdate;
+    }
+  }
+};
+
+/***/ }),
+/* 218 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getArtikelPenulisS: function getArtikelPenulisS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/Artikel_Penulis' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getArtikelPenulisAll: function getArtikelPenulisAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/Artikel_Penulis_all');
+  },
+
+  getArtikelPenulis: function getArtikelPenulis(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/Artikel_Penulis/' + id);
+  },
+
+  storeArtikelPenulis: function storeArtikelPenulis(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/Artikel_Penulis/store', form);
+  },
+
+  updateArtikelPenulis: function updateArtikelPenulis(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/Artikel_Penulis/update/' + id, form);
+  },
+
+  deleteArtikelPenulis: function deleteArtikelPenulis(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/Artikel_Penulis/' + id);
+  }
+});
+
+/***/ }),
+/* 219 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CU; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_cu_js__ = __webpack_require__(220);
+
+
+var CU = {
+  state: {
+    CUS: [],
+    CULoadStatS: '',
+    CU: {},
+    CULoadStat: '',
+    CUUpdate: [],
+    CUUpdateStat: ''
+  },
+
+  actions: {
+    loadCUS: function loadCUS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setCULoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUS(p).then(function (response) {
+        commit('setCUS', response.data.model);
+        commit('setCULoadStatS', 'success');
+      }).catch(function () {
+        commit('setCUS', []);
+        commit('setCULoadStatS', 'fail');
+      });
+    },
+    loadCUAll: function loadCUAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setCULoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUAll().then(function (response) {
+        commit('setCUS', response.data.model);
+        commit('setCULoadStatS', 'success');
+      }).catch(function () {
+        commit('setCUS', []);
+        commit('setCULoadStatS', 'fail');
+      });
+    },
+    loadCU: function loadCU(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setCULoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCU(id).then(function (response) {
+        commit('setCU', response.data);
+        commit('setCULoadStat', 'success');
+      }).catch(function () {
+        commit('setCU', []);
+        commit('setCULoadStat', 'fail');
+      });
+    },
+    storeCU: function storeCU(_ref4, form) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setCUUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].storeCU(form).then(function (response) {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'success');
+      }).catch(function () {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'fail');
+      });
+    },
+    updateCU: function updateCU(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setCUUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].updateCU(form).then(function (response) {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'success');
+      }).catch(function () {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'fail');
+      });
+    },
+    deleteCU: function deleteCU(_ref6, id) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setCUUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].deleteCU(id).then(function (response) {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'success');
+      }).catch(function () {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'fail');
+      });
+    },
+    resetCUUpdateStat: function resetCUUpdateStat(_ref7) {
+      var commit = _ref7.commit;
+
+      commit('setCUUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setCUS: function setCUS(state, CUS) {
+      state.CUS = CUS;
+    },
+    setCULoadStatS: function setCULoadStatS(state, status) {
+      state.CULoadStatS = status;
+    },
+    setCU: function setCU(state, CU) {
+      state.CU = CU;
+    },
+    setCULoadStat: function setCULoadStat(state, status) {
+      state.CULoadStat = status;
+    },
+    setCUUpdate: function setCUUpdate(state, data) {
+      state.CUUpdate = data;
+    },
+    setCUUpdateStat: function setCUUpdateStat(state, status) {
+      state.CUUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getCUS: function getCUS(state) {
+      return state.CUS;
+    },
+    getCULoadStatS: function getCULoadStatS(state) {
+      return state.CULoadStatS;
+    },
+    getCU: function getCU(state) {
+      return state.CU;
+    },
+    getCULoadStat: function getCULoadStat(state) {
+      return state.CULoadStat;
+    },
+    getCUUpdateStat: function getCUUpdateStat(state) {
+      return state.CUUpdateStat;
+    },
+    getCUUpdate: function getCUUpdate(state) {
+      return state.CUUpdate;
+    }
+  }
+};
+
+/***/ }),
+/* 220 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getCUS: function getCUS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getCUAll: function getCUAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu_all');
+  },
+
+  getCU: function getCU(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/' + id);
+  },
+
+  storeCU: function storeCU(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/store', form);
+  },
+
+  updateCU: function updateCU(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/update/' + id, form);
+  },
+
+  deleteCU: function deleteCU(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/' + id);
+  }
+});
+
+/***/ }),
+/* 221 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return pus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_pus_js__ = __webpack_require__(222);
+
+
+var pus = {
+  state: {
+    pusS: [],
+    pusLoadStatS: '',
+    pus: {},
+    pusLoadStat: '',
+    pusUpdate: [],
+    pusUpdateStat: ''
+  },
+
+  actions: {
+    loadPusS: function loadPusS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setPusLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPusS(p).then(function (response) {
+        commit('setPusS', response.data.model);
+        commit('setPusLoadStatS', 'success');
+      }).catch(function () {
+        commit('setPusS', []);
+        commit('setPusLoadStatS', 'fail');
+      });
+    },
+    loadPusAll: function loadPusAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setPusLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPusAll().then(function (response) {
+        commit('setPusS', response.data.model);
+        commit('setPusLoadStatS', 'success');
+      }).catch(function () {
+        commit('setPusS', []);
+        commit('setPusLoadStatS', 'fail');
+      });
+    },
+    loadPus: function loadPus(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setPusLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPus(id).then(function (response) {
+        commit('setPus', response.data);
+        commit('setPusLoadStat', 'success');
+      }).catch(function () {
+        commit('setPus', []);
+        commit('setPusLoadStat', 'fail');
+      });
+    },
+    storePus: function storePus(_ref4, form) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setPusUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].storePus(form).then(function (response) {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'success');
+      }).catch(function () {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'fail');
+      });
+    },
+    updatePus: function updatePus(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setPusUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].updatePus(form).then(function (response) {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'success');
+      }).catch(function () {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'fail');
+      });
+    },
+    deletePus: function deletePus(_ref6, id) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setPusUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].deletePus(id).then(function (response) {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'success');
+      }).catch(function () {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'fail');
+      });
+    },
+    resetPusUpdateStat: function resetPusUpdateStat(_ref7) {
+      var commit = _ref7.commit;
+
+      commit('setPusUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setPusS: function setPusS(state, PusS) {
+      state.pusS = PusS;
+    },
+    setPusLoadStatS: function setPusLoadStatS(state, status) {
+      state.pusLoadStatS = status;
+    },
+    setPus: function setPus(state, Pus) {
+      state.pus = Pus;
+    },
+    setPusLoadStat: function setPusLoadStat(state, status) {
+      state.pusLoadStat = status;
+    },
+    setPusUpdate: function setPusUpdate(state, data) {
+      state.pusUpdate = data;
+    },
+    setPusUpdateStat: function setPusUpdateStat(state, status) {
+      state.pusUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getPusS: function getPusS(state) {
+      return state.pusS;
+    },
+    getPusLoadStatS: function getPusLoadStatS(state) {
+      return state.pusLoadStatS;
+    },
+    getPus: function getPus(state) {
+      return state.pus;
+    },
+    getPusLoadStat: function getPusLoadStat(state) {
+      return state.pusLoadStat;
+    },
+    getPusUpdateStat: function getPusUpdateStat(state) {
+      return state.pusUpdateStat;
+    },
+    getPusUpdate: function getPusUpdate(state) {
+      return state.pusUpdate;
+    }
+  }
+};
+
+/***/ }),
+/* 222 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getCUS: function getCUS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getCUAll: function getCUAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus_all');
+  },
+
+  getCU: function getCU(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/' + id);
+  },
+
+  storeCU: function storeCU(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/store', form);
+  },
+
+  updateCU: function updateCU(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/update/' + id, form);
+  },
+
+  deleteCU: function deleteCU(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/' + id);
+  }
+});
 
 /***/ })
 /******/ ]);

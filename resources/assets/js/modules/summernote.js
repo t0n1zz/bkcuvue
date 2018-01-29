@@ -18,7 +18,7 @@ module.exports = {
         let config = this.config;
         config.callbacks = {
             onInit: function () {
-                $(vm.$el).summernote("code", vm.model);
+                $(vm.$el).summernote("code",'');
             },
             onChange: function () {
                 vm.$emit('change', $(vm.$el).summernote('code'));
@@ -27,6 +27,16 @@ module.exports = {
                 vm.$emit('change', $(vm.$el).summernote('code'));
             }
         };
-        $(this.$el).summernote(config);
+        $(vm.$el).summernote(config);
     },
+    watch: {
+        formStat(value){
+            $(this.$el).summernote("code", this.model);
+        }
+    },
+    computed: {
+        formStat(){
+            return this.$store.getters.getArtikelLoadStat;
+        }
+    }
 }

@@ -13,7 +13,7 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-    	 $table_data = Artikel::with('Artikel_Kategori')->select('id','nama','penulis','gambar','utamakan','terbitkan','created_at','artikel_kategori_id')->filterPaginateOrder();
+    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis')->select('id','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -24,24 +24,31 @@ class ArtikelController extends Controller{
 	public function create()
 	{
 		return response()
-            ->json([
-                'form' => Artikel::initialize(),
-                'rules' => Artikel::$rules,
-                'option' => []
-            ]);
+			->json([
+					'form' => Artikel::initialize(),
+					'rules' => Artikel::$rules,
+					'option' => []
+			]);
 	}
 
 	public function store(Request $request)
 	{
 		$this->validate($request,Artikel::$rules);
 
+		// processing single image upload
 		if(!empty($request->gambar))
 			$fileName = $this->image_processing($request);
 		else
 			$fileName = '';
 
-		$kelas = Artikel::create($request->except('gambar') + [
-			'gambar' => $fileName
+		// processing summernote content	
+		if(!empty($request->content))	
+			$content = $this->dom_processing($request);
+		else
+			$content = '';		
+		
+		$kelas = Artikel::create($request->except('gambar','content') + [
+			'gambar' => $fileName, 'content' => $content
 		]);
 
 		return response()
@@ -74,10 +81,25 @@ class ArtikelController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		// $this->validate($request,Artikel::$rules);
-		dd($request->all());
+		$this->validate($request,Artikel::$rules);
+
 		$kelas = Artikel::findOrFail($id);
-		$kelas->update($request->all());
+
+		// processing single image upload
+		if(!empty($request->gambar))
+			$fileName = $this->image_processing($request);
+		else
+			$fileName = '';
+
+		// processing summernote content	
+		if(!empty($request->content))	
+			$content = $this->dom_processing($request);
+		else
+			$content = '';	
+
+		$kelas->update($request->except('gambar','content') + [
+			'gambar' => $fileName, 'content' => $content
+		]);
 
 		return response()
 			->json([
@@ -86,16 +108,16 @@ class ArtikelController extends Controller{
 			]);
 	}
 
-	public function updateTerbitkan(Request $request, $id)
+	public function updateTerbitkan($id)
 	{
 		$kelas = Artikel::findOrFail($id);
 
 		if($kelas->terbitkan == 1){
 			$kelas->terbitkan = 0;
-			$message = "Artikel berhasil tidak diterbikan";
+			$message = "Artikel berhasil tidak diterbitkan";
 		}else{
 			$kelas->terbitkan = 1;
-			$message = "Artikel berhasil diterbikan";
+			$message = "Artikel berhasil diterbitkan";
 		}
 
 		$kelas->update();
@@ -107,7 +129,7 @@ class ArtikelController extends Controller{
 			]);
 	}
 
-	public function updateUtamakan(Request $request, $id)
+	public function updateUtamakan($id)
 	{
 		$kelas = Artikel::findOrFail($id);
 
@@ -141,6 +163,50 @@ class ArtikelController extends Controller{
 			]);
 	}
 
+	private function dom_processing($request){
+
+		$path = public_path($this->imagepath);
+		$dom = new \DomDocument();
+
+		$dom->loadHTML("<div>$request->content</div>");
+		$container = $dom->getElementsByTagName('div')->item(0);
+		$container = $container->parentNode->removeChild($container);
+
+		while($dom->firstChild){
+			$dom->removeChild($dom->firstChild);
+		}
+
+		while($container->firstChild){
+			$dom->appendChild($container->firstChild);
+		}
+
+		$images = $dom->getElementsByTagName('img');
+			// foreach <img> in the submited message
+			foreach($images as $img){
+				$src = $img->getAttribute('src');
+
+					// if the img source is 'data-url'
+				if(preg_match('/data:image/', $src)){ 
+					preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
+					$mimetype = $groups['mime']; 
+					// Generating a random filename
+					$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->nama),10,'') . '_' .uniqid();
+					$filepath = "$path.$filename.$mimetype";
+					// You can put your directory to upload image 
+					$image = Image::make($src)
+					// resize if required
+					/* ->resize(300, 200) */
+					->encode($mimetype, 100) // encode file to the specified mimetype
+					->save(public_path($filepath)); 
+					$new_src = $filepath;
+					$img->removeAttribute('src');
+					$img->setAttribute('src', $new_src);
+				} // <!--endif
+			} // 
+
+		return $dom->saveHTML();
+	}
+
 	private function image_processing($request)
 	{
 		$this->validate($request, [
@@ -161,7 +227,7 @@ class ArtikelController extends Controller{
                 function ($constraint) {
                     $constraint->aspectRatio();
                 })
-                ->save($path . $filename);
+                ->save($path . $fileName);
         }else{
             Image::make($imageData->getRealPath())->save($path . $fileName);
         }

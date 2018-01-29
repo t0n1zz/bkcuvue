@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import modal from './modules/modal';
+
+import { artikel } from './modules/artikel';
+import { artikelKategori } from './modules/artikel_kategori';
+import { artikelPenulis } from './modules/artikel_penulis';
+import { CU } from './modules/cu';
+import { pus } from './modules/pus';
 
 import getters from './getters';
 import mutations from './mutations';
@@ -16,6 +21,10 @@ export const store = new Vuex.Store({
 	 mutations,
 	 actions,
 	 modules: {
-	 	modal
+		 artikel,
+		 artikelKategori,
+		 artikelPenulis,
+		 CU,
+		 pus
 	 }
 });

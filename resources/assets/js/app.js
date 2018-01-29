@@ -10,20 +10,23 @@ Vue.use(VueRouter);
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
 
 window.axios = Axios;
-axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest',
-    'Authorization': 'Bearer',
-    'Accept': 'application/json',
-};
+axios.defaults.headers.common = { 'X-Requested-With': 'XMLHttpRequest'};
+let token = document.head.querySelector('meta[name="csrf-token"]');
+      
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 const router = new VueRouter({
-	base: '/admin',
+	base: '/admins',
     mode: 'history',
     routes
 });
 
 router.beforeEach((to, from, next) => {
+    window.scrollTo(0, 0);
     if (to.fullPath !== "/login") {
         axios.get('/api/profile').then(response => {
             next();

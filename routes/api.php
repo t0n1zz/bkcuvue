@@ -2,16 +2,6 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -19,17 +9,30 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->get('/profile', 'ProfileController@getUser');
 
-//artikel
-Route::middleware('auth:api')->get('/artikel', 'ArtikelController@index');
-Route::middleware('auth:api')->get('/artikel/create', 'ArtikelController@create');
-Route::middleware('auth:api')->get('/artikel/edit/{id}', 'ArtikelController@edit');
-Route::middleware('auth:api')->post('/artikel/store', 'ArtikelController@store');
-Route::middleware('auth:api')->post('/artikel/updateTerbitkan/{id}', 'ArtikelController@updateTerbitkan');
-Route::middleware('auth:api')->post('/artikel/updateUtamakan/{id}', 'ArtikelController@updateUtamakan');
-Route::middleware('auth:api')->put('/artikel/update/{id}', 'ArtikelController@update');
-Route::middleware('auth:api')->delete('/artikel/{id}', 'ArtikelController@destroy');
+
+Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
+    //artikel
+    Route::get('/artikel', 'ArtikelController@index');
+    Route::get('/artikel/create', 'ArtikelController@create');
+    Route::get('/artikel/edit/{id}', 'ArtikelController@edit');
+    Route::post('/artikel/store', 'ArtikelController@store');
+    Route::post('/artikel/update/{id}', 'ArtikelController@update');
+    Route::post('/artikel/updateTerbitkan/{id}', 'ArtikelController@updateTerbitkan');
+    Route::post('/artikel/updateUtamakan/{id}', 'ArtikelController@updateUtamakan');
+    Route::delete('/artikel/{id}', 'ArtikelController@destroy');
+
+    //artikel kategori
+    Route::get('/artikel_kategori', 'ArtikelKategoriController@index');
+    Route::get('/artikel_kategori_all', 'ArtikelKategoriController@indexAll');
+    Route::post('/artikel_kategori/store', 'ArtikelKategoriController@store');
+
+    // cu
+    Route::get('/cu', 'CUController@index');
+    Route::get('/cu_all', 'CUController@indexAll');
+    Route::post('/cu/store', 'CUController@store');
+});
+
 // Route::resource('artikel', 'ArtikelController');
 
-//artikel kategori
-Route::middleware('auth:api')->get('/get_artikel_kategori', 'ArtikelKategoriController@get_artikel_kategori');
-Route::middleware('auth:api')->post('/artikel_kategori/store', 'ArtikelKategoriController@store');
+
+

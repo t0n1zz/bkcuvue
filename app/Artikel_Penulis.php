@@ -3,9 +3,9 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 
-class Artikel_Kategori extends Model {
+class Artikel_Penulis extends Model {
     
-    protected $table = 'artikel_kategori';
+    protected $table = 'artikel_penulis';
     
     public static $rules = [
         'id_cu' => 'required',
@@ -19,7 +19,7 @@ class Artikel_Kategori extends Model {
     }
 
     public function artikel(){
-        return $this->hasMany('App\Artikel','id_artikel_kategori','id')
+        return $this->hasMany('App\Artikel','id_artikel_penulis','id')
                     ->where('status','=','1')
                     ->orderBy('created_at','desc')
                     ->take(3);
@@ -32,6 +32,6 @@ class Artikel_Kategori extends Model {
     }
 
     public function hasartikel(){
-        return $this->hasMany('App\Artikel','id_artikel_kategori','id');
+        return $this->hasMany('App\Artikel','id_artikel_penulis','id');
     }
 }

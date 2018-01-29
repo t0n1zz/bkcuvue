@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Artikel_Kategori;
+use App\CU;
 use Illuminate\Http\Request;
 
-class ArtikelKategoriController extends Controller{
+class CUController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel_Kategori::select('id','nama','created_at')->filterPaginateOrder();
+    	$table_data = CU::select('id','nama','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -18,7 +18,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = Artikel_Kategori::where('id','!=',1)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = CU::where('id','!=',1)->select('id','nama')->orderby('nama','asc')->get();
 
 		return response()
 			->json([
@@ -28,12 +28,12 @@ class ArtikelKategoriController extends Controller{
 
 	public function store(Request $request)
 	{
-		$kelas = Artikel_Kategori::create($request->all());
+		$kelas = CU::create($request->all());
 		
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Kategori artikel berhasil ditambah',
+				'message' => 'CU berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}

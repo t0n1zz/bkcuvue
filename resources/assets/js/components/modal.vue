@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class="modal-mask" @click="tutup" v-show="created">
+	<div class="modal-mask" @click="backgroundClick" v-show="created">
 	<transition name="modal-effect"
 		enter-active-class="animated bounceInUp"
 		leave-active-class="animated bounceOutDown"
@@ -17,7 +17,6 @@
 						<slot name="modal-title"></slot>
 					</h6>
 				</div>
-
 				<div class="modal-body">
 					<transition name="modal-effect"
 						enter-active-class="animated flipInX"
@@ -36,7 +35,7 @@
 						<div v-if="state === 'confirm-tutup'" key="confirm-tutup" class="text-center">
 							<span class="text-warning"><i class="icon-exclamation" style="font-size: 5em"></i></span>
 							<h2>{{ title }}</h2>
-							<div class="well well-sm" v-if="content">{{ content }}</div>
+							<pre class="pre-scrollable" id="stack" v-if="content">>{{ content }}<</pre>
 							<br>
 							<ul class="list-inline">
 						        <li><button type="button" class="btn btn-default" @click="tutup"><i class="icon-cross"></i> Tutup</button></li>
@@ -50,12 +49,14 @@
 						        <li><button type="button" class="btn btn-default" @click="successOk">{{ button }}</button></li>
 						    </ul>
 						</div>
-						<div v-else-if="state === 'error'" key="error" class="text-center">
-							<span class="text-danger"><i class="icon-close2" style="font-size: 5em"></i></span>
+						<div v-else-if="state === 'fail'" key="fail" class="text-center">
+							<span class="text-danger"><i class="icon-cancel-circle2" style="font-size: 5em"></i></span>
 							<h2>{{ title }}</h2>
+							<pre class="pre-scrollable" v-if="content">{{ content }}</pre>
+							<br>
 							<ul class="list-inline">
-						        <li><button type="button" class="btn btn-default" @click="errorOk">{{ button }}</button></li>
-						    </ul>
+								<li><button type="button" class="btn btn-default" @click="failOk">{{ button }}</button></li>
+						  </ul>
 						</div>
 						<div v-else-if="state === 'loading'" key="loading" class="text-center">
 							<i class="icon-spinner spinner" style="font-size: 5em"></i>
@@ -106,14 +107,11 @@
 				type: String,
 				default() { return '' },
 			},
-			content:{
-				type: String,
-				default() { return '' },
-			},
 			button:{
 				type: String,
 				default() { return 'Ok' },
-			}
+			},
+			content: ''
 		},
 		data() {
 			return {
@@ -128,6 +126,9 @@
 			});
 		},
 		methods: {
+			backgroundClick(){
+				this.$emit('backgroundClick');
+			},
 			tutup(){
 				this.$emit('tutup');
 			},
@@ -140,8 +141,8 @@
 			successOk() {
 				this.$emit('successOk');
 			},
-			errorOk() {
-				this.$emit('errorOk');
+			failOk() {
+				this.$emit('failOk');
 			},
 			beforeEnter() {
 				this.created = true;
