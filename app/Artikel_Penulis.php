@@ -12,7 +12,7 @@ class Artikel_Penulis extends Model {
         'nama' => 'required|between:3,50',
     ];
     
-    protected $fillable = ['id_cu','nama','deskripsi'];
+    protected $fillable = ['id_cu','id_staf','nama','profil','gambar'];
 
     public function getNameAttribute($value){
         return !empty($value) ? $value : '-';
@@ -27,7 +27,7 @@ class Artikel_Penulis extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '0', 'nama' => '', 'deskripsi' => ''
+            'id_cu' => '0','id_staf' => '0', 'nama' => '', 'profil' => '','gambar' => '',
         ];
     }
 

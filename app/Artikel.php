@@ -33,7 +33,7 @@ class Artikel extends Model {
     public static function initialize()
     {
         return [
-            'id_cu' => '0', 'id_artikel_kategori' => '1', 'nama' => '', 'content' => '', 'penulis' => '', 'terbitkan' => '0', 'utamakan' => '0', 'gambar' => ''
+            'id_cu' => '0' , 'id_artikel_kategori' => '1', 'nama' => '', 'content' => '', 'penulis' => '', 'terbitkan' => '0', 'utamakan' => '0', 'gambar' => ''
         ];
     }
 

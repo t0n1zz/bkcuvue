@@ -7,15 +7,15 @@
 					<h4>
 						<i class="position-left" :class="titleIcon"></i>
 						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
-					<ul class="breadcrumb breadcrumb-caret position-right">
-						<router-link :to="{ name:'dashboard' }" tag="li">
-							<a>Dashboard</a>
-						</router-link>
-						<router-link :to="{ name:'artikel' }" tag="li">
-							<a>Artikel</a>
-						</router-link>
-						<li class="active">{{ title }}</li>
-					</ul>
+						<ul class="breadcrumb breadcrumb-caret position-right">
+							<router-link :to="{ name:'dashboard' }" tag="li">
+								<a>Dashboard</a>
+							</router-link>
+							<router-link :to="{ name:'artikel' }" tag="li">
+								<a>Artikel</a>
+							</router-link>
+							<li class="active">{{ title }}</li>
+						</ul>
 				</div>
 			</div>
 		</div>
@@ -41,9 +41,15 @@
 									<!-- nama -->
 									<div class="col-md-4">
 										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.nama')}">
+
+											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form-1.nama')}">Judul:</h5>
+
+											<!-- text -->
 											<input type="text" name="nama" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'"
 											  v-model="form.nama">
+
+											<!-- feedback	 -->
 											<div class="form-control-feedback" v-if="errors.has('form-1.nama')">
 												<i class="icon-cancel-circle2"></i>
 											</div>
@@ -52,106 +58,122 @@
 										</div>
 									</div>
 
-									<!-- Pus -->
-									<div class="col-md-4">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_pus')}">
-											<h5 :class="{ 'text-danger' : errors.has('form-1.id_pus')}">Puskopdit:</h5>
-											<select class="bootstrap-select" name="id_pus" v-model="form.id_pus" data-width="100%" v-validate="'required'" @change="changePus">
-												<option disabled value="">Silahkan pilih Puskopdit</option>
-												<option data-divider="true"></option>
-												<option v-for="pus in modelPus" :value="pus.id">{{pus.nama}}</option>
-											</select>
-											<div class="form-control-feedback" v-if="errors.has('form-1.id_pus')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.id_pus')}">
-												<i class="icon-arrow-small-right"></i> Puskopdit harus diisi</small>
-										</div>
-									</div>
-
 									<!-- CU -->
-									<div class="col-md-4">
+									<div class="col-md-4" v-if="userData.id_cu === ''">
 										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_cu')}">
+
+											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_cu')}">CU:</h5>
-											<div v-if="modelCULoadStat === 'loading'">
-													<i class="icon-spinner spinner"></i>
-											</div>
-											<div v-else>
-												<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" @change="changeCU">
-													<option disabled value="">Silahkan pilih CU</option>
-													<option value="pus">Puskopdit</option>
-													<option data-divider="true"></option>
-													<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
-													<option v-if='modelCU.length === 0'>
-														<span class="text-warning"><i class="icon-warning22"></i>CU tidak ditemukan, pastikan anda sudah memilih Puskopdit terlebih dahulu.</span>
-													</option>
-												</select>
-											</div>
+
+											<!-- select -->
+											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
+												<option disabled value="">Silahkan pilih CU</option>
+												<option value="pus">Puskopdit</option>
+												<option data-divider="true"></option>
+												<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+											</select>
+
+											<!-- feedback -->
 											<div class="form-control-feedback" v-if="errors.has('form-1.id_cu')">
 												<i class="icon-cancel-circle2"></i>
 											</div>
 											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.id_cu')}">
-												<i class="icon-arrow-small-right"></i> CU harus diisi</small>
+												<i class="icon-arrow-small-right"></i>CU harus dipilih
+											</small>
 										</div>
 									</div>
 
 									<!-- penulis -->
 									<div class="col-md-4">
 										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.id_artikel_penulis')}">
+
+											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_artikel_penulis')}">Penulis:</h5>
+
+											<!-- loading -->
 											<div v-if="modelPenulisLoadStat === 'loading'">
 													<i class="icon-spinner spinner"></i>
 											</div>
 											<div v-else>
 												<div class="input-group">
-													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'">
-														<option disabled value="">Silahkan pilih penulis</option>
+
+													<!-- select -->
+													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" :disabled="modelPenulis.length === 0">
+														<option disabled value="">
+															<span v-if="form.id_cu !== '0' && modelPenulis.length === 0">Silahkan tambah penulis baru</span>
+															<span v-else>Silahkan pilih penulis</span>
+														</option>
 														<option data-divider="true"></option>
 														<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.nama}}</option>
-														<option v-if='modelPenulis.length === 0'>
-															<span class="text-warning"><i class="icon-warning22"></i>Penulis tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu.</span>
-														</option>
 													</select>
+
+													<!-- button -->
 													<div class="input-group-btn">
-														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Penulis">
+														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Penulis" :disabled="form.id_cu === '0'">
 															<i class="icon-plus22"></i>
 														</button>
 													</div>
 												</div>
 											</div>
+
+											<!-- feedback -->
 											<div class="form-control-feedback" v-if="errors.has('form-1.id_artikel_penulis')">
 												<i class="icon-cancel-circle2"></i>
 											</div>
 											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.id_artikel_penulis')}">
-												<i class="icon-arrow-small-right"></i> Penulis harus dipilih</small>
+												<span v-if="form.id_cu === '0'">
+													<i class="icon-arrow-small-right"></i> Silahkan pilih CU dahulu sebelum bisa memilih penulis
+												</span>
+												<span v-else>
+													<span v-if="modelPenulis.length !== 0"><i class="icon-arrow-small-right"></i> Penulis harus dipilih</span>
+													<span v-else>&nbsp;</span>
+												</span>
+											</small>
 										</div>
 									</div>
 
 									<!-- kategori -->
 									<div class="col-md-4">
 										<div class="form-group">
+
+											<!-- title -->
 											<h5>Kategori:</h5>
+
+											<!-- loading -->
 											<div v-if="modelKategoriLoadStat === 'loading'">
 													<i class="icon-spinner spinner"></i>
 											</div>
 											<div v-else>
 												<div class="input-group">
-													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%">
-														<option disabled value="1">Silahkan pilih kategori</option>
+
+													<!-- select -->
+													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0">
+														<option disabled value="">
+															<span v-if="form.id_cu !== '0' && modelKategori.length === 0">Silahkan tambah kategori baru</span>
+															<span v-else>Silahkan pilih kategori</span>
+														</option>
 														<option data-divider="true"></option>
 														<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.nama}}</option>
-														<option v-if='modelKategori.length === 0'>
-															<span class="text-warning"><i class="icon-warning22"></i>Kategori tidak ditemukan, pastikan anda sudah memilih CU terlebih dahulu.</span>
-														</option>
 													</select>
+
+													<!-- button -->
 													<div class="input-group-btn">
-														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Kategori">
+														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" :disabled="form.id_cu === '0'" @click="modalOpen_Kategori">
 															<i class="icon-plus22"></i>
 														</button>
 													</div>
 												</div>
 											</div>
-											<small class="text-muted">&nbsp;</small>
+
+											<!-- feedback -->
+											<small class="text-muted">
+												<span v-if="form.id_cu === '0'"><i class="icon-arrow-small-right"></i> 
+												 	Silahkan pilih CU dahulu sebelum bisa memilih kategori
+												</span>
+												<span v-else>
+													<span v-if="modelKategori.length !== 0">&nbsp;</span>
+												</span>
+											</small>
 										</div>
 									</div>
 
@@ -161,7 +183,11 @@
 									<!-- terbitkan -->
 									<div class="col-md-4">
 										<div class="form-group">
+
+											<!-- title -->
 											<h5>Terbitkan:</h5>
+
+											<!-- radio -->
 											<label class="radio-inline">
 												<input type="radio" name="terbitkan" class="styled" value="1" v-model="form.terbitkan"> Ya
 											</label>
@@ -174,7 +200,11 @@
 									<!-- utamakan -->
 									<div class="col-md-4">
 										<div class="form-group">
+
+											<!-- title -->
 											<h5>Utamakan:</h5>
+
+											<!-- radio -->
 											<label class="radio-inline">
 												<input type="radio" name="utamakan" class="styled" :value="1" v-model="form.utamakan"> Ya
 											</label>
@@ -190,7 +220,11 @@
 									<!-- gambar utama -->
 									<div class="col-md-12">
 										<div class="form-group">
+
+											<!-- title -->
 											<h5>Gambar Utama:</h5>
+
+											<!-- imageupload -->
 											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>
@@ -201,7 +235,11 @@
 									<!-- isi artikel -->
 									<div class="col-md-12">
 										<div class="form-group">
+
+											<!-- title -->
 											<h5>Isi Artikel:</h5>
+
+											<!-- summernote -->
 											<app-summernote name="editor" :model="form.content" :config="summernoteconfig" @change="value => { form.content = value }"></app-summernote>
 										</div>
 									</div>
@@ -232,44 +270,79 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+			
+			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
 			</template>
+
+			<!-- tambah kategori -->
 			<template slot="modal-body1">
-				<div class="well bg-primary text-center">
-					<h5>Tidak menemukan kategori yang cocok untuk artikel anda?</h5>
-					Silahkan tambahkan sendiri dan jangan lupa berikan deskripsi kategori tersebut.
-				</div>
-				<hr>
-				<div class="form-group has-feedback" :class="{'has-error' : errors.has('kategoriNama')}">
-					<label class="text-semibold" :class="{ 'text-danger' : errors.has('kategoriNama')}">Nama:</label>
-					<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan nama kategori" v-validate="'required|min:5'"
-					  v-model="formKategori.nama">
-					<div class="form-control-feedback" v-if="errors.has('kategoriNama')">
-						<i class="icon-cancel-circle2"></i>
+				<div data-vv-scope="form-kategori">
+
+					<!-- notice -->
+					<div class="well bg-primary text-center">
+						<h5>Tidak menemukan kategori yang cocok untuk artikel anda?</h5>
+						Silahkan tambahkan sendiri dan jangan lupa berikan deskripsi kategori tersebut.
 					</div>
-					<small class="text-muted" :class="{ 'text-danger' : errors.has('kategoriNama')}">
-						<i class="icon-arrow-small-right"></i> Nama kategori harus diisi dan minimal 5 karakter</small>
-				</div>
-				<div class="form-group has-feedback" :class="{'has-error' : errors.has('kategoriDeskripsi')}">
-					<label class="text-semibold" :class="{ 'text-danger' : errors.has('kategoriDeskripsi')}">Deskripsi:</label>
-					<textarea rows="5" type="text" name="kategoriDeskripsi" class="form-control" placeholder="Silahkan masukkan deskripsi kategori"
-					  v-validate="'required|min:5'" v-model="formKategori.deskripsi"></textarea>
-					<div class="form-control-feedback" v-if="errors.has('kategoriDeskripsi')">
-						<i class="icon-cancel-circle2"></i>
+					<hr>
+
+					<!-- nama -->
+					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-kategori.kategoriNama')}">
+
+						<!-- title -->
+						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">Nama:</label>
+
+						<!-- text -->
+						<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan nama kategori" v-validate="'required|min:5'" v-model="formKategori.nama">
+
+						<!-- feedback -->
+						<div class="form-control-feedback" v-if="errors.has('form-kategori.kategoriNama')">
+							<i class="icon-cancel-circle2"></i>
+						</div>
+						<small class="text-muted" :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">
+							<i class="icon-arrow-small-right"></i> Nama kategori harus diisi dan minimal 5 karakter</small>
 					</div>
-					<small class="text-muted" :class="{ 'text-danger' : errors.has('kategoriDeskripsi')}">
-						<i class="icon-arrow-small-right"></i> Deskripsi kategori harus diisi dan minimal 5 karakter</small>
+
+					<!-- deskripsi -->
+					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-kategori.kategoriDeskripsi')}">
+
+						<!-- title -->
+						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">Deskripsi:</label>
+
+						<!-- textarea -->
+						<textarea rows="5" type="text" name="kategoriDeskripsi" class="form-control" placeholder="Silahkan masukkan deskripsi kategori"
+							v-validate="'required|min:5'" v-model="formKategori.deskripsi"></textarea>
+
+						<!-- feedback	 -->
+						<div class="form-control-feedback" v-if="errors.has('form-kategori.kategoriDeskripsi')">
+							<i class="icon-cancel-circle2"></i>
+						</div>
+						<small class="text-muted" :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">
+							<i class="icon-arrow-small-right"></i> Deskripsi kategori harus diisi dan minimal 5 karakter</small>
+					</div>
 				</div>
 			</template>
 			<template slot="modal-footer1">
+
+				<!-- button -->
 				<button class="btn btn-default" @click="modalTutup">
 					<i class="icon-cross"></i> Tutup</button>
-				<button type="submit" class="btn btn-primary" @click="saveKategori">
+				<button type="submit" class="btn btn-primary" @click="saveKategori" :disabled="errors.any('form-kategori')">
 					<i class="icon-floppy-disk"></i> Simpan</button>
 			</template>
+
+			<!-- tambah penulis -->
+			<template slot="modal-body2">
+
+			</template>
+			<template slot="modal-footer2">
+
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -302,8 +375,15 @@
 				titleIcon: 'icon-plus3',
 				puskopdit: '',
 				formKategori: {
+					id_cu: '',
 					nama: '',
 					deskripsi: ''
+				},
+				formPenulis: {
+					id_cu: '',
+					nama: '',
+					profil: '',
+					gambar:''
 				},
 				utama: '',
 				summernoteconfig: {
@@ -353,6 +433,9 @@
 			$.uniform.update();
 		},
 		watch: {
+			userData(value){
+				this.$store.dispatch('loadCUPus',value.id_pus);
+			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -375,6 +458,13 @@
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateKategoriResponse.message;
 				}
+			},
+			formStat(value){
+				if(value === "success"){
+					if(this.userData.id_cu !== ''){
+						this.changeCU(this.userData.id_cu);
+					}
+				}
 			}
     },
 		methods: {
@@ -387,9 +477,6 @@
 				} else {
 					this.$store.dispatch('createArtikel');
 				}
-				// this.$store.dispatch('loadArtikelKategoriAll');
-				this.$store.dispatch('loadPusAll');	
-				// this.$store.dispatch('loadCUAll');	
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -411,12 +498,12 @@
 			saveKategori() {
 				this.$store.dispatch('storeArtikelKategori',this.formKategori);
 			},
-			changePus(){
-				this.$store.dispatch('loadCUPus', this.form.id_pus);
-			},
-			changeCU(){
-				this.$store.dispatch('loadArtikelPenulisCU', this.form.id_cu);	
-				this.$store.dispatch('loadArtikelKategoriCU', this.form.id_cu);
+			changeCU(id){
+				this.$store.dispatch('loadArtikelPenulisCU', id);	
+				this.$store.dispatch('loadArtikelKategoriCU', id);
+				this.formKategori.id_cu = id;
+				this.formPenulis.id_cu = id;
+				this.form.id_cu = id;
 			},
 			modalTutup() {
 				if(this.updateKategoriStat === 'success'){
@@ -427,6 +514,7 @@
 				}
 
 				this.modalShow = false;
+				
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
@@ -466,6 +554,9 @@
 			}
 		},
 		computed: {
+			userData(){
+				return this.$store.getters.getUserData;
+			},
 			form(){
 				return this.$store.getters.getArtikel;
 			},

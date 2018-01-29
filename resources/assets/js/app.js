@@ -28,7 +28,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     window.scrollTo(0, 0);
     if (to.fullPath !== "/login") {
-        axios.get('/api/profile').then(response => {
+        axios.get('/api/v1/profile').then(response => {       
             next();
         }).catch(error => {
             router.push('/login');

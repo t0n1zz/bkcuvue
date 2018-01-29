@@ -2,15 +2,11 @@
 
 use Illuminate\Http\Request;
 
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware('auth:api')->get('/profile', 'ProfileController@getUser');
-
-
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
+
+    // user
+    Route::get('/profile', 'UserController@getUser');
+
     //artikel
     Route::get('/artikel', 'ArtikelController@index');
     Route::get('/artikel/create', 'ArtikelController@create');
