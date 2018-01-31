@@ -14,16 +14,15 @@ class Artikel extends Model {
         'id_cu' => 'required',
         'id_artikel_kategori' => 'required',
         'id_artikel_penulis' => 'required',
-        'nama' => 'required|min:5',
-        'penulis' => 'required'
+        'nama' => 'required|min:5'
     ];
     
     protected $fillable = [
-        'id_cu','id_artikel_kategori','id_artikel_penulis','nama','content','penulis','terbitkan','gambar','gambar_thumb','utamakan'
+        'id_cu','id_artikel_kategori','id_artikel_penulis','nama','content','terbitkan','gambar','gambar_thumb','utamakan'
     ];
 
     protected $filter = [
-        'id','id_cu','id_artikel_kategori','id_artikel_penulis','nama','content','penulis','terbitkan','gambar','utamakan','created_at','artikel_kategori.nama'
+        'id','id_cu','id_artikel_kategori','id_artikel_penulis','nama','content','terbitkan','gambar','utamakan','created_at','artikel_kategori.nama'
     ];
 
     public function getNameAttribute($value){
@@ -33,7 +32,7 @@ class Artikel extends Model {
     public static function initialize()
     {
         return [
-            'id_cu' => '0' , 'id_artikel_kategori' => '1', 'nama' => '', 'content' => '', 'penulis' => '', 'terbitkan' => '0', 'utamakan' => '0', 'gambar' => ''
+            'id_cu' => '0' , 'id_artikel_kategori' => '0','id_artikel_penulis' => '0', 'nama' => '', 'content' => '', 'terbitkan' => '0', 'utamakan' => '0', 'gambar' => ''
         ];
     }
 

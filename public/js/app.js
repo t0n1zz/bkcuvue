@@ -30189,6 +30189,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -30209,8 +30215,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getUser: function getUser() {
 			var _this = this;
 
-			axios.get('/api/v1/profile').then(function (response) {
-				_this.$store.dispatch('loadUserData', response.data);
+			axios.get('/api/v1/userData').then(function (response) {
+				_this.$store.dispatch('loadUserData', response.data.model);
 			});
 		},
 		logout: function logout() {
@@ -30310,7 +30316,19 @@ var render = function() {
             [_c("strong", [_vm._v("SIMO")])]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _vm._m(0),
+          _vm._v(" "),
+          _c("p", { staticClass: "navbar-text" }, [
+            _c("span", { staticClass: "label bg-success-400" }, [
+              _vm.userData.pus
+                ? _c("span", [_vm._v(_vm._s(_vm.userData.pus.nama))])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.userData.cu
+                ? _c("span", [_vm._v("- CU " + _vm._s(_vm.userData.cu.nama))])
+                : _vm._e()
+            ])
+          ])
         ],
         1
       ),
@@ -53373,6 +53391,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53396,7 +53468,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			title: 'Tambah Artikel',
 			titleDesc: 'Menambah artikel baru',
 			titleIcon: 'icon-plus3',
-			puskopdit: '',
 			formKategori: {
 				id_cu: '',
 				nama: '',
@@ -53405,7 +53476,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			formPenulis: {
 				id_cu: '',
 				nama: '',
-				profil: '',
+				deskripsi: '',
 				gambar: ''
 			},
 			utama: '',
@@ -53427,7 +53498,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			modalColor: '',
 			modalContent: '',
 			redirect: '/artikel/',
-			submited: false
+			submited: false,
+			submitedKategori: false,
+			submitedPenulis: false
 		};
 	},
 	mounted: function mounted() {
@@ -53445,7 +53518,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	watch: {
 		userData: function userData(value) {
-			this.$store.dispatch('loadCUPus', value.id_pus);
+			if (value.id_cu === 0) {
+				this.$store.dispatch('loadCUPus', value.id_pus);
+				this.changeCU(value.id_cu);
+			} else {
+				if (this.$route.meta.mode !== 'edit') {
+					this.form.id_cu = value.id_cu;
+					this.changeCU(value.id_cu);
+				}
+			}
 		},
 		updateStat: function updateStat(value) {
 			this.modalShow = true;
@@ -53465,16 +53546,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			if (value === "success") {
 				this.modalTitle = this.updateKategoriResponse.message;
+				this.$store.dispatch('loadArtikelKategoriCU', this.id_cu);
+				this.form.id_artikel_kategori = this.updateKategoriResponse.id;
 			} else {
 				this.modalTitle = 'Oops terjadi kesalahan :(';
 				this.modalContent = this.updateKategoriResponse.message;
 			}
 		},
-		formStat: function formStat(value) {
+		updatePenulisStat: function updatePenulisStat(value) {
+			this.modalState = value;
+			this.modalColor = '';
+
 			if (value === "success") {
-				if (this.userData.id_cu !== '') {
-					this.changeCU(this.userData.id_cu);
-				}
+				this.modalTitle = this.updatePenulisResponse.message;
+				this.$store.dispatch('loadArtikelPenulisCU', this.id_cu);
+				this.form.id_artikel_penulis = this.updatePenulisResponse.id;
+			} else {
+				this.modalTitle = 'Oops terjadi kesalahan :(';
+				this.modalContent = this.updatePenulisResponse.message;
 			}
 		}
 	},
@@ -53493,7 +53582,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			var formData = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
-
 			this.$validator.validateAll('form-1').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
@@ -53508,25 +53596,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			});
 		},
+		savePenulis: function savePenulis() {
+			var _this2 = this;
+
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_form__["a" /* toMulipartedForm */])(this.formPenulis, this.$route.meta.mode);
+			this.$validator.validateAll('form-penulis').then(function (result) {
+				if (result) {
+					_this2.$store.dispatch('storeArtikelPenulis', _this2.formPenulis);
+				} else {
+					window.scrollTo(0, 0);
+					_this2.submitedPenulis = true;
+				}
+			});
+		},
 		saveKategori: function saveKategori() {
-			this.$store.dispatch('storeArtikelKategori', this.formKategori);
+			var _this3 = this;
+
+			this.$validator.validateAll('form-kategori').then(function (result) {
+				if (result) {
+					_this3.$store.dispatch('storeArtikelKategori', _this3.formKategori);
+				} else {
+					window.scrollTo(0, 0);
+					_this3.submitedKategori = true;
+				}
+			});
 		},
 		changeCU: function changeCU(id) {
 			this.$store.dispatch('loadArtikelPenulisCU', id);
 			this.$store.dispatch('loadArtikelKategoriCU', id);
-			this.formKategori.id_cu = id;
-			this.formPenulis.id_cu = id;
-			this.form.id_cu = id;
 		},
 		modalTutup: function modalTutup() {
-			if (this.updateKategoriStat === 'success') {
-				this.$store.dispatch('loadArtikelKategoriAll');
-				this.form.artikel_kategori_id = this.updateKategoriResponse.id;
-			} else if (this.updateStat === 'success') {
+			if (this.updateStat === 'success') {
 				this.$router.push(this.redirect);
 			}
 
 			this.modalShow = false;
+			this.submitedKategori = false;
+			this.submitedPenulis = false;
 		},
 		modalBackgroundClick: function modalBackgroundClick() {
 			if (this.modalState === 'success') {
@@ -53537,8 +53643,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.modalShow = false;
 			}
 		},
-		modalOpen_Penulis: function modalOpen_Penulis() {},
+		modalOpen_Penulis: function modalOpen_Penulis() {
+			this.formPenulis.id_cu = this.form.id_cu;
+
+			this.modalShow = true;
+			this.modalState = 'normal2';
+			this.modalColor = 'bg-primary';
+			this.modalTitle = 'Tambah penulis artikel';
+			this.formPenulis.nama = '';
+			this.formPenulis.deskripsi = '';
+		},
 		modalOpen_Kategori: function modalOpen_Kategori() {
+			this.formKategori.id_cu = this.form.id_cu;
+
 			this.modalShow = true;
 			this.modalState = 'normal1';
 			this.modalColor = 'bg-primary';
@@ -53590,6 +53707,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		updateKategoriStat: function updateKategoriStat() {
 			return this.$store.getters.getArtikelKategoriUpdateStat;
+		},
+		updatePenulisResponse: function updatePenulisResponse() {
+			return this.$store.getters.getArtikelPenulisUpdate;
+		},
+		updatePenulisStat: function updatePenulisStat() {
+			return this.$store.getters.getArtikelPenulisUpdateStat;
 		},
 		modelPenulis: function modelPenulis() {
 			return this.$store.getters.getArtikelPenulisS;
@@ -54138,7 +54261,7 @@ var render = function() {
             { staticClass: "content-wrapper" },
             [
               _vm.submited
-                ? _c("message", { attrs: { show: _vm.errors.any() } }, [
+                ? _c("message", { attrs: { show: _vm.errors.any("form-1") } }, [
                     _c("p", [
                       _c("i", { staticClass: "icon-cancel-circle2" }),
                       _vm._v(" Oops terjadi kesalahan:")
@@ -54256,7 +54379,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm.userData.id_cu === ""
+                        _vm.userData.id_cu === 0
                           ? _c("div", { staticClass: "col-md-4" }, [
                               _c(
                                 "div",
@@ -54337,11 +54460,15 @@ var render = function() {
                                         [_vm._v("Silahkan pilih CU")]
                                       ),
                                       _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "pus" } },
-                                        [_vm._v("Puskopdit")]
-                                      ),
+                                      _c("option", { attrs: { value: "0" } }, [
+                                        _vm.userData.pus
+                                          ? _c("span", [
+                                              _vm._v(
+                                                _vm._s(_vm.userData.pus.nama)
+                                              )
+                                            ])
+                                          : _c("span", [_vm._v("Puskopdit")])
+                                      ]),
                                       _vm._v(" "),
                                       _c("option", {
                                         attrs: { "data-divider": "true" }
@@ -54484,18 +54611,24 @@ var render = function() {
                                               attrs: { disabled: "", value: "" }
                                             },
                                             [
-                                              _vm.form.id_cu !== "0" &&
+                                              _vm.form.id_cu !== 0 &&
                                               _vm.modelPenulis.length === 0
                                                 ? _c("span", [
                                                     _vm._v(
                                                       "Silahkan tambah penulis baru"
                                                     )
                                                   ])
-                                                : _c("span", [
-                                                    _vm._v(
-                                                      "Silahkan pilih penulis"
-                                                    )
-                                                  ])
+                                                : _vm.form.id_cu === 0
+                                                  ? _c("span", [
+                                                      _vm._v(
+                                                        "Silahkan pilih CU terlebih dahulu"
+                                                      )
+                                                    ])
+                                                  : _c("span", [
+                                                      _vm._v(
+                                                        "Silahkan pilih penulis"
+                                                      )
+                                                    ])
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -54530,7 +54663,7 @@ var render = function() {
                                                 type: "button",
                                                 "data-popup": "tooltip",
                                                 title: "Tambah kategori",
-                                                disabled: _vm.form.id_cu === "0"
+                                                disabled: _vm.form.id_cu === ""
                                               },
                                               on: {
                                                 click: _vm.modalOpen_Penulis
@@ -54570,25 +54703,14 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _vm.form.id_cu === "0"
-                                    ? _c("span", [
+                                  _vm.form.id_cu !== 0 &&
+                                  _vm.modelPenulis.length === 0
+                                    ? _c("span", [_vm._v(" ")])
+                                    : _c("span", [
                                         _c("i", {
                                           staticClass: "icon-arrow-small-right"
                                         }),
-                                        _vm._v(
-                                          " Silahkan pilih CU dahulu sebelum bisa memilih penulis\n\t\t\t\t\t\t\t\t\t\t\t"
-                                        )
-                                      ])
-                                    : _c("span", [
-                                        _vm.modelPenulis.length !== 0
-                                          ? _c("span", [
-                                              _c("i", {
-                                                staticClass:
-                                                  "icon-arrow-small-right"
-                                              }),
-                                              _vm._v(" Penulis harus dipilih")
-                                            ])
-                                          : _c("span", [_vm._v(" ")])
+                                        _vm._v(" Penulis harus dipilih")
                                       ])
                                 ]
                               )
@@ -54597,146 +54719,192 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("h5", [_vm._v("Kategori:")]),
-                            _vm._v(" "),
-                            _vm.modelKategoriLoadStat === "loading"
-                              ? _c("div", [
-                                  _c("i", {
-                                    staticClass: "icon-spinner spinner"
-                                  })
-                                ])
-                              : _c("div", [
-                                  _c("div", { staticClass: "input-group" }, [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.form.id_artikel_kategori,
-                                            expression:
-                                              "form.id_artikel_kategori"
-                                          }
-                                        ],
-                                        staticClass: "bootstrap-select",
-                                        attrs: {
-                                          name: "id_artikel_kategori",
-                                          "data-width": "100%",
-                                          disabled:
-                                            _vm.modelKategori.length === 0
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.form.id_artikel_kategori = $event
-                                              .target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "option",
-                                          {
-                                            attrs: { disabled: "", value: "" }
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "form-1.id_artikel_kategori"
+                                )
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_artikel_kategori"
+                                    )
+                                  }
+                                },
+                                [_vm._v("Kategori:")]
+                              ),
+                              _vm._v(" "),
+                              _vm.modelKategoriLoadStat === "loading"
+                                ? _c("div", [
+                                    _c("i", {
+                                      staticClass: "icon-spinner spinner"
+                                    })
+                                  ])
+                                : _c("div", [
+                                    _c("div", { staticClass: "input-group" }, [
+                                      _c(
+                                        "select",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.form.id_artikel_kategori,
+                                              expression:
+                                                "form.id_artikel_kategori"
+                                            },
+                                            {
+                                              name: "validate",
+                                              rawName: "v-validate",
+                                              value: "required",
+                                              expression: "'required'"
+                                            }
+                                          ],
+                                          staticClass: "bootstrap-select",
+                                          attrs: {
+                                            name: "id_artikel_kategori",
+                                            "data-width": "100%",
+                                            disabled:
+                                              _vm.modelKategori.length === 0
                                           },
-                                          [
-                                            _vm.form.id_cu !== "0" &&
-                                            _vm.modelKategori.length === 0
-                                              ? _c("span", [
-                                                  _vm._v(
-                                                    "Silahkan tambah kategori baru"
-                                                  )
-                                                ])
-                                              : _c("span", [
-                                                  _vm._v(
-                                                    "Silahkan pilih kategori"
-                                                  )
-                                                ])
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("option", {
-                                          attrs: { "data-divider": "true" }
-                                        }),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.modelKategori, function(
-                                          kategori
-                                        ) {
-                                          return _c(
+                                          on: {
+                                            change: function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.form.id_artikel_kategori = $event
+                                                .target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
                                             "option",
                                             {
-                                              domProps: { value: kategori.id }
+                                              attrs: { disabled: "", value: "" }
                                             },
-                                            [_vm._v(_vm._s(kategori.nama))]
+                                            [
+                                              _vm.form.id_cu !== 0 &&
+                                              _vm.modelKategori.length === 0
+                                                ? _c("span", [
+                                                    _vm._v(
+                                                      "Silahkan tambah kategori baru"
+                                                    )
+                                                  ])
+                                                : _c("span", [
+                                                    _vm._v(
+                                                      "Silahkan pilih kategori"
+                                                    )
+                                                  ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("option", {
+                                            attrs: { "data-divider": "true" }
+                                          }),
+                                          _vm._v(" "),
+                                          _vm._l(_vm.modelKategori, function(
+                                            kategori
+                                          ) {
+                                            return _c(
+                                              "option",
+                                              {
+                                                domProps: { value: kategori.id }
+                                              },
+                                              [_vm._v(_vm._s(kategori.nama))]
+                                            )
+                                          })
+                                        ],
+                                        2
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "input-group-btn" },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass: "btn btn-default",
+                                              attrs: {
+                                                type: "button",
+                                                "data-popup": "tooltip",
+                                                title: "Tambah kategori",
+                                                disabled: _vm.form.id_cu === ""
+                                              },
+                                              on: {
+                                                click: _vm.modalOpen_Kategori
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-plus22"
+                                              })
+                                            ]
                                           )
-                                        })
-                                      ],
-                                      2
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "input-group-btn" },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "btn btn-default",
-                                            attrs: {
-                                              type: "button",
-                                              "data-popup": "tooltip",
-                                              title: "Tambah kategori",
-                                              disabled: _vm.form.id_cu === "0"
-                                            },
-                                            on: {
-                                              click: _vm.modalOpen_Kategori
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-plus22"
-                                            })
-                                          ]
-                                        )
-                                      ]
+                                        ]
+                                      )
+                                    ])
+                                  ]),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.id_artikel_kategori")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.id_artikel_kategori"
                                     )
-                                  ])
-                                ]),
-                            _vm._v(" "),
-                            _c("small", { staticClass: "text-muted" }, [
-                              _vm.form.id_cu === "0"
-                                ? _c("span", [
-                                    _c("i", {
-                                      staticClass: "icon-arrow-small-right"
-                                    }),
-                                    _vm._v(
-                                      " \n\t\t\t\t\t\t\t\t\t\t\t \tSilahkan pilih CU dahulu sebelum bisa memilih kategori\n\t\t\t\t\t\t\t\t\t\t\t"
-                                    )
-                                  ])
-                                : _c("span", [
-                                    _vm.modelKategori.length !== 0
-                                      ? _c("span", [_vm._v(" ")])
-                                      : _vm._e()
-                                  ])
-                            ])
-                          ])
+                                  }
+                                },
+                                [
+                                  _vm.form.id_cu !== 0 &&
+                                  _vm.modelKategori.length === 0
+                                    ? _c("span", [_vm._v(" ")])
+                                    : _c("span", [
+                                        _c("i", {
+                                          staticClass: "icon-arrow-small-right"
+                                        }),
+                                        _vm._v(" Kategori harus dipilih")
+                                      ])
+                                ]
+                              )
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _vm._m(0),
@@ -54991,183 +55159,195 @@ var render = function() {
             "template",
             { attrs: { slot: "modal-body1" }, slot: "modal-body1" },
             [
-              _c("div", { attrs: { "data-vv-scope": "form-kategori" } }, [
-                _c("div", { staticClass: "well bg-primary text-center" }, [
-                  _c("h5", [
-                    _vm._v(
-                      "Tidak menemukan kategori yang cocok untuk artikel anda?"
-                    )
-                  ]),
-                  _vm._v(
-                    "\n\t\t\t\t\tSilahkan tambahkan sendiri dan jangan lupa berikan deskripsi kategori tersebut.\n\t\t\t\t"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group has-feedback",
-                    class: {
-                      "has-error": _vm.errors.has("form-kategori.kategoriNama")
-                    }
-                  },
-                  [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "text-semibold",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriNama"
+              _c(
+                "form",
+                { attrs: { "data-vv-scope": "form-kategori" } },
+                [
+                  _vm.submitedKategori
+                    ? _c(
+                        "message",
+                        { attrs: { show: _vm.errors.any("form-kategori") } },
+                        [
+                          _c("p", [
+                            _c("i", { staticClass: "icon-cancel-circle2" }),
+                            _vm._v(" Oops terjadi kesalahan:")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "ul",
+                            _vm._l(_vm.errors.items, function(error) {
+                              return _c("li", [_vm._v(_vm._s(error.msg))])
+                            })
                           )
-                        }
-                      },
-                      [_vm._v("Nama:")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|min:5",
-                          expression: "'required|min:5'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formKategori.nama,
-                          expression: "formKategori.nama"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "kategoriNama",
-                        placeholder: "Silahkan masukkan nama kategori"
-                      },
-                      domProps: { value: _vm.formKategori.nama },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.formKategori.nama = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.has("form-kategori.kategoriNama")
-                      ? _c("div", { staticClass: "form-control-feedback" }, [
-                          _c("i", { staticClass: "icon-cancel-circle2" })
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-muted",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriNama"
-                          )
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-arrow-small-right" }),
-                        _vm._v(
-                          " Nama kategori harus diisi dan minimal 5 karakter"
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group has-feedback",
-                    class: {
-                      "has-error": _vm.errors.has(
-                        "form-kategori.kategoriDeskripsi"
+                        ]
                       )
-                    }
-                  },
-                  [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "text-semibold",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriDeskripsi"
-                          )
-                        }
-                      },
-                      [_vm._v("Deskripsi:")]
-                    ),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|min:5",
-                          expression: "'required|min:5'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formKategori.deskripsi,
-                          expression: "formKategori.deskripsi"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        rows: "5",
-                        type: "text",
-                        name: "kategoriDeskripsi",
-                        placeholder: "Silahkan masukkan deskripsi kategori"
-                      },
-                      domProps: { value: _vm.formKategori.deskripsi },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.formKategori.deskripsi = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.has("form-kategori.kategoriDeskripsi")
-                      ? _c("div", { staticClass: "form-control-feedback" }, [
-                          _c("i", { staticClass: "icon-cancel-circle2" })
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-muted",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriDeskripsi"
-                          )
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-arrow-small-right" }),
-                        _vm._v(
-                          " Deskripsi kategori harus diisi dan minimal 5 karakter"
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group has-feedback",
+                      class: {
+                        "has-error": _vm.errors.has(
+                          "form-kategori.kategoriNama"
                         )
-                      ]
-                    )
-                  ]
-                )
-              ])
+                      }
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "text-semibold",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-kategori.kategoriNama"
+                            )
+                          }
+                        },
+                        [_vm._v("Nama:")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: "'required'"
+                          },
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formKategori.nama,
+                            expression: "formKategori.nama"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "kategoriNama",
+                          placeholder: "Silahkan masukkan nama kategori"
+                        },
+                        domProps: { value: _vm.formKategori.nama },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.formKategori.nama = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.has("form-kategori.kategoriNama")
+                        ? _c("div", { staticClass: "form-control-feedback" }, [
+                            _c("i", { staticClass: "icon-cancel-circle2" })
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        {
+                          staticClass: "text-muted",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-kategori.kategoriNama"
+                            )
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(" Nama kategori harus diisi")
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group has-feedback",
+                      class: {
+                        "has-error": _vm.errors.has(
+                          "form-kategori.kategoriDeskripsi"
+                        )
+                      }
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "text-semibold",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-kategori.kategoriDeskripsi"
+                            )
+                          }
+                        },
+                        [_vm._v("Deskripsi:")]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required|min:5",
+                            expression: "'required|min:5'"
+                          },
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formKategori.deskripsi,
+                            expression: "formKategori.deskripsi"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          rows: "5",
+                          type: "text",
+                          name: "kategoriDeskripsi",
+                          placeholder: "Silahkan masukkan deskripsi kategori"
+                        },
+                        domProps: { value: _vm.formKategori.deskripsi },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.formKategori.deskripsi = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.has("form-kategori.kategoriDeskripsi")
+                        ? _c("div", { staticClass: "form-control-feedback" }, [
+                            _c("i", { staticClass: "icon-cancel-circle2" })
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        {
+                          staticClass: "text-muted",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-kategori.kategoriDeskripsi"
+                            )
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(
+                            " Deskripsi kategori harus diisi dan minimal 5 karakter"
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
             ]
           ),
           _vm._v(" "),
@@ -55202,15 +55382,252 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("template", {
-            attrs: { slot: "modal-body2" },
-            slot: "modal-body2"
-          }),
+          _c(
+            "template",
+            { attrs: { slot: "modal-body2" }, slot: "modal-body2" },
+            [
+              _c(
+                "form",
+                { attrs: { "data-vv-scope": "form-penulis" } },
+                [
+                  _vm.submitedPenulis
+                    ? _c(
+                        "message",
+                        { attrs: { show: _vm.errors.any("form-penulis") } },
+                        [
+                          _c("p", [
+                            _c("i", { staticClass: "icon-cancel-circle2" }),
+                            _vm._v(" Oops terjadi kesalahan:")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "ul",
+                            _vm._l(_vm.errors.items, function(error) {
+                              return _c("li", [_vm._v(_vm._s(error.msg))])
+                            })
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { staticClass: "text-semibold" }, [
+                        _vm._v("Foto:")
+                      ]),
+                      _vm._v(" "),
+                      _c("app-image-upload", {
+                        attrs: { image_loc: "/images/artikel/" },
+                        model: {
+                          value: _vm.formPenulis.gambar,
+                          callback: function($$v) {
+                            _vm.formPenulis.gambar = $$v
+                          },
+                          expression: "formPenulis.gambar"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group has-feedback",
+                      class: {
+                        "has-error": _vm.errors.has("form-penulis.penulisNama")
+                      }
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "text-semibold",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-penulis.penulisNama"
+                            )
+                          }
+                        },
+                        [_vm._v("Nama:")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: "'required'"
+                          },
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formPenulis.nama,
+                            expression: "formPenulis.nama"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "penulisNama",
+                          placeholder: "Silahkan masukkan nama penulis"
+                        },
+                        domProps: { value: _vm.formPenulis.nama },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.formPenulis.nama = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.has("form-penulis.penulisNama")
+                        ? _c("div", { staticClass: "form-control-feedback" }, [
+                            _c("i", { staticClass: "icon-cancel-circle2" })
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        {
+                          staticClass: "text-muted",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-penulis.penulisNama"
+                            )
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(" Nama penulis harus diisi")
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group has-feedback",
+                      class: {
+                        "has-error": _vm.errors.has(
+                          "form-penulis.penulisDeskripsi"
+                        )
+                      }
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "text-semibold",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-penulis.penulisDeskripsi"
+                            )
+                          }
+                        },
+                        [_vm._v("Profil:")]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required|min:5",
+                            expression: "'required|min:5'"
+                          },
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formPenulis.deskripsi,
+                            expression: "formPenulis.deskripsi"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          rows: "5",
+                          type: "text",
+                          name: "penulisDeskripsi",
+                          placeholder: "Silahkan masukkan profil penulis"
+                        },
+                        domProps: { value: _vm.formPenulis.deskripsi },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.formPenulis.deskripsi = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.has("form-penulis.penulisDeskripsi")
+                        ? _c("div", { staticClass: "form-control-feedback" }, [
+                            _c("i", { staticClass: "icon-cancel-circle2" })
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        {
+                          staticClass: "text-muted",
+                          class: {
+                            "text-danger": _vm.errors.has(
+                              "form-penulis.penulisDeskripsi"
+                            )
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(
+                            " Profil penulis harus diisi dan minimal 5 karakter"
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ]
+          ),
           _vm._v(" "),
-          _c("template", {
-            attrs: { slot: "modal-footer2" },
-            slot: "modal-footer2"
-          })
+          _c(
+            "template",
+            { attrs: { slot: "modal-footer2" }, slot: "modal-footer2" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  on: { click: _vm.modalTutup }
+                },
+                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any("form-penulis")
+                  },
+                  on: { click: _vm.savePenulis }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              )
+            ]
+          )
         ],
         2
       )

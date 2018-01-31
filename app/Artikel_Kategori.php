@@ -9,7 +9,8 @@ class Artikel_Kategori extends Model {
     
     public static $rules = [
         'id_cu' => 'required',
-        'nama' => 'required|between:3,50',
+        'nama' => 'required',
+        'deskripsi' => 'required|min:5'
     ];
     
     protected $fillable = ['id_cu','nama','deskripsi'];

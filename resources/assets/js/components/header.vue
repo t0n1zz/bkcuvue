@@ -12,6 +12,12 @@
 						</a>
 					</li>
 				</ul>
+				<p class="navbar-text">
+					<span class="label bg-success-400">
+						<span v-if="userData.pus">{{userData.pus.nama}}</span> 
+						<span v-if="userData.cu">- CU {{userData.cu.nama}}</span>
+					</span>
+				</p>
 			</div>
 			<div class="navbar-collapse collapse" id="navbar-mobile">
 				<ul class="nav navbar-nav navbar-right">
@@ -94,8 +100,8 @@
 		},
 		methods: {
 			getUser() {
-				axios.get('/api/v1/profile').then(response => {
-					this.$store.dispatch('loadUserData', response.data);
+				axios.get('/api/v1/userData').then(response => {
+					this.$store.dispatch('loadUserData', response.data.model);
 				})
 			},
 			logout() {
