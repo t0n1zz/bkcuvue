@@ -15390,7 +15390,6 @@ module.exports = Component.exports
 *  Latest update: Dec 11, 2015
 *
 * ---------------------------------------------------------------------------- */
-
 /* harmony default export */ __webpack_exports__["a"] = ({
     core_function: function core_function() {
         // Allow CSS transitions when page is loaded
@@ -30110,6 +30109,7 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__);
 //
 //
 //
@@ -30205,7 +30205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__["a" /* default */].hover_function();
+		__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js___default.a.hover_function();
 	},
 	created: function created() {
 		this.getUser();
@@ -30236,9 +30236,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 141 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 /**
  * @preserve
  * Project: Bootstrap Hover Dropdown
@@ -30250,48 +30249,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * License: MIT
  * Homepage: http://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/
  */
-/* harmony default export */ __webpack_exports__["a"] = ({
-  hover_function: function hover_function() {
-    !function (e, n) {
-      var o = e();e.fn.dropdownHover = function (t) {
-        return "ontouchstart" in document ? this : (o = o.add(this.parent()), this.each(function () {
-          function r() {
-            d.parents(".navbar").find(".navbar-toggle").is(":visible") || (n.clearTimeout(a), n.clearTimeout(i), i = n.setTimeout(function () {
-              o.find(":focus").blur(), v.instantlyCloseOthers === !0 && o.removeClass("open"), n.clearTimeout(i), d.attr("aria-expanded", "true"), s.addClass("open"), d.trigger(h);
-            }, v.hoverDelay));
-          }var a,
-              i,
-              d = e(this),
-              s = d.parent(),
-              u = { delay: 500, hoverDelay: 0, instantlyCloseOthers: !0 },
-              l = { delay: e(this).data("delay"), hoverDelay: e(this).data("hover-delay"), instantlyCloseOthers: e(this).data("close-others") },
-              h = "show.bs.dropdown",
-              c = "hide.bs.dropdown",
-              v = e.extend(!0, {}, u, t, l);s.hover(function (e) {
-            return s.hasClass("open") || d.is(e.target) ? void r(e) : !0;
-          }, function () {
-            n.clearTimeout(i), a = n.setTimeout(function () {
-              d.attr("aria-expanded", "false"), s.removeClass("open"), d.trigger(c);
-            }, v.delay);
-          }), d.hover(function (e) {
-            return s.hasClass("open") || s.is(e.target) ? void r(e) : !0;
-          }), s.find(".dropdown-submenu").each(function () {
-            var o,
-                t = e(this);t.hover(function () {
-              n.clearTimeout(o), t.children(".dropdown-menu").show(), t.siblings().children(".dropdown-menu").hide();
-            }, function () {
-              var e = t.children(".dropdown-menu");o = n.setTimeout(function () {
-                e.hide();
-              }, v.delay);
-            });
-          });
-        }));
-      }, e(document).ready(function () {
-        e('[data-hover="dropdown"]').dropdownHover();
+!function (e, n) {
+  var o = e();e.fn.dropdownHover = function (t) {
+    return "ontouchstart" in document ? this : (o = o.add(this.parent()), this.each(function () {
+      function r() {
+        d.parents(".navbar").find(".navbar-toggle").is(":visible") || (n.clearTimeout(a), n.clearTimeout(i), i = n.setTimeout(function () {
+          o.find(":focus").blur(), v.instantlyCloseOthers === !0 && o.removeClass("open"), n.clearTimeout(i), d.attr("aria-expanded", "true"), s.addClass("open"), d.trigger(h);
+        }, v.hoverDelay));
+      }var a,
+          i,
+          d = e(this),
+          s = d.parent(),
+          u = { delay: 500, hoverDelay: 0, instantlyCloseOthers: !0 },
+          l = { delay: e(this).data("delay"), hoverDelay: e(this).data("hover-delay"), instantlyCloseOthers: e(this).data("close-others") },
+          h = "show.bs.dropdown",
+          c = "hide.bs.dropdown",
+          v = e.extend(!0, {}, u, t, l);s.hover(function (e) {
+        return s.hasClass("open") || d.is(e.target) ? void r(e) : !0;
+      }, function () {
+        n.clearTimeout(i), a = n.setTimeout(function () {
+          d.attr("aria-expanded", "false"), s.removeClass("open"), d.trigger(c);
+        }, v.delay);
+      }), d.hover(function (e) {
+        return s.hasClass("open") || s.is(e.target) ? void r(e) : !0;
+      }), s.find(".dropdown-submenu").each(function () {
+        var o,
+            t = e(this);t.hover(function () {
+          n.clearTimeout(o), t.children(".dropdown-menu").show(), t.siblings().children(".dropdown-menu").hide();
+        }, function () {
+          var e = t.children(".dropdown-menu");o = n.setTimeout(function () {
+            e.hide();
+          }, v.delay);
+        });
       });
-    }(jQuery, window);
-  }
-});
+    }));
+  }, e(document).ready(function () {
+    e('[data-hover="dropdown"]').dropdownHover();
+  });
+}(jQuery, window);
 
 /***/ }),
 /* 142 */
@@ -30626,6 +30621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_message_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__);
 //
 //
 //
@@ -30688,7 +30684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		Message: __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default.a
 	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__["a" /* default */].progressbar();
+		__WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js___default.a.progressbar();
 	},
 
 	methods: {
@@ -30817,57 +30813,53 @@ if (false) {
 
 /***/ }),
 /* 147 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__) {
 
 "use strict";
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  progressbar: function progressbar() {
-    /*! bootstrap-progressbar v0.9.0 | Copyright (c) 2012-2015 Stephan Groß | MIT license | http://www.minddust.com */
-    !function (t) {
-      "use strict";
-      var e = function e(n, s) {
-        this.$element = t(n), this.options = t.extend({}, e.defaults, s);
-      };e.defaults = { transition_delay: 300, refresh_speed: 50, display_text: "none", use_percentage: !0, percent_format: function percent_format(t) {
-          return t + "%";
-        }, amount_format: function amount_format(t, e) {
-          return t + " / " + e;
-        }, update: t.noop, done: t.noop, fail: t.noop }, e.prototype.transition = function () {
-        var n = this.$element,
-            s = n.parent(),
-            a = this.$back_text,
-            r = this.$front_text,
-            i = this.options,
-            o = parseInt(n.attr("data-transitiongoal")),
-            h = parseInt(n.attr("aria-valuemin")) || 0,
-            d = parseInt(n.attr("aria-valuemax")) || 100,
-            f = s.hasClass("vertical"),
-            p = i.update && "function" == typeof i.update ? i.update : e.defaults.update,
-            u = i.done && "function" == typeof i.done ? i.done : e.defaults.done,
-            c = i.fail && "function" == typeof i.fail ? i.fail : e.defaults.fail;if (isNaN(o)) return void c("data-transitiongoal not set");var l = Math.round(100 * (o - h) / (d - h));if ("center" === i.display_text && !a && !r) {
-          this.$back_text = a = t("<span>").addClass("progressbar-back-text").prependTo(s), this.$front_text = r = t("<span>").addClass("progressbar-front-text").prependTo(n);var g;f ? (g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g }), t(window).resize(function () {
-            g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g });
-          })) : (g = s.css("width"), r.css({ width: g }), t(window).resize(function () {
-            g = s.css("width"), r.css({ width: g });
-          }));
-        }setTimeout(function () {
-          var t, e, c, g, _;f ? n.css("height", l + "%") : n.css("width", l + "%");var x = setInterval(function () {
-            f ? (c = n.height(), g = s.height()) : (c = n.width(), g = s.width()), t = Math.round(100 * c / g), e = Math.round(h + c / g * (d - h)), t >= l && (t = l, e = o, u(n), clearInterval(x)), "none" !== i.display_text && (_ = i.use_percentage ? i.percent_format(t) : i.amount_format(e, d, h), "fill" === i.display_text ? n.text(_) : "center" === i.display_text && (a.text(_), r.text(_))), n.attr("aria-valuenow", e), p(t, n);
-          }, i.refresh_speed);
-        }, i.transition_delay);
-      };var n = t.fn.progressbar;t.fn.progressbar = function (n) {
-        return this.each(function () {
-          var s = t(this),
-              a = s.data("bs.progressbar"),
-              r = "object" == (typeof n === "undefined" ? "undefined" : _typeof(n)) && n;a && r && t.extend(a.options, r), a || s.data("bs.progressbar", a = new e(this, r)), a.transition();
-        });
-      }, t.fn.progressbar.Constructor = e, t.fn.progressbar.noConflict = function () {
-        return t.fn.progressbar = n, this;
-      };
-    }(window.jQuery);
-  }
-});
+/*! bootstrap-progressbar v0.9.0 | Copyright (c) 2012-2015 Stephan Groß | MIT license | http://www.minddust.com */
+!function (t) {
+  "use strict";
+  var e = function e(n, s) {
+    this.$element = t(n), this.options = t.extend({}, e.defaults, s);
+  };e.defaults = { transition_delay: 300, refresh_speed: 50, display_text: "none", use_percentage: !0, percent_format: function percent_format(t) {
+      return t + "%";
+    }, amount_format: function amount_format(t, e) {
+      return t + " / " + e;
+    }, update: t.noop, done: t.noop, fail: t.noop }, e.prototype.transition = function () {
+    var n = this.$element,
+        s = n.parent(),
+        a = this.$back_text,
+        r = this.$front_text,
+        i = this.options,
+        o = parseInt(n.attr("data-transitiongoal")),
+        h = parseInt(n.attr("aria-valuemin")) || 0,
+        d = parseInt(n.attr("aria-valuemax")) || 100,
+        f = s.hasClass("vertical"),
+        p = i.update && "function" == typeof i.update ? i.update : e.defaults.update,
+        u = i.done && "function" == typeof i.done ? i.done : e.defaults.done,
+        c = i.fail && "function" == typeof i.fail ? i.fail : e.defaults.fail;if (isNaN(o)) return void c("data-transitiongoal not set");var l = Math.round(100 * (o - h) / (d - h));if ("center" === i.display_text && !a && !r) {
+      this.$back_text = a = t("<span>").addClass("progressbar-back-text").prependTo(s), this.$front_text = r = t("<span>").addClass("progressbar-front-text").prependTo(n);var g;f ? (g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g }), t(window).resize(function () {
+        g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g });
+      })) : (g = s.css("width"), r.css({ width: g }), t(window).resize(function () {
+        g = s.css("width"), r.css({ width: g });
+      }));
+    }setTimeout(function () {
+      var t, e, c, g, _;f ? n.css("height", l + "%") : n.css("width", l + "%");var x = setInterval(function () {
+        f ? (c = n.height(), g = s.height()) : (c = n.width(), g = s.width()), t = Math.round(100 * c / g), e = Math.round(h + c / g * (d - h)), t >= l && (t = l, e = o, u(n), clearInterval(x)), "none" !== i.display_text && (_ = i.use_percentage ? i.percent_format(t) : i.amount_format(e, d, h), "fill" === i.display_text ? n.text(_) : "center" === i.display_text && (a.text(_), r.text(_))), n.attr("aria-valuenow", e), p(t, n);
+      }, i.refresh_speed);
+    }, i.transition_delay);
+  };var n = t.fn.progressbar;t.fn.progressbar = function (n) {
+    return this.each(function () {
+      var s = t(this),
+          a = s.data("bs.progressbar"),
+          r = "object" == (typeof n === "undefined" ? "undefined" : _typeof(n)) && n;a && r && t.extend(a.options, r), a || s.data("bs.progressbar", a = new e(this, r)), a.transition();
+    });
+  }, t.fn.progressbar.Constructor = e, t.fn.progressbar.noConflict = function () {
+    return t.fn.progressbar = n, this;
+  };
+}(window.jQuery);
 
 /***/ }),
 /* 148 */
@@ -53507,8 +53499,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		__WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__["a" /* default */].core_function();
 		__WEBPACK_IMPORTED_MODULE_3__assets_plugins_forms_styling_uniform_min_js__["a" /* default */].uniform_function();
 		this.other();
-	},
-	created: function created() {
 		this.fetch();
 	},
 	updated: function updated() {

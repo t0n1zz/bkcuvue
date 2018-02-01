@@ -68,7 +68,6 @@ $(function() {
         // Toggle classes
         $('body').children('.navbar').first().removeClass('navbar-fixed-top').addClass('navbar-fixed-bottom');
         $('body').removeClass('navbar-top').addClass('navbar-bottom');
-        $('.page-container').addClass('pb-20');
 
         // Initialize bottom navbar
         headroomBottom();
@@ -82,7 +81,6 @@ $(function() {
         // Toggle classes
         $('body').children('.navbar').first().removeClass('navbar-fixed-bottom').addClass('navbar-fixed-top');
         $('body').removeClass('navbar-bottom').addClass('navbar-top');
-        $('.page-container').removeClass('pb-20');
 
         // Initialize top navbar
         headroomTop();

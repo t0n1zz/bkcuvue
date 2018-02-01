@@ -8,7 +8,6 @@
 *  Latest update: Dec 11, 2015
 *
 * ---------------------------------------------------------------------------- */
-
 export default {
     core_function(){
         // Allow CSS transitions when page is loaded
@@ -21,8 +20,6 @@ export default {
 
             // Disable CSS transitions on page load
             $('body').addClass('no-transitions');
-
-
 
             // ========================================
             //
@@ -158,7 +155,7 @@ export default {
 
                 // For demo purposes
                 window.setTimeout(function () {
-                   $(block).unblock();
+                $(block).unblock();
                 }, 2000); 
             });
 
@@ -185,7 +182,7 @@ export default {
 
                 // For demo purposes
                 window.setTimeout(function () {
-                   $(block).unblock();
+                $(block).unblock();
                 }, 2000); 
             }); 
 
@@ -211,7 +208,7 @@ export default {
 
                 // For demo purposes
                 window.setTimeout(function () {
-                   $(block).unblock();
+                $(block).unblock();
                 }, 2000); 
             }); 
 
@@ -639,4 +636,3 @@ export default {
         });
     }
 }
-

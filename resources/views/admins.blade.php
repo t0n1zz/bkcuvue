@@ -45,7 +45,6 @@
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/editors/summernote/summernote.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/forms/selects/bootstrap_select.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/prism.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/ripple.min.js') }}"></script>
     <!-- /Theme JS files -->
 
     <!-- Html5 Shim and Respond.js IE8 support of Html5 elements and media queries -->

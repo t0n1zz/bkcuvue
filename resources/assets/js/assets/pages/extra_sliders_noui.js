@@ -960,10 +960,10 @@ $(function() {
         default_size3 = document.getElementById('slider-default-sm'),
         default_size4 = document.getElementById('slider-default-xs'),
 
-        circle_size1 = document.getElementById('slider-circle-lg'),
-        circle_size2 = document.getElementById('slider-circle-md'),
-        circle_size3 = document.getElementById('slider-circle-sm'),
-        circle_size4 = document.getElementById('slider-circle-xs'),
+        solid_size1 = document.getElementById('slider-solid-lg'),
+        solid_size2 = document.getElementById('slider-solid-md'),
+        solid_size3 = document.getElementById('slider-solid-sm'),
+        solid_size4 = document.getElementById('slider-solid-xs'),
 
         white_size1 = document.getElementById('slider-white-lg'),
         white_size2 = document.getElementById('slider-white-md'),
@@ -976,10 +976,10 @@ $(function() {
     noUiSlider.create(default_size3, color_options);
     noUiSlider.create(default_size4, color_options);
 
-    noUiSlider.create(circle_size1, color_options);
-    noUiSlider.create(circle_size2, color_options);
-    noUiSlider.create(circle_size3, color_options);
-    noUiSlider.create(circle_size4, color_options);
+    noUiSlider.create(solid_size1, color_options);
+    noUiSlider.create(solid_size2, color_options);
+    noUiSlider.create(solid_size3, color_options);
+    noUiSlider.create(solid_size4, color_options);
 
     noUiSlider.create(white_size1, color_options);
     noUiSlider.create(white_size2, color_options);

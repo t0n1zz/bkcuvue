@@ -479,8 +479,6 @@
 			corefunc.core_function();
 			uniformFunc.uniform_function();
 			this.other();
-		},
-		created(){
 			this.fetch();
 		},
 		updated() {
@@ -617,7 +615,6 @@
 				this.modalTitle = 'Tambah penulis artikel';
 				this.formPenulis.nama = '';
 				this.formPenulis.deskripsi = '';
-
 			},
 			modalOpen_Kategori() {
 				this.formKategori.id_cu = this.form.id_cu;

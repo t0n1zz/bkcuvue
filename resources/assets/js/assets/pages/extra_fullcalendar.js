@@ -236,6 +236,7 @@ $(function() {
         defaultDate: '2014-11-12',
         defaultView: 'agendaWeek',
         editable: true,
+        businessHours: true,
         events: events
     });
 
