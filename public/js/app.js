@@ -30109,7 +30109,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__);
 //
 //
 //
@@ -30205,7 +30204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js___default.a.hover_function();
+		__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__["a" /* default */].hover_function();
 	},
 	created: function created() {
 		this.getUser();
@@ -30236,8 +30235,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 141 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 /**
  * @preserve
  * Project: Bootstrap Hover Dropdown
@@ -30249,44 +30249,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * License: MIT
  * Homepage: http://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/
  */
-!function (e, n) {
-  var o = e();e.fn.dropdownHover = function (t) {
-    return "ontouchstart" in document ? this : (o = o.add(this.parent()), this.each(function () {
-      function r() {
-        d.parents(".navbar").find(".navbar-toggle").is(":visible") || (n.clearTimeout(a), n.clearTimeout(i), i = n.setTimeout(function () {
-          o.find(":focus").blur(), v.instantlyCloseOthers === !0 && o.removeClass("open"), n.clearTimeout(i), d.attr("aria-expanded", "true"), s.addClass("open"), d.trigger(h);
-        }, v.hoverDelay));
-      }var a,
-          i,
-          d = e(this),
-          s = d.parent(),
-          u = { delay: 500, hoverDelay: 0, instantlyCloseOthers: !0 },
-          l = { delay: e(this).data("delay"), hoverDelay: e(this).data("hover-delay"), instantlyCloseOthers: e(this).data("close-others") },
-          h = "show.bs.dropdown",
-          c = "hide.bs.dropdown",
-          v = e.extend(!0, {}, u, t, l);s.hover(function (e) {
-        return s.hasClass("open") || d.is(e.target) ? void r(e) : !0;
-      }, function () {
-        n.clearTimeout(i), a = n.setTimeout(function () {
-          d.attr("aria-expanded", "false"), s.removeClass("open"), d.trigger(c);
-        }, v.delay);
-      }), d.hover(function (e) {
-        return s.hasClass("open") || s.is(e.target) ? void r(e) : !0;
-      }), s.find(".dropdown-submenu").each(function () {
-        var o,
-            t = e(this);t.hover(function () {
-          n.clearTimeout(o), t.children(".dropdown-menu").show(), t.siblings().children(".dropdown-menu").hide();
-        }, function () {
-          var e = t.children(".dropdown-menu");o = n.setTimeout(function () {
-            e.hide();
-          }, v.delay);
-        });
+/* harmony default export */ __webpack_exports__["a"] = ({
+  hover_function: function hover_function() {
+    !function (e, n) {
+      var o = e();e.fn.dropdownHover = function (t) {
+        return "ontouchstart" in document ? this : (o = o.add(this.parent()), this.each(function () {
+          function r() {
+            d.parents(".navbar").find(".navbar-toggle").is(":visible") || (n.clearTimeout(a), n.clearTimeout(i), i = n.setTimeout(function () {
+              o.find(":focus").blur(), v.instantlyCloseOthers === !0 && o.removeClass("open"), n.clearTimeout(i), d.attr("aria-expanded", "true"), s.addClass("open"), d.trigger(h);
+            }, v.hoverDelay));
+          }var a,
+              i,
+              d = e(this),
+              s = d.parent(),
+              u = { delay: 500, hoverDelay: 0, instantlyCloseOthers: !0 },
+              l = { delay: e(this).data("delay"), hoverDelay: e(this).data("hover-delay"), instantlyCloseOthers: e(this).data("close-others") },
+              h = "show.bs.dropdown",
+              c = "hide.bs.dropdown",
+              v = e.extend(!0, {}, u, t, l);s.hover(function (e) {
+            return s.hasClass("open") || d.is(e.target) ? void r(e) : !0;
+          }, function () {
+            n.clearTimeout(i), a = n.setTimeout(function () {
+              d.attr("aria-expanded", "false"), s.removeClass("open"), d.trigger(c);
+            }, v.delay);
+          }), d.hover(function (e) {
+            return s.hasClass("open") || s.is(e.target) ? void r(e) : !0;
+          }), s.find(".dropdown-submenu").each(function () {
+            var o,
+                t = e(this);t.hover(function () {
+              n.clearTimeout(o), t.children(".dropdown-menu").show(), t.siblings().children(".dropdown-menu").hide();
+            }, function () {
+              var e = t.children(".dropdown-menu");o = n.setTimeout(function () {
+                e.hide();
+              }, v.delay);
+            });
+          });
+        }));
+      }, e(document).ready(function () {
+        e('[data-hover="dropdown"]').dropdownHover();
       });
-    }));
-  }, e(document).ready(function () {
-    e('[data-hover="dropdown"]').dropdownHover();
-  });
-}(jQuery, window);
+    }(jQuery, window);
+  }
+});
 
 /***/ }),
 /* 142 */
@@ -53023,16 +53027,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_plugins_forms_styling_uniform_min_js__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_form__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__modules_summernote_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modal__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_message_vue__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_form__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_message_vue__);
 //
 //
 //
@@ -53437,7 +53440,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -53450,10 +53452,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	components: {
-		appModal: __WEBPACK_IMPORTED_MODULE_7__components_modal___default.a,
-		appSummernote: __WEBPACK_IMPORTED_MODULE_5__modules_summernote_js___default.a,
-		appImageUpload: __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue___default.a,
-		message: __WEBPACK_IMPORTED_MODULE_8__components_message_vue___default.a
+		appModal: __WEBPACK_IMPORTED_MODULE_6__components_modal___default.a,
+		appSummernote: __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js___default.a,
+		appImageUpload: __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -53497,13 +53499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	mounted: function mounted() {
 		__WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__["a" /* default */].core_function();
-		__WEBPACK_IMPORTED_MODULE_3__assets_plugins_forms_styling_uniform_min_js__["a" /* default */].uniform_function();
-		this.other();
 		this.fetch();
-	},
-	updated: function updated() {
-		$('.bootstrap-select').selectpicker('refresh');
-		$.uniform.update();
 	},
 
 	watch: {
@@ -53571,7 +53567,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		save: function save() {
 			var _this = this;
 
-			var formData = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
 			this.$validator.validateAll('form-1').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
@@ -53589,7 +53585,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		savePenulis: function savePenulis() {
 			var _this2 = this;
 
-			var formData = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_form__["a" /* toMulipartedForm */])(this.formPenulis, this.$route.meta.mode);
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_form__["a" /* toMulipartedForm */])(this.formPenulis, this.$route.meta.mode);
 			this.$validator.validateAll('form-penulis').then(function (result) {
 				if (result) {
 					_this2.$store.dispatch('storeArtikelPenulis', _this2.formPenulis);
@@ -53656,18 +53652,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		processFile: function processFile(event) {
 			this.form.gambar = event.target.files[0];
 			console.log(event.target.files[0].name);
-		},
-		other: function other() {
-			// bootstrap select
-			$('.bootstrap-select').selectpicker();
-			// radio checkbox
-			$(".styled, .multiselect-container input").uniform({
-				radioClass: 'choice'
-			});
-			// file input
-			$(".file-styled").uniform({
-				fileButtonClass: 'action btn btn-default'
-			});
 		}
 	},
 	computed: {
@@ -53729,197 +53713,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 191 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  uniform_function: function uniform_function() {
-    !function (e, t, n) {
-      "use strict";
-      function s(e) {
-        var t = Array.prototype.slice.call(arguments, 1);return e.prop ? e.prop.apply(e, t) : e.attr.apply(e, t);
-      }function a(e, t, n) {
-        var s, a;for (s in n) {
-          n.hasOwnProperty(s) && (a = s.replace(/ |$/g, t.eventNamespace), e.bind(a, n[s]));
-        }
-      }function i(e, t, n) {
-        a(e, n, { focus: function focus() {
-            t.addClass(n.focusClass);
-          }, blur: function blur() {
-            t.removeClass(n.focusClass), t.removeClass(n.activeClass);
-          }, mouseenter: function mouseenter() {
-            t.addClass(n.hoverClass);
-          }, mouseleave: function mouseleave() {
-            t.removeClass(n.hoverClass), t.removeClass(n.activeClass);
-          }, "mousedown touchbegin": function mousedownTouchbegin() {
-            e.is(":disabled") || t.addClass(n.activeClass);
-          }, "mouseup touchend": function mouseupTouchend() {
-            t.removeClass(n.activeClass);
-          } });
-      }function r(e, t) {
-        e.removeClass(t.hoverClass + " " + t.focusClass + " " + t.activeClass);
-      }function l(e, t, n) {
-        n ? e.addClass(t) : e.removeClass(t);
-      }function u(e, t, n) {
-        var s = "checked",
-            a = t.is(":" + s);t.prop ? t.prop(s, a) : a ? t.attr(s, s) : t.removeAttr(s), l(e, n.checkedClass, a);
-      }function o(e, t, n) {
-        l(e, n.disabledClass, t.is(":disabled"));
-      }function c(e, t, n) {
-        switch (n) {case "after":
-            return e.after(t), e.next();case "before":
-            return e.before(t), e.prev();case "wrap":
-            return e.wrap(t), e.parent();}return null;
-      }function d(e, n, a) {
-        var i, r, l;return a || (a = {}), a = t.extend({ bind: {}, divClass: null, divWrap: "wrap", spanClass: null, spanHtml: null, spanWrap: "wrap" }, a), i = t("<div />"), r = t("<span />"), n.autoHide && e.is(":hidden") && "none" === e.css("display") && i.hide(), a.divClass && i.addClass(a.divClass), n.wrapperClass && i.addClass(n.wrapperClass), a.spanClass && r.addClass(a.spanClass), l = s(e, "id"), n.useID && l && s(i, "id", n.idPrefix + "-" + l), a.spanHtml && r.html(a.spanHtml), i = c(e, i, a.divWrap), r = c(e, r, a.spanWrap), o(i, e, n), { div: i, span: r };
-      }function f(e, n) {
-        var s;return n.wrapperClass ? (s = t("<span />").addClass(n.wrapperClass), s = c(e, s, "wrap")) : null;
-      }function p() {
-        var n, s, a, i;return i = "rgb(120,2,153)", s = t('<div style="width:0;height:0;color:' + i + '">'), t("body").append(s), a = s.get(0), n = e.getComputedStyle ? e.getComputedStyle(a, "").color : (a.currentStyle || a.style || {}).color, s.remove(), n.replace(/ /g, "") !== i;
-      }function m(e) {
-        return e ? t("<span />").text(e).html() : "";
-      }function v() {
-        return navigator.cpuClass && !navigator.product;
-      }function h() {
-        return void 0 !== e.XMLHttpRequest;
-      }function C(e) {
-        var t;return !!e[0].multiple || (t = s(e, "size"), !(!t || t <= 1));
-      }function b() {
-        return !1;
-      }function y(e, t) {
-        var n = "none";a(e, t, { "selectstart dragstart mousedown": b }), e.css({ MozUserSelect: n, msUserSelect: n, webkitUserSelect: n, userSelect: n });
-      }function w(e, t, n) {
-        var s = e.val();"" === s ? s = n.fileDefaultHtml : (s = s.split(/[\/\\]+/), s = s[s.length - 1]), t.text(s);
-      }function g(e, t, n) {
-        var s, a;for (s = [], e.each(function () {
-          var e;for (e in t) {
-            Object.prototype.hasOwnProperty.call(t, e) && (s.push({ el: this, name: e, old: this.style[e] }), this.style[e] = t[e]);
-          }
-        }), n(); s.length;) {
-          a = s.pop(), a.el.style[a.name] = a.old;
-        }
-      }function k(e, t) {
-        var n;n = e.parents(), n.push(e[0]), n = n.not(":visible"), g(n, { visibility: "hidden", display: "block", position: "absolute" }, t);
-      }function x(e, t) {
-        return function () {
-          e.unwrap().unwrap().unbind(t.eventNamespace);
-        };
-      }var H = !0,
-          A = !1,
-          W = [{ match: function match(e) {
-          return e.is("a, button, :submit, :reset, input[type='button']");
-        }, apply: function apply(t, n) {
-          var l, u, c, f, p;return u = n.submitDefaultHtml, t.is(":reset") && (u = n.resetDefaultHtml), f = t.is("a, button") ? function () {
-            return t.html() || u;
-          } : function () {
-            return m(s(t, "value")) || u;
-          }, c = d(t, n, { divClass: n.buttonClass, spanHtml: f() }), l = c.div, i(t, l, n), p = !1, a(l, n, { "click touchend": function clickTouchend() {
-              var n, a, i, r;p || t.is(":disabled") || (p = !0, t[0].dispatchEvent ? (n = document.createEvent("MouseEvents"), n.initEvent("click", !0, !0), a = t[0].dispatchEvent(n), t.is("a") && a && (i = s(t, "target"), r = s(t, "href"), i && "_self" !== i ? e.open(r, i) : document.location.href = r)) : t.click(), p = !1);
-            } }), y(l, n), { remove: function remove() {
-              return l.after(t), l.remove(), t.unbind(n.eventNamespace), t;
-            }, update: function update() {
-              r(l, n), o(l, t, n), t.detach(), c.span.html(f()).append(t);
-            } };
-        } }, { match: function match(e) {
-          return e.is(":checkbox");
-        }, apply: function apply(e, t) {
-          var n, s, l;return n = d(e, t, { divClass: t.checkboxClass }), s = n.div, l = n.span, i(e, s, t), a(e, t, { "click touchend": function clickTouchend() {
-              u(l, e, t);
-            } }), u(l, e, t), { remove: x(e, t), update: function update() {
-              r(s, t), l.removeClass(t.checkedClass), u(l, e, t), o(s, e, t);
-            } };
-        } }, { match: function match(e) {
-          return e.is(":file");
-        }, apply: function apply(e, n) {
-          function l() {
-            w(e, p, n);
-          }var u, f, p, m;return u = d(e, n, { divClass: n.fileClass, spanClass: n.fileButtonClass, spanHtml: n.fileButtonHtml, spanWrap: "after" }), f = u.div, m = u.span, p = t("<span />").html(n.fileDefaultHtml), p.addClass(n.filenameClass), p = c(e, p, "after"), s(e, "size") || s(e, "size", f.width() / 10), i(e, f, n), l(), v() ? a(e, n, { click: function click() {
-              e.trigger("change"), setTimeout(l, 0);
-            } }) : a(e, n, { change: l }), y(p, n), y(m, n), { remove: function remove() {
-              return p.remove(), m.remove(), e.unwrap().unbind(n.eventNamespace);
-            }, update: function update() {
-              r(f, n), w(e, p, n), o(f, e, n);
-            } };
-        } }, { match: function match(e) {
-          if (e.is("input")) {
-            var t = (" " + s(e, "type") + " ").toLowerCase(),
-                n = " color date datetime datetime-local email month number password search tel text time url week ";return n.indexOf(t) >= 0;
-          }return !1;
-        }, apply: function apply(e, t) {
-          var n, a;return n = s(e, "type"), e.addClass(t.inputClass), a = f(e, t), i(e, e, t), t.inputAddTypeAsClass && e.addClass(n), { remove: function remove() {
-              e.removeClass(t.inputClass), t.inputAddTypeAsClass && e.removeClass(n), a && e.unwrap();
-            }, update: b };
-        } }, { match: function match(e) {
-          return e.is(":radio");
-        }, apply: function apply(e, n) {
-          var l, c, f;return l = d(e, n, { divClass: n.radioClass }), c = l.div, f = l.span, i(e, c, n), a(e, n, { "click touchend": function clickTouchend() {
-              t.uniform.update(t(':radio[name="' + s(e, "name") + '"]'));
-            } }), u(f, e, n), { remove: x(e, n), update: function update() {
-              r(c, n), u(f, e, n), o(c, e, n);
-            } };
-        } }, { match: function match(e) {
-          return !(!e.is("select") || C(e));
-        }, apply: function apply(e, n) {
-          var s, l, u, c;return n.selectAutoWidth && k(e, function () {
-            c = e.width();
-          }), s = d(e, n, { divClass: n.selectClass, spanHtml: (e.find(":selected:first") || e.find("option:first")).html(), spanWrap: "before" }), l = s.div, u = s.span, n.selectAutoWidth ? k(e, function () {
-            g(t([u[0], l[0]]), { display: "block" }, function () {
-              var e;e = u.outerWidth() - u.width(), l.width(c + e), u.width(c);
-            });
-          }) : l.addClass("fixedWidth"), i(e, l, n), a(e, n, { change: function change() {
-              u.html(e.find(":selected").html()), l.removeClass(n.activeClass);
-            }, "click touchend": function clickTouchend() {
-              var t = e.find(":selected").html();u.html() !== t && e.trigger("change");
-            }, keyup: function keyup() {
-              u.html(e.find(":selected").html());
-            } }), y(u, n), { remove: function remove() {
-              return u.remove(), e.unwrap().unbind(n.eventNamespace), e;
-            }, update: function update() {
-              n.selectAutoWidth ? (t.uniform.restore(e), e.uniform(n)) : (r(l, n), e[0].selectedIndex = e[0].selectedIndex, u.html(e.find(":selected").html()), o(l, e, n));
-            } };
-        } }, { match: function match(e) {
-          return !(!e.is("select") || !C(e));
-        }, apply: function apply(e, t) {
-          var n;return e.addClass(t.selectMultiClass), n = f(e, t), i(e, e, t), { remove: function remove() {
-              e.removeClass(t.selectMultiClass), n && e.unwrap();
-            }, update: b };
-        } }, { match: function match(e) {
-          return e.is("textarea");
-        }, apply: function apply(e, t) {
-          var n;return e.addClass(t.textareaClass), n = f(e, t), i(e, e, t), { remove: function remove() {
-              e.removeClass(t.textareaClass), n && e.unwrap();
-            }, update: b };
-        } }];v() && !h() && (H = !1), t.uniform = { defaults: { activeClass: "active", autoHide: !0, buttonClass: "button", checkboxClass: "checker", checkedClass: "checked", disabledClass: "disabled", eventNamespace: ".uniform", fileButtonClass: "action", fileButtonHtml: "Choose File", fileClass: "uploader", fileDefaultHtml: "No file selected", filenameClass: "filename", focusClass: "focus", hoverClass: "hover", idPrefix: "uniform", inputAddTypeAsClass: !0, inputClass: "uniform-input", radioClass: "radio", resetDefaultHtml: "Reset", resetSelector: !1, selectAutoWidth: !0, selectClass: "selector", selectMultiClass: "uniform-multiselect", submitDefaultHtml: "Submit", textareaClass: "uniform", useID: !0, wrapperClass: null }, elements: [] }, t.fn.uniform = function (n) {
-        var s = this;return n = t.extend({}, t.uniform.defaults, n), A || (A = !0, p() && (H = !1)), H ? (n.resetSelector && t(n.resetSelector).mouseup(function () {
-          e.setTimeout(function () {
-            t.uniform.update(s);
-          }, 10);
-        }), this.each(function () {
-          var e,
-              s,
-              a,
-              i = t(this);if (i.data("uniformed")) return void t.uniform.update(i);for (e = 0; e < W.length; e += 1) {
-            if (s = W[e], s.match(i, n)) return a = s.apply(i, n), i.data("uniformed", a), void t.uniform.elements.push(i.get(0));
-          }
-        })) : this;
-      }, t.uniform.restore = t.fn.uniform.restore = function (e) {
-        e === n && (e = t.uniform.elements), t(e).each(function () {
-          var e,
-              n,
-              s = t(this);n = s.data("uniformed"), n && (n.remove(), e = t.inArray(this, t.uniform.elements), e >= 0 && t.uniform.elements.splice(e, 1), s.removeData("uniformed"));
-        });
-      }, t.uniform.update = t.fn.uniform.update = function (e) {
-        e === n && (e = t.uniform.elements), t(e).each(function () {
-          var e,
-              n = t(this);e = n.data("uniformed"), e && e.update(n, e.options);
-        });
-      };
-    }(this, jQuery);
-  }
-});
-
-/***/ }),
+/* 191 */,
 /* 192 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -54409,7 +54203,7 @@ var render = function() {
                                           expression: "'required'"
                                         }
                                       ],
-                                      staticClass: "bootstrap-select",
+                                      staticClass: "form-control",
                                       attrs: {
                                         name: "id_cu",
                                         "data-width": "100%",
@@ -54564,7 +54358,7 @@ var render = function() {
                                               expression: "'required'"
                                             }
                                           ],
-                                          staticClass: "bootstrap-select",
+                                          staticClass: "form-control",
                                           attrs: {
                                             name: "id_artikel_penulis",
                                             "data-width": "100%",
@@ -54759,7 +54553,7 @@ var render = function() {
                                               expression: "'required'"
                                             }
                                           ],
-                                          staticClass: "bootstrap-select",
+                                          staticClass: "form-control",
                                           attrs: {
                                             name: "id_artikel_kategori",
                                             "data-width": "100%",
@@ -54913,7 +54707,6 @@ var render = function() {
                                     expression: "form.terbitkan"
                                   }
                                 ],
-                                staticClass: "styled",
                                 attrs: {
                                   type: "radio",
                                   name: "terbitkan",
@@ -54941,7 +54734,6 @@ var render = function() {
                                     expression: "form.terbitkan"
                                   }
                                 ],
-                                staticClass: "styled",
                                 attrs: {
                                   type: "radio",
                                   name: "terbitkan",
@@ -54975,7 +54767,6 @@ var render = function() {
                                     expression: "form.utamakan"
                                   }
                                 ],
-                                staticClass: "styled",
                                 attrs: { type: "radio", name: "utamakan" },
                                 domProps: {
                                   value: 1,
@@ -55000,7 +54791,6 @@ var render = function() {
                                     expression: "form.utamakan"
                                   }
                                 ],
-                                staticClass: "styled",
                                 attrs: { type: "radio", name: "utamakan" },
                                 domProps: {
                                   value: 0,

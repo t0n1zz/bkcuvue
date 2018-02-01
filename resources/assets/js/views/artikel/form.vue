@@ -65,7 +65,7 @@
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_cu')}">CU:</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
 												<option data-divider="true"></option>
@@ -97,7 +97,7 @@
 												<div class="input-group">
 
 													<!-- select -->
-													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" :disabled="modelPenulis.length === 0">
+													<select class="form-control"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" :disabled="modelPenulis.length === 0">
 														<option disabled value="">
 															<span v-if="form.id_cu !== 0 && modelPenulis.length === 0">Silahkan tambah penulis baru</span>
 															<span v-else-if="form.id_cu === 0">Silahkan pilih CU terlebih dahulu</span>
@@ -142,7 +142,7 @@
 												<div class="input-group">
 
 													<!-- select -->
-													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'">
+													<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'">
 														<option disabled value="">
 															<span v-if="form.id_cu !== 0 && modelKategori.length === 0">Silahkan tambah kategori baru</span>
 															<span v-else>Silahkan pilih kategori</span>
@@ -183,10 +183,10 @@
 
 											<!-- radio -->
 											<label class="radio-inline">
-												<input type="radio" name="terbitkan" class="styled" value="1" v-model="form.terbitkan"> Ya
+												<input type="radio" name="terbitkan" value="1" v-model="form.terbitkan"> Ya
 											</label>
 											<label class="radio-inline">
-												<input type="radio" name="terbitkan" class="styled" value="0" v-model="form.terbitkan"> Tidak
+												<input type="radio" name="terbitkan" value="0" v-model="form.terbitkan"> Tidak
 											</label>
 										</div>
 									</div>
@@ -200,10 +200,10 @@
 
 											<!-- radio -->
 											<label class="radio-inline">
-												<input type="radio" name="utamakan" class="styled" :value="1" v-model="form.utamakan"> Ya
+												<input type="radio" name="utamakan" :value="1" v-model="form.utamakan"> Ya
 											</label>
 											<label class="radio-inline">
-												<input type="radio" name="utamakan" class="styled" :value="0" v-model="form.utamakan"> Tidak
+												<input type="radio" name="utamakan" :value="0" v-model="form.utamakan"> Tidak
 											</label>
 										</div>
 									</div>
@@ -406,7 +406,6 @@
 	import Vue from 'vue';
 	import axios from 'axios';
 	import corefunc from '../../assets/core/app.js';
-	import uniformFunc from '../../assets/plugins/forms/styling/uniform.min.js';
 	import {
 		toMulipartedForm
 	} from '../../helpers/form';
@@ -477,13 +476,7 @@
 		},
 		mounted() {
 			corefunc.core_function();
-			uniformFunc.uniform_function();
-			this.other();
 			this.fetch();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
-			$.uniform.update();
 		},
 		watch: {
 			userData(value){
@@ -629,18 +622,6 @@
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 				console.log(event.target.files[0].name);
-			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-				// radio checkbox
-				$(".styled, .multiselect-container input").uniform({
-					radioClass: 'choice'
-				});
-				// file input
-				$(".file-styled").uniform({
-					fileButtonClass: 'action btn btn-default'
-				});
 			}
 		},
 		computed: {
