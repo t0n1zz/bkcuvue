@@ -9,7 +9,7 @@ export const artikel = {
     artikelUpdate: '',
     artikelUpdateStat: '',
     artikelRules: [],
-    artikelOption: []
+    artikelOption: [],
   },
 
   actions: {

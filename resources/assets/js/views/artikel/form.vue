@@ -25,8 +25,8 @@
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message :show="errors.any('form-1')" v-if="submited">
-						<p><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan:</p>
+					<message :show="errors.any('form-1')" :class="'bg-danger'" v-if="submited">
+						<h4><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan</h4>
 						<ul>
 							<li v-for="error in errors.items">{{error.msg}}</li>
 						</ul>
@@ -65,7 +65,7 @@
 											<h5 :class="{ 'text-danger' : errors.has('form-1.id_cu')}">CU:</h5>
 
 											<!-- select -->
-											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
+											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
 												<option data-divider="true"></option>
@@ -97,7 +97,7 @@
 												<div class="input-group">
 
 													<!-- select -->
-													<select class="form-control"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" :disabled="modelPenulis.length === 0">
+													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" :disabled="modelPenulis.length === 0">
 														<option disabled value="">
 															<span v-if="form.id_cu !== 0 && modelPenulis.length === 0">Silahkan tambah penulis baru</span>
 															<span v-else-if="form.id_cu === 0">Silahkan pilih CU terlebih dahulu</span>
@@ -142,7 +142,7 @@
 												<div class="input-group">
 
 													<!-- select -->
-													<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'">
+													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'">
 														<option disabled value="">
 															<span v-if="form.id_cu !== 0 && modelKategori.length === 0">Silahkan tambah kategori baru</span>
 															<span v-else>Silahkan pilih kategori</span>
@@ -476,18 +476,28 @@
 		},
 		mounted() {
 			corefunc.core_function();
+			this.other();
+		},
+		updated() {
+			$('.bootstrap-select').selectpicker('refresh');
+		},
+		created(){
 			this.fetch();
 		},
 		watch: {
-			userData(value){
-				if(value.id_cu === 0){
-					this.$store.dispatch('loadCUPus',value.id_pus);
-					this.changeCU(value.id_cu);
-				}else{
-					if(this.$route.meta.mode !== 'edit'){
-						this.form.id_cu = value.id_cu;	
-						this.changeCU(value.id_cu);
+			userDataStat(value){ //jika refresh halaman maka reload userData
+				if(value === "success"){
+					if(this.userData.id_cu === 0){
+						this.$store.dispatch('loadCUPus',this.userData.id_pus);
 					}
+				}
+			},
+			formStat(value){
+				if(value === "success"){
+					if(this.$route.meta.mode !== 'edit'){
+						this.form.id_cu = this.userData.id_cu;
+					}
+					this.changeCU(this.form.id_cu);
 				}
 			},
 			updateStat(value){
@@ -531,6 +541,10 @@
     },
 		methods: {
 			fetch(){
+				if(this.userData.id_cu === 0){
+					this.$store.dispatch('loadCUPus',this.userData.id_pus);
+				}
+
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch('editArtikel',this.$route.params.id);	
 					this.title = 'Ubah Artikel';
@@ -622,11 +636,18 @@
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 				console.log(event.target.files[0].name);
+			},
+			other() {
+				// bootstrap select
+				$('.bootstrap-select').selectpicker();
 			}
 		},
 		computed: {
 			userData(){
 				return this.$store.getters.getUserData;
+			},
+			userDataStat(){
+				return this.$store.getters.getUserDataLoadStat;
 			},
 			form(){
 				return this.$store.getters.getArtikel;

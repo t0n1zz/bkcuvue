@@ -13,7 +13,7 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis')->select('id','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at')->filterPaginateOrder();
+    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis')->select('id','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -35,6 +35,8 @@ class ArtikelController extends Controller{
 	{
 		$this->validate($request,Artikel::$rules);
 
+		$nama = $request->nama;
+
 		// processing single image upload
 		if(!empty($request->gambar))
 			$fileName = $this->image_processing($request);
@@ -54,7 +56,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Artikel berhasil ditambah'
+				'message' => 'Artikel ' .$nama. ' berhasil ditambah'
 			]);
 	}
 
@@ -83,6 +85,8 @@ class ArtikelController extends Controller{
 	{
 		$this->validate($request,Artikel::$rules);
 
+		$nama = $request->nama;
+
 		$kelas = Artikel::findOrFail($id);
 
 		// processing single image upload
@@ -104,7 +108,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Artikel berhasil diubah'
+				'message' => 'Artikel ' .$nama. ' berhasil diubah'
 			]);
 	}
 
@@ -153,13 +157,14 @@ class ArtikelController extends Controller{
 	public function destroy($id)
 	{
 		$kelas = Artikel::findOrFail($id);
+		$nama = $kelas->nama;
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Artikel berhasil dihapus'
+				'message' => 'Artikel' .$nama. 'berhasil dihapus'
 			]);
 	}
 

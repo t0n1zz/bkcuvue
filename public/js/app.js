@@ -4531,7 +4531,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module)))
 
 /***/ }),
 /* 1 */
@@ -4540,7 +4540,7 @@ return hooks;
 "use strict";
 
 
-var bind = __webpack_require__(127);
+var bind = __webpack_require__(128);
 var isBuffer = __webpack_require__(158);
 
 /*global toString:true*/
@@ -4942,6 +4942,27 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BKCU_CONFIG; });
+var api_url = '';
+
+switch ("development") {
+  case 'development':
+    api_url = 'https://bkcuvue.dev/api/v1';
+    break;
+  case 'production':
+    api_url = 'https://puskopditbkcukalimantan.org/admins/api/v1';
+    break;
+}
+
+var BKCU_CONFIG = {
+  API_URL: api_url
+};
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15138,16 +15159,62 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(145)
+/* template */
+var __vue_template__ = __webpack_require__(146)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/message.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] message.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-43276224", Component.options)
+  } else {
+    hotAPI.reload("data-v-43276224", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(157);
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15170,10 +15237,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(128);
+    adapter = __webpack_require__(129);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(128);
+    adapter = __webpack_require__(129);
   }
   return adapter;
 }
@@ -15247,7 +15314,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(160)))
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -15297,13 +15364,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 var g;
@@ -15330,53 +15397,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(145)
-/* template */
-var __vue_template__ = __webpack_require__(146)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/message.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] message.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-43276224", Component.options)
-  } else {
-    hotAPI.reload("data-v-43276224", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15952,7 +15973,7 @@ module.exports = Component.exports
 });
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -15980,7 +16001,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16058,7 +16079,7 @@ return af;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16205,7 +16226,7 @@ return ar;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16269,7 +16290,7 @@ return arDz;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16333,7 +16354,7 @@ return arKw;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16464,7 +16485,7 @@ return arLy;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16529,7 +16550,7 @@ return arMa;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16639,7 +16660,7 @@ return arSa;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16703,7 +16724,7 @@ return arTn;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16813,7 +16834,7 @@ return az;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16952,7 +16973,7 @@ return be;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17047,7 +17068,7 @@ return bg;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17171,7 +17192,7 @@ return bn;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17295,7 +17316,7 @@ return bo;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17408,7 +17429,7 @@ return br;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17556,7 +17577,7 @@ return bs;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17649,7 +17670,7 @@ return ca;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17826,7 +17847,7 @@ return cs;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17894,7 +17915,7 @@ return cv;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17980,7 +18001,7 @@ return cy;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18045,7 +18066,7 @@ return da;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18128,7 +18149,7 @@ return de;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18212,7 +18233,7 @@ return deAt;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18295,7 +18316,7 @@ return deCh;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18400,7 +18421,7 @@ return dv;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18505,7 +18526,7 @@ return el;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18577,7 +18598,7 @@ return enAu;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18645,7 +18666,7 @@ return enCa;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18717,7 +18738,7 @@ return enGb;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18789,7 +18810,7 @@ return enIe;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18861,7 +18882,7 @@ return enNz;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18939,7 +18960,7 @@ return eo;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19027,7 +19048,7 @@ return es;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19114,7 +19135,7 @@ return esDo;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19199,7 +19220,7 @@ return et;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19270,7 +19291,7 @@ return eu;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19382,7 +19403,7 @@ return fa;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19494,7 +19515,7 @@ return fi;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19559,7 +19580,7 @@ return fo;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19647,7 +19668,7 @@ return fr;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19726,7 +19747,7 @@ return frCa;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19809,7 +19830,7 @@ return frCh;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19889,7 +19910,7 @@ return fy;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19970,7 +19991,7 @@ return gd;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20052,7 +20073,7 @@ return gl;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20179,7 +20200,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20283,7 +20304,7 @@ return he;
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20412,7 +20433,7 @@ return hi;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20562,7 +20583,7 @@ return hr;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20676,7 +20697,7 @@ return hu;
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20776,7 +20797,7 @@ return hyAm;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20864,7 +20885,7 @@ return id;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20996,7 +21017,7 @@ return is;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21071,7 +21092,7 @@ return it;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21156,7 +21177,7 @@ return ja;
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21244,7 +21265,7 @@ return jv;
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21338,7 +21359,7 @@ return ka;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21430,7 +21451,7 @@ return kk;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21493,7 +21514,7 @@ return km;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21624,7 +21645,7 @@ return kn;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21698,7 +21719,7 @@ return ko;
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21791,7 +21812,7 @@ return ky;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21933,7 +21954,7 @@ return lb;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22008,7 +22029,7 @@ return lo;
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22130,7 +22151,7 @@ return lt;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22232,7 +22253,7 @@ return lv;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22348,7 +22369,7 @@ return me;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22417,7 +22438,7 @@ return mi;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22512,7 +22533,7 @@ return mk;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22598,7 +22619,7 @@ return ml;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22762,7 +22783,7 @@ return mr;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22849,7 +22870,7 @@ return ms;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22937,7 +22958,7 @@ return msMy;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23038,7 +23059,7 @@ return my;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23106,7 +23127,7 @@ return nb;
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23234,7 +23255,7 @@ return ne;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23327,7 +23348,7 @@ return nl;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23420,7 +23441,7 @@ return nlBe;
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23485,7 +23506,7 @@ return nn;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23614,7 +23635,7 @@ return paIn;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23726,7 +23747,7 @@ return pl;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23796,7 +23817,7 @@ return pt;
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23862,7 +23883,7 @@ return ptBr;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23942,7 +23963,7 @@ return ro;
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24130,7 +24151,7 @@ return ru;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24233,7 +24254,7 @@ return sd;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24299,7 +24320,7 @@ return se;
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24375,7 +24396,7 @@ return si;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24530,7 +24551,7 @@ return sk;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24697,7 +24718,7 @@ return sl;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24772,7 +24793,7 @@ return sq;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24887,7 +24908,7 @@ return sr;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25002,7 +25023,7 @@ return srCyrl;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25096,7 +25117,7 @@ return ss;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25170,7 +25191,7 @@ return sv;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25234,7 +25255,7 @@ return sw;
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25369,7 +25390,7 @@ return ta;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25463,7 +25484,7 @@ return te;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25536,7 +25557,7 @@ return tet;
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25608,7 +25629,7 @@ return th;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25675,7 +25696,7 @@ return tlPh;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25800,7 +25821,7 @@ return tlh;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25895,7 +25916,7 @@ return tr;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25991,7 +26012,7 @@ return tzl;
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26054,7 +26075,7 @@ return tzm;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26117,7 +26138,7 @@ return tzmLatn;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26273,7 +26294,7 @@ return uk;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26377,7 +26398,7 @@ return ur;
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26440,7 +26461,7 @@ return uz;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26503,7 +26524,7 @@ return uzLatn;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26587,7 +26608,7 @@ return vi;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26660,7 +26681,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26725,7 +26746,7 @@ return yo;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26841,7 +26862,7 @@ return zhCn;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26951,7 +26972,7 @@ return zhHk;
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27060,7 +27081,7 @@ return zhTw;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27078,7 +27099,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27089,7 +27110,7 @@ var settle = __webpack_require__(162);
 var buildURL = __webpack_require__(164);
 var parseHeaders = __webpack_require__(165);
 var isURLSameOrigin = __webpack_require__(166);
-var createError = __webpack_require__(129);
+var createError = __webpack_require__(130);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(167);
 
 module.exports = function xhrAdapter(config) {
@@ -27265,7 +27286,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27290,7 +27311,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27302,7 +27323,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27328,32 +27349,11 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 132 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BKCU_CONFIG; });
-var api_url = '';
-
-switch ("development") {
-  case 'development':
-    api_url = 'https://bkcuvue.dev/api/v1';
-    break;
-  case 'production':
-    api_url = 'https://puskopditbkcukalimantan.org/admins/api/v1';
-    break;
-}
-
-var BKCU_CONFIG = {
-  API_URL: api_url
-};
-
-/***/ }),
 /* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(134);
-module.exports = __webpack_require__(208);
+module.exports = __webpack_require__(216);
 
 
 /***/ }),
@@ -27363,16 +27363,16 @@ module.exports = __webpack_require__(208);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_vue__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__admin_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_store__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_store__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate__ = __webpack_require__(215);
 
 
 
@@ -30207,17 +30207,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		__WEBPACK_IMPORTED_MODULE_0__assets_plugins_buttons_hover_dropdown_min_js__["a" /* default */].hover_function();
 	},
 	created: function created() {
-		this.getUser();
+		this.$store.dispatch('loadUserData');
 	},
 
 	methods: {
-		getUser: function getUser() {
-			var _this = this;
-
-			axios.get('/api/v1/userData').then(function (response) {
-				_this.$store.dispatch('loadUserData', response.data.model);
-			});
-		},
 		logout: function logout() {
 			axios.post('/logout').then(function (response) {
 				location.reload();
@@ -30622,10 +30615,30 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_message_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30687,44 +30700,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		Message: __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default.a
 	},
+	data: function data() {
+		return {
+			username: "",
+			password: "",
+			loading: false,
+			submited: '',
+			message: {
+				show: false,
+				className: '',
+				content: ''
+			}
+		};
+	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js___default.a.progressbar();
+		__WEBPACK_IMPORTED_MODULE_1__assets_plugins_loaders_progressbar_min_js__["a" /* default */].progressbar();
 	},
 
 	methods: {
 		login: function login() {
 			var _this = this;
 
-			this.message.show = false;
-			this.loading = true;
-			axios.post('/login', {
-				username: this.username,
-				password: this.password
-			}).then(function (response) {
-				_this.$router.push('/');
-			}).catch(function (error) {
-				_this.message.show = true;
-				_this.message.type = 'bg-danger';
-				if (error.response.status === 422) {
-					_this.message.content = "Username atau password anda salah.";
+			this.$validator.validateAll().then(function (result) {
+				if (result) {
+					_this.message.show = false;
+					_this.loading = true;
+					axios.post('/login', {
+						username: _this.username,
+						password: _this.password
+					}).then(function (response) {
+						_this.$router.push('/');
+					}).catch(function (error) {
+						_this.message.show = true;
+						_this.message.className = 'bg-danger';
+						if (error.response.status === 422) {
+							_this.message.content = "Username atau password anda salah.";
+						} else {
+							_this.message.content = error.response.data.message;
+						}
+						_this.loading = false;
+					});
+					_this.submited = false;
 				} else {
-					_this.message.content = error.response.data.message;
+					window.scrollTo(0, 0);
+					_this.submited = true;
 				}
-				_this.loading = false;
 			});
 		}
-	},
-	data: function data() {
-		return {
-			username: "",
-			password: "",
-			loading: false,
-			message: {
-				show: false,
-				type: '',
-				content: ''
-			}
-		};
 	}
 });
 
@@ -30746,15 +30768,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
+        className: {
+            default: 'bg-danger'
+        },
         show: {
             default: true
-        },
-        type: {
-            default: 'bg-danger'
         }
     }
 });
@@ -30782,8 +30803,8 @@ var render = function() {
               expression: "show"
             }
           ],
-          staticClass: "alert bg-danger",
-          class: _vm.type
+          staticClass: "alert ",
+          class: _vm.className
         },
         [
           _c(
@@ -30794,6 +30815,7 @@ var render = function() {
             },
             [
               _c("span", [_vm._v("×")]),
+              _vm._v(" "),
               _c("span", { staticClass: "sr-only" }, [_vm._v("Tutup")])
             ]
           ),
@@ -30817,53 +30839,57 @@ if (false) {
 
 /***/ }),
 /* 147 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*! bootstrap-progressbar v0.9.0 | Copyright (c) 2012-2015 Stephan Groß | MIT license | http://www.minddust.com */
-!function (t) {
-  "use strict";
-  var e = function e(n, s) {
-    this.$element = t(n), this.options = t.extend({}, e.defaults, s);
-  };e.defaults = { transition_delay: 300, refresh_speed: 50, display_text: "none", use_percentage: !0, percent_format: function percent_format(t) {
-      return t + "%";
-    }, amount_format: function amount_format(t, e) {
-      return t + " / " + e;
-    }, update: t.noop, done: t.noop, fail: t.noop }, e.prototype.transition = function () {
-    var n = this.$element,
-        s = n.parent(),
-        a = this.$back_text,
-        r = this.$front_text,
-        i = this.options,
-        o = parseInt(n.attr("data-transitiongoal")),
-        h = parseInt(n.attr("aria-valuemin")) || 0,
-        d = parseInt(n.attr("aria-valuemax")) || 100,
-        f = s.hasClass("vertical"),
-        p = i.update && "function" == typeof i.update ? i.update : e.defaults.update,
-        u = i.done && "function" == typeof i.done ? i.done : e.defaults.done,
-        c = i.fail && "function" == typeof i.fail ? i.fail : e.defaults.fail;if (isNaN(o)) return void c("data-transitiongoal not set");var l = Math.round(100 * (o - h) / (d - h));if ("center" === i.display_text && !a && !r) {
-      this.$back_text = a = t("<span>").addClass("progressbar-back-text").prependTo(s), this.$front_text = r = t("<span>").addClass("progressbar-front-text").prependTo(n);var g;f ? (g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g }), t(window).resize(function () {
-        g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g });
-      })) : (g = s.css("width"), r.css({ width: g }), t(window).resize(function () {
-        g = s.css("width"), r.css({ width: g });
-      }));
-    }setTimeout(function () {
-      var t, e, c, g, _;f ? n.css("height", l + "%") : n.css("width", l + "%");var x = setInterval(function () {
-        f ? (c = n.height(), g = s.height()) : (c = n.width(), g = s.width()), t = Math.round(100 * c / g), e = Math.round(h + c / g * (d - h)), t >= l && (t = l, e = o, u(n), clearInterval(x)), "none" !== i.display_text && (_ = i.use_percentage ? i.percent_format(t) : i.amount_format(e, d, h), "fill" === i.display_text ? n.text(_) : "center" === i.display_text && (a.text(_), r.text(_))), n.attr("aria-valuenow", e), p(t, n);
-      }, i.refresh_speed);
-    }, i.transition_delay);
-  };var n = t.fn.progressbar;t.fn.progressbar = function (n) {
-    return this.each(function () {
-      var s = t(this),
-          a = s.data("bs.progressbar"),
-          r = "object" == (typeof n === "undefined" ? "undefined" : _typeof(n)) && n;a && r && t.extend(a.options, r), a || s.data("bs.progressbar", a = new e(this, r)), a.transition();
-    });
-  }, t.fn.progressbar.Constructor = e, t.fn.progressbar.noConflict = function () {
-    return t.fn.progressbar = n, this;
-  };
-}(window.jQuery);
+/* harmony default export */ __webpack_exports__["a"] = ({
+  progressbar: function progressbar() {
+    !function (t) {
+      "use strict";
+      var e = function e(n, s) {
+        this.$element = t(n), this.options = t.extend({}, e.defaults, s);
+      };e.defaults = { transition_delay: 300, refresh_speed: 50, display_text: "none", use_percentage: !0, percent_format: function percent_format(t) {
+          return t + "%";
+        }, amount_format: function amount_format(t, e) {
+          return t + " / " + e;
+        }, update: t.noop, done: t.noop, fail: t.noop }, e.prototype.transition = function () {
+        var n = this.$element,
+            s = n.parent(),
+            a = this.$back_text,
+            r = this.$front_text,
+            i = this.options,
+            o = parseInt(n.attr("data-transitiongoal")),
+            h = parseInt(n.attr("aria-valuemin")) || 0,
+            d = parseInt(n.attr("aria-valuemax")) || 100,
+            f = s.hasClass("vertical"),
+            p = i.update && "function" == typeof i.update ? i.update : e.defaults.update,
+            u = i.done && "function" == typeof i.done ? i.done : e.defaults.done,
+            c = i.fail && "function" == typeof i.fail ? i.fail : e.defaults.fail;if (isNaN(o)) return void c("data-transitiongoal not set");var l = Math.round(100 * (o - h) / (d - h));if ("center" === i.display_text && !a && !r) {
+          this.$back_text = a = t("<span>").addClass("progressbar-back-text").prependTo(s), this.$front_text = r = t("<span>").addClass("progressbar-front-text").prependTo(n);var g;f ? (g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g }), t(window).resize(function () {
+            g = s.css("height"), a.css({ height: g, "line-height": g }), r.css({ height: g, "line-height": g });
+          })) : (g = s.css("width"), r.css({ width: g }), t(window).resize(function () {
+            g = s.css("width"), r.css({ width: g });
+          }));
+        }setTimeout(function () {
+          var t, e, c, g, _;f ? n.css("height", l + "%") : n.css("width", l + "%");var x = setInterval(function () {
+            f ? (c = n.height(), g = s.height()) : (c = n.width(), g = s.width()), t = Math.round(100 * c / g), e = Math.round(h + c / g * (d - h)), t >= l && (t = l, e = o, u(n), clearInterval(x)), "none" !== i.display_text && (_ = i.use_percentage ? i.percent_format(t) : i.amount_format(e, d, h), "fill" === i.display_text ? n.text(_) : "center" === i.display_text && (a.text(_), r.text(_))), n.attr("aria-valuenow", e), p(t, n);
+          }, i.refresh_speed);
+        }, i.transition_delay);
+      };var n = t.fn.progressbar;t.fn.progressbar = function (n) {
+        return this.each(function () {
+          var s = t(this),
+              a = s.data("bs.progressbar"),
+              r = "object" == (typeof n === "undefined" ? "undefined" : _typeof(n)) && n;a && r && t.extend(a.options, r), a || s.data("bs.progressbar", a = new e(this, r)), a.transition();
+        });
+      }, t.fn.progressbar.Constructor = e, t.fn.progressbar.noConflict = function () {
+        return t.fn.progressbar = n, this;
+      };
+    }(window.jQuery);
+  }
+});
 
 /***/ }),
 /* 148 */
@@ -30883,91 +30909,144 @@ var render = function() {
             [
               _vm._m(0),
               _vm._v(" "),
-              _c(
-                "message",
-                { attrs: { show: _vm.message.show, type: _vm.message.type } },
-                [_c("p", [_vm._v(_vm._s(_vm.message.content))])]
-              ),
+              _c("message", { attrs: { show: _vm.message.show } }, [
+                _c("p", [_vm._v(_vm._s(_vm.message.content))])
+              ]),
+              _vm._v(" "),
+              _vm.submited
+                ? _c("message", { attrs: { show: _vm.errors.any() } }, [
+                    _c("h4", [
+                      _c("i", { staticClass: "icon-cancel-circle2" }),
+                      _vm._v(" Oops terjadi kesalahan")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.errors.items, function(error) {
+                        return _c("li", [_vm._v(_vm._s(error.msg))])
+                      })
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-group has-feedback has-feedback-left" },
+                {
+                  staticClass: "form-group has-feedback has-feedback-right",
+                  class: { "has-error": _vm.errors.has("Username") }
+                },
                 [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.username,
-                        expression: "username"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Username",
-                      autofocus: ""
-                    },
-                    domProps: { value: _vm.username },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !("button" in $event) &&
-                          _vm._k($event.keyCode, "enter", 13)
-                        ) {
-                          return null
+                  _c("div", { staticClass: "input-group" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.username,
+                          expression: "username"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "required|min:5",
+                          expression: "'required|min:5'"
                         }
-                        _vm.login($event)
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Username",
+                        name: "Username",
+                        autofocus: ""
                       },
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      domProps: { value: _vm.username },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k($event.keyCode, "enter", 13)
+                          ) {
+                            return null
+                          }
+                          _vm.login($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.username = $event.target.value
                         }
-                        _vm.username = $event.target.value
                       }
-                    }
-                  }),
+                    })
+                  ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm.errors.has("Username")
+                    ? _c("div", { staticClass: "form-control-feedback" }, [
+                        _c("i", { staticClass: "icon-cancel-circle2" })
+                      ])
+                    : _vm._e()
                 ]
               ),
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-group has-feedback has-feedback-left" },
+                {
+                  staticClass: "form-group has-feedback has-feedback-right",
+                  class: { "has-error": _vm.errors.has("Password") }
+                },
                 [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.password,
-                        expression: "password"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "password", placeholder: "Password" },
-                    domProps: { value: _vm.password },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !("button" in $event) &&
-                          _vm._k($event.keyCode, "enter", 13)
-                        ) {
-                          return null
+                  _c("div", { staticClass: "input-group" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.password,
+                          expression: "password"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "required",
+                          expression: "'required'"
                         }
-                        _vm.login($event)
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        placeholder: "Password",
+                        name: "Password"
                       },
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      domProps: { value: _vm.password },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k($event.keyCode, "enter", 13)
+                          ) {
+                            return null
+                          }
+                          _vm.login($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.password = $event.target.value
                         }
-                        _vm.password = $event.target.value
                       }
-                    }
-                  }),
+                    })
+                  ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm.errors.has("Password")
+                    ? _c("div", { staticClass: "form-control-feedback" }, [
+                        _c("i", { staticClass: "icon-cancel-circle2" })
+                      ])
+                    : _vm._e()
                 ]
               ),
               _vm._v(" "),
@@ -31027,7 +31106,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
+    return _c("div", { staticClass: "input-group-addon" }, [
       _c("i", { staticClass: "icon-user text-muted" })
     ])
   },
@@ -31035,7 +31114,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
+    return _c("div", { staticClass: "input-group-addon" }, [
       _c("i", { staticClass: "icon-lock2 text-muted" })
     ])
   }
@@ -31236,15 +31315,17 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_core_app_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_core_app_js__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
+//
+//
 //
 //
 //
@@ -31474,6 +31555,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				texcelType: 'string',
 				sort: true,
 				hide: false
+			}, {
+				title: 'Tgl. Ubah',
+				key: 'updated_at',
+				texcelType: 'string',
+				sort: true,
+				hide: false
 			}],
 			modalShow: false,
 			modalState: '',
@@ -31563,7 +31650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	filters: {
 		publishDate: function publishDate(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD MMMM YYYY');
+			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '<br/>' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
 		},
 		trimString: function trimString(string) {
 			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
@@ -31593,236 +31680,236 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 12,
-	"./af.js": 12,
-	"./ar": 13,
-	"./ar-dz": 14,
-	"./ar-dz.js": 14,
-	"./ar-kw": 15,
-	"./ar-kw.js": 15,
-	"./ar-ly": 16,
-	"./ar-ly.js": 16,
-	"./ar-ma": 17,
-	"./ar-ma.js": 17,
-	"./ar-sa": 18,
-	"./ar-sa.js": 18,
-	"./ar-tn": 19,
-	"./ar-tn.js": 19,
-	"./ar.js": 13,
-	"./az": 20,
-	"./az.js": 20,
-	"./be": 21,
-	"./be.js": 21,
-	"./bg": 22,
-	"./bg.js": 22,
-	"./bn": 23,
-	"./bn.js": 23,
-	"./bo": 24,
-	"./bo.js": 24,
-	"./br": 25,
-	"./br.js": 25,
-	"./bs": 26,
-	"./bs.js": 26,
-	"./ca": 27,
-	"./ca.js": 27,
-	"./cs": 28,
-	"./cs.js": 28,
-	"./cv": 29,
-	"./cv.js": 29,
-	"./cy": 30,
-	"./cy.js": 30,
-	"./da": 31,
-	"./da.js": 31,
-	"./de": 32,
-	"./de-at": 33,
-	"./de-at.js": 33,
-	"./de-ch": 34,
-	"./de-ch.js": 34,
-	"./de.js": 32,
-	"./dv": 35,
-	"./dv.js": 35,
-	"./el": 36,
-	"./el.js": 36,
-	"./en-au": 37,
-	"./en-au.js": 37,
-	"./en-ca": 38,
-	"./en-ca.js": 38,
-	"./en-gb": 39,
-	"./en-gb.js": 39,
-	"./en-ie": 40,
-	"./en-ie.js": 40,
-	"./en-nz": 41,
-	"./en-nz.js": 41,
-	"./eo": 42,
-	"./eo.js": 42,
-	"./es": 43,
-	"./es-do": 44,
-	"./es-do.js": 44,
-	"./es.js": 43,
-	"./et": 45,
-	"./et.js": 45,
-	"./eu": 46,
-	"./eu.js": 46,
-	"./fa": 47,
-	"./fa.js": 47,
-	"./fi": 48,
-	"./fi.js": 48,
-	"./fo": 49,
-	"./fo.js": 49,
-	"./fr": 50,
-	"./fr-ca": 51,
-	"./fr-ca.js": 51,
-	"./fr-ch": 52,
-	"./fr-ch.js": 52,
-	"./fr.js": 50,
-	"./fy": 53,
-	"./fy.js": 53,
-	"./gd": 54,
-	"./gd.js": 54,
-	"./gl": 55,
-	"./gl.js": 55,
-	"./gom-latn": 56,
-	"./gom-latn.js": 56,
-	"./he": 57,
-	"./he.js": 57,
-	"./hi": 58,
-	"./hi.js": 58,
-	"./hr": 59,
-	"./hr.js": 59,
-	"./hu": 60,
-	"./hu.js": 60,
-	"./hy-am": 61,
-	"./hy-am.js": 61,
-	"./id": 62,
-	"./id.js": 62,
-	"./is": 63,
-	"./is.js": 63,
-	"./it": 64,
-	"./it.js": 64,
-	"./ja": 65,
-	"./ja.js": 65,
-	"./jv": 66,
-	"./jv.js": 66,
-	"./ka": 67,
-	"./ka.js": 67,
-	"./kk": 68,
-	"./kk.js": 68,
-	"./km": 69,
-	"./km.js": 69,
-	"./kn": 70,
-	"./kn.js": 70,
-	"./ko": 71,
-	"./ko.js": 71,
-	"./ky": 72,
-	"./ky.js": 72,
-	"./lb": 73,
-	"./lb.js": 73,
-	"./lo": 74,
-	"./lo.js": 74,
-	"./lt": 75,
-	"./lt.js": 75,
-	"./lv": 76,
-	"./lv.js": 76,
-	"./me": 77,
-	"./me.js": 77,
-	"./mi": 78,
-	"./mi.js": 78,
-	"./mk": 79,
-	"./mk.js": 79,
-	"./ml": 80,
-	"./ml.js": 80,
-	"./mr": 81,
-	"./mr.js": 81,
-	"./ms": 82,
-	"./ms-my": 83,
-	"./ms-my.js": 83,
-	"./ms.js": 82,
-	"./my": 84,
-	"./my.js": 84,
-	"./nb": 85,
-	"./nb.js": 85,
-	"./ne": 86,
-	"./ne.js": 86,
-	"./nl": 87,
-	"./nl-be": 88,
-	"./nl-be.js": 88,
-	"./nl.js": 87,
-	"./nn": 89,
-	"./nn.js": 89,
-	"./pa-in": 90,
-	"./pa-in.js": 90,
-	"./pl": 91,
-	"./pl.js": 91,
-	"./pt": 92,
-	"./pt-br": 93,
-	"./pt-br.js": 93,
-	"./pt.js": 92,
-	"./ro": 94,
-	"./ro.js": 94,
-	"./ru": 95,
-	"./ru.js": 95,
-	"./sd": 96,
-	"./sd.js": 96,
-	"./se": 97,
-	"./se.js": 97,
-	"./si": 98,
-	"./si.js": 98,
-	"./sk": 99,
-	"./sk.js": 99,
-	"./sl": 100,
-	"./sl.js": 100,
-	"./sq": 101,
-	"./sq.js": 101,
-	"./sr": 102,
-	"./sr-cyrl": 103,
-	"./sr-cyrl.js": 103,
-	"./sr.js": 102,
-	"./ss": 104,
-	"./ss.js": 104,
-	"./sv": 105,
-	"./sv.js": 105,
-	"./sw": 106,
-	"./sw.js": 106,
-	"./ta": 107,
-	"./ta.js": 107,
-	"./te": 108,
-	"./te.js": 108,
-	"./tet": 109,
-	"./tet.js": 109,
-	"./th": 110,
-	"./th.js": 110,
-	"./tl-ph": 111,
-	"./tl-ph.js": 111,
-	"./tlh": 112,
-	"./tlh.js": 112,
-	"./tr": 113,
-	"./tr.js": 113,
-	"./tzl": 114,
-	"./tzl.js": 114,
-	"./tzm": 115,
-	"./tzm-latn": 116,
-	"./tzm-latn.js": 116,
-	"./tzm.js": 115,
-	"./uk": 117,
-	"./uk.js": 117,
-	"./ur": 118,
-	"./ur.js": 118,
-	"./uz": 119,
-	"./uz-latn": 120,
-	"./uz-latn.js": 120,
-	"./uz.js": 119,
-	"./vi": 121,
-	"./vi.js": 121,
-	"./x-pseudo": 122,
-	"./x-pseudo.js": 122,
-	"./yo": 123,
-	"./yo.js": 123,
-	"./zh-cn": 124,
-	"./zh-cn.js": 124,
-	"./zh-hk": 125,
-	"./zh-hk.js": 125,
-	"./zh-tw": 126,
-	"./zh-tw.js": 126
+	"./af": 13,
+	"./af.js": 13,
+	"./ar": 14,
+	"./ar-dz": 15,
+	"./ar-dz.js": 15,
+	"./ar-kw": 16,
+	"./ar-kw.js": 16,
+	"./ar-ly": 17,
+	"./ar-ly.js": 17,
+	"./ar-ma": 18,
+	"./ar-ma.js": 18,
+	"./ar-sa": 19,
+	"./ar-sa.js": 19,
+	"./ar-tn": 20,
+	"./ar-tn.js": 20,
+	"./ar.js": 14,
+	"./az": 21,
+	"./az.js": 21,
+	"./be": 22,
+	"./be.js": 22,
+	"./bg": 23,
+	"./bg.js": 23,
+	"./bn": 24,
+	"./bn.js": 24,
+	"./bo": 25,
+	"./bo.js": 25,
+	"./br": 26,
+	"./br.js": 26,
+	"./bs": 27,
+	"./bs.js": 27,
+	"./ca": 28,
+	"./ca.js": 28,
+	"./cs": 29,
+	"./cs.js": 29,
+	"./cv": 30,
+	"./cv.js": 30,
+	"./cy": 31,
+	"./cy.js": 31,
+	"./da": 32,
+	"./da.js": 32,
+	"./de": 33,
+	"./de-at": 34,
+	"./de-at.js": 34,
+	"./de-ch": 35,
+	"./de-ch.js": 35,
+	"./de.js": 33,
+	"./dv": 36,
+	"./dv.js": 36,
+	"./el": 37,
+	"./el.js": 37,
+	"./en-au": 38,
+	"./en-au.js": 38,
+	"./en-ca": 39,
+	"./en-ca.js": 39,
+	"./en-gb": 40,
+	"./en-gb.js": 40,
+	"./en-ie": 41,
+	"./en-ie.js": 41,
+	"./en-nz": 42,
+	"./en-nz.js": 42,
+	"./eo": 43,
+	"./eo.js": 43,
+	"./es": 44,
+	"./es-do": 45,
+	"./es-do.js": 45,
+	"./es.js": 44,
+	"./et": 46,
+	"./et.js": 46,
+	"./eu": 47,
+	"./eu.js": 47,
+	"./fa": 48,
+	"./fa.js": 48,
+	"./fi": 49,
+	"./fi.js": 49,
+	"./fo": 50,
+	"./fo.js": 50,
+	"./fr": 51,
+	"./fr-ca": 52,
+	"./fr-ca.js": 52,
+	"./fr-ch": 53,
+	"./fr-ch.js": 53,
+	"./fr.js": 51,
+	"./fy": 54,
+	"./fy.js": 54,
+	"./gd": 55,
+	"./gd.js": 55,
+	"./gl": 56,
+	"./gl.js": 56,
+	"./gom-latn": 57,
+	"./gom-latn.js": 57,
+	"./he": 58,
+	"./he.js": 58,
+	"./hi": 59,
+	"./hi.js": 59,
+	"./hr": 60,
+	"./hr.js": 60,
+	"./hu": 61,
+	"./hu.js": 61,
+	"./hy-am": 62,
+	"./hy-am.js": 62,
+	"./id": 63,
+	"./id.js": 63,
+	"./is": 64,
+	"./is.js": 64,
+	"./it": 65,
+	"./it.js": 65,
+	"./ja": 66,
+	"./ja.js": 66,
+	"./jv": 67,
+	"./jv.js": 67,
+	"./ka": 68,
+	"./ka.js": 68,
+	"./kk": 69,
+	"./kk.js": 69,
+	"./km": 70,
+	"./km.js": 70,
+	"./kn": 71,
+	"./kn.js": 71,
+	"./ko": 72,
+	"./ko.js": 72,
+	"./ky": 73,
+	"./ky.js": 73,
+	"./lb": 74,
+	"./lb.js": 74,
+	"./lo": 75,
+	"./lo.js": 75,
+	"./lt": 76,
+	"./lt.js": 76,
+	"./lv": 77,
+	"./lv.js": 77,
+	"./me": 78,
+	"./me.js": 78,
+	"./mi": 79,
+	"./mi.js": 79,
+	"./mk": 80,
+	"./mk.js": 80,
+	"./ml": 81,
+	"./ml.js": 81,
+	"./mr": 82,
+	"./mr.js": 82,
+	"./ms": 83,
+	"./ms-my": 84,
+	"./ms-my.js": 84,
+	"./ms.js": 83,
+	"./my": 85,
+	"./my.js": 85,
+	"./nb": 86,
+	"./nb.js": 86,
+	"./ne": 87,
+	"./ne.js": 87,
+	"./nl": 88,
+	"./nl-be": 89,
+	"./nl-be.js": 89,
+	"./nl.js": 88,
+	"./nn": 90,
+	"./nn.js": 90,
+	"./pa-in": 91,
+	"./pa-in.js": 91,
+	"./pl": 92,
+	"./pl.js": 92,
+	"./pt": 93,
+	"./pt-br": 94,
+	"./pt-br.js": 94,
+	"./pt.js": 93,
+	"./ro": 95,
+	"./ro.js": 95,
+	"./ru": 96,
+	"./ru.js": 96,
+	"./sd": 97,
+	"./sd.js": 97,
+	"./se": 98,
+	"./se.js": 98,
+	"./si": 99,
+	"./si.js": 99,
+	"./sk": 100,
+	"./sk.js": 100,
+	"./sl": 101,
+	"./sl.js": 101,
+	"./sq": 102,
+	"./sq.js": 102,
+	"./sr": 103,
+	"./sr-cyrl": 104,
+	"./sr-cyrl.js": 104,
+	"./sr.js": 103,
+	"./ss": 105,
+	"./ss.js": 105,
+	"./sv": 106,
+	"./sv.js": 106,
+	"./sw": 107,
+	"./sw.js": 107,
+	"./ta": 108,
+	"./ta.js": 108,
+	"./te": 109,
+	"./te.js": 109,
+	"./tet": 110,
+	"./tet.js": 110,
+	"./th": 111,
+	"./th.js": 111,
+	"./tl-ph": 112,
+	"./tl-ph.js": 112,
+	"./tlh": 113,
+	"./tlh.js": 113,
+	"./tr": 114,
+	"./tr.js": 114,
+	"./tzl": 115,
+	"./tzl.js": 115,
+	"./tzm": 116,
+	"./tzm-latn": 117,
+	"./tzm-latn.js": 117,
+	"./tzm.js": 116,
+	"./uk": 118,
+	"./uk.js": 118,
+	"./ur": 119,
+	"./ur.js": 119,
+	"./uz": 120,
+	"./uz-latn": 121,
+	"./uz-latn.js": 121,
+	"./uz.js": 120,
+	"./vi": 122,
+	"./vi.js": 122,
+	"./x-pseudo": 123,
+	"./x-pseudo.js": 123,
+	"./yo": 124,
+	"./yo.js": 124,
+	"./zh-cn": 125,
+	"./zh-cn.js": 125,
+	"./zh-hk": 126,
+	"./zh-hk.js": 126,
+	"./zh-tw": 127,
+	"./zh-tw.js": 127
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -31892,16 +31979,18 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_json_excel__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_json_excel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_modal__);
+//
+//
 //
 //
 //
@@ -32378,9 +32467,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(127);
+var bind = __webpack_require__(128);
 var Axios = __webpack_require__(159);
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(7);
 
 /**
  * Create an instance of Axios
@@ -32413,9 +32502,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(131);
+axios.Cancel = __webpack_require__(132);
 axios.CancelToken = __webpack_require__(174);
-axios.isCancel = __webpack_require__(130);
+axios.isCancel = __webpack_require__(131);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -32463,7 +32552,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(7);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(169);
 var dispatchRequest = __webpack_require__(170);
@@ -32765,7 +32854,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(129);
+var createError = __webpack_require__(130);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -33184,8 +33273,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(171);
-var isCancel = __webpack_require__(130);
-var defaults = __webpack_require__(5);
+var isCancel = __webpack_require__(131);
+var defaults = __webpack_require__(7);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -33337,7 +33426,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(131);
+var Cancel = __webpack_require__(132);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -50518,7 +50607,7 @@ module.exports = function spread(callback) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(11)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(12)(module)))
 
 /***/ }),
 /* 177 */
@@ -52023,11 +52112,55 @@ var render = function() {
                                   )
                                 : _vm._e(),
                               _vm._v(" "),
-                              _vm.itemData.total > 10
-                                ? _c("li", { staticClass: "divider" })
+                              _vm.itemData.total > 100
+                                ? _c(
+                                    "li",
+                                    {
+                                      class: {
+                                        active: _vm.params.per_page === 200
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.entriPage(200)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("200 Entri")]
+                                      )
+                                    ]
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
-                              _vm.itemData.total > 10 ? _c("li") : _vm._e(),
+                              _vm.itemData.total > 200
+                                ? _c(
+                                    "li",
+                                    {
+                                      class: {
+                                        active: _vm.params.per_page === 400
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.entriPage(400)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("400 Entri")]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e(),
                               _vm._v(" "),
                               _vm._t("button-entri")
                             ],
@@ -52625,12 +52758,10 @@ var render = function() {
             [
               _vm.itemDataStat === "fail"
                 ? _c("message", [
-                    _c("p", [
+                    _c("h4", [
                       _c("i", { staticClass: "icon-cancel-circle2" }),
                       _vm._v(" Oops terjadi kesalahan: ")
                     ]),
-                    _vm._v(" "),
-                    _c("br"),
                     _vm._v(" "),
                     _c("pre", { staticClass: "pre-scrollable" }, [
                       _vm._v(_vm._s(_vm.itemData))
@@ -52749,14 +52880,32 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[6].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("publishDate")(
+                                ? _c("td", {
+                                    staticClass: "text-nowrap",
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.publishDate(
                                           props.item.created_at
                                         )
                                       )
-                                    )
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[7].hide
+                                ? _c("td", { staticClass: "text-nowrap" }, [
+                                    props.item.created_at !==
+                                    props.item.updated_at
+                                      ? _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.publishDate(
+                                                props.item.updated_at
+                                              )
+                                            )
+                                          }
+                                        })
+                                      : _vm._e()
                                   ])
                                 : _vm._e()
                             ]
@@ -52979,7 +53128,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(190)
 /* template */
-var __vue_template__ = __webpack_require__(197)
+var __vue_template__ = __webpack_require__(196)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -53022,19 +53171,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_form__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_form__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_message_vue__);
 //
 //
@@ -53499,19 +53648,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	mounted: function mounted() {
 		__WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__["a" /* default */].core_function();
+		this.other();
+	},
+	updated: function updated() {
+		$('.bootstrap-select').selectpicker('refresh');
+	},
+	created: function created() {
 		this.fetch();
 	},
 
 	watch: {
-		userData: function userData(value) {
-			if (value.id_cu === 0) {
-				this.$store.dispatch('loadCUPus', value.id_pus);
-				this.changeCU(value.id_cu);
-			} else {
-				if (this.$route.meta.mode !== 'edit') {
-					this.form.id_cu = value.id_cu;
-					this.changeCU(value.id_cu);
+		userDataStat: function userDataStat(value) {
+			//jika refresh halaman maka reload userData
+			if (value === "success") {
+				if (this.userData.id_cu === 0) {
+					this.$store.dispatch('loadCUPus', this.userData.id_pus);
 				}
+			}
+		},
+		formStat: function formStat(value) {
+			if (value === "success") {
+				if (this.$route.meta.mode !== 'edit') {
+					this.form.id_cu = this.userData.id_cu;
+				}
+				this.changeCU(this.form.id_cu);
 			}
 		},
 		updateStat: function updateStat(value) {
@@ -53555,6 +53715,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		fetch: function fetch() {
+			if (this.userData.id_cu === 0) {
+				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+			}
+
 			if (this.$route.meta.mode === 'edit') {
 				this.$store.dispatch('editArtikel', this.$route.params.id);
 				this.title = 'Ubah Artikel';
@@ -53652,11 +53816,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		processFile: function processFile(event) {
 			this.form.gambar = event.target.files[0];
 			console.log(event.target.files[0].name);
+		},
+		other: function other() {
+			// bootstrap select
+			$('.bootstrap-select').selectpicker();
 		}
 	},
 	computed: {
 		userData: function userData() {
 			return this.$store.getters.getUserData;
+		},
+		userDataStat: function userDataStat() {
+			return this.$store.getters.getUserDataLoadStat;
 		},
 		form: function form() {
 			return this.$store.getters.getArtikel;
@@ -53713,8 +53884,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 191 */,
-/* 192 */
+/* 191 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53757,7 +53927,7 @@ function objectToFormData(obj, form, namespace) {
 }
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -53805,15 +53975,15 @@ module.exports = {
 };
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(195)
+var __vue_script__ = __webpack_require__(194)
 /* template */
-var __vue_template__ = __webpack_require__(196)
+var __vue_template__ = __webpack_require__(195)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -53851,7 +54021,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53933,7 +54103,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53992,7 +54162,7 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54045,19 +54215,26 @@ var render = function() {
             { staticClass: "content-wrapper" },
             [
               _vm.submited
-                ? _c("message", { attrs: { show: _vm.errors.any("form-1") } }, [
-                    _c("p", [
-                      _c("i", { staticClass: "icon-cancel-circle2" }),
-                      _vm._v(" Oops terjadi kesalahan:")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      _vm._l(_vm.errors.items, function(error) {
-                        return _c("li", [_vm._v(_vm._s(error.msg))])
-                      })
-                    )
-                  ])
+                ? _c(
+                    "message",
+                    {
+                      class: "bg-danger",
+                      attrs: { show: _vm.errors.any("form-1") }
+                    },
+                    [
+                      _c("h4", [
+                        _c("i", { staticClass: "icon-cancel-circle2" }),
+                        _vm._v(" Oops terjadi kesalahan")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        _vm._l(_vm.errors.items, function(error) {
+                          return _c("li", [_vm._v(_vm._s(error.msg))])
+                        })
+                      )
+                    ]
+                  )
                 : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "panel panel-flat" }, [
@@ -54203,7 +54380,7 @@ var render = function() {
                                           expression: "'required'"
                                         }
                                       ],
-                                      staticClass: "form-control",
+                                      staticClass: "bootstrap-select",
                                       attrs: {
                                         name: "id_cu",
                                         "data-width": "100%",
@@ -54358,7 +54535,7 @@ var render = function() {
                                               expression: "'required'"
                                             }
                                           ],
-                                          staticClass: "form-control",
+                                          staticClass: "bootstrap-select",
                                           attrs: {
                                             name: "id_artikel_penulis",
                                             "data-width": "100%",
@@ -54553,7 +54730,7 @@ var render = function() {
                                               expression: "'required'"
                                             }
                                           ],
-                                          staticClass: "form-control",
+                                          staticClass: "bootstrap-select",
                                           attrs: {
                                             name: "id_artikel_kategori",
                                             "data-width": "100%",
@@ -55468,23 +55645,25 @@ if (false) {
 }
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_user__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_artikel__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_artikel_kategori__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_artikel_penulis__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_cu__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_pus__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getters__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mutations__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__actions__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_user__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_global__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_artikel__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_artikel_kategori__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_artikel_penulis__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_cu__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_pus__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__getters__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mutations__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__actions__ = __webpack_require__(214);
+
 
 
 
@@ -55503,21 +55682,22 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: {},
-	getters: __WEBPACK_IMPORTED_MODULE_8__getters__["a" /* default */],
-	mutations: __WEBPACK_IMPORTED_MODULE_9__mutations__["a" /* default */],
-	actions: __WEBPACK_IMPORTED_MODULE_10__actions__["a" /* default */],
+	getters: __WEBPACK_IMPORTED_MODULE_9__getters__["a" /* default */],
+	mutations: __WEBPACK_IMPORTED_MODULE_10__mutations__["a" /* default */],
+	actions: __WEBPACK_IMPORTED_MODULE_11__actions__["a" /* default */],
 	modules: {
+		global: __WEBPACK_IMPORTED_MODULE_3__modules_global__["a" /* global */],
 		user: __WEBPACK_IMPORTED_MODULE_2__modules_user__["a" /* user */],
-		artikel: __WEBPACK_IMPORTED_MODULE_3__modules_artikel__["a" /* artikel */],
-		artikelKategori: __WEBPACK_IMPORTED_MODULE_4__modules_artikel_kategori__["a" /* artikelKategori */],
-		artikelPenulis: __WEBPACK_IMPORTED_MODULE_5__modules_artikel_penulis__["a" /* artikelPenulis */],
-		CU: __WEBPACK_IMPORTED_MODULE_6__modules_cu__["a" /* CU */],
-		pus: __WEBPACK_IMPORTED_MODULE_7__modules_pus__["a" /* pus */]
+		artikel: __WEBPACK_IMPORTED_MODULE_4__modules_artikel__["a" /* artikel */],
+		artikelKategori: __WEBPACK_IMPORTED_MODULE_5__modules_artikel_kategori__["a" /* artikelKategori */],
+		artikelPenulis: __WEBPACK_IMPORTED_MODULE_6__modules_artikel_penulis__["a" /* artikelPenulis */],
+		CU: __WEBPACK_IMPORTED_MODULE_7__modules_cu__["a" /* CU */],
+		pus: __WEBPACK_IMPORTED_MODULE_8__modules_pus__["a" /* pus */]
 	}
 });
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56462,12 +56642,361 @@ var index_esm = {
 
 
 /***/ }),
+/* 199 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return user; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_user_js__ = __webpack_require__(200);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+
+
+var user = {
+  state: {
+    userData: [],
+    userDataLoad: '',
+    userS: [],
+    userLoadStatS: '',
+    user: {},
+    userLoadStat: '',
+    userUpdate: '',
+    userUpdateStat: '',
+    userRules: [],
+    userOption: []
+  },
+
+  actions: {
+    loadUserData: function loadUserData(_ref) {
+      var commit = _ref.commit;
+
+      commit('setUserDataLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].getUserData().then(function (response) {
+        commit('setUserData', response.data.model);
+        commit('setUserDataLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setUserData', error.response);
+        commit('setUserDataLoadStat', 'fail');
+      });
+    },
+    loadUserS: function loadUserS(_ref2, p) {
+      var commit = _ref2.commit;
+
+      commit('setUserLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].getUserS(p).then(function (response) {
+        commit('setUserS', response.data.model);
+        commit('setUserLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setUserS', error.response);
+        commit('setUserLoadStatS', 'fail');
+      });
+    },
+    loadUser: function loadUser(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setUserLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].getUser(id).then(function (response) {
+        commit('setUser', response.data);
+        commit('setUserLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setUserS', error.response);
+        commit('setUserLoadStatS', 'fail');
+      });
+    },
+    createUser: function createUser(_ref4) {
+      var commit = _ref4.commit;
+
+      commit('setUserLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].createUser().then(function (response) {
+        commit('setUser', response.data.form);
+        commit('setUserRules', response.data.rules);
+        commit('setUserOption', response.data.option);
+        commit('setUserLoadStat', 'success');
+      }).catch(function () {
+        commit('setUser', []);
+        commit('setUserRules', []);
+        commit('setUserOption', []);
+        commit('setUserLoadStat', 'fail');
+      });
+    },
+    storeUser: function storeUser(_ref5, form) {
+      var _this = this;
+
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setUserUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].storeUser(form).then(function (response) {
+        if (response.data.saved) {
+          commit('setUserUpdate', response.data);
+          commit('setUserUpdateStat', 'success');
+        } else {
+          commit('setUserUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this.errors = error.response.data;
+          commit('setUserUpdate', _this.errors);
+        } else {
+          commit('setUserUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setUserUpdateStat', 'fail');
+      });
+    },
+    editUser: function editUser(_ref6, id) {
+      var commit = _ref6.commit;
+
+      commit('setUserLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].editUser(id).then(function (response) {
+        commit('setUser', response.data.form);
+        commit('setUserRules', response.data.rules);
+        commit('setUserOption', response.data.option);
+        commit('setUserLoadStat', 'success');
+      }).catch(function () {
+        commit('setUser', []);
+        commit('setUserRules', []);
+        commit('setUserOption', []);
+        commit('setUserLoadStat', 'fail');
+      });
+    },
+    updateUser: function updateUser(_ref7, _ref8) {
+      var _this2 = this;
+
+      var commit = _ref7.commit,
+          state = _ref7.state,
+          dispatch = _ref7.dispatch;
+
+      var _ref9 = _slicedToArray(_ref8, 2),
+          id = _ref9[0],
+          form = _ref9[1];
+
+      commit('setUserUpdateStat', form);
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].updateUser(id, form).then(function (response) {
+        if (response.data.saved) {
+          commit('setUserUpdate', response.data);
+          commit('setUserUpdateStat', 'success');
+        } else {
+          commit('setUserUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this2.errors = error.response.data;
+          commit('setUserUpdate', _this2.errors);
+        } else {
+          commit('setUserUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setUserUpdateStat', 'fail');
+      });
+    },
+    deleteUser: function deleteUser(_ref10, id) {
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
+
+      commit('setUserUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].deleteUser(id).then(function (response) {
+        commit('setUserUpdate', response.data);
+        commit('setUserUpdateStat', 'success');
+      }).catch(function (error) {
+        commit('setUserS', error.response);
+        commit('setUserLoadStatS', 'fail');
+      });
+    },
+    resetUserUpdateStat: function resetUserUpdateStat(_ref11) {
+      var commit = _ref11.commit;
+
+      commit('setUserUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setUserData: function setUserData(state, data) {
+      state.userData = data;
+    },
+    setUserDataLoadStat: function setUserDataLoadStat(state, status) {
+      state.userDataLoad = status;
+    },
+    setUserS: function setUserS(state, UserS) {
+      state.userS = UserS;
+    },
+    setUserLoadStatS: function setUserLoadStatS(state, status) {
+      state.userLoadStatS = status;
+    },
+    setUser: function setUser(state, User) {
+      state.user = User;
+    },
+    setUserLoadStat: function setUserLoadStat(state, status) {
+      state.userLoadStat = status;
+    },
+    setUserUpdateStat: function setUserUpdateStat(state, status) {
+      state.userUpdateStat = status;
+    },
+    setUserUpdate: function setUserUpdate(state, data) {
+      state.userUpdate = data;
+    },
+    setUserRules: function setUserRules(state, rules) {
+      state.userRules = rules;
+    },
+    setUserOption: function setUserOption(state, option) {
+      state.userOption = option;
+    }
+  },
+
+  getters: {
+    getUserData: function getUserData(state) {
+      return state.userData;
+    },
+    getUserDataLoadStat: function getUserDataLoadStat(state) {
+      return state.userDataLoad;
+    },
+    getUserS: function getUserS(state) {
+      return state.userS;
+    },
+    getUserLoadStatS: function getUserLoadStatS(state) {
+      return state.userLoadStatS;
+    },
+    getUser: function getUser(state) {
+      return state.User;
+    },
+    getUserLoadStat: function getUserLoadStat(state) {
+      return state.userLoadStat;
+    },
+    getUserUpdateStat: function getUserUpdateStat(state) {
+      return state.userUpdateStat;
+    },
+    getUserUpdate: function getUserUpdate(state) {
+      return state.userUpdate;
+    },
+    getUserRules: function getUserRules(state) {
+      return state.userRules;
+    },
+    getUserOption: function getUserOption(state) {
+      return state.userOption;
+    }
+  }
+};
+
+/***/ }),
 /* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(3);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getUserData: function getUserData() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/userData');
+  },
+
+  getUserS: function getUserS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getUserAll: function getUserAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user_all');
+  },
+
+  getUser: function getUser(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/' + id);
+  },
+
+  storeUser: function storeUser(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/store', form);
+  },
+
+  updateUser: function updateUser(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/update/' + id, form);
+  },
+
+  deleteUser: function deleteUser(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/' + id);
+  }
+});
+
+/***/ }),
+/* 201 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return global; });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var global = {
+  state: {
+    globalMessage: '',
+    globalMessageType: '',
+    globalMessageClass: ''
+  },
+
+  actions: {
+    createGlobalMessage: function createGlobalMessage(_ref, _ref2) {
+      var commit = _ref.commit,
+          state = _ref.state,
+          dispatch = _ref.dispatch;
+
+      var _ref3 = _slicedToArray(_ref2, 3),
+          message = _ref3[0],
+          type = _ref3[1],
+          classname = _ref3[2];
+
+      commit('setGlobalMessage', message);
+      commit('setGlobalMessageType', type);
+      commit('setGlobalMessageClass', classname);
+    },
+    deleteGlobalMessage: function deleteGlobalMessage(_ref4) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setGlobalMessage', '');
+      commit('setGlobalMessageType', '');
+      commit('setGlobalMessageClass', '');
+    }
+  },
+
+  mutations: {
+    setGlobalMessage: function setGlobalMessage(state, message) {
+      state.globalMessage = message;
+    },
+    setGlobalMessageType: function setGlobalMessageType(state, type) {
+      state.globalMessageType = type;
+    },
+    setGlobalMessageClass: function setGlobalMessageClass(state, classname) {
+      state.globalMessageClass = classname;
+    }
+  },
+
+  getters: {
+    getGlobalMessage: function getGlobalMessage(state) {
+      return state.globalMessage;
+    },
+    getGlobalMessageType: function getGlobalMessageType(state) {
+      return state.globalMessageType;
+    },
+    getGlobalMessageClass: function getGlobalMessageClass(state) {
+      return state.globalMessageClass;
+    }
+  }
+};
+
+/***/ }),
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__ = __webpack_require__(203);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 
@@ -56714,11 +57243,11 @@ var artikel = {
 };
 
 /***/ }),
-/* 201 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(3);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -56761,12 +57290,12 @@ var artikel = {
 });
 
 /***/ }),
-/* 202 */
+/* 204 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikelKategori; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_kategori_js__ = __webpack_require__(205);
 
 
 var artikelKategori = {
@@ -56928,11 +57457,11 @@ var artikelKategori = {
 };
 
 /***/ }),
-/* 203 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(3);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -56967,40 +57496,641 @@ var artikelKategori = {
 });
 
 /***/ }),
-/* 204 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({});
-
-/***/ }),
-/* 205 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({});
-
-/***/ }),
 /* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(7);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikelPenulis; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__ = __webpack_require__(207);
+
+
+var artikelPenulis = {
+  state: {
+    artikelPenulisS: [],
+    artikelPenulisLoadStatS: '',
+    artikelPenulis: {},
+    artikelPenulisLoadStat: '',
+    artikelPenulisUpdate: [],
+    artikelPenulisUpdateStat: ''
+  },
+
+  actions: {
+    loadArtikelPenulisS: function loadArtikelPenulisS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setArtikelPenulisLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisS(p).then(function (response) {
+        commit('setArtikelPenulisS', response.data.model);
+        commit('setArtikelPenulisLoadStatS', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisS', []);
+        commit('setArtikelPenulisLoadStatS', 'fail');
+      });
+    },
+    loadArtikelPenulisAll: function loadArtikelPenulisAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setArtikelPenulisLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisAll().then(function (response) {
+        commit('setArtikelPenulisS', response.data.model);
+        commit('setArtikelPenulisLoadStatS', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisS', []);
+        commit('setArtikelPenulisLoadStatS', 'fail');
+      });
+    },
+    loadArtikelPenulis: function loadArtikelPenulis(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setArtikelPenulisLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulis(id).then(function (response) {
+        commit('setArtikelPenulis', response.data);
+        commit('setArtikelPenulisLoadStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulis', []);
+        commit('setArtikelPenulisLoadStat', 'fail');
+      });
+    },
+    loadArtikelPenulisCU: function loadArtikelPenulisCU(_ref4, id) {
+      var commit = _ref4.commit;
+
+      commit('setArtikelPenulisLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisCU(id).then(function (response) {
+        commit('setArtikelPenulisS', response.data.model);
+        commit('setArtikelPenulisLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setArtikelPenulisS', error.response);
+        commit('setArtikelPenulisLoadStatS', 'fail');
+      });
+    },
+    storeArtikelPenulis: function storeArtikelPenulis(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setArtikelPenulisUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].storeArtikelPenulis(form).then(function (response) {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'fail');
+      });
+    },
+    updateArtikelPenulis: function updateArtikelPenulis(_ref6, form) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setArtikelPenulisUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].updateArtikelPenulis(form).then(function (response) {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'fail');
+      });
+    },
+    deleteArtikelPenulis: function deleteArtikelPenulis(_ref7, id) {
+      var commit = _ref7.commit,
+          state = _ref7.state,
+          dispatch = _ref7.dispatch;
+
+      commit('setArtikelPenulisUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].deleteArtikelPenulis(id).then(function (response) {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'success');
+      }).catch(function () {
+        commit('setArtikelPenulisUpdate', response.data);
+        commit('setArtikelPenulisUpdateStat', 'fail');
+      });
+    },
+    resetArtikelPenulisUpdateStat: function resetArtikelPenulisUpdateStat(_ref8) {
+      var commit = _ref8.commit;
+
+      commit('setArtikelPenulisUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setArtikelPenulisS: function setArtikelPenulisS(state, ArtikelPenulisS) {
+      state.artikelPenulisS = ArtikelPenulisS;
+    },
+    setArtikelPenulisLoadStatS: function setArtikelPenulisLoadStatS(state, status) {
+      state.artikelPenulisLoadStatS = status;
+    },
+    setArtikelPenulis: function setArtikelPenulis(state, ArtikelPenulis) {
+      state.artikelPenulis = ArtikelPenulis;
+    },
+    setArtikelPenulisLoadStat: function setArtikelPenulisLoadStat(state, status) {
+      state.artikelPenulisLoadStat = status;
+    },
+    setArtikelPenulisUpdate: function setArtikelPenulisUpdate(state, data) {
+      state.artikelPenulisUpdate = data;
+    },
+    setArtikelPenulisUpdateStat: function setArtikelPenulisUpdateStat(state, status) {
+      state.artikelPenulisUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getArtikelPenulisS: function getArtikelPenulisS(state) {
+      return state.artikelPenulisS;
+    },
+    getArtikelPenulisLoadStatS: function getArtikelPenulisLoadStatS(state) {
+      return state.artikelPenulisLoadStatS;
+    },
+    getArtikelPenulis: function getArtikelPenulis(state) {
+      return state.artikelPenulis;
+    },
+    getArtikelPenulisLoadStat: function getArtikelPenulisLoadStat(state) {
+      return state.artikelPenulisLoadStat;
+    },
+    getArtikelPenulisUpdateStat: function getArtikelPenulisUpdateStat(state) {
+      return state.artikelPenulisUpdateStat;
+    },
+    getArtikelPenulisUpdate: function getArtikelPenulisUpdate(state) {
+      return state.artikelPenulisUpdate;
+    }
+  }
+};
+
+/***/ }),
+/* 207 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(3);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getArtikelPenulisS: function getArtikelPenulisS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getArtikelPenulisAll: function getArtikelPenulisAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis_all');
+  },
+
+  getArtikelPenulis: function getArtikelPenulis(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/' + id);
+  },
+
+  getArtikelPenulisCU: function getArtikelPenulisCU(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/cu/' + id);
+  },
+
+  storeArtikelPenulis: function storeArtikelPenulis(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/store', form);
+  },
+
+  updateArtikelPenulis: function updateArtikelPenulis(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/update/' + id, form);
+  },
+
+  deleteArtikelPenulis: function deleteArtikelPenulis(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/' + id);
+  }
+});
+
+/***/ }),
+/* 208 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CU; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_cu_js__ = __webpack_require__(209);
+
+
+var CU = {
+  state: {
+    CUS: [],
+    CULoadStatS: '',
+    CU: {},
+    CULoadStat: '',
+    CUUpdate: [],
+    CUUpdateStat: ''
+  },
+
+  actions: {
+    loadCUS: function loadCUS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setCULoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUS(p).then(function (response) {
+        commit('setCUS', response.data.model);
+        commit('setCULoadStatS', 'success');
+      }).catch(function () {
+        commit('setCUS', []);
+        commit('setCULoadStatS', 'fail');
+      });
+    },
+    loadCUAll: function loadCUAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setCULoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUAll().then(function (response) {
+        commit('setCUS', response.data.model);
+        commit('setCULoadStatS', 'success');
+      }).catch(function () {
+        commit('setCUS', []);
+        commit('setCULoadStatS', 'fail');
+      });
+    },
+    loadCU: function loadCU(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setCULoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCU(id).then(function (response) {
+        commit('setCU', response.data);
+        commit('setCULoadStat', 'success');
+      }).catch(function () {
+        commit('setCU', []);
+        commit('setCULoadStat', 'fail');
+      });
+    },
+    loadCUPus: function loadCUPus(_ref4, id) {
+      var commit = _ref4.commit;
+
+      commit('setCULoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUPus(id).then(function (response) {
+        commit('setCUS', response.data.model);
+        commit('setCULoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setCUS', error.response);
+        commit('setCULoadStatS', 'fail');
+      });
+    },
+    storeCU: function storeCU(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setCUUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].storeCU(form).then(function (response) {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'success');
+      }).catch(function () {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'fail');
+      });
+    },
+    updateCU: function updateCU(_ref6, form) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setCUUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].updateCU(form).then(function (response) {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'success');
+      }).catch(function () {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'fail');
+      });
+    },
+    deleteCU: function deleteCU(_ref7, id) {
+      var commit = _ref7.commit,
+          state = _ref7.state,
+          dispatch = _ref7.dispatch;
+
+      commit('setCUUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].deleteCU(id).then(function (response) {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'success');
+      }).catch(function () {
+        commit('setCUUpdate', response.data);
+        commit('setCUUpdateStat', 'fail');
+      });
+    },
+    resetCUUpdateStat: function resetCUUpdateStat(_ref8) {
+      var commit = _ref8.commit;
+
+      commit('setCUUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setCUS: function setCUS(state, CUS) {
+      state.CUS = CUS;
+    },
+    setCULoadStatS: function setCULoadStatS(state, status) {
+      state.CULoadStatS = status;
+    },
+    setCU: function setCU(state, CU) {
+      state.CU = CU;
+    },
+    setCULoadStat: function setCULoadStat(state, status) {
+      state.CULoadStat = status;
+    },
+    setCUUpdate: function setCUUpdate(state, data) {
+      state.CUUpdate = data;
+    },
+    setCUUpdateStat: function setCUUpdateStat(state, status) {
+      state.CUUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getCUS: function getCUS(state) {
+      return state.CUS;
+    },
+    getCULoadStatS: function getCULoadStatS(state) {
+      return state.CULoadStatS;
+    },
+    getCU: function getCU(state) {
+      return state.CU;
+    },
+    getCULoadStat: function getCULoadStat(state) {
+      return state.CULoadStat;
+    },
+    getCUUpdateStat: function getCUUpdateStat(state) {
+      return state.CUUpdateStat;
+    },
+    getCUUpdate: function getCUUpdate(state) {
+      return state.CUUpdate;
+    }
+  }
+};
+
+/***/ }),
+/* 209 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(3);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getCUS: function getCUS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getCUAll: function getCUAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu_all');
+  },
+
+  getCU: function getCU(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/' + id);
+  },
+
+  getCUPus: function getCUPus(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/pus/' + id);
+  },
+
+  storeCU: function storeCU(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/store', form);
+  },
+
+  updateCU: function updateCU(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/update/' + id, form);
+  },
+
+  deleteCU: function deleteCU(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/' + id);
+  }
+});
+
+/***/ }),
+/* 210 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return pus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_pus_js__ = __webpack_require__(211);
+
+
+var pus = {
+  state: {
+    pusS: [],
+    pusLoadStatS: '',
+    pus: {},
+    pusLoadStat: '',
+    pusUpdate: [],
+    pusUpdateStat: ''
+  },
+
+  actions: {
+    loadPusS: function loadPusS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setPusLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPusS(p).then(function (response) {
+        commit('setPusS', response.data.model);
+        commit('setPusLoadStatS', 'success');
+      }).catch(function () {
+        commit('setPusS', []);
+        commit('setPusLoadStatS', 'fail');
+      });
+    },
+    loadPusAll: function loadPusAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setPusLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPusAll().then(function (response) {
+        commit('setPusS', response.data.model);
+        commit('setPusLoadStatS', 'success');
+      }).catch(function () {
+        commit('setPusS', []);
+        commit('setPusLoadStatS', 'fail');
+      });
+    },
+    loadPus: function loadPus(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setPusLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPus(id).then(function (response) {
+        commit('setPus', response.data);
+        commit('setPusLoadStat', 'success');
+      }).catch(function () {
+        commit('setPus', []);
+        commit('setPusLoadStat', 'fail');
+      });
+    },
+    storePus: function storePus(_ref4, form) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
+
+      commit('setPusUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].storePus(form).then(function (response) {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'success');
+      }).catch(function () {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'fail');
+      });
+    },
+    updatePus: function updatePus(_ref5, form) {
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setPusUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].updatePus(form).then(function (response) {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'success');
+      }).catch(function () {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'fail');
+      });
+    },
+    deletePus: function deletePus(_ref6, id) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setPusUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].deletePus(id).then(function (response) {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'success');
+      }).catch(function () {
+        commit('setPusUpdate', response.data);
+        commit('setPusUpdateStat', 'fail');
+      });
+    },
+    resetPusUpdateStat: function resetPusUpdateStat(_ref7) {
+      var commit = _ref7.commit;
+
+      commit('setPusUpdateStat', '');
+    }
+  },
+
+  mutations: {
+    setPusS: function setPusS(state, PusS) {
+      state.pusS = PusS;
+    },
+    setPusLoadStatS: function setPusLoadStatS(state, status) {
+      state.pusLoadStatS = status;
+    },
+    setPus: function setPus(state, Pus) {
+      state.pus = Pus;
+    },
+    setPusLoadStat: function setPusLoadStat(state, status) {
+      state.pusLoadStat = status;
+    },
+    setPusUpdate: function setPusUpdate(state, data) {
+      state.pusUpdate = data;
+    },
+    setPusUpdateStat: function setPusUpdateStat(state, status) {
+      state.pusUpdateStat = status;
+    }
+  },
+
+  getters: {
+    getPusS: function getPusS(state) {
+      return state.pusS;
+    },
+    getPusLoadStatS: function getPusLoadStatS(state) {
+      return state.pusLoadStatS;
+    },
+    getPus: function getPus(state) {
+      return state.pus;
+    },
+    getPusLoadStat: function getPusLoadStat(state) {
+      return state.pusLoadStat;
+    },
+    getPusUpdateStat: function getPusUpdateStat(state) {
+      return state.pusUpdateStat;
+    },
+    getPusUpdate: function getPusUpdate(state) {
+      return state.pusUpdate;
+    }
+  }
+};
+
+/***/ }),
+/* 211 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(3);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getPusS: function getPusS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getPusAll: function getPusAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus_all');
+  },
+
+  getPus: function getPus(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/' + id);
+  },
+
+  storePus: function storePus(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/store', form);
+  },
+
+  updatePus: function updatePus(id, form) {
+    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/update/' + id, form);
+  },
+
+  deletePus: function deletePus(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/' + id);
+  }
+});
+
+/***/ }),
+/* 212 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({});
 
 /***/ }),
-/* 207 */
+/* 213 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({});
+
+/***/ }),
+/* 214 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({});
+
+/***/ }),
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63965,883 +65095,10 @@ var index_esm = {
 
 
 /***/ }),
-/* 208 */
+/* 216 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return artikelPenulis; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__ = __webpack_require__(218);
-
-
-var artikelPenulis = {
-  state: {
-    artikelPenulisS: [],
-    artikelPenulisLoadStatS: '',
-    artikelPenulis: {},
-    artikelPenulisLoadStat: '',
-    artikelPenulisUpdate: [],
-    artikelPenulisUpdateStat: ''
-  },
-
-  actions: {
-    loadArtikelPenulisS: function loadArtikelPenulisS(_ref, p) {
-      var commit = _ref.commit;
-
-      commit('setArtikelPenulisLoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisS(p).then(function (response) {
-        commit('setArtikelPenulisS', response.data.model);
-        commit('setArtikelPenulisLoadStatS', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulisS', []);
-        commit('setArtikelPenulisLoadStatS', 'fail');
-      });
-    },
-    loadArtikelPenulisAll: function loadArtikelPenulisAll(_ref2) {
-      var commit = _ref2.commit;
-
-      commit('setArtikelPenulisLoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisAll().then(function (response) {
-        commit('setArtikelPenulisS', response.data.model);
-        commit('setArtikelPenulisLoadStatS', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulisS', []);
-        commit('setArtikelPenulisLoadStatS', 'fail');
-      });
-    },
-    loadArtikelPenulis: function loadArtikelPenulis(_ref3, id) {
-      var commit = _ref3.commit;
-
-      commit('setArtikelPenulisLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulis(id).then(function (response) {
-        commit('setArtikelPenulis', response.data);
-        commit('setArtikelPenulisLoadStat', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulis', []);
-        commit('setArtikelPenulisLoadStat', 'fail');
-      });
-    },
-    loadArtikelPenulisCU: function loadArtikelPenulisCU(_ref4, id) {
-      var commit = _ref4.commit;
-
-      commit('setArtikelPenulisLoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].getArtikelPenulisCU(id).then(function (response) {
-        commit('setArtikelPenulisS', response.data.model);
-        commit('setArtikelPenulisLoadStatS', 'success');
-      }).catch(function (error) {
-        commit('setArtikelPenulisS', error.response);
-        commit('setArtikelPenulisLoadStatS', 'fail');
-      });
-    },
-    storeArtikelPenulis: function storeArtikelPenulis(_ref5, form) {
-      var commit = _ref5.commit,
-          state = _ref5.state,
-          dispatch = _ref5.dispatch;
-
-      commit('setArtikelPenulisUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].storeArtikelPenulis(form).then(function (response) {
-        commit('setArtikelPenulisUpdate', response.data);
-        commit('setArtikelPenulisUpdateStat', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulisUpdate', response.data);
-        commit('setArtikelPenulisUpdateStat', 'fail');
-      });
-    },
-    updateArtikelPenulis: function updateArtikelPenulis(_ref6, form) {
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
-
-      commit('setArtikelPenulisUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].updateArtikelPenulis(form).then(function (response) {
-        commit('setArtikelPenulisUpdate', response.data);
-        commit('setArtikelPenulisUpdateStat', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulisUpdate', response.data);
-        commit('setArtikelPenulisUpdateStat', 'fail');
-      });
-    },
-    deleteArtikelPenulis: function deleteArtikelPenulis(_ref7, id) {
-      var commit = _ref7.commit,
-          state = _ref7.state,
-          dispatch = _ref7.dispatch;
-
-      commit('setArtikelPenulisUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_artikel_penulis_js__["a" /* default */].deleteArtikelPenulis(id).then(function (response) {
-        commit('setArtikelPenulisUpdate', response.data);
-        commit('setArtikelPenulisUpdateStat', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulisUpdate', response.data);
-        commit('setArtikelPenulisUpdateStat', 'fail');
-      });
-    },
-    resetArtikelPenulisUpdateStat: function resetArtikelPenulisUpdateStat(_ref8) {
-      var commit = _ref8.commit;
-
-      commit('setArtikelPenulisUpdateStat', '');
-    }
-  },
-
-  mutations: {
-    setArtikelPenulisS: function setArtikelPenulisS(state, ArtikelPenulisS) {
-      state.artikelPenulisS = ArtikelPenulisS;
-    },
-    setArtikelPenulisLoadStatS: function setArtikelPenulisLoadStatS(state, status) {
-      state.artikelPenulisLoadStatS = status;
-    },
-    setArtikelPenulis: function setArtikelPenulis(state, ArtikelPenulis) {
-      state.artikelPenulis = ArtikelPenulis;
-    },
-    setArtikelPenulisLoadStat: function setArtikelPenulisLoadStat(state, status) {
-      state.artikelPenulisLoadStat = status;
-    },
-    setArtikelPenulisUpdate: function setArtikelPenulisUpdate(state, data) {
-      state.artikelPenulisUpdate = data;
-    },
-    setArtikelPenulisUpdateStat: function setArtikelPenulisUpdateStat(state, status) {
-      state.artikelPenulisUpdateStat = status;
-    }
-  },
-
-  getters: {
-    getArtikelPenulisS: function getArtikelPenulisS(state) {
-      return state.artikelPenulisS;
-    },
-    getArtikelPenulisLoadStatS: function getArtikelPenulisLoadStatS(state) {
-      return state.artikelPenulisLoadStatS;
-    },
-    getArtikelPenulis: function getArtikelPenulis(state) {
-      return state.artikelPenulis;
-    },
-    getArtikelPenulisLoadStat: function getArtikelPenulisLoadStat(state) {
-      return state.artikelPenulisLoadStat;
-    },
-    getArtikelPenulisUpdateStat: function getArtikelPenulisUpdateStat(state) {
-      return state.artikelPenulisUpdateStat;
-    },
-    getArtikelPenulisUpdate: function getArtikelPenulisUpdate(state) {
-      return state.artikelPenulisUpdate;
-    }
-  }
-};
-
-/***/ }),
-/* 218 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-  getArtikelPenulisS: function getArtikelPenulisS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
-  },
-
-  getArtikelPenulisAll: function getArtikelPenulisAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis_all');
-  },
-
-  getArtikelPenulis: function getArtikelPenulis(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/' + id);
-  },
-
-  getArtikelPenulisCU: function getArtikelPenulisCU(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/cu/' + id);
-  },
-
-  storeArtikelPenulis: function storeArtikelPenulis(form) {
-    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/store', form);
-  },
-
-  updateArtikelPenulis: function updateArtikelPenulis(id, form) {
-    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/update/' + id, form);
-  },
-
-  deleteArtikelPenulis: function deleteArtikelPenulis(id) {
-    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel_penulis/' + id);
-  }
-});
-
-/***/ }),
-/* 219 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CU; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_cu_js__ = __webpack_require__(220);
-
-
-var CU = {
-  state: {
-    CUS: [],
-    CULoadStatS: '',
-    CU: {},
-    CULoadStat: '',
-    CUUpdate: [],
-    CUUpdateStat: ''
-  },
-
-  actions: {
-    loadCUS: function loadCUS(_ref, p) {
-      var commit = _ref.commit;
-
-      commit('setCULoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUS(p).then(function (response) {
-        commit('setCUS', response.data.model);
-        commit('setCULoadStatS', 'success');
-      }).catch(function () {
-        commit('setCUS', []);
-        commit('setCULoadStatS', 'fail');
-      });
-    },
-    loadCUAll: function loadCUAll(_ref2) {
-      var commit = _ref2.commit;
-
-      commit('setCULoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUAll().then(function (response) {
-        commit('setCUS', response.data.model);
-        commit('setCULoadStatS', 'success');
-      }).catch(function () {
-        commit('setCUS', []);
-        commit('setCULoadStatS', 'fail');
-      });
-    },
-    loadCU: function loadCU(_ref3, id) {
-      var commit = _ref3.commit;
-
-      commit('setCULoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCU(id).then(function (response) {
-        commit('setCU', response.data);
-        commit('setCULoadStat', 'success');
-      }).catch(function () {
-        commit('setCU', []);
-        commit('setCULoadStat', 'fail');
-      });
-    },
-    loadCUPus: function loadCUPus(_ref4, id) {
-      var commit = _ref4.commit;
-
-      commit('setCULoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getCUPus(id).then(function (response) {
-        commit('setCUS', response.data.model);
-        commit('setCULoadStatS', 'success');
-      }).catch(function (error) {
-        commit('setCUS', error.response);
-        commit('setCULoadStatS', 'fail');
-      });
-    },
-    storeCU: function storeCU(_ref5, form) {
-      var commit = _ref5.commit,
-          state = _ref5.state,
-          dispatch = _ref5.dispatch;
-
-      commit('setCUUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].storeCU(form).then(function (response) {
-        commit('setCUUpdate', response.data);
-        commit('setCUUpdateStat', 'success');
-      }).catch(function () {
-        commit('setCUUpdate', response.data);
-        commit('setCUUpdateStat', 'fail');
-      });
-    },
-    updateCU: function updateCU(_ref6, form) {
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
-
-      commit('setCUUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].updateCU(form).then(function (response) {
-        commit('setCUUpdate', response.data);
-        commit('setCUUpdateStat', 'success');
-      }).catch(function () {
-        commit('setCUUpdate', response.data);
-        commit('setCUUpdateStat', 'fail');
-      });
-    },
-    deleteCU: function deleteCU(_ref7, id) {
-      var commit = _ref7.commit,
-          state = _ref7.state,
-          dispatch = _ref7.dispatch;
-
-      commit('setCUUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].deleteCU(id).then(function (response) {
-        commit('setCUUpdate', response.data);
-        commit('setCUUpdateStat', 'success');
-      }).catch(function () {
-        commit('setCUUpdate', response.data);
-        commit('setCUUpdateStat', 'fail');
-      });
-    },
-    resetCUUpdateStat: function resetCUUpdateStat(_ref8) {
-      var commit = _ref8.commit;
-
-      commit('setCUUpdateStat', '');
-    }
-  },
-
-  mutations: {
-    setCUS: function setCUS(state, CUS) {
-      state.CUS = CUS;
-    },
-    setCULoadStatS: function setCULoadStatS(state, status) {
-      state.CULoadStatS = status;
-    },
-    setCU: function setCU(state, CU) {
-      state.CU = CU;
-    },
-    setCULoadStat: function setCULoadStat(state, status) {
-      state.CULoadStat = status;
-    },
-    setCUUpdate: function setCUUpdate(state, data) {
-      state.CUUpdate = data;
-    },
-    setCUUpdateStat: function setCUUpdateStat(state, status) {
-      state.CUUpdateStat = status;
-    }
-  },
-
-  getters: {
-    getCUS: function getCUS(state) {
-      return state.CUS;
-    },
-    getCULoadStatS: function getCULoadStatS(state) {
-      return state.CULoadStatS;
-    },
-    getCU: function getCU(state) {
-      return state.CU;
-    },
-    getCULoadStat: function getCULoadStat(state) {
-      return state.CULoadStat;
-    },
-    getCUUpdateStat: function getCUUpdateStat(state) {
-      return state.CUUpdateStat;
-    },
-    getCUUpdate: function getCUUpdate(state) {
-      return state.CUUpdate;
-    }
-  }
-};
-
-/***/ }),
-/* 220 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-  getCUS: function getCUS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
-  },
-
-  getCUAll: function getCUAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu_all');
-  },
-
-  getCU: function getCU(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/' + id);
-  },
-
-  getCUPus: function getCUPus(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/pus/' + id);
-  },
-
-  storeCU: function storeCU(form) {
-    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/store', form);
-  },
-
-  updateCU: function updateCU(id, form) {
-    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/update/' + id, form);
-  },
-
-  deleteCU: function deleteCU(id) {
-    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/' + id);
-  }
-});
-
-/***/ }),
-/* 221 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return pus; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_pus_js__ = __webpack_require__(222);
-
-
-var pus = {
-  state: {
-    pusS: [],
-    pusLoadStatS: '',
-    pus: {},
-    pusLoadStat: '',
-    pusUpdate: [],
-    pusUpdateStat: ''
-  },
-
-  actions: {
-    loadPusS: function loadPusS(_ref, p) {
-      var commit = _ref.commit;
-
-      commit('setPusLoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPusS(p).then(function (response) {
-        commit('setPusS', response.data.model);
-        commit('setPusLoadStatS', 'success');
-      }).catch(function () {
-        commit('setPusS', []);
-        commit('setPusLoadStatS', 'fail');
-      });
-    },
-    loadPusAll: function loadPusAll(_ref2) {
-      var commit = _ref2.commit;
-
-      commit('setPusLoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPusAll().then(function (response) {
-        commit('setPusS', response.data.model);
-        commit('setPusLoadStatS', 'success');
-      }).catch(function () {
-        commit('setPusS', []);
-        commit('setPusLoadStatS', 'fail');
-      });
-    },
-    loadPus: function loadPus(_ref3, id) {
-      var commit = _ref3.commit;
-
-      commit('setPusLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].getPus(id).then(function (response) {
-        commit('setPus', response.data);
-        commit('setPusLoadStat', 'success');
-      }).catch(function () {
-        commit('setPus', []);
-        commit('setPusLoadStat', 'fail');
-      });
-    },
-    storePus: function storePus(_ref4, form) {
-      var commit = _ref4.commit,
-          state = _ref4.state,
-          dispatch = _ref4.dispatch;
-
-      commit('setPusUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].storePus(form).then(function (response) {
-        commit('setPusUpdate', response.data);
-        commit('setPusUpdateStat', 'success');
-      }).catch(function () {
-        commit('setPusUpdate', response.data);
-        commit('setPusUpdateStat', 'fail');
-      });
-    },
-    updatePus: function updatePus(_ref5, form) {
-      var commit = _ref5.commit,
-          state = _ref5.state,
-          dispatch = _ref5.dispatch;
-
-      commit('setPusUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].updatePus(form).then(function (response) {
-        commit('setPusUpdate', response.data);
-        commit('setPusUpdateStat', 'success');
-      }).catch(function () {
-        commit('setPusUpdate', response.data);
-        commit('setPusUpdateStat', 'fail');
-      });
-    },
-    deletePus: function deletePus(_ref6, id) {
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
-
-      commit('setPusUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_pus_js__["a" /* default */].deletePus(id).then(function (response) {
-        commit('setPusUpdate', response.data);
-        commit('setPusUpdateStat', 'success');
-      }).catch(function () {
-        commit('setPusUpdate', response.data);
-        commit('setPusUpdateStat', 'fail');
-      });
-    },
-    resetPusUpdateStat: function resetPusUpdateStat(_ref7) {
-      var commit = _ref7.commit;
-
-      commit('setPusUpdateStat', '');
-    }
-  },
-
-  mutations: {
-    setPusS: function setPusS(state, PusS) {
-      state.pusS = PusS;
-    },
-    setPusLoadStatS: function setPusLoadStatS(state, status) {
-      state.pusLoadStatS = status;
-    },
-    setPus: function setPus(state, Pus) {
-      state.pus = Pus;
-    },
-    setPusLoadStat: function setPusLoadStat(state, status) {
-      state.pusLoadStat = status;
-    },
-    setPusUpdate: function setPusUpdate(state, data) {
-      state.pusUpdate = data;
-    },
-    setPusUpdateStat: function setPusUpdateStat(state, status) {
-      state.pusUpdateStat = status;
-    }
-  },
-
-  getters: {
-    getPusS: function getPusS(state) {
-      return state.pusS;
-    },
-    getPusLoadStatS: function getPusLoadStatS(state) {
-      return state.pusLoadStatS;
-    },
-    getPus: function getPus(state) {
-      return state.pus;
-    },
-    getPusLoadStat: function getPusLoadStat(state) {
-      return state.pusLoadStat;
-    },
-    getPusUpdateStat: function getPusUpdateStat(state) {
-      return state.pusUpdateStat;
-    },
-    getPusUpdate: function getPusUpdate(state) {
-      return state.pusUpdate;
-    }
-  }
-};
-
-/***/ }),
-/* 222 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-  getPusS: function getPusS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
-  },
-
-  getPusAll: function getPusAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus_all');
-  },
-
-  getPus: function getPus(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/' + id);
-  },
-
-  storePus: function storePus(form) {
-    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/store', form);
-  },
-
-  updatePus: function updatePus(id, form) {
-    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/update/' + id, form);
-  },
-
-  deletePus: function deletePus(id) {
-    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/pus/' + id);
-  }
-});
-
-/***/ }),
-/* 223 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return user; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_user_js__ = __webpack_require__(224);
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-
-
-var user = {
-  state: {
-    userData: [],
-    userS: [],
-    userLoadStatS: '',
-    user: {},
-    userLoadStat: '',
-    userUpdate: '',
-    userUpdateStat: '',
-    userRules: [],
-    userOption: []
-  },
-
-  actions: {
-    loadUserS: function loadUserS(_ref, p) {
-      var commit = _ref.commit;
-
-      commit('setUserLoadStatS', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].getUserS(p).then(function (response) {
-        commit('setUserS', response.data.model);
-        commit('setUserLoadStatS', 'success');
-      }).catch(function (error) {
-        commit('setUserS', error.response);
-        commit('setUserLoadStatS', 'fail');
-      });
-    },
-    loadUser: function loadUser(_ref2, id) {
-      var commit = _ref2.commit;
-
-      commit('setUserLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].getUser(id).then(function (response) {
-        commit('setUser', response.data);
-        commit('setUserLoadStat', 'success');
-      }).catch(function (error) {
-        commit('setUserS', error.response);
-        commit('setUserLoadStatS', 'fail');
-      });
-    },
-    loadUserData: function loadUserData(_ref3, data) {
-      var commit = _ref3.commit;
-
-      commit('setUserData', data);
-    },
-    createUser: function createUser(_ref4) {
-      var commit = _ref4.commit;
-
-      commit('setUserLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].createUser().then(function (response) {
-        commit('setUser', response.data.form);
-        commit('setUserRules', response.data.rules);
-        commit('setUserOption', response.data.option);
-        commit('setUserLoadStat', 'success');
-      }).catch(function () {
-        commit('setUser', []);
-        commit('setUserRules', []);
-        commit('setUserOption', []);
-        commit('setUserLoadStat', 'fail');
-      });
-    },
-    storeUser: function storeUser(_ref5, form) {
-      var _this = this;
-
-      var commit = _ref5.commit,
-          state = _ref5.state,
-          dispatch = _ref5.dispatch;
-
-      commit('setUserUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].storeUser(form).then(function (response) {
-        if (response.data.saved) {
-          commit('setUserUpdate', response.data);
-          commit('setUserUpdateStat', 'success');
-        } else {
-          commit('setUserUpdateStat', 'fail');
-        }
-      }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setUserUpdate', _this.errors);
-        } else {
-          commit('setUserUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setUserUpdateStat', 'fail');
-      });
-    },
-    editUser: function editUser(_ref6, id) {
-      var commit = _ref6.commit;
-
-      commit('setUserLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].editUser(id).then(function (response) {
-        commit('setUser', response.data.form);
-        commit('setUserRules', response.data.rules);
-        commit('setUserOption', response.data.option);
-        commit('setUserLoadStat', 'success');
-      }).catch(function () {
-        commit('setUser', []);
-        commit('setUserRules', []);
-        commit('setUserOption', []);
-        commit('setUserLoadStat', 'fail');
-      });
-    },
-    updateUser: function updateUser(_ref7, _ref8) {
-      var _this2 = this;
-
-      var commit = _ref7.commit,
-          state = _ref7.state,
-          dispatch = _ref7.dispatch;
-
-      var _ref9 = _slicedToArray(_ref8, 2),
-          id = _ref9[0],
-          form = _ref9[1];
-
-      commit('setUserUpdateStat', form);
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].updateUser(id, form).then(function (response) {
-        if (response.data.saved) {
-          commit('setUserUpdate', response.data);
-          commit('setUserUpdateStat', 'success');
-        } else {
-          commit('setUserUpdateStat', 'fail');
-        }
-      }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setUserUpdate', _this2.errors);
-        } else {
-          commit('setUserUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setUserUpdateStat', 'fail');
-      });
-    },
-    deleteUser: function deleteUser(_ref10, id) {
-      var commit = _ref10.commit,
-          state = _ref10.state,
-          dispatch = _ref10.dispatch;
-
-      commit('setUserUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_user_js__["a" /* default */].deleteUser(id).then(function (response) {
-        commit('setUserUpdate', response.data);
-        commit('setUserUpdateStat', 'success');
-      }).catch(function (error) {
-        commit('setUserS', error.response);
-        commit('setUserLoadStatS', 'fail');
-      });
-    },
-    resetUserUpdateStat: function resetUserUpdateStat(_ref11) {
-      var commit = _ref11.commit;
-
-      commit('setUserUpdateStat', '');
-    }
-  },
-
-  mutations: {
-    setUserData: function setUserData(state, data) {
-      state.userData = data;
-    },
-    setUserS: function setUserS(state, UserS) {
-      state.userS = UserS;
-    },
-    setUserLoadStatS: function setUserLoadStatS(state, status) {
-      state.userLoadStatS = status;
-    },
-    setUser: function setUser(state, User) {
-      state.user = User;
-    },
-    setUserLoadStat: function setUserLoadStat(state, status) {
-      state.userLoadStat = status;
-    },
-    setUserUpdateStat: function setUserUpdateStat(state, status) {
-      state.userUpdateStat = status;
-    },
-    setUserUpdate: function setUserUpdate(state, data) {
-      state.userUpdate = data;
-    },
-    setUserRules: function setUserRules(state, rules) {
-      state.userRules = rules;
-    },
-    setUserOption: function setUserOption(state, option) {
-      state.userOption = option;
-    }
-  },
-
-  getters: {
-    getUserData: function getUserData(state) {
-      return state.userData;
-    },
-    getUserS: function getUserS(state) {
-      return state.userS;
-    },
-    getUserLoadStatS: function getUserLoadStatS(state) {
-      return state.userLoadStatS;
-    },
-    getUser: function getUser(state) {
-      return state.User;
-    },
-    getUserLoadStat: function getUserLoadStat(state) {
-      return state.userLoadStat;
-    },
-    getUserUpdateStat: function getUserUpdateStat(state) {
-      return state.userUpdateStat;
-    },
-    getUserUpdate: function getUserUpdate(state) {
-      return state.userUpdate;
-    },
-    getUserRules: function getUserRules(state) {
-      return state.userRules;
-    },
-    getUserOption: function getUserOption(state) {
-      return state.userOption;
-    }
-  }
-};
-
-/***/ }),
-/* 224 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(132);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-  getUserS: function getUserS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
-  },
-
-  getUserAll: function getUserAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user_all');
-  },
-
-  getUser: function getUser(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/' + id);
-  },
-
-  storeUser: function storeUser(form) {
-    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/store', form);
-  },
-
-  updateUser: function updateUser(id, form) {
-    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/update/' + id, form);
-  },
-
-  deleteUser: function deleteUser(id) {
-    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/' + id);
-  }
-});
 
 /***/ })
 /******/ ]);

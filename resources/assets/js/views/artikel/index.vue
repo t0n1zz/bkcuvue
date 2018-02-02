@@ -24,8 +24,7 @@
 
 					<!-- message -->
 					<message v-if="itemDataStat === 'fail'">
-						<p><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan: </p>
-						<br/>
+						<h4><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan: </h4>
 						<pre class="pre-scrollable">{{ itemData }}</pre>
 					</message>
 
@@ -114,7 +113,10 @@
 								</td>
 								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
 								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-								<td v-if="!columnData[6].hide" class="text-nowrap">{{props.item.created_at | publishDate}}</td>
+								<td v-if="!columnData[6].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[7].hide" class="text-nowrap">
+									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDate(props.item.updated_at)"></span>
+								</td>
 							</tr>
 						</template>
 					</data-viewer>
@@ -238,6 +240,13 @@
 						texcelType: 'string',
 						sort: true,
 						hide: false
+					},
+					{
+						title: 'Tgl. Ubah',
+						key: 'updated_at',
+						texcelType: 'string',
+						sort: true,
+						hide: false
 					}
 				],
 				modalShow: false,
@@ -327,7 +336,7 @@
 		},
 		filters: {
 			publishDate: function (value) {
-				return moment(value).format('DD MMMM YYYY');
+				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm:ss');
 			},
 			trimString: function (string) {
 				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +

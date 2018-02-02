@@ -76,10 +76,12 @@
                   <li :class="{'active' : params.per_page === 100}" v-if="itemData.total > 50">
                     <a @click.prevent="entriPage(100)">100 Entri</a>
                   </li>
-                  <li class="divider" v-if="itemData.total > 10"></li>
-                  <li v-if="itemData.total > 10">
-                    
+                  <li :class="{'active' : params.per_page === 200}" v-if="itemData.total > 100">
+                    <a @click.prevent="entriPage(200)">200 Entri</a>
                   </li>
+                  <li :class="{'active' : params.per_page === 400}" v-if="itemData.total > 200">
+                    <a @click.prevent="entriPage(400)">400 Entri</a>
+                  </li>  
                   <slot name="button-entri"></slot>
                 </ul>
               </div>

@@ -3,6 +3,7 @@ import UserAPI from '../../api/user.js';
 export const user = {
   state: {
     userData: [],
+    userDataLoad:'',
     userS: [],
     userLoadStatS: '',
     user: {},
@@ -14,6 +15,19 @@ export const user = {
   },
 
   actions: {
+    loadUserData({commit}){
+      commit('setUserDataLoadStat', 'loading');
+
+      UserAPI.getUserData( )
+        .then( function( response ){
+          commit('setUserData', response.data.model);
+          commit('setUserDataLoadStat', 'success');
+        })
+        .catch( error => {
+          commit('setUserData', error.response);
+          commit('setUserDataLoadStat', 'fail');
+        });
+    },
     loadUserS( { commit }, p ){
       commit('setUserLoadStatS', 'loading');
       
@@ -39,9 +53,6 @@ export const user = {
           commit('setUserS', error.response);
           commit('setUserLoadStatS', 'fail');
         });
-    },
-    loadUserData( {commit}, data){
-      commit('setUserData', data);
     },
     createUser( {commit} ){
       commit('setUserLoadStat', 'loading');
@@ -143,6 +154,9 @@ export const user = {
     setUserData ( state, data ){
       state.userData = data;
     },
+    setUserDataLoadStat( state, status ){
+      state.userDataLoad = status;
+    },
     setUserS ( state, UserS ){
       state.userS = UserS;
     },
@@ -172,6 +186,9 @@ export const user = {
   getters: {
     getUserData( state ){
       return state.userData;
+    },
+    getUserDataLoadStat( state ){
+      return state.userDataLoad;
     },
     getUserS( state ){
       return state.userS;

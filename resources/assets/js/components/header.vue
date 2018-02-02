@@ -96,14 +96,9 @@
 			corefunc.hover_function();
 		},
 		created() {
-			this.getUser();
+			this.$store.dispatch('loadUserData');
 		},
 		methods: {
-			getUser() {
-				axios.get('/api/v1/userData').then(response => {
-					this.$store.dispatch('loadUserData', response.data.model);
-				})
-			},
 			logout() {
 				axios.post('/logout').then(response => {
 					location.reload();
