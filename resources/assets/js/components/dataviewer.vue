@@ -3,12 +3,18 @@
     <div class="panel panel-flat">
       <div class="panel-body">
         <div class="row">
+
+          <!-- search -->
           <div class="col-md-12 pb-15">
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="icon-search4 text-muted"></i>
               </div>
+
+              <!-- input -->
               <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1">
+
+              <!-- filter -->
               <div class="input-group-btn">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
@@ -18,7 +24,7 @@
                   <ul class="dropdown-menu dropdown-menu-right">
                     <li class="dropdown-header">Pencarian berdasarkan</li>
                     <li class="divider"></li>
-                    <li v-for="column in filterData" v-if="column.key != null" :class="{'active' : params.search_column === column.key}">
+                    <li v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'active' : params.search_column === column.key}">
                       <a @click.prevent="searchColumnData(column.key,column.title,column.operator)">{{column.title}}</a>
                     </li>
                   </ul>
@@ -27,8 +33,12 @@
             </div>
           </div>
         </div>
+
+        <!-- button row -->
         <div class="row">
           <div class="col-md-12">
+
+            <!-- loading button row -->
             <div class="btn-toolbar" v-if="itemDataStat === 'loading'">
               <div class="btn-group pb-5" v-for="n in toolbarButton">
                 <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
@@ -36,8 +46,11 @@
                 </button>
               </div>
             </div>
+
+            <!-- success button row -->
             <div class="btn-toolbar" v-else-if="itemDataStat === 'success'">
-              <!-- row button -->
+
+              <!-- row view -->
               <div class="btn-group pb-5">
                 <button type="button" data-popup="tooltip" title="KOLOM" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
                   <i class="icon-table2"></i> &nbsp;
@@ -51,11 +64,13 @@
                   </li>
                   <slot name="button-kolom"></slot>
                   <li class="divider"></li>
-                  <li v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null">
+                  <li v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null && !column.disable">
                     <a @click.prevent="hideColumn(index)">{{column.title}}</a>
                   </li>
                 </ul>
               </div>
+
+              <!-- entri view -->
               <div class="btn-group pb-5">
                 <button type="button" data-popup="tooltip" title="ENTRI" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
                   <i class="icon-menu7"></i>&nbsp; {{params.per_page}} &nbsp;
@@ -85,6 +100,8 @@
                   <slot name="button-entri"></slot>
                 </ul>
               </div>
+
+              <!-- group view -->
               <div class="btn-group pb-5">
                 <button type="button" data-popup="tooltip" title="KELOMPOK" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
                   <i class="icon-grid6"></i>&nbsp; {{group.title}} &nbsp;
@@ -97,11 +114,13 @@
                     <a @click.prevent="unGroupRow">Tidak dikelompokkan</a>
                   </li>
                   <li class="divider"></li>
-                  <li v-for="(column,index) in columnData" v-if="column.groupKey != null" :class="{'active' : column.groupKey === group.key}">
+                  <li v-for="(column,index) in columnData" v-if="column.groupKey != null && !column.disable" :class="{'active' : column.groupKey === group.key}">
                     <a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a>
                   </li>
                 </ul>
               </div>
+
+              <!-- excel download -->
               <div class="btn-group pb-5">
                 <button type="button" data-popup="tooltip" title="DOWNLOAD EXCEL" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
                   <i class="icon-file-excel"></i>&nbsp;
@@ -118,17 +137,22 @@
                   </li>
                 </ul>
               </div>
+
               <!-- slot button -->
               <slot name="button"></slot>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- table -->
       <div class="table-responsive">
         <table class="table table-striped">
+
+          <!-- header -->
           <thead class="bg-primary">
             <tr class="text-nowrap">
-              <th v-for="item in columnData" v-if="!item.hide">
+              <th v-for="item in columnData" v-if="!item.hide && !item.disable">
                 <div @click="sort(item.key)" v-if="item.sort" class="cursor-pointer">
                   <span>{{item.title}}</span>
                   <span v-if="params.column === item.key">
@@ -143,6 +167,8 @@
               </th>
             </tr>
           </thead>
+
+          <!-- loading body -->
           <tbody v-if="itemDataStat === 'loading'">
             <tr>
               <td :colspan="columnData.length">
@@ -154,6 +180,8 @@
               </td>
             </tr>
           </tbody>
+
+          <!-- data body -->
           <tbody v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
             <tr class="active border-double" v-if="group.show">
               <td :colspan="columnData.length">
@@ -162,6 +190,8 @@
             </tr>
             <slot v-for="item in items" :item="item"></slot>
           </tbody>
+
+          <!-- error body -->
           <tbody v-else-if="itemDataStat === 3">
             <tr>
               <td :colspan="columnData.length">
@@ -171,11 +201,19 @@
           </tbody>
         </table>
       </div>
+
+      <!-- footer info -->
       <div class="panel-footer has-visible-elements">
+
+        <!-- loading footer info -->
         <div class="heading-elements visible-elements" v-if="itemDataStat === 'loading'">
+
+          <!-- total entri note -->
           <span class="heading-text text-semibold">Menampilkan
             <i class="icon-spinner2 spinner"></i> -
             <i class="icon-spinner2 spinner"></i> entri dari {{itemData.total}} entri</span>
+
+          <!-- pagination -->
           <ul class="pagination pagination-flat pagination-xs pull-right">
             <li class="disabled">
               <a>
@@ -194,8 +232,14 @@
             </li>
           </ul>
         </div>
+
+        <!-- success footer info -->
         <div class="heading-elements visible-elements" v-else-if="itemDataStat === 'success'">
+
+          <!-- total entri note -->
           <span class="heading-text text-semibold">Menampilkan {{itemData.from}} - {{itemData.to}} entri dari {{itemData.total}} entri</span>
+
+          <!-- pagination -->
           <ul class="pagination pagination-flat pagination-xs pull-right">
             <li :class="{'disabled' : !itemData.prev_page_url}">
               <a @click.prevent="prev">
@@ -288,7 +332,7 @@
       this.params.search_operator = this.filterData[0].operator;
       this.searchColumn = this.filterData[0].title;
 
-      this.fetch();
+      // this.fetch();
     },
     watch: {
       searchQuery1: function (search_query) {
@@ -304,20 +348,19 @@
       fetch(){
         this.$emit('fetch');
       },
-
       // excel data
       field_excel() {
         var vm = this;
         vm.excel.fields = {};
         vm.columnData.forEach(function (column) {
-          if (!column.hide) {
+          if (!column.hide && !column.disable) {
             vm.excel.fields[column.title] = column.excelType;
           }
         });
         vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
           var object = {};
           vm.columnData.forEach(function (key) {
-            if (!key.hide) {
+            if (!key.hide && !key.disable) {
               if (key.groupKey) {
                 object[key.title] = _.get(item, key.groupKey);
               } else {
@@ -338,12 +381,14 @@
         },
         500),
       searchColumnData(value, name, operator = 'like') {
-        if (this.params.search_column != value) {
-          this.params.search_column = value;
-          this.params.search_operator = operator;
-          this.searchColumn = name;
-          this.params.page = 1;
-          this.fetch();
+        if (this.params.search_column !== value) {
+            this.params.search_column = value;
+            this.searchColumn = name;
+          if(this.params.search_query_1 !== ''){
+            this.params.search_operator = operator;
+            this.params.page = 1;
+            this.fetch();
+          }
         }
       },
 

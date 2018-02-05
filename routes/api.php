@@ -10,6 +10,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //artikel
     Route::get('/artikel', 'ArtikelController@index');
+    Route::get('/artikel/indexCU/{id}', 'ArtikelController@indexCU');
     Route::get('/artikel/create', 'ArtikelController@create');
     Route::get('/artikel/edit/{id}', 'ArtikelController@edit');
     Route::post('/artikel/store', 'ArtikelController@store');

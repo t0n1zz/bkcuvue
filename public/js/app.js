@@ -31460,6 +31460,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31474,14 +31494,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a
 	},
-	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_0__assets_core_app_js__["a" /* default */].core_function();
-	},
 	data: function data() {
 		return {
 			title: 'Artikel',
 			titleDesc: 'Mengelola data artikel',
 			titleIcon: 'icon-magazine',
+			id_cu: '',
 			source: '',
 			selectedItem: [],
 			params: {
@@ -31497,70 +31515,95 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			filterData: [{
 				title: 'Judul',
 				key: 'nama',
-				operator: 'like'
+				operator: 'like',
+				disable: false
 			}, {
 				title: 'Kategori',
 				key: 'artikel_kategori.nama',
-				operator: 'like'
+				operator: 'like',
+				disable: false
 			}, {
 				title: 'Penulis',
-				key: 'penulis',
-				operator: 'like'
+				key: 'artikel_penulis.nama',
+				operator: 'like',
+				disable: false
+			}, {
+				title: 'CU',
+				key: 'c_u.nama',
+				operator: 'like',
+				disable: false
 			}, {
 				title: 'Tgl. Tulis',
 				key: 'created_at',
-				operator: 'between'
+				operator: 'between',
+				disable: false
 			}],
 			columnData: [{
 				title: 'Foto',
 				key: 'gambar',
 				excelType: 'string',
 				sort: false,
-				hide: false
+				hide: false,
+				disable: false
 			}, {
 				title: 'Judul',
 				key: 'nama',
 				excelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
 			}, {
 				title: 'Kategori',
 				key: 'id_artikel_kategori',
 				groupKey: 'artikel__kategori.nama',
 				excelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
 			}, {
 				title: 'Penulis',
 				key: 'id_artikel_penulis',
 				groupKey: 'artikel__penulis.nama',
 				excelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
+			}, {
+				title: 'CU',
+				key: 'id_cu',
+				groupKey: 'c_u.nama',
+				excelType: 'string',
+				sort: true,
+				hide: false,
+				disable: false
 			}, {
 				title: 'Terbitkan',
 				key: 'terbitkan',
 				excelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
 			}, {
 				title: 'Utamakan',
 				key: 'utamakan',
 				excelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
 			}, {
 				title: 'Tgl. Tulis',
 				key: 'created_at',
 				texcelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
 			}, {
 				title: 'Tgl. Ubah',
 				key: 'updated_at',
 				texcelType: 'string',
 				sort: true,
-				hide: false
+				hide: false,
+				disable: false
 			}],
 			modalShow: false,
 			modalState: '',
@@ -31568,8 +31611,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			modalButton: ''
 		};
 	},
+	mounted: function mounted() {
+		__WEBPACK_IMPORTED_MODULE_0__assets_core_app_js__["a" /* default */].core_function();
+	},
+	updated: function updated() {
+		$('.bootstrap-select').selectpicker('refresh');
+	},
+	created: function created() {
+		if (this.userData.id_pus !== undefined) {
+			this.$store.dispatch('loadCUPus', this.userData.id_pus);
+		}
+	},
 
 	watch: {
+		userDataStat: function userDataStat(value) {
+			if (value === "success" && this.userData.id_pus !== undefined) {
+				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+			}
+		},
+		modelCULoadStat: function modelCULoadStat(value) {
+			if (value === "success") {
+				this.id_cu = this.userData.id_cu;
+				if (this.id_cu !== '') {
+					this.fetch();
+				}
+			}
+		},
 		updateStat: function updateStat(value) {
 			this.modalState = value;
 			this.modalButton = 'Ok';
@@ -31584,7 +31651,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		fetch: function fetch() {
-			this.$store.dispatch('loadArtikelS', this.params);
+			if (this.modelCULoadStat === 'success') {
+				if (this.id_cu === 'semua') {
+					this.$store.dispatch('loadArtikelS', this.params);
+					this.disableColumnCU(false);
+				} else {
+					if (this.id_cu !== undefined) {
+						this.$store.dispatch('loadArtikelCUS', [this.params, this.id_cu]);
+					}
+					this.disableColumnCU(true);
+				}
+			}
+		},
+		changeCU: function changeCU(id) {
+			this.id_cu = id;
+			this.params.per_page = 10;
+			this.params.page = 1;
+
+			this.fetch();
+		},
+		disableColumnCU: function disableColumnCU(status) {
+			this.columnData[4].disable = status;
+			this.filterData[3].disable = status;
 		},
 		selectedRow: function selectedRow(item) {
 			this.selectedItem = item;
@@ -31635,6 +31723,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	},
 	computed: {
+		userData: function userData() {
+			return this.$store.getters.getUserData;
+		},
+		userDataStat: function userDataStat() {
+			return this.$store.getters.getUserDataLoadStat;
+		},
+		modelCU: function modelCU() {
+			return this.$store.getters.getCUS;
+		},
+		modelCULoadStat: function modelCULoadStat() {
+			return this.$store.getters.getCULoadStatS;
+		},
 		itemData: function itemData() {
 			return this.$store.getters.getArtikelS;
 		},
@@ -32228,6 +32328,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32277,7 +32421,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.params.search_operator = this.filterData[0].operator;
     this.searchColumn = this.filterData[0].title;
 
-    this.fetch();
+    // this.fetch();
   },
 
   watch: {
@@ -32295,20 +32439,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('fetch');
     },
 
-
     // excel data
     field_excel: function field_excel() {
       var vm = this;
       vm.excel.fields = {};
       vm.columnData.forEach(function (column) {
-        if (!column.hide) {
+        if (!column.hide && !column.disable) {
           vm.excel.fields[column.title] = column.excelType;
         }
       });
       vm.excel.data = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.chain(vm.itemData.data).map(function (item) {
         var object = {};
         vm.columnData.forEach(function (key) {
-          if (!key.hide) {
+          if (!key.hide && !key.disable) {
             if (key.groupKey) {
               object[key.title] = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.get(item, key.groupKey);
             } else {
@@ -32330,12 +32473,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     searchColumnData: function searchColumnData(value, name) {
       var operator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'like';
 
-      if (this.params.search_column != value) {
+      if (this.params.search_column !== value) {
         this.params.search_column = value;
-        this.params.search_operator = operator;
         this.searchColumn = name;
-        this.params.page = 1;
-        this.fetch();
+        if (this.params.search_query_1 !== '') {
+          this.params.search_operator = operator;
+          this.params.page = 1;
+          this.fetch();
+        }
       }
     },
 
@@ -51867,7 +52012,7 @@ var render = function() {
                         _c("li", { staticClass: "divider" }),
                         _vm._v(" "),
                         _vm._l(_vm.filterData, function(column) {
-                          return column.key != null
+                          return column.key != null && !column.disable
                             ? _c(
                                 "li",
                                 {
@@ -51956,7 +52101,7 @@ var render = function() {
                               _c("li", { staticClass: "divider" }),
                               _vm._v(" "),
                               _vm._l(_vm.columnData, function(column, index) {
-                                return column.hide != null
+                                return column.hide != null && !column.disable
                                   ? _c(
                                       "li",
                                       { class: { active: !column.hide } },
@@ -52220,7 +52365,8 @@ var render = function() {
                               _c("li", { staticClass: "divider" }),
                               _vm._v(" "),
                               _vm._l(_vm.columnData, function(column, index) {
-                                return column.groupKey != null
+                                return column.groupKey != null &&
+                                  !column.disable
                                   ? _c(
                                       "li",
                                       {
@@ -52321,7 +52467,7 @@ var render = function() {
                   "tr",
                   { staticClass: "text-nowrap" },
                   _vm._l(_vm.columnData, function(item) {
-                    return !item.hide
+                    return !item.hide && !item.disable
                       ? _c("th", [
                           item.sort
                             ? _c(
@@ -52769,6 +52915,85 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
+              this.userData.id_cu === 0
+                ? _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.id_cu,
+                                  expression: "id_cu"
+                                }
+                              ],
+                              staticClass: "bootstrap-select",
+                              attrs: { name: "id_cu", "data-width": "100%" },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.id_cu = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function($event) {
+                                    _vm.changeCU($event.target.value)
+                                  }
+                                ]
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { disabled: "", value: "" } },
+                                [_vm._v("Silahkan pilih CU")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "semua" } }, [
+                                _vm._v("Semua")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "0" } }, [
+                                _vm.userData.pus
+                                  ? _c("span", [
+                                      _vm._v(_vm._s(_vm.userData.pus.nama))
+                                    ])
+                                  : _c("span", [_vm._v("Puskopdit")])
+                              ]),
+                              _vm._v(" "),
+                              _c("option", {
+                                attrs: { "data-divider": "true" }
+                              }),
+                              _vm._v(" "),
+                              _vm._l(_vm.modelCU, function(cu) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: cu.id } },
+                                  [_vm._v(_vm._s(cu.nama))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "data-viewer",
                 {
@@ -52824,10 +53049,13 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[1].hide
-                                ? _c("td", [_vm._v(_vm._s(props.item.nama))])
+                                ? _c("td", { staticClass: "warptext" }, [
+                                    _vm._v(_vm._s(props.item.nama))
+                                  ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[2].hide
+                              !_vm.columnData[2].hide &&
+                              props.item.artikel__kategori
                                 ? _c("td", [
                                     props.item.artikel__kategori !== null
                                       ? _c("span", [
@@ -52841,7 +53069,8 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[3].hide
+                              !_vm.columnData[3].hide &&
+                              props.item.artikel__penulis
                                 ? _c("td", [
                                     props.item.artikel__penulis !== null
                                       ? _c("span", [
@@ -52855,7 +53084,17 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[4].hide
+                              !_vm.columnData[4].hide && props.item.c_u
+                                ? _c("td", [
+                                    props.item.c_u !== null
+                                      ? _c("span", [
+                                          _vm._v(_vm._s(props.item.c_u.nama))
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.columnData[5].hide
                                 ? _c("td", {
                                     domProps: {
                                       innerHTML: _vm._s(
@@ -52867,7 +53106,7 @@ var render = function() {
                                   })
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[5].hide
+                              !_vm.columnData[6].hide
                                 ? _c("td", {
                                     domProps: {
                                       innerHTML: _vm._s(
@@ -52879,7 +53118,7 @@ var render = function() {
                                   })
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[6].hide
+                              !_vm.columnData[7].hide
                                 ? _c("td", {
                                     staticClass: "text-nowrap",
                                     domProps: {
@@ -52892,7 +53131,7 @@ var render = function() {
                                   })
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[7].hide
+                              !_vm.columnData[8].hide
                                 ? _c("td", { staticClass: "text-nowrap" }, [
                                     props.item.created_at !==
                                     props.item.updated_at
@@ -57027,8 +57266,25 @@ var artikel = {
         commit('setArtikelLoadStatS', 'fail');
       });
     },
-    loadArtikel: function loadArtikel(_ref2, id) {
+    loadArtikelCUS: function loadArtikelCUS(_ref2, _ref3) {
       var commit = _ref2.commit;
+
+      var _ref4 = _slicedToArray(_ref3, 2),
+          p = _ref4[0],
+          id = _ref4[1];
+
+      commit('setArtikelLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_artikel_js__["a" /* default */].getArtikelCUS(p, id).then(function (response) {
+        commit('setArtikelS', response.data.model);
+        commit('setArtikelLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setArtikelS', error.response);
+        commit('setArtikelLoadStatS', 'fail');
+      });
+    },
+    loadArtikel: function loadArtikel(_ref5, id) {
+      var commit = _ref5.commit;
 
       commit('setArtikelLoadStat', 'loading');
 
@@ -57040,8 +57296,8 @@ var artikel = {
         commit('setArtikelLoadStatS', 'fail');
       });
     },
-    createArtikel: function createArtikel(_ref3) {
-      var commit = _ref3.commit;
+    createArtikel: function createArtikel(_ref6) {
+      var commit = _ref6.commit;
 
       commit('setArtikelLoadStat', 'loading');
 
@@ -57057,12 +57313,12 @@ var artikel = {
         commit('setArtikelLoadStat', 'fail');
       });
     },
-    storeArtikel: function storeArtikel(_ref4, form) {
+    storeArtikel: function storeArtikel(_ref7, form) {
       var _this = this;
 
-      var commit = _ref4.commit,
-          state = _ref4.state,
-          dispatch = _ref4.dispatch;
+      var commit = _ref7.commit,
+          state = _ref7.state,
+          dispatch = _ref7.dispatch;
 
       commit('setArtikelUpdateStat', 'loading');
 
@@ -57083,8 +57339,8 @@ var artikel = {
         commit('setArtikelUpdateStat', 'fail');
       });
     },
-    editArtikel: function editArtikel(_ref5, id) {
-      var commit = _ref5.commit;
+    editArtikel: function editArtikel(_ref8, id) {
+      var commit = _ref8.commit;
 
       commit('setArtikelLoadStat', 'loading');
 
@@ -57100,16 +57356,16 @@ var artikel = {
         commit('setArtikelLoadStat', 'fail');
       });
     },
-    updateArtikel: function updateArtikel(_ref6, _ref7) {
+    updateArtikel: function updateArtikel(_ref9, _ref10) {
       var _this2 = this;
 
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
+      var commit = _ref9.commit,
+          state = _ref9.state,
+          dispatch = _ref9.dispatch;
 
-      var _ref8 = _slicedToArray(_ref7, 2),
-          id = _ref8[0],
-          form = _ref8[1];
+      var _ref11 = _slicedToArray(_ref10, 2),
+          id = _ref11[0],
+          form = _ref11[1];
 
       commit('setArtikelUpdateStat', form);
 
@@ -57130,12 +57386,12 @@ var artikel = {
         commit('setArtikelUpdateStat', 'fail');
       });
     },
-    updateArtikelTerbitkan: function updateArtikelTerbitkan(_ref9, id) {
+    updateArtikelTerbitkan: function updateArtikelTerbitkan(_ref12, id) {
       var _this3 = this;
 
-      var commit = _ref9.commit,
-          state = _ref9.state,
-          dispatch = _ref9.dispatch;
+      var commit = _ref12.commit,
+          state = _ref12.state,
+          dispatch = _ref12.dispatch;
 
       commit('setArtikelUpdateStat', 'loading');
 
@@ -57150,10 +57406,10 @@ var artikel = {
         }
       });
     },
-    updateArtikelUtamakan: function updateArtikelUtamakan(_ref10, id) {
-      var commit = _ref10.commit,
-          state = _ref10.state,
-          dispatch = _ref10.dispatch;
+    updateArtikelUtamakan: function updateArtikelUtamakan(_ref13, id) {
+      var commit = _ref13.commit,
+          state = _ref13.state,
+          dispatch = _ref13.dispatch;
 
       commit('setArtikelUpdateStat', 'loading');
 
@@ -57165,10 +57421,10 @@ var artikel = {
         commit('setArtikelLoadStatS', 'fail');
       });
     },
-    deleteArtikel: function deleteArtikel(_ref11, id) {
-      var commit = _ref11.commit,
-          state = _ref11.state,
-          dispatch = _ref11.dispatch;
+    deleteArtikel: function deleteArtikel(_ref14, id) {
+      var commit = _ref14.commit,
+          state = _ref14.state,
+          dispatch = _ref14.dispatch;
 
       commit('setArtikelUpdateStat', 'loading');
 
@@ -57180,8 +57436,8 @@ var artikel = {
         commit('setArtikelLoadStatS', 'fail');
       });
     },
-    resetArtikelUpdateStat: function resetArtikelUpdateStat(_ref12) {
-      var commit = _ref12.commit;
+    resetArtikelUpdateStat: function resetArtikelUpdateStat(_ref15) {
+      var commit = _ref15.commit;
 
       commit('setArtikelUpdateStat', '');
     }
@@ -57254,6 +57510,10 @@ var artikel = {
 
   getArtikelS: function getArtikelS(p) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getArtikelCUS: function getArtikelCUS(p, id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/indexCU/' + id + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
   },
 
   getArtikel: function getArtikel(id) {

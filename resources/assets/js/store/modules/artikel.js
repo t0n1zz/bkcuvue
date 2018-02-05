@@ -26,6 +26,19 @@ export const artikel = {
           commit('setArtikelLoadStatS', 'fail');
         });
     },
+    loadArtikelCUS( { commit }, [p, id] ){
+      commit('setArtikelLoadStatS', 'loading');
+      
+      ArtikelAPI.getArtikelCUS( p, id )
+        .then( function( response ){
+          commit('setArtikelS', response.data.model);
+          commit('setArtikelLoadStatS', 'success');
+        })
+        .catch( error => {
+          commit('setArtikelS', error.response);
+          commit('setArtikelLoadStatS', 'fail');
+        });
+    },
     loadArtikel( {commit}, id ){
       commit('setArtikelLoadStat', 'loading');
       

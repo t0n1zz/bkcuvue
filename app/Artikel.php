@@ -50,4 +50,9 @@ class Artikel extends Model {
     {
         return $this->belongsTo('App\Artikel_Penulis','id_artikel_penulis','id')->select('id','nama');
     }
+
+    public function CU()
+    {
+        return $this->belongsTo('App\CU','id_cu','id')->select('id','nama');
+    }
 }

@@ -13,7 +13,17 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis')->select('id','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+
+    	return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCU($id)
+	{
+    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
 
     	return response()
 			->json([

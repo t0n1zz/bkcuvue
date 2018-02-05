@@ -28,6 +28,23 @@
 						<pre class="pre-scrollable">{{ itemData }}</pre>
 					</message>
 
+					<!-- cu -->
+					<div class="panel panel-flat" v-if="this.userData.id_cu === 0">
+						<div class="panel-body">  
+							<div class="row">
+								<div class="col-md-12">
+									<select class="bootstrap-select" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)">
+										<option disabled value="">Silahkan pilih CU</option>
+										<option value="semua">Semua</option>
+										<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
+										<option data-divider="true"></option>
+										<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<!-- main panel -->
 					<data-viewer :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 					:params="params"
@@ -104,17 +121,20 @@
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[1].hide">{{props.item.nama}}</td>
-								<td v-if="!columnData[2].hide">
+								<td v-if="!columnData[1].hide" class="warptext">{{props.item.nama}}</td>
+								<td v-if="!columnData[2].hide && props.item.artikel__kategori">
 									<span v-if="props.item.artikel__kategori !== null">{{props.item.artikel__kategori.nama}}</span>
 								</td>
-								<td v-if="!columnData[3].hide">
+								<td v-if="!columnData[3].hide && props.item.artikel__penulis">
 									<span v-if="props.item.artikel__penulis !== null">{{props.item.artikel__penulis.nama}}</span>
 								</td>
-								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-								<td v-if="!columnData[6].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
-								<td v-if="!columnData[7].hide" class="text-nowrap">
+								<td v-if="!columnData[4].hide && props.item.c_u">
+									<span v-if="props.item.c_u !== null">{{props.item.c_u.nama}}</span>
+								</td>
+								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
+								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
+								<td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[8].hide" class="text-nowrap">
 									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDate(props.item.updated_at)"></span>
 								</td>
 							</tr>
@@ -148,14 +168,12 @@
 			appModal,
 			message
 		},
-		mounted() {
-			corefunc.core_function();
-		},
 		data() {
 			return {
 				title: 'Artikel',
 				titleDesc: 'Mengelola data artikel',
 				titleIcon: 'icon-magazine',
+				id_cu: '',
 				source: '',
 				selectedItem: [],
 				params: {
@@ -171,22 +189,32 @@
 				filterData: [{
 						title: 'Judul',
 						key: 'nama',
-						operator: 'like'
+						operator: 'like',
+						disable: false
 					},
 					{
 						title: 'Kategori',
 						key: 'artikel_kategori.nama',
-						operator: 'like'
+						operator: 'like',
+						disable: false
 					},
 					{
 						title: 'Penulis',
-						key: 'penulis',
-						operator: 'like'
+						key: 'artikel_penulis.nama',
+						operator: 'like',
+						disable: false
+					},
+					{
+						title: 'CU',
+						key: 'c_u.nama',
+						operator: 'like',
+						disable: false
 					},
 					{
 						title: 'Tgl. Tulis',
 						key: 'created_at',
-						operator: 'between'
+						operator: 'between',
+						disable: false
 					}
 				],
 				columnData: [
@@ -195,14 +223,16 @@
 						key: 'gambar',
 						excelType: 'string',
 						sort: false,
-						hide: false
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Judul',
 						key: 'nama',
 						excelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Kategori',
@@ -210,7 +240,8 @@
 						groupKey: 'artikel__kategori.nama',
 						excelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Penulis',
@@ -218,35 +249,49 @@
 						groupKey: 'artikel__penulis.nama',
 						excelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
+					},
+					{
+						title: 'CU',
+						key: 'id_cu',
+						groupKey: 'c_u.nama',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Terbitkan',
 						key: 'terbitkan',
 						excelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Utamakan',
 						key: 'utamakan',
 						excelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Tgl. Tulis',
 						key: 'created_at',
 						texcelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
 					},
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
 						texcelType: 'string',
 						sort: true,
-						hide: false
+						hide: false,
+						disable: false
 					}
 				],
 				modalShow: false,
@@ -255,7 +300,31 @@
 				modalButton: ''
 			}
 		},
+		mounted() {
+			corefunc.core_function();
+		},
+		updated() {
+			$('.bootstrap-select').selectpicker('refresh');
+		},
+		created(){
+			if(this.userData.id_pus !== undefined){
+				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+			}	
+		},
 		watch: {
+			userDataStat(value){
+				if(value === "success" && this.userData.id_pus !== undefined){
+						this.$store.dispatch('loadCUPus',this.userData.id_pus);
+				}
+			},
+			modelCULoadStat(value){
+				if(value === "success"){
+					this.id_cu = this.userData.id_cu;
+					if(this.id_cu !== ''){
+						this.fetch();
+					}
+				}
+			},
       updateStat(value) {
 				this.modalState = value;
 				this.modalButton = 'Ok';
@@ -270,7 +339,28 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch('loadArtikelS', this.params);
+				if(this.modelCULoadStat === 'success'){
+					if(this.id_cu === 'semua'){
+						this.$store.dispatch('loadArtikelS', this.params);
+						this.disableColumnCU(false);
+					}else{
+						if(this.id_cu !== undefined){
+							this.$store.dispatch('loadArtikelCUS', [this.params,this.id_cu]);
+						}
+						this.disableColumnCU(true);
+					}
+				}
+			},
+			changeCU(id){
+				this.id_cu = id;
+				this.params.per_page = 10;
+				this.params.page = 1;
+
+				this.fetch();
+			},
+			disableColumnCU(status){
+				this.columnData[4].disable = status;
+				this.filterData[3].disable = status;
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -321,6 +411,18 @@
 			}
 		},
 		computed: {
+			userData(){
+				return this.$store.getters.getUserData;
+			},
+			userDataStat(){
+				return this.$store.getters.getUserDataLoadStat;
+			},
+			modelCU() {
+				return this.$store.getters.getCUS;
+			},
+			modelCULoadStat() {
+				return this.$store.getters.getCULoadStatS;
+			},
 			itemData(){
 				return this.$store.getters.getArtikelS;
 			},
