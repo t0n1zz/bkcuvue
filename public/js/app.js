@@ -27413,6 +27413,14 @@ router.beforeEach(function (to, from, next) {
     }
 });
 
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.directive('tooltip', function (el, binding) {
+    $(el).tooltip({
+        title: binding.value,
+        placement: binding.arg,
+        trigger: 'hover'
+    });
+});
+
 var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
@@ -31474,12 +31482,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -31619,14 +31621,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	created: function created() {
 		if (this.userData.id_pus !== undefined) {
-			this.$store.dispatch('loadCUPus', this.userData.id_pus);
+			this.fetchCU();
 		}
 	},
 
 	watch: {
 		userDataStat: function userDataStat(value) {
 			if (value === "success" && this.userData.id_pus !== undefined) {
-				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+				this.fetchCU();
 			}
 		},
 		modelCULoadStat: function modelCULoadStat(value) {
@@ -31662,6 +31664,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					this.disableColumnCU(true);
 				}
 			}
+		},
+		fetchCU: function fetchCU() {
+			this.$store.dispatch('loadCUPus', this.userData.id_pus);
 		},
 		changeCU: function changeCU(id) {
 			this.id_cu = id;
@@ -32372,6 +32377,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32380,7 +32405,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['source', 'columnData', 'filterData', 'itemData', 'itemDataStat', 'toolbarButton', 'params'],
+  props: ['title', 'source', 'columnData', 'filterData', 'itemData', 'itemDataStat', 'toolbarButton', 'params'],
   components: {
     jsonExcel: __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default.a,
     appModal: __WEBPACK_IMPORTED_MODULE_4__components_modal___default.a
@@ -32405,6 +32430,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         key: '',
         title: ''
       },
+      excelLoadStat: '',
       isSearch: false,
       isExcelAll: false,
       modalShow: false,
@@ -32425,6 +32451,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   watch: {
+    itemDataStat: function itemDataStat(value) {
+      this.excelLoadStat = value;
+    },
+
     searchQuery1: function searchQuery1(search_query) {
       this.params.search_query_1 = search_query;
       this.searchData();
@@ -32584,14 +32614,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // modal
     modalExcelOpen: function modalExcelOpen() {
       this.modalShow = true;
-      this.modalState = 'confirm-tutup';
-      this.modalTitle = 'Yakin akan mendownload semua data ke excel?';
-      this.modalContent = 'Download akan lebih lama tergantung dari jumlah data';
-      this.modalButton = 'Ya, download semua';
+      this.modalState = "normal1";
+      this.excelLoadStat = '';
     },
-    modalConfirmOk: function modalConfirmOk() {
+    modalExcelOk: function modalExcelOk() {
       this.isExcelAll = true;
-      this.entriPage(this.itemData.total);
+      if (this.params.per_page != this.itemData.total) {
+        this.entriPage(this.itemData.total);
+      } else {
+        this.fetch();
+      }
     },
     modalTutup: function modalTutup() {
       this.modalShow = false;
@@ -51402,6 +51434,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -51690,13 +51738,7 @@ var render = function() {
                                                 staticClass: "pre-scrollable",
                                                 attrs: { id: "stack" }
                                               },
-                                              [
-                                                _vm._v(
-                                                  ">" +
-                                                    _vm._s(_vm.content) +
-                                                    "<"
-                                                )
-                                              ]
+                                              [_vm._v(_vm._s(_vm.content))]
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
@@ -51952,6 +51994,60 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "panel panel-flat" }, [
+        _c("div", { staticClass: "panel-heading has-visible-elements" }, [
+          _c("h5", { staticClass: "panel-title" }, [
+            _vm._v("Tabel " + _vm._s(_vm.title))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "heading-elements visible-elements" }, [
+            _c("ul", { staticClass: "icons-list" }, [
+              _c("li", [
+                _c("a", {
+                  directives: [
+                    {
+                      name: "tooltip",
+                      rawName: "v-tooltip:top",
+                      value: "Collapse",
+                      expression: "'Collapse'",
+                      arg: "top"
+                    }
+                  ],
+                  attrs: { "data-action": "collapse" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "tooltip",
+                        rawName: "v-tooltip:top",
+                        value: "Reload",
+                        expression: "'Reload'",
+                        arg: "top"
+                      }
+                    ],
+                    attrs: { disabled: _vm.itemDataStat === "loading" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetch()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "icon-sync",
+                      class: { spinner: _vm.itemDataStat === "loading" }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "panel-body" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12 pb-15" }, [
@@ -51970,7 +52066,8 @@ var render = function() {
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
-                    placeholder: "Masukkan kata kunci pencarian"
+                    placeholder: "Masukkan kata kunci pencarian",
+                    disabled: _vm.itemDataStat === "loading"
                   },
                   domProps: { value: _vm.searchQuery1 },
                   on: {
@@ -51988,8 +52085,21 @@ var render = function() {
                     _c(
                       "button",
                       {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip:top",
+                            value: "Atur Kategori Pencarian",
+                            expression: "'Atur Kategori Pencarian'",
+                            arg: "top"
+                          }
+                        ],
                         staticClass: "btn btn-default btn-icon dropdown-toggle",
-                        attrs: { type: "button", "data-toggle": "dropdown" }
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "dropdown",
+                          disabled: _vm.itemDataStat === "loading"
+                        }
                       },
                       [
                         _vm._v(
@@ -52053,118 +52163,333 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
-              _vm.itemDataStat === "loading"
-                ? _c(
-                    "div",
-                    { staticClass: "btn-toolbar" },
-                    _vm._l(_vm.toolbarButton, function(n) {
-                      return _c("div", { staticClass: "btn-group pb-5" }, [
-                        _vm._m(1, true)
-                      ])
-                    })
-                  )
-                : _vm.itemDataStat === "success"
-                  ? _c(
-                      "div",
-                      { staticClass: "btn-toolbar" },
+              _c(
+                "div",
+                { staticClass: "btn-toolbar" },
+                [
+                  _c("div", { staticClass: "btn-group pb-5" }, [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip:top",
+                            value: "Atur Kolom Yang Ingin Ditampilkan",
+                            expression: "'Atur Kolom Yang Ingin Ditampilkan'",
+                            arg: "top"
+                          }
+                        ],
+                        staticClass: "btn btn-default btn-icon dropdown-toggle",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "dropdown",
+                          disabled: _vm.itemDataStat === "loading"
+                        }
+                      },
                       [
-                        _c("div", { staticClass: "btn-group pb-5" }, [
-                          _vm._m(2),
-                          _vm._v(" "),
+                        _c("i", { staticClass: "icon-table2" }),
+                        _vm._v("  \n                "),
+                        _c("span", { staticClass: "caret" })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "dropdown-menu dropdown-content" },
+                      [
+                        _c("li", { staticClass: "dropdown-header" }, [
+                          _vm._v("Kolom yang ditampilkan")
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "divider" }),
+                        _vm._v(" "),
+                        _c("li", [
                           _c(
-                            "ul",
-                            { staticClass: "dropdown-menu dropdown-content" },
-                            [
-                              _c("li", { staticClass: "dropdown-header" }, [
-                                _vm._v("Kolom yang ditampilkan")
-                              ]),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "divider" }),
-                              _vm._v(" "),
-                              _c("li", [
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.showAllColumn($event)
+                                }
+                              }
+                            },
+                            [_vm._v("Semua Kolom")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._t("button-kolom"),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "divider" }),
+                        _vm._v(" "),
+                        _vm._l(_vm.columnData, function(column, index) {
+                          return column.hide != null && !column.disable
+                            ? _c("li", { class: { active: !column.hide } }, [
                                 _c(
                                   "a",
                                   {
                                     on: {
                                       click: function($event) {
                                         $event.preventDefault()
-                                        _vm.showAllColumn($event)
+                                        _vm.hideColumn(index)
                                       }
                                     }
                                   },
-                                  [_vm._v("Semua Kolom")]
+                                  [_vm._v(_vm._s(column.title))]
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _vm._t("button-kolom"),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "divider" }),
-                              _vm._v(" "),
-                              _vm._l(_vm.columnData, function(column, index) {
-                                return column.hide != null && !column.disable
-                                  ? _c(
-                                      "li",
-                                      { class: { active: !column.hide } },
-                                      [
-                                        _c(
-                                          "a",
-                                          {
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                _vm.hideColumn(index)
-                                              }
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(column.title))]
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e()
-                              })
-                            ],
-                            2
+                              ])
+                            : _vm._e()
+                        })
+                      ],
+                      2
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "btn-group pb-5" }, [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip:top",
+                            value: "Atur Jumlah Entri Yang Ingin Ditampilkan",
+                            expression:
+                              "'Atur Jumlah Entri Yang Ingin Ditampilkan'",
+                            arg: "top"
+                          }
+                        ],
+                        staticClass: "btn btn-default btn-icon dropdown-toggle",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "dropdown",
+                          disabled: _vm.itemDataStat === "loading"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-menu7" }),
+                        _vm._v(
+                          "  " +
+                            _vm._s(_vm.params.per_page) +
+                            "  \n                "
+                        ),
+                        _c("span", { staticClass: "caret" })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "dropdown-menu" },
+                      [
+                        _c("li", { staticClass: "dropdown-header" }, [
+                          _vm._v("Entri yang ditampilkan")
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "divider" }),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { class: { active: _vm.params.per_page === 10 } },
+                          [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.entriPage(10)
+                                  }
+                                }
+                              },
+                              [_vm._v("10 Entri")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.itemData.total > 10
+                          ? _c(
+                              "li",
+                              { class: { active: _vm.params.per_page === 25 } },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.entriPage(25)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("25 Entri")]
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.itemData.total > 25
+                          ? _c(
+                              "li",
+                              { class: { active: _vm.params.per_page === 50 } },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.entriPage(50)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("50 Entri")]
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.itemData.total > 50
+                          ? _c(
+                              "li",
+                              {
+                                class: { active: _vm.params.per_page === 100 }
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.entriPage(100)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("100 Entri")]
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.itemData.total > 100
+                          ? _c(
+                              "li",
+                              {
+                                class: { active: _vm.params.per_page === 200 }
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.entriPage(200)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("200 Entri")]
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.itemData.total > 200
+                          ? _c(
+                              "li",
+                              {
+                                class: { active: _vm.params.per_page === 400 }
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.entriPage(400)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("400 Entri")]
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._t("button-entri")
+                      ],
+                      2
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "btn-group pb-5" }, [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip:top",
+                            value: "Atur Pengelompokkan Entri",
+                            expression: "'Atur Pengelompokkan Entri'",
+                            arg: "top"
+                          }
+                        ],
+                        staticClass: "btn btn-default btn-icon dropdown-toggle",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "dropdown",
+                          disabled: _vm.itemDataStat === "loading"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-grid6" }),
+                        _vm._v(
+                          "  " +
+                            _vm._s(_vm.group.title) +
+                            "  \n                "
+                        ),
+                        _c("span", { staticClass: "caret" })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "dropdown-menu" },
+                      [
+                        _c("li", { staticClass: "dropdown-header" }, [
+                          _vm._v("Kelompokkan berdasarkan")
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "divider" }),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.unGroupRow($event)
+                                }
+                              }
+                            },
+                            [_vm._v("Tidak dikelompokkan")]
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "btn-group pb-5" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-default btn-icon dropdown-toggle",
-                              attrs: {
-                                type: "button",
-                                "data-popup": "tooltip",
-                                title: "ENTRI",
-                                "data-toggle": "dropdown"
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-menu7" }),
-                              _vm._v(
-                                "  " +
-                                  _vm._s(_vm.params.per_page) +
-                                  "  \n                "
-                              ),
-                              _c("span", { staticClass: "caret" })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "ul",
-                            { staticClass: "dropdown-menu" },
-                            [
-                              _c("li", { staticClass: "dropdown-header" }, [
-                                _vm._v("Entri yang ditampilkan")
-                              ]),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "divider" }),
-                              _vm._v(" "),
-                              _c(
+                        _c("li", { staticClass: "divider" }),
+                        _vm._v(" "),
+                        _vm._l(_vm.columnData, function(column, index) {
+                          return column.groupKey != null && !column.disable
+                            ? _c(
                                 "li",
                                 {
-                                  class: { active: _vm.params.per_page === 10 }
+                                  class: {
+                                    active: column.groupKey === _vm.group.key
+                                  }
                                 },
                                 [
                                   _c(
@@ -52173,286 +52498,100 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          _vm.entriPage(10)
+                                          _vm.groupRow(
+                                            column.groupKey,
+                                            column.key,
+                                            column.title,
+                                            index
+                                          )
                                         }
                                       }
                                     },
-                                    [_vm._v("10 Entri")]
+                                    [_vm._v(_vm._s(column.title))]
                                   )
                                 ]
-                              ),
-                              _vm._v(" "),
-                              _vm.itemData.total > 10
-                                ? _c(
-                                    "li",
-                                    {
-                                      class: {
-                                        active: _vm.params.per_page === 25
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.entriPage(25)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("25 Entri")]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.itemData.total > 25
-                                ? _c(
-                                    "li",
-                                    {
-                                      class: {
-                                        active: _vm.params.per_page === 50
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.entriPage(50)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("50 Entri")]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.itemData.total > 50
-                                ? _c(
-                                    "li",
-                                    {
-                                      class: {
-                                        active: _vm.params.per_page === 100
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.entriPage(100)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("100 Entri")]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.itemData.total > 100
-                                ? _c(
-                                    "li",
-                                    {
-                                      class: {
-                                        active: _vm.params.per_page === 200
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.entriPage(200)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("200 Entri")]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.itemData.total > 200
-                                ? _c(
-                                    "li",
-                                    {
-                                      class: {
-                                        active: _vm.params.per_page === 400
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              _vm.entriPage(400)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("400 Entri")]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm._t("button-entri")
-                            ],
-                            2
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "btn-group pb-5" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-default btn-icon dropdown-toggle",
-                              attrs: {
-                                type: "button",
-                                "data-popup": "tooltip",
-                                title: "KELOMPOK",
-                                "data-toggle": "dropdown"
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-grid6" }),
-                              _vm._v(
-                                "  " +
-                                  _vm._s(_vm.group.title) +
-                                  "  \n                "
-                              ),
-                              _c("span", { staticClass: "caret" })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "ul",
-                            { staticClass: "dropdown-menu" },
-                            [
-                              _c("li", { staticClass: "dropdown-header" }, [
-                                _vm._v("Kelompokkan berdasarkan")
-                              ]),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "divider" }),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.unGroupRow($event)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Tidak dikelompokkan")]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "divider" }),
-                              _vm._v(" "),
-                              _vm._l(_vm.columnData, function(column, index) {
-                                return column.groupKey != null &&
-                                  !column.disable
-                                  ? _c(
-                                      "li",
-                                      {
-                                        class: {
-                                          active:
-                                            column.groupKey === _vm.group.key
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "a",
-                                          {
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                _vm.groupRow(
-                                                  column.groupKey,
-                                                  column.key,
-                                                  column.title,
-                                                  index
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(column.title))]
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e()
-                              })
-                            ],
-                            2
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "btn-group pb-5" }, [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "dropdown-menu" }, [
-                            _c("li", { staticClass: "dropdown-header" }, [
-                              _vm._v("Download data ke excel")
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "divider" }),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              [
-                                _c(
-                                  "json-excel",
-                                  {
-                                    attrs: {
-                                      data: _vm.excel.data,
-                                      fieldsx: _vm.excel.fields,
-                                      meta: _vm.excel.meta,
-                                      name: "fileExcel.xls"
-                                    }
-                                  },
-                                  [_vm._v("Data di tabel")]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.modalExcelOpen($event)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Semua Data")]
                               )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._t("button")
+                            : _vm._e()
+                        })
                       ],
                       2
                     )
-                  : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "btn-group pb-5" }, [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip:top",
+                            value: "Download Entri Sebagai Excel",
+                            expression: "'Download Entri Sebagai Excel'",
+                            arg: "top"
+                          }
+                        ],
+                        staticClass: "btn btn-default btn-icon dropdown-toggle",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "dropdown",
+                          disabled: _vm.itemDataStat === "loading"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-file-excel" }),
+                        _vm._v(" \n                "),
+                        _c("span", { staticClass: "caret" })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu" }, [
+                      _c("li", { staticClass: "dropdown-header" }, [
+                        _vm._v("Download data ke excel")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "divider" }),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        [
+                          _c(
+                            "json-excel",
+                            {
+                              attrs: {
+                                data: _vm.excel.data,
+                                fieldsx: _vm.excel.fields,
+                                meta: _vm.excel.meta,
+                                name: "fileExcel.xls"
+                              }
+                            },
+                            [_vm._v("Data di tabel")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalExcelOpen($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Semua Data")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._t("button")
+                ],
+                2
+              )
             ])
           ])
         ]),
@@ -52507,7 +52646,7 @@ var render = function() {
                 ? _c("tbody", [
                     _c("tr", [
                       _c("td", { attrs: { colspan: _vm.columnData.length } }, [
-                        _vm._m(4)
+                        _vm._m(1)
                       ])
                     ])
                   ])
@@ -52560,106 +52699,111 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "panel-footer has-visible-elements" }, [
-          _vm.itemDataStat === "loading"
-            ? _c("div", { staticClass: "heading-elements visible-elements" }, [
-                _c("span", { staticClass: "heading-text text-semibold" }, [
-                  _vm._v("Menampilkan\n          "),
-                  _c("i", { staticClass: "icon-spinner2 spinner" }),
-                  _vm._v(" -\n          "),
-                  _c("i", { staticClass: "icon-spinner2 spinner" }),
-                  _vm._v(" entri dari " + _vm._s(_vm.itemData.total) + " entri")
-                ]),
-                _vm._v(" "),
-                _vm._m(5)
-              ])
-            : _vm.itemDataStat === "success"
+          _c("div", { staticClass: "heading-elements visible-elements" }, [
+            _vm.itemDataStat === "success"
+              ? _c("span", { staticClass: "heading-text text-semibold" }, [
+                  _vm._v(
+                    "Menampilkan " +
+                      _vm._s(_vm.itemData.from) +
+                      " - " +
+                      _vm._s(_vm.itemData.to) +
+                      " entri dari " +
+                      _vm._s(_vm.itemData.total) +
+                      " entri"
+                  )
+                ])
+              : _vm.itemDataStat === "loading"
+                ? _c("span", { staticClass: "heading-text text-semibold" }, [
+                    _vm._v("Menampilkan\n          "),
+                    _c("i", { staticClass: "icon-spinner2 spinner" }),
+                    _vm._v(" -\n          "),
+                    _c("i", { staticClass: "icon-spinner2 spinner" }),
+                    _vm._v(
+                      " entri dari " + _vm._s(_vm.itemData.total) + " entri"
+                    )
+                  ])
+                : _vm._e(),
+            _vm._v(" "),
+            _vm.itemDataStat === "success"
               ? _c(
-                  "div",
-                  { staticClass: "heading-elements visible-elements" },
+                  "ul",
+                  {
+                    staticClass:
+                      "pagination pagination-flat pagination-xs pull-right"
+                  },
                   [
-                    _c("span", { staticClass: "heading-text text-semibold" }, [
-                      _vm._v(
-                        "Menampilkan " +
-                          _vm._s(_vm.itemData.from) +
-                          " - " +
-                          _vm._s(_vm.itemData.to) +
-                          " entri dari " +
-                          _vm._s(_vm.itemData.total) +
-                          " entri"
-                      )
-                    ]),
-                    _vm._v(" "),
                     _c(
-                      "ul",
-                      {
-                        staticClass:
-                          "pagination pagination-flat pagination-xs pull-right"
-                      },
+                      "li",
+                      { class: { disabled: !_vm.itemData.prev_page_url } },
                       [
                         _c(
-                          "li",
-                          { class: { disabled: !_vm.itemData.prev_page_url } },
-                          [
-                            _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.prev($event)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "icon-arrow-left12" })]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._l(_vm.pages, function(n) {
-                          return _c(
-                            "li",
-                            { class: { active: _vm.params.page == n } },
-                            [
-                              _c(
-                                "a",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.goToPage(n)
-                                    }
-                                  }
-                                },
-                                [_vm._v(_vm._s(n))]
-                              )
-                            ]
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          { class: { disabled: !_vm.itemData.next_page_url } },
-                          [
-                            _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.next($event)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "icon-arrow-right13" })]
-                            )
-                          ]
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.prev($event)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "icon-arrow-left12" })]
                         )
-                      ],
-                      2
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.pages, function(n) {
+                      return _c(
+                        "li",
+                        { class: { active: _vm.params.page == n } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.goToPage(n)
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(n))]
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { class: { disabled: !_vm.itemData.next_page_url } },
+                      [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.next($event)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "icon-arrow-right13" })]
+                        )
+                      ]
                     )
-                  ]
+                  ],
+                  2
                 )
-              : _vm._e()
+              : _vm.itemDataStat === "loading"
+                ? _c(
+                    "ul",
+                    {
+                      staticClass:
+                        "pagination pagination-flat pagination-xs pull-right"
+                    },
+                    [_vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4)]
+                  )
+                : _vm._e()
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -52675,7 +52819,6 @@ var render = function() {
           on: {
             batal: _vm.modalTutup,
             tutup: _vm.modalTutup,
-            confirmOk: _vm.modalConfirmOk,
             errorOk: _vm.modalTutup
           }
         },
@@ -52688,51 +52831,124 @@ var render = function() {
               slot: "modal-body1"
             },
             [
-              _c("span", { staticClass: "text-primary" }, [
-                _c("i", {
-                  staticClass: "icon-checkmark-circle2",
-                  staticStyle: { "font-size": "5em" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Silahkan tekan tombol download")]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "list-inline" }, [
-                _c("li", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-default",
-                      attrs: { type: "button" },
-                      on: { click: _vm.modalTutup }
-                    },
-                    [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
+              _vm.excelLoadStat === ""
+                ? _c("div", [
+                    _c("span", { staticClass: "text-warning" }, [
+                      _c("i", {
+                        staticClass: "icon-exclamation",
+                        staticStyle: { "font-size": "5em" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", [
+                      _vm._v("Yakin akan mendownload semua data ke excel?")
+                    ]),
+                    _vm._v(" "),
                     _c(
-                      "json-excel",
-                      {
-                        staticClass: "btn btn-default",
-                        attrs: {
-                          data: _vm.excel.data,
-                          fieldsx: _vm.excel.fields,
-                          meta: _vm.excel.meta,
-                          name: _vm.excel.filename
-                        }
-                      },
+                      "pre",
+                      { staticClass: "pre-scrollable", attrs: { id: "stack" } },
                       [
-                        _c("i", { staticClass: "icon-download10" }),
-                        _vm._v(" Download Excel")
+                        _vm._v(
+                          "Lama download tergantung pada jumlah data yang ada."
+                        )
                       ]
-                    )
-                  ],
-                  1
-                )
-              ])
+                    ),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "list-inline" }, [
+                      _c("li", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default",
+                            attrs: { type: "button" },
+                            on: { click: _vm.modalTutup }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-cross" }),
+                            _vm._v(" Tutup")
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            attrs: { type: "button" },
+                            on: { click: _vm.modalExcelOk }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-checkmark5" }),
+                            _vm._v(" Ya, download semua")
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                : _vm.excelLoadStat === "loading"
+                  ? _c("div", [
+                      _c("i", {
+                        staticClass: "icon-spinner spinner",
+                        staticStyle: { "font-size": "5em" }
+                      }),
+                      _vm._v(" "),
+                      _c("h2", [_vm._v("Mohon tunggu sebentar...")])
+                    ])
+                  : _vm.excelLoadStat === "success"
+                    ? _c("div", [
+                        _c("span", { staticClass: "text-primary" }, [
+                          _c("i", {
+                            staticClass: "icon-checkmark-circle2",
+                            staticStyle: { "font-size": "5em" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("h2", [_vm._v("Silahkan tekan tombol download")]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "list-inline" }, [
+                          _c("li", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-default",
+                                attrs: { type: "button" },
+                                on: { click: _vm.modalTutup }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-cross" }),
+                                _vm._v(" Tutup")
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "json-excel",
+                                {
+                                  staticClass: "btn btn-default",
+                                  attrs: {
+                                    data: _vm.excel.data,
+                                    fieldsx: _vm.excel.fields,
+                                    meta: _vm.excel.meta,
+                                    name: _vm.excel.filename
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "icon-download10" }),
+                                  _vm._v(" Download Excel")
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ])
+                    : _vm._e()
             ]
           )
         ]
@@ -52754,63 +52970,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-default btn-icon",
-        attrs: { type: "button", "data-popup": "tooltip", title: "LOADING" }
-      },
-      [_c("i", { staticClass: "icon-spinner2 spinner" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-default btn-icon dropdown-toggle",
-        attrs: {
-          type: "button",
-          "data-popup": "tooltip",
-          title: "KOLOM",
-          "data-toggle": "dropdown"
-        }
-      },
-      [
-        _c("i", { staticClass: "icon-table2" }),
-        _vm._v("  \n                "),
-        _c("span", { staticClass: "caret" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-default btn-icon dropdown-toggle",
-        attrs: {
-          type: "button",
-          "data-popup": "tooltip",
-          title: "DOWNLOAD EXCEL",
-          "data-toggle": "dropdown"
-        }
-      },
-      [
-        _c("i", { staticClass: "icon-file-excel" }),
-        _vm._v(" \n                "),
-        _c("span", { staticClass: "caret" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress" }, [
       _c(
         "div",
@@ -52827,23 +52986,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "pagination pagination-flat pagination-xs pull-right" },
-      [
-        _c("li", { staticClass: "disabled" }, [
-          _c("a", [_c("i", { staticClass: "icon-arrow-left12" })])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "active" }, [
-          _c("a", [_c("i", { staticClass: "icon-spinner2 spinner" })])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "disabled" }, [
-          _c("a", [_c("i", { staticClass: "icon-arrow-right13" })])
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "disabled" }, [
+      _c("a", [_c("i", { staticClass: "icon-arrow-left12" })])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "active" }, [
+      _c("a", [_c("i", { staticClass: "icon-spinner2 spinner" })])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "disabled" }, [
+      _c("a", [_c("i", { staticClass: "icon-arrow-right13" })])
+    ])
   }
 ]
 render._withStripped = true
@@ -52920,74 +53081,118 @@ var render = function() {
                     _c("div", { staticClass: "panel-body" }, [
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.id_cu,
-                                  expression: "id_cu"
-                                }
-                              ],
-                              staticClass: "bootstrap-select",
-                              attrs: { name: "id_cu", "data-width": "100%" },
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.id_cu = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  function($event) {
-                                    _vm.changeCU($event.target.value)
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("div", { staticClass: "input-group-addon" }, [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\tPilih Artikel\n\t\t\t\t\t\t\t\t\t"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.id_cu,
+                                    expression: "id_cu"
                                   }
-                                ]
-                              }
-                            },
-                            [
-                              _c(
-                                "option",
-                                { attrs: { disabled: "", value: "" } },
-                                [_vm._v("Silahkan pilih CU")]
-                              ),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "semua" } }, [
-                                _vm._v("Semua")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "0" } }, [
-                                _vm.userData.pus
-                                  ? _c("span", [
-                                      _vm._v(_vm._s(_vm.userData.pus.nama))
-                                    ])
-                                  : _c("span", [_vm._v("Puskopdit")])
-                              ]),
-                              _vm._v(" "),
-                              _c("option", {
-                                attrs: { "data-divider": "true" }
-                              }),
-                              _vm._v(" "),
-                              _vm._l(_vm.modelCU, function(cu) {
-                                return _c(
+                                ],
+                                staticClass: "bootstrap-select",
+                                attrs: {
+                                  name: "id_cu",
+                                  "data-width": "100%",
+                                  disabled: _vm.modelCULoadStat === "loading"
+                                },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.id_cu = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    function($event) {
+                                      _vm.changeCU($event.target.value)
+                                    }
+                                  ]
+                                }
+                              },
+                              [
+                                _c(
                                   "option",
-                                  { domProps: { value: cu.id } },
-                                  [_vm._v(_vm._s(cu.nama))]
-                                )
-                              })
-                            ],
-                            2
-                          )
+                                  { attrs: { disabled: "", value: "" } },
+                                  [_vm._v("Silahkan pilih CU")]
+                                ),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "semua" } }, [
+                                  _vm._v("Semua")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "0" } }, [
+                                  _vm.userData.pus
+                                    ? _c("span", [
+                                        _vm._v(_vm._s(_vm.userData.pus.nama))
+                                      ])
+                                    : _c("span", [_vm._v("Puskopdit")])
+                                ]),
+                                _vm._v(" "),
+                                _c("option", {
+                                  attrs: { "data-divider": "true" }
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.modelCU, function(cu) {
+                                  return _c(
+                                    "option",
+                                    { domProps: { value: cu.id } },
+                                    [_vm._v(_vm._s(cu.nama))]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "input-group-btn" }, [
+                              _c(
+                                "button",
+                                {
+                                  directives: [
+                                    {
+                                      name: "tooltip",
+                                      rawName: "v-tooltip:top",
+                                      value: "Reload",
+                                      expression: "'Reload'",
+                                      arg: "top"
+                                    }
+                                  ],
+                                  staticClass: "btn btn-default",
+                                  attrs: {
+                                    disabled: _vm.modelCULoadStat === "loading"
+                                  },
+                                  on: { click: _vm.fetchCU }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-sync",
+                                    class: {
+                                      spinner: _vm.modelCULoadStat === "loading"
+                                    }
+                                  })
+                                ]
+                              )
+                            ])
+                          ])
                         ])
                       ])
                     ])
@@ -52998,6 +53203,7 @@ var render = function() {
                 "data-viewer",
                 {
                   attrs: {
+                    title: _vm.title,
                     source: _vm.source,
                     columnData: _vm.columnData,
                     filterData: _vm.filterData,
@@ -53055,9 +53261,9 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[2].hide &&
-                              props.item.artikel__kategori
+                              !_vm.columnData[2].disable
                                 ? _c("td", [
-                                    props.item.artikel__kategori !== null
+                                    props.item.artikel__kategori
                                       ? _c("span", [
                                           _vm._v(
                                             _vm._s(
@@ -53070,9 +53276,9 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[3].hide &&
-                              props.item.artikel__penulis
+                              !_vm.columnData[3].disable
                                 ? _c("td", [
-                                    props.item.artikel__penulis !== null
+                                    props.item.artikel__penulis
                                       ? _c("span", [
                                           _vm._v(
                                             _vm._s(
@@ -53084,9 +53290,10 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[4].hide && props.item.c_u
+                              !_vm.columnData[4].hide &&
+                              !_vm.columnData[4].disable
                                 ? _c("td", [
-                                    props.item.c_u !== null
+                                    props.item.c_u
                                       ? _c("span", [
                                           _vm._v(_vm._s(props.item.c_u.nama))
                                         ])
@@ -53166,6 +53373,15 @@ var render = function() {
                           _c(
                             "router-link",
                             {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Tambah Artikel",
+                                  expression: "'Tambah Artikel'",
+                                  arg: "top"
+                                }
+                              ],
                               staticClass: "btn btn-default btn-icon",
                               attrs: { to: { name: "artikelCreate" } }
                             },
@@ -53178,14 +53394,23 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.selectedItem.id
-                        ? _c(
-                            "div",
-                            { staticClass: "btn-group pb-5" },
-                            [
-                              _c(
+                      _c(
+                        "div",
+                        { staticClass: "btn-group pb-5" },
+                        [
+                          _vm.selectedItem.id
+                            ? _c(
                                 "router-link",
                                 {
+                                  directives: [
+                                    {
+                                      name: "tooltip",
+                                      rawName: "v-tooltip:top",
+                                      value: "Ubah Artikel",
+                                      expression: "'Ubah Artikel'",
+                                      arg: "top"
+                                    }
+                                  ],
                                   staticClass: "btn btn-default btn-icon",
                                   attrs: {
                                     to: {
@@ -53199,126 +53424,124 @@ var render = function() {
                                   _vm._v(" Ubah\n\t\t\t\t\t\t\t")
                                 ]
                               )
+                            : !_vm.selectedItem.id
+                              ? _c(
+                                  "button",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "tooltip",
+                                        rawName: "v-tooltip:top",
+                                        value: "Ubah Artikel",
+                                        expression: "'Ubah Artikel'",
+                                        arg: "top"
+                                      }
+                                    ],
+                                    staticClass: "btn btn-default btn-icon",
+                                    attrs: { disabled: "" }
+                                  },
+                                  [
+                                    _c("i", { staticClass: "icon-pencil5" }),
+                                    _vm._v(" Ubah")
+                                  ]
+                                )
+                              : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "btn-group pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Hapus Artikel",
+                                expression: "'Hapus Artikel'",
+                                arg: "top"
+                              }
                             ],
-                            1
-                          )
-                        : _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-default btn-icon disabled"
-                              },
-                              [
-                                _c("i", { staticClass: "icon-pencil5" }),
-                                _vm._v(" Ubah\n\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          ]),
+                            staticClass: "btn btn-default btn-icon",
+                            attrs: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("hapus")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-bin2" }),
+                            _vm._v(" Hapus\n\t\t\t\t\t\t\t")
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _vm.selectedItem.id
-                        ? _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
+                      _c("div", { staticClass: "btn-group pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
                               {
-                                staticClass: "btn btn-default btn-icon",
-                                class: { disabled: !_vm.selectedItem.id },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.modalConfirmOpen("hapus")
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-bin2" }),
-                                _vm._v(" Hapus\n\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          ])
-                        : _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-default btn-icon disabled"
-                              },
-                              [
-                                _c("i", { staticClass: "icon-bin2" }),
-                                _vm._v(" Hapus\n\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          ]),
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Ubah Status Penerbitan Artikel",
+                                expression: "'Ubah Status Penerbitan Artikel'",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default btn-icon",
+                            attrs: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("updateTerbitkan")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-file-upload" }),
+                            _vm._v(" "),
+                            _vm.selectedItem.terbitkan === 1
+                              ? _c("span", [_vm._v("Tidak Terbitkan")])
+                              : _c("span", [_vm._v("Terbitkan")])
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _vm.selectedItem.id
-                        ? _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
+                      _c("div", { staticClass: "btn-group pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
                               {
-                                staticClass: "btn btn-default btn-icon",
-                                class: { disabled: !_vm.selectedItem.id },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.modalConfirmOpen("updateTerbitkan")
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-file-upload" }),
-                                _vm._v(" "),
-                                _vm.selectedItem.terbitkan === 1
-                                  ? _c("span", [_vm._v("Tidak Terbitkan")])
-                                  : _c("span", [_vm._v("Terbitkan")])
-                              ]
-                            )
-                          ])
-                        : _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-default btn-icon disabled"
-                              },
-                              [
-                                _c("i", { staticClass: "icon-file-upload" }),
-                                _vm._v(" Terbitkan\n\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          ]),
-                      _vm._v(" "),
-                      _vm.selectedItem.id
-                        ? _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-default btn-icon",
-                                class: { disabled: !_vm.selectedItem.id },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.modalConfirmOpen("updateUtamakan")
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-pushpin" }),
-                                _vm._v(" "),
-                                _vm.selectedItem.utamakan === 1
-                                  ? _c("span", [_vm._v("Tidak Utamakan")])
-                                  : _c("span", [_vm._v("Utamakan")])
-                              ]
-                            )
-                          ])
-                        : _c("div", { staticClass: "btn-group pb-5" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-default btn-icon disabled"
-                              },
-                              [
-                                _c("i", { staticClass: "icon-pushpin" }),
-                                _vm._v(" Utamakan\n\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          ])
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Ubah Status Pengutamaan Artikel",
+                                expression: "'Ubah Status Pengutamaan Artikel'",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default btn-icon",
+                            attrs: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("updateUtamakan")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-pushpin" }),
+                            _vm._v(" "),
+                            _vm.selectedItem.utamakan === 1
+                              ? _c("span", [_vm._v("Tidak Utamakan")])
+                              : _c("span", [_vm._v("Utamakan")])
+                          ]
+                        )
+                      ])
                     ]
                   )
                 ],
@@ -54858,11 +55081,19 @@ var render = function() {
                                           _c(
                                             "button",
                                             {
+                                              directives: [
+                                                {
+                                                  name: "tooltip",
+                                                  rawName: "v-tooltip:top",
+                                                  value: "Tambah Penulis",
+                                                  expression:
+                                                    "'Tambah Penulis'",
+                                                  arg: "top"
+                                                }
+                                              ],
                                               staticClass: "btn btn-default",
                                               attrs: {
                                                 type: "button",
-                                                "data-popup": "tooltip",
-                                                title: "Tambah kategori",
                                                 disabled: _vm.form.id_cu === ""
                                               },
                                               on: {
@@ -55047,11 +55278,19 @@ var render = function() {
                                           _c(
                                             "button",
                                             {
+                                              directives: [
+                                                {
+                                                  name: "tooltip",
+                                                  rawName: "v-tooltip:top",
+                                                  value: "Tambah Kategori",
+                                                  expression:
+                                                    "'Tambah Kategori'",
+                                                  arg: "top"
+                                                }
+                                              ],
                                               staticClass: "btn btn-default",
                                               attrs: {
                                                 type: "button",
-                                                "data-popup": "tooltip",
-                                                title: "Tambah kategori",
                                                 disabled: _vm.form.id_cu === ""
                                               },
                                               on: {
@@ -55290,6 +55529,15 @@ var render = function() {
                           _c(
                             "router-link",
                             {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Batal",
+                                  expression: "'Batal'",
+                                  arg: "top"
+                                }
+                              ],
                               staticClass: "btn btn-default",
                               attrs: { type: "button", to: { name: "artikel" } }
                             },
@@ -55302,6 +55550,15 @@ var render = function() {
                           _c(
                             "button",
                             {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Simpan Data",
+                                  expression: "'Simpan Data'",
+                                  arg: "top"
+                                }
+                              ],
                               staticClass: "btn btn-primary",
                               attrs: {
                                 type: "submit",

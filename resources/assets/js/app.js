@@ -36,7 +36,15 @@ router.beforeEach((to, from, next) => {
     }else{
         next();
     }
-})
+});
+
+Vue.directive('tooltip', function(el, binding){
+    $(el).tooltip({
+            title: binding.value,
+            placement: binding.arg,
+            trigger: 'hover'             
+        })
+});
 
 export const bus = new Vue();
 

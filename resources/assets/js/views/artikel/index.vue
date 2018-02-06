@@ -33,20 +33,35 @@
 						<div class="panel-body">  
 							<div class="row">
 								<div class="col-md-12">
-									<select class="bootstrap-select" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)">
-										<option disabled value="">Silahkan pilih CU</option>
-										<option value="semua">Semua</option>
-										<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
-										<option data-divider="true"></option>
-										<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
-									</select>
+									<div class="input-group">
+										<div class="input-group-addon">
+											Pilih Artikel
+										</div>
+
+										<!-- select -->
+										<select class="bootstrap-select" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
+											<option disabled value="">Silahkan pilih CU</option>
+											<option value="semua">Semua</option>
+											<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
+											<option data-divider="true"></option>
+											<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+										</select>
+
+										<!-- reload cu -->
+										<div class="input-group-btn">
+											<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCULoadStat === 'loading'">
+												<i class="icon-sync" :class="{'spinner' : modelCULoadStat === 'loading'}"></i>
+											</button>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<!-- main panel -->
-					<data-viewer :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+					<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 					:params="params"
 					@fetch="fetch">
 
@@ -55,60 +70,39 @@
 
 							<!-- tambah -->
 							<div class="btn-group pb-5">
-								<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon">
+								<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah Artikel'">
 									<i class="icon-plus3"></i> Tambah
 								</router-link>
 							</div>
 
 							<!-- ubah-->
-							<div class="btn-group pb-5" v-if="selectedItem.id">
-								<router-link :to="{ name:'artikelEdit', params: { id: selectedItem.id }}" class="btn btn-default btn-icon">
+							<div class="btn-group pb-5">
+								<router-link :to="{ name:'artikelEdit', params: { id: selectedItem.id }}" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Artikel'" v-if="selectedItem.id">
 									<i class="icon-pencil5"></i> Ubah
 								</router-link>
-							</div>
-							<div class="btn-group pb-5" v-else>
-								<button class="btn btn-default btn-icon disabled">
-									<i class="icon-pencil5"></i> Ubah
-								</button>
+								<button class="btn btn-default btn-icon" v-tooltip:top="'Ubah Artikel'" disabled v-else-if="!selectedItem.id"><i class="icon-pencil5"></i> Ubah</button>
 							</div>
 
 							<!-- hapus -->
-							<div class="btn-group pb-5" v-if="selectedItem.id">
-								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" :class="{'disabled': !selectedItem.id}">
-									<i class="icon-bin2"></i> Hapus
-								</button>
-							</div>
-							<div class="btn-group pb-5" v-else>
-								<button class="btn btn-default btn-icon disabled">
+							<div class="btn-group pb-5">
+								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus Artikel'"  :disabled="!selectedItem.id">
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
 
 							<!-- terbitkan -->
-							<div class="btn-group pb-5" v-if="selectedItem.id">
-								<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"
-									:class="{'disabled': !selectedItem.id}">
+							<div class="btn-group pb-5">
+								<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
 									<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
 									<span v-else>Terbitkan</span>
 								</button>
 							</div>
-							<div class="btn-group pb-5" v-else>
-								<button class="btn btn-default btn-icon disabled">
-									<i class="icon-file-upload"></i> Terbitkan
-								</button>
-							</div>
 
 							<!-- utamakan -->
-							<div class="btn-group pb-5" v-if="selectedItem.id">
-								<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon"
-									:class="{'disabled': !selectedItem.id}">
+							<div class="btn-group pb-5">
+								<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
 									<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
 									<span v-else>Utamakan</span>
-								</button>
-							</div>
-							<div class="btn-group pb-5" v-else>
-								<button class="btn btn-default btn-icon disabled">
-									<i class="icon-pushpin"></i> Utamakan
 								</button>
 							</div>
 
@@ -122,14 +116,14 @@
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
 								<td v-if="!columnData[1].hide" class="warptext">{{props.item.nama}}</td>
-								<td v-if="!columnData[2].hide && props.item.artikel__kategori">
-									<span v-if="props.item.artikel__kategori !== null">{{props.item.artikel__kategori.nama}}</span>
+								<td v-if="!columnData[2].hide && !columnData[2].disable">
+									<span v-if="props.item.artikel__kategori">{{props.item.artikel__kategori.nama}}</span>
 								</td>
-								<td v-if="!columnData[3].hide && props.item.artikel__penulis">
-									<span v-if="props.item.artikel__penulis !== null">{{props.item.artikel__penulis.nama}}</span>
+								<td v-if="!columnData[3].hide && !columnData[3].disable">
+									<span v-if="props.item.artikel__penulis">{{props.item.artikel__penulis.nama}}</span>
 								</td>
-								<td v-if="!columnData[4].hide && props.item.c_u">
-									<span v-if="props.item.c_u !== null">{{props.item.c_u.nama}}</span>
+								<td v-if="!columnData[4].hide && !columnData[4].disable">
+									<span v-if="props.item.c_u">{{props.item.c_u.nama}}</span>
 								</td>
 								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
 								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
@@ -308,13 +302,13 @@
 		},
 		created(){
 			if(this.userData.id_pus !== undefined){
-				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+				this.fetchCU();
 			}	
 		},
 		watch: {
 			userDataStat(value){
 				if(value === "success" && this.userData.id_pus !== undefined){
-						this.$store.dispatch('loadCUPus',this.userData.id_pus);
+						this.fetchCU();
 				}
 			},
 			modelCULoadStat(value){
@@ -350,6 +344,9 @@
 						this.disableColumnCU(true);
 					}
 				}
+			},
+			fetchCU(){
+				this.$store.dispatch('loadCUPus', this.userData.id_pus);
 			},
 			changeCU(id){
 				this.id_cu = id;

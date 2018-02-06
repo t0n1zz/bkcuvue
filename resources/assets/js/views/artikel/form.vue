@@ -109,7 +109,7 @@
 
 													<!-- button -->
 													<div class="input-group-btn">
-														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
+														<button type="button" class="btn btn-default" v-tooltip:top="'Tambah Penulis'" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
 															<i class="icon-plus22"></i>
 														</button>
 													</div>
@@ -153,7 +153,7 @@
 
 													<!-- button -->
 													<div class="input-group-btn">
-														<button type="button" class="btn btn-default" data-popup="tooltip" title="Tambah kategori" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
+														<button type="button" class="btn btn-default" v-tooltip:top="'Tambah Kategori'" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
 															<i class="icon-plus22"></i>
 														</button>
 													</div>
@@ -252,10 +252,10 @@
 
 								<!-- tombol -->
 								<div class="text-right">
-									<router-link type="button" :to="{ name:'artikel' }" class="btn btn-default">
+									<router-link type="button" :to="{ name:'artikel' }" class="btn btn-default" v-tooltip:top="'Batal'">
 										<i class="icon-arrow-left13"></i> Batal
 									</router-link>
-									<button type="submit" class="btn btn-primary" :disabled="errors.any('form-1')">
+									<button type="submit" class="btn btn-primary" :disabled="errors.any('form-1')" v-tooltip:top="'Simpan Data'">
 										<i class="icon-floppy-disk"></i> Simpan</button>
 								</div>
 							</form>

@@ -1,6 +1,17 @@
 <template>
   <div>
     <div class="panel panel-flat">
+      <div class="panel-heading has-visible-elements">
+        <h5 class="panel-title">Tabel {{ title }}</h5>
+        <div class="heading-elements visible-elements">
+          <ul class="icons-list">
+            <li><a data-action="collapse" v-tooltip:top="'Collapse'"></a></li>
+            <li>
+              <a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="panel-body">
         <div class="row">
 
@@ -12,12 +23,12 @@
               </div>
 
               <!-- input -->
-              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1">
+              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'">
 
               <!-- filter -->
               <div class="input-group-btn">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                  <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kategori Pencarian'"  :disabled="itemDataStat === 'loading'">
                     Berdasarkan {{searchColumn}} &nbsp;
                     <span class="caret"></span>
                   </button>
@@ -38,21 +49,12 @@
         <div class="row">
           <div class="col-md-12">
 
-            <!-- loading button row -->
-            <div class="btn-toolbar" v-if="itemDataStat === 'loading'">
-              <div class="btn-group pb-5" v-for="n in toolbarButton">
-                <button type="button" data-popup="tooltip" title="LOADING" class="btn btn-default btn-icon">
-                  <i class="icon-spinner2 spinner"></i>
-                </button>
-              </div>
-            </div>
-
             <!-- success button row -->
-            <div class="btn-toolbar" v-else-if="itemDataStat === 'success'">
+            <div class="btn-toolbar">
 
-              <!-- row view -->
+              <!-- column view -->
               <div class="btn-group pb-5">
-                <button type="button" data-popup="tooltip" title="KOLOM" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kolom Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
                   <i class="icon-table2"></i> &nbsp;
                   <span class="caret"></span>
                 </button>
@@ -72,7 +74,7 @@
 
               <!-- entri view -->
               <div class="btn-group pb-5">
-                <button type="button" data-popup="tooltip" title="ENTRI" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Jumlah Entri Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
                   <i class="icon-menu7"></i>&nbsp; {{params.per_page}} &nbsp;
                   <span class="caret"></span>
                 </button>
@@ -103,7 +105,7 @@
 
               <!-- group view -->
               <div class="btn-group pb-5">
-                <button type="button" data-popup="tooltip" title="KELOMPOK" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Pengelompokkan Entri'" :disabled="itemDataStat === 'loading'">
                   <i class="icon-grid6"></i>&nbsp; {{group.title}} &nbsp;
                   <span class="caret"></span>
                 </button>
@@ -122,7 +124,7 @@
 
               <!-- excel download -->
               <div class="btn-group pb-5">
-                <button type="button" data-popup="tooltip" title="DOWNLOAD EXCEL" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Download Entri Sebagai Excel'" :disabled="itemDataStat === 'loading'">
                   <i class="icon-file-excel"></i>&nbsp;
                   <span class="caret"></span>
                 </button>
@@ -204,17 +206,35 @@
 
       <!-- footer info -->
       <div class="panel-footer has-visible-elements">
+        <div class="heading-elements visible-elements">
 
-        <!-- loading footer info -->
-        <div class="heading-elements visible-elements" v-if="itemDataStat === 'loading'">
+          <!-- total entri note success-->
+          <span class="heading-text text-semibold" v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} - {{itemData.to}} entri dari {{itemData.total}} entri</span>
 
-          <!-- total entri note -->
-          <span class="heading-text text-semibold">Menampilkan
+          <!-- total entri note loading -->
+          <span class="heading-text text-semibold" v-else-if="itemDataStat === 'loading'">Menampilkan
             <i class="icon-spinner2 spinner"></i> -
             <i class="icon-spinner2 spinner"></i> entri dari {{itemData.total}} entri</span>
 
-          <!-- pagination -->
-          <ul class="pagination pagination-flat pagination-xs pull-right">
+          <!-- pagination success-->
+          <ul class="pagination pagination-flat pagination-xs pull-right" v-if="itemDataStat === 'success'">
+            <li :class="{'disabled' : !itemData.prev_page_url}">
+              <a @click.prevent="prev">
+                <i class="icon-arrow-left12"></i>
+              </a>
+            </li>
+            <li v-for="n in pages" :class="{'active' : params.page == n}">
+              <a @click.prevent="goToPage(n)">{{n}}</a>
+            </li>
+            <li :class="{'disabled' : !itemData.next_page_url}">
+              <a @click.prevent="next">
+                <i class="icon-arrow-right13"></i>
+              </a>
+            </li>
+          </ul>
+
+          <!-- pagination loading -->
+          <ul class="pagination pagination-flat pagination-xs pull-right" v-else-if="itemDataStat === 'loading'">
             <li class="disabled">
               <a>
                 <i class="icon-arrow-left12"></i>
@@ -232,51 +252,51 @@
             </li>
           </ul>
         </div>
-
-        <!-- success footer info -->
-        <div class="heading-elements visible-elements" v-else-if="itemDataStat === 'success'">
-
-          <!-- total entri note -->
-          <span class="heading-text text-semibold">Menampilkan {{itemData.from}} - {{itemData.to}} entri dari {{itemData.total}} entri</span>
-
-          <!-- pagination -->
-          <ul class="pagination pagination-flat pagination-xs pull-right">
-            <li :class="{'disabled' : !itemData.prev_page_url}">
-              <a @click.prevent="prev">
-                <i class="icon-arrow-left12"></i>
-              </a>
-            </li>
-            <li v-for="n in pages" :class="{'active' : params.page == n}">
-              <a @click.prevent="goToPage(n)">{{n}}</a>
-            </li>
-            <li :class="{'disabled' : !itemData.next_page_url}">
-              <a @click.prevent="next">
-                <i class="icon-arrow-right13"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
 
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup"
-      @confirmOk="modalConfirmOk" @errorOk="modalTutup">
+      @errorOk="modalTutup">
       <div slot="modal-body1" class="text-center">
-        <span class="text-primary">
-          <i class="icon-checkmark-circle2" style="font-size: 5em"></i>
-        </span>
-        <h2>Silahkan tekan tombol download</h2>
-        <ul class="list-inline">
-          <li>
-            <button type="button" class="btn btn-default" @click="modalTutup">
-              <i class="icon-cross"></i> Tutup</button>
-          </li>
-          <li>
-            <json-excel :data="excel.data" :fieldsx="excel.fields" :meta="excel.meta" :name="excel.filename" class="btn btn-default">
-              <i class="icon-download10"></i> Download Excel</json-excel>
-          </li>
-        </ul>
+        <div v-if="excelLoadStat === ''">
+          <span class="text-warning">
+            <i class="icon-exclamation" style="font-size: 5em"></i>
+          </span>
+          <h2>Yakin akan mendownload semua data ke excel?</h2>
+          <pre class="pre-scrollable" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
+          <br>
+          <ul class="list-inline">
+            <li>
+              <button type="button" class="btn btn-default" @click="modalTutup">
+                <i class="icon-cross"></i> Tutup</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-warning" @click="modalExcelOk">
+                <i class="icon-checkmark5"></i> Ya, download semua</button>
+            </li>
+          </ul>
+        </div>
+        <div v-else-if="excelLoadStat === 'loading'">
+          <i class="icon-spinner spinner" style="font-size: 5em"></i>
+          <h2>Mohon tunggu sebentar...</h2>
+        </div>
+        <div v-else-if="excelLoadStat === 'success'">
+          <span class="text-primary">
+            <i class="icon-checkmark-circle2" style="font-size: 5em"></i>
+          </span>
+          <h2>Silahkan tekan tombol download</h2>
+          <ul class="list-inline">
+            <li>
+              <button type="button" class="btn btn-default" @click="modalTutup">
+                <i class="icon-cross"></i> Tutup</button>
+            </li>
+            <li>
+              <json-excel :data="excel.data" :fieldsx="excel.fields" :meta="excel.meta" :name="excel.filename" class="btn btn-default">
+                <i class="icon-download10"></i> Download Excel</json-excel>
+            </li>
+          </ul>
+        </div>
       </div>
     </app-modal>
   </div>
@@ -289,7 +309,7 @@
   import appModal from '../components/modal';
 
   export default {
-    props: ['source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params'],
+    props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params'],
     components: {
       jsonExcel,
       appModal
@@ -316,6 +336,7 @@
           key: '',
           title: ''
         },
+        excelLoadStat: '',
         isSearch: false,
         isExcelAll: false,
         modalShow: false,
@@ -335,6 +356,9 @@
       // this.fetch();
     },
     watch: {
+      itemDataStat(value){
+        this.excelLoadStat = value;
+      },
       searchQuery1: function (search_query) {
         this.params.search_query_1 = search_query;
         this.searchData();
@@ -491,14 +515,16 @@
       // modal
       modalExcelOpen() {
         this.modalShow = true;
-        this.modalState = 'confirm-tutup';
-        this.modalTitle = 'Yakin akan mendownload semua data ke excel?';
-        this.modalContent = 'Download akan lebih lama tergantung dari jumlah data';
-        this.modalButton = 'Ya, download semua';
+        this.modalState = "normal1";
+        this.excelLoadStat = '';
       },
-      modalConfirmOk() {
+      modalExcelOk() {
         this.isExcelAll = true;
-        this.entriPage(this.itemData.total);
+        if(this.params.per_page != this.itemData.total){
+          this.entriPage(this.itemData.total);
+        }else{
+          this.fetch();
+        } 
       },
       modalTutup() {
         this.modalShow = false;
