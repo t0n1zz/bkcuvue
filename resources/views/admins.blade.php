@@ -39,6 +39,7 @@
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/loaders/blockui.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/nicescroll.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/drilldown.js') }}"></script>
+
     <!-- /core JS files -->
 
     <!-- Theme JS files -->

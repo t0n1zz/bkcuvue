@@ -31482,6 +31482,122 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31682,10 +31798,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		selectedRow: function selectedRow(item) {
 			this.selectedItem = item;
 		},
-		modalConfirmOpen: function modalConfirmOpen(source) {
+		modalConfirmOpen: function modalConfirmOpen(source, isMobile, itemMobile) {
 			this.modalShow = true;
 			this.modalState = 'confirm-tutup';
 			this.source = source;
+
+			if (isMobile) {
+				this.selectedItem = itemMobile;
+			}
 
 			if (source == 'hapus') {
 				this.modalTitle = 'Hapus artikel ini?';
@@ -31723,7 +31843,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			} else if (vm.source == "updateTerbitkan") {
 				this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
 			} else if (vm.source == "updateUtamakan") {
-				this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
+				this.$store.dispatch('updateArtikelUtamakan ', this.selectedItem.id);
 			}
 		}
 	},
@@ -31756,6 +31876,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	filters: {
 		publishDate: function publishDate(value) {
 			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '<br/>' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+		},
+		publishDateMobile: function publishDateMobile(value) {
+			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + ' | ' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
 		},
 		trimString: function trimString(string) {
 			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
@@ -32397,6 +32520,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32595,6 +32775,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.itemData.next_page_url) {
         this.params.page++;
         this.fetch();
+        window.scrollTo(0, 0);
       }
     },
     prev: function prev() {
@@ -32607,6 +32788,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.params.page != value) {
         this.params.page = value;
         this.fetch();
+        window.scrollTo(0, 0);
       }
     },
 
@@ -51993,7 +52175,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "panel panel-flat" }, [
+      _c("div", { staticClass: "panel panel-flat hidden-xs" }, [
         _c("div", { staticClass: "panel-heading has-visible-elements" }, [
           _c("h5", { staticClass: "panel-title" }, [
             _vm._v("Tabel " + _vm._s(_vm.title))
@@ -52418,7 +52600,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm._t("button-entri")
+                        _vm._t("button-entri-desktop")
                       ],
                       2
                     )
@@ -52588,7 +52770,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._t("button")
+                  _vm._t("button-desktop")
                 ],
                 2
               )
@@ -52672,7 +52854,7 @@ var render = function() {
                             : _vm._e(),
                           _vm._v(" "),
                           _vm._l(items, function(item) {
-                            return _vm._t("default", null, { item: item })
+                            return _vm._t("item-desktop", null, { item: item })
                           })
                         ],
                         2
@@ -52805,6 +52987,88 @@ var render = function() {
                 : _vm._e()
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel panel-flat visible-xs" }, [
+        _c("div", { staticClass: "panel-body" }, [_vm._t("button-mobile")], 2)
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.groupData, function(items, index) {
+        return _c(
+          "div",
+          [
+            _vm._l(items, function(item) {
+              return _vm._t("item-mobile", null, { item: item })
+            })
+          ],
+          2
+        )
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center" }, [
+        _c("hr"),
+        _vm._v(" "),
+        _vm.itemDataStat === "success"
+          ? _c(
+              "ul",
+              { staticClass: "pagination pagination-flat pagination-xs" },
+              [
+                _c("li", { class: { disabled: !_vm.itemData.prev_page_url } }, [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.prev($event)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "icon-arrow-left12" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.pages, function(n) {
+                  return _c("li", { class: { active: _vm.params.page == n } }, [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.goToPage(n)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(n))]
+                    )
+                  ])
+                }),
+                _vm._v(" "),
+                _c("li", { class: { disabled: !_vm.itemData.next_page_url } }, [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.next($event)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "icon-arrow-right13" })]
+                  )
+                ])
+              ],
+              2
+            )
+          : _vm.itemDataStat === "loading"
+            ? _c(
+                "ul",
+                { staticClass: "pagination pagination-flat pagination-xs" },
+                [_vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7)]
+              )
+            : _vm._e()
       ]),
       _vm._v(" "),
       _c(
@@ -52954,7 +53218,7 @@ var render = function() {
         ]
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = [
@@ -52980,6 +53244,30 @@ var staticRenderFns = [
         },
         [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "disabled" }, [
+      _c("a", [_c("i", { staticClass: "icon-arrow-left12" })])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "active" }, [
+      _c("a", [_c("i", { staticClass: "icon-spinner2 spinner" })])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "disabled" }, [
+      _c("a", [_c("i", { staticClass: "icon-arrow-right13" })])
     ])
   },
   function() {
@@ -53077,127 +53365,235 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               this.userData.id_cu === 0
-                ? _c("div", { staticClass: "panel panel-flat" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("div", { staticClass: "input-group-addon" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\tPilih Artikel\n\t\t\t\t\t\t\t\t\t"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "select",
+                ? _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("div", { staticClass: "input-group-addon" }, [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\tPilih Artikel\n\t\t\t\t\t\t\t"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
                               {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.id_cu,
-                                    expression: "id_cu"
-                                  }
-                                ],
-                                staticClass: "bootstrap-select",
-                                attrs: {
-                                  name: "id_cu",
-                                  "data-width": "100%",
-                                  disabled: _vm.modelCULoadStat === "loading"
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.id_cu,
+                                expression: "id_cu"
+                              }
+                            ],
+                            staticClass: "bootstrap-select",
+                            attrs: {
+                              name: "id_cu",
+                              "data-width": "100%",
+                              disabled: _vm.modelCULoadStat === "loading"
+                            },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.id_cu = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
                                 },
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.id_cu = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    function($event) {
-                                      _vm.changeCU($event.target.value)
-                                    }
-                                  ]
+                                function($event) {
+                                  _vm.changeCU($event.target.value)
                                 }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  { attrs: { disabled: "", value: "" } },
-                                  [_vm._v("Silahkan pilih CU")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "semua" } }, [
-                                  _vm._v("Semua")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm.userData.pus
-                                    ? _c("span", [
-                                        _vm._v(_vm._s(_vm.userData.pus.nama))
-                                      ])
-                                    : _c("span", [_vm._v("Puskopdit")])
-                                ]),
-                                _vm._v(" "),
-                                _c("option", {
-                                  attrs: { "data-divider": "true" }
-                                }),
-                                _vm._v(" "),
-                                _vm._l(_vm.modelCU, function(cu) {
-                                  return _c(
-                                    "option",
-                                    { domProps: { value: cu.id } },
-                                    [_vm._v(_vm._s(cu.nama))]
-                                  )
-                                })
-                              ],
-                              2
+                              ]
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { disabled: "", value: "" } },
+                              [_vm._v("Silahkan pilih CU")]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "input-group-btn" }, [
-                              _c(
-                                "button",
-                                {
-                                  directives: [
-                                    {
-                                      name: "tooltip",
-                                      rawName: "v-tooltip:top",
-                                      value: "Reload",
-                                      expression: "'Reload'",
-                                      arg: "top"
-                                    }
-                                  ],
-                                  staticClass: "btn btn-default",
-                                  attrs: {
-                                    disabled: _vm.modelCULoadStat === "loading"
-                                  },
-                                  on: { click: _vm.fetchCU }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "icon-sync",
-                                    class: {
-                                      spinner: _vm.modelCULoadStat === "loading"
-                                    }
-                                  })
-                                ]
+                            _c("option", { attrs: { value: "semua" } }, [
+                              _vm._v("Semua")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm.userData.pus
+                                ? _c("span", [
+                                    _vm._v(_vm._s(_vm.userData.pus.nama))
+                                  ])
+                                : _c("span", [_vm._v("Puskopdit")])
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { "data-divider": "true" } }),
+                            _vm._v(" "),
+                            _vm._l(_vm.modelCU, function(cu) {
+                              return _c(
+                                "option",
+                                { domProps: { value: cu.id } },
+                                [_vm._v(_vm._s(cu.nama))]
                               )
-                            ])
-                          ])
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group-btn" }, [
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Reload",
+                                  expression: "'Reload'",
+                                  arg: "top"
+                                }
+                              ],
+                              staticClass: "btn btn-default",
+                              attrs: {
+                                disabled: _vm.modelCULoadStat === "loading"
+                              },
+                              on: { click: _vm.fetchCU }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "icon-sync",
+                                class: {
+                                  spinner: _vm.modelCULoadStat === "loading"
+                                }
+                              })
+                            ]
+                          )
                         ])
+                      ]),
+                      _vm._v(" "),
+                      _c("br")
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.userData.id_cu === 0
+                ? _c("div", { staticClass: "panel panel-flat visible-xs" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("h5", [_vm._v("Pilih Artikel")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.id_cu,
+                                expression: "id_cu"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "id_cu",
+                              "data-width": "100%",
+                              disabled: _vm.modelCULoadStat === "loading"
+                            },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.id_cu = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                function($event) {
+                                  _vm.changeCU($event.target.value)
+                                }
+                              ]
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { disabled: "", value: "" } },
+                              [_vm._v("Silahkan pilih CU")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "semua" } }, [
+                              _vm._v("Semua")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm.userData.pus
+                                ? _c("span", [
+                                    _vm._v(_vm._s(_vm.userData.pus.nama))
+                                  ])
+                                : _c("span", [_vm._v("Puskopdit")])
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { "data-divider": "true" } }),
+                            _vm._v(" "),
+                            _vm._l(_vm.modelCU, function(cu) {
+                              return _c(
+                                "option",
+                                { domProps: { value: cu.id } },
+                                [_vm._v(_vm._s(cu.nama))]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Reload",
+                                expression: "'Reload'",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default btn-lg btn-block",
+                            attrs: {
+                              disabled: _vm.modelCULoadStat === "loading"
+                            },
+                            on: { click: _vm.fetchCU }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "icon-sync",
+                              class: {
+                                spinner: _vm.modelCULoadStat === "loading"
+                              }
+                            }),
+                            _vm._v(" Reload\n\t\t\t\t\t\t\t")
+                          ]
+                        )
                       ])
                     ])
                   ])
                 : _vm._e(),
+              _vm._v(" "),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "data-viewer",
@@ -53215,7 +53611,7 @@ var render = function() {
                   on: { fetch: _vm.fetch },
                   scopedSlots: _vm._u([
                     {
-                      key: "default",
+                      key: "item-desktop",
                       fn: function(props) {
                         return [
                           _c(
@@ -53358,13 +53754,321 @@ var render = function() {
                           )
                         ]
                       }
+                    },
+                    {
+                      key: "item-mobile",
+                      fn: function(props) {
+                        return [
+                          _c(
+                            "div",
+                            { staticClass: "panel panel-flat visible-xs" },
+                            [
+                              _c("div", { staticClass: "panel-body" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "thumb content-group" },
+                                  [
+                                    props.item.gambar
+                                      ? _c("img", {
+                                          staticClass:
+                                            "img-rounded img-responsive",
+                                          attrs: {
+                                            src:
+                                              "/images/artikel/" +
+                                              props.item.gambar +
+                                              "n.jpg"
+                                          }
+                                        })
+                                      : _c("img", {
+                                          staticClass:
+                                            "img-rounded img-responsive",
+                                          attrs: {
+                                            src: "/images/image-articlen.jpg"
+                                          }
+                                        })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[1].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v(_vm._s(props.item.nama))]),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[2].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  props.item.artikel__kategori
+                                    ? _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            props.item.artikel__kategori.nama
+                                          )
+                                        )
+                                      ])
+                                    : _c("span", [_vm._v("-")]),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[3].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  props.item.artikel__penulis
+                                    ? _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            props.item.artikel__penulis.nama
+                                          )
+                                        )
+                                      ])
+                                    : _c("span", [_vm._v("-")]),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[4].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  props.item.c_u
+                                    ? _c("span", [
+                                        _vm._v(_vm._s(props.item.c_u.nama))
+                                      ])
+                                    : _c("span", [_vm._v("-")]),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[5].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.checkStatus(
+                                          props.item.terbitkan
+                                        )
+                                      )
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[6].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.checkStatus(
+                                          props.item.utamakan
+                                        )
+                                      )
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[7].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.publishDateMobile(
+                                          props.item.created_at
+                                        )
+                                      )
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.columnData[8].title))
+                                  ]),
+                                  _vm._v(" "),
+                                  props.item.created_at !==
+                                  props.item.updated_at
+                                    ? _c("span", {
+                                        domProps: {
+                                          innerHTML: _vm._s(
+                                            _vm.$options.filters.publishDateMobile(
+                                              props.item.updated_at
+                                            )
+                                          )
+                                        }
+                                      })
+                                    : _vm._e()
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "panel-footer" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "text-center button-toolbar" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "btn-group pb-5" },
+                                      [
+                                        props.item.id
+                                          ? _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "btn btn-default btn-icon btn-block",
+                                                attrs: {
+                                                  to: {
+                                                    name: "artikelEdit",
+                                                    params: {
+                                                      id: props.item.id
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "icon-pencil5"
+                                                }),
+                                                _vm._v(
+                                                  " Ubah\n\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "btn-group pb-5" },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-default btn-icon",
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.modalConfirmOpen(
+                                                  "hapus",
+                                                  true,
+                                                  props.item
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "icon-bin2"
+                                            }),
+                                            _vm._v(
+                                              " Hapus\n\t\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "btn-group pb-5" },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-default btn-icon",
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.modalConfirmOpen(
+                                                  "updateTerbitkan",
+                                                  true,
+                                                  props.item
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "icon-file-upload"
+                                            }),
+                                            _vm._v(" "),
+                                            props.item.terbitkan === 1
+                                              ? _c("span", [
+                                                  _vm._v("Tidak Terbitkan")
+                                                ])
+                                              : _c("span", [
+                                                  _vm._v("Terbitkan")
+                                                ])
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "btn-group pb-5" },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-default btn-icon",
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.modalConfirmOpen(
+                                                  "updateUtamakan",
+                                                  true,
+                                                  props.item
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "icon-pushpin"
+                                            }),
+                                            _vm._v(" "),
+                                            props.item.utamakan === 1
+                                              ? _c("span", [
+                                                  _vm._v("Tidak Utamakan")
+                                                ])
+                                              : _c("span", [_vm._v("Utamakan")])
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        ]
+                      }
                     }
                   ])
                 },
                 [
                   _c(
                     "template",
-                    { attrs: { slot: "button" }, slot: "button" },
+                    {
+                      attrs: { slot: "button-desktop" },
+                      slot: "button-desktop"
+                    },
                     [
                       _c(
                         "div",
@@ -53543,6 +54247,26 @@ var render = function() {
                         )
                       ])
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "template",
+                    { attrs: { slot: "button-mobile" }, slot: "button-mobile" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "btn btn-default btn-icon btn-lg btn-block",
+                          attrs: { to: { name: "artikelCreate" } }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-plus3" }),
+                          _vm._v(" Tambah\n\t\t\t\t\t\t")
+                        ]
+                      )
+                    ],
+                    1
                   )
                 ],
                 2
@@ -53571,7 +54295,58 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabbable" }, [
+      _c("ul", { staticClass: "nav nav-tabs nav-tabs-bottom" }, [
+        _c("li", { staticClass: "active" }, [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "tab-artikel",
+                "data-toggle": "tab",
+                "aria-expanded": "true"
+              }
+            },
+            [_vm._v("Artikel")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "tab-penulis",
+                "data-toggle": "tab",
+                "aria-expanded": "true"
+              }
+            },
+            [_vm._v("Penulis Artikel")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "tab-kategori",
+                "data-toggle": "tab",
+                "aria-expanded": "true"
+              }
+            },
+            [_vm._v("Kategori Artikel")]
+          )
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

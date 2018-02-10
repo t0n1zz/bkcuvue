@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="panel panel-flat">
+
+    <!-- desktop -->
+    <div class="panel panel-flat hidden-xs">
       <div class="panel-heading has-visible-elements">
         <h5 class="panel-title">Tabel {{ title }}</h5>
         <div class="heading-elements visible-elements">
@@ -99,7 +101,7 @@
                   <li :class="{'active' : params.per_page === 400}" v-if="itemData.total > 200">
                     <a @click.prevent="entriPage(400)">400 Entri</a>
                   </li>  
-                  <slot name="button-entri"></slot>
+                  <slot name="button-entri-desktop"></slot>
                 </ul>
               </div>
 
@@ -141,13 +143,13 @@
               </div>
 
               <!-- slot button -->
-              <slot name="button"></slot>
+              <slot name="button-desktop"></slot>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- table -->
+      <!-- table-->
       <div class="table-responsive">
         <table class="table table-striped">
 
@@ -190,7 +192,7 @@
                 <b>{{index}}</b>
               </td>
             </tr>
-            <slot v-for="item in items" :item="item"></slot>
+            <slot name="item-desktop" v-for="item in items" :item="item"></slot>
           </tbody>
 
           <!-- error body -->
@@ -255,6 +257,60 @@
       </div>
     </div>
 
+    <!-- mobile -->
+    <!-- button -->
+    <div class="panel panel-flat visible-xs">
+      <div class="panel-body">
+        
+          <slot name="button-mobile"></slot>
+      </div>
+    </div>
+
+    <!-- content -->
+    <div v-for="(items,index) in groupData" >
+      <slot name="item-mobile" v-for="item in items" :item="item"></slot>
+    </div>
+    
+    <!-- pagination-->
+    <div class="text-center">
+      <hr/>
+      <!-- pagination success -->
+      <ul class="pagination pagination-flat pagination-xs" v-if="itemDataStat === 'success'">
+        <li :class="{'disabled' : !itemData.prev_page_url}">
+          <a @click.prevent="prev">
+            <i class="icon-arrow-left12"></i>
+          </a>
+        </li>
+        <li v-for="n in pages" :class="{'active' : params.page == n}">
+          <a @click.prevent="goToPage(n)">{{n}}</a>
+        </li>
+        <li :class="{'disabled' : !itemData.next_page_url}">
+          <a @click.prevent="next">
+            <i class="icon-arrow-right13"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- pagination loading -->
+      <ul class="pagination pagination-flat pagination-xs" v-else-if="itemDataStat === 'loading'">
+        <li class="disabled">
+          <a>
+            <i class="icon-arrow-left12"></i>
+          </a>
+        </li>
+        <li class="active">
+          <a>
+            <i class="icon-spinner2 spinner"></i>
+          </a>
+        </li>
+        <li class="disabled">
+          <a>
+            <i class="icon-arrow-right13"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup"
       @errorOk="modalTutup">
@@ -299,6 +355,7 @@
         </div>
       </div>
     </app-modal>
+
   </div>
 </template>
 <script>
@@ -497,6 +554,7 @@
         if (this.itemData.next_page_url) {
           this.params.page++;
           this.fetch();
+          window.scrollTo(0, 0);
         }
       },
       prev() {
@@ -509,6 +567,7 @@
         if (this.params.page != value) {
           this.params.page = value;
           this.fetch();
+          window.scrollTo(0, 0);
         }
       },
 

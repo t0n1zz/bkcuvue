@@ -36,7 +36,7 @@ trait FilterPaginateOrder {
         if($v->fails()) {
 
             //for debug
-            dd($v->messages());
+            // dd($v->messages());
         }
 
         return $query->orderBy($request->column, $request->direction)
