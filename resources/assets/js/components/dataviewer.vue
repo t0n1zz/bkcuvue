@@ -146,6 +146,7 @@
               <slot name="button-desktop"></slot>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -261,7 +262,7 @@
     <!-- button -->
     <div class="panel panel-flat visible-xs">
       <div class="panel-body">
-        
+
           <slot name="button-mobile"></slot>
       </div>
     </div>
@@ -272,10 +273,10 @@
     </div>
     
     <!-- pagination-->
-    <div class="text-center">
+    <div class="text-center visible-xs">
       <hr/>
       <!-- pagination success -->
-      <ul class="pagination pagination-flat pagination-xs" v-if="itemDataStat === 'success'">
+      <ul class="pagination pagination-flat pagination-lg" v-if="itemDataStat === 'success'">
         <li :class="{'disabled' : !itemData.prev_page_url}">
           <a @click.prevent="prev">
             <i class="icon-arrow-left12"></i>
