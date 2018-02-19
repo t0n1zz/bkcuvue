@@ -17,10 +17,10 @@
 				<div class="heading-elements visible-elements">
 					<div class="heading-btn-group">
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-pencil5 text-primary"></i> <span>Kategori Artikel</span>
+							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
 						</router-link>
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-pencil5 text-primary"></i> <span>Penulis Artikel</span>
+							<i class="icon-pencil6 text-primary"></i> <span>Penulis Artikel</span>
 						</router-link>
 					</div>
 				</div>

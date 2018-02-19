@@ -32888,6 +32888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.params.page = 1;
       this.fetch();
+      this.modalTutup();
     },
 
 
@@ -52959,12 +52960,20 @@ var render = function() {
                                   _vm.params.column === item.key
                                     ? _c("span", [
                                         _vm.params.direction === "asc"
-                                          ? _c("span", [_vm._v("▲")])
-                                          : _c("span", [_vm._v("▼")])
+                                          ? _c("span", [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-sort-amount-asc"
+                                              })
+                                            ])
+                                          : _c("span", [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-sort-amount-desc"
+                                              })
+                                            ])
                                       ])
-                                    : _c("span", {
-                                        staticClass: "icon-menu-open"
-                                      })
+                                    : _c("span", { staticClass: "icon-sort" })
                                 ]
                               )
                             : _c("div", [
@@ -53270,7 +53279,7 @@ var render = function() {
                   }
                 },
                 [
-                  _c("i", { staticClass: "icon-sort-amount-asc" }),
+                  _c("i", { staticClass: "icon-sort" }),
                   _vm._v(" Urutkan berdasarkan \n        ")
                 ]
               )
@@ -53818,7 +53827,7 @@ var render = function() {
                     _c("hr"),
                     _vm._v(" "),
                     _vm._l(_vm.columnData, function(item) {
-                      return !item.hide && !item.disable
+                      return !item.hide && !item.disable && item.sort
                         ? _c(
                             "a",
                             {
@@ -53839,10 +53848,18 @@ var render = function() {
                               _vm.params.column === item.key
                                 ? _c("span", [
                                     _vm.params.direction === "asc"
-                                      ? _c("span", [_vm._v("▲")])
-                                      : _c("span", [_vm._v("▼")])
+                                      ? _c("span", [
+                                          _c("i", {
+                                            staticClass: "icon-sort-amount-asc"
+                                          })
+                                        ])
+                                      : _c("span", [
+                                          _c("i", {
+                                            staticClass: "icon-sort-amount-desc"
+                                          })
+                                        ])
                                   ])
-                                : _c("span", { staticClass: "icon-menu-open" })
+                                : _c("span", { staticClass: "icon-sort" })
                             ]
                           )
                         : _vm._e()
@@ -54090,7 +54107,7 @@ var render = function() {
                     attrs: { to: { name: "artikel" } }
                   },
                   [
-                    _c("i", { staticClass: "icon-pencil5 text-primary" }),
+                    _c("i", { staticClass: "icon-grid6 text-primary" }),
                     _vm._v(" "),
                     _c("span", [_vm._v("Kategori Artikel")])
                   ]
@@ -54103,7 +54120,7 @@ var render = function() {
                     attrs: { to: { name: "artikel" } }
                   },
                   [
-                    _c("i", { staticClass: "icon-pencil5 text-primary" }),
+                    _c("i", { staticClass: "icon-pencil6 text-primary" }),
                     _vm._v(" "),
                     _c("span", [_vm._v("Penulis Artikel")])
                   ]

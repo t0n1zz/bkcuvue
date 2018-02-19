@@ -160,10 +160,10 @@
                 <div @click="sort(item.key)" v-if="item.sort" class="cursor-pointer">
                   <span>{{item.title}}</span>
                   <span v-if="params.column === item.key">
-                    <span v-if="params.direction === 'asc'">&#x25B2;</span>
-                    <span v-else>&#x25BC;</span>
+                    <span v-if="params.direction === 'asc'"><i class="icon-sort-amount-asc"></i></span>
+                    <span v-else><i class="icon-sort-amount-desc"></i></span>
                   </span>
-                  <span class="icon-menu-open" v-else></span>
+                  <span class="icon-sort" v-else></span>
                 </div>
                 <div v-else>
                   <span>{{item.title}}</span>
@@ -291,7 +291,7 @@
 
         <div class="pb-15">
           <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('sort')">
-            <i class="icon-sort-amount-asc"></i> Urutkan berdasarkan 
+            <i class="icon-sort"></i> Urutkan berdasarkan 
           </button>
         </div>
 
@@ -446,13 +446,13 @@
         <div v-if="modalMobileOptionState === 'sort'">
           <h2 class="text-center">Urutkan berdasarkan</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="item in columnData" v-if="!item.hide && !item.disable" @click.prevent="sort(item.key)">
+          <a class="btn btn-default btn-block" v-for="item in columnData" v-if="!item.hide && !item.disable && item.sort" @click.prevent="sort(item.key)">
             {{item.title}}
             <span v-if="params.column === item.key">
-              <span v-if="params.direction === 'asc'">&#x25B2;</span>
-              <span v-else>&#x25BC;</span>
+              <span v-if="params.direction === 'asc'"><i class="icon-sort-amount-asc"></i></span>
+              <span v-else><i class="icon-sort-amount-desc"></i></span>
             </span>
-            <span class="icon-menu-open" v-else></span>
+            <span class="icon-sort" v-else></span>
           </a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
@@ -640,6 +640,7 @@
         }
         this.params.page = 1;
         this.fetch();
+        this.modalTutup();
       },
 
       // pagination
