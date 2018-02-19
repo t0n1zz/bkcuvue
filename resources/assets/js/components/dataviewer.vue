@@ -31,7 +31,7 @@
               <div class="input-group-btn">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kategori Pencarian'"  :disabled="itemDataStat === 'loading'">
-                    Berdasarkan {{searchColumn}} &nbsp;
+                    <i class="icon-filter4"></i> Berdasarkan {{searchColumn}} &nbsp;
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-right">
@@ -50,7 +50,6 @@
         <!-- button row -->
         <div class="row">
           <div class="col-md-12">
-
             <!-- success button row -->
             <div class="btn-toolbar">
 
@@ -197,7 +196,7 @@
           </tbody>
 
           <!-- error body -->
-          <tbody v-else-if="itemDataStat === 3">
+          <tbody v-else-if="itemDataStat === 'fail'">
             <tr>
               <td :colspan="columnData.length">
                 Oops.. Terjadi kesalahan, silahkan coba lagi.
@@ -259,22 +258,74 @@
     </div>
 
     <!-- mobile -->
-    <!-- button -->
+    <!-- top panel -->
     <div class="panel panel-flat visible-xs">
       <div class="panel-body">
+        <!-- search -->
+        <div class="input-group pb-15">
+          <div class="input-group-addon">
+            <i class="icon-search4 text-muted"></i>
+          </div>
+          <!-- input -->
+          <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'">
+        </div>
 
-          <slot name="button-mobile"></slot>
+        <!-- filter -->
+        <div class="pb-15">
+           <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('filter')">
+            <i class="icon-filter4"></i> Pencarian berdasarkan {{searchColumn}} 
+          </button>
+        </div>
+
+        <div class="pb-15">
+          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('column')">
+            <i class="icon-table2"></i> Kolom yang ditampilkan
+          </button>
+        </div>
+
+        <div class="pb-15">
+          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('entri')">
+            <i class="icon-menu7"></i> {{params.per_page}} Entri yang ditampilkan
+          </button>
+        </div>
+
+        <div class="pb-15">
+          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('sort')">
+            <i class="icon-sort-amount-asc"></i> Urutkan berdasarkan 
+          </button>
+        </div>
+
+        <div class="pb-15">
+          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('excel')">
+            <i class="icon-file-excel"></i> Download excel 
+          </button>
+        </div>
+
+        <!-- button -->
+        <slot name="button-mobile"></slot>
       </div>
     </div>
 
     <!-- content -->
-    <div v-for="(items,index) in groupData" >
+    <div class="visible-xs" v-if="itemDataStat === 'loading'">
+      <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+          <span class="sr-only">100% Complete</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="visible-xs" v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
       <slot name="item-mobile" v-for="item in items" :item="item"></slot>
+    </div>
+
+    <div class="visible-xs" v-else-if="itemDataStat === 'fail'">
+      <i class="icon-cancel-circle2" style="font-size: 5em"></i>
+      <h3>Oops.. Terjadi kesalahan, silahkan coba lagi.</h3>
     </div>
     
     <!-- pagination-->
     <div class="text-center visible-xs">
-      <hr/>
       <!-- pagination success -->
       <ul class="pagination pagination-flat pagination-lg" v-if="itemDataStat === 'success'">
         <li :class="{'disabled' : !itemData.prev_page_url}">
@@ -313,8 +364,7 @@
     </div>
     
     <!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup"
-      @errorOk="modalTutup">
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
       <div slot="modal-body1" class="text-center">
         <div v-if="excelLoadStat === ''">
           <span class="text-warning">
@@ -353,6 +403,69 @@
                 <i class="icon-download10"></i> Download Excel</json-excel>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div slot="modal-body2">
+
+        <!-- filter -->
+        <div v-if="modalMobileOptionState === 'filter'">
+          <h2 class="text-center">Pencarian berdasarkan</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'btn-primary' : params.search_column === column.key}" @click.prevent="searchColumnData(column.key,column.title,column.operator)" >{{column.title}}</a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+        <!-- column -->
+        <div v-if="modalMobileOptionState === 'column'">
+          <h2 class="text-center">Kolom yang ditampilkan</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="showAllColumn" >Semua kolom</a>
+          <hr/>
+          <a class="btn btn-default btn-block" v-for="(column,index) in columnData" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)" >{{column.title}}</a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+        <!-- entri -->
+        <div v-if="modalMobileOptionState === 'entri'">
+          <h2 class="text-center">Entri yang ditampilkan</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 10}" @click.prevent="entriPage(10)" >10 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 25}" @click.prevent="entriPage(25)" v-if="itemData.total > 10">25 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 50}" @click.prevent="entriPage(50)" v-if="itemData.total > 25">50 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 100}" @click.prevent="entriPage(100)" v-if="itemData.total > 50">100 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 200}" @click.prevent="entriPage(200)" v-if="itemData.total > 100">200 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 400}" @click.prevent="entriPage(400)" v-if="itemData.total > 200">400 Entri</a>
+          <slot name="button-entri-mobile"></slot>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+        <div v-if="modalMobileOptionState === 'sort'">
+          <h2 class="text-center">Urutkan berdasarkan</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" v-for="item in columnData" v-if="!item.hide && !item.disable" @click.prevent="sort(item.key)">
+            {{item.title}}
+            <span v-if="params.column === item.key">
+              <span v-if="params.direction === 'asc'">&#x25B2;</span>
+              <span v-else>&#x25BC;</span>
+            </span>
+            <span class="icon-menu-open" v-else></span>
+          </a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+        <!-- excel -->
+        <div v-if="modalMobileOptionState === 'excel'">
+          <h2 class="text-center">Download data ke excel</h2>
+          <hr/>
+          <json-excel class="btn btn-default btn-block" :data="excel.data" :fieldsx="excel.fields" :meta="excel.meta" name="fileExcel.xls">Data di tabel</json-excel>
+          <a class="btn btn-default btn-block" @click.prevent="modalExcelOpen">Semua data</a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
       </div>
     </app-modal>
@@ -400,7 +513,8 @@
         modalShow: false,
         modalState: '',
         modalTitle: '',
-        modalButton: ''
+        modalButton: '',
+        modalMobileOptionState: ''
       }
     },
     mounted() {
@@ -472,6 +586,8 @@
             this.fetch();
           }
         }
+
+        this.modalTutup();
       },
 
       // show column
@@ -532,6 +648,7 @@
           this.params.per_page = value;
           this.params.page = 1;
           this.fetch();
+          this.modalTutup();
         }
       },
       calculatePagination() {
@@ -585,6 +702,11 @@
         }else{
           this.fetch();
         } 
+      },
+      modalMobileOptionOpen(state){
+        this.modalShow = true;
+        this.modalState = "normal2";
+        this.modalMobileOptionState = state;
       },
       modalTutup() {
         this.modalShow = false;
