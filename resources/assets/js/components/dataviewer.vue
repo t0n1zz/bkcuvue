@@ -22,8 +22,47 @@
             <div class="input-group">
 
               <!-- input -->
-              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'">
-
+              <!-- date -->
+              <masked-input
+                type="text"
+                name="date"
+                class="form-control"
+                v-model="params.search_query_1"
+                :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
+                :guide="true"
+                :disabled="itemDataStat === 'loading'"
+                placeholder="YYYY-MM-DD HH:MM:SS"
+                v-if="searchColumnType === 'date'">
+              </masked-input>
+              <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+              <masked-input
+                type="text"
+                name="date2"
+                class="form-control"
+                v-model="params.search_query_2"
+                :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
+                :guide="true"
+                :disabled="itemDataStat === 'loading'"
+                placeholder="YYYY-MM-DD HH:MM:SS"
+                v-if="searchColumnType === 'date' && params.search_operator === 'between'">
+              </masked-input>
+              
+              <!-- number -->
+              <masked-input
+                type="text"
+                name="number"
+                class="form-control"
+                v-model="params.search_query_1"
+                :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
+                :guide="true"
+                placeholder="999.999.999"
+                :disabled="itemDataStat === 'loading'"
+                v-if="searchColumnType === 'number'">
+              </masked-input>
+              
+              <!-- string -->
+              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
+              
               <!-- filter -->
               <div class="input-group-btn">
                 <!-- kolom -->
@@ -498,12 +537,15 @@
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
+  import maskedInput from 'vue-text-mask';
+
 
   export default {
     props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params'],
     components: {
       jsonExcel,
-      appModal
+      appModal,
+      maskedInput
     },
     data() {
       return {
@@ -511,35 +553,36 @@
         searchQuery1: '',
         searchQuery2: '',
         searchColumn: '',
+        searchColumnType: '',
         searchOperator: '',
         operator: [
           {
             key: 'equal_to',
-            title: 'sama dengan [=]',
+            title: 'Sama Dengan [=]',
           },
           {
             key: 'not_equal',
-            title: 'tidak sama dengan [<>]',
+            title: 'Tidak Sama Dengan [<>]',
           },
           {
             key: 'less_than',
-            title: 'kurang dari [<]',
+            title: 'Kurang Dari [<]',
           },
           {
             key: 'greater_than',
-            title: 'lebih dari [>]',
+            title: 'Lebih Dari [>]',
           },
           {
             key: 'less_than_or_equal_to',
-            title: 'kurang dari sama dengan [<=]',
+            title: 'Kurang Dari Sama Dengan [<=]',
           },
           {
             key: 'greater_than_or_equal_to',
-            title: 'lebih dari sama dengan [>=]',
+            title: 'Lebih Dari Sama Dengan [>=]',
           },
           {
             key: 'between',
-            title: 'antara [#]-[#]',
+            title: 'Antara [#]-[#]',
           },
         ],
         excel: {
@@ -610,11 +653,14 @@
         if(type === 'date'){
           this.params.search_operator = this.operator[6].key;
           this.searchOperator = this.operator[6].title;
+          this.searchColumnType = 'date';
         }else if(type === 'number'){
           this.params.search_operator = this.operator[0].key;
           this.searchOperator = this.operator[0].title;
+          this.searchColumnType = 'number'
         }else{
           this.params.search_operator = 'like';
+          this.searchColumnType = 'string';
         }
         
         if (this.params.search_column !== value) {

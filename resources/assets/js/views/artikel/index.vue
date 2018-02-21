@@ -418,7 +418,7 @@
 					{
 						title: 'Tgl. Tulis',
 						key: 'created_at',
-						texcelType: 'string',
+						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
@@ -426,7 +426,7 @@
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
-						texcelType: 'string',
+						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
@@ -583,10 +583,10 @@
 		},
 		filters: {
 			publishDate: function (value) {
-				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm');
+				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm:ss');
 			},
 			publishDateMobile: function (value) {
-				return moment(value).format('DD-MM-YYYY') + ' | ' + moment(value).format('kk:mm');
+				return moment(value).format('DD-MM-YYYY') + ' | ' + moment(value).format('kk:mm:ss');
 			},
 			trimString: function (string) {
 				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
