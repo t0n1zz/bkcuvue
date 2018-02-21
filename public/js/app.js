@@ -33020,6 +33020,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.params.search_operator === 'like') {
         this.params.search_query_1 = search_query;
         this.searchData();
+      } else {
+        if (search_query === '' && this.params.search_operator !== 'between') {
+          this.params.search_query_1 = search_query;
+          this.searchData();
+        } else {
+          this.params.search_query_1 = search_query;
+        }
       }
     },
     groupData: function groupData() {
@@ -33052,6 +33059,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.params.search_operator = 'like';
         this.searchColumnType = 'string';
       }
+      this.params.search_query_2 = '';
 
       if (this.params.search_column !== value) {
         this.params.search_column = value;
@@ -33067,6 +33075,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     searchOperatorData: function searchOperatorData(op) {
       this.params.search_operator = op.key;
       this.searchOperator = op.title;
+      this.params.search_query_2 = '';
 
       if (this.params.search_query_1 !== '') {
         this.params.page = 1;
@@ -52681,11 +52690,11 @@ var render = function() {
                           placeholder: "YYYY-MM-DD HH:MM:SS"
                         },
                         model: {
-                          value: _vm.params.search_query_1,
+                          value: _vm.searchQuery1,
                           callback: function($$v) {
-                            _vm.params.search_query_1 = $$v
+                            _vm.searchQuery1 = $$v
                           },
-                          expression: "params.search_query_1"
+                          expression: "searchQuery1"
                         }
                       })
                     : _vm._e(),
@@ -52761,11 +52770,11 @@ var render = function() {
                           disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
-                          value: _vm.params.search_query_1,
+                          value: _vm.searchQuery1,
                           callback: function($$v) {
-                            _vm.params.search_query_1 = $$v
+                            _vm.searchQuery1 = $$v
                           },
-                          expression: "params.search_query_1"
+                          expression: "searchQuery1"
                         }
                       })
                     : _vm._e(),

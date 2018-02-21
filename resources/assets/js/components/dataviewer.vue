@@ -27,7 +27,7 @@
                 type="text"
                 name="date"
                 class="form-control"
-                v-model="params.search_query_1"
+                v-model="searchQuery1"
                 :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
                 :guide="true"
                 :disabled="itemDataStat === 'loading'"
@@ -52,7 +52,7 @@
                 type="text"
                 name="number"
                 class="form-control"
-                v-model="params.search_query_1"
+                v-model="searchQuery1"
                 :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
                 :guide="true"
                 placeholder="999.999.999"
@@ -629,6 +629,13 @@
         if(this.params.search_operator === 'like'){
           this.params.search_query_1 = search_query;
           this.searchData();
+        }else{
+          if(search_query === '' && this.params.search_operator !== 'between'){
+            this.params.search_query_1 = search_query;
+            this.searchData();
+          }else{
+            this.params.search_query_1 = search_query;
+          }
         }
       },
       groupData(){
@@ -662,6 +669,7 @@
           this.params.search_operator = 'like';
           this.searchColumnType = 'string';
         }
+        this.params.search_query_2 = '';
         
         if (this.params.search_column !== value) {
             this.params.search_column = value;
@@ -677,6 +685,7 @@
       searchOperatorData(op){
         this.params.search_operator = op.key;
         this.searchOperator = op.title;
+        this.params.search_query_2 = '';
 
         if(this.params.search_query_1 !== ''){
           this.params.page = 1;
