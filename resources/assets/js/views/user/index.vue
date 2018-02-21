@@ -308,9 +308,9 @@
 		},
 		data() {
 			return {
-				title: 'Artikel',
-				titleDesc: 'Mengelola data artikel',
-				titleIcon: 'icon-magazine',
+				title: 'User',
+				titleDesc: 'Mengelola data user',
+				titleIcon: 'icon-users',
 				id_cu: '',
 				source: '',
 				selectedItem: [],
@@ -325,33 +325,21 @@
           search_query_2: ''
         },
 				filterData: [{
-						title: 'Judul',
+						title: 'Nama',
 						key: 'nama',
-						type: 'string',
+						operator: 'like',
 						disable: false
 					},
 					{
-						title: 'Kategori',
-						key: 'artikel_kategori.nama',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Penulis',
-						key: 'artikel_penulis.nama',
-						type: 'string',
+						title: 'Username',
+						key: 'username',
+						operator: 'like',
 						disable: false
 					},
 					{
 						title: 'CU',
 						key: 'cu.nama',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. Tulis',
-						key: 'created_at',
-						type: 'date',
+						operator: 'like',
 						disable: false
 					}
 				],
@@ -365,7 +353,7 @@
 						disable: false
 					},
 					{
-						title: 'Judul',
+						title: 'Nama',
 						key: 'nama',
 						excelType: 'string',
 						sort: true,
@@ -373,18 +361,8 @@
 						disable: false
 					},
 					{
-						title: 'Kategori',
-						key: 'id_artikel_kategori',
-						groupKey: 'artikel__kategori.nama',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Penulis',
-						key: 'id_artikel_penulis',
-						groupKey: 'artikel__penulis.nama',
+						title: 'Username',
+						key: 'username',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -400,23 +378,15 @@
 						disable: false
 					},
 					{
-						title: 'Terbitkan',
-						key: 'terbitkan',
+						title: 'Status',
+						key: 'status',
 						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
 					},
 					{
-						title: 'Utamakan',
-						key: 'utamakan',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Tgl. Tulis',
+						title: 'Tgl. Buat',
 						key: 'created_at',
 						texcelType: 'string',
 						sort: true,
@@ -583,10 +553,10 @@
 		},
 		filters: {
 			publishDate: function (value) {
-				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm');
+				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm:ss');
 			},
 			publishDateMobile: function (value) {
-				return moment(value).format('DD-MM-YYYY') + ' | ' + moment(value).format('kk:mm');
+				return moment(value).format('DD-MM-YYYY') + ' | ' + moment(value).format('kk:mm:ss');
 			},
 			trimString: function (string) {
 				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +

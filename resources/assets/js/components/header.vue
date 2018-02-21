@@ -14,7 +14,7 @@
 				</ul>
 				<p class="navbar-text">
 					<span class="label bg-success-400">
-						<span v-if="userData.pus">{{userData.pus.nama}}</span> 
+						<span v-if="userData.pus">{{userData.pus.nama}}</span>
 						<span v-if="userData.cu">- CU {{userData.cu.nama}}</span>
 					</span>
 				</p>
@@ -55,25 +55,49 @@
 
 			<div class="navbar-collapse collapse" id="navbar-second-toggle">
 				<ul class="nav navbar-nav">
+
+					<!-- dashboard -->
 					<router-link :to="{ name: 'dashboard' }" tag="li" active-class="active" exact>
 						<a>
 							<i class="icon-display4 position-left"></i> Dashboard</a>
 					</router-link>
 
+					<!-- publikasi -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-earth"></i> Website
+							<i class="icon-newspaper position-left"></i> Publikasi
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact>
-								<a>
-									<i class="icon-plus22"></i> Tambah Artikel</a>
+								<a><i class="icon-plus22"></i> Tambah Artikel</a>
 							</router-link>
 							<li class="divider"></li>
 							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact>
-								<a>
-									<i class="icon-magazine"></i> Artikel</a>
+								<a><i class="icon-magazine"></i> Artikel</a>
+							</router-link>
+							<router-link :to="{ name: 'artikelKategori' }" tag="li" active-class="active" exact>
+								<a><i class="icon-grid6"></i> Kategori Artikel</a>
+							</router-link>
+							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact>
+								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
+							</router-link>
+						</ul>
+					</li>
+
+					<!-- admin -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+							<i class="icon-gear position-left"></i> Pengaturan
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact>
+								<a><i class="icon-plus22"></i> Tambah User</a>
+							</router-link>
+							<li class="divider"></li>
+							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact>
+								<a><i class="icon-users"></i> User</a>
 							</router-link>
 						</ul>
 					</li>
@@ -108,7 +132,7 @@
 			}
 		},
 		computed: {
-			userData(){
+			userData() {
 				return this.$store.getters.getUserData;
 			}
 		}

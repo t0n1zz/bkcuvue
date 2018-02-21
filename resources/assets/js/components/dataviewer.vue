@@ -20,15 +20,13 @@
           <!-- search -->
           <div class="col-md-12 pb-15">
             <div class="input-group">
-              <div class="input-group-addon">
-                <i class="icon-search4 text-muted"></i>
-              </div>
 
               <!-- input -->
               <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'">
 
               <!-- filter -->
               <div class="input-group-btn">
+                <!-- kolom -->
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kategori Pencarian'"  :disabled="itemDataStat === 'loading'">
                     <i class="icon-filter4"></i> Berdasarkan {{searchColumn}} &nbsp;
@@ -38,9 +36,31 @@
                     <li class="dropdown-header">Pencarian berdasarkan</li>
                     <li class="divider"></li>
                     <li v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'active' : params.search_column === column.key}">
-                      <a @click.prevent="searchColumnData(column.key,column.title,column.operator)">{{column.title}}</a>
+                      <a @click.prevent="searchColumnData(column.key,column.title,column.type)">{{column.title}}</a>
                     </li>
                   </ul>
+                </div>
+
+                <!-- operator -->
+                <div class="btn-group" v-if="params.search_operator !== 'like'">
+                  <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Operator Pencarian'"  :disabled="itemDataStat === 'loading'">
+                    <i class="icon-equalizer"></i> Operator {{searchOperator}} &nbsp;
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-header">Operator pencarian</li>
+                    <li class="divider"></li>
+                    <li v-for="op in operator" :class="{'active' : params.search_operator === op.key}">
+                      <a @click.prevent="searchOperatorData(op)">{{op.title}}</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- ok -->
+                <div class="btn-group" v-if="params.search_operator !== 'like'">
+                  <button type="button" class="btn btn-default btn-icon " data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'"  :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+                    <i class="icon-search4"></i>  Cari
+                  </button>
                 </div>
               </div>
             </div>
@@ -412,7 +432,7 @@
         <div v-if="modalMobileOptionState === 'filter'">
           <h2 class="text-center">Pencarian berdasarkan</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'btn-primary' : params.search_column === column.key}" @click.prevent="searchColumnData(column.key,column.title,column.operator)" >{{column.title}}</a>
+          <a class="btn btn-default btn-block" v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'btn-primary' : params.search_column === column.key}" @click.prevent="searchColumnData(column.key,column.title,column.type)" >{{column.title}}</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
@@ -491,6 +511,37 @@
         searchQuery1: '',
         searchQuery2: '',
         searchColumn: '',
+        searchOperator: '',
+        operator: [
+          {
+            key: 'equal_to',
+            title: 'sama dengan [=]',
+          },
+          {
+            key: 'not_equal',
+            title: 'tidak sama dengan [<>]',
+          },
+          {
+            key: 'less_than',
+            title: 'kurang dari [<]',
+          },
+          {
+            key: 'greater_than',
+            title: 'lebih dari [>]',
+          },
+          {
+            key: 'less_than_or_equal_to',
+            title: 'kurang dari sama dengan [<=]',
+          },
+          {
+            key: 'greater_than_or_equal_to',
+            title: 'lebih dari sama dengan [>=]',
+          },
+          {
+            key: 'between',
+            title: 'antara [#]-[#]',
+          },
+        ],
         excel: {
           fields: {},
           data: [],
@@ -522,7 +573,7 @@
     },
     created() {
       this.params.search_column = this.filterData[0].key;
-      this.params.search_operator = this.filterData[0].operator;
+      this.params.search_operator = 'like';
       this.searchColumn = this.filterData[0].title;
 
       // this.fetch();
@@ -532,8 +583,10 @@
         this.excelLoadStat = value;
       },
       searchQuery1: function (search_query) {
-        this.params.search_query_1 = search_query;
-        this.searchData();
+        if(this.params.search_operator === 'like'){
+          this.params.search_query_1 = search_query;
+          this.searchData();
+        }
       },
       groupData(){
         this.calculatePagination();
@@ -544,29 +597,6 @@
       fetch(){
         this.$emit('fetch');
       },
-      // excel data
-      field_excel() {
-        var vm = this;
-        vm.excel.fields = {};
-        vm.columnData.forEach(function (column) {
-          if (!column.hide && !column.disable) {
-            vm.excel.fields[column.title] = column.excelType;
-          }
-        });
-        vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
-          var object = {};
-          vm.columnData.forEach(function (key) {
-            if (!key.hide && !key.disable) {
-              if (key.groupKey) {
-                object[key.title] = _.get(item, key.groupKey);
-              } else {
-                object[key.title] = _.get(item, key.key);
-              }
-            }
-          })
-          return object;
-        }).value();
-      },
       
       // search
       searchData: _.debounce(
@@ -576,18 +606,36 @@
           this.fetch();
         },
         500),
-      searchColumnData(value, name, operator = 'like') {
+      searchColumnData(value, name, type) {
+        if(type === 'date'){
+          this.params.search_operator = this.operator[6].key;
+          this.searchOperator = this.operator[6].title;
+        }else if(type === 'number'){
+          this.params.search_operator = this.operator[0].key;
+          this.searchOperator = this.operator[0].title;
+        }else{
+          this.params.search_operator = 'like';
+        }
+        
         if (this.params.search_column !== value) {
             this.params.search_column = value;
             this.searchColumn = name;
           if(this.params.search_query_1 !== ''){
-            this.params.search_operator = operator;
             this.params.page = 1;
             this.fetch();
           }
         }
 
         this.modalTutup();
+      },
+      searchOperatorData(op){
+        this.params.search_operator = op.key;
+        this.searchOperator = op.title;
+
+        if(this.params.search_query_1 !== ''){
+          this.params.page = 1;
+          this.fetch();
+        }
       },
 
       // show column
@@ -688,6 +736,30 @@
           this.fetch();
           window.scrollTo(0, 0);
         }
+      },
+
+      // excel data
+      field_excel() {
+        var vm = this;
+        vm.excel.fields = {};
+        vm.columnData.forEach(function (column) {
+          if (!column.hide && !column.disable) {
+            vm.excel.fields[column.title] = column.excelType;
+          }
+        });
+        vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
+          var object = {};
+          vm.columnData.forEach(function (key) {
+            if (!key.hide && !key.disable) {
+              if (key.groupKey) {
+                object[key.title] = _.get(item, key.groupKey);
+              } else {
+                object[key.title] = _.get(item, key.key);
+              }
+            }
+          })
+          return object;
+        }).value();
       },
 
       // modal
