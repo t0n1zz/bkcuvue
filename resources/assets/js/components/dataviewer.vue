@@ -59,6 +59,18 @@
                 :disabled="itemDataStat === 'loading'"
                 v-if="searchColumnType === 'number'">
               </masked-input>
+               <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
+              <masked-input
+                type="text"
+                name="number"
+                class="form-control"
+                v-model="params.search_query_2"
+                :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
+                :guide="true"
+                placeholder="999.999.999"
+                :disabled="itemDataStat === 'loading'"
+                v-if="searchColumnType === 'number' && params.search_operator === 'between'">
+              </masked-input>
               
               <!-- string -->
               <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
@@ -95,7 +107,7 @@
                   </ul>
                 </div>
 
-                <!-- ok -->
+                <!-- cari -->
                 <div class="btn-group" v-if="params.search_operator !== 'like'">
                   <button type="button" class="btn btn-default btn-icon " data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'"  :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
                     <i class="icon-search4"></i>  Cari
@@ -222,7 +234,7 @@
                     <span v-if="params.direction === 'asc'"><i class="icon-sort-amount-asc"></i></span>
                     <span v-else><i class="icon-sort-amount-desc"></i></span>
                   </span>
-                  <span class="icon-sort" v-else></span>
+                  <span class="icon-sort text-muted" v-else></span>
                 </div>
                 <div v-else>
                   <span>{{item.title}}</span>
@@ -318,24 +330,104 @@
 
     <!-- mobile -->
     <!-- top panel -->
+    <!-- search -->
     <div class="panel panel-flat visible-xs">
-      <div class="panel-body">
-        <!-- search -->
-        <div class="input-group pb-15">
-          <div class="input-group-addon">
-            <i class="icon-search4 text-muted"></i>
-          </div>
-          <!-- input -->
-          <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'">
+      <div class="panel-heading has-visible-elements">
+        <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
+        <div class="heading-elements visible-elements">
+          <ul class="icons-list">
+            <li><a data-action="collapse" ></a></li>
+          </ul>
         </div>
+      </div>
+      <div class="panel-body">
+        <!-- input -->
+        <!-- date -->
+        <masked-input
+          type="text"
+          name="date"
+          class="form-control"
+          v-model="searchQuery1"
+          :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
+          :guide="true"
+          :disabled="itemDataStat === 'loading'"
+          placeholder="YYYY-MM-DD HH:MM:SS"
+          v-if="searchColumnType === 'date'">
+        </masked-input>
+        <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+        <masked-input
+          type="text"
+          name="date2"
+          class="form-control"
+          v-model="params.search_query_2"
+          :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
+          :guide="true"
+          :disabled="itemDataStat === 'loading'"
+          placeholder="YYYY-MM-DD HH:MM:SS"
+          v-if="searchColumnType === 'date' && params.search_operator === 'between'">
+        </masked-input>
+        
+        <!-- number -->
+        <masked-input
+          type="text"
+          name="number"
+          class="form-control"
+          v-model="searchQuery1"
+          :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
+          :guide="true"
+          placeholder="999.999.999"
+          :disabled="itemDataStat === 'loading'"
+          v-if="searchColumnType === 'number'">
+        </masked-input>
+          <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
+        <masked-input
+          type="text"
+          name="number"
+          class="form-control"
+          v-model="params.search_query_2"
+          :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
+          :guide="true"
+          placeholder="999.999.999"
+          :disabled="itemDataStat === 'loading'"
+          v-if="searchColumnType === 'number' && params.search_operator === 'between'">
+        </masked-input>
+        
+        <!-- string -->
+        <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
 
         <!-- filter -->
-        <div class="pb-15">
+        <div class="pb-15 pt-15">
            <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('filter')">
             <i class="icon-filter4"></i> Pencarian berdasarkan {{searchColumn}} 
           </button>
         </div>
 
+        <!-- operator -->
+        <div class="pb-15" v-if="params.search_operator !== 'like'">
+           <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('operator')">
+            <i class="icon-equalizer"></i>  Operator {{searchOperator}} 
+          </button>
+        </div>
+
+        <!-- cari -->
+        <div v-if="params.search_operator !== 'like'">
+          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+            <i class="icon-search4"></i>  Cari
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-flat visible-xs">
+      <div class="panel-heading has-visible-elements">
+        <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
+        <div class="heading-elements visible-elements">
+          <ul class="icons-list">
+            <li><a data-action="collapse"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel-body">
         <div class="pb-15">
           <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('column')">
             <i class="icon-table2"></i> Kolom yang ditampilkan
@@ -365,6 +457,12 @@
       </div>
     </div>
 
+    <!-- divider -->
+    <div class="text-center text-muted">
+      <span>KONTEN</span>
+    </div>
+    <hr class="visible-xs no-margin-top" />
+
     <!-- content -->
     <div class="visible-xs" v-if="itemDataStat === 'loading'">
       <div class="progress">
@@ -382,6 +480,9 @@
       <i class="icon-cancel-circle2" style="font-size: 5em"></i>
       <h3>Oops.. Terjadi kesalahan, silahkan coba lagi.</h3>
     </div>
+
+    <!-- divider -->
+    <hr class="visible-xs" />
     
     <!-- pagination-->
     <div class="text-center visible-xs">
@@ -472,6 +573,15 @@
           <h2 class="text-center">Pencarian berdasarkan</h2>
           <hr/>
           <a class="btn btn-default btn-block" v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'btn-primary' : params.search_column === column.key}" @click.prevent="searchColumnData(column.key,column.title,column.type)" >{{column.title}}</a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+        <!-- operator -->
+        <div v-if="modalMobileOptionState === 'operator'">
+          <h2 class="text-center">Operator pencarian</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" v-for="op in operator" :class="{'btn-primary' : params.search_operator === op.key}" @click.prevent="searchOperatorData(op)" >{{op.title}}</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
@@ -691,6 +801,8 @@
           this.params.page = 1;
           this.fetch();
         }
+
+        this.modalTutup();
       },
 
       // show column

@@ -2,7 +2,7 @@
 	<div>
 		<!-- Page header -->
 		<div class="page-header">
-			<div class="page-header-content has-visible-elements">
+			<div class="page-header-content">
 				<div class="page-title">
 					<h4>
 						<i class="position-left" :class="titleIcon"></i>
@@ -14,7 +14,7 @@
 						<li class="active">{{ title }}</li>
 					</ul>
 				</div>
-				<div class="heading-elements visible-elements">
+				<div class="heading-elements">
 					<div class="heading-btn-group">
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
 							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
