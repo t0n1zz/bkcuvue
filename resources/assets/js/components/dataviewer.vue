@@ -263,7 +263,7 @@
           </tbody>
 
           <!-- data body -->
-          <tbody v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
+          <tbody v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open">
             <tr class="active border-double" v-if="group.show">
               <td :colspan="columnData.length">
                 <b>{{index}}</b>
@@ -282,6 +282,11 @@
           </tbody>
         </table>
       </div>
+
+      <context-menu ref="menu">
+        <!-- slot button -->
+        <slot name="button-context"></slot>
+      </context-menu>
 
       <!-- footer info -->
       <div class="panel-footer has-visible-elements">
@@ -424,6 +429,7 @@
       </div>
     </div>
 
+    <!-- option -->
     <div class="panel panel-flat visible-xs">
       <div class="panel-heading has-visible-elements">
         <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
@@ -643,7 +649,14 @@
         <div v-if="modalMobileOptionState === 'excel'">
           <h2 class="text-center">Download data ke excel</h2>
           <hr/>
-          <json-excel class="btn btn-default btn-block" :data="excel.data" :fieldsx="excel.fields" :meta="excel.meta" name="fileExcel.xls">Data di tabel</json-excel>
+          <json-excel 
+            class="btn btn-default btn-block"
+            :data="excel.data" 
+            :fieldsx="excel.fields" 
+            :meta="excel.meta"
+            :title="'Data ' + title" 
+            :name="title + '.xls'"
+            >Data di tabel</json-excel>
           <a class="btn btn-default btn-block" @click.prevent="modalExcelOpen">Semua data</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
@@ -660,14 +673,15 @@
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
   import maskedInput from 'vue-text-mask';
-
+  import contextMenu from 'vue-context-menu';
 
   export default {
     props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params'],
     components: {
       jsonExcel,
       appModal,
-      maskedInput
+      maskedInput,
+      contextMenu
     },
     data() {
       return {

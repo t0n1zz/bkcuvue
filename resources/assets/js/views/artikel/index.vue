@@ -108,10 +108,9 @@
 
 							<!-- ubah-->
 							<div class="btn-group pb-5">
-								<router-link :to="{ name:'artikelEdit', params: { id: selectedItem.id }}" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Artikel'" v-if="selectedItem.id">
+								<button @click.prevent="ubahData()" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Artikel'" :disabled="!selectedItem.id">
 									<i class="icon-pencil5"></i> Ubah
-								</router-link>
-								<button class="btn btn-default btn-icon" v-tooltip:top="'Ubah Artikel'" disabled v-else-if="!selectedItem.id"><i class="icon-pencil5"></i> Ubah</button>
+								</button>
 							</div>
 
 							<!-- hapus -->
@@ -137,6 +136,42 @@
 								</button>
 							</div>
 
+						</template>
+
+						<!-- button context -->
+						<template slot="button-context">
+							<li class="text-center"><span class="text-size-large pb-10">{{selectedItem.nama}}</span></li>
+							<li><hr class="no-margin-top"/></li>
+							<li>
+								<div class="pl-5 pr-5 pb-5">
+									<button @click.prevent="ubahData()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Artikel'" :disabled="!selectedItem.id">
+										<i class="icon-pencil5"></i> Ubah
+									</button>
+								</div>
+							</li>
+							<li>
+								<div class="pl-5 pr-5 pb-5">
+									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus Artikel'"  :disabled="!selectedItem.id">
+										<i class="icon-bin2"></i> Hapus
+									</button>
+								</div>
+							</li>
+							<li>
+								<div class="pl-5 pr-5 pb-5">
+									<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
+										<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
+										<span v-else>Terbitkan</span>
+									</button>
+								</div>
+							</li>
+							<li>
+								<div class="pl-5 pr-5">
+									<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
+										<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
+										<span v-else>Utamakan</span>
+									</button>
+								</div>
+							</li>
 						</template>
 
 						<!-- item desktop -->
@@ -506,6 +541,9 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
+			ubahData() {
+				this.$router.push('/artikel/edit/' + this.selectedItem.id);
+			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
@@ -535,10 +573,6 @@
 						this.modalButton = 'Iya, tidak utamakan';
 					}
 				}
-			},
-			modalEdit(id) {
-				this.modalShow = false;
-				this.$router.push('/artikel/edit/' + id);
 			},
 			modalTutup() {
 				this.modalShow = false;
