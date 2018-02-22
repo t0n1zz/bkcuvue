@@ -138,3 +138,9 @@
 		}
 	}
 </script>
+
+<style>
+.ctx-menu {
+	padding-top: 0;
+}
+</style>

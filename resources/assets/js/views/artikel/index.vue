@@ -7,14 +7,14 @@
 					<h4>
 						<i class="position-left" :class="titleIcon"></i>
 						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
-					<ul class="breadcrumb breadcrumb-caret position-right">
+					<ul class="breadcrumb breadcrumb-caret position-right hidden-print">
 						<router-link :to="{ name:'dashboard' }" tag="li">
 							<a>Dashboard</a>
 						</router-link>
 						<li class="active">{{ title }}</li>
 					</ul>
 				</div>
-				<div class="heading-elements">
+				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
 							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
@@ -39,7 +39,7 @@
 					</message>
 
 					<!-- cu desktop --> 
-					<div class="panel panel-flat hidden-xs" v-if="this.userData.id_cu === 0">
+					<div class="panel panel-flat hidden-xs hidden-print " v-if="this.userData.id_cu === 0">
 						<div class="panel-body">  
 								<div class="input-group" v-if="this.userData.id_cu === 0">
 									<div class="input-group-addon">
@@ -66,7 +66,7 @@
 					</div>		
 
 					<!-- cu mobile -->
-					<div class="panel panel-flat visible-xs" v-if="this.userData.id_cu === 0">
+					<div class="panel panel-flat visible-xs hidden-print" v-if="this.userData.id_cu === 0">
 						<div class="panel-body">  
 							<!-- select -->
 							<div class="input-group">
@@ -135,15 +135,16 @@
 									<span v-else>Utamakan</span>
 								</button>
 							</div>
-
 						</template>
 
 						<!-- button context -->
 						<template slot="button-context">
-							<li class="text-center"><span class="text-size-large pb-10">{{selectedItem.nama}}</span></li>
-							<li><hr class="no-margin-top"/></li>
+							<li class="text-center pb-5 pt-5 bg-primary"><b class="text-size-large">Judul</b></li>
+							<li><hr class="no-margin-bottom no-margin-top"/></li>
+							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.nama}}</span></li>
+							<li><hr class="no-margin-top no-margin-bottom"/></li>
 							<li>
-								<div class="pl-5 pr-5 pb-5">
+								<div class="pl-5 pr-5 pb-5 pt-10">
 									<button @click.prevent="ubahData()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Artikel'" :disabled="!selectedItem.id">
 										<i class="icon-pencil5"></i> Ubah
 									</button>
@@ -201,7 +202,7 @@
 						</template>
 
 						<!-- button mobile -->
-						<template slot="button-mobile">
+						<template slot="button-mobile" class="hidden-print">
 							<!-- tambah -->
 							<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon btn-block">
 								<i class="icon-plus3"></i> Tambah
@@ -278,7 +279,7 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="panel-footer">
+								<div class="panel-footer hidden-print">
 									<div class="text-center button-toolbar">
 										<div class="pt-10 pb-10 pl-15 pr-15">
 											<router-link :to="{ name:'artikelEdit', params: { id: props.item.id }}" class="btn btn-default btn-icon btn-block" v-if="props.item.id">

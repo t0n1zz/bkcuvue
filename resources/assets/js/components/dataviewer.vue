@@ -14,9 +14,8 @@
           </ul>
         </div>
       </div>
-      <div class="panel-body">
+      <div class="panel-body hidden-print">
         <div class="row">
-
           <!-- search -->
           <div class="col-md-12 pb-15">
             <div class="input-group">
@@ -289,7 +288,7 @@
       </context-menu>
 
       <!-- footer info -->
-      <div class="panel-footer has-visible-elements">
+      <div class="panel-footer has-visible-elements hidden-print">
         <div class="heading-elements visible-elements">
 
           <!-- total entri note success-->
@@ -342,7 +341,7 @@
     <!-- mobile -->
     <!-- top panel -->
     <!-- search -->
-    <div class="panel panel-flat visible-xs">
+    <div class="panel panel-flat visible-xs hidden-print">
       <div class="panel-heading has-visible-elements">
         <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
         <div class="heading-elements visible-elements">
@@ -430,7 +429,7 @@
     </div>
 
     <!-- option -->
-    <div class="panel panel-flat visible-xs">
+    <div class="panel panel-flat visible-xs hidden-print">
       <div class="panel-heading has-visible-elements">
         <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
         <div class="heading-elements visible-elements">
@@ -470,10 +469,10 @@
     </div>
 
     <!-- divider -->
-    <div class="text-center text-muted">
+    <div class="text-center text-muted visible-xs hidden-print ">
       <span>KONTEN</span>
     </div>
-    <hr class="visible-xs no-margin-top" />
+    <hr class="visible-xs no-margin-top hidden-print"/>
 
     <!-- content -->
     <div class="visible-xs" v-if="itemDataStat === 'loading'">
@@ -494,10 +493,10 @@
     </div>
 
     <!-- divider -->
-    <hr class="visible-xs" />
+    <hr class="visible-xs hidden-print" />
     
     <!-- pagination-->
-    <div class="text-center visible-xs">
+    <div class="text-center visible-xs hidden-print">
       <!-- pagination success -->
       <ul class="pagination pagination-flat pagination-lg" v-if="itemDataStat === 'success'">
         <li :class="{'disabled' : !itemData.prev_page_url}">
