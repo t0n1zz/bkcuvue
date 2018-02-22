@@ -2,7 +2,7 @@
 	<div>
 		<!-- Page header -->
 		<div class="page-header">
-			<div class="page-header-content has-visible-elements">
+			<div class="page-header-content">
 				<div class="page-title">
 					<h4>
 						<i class="position-left" :class="titleIcon"></i>
@@ -14,7 +14,7 @@
 						<li class="active">{{ title }}</li>
 					</ul>
 				</div>
-				<div class="heading-elements visible-elements">
+				<div class="heading-elements">
 					<div class="heading-btn-group">
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
 							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
@@ -140,7 +140,7 @@
 						</template>
 
 						<!-- item desktop -->
-						<template slot="item-desktop" scope="props">
+						<template slot="item-desktop" slot-scope="props">
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
@@ -174,7 +174,7 @@
 						</template>
 				
 						<!-- item mobile -->
-						<template slot="item-mobile" scope="props">
+						<template slot="item-mobile" slot-scope="props">
 							<div class="panel panel-flat visible-xs">
 								<div class="table-responsive">
 									<table class="table table-striped">
@@ -308,9 +308,9 @@
 		},
 		data() {
 			return {
-				title: 'User',
-				titleDesc: 'Mengelola data user',
-				titleIcon: 'icon-users',
+				title: 'Artikel',
+				titleDesc: 'Mengelola data artikel',
+				titleIcon: 'icon-magazine',
 				id_cu: '',
 				source: '',
 				selectedItem: [],
@@ -325,21 +325,33 @@
           search_query_2: ''
         },
 				filterData: [{
-						title: 'Nama',
+						title: 'Judul',
 						key: 'nama',
-						operator: 'like',
+						type: 'string',
 						disable: false
 					},
 					{
-						title: 'Username',
-						key: 'username',
-						operator: 'like',
+						title: 'Kategori',
+						key: 'artikel_kategori.nama',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Penulis',
+						key: 'artikel_penulis.nama',
+						type: 'string',
 						disable: false
 					},
 					{
 						title: 'CU',
 						key: 'cu.nama',
-						operator: 'like',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Tgl. Tulis',
+						key: 'created_at',
+						type: 'date',
 						disable: false
 					}
 				],
@@ -353,7 +365,7 @@
 						disable: false
 					},
 					{
-						title: 'Nama',
+						title: 'Judul',
 						key: 'nama',
 						excelType: 'string',
 						sort: true,
@@ -361,8 +373,18 @@
 						disable: false
 					},
 					{
-						title: 'Username',
-						key: 'username',
+						title: 'Kategori',
+						key: 'id_artikel_kategori',
+						groupKey: 'artikel__kategori.nama',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false
+					},
+					{
+						title: 'Penulis',
+						key: 'id_artikel_penulis',
+						groupKey: 'artikel__penulis.nama',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -378,17 +400,25 @@
 						disable: false
 					},
 					{
-						title: 'Status',
-						key: 'status',
+						title: 'Terbitkan',
+						key: 'terbitkan',
 						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
 					},
 					{
-						title: 'Tgl. Buat',
+						title: 'Utamakan',
+						key: 'utamakan',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false
+					},
+					{
+						title: 'Tgl. Tulis',
 						key: 'created_at',
-						texcelType: 'string',
+						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
@@ -396,7 +426,7 @@
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
-						texcelType: 'string',
+						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false

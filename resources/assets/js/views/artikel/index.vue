@@ -140,7 +140,7 @@
 						</template>
 
 						<!-- item desktop -->
-						<template slot="item-desktop" scope="props">
+						<template slot="item-desktop" slot-scope="props">
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
@@ -174,7 +174,7 @@
 						</template>
 				
 						<!-- item mobile -->
-						<template slot="item-mobile" scope="props">
+						<template slot="item-mobile" slot-scope="props">
 							<div class="panel panel-flat visible-xs">
 								<div class="table-responsive">
 									<table class="table table-striped">

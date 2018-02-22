@@ -204,7 +204,13 @@
                   <li class="dropdown-header">Download data ke excel</li>
                   <li class="divider"></li>
                   <li>
-                    <json-excel :data="excel.data" :fieldsx="excel.fields" :meta="excel.meta" name="fileExcel.xls">Data di tabel</json-excel>
+                    <json-excel 
+                    :data="excel.data" 
+                    :fieldsx="excel.fields" 
+                    :meta="excel.meta"
+                    :title="'Data ' + title" 
+                    :name="title + '.xls'"
+                    >Data di tabel</json-excel>
                   </li>
                   <li>
                     <a @click.prevent="modalExcelOpen">Semua Data</a>
@@ -559,7 +565,13 @@
                 <i class="icon-cross"></i> Tutup</button>
             </li>
             <li>
-              <json-excel :data="excel.data" :fieldsx="excel.fields" :meta="excel.meta" :name="excel.filename" class="btn btn-default">
+              <json-excel 
+                :data="excel.data"
+                fieldsx="excel.fields" 
+                :meta="excel.meta" 
+                :title="title"
+                :name="title + '.xls'"
+                class="btn btn-default">
                 <i class="icon-download10"></i> Download Excel</json-excel>
             </li>
           </ul>
@@ -704,7 +716,8 @@
               "value": "utf-8"
             }]
           ],
-          filename: 'Artikel.xls'
+          title: '',
+          filename: ''
         },
         group: {
           show: false,
