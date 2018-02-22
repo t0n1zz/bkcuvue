@@ -5,27 +5,47 @@ namespace App;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Support\FilterPaginateOrder;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, FilterPaginateOrder;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'users';
+
+    public static $rules = [
+        'id_pus' => 'required',
+        'id_cu' => 'required',
+        'nama' => 'required|min:5',
+        'username' => 'required|min:5',
+        'password' => 'required|min:5',
+    ];
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $filter = [
+        'id','id_cu','id_pus','nama','username','gambar','status','created_at'
+    ];
+
+    public function getNameAttribute($value){
+        return !empty($value) ? $value : '-';
+    }
+
+    public static function initialize()
+    {
+        return [
+            'id_cu' => '0' , 'id_pus' => '0','id_artikel_penulis' => '0', 'nama' => '', 'username' => '', 'status' => '0', 'gambar' => ''
+        ];
+    }
+
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
     ];
 
     public function getId(){

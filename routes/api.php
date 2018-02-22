@@ -7,6 +7,11 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     // user
     Route::get('/profile', 'UserController@getUser');
     Route::get('/userData', 'UserController@userData');
+    Route::get('/user', 'UserController@index');
+    Route::get('/user/create', 'UserController@create');
+    Route::get('/user/edit/{id}', 'UserController@edit');
+    Route::post('/user/store', 'UserController@store');
+    Route::post('/user/update/{id}', 'UserController@update');
 
     //artikel
     Route::get('/artikel', 'ArtikelController@index');

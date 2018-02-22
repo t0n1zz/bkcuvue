@@ -33721,6 +33721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -33738,6 +33739,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			title: 'Artikel',
+			kelas: 'artikel',
 			titleDesc: 'Mengelola data artikel',
 			titleIcon: 'icon-magazine',
 			id_cu: '',
@@ -33921,8 +33923,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		selectedRow: function selectedRow(item) {
 			this.selectedItem = item;
 		},
-		ubahData: function ubahData() {
-			this.$router.push('/artikel/edit/' + this.selectedItem.id);
+		ubahData: function ubahData(id) {
+			this.$router.push('/' + this.kelas + '/edit/' + id);
 		},
 		modalConfirmOpen: function modalConfirmOpen(source, isMobile, itemMobile) {
 			this.modalShow = true;
@@ -57642,32 +57644,28 @@ var render = function() {
                                           staticClass: "pt-10 pb-10 pl-15 pr-15"
                                         },
                                         [
-                                          props.item.id
-                                            ? _c(
-                                                "router-link",
-                                                {
-                                                  staticClass:
-                                                    "btn btn-default btn-icon btn-block",
-                                                  attrs: {
-                                                    to: {
-                                                      name: "artikelEdit",
-                                                      params: {
-                                                        id: props.item.id
-                                                      }
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass: "icon-pencil5"
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("span", [_vm._v("Ubah")])
-                                                ]
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-default btn-icon btn-block",
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.ubahData(props.item.id)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-pencil5"
+                                              }),
+                                              _vm._v(
+                                                " Ubah\n\t\t\t\t\t\t\t\t\t\t"
                                               )
-                                            : _vm._e()
-                                        ],
-                                        1
+                                            ]
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -57798,13 +57796,13 @@ var render = function() {
                               {
                                 name: "tooltip",
                                 rawName: "v-tooltip:top",
-                                value: "Tambah Artikel",
-                                expression: "'Tambah Artikel'",
+                                value: "Tambah " + _vm.title,
+                                expression: "'Tambah ' +  title",
                                 arg: "top"
                               }
                             ],
                             staticClass: "btn btn-default btn-icon",
-                            attrs: { to: { name: "artikelCreate" } }
+                            attrs: { to: { name: _vm.kelas + "Create" } }
                           },
                           [
                             _c("i", { staticClass: "icon-plus3" }),
@@ -57823,8 +57821,8 @@ var render = function() {
                             {
                               name: "tooltip",
                               rawName: "v-tooltip:top",
-                              value: "Ubah Artikel",
-                              expression: "'Ubah Artikel'",
+                              value: "Ubah " + _vm.title,
+                              expression: "'Ubah ' + title",
                               arg: "top"
                             }
                           ],
@@ -57833,7 +57831,7 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              _vm.ubahData()
+                              _vm.ubahData(_vm.selectedItem.id)
                             }
                           }
                         },
@@ -57852,8 +57850,8 @@ var render = function() {
                             {
                               name: "tooltip",
                               rawName: "v-tooltip:top",
-                              value: "Hapus Artikel",
-                              expression: "'Hapus Artikel'",
+                              value: "Hapus " + _vm.title,
+                              expression: "'Hapus ' + title",
                               arg: "top"
                             }
                           ],
@@ -57980,8 +57978,8 @@ var render = function() {
                               {
                                 name: "tooltip",
                                 rawName: "v-tooltip:top",
-                                value: "Ubah Artikel",
-                                expression: "'Ubah Artikel'",
+                                value: "Ubah " + _vm.title,
+                                expression: "'Ubah ' + title",
                                 arg: "top"
                               }
                             ],
@@ -57990,7 +57988,7 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                _vm.ubahData()
+                                _vm.ubahData(_vm.selectedItem.id)
                               }
                             }
                           },
@@ -58011,8 +58009,8 @@ var render = function() {
                               {
                                 name: "tooltip",
                                 rawName: "v-tooltip:top",
-                                value: "Hapus Artikel",
-                                expression: "'Hapus Artikel'",
+                                value: "Hapus " + _vm.title,
+                                expression: "'Hapus ' + title",
                                 arg: "top"
                               }
                             ],
@@ -58110,7 +58108,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "btn btn-default btn-icon btn-block",
-                          attrs: { to: { name: "artikelCreate" } }
+                          attrs: { to: { name: _vm.kelas + "Create" } }
                         },
                         [
                           _c("i", { staticClass: "icon-plus3" }),
@@ -60993,80 +60991,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -61075,7 +60999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'ArtikelIndex',
+	name: 'UserIndex',
 	components: {
 		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
@@ -61083,9 +61007,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
-			title: 'Artikel',
-			titleDesc: 'Mengelola data artikel',
-			titleIcon: 'icon-magazine',
+			title: 'User',
+			titleDesc: 'Mengelola data user',
+			titleIcon: 'icon-users',
+			kelas: 'user',
 			id_cu: '',
 			source: '',
 			selectedItem: [],
@@ -61100,19 +61025,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				search_query_2: ''
 			},
 			filterData: [{
-				title: 'Judul',
+				title: 'Nama',
 				key: 'nama',
 				type: 'string',
 				disable: false
 			}, {
-				title: 'Kategori',
-				key: 'artikel_kategori.nama',
+				title: 'Username',
+				key: 'username',
 				type: 'string',
 				disable: false
 			}, {
-				title: 'Penulis',
-				key: 'artikel_penulis.nama',
-				type: 'string',
+				title: 'Status',
+				key: 'status',
+				type: 'boolean',
 				disable: false
 			}, {
 				title: 'CU',
@@ -61120,7 +61045,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				type: 'string',
 				disable: false
 			}, {
-				title: 'Tgl. Tulis',
+				title: 'Tgl. Buat',
 				key: 'created_at',
 				type: 'date',
 				disable: false
@@ -61133,24 +61058,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				hide: false,
 				disable: false
 			}, {
-				title: 'Judul',
+				title: 'Nama',
 				key: 'nama',
 				excelType: 'string',
 				sort: true,
 				hide: false,
 				disable: false
 			}, {
-				title: 'Kategori',
-				key: 'id_artikel_kategori',
-				groupKey: 'artikel__kategori.nama',
-				excelType: 'string',
-				sort: true,
-				hide: false,
-				disable: false
-			}, {
-				title: 'Penulis',
-				key: 'id_artikel_penulis',
-				groupKey: 'artikel__penulis.nama',
+				title: 'Username',
+				key: 'username',
+				groupKey: 'username',
 				excelType: 'string',
 				sort: true,
 				hide: false,
@@ -61164,29 +61081,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				hide: false,
 				disable: false
 			}, {
-				title: 'Terbitkan',
-				key: 'terbitkan',
+				title: 'Status',
+				key: 'status',
 				excelType: 'string',
 				sort: true,
 				hide: false,
 				disable: false
 			}, {
-				title: 'Utamakan',
-				key: 'utamakan',
-				excelType: 'string',
-				sort: true,
-				hide: false,
-				disable: false
-			}, {
-				title: 'Tgl. Tulis',
+				title: 'Tgl. Buat',
 				key: 'created_at',
-				excelType: 'string',
-				sort: true,
-				hide: false,
-				disable: false
-			}, {
-				title: 'Tgl. Ubah',
-				key: 'updated_at',
 				excelType: 'string',
 				sort: true,
 				hide: false,
@@ -61205,25 +61108,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		$('.bootstrap-select').selectpicker('refresh');
 	},
 	created: function created() {
-		if (this.userData.id_pus !== undefined) {
-			this.fetchCU();
-		}
+		this.fetch();
 	},
 
 	watch: {
-		userDataStat: function userDataStat(value) {
-			if (value === "success" && this.userData.id_pus !== undefined) {
-				this.fetchCU();
-			}
-		},
-		modelCULoadStat: function modelCULoadStat(value) {
-			if (value === "success") {
-				this.id_cu = this.userData.id_cu;
-				if (this.id_cu !== '') {
-					this.fetch();
-				}
-			}
-		},
+		userDataStat: function userDataStat(value) {},
 		updateStat: function updateStat(value) {
 			this.modalState = value;
 			this.modalButton = 'Ok';
@@ -61238,34 +61127,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		fetch: function fetch() {
-			if (this.modelCULoadStat === 'success') {
-				if (this.id_cu === 'semua') {
-					this.$store.dispatch('loadArtikelS', this.params);
-					this.disableColumnCU(false);
-				} else {
-					if (this.id_cu !== undefined) {
-						this.$store.dispatch('loadArtikelCUS', [this.params, this.id_cu]);
-					}
-					this.disableColumnCU(true);
-				}
-			}
-		},
-		fetchCU: function fetchCU() {
-			this.$store.dispatch('loadCUPus', this.userData.id_pus);
-		},
-		changeCU: function changeCU(id) {
-			this.id_cu = id;
-			this.params.per_page = 10;
-			this.params.page = 1;
-
-			this.fetch();
-		},
-		disableColumnCU: function disableColumnCU(status) {
-			this.columnData[4].disable = status;
-			this.filterData[3].disable = status;
+			this.$store.dispatch('loadUserS', this.params);
 		},
 		selectedRow: function selectedRow(item) {
 			this.selectedItem = item;
+		},
+		ubahData: function ubahData(id) {
+			this.$router.push('/' + this.kelas + '/edit/' + id);
 		},
 		modalConfirmOpen: function modalConfirmOpen(source, isMobile, itemMobile) {
 			this.modalShow = true;
@@ -61279,27 +61147,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (source == 'hapus') {
 				this.modalTitle = 'Hapus artikel ini?';
 				this.modalButton = 'Iya, Hapus';
-			} else if (source == 'updateTerbitkan') {
+			} else if (source == 'updateStatus') {
 				if (this.selectedItem.terbitkan == 0) {
-					this.modalTitle = 'Terbitkan artikel ini?';
-					this.modalButton = 'Iya, terbitkan';
+					this.modalTitle = 'Aktifkan user ini?';
+					this.modalButton = 'Iya, aktifkan';
 				} else {
-					this.modalTitle = 'Tidak terbitkan artikel ini?';
-					this.modalButton = 'Iya, tidak terbitkan';
-				}
-			} else if (source == 'updateUtamakan') {
-				if (this.selectedItem.utamakan == 0) {
-					this.modalTitle = 'Utamakan artikel ini?';
-					this.modalButton = 'Iya, utamakan';
-				} else {
-					this.modalTitle = 'Tidak utamakan artikel ini?';
-					this.modalButton = 'Iya, tidak utamakan';
+					this.modalTitle = 'Tidak aktifkan user ini?';
+					this.modalButton = 'Iya, tidak aktifkan';
 				}
 			}
-		},
-		modalEdit: function modalEdit(id) {
-			this.modalShow = false;
-			this.$router.push('/artikel/edit/' + id);
 		},
 		modalTutup: function modalTutup() {
 			this.modalShow = false;
@@ -61330,16 +61186,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return this.$store.getters.getCULoadStatS;
 		},
 		itemData: function itemData() {
-			return this.$store.getters.getArtikelS;
+			return this.$store.getters.getUserS;
 		},
 		itemDataStat: function itemDataStat() {
-			return this.$store.getters.getArtikelLoadStatS;
+			return this.$store.getters.getUserLoadStatS;
 		},
 		updateStat: function updateStat() {
-			return this.$store.getters.getArtikelUpdateStat;
+			return this.$store.getters.getUserUpdateStat;
 		},
 		updateMessage: function updateMessage() {
-			return this.$store.getters.getArtikelUpdateMessage;
+			return this.$store.getters.getUserUpdateMessage;
 		}
 	},
 	filters: {
@@ -61397,7 +61253,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "ul",
-              { staticClass: "breadcrumb breadcrumb-caret position-right" },
+              {
+                staticClass:
+                  "breadcrumb breadcrumb-caret position-right hidden-print"
+              },
               [
                 _c(
                   "router-link",
@@ -61411,7 +61270,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "heading-elements" }, [
+          _c("div", { staticClass: "heading-elements hidden-print" }, [
             _c(
               "div",
               { staticClass: "heading-btn-group" },
@@ -61463,243 +61322,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("pre", { staticClass: "pre-scrollable" }, [
                       _vm._v(_vm._s(_vm.itemData))
-                    ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              this.userData.id_cu === 0
-                ? _c("div", { staticClass: "panel panel-flat hidden-xs" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      this.userData.id_cu === 0
-                        ? _c("div", { staticClass: "input-group" }, [
-                            _c("div", { staticClass: "input-group-addon" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\tPilih Artikel\n\t\t\t\t\t\t\t\t"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.id_cu,
-                                    expression: "id_cu"
-                                  }
-                                ],
-                                staticClass: "bootstrap-select",
-                                attrs: {
-                                  name: "id_cu",
-                                  "data-width": "100%",
-                                  disabled: _vm.modelCULoadStat === "loading"
-                                },
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.id_cu = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    function($event) {
-                                      _vm.changeCU($event.target.value)
-                                    }
-                                  ]
-                                }
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  { attrs: { disabled: "", value: "" } },
-                                  [_vm._v("Silahkan pilih CU")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "semua" } }, [
-                                  _vm._v("Semua")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm.userData.pus
-                                    ? _c("span", [
-                                        _vm._v(_vm._s(_vm.userData.pus.nama))
-                                      ])
-                                    : _c("span", [_vm._v("Puskopdit")])
-                                ]),
-                                _vm._v(" "),
-                                _c("option", {
-                                  attrs: { "data-divider": "true" }
-                                }),
-                                _vm._v(" "),
-                                _vm._l(_vm.modelCU, function(cu) {
-                                  return _c(
-                                    "option",
-                                    { domProps: { value: cu.id } },
-                                    [_vm._v(_vm._s(cu.nama))]
-                                  )
-                                })
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group-btn" }, [
-                              _c(
-                                "button",
-                                {
-                                  directives: [
-                                    {
-                                      name: "tooltip",
-                                      rawName: "v-tooltip:top",
-                                      value: "Reload",
-                                      expression: "'Reload'",
-                                      arg: "top"
-                                    }
-                                  ],
-                                  staticClass: "btn btn-default",
-                                  attrs: {
-                                    disabled: _vm.modelCULoadStat === "loading"
-                                  },
-                                  on: { click: _vm.fetchCU }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "icon-sync",
-                                    class: {
-                                      spinner: _vm.modelCULoadStat === "loading"
-                                    }
-                                  })
-                                ]
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              this.userData.id_cu === 0
-                ? _c("div", { staticClass: "panel panel-flat visible-xs" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      _c("div", { staticClass: "input-group" }, [
-                        _c("div", { staticClass: "input-group-addon" }, [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\tPilih Artikel\n\t\t\t\t\t\t\t"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.id_cu,
-                                expression: "id_cu"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              name: "id_cu",
-                              "data-width": "100%",
-                              disabled: _vm.modelCULoadStat === "loading"
-                            },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.id_cu = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                function($event) {
-                                  _vm.changeCU($event.target.value)
-                                }
-                              ]
-                            }
-                          },
-                          [
-                            _c(
-                              "option",
-                              { attrs: { disabled: "", value: "" } },
-                              [_vm._v("Silahkan pilih CU")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "semua" } }, [
-                              _vm._v("Semua")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "0" } }, [
-                              _vm.userData.pus
-                                ? _c("span", [
-                                    _vm._v(_vm._s(_vm.userData.pus.nama))
-                                  ])
-                                : _c("span", [_vm._v("Puskopdit")])
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { "data-divider": "true" } }),
-                            _vm._v(" "),
-                            _vm._l(_vm.modelCU, function(cu) {
-                              return _c(
-                                "option",
-                                { domProps: { value: cu.id } },
-                                [_vm._v(_vm._s(cu.nama))]
-                              )
-                            })
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "pt-15" }, [
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "tooltip",
-                                rawName: "v-tooltip:top",
-                                value: "Reload",
-                                expression: "'Reload'",
-                                arg: "top"
-                              }
-                            ],
-                            staticClass: "btn btn-default btn-lg btn-block",
-                            attrs: {
-                              disabled: _vm.modelCULoadStat === "loading"
-                            },
-                            on: { click: _vm.fetchCU }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "icon-sync",
-                              class: {
-                                spinner: _vm.modelCULoadStat === "loading"
-                              }
-                            }),
-                            _vm._v(" Reload\n\t\t\t\t\t\t\t")
-                          ]
-                        )
-                      ])
                     ])
                   ])
                 : _vm._e(),
@@ -61765,37 +61387,13 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              !_vm.columnData[2].hide &&
-                              !_vm.columnData[2].disable
-                                ? _c("td", [
-                                    props.item.artikel__kategori
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(
-                                              props.item.artikel__kategori.nama
-                                            )
-                                          )
-                                        ])
-                                      : _vm._e()
+                              !_vm.columnData[2].hide
+                                ? _c("td", { staticClass: "warptext" }, [
+                                    _vm._v(_vm._s(props.item.username))
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[3].hide &&
-                              !_vm.columnData[3].disable
-                                ? _c("td", [
-                                    props.item.artikel__penulis
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(
-                                              props.item.artikel__penulis.nama
-                                            )
-                                          )
-                                        ])
-                                      : _vm._e()
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.columnData[4].hide &&
                               !_vm.columnData[4].disable
                                 ? _c("td", [
                                     props.item.c_u
@@ -61806,31 +61404,19 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
+                              !_vm.columnData[4].hide
+                                ? _c("td", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.checkStatus(
+                                          props.item.status
+                                        )
+                                      )
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
                               !_vm.columnData[5].hide
-                                ? _c("td", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.checkStatus(
-                                          props.item.terbitkan
-                                        )
-                                      )
-                                    }
-                                  })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.columnData[6].hide
-                                ? _c("td", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.checkStatus(
-                                          props.item.utamakan
-                                        )
-                                      )
-                                    }
-                                  })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.columnData[7].hide
                                 ? _c("td", {
                                     staticClass: "text-nowrap",
                                     domProps: {
@@ -61841,23 +61427,6 @@ var render = function() {
                                       )
                                     }
                                   })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.columnData[8].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
-                                    props.item.created_at !==
-                                    props.item.updated_at
-                                      ? _c("span", {
-                                          domProps: {
-                                            innerHTML: _vm._s(
-                                              _vm.$options.filters.publishDate(
-                                                props.item.updated_at
-                                              )
-                                            )
-                                          }
-                                        })
-                                      : _vm._e()
-                                  ])
                                 : _vm._e()
                             ]
                           )
@@ -61941,19 +61510,10 @@ var render = function() {
                                             ]),
                                             _vm._v(" "),
                                             _c("td", [
-                                              props.item.artikel__kategori
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item
-                                                            .artikel__kategori
-                                                            .nama
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
+                                              _vm._v(
+                                                ": " +
+                                                  _vm._s(props.item.username)
+                                              )
                                             ])
                                           ])
                                         : _vm._e(),
@@ -61971,14 +61531,12 @@ var render = function() {
                                             ]),
                                             _vm._v(" "),
                                             _c("td", [
-                                              props.item.artikel__penulis
+                                              props.item.c_u
                                                 ? _c("span", [
                                                     _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t: " +
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
                                                         _vm._s(
-                                                          props.item
-                                                            .artikel__penulis
-                                                            .nama
+                                                          props.item.c_u.nama
                                                         ) +
                                                         "\n\t\t\t\t\t\t\t\t\t\t\t\t"
                                                     )
@@ -62001,17 +61559,18 @@ var render = function() {
                                             ]),
                                             _vm._v(" "),
                                             _c("td", [
-                                              props.item.c_u
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item.c_u.nama
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                              _vm._v(
+                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
+                                              ),
+                                              _c("span", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    _vm.$options.filters.checkStatus(
+                                                      props.item.status
                                                     )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
+                                                  )
+                                                }
+                                              })
                                             ])
                                           ])
                                         : _vm._e(),
@@ -62035,64 +61594,6 @@ var render = function() {
                                               _c("span", {
                                                 domProps: {
                                                   innerHTML: _vm._s(
-                                                    _vm.$options.filters.checkStatus(
-                                                      props.item.terbitkan
-                                                    )
-                                                  )
-                                                }
-                                              })
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[6].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[6].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.$options.filters.checkStatus(
-                                                      props.item.utamakan
-                                                    )
-                                                  )
-                                                }
-                                              })
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[7].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[7].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
                                                     _vm.$options.filters.publishDateMobile(
                                                       props.item.created_at
                                                     )
@@ -62101,188 +61602,123 @@ var render = function() {
                                               })
                                             ])
                                           ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[8].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[8].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              props.item.created_at !==
-                                              props.item.updated_at
-                                                ? _c("span", {
-                                                    domProps: {
-                                                      innerHTML: _vm._s(
-                                                        _vm.$options.filters.publishDateMobile(
-                                                          props.item.updated_at
-                                                        )
-                                                      )
-                                                    }
-                                                  })
-                                                : _vm._e()
-                                            ])
-                                          ])
                                         : _vm._e()
                                     ])
                                   ]
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "panel-footer" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "text-center button-toolbar" },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "pt-10 pb-10 pl-15 pr-15"
-                                      },
-                                      [
-                                        props.item.id
-                                          ? _c(
-                                              "router-link",
-                                              {
-                                                staticClass:
-                                                  "btn btn-default btn-icon btn-block",
-                                                attrs: {
-                                                  to: {
-                                                    name: "artikelEdit",
-                                                    params: {
-                                                      id: props.item.id
-                                                    }
-                                                  }
+                              _c(
+                                "div",
+                                { staticClass: "panel-footer hidden-print" },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "text-center button-toolbar"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "pt-10 pb-10 pl-15 pr-15"
+                                        },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-default btn-icon btn-block",
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.ubahData(props.item.id)
                                                 }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "icon-pencil5"
-                                                }),
-                                                _vm._v(" "),
-                                                _c("span", [_vm._v("Ubah")])
-                                              ]
-                                            )
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "pb-10 pl-15 pr-15" },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-default btn-icon btn-block",
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                _vm.modalConfirmOpen(
-                                                  "hapus",
-                                                  true,
-                                                  props.item
-                                                )
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-bin2"
-                                            }),
-                                            _vm._v(" "),
-                                            _c("span", [_vm._v("Hapus")])
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "pb-10 pl-15 pr-15" },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-default btn-icon btn-block",
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                _vm.modalConfirmOpen(
-                                                  "updateTerbitkan",
-                                                  true,
-                                                  props.item
-                                                )
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-pencil5"
+                                              }),
+                                              _vm._v(
+                                                " Ubah\n\t\t\t\t\t\t\t\t\t\t"
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "pb-10 pl-15 pr-15" },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-default btn-icon btn-block",
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.modalConfirmOpen(
+                                                    "hapus",
+                                                    true,
+                                                    props.item
+                                                  )
+                                                }
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-file-upload"
-                                            }),
-                                            _vm._v(" "),
-                                            props.item.terbitkan === 1
-                                              ? _c("span", [
-                                                  _vm._v("Tidak Terbitkan")
-                                                ])
-                                              : _c("span", [
-                                                  _vm._v("Terbitkan")
-                                                ])
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "pb-10 pl-15 pr-15" },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-default btn-icon btn-block",
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                _vm.modalConfirmOpen(
-                                                  "updateUtamakan",
-                                                  true,
-                                                  props.item
-                                                )
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-bin2"
+                                              }),
+                                              _vm._v(" "),
+                                              _c("span", [_vm._v("Hapus")])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "pb-10 pl-15 pr-15" },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-default btn-icon btn-block",
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.modalConfirmOpen(
+                                                    "updateStatus",
+                                                    true,
+                                                    props.item
+                                                  )
+                                                }
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-pushpin"
-                                            }),
-                                            _vm._v(" "),
-                                            props.item.utamakan === 1
-                                              ? _c("span", [
-                                                  _vm._v("Tidak Utamakan")
-                                                ])
-                                              : _c("span", [_vm._v("Utamakan")])
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ])
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-file-upload"
+                                              }),
+                                              _vm._v(" "),
+                                              props.item.status === 1
+                                                ? _c("span", [
+                                                    _vm._v("Tidak Aktifkan")
+                                                  ])
+                                                : _c("span", [
+                                                    _vm._v("Aktifkan")
+                                                  ])
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
                             ]
                           )
                         ]
@@ -62303,75 +61739,19 @@ var render = function() {
                               {
                                 name: "tooltip",
                                 rawName: "v-tooltip:top",
-                                value: "Tambah Artikel",
-                                expression: "'Tambah Artikel'",
+                                value: "Tambah " + _vm.title,
+                                expression: "'Tambah ' + title",
                                 arg: "top"
                               }
                             ],
                             staticClass: "btn btn-default btn-icon",
-                            attrs: { to: { name: "artikelCreate" } }
+                            attrs: { to: { name: _vm.kelas + "Create" } }
                           },
                           [
                             _c("i", { staticClass: "icon-plus3" }),
                             _vm._v(" Tambah\n\t\t\t\t\t\t\t")
                           ]
                         )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "btn-group pb-5" },
-                      [
-                        _vm.selectedItem.id
-                          ? _c(
-                              "router-link",
-                              {
-                                directives: [
-                                  {
-                                    name: "tooltip",
-                                    rawName: "v-tooltip:top",
-                                    value: "Ubah Artikel",
-                                    expression: "'Ubah Artikel'",
-                                    arg: "top"
-                                  }
-                                ],
-                                staticClass: "btn btn-default btn-icon",
-                                attrs: {
-                                  to: {
-                                    name: "artikelEdit",
-                                    params: { id: _vm.selectedItem.id }
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-pencil5" }),
-                                _vm._v(" Ubah\n\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          : !_vm.selectedItem.id
-                            ? _c(
-                                "button",
-                                {
-                                  directives: [
-                                    {
-                                      name: "tooltip",
-                                      rawName: "v-tooltip:top",
-                                      value: "Ubah Artikel",
-                                      expression: "'Ubah Artikel'",
-                                      arg: "top"
-                                    }
-                                  ],
-                                  staticClass: "btn btn-default btn-icon",
-                                  attrs: { disabled: "" }
-                                },
-                                [
-                                  _c("i", { staticClass: "icon-pencil5" }),
-                                  _vm._v(" Ubah")
-                                ]
-                              )
-                            : _vm._e()
                       ],
                       1
                     ),
@@ -62384,8 +61764,37 @@ var render = function() {
                             {
                               name: "tooltip",
                               rawName: "v-tooltip:top",
-                              value: "Hapus Artikel",
-                              expression: "'Hapus Artikel'",
+                              value: "Ubah " + _vm.title,
+                              expression: "'Ubah ' + title",
+                              arg: "top"
+                            }
+                          ],
+                          staticClass: "btn btn-default btn-icon",
+                          attrs: { disabled: !_vm.selectedItem.id },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.ubahData(_vm.selectedItem.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-pencil5" }),
+                          _vm._v(" Ubah\n\t\t\t\t\t\t\t")
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "btn-group pb-5" }, [
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "tooltip",
+                              rawName: "v-tooltip:top",
+                              value: "Hapus " + _vm.title,
+                              expression: "'Hapus ' + title",
                               arg: "top"
                             }
                           ],
@@ -62413,8 +61822,8 @@ var render = function() {
                             {
                               name: "tooltip",
                               rawName: "v-tooltip:top",
-                              value: "Ubah Status Penerbitan Artikel",
-                              expression: "'Ubah Status Penerbitan Artikel'",
+                              value: "Ubah Status User",
+                              expression: "'Ubah Status User'",
                               arg: "top"
                             }
                           ],
@@ -62423,62 +61832,164 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              _vm.modalConfirmOpen("updateTerbitkan")
+                              _vm.modalConfirmOpen("status")
                             }
                           }
                         },
                         [
                           _c("i", { staticClass: "icon-file-upload" }),
                           _vm._v(" "),
-                          _vm.selectedItem.terbitkan === 1
-                            ? _c("span", [_vm._v("Tidak Terbitkan")])
-                            : _c("span", [_vm._v("Terbitkan")])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn-group pb-5" }, [
-                      _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Ubah Status Pengutamaan Artikel",
-                              expression: "'Ubah Status Pengutamaan Artikel'",
-                              arg: "top"
-                            }
-                          ],
-                          staticClass: "btn btn-default btn-icon",
-                          attrs: { disabled: !_vm.selectedItem.id },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.modalConfirmOpen("updateUtamakan")
-                            }
-                          }
-                        },
-                        [
-                          _c("i", { staticClass: "icon-pushpin" }),
-                          _vm._v(" "),
-                          _vm.selectedItem.utamakan === 1
-                            ? _c("span", [_vm._v("Tidak Utamakan")])
-                            : _c("span", [_vm._v("Utamakan")])
+                          _vm.selectedItem.status === 1
+                            ? _c("span", [_vm._v("Tidak Aktifkan")])
+                            : _c("span", [_vm._v("Aktifkan")])
                         ]
                       )
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("template", { slot: "button-context" }, [
+                    _c(
+                      "li",
+                      { staticClass: "text-center pb-5 pt-5 bg-primary" },
+                      [
+                        _c("b", { staticClass: "text-size-large" }, [
+                          _vm._v("Nama | Username")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("hr", {
+                        staticClass: "no-margin-bottom no-margin-top"
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "text-center pb-10 pt-10 pl-5 pr-5" },
+                      [
+                        _c("span", { staticClass: "text-size-large" }, [
+                          _vm._v(
+                            _vm._s(_vm.selectedItem.nama) +
+                              " | " +
+                              _vm._s(_vm.selectedItem.username)
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("hr", {
+                        staticClass: "no-margin-top no-margin-bottom"
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("div", { staticClass: "pl-5 pr-5 pb-5 pt-10" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Ubah" + _vm.title,
+                                expression: "'Ubah' + title",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default btn-icon btn-block",
+                            attrs: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.ubahData(_vm.selectedItem.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-pencil5" }),
+                            _vm._v(" Ubah\n\t\t\t\t\t\t\t\t")
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("div", { staticClass: "pl-5 pr-5 pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Hapus " + _vm.title,
+                                expression: "'Hapus ' + title",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default btn-icon btn-block",
+                            attrs: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("hapus")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-bin2" }),
+                            _vm._v(" Hapus\n\t\t\t\t\t\t\t\t")
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("div", { staticClass: "pl-5 pr-5 pb-5" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Ubah Status User",
+                                expression: "'Ubah Status User'",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default btn-icon btn-block",
+                            attrs: { disabled: !_vm.selectedItem.id },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.modalConfirmOpen("updateStatus")
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-file-upload" }),
+                            _vm._v(" "),
+                            _vm.selectedItem.status === 1
+                              ? _c("span", [_vm._v("Tidak Aktifkan")])
+                              : _c("span", [_vm._v("Aktifkan")])
+                          ]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "template",
-                    { slot: "button-mobile" },
+                    { staticClass: "hidden-print", slot: "button-mobile" },
                     [
                       _c(
                         "router-link",
                         {
                           staticClass: "btn btn-default btn-icon btn-block",
-                          attrs: { to: { name: "artikelCreate" } }
+                          attrs: { to: { name: _vm.kelas + "Create" } }
                         },
                         [
                           _c("i", { staticClass: "icon-plus3" }),

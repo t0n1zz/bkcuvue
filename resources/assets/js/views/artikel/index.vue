@@ -26,7 +26,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- /page header -->
+		
 		<!-- page container -->
 		<div class="page-container">
 			<div class="page-content">
@@ -96,26 +96,27 @@
 					:params="params"
 					@fetch="fetch">
 
+						<!-- desktop -->
 						<!-- button desktop -->
 						<template slot="button-desktop">
 
 							<!-- tambah -->
 							<div class="btn-group pb-5">
-								<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah Artikel'">
+								<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
 									<i class="icon-plus3"></i> Tambah
 								</router-link>
 							</div>
 
 							<!-- ubah-->
 							<div class="btn-group pb-5">
-								<button @click.prevent="ubahData()" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Artikel'" :disabled="!selectedItem.id">
+								<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 
 							<!-- hapus -->
 							<div class="btn-group pb-5">
-								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus Artikel'"  :disabled="!selectedItem.id">
+								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
@@ -145,14 +146,14 @@
 							<li><hr class="no-margin-top no-margin-bottom"/></li>
 							<li>
 								<div class="pl-5 pr-5 pb-5 pt-10">
-									<button @click.prevent="ubahData()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Artikel'" :disabled="!selectedItem.id">
+									<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 										<i class="icon-pencil5"></i> Ubah
 									</button>
 								</div>
 							</li>
 							<li>
 								<div class="pl-5 pr-5 pb-5">
-									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus Artikel'"  :disabled="!selectedItem.id">
+									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
 									</button>
 								</div>
@@ -201,10 +202,11 @@
 							</tr>
 						</template>
 
+						<!-- mobile -->
 						<!-- button mobile -->
 						<template slot="button-mobile" class="hidden-print">
 							<!-- tambah -->
-							<router-link :to="{ name:'artikelCreate'}" class="btn btn-default btn-icon btn-block">
+							<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
 								<i class="icon-plus3"></i> Tambah
 							</router-link>
 						</template>
@@ -282,9 +284,9 @@
 								<div class="panel-footer hidden-print">
 									<div class="text-center button-toolbar">
 										<div class="pt-10 pb-10 pl-15 pr-15">
-											<router-link :to="{ name:'artikelEdit', params: { id: props.item.id }}" class="btn btn-default btn-icon btn-block" v-if="props.item.id">
-												<i class="icon-pencil5"></i> <span>Ubah</span>
-											</router-link>
+											<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
+												<i class="icon-pencil5"></i> Ubah
+											</button>
 										</div>
 										
 										<div class="pb-10 pl-15 pr-15">
@@ -317,8 +319,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- page container -->
-
+		
 		<!-- modal -->
 		<!-- table-context-menu -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup"
@@ -345,6 +346,7 @@
 		data() {
 			return {
 				title: 'Artikel',
+				kelas: 'artikel',
 				titleDesc: 'Mengelola data artikel',
 				titleIcon: 'icon-magazine',
 				id_cu: '',
@@ -542,8 +544,8 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			ubahData() {
-				this.$router.push('/artikel/edit/' + this.selectedItem.id);
+			ubahData(id) {
+				this.$router.push('/' + this.kelas + '/edit/' + id);
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
