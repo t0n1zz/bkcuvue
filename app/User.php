@@ -6,17 +6,19 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Support\FilterPaginateOrder;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, FilterPaginateOrder;
+    use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder;
 
     protected $table = 'users';
 
     public static $rules = [
         'id_pus' => 'required',
         'id_cu' => 'required',
-        'nama' => 'required|min:5',
+        'name' => 'required|min:5',
+        'status' => 'required',
         'username' => 'required|min:5',
         'password' => 'required|min:5',
     ];
@@ -26,7 +28,7 @@ class User extends Authenticatable
     ];
 
     protected $filter = [
-        'id','id_cu','id_pus','nama','username','gambar','status','created_at'
+        'id','id_cu','id_pus','name','username','gambar','status','created_at'
     ];
 
     public function getNameAttribute($value){
@@ -36,7 +38,7 @@ class User extends Authenticatable
     public static function initialize()
     {
         return [
-            'id_cu' => '0' , 'id_pus' => '0','id_artikel_penulis' => '0', 'nama' => '', 'username' => '', 'status' => '0', 'gambar' => ''
+            'id_cu' => '0' , 'id_pus' => '0', 'name' => '', 'username' => '', 'status' => '0', 'gambar' => ''
         ];
     }
 
@@ -44,19 +46,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $casts = [
-        'status' => 'boolean',
-    ];
+    // protected $casts = [
+    //     'status' => 'boolean',
+    // ];
 
     public function getId(){
         return $this->id;
     }
 
     public function pus(){
-        return $this->belongsTo('App\Pus','id_pus','id')->select('id','nama');
+        return $this->belongsTo('App\Pus','id_pus','id')->select('id','name');
     }
 
-    public function cu(){
-        return $this->belongsTo('App\Cu','id_cu','id')->select('id','nama');
+    public function CU(){
+        return $this->belongsTo('App\CU','id_cu','id')->select('id','name');
     }
 }

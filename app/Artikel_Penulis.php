@@ -9,11 +9,11 @@ class Artikel_Penulis extends Model {
     
     public static $rules = [
         'id_cu' => 'required',
-        'nama' => 'required',
+        'name' => 'required',
         'deskripsi' => 'required|min:5'
     ];
     
-    protected $fillable = ['id_cu','id_staf','nama','deskripsi','gambar'];
+    protected $fillable = ['id_cu','id_staf','name','deskripsi','gambar'];
 
     public function getNameAttribute($value){
         return !empty($value) ? $value : '-';
@@ -28,7 +28,7 @@ class Artikel_Penulis extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '0','id_staf' => '0', 'nama' => '', 'deskripsi' => '','gambar' => '',
+            'id_cu' => '0','id_staf' => '0', 'name' => '', 'deskripsi' => '','gambar' => '',
         ];
     }
 

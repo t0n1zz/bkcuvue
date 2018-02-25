@@ -9,11 +9,11 @@ class Artikel_Kategori extends Model {
     
     public static $rules = [
         'id_cu' => 'required',
-        'nama' => 'required',
+        'name' => 'required',
         'deskripsi' => 'required|min:5'
     ];
     
-    protected $fillable = ['id_cu','nama','deskripsi'];
+    protected $fillable = ['id_cu','name','deskripsi'];
 
     public function getNameAttribute($value){
         return !empty($value) ? $value : '-';
@@ -28,7 +28,7 @@ class Artikel_Kategori extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '0', 'nama' => '', 'deskripsi' => ''
+            'id_cu' => '0', 'name' => '', 'deskripsi' => ''
         ];
     }
 

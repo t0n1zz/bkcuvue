@@ -50,9 +50,9 @@
 									<select class="bootstrap-select" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
 										<option disabled value="">Silahkan pilih CU</option>
 										<option value="semua">Semua</option>
-										<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
+										<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 										<option data-divider="true"></option>
-										<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+										<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 									</select>
 
 									<!-- reload cu -->
@@ -76,9 +76,9 @@
 								<select class="form-control" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
 									<option disabled value="">Silahkan pilih CU</option>
 									<option value="semua">Semua</option>
-									<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
+									<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 									<option data-divider="true"></option>
-									<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+									<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 								</select>
 							</div>
 
@@ -96,7 +96,7 @@
 					:params="params"
 					@fetch="fetch">
 
-						<!-- desktop -->
+					<!-- desktop -->
 						<!-- button desktop -->
 						<template slot="button-desktop">
 
@@ -140,9 +140,14 @@
 
 						<!-- button context -->
 						<template slot="button-context">
-							<li class="text-center pb-5 pt-5 bg-primary"><b class="text-size-large">Judul</b></li>
+							<!-- title -->
+							<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItem.name"><b class="text-size-large">{{ this.columnData[1].title }}</b></li>
+							<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
 							<li><hr class="no-margin-bottom no-margin-top"/></li>
-							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.nama}}</span></li>
+
+							<!-- selected content -->
+							<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItem.name">
+								<span class="text-size-large">{{selectedItem.name}}</span></li>
 							<li><hr class="no-margin-top no-margin-bottom"/></li>
 							<li>
 								<div class="pl-5 pr-5 pb-5 pt-10">
@@ -183,15 +188,15 @@
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[1].hide" class="warptext">{{props.item.nama}}</td>
+								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
 								<td v-if="!columnData[2].hide && !columnData[2].disable">
-									<span v-if="props.item.artikel__kategori">{{props.item.artikel__kategori.nama}}</span>
+									<span v-if="props.item.artikel__kategori">{{props.item.artikel__kategori.name}}</span>
 								</td>
 								<td v-if="!columnData[3].hide && !columnData[3].disable">
-									<span v-if="props.item.artikel__penulis">{{props.item.artikel__penulis.nama}}</span>
+									<span v-if="props.item.artikel__penulis">{{props.item.artikel__penulis.name}}</span>
 								</td>
 								<td v-if="!columnData[4].hide && !columnData[4].disable">
-									<span v-if="props.item.c_u">{{props.item.c_u.nama}}</span>
+									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
 								</td>
 								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
 								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
@@ -202,7 +207,7 @@
 							</tr>
 						</template>
 
-						<!-- mobile -->
+					<!-- mobile -->
 						<!-- button mobile -->
 						<template slot="button-mobile" class="hidden-print">
 							<!-- tambah -->
@@ -225,13 +230,13 @@
 											</tr>
 											<tr v-if="!columnData[1].hide">
 												<td><b>{{columnData[1].title}}</b></td>
-												<td>: {{props.item.nama}}</td>
+												<td>: {{props.item.name}}</td>
 											</tr>
 											<tr v-if="!columnData[2].hide">
 												<td><b>{{columnData[2].title}}</b></td>
 												<td>
 													<span v-if="props.item.artikel__kategori">
-														: {{props.item.artikel__kategori.nama}}
+														: {{props.item.artikel__kategori.name}}
 													</span>
 													<span v-else>: -</span>	
 												</td>
@@ -240,7 +245,7 @@
 												<td><b>{{columnData[3].title}}</b></td>
 												<td>
 													<span v-if="props.item.artikel__penulis">
-													: {{props.item.artikel__penulis.nama}}
+													: {{props.item.artikel__penulis.name}}
 													</span>
 													<span v-else>: -</span>	
 												</td>
@@ -249,7 +254,7 @@
 												<td><b>{{columnData[4].title}}</b></td>
 												<td>
 													<span v-if="props.item.c_u">
-														: {{props.item.c_u.nama}}
+														: {{props.item.c_u.name}}
 													</span>
 													<span v-else>: -</span>	
 												</td>
@@ -321,9 +326,7 @@
 		</div>
 		
 		<!-- modal -->
-		<!-- table-context-menu -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup"
-		  @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 		</app-modal>
 
 	</div>
@@ -357,32 +360,32 @@
           direction: 'desc',
           per_page: 10,
           page: 1,
-          search_column: 'nama',
+          search_column: 'name',
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''
         },
 				filterData: [{
 						title: 'Judul',
-						key: 'nama',
+						key: 'name',
 						type: 'string',
 						disable: false
 					},
 					{
 						title: 'Kategori',
-						key: 'artikel_kategori.nama',
+						key: 'artikel_kategori.name',
 						type: 'string',
 						disable: false
 					},
 					{
 						title: 'Penulis',
-						key: 'artikel_penulis.nama',
+						key: 'artikel_penulis.name',
 						type: 'string',
 						disable: false
 					},
 					{
 						title: 'CU',
-						key: 'cu.nama',
+						key: 'cu.name',
 						type: 'string',
 						disable: false
 					},
@@ -404,7 +407,7 @@
 					},
 					{
 						title: 'Judul',
-						key: 'nama',
+						key: 'name',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -413,7 +416,8 @@
 					{
 						title: 'Kategori',
 						key: 'id_artikel_kategori',
-						groupKey: 'artikel__kategori.nama',
+						groupKey: 'artikel__kategori.name',
+						groupNoKey: 'Tidak terkategori',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -422,8 +426,8 @@
 					{
 						title: 'Penulis',
 						key: 'id_artikel_penulis',
-						groupKey: 'artikel__penulis.nama',
-						excelType: 'string',
+						groupKey: 'artikel__penulis.name',
+						groupNoKey: 'Tidak ada data penulis',
 						sort: true,
 						hide: false,
 						disable: false
@@ -431,8 +435,8 @@
 					{
 						title: 'CU',
 						key: 'id_cu',
-						groupKey: 'c_u.nama',
-						excelType: 'string',
+						groupKey: 'c_u.name',
+						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
 						hide: false,
 						disable: false
@@ -440,7 +444,6 @@
 					{
 						title: 'Terbitkan',
 						key: 'terbitkan',
-						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
@@ -448,7 +451,6 @@
 					{
 						title: 'Utamakan',
 						key: 'utamakan',
-						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
@@ -456,7 +458,6 @@
 					{
 						title: 'Tgl. Tulis',
 						key: 'created_at',
-						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
@@ -464,7 +465,6 @@
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
-						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false

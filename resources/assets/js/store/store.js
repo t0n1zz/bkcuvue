@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import { user } from './modules/user';
+import { role } from './modules/role';
 import { global } from './modules/global';
 import { artikel } from './modules/artikel';
 import { artikelKategori } from './modules/artikel_kategori';
@@ -25,6 +26,7 @@ export const store = new Vuex.Store({
 	 modules: {
 		 global,
 		 user,
+		 role,
 		 artikel,
 		 artikelKategori,
 		 artikelPenulis,

@@ -132,6 +132,22 @@ export const user = {
           commit('setUserUpdateStat', 'fail');
         });
     },
+    updateUserStatus( {commit, state, dispatch}, id ){
+      commit('setUserUpdateStat', 'loading');
+
+      UserAPI.updateStatus( id )
+        .then( function( response ){
+          commit('setUserUpdate', response.data);
+          commit('setUserUpdateStat', 'success');
+        })
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setUserUpdate', this.errors);
+            commit('setUserUpdateStat', 'fail');
+          }
+        });
+    },
     deleteUser( {commit, state, dispatch}, id ){
       commit('setUserUpdateStat', 'loading');
 

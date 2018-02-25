@@ -8,7 +8,7 @@ class CUController extends Controller{
 
 	public function index()
 	{
-    	$table_data = CU::select('id','nama','created_at')->filterPaginateOrder();
+    	$table_data = CU::select('id','name','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -18,7 +18,7 @@ class CUController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = CU::where('id','!=',0)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = CU::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -28,7 +28,7 @@ class CUController extends Controller{
   
   public function indexPus($id)
 	{
-		$table_data = CU::where('id_pus','=',$id)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = CU::where('id_pus','=',$id)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([

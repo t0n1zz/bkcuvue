@@ -4,11 +4,19 @@ import dashboard from './views/dashboard.vue';
 import artikel from './views/artikel/index.vue';
 import artikel_form from './views/artikel/form.vue';
 import user from './views/user/index.vue';
+import role from './views/role/index.vue';
 
 const routes = [
 
 	// login
 	{ path: '/login',name: 'login', components: { default: login } },
+
+	// user
+	{ path: '/user',name: 'user', components: { default: user, 'header': header }},
+	{ path: '/user/create',name: 'userCreate', components: { default: artikel_form, 'header': header} },
+
+	// role
+	{ path: '/role',name: 'role', components: { default: role, 'header': header }},
 
 	// dashboard
 	{ path: '/',name: 'dashboard', components: { default: dashboard,'header': header } },
@@ -24,9 +32,6 @@ const routes = [
 	// artikel penulis
 	{ path: '/artikel_penulis',name: 'artikelPenulis', components: { default: artikel, 'header': header }},
 
-	// admin
-	{ path: '/user',name: 'user', components: { default: user, 'header': header }},
-	{ path: '/user/create',name: 'userCreate', components: { default: artikel_form, 'header': header} },
 ]
 
 export default routes

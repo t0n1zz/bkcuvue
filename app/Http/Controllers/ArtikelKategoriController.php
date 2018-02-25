@@ -8,7 +8,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel_Kategori::select('id','nama','created_at')->filterPaginateOrder();
+    	$table_data = Artikel_Kategori::select('id','name','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -18,7 +18,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = Artikel_Kategori::where('id','!=',1)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = Artikel_Kategori::where('id','!=',1)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -28,7 +28,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function indexCU($id)
 	{
-		$table_data = Artikel_Kategori::where('id_cu','=',$id)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = Artikel_Kategori::where('id_cu','=',$id)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([

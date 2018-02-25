@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Artikel;
-use App\EloquentVueTables;
 use Illuminate\Http\Request;
 use File;
 use Image;
@@ -13,7 +12,7 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -23,7 +22,7 @@ class ArtikelController extends Controller{
 
 	public function indexCU($id)
 	{
-    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','nama','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -45,7 +44,7 @@ class ArtikelController extends Controller{
 	{
 		$this->validate($request,Artikel::$rules);
 
-		$nama = $request->nama;
+		$name = $request->name;
 
 		// processing single image upload
 		if(!empty($request->gambar))
@@ -66,7 +65,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Artikel ' .$nama. ' berhasil ditambah'
+				'message' => 'Artikel ' .$name. ' berhasil ditambah'
 			]);
 	}
 
@@ -95,7 +94,7 @@ class ArtikelController extends Controller{
 	{
 		$this->validate($request,Artikel::$rules);
 
-		$nama = $request->nama;
+		$name = $request->name;
 
 		$kelas = Artikel::findOrFail($id);
 
@@ -118,7 +117,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Artikel ' .$nama. ' berhasil diubah'
+				'message' => 'Artikel ' .$name. ' berhasil diubah'
 			]);
 	}
 
@@ -167,14 +166,14 @@ class ArtikelController extends Controller{
 	public function destroy($id)
 	{
 		$kelas = Artikel::findOrFail($id);
-		$nama = $kelas->nama;
+		$name = $kelas->name;
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Artikel' .$nama. 'berhasil dihapus'
+				'message' => 'Artikel' .$name. 'berhasil dihapus'
 			]);
 	}
 
@@ -205,7 +204,7 @@ class ArtikelController extends Controller{
 					preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
 					$mimetype = $groups['mime']; 
 					// Generating a random filename
-					$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->nama),10,'') . '_' .uniqid();
+					$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
 					$filepath = "$path.$filename.$mimetype";
 					// You can put your directory to upload image 
 					$image = Image::make($src)
@@ -232,7 +231,7 @@ class ArtikelController extends Controller{
 		$imageData = $request->gambar;
 		list($width, $height) = getimagesize($imageData);
 
-		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->nama),10,'') . '_' .uniqid();
+		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
 		$fileName =  $formatedName. '.jpg';
 		$fileName2 =  $formatedName. 'n.jpg';
 

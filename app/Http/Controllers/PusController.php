@@ -8,7 +8,7 @@ class PusController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Pus::select('id','nama','created_at')->filterPaginateOrder();
+    	$table_data = Pus::select('id','name','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -18,7 +18,7 @@ class PusController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = Pus::where('id','!=',0)->select('id','nama')->orderby('nama','asc')->get();
+		$table_data = Pus::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([

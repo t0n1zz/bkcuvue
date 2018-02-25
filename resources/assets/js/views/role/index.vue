@@ -69,20 +69,13 @@
 								</button>
 							</div>
 
-							<!-- hak akses -->
-							<div class="btn-group pb-5">
-								<button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah hak akses user'"  :disabled="!selectedItem.id">
-									<i class="icon-eye"></i> <span>Hak Akses</span>
-								</button>
-							</div>
-
 						</template>
 
 						<!-- button context -->
 						<template slot="button-context">
 							<li class="text-center pb-5 pt-5 bg-primary"><b class="text-size-large">Nama | Username</b></li>
 							<li><hr class="no-margin-bottom no-margin-top"/></li>
-							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.name}} | {{selectedItem.username}}</span></li>
+							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.nama}} | {{selectedItem.username}}</span></li>
 							<li><hr class="no-margin-top no-margin-bottom"/></li>
 							<li>
 								<div class="pl-5 pr-5 pb-5 pt-10">
@@ -106,13 +99,6 @@
 									</button>
 								</div>
 							</li>
-							<li>
-								<div class="pl-5 pr-5 pb-5">
-									<button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah hak akses user'"  :disabled="!selectedItem.id">
-										<i class="icon-eye"></i> <span>Hak Akses</span>
-									</button>
-								</div>
-							</li>
 						</template>
 
 						<!-- item desktop -->
@@ -122,10 +108,10 @@
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
+								<td v-if="!columnData[1].hide" class="warptext">{{props.item.nama}}</td>
 								<td v-if="!columnData[2].hide" class="warptext">{{props.item.username}}</td>
 								<td v-if="!columnData[3].hide && !columnData[4].disable">
-									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
+									<span v-if="props.item.c_u">{{props.item.c_u.nama}}</span>
 								</td>
 								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
 								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
@@ -155,7 +141,7 @@
 											</tr>
 											<tr v-if="!columnData[1].hide">
 												<td><b>{{columnData[1].title}}</b></td>
-												<td>: {{props.item.name}}</td>
+												<td>: {{props.item.nama}}</td>
 											</tr>
 											<tr v-if="!columnData[2].hide">
 												<td><b>{{columnData[2].title}}</b></td>
@@ -165,7 +151,7 @@
 												<td><b>{{columnData[3].title}}</b></td>
 												<td>
 													<span v-if="props.item.c_u">
-														: {{props.item.c_u.name}}
+														: {{props.item.c_u.nama}}
 													</span>
 													<span v-else>: -</span>	
 												</td>
@@ -187,35 +173,24 @@
 								</div>
 								<div class="panel-footer hidden-print">
 									<div class="text-center button-toolbar">
-
-										<!-- ubah mobile-->
 										<div class="pt-10 pb-10 pl-15 pr-15">
 											<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 										</div>
 										
-										<!-- hapus mobile-->
 										<div class="pb-10 pl-15 pr-15">
 											<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-bin2"></i> <span>Hapus</span>
 											</button>
 										</div>
 										
-										<!-- status mobile -->
 										<div class="pb-10 pl-15 pr-15">
 											<button @click.prevent="modalConfirmOpen('updateStatus',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-file-upload"></i> <span v-if="props.item.status === 1">Tidak Aktifkan</span>
 												<span v-else>Aktifkan</span> 
 											</button>
 										</div>
-									</div>
-
-									<!-- hak akses mobile -->
-									<div class="pb-10 pl-15 pr-15">
-										<button @click.prevent="modalHakAksesOpen(props.item)" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah hak akses user'">
-											<i class="icon-eye"></i> <span>Hak Akses</span>
-										</button>
 									</div>
 								</div>
 							</div>
@@ -228,28 +203,8 @@
 		</div>
 		
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :size="modalSize" :color="modalColor" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
-			<!-- title -->
-			<template slot="modal-title">
-				{{ modalTitle }}
-			</template>
-
-			<!-- hak akses -->
-			<template slot="modal-body1">
-
-				<hak-akses></hak-akses>
-				<!-- divider -->
-				<hr>
-			</template>
-
-			<template slot="modal-footer1">
-
-				<!-- button -->
-				<button class="btn btn-default" @click="modalTutup">
-					<i class="icon-cross"></i> Tutup</button>
-				<button type="submit" class="btn btn-primary" @click="modalTutup">
-					<i class="icon-floppy-disk"></i> Simpan</button>
-			</template>
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup"
+		  @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup">
 		</app-modal>
 
 	</div>
@@ -261,22 +216,20 @@
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
-	import hakAkses from "../../components/hakAkses.vue";
 
 	export default {
 		name: 'UserIndex',
 		components: {
 			DataViewer,
 			appModal,
-			message,
-			hakAkses
+			message
 		},
 		data() {
 			return {
-				title: 'User',
-				titleDesc: 'Mengelola data user',
-				titleIcon: 'icon-users4',
-				kelas: 'user',
+				title: 'Role',
+				titleDesc: 'Mengelola data peran user',
+				titleIcon: 'icon-hat',
+				kelas: 'role',
 				id_cu: '',
 				source: '',
 				selectedItem: [],
@@ -285,7 +238,7 @@
           direction: 'desc',
           per_page: 10,
           page: 1,
-          search_column: 'name',
+          search_column: 'nama',
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''
@@ -298,20 +251,8 @@
 						disable: false
 					},
 					{
-						title: 'Username',
-						key: 'username',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Status',
-						key: 'status',
-						type: 'boolean',
-						disable: false
-					},
-					{
-						title: 'CU',
-						key: 'cu.name',
+						title: 'Hak Akses',
+						key: 'permissions',
 						type: 'string',
 						disable: false
 					},
@@ -320,16 +261,15 @@
 						key: 'created_at',
 						type: 'date',
 						disable: false
+					},
+					{
+						title: 'Tgl. Ubah',
+						key: 'updated_at',
+						type: 'date',
+						disable: false
 					}
 				],
 				columnData: [
-					{
-						title: 'Foto',
-						key: 'gambar',
-						sort: false,
-						hide: false,
-						disable: false
-					},
 					{
 						title: 'Nama',
 						key: 'name',
@@ -338,25 +278,9 @@
 						disable: false
 					},
 					{
-						title: 'Username',
-						key: 'username',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'CU',
-						key: 'id_cu',
-						groupKey: 'c_u.name',
-						groupNoKey: 'BKCU',
-						sort: true,
-						hide: false,
-						disable: false,
-					},
-					{
-						title: 'Status',
-						key: 'status',
-						sort: true,
+						title: 'Hak Akses',
+						key: 'permissions',
+						sort: false,
 						hide: false,
 						disable: false
 					},
@@ -366,12 +290,17 @@
 						sort: true,
 						hide: false,
 						disable: false
+					},
+					{
+						title: 'Tgl. Ubah',
+						key: 'updated_at',
+						sort: true,
+						hide: false,
+						disable: false
 					}
 				],
 				modalShow: false,
 				modalState: '',
-				modalColor: '',
-				modalSize: '',
 				modalTitle: '',
 				modalButton: ''
 			}
@@ -402,7 +331,7 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch('loadUserS', this.params);
+				this.$store.dispatch('loadRoleS', this.params);
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -420,9 +349,9 @@
 				}
 
 				if (source == 'hapus') {
-					this.modalTitle = 'Hapus ' + this.kelas + ' dengan name ' + this.selectedItem.name + '?';
+					this.modalTitle = 'Hapus ' + this.title +' ini?';
 					this.modalButton = 'Iya, Hapus';
-				} else if (source == 'updateStatus') {
+				} else if (source == 'updatePermission') {
 					if (this.selectedItem.status == 0) {
 						this.modalTitle = 'Aktifkan user ini?';
 						this.modalButton = 'Iya, aktifkan';
@@ -432,29 +361,14 @@
 					}
 				}
 			},
-			modalHakAksesOpen(isMobile,itemMobile){
-				this.modalShow = true;
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Peran dan Hak Akses User'
-				this.modalState = 'normal1';
-				this.modalSize = 'modal-full';
-
-				if(isMobile){
-					this.selectedItem = itemMobile;
-				}
-			},
 			modalTutup() {
 				this.modalShow = false;
-				this.modalColor = '';
-				this.modalTitle = '';
-				this.modalSize = '';
-
-				this.$store.dispatch('resetUserUpdateStat');
+				this.$store.dispatch('resetRoleUpdateStat');
 			},
 			modalConfirmOk() {
 				var vm = this;
 				if (vm.source == 'hapus') {
-					this.$store.dispatch('deleteUser', this.selectedItem.id);
+					this.$store.dispatch('deleteRole', this.selectedItem.id);
 				} else if (vm.source == "updateStatus"){
 					this.$store.dispatch('updateUserStatus', this.selectedItem.id);
 				}
@@ -468,16 +382,16 @@
 				return this.$store.getters.getUserDataLoadStat;
 			},
 			itemData(){
-				return this.$store.getters.getUserS;
+				return this.$store.getters.getRoleS;
 			},
 			itemDataStat(){
-				return this.$store.getters.getUserLoadStatS;
+				return this.$store.getters.getRoleLoadStatS;
 			},
 			updateStat() {
-				return this.$store.getters.getUserUpdateStat;
+				return this.$store.getters.getRoleUpdateStat;
 			},
 			updateMessage() {
-				return this.$store.getters.getUserUpdateMessage;
+				return this.$store.getters.getRoleUpdateMessage;
 			}
 		},
 		filters: {

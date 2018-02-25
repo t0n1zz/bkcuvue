@@ -188,7 +188,7 @@
                   </li>
                   <li class="divider"></li>
                   <li v-for="(column,index) in columnData" v-if="column.groupKey != null && !column.disable" :class="{'active' : column.groupKey === group.key}">
-                    <a @click.prevent="groupRow(column.groupKey,column.key,column.title,index)">{{column.title}}</a>
+                    <a @click.prevent="groupRow(column,index)">{{column.title}}</a>
                   </li>
                 </ul>
               </div>
@@ -203,13 +203,13 @@
                   <li class="dropdown-header">Download data ke excel</li>
                   <li class="divider"></li>
                   <li>
-                    <json-excel 
+                    <a><json-excel 
                     :data="excel.data" 
-                    :fieldsx="excel.fields" 
+                    :fields="excel.fields" 
                     :meta="excel.meta"
-                    :title="'Data ' + title" 
+                    :title="['Data ' + title]" 
                     :name="title + '.xls'"
-                    >Data di tabel</json-excel>
+                    >Data di tabel</json-excel></a>
                   </li>
                   <li>
                     <a @click.prevent="modalExcelOpen">Semua Data</a>
@@ -265,7 +265,7 @@
           <tbody v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open">
             <tr class="active border-double" v-if="group.show">
               <td :colspan="columnData.length">
-                <b>{{index}}</b>
+                Kelompok {{ group.title }}: <b>{{index}}</b>
               </td>
             </tr>
             <slot name="item-desktop" v-for="item in items" :item="item"></slot>
@@ -572,7 +572,7 @@
             <li>
               <json-excel 
                 :data="excel.data"
-                fieldsx="excel.fields" 
+                :fields="excel.fields" 
                 :meta="excel.meta" 
                 :title="title"
                 :name="title + '.xls'"
@@ -651,7 +651,7 @@
           <json-excel 
             class="btn btn-default btn-block"
             :data="excel.data" 
-            :fieldsx="excel.fields" 
+            :fields="excel.fields" 
             :meta="excel.meta"
             :title="'Data ' + title" 
             :name="title + '.xls'"
@@ -735,7 +735,8 @@
         group: {
           show: false,
           key: '',
-          title: ''
+          title: '',
+          noKey: ''
         },
         excelLoadStat: '',
         isSearch: false,
@@ -848,13 +849,14 @@
       },
 
       // grouping row
-      groupRow(groupKey, sortKey, title, index) {
-        if (this.group.key != groupKey) {
+      groupRow(column, index) {
+        if (this.group.key != column.groupKey) {
           this.group.show = true;
-          this.group.key = groupKey;
-          this.group.title = title;
+          this.group.key = column.groupKey;
+          this.group.noKey = column.groupNoKey;
+          this.group.title = column.title;
           this.columnData[index].hide = true;
-          this.sort(sortKey);
+          this.sort(column.key);
         }
         this.showAllColumn(index);
       },
@@ -937,7 +939,7 @@
         vm.excel.fields = {};
         vm.columnData.forEach(function (column) {
           if (!column.hide && !column.disable) {
-            vm.excel.fields[column.title] = column.excelType;
+            vm.excel.fields[column.title] = column.key;
           }
         });
         vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
@@ -945,9 +947,9 @@
           vm.columnData.forEach(function (key) {
             if (!key.hide && !key.disable) {
               if (key.groupKey) {
-                object[key.title] = _.get(item, key.groupKey);
+                object[key.key] = _.get(item, key.groupKey);
               } else {
-                object[key.title] = _.get(item, key.key);
+                object[key.key] = _.get(item, key.key);
               }
             }
           })
@@ -980,7 +982,9 @@
     },
     computed: {
       groupData(){
-        return _.groupBy(this.itemData.data, this.group.key);
+        return _.groupBy(this.itemData.data, item => {
+          return _.get(item, this.group.key, this.group.noKey);
+        });
       }
     }
   }

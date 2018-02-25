@@ -12,6 +12,14 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::get('/user/edit/{id}', 'UserController@edit');
     Route::post('/user/store', 'UserController@store');
     Route::post('/user/update/{id}', 'UserController@update');
+    Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
+
+    // role
+    Route::get('/role', 'RoleController@index');
+    Route::get('/role/create', 'RoleController@create');
+    Route::get('/role/edit/{id}', 'RoleController@edit');
+    Route::post('/role/store', 'RoleController@store');
+    Route::post('/role/update/{id}', 'RoleController@update');
 
     //artikel
     Route::get('/artikel', 'ArtikelController@index');

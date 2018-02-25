@@ -14,8 +14,8 @@
 				</ul>
 				<p class="navbar-text">
 					<span class="label bg-success-400">
-						<span v-if="userData.pus">{{userData.pus.nama}}</span>
-						<span v-if="userData.cu">- CU {{userData.cu.nama}}</span>
+						<span v-if="userData.pus">{{userData.pus.name}}</span>
+						<span v-if="userData.cu">- CU {{userData.cu.name}}</span>
 					</span>
 				</p>
 			</div>
@@ -24,7 +24,7 @@
 					<li class="dropdown dropdown-user">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							<img src="/images/no_image_man.jpg" alt="">
-							<span>{{userData.nama}}</span>
+							<span>{{userData.name}}</span>
 							<i class="caret"></i>
 						</a>
 
@@ -85,7 +85,7 @@
 						</ul>
 					</li>
 
-					<!-- admin -->
+					<!-- oengaturan -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							<i class="icon-gear position-left"></i> Pengaturan
@@ -98,6 +98,9 @@
 							<li class="divider"></li>
 							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact>
 								<a><i class="icon-users"></i> User</a>
+							</router-link>
+							<router-link :to="{ name: 'role' }" tag="li" active-class="active" exact>
+								<a><i class="icon-hat"></i> Role</a>
 							</router-link>
 						</ul>
 					</li>
