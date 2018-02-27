@@ -136,11 +136,33 @@
 
 											<!-- radio -->
 											<label class="radio-inline">
-												<input type="radio" name="tipe" :value="'BKCU'" v-model="roleTipe"> BKCU
+												<input type="radio" name="tipe" :value="'BKCU'" v-model="roleTipe"> User BKCU
 											</label>
 											<label class="radio-inline">
-												<input type="radio" name="tipe" :value="'CU'" v-model="roleTipe"> CU
+												<input type="radio" name="tipe" :value="'CU'" v-model="roleTipe"> User CU
 											</label>
+										</div>
+									</div>
+									
+									<!-- select CU -->
+									<div class="col-md-12" v-if="roleTipe === 'CU'">
+										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.cu')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form-1.peran')}">CU:</h5>
+
+											<!-- text -->
+											<select name="CU" data-width="100%" class="bootstrap-select" v-model="form.id_cu" v-validate="'required'">
+												<option disabled value="">Silahkan pilih CU</option>
+												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+											</select>
+
+											<!-- feedback	 -->
+											<div class="form-control-feedback" v-if="errors.has('form-1.cu')">
+												<i class="icon-cancel-circle2"></i>
+											</div>
+											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.cu')}">
+												<i class="icon-arrow-small-right"></i> Peran user harus dipilih</small>
 										</div>
 									</div>
 
@@ -166,35 +188,13 @@
 										</div>
 									</div>
 
-									<!-- select CU -->
-									<div class="col-md-12" v-if="roleTipe === 'CU'">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.cu')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.peran')}">CU:</h5>
-
-											<!-- text -->
-											<select name="CU" data-width="100%" class="bootstrap-select" v-model="form.id_cu" v-validate="'required'">
-												<option disabled value="">Silahkan pilih CU</option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
-											</select>
-
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.cu')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.cu')}">
-												<i class="icon-arrow-small-right"></i> Peran user harus dipilih</small>
-										</div>
-									</div>
-
 									<!-- hak-akses -->
-									<div class="col-md-12" v-if="form.peran !== ''">
-										<hak-akses></hak-akses>
+									<div class="col-md-12" v-if="form.peran && form.peran !==''">
+										<hak-akses :tipeUser="roleTipe"></hak-akses>
 									</div>
 									
 									<!-- separator -->
-									<div class="col-md-12"><br/></div>
+									<div class="col-md-12"><hr/></div>
 
 								</div>
 

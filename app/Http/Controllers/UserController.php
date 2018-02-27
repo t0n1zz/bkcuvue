@@ -37,6 +37,7 @@ class UserController extends Controller
 
 	public function store(Request $request)
 	{
+		// validate request
 		$this->validate($request,User::$rules);
 
 		$username = $request->username;
@@ -55,9 +56,7 @@ class UserController extends Controller
 		//password encryption	
 		$password = Hash::make($password);
 
-		// find role
-		$role = Role::findOrFail($request->peran);
-
+		// save user
 		$kelas = User::create($request->except('gambar','password','status','id_pus') + [
 			'gambar' => $fileName, 
 			'password' => $password, 
@@ -66,7 +65,7 @@ class UserController extends Controller
 			]);
 		
 		//assigning user role
-		
+		$role = Role::findOrFail($request->peran);
 		$user = User::where('username',$username)->first();
 		$user->assignrole($role->name);
 

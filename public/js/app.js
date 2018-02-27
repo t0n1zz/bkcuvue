@@ -61761,8 +61761,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+	props: {
+		tipeUser: ''
+	},
 	data: function data() {
 		return {
 			hakAksesModel: {},
@@ -61770,30 +61786,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				name: 'Artikel',
 				icon: 'icon-newspaper',
 				secondRow: true,
-				tipe: [{
+				tipe: 'All',
+				permission: [{
 					name: 'Lihat',
 					key: 'index artikel',
-					icon: 'icon-eye'
+					icon: 'icon-eye',
+					tipe: 'All'
 				}, {
 					name: 'Tambah',
 					key: 'create artikel',
-					icon: 'icon-plus3'
+					icon: 'icon-plus3',
+					tipe: 'All'
 				}, {
 					name: 'Ubah',
 					key: 'update artikel',
-					icon: 'icon-pencil'
+					icon: 'icon-pencil',
+					tipe: 'All'
 				}, {
 					name: 'Hapus',
 					key: 'destroy artikel',
-					icon: 'icon-bin2'
+					icon: 'icon-bin2',
+					tipe: 'All'
 				}, {
 					name: 'Terbitkan',
 					key: 'terbitkan artikel',
-					icon: 'icon-file-upload'
+					icon: 'icon-file-upload',
+					tipe: 'BKCU'
 				}, {
 					name: 'Utamakan',
 					key: 'utamakan artikel',
-					icon: 'icon-pushpin'
+					icon: 'icon-pushpin',
+					tipe: 'BKCU'
 				}]
 			}]
 		};
@@ -61836,79 +61859,22 @@ var render = function() {
           "div",
           { staticClass: "row" },
           [
-            _c("div", { staticClass: "col-sm-12 hidden-xs" }, [
-              _c("div", { staticClass: " text-center text-size-large" }, [
-                _c("i", { class: akses.icon }),
-                _vm._v(" " + _vm._s(akses.name))
-              ]),
-              _vm._v(" "),
-              _c("hr")
-            ]),
-            _vm._v(" "),
-            _vm._l(akses.tipe, function(tipe) {
-              return _c("div", { staticClass: "col-sm-2 hidden-xs" }, [
-                _c("label", { staticClass: "checkbox-inline" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.hakAksesModel,
-                        expression: "hakAksesModel"
-                      }
-                    ],
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      value: tipe.key,
-                      checked: Array.isArray(_vm.hakAksesModel)
-                        ? _vm._i(_vm.hakAksesModel, tipe.key) > -1
-                        : _vm.hakAksesModel
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.hakAksesModel,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = tipe.key,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.hakAksesModel = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.hakAksesModel = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.hakAksesModel = $$c
-                        }
-                      }
-                    }
-                  }),
+            _vm.tipeUser === akses.tipe || akses.tipe === "All"
+              ? _c("div", { staticClass: "col-sm-12 hidden-xs" }, [
+                  _c("div", { staticClass: " text-center text-size-large" }, [
+                    _c("i", { class: akses.icon }),
+                    _vm._v(" " + _vm._s(akses.name))
+                  ]),
                   _vm._v(" "),
-                  _c("i", { class: tipe.icon }),
-                  _vm._v("   " + _vm._s(tipe.name) + "\n\t\t\t\t")
+                  _c("hr")
                 ])
-              ])
-            }),
+              : _vm._e(),
             _vm._v(" "),
-            _c("hr", { staticClass: "hidden-xs" }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-xs-12 visible-xs" },
-              [
-                _c("div", { staticClass: "text-center text-size-large" }, [
-                  _c("i", { class: akses.icon }),
-                  _vm._v(" " + _vm._s(akses.name))
-                ]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _vm._l(akses.tipe, function(tipe) {
-                  return _c("div", { staticClass: "checkbox checkbox-right" }, [
-                    _c("label", [
+            _vm._l(akses.permission, function(permission) {
+              return _vm.tipeUser === permission.tipe ||
+                permission.tipe === "All"
+                ? _c("div", { staticClass: "col-sm-2 hidden-xs" }, [
+                    _c("label", { staticClass: "checkbox-inline" }, [
                       _c("input", {
                         directives: [
                           {
@@ -61920,9 +61886,9 @@ var render = function() {
                         ],
                         attrs: { type: "checkbox" },
                         domProps: {
-                          value: tipe.key,
+                          value: permission.key,
                           checked: Array.isArray(_vm.hakAksesModel)
-                            ? _vm._i(_vm.hakAksesModel, tipe.key) > -1
+                            ? _vm._i(_vm.hakAksesModel, permission.key) > -1
                             : _vm.hakAksesModel
                         },
                         on: {
@@ -61931,7 +61897,7 @@ var render = function() {
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
-                              var $$v = tipe.key,
+                              var $$v = permission.key,
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
                                 $$i < 0 &&
@@ -61949,10 +61915,80 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("i", { class: tipe.icon }),
-                      _vm._v("   " + _vm._s(tipe.name) + "\n\t\t\t\t\t")
+                      _c("i", { class: permission.icon }),
+                      _vm._v("   " + _vm._s(permission.name) + "\n\t\t\t\t")
                     ])
                   ])
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _c("hr", { staticClass: "hidden-xs" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-xs-12 visible-xs" },
+              [
+                _vm.tipeUser === akses.tipe || akses.tipe === "All"
+                  ? _c("div", { staticClass: "text-center text-size-large" }, [
+                      _c("i", { class: akses.icon }),
+                      _vm._v(" " + _vm._s(akses.name) + "\n\t\t\t\t")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _vm._l(akses.permission, function(permission) {
+                  return _vm.tipeUser === permission.tipe ||
+                    permission.tipe === "All"
+                    ? _c("div", { staticClass: "checkbox checkbox-right" }, [
+                        _c("label", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.hakAksesModel,
+                                expression: "hakAksesModel"
+                              }
+                            ],
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              value: permission.key,
+                              checked: Array.isArray(_vm.hakAksesModel)
+                                ? _vm._i(_vm.hakAksesModel, permission.key) > -1
+                                : _vm.hakAksesModel
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.hakAksesModel,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = permission.key,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.hakAksesModel = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.hakAksesModel = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.hakAksesModel = $$c
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", { class: permission.icon }),
+                          _vm._v(
+                            "   " + _vm._s(permission.name) + "\n\t\t\t\t\t"
+                          )
+                        ])
+                      ])
+                    : _vm._e()
                 }),
                 _vm._v(" "),
                 _c("hr")
@@ -74995,7 +75031,7 @@ var render = function() {
                                   }
                                 }
                               }),
-                              _vm._v(" BKCU\n\t\t\t\t\t\t\t\t\t\t")
+                              _vm._v(" User BKCU\n\t\t\t\t\t\t\t\t\t\t")
                             ]),
                             _vm._v(" "),
                             _c("label", { staticClass: "radio-inline" }, [
@@ -75019,10 +75055,135 @@ var render = function() {
                                   }
                                 }
                               }),
-                              _vm._v(" CU\n\t\t\t\t\t\t\t\t\t\t")
+                              _vm._v(" User CU\n\t\t\t\t\t\t\t\t\t\t")
                             ])
                           ])
                         ]),
+                        _vm._v(" "),
+                        _vm.roleTipe === "CU"
+                          ? _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "form-group has-feedback",
+                                  class: {
+                                    "has-error": _vm.errors.has("form-1.cu")
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.peran"
+                                        )
+                                      }
+                                    },
+                                    [_vm._v("CU:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.id_cu,
+                                          expression: "form.id_cu"
+                                        },
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: "required",
+                                          expression: "'required'"
+                                        }
+                                      ],
+                                      staticClass: "bootstrap-select",
+                                      attrs: {
+                                        name: "CU",
+                                        "data-width": "100%"
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_cu",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { disabled: "", value: "" } },
+                                        [_vm._v("Silahkan pilih CU")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.modelCU, function(cu) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: cu.id } },
+                                          [_vm._v(_vm._s(cu.name))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.errors.has("form-1.cu")
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass: "form-control-feedback"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "icon-cancel-circle2"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    {
+                                      staticClass: "text-muted",
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.cu"
+                                        )
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(" Peran user harus dipilih")
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm.roleTipe !== ""
                           ? _c("div", { staticClass: "col-md-12" }, [
@@ -75154,136 +75315,15 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.roleTipe === "CU"
-                          ? _c("div", { staticClass: "col-md-12" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "form-group has-feedback",
-                                  class: {
-                                    "has-error": _vm.errors.has("form-1.cu")
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "h5",
-                                    {
-                                      class: {
-                                        "text-danger": _vm.errors.has(
-                                          "form-1.peran"
-                                        )
-                                      }
-                                    },
-                                    [_vm._v("CU:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.id_cu,
-                                          expression: "form.id_cu"
-                                        },
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate",
-                                          value: "required",
-                                          expression: "'required'"
-                                        }
-                                      ],
-                                      staticClass: "bootstrap-select",
-                                      attrs: {
-                                        name: "CU",
-                                        "data-width": "100%"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.form,
-                                            "id_cu",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { disabled: "", value: "" } },
-                                        [_vm._v("Silahkan pilih CU")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.modelCU, function(cu) {
-                                        return _c(
-                                          "option",
-                                          { domProps: { value: cu.id } },
-                                          [_vm._v(_vm._s(cu.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form-1.cu")
-                                    ? _c(
-                                        "div",
-                                        {
-                                          staticClass: "form-control-feedback"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "icon-cancel-circle2"
-                                          })
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c(
-                                    "small",
-                                    {
-                                      staticClass: "text-muted",
-                                      class: {
-                                        "text-danger": _vm.errors.has(
-                                          "form-1.cu"
-                                        )
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(" Peran user harus dipilih")
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.form.peran !== ""
+                        _vm.form.peran && _vm.form.peran !== ""
                           ? _c(
                               "div",
                               { staticClass: "col-md-12" },
-                              [_c("hak-akses")],
+                              [
+                                _c("hak-akses", {
+                                  attrs: { tipeUser: _vm.roleTipe }
+                                })
+                              ],
                               1
                             )
                           : _vm._e(),
@@ -75383,7 +75423,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
   },
   function() {
     var _vm = this
