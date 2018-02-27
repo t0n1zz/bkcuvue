@@ -38,21 +38,21 @@
 							<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form-1">
 								<div class="row">
 
-									<!-- nama -->
+									<!-- name -->
 									<div class="col-md-4">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.nama')}">
+										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.name')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.nama')}">Judul:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.name')}">Judul:</h5>
 
 											<!-- text -->
-											<input type="text" name="nama" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'" v-model="form.nama">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'" v-model="form.name">
 
 											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.nama')">
+											<div class="form-control-feedback" v-if="errors.has('form-1.name')">
 												<i class="icon-cancel-circle2"></i>
 											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.nama')}">
+											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.name')}">
 												<i class="icon-arrow-small-right"></i> Judul harus diisi dan minimal 5 karakter</small>
 										</div>
 									</div>
@@ -67,9 +67,9 @@
 											<!-- select -->
 											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
-												<option value="0"><span v-if="userData.pus">{{userData.pus.nama}}</span> <span v-else>Puskopdit</span></option>
+												<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 												<option data-divider="true"></option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.nama}}</option>
+												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
 											<!-- feedback -->
@@ -104,7 +104,7 @@
 															<span v-else>Silahkan pilih penulis</span>
 														</option>
 														<option data-divider="true"></option>
-														<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.nama}}</option>
+														<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.name}}</option>
 													</select>
 
 													<!-- button -->
@@ -148,7 +148,7 @@
 															<span v-else>Silahkan pilih kategori</span>
 														</option>
 														<option data-divider="true"></option>
-														<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.nama}}</option>
+														<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.name}}</option>
 													</select>
 
 													<!-- button -->
@@ -285,14 +285,14 @@
 						</ul>
 					</message>
 
-					<!-- nama -->
+					<!-- name -->
 					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-kategori.kategoriNama')}">
 
 						<!-- title -->
 						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">Nama:</label>
 
 						<!-- text -->
-						<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan nama kategori" v-validate="'required'" v-model="formKategori.nama">
+						<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan name kategori" v-validate="'required'" v-model="formKategori.name">
 
 						<!-- feedback -->
 						<div class="form-control-feedback" v-if="errors.has('form-kategori.kategoriNama')">
@@ -352,14 +352,14 @@
 						<app-image-upload :image_loc="'/images/artikel/'" v-model="formPenulis.gambar"></app-image-upload>
 					</div>
 
-					<!-- nama -->
+					<!-- name -->
 					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-penulis.penulisNama')}">
 
 						<!-- title -->
 						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-penulis.penulisNama')}">Nama:</label>
 
 						<!-- text -->
-						<input type="text" name="penulisNama" class="form-control" placeholder="Silahkan masukkan nama penulis" v-validate="'required'" v-model="formPenulis.nama">
+						<input type="text" name="penulisNama" class="form-control" placeholder="Silahkan masukkan name penulis" v-validate="'required'" v-model="formPenulis.name">
 
 						<!-- feedback -->
 						<div class="form-control-feedback" v-if="errors.has('form-penulis.penulisNama')">
@@ -428,12 +428,12 @@
 				titleIcon: 'icon-plus3',
 				formKategori: {
 					id_cu: '',
-					nama: '',
+					name: '',
 					deskripsi: ''
 				},
 				formPenulis: {
 					id_cu: '',
-					nama: '',
+					name: '',
 					deskripsi: '',
 					gambar:''
 				},
@@ -620,7 +620,7 @@
 				this.modalState = 'normal2';
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Tambah penulis artikel';
-				this.formPenulis.nama = '';
+				this.formPenulis.name = '';
 				this.formPenulis.deskripsi = '';
 			},
 			modalOpen_Kategori() {
@@ -630,7 +630,7 @@
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Tambah kategori artikel';
-				this.formKategori.nama = '';
+				this.formKategori.name = '';
 				this.formKategori.deskripsi = '';
 			},
 			processFile(event) {

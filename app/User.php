@@ -15,16 +15,13 @@ class User extends Authenticatable
     protected $table = 'users';
 
     public static $rules = [
-        'id_pus' => 'required',
-        'id_cu' => 'required',
         'name' => 'required|min:5',
-        'status' => 'required',
         'username' => 'required|min:5',
         'password' => 'required|min:5',
     ];
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'id_pus','id_cu','name','username', 'password','gambar','status'
     ];
 
     protected $filter = [

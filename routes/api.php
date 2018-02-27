@@ -16,6 +16,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     // role
     Route::get('/role', 'RoleController@index');
+    Route::get('/role_all', 'RoleController@indexAll');
+    Route::get('/role_tipe/{tipe}', 'RoleController@indexTipe');
+    Route::get('/role_permission/{id}', 'RoleController@indexPermission');
     Route::get('/role/create', 'RoleController@create');
     Route::get('/role/edit/{id}', 'RoleController@edit');
     Route::post('/role/store', 'RoleController@store');

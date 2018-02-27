@@ -16,6 +16,36 @@ class RoleController extends Controller{
 			]);
 	}
 
+	public function indexAll()
+	{
+		$table_data = Role::get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexTipe($tipe)
+	{
+		$table_data = Role::where('tipe',$tipe)->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPermission($id)
+	{
+		$kelas = Role::findOrFail($id);
+		$table_data = $kelas->permissions()->pluck('name');
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
 
 	public function create()
 	{
@@ -93,4 +123,6 @@ class RoleController extends Controller{
 				'message' => 'Role' .$name. 'berhasil dihapus'
 			]);
 	}
+
+	
 }

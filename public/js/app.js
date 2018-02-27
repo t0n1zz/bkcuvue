@@ -32266,8 +32266,11 @@ if (inBrowser && window.Vue) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_user_index_vue__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_user_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_user_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_role_index_vue__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_role_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_role_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_user_form_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_user_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_user_form_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_role_index_vue__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_role_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__views_role_index_vue__);
+
 
 
 
@@ -32282,10 +32285,10 @@ var routes = [
 { path: '/login', name: 'login', components: { default: __WEBPACK_IMPORTED_MODULE_1__views_login_vue___default.a } },
 
 // user
-{ path: '/user', name: 'user', components: { default: __WEBPACK_IMPORTED_MODULE_5__views_user_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/user/create', name: 'userCreate', components: { default: __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } },
+{ path: '/user', name: 'user', components: { default: __WEBPACK_IMPORTED_MODULE_5__views_user_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/user/create', name: 'userCreate', components: { default: __WEBPACK_IMPORTED_MODULE_6__views_user_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } },
 
 // role
-{ path: '/role', name: 'role', components: { default: __WEBPACK_IMPORTED_MODULE_6__views_role_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } },
+{ path: '/role', name: 'role', components: { default: __WEBPACK_IMPORTED_MODULE_7__views_role_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } },
 
 // dashboard
 { path: '/', name: 'dashboard', components: { default: __WEBPACK_IMPORTED_MODULE_2__views_dashboard_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } },
@@ -59022,12 +59025,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			titleIcon: 'icon-plus3',
 			formKategori: {
 				id_cu: '',
-				nama: '',
+				name: '',
 				deskripsi: ''
 			},
 			formPenulis: {
 				id_cu: '',
-				nama: '',
+				name: '',
 				deskripsi: '',
 				gambar: ''
 			},
@@ -59209,7 +59212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.modalState = 'normal2';
 			this.modalColor = 'bg-primary';
 			this.modalTitle = 'Tambah penulis artikel';
-			this.formPenulis.nama = '';
+			this.formPenulis.name = '';
 			this.formPenulis.deskripsi = '';
 		},
 		modalOpen_Kategori: function modalOpen_Kategori() {
@@ -59219,7 +59222,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.modalState = 'normal1';
 			this.modalColor = 'bg-primary';
 			this.modalTitle = 'Tambah kategori artikel';
-			this.formKategori.nama = '';
+			this.formKategori.name = '';
 			this.formKategori.deskripsi = '';
 		},
 		processFile: function processFile(event) {
@@ -59671,7 +59674,7 @@ var render = function() {
                             {
                               staticClass: "form-group has-feedback",
                               class: {
-                                "has-error": _vm.errors.has("form-1.nama")
+                                "has-error": _vm.errors.has("form-1.name")
                               }
                             },
                             [
@@ -59679,7 +59682,7 @@ var render = function() {
                                 "h5",
                                 {
                                   class: {
-                                    "text-danger": _vm.errors.has("form-1.nama")
+                                    "text-danger": _vm.errors.has("form-1.name")
                                   }
                                 },
                                 [_vm._v("Judul:")]
@@ -59696,17 +59699,17 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.nama,
-                                    expression: "form.nama"
+                                    value: _vm.form.name,
+                                    expression: "form.name"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  name: "nama",
+                                  name: "name",
                                   placeholder: "Silahkan masukkan judul artikel"
                                 },
-                                domProps: { value: _vm.form.nama },
+                                domProps: { value: _vm.form.name },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
@@ -59714,14 +59717,14 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.form,
-                                      "nama",
+                                      "name",
                                       $event.target.value
                                     )
                                   }
                                 }
                               }),
                               _vm._v(" "),
-                              _vm.errors.has("form-1.nama")
+                              _vm.errors.has("form-1.name")
                                 ? _c(
                                     "div",
                                     { staticClass: "form-control-feedback" },
@@ -59738,7 +59741,7 @@ var render = function() {
                                 {
                                   staticClass: "text-muted",
                                   class: {
-                                    "text-danger": _vm.errors.has("form-1.nama")
+                                    "text-danger": _vm.errors.has("form-1.name")
                                   }
                                 },
                                 [
@@ -59842,7 +59845,7 @@ var render = function() {
                                         _vm.userData.pus
                                           ? _c("span", [
                                               _vm._v(
-                                                _vm._s(_vm.userData.pus.nama)
+                                                _vm._s(_vm.userData.pus.name)
                                               )
                                             ])
                                           : _c("span", [_vm._v("Puskopdit")])
@@ -59856,7 +59859,7 @@ var render = function() {
                                         return _c(
                                           "option",
                                           { domProps: { value: cu.id } },
-                                          [_vm._v(_vm._s(cu.nama))]
+                                          [_vm._v(_vm._s(cu.name))]
                                         )
                                       })
                                     ],
@@ -60025,7 +60028,7 @@ var render = function() {
                                               {
                                                 domProps: { value: penulis.id }
                                               },
-                                              [_vm._v(_vm._s(penulis.nama))]
+                                              [_vm._v(_vm._s(penulis.name))]
                                             )
                                           })
                                         ],
@@ -60225,7 +60228,7 @@ var render = function() {
                                               {
                                                 domProps: { value: kategori.id }
                                               },
-                                              [_vm._v(_vm._s(kategori.nama))]
+                                              [_vm._v(_vm._s(kategori.name))]
                                             )
                                           })
                                         ],
@@ -60625,17 +60628,17 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formKategori.nama,
-                          expression: "formKategori.nama"
+                          value: _vm.formKategori.name,
+                          expression: "formKategori.name"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
                         name: "kategoriNama",
-                        placeholder: "Silahkan masukkan nama kategori"
+                        placeholder: "Silahkan masukkan name kategori"
                       },
-                      domProps: { value: _vm.formKategori.nama },
+                      domProps: { value: _vm.formKategori.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -60643,7 +60646,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formKategori,
-                            "nama",
+                            "name",
                             $event.target.value
                           )
                         }
@@ -60866,23 +60869,23 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formPenulis.nama,
-                          expression: "formPenulis.nama"
+                          value: _vm.formPenulis.name,
+                          expression: "formPenulis.name"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
                         name: "penulisNama",
-                        placeholder: "Silahkan masukkan nama penulis"
+                        placeholder: "Silahkan masukkan name penulis"
                       },
-                      domProps: { value: _vm.formPenulis.nama },
+                      domProps: { value: _vm.formPenulis.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.formPenulis, "nama", $event.target.value)
+                          _vm.$set(_vm.formPenulis, "name", $event.target.value)
                         }
                       }
                     }),
@@ -61402,6 +61405,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -61485,7 +61499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: 'CU',
 				key: 'id_cu',
 				groupKey: 'c_u.name',
-				groupNoKey: 'BKCU',
+				groupNoKey: 'Puskopdit BKCU Kalimantan',
 				sort: true,
 				hide: false,
 				disable: false
@@ -61515,6 +61529,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	updated: function updated() {
 		$('.bootstrap-select').selectpicker('refresh');
+		$('.bootstrap-select').selectpicker('render');
 	},
 	created: function created() {
 		this.fetch();
@@ -61543,6 +61558,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		ubahData: function ubahData(id) {
 			this.$router.push('/' + this.kelas + '/edit/' + id);
+		},
+		changeRole: function changeRole(id) {
+			this.$store.dispatch('loadRolePermission', id);
 		},
 		modalConfirmOpen: function modalConfirmOpen(source, isMobile, itemMobile) {
 			this.modalShow = true;
@@ -61576,6 +61594,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (isMobile) {
 				this.selectedItem = itemMobile;
 			}
+
+			this.$store.dispatch('loadRoleAll');
+			$('.bootstrap-select').selectpicker('render');
 		},
 		modalTutup: function modalTutup() {
 			this.modalShow = false;
@@ -61592,6 +61613,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			} else if (vm.source == "updateStatus") {
 				this.$store.dispatch('updateUserStatus', this.selectedItem.id);
 			}
+		},
+		reload: function reload() {
+			$('.bootstrap-select').selectpicker('refresh');
+			$('.bootstrap-select').selectpicker('render');
 		}
 	},
 	computed: {
@@ -61606,6 +61631,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		itemDataStat: function itemDataStat() {
 			return this.$store.getters.getUserLoadStatS;
+		},
+		roleData: function roleData() {
+			return this.$store.getters.getRoleS;
+		},
+		roleDataStat: function roleDataStat() {
+			return this.$store.getters.getRoleLoadStatS;
 		},
 		updateStat: function updateStat() {
 			return this.$store.getters.getUserUpdateStat;
@@ -61728,40 +61759,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: {
-		dataPeran: {}
-	},
 	data: function data() {
 		return {
-			hakakses: [{
+			hakAksesModel: {},
+			hakAkses: [{
 				name: 'Artikel',
 				icon: 'icon-newspaper',
+				secondRow: true,
 				tipe: [{
 					name: 'Lihat',
-					icon: 'icon-eye',
-					key: 'artikelIndex'
+					key: 'index artikel',
+					icon: 'icon-eye'
 				}, {
 					name: 'Tambah',
-					icon: 'icon-plus3',
-					key: 'artikelCreate'
+					key: 'create artikel',
+					icon: 'icon-plus3'
 				}, {
 					name: 'Ubah',
-					icon: 'icon-pencil',
-					key: 'artikelUpdate'
+					key: 'update artikel',
+					icon: 'icon-pencil'
 				}, {
 					name: 'Hapus',
-					icon: 'icon-bin2',
-					key: 'artikelDestroy'
+					key: 'destroy artikel',
+					icon: 'icon-bin2'
+				}, {
+					name: 'Terbitkan',
+					key: 'terbitkan artikel',
+					icon: 'icon-file-upload'
+				}, {
+					name: 'Utamakan',
+					key: 'utamakan artikel',
+					icon: 'icon-pushpin'
 				}]
 			}]
 		};
 	},
+	updated: function updated() {
+		$('.bootstrap-select').selectpicker('refresh');
+	},
+	created: function created() {},
 
-	methods: {
-		backgroundClick: function backgroundClick() {
-			this.$emit('backgroundClick');
+	watch: {
+		permissionData: function permissionData(value) {
+			this.hakAksesModel = value;
+		}
+	},
+	methods: {},
+	computed: {
+		permissionData: function permissionData() {
+			return this.$store.getters.getRoleData;
+		},
+		permissionDataStat: function permissionDataStat() {
+			return this.$store.getters.getRoleDataLoadStat;
 		}
 	}
 });
@@ -61775,61 +61828,145 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table table-borderless table-framed" }, [
-        _c(
-          "tbody",
-          _vm._l(_vm.hakakses, function(akses) {
-            return _c(
-              "tr",
+    _c(
+      "div",
+      { staticClass: "well well-sm" },
+      _vm._l(_vm.hakAkses, function(akses) {
+        return _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("div", { staticClass: "col-sm-12 hidden-xs" }, [
+              _c("div", { staticClass: " text-center text-size-large" }, [
+                _c("i", { class: akses.icon }),
+                _vm._v(" " + _vm._s(akses.name))
+              ]),
+              _vm._v(" "),
+              _c("hr")
+            ]),
+            _vm._v(" "),
+            _vm._l(akses.tipe, function(tipe) {
+              return _c("div", { staticClass: "col-sm-2 hidden-xs" }, [
+                _c("label", { staticClass: "checkbox-inline" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.hakAksesModel,
+                        expression: "hakAksesModel"
+                      }
+                    ],
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      value: tipe.key,
+                      checked: Array.isArray(_vm.hakAksesModel)
+                        ? _vm._i(_vm.hakAksesModel, tipe.key) > -1
+                        : _vm.hakAksesModel
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.hakAksesModel,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = tipe.key,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.hakAksesModel = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.hakAksesModel = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.hakAksesModel = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", { class: tipe.icon }),
+                  _vm._v("   " + _vm._s(tipe.name) + "\n\t\t\t\t")
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c("hr", { staticClass: "hidden-xs" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-xs-12 visible-xs" },
               [
-                _c("td", { staticClass: "bg-primary" }, [
+                _c("div", { staticClass: "text-center text-size-large" }, [
                   _c("i", { class: akses.icon }),
                   _vm._v(" " + _vm._s(akses.name))
                 ]),
                 _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
                 _vm._l(akses.tipe, function(tipe) {
-                  return _c("td", [
-                    _c("label", { staticClass: "checkbox-inline" }, [
-                      _c("input", { attrs: { type: "checkbox" } }),
+                  return _c("div", { staticClass: "checkbox checkbox-right" }, [
+                    _c("label", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hakAksesModel,
+                            expression: "hakAksesModel"
+                          }
+                        ],
+                        attrs: { type: "checkbox" },
+                        domProps: {
+                          value: tipe.key,
+                          checked: Array.isArray(_vm.hakAksesModel)
+                            ? _vm._i(_vm.hakAksesModel, tipe.key) > -1
+                            : _vm.hakAksesModel
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.hakAksesModel,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = tipe.key,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.hakAksesModel = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.hakAksesModel = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.hakAksesModel = $$c
+                            }
+                          }
+                        }
+                      }),
                       _vm._v(" "),
                       _c("i", { class: tipe.icon }),
-                      _vm._v(" " + _vm._s(tipe.name) + "\n\t\t\t\t\t\t")
+                      _vm._v("   " + _vm._s(tipe.name) + "\n\t\t\t\t\t")
                     ])
                   ])
-                })
+                }),
+                _vm._v(" "),
+                _c("hr")
               ],
               2
             )
-          })
+          ],
+          2
         )
-      ])
-    ])
+      })
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "select",
-        {
-          staticClass: "bootstrap-select",
-          attrs: { name: "id_role", "data-width": "100%" }
-        },
-        [
-          _c("option", { attrs: { disabled: "", value: "" } }, [
-            _vm._v("Silahkan pilih peran user")
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -61978,7 +62115,9 @@ var render = function() {
                                       ? _c("span", [
                                           _vm._v(_vm._s(props.item.c_u.name))
                                         ])
-                                      : _vm._e()
+                                      : _c("span", [
+                                          _vm._v("Puskopdit BKCU Kalimantan")
+                                        ])
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
@@ -62119,7 +62258,11 @@ var render = function() {
                                                         "\n\t\t\t\t\t\t\t\t\t\t\t\t"
                                                     )
                                                   ])
-                                                : _c("span", [_vm._v(": -")])
+                                                : _c("span", [
+                                                    _vm._v(
+                                                      ": Puskopdit BKCU Kalimantan"
+                                                    )
+                                                  ])
                                             ])
                                           ])
                                         : _vm._e(),
@@ -62318,7 +62461,10 @@ var render = function() {
                                           on: {
                                             click: function($event) {
                                               $event.preventDefault()
-                                              _vm.modalHakAksesOpen(props.item)
+                                              _vm.modalHakAksesOpen(
+                                                true,
+                                                props.item
+                                              )
                                             }
                                           }
                                         },
@@ -62710,7 +62856,42 @@ var render = function() {
           _c(
             "template",
             { slot: "modal-body1" },
-            [_c("hak-akses"), _vm._v(" "), _c("hr")],
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "text-semibold" }, [
+                  _vm._v("Pilih peran:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    staticClass: "bootstrap-select",
+                    attrs: { name: "id_role", "data-width": "100%" },
+                    on: {
+                      change: function($event) {
+                        _vm.changeRole($event.target.value)
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { disabled: "", value: "" } }, [
+                      _vm._v("Silahkan pilih peran user")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.roleData, function(role) {
+                      return _c("option", { domProps: { value: role.id } }, [
+                        _vm._v(_vm._s(role.name))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("hak-akses"),
+              _vm._v(" "),
+              _c("hr")
+            ],
             1
           ),
           _vm._v(" "),
@@ -63046,11 +63227,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			source: '',
 			selectedItem: [],
 			params: {
-				column: 'id',
+				column: 'name',
 				direction: 'desc',
 				per_page: 10,
 				page: 1,
-				search_column: 'nama',
+				search_column: 'name',
 				search_operator: 'like',
 				search_query_1: '',
 				search_query_2: ''
@@ -65287,8 +65468,16 @@ var user = {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/' + id);
   },
 
+  createUser: function createUser() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/create');
+  },
+
   storeUser: function storeUser(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/store', form);
+  },
+
+  editUser: function editUser(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/edit/' + id);
   },
 
   updateUser: function updateUser(id, form) {
@@ -65330,21 +65519,8 @@ var role = {
   },
 
   actions: {
-    loadRoleData: function loadRoleData(_ref) {
+    loadRoleS: function loadRoleS(_ref, p) {
       var commit = _ref.commit;
-
-      commit('setRoleDataLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_role_js__["a" /* default */].getRoleData().then(function (response) {
-        commit('setRoleData', response.data.model);
-        commit('setRoleDataLoadStat', 'success');
-      }).catch(function (error) {
-        commit('setRoleData', error.response);
-        commit('setRoleDataLoadStat', 'fail');
-      });
-    },
-    loadRoleS: function loadRoleS(_ref2, p) {
-      var commit = _ref2.commit;
 
       commit('setRoleLoadStatS', 'loading');
 
@@ -65356,8 +65532,47 @@ var role = {
         commit('setRoleLoadStatS', 'fail');
       });
     },
-    loadRole: function loadRole(_ref3, id) {
+    loadRoleAll: function loadRoleAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setRoleLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_role_js__["a" /* default */].getRoleAll().then(function (response) {
+        commit('setRoleS', response.data.model);
+        commit('setRoleLoadStatS', 'success');
+      }).catch(function () {
+        commit('setRoleS', []);
+        commit('setRoleLoadStatS', 'fail');
+      });
+    },
+    loadRoleTipe: function loadRoleTipe(_ref3, tipe) {
       var commit = _ref3.commit;
+
+      commit('setRoleLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_role_js__["a" /* default */].getRoleTipe(tipe).then(function (response) {
+        commit('setRoleS', response.data.model);
+        commit('setRoleLoadStatS', 'success');
+      }).catch(function () {
+        commit('setRoleS', []);
+        commit('setRoleLoadStatS', 'fail');
+      });
+    },
+    loadRolePermission: function loadRolePermission(_ref4, id) {
+      var commit = _ref4.commit;
+
+      commit('setRoleLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_role_js__["a" /* default */].getRolePermission(id).then(function (response) {
+        commit('setRoleData', response.data.model);
+        commit('setRoleDataLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setRoleData', error.response);
+        commit('setRoleDataLoadStat', 'fail');
+      });
+    },
+    loadRole: function loadRole(_ref5, id) {
+      var commit = _ref5.commit;
 
       commit('setRoleLoadStat', 'loading');
 
@@ -65369,8 +65584,8 @@ var role = {
         commit('setRoleLoadStatS', 'fail');
       });
     },
-    createRole: function createRole(_ref4) {
-      var commit = _ref4.commit;
+    createRole: function createRole(_ref6) {
+      var commit = _ref6.commit;
 
       commit('setRoleLoadStat', 'loading');
 
@@ -65386,12 +65601,12 @@ var role = {
         commit('setRoleLoadStat', 'fail');
       });
     },
-    storeRole: function storeRole(_ref5, form) {
+    storeRole: function storeRole(_ref7, form) {
       var _this = this;
 
-      var commit = _ref5.commit,
-          state = _ref5.state,
-          dispatch = _ref5.dispatch;
+      var commit = _ref7.commit,
+          state = _ref7.state,
+          dispatch = _ref7.dispatch;
 
       commit('setRoleUpdateStat', 'loading');
 
@@ -65412,8 +65627,8 @@ var role = {
         commit('setRoleUpdateStat', 'fail');
       });
     },
-    editRole: function editRole(_ref6, id) {
-      var commit = _ref6.commit;
+    editRole: function editRole(_ref8, id) {
+      var commit = _ref8.commit;
 
       commit('setRoleLoadStat', 'loading');
 
@@ -65429,16 +65644,16 @@ var role = {
         commit('setRoleLoadStat', 'fail');
       });
     },
-    updateRole: function updateRole(_ref7, _ref8) {
+    updateRole: function updateRole(_ref9, _ref10) {
       var _this2 = this;
 
-      var commit = _ref7.commit,
-          state = _ref7.state,
-          dispatch = _ref7.dispatch;
+      var commit = _ref9.commit,
+          state = _ref9.state,
+          dispatch = _ref9.dispatch;
 
-      var _ref9 = _slicedToArray(_ref8, 2),
-          id = _ref9[0],
-          form = _ref9[1];
+      var _ref11 = _slicedToArray(_ref10, 2),
+          id = _ref11[0],
+          form = _ref11[1];
 
       commit('setRoleUpdateStat', form);
 
@@ -65459,10 +65674,10 @@ var role = {
         commit('setRoleUpdateStat', 'fail');
       });
     },
-    deleteRole: function deleteRole(_ref10, id) {
-      var commit = _ref10.commit,
-          state = _ref10.state,
-          dispatch = _ref10.dispatch;
+    deleteRole: function deleteRole(_ref12, id) {
+      var commit = _ref12.commit,
+          state = _ref12.state,
+          dispatch = _ref12.dispatch;
 
       commit('setRoleUpdateStat', 'loading');
 
@@ -65474,8 +65689,8 @@ var role = {
         commit('setRoleLoadStatS', 'fail');
       });
     },
-    resetRoleUpdateStat: function resetRoleUpdateStat(_ref11) {
-      var commit = _ref11.commit;
+    resetRoleUpdateStat: function resetRoleUpdateStat(_ref13) {
+      var commit = _ref13.commit;
 
       commit('setRoleUpdateStat', '');
     }
@@ -65564,6 +65779,14 @@ var role = {
 
   getRoleAll: function getRoleAll() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/role_all');
+  },
+
+  getRoleTipe: function getRoleTipe(tipe) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/role_tipe/' + tipe);
+  },
+
+  getRolePermission: function getRolePermission(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/role_permission/' + id);
   },
 
   getRole: function getRole(id) {
@@ -73792,6 +74015,1408 @@ var index_esm = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(249)
+/* template */
+var __vue_template__ = __webpack_require__(250)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/user/form.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fadbbf36", Component.options)
+  } else {
+    hotAPI.reload("data-v-fadbbf36", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 249 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_form__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ImageUpload_vue__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ImageUpload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_hakAkses_vue__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_hakAkses_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_hakAkses_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_message_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	components: {
+		appModal: __WEBPACK_IMPORTED_MODULE_5__components_modal___default.a,
+		appImageUpload: __WEBPACK_IMPORTED_MODULE_4__components_ImageUpload_vue___default.a,
+		hakAkses: __WEBPACK_IMPORTED_MODULE_6__components_hakAkses_vue___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default.a
+	},
+	data: function data() {
+		return {
+			title: 'Tambah User',
+			titleDesc: 'Menambah user baru',
+			titleIcon: 'icon-plus3',
+			roleTipe: '',
+			modalShow: false,
+			modalState: '',
+			modalTitle: '',
+			modalColor: '',
+			modalContent: '',
+			redirect: '/user/',
+			submited: false
+		};
+	},
+	mounted: function mounted() {
+		__WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__["a" /* default */].core_function();
+		this.other();
+	},
+	updated: function updated() {
+		$('.bootstrap-select').selectpicker('refresh');
+	},
+	created: function created() {
+		this.fetch();
+	},
+
+	watch: {
+		roleTipe: function roleTipe(value) {
+			if (value === 'CU') {
+				this.$store.dispatch('loadCUPus', '1');
+			}
+			this.$store.dispatch('loadRoleTipe', value);
+		}
+	},
+	methods: {
+		fetch: function fetch() {
+			if (this.$route.meta.mode === 'edit') {
+				this.$store.dispatch('editUser', this.$route.params.id);
+				this.title = 'Ubah User';
+				this.titleDesc = 'Mengubah user';
+				this.titleIcon = 'icon-pencil5';
+			} else {
+				this.$store.dispatch('createUser');
+			}
+		},
+		changeRole: function changeRole(id) {
+			this.$store.dispatch('loadRolePermission', id);
+		},
+		save: function save() {
+			var _this = this;
+
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
+			this.$validator.validateAll('form-1').then(function (result) {
+				if (result) {
+					if (_this.$route.meta.mode === 'edit') {
+						_this.$store.dispatch('updateUser', [_this.$route.params.id, formData]);
+					} else {
+						_this.$store.dispatch('storeUser', formData);
+					}
+					_this.submited = false;
+				} else {
+					window.scrollTo(0, 0);
+					_this.submited = true;
+				}
+			});
+		},
+		modalTutup: function modalTutup() {
+			if (this.updateStat === 'success') {
+				this.$router.push(this.redirect);
+			}
+
+			this.modalShow = false;
+			this.submitedKategori = false;
+			this.submitedPenulis = false;
+		},
+		modalBackgroundClick: function modalBackgroundClick() {
+			if (this.modalState === 'success') {
+				this.modalTutup;
+			} else if (this.modalState === 'loading') {
+				// do nothing
+			} else {
+				this.modalShow = false;
+			}
+		},
+		modalOpen_Penulis: function modalOpen_Penulis() {
+			this.formPenulis.id_cu = this.form.id_cu;
+
+			this.modalShow = true;
+			this.modalState = 'normal2';
+			this.modalColor = 'bg-primary';
+			this.modalTitle = 'Tambah penulis artikel';
+			this.formPenulis.name = '';
+			this.formPenulis.deskripsi = '';
+		},
+		processFile: function processFile(event) {
+			this.form.gambar = event.target.files[0];
+			console.log(event.target.files[0].name);
+		},
+		other: function other() {
+			// bootstrap select
+			$('.bootstrap-select').selectpicker();
+		}
+	},
+	computed: {
+		form: function form() {
+			return this.$store.getters.getArtikel;
+		},
+		formStat: function formStat() {
+			return this.$store.getters.getArtikelLoadStat;
+		},
+		rules: function rules() {
+			return this.$store.getters.getArtikelRules;
+		},
+		option: function option() {
+			return this.$store.getters.getArtikelOption;
+		},
+		updateResponse: function updateResponse() {
+			return this.$store.getters.getArtikelUpdate;
+		},
+		updateStat: function updateStat() {
+			return this.$store.getters.getArtikelUpdateStat;
+		},
+		modelRole: function modelRole() {
+			return this.$store.getters.getRoleS;
+		},
+		modelRoleLoadStat: function modelRoleLoadStat() {
+			return this.$store.getters.getRoleLoadStatS;
+		},
+		modelCU: function modelCU() {
+			return this.$store.getters.getCUS;
+		},
+		modelCULoadStat: function modelCULoadStat() {
+			return this.$store.getters.getCULoadStatS;
+		}
+	}
+});
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "page-header" }, [
+        _c("div", { staticClass: "page-header-content has-visible-elements" }, [
+          _c("div", { staticClass: "page-title" }, [
+            _c("h4", [
+              _c("i", { staticClass: "position-left", class: _vm.titleIcon }),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-semibold" }, [
+                _vm._v(_vm._s(_vm.title))
+              ]),
+              _vm._v(" - " + _vm._s(_vm.titleDesc))
+            ]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "breadcrumb breadcrumb-caret position-right" },
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: { name: "dashboard" }, tag: "li" } },
+                  [_c("a", [_vm._v("Dashboard")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  { attrs: { to: { name: "user" }, tag: "li" } },
+                  [_c("a", [_vm._v("User")])]
+                ),
+                _vm._v(" "),
+                _c("li", { staticClass: "active" }, [_vm._v(_vm._s(_vm.title))])
+              ],
+              1
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-container" }, [
+        _c("div", { staticClass: "page-content" }, [
+          _c(
+            "div",
+            { staticClass: "content-wrapper" },
+            [
+              _vm.submited
+                ? _c(
+                    "message",
+                    {
+                      class: "bg-danger",
+                      attrs: { show: _vm.errors.any("form-1") }
+                    },
+                    [
+                      _c("h4", [
+                        _c("i", { staticClass: "icon-cancel-circle2" }),
+                        _vm._v(" Oops terjadi kesalahan")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        _vm._l(_vm.errors.items, function(error) {
+                          return _c("li", [_vm._v(_vm._s(error.msg))])
+                        })
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "panel panel-flat" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c(
+                    "form",
+                    {
+                      attrs: {
+                        enctype: "multipart/form-data",
+                        "data-vv-scope": "form-1"
+                      },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.save($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("h5", [_vm._v("Foto:")]),
+                              _vm._v(" "),
+                              _c("app-image-upload", {
+                                attrs: {
+                                  image_loc: "/images/artikel/",
+                                  image_temp: _vm.form.gambar
+                                },
+                                model: {
+                                  value: _vm.form.gambar,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "gambar", $$v)
+                                  },
+                                  expression: "form.gambar"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.name")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has("form-1.name")
+                                  }
+                                },
+                                [_vm._v("Nama:")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5",
+                                    expression: "'required|min:5'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.name,
+                                    expression: "form.name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "name",
+                                  placeholder: "Silahkan masukkan nama user"
+                                },
+                                domProps: { value: _vm.form.name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.name")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has("form-1.name")
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(
+                                    " Nama harus diisi dan minimal 5 karakter"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.username")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.username"
+                                    )
+                                  }
+                                },
+                                [_vm._v("Username:")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5",
+                                    expression: "'required|min:5'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.username,
+                                    expression: "form.username"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "username",
+                                  placeholder: "Silahkan masukkan username"
+                                },
+                                domProps: { value: _vm.form.username },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "username",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.username")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.username"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(
+                                    " Username harus diisi dan minimal 5 karakter"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has("form-1.password")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.password"
+                                    )
+                                  }
+                                },
+                                [_vm._v("Password:")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5",
+                                    expression: "'required|min:5'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.password,
+                                    expression: "form.password"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "password",
+                                  name: "password",
+                                  placeholder: "Silahkan masukkan password"
+                                },
+                                domProps: { value: _vm.form.password },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "password",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.password")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.password"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(
+                                    " Password harus diisi dan minimal 5 karakter"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group has-feedback",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "form-1.passwordConfirm"
+                                )
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.passwordConfirm"
+                                    )
+                                  }
+                                },
+                                [_vm._v("Password Konfirmasi:")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5",
+                                    expression: "'required|min:5'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.passwordConfirm,
+                                    expression: "form.passwordConfirm"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "password",
+                                  name: "passwordConfirm",
+                                  placeholder:
+                                    "Silahkan masukkan password konfirmasi"
+                                },
+                                domProps: { value: _vm.form.passwordConfirm },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "passwordConfirm",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form-1.passwordConfirm")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-control-feedback" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-cancel-circle2"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                {
+                                  staticClass: "text-muted",
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form-1.passwordConfirm"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-arrow-small-right"
+                                  }),
+                                  _vm._v(
+                                    " Password Konfirmasi harus diisi dan sama dengan password"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Tipe:")]),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "radio-inline" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.roleTipe,
+                                    expression: "roleTipe"
+                                  }
+                                ],
+                                attrs: { type: "radio", name: "tipe" },
+                                domProps: {
+                                  value: "BKCU",
+                                  checked: _vm._q(_vm.roleTipe, "BKCU")
+                                },
+                                on: {
+                                  change: function($event) {
+                                    _vm.roleTipe = "BKCU"
+                                  }
+                                }
+                              }),
+                              _vm._v(" BKCU\n\t\t\t\t\t\t\t\t\t\t")
+                            ]),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "radio-inline" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.roleTipe,
+                                    expression: "roleTipe"
+                                  }
+                                ],
+                                attrs: { type: "radio", name: "tipe" },
+                                domProps: {
+                                  value: "CU",
+                                  checked: _vm._q(_vm.roleTipe, "CU")
+                                },
+                                on: {
+                                  change: function($event) {
+                                    _vm.roleTipe = "CU"
+                                  }
+                                }
+                              }),
+                              _vm._v(" CU\n\t\t\t\t\t\t\t\t\t\t")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm.roleTipe !== ""
+                          ? _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "form-group has-feedback",
+                                  class: {
+                                    "has-error": _vm.errors.has("form-1.peran")
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.peran"
+                                        )
+                                      }
+                                    },
+                                    [_vm._v("Peran:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.peran,
+                                          expression: "form.peran"
+                                        },
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: "required",
+                                          expression: "'required'"
+                                        }
+                                      ],
+                                      staticClass: "bootstrap-select",
+                                      attrs: {
+                                        name: "peran",
+                                        "data-width": "100%"
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "peran",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                          function($event) {
+                                            _vm.changeRole($event.target.value)
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { disabled: "", value: "" } },
+                                        [_vm._v("Silahkan pilih peran user")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.modelRole, function(role) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: role.id } },
+                                          [_vm._v(_vm._s(role.name))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.errors.has("form-1.peran")
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass: "form-control-feedback"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "icon-cancel-circle2"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    {
+                                      staticClass: "text-muted",
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.peran"
+                                        )
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(" Peran user harus dipilih")
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.roleTipe === "CU"
+                          ? _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "form-group has-feedback",
+                                  class: {
+                                    "has-error": _vm.errors.has("form-1.cu")
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.peran"
+                                        )
+                                      }
+                                    },
+                                    [_vm._v("CU:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.id_cu,
+                                          expression: "form.id_cu"
+                                        },
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: "required",
+                                          expression: "'required'"
+                                        }
+                                      ],
+                                      staticClass: "bootstrap-select",
+                                      attrs: {
+                                        name: "CU",
+                                        "data-width": "100%"
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_cu",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { disabled: "", value: "" } },
+                                        [_vm._v("Silahkan pilih CU")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.modelCU, function(cu) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: cu.id } },
+                                          [_vm._v(_vm._s(cu.name))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.errors.has("form-1.cu")
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass: "form-control-feedback"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "icon-cancel-circle2"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    {
+                                      staticClass: "text-muted",
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.cu"
+                                        )
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(" Peran user harus dipilih")
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.peran !== ""
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12" },
+                              [_c("hak-akses")],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "text-right" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Batal",
+                                  expression: "'Batal'",
+                                  arg: "top"
+                                }
+                              ],
+                              staticClass: "btn btn-default",
+                              attrs: { type: "button", to: { name: "artikel" } }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-arrow-left13" }),
+                              _vm._v(" Batal\n\t\t\t\t\t\t\t\t")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Simpan Data",
+                                  expression: "'Simpan Data'",
+                                  arg: "top"
+                                }
+                              ],
+                              staticClass: "btn btn-primary",
+                              attrs: {
+                                type: "submit",
+                                disabled: _vm.errors.any("form-1")
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-floppy-disk" }),
+                              _vm._v(" Simpan")
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("app-modal", {
+        attrs: {
+          show: _vm.modalShow,
+          state: _vm.modalState,
+          title: _vm.modalTitle,
+          content: _vm.modalContent,
+          color: _vm.modalColor
+        },
+        on: {
+          batal: _vm.modalTutup,
+          tutup: _vm.modalTutup,
+          successOk: _vm.modalTutup,
+          failOk: _vm.modalTutup,
+          backgroundClick: _vm.modalBackgroundClick
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "well well-sm bg-info" }, [
+        _c("i", { staticClass: "icon-info22" }),
+        _vm._v(" Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-fadbbf36", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

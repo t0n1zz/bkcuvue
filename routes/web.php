@@ -21,3 +21,18 @@ Route::get('/admins/{vue?}', function () {
 
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout');
+
+Route::get('/permissionTest', function () {
+    // $user = App\User::find(1);
+    // $user->assignRole('cu-full');
+
+    // $role = $user->getAllPermissions();
+
+    // $role = Spatie\Permission\Models\Role::findOrFail(2);
+
+    $user = App\User::find(8);
+    dd($user->getRoleNames);
+
+});
+
+

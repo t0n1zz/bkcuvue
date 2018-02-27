@@ -4,6 +4,7 @@ import dashboard from './views/dashboard.vue';
 import artikel from './views/artikel/index.vue';
 import artikel_form from './views/artikel/form.vue';
 import user from './views/user/index.vue';
+import user_form from './views/user/form.vue';
 import role from './views/role/index.vue';
 
 const routes = [
@@ -13,7 +14,7 @@ const routes = [
 
 	// user
 	{ path: '/user',name: 'user', components: { default: user, 'header': header }},
-	{ path: '/user/create',name: 'userCreate', components: { default: artikel_form, 'header': header} },
+	{ path: '/user/create',name: 'userCreate', components: { default: user_form, 'header': header} },
 
 	// role
 	{ path: '/role',name: 'role', components: { default: role, 'header': header }},

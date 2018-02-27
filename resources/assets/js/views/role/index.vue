@@ -234,11 +234,11 @@
 				source: '',
 				selectedItem: [],
 				params: {
-          column: 'id',
+          column: 'name',
           direction: 'desc',
           per_page: 10,
           page: 1,
-          search_column: 'nama',
+          search_column: 'name',
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''

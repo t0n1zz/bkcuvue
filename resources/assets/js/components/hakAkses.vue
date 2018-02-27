@@ -1,75 +1,101 @@
 <template>
 	<div>
-
-		<!-- select role -->
-		<div class="form-group">
-			<select name="id_role"
-			data-width="100%" class="bootstrap-select">
-				<option disabled value="">Silahkan pilih peran user</option>
-			</select>
-		</div>
-
 		<!-- hak akses -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-framed">
-				<tbody>
-					<tr v-for="akses in hakakses">
-						<td class="bg-primary"><i :class="akses.icon"></i> {{ akses.name }}</td>
-						<td v-for="tipe in akses.tipe">
-							<label class="checkbox-inline">
-								<input type="checkbox"> 
-								<i :class="tipe.icon"></i> {{ tipe.name }}
-							</label>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="well well-sm">
+			<div class="row" v-for="akses in hakAkses">
+				<!-- desktop -->
+				<div class="col-sm-12 hidden-xs"><div class=" text-center text-size-large"><i :class="akses.icon"></i> {{ akses.name }}</div> <hr></div>
+				<div class="col-sm-2 hidden-xs" v-for="tipe in akses.tipe">
+					<label class="checkbox-inline">
+						<input type="checkbox" :value="tipe.key" v-model="hakAksesModel"> 
+						<i :class="tipe.icon"></i> &nbsp; {{ tipe.name }}
+					</label>
+				</div>
+				<hr class="hidden-xs">
+				<!-- mobile -->
+				<div class="col-xs-12 visible-xs">
+					<div class="text-center text-size-large"><i :class="akses.icon"></i> {{ akses.name }}</div>
+					<hr>
+					<div class="checkbox checkbox-right" v-for="tipe in akses.tipe">
+						<label>
+							<input type="checkbox" :value="tipe.key" v-model="hakAksesModel"> 
+							<i :class="tipe.icon"></i> &nbsp; {{ tipe.name }}
+						</label>
+					</div> 
+					<hr>
+				</div>
+			</div>
 		</div>
+		
 
 	</div>
 </template>
 
 <script>
 	export default {
-		props: {
-			dataPeran: {}
-		},
 		data() {
 			return {
-				hakakses: [
+				hakAksesModel: {},
+				hakAkses: [
 				 	{
 						name: 'Artikel',
 						icon: 'icon-newspaper',
+						secondRow: true,
 						tipe:[
 							{
 								name: 'Lihat',
-								icon: 'icon-eye',
-								key: 'artikelIndex'
+								key: 'index artikel',
+								icon: 'icon-eye'
 							},
 							{
 								name: 'Tambah',
-								icon: 'icon-plus3',
-								key: 'artikelCreate'
+								key: 'create artikel',
+								icon: 'icon-plus3'
 							},
 							{
 								name: 'Ubah',
-								icon: 'icon-pencil',
-								key: 'artikelUpdate'
+								key: 'update artikel',
+								icon: 'icon-pencil'
 							},
 							{
 								name: 'Hapus',
-								icon: 'icon-bin2',
-								key: 'artikelDestroy'
+								key: 'destroy artikel',
+								icon: 'icon-bin2'
+							},
+							{
+								name: 'Terbitkan',
+								key: 'terbitkan artikel',
+								icon: 'icon-file-upload'
+							},
+							{
+								name: 'Utamakan',
+								key: 'utamakan artikel',
+								icon: 'icon-pushpin'
 							}
 						]
 					}
 				]
 			}
 		},
+		updated(){
+			$('.bootstrap-select').selectpicker('refresh');
+		},
+		created(){
+		},
+		watch:{
+			permissionData(value){
+				this.hakAksesModel = value;
+			}
+		},
 		methods: {
-			backgroundClick() {
-				this.$emit('backgroundClick');
+		},
+		computed: {
+			permissionData(){
+				return this.$store.getters.getRoleData;
 			},
+			permissionDataStat(){
+				return this.$store.getters.getRoleDataLoadStat;
+			}
 		}
 	}
 </script>

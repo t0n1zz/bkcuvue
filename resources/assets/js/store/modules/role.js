@@ -15,19 +15,6 @@ export const role = {
   },
 
   actions: {
-    loadRoleData({commit}){
-      commit('setRoleDataLoadStat', 'loading');
-
-      RoleAPI.getRoleData( )
-        .then( function( response ){
-          commit('setRoleData', response.data.model);
-          commit('setRoleDataLoadStat', 'success');
-        })
-        .catch( error => {
-          commit('setRoleData', error.response);
-          commit('setRoleDataLoadStat', 'fail');
-        });
-    },
     loadRoleS( { commit }, p ){
       commit('setRoleLoadStatS', 'loading');
       
@@ -39,6 +26,45 @@ export const role = {
         .catch( error => {
           commit('setRoleS', error.response);
           commit('setRoleLoadStatS', 'fail');
+        });
+    },
+    loadRoleAll( { commit } ){
+      commit('setRoleLoadStatS', 'loading');
+      
+      RoleAPI.getRoleAll()
+        .then( function( response ){
+          commit('setRoleS', response.data.model);
+          commit('setRoleLoadStatS', 'success');
+        })
+        .catch( function(){
+          commit('setRoleS', []);
+          commit('setRoleLoadStatS', 'fail');
+        });
+    },
+    loadRoleTipe( { commit }, tipe ){
+      commit('setRoleLoadStatS', 'loading');
+      
+      RoleAPI.getRoleTipe( tipe )
+        .then( function( response ){
+          commit('setRoleS', response.data.model);
+          commit('setRoleLoadStatS', 'success');
+        })
+        .catch( function(){
+          commit('setRoleS', []);
+          commit('setRoleLoadStatS', 'fail');
+        });
+    },
+    loadRolePermission( {commit}, id ){
+      commit('setRoleLoadStat', 'loading');
+      
+      RoleAPI.getRolePermission( id )
+        .then( function( response ){
+          commit('setRoleData', response.data.model );
+          commit('setRoleDataLoadStat', 'success');
+        })
+        .catch( error => {
+          commit('setRoleData', error.response);
+          commit('setRoleDataLoadStat', 'fail');
         });
     },
     loadRole( {commit}, id ){

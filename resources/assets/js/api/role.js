@@ -10,6 +10,15 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/role_all');
   },
 
+  getRoleTipe: function(tipe){
+    return axios.get(BKCU_CONFIG.API_URL + '/role_tipe/' + tipe);
+  },
+
+
+  getRolePermission: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/role_permission/' + id);
+  },
+
   getRole: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/role/' + id);
   },

@@ -14,8 +14,16 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/user/' + id);
   },
 
+  createUser: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/user/create');
+  },
+
   storeUser: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/user/store', form);
+  },
+
+  editUser: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/user/edit/' + id);
   },
 
   updateUser: function ( id, form ){

@@ -126,6 +126,7 @@
 								<td v-if="!columnData[2].hide" class="warptext">{{props.item.username}}</td>
 								<td v-if="!columnData[3].hide && !columnData[4].disable">
 									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
+									<span v-else>Puskopdit BKCU Kalimantan</span>
 								</td>
 								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
 								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
@@ -167,7 +168,7 @@
 													<span v-if="props.item.c_u">
 														: {{props.item.c_u.name}}
 													</span>
-													<span v-else>: -</span>	
+													<span v-else>: Puskopdit BKCU Kalimantan</span>	
 												</td>
 											</tr>
 											<tr v-if="!columnData[4].hide">
@@ -213,7 +214,7 @@
 
 									<!-- hak akses mobile -->
 									<div class="pb-10 pl-15 pr-15">
-										<button @click.prevent="modalHakAksesOpen(props.item)" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah hak akses user'">
+										<button @click.prevent="modalHakAksesOpen(true,props.item)" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah hak akses user'">
 											<i class="icon-eye"></i> <span>Hak Akses</span>
 										</button>
 									</div>
@@ -237,6 +238,16 @@
 			<!-- hak akses -->
 			<template slot="modal-body1">
 
+				<!-- select role -->
+				<div class="form-group">
+					<label class="text-semibold">Pilih peran:</label>
+					<select name="id_role" data-width="100%" class="bootstrap-select" @change="changeRole($event.target.value)">
+						<option disabled value="">Silahkan pilih peran user</option>
+						<option v-for="role in roleData" :value="role.id">{{role.name}}</option>
+					</select>
+				</div>
+
+				<!-- hak-akses -->
 				<hak-akses></hak-akses>
 				<!-- divider -->
 				<hr>
@@ -348,7 +359,7 @@
 						title: 'CU',
 						key: 'id_cu',
 						groupKey: 'c_u.name',
-						groupNoKey: 'BKCU',
+						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -381,6 +392,7 @@
 		},
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
+			$('.bootstrap-select').selectpicker('render');
 		},
 		created(){
 			this.fetch();
@@ -409,6 +421,9 @@
 			},
 			ubahData(id) {
 				this.$router.push('/' + this.kelas + '/edit/' + id);
+			},
+			changeRole(id){
+				this.$store.dispatch('loadRolePermission',id);
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -442,6 +457,9 @@
 				if(isMobile){
 					this.selectedItem = itemMobile;
 				}
+
+				this.$store.dispatch('loadRoleAll');
+				$('.bootstrap-select').selectpicker('render');
 			},
 			modalTutup() {
 				this.modalShow = false;
@@ -458,6 +476,10 @@
 				} else if (vm.source == "updateStatus"){
 					this.$store.dispatch('updateUserStatus', this.selectedItem.id);
 				}
+			},
+			reload(){
+				$('.bootstrap-select').selectpicker('refresh');
+				$('.bootstrap-select').selectpicker('render');
 			}
 		},
 		computed: {
@@ -472,6 +494,12 @@
 			},
 			itemDataStat(){
 				return this.$store.getters.getUserLoadStatS;
+			},
+			roleData(){
+				return this.$store.getters.getRoleS;
+			},
+			roleDataStat(){
+				return this.$store.getters.getRoleLoadStatS;
 			},
 			updateStat() {
 				return this.$store.getters.getUserUpdateStat;
