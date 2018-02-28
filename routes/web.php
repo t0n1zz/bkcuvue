@@ -31,8 +31,12 @@ Route::get('/permissionTest', function () {
     // $role = Spatie\Permission\Models\Role::findOrFail(2);
 
     $user = App\User::find(8);
-    dd($user->getRoleNames);
-
+    $roles = $user->getRoleNames();
+    $userdata = $user->combine($roles);
+    return response()
+        ->json([
+            'model' => $user
+        ]);
 });
 
 

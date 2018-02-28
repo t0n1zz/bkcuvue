@@ -128,8 +128,12 @@
 									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
 									<span v-else>Puskopdit BKCU Kalimantan</span>
 								</td>
-								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
-								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[4].hide && !columnData[4].disable">
+									<span v-if="props.item.roles">{{props.item.roles.name}}</span>
+									<span v-else>-</span>
+								</td>
+								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
+								<td v-if="!columnData[6].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
 							</tr>
 						</template>
 
@@ -315,6 +319,12 @@
 						disable: false
 					},
 					{
+						title: 'Peran',
+						key: 'roles.name',
+						type: 'string',
+						disable: false
+					},
+					{
 						title: 'Status',
 						key: 'status',
 						type: 'boolean',
@@ -365,6 +375,15 @@
 						disable: false,
 					},
 					{
+						title: 'Peran',
+						key: 'roles.name',
+						groupKey: 'roles.name',
+						groupNoKey: '-',
+						sort: true,
+						hide: false,
+						disable: false,
+					},
+					{
 						title: 'Status',
 						key: 'status',
 						sort: true,
@@ -392,7 +411,6 @@
 		},
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
-			$('.bootstrap-select').selectpicker('render');
 		},
 		created(){
 			this.fetch();

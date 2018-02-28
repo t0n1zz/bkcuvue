@@ -17,7 +17,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-    	$table_data = User::with('CU','pus')->select('id','id_cu','id_pus','name','username','gambar','status','created_at')->filterPaginateOrder();
+    	$table_data = User::with('CU','pus','roles')->select('id','id_cu','id_pus','name','username','gambar','status','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([

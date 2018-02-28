@@ -53,138 +53,178 @@
 
 									<!-- name -->
 									<div class="col-md-6">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.name')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.name')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.name')}">Nama:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.name')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.name')"></i>
+												Nama:
+											</h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama user" v-validate="'required|min:5'" v-model="form.name">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama user" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
 
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.name')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.name')}">
-												<i class="icon-arrow-small-right"></i> Nama harus diisi dan minimal 5 karakter</small>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form-1.name')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.name') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
+										</div>
+									</div>
+
+									<!-- email -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.email')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form-1.email')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.email')"></i>
+												E-mail:
+											</h5>
+
+											<!-- text -->
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan e-mail yang valid" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form-1.email')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.email') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
 										</div>
 									</div>
 
 									<!-- username -->
 									<div class="col-md-6">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.username')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.username')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.username')}">Username:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.username')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.username')"></i>
+												Username:
+											</h5>
 
 											<!-- text -->
-											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" v-model="form.username">
+											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" data-vv-as='Username' v-model="form.username">
 
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.username')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.username')}">
-												<i class="icon-arrow-small-right"></i> Username harus diisi dan minimal 5 karakter</small>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form-1.username')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.username') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
 										</div>
 									</div>
 
 									<!-- password -->
 									<div class="col-md-6">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.password')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.password')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.password')}">Password:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.password')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.password')"></i>
+												Password:
+											</h5>
 
 											<!-- text -->
-											<input type="password" name="password" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" v-model="form.password">
+											<input type="password" name="password" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" data-vv-as="Password" v-model="form.password">
 
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.password')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.password')}">
-												<i class="icon-arrow-small-right"></i> Password harus diisi dan minimal 5 karakter</small>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form-1.password')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.password') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
 										</div>
 									</div>
 
 									<!-- password konfirmasi -->
 									<div class="col-md-6">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.passwordConfirm')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.passwordConfirm')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.passwordConfirm')}">Password Konfirmasi:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.passwordConfirm')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.passwordConfirm')"></i>
+												Konfirmasi Password:
+											</h5>
 
 											<!-- text -->
-											<input type="password" name="passwordConfirm" class="form-control" placeholder="Silahkan masukkan password konfirmasi" v-validate="'required|min:5'" v-model="form.passwordConfirm">
+											<input type="password" name="passwordConfirm" class="form-control" placeholder="Silahkan masukkan password konfirmasi" v-validate="'required|confirmed:password'" data-vv-as="Konfirmasi Password" v-model="form.passwordConfirm">
 
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.passwordConfirm')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.passwordConfirm')}">
-												<i class="icon-arrow-small-right"></i> Password Konfirmasi harus diisi dan sama dengan password</small>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form-1.passwordConfirm')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.passwordConfirm') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
 									<!-- tipe -->
 									<div class="col-md-6">
-										<div class="form-group">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.tipe')}">
 
 											<!-- title -->
-											<h5>Tipe:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.tipe')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.tipe')"></i>
+												Tipe:
+											</h5>
 
 											<!-- radio -->
 											<label class="radio-inline">
-												<input type="radio" name="tipe" :value="'BKCU'" v-model="roleTipe"> User BKCU
+												<input type="radio" name="tipe" :value="'BKCU'" v-validate="'required|in:BKCU,CU'" data-vv-as="Tipe" v-model="roleTipe"> User BKCU
 											</label>
 											<label class="radio-inline">
 												<input type="radio" name="tipe" :value="'CU'" v-model="roleTipe"> User CU
 											</label>
+
+											<!-- error message -->
+											<br/>
+											<small class="text-muted text-danger" v-if="errors.has('form-1.tipe')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.tipe') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
 										</div>
 									</div>
 									
 									<!-- select CU -->
 									<div class="col-md-12" v-if="roleTipe === 'CU'">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.cu')}">
+										<div class="form-group">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.peran')}">CU:</h5>
+											<h5>CU:</h5>
 
-											<!-- text -->
-											<select name="CU" data-width="100%" class="bootstrap-select" v-model="form.id_cu" v-validate="'required'">
+											<!-- select -->
+											<select name="CU" data-width="100%" class="bootstrap-select" v-model="form.id_cu">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.cu')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.cu')}">
-												<i class="icon-arrow-small-right"></i> Peran user harus dipilih</small>
 										</div>
 									</div>
 
 									<!-- select role -->
 									<div class="col-md-12" v-if="roleTipe !== ''">
-										<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-1.peran')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form-1.peran')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.peran')}">Peran:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form-1.peran')}">
+												<i class="icon-cross2" v-if="errors.has('form-1.peran')"></i>
+												Peran:
+											</h5>
 
 											<!-- text -->
-											<select name="peran" data-width="100%" class="bootstrap-select" @change="changeRole($event.target.value)" v-model="form.peran" v-validate="'required'">
+											<select name="peran" data-width="100%" class="bootstrap-select" @change="changeRole($event.target.value)" v-model="form.peran" v-validate="'required'" data-vv-as="Peran">
 												<option disabled value="">Silahkan pilih peran user</option>
 												<option v-for="role in modelRole" :value="role.id">{{role.name}}</option>
 											</select>
 
-											<!-- feedback	 -->
-											<div class="form-control-feedback" v-if="errors.has('form-1.peran')">
-												<i class="icon-cancel-circle2"></i>
-											</div>
-											<small class="text-muted" :class="{ 'text-danger' : errors.has('form-1.peran')}">
-												<i class="icon-arrow-small-right"></i> Peran user harus dipilih</small>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form-1.peran')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.peran') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
@@ -192,10 +232,6 @@
 									<div class="col-md-12" v-if="form.peran && form.peran !==''">
 										<hak-akses :tipeUser="roleTipe"></hak-akses>
 									</div>
-									
-									<!-- separator -->
-									<div class="col-md-12"><hr/></div>
-
 								</div>
 
 								<!-- separator -->
@@ -209,13 +245,22 @@
 								<!-- separator -->
 								<div class="col-md-12"><hr/></div>
 
-								<!-- tombol -->
-								<div class="text-right">
-									<router-link type="button" :to="{ name:'artikel' }" class="btn btn-default" v-tooltip:top="'Batal'">
+								<!-- tombol desktop-->
+								<div class="text-right hidden-xs">
+									<router-link type="button" :to="{ name:'user' }" class="btn btn-default" v-tooltip:top="'Batal'">
 										<i class="icon-arrow-left13"></i> Batal
 									</router-link>
 									<button type="submit" class="btn btn-primary" :disabled="errors.any('form-1')" v-tooltip:top="'Simpan Data'">
 										<i class="icon-floppy-disk"></i> Simpan</button>
+								</div>
+
+								<!-- tombol mobile-->
+								<div class="visible-xs">
+									<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form-1')">
+										<i class="icon-floppy-disk"></i> Simpan</button>
+									<router-link type="button" :to="{ name:'user' }" class="btn btn-default btn-block">
+										<i class="icon-arrow-left13"></i> Batal
+									</router-link>
 								</div>
 							</form>
 						</div>
@@ -294,8 +339,6 @@
 				} else {
 					this.$store.dispatch('createUser');
 				}
-
-				
 			},
 			changeRole(id){
 				this.$store.dispatch('loadRolePermission',id);

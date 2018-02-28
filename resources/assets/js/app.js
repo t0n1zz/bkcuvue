@@ -4,8 +4,10 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 import { store } from './store/store';
 import Axios from 'axios';
-import VeeValidate from 'vee-validate';
+import id from 'vee-validate/dist/locale/id';
+import VeeValidate, { Validator } from 'vee-validate';
 
+Validator.localize('id',id); //localization
 Vue.use(VueRouter);
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
 
