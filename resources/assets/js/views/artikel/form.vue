@@ -324,48 +324,65 @@
 					</message>
 
 					<!-- name -->
-					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-kategori.kategoriNama')}">
+					<div class="form-group" :class="{'has-error' : errors.has('form-kategori.kategoriNama')}">
 
 						<!-- title -->
-						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">Nama:</label>
+						<h5 :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">
+							<i class="icon-cross2" v-if="errors.has('form-kategori.kategoriNama')"></i>
+							Nama:
+						</h5>
 
 						<!-- text -->
-						<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan name kategori" v-validate="'required'" v-model="formKategori.name">
+						<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan name kategori" v-validate="'required'" data-vv-as="Nama" v-model="formKategori.name">
 
-						<!-- feedback -->
-						<div class="form-control-feedback" v-if="errors.has('form-kategori.kategoriNama')">
-							<i class="icon-cancel-circle2"></i>
-						</div>
-						<small class="text-muted" :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">
-							<i class="icon-arrow-small-right"></i> Nama kategori harus diisi</small>
+						<!-- error message -->
+						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriNama')">
+							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriNama') }}
+						</small>
+						<small class="text-muted" v-else>&nbsp;
+						</small>
 					</div>
 
 					<!-- deskripsi -->
-					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-kategori.kategoriDeskripsi')}">
+					<div class="form-group" :class="{'has-error' : errors.has('form-kategori.kategoriDeskripsi')}">
 
 						<!-- title -->
-						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">Deskripsi:</label>
+						<h5 :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">
+							<i class="icon-cross2" v-if="errors.has('form-kategori.kategoriDeskripsi')"></i>
+							Deskripsi:
+						</h5>
 
 						<!-- textarea -->
 						<textarea rows="5" type="text" name="kategoriDeskripsi" class="form-control" placeholder="Silahkan masukkan deskripsi kategori"
 							v-validate="'required|min:5'" v-model="formKategori.deskripsi"></textarea>
 
-						<!-- feedback	 -->
-						<div class="form-control-feedback" v-if="errors.has('form-kategori.kategoriDeskripsi')">
-							<i class="icon-cancel-circle2"></i>
-						</div>
-						<small class="text-muted" :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">
-							<i class="icon-arrow-small-right"></i> Deskripsi kategori harus diisi dan minimal 5 karakter</small>
+						<!-- error message -->
+						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriDeskripsi')">
+							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriDeskripsi') }}
+						</small>
+						<small class="text-muted" v-else>&nbsp;
+						</small>
 					</div>
 				</form>
 			</template>
 			<template slot="modal-footer1">
 
-				<!-- button -->
-				<button class="btn btn-default" @click="modalTutup">
+				<!-- button desktop -->
+				<div class="hidden-xs">
+					<button class="btn btn-default" @click="modalTutup">
 					<i class="icon-cross"></i> Tutup</button>
-				<button type="submit" class="btn btn-primary" @click="saveKategori" :disabled="errors.any('form-kategori')">
+					<button type="submit" class="btn btn-primary" @click="saveKategori" :disabled="errors.any('form-kategori')">
 					<i class="icon-floppy-disk"></i> Simpan</button>
+				</div>
+
+				<!-- button mobile -->
+				<div class="visible-xs">
+					<button type="submit" class="btn btn-primary btn-block pb-5" @click="saveKategori" :disabled="errors.any('form-kategori')">
+					<i class="icon-floppy-disk"></i> Simpan</button>
+					<button class="btn btn-default btn-block" @click="modalTutup">
+					<i class="icon-cross"></i> Tutup</button>
+				</div>
+				
 			</template>
 
 			<!-- tambah penulis -->
@@ -384,55 +401,70 @@
 					<div class="form-group">
 
 						<!-- title -->
-						<label class="text-semibold">Foto:</label>
+						<h5>Foto:</h5>
 
 						<!-- imageupload -->
 						<app-image-upload :image_loc="'/images/artikel/'" v-model="formPenulis.gambar"></app-image-upload>
 					</div>
 
 					<!-- name -->
-					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-penulis.penulisNama')}">
+					<div class="form-group" :class="{'has-error' : errors.has('form-penulis.penulisNama')}">
 
 						<!-- title -->
-						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-penulis.penulisNama')}">Nama:</label>
-
+						<h5 :class="{ 'text-danger' : errors.has('form-penulis.penulisNama')}">
+							<i class="icon-cross2" v-if="errors.has('form-penulis.penulisNama')"></i>
+							Nama:
+						</h5>
 						<!-- text -->
-						<input type="text" name="penulisNama" class="form-control" placeholder="Silahkan masukkan name penulis" v-validate="'required'" v-model="formPenulis.name">
+						<input type="text" name="penulisNama" class="form-control" placeholder="Silahkan masukkan name penulis" v-validate="'required'" data-vv-as="Nama" v-model="formPenulis.name">
 
-						<!-- feedback -->
-						<div class="form-control-feedback" v-if="errors.has('form-penulis.penulisNama')">
-							<i class="icon-cancel-circle2"></i>
-						</div>
-						<small class="text-muted" :class="{ 'text-danger' : errors.has('form-penulis.penulisNama')}">
-							<i class="icon-arrow-small-right"></i> Nama penulis harus diisi</small>
+						<!-- error message -->
+						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriDeskripsi')">
+							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriDeskripsi') }}
+						</small>
+						<small class="text-muted" v-else>&nbsp;
+						</small>
 					</div>
 
 					<!-- deskripsi -->
-					<div class="form-group has-feedback" :class="{'has-error' : errors.has('form-penulis.penulisDeskripsi')}">
+					<div class="form-group" :class="{'has-error' : errors.has('form-penulis.penulisDeskripsi')}">
 
 						<!-- title -->
-						<label class="text-semibold" :class="{ 'text-danger' : errors.has('form-penulis.penulisDeskripsi')}">Profil:</label>
+						<h5 :class="{ 'text-danger' : errors.has('form-penulis.penulisDeskripsi')}">
+							<i class="icon-cross2" v-if="errors.has('form-penulis.penulisDeskripsi')"></i>
+							Profil:
+						</h5>
 
 						<!-- textarea -->
-						<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan profil penulis"
-							v-validate="'required|min:5'" v-model="formPenulis.deskripsi"></textarea>
+						<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan profil penulis" v-validate="'required|min:5'" data-vv-as="Profil" v-model="formPenulis.deskripsi"></textarea>
 
-						<!-- feedback	 -->
-						<div class="form-control-feedback" v-if="errors.has('form-penulis.penulisDeskripsi')">
-							<i class="icon-cancel-circle2"></i>
-						</div>
-						<small class="text-muted" :class="{ 'text-danger' : errors.has('form-penulis.penulisDeskripsi')}">
-							<i class="icon-arrow-small-right"></i> Profil penulis harus diisi dan minimal 5 karakter</small>
+						<!-- error message -->
+						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriDeskripsi')">
+							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriDeskripsi') }}
+						</small>
+						<small class="text-muted" v-else>&nbsp;
+						</small>
 					</div>
 				</form>
 			</template>
 			<template slot="modal-footer2">
 
-				<!-- button -->
-				<button class="btn btn-default" @click="modalTutup">
+				<!-- button desktop -->
+				<div class="hidden-xs">
+					<button class="btn btn-default" @click="modalTutup">
 					<i class="icon-cross"></i> Tutup</button>
-				<button type="submit" class="btn btn-primary" @click="savePenulis" :disabled="errors.any('form-penulis')">
+					<button type="submit" class="btn btn-primary" @click="savePenulis" :disabled="errors.any('form-penulis')">
 					<i class="icon-floppy-disk"></i> Simpan</button>
+				</div>
+
+				<!-- button mobile -->
+				<div class="visible-xs">
+					<button type="submit" class="btn btn-primary btn-block pb-5" @click="savePenulis" :disabled="errors.any('form-penulis')">
+					<i class="icon-floppy-disk"></i> Simpan</button>
+					<button class="btn btn-default btn-block" @click="modalTutup">
+					<i class="icon-cross"></i> Tutup</button>
+				</div>
+				
 			</template>
 
 		</app-modal>

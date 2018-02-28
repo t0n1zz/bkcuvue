@@ -59043,6 +59043,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -60777,23 +60809,27 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "form-group has-feedback",
+                    staticClass: "form-group",
                     class: {
                       "has-error": _vm.errors.has("form-kategori.kategoriNama")
                     }
                   },
                   [
                     _c(
-                      "label",
+                      "h5",
                       {
-                        staticClass: "text-semibold",
                         class: {
                           "text-danger": _vm.errors.has(
                             "form-kategori.kategoriNama"
                           )
                         }
                       },
-                      [_vm._v("Nama:")]
+                      [
+                        _vm.errors.has("form-kategori.kategoriNama")
+                          ? _c("i", { staticClass: "icon-cross2" })
+                          : _vm._e(),
+                        _vm._v("\n\t\t\t\t\t\tNama:\n\t\t\t\t\t")
+                      ]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -60815,7 +60851,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "kategoriNama",
-                        placeholder: "Silahkan masukkan name kategori"
+                        placeholder: "Silahkan masukkan name kategori",
+                        "data-vv-as": "Nama"
                       },
                       domProps: { value: _vm.formKategori.name },
                       on: {
@@ -60833,33 +60870,26 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _vm.errors.has("form-kategori.kategoriNama")
-                      ? _c("div", { staticClass: "form-control-feedback" }, [
-                          _c("i", { staticClass: "icon-cancel-circle2" })
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-muted",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriNama"
+                      ? _c("small", { staticClass: "text-muted text-danger" }, [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(
+                            " " +
+                              _vm._s(
+                                _vm.errors.first("form-kategori.kategoriNama")
+                              ) +
+                              "\n\t\t\t\t\t"
                           )
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-arrow-small-right" }),
-                        _vm._v(" Nama kategori harus diisi")
-                      ]
-                    )
+                        ])
+                      : _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(" \n\t\t\t\t\t")
+                        ])
                   ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "form-group has-feedback",
+                    staticClass: "form-group",
                     class: {
                       "has-error": _vm.errors.has(
                         "form-kategori.kategoriDeskripsi"
@@ -60868,16 +60898,20 @@ var render = function() {
                   },
                   [
                     _c(
-                      "label",
+                      "h5",
                       {
-                        staticClass: "text-semibold",
                         class: {
                           "text-danger": _vm.errors.has(
                             "form-kategori.kategoriDeskripsi"
                           )
                         }
                       },
-                      [_vm._v("Deskripsi:")]
+                      [
+                        _vm.errors.has("form-kategori.kategoriDeskripsi")
+                          ? _c("i", { staticClass: "icon-cross2" })
+                          : _vm._e(),
+                        _vm._v("\n\t\t\t\t\t\tDeskripsi:\n\t\t\t\t\t")
+                      ]
                     ),
                     _vm._v(" "),
                     _c("textarea", {
@@ -60918,28 +60952,21 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _vm.errors.has("form-kategori.kategoriDeskripsi")
-                      ? _c("div", { staticClass: "form-control-feedback" }, [
-                          _c("i", { staticClass: "icon-cancel-circle2" })
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-muted",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriDeskripsi"
+                      ? _c("small", { staticClass: "text-muted text-danger" }, [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(
+                            " " +
+                              _vm._s(
+                                _vm.errors.first(
+                                  "form-kategori.kategoriDeskripsi"
+                                )
+                              ) +
+                              "\n\t\t\t\t\t"
                           )
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-arrow-small-right" }),
-                        _vm._v(
-                          " Deskripsi kategori harus diisi dan minimal 5 karakter"
-                        )
-                      ]
-                    )
+                        ])
+                      : _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(" \n\t\t\t\t\t")
+                        ])
                   ]
                 )
               ],
@@ -60948,24 +60975,59 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("template", { slot: "modal-footer1" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-default", on: { click: _vm.modalTutup } },
-              [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "submit",
-                  disabled: _vm.errors.any("form-kategori")
+            _c("div", { staticClass: "hidden-xs" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  on: { click: _vm.modalTutup }
                 },
-                on: { click: _vm.saveKategori }
-              },
-              [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
-            )
+                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any("form-kategori")
+                  },
+                  on: { click: _vm.saveKategori }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "visible-xs" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block pb-5",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any("form-kategori")
+                  },
+                  on: { click: _vm.saveKategori }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default btn-block",
+                  on: { click: _vm.modalTutup }
+                },
+                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("template", { slot: "modal-body2" }, [
@@ -60997,9 +61059,7 @@ var render = function() {
                   "div",
                   { staticClass: "form-group" },
                   [
-                    _c("label", { staticClass: "text-semibold" }, [
-                      _vm._v("Foto:")
-                    ]),
+                    _c("h5", [_vm._v("Foto:")]),
                     _vm._v(" "),
                     _c("app-image-upload", {
                       attrs: { image_loc: "/images/artikel/" },
@@ -61018,23 +61078,27 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "form-group has-feedback",
+                    staticClass: "form-group",
                     class: {
                       "has-error": _vm.errors.has("form-penulis.penulisNama")
                     }
                   },
                   [
                     _c(
-                      "label",
+                      "h5",
                       {
-                        staticClass: "text-semibold",
                         class: {
                           "text-danger": _vm.errors.has(
                             "form-penulis.penulisNama"
                           )
                         }
                       },
-                      [_vm._v("Nama:")]
+                      [
+                        _vm.errors.has("form-penulis.penulisNama")
+                          ? _c("i", { staticClass: "icon-cross2" })
+                          : _vm._e(),
+                        _vm._v("\n\t\t\t\t\t\tNama:\n\t\t\t\t\t")
+                      ]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -61056,7 +61120,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "penulisNama",
-                        placeholder: "Silahkan masukkan name penulis"
+                        placeholder: "Silahkan masukkan name penulis",
+                        "data-vv-as": "Nama"
                       },
                       domProps: { value: _vm.formPenulis.name },
                       on: {
@@ -61069,34 +61134,29 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm.errors.has("form-penulis.penulisNama")
-                      ? _c("div", { staticClass: "form-control-feedback" }, [
-                          _c("i", { staticClass: "icon-cancel-circle2" })
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-muted",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-penulis.penulisNama"
+                    _vm.errors.has("form-kategori.kategoriDeskripsi")
+                      ? _c("small", { staticClass: "text-muted text-danger" }, [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(
+                            " " +
+                              _vm._s(
+                                _vm.errors.first(
+                                  "form-kategori.kategoriDeskripsi"
+                                )
+                              ) +
+                              "\n\t\t\t\t\t"
                           )
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-arrow-small-right" }),
-                        _vm._v(" Nama penulis harus diisi")
-                      ]
-                    )
+                        ])
+                      : _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(" \n\t\t\t\t\t")
+                        ])
                   ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "form-group has-feedback",
+                    staticClass: "form-group",
                     class: {
                       "has-error": _vm.errors.has(
                         "form-penulis.penulisDeskripsi"
@@ -61105,16 +61165,20 @@ var render = function() {
                   },
                   [
                     _c(
-                      "label",
+                      "h5",
                       {
-                        staticClass: "text-semibold",
                         class: {
                           "text-danger": _vm.errors.has(
                             "form-penulis.penulisDeskripsi"
                           )
                         }
                       },
-                      [_vm._v("Profil:")]
+                      [
+                        _vm.errors.has("form-penulis.penulisDeskripsi")
+                          ? _c("i", { staticClass: "icon-cross2" })
+                          : _vm._e(),
+                        _vm._v("\n\t\t\t\t\t\tProfil:\n\t\t\t\t\t")
+                      ]
                     ),
                     _vm._v(" "),
                     _c("textarea", {
@@ -61137,7 +61201,8 @@ var render = function() {
                         rows: "5",
                         type: "text",
                         name: "penulisDeskripsi",
-                        placeholder: "Silahkan masukkan profil penulis"
+                        placeholder: "Silahkan masukkan profil penulis",
+                        "data-vv-as": "Profil"
                       },
                       domProps: { value: _vm.formPenulis.deskripsi },
                       on: {
@@ -61154,29 +61219,22 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm.errors.has("form-penulis.penulisDeskripsi")
-                      ? _c("div", { staticClass: "form-control-feedback" }, [
-                          _c("i", { staticClass: "icon-cancel-circle2" })
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-muted",
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-penulis.penulisDeskripsi"
+                    _vm.errors.has("form-kategori.kategoriDeskripsi")
+                      ? _c("small", { staticClass: "text-muted text-danger" }, [
+                          _c("i", { staticClass: "icon-arrow-small-right" }),
+                          _vm._v(
+                            " " +
+                              _vm._s(
+                                _vm.errors.first(
+                                  "form-kategori.kategoriDeskripsi"
+                                )
+                              ) +
+                              "\n\t\t\t\t\t"
                           )
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "icon-arrow-small-right" }),
-                        _vm._v(
-                          " Profil penulis harus diisi dan minimal 5 karakter"
-                        )
-                      ]
-                    )
+                        ])
+                      : _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(" \n\t\t\t\t\t")
+                        ])
                   ]
                 )
               ],
@@ -61185,24 +61243,59 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("template", { slot: "modal-footer2" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-default", on: { click: _vm.modalTutup } },
-              [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "submit",
-                  disabled: _vm.errors.any("form-penulis")
+            _c("div", { staticClass: "hidden-xs" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  on: { click: _vm.modalTutup }
                 },
-                on: { click: _vm.savePenulis }
-              },
-              [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
-            )
+                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any("form-penulis")
+                  },
+                  on: { click: _vm.savePenulis }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "visible-xs" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block pb-5",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any("form-penulis")
+                  },
+                  on: { click: _vm.savePenulis }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default btn-block",
+                  on: { click: _vm.modalTutup }
+                },
+                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+              )
+            ])
           ])
         ],
         2
