@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
-
+// Route::group(['prefix'=>'v1'],function(){
     // user
     Route::get('/profile', 'UserController@getUser');
     Route::get('/userData', 'UserController@userData');

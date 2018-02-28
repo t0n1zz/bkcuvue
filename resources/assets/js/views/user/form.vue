@@ -46,7 +46,7 @@
 											<h5>Foto:</h5>
 
 											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<app-image-upload :image_loc="'/images/user/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>
 
@@ -118,7 +118,7 @@
 									</div>
 
 									<!-- password -->
-									<div class="col-md-6">
+									<div class="col-md-6" v-if="this.$route.meta.mode !== 'edit'">
 										<div class="form-group" :class="{'has-error' : errors.has('form-1.password')}">
 
 											<!-- title -->
@@ -140,7 +140,7 @@
 									</div>
 
 									<!-- password konfirmasi -->
-									<div class="col-md-6">
+									<div class="col-md-6" v-if="this.$route.meta.mode !== 'edit'">
 										<div class="form-group" :class="{'has-error' : errors.has('form-1.passwordConfirm')}">
 
 											<!-- title -->
@@ -322,6 +322,17 @@
 			this.fetch();
 		},
 		watch: {
+			formStat(value){
+				if(value === 'success'){
+					if(this.$route.meta.mode === 'edit'){
+						if(this.form.id_cu === 0){
+							this.roleTipe = 'BKCU';
+						} else {
+							this.roleTipe = 'CU';
+						}
+					}
+				}
+			},
 			roleTipe(value){
 				if(value === 'CU'){
 					this.$store.dispatch('loadCUPus','1');
@@ -398,22 +409,22 @@
 		},
 		computed: {
 			form(){
-				return this.$store.getters.getArtikel;
+				return this.$store.getters.getUser;
 			},
 			formStat(){
-				return this.$store.getters.getArtikelLoadStat;
+				return this.$store.getters.getUserLoadStat;
 			},
 			rules(){
-				return this.$store.getters.getArtikelRules;
+				return this.$store.getters.getUserRules;
 			},
 			option(){
-				return this.$store.getters.getArtikelOption;
+				return this.$store.getters.getUserOption;
 			},
 			updateResponse(){
-				return this.$store.getters.getArtikelUpdate;
+				return this.$store.getters.getUserUpdate;
 			},
 			updateStat(){
-				return this.$store.getters.getArtikelUpdateStat;
+				return this.$store.getters.getUserUpdateStat;
 			},
 			modelRole(){
 				return this.$store.getters.getRoleS;

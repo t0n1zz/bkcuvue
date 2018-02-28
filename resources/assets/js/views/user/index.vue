@@ -119,21 +119,22 @@
 						<template slot="item-desktop" slot-scope="props">
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
-									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
+									<img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
 								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
-								<td v-if="!columnData[2].hide" class="warptext">{{props.item.username}}</td>
-								<td v-if="!columnData[3].hide && !columnData[4].disable">
+								<td v-if="!columnData[2].hide" class="warptext">{{props.item.email}}</td>
+								<td v-if="!columnData[3].hide" class="warptext">{{props.item.username}}</td>
+								<td v-if="!columnData[4].hide && !columnData[4].disable">
 									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
 									<span v-else>Puskopdit BKCU Kalimantan</span>
 								</td>
-								<td v-if="!columnData[4].hide && !columnData[4].disable">
-									<span v-if="props.item.roles">{{props.item.roles.name}}</span>
+								<td v-if="!columnData[5].hide && !columnData[5].disable">
+									<span v-if="props.item.roles" v-for="role in props.item.roles">{{role.name}}</span>
 									<span v-else>-</span>
 								</td>
-								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
-								<td v-if="!columnData[6].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
+								<td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
 							</tr>
 						</template>
 
@@ -313,6 +314,12 @@
 						disable: false
 					},
 					{
+						title: 'E-mail',
+						key: 'email',
+						type: 'string',
+						disable: false
+					},
+					{
 						title: 'Username',
 						key: 'username',
 						type: 'string',
@@ -320,7 +327,7 @@
 					},
 					{
 						title: 'Peran',
-						key: 'roles.name',
+						key: 'roles[*].name',
 						type: 'string',
 						disable: false
 					},
@@ -354,6 +361,13 @@
 					{
 						title: 'Nama',
 						key: 'name',
+						sort: true,
+						hide: false,
+						disable: false
+					},
+					{
+						title: 'E-mail',
+						key: 'email',
 						sort: true,
 						hide: false,
 						disable: false

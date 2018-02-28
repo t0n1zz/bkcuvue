@@ -173,14 +173,14 @@ export const user = {
     setUserDataLoadStat( state, status ){
       state.userDataLoad = status;
     },
-    setUserS ( state, UserS ){
-      state.userS = UserS;
+    setUserS ( state, userS ){
+      state.userS = userS;
     },
     setUserLoadStatS( state, status ){
       state.userLoadStatS = status;
     },
-    setUser ( state, User ){
-      state.user = User;
+    setUser ( state, user ){
+      state.user = user;
     },
     setUserLoadStat( state, status ){
       state.userLoadStat = status;
@@ -213,7 +213,7 @@ export const user = {
       return state.userLoadStatS;
     },
     getUser( state ){
-      return state.User;
+      return state.user;
     },
     getUserLoadStat ( state ){
       return state.userLoadStat;

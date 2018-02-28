@@ -15,6 +15,7 @@ const routes = [
 	// user
 	{ path: '/user',name: 'user', components: { default: user, 'header': header }},
 	{ path: '/user/create',name: 'userCreate', components: { default: user_form, 'header': header} },
+	{ path: '/user/edit/:id',name: 'userEdit', components: { default: user_form, 'header': header}, meta: { mode:'edit' } },
 
 	// role
 	{ path: '/role',name: 'role', components: { default: role, 'header': header }},

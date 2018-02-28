@@ -32,7 +32,7 @@ Route::get('/permissionTest', function () {
 
     $user = App\User::find(8);
     $roles = $user->getRoleNames();
-    $userdata = $user->combine($roles);
+    // $userdata = $user->combine($roles);
     return response()
         ->json([
             'model' => $user

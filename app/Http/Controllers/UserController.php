@@ -13,12 +13,12 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    protected $imagepath = 'images/user/';
+  protected $imagepath = 'images/user/';
 
 	public function index()
 	{
-    	$table_data = User::with('CU','pus','roles')->select('id','id_cu','id_pus','name','username','gambar','status','created_at')->filterPaginateOrder();
-
+			$table_data = User::with('CU','pus','roles')->select('id','id_cu','id_pus','name','username','gambar','status','created_at')->filterPaginateOrder();
+			
     	return response()
 			->json([
 				'model' => $table_data
@@ -78,8 +78,8 @@ class UserController extends Controller
 
 	public function edit($id)
 	{
-		$kelas = User::findOrFail($id);
-
+		$kelas = User::with('CU','pus')->findOrFail($id);
+		
 		return response()
 				->json([
 						'form' => $kelas,

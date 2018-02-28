@@ -16,16 +16,17 @@ class User extends Authenticatable
 
     public static $rules = [
         'name' => 'required|min:5',
+        'email' => 'required|email',
         'username' => 'required|min:5',
         'password' => 'required|min:5',
     ];
 
     protected $fillable = [
-        'id_pus','id_cu','name','username', 'password','gambar','status'
+        'id_pus','id_cu','name','email','username', 'password','gambar','status'
     ];
 
     protected $filter = [
-        'id','id_cu','id_pus','name','username','gambar','status','created_at'
+        'id','id_cu','id_pus','name','email','username','gambar','status','created_at'
     ];
 
     public function getNameAttribute($value){
@@ -35,7 +36,7 @@ class User extends Authenticatable
     public static function initialize()
     {
         return [
-            'id_cu' => '0' , 'id_pus' => '0', 'name' => '', 'username' => '', 'status' => '0', 'gambar' => ''
+            'id_cu' => '0' , 'id_pus' => '0', 'name' => '','email' => '', 'username' => '', 'status' => '0', 'gambar' => ''
         ];
     }
 
@@ -57,5 +58,9 @@ class User extends Authenticatable
 
     public function CU(){
         return $this->belongsTo('App\CU','id_cu','id')->select('id','name');
+    }
+
+    public function Role(){
+        return $this->belongsTo('Spatie\Permission\Models\Role','id_cu','id')->select('id','name');
     }
 }
