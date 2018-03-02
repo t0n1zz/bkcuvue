@@ -23,7 +23,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown dropdown-user">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<img src="/images/no_image_man.jpg" alt="">
+							<img :src="'/images/user/' + userData.gambar + 'n.jpg'" alt="user image" v-if="userData.gambar">
+							<img src="/images/no_image_man.jpg" alt="user image" v-else>
 							<span>{{userData.name}}</span>
 							<i class="caret"></i>
 						</a>
@@ -69,11 +70,11 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact>
+							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikel']">
 								<a><i class="icon-plus22"></i> Tambah Artikel</a>
 							</router-link>
 							<li class="divider"></li>
-							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact>
+							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
 							</router-link>
 							<router-link :to="{ name: 'artikelKategori' }" tag="li" active-class="active" exact>
@@ -92,11 +93,11 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact>
+							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create user']">
 								<a><i class="icon-plus22"></i> Tambah User</a>
 							</router-link>
 							<li class="divider"></li>
-							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact>
+							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index user']">
 								<a><i class="icon-users"></i> User</a>
 							</router-link>
 							<router-link :to="{ name: 'role' }" tag="li" active-class="active" exact>

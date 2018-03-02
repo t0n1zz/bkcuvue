@@ -6,13 +6,21 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Support\FilterPaginateOrder;
+use App\Support\ExposePermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder;
+    use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder, ExposePermissions;
 
     protected $table = 'users';
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['can'];
 
     public static $rules = [
         'name' => 'required|min:5',

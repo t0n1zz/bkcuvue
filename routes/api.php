@@ -8,11 +8,13 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::get('/profile', 'UserController@getUser');
     Route::get('/userData', 'UserController@userData');
     Route::get('/user', 'UserController@index');
+    Route::get('/user/indexCU/{id}', 'UserController@indexCU');
     Route::get('/user/create', 'UserController@create');
     Route::get('/user/edit/{id}', 'UserController@edit');
     Route::post('/user/store', 'UserController@store');
     Route::post('/user/update/{id}', 'UserController@update');
     Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
+    Route::post('/user/resetPassword/{id}', 'UserController@resetPassword');
 
     // role
     Route::get('/role', 'RoleController@index');

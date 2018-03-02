@@ -1,40 +1,31 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "devDependencies": {
-    "axios": "^0.16.2",
-    "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "bootstrap-sass": "^3.3.7",
-    "cross-env": "^5.1.3",
-    "jquery": "^3.3.1",
-    "laravel-mix": "^1.7.2",
-    "lodash": "^4.17.5",
-    "vue": "^2.5.13",
-    "vue-router": "^2.8.1",
-    "vuetable-2": "^1.7.5"
-  },
-  "dependencies": {
-    "moment": "^2.20.1",
-    "uiv": "^0.11.11",
-    "vee-validate": "^2.0.4",
-    "vue-context": "^2.0.1",
-    "vue-context-menu": "^2.0.6",
-    "vue-json-excel": "^0.2.1",
-    "vue-lil-context-menu": "^1.1.0",
-    "vue-text-mask": "^6.0.0",
-    "vuex": "^3.0.1"
-  }
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.17",
+        "bootstrap": "^4.0.0",
+        "popper.js": "^1.12",
+        "cross-env": "^5.1",
+        "jquery": "^3.2",
+        "laravel-mix": "^2.0",
+        "lodash": "^4.17.4",
+        "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "moment": "^2.20.1",
+        "vee-validate": "^2.0.4",
+        "vue-context-menu": "^2.0.6",
+        "vue-json-excel": "^0.2.1",
+        "vue-router": "^3.0.1",
+        "vue-text-mask": "^6.0.0",
+        "vuex": "^3.0.1"
+    }
 }

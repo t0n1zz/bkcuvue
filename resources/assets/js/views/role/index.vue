@@ -73,10 +73,14 @@
 
 						<!-- button context -->
 						<template slot="button-context">
-							<li class="text-center pb-5 pt-5 bg-primary"><b class="text-size-large">Nama | Username</b></li>
+							<li class="text-center pb-5 pt-5 bg-primary">
+								<b class="text-size-large">{{columnData[0].title}}</b>
+							</li>
 							<li><hr class="no-margin-bottom no-margin-top"/></li>
-							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.nama}} | {{selectedItem.username}}</span></li>
+							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.nama}}</span></li>
 							<li><hr class="no-margin-top no-margin-bottom"/></li>
+
+							<!-- update -->
 							<li>
 								<div class="pl-5 pr-5 pb-5 pt-10">
 									<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah' + title" :disabled="!selectedItem.id">
@@ -84,18 +88,12 @@
 									</button>
 								</div>
 							</li>
+
+							<!-- destroy -->
 							<li>
 								<div class="pl-5 pr-5 pb-5">
 									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
-									</button>
-								</div>
-							</li>
-							<li>
-								<div class="pl-5 pr-5 pb-5">
-									<button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
-										<i class="icon-file-upload"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
-										<span v-else>Aktifkan</span>
 									</button>
 								</div>
 							</li>
@@ -104,17 +102,9 @@
 						<!-- item desktop -->
 						<template slot="item-desktop" slot-scope="props">
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
-								<td v-if="!columnData[0].hide">
-									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
-									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
-								</td>
-								<td v-if="!columnData[1].hide" class="warptext">{{props.item.nama}}</td>
-								<td v-if="!columnData[2].hide" class="warptext">{{props.item.username}}</td>
-								<td v-if="!columnData[3].hide && !columnData[4].disable">
-									<span v-if="props.item.c_u">{{props.item.c_u.nama}}</span>
-								</td>
-								<td v-if="!columnData[4].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
-								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[0].hide" class="warptext">{{props.item.name}}</td>
+								<td v-if="!columnData[1].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[2].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.updated_at)"></td>
 							</tr>
 						</template>
 
@@ -134,38 +124,19 @@
 									<table class="table table-striped">
 										<tbody>
 											<tr v-if="!columnData[0].hide">
-												<td colspan="2">
-													<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-													<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive center-block" v-else>
-												</td>
+												<td><b>{{columnData[0].title}}</b></td>
+												<td>: {{props.item.nama}}</td>
 											</tr>
 											<tr v-if="!columnData[1].hide">
 												<td><b>{{columnData[1].title}}</b></td>
-												<td>: {{props.item.nama}}</td>
+												<td>
+													: <span v-html="$options.filters.publishDateMobile(props.item.created_at)"></span>
+												</td>
 											</tr>
 											<tr v-if="!columnData[2].hide">
 												<td><b>{{columnData[2].title}}</b></td>
-												<td>: {{props.item.username}}</td>
-											</tr>
-											<tr v-if="!columnData[3].hide">
-												<td><b>{{columnData[3].title}}</b></td>
 												<td>
-													<span v-if="props.item.c_u">
-														: {{props.item.c_u.nama}}
-													</span>
-													<span v-else>: -</span>	
-												</td>
-											</tr>
-											<tr v-if="!columnData[4].hide">
-												<td><b>{{columnData[4].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.checkStatus(props.item.status)"></span>
-												</td>
-											</tr>
-											<tr v-if="!columnData[5].hide">
-												<td><b>{{columnData[5].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.publishDateMobile(props.item.created_at)"></span>
+													: <span v-html="$options.filters.publishDateMobile(props.item.updated_at)"></span>
 												</td>
 											</tr>
 										</tbody>
@@ -182,13 +153,6 @@
 										<div class="pb-10 pl-15 pr-15">
 											<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-bin2"></i> <span>Hapus</span>
-											</button>
-										</div>
-										
-										<div class="pb-10 pl-15 pr-15">
-											<button @click.prevent="modalConfirmOpen('updateStatus',true,props.item)" class="btn btn-default btn-icon btn-block">
-												<i class="icon-file-upload"></i> <span v-if="props.item.status === 1">Tidak Aktifkan</span>
-												<span v-else>Aktifkan</span> 
 											</button>
 										</div>
 									</div>
@@ -234,7 +198,7 @@
 				source: '',
 				selectedItem: [],
 				params: {
-          column: 'name',
+          column: 'id',
           direction: 'desc',
           per_page: 10,
           page: 1,
@@ -247,12 +211,6 @@
 					{
 						title: 'Nama',
 						key: 'name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Hak Akses',
-						key: 'permissions',
 						type: 'string',
 						disable: false
 					},
@@ -274,13 +232,6 @@
 						title: 'Nama',
 						key: 'name',
 						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Hak Akses',
-						key: 'permissions',
-						sort: false,
 						hide: false,
 						disable: false
 					},

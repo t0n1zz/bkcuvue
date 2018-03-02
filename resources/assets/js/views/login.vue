@@ -124,7 +124,6 @@
 						this.submited = true;
 					}
 				});
-				
 			}
 		}
 	}

@@ -43,12 +43,12 @@
 						<div class="panel-body">  
 								<div class="input-group" v-if="this.userData.id_cu === 0">
 									<div class="input-group-addon">
-										Pilih Artikel
+										Pilih Data
 									</div>
 
 									<!-- select -->
 									<select class="bootstrap-select" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
-										<option disabled value="">Silahkan pilih CU</option>
+										<option disabled value="">Silahkan pilih data</option>
 										<option value="semua">Semua</option>
 										<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 										<option data-divider="true"></option>
@@ -71,10 +71,10 @@
 							<!-- select -->
 							<div class="input-group">
 								<div class="input-group-addon">
-									Pilih Artikel
+									Pilih Data
 								</div>
 								<select class="form-control" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
-									<option disabled value="">Silahkan pilih CU</option>
+									<option disabled value="">Silahkan pilih data</option>
 									<option value="semua">Semua</option>
 									<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 									<option data-divider="true"></option>
@@ -101,28 +101,28 @@
 						<template slot="button-desktop">
 
 							<!-- tambah -->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['create ' + kelas]">
 								<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
-									<i class="icon-plus3"></i> Tambah
+									<i class="icon-plus3"></i> Tambah 
 								</router-link>
 							</div>
 
 							<!-- ubah-->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['update ' + kelas]">
 								<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 
 							<!-- hapus -->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['destroy ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
 
 							<!-- terbitkan -->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['terbitkan ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
 									<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
 									<span v-else>Terbitkan</span>
@@ -130,7 +130,7 @@
 							</div>
 
 							<!-- utamakan -->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['utamakan ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
 									<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
 									<span v-else>Utamakan</span>
@@ -149,21 +149,27 @@
 							<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItem.name">
 								<span class="text-size-large">{{selectedItem.name}}</span></li>
 							<li><hr class="no-margin-top no-margin-bottom"/></li>
-							<li>
+
+							<!-- update -->
+							<li v-if="userData.can && userData.can['update ' + kelas]">
 								<div class="pl-5 pr-5 pb-5 pt-10">
 									<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 										<i class="icon-pencil5"></i> Ubah
 									</button>
 								</div>
 							</li>
-							<li>
+
+							<!-- destroy -->
+							<li v-if="userData.can && userData.can['destroy ' + kelas]">
 								<div class="pl-5 pr-5 pb-5">
 									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
 									</button>
 								</div>
 							</li>
-							<li>
+
+							<!-- terbitkan -->
+							<li v-if="userData.can && userData.can['terbitkan ' + kelas]">
 								<div class="pl-5 pr-5 pb-5">
 									<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
 										<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
@@ -171,7 +177,9 @@
 									</button>
 								</div>
 							</li>
-							<li>
+
+							<!-- utamakan -->
+							<li v-if="userData.can && userData.can['utamakan ' + kelas]">
 								<div class="pl-5 pr-5">
 									<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
 										<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
@@ -209,7 +217,7 @@
 
 					<!-- mobile -->
 						<!-- button mobile -->
-						<template slot="button-mobile" class="hidden-print">
+						<template slot="button-mobile" class="hidden-print" v-if="userData.can && userData.can['create ' + kelas]">
 							<!-- tambah -->
 							<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
 								<i class="icon-plus3"></i> Tambah
@@ -288,26 +296,31 @@
 								</div>
 								<div class="panel-footer hidden-print">
 									<div class="text-center button-toolbar">
-										<div class="pt-10 pb-10 pl-15 pr-15">
+
+										<!-- update -->
+										<div class="pt-10 pb-10 pl-15 pr-15" v-if="userData.can && userData.can['update ' + kelas]">
 											<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 										</div>
 										
-										<div class="pb-10 pl-15 pr-15">
+										<!-- destroy -->
+										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['destroy ' + kelas]">
 											<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-bin2"></i> <span>Hapus</span>
 											</button>
 										</div>
 										
-										<div class="pb-10 pl-15 pr-15">
+										<!-- terbitkan -->
+										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['terbitkan ' + kelas]">
 											<button @click.prevent="modalConfirmOpen('updateTerbitkan',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-file-upload"></i> <span v-if="props.item.terbitkan === 1">Tidak Terbitkan</span>
 												<span v-else>Terbitkan</span> 
 											</button>
 										</div>
 
-										<div class="pb-10 pl-15 pr-15">
+										<!-- utamakan -->
+										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['utamakan ' + kelas]">
 											<button @click.prevent="modalConfirmOpen('updateUtamakan',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-pushpin"></i> <span v-if="props.item.utamakan === 1">Tidak Utamakan</span>
 												<span v-else>Utamakan</span>

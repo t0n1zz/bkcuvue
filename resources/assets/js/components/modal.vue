@@ -21,7 +21,7 @@
 										<h2>{{ title }}</h2>
 										<div class="well well-sm" v-if="content">{{ content }}</div>
 										<br>
-										<ul class="list-inline">
+										<ul class="list-inline hidden-xs">
 											<li>
 												<button type="button" class="btn btn-default" @click="batal">
 													<i class="icon-arrow-left13"></i> Batal</button>
@@ -31,6 +31,12 @@
 													<i class="icon-checkmark5"></i> {{ button }}</button>
 											</li>
 										</ul>
+										<div class="visible-xs">
+											<button type="button" class="btn btn-warning btn-block pb-5" @click="confirmOk">
+													<i class="icon-checkmark5"></i> {{ button }}</button>
+											<button type="button" class="btn btn-default btn-block" @click="batal">
+													<i class="icon-arrow-left13"></i> Batal</button>
+										</div>
 									</div>
 									<div v-if="state === 'confirm-tutup'" key="confirm-tutup" class="text-center">
 										<span class="text-warning">
@@ -39,7 +45,7 @@
 										<h2>{{ title }}</h2>
 										<pre class="pre-scrollable" id="stack" v-if="content">{{ content }}</pre>
 										<br>
-										<ul class="list-inline">
+										<ul class="list-inline hidden-xs">
 											<li>
 												<button type="button" class="btn btn-default" @click="tutup">
 													<i class="icon-cross"></i> Tutup</button>
@@ -49,17 +55,26 @@
 													<i class="icon-checkmark5"></i> {{ button }}</button>
 											</li>
 										</ul>
+										<div class="visible-xs">
+											<button type="button" class="btn btn-warning btn-block" @click="confirmOk">
+													<i class="icon-checkmark5"></i> {{ button }}</button>
+											<button type="button" class="btn btn-default btn-block" @click="tutup">
+													<i class="icon-cross"></i> Tutup</button>
+										</div>
 									</div>
 									<div v-else-if="state === 'success'" key="success" class="text-center">
 										<span class="text-primary">
 											<i class="icon-checkmark-circle2" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<ul class="list-inline">
+										<ul class="list-inline hidden-xs">
 											<li>
 												<button type="button" class="btn btn-default" @click="successOk">{{ button }}</button>
 											</li>
 										</ul>
+										<div class="visible-xs">
+											<button type="button" class="btn btn-default btn-block" @click="successOk">{{ button }}</button>
+										</div>
 									</div>
 									<div v-else-if="state === 'fail'" key="fail" class="text-center">
 										<span class="text-danger">
@@ -68,11 +83,14 @@
 										<h2>{{ title }}</h2>
 										<pre class="pre-scrollable" v-if="content">{{ content }}</pre>
 										<br>
-										<ul class="list-inline">
+										<ul class="list-inline hidden-xs">
 											<li>
 												<button type="button" class="btn btn-default" @click="failOk">{{ button }}</button>
 											</li>
 										</ul>
+										<div class="visible-xs">
+											<button type="button" class="btn btn-default btn-block" @click="failOk">{{ button }}</button>
+										</div>
 									</div>
 									<div v-else-if="state === 'loading'" key="loading" class="text-center">
 										<i class="icon-spinner spinner" style="font-size: 5em"></i>

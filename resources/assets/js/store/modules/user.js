@@ -41,6 +41,19 @@ export const user = {
           commit('setUserLoadStatS', 'fail');
         });
     },
+    loadUserCUS( { commit }, [p, id] ){
+      commit('setUserLoadStatS', 'loading');
+      
+      UserAPI.getUserCUS( p, id )
+        .then( function( response ){
+          commit('setUserS', response.data.model);
+          commit('setUserLoadStatS', 'success');
+        })
+        .catch( error => {
+          commit('setUserS', error.response);
+          commit('setUserLoadStatS', 'fail');
+        });
+    },
     loadUser( {commit}, id ){
       commit('setUserLoadStat', 'loading');
       
@@ -130,6 +143,22 @@ export const user = {
             commit('setUserUpdate', 'Oops terjadi kesalahan :(');
           }
           commit('setUserUpdateStat', 'fail');
+        });
+    },
+    updateUserResetPassword( {commit, state, dispatch}, id ){
+      commit('setUserUpdateStat', 'loading');
+
+      UserAPI.updateResetPassword( id )
+        .then( function( response ){
+          commit('setUserUpdate', response.data);
+          commit('setUserUpdateStat', 'success');
+        })
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setUserUpdate', this.errors);
+            commit('setUserUpdateStat', 'fail');
+          }
         });
     },
     updateUserStatus( {commit, state, dispatch}, id ){

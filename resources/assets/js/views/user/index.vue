@@ -31,6 +31,59 @@
 						<pre class="pre-scrollable">{{ itemData }}</pre>
 					</message>
 
+						<!-- cu desktop --> 
+					<div class="panel panel-flat hidden-xs hidden-print " v-if="this.userData.id_cu === 0">
+						<div class="panel-body">  
+								<div class="input-group" v-if="this.userData.id_cu === 0">
+									<div class="input-group-addon">
+										Pilih Data
+									</div>
+
+									<!-- select -->
+									<select class="bootstrap-select" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
+										<option disabled value="">Silahkan pilih data</option>
+										<option value="semua">Semua</option>
+										<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
+										<option data-divider="true"></option>
+										<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+									</select>
+
+									<!-- reload cu -->
+									<div class="input-group-btn">
+										<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCULoadStat === 'loading'">
+											<i class="icon-sync" :class="{'spinner' : modelCULoadStat === 'loading'}"></i>
+										</button>
+									</div>
+								</div>
+						</div>
+					</div>		
+
+					<!-- cu mobile -->
+					<div class="panel panel-flat visible-xs hidden-print" v-if="this.userData.id_cu === 0">
+						<div class="panel-body">  
+							<!-- select -->
+							<div class="input-group">
+								<div class="input-group-addon">
+									Pilih Data
+								</div>
+								<select class="form-control" name="id_cu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCULoadStat === 'loading'">
+									<option disabled value="">Silahkan pilih data</option>
+									<option value="semua">Semua</option>
+									<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
+									<option data-divider="true"></option>
+									<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+								</select>
+							</div>
+
+							<!-- reload cu -->
+							<div class="pt-15">
+								<button class="btn btn-default btn-lg btn-block" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCULoadStat === 'loading'">
+									<i class="icon-sync" :class="{'spinner' : modelCULoadStat === 'loading'}"></i> Reload
+								</button>
+							</div> 
+						</div>
+					</div>
+
 					<!-- main panel -->
 					<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 					:params="params"
@@ -41,38 +94,38 @@
 						<template slot="button-desktop">
 
 							<!-- tambah -->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['create ' + kelas]">
 								<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' + title">
 									<i class="icon-plus3"></i> Tambah
 								</router-link>
 							</div>
 
 							<!-- ubah-->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['update ' + kelas]">
 								<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 
 							<!-- hapus -->
-							<div class="btn-group pb-5">
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['destroy ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
 
-							<!-- status -->
-							<div class="btn-group pb-5">
-								<button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
-									<i class="icon-file-upload"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
-									<span v-else>Aktifkan</span>
+							<!-- reset password -->
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['reset password']">
+								<button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-default btn-icon" v-tooltip:top="'Reset password ' + title"  :disabled="!selectedItem.id">
+									<i class="icon-history"></i> Reset Password
 								</button>
 							</div>
 
-							<!-- hak akses -->
-							<div class="btn-group pb-5">
-								<button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah hak akses user'"  :disabled="!selectedItem.id">
-									<i class="icon-eye"></i> <span>Hak Akses</span>
+							<!-- aktifkan -->
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['aktifkan ' + kelas]">
+								<button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
+									<i class="icon-user-check"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
+									<span v-else>Aktifkan</span>
 								</button>
 							</div>
 
@@ -80,36 +133,55 @@
 
 						<!-- button context -->
 						<template slot="button-context">
-							<li class="text-center pb-5 pt-5 bg-primary"><b class="text-size-large">Nama | Username</b></li>
+							<!-- title -->
+							<li class="text-center pb-5 pt-5 bg-primary">
+								<b class="text-size-large">Nama | Username</b>
+							</li>
+
+							<!-- separator -->
 							<li><hr class="no-margin-bottom no-margin-top"/></li>
-							<li class="text-center pb-10 pt-10 pl-5 pr-5"><span class="text-size-large">{{selectedItem.name}} | {{selectedItem.username}}</span></li>
+
+							<!-- content -->
+							<li class="text-center pb-10 pt-10 pl-5 pr-5">
+								<span class="text-size-large">{{selectedItem.name}} | {{selectedItem.username}}</span>
+							</li>
+
+							<!-- separator -->
 							<li><hr class="no-margin-top no-margin-bottom"/></li>
-							<li>
+
+							<!-- update -->
+							<li v-if="userData.can && userData.can['update ' + kelas]">
 								<div class="pl-5 pr-5 pb-5 pt-10">
 									<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah' + title" :disabled="!selectedItem.id">
 										<i class="icon-pencil5"></i> Ubah
 									</button>
 								</div>
 							</li>
-							<li>
+
+							<!-- destroy -->
+							<li v-if="userData.can && userData.can['destroy ' + kelas]">
 								<div class="pl-5 pr-5 pb-5">
 									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
 									</button>
 								</div>
 							</li>
-							<li>
+
+							<!-- reset password -->
+							<li v-if="userData.can && userData.can['reset password']">
 								<div class="pl-5 pr-5 pb-5">
-									<button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
-										<i class="icon-file-upload"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
-										<span v-else>Aktifkan</span>
+									<button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Reset password ' + title"  :disabled="!selectedItem.id">
+										<i class="icon-history"></i> Reset Password
 									</button>
 								</div>
 							</li>
-							<li>
+
+							<!-- aktifkan -->
+							<li v-if="userData.can && userData.can['aktifkan ' + kelas]">
 								<div class="pl-5 pr-5 pb-5">
-									<button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah hak akses user'"  :disabled="!selectedItem.id">
-										<i class="icon-eye"></i> <span>Hak Akses</span>
+									<button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
+										<i class="icon-user-check"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
+										<span v-else>Aktifkan</span>
 									</button>
 								</div>
 							</li>
@@ -120,7 +192,7 @@
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
 									<img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
-									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
+									<img :src="'/images/no_image_man.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
 								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
 								<td v-if="!columnData[2].hide" class="warptext">{{props.item.email}}</td>
@@ -155,8 +227,9 @@
 										<tbody>
 											<tr v-if="!columnData[0].hide">
 												<td colspan="2">
-													<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-													<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive center-block" v-else>
+													<img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
+													<img :src="'/images/no_image_man.jpg'" class="img-rounded img-responsive center-block" v-else>
+													
 												</td>
 											</tr>
 											<tr v-if="!columnData[1].hide">
@@ -207,21 +280,21 @@
 												<i class="icon-bin2"></i> <span>Hapus</span>
 											</button>
 										</div>
+
+										<!-- reset password mobile-->
+										<div class="pb-10 pl-15 pr-15">
+											<button @click.prevent="modalConfirmOpen('resetPassword',true,props.item)" class="btn btn-default btn-icon btn-block">
+												<i class="icon-history"></i> <span>Reset Password</span>
+											</button>
+										</div>
 										
 										<!-- status mobile -->
 										<div class="pb-10 pl-15 pr-15">
 											<button @click.prevent="modalConfirmOpen('updateStatus',true,props.item)" class="btn btn-default btn-icon btn-block">
-												<i class="icon-file-upload"></i> <span v-if="props.item.status === 1">Tidak Aktifkan</span>
+												<i class="icon-user-check"></i> <span v-if="props.item.status === 1">Tidak Aktifkan</span>
 												<span v-else>Aktifkan</span> 
 											</button>
 										</div>
-									</div>
-
-									<!-- hak akses mobile -->
-									<div class="pb-10 pl-15 pr-15">
-										<button @click.prevent="modalHakAksesOpen(true,props.item)" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah hak akses user'">
-											<i class="icon-eye"></i> <span>Hak Akses</span>
-										</button>
 									</div>
 								</div>
 							</div>
@@ -326,12 +399,6 @@
 						disable: false
 					},
 					{
-						title: 'Peran',
-						key: 'roles[*].name',
-						type: 'string',
-						disable: false
-					},
-					{
 						title: 'Status',
 						key: 'status',
 						type: 'boolean',
@@ -427,10 +494,23 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		created(){
-			this.fetch();
+			if(this.userData.id_pus !== undefined){
+				this.fetchCU();
+			}	
 		},
 		watch: {
 			userDataStat(value){
+				if(value === "success" && this.userData.id_pus !== undefined){
+						this.fetchCU();
+				}
+			},
+			modelCULoadStat(value){
+				if(value === "success"){
+					this.id_cu = this.userData.id_cu;
+					if(this.id_cu !== ''){
+						this.fetch();
+					}
+				}
 			},
       updateStat(value) {
 				this.modalState = value;
@@ -446,7 +526,31 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch('loadUserS', this.params);
+				if(this.modelCULoadStat === 'success'){
+					if(this.id_cu === 'semua'){
+						this.$store.dispatch('loadUserS', this.params);
+						this.disableColumnCU(false);
+					}else{
+						if(this.id_cu !== undefined){
+							this.$store.dispatch('loadUserCUS', [this.params,this.id_cu]);
+						}
+						this.disableColumnCU(true);
+					}
+				}
+			},
+			fetchCU(){
+				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+			},
+			changeCU(id){
+				this.id_cu = id;
+				this.params.per_page = 10;
+				this.params.page = 1;
+
+				this.fetch();
+			},
+			disableColumnCU(status){
+				this.columnData[4].disable = status;
+				this.filterData[4].disable = status;
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -467,14 +571,17 @@
 				}
 
 				if (source == 'hapus') {
-					this.modalTitle = 'Hapus ' + this.kelas + ' dengan name ' + this.selectedItem.name + '?';
+					this.modalTitle = 'Hapus ' + this.kelas + ' dengan username ' + this.selectedItem.username + '?';
 					this.modalButton = 'Iya, Hapus';
+				} else if (source == 'resetPassword') {
+					this.modalTitle = 'Reset password user  ' + this.selectedItem.username + ' ini?';
+					this.modalButton = 'Iya, reset password';
 				} else if (source == 'updateStatus') {
 					if (this.selectedItem.status == 0) {
-						this.modalTitle = 'Aktifkan user ini?';
+						this.modalTitle = 'Aktifkan user  ' + this.selectedItem.username + ' ini?';
 						this.modalButton = 'Iya, aktifkan';
 					} else {
-						this.modalTitle = 'Non-aktifkan user ini?';
+						this.modalTitle = 'Non-aktifkan user  ' + this.selectedItem.username + ' ini?';
 						this.modalButton = 'Iya, non-aktifkan';
 					}
 				}
@@ -505,6 +612,8 @@
 				var vm = this;
 				if (vm.source == 'hapus') {
 					this.$store.dispatch('deleteUser', this.selectedItem.id);
+				} else if (vm.source == "resetPassword"){
+					this.$store.dispatch('updateUserResetPassword', this.selectedItem.id);
 				} else if (vm.source == "updateStatus"){
 					this.$store.dispatch('updateUserStatus', this.selectedItem.id);
 				}
@@ -520,6 +629,12 @@
 			},
 			userDataStat(){
 				return this.$store.getters.getUserDataLoadStat;
+			},
+			modelCU() {
+				return this.$store.getters.getCUS;
+			},
+			modelCULoadStat() {
+				return this.$store.getters.getCULoadStatS;
 			},
 			itemData(){
 				return this.$store.getters.getUserS;

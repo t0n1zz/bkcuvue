@@ -17,7 +17,17 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('CU','pus','roles')->select('id','id_cu','id_pus','name','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('CU','pus','roles')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			
+    	return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCU($id)
+	{
+			$table_data = User::with('CU','pus','roles')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -78,7 +88,7 @@ class UserController extends Controller
 
 	public function edit($id)
 	{
-		$kelas = User::with('CU','pus')->findOrFail($id);
+		$kelas = User::with('CU','pus','roles')->findOrFail($id);
 		
 		return response()
 				->json([
@@ -87,16 +97,43 @@ class UserController extends Controller
 				]);
 	}
 
+	public function update(Request $request, $id)
+	{
+		$this->validate($request,User::$rules);
+
+		$username = $request->username;
+
+			// processing single image upload
+		if(!empty($request->gambar))
+			$fileName = $this->image_processing($request);
+		else
+			$fileName = '';
+
+		$kelas = User::findOrFail($id);
+
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $fileName
+		]);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'User ' .$username. ' berhasil diubah'
+			]);
+	}
+
   public function updateStatus($id)
 	{
 		$kelas = User::findOrFail($id);
 
+		$username = $kelas->username;
+
 		if($kelas->status == 1){
 			$kelas->status = 0;
-			$message = "User berhasil dinon-aktifkan";
+			$message = 'User ' .$username. ' berhasil dinon-aktifkan';
 		}else{
 			$kelas->status = 1;
-			$message = "User berhasil diaktifkan";
+			$message = 'User ' .$username. ' berhasil diaktifkan';
 		}
 
 		$kelas->update();
@@ -105,6 +142,24 @@ class UserController extends Controller
 			->json([
 				'saved' => true,
 				'message' => $message
+			]);
+	}
+
+	public function resetPassword($id)
+	{
+		$kelas = User::findOrFail($id);
+		$password = 'solusi';
+		$password = Hash::make($password);
+
+		$username = $kelas->username;
+
+		$kelas->password = $password;
+		$kelas->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Password user ' .$username. ' telah berhasil direset'
 			]);
 	}
     
@@ -170,21 +225,21 @@ class UserController extends Controller
 
 		//image
 		if($width > 720){
-            Image::make($imageData->getRealPath())->resize(720, null,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save($path . $fileName);
-        }else{
-            Image::make($imageData->getRealPath())->save($path . $fileName);
-        }
+				Image::make($imageData->getRealPath())->resize(720, null,
+						function ($constraint) {
+								$constraint->aspectRatio();
+						})
+						->save($path . $fileName);
+		}else{
+				Image::make($imageData->getRealPath())->save($path . $fileName);
+		}
 
-        //thumbnail image
-        Image::make($imageData->getRealPath())->resize(200, 200,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save($path . $fileName2);
+		//thumbnail image
+		Image::make($imageData->getRealPath())->resize(200, 200,
+						function ($constraint) {
+								$constraint->aspectRatio();
+						})
+						->save($path . $fileName2);
 
 		return $formatedName;
 	}

@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Auth;
 
 class LoginController extends Controller
 {
@@ -42,24 +40,5 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
-    }
-
-
-    public function doLogin(Request $request)
-    {
-       if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-        
-            //Login Successful 
-           $response = array('success' => true);
-
-           //return a JSON response 
-           return response()->json($response);
-       }
-       else{
-
-           $response = array('success' => false, 'message' => 'Invalid login credentials');
-
-           return response()->json($response);
-       }
     }
 }

@@ -30,13 +30,13 @@ Route::get('/permissionTest', function () {
 
     // $role = Spatie\Permission\Models\Role::findOrFail(2);
 
-    $user = App\User::find(8);
-    $roles = $user->getRoleNames();
+    // $user = App\User::find(8);
+    // $roles = $user->getRoleNames();
     // $userdata = $user->combine($roles);
-    return response()
-        ->json([
-            'model' => $user
-        ]);
+
+    // give permission to role
+    $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
+    $role->givePermissionTo(['index artikel','create artikel','terbitkan artikel','destroy artikel','update artikel','utamakan artikel']);
 });
 
 

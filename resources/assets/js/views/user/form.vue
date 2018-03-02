@@ -161,7 +161,7 @@
 									</div>
 
 									<!-- tipe -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form-1.tipe')}">
 
 											<!-- title -->
