@@ -22,7 +22,7 @@ Route::get('/admins/{vue?}', function () {
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout');
 
-Route::get('/permissionTest', function () {
+Route::get('/testroute', function () {
     // $user = App\User::find(1);
     // $user->assignRole('cu-full');
 
@@ -35,8 +35,12 @@ Route::get('/permissionTest', function () {
     // $userdata = $user->combine($roles);
 
     // give permission to role
-    $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
-    $role->givePermissionTo(['index artikel','create artikel','terbitkan artikel','destroy artikel','update artikel','utamakan artikel']);
+    // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
+    // $role->givePermissionTo(['index artikel','create artikel','terbitkan artikel','destroy artikel','update artikel','utamakan artikel']);
+
+    // activity log
+    // $activity = Spatie\Activitylog\Models\Activity::all()->last();
+    // echo $activity->changes();
 });
 
 

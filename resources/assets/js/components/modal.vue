@@ -14,6 +14,8 @@
 							</div>
 							<div class="modal-body">
 								<transition name="modal-effect" enter-active-class="animated flipInX" mode="out-in">
+									
+									<!-- confirm batal -->
 									<div v-if="state === 'confirm-batal'" key="confirm-batal" class="text-center">
 										<span class="text-warning">
 											<i class="icon-exclamation" style="font-size: 5em"></i>
@@ -38,6 +40,8 @@
 													<i class="icon-arrow-left13"></i> Batal</button>
 										</div>
 									</div>
+
+									<!-- confirm tutup -->
 									<div v-if="state === 'confirm-tutup'" key="confirm-tutup" class="text-center">
 										<span class="text-warning">
 											<i class="icon-exclamation" style="font-size: 5em"></i>
@@ -62,6 +66,8 @@
 													<i class="icon-cross"></i> Tutup</button>
 										</div>
 									</div>
+
+									<!-- success -->
 									<div v-else-if="state === 'success'" key="success" class="text-center">
 										<span class="text-primary">
 											<i class="icon-checkmark-circle2" style="font-size: 5em"></i>
@@ -76,12 +82,14 @@
 											<button type="button" class="btn btn-default btn-block" @click="successOk">{{ button }}</button>
 										</div>
 									</div>
+
+									<!-- fail -->
 									<div v-else-if="state === 'fail'" key="fail" class="text-center">
 										<span class="text-danger">
 											<i class="icon-cancel-circle2" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<pre class="pre-scrollable" v-if="content">{{ content }}</pre>
+										<pre class="pre-scrollable text-left" v-if="content">{{ content }}</pre>
 										<br>
 										<ul class="list-inline hidden-xs">
 											<li>
@@ -92,16 +100,22 @@
 											<button type="button" class="btn btn-default btn-block" @click="failOk">{{ button }}</button>
 										</div>
 									</div>
+
+									<!-- loading -->
 									<div v-else-if="state === 'loading'" key="loading" class="text-center">
 										<i class="icon-spinner spinner" style="font-size: 5em"></i>
 										<h2>Mohon tunggu sebentar...</h2>
 									</div>
+
+									<!-- normal1 -->
 									<div v-else-if="state === 'normal1'" key="normal1">
 										<slot name="modal-body1"></slot>
 										<div class="modal-footer no-padding">
 											<slot name="modal-footer1"></slot>
 										</div>
 									</div>
+
+									<!-- normal2 -->
 									<div v-else-if="state === 'normal2'" key="normal2">
 										<slot name="modal-body2"></slot>
 										<div class="modal-footer no-padding">
@@ -128,7 +142,6 @@
 				},
 			},
 			state: {
-				type: String,
 				default () {
 					return ''
 				},
@@ -173,10 +186,12 @@
 		},
 		methods: {
 			backgroundClick() {
-				this.$emit('backgroundClick');
+				if(this.state !== 'loading')
+					this.$emit('backgroundClick');
 			},
 			tutup() {
-				this.$emit('tutup');
+				if(this.state !== 'loading')
+					this.$emit('tutup');
 			},
 			batal() {
 				this.$emit('batal');

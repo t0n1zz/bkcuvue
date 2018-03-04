@@ -8,13 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Support\FilterPaginateOrder;
 use App\Support\ExposePermissions;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder, ExposePermissions;
+    use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder, ExposePermissions, LogsActivity;
 
     protected $table = 'users';
-
+    protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status'];
     /**
      * The accessors to append to the model's array form.
      *

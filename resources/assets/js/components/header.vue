@@ -86,7 +86,7 @@
 						</ul>
 					</li>
 
-					<!-- oengaturan -->
+					<!-- pengaturan -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							<i class="icon-gear position-left"></i> Pengaturan

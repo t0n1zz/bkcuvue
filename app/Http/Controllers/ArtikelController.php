@@ -100,7 +100,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = $this->image_processing($request);
+			$fileName = $this->image_processing($request, $kelas);
 		else
 			$fileName = '';
 
@@ -221,37 +221,49 @@ class ArtikelController extends Controller{
 		return $dom->saveHTML();
 	}
 
-	private function image_processing($request)
+	private function image_processing($request, $kelas)
 	{
-		$this->validate($request, [
-    		'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
-    	]);
-
 		$path = public_path($this->imagepath);
-		$imageData = $request->gambar;
-		list($width, $height) = getimagesize($imageData);
 
-		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-		$fileName =  $formatedName. '.jpg';
-		$fileName2 =  $formatedName. 'n.jpg';
+		if(!empty($kelas) && $request->gambar == "no_image"){
+			File::delete($path . $kelas->gambar . '.jpg');
+			File::delete($path . $kelas->gambar . 'n.jpg');
+			$formatedName = '';
+		}else{
+			$this->validate($request, [
+				'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+			]);	
+			
+			if(!empty($kelas) && $request->gambar != ''){
+				File::delete($path . $kelas->gambar . '.jpg');
+				File::delete($path . $kelas->gambar . 'n.jpg');
+			}
 
-		//image
-		if($width > 720){
-            Image::make($imageData->getRealPath())->resize(720, null,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save($path . $fileName);
-        }else{
-            Image::make($imageData->getRealPath())->save($path . $fileName);
-        }
+			$imageData = $request->gambar;
+			list($width, $height) = getimagesize($imageData);
 
-        //thumbnail image
-        Image::make($imageData->getRealPath())->resize(200, 200,
-                function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save($path . $fileName2);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
+			$fileName =  $formatedName. '.jpg';
+			$fileName2 =  $formatedName. 'n.jpg';
+
+			//image
+			if($width > 720){
+					Image::make($imageData->getRealPath())->resize(720, null,
+						function ($constraint) {
+								$constraint->aspectRatio();
+						})
+						->save($path . $fileName);
+			}else{
+					Image::make($imageData->getRealPath())->save($path . $fileName);
+			}
+
+			//thumbnail image
+			Image::make($imageData->getRealPath())->resize(200, 200,
+				function ($constraint) {
+						$constraint->aspectRatio();
+				})
+				->save($path . $fileName2);
+		}
 
 		return $formatedName;
 	}

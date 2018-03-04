@@ -49,7 +49,8 @@
 <script>
 	export default {
 		props: {
-			tipeUser: ''
+			tipeUser: '',
+			isDisabled: false
 		},
 		data() {
 			return {

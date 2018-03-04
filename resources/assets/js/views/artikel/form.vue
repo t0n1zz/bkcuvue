@@ -181,7 +181,7 @@
 									<div class="col-md-12"><br/></div>
 
 									<!-- terbitkan -->
-									<div class="col-md-4">
+									<div class="col-md-4" v-if="userData.can && userData.can['terbitkan ' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form-1.terbitkan')}">
 
 											<!-- title -->
@@ -210,7 +210,7 @@
 									</div>
 
 									<!-- utamakan -->
-									<div class="col-md-4">
+									<div class="col-md-4" v-if="userData.can && userData.can['utamakan ' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form-1.utamakan')}">
 
 											<!-- title -->
@@ -496,6 +496,7 @@
 				title: 'Tambah Artikel',
 				titleDesc: 'Menambah artikel baru',
 				titleIcon: 'icon-plus3',
+				kelas: 'artikel',
 				formKategori: {
 					id_cu: '',
 					name: '',

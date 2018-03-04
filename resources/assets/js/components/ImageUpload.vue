@@ -1,18 +1,7 @@
 <template>
 	<div>
 		<div class="panel panel-flat">
-			
-			<!-- close button -->
-			<div class="panel-heading">
-				<div class="heading-elements">
-					<ul class="icons-list">
-						<li>
-							<a data-action="close" @click="close"></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
+		
 			<!-- image preview -->
 			<div class="panel-body text-center">
 				<img :src="'/images/no_image.jpg'" style="width:15em;" v-if="image === '' && image_temp === ''">
@@ -22,7 +11,16 @@
 		</div>
 
 		<!-- upload button -->
-		<input type="file" class="file-styled" accept="image/*" @change="upload" ref="fileInput">
+		<div class="row">
+			<div class="col-md-10">
+				<input type="file" class="form-control" accept="image/*" @change="upload" ref="fileInput">
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-default btn-block" @click.prevent="close()" :disabled="image_temp === ''"><i class="icon-cross"></i> Batal</button>
+			</div>
+			
+		</div>
+		
 	</div>
 </template>
 <script>
@@ -67,7 +65,7 @@
 				reader.readAsDataURL(file);
 			},
 			close() {
-				this.$emit('input', null);
+				this.$emit('input', 'no_image');
 				this.image = '/images/no_image.jpg';
 				this.$refs.fileInput.value = null;
 			}

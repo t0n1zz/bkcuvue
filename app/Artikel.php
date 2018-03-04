@@ -3,12 +3,15 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Artikel extends Model {
 
-    use FilterPaginateOrder;
+    use FilterPaginateOrder, LogsActivity;
 
     protected $table = 'artikel';
+
+    protected static $logFillable = true;
 
     public static $rules = [
         'id_cu' => 'required',

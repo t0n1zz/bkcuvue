@@ -54493,6 +54493,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -54503,7 +54517,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 		},
 		state: {
-			type: String,
 			default: function _default() {
 				return '';
 			}
@@ -54551,10 +54564,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		backgroundClick: function backgroundClick() {
-			this.$emit('backgroundClick');
+			if (this.state !== 'loading') this.$emit('backgroundClick');
 		},
 		tutup: function tutup() {
-			this.$emit('tutup');
+			if (this.state !== 'loading') this.$emit('tutup');
 		},
 		batal: function batal() {
 			this.$emit('batal');
@@ -55009,7 +55022,7 @@ var render = function() {
                                                   "pre",
                                                   {
                                                     staticClass:
-                                                      "pre-scrollable"
+                                                      "pre-scrollable text-left"
                                                   },
                                                   [_vm._v(_vm._s(_vm.content))]
                                                 )
@@ -59479,6 +59492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			title: 'Tambah Artikel',
 			titleDesc: 'Menambah artikel baru',
 			titleIcon: 'icon-plus3',
+			kelas: 'artikel',
 			formKategori: {
 				id_cu: '',
 				name: '',
@@ -59830,8 +59844,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -59874,7 +59886,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			reader.readAsDataURL(file);
 		},
 		close: function close() {
-			this.$emit('input', null);
+			this.$emit('input', 'no_image');
 			this.image = '/images/no_image.jpg';
 			this.$refs.fileInput.value = null;
 		}
@@ -59891,19 +59903,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "panel panel-flat" }, [
-      _c("div", { staticClass: "panel-heading" }, [
-        _c("div", { staticClass: "heading-elements" }, [
-          _c("ul", { staticClass: "icons-list" }, [
-            _c("li", [
-              _c("a", {
-                attrs: { "data-action": "close" },
-                on: { click: _vm.close }
-              })
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "panel-body text-center" }, [
         _vm.image === "" && _vm.image_temp === ""
           ? _c("img", {
@@ -59922,12 +59921,33 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("input", {
-      ref: "fileInput",
-      staticClass: "file-styled",
-      attrs: { type: "file", accept: "image/*" },
-      on: { change: _vm.upload }
-    })
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("input", {
+          ref: "fileInput",
+          staticClass: "form-control",
+          attrs: { type: "file", accept: "image/*" },
+          on: { change: _vm.upload }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default btn-block",
+            attrs: { type: "button", disabled: _vm.image_temp === "" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.close()
+              }
+            }
+          },
+          [_c("i", { staticClass: "icon-cross" }), _vm._v(" Batal")]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -60666,234 +60686,265 @@ var render = function() {
                         _vm._v(" "),
                         _vm._m(0),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form-1.terbitkan")
-                              }
-                            },
-                            [
+                        _vm.userData.can &&
+                        _vm.userData.can["terbitkan " + _vm.kelas]
+                          ? _c("div", { staticClass: "col-md-4" }, [
                               _c(
-                                "h5",
+                                "div",
                                 {
+                                  staticClass: "form-group",
                                   class: {
-                                    "text-danger": _vm.errors.has(
+                                    "has-error": _vm.errors.has(
                                       "form-1.terbitkan"
                                     )
                                   }
                                 },
                                 [
-                                  _vm.errors.has("form-1.terbitkan")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tStatus Penerbitan:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "radio-inline" }, [
-                                _c("input", {
-                                  directives: [
+                                  _c(
+                                    "h5",
                                     {
-                                      name: "validate",
-                                      rawName: "v-validate",
-                                      value: "required|in:1,0",
-                                      expression: "'required|in:1,0'"
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.terbitkan"
+                                        )
+                                      }
                                     },
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.terbitkan,
-                                      expression: "form.terbitkan"
-                                    }
-                                  ],
-                                  attrs: {
-                                    type: "radio",
-                                    name: "terbitkan",
-                                    value: "1",
-                                    "data-vv-as": "Status Penerbitan"
-                                  },
-                                  domProps: {
-                                    checked: _vm._q(_vm.form.terbitkan, "1")
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.$set(_vm.form, "terbitkan", "1")
-                                    }
-                                  }
-                                }),
-                                _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
-                              ]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "radio-inline" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.terbitkan,
-                                      expression: "form.terbitkan"
-                                    }
-                                  ],
-                                  attrs: {
-                                    type: "radio",
-                                    name: "terbitkan",
-                                    value: "0"
-                                  },
-                                  domProps: {
-                                    checked: _vm._q(_vm.form.terbitkan, "0")
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.$set(_vm.form, "terbitkan", "0")
-                                    }
-                                  }
-                                }),
-                                _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
-                              ]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _vm.errors.has("form-1.terbitkan")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
                                     [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
+                                      _vm.errors.has("form-1.terbitkan")
+                                        ? _c("i", {
+                                            staticClass: "icon-cross2"
+                                          })
+                                        : _vm._e(),
                                       _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form-1.terbitkan")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tStatus Penerbitan:\n\t\t\t\t\t\t\t\t\t\t"
                                       )
                                     ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t")
-                                  ])
-                            ]
-                          )
-                        ]),
+                                  ),
+                                  _vm._v(" "),
+                                  _c("label", { staticClass: "radio-inline" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: "required|in:1,0",
+                                          expression: "'required|in:1,0'"
+                                        },
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.terbitkan,
+                                          expression: "form.terbitkan"
+                                        }
+                                      ],
+                                      attrs: {
+                                        type: "radio",
+                                        name: "terbitkan",
+                                        value: "1",
+                                        "data-vv-as": "Status Penerbitan"
+                                      },
+                                      domProps: {
+                                        checked: _vm._q(_vm.form.terbitkan, "1")
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          _vm.$set(_vm.form, "terbitkan", "1")
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("label", { staticClass: "radio-inline" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.terbitkan,
+                                          expression: "form.terbitkan"
+                                        }
+                                      ],
+                                      attrs: {
+                                        type: "radio",
+                                        name: "terbitkan",
+                                        value: "0"
+                                      },
+                                      domProps: {
+                                        checked: _vm._q(_vm.form.terbitkan, "0")
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          _vm.$set(_vm.form, "terbitkan", "0")
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm.errors.has("form-1.terbitkan")
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass: "text-muted text-danger"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "icon-arrow-small-right"
+                                          }),
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(
+                                                _vm.errors.first(
+                                                  "form-1.terbitkan"
+                                                )
+                                              ) +
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    : _c(
+                                        "small",
+                                        { staticClass: "text-muted" },
+                                        [_vm._v(" \n\t\t\t\t\t\t\t\t\t\t")]
+                                      )
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form-1.utamakan")
-                              }
-                            },
-                            [
+                        _vm.userData.can &&
+                        _vm.userData.can["utamakan " + _vm.kelas]
+                          ? _c("div", { staticClass: "col-md-4" }, [
                               _c(
-                                "h5",
+                                "div",
                                 {
+                                  staticClass: "form-group",
                                   class: {
-                                    "text-danger": _vm.errors.has(
+                                    "has-error": _vm.errors.has(
                                       "form-1.utamakan"
                                     )
                                   }
                                 },
                                 [
-                                  _vm.errors.has("form-1.utamakan")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tUtamakan:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "radio-inline" }, [
-                                _c("input", {
-                                  directives: [
+                                  _c(
+                                    "h5",
                                     {
-                                      name: "validate",
-                                      rawName: "v-validate",
-                                      value: "required|in:1,0",
-                                      expression: "'required|in:1,0'"
+                                      class: {
+                                        "text-danger": _vm.errors.has(
+                                          "form-1.utamakan"
+                                        )
+                                      }
                                     },
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.utamakan,
-                                      expression: "form.utamakan"
-                                    }
-                                  ],
-                                  attrs: {
-                                    type: "radio",
-                                    name: "utamakan",
-                                    "data-vv-as": "Utamakan"
-                                  },
-                                  domProps: {
-                                    value: 1,
-                                    checked: _vm._q(_vm.form.utamakan, 1)
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.$set(_vm.form, "utamakan", 1)
-                                    }
-                                  }
-                                }),
-                                _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
-                              ]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "radio-inline" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.utamakan,
-                                      expression: "form.utamakan"
-                                    }
-                                  ],
-                                  attrs: { type: "radio", name: "utamakan" },
-                                  domProps: {
-                                    value: 0,
-                                    checked: _vm._q(_vm.form.utamakan, 0)
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.$set(_vm.form, "utamakan", 0)
-                                    }
-                                  }
-                                }),
-                                _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
-                              ]),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _vm.errors.has("form-1.utamakan")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
                                     [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
+                                      _vm.errors.has("form-1.utamakan")
+                                        ? _c("i", {
+                                            staticClass: "icon-cross2"
+                                          })
+                                        : _vm._e(),
                                       _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form-1.utamakan")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tUtamakan:\n\t\t\t\t\t\t\t\t\t\t"
                                       )
                                     ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t")
-                                  ])
-                            ]
-                          )
-                        ]),
+                                  ),
+                                  _vm._v(" "),
+                                  _c("label", { staticClass: "radio-inline" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: "required|in:1,0",
+                                          expression: "'required|in:1,0'"
+                                        },
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.utamakan,
+                                          expression: "form.utamakan"
+                                        }
+                                      ],
+                                      attrs: {
+                                        type: "radio",
+                                        name: "utamakan",
+                                        "data-vv-as": "Utamakan"
+                                      },
+                                      domProps: {
+                                        value: 1,
+                                        checked: _vm._q(_vm.form.utamakan, 1)
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          _vm.$set(_vm.form, "utamakan", 1)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("label", { staticClass: "radio-inline" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.utamakan,
+                                          expression: "form.utamakan"
+                                        }
+                                      ],
+                                      attrs: {
+                                        type: "radio",
+                                        name: "utamakan"
+                                      },
+                                      domProps: {
+                                        value: 0,
+                                        checked: _vm._q(_vm.form.utamakan, 0)
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          _vm.$set(_vm.form, "utamakan", 0)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm.errors.has("form-1.utamakan")
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass: "text-muted text-danger"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "icon-arrow-small-right"
+                                          }),
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(
+                                                _vm.errors.first(
+                                                  "form-1.utamakan"
+                                                )
+                                              ) +
+                                              "\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    : _c(
+                                        "small",
+                                        { staticClass: "text-muted" },
+                                        [_vm._v(" \n\t\t\t\t\t\t\t\t\t\t")]
+                                      )
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._m(1),
                         _vm._v(" "),
@@ -62441,7 +62492,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
-		tipeUser: ''
+		tipeUser: '',
+		isDisabled: false
 	},
 	data: function data() {
 		return {
