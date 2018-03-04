@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Artikel;
+use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
 use File;
 use Image;
@@ -48,7 +49,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = $this->image_processing($request);
+			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request);
 		else
 			$fileName = '';
 
@@ -100,7 +101,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = $this->image_processing($request, $kelas);
+			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
 		else
 			$fileName = '';
 
@@ -219,52 +220,5 @@ class ArtikelController extends Controller{
 			} // 
 
 		return $dom->saveHTML();
-	}
-
-	private function image_processing($request, $kelas)
-	{
-		$path = public_path($this->imagepath);
-
-		if(!empty($kelas) && $request->gambar == "no_image"){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
-			$formatedName = '';
-		}else{
-			$this->validate($request, [
-				'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
-			]);	
-			
-			if(!empty($kelas) && $request->gambar != ''){
-				File::delete($path . $kelas->gambar . '.jpg');
-				File::delete($path . $kelas->gambar . 'n.jpg');
-			}
-
-			$imageData = $request->gambar;
-			list($width, $height) = getimagesize($imageData);
-
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-			$fileName =  $formatedName. '.jpg';
-			$fileName2 =  $formatedName. 'n.jpg';
-
-			//image
-			if($width > 720){
-					Image::make($imageData->getRealPath())->resize(720, null,
-						function ($constraint) {
-								$constraint->aspectRatio();
-						})
-						->save($path . $fileName);
-			}else{
-					Image::make($imageData->getRealPath())->save($path . $fileName);
-			}
-
-			//thumbnail image
-			Image::make($imageData->getRealPath())->resize(200, 200,
-				function ($constraint) {
-						$constraint->aspectRatio();
-				})
-				->save($path . $fileName2);
-		}
-
-		return $formatedName;
 	}
 }

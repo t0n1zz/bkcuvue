@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
+use App\Support\ImageProcessing;
 
 class UserController extends Controller
 {
@@ -17,7 +18,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('CU','pus','roles')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('CU','pus','roles_custom')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -27,7 +28,7 @@ class UserController extends Controller
 
 	public function indexCU($id)
 	{
-			$table_data = User::with('CU','pus','roles')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('CU','pus','roles_custom')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -59,7 +60,7 @@ class UserController extends Controller
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = $this->image_processing($request);
+			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request);
 		else
 			$fileName = '';
 
@@ -105,7 +106,7 @@ class UserController extends Controller
 
 			// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = $this->image_processing($request);
+			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
 		else
 			$fileName = '';
 

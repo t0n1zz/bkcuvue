@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Artikel_Penulis;
 use Illuminate\Http\Request;
+use App\Support\ImageProcessing;
 
 class ArtikelPenulisController extends Controller{
 
@@ -38,6 +39,16 @@ class ArtikelPenulisController extends Controller{
 			]);
 	}
 
+	public function create()
+	{
+		return response()
+			->json([
+					'form' => Artikel_Penulis::initialize(),
+					'rules' => Artikel_Penulis::$rules,
+					'option' => []
+			]);
+	}
+
 	public function store(Request $request)
 	{
 		$this->validate($request,Artikel_Penulis::$rules);
@@ -46,7 +57,7 @@ class ArtikelPenulisController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = $this->image_processing($request);
+			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
 		else
 			$fileName = '';
 
@@ -62,50 +73,54 @@ class ArtikelPenulisController extends Controller{
 			]);	
 	}
 
-	private function image_processing($request, $kelas)
+	public function edit($id)
 	{
-		$path = public_path($this->imagepath);
+		$kelas = Artikel_Penulis::findOrFail($id);
 
-		if(!empty($kelas) && $request->gambar == "no_image"){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
-			$formatedName = '';
-		}else{
-			$this->validate($request, [
-				'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
-			]);	
-			
-			if(!empty($kelas) && $request->gambar != ''){
-				File::delete($path . $kelas->gambar . '.jpg');
-				File::delete($path . $kelas->gambar . 'n.jpg');
-			}
+		return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
+	}
 
-			$imageData = $request->gambar;
-			list($width, $height) = getimagesize($imageData);
+	public function update(Request $request, $id)
+	{
+		$this->validate($request,Artikel_Penulis::$rules);
 
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-			$fileName =  $formatedName. '.jpg';
-			$fileName2 =  $formatedName. 'n.jpg';
+		$name = $request->name;
 
-			//image
-			if($width > 720){
-					Image::make($imageData->getRealPath())->resize(720, null,
-						function ($constraint) {
-								$constraint->aspectRatio();
-						})
-						->save($path . $fileName);
-			}else{
-					Image::make($imageData->getRealPath())->save($path . $fileName);
-			}
+		$kelas = Artikel_Penulis::findOrFail($id);
 
-			//thumbnail image
-			Image::make($imageData->getRealPath())->resize(200, 200,
-				function ($constraint) {
-						$constraint->aspectRatio();
-				})
-				->save($path . $fileName2);
-		}
+		// processing single image upload
+		if(!empty($request->gambar))
+			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
+		else
+			$fileName = '';
+
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $fileName
+		]);
 		
-		return $formatedName;
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Penulis ' .$name. ' berhasil diubah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	public function destroy($id)
+	{
+		$kelas = Artikel_Penulis::findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Artikel' .$name. 'berhasil dihapus'
+			]);
 	}
 }
