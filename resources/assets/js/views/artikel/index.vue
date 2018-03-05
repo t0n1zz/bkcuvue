@@ -16,7 +16,7 @@
 				</div>
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
-						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
+						<router-link :to="{ name:'artikelKategori' }" class="btn btn-link btn-icon btn-float has-text">
 							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
 						</router-link>
 						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
@@ -363,6 +363,7 @@
 			return {
 				title: 'Artikel',
 				kelas: 'artikel',
+				kelasVuex: 'Artikel',
 				titleDesc: 'Mengelola data artikel',
 				titleIcon: 'icon-magazine',
 				id_cu: '',
@@ -536,11 +537,11 @@
 			fetch(){
 				if(this.modelCULoadStat === 'success'){
 					if(this.id_cu === 'semua'){
-						this.$store.dispatch('loadArtikelS', this.params);
+						this.$store.dispatch('load' + this.kelasVuex + 'S', this.params);
 						this.disableColumnCU(false);
 					}else{
 						if(this.id_cu !== undefined){
-							this.$store.dispatch('loadArtikelCUS', [this.params,this.id_cu]);
+							this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
 						}
 						this.disableColumnCU(true);
 					}
@@ -603,11 +604,11 @@
 			modalConfirmOk() {
 				var vm = this;
 				if (vm.source == 'hapus') {
-					this.$store.dispatch('deleteArtikel', this.selectedItem.id);
+					this.$store.dispatch('delete' + this.kelasVuex, this.selectedItem.id);
 				} else if (vm.source == "updateTerbitkan"){
-					this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
+					this.$store.dispatch('update' + this.kelasVuex + 'Terbitkan', this.selectedItem.id);
 				} else if (vm.source == "updateUtamakan") {
-					this.$store.dispatch('updateArtikelUtamakan', this.selectedItem.id);
+					this.$store.dispatch('update' + this.kelasVuex + 'Utamakan', this.selectedItem.id);
 				}
 			}
 		},

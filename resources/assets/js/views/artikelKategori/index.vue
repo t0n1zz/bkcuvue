@@ -19,8 +19,8 @@
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
 							<i class="icon-newspaper text-primary"></i> <span>Artikel</span>
 						</router-link>
-						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
+						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
+							<i class="icon-pencil6 text-primary"></i> <span>Penulis Artikel</span>
 						</router-link>
 					</div>
 				</div>
@@ -156,18 +156,15 @@
 						<!-- item desktop -->
 						<template slot="item-desktop" slot-scope="props">
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
-								<td v-if="!columnData[0].hide">
-									<img :src="'/images/penulis/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
-									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
-								</td>
-								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
-								<td v-if="!columnData[2].hide" class="warptext">{{props.item.deskripsi}}</td>
-								<td v-if="!columnData[3].hide && !columnData[3].disable">
+								<td v-if="!columnData[0].hide" class="warptext">{{props.item.name}}</td>
+								<td v-if="!columnData[1].hide" class="warptext">{{props.item.deskripsi}}</td>
+								<td v-if="!columnData[2].hide && !columnData[2].disable">
 									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
+									<span v-else>{{columnData[2].groupNoKey}}</span>
 								</td>
-								<td v-if="!columnData[4].hide" class="warptext">{{props.item.has_artikel_count}}</td>
-								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
-								<td v-if="!columnData[6].hide" class="text-nowrap">
+								<td v-if="!columnData[3].hide" class="warptext">{{props.item.has_artikel_count}}</td>
+								<td v-if="!columnData[4].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[5].hide" class="text-nowrap">
 									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDate(props.item.updated_at)"></span>
 								</td>
 							</tr>
@@ -189,40 +186,34 @@
 									<table class="table table-striped">
 										<tbody>
 											<tr v-if="!columnData[0].hide">
-												<td colspan="2">
-													<img :src="'/images/penulis/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-													<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive center-block" v-else>
-												</td>
+												<td><b>{{columnData[0].title}}</b></td>
+												<td>: {{props.item.name}}</td>
 											</tr>
 											<tr v-if="!columnData[1].hide">
 												<td><b>{{columnData[1].title}}</b></td>
-												<td>: {{props.item.name}}</td>
+												<td>: {{props.item.deskripsi}}</td>
 											</tr>
 											<tr v-if="!columnData[2].hide">
 												<td><b>{{columnData[2].title}}</b></td>
-												<td>: {{props.item.deskripsi}}</td>
-											</tr>
-											<tr v-if="!columnData[3].hide">
-												<td><b>{{columnData[3].title}}</b></td>
 												<td>
 													<span v-if="props.item.c_u">
 														: {{props.item.c_u.name}}
 													</span>
-													<span v-else>: -</span>	
+													<span v-else>: {{columnData[2].groupNoKey}}</span>	
 												</td>
+											</tr>
+												<tr v-if="!columnData[3].hide">
+												<td><b>{{columnData[3].title}}</b></td>
+												<td>: {{props.item.has_artikel_count}}</td>
 											</tr>
 											<tr v-if="!columnData[4].hide">
 												<td><b>{{columnData[4].title}}</b></td>
-												<td>: {{props.item.has_artikel_count}}</td>
-											</tr>
-											<tr v-if="!columnData[5].hide">
-												<td><b>{{columnData[5].title}}</b></td>
 												<td>
 													: <span v-html="$options.filters.publishDateMobile(props.item.created_at)"></span>
 												</td>
 											</tr>
-											<tr v-if="!columnData[6].hide">
-												<td><b>{{columnData[6].title}}</b></td>
+											<tr v-if="!columnData[5].hide">
+												<td><b>{{columnData[5].title}}</b></td>
 												<td>
 													: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDateMobile(props.item.updated_at)"></span>
 												</td>
@@ -281,11 +272,11 @@
 		},
 		data() {
 			return {
-				title: 'Penulis Artikel',
-				kelas: 'artikelPenulis',
-				kelasVuex: 'ArtikelPenulis',
-				titleDesc: 'Mengelola data penulis artikel',
-				titleIcon: 'icon-pencil6',
+				title: 'Kategori Artikel',
+				kelas: 'artikelKategori',
+				kelasVuex: 'ArtikelKategori',
+				titleDesc: 'Mengelola data kategori artikel',
+				titleIcon: 'icon-grid6',
 				id_cu: '',
 				source: '',
 				selectedItem: [],
@@ -326,14 +317,6 @@
 					}
 				],
 				columnData: [
-					{
-						title: 'Foto',
-						key: 'gambar',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false
-					},
 					{
 						title: 'Nama',
 						key: 'name',
@@ -452,7 +435,7 @@
 				this.fetch();
 			},
 			disableColumnCU(status){
-				this.columnData[3].disable = status;
+				this.columnData[2].disable = status;
 				this.filterData[1].disable = status;
 			},
 			selectedRow(item){
@@ -500,16 +483,16 @@
 				return this.$store.getters.getCULoadStatS;
 			},
 			itemData(){
-				return this.$store.getters.getArtikelPenulisS;
+				return this.$store.getters.getArtikelKategoriS;
 			},
 			itemDataStat(){
-				return this.$store.getters.getArtikelPenulisLoadStatS;
+				return this.$store.getters.getArtikelKategoriLoadStatS;
 			},
 			updateStat() {
-				return this.$store.getters.getArtikelPenulisUpdateStat;
+				return this.$store.getters.getArtikelKategoriUpdateStat;
 			},
 			updateMessage() {
-				return this.$store.getters.getArtikelPenulisUpdateMessage;
+				return this.$store.getters.getArtikelKategoriUpdateMessage;
 			}
 		},
 		filters: {
@@ -522,9 +505,6 @@
 			trimString: function (string) {
 				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
 					' [...]';
-			},
-			checkImages: function (value) {
-				return '/images/penulis/' + value + 'n.jpg';
 			}
 		}
 	}

@@ -135,7 +135,7 @@ class ArtikelPenulisController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Artikel' .$name. 'berhasil dihapus'
+				'message' => 'Penulis ' .$name. 'berhasil dihapus'
 			]);
 	}
 }

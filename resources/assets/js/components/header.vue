@@ -70,19 +70,36 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
+
+							<!-- tambah artikel -->
 							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikel']">
 								<a><i class="icon-plus22"></i> Tambah Artikel</a>
 							</router-link>
+
+							<!-- tambah penulis -->
+							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikelKategori']">
+								<a><i class="icon-plus22"></i> Tambah Kategori Artikel</a>
+							</router-link>
+
+							<!-- tambah penulis -->
 							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikelPenulis']">
 								<a><i class="icon-plus22"></i> Tambah Penulis Artikel</a>
 							</router-link>
+
+							<!-- separator -->
 							<li class="divider"></li>
+
+							<!-- artikel -->
 							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
 							</router-link>
+
+							<!-- kategori artikel -->
 							<router-link :to="{ name: 'artikelKategori' }" tag="li" active-class="active" exact>
 								<a><i class="icon-grid6"></i> Kategori Artikel</a>
 							</router-link>
+
+							<!-- penulis artikel -->
 							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikelPenulis']">
 								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
 							</router-link>
@@ -96,13 +113,21 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
+
+							<!-- tambah user -->
 							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create user']">
 								<a><i class="icon-plus22"></i> Tambah User</a>
 							</router-link>
+
+							<!-- separator -->
 							<li class="divider"></li>
+
+							<!-- user -->
 							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index user']">
 								<a><i class="icon-users"></i> User</a>
 							</router-link>
+
+							<!-- role -->
 							<router-link :to="{ name: 'role' }" tag="li" active-class="active" exact>
 								<a><i class="icon-hat"></i> Role</a>
 							</router-link>

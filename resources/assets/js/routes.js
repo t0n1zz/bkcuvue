@@ -5,6 +5,8 @@ import artikel from './views/artikel/index.vue';
 import artikel_form from './views/artikel/form.vue';
 import artikelPenulis from './views/artikelPenulis/index.vue';
 import artikelPenulis_form from './views/artikelPenulis/form.vue';
+import artikelKategori from './views/artikelKategori/index.vue';
+import artikelKategori_form from './views/artikelKategori/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import role from './views/role/index.vue';
@@ -31,7 +33,9 @@ const routes = [
 	{ path: '/artikel/edit/:id',name: 'artikelEdit', components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } },
 
 	// artikel kategori
-	{ path: '/artikel_kategori',name: 'artikelKategori', components: { default: artikel, 'header': header }},
+	{ path: '/artikelKategori',name: 'artikelKategori', components: { default: artikelKategori, 'header': header }},
+	{ path: '/artikelKategori/create',name: 'artikelKategoriCreate', components: { default: artikelKategori_form, 'header': header} },
+	{ path: '/artikelKategori/edit/:id',name: 'artikelKategoriEdit', components: { default: artikelKategori_form, 'header': header}, meta: { mode:'edit' } },
 
 	// artikel penulis
 	{ path: '/artikelPenulis',name: 'artikelPenulis', components: { default: artikelPenulis, 'header': header }},

@@ -180,6 +180,11 @@ export const artikelPenulis = {
           }
           commit('setArtikelPenulisUpdateStat', 'fail');
         });
+    },
+
+    // reset status
+    resetArtikelPenulisUpdateStat( {commit} ){
+      commit('setArtikelPenulisUpdateStat', '');
     }
   },
 

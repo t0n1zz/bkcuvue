@@ -38,10 +38,15 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::delete('/artikel/{id}', 'ArtikelController@destroy');
 
     //artikel kategori
-    Route::get('/artikel_kategori', 'ArtikelKategoriController@index');
-    Route::get('/artikel_kategori_all', 'ArtikelKategoriController@indexAll');
-    Route::get('/artikel_kategori/cu/{id}', 'ArtikelKategoriController@indexCU');
-    Route::post('/artikel_kategori/store', 'ArtikelKategoriController@store');
+    Route::get('/artikelKategori', 'ArtikelKategoriController@index');
+    Route::get('/artikelKategori/indexAll', 'ArtikelKategoriController@indexAll');
+    Route::get('/artikelKategori/indexCU/{id}', 'ArtikelKategoriController@indexCU');
+    Route::get('/artikelKategori/cu/{id}', 'ArtikelKategoriController@getCU');
+    Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
+    Route::get('/artikelKategori/edit/{id}', 'ArtikelKategoriController@edit');
+    Route::post('/artikelKategori/store', 'ArtikelKategoriController@store');
+    Route::post('/artikelKategori/update/{id}', 'ArtikelKategoriController@update');
+    Route::delete('/artikelKategori/{id}', 'ArtikelKategoriController@destroy');
 
     //artikel penulis
     Route::get('/artikelPenulis', 'ArtikelPenulisController@index');

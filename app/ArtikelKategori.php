@@ -2,10 +2,16 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use App\Support\FilterPaginateOrder;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class ArtikelKategori extends Model {
     
+    use FilterPaginateOrder, LogsActivity;
+
     protected $table = 'artikelKategori';
+
+    protected static $logFillable = true;
     
     public static $rules = [
         'id_cu' => 'required',
@@ -14,6 +20,10 @@ class ArtikelKategori extends Model {
     ];
     
     protected $fillable = ['id_cu','name','deskripsi'];
+
+    protected $filter = [
+        'id','id_cu','name','deskripsi','created_at','updated_at'
+    ];
 
     public function getNameAttribute($value){
         return !empty($value) ? $value : '-';
@@ -32,7 +42,13 @@ class ArtikelKategori extends Model {
         ];
     }
 
-    public function hasartikel(){
+    public function hasartikel()
+    {
         return $this->hasMany('App\Artikel','id_artikel_kategori','id');
+    }
+
+    public function CU()
+    {
+        return $this->belongsTo('App\CU','id_cu','id')->select('id','name');
     }
 }
