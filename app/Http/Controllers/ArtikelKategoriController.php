@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Artikel_Kategori;
+use App\ArtikelKategori;
 use Illuminate\Http\Request;
 
 class ArtikelKategoriController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel_Kategori::select('id','name','created_at')->filterPaginateOrder();
+    	$table_data = ArtikelKategori::select('id','name','created_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -18,7 +18,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = Artikel_Kategori::where('id','!=',1)->select('id','name')->orderby('name','asc')->get();
+		$table_data = ArtikelKategori::where('id','!=',1)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -28,7 +28,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function indexCU($id)
 	{
-		$table_data = Artikel_Kategori::where('id_cu','=',$id)->select('id','name')->orderby('name','asc')->get();
+		$table_data = ArtikelKategori::where('id_cu','=',$id)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -38,7 +38,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function store(Request $request)
 	{
-		$kelas = Artikel_Kategori::create($request->all());
+		$kelas = ArtikelKategori::create($request->all());
 		
 		return response()
 			->json([

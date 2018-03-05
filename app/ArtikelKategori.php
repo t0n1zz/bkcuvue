@@ -3,9 +3,9 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 
-class Artikel_Penulis extends Model {
+class ArtikelKategori extends Model {
     
-    protected $table = 'artikel_penulis';
+    protected $table = 'artikelKategori';
     
     public static $rules = [
         'id_cu' => 'required',
@@ -13,14 +13,14 @@ class Artikel_Penulis extends Model {
         'deskripsi' => 'required|min:5'
     ];
     
-    protected $fillable = ['id_cu','id_staf','name','deskripsi','gambar'];
+    protected $fillable = ['id_cu','name','deskripsi'];
 
     public function getNameAttribute($value){
         return !empty($value) ? $value : '-';
     }
 
     public function artikel(){
-        return $this->hasMany('App\Artikel','id_artikel_penulis','id')
+        return $this->hasMany('App\Artikel','id_artikel_kategori','id')
                     ->where('status','=','1')
                     ->orderBy('created_at','desc')
                     ->take(3);
@@ -28,11 +28,11 @@ class Artikel_Penulis extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '0','id_staf' => '0', 'name' => '', 'deskripsi' => '','gambar' => '',
+            'id_cu' => '0', 'name' => '', 'deskripsi' => ''
         ];
     }
 
     public function hasartikel(){
-        return $this->hasMany('App\Artikel','id_artikel_penulis','id');
+        return $this->hasMany('App\Artikel','id_artikel_kategori','id');
     }
 }

@@ -5,8 +5,8 @@ import { user } from './modules/user';
 import { role } from './modules/role';
 import { global } from './modules/global';
 import { artikel } from './modules/artikel';
-import { artikelKategori } from './modules/artikel_kategori';
-import { artikelPenulis } from './modules/artikel_penulis';
+import { artikelKategori } from './modules/artikelKategori';
+import { artikelPenulis } from './modules/artikelPenulis';
 import { CU } from './modules/cu';
 import { pus } from './modules/pus';
 

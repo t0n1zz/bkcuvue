@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Artikel_Penulis;
+use App\ArtikelPenulis;
 use Illuminate\Http\Request;
 use App\Support\ImageProcessing;
 
@@ -11,7 +11,7 @@ class ArtikelPenulisController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel_Penulis::select('id','name','created_at')->filterPaginateOrder();
+    	$table_data = ArtikelPenulis::with('CU')->withCount('hasArtikel')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -21,7 +21,7 @@ class ArtikelPenulisController extends Controller{
 
 	public function indexAll()
 	{
-		$table_data = Artikel_Penulis::where('id','!=',1)->select('id','name')->orderby('name','asc')->get();
+		$table_data = ArtikelPenulis::where('id','!=',1)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -31,7 +31,17 @@ class ArtikelPenulisController extends Controller{
   
   public function indexCU($id)
 	{
-		$table_data = Artikel_Penulis::where('id_cu','=',$id)->select('id','name')->orderby('name','asc')->get();
+		$table_data = ArtikelPenulis::with('CU')->withCount('hasArtikel')->where('id_cu',$id)->filterPaginateOrder();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function getCU($id)
+	{
+		$table_data = ArtikelPenulis::where('id_cu','=',$id)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -43,15 +53,15 @@ class ArtikelPenulisController extends Controller{
 	{
 		return response()
 			->json([
-					'form' => Artikel_Penulis::initialize(),
-					'rules' => Artikel_Penulis::$rules,
+					'form' => ArtikelPenulis::initialize(),
+					'rules' => ArtikelPenulis::$rules,
 					'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-		$this->validate($request,Artikel_Penulis::$rules);
+		$this->validate($request,ArtikelPenulis::$rules);
 
 		$name = $request->name;
 
@@ -61,7 +71,7 @@ class ArtikelPenulisController extends Controller{
 		else
 			$fileName = '';
 
-		$kelas = Artikel_Penulis::create($request->except('gambar') + [
+		$kelas = ArtikelPenulis::create($request->except('gambar') + [
 			'gambar' => $fileName
 		]);
 		
@@ -75,7 +85,7 @@ class ArtikelPenulisController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Artikel_Penulis::findOrFail($id);
+		$kelas = ArtikelPenulis::findOrFail($id);
 
 		return response()
 				->json([
@@ -86,11 +96,11 @@ class ArtikelPenulisController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request,Artikel_Penulis::$rules);
+		$this->validate($request,ArtikelPenulis::$rules);
 
 		$name = $request->name;
 
-		$kelas = Artikel_Penulis::findOrFail($id);
+		$kelas = ArtikelPenulis::findOrFail($id);
 
 		// processing single image upload
 		if(!empty($request->gambar))
@@ -112,8 +122,13 @@ class ArtikelPenulisController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = Artikel_Penulis::findOrFail($id);
+		$kelas = ArtikelPenulis::findOrFail($id);
 		$name = $kelas->name;
+
+		if(!empty($kelas->gambar)){
+			File::delete($path . $kelas->gambar . '.jpg');
+			File::delete($path . $kelas->gambar . 'n.jpg');
+		}
 
 		$kelas->delete();
 

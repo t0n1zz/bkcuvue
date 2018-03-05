@@ -73,6 +73,9 @@
 							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikel']">
 								<a><i class="icon-plus22"></i> Tambah Artikel</a>
 							</router-link>
+							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikelPenulis']">
+								<a><i class="icon-plus22"></i> Tambah Penulis Artikel</a>
+							</router-link>
 							<li class="divider"></li>
 							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
@@ -80,7 +83,7 @@
 							<router-link :to="{ name: 'artikelKategori' }" tag="li" active-class="active" exact>
 								<a><i class="icon-grid6"></i> Kategori Artikel</a>
 							</router-link>
-							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact>
+							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikelPenulis']">
 								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
 							</router-link>
 						</ul>

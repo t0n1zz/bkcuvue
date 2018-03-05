@@ -1,4 +1,4 @@
-import ArtikelKategoriAPI from '../../api/artikel_kategori.js';
+import ArtikelKategoriAPI from '../../api/artikelKategori.js';
 
 export const artikelKategori = {
   state: {

@@ -11,7 +11,7 @@
 							<router-link :to="{ name:'dashboard' }" tag="li">
 								<a>Dashboard</a>
 							</router-link>
-							<router-link :to="{ name:'artikel' }" tag="li">
+							<router-link :to="{ name: kelas }" tag="li">
 								<a>Artikel</a>
 							</router-link>
 							<li class="active">{{ title }}</li>
@@ -25,7 +25,7 @@
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message :show="errors.any('form-1')" :class="'bg-danger'" v-if="submited">
+					<message :show="errors.any('form')" :class="'bg-danger'" v-if="submited">
 						<h4><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan</h4>
 						<ul>
 							<li v-for="error in errors.items">{{error.msg}}</li>
@@ -35,24 +35,24 @@
 					<!-- main panel -->
 					<div class="panel panel-flat">
 						<div class="panel-body">
-							<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form-1">
+							<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 								<div class="row">
 
 									<!-- name -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form-1.name')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.name')}">
-												<i class="icon-cross2" v-if="errors.has('form-1.name')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
+												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
 												Judul:</h5>
 
 											<!-- text -->
 											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'" data-vv-as="Judul" v-model="form.name">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form-1.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.name') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.name')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -60,11 +60,11 @@
 
 									<!-- CU -->
 									<div class="col-md-4" v-if="userData.id_cu === 0">
-										<div class="form-group" :class="{'has-error' : errors.has('form-1.id_cu')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.id_cu')}">
-												<i class="icon-cross2" v-if="errors.has('form-1.id_cu')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
 												CU:
 											</h5>
 
@@ -77,8 +77,8 @@
 											</select>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form-1.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.id_cu') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -86,11 +86,11 @@
 
 									<!-- penulis -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form-1.id_artikel_penulis')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_artikel_penulis')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.id_artikel_penulis')}">
-												<i class="icon-cross2" v-if="errors.has('form-1.id_artikel_penulis')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.id_artikel_penulis')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_artikel_penulis')"></i>
 												Penulis:
 											</h5>
 
@@ -124,8 +124,8 @@
 											</div>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form-1.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.id_cu') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -133,11 +133,11 @@
 
 									<!-- kategori -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form-1.id_artikel_kategori')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_artikel_kategori')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.id_artikel_kategori')}">
-												<i class="icon-cross2" v-if="errors.has('form-1.id_artikel_kategori')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.id_artikel_kategori')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_artikel_kategori')"></i>
 												Kategori:
 											</h5>
 
@@ -170,8 +170,8 @@
 											</div>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form-1.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.id_cu') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -182,11 +182,11 @@
 
 									<!-- terbitkan -->
 									<div class="col-md-4" v-if="userData.can && userData.can['terbitkan ' + kelas]">
-										<div class="form-group" :class="{'has-error' : errors.has('form-1.terbitkan')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.terbitkan')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.terbitkan')}">
-												<i class="icon-cross2" v-if="errors.has('form-1.terbitkan')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.terbitkan')}">
+												<i class="icon-cross2" v-if="errors.has('form.terbitkan')"></i>
 												Status Penerbitan:
 											</h5>
 
@@ -201,8 +201,8 @@
 
 											<!-- error message -->
 											<br/>
-											<small class="text-muted text-danger" v-if="errors.has('form-1.terbitkan')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.terbitkan') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.terbitkan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.terbitkan') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;
 											</small>
@@ -211,11 +211,11 @@
 
 									<!-- utamakan -->
 									<div class="col-md-4" v-if="userData.can && userData.can['utamakan ' + kelas]">
-										<div class="form-group" :class="{'has-error' : errors.has('form-1.utamakan')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.utamakan')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form-1.utamakan')}">
-												<i class="icon-cross2" v-if="errors.has('form-1.utamakan')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.utamakan')}">
+												<i class="icon-cross2" v-if="errors.has('form.utamakan')"></i>
 												Utamakan:
 											</h5>
 
@@ -229,8 +229,8 @@
 
 											<!-- error message -->
 											<br/>
-											<small class="text-muted text-danger" v-if="errors.has('form-1.utamakan')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form-1.utamakan') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.utamakan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.utamakan') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;
 											</small>
@@ -281,18 +281,18 @@
 
 								<!-- tombol desktop-->
 								<div class="text-right hidden-xs">
-									<router-link type="button" :to="{ name:'artikel' }" class="btn btn-default" v-tooltip:top="'Batal'">
+									<router-link type="button" :to="{ name: kelas }" class="btn btn-default" v-tooltip:top="'Batal'">
 										<i class="icon-arrow-left13"></i> Batal
 									</router-link>
-									<button type="submit" class="btn btn-primary" :disabled="errors.any('form-1')" v-tooltip:top="'Simpan Data'">
+									<button type="submit" class="btn btn-primary" :disabled="errors.any('form')" v-tooltip:top="'Simpan Data'">
 										<i class="icon-floppy-disk"></i> Simpan</button>
 								</div>
 
 								<!-- tombol mobile-->
 								<div class="visible-xs">
-									<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form-1')">
+									<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form')">
 										<i class="icon-floppy-disk"></i> Simpan</button>
-									<router-link type="button" :to="{ name:'artikel' }" class="btn btn-default btn-block">
+									<router-link type="button" :to="{ name: kelas}" class="btn btn-default btn-block">
 										<i class="icon-arrow-left13"></i> Batal
 									</router-link>
 								</div>
@@ -627,7 +627,7 @@
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
-				this.$validator.validateAll('form-1').then((result) => {
+				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
 							this.$store.dispatch('updateArtikel', [this.$route.params.id, formData]);

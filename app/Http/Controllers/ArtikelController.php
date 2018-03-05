@@ -13,7 +13,7 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+    	$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -23,7 +23,7 @@ class ArtikelController extends Controller{
 
 	public function indexCU($id)
 	{
-    	$table_data = Artikel::with('Artikel_Kategori','Artikel_Penulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+    	$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -72,7 +72,7 @@ class ArtikelController extends Controller{
 
 	public function show($id)
 	{
-		$kelas = Artikel::with('Artikel_Kategori')->findOrFail($id);
+		$kelas = Artikel::with('ArtikelKategori')->findOrFail($id);
 
 		return response()
 			->json([
@@ -168,6 +168,11 @@ class ArtikelController extends Controller{
 	{
 		$kelas = Artikel::findOrFail($id);
 		$name = $kelas->name;
+
+		if(!empty($kelas->gambar)){
+			File::delete($path . $kelas->gambar . '.jpg');
+			File::delete($path . $kelas->gambar . 'n.jpg');
+		}
 
 		$kelas->delete();
 

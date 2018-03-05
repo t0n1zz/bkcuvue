@@ -44,10 +44,15 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::post('/artikel_kategori/store', 'ArtikelKategoriController@store');
 
     //artikel penulis
-    Route::get('/artikel_penulis', 'ArtikelPenulisController@index');
-    Route::get('/artikel_penulis_all', 'ArtikelPenulisController@indexAll');
-    Route::get('/artikel_penulis/cu/{id}', 'ArtikelPenulisController@indexCU');
-    Route::post('/artikel_penulis/store', 'ArtikelPenulisController@store');
+    Route::get('/artikelPenulis', 'ArtikelPenulisController@index');
+    Route::get('/artikelPenulis/indexAll', 'ArtikelPenulisController@indexAll');
+    Route::get('/artikelPenulis/indexCU/{id}', 'ArtikelPenulisController@indexCU');
+    Route::get('/artikelPenulis/cu/{id}', 'ArtikelPenulisController@getCU');
+    Route::get('/artikelPenulis/create', 'ArtikelPenulisController@create');
+    Route::get('/artikelPenulis/edit/{id}', 'ArtikelPenulisController@edit');
+    Route::post('/artikelPenulis/store', 'ArtikelPenulisController@store');
+    Route::post('/artikelPenulis/update/{id}', 'ArtikelPenulisController@update');
+    Route::delete('/artikelPenulis/{id}', 'ArtikelPenulisController@destroy');
 
     // cu
     Route::get('/cu', 'CUController@index');

@@ -13,6 +13,8 @@ export const artikel = {
   },
 
   actions: {
+
+    // load all
     loadArtikelS( { commit }, p ){
       commit('setArtikelLoadStatS', 'loading');
       
@@ -26,6 +28,8 @@ export const artikel = {
           commit('setArtikelLoadStatS', 'fail');
         });
     },
+
+    // load by cu
     loadArtikelCUS( { commit }, [p, id] ){
       commit('setArtikelLoadStatS', 'loading');
       
@@ -39,6 +43,8 @@ export const artikel = {
           commit('setArtikelLoadStatS', 'fail');
         });
     },
+
+    // load single data
     loadArtikel( {commit}, id ){
       commit('setArtikelLoadStat', 'loading');
       
@@ -52,6 +58,8 @@ export const artikel = {
           commit('setArtikelLoadStatS', 'fail');
         });
     },
+
+    // create page
     createArtikel( {commit} ){
       commit('setArtikelLoadStat', 'loading');
       
@@ -69,6 +77,8 @@ export const artikel = {
           commit('setArtikelLoadStat', 'fail');
         });
     },
+
+    // store data
     storeArtikel( {commit, state, dispatch}, form ){
       commit('setArtikelUpdateStat', 'loading');
 
@@ -91,6 +101,8 @@ export const artikel = {
           commit('setArtikelUpdateStat', 'fail');
         });
     },
+
+    // edit page
     editArtikel( {commit}, id ){
       commit('setArtikelLoadStat', 'loading');
       
@@ -108,8 +120,10 @@ export const artikel = {
           commit('setArtikelLoadStat', 'fail');
         });
     },
+
+    // update data
     updateArtikel( {commit, state, dispatch}, [id, form] ){
-      commit('setArtikelUpdateStat', form);
+      commit('setArtikelUpdateStat', 'loading');
 
       ArtikelAPI.updateArtikel( id, form )
         .then( function( response ){
@@ -135,15 +149,21 @@ export const artikel = {
 
       ArtikelAPI.updateTerbitkan( id )
         .then( function( response ){
-          commit('setArtikelUpdate', response.data);
-          commit('setArtikelUpdateStat', 'success');
+          if(response.data.saved){
+            commit('setArtikelUpdate', response.data);
+            commit('setArtikelUpdateStat', 'success');
+          }else{
+            commit('setArtikelUpdateStat', 'fail');
+          }
         })
         .catch(error => {
           if (error.response.status) {
             this.errors = error.response.data;
-            commit('setArtikelUpdate', this.errors);
-            commit('setArtikelUpdateStat', 'fail');
+            commit('setArtikelUpdate', this.errors);         
+          }else{
+            commit('setArtikelUpdate', 'Oops terjadi kesalahan :(');
           }
+          commit('setArtikelUpdateStat', 'fail');
         });
     },
     updateArtikelUtamakan( {commit, state, dispatch}, id ){
@@ -151,27 +171,49 @@ export const artikel = {
 
       ArtikelAPI.updateUtamakan( id )
         .then( function( response ){
-          commit('setArtikelUpdate', response.data);
-          commit('setArtikelUpdateStat', 'success');
+          if(response.data.saved){
+            commit('setArtikelUpdate', response.data);
+            commit('setArtikelUpdateStat', 'success');
+          }else{
+            commit('setArtikelUpdateStat', 'fail');
+          }
         })
-        .catch( error => {
-          commit('setArtikelS', error.response);
-          commit('setArtikelLoadStatS', 'fail');
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setArtikelUpdate', this.errors);         
+          }else{
+            commit('setArtikelUpdate', 'Oops terjadi kesalahan :(');
+          }
+          commit('setArtikelUpdateStat', 'fail');
         });
     },
+
+    // delete data
     deleteArtikel( {commit, state, dispatch}, id ){
       commit('setArtikelUpdateStat', 'loading');
 
       ArtikelAPI.deleteArtikel( id )
         .then( function( response ){
-          commit('setArtikelUpdate', response.data);
-          commit('setArtikelUpdateStat', 'success');
+          if(response.data.saved){
+            commit('setArtikelUpdate', response.data);
+            commit('setArtikelUpdateStat', 'success');
+          }else{
+            commit('setArtikelUpdateStat', 'fail');
+          }
         })
-        .catch( error => {
-          commit('setArtikelS', error.response);
-          commit('setArtikelLoadStatS', 'fail');
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setArtikelUpdate', this.errors);         
+          }else{
+            commit('setArtikelUpdate', 'Oops terjadi kesalahan :(');
+          }
+          commit('setArtikelUpdateStat', 'fail');
         });
     },
+
+    // reset status
     resetArtikelUpdateStat( {commit} ){
       commit('setArtikelUpdateStat', '');
     }

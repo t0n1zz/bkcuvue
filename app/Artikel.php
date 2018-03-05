@@ -39,14 +39,14 @@ class Artikel extends Model {
         ];
     }
 
-    public function Artikel_Kategori()
+    public function ArtikelKategori()
     {
-        return $this->belongsTo('App\Artikel_Kategori','id_artikel_kategori','id')->select('id','name');
+        return $this->belongsTo('App\ArtikelKategori','id_artikel_kategori','id')->select('id','name');
     }
 
-    public function Artikel_Penulis()
+    public function ArtikelPenulis()
     {
-        return $this->belongsTo('App\Artikel_Penulis','id_artikel_penulis','id')->select('id','name');
+        return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id')->select('id','name');
     }
 
     public function CU()

@@ -17,10 +17,10 @@
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
+							<i class="icon-newspaper text-primary"></i> <span>Artikel</span>
 						</router-link>
-						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-pencil6 text-primary"></i> <span>Penulis Artikel</span>
+						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
+							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
 						</router-link>
 					</div>
 				</div>
@@ -120,22 +120,6 @@
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
-
-							<!-- terbitkan -->
-							<div class="btn-group pb-5" v-if="userData.can && userData.can['terbitkan ' + kelas]">
-								<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
-									<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
-									<span v-else>Terbitkan</span>
-								</button>
-							</div>
-
-							<!-- utamakan -->
-							<div class="btn-group pb-5" v-if="userData.can && userData.can['utamakan ' + kelas]">
-								<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
-									<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
-									<span v-else>Utamakan</span>
-								</button>
-							</div>
 						</template>
 
 						<!-- button context -->
@@ -167,49 +151,23 @@
 									</button>
 								</div>
 							</li>
-
-							<!-- terbitkan -->
-							<li v-if="userData.can && userData.can['terbitkan ' + kelas]">
-								<div class="pl-5 pr-5 pb-5">
-									<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
-										<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
-										<span v-else>Terbitkan</span>
-									</button>
-								</div>
-							</li>
-
-							<!-- utamakan -->
-							<li v-if="userData.can && userData.can['utamakan ' + kelas]">
-								<div class="pl-5 pr-5">
-									<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
-										<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
-										<span v-else>Utamakan</span>
-									</button>
-								</div>
-							</li>
 						</template>
 
 						<!-- item desktop -->
 						<template slot="item-desktop" slot-scope="props">
 							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
-									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
+									<img :src="'/images/penulis/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
 								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
-								<td v-if="!columnData[2].hide && !columnData[2].disable">
-									<span v-if="props.item.artikel_kategori">{{props.item.artikel_kategori.name}}</span>
-								</td>
+								<td v-if="!columnData[2].hide" class="warptext">{{props.item.deskripsi}}</td>
 								<td v-if="!columnData[3].hide && !columnData[3].disable">
-									<span v-if="props.item.artikel_penulis">{{props.item.artikel_penulis.name}}</span>
-								</td>
-								<td v-if="!columnData[4].hide && !columnData[4].disable">
 									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
 								</td>
-								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-								<td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
-								<td v-if="!columnData[8].hide" class="text-nowrap">
+								<td v-if="!columnData[4].hide" class="warptext">{{props.item.has_artikel_count}}</td>
+								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
+								<td v-if="!columnData[6].hide" class="text-nowrap">
 									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDate(props.item.updated_at)"></span>
 								</td>
 							</tr>
@@ -232,7 +190,7 @@
 										<tbody>
 											<tr v-if="!columnData[0].hide">
 												<td colspan="2">
-													<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
+													<img :src="'/images/penulis/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
 													<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive center-block" v-else>
 												</td>
 											</tr>
@@ -242,24 +200,10 @@
 											</tr>
 											<tr v-if="!columnData[2].hide">
 												<td><b>{{columnData[2].title}}</b></td>
-												<td>
-													<span v-if="props.item.artikel_kategori">
-														: {{props.item.artikel_kategori.name}}
-													</span>
-													<span v-else>: -</span>	
-												</td>
+												<td>: {{props.item.deskripsi}}</td>
 											</tr>
 											<tr v-if="!columnData[3].hide">
 												<td><b>{{columnData[3].title}}</b></td>
-												<td>
-													<span v-if="props.item.artikel_penulis">
-													: {{props.item.artikel_penulis.name}}
-													</span>
-													<span v-else>: -</span>	
-												</td>
-											</tr>
-											<tr v-if="!columnData[4].hide">
-												<td><b>{{columnData[4].title}}</b></td>
 												<td>
 													<span v-if="props.item.c_u">
 														: {{props.item.c_u.name}}
@@ -267,26 +211,14 @@
 													<span v-else>: -</span>	
 												</td>
 											</tr>
-											<tr v-if="!columnData[5].hide">
-												<td><b>{{columnData[5].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.checkStatus(props.item.terbitkan)"></span>
-												</td>
-											</tr>
-											<tr v-if="!columnData[6].hide">
-												<td><b>{{columnData[6].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.checkStatus(props.item.utamakan)"></span>
-												</td>
-											</tr>
-											<tr v-if="!columnData[7].hide">
-												<td><b>{{columnData[7].title}}</b></td>
+											<tr v-if="!columnData[4].hide">
+												<td><b>{{columnData[4].title}}</b></td>
 												<td>
 													: <span v-html="$options.filters.publishDateMobile(props.item.created_at)"></span>
 												</td>
 											</tr>
-											<tr v-if="!columnData[8].hide">
-												<td><b>{{columnData[8].title}}</b></td>
+											<tr v-if="!columnData[5].hide">
+												<td><b>{{columnData[5].title}}</b></td>
 												<td>
 													: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDateMobile(props.item.updated_at)"></span>
 												</td>
@@ -361,10 +293,10 @@
 		},
 		data() {
 			return {
-				title: 'Artikel',
-				kelas: 'artikel',
-				titleDesc: 'Mengelola data artikel',
-				titleIcon: 'icon-magazine',
+				title: 'Penulis Artikel',
+				kelas: 'artikelPenulis',
+				titleDesc: 'Mengelola data penulis artikel',
+				titleIcon: 'icon-pencil6',
 				id_cu: '',
 				source: '',
 				selectedItem: [],
@@ -378,21 +310,10 @@
           search_query_1: '',
           search_query_2: ''
         },
-				filterData: [{
-						title: 'Judul',
+				filterData: [
+					{
+						title: 'Nama',
 						key: 'name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kategori',
-						key: 'artikelkategori.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Penulis',
-						key: 'artikelpenulis.name',
 						type: 'string',
 						disable: false
 					},
@@ -403,7 +324,7 @@
 						disable: false
 					},
 					{
-						title: 'Tgl. Tulis',
+						title: 'Tgl. Buat',
 						key: 'created_at',
 						type: 'date',
 						disable: false
@@ -425,7 +346,7 @@
 						disable: false
 					},
 					{
-						title: 'Judul',
+						title: 'Nama',
 						key: 'name',
 						excelType: 'string',
 						sort: true,
@@ -433,20 +354,9 @@
 						disable: false
 					},
 					{
-						title: 'Kategori',
-						key: 'id_artikel_kategori',
-						groupKey: 'artikel_kategori.name',
-						groupNoKey: 'Tidak terkategori',
+						title: 'Deskripsi',
+						key: 'deskripsi',
 						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Penulis',
-						key: 'id_artikel_penulis',
-						groupKey: 'artikel_penulis.name',
-						groupNoKey: 'Tidak ada data penulis',
 						sort: true,
 						hide: false,
 						disable: false
@@ -461,21 +371,17 @@
 						disable: false
 					},
 					{
-						title: 'Terbitkan',
-						key: 'terbitkan',
+						title: 'Artikel',
+						key: 'has_artikel_count',
+						groupKey: 'has_artikel_count',
+						groupNoKey: '0',
+						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
 					},
 					{
-						title: 'Utamakan',
-						key: 'utamakan',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Tgl. Tulis',
+						title: 'Tgl. Buat',
 						key: 'created_at',
 						sort: true,
 						hide: false,
@@ -536,11 +442,11 @@
 			fetch(){
 				if(this.modelCULoadStat === 'success'){
 					if(this.id_cu === 'semua'){
-						this.$store.dispatch('loadArtikelS', this.params);
+						this.$store.dispatch('loadArtikelPenulisS', this.params);
 						this.disableColumnCU(false);
 					}else{
 						if(this.id_cu !== undefined){
-							this.$store.dispatch('loadArtikelCUS', [this.params,this.id_cu]);
+							this.$store.dispatch('loadArtikelPenulisCUS', [this.params,this.id_cu]);
 						}
 						this.disableColumnCU(true);
 					}
@@ -557,8 +463,8 @@
 				this.fetch();
 			},
 			disableColumnCU(status){
-				this.columnData[4].disable = status;
-				this.filterData[3].disable = status;
+				this.columnData[3].disable = status;
+				this.filterData[1].disable = status;
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -576,24 +482,8 @@
 				}
 
 				if (source == 'hapus') {
-					this.modalTitle = 'Hapus artikel ini?';
+					this.modalTitle = 'Hapus penulis artikel ini?';
 					this.modalButton = 'Iya, Hapus';
-				} else if (source == 'updateTerbitkan') {
-					if (this.selectedItem.terbitkan == 0) {
-						this.modalTitle = 'Terbitkan artikel ini?';
-						this.modalButton = 'Iya, terbitkan';
-					} else {
-						this.modalTitle = 'Tidak terbitkan artikel ini?';
-						this.modalButton = 'Iya, tidak terbitkan';
-					}
-				} else if (source == 'updateUtamakan') {
-					if (this.selectedItem.utamakan == 0) {
-						this.modalTitle = 'Utamakan artikel ini?';
-						this.modalButton = 'Iya, utamakan';
-					} else {
-						this.modalTitle = 'Tidak utamakan artikel ini?';
-						this.modalButton = 'Iya, tidak utamakan';
-					}
 				}
 			},
 			modalTutup() {
@@ -603,11 +493,7 @@
 			modalConfirmOk() {
 				var vm = this;
 				if (vm.source == 'hapus') {
-					this.$store.dispatch('deleteArtikel', this.selectedItem.id);
-				} else if (vm.source == "updateTerbitkan"){
-					this.$store.dispatch('updateArtikelTerbitkan', this.selectedItem.id);
-				} else if (vm.source == "updateUtamakan") {
-					this.$store.dispatch('updateArtikelUtamakan', this.selectedItem.id);
+					this.$store.dispatch('deleteArtikelPenulis', this.selectedItem.id);
 				}
 			}
 		},
@@ -625,16 +511,16 @@
 				return this.$store.getters.getCULoadStatS;
 			},
 			itemData(){
-				return this.$store.getters.getArtikelS;
+				return this.$store.getters.getArtikelPenulisS;
 			},
 			itemDataStat(){
-				return this.$store.getters.getArtikelLoadStatS;
+				return this.$store.getters.getArtikelPenulisLoadStatS;
 			},
 			updateStat() {
-				return this.$store.getters.getArtikelUpdateStat;
+				return this.$store.getters.getArtikelPenulisUpdateStat;
 			},
 			updateMessage() {
-				return this.$store.getters.getArtikelUpdateMessage;
+				return this.$store.getters.getArtikelPenulisUpdateMessage;
 			}
 		},
 		filters: {
@@ -648,22 +534,8 @@
 				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
 					' [...]';
 			},
-			checkStatus: function (value) {
-				if (value > 0) {
-					return '<span class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>';
-				} else {
-					return '<span class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>';
-				}
-			},
-			checkModal: function (value) {
-				if (value > 0) {
-					return '<i class="icon-check"></i>';
-				} else {
-					return '<i class="icon-cross3"></i>';
-				}
-			},
 			checkImages: function (value) {
-				return '/images/artikel/' + value + 'n.jpg';
+				return '/images/penulis/' + value + 'n.jpg';
 			}
 		}
 	}
