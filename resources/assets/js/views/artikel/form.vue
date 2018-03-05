@@ -349,11 +349,11 @@
 						<!-- title -->
 						<h5 :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">
 							<i class="icon-cross2" v-if="errors.has('form-kategori.kategoriDeskripsi')"></i>
-							Deskripsi:
+							Keterangan:
 						</h5>
 
 						<!-- textarea -->
-						<textarea rows="5" type="text" name="kategoriDeskripsi" class="form-control" placeholder="Silahkan masukkan deskripsi kategori"
+						<textarea rows="5" type="text" name="kategoriDeskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori"
 							v-validate="'required|min:5'" v-model="formKategori.deskripsi"></textarea>
 
 						<!-- error message -->

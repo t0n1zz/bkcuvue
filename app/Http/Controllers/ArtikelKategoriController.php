@@ -64,7 +64,7 @@ class ArtikelKategoriController extends Controller{
 		$name = $request->name;
 
 
-		$kelas = ArtikelKategori::create($request);
+		$kelas = ArtikelKategori::create($request->all());
 		
 		return response()
 			->json([
@@ -93,7 +93,7 @@ class ArtikelKategoriController extends Controller{
 
 		$kelas = ArtikelKategori::findOrFail($id);
 
-		$kelas->update($request);
+		$kelas->update($request->all());
 		
 		return response()
 			->json([

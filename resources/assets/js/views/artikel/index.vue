@@ -92,7 +92,7 @@
 					</div>
 
 					<!-- main panel -->
-					<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+					<data-viewer :title="title" :source="source" :columnData="columnData" :filterData="filterData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :extSearchColumn="extSearchColumn"
 					:params="params"
 					@fetch="fetch">
 
@@ -368,6 +368,8 @@
 				titleIcon: 'icon-magazine',
 				id_cu: '',
 				source: '',
+				extSearchQuery1: '',
+				extSearchColumn: '',
 				selectedItem: [],
 				params: {
           column: 'id',
@@ -521,6 +523,19 @@
 					}
 				}
 			},
+			modelKategoriLoadStat(value){
+				if(value === 'success'){
+					this.params.search_column = 'artikelkategori.name';
+					this.params.search_query_1 = this.modelKategori.name;
+
+					this.extSearchColumn = 'Kategori';
+					this.extSearchQuery1 = this.modelKategori.name;
+
+					this.id_cu = this.modelKategori.id_cu;
+
+					this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.modelKategori.id_cu]);
+				}
+			},
       updateStat(value) {
 				this.modalState = value;
 				this.modalButton = 'Ok';
@@ -541,7 +556,15 @@
 						this.disableColumnCU(false);
 					}else{
 						if(this.id_cu !== undefined){
-							this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
+							if(this.$route.meta.mode === 'kategori'){ //if artikelFilterKategori
+								if(this.modelKategoriLoadStat !== 'success'){
+									this.$store.dispatch('editArtikelKategori',this.$route.params.id);
+								}else{
+									this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
+								}
+							}else{
+								this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
+							}
 						}
 						this.disableColumnCU(true);
 					}
@@ -549,6 +572,9 @@
 			},
 			fetchCU(){
 				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+			},
+			fetchKategori(){
+
 			},
 			changeCU(id){
 				this.id_cu = id;
@@ -624,6 +650,12 @@
 			},
 			modelCULoadStat() {
 				return this.$store.getters.getCULoadStatS;
+			},
+			modelKategori(){
+				return this.$store.getters.getArtikelKategori;
+			},
+			modelKategoriLoadStat(){
+				return this.$store.getters.getArtikelKategoriLoadStat;
 			},
 			itemData(){
 				return this.$store.getters.getArtikelS;

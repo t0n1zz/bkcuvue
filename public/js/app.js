@@ -32449,7 +32449,7 @@ var routes = [
 { path: '/', name: 'dashboard', components: { default: __WEBPACK_IMPORTED_MODULE_2__views_dashboard_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } },
 
 // artikel
-{ path: '/artikel', name: 'artikel', components: { default: __WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikel/create', name: 'artikelCreate', components: { default: __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikel/edit/:id', name: 'artikelEdit', components: { default: __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a }, meta: { mode: 'edit' } },
+{ path: '/artikel', name: 'artikel', components: { default: __WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikel/kategori/:id', name: 'artikelFilterKategori', components: { default: __WEBPACK_IMPORTED_MODULE_3__views_artikel_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a }, meta: { mode: 'kategori' } }, { path: '/artikel/create', name: 'artikelCreate', components: { default: __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikel/edit/:id', name: 'artikelEdit', components: { default: __WEBPACK_IMPORTED_MODULE_4__views_artikel_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a }, meta: { mode: 'edit' } },
 
 // artikel kategori
 { path: '/artikelKategori', name: 'artikelKategori', components: { default: __WEBPACK_IMPORTED_MODULE_7__views_artikelKategori_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikelKategori/create', name: 'artikelKategoriCreate', components: { default: __WEBPACK_IMPORTED_MODULE_8__views_artikelKategori_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikelKategori/edit/:id', name: 'artikelKategoriEdit', components: { default: __WEBPACK_IMPORTED_MODULE_8__views_artikelKategori_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a }, meta: { mode: 'edit' } },
@@ -34421,6 +34421,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			titleIcon: 'icon-magazine',
 			id_cu: '',
 			source: '',
+			extSearchQuery1: '',
+			extSearchColumn: '',
 			selectedItem: [],
 			params: {
 				column: 'id',
@@ -34559,6 +34561,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			}
 		},
+		modelKategoriLoadStat: function modelKategoriLoadStat(value) {
+			if (value === 'success') {
+				this.params.search_column = 'artikelkategori.name';
+				this.params.search_query_1 = this.modelKategori.name;
+
+				this.extSearchColumn = 'Kategori';
+				this.extSearchQuery1 = this.modelKategori.name;
+
+				this.id_cu = this.modelKategori.id_cu;
+
+				this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params, this.modelKategori.id_cu]);
+			}
+		},
 		updateStat: function updateStat(value) {
 			this.modalState = value;
 			this.modalButton = 'Ok';
@@ -34579,7 +34594,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					this.disableColumnCU(false);
 				} else {
 					if (this.id_cu !== undefined) {
-						this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params, this.id_cu]);
+						if (this.$route.meta.mode === 'kategori') {
+							//if artikelFilterKategori
+							if (this.modelKategoriLoadStat !== 'success') {
+								this.$store.dispatch('editArtikelKategori', this.$route.params.id);
+							} else {
+								this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params, this.id_cu]);
+							}
+						} else {
+							this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params, this.id_cu]);
+						}
 					}
 					this.disableColumnCU(true);
 				}
@@ -34588,6 +34612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		fetchCU: function fetchCU() {
 			this.$store.dispatch('loadCUPus', this.userData.id_pus);
 		},
+		fetchKategori: function fetchKategori() {},
 		changeCU: function changeCU(id) {
 			this.id_cu = id;
 			this.params.per_page = 10;
@@ -34662,6 +34687,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		modelCULoadStat: function modelCULoadStat() {
 			return this.$store.getters.getCULoadStatS;
+		},
+		modelKategori: function modelKategori() {
+			return this.$store.getters.getArtikelKategori;
+		},
+		modelKategoriLoadStat: function modelKategoriLoadStat() {
+			return this.$store.getters.getArtikelKategoriLoadStat;
 		},
 		itemData: function itemData() {
 			return this.$store.getters.getArtikelS;
@@ -35663,7 +35694,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['title', 'source', 'columnData', 'filterData', 'itemData', 'itemDataStat', 'toolbarButton', 'params'],
+  props: ['title', 'source', 'columnData', 'filterData', 'itemData', 'itemDataStat', 'toolbarButton', 'params', 'extSearchQuery1', 'extSearchColumn'],
   components: {
     jsonExcel: __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default.a,
     appModal: __WEBPACK_IMPORTED_MODULE_4__components_modal___default.a,
@@ -35740,6 +35771,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     itemDataStat: function itemDataStat(value) {
       this.excelLoadStat = value;
+    },
+    extSearchQuery1: function extSearchQuery1(value) {
+      this.searchQuery1 = value;
+    },
+    extSearchColumn: function extSearchColumn(value) {
+      this.searchColumn = value;
     },
 
     searchQuery1: function searchQuery1(search_query) {
@@ -58002,6 +58039,8 @@ var render = function() {
                     toolbarButton: 4,
                     itemData: _vm.itemData,
                     itemDataStat: _vm.itemDataStat,
+                    extSearchQuery1: _vm.extSearchQuery1,
+                    extSearchColumn: _vm.extSearchColumn,
                     params: _vm.params
                   },
                   on: { fetch: _vm.fetch },
@@ -61345,7 +61384,7 @@ var render = function() {
                         _vm.errors.has("form-kategori.kategoriDeskripsi")
                           ? _c("i", { staticClass: "icon-cross2" })
                           : _vm._e(),
-                        _vm._v("\n\t\t\t\t\t\tDeskripsi:\n\t\t\t\t\t")
+                        _vm._v("\n\t\t\t\t\t\tKeterangan:\n\t\t\t\t\t")
                       ]
                     ),
                     _vm._v(" "),
@@ -61369,7 +61408,7 @@ var render = function() {
                         rows: "5",
                         type: "text",
                         name: "kategoriDeskripsi",
-                        placeholder: "Silahkan masukkan deskripsi kategori"
+                        placeholder: "Silahkan masukkan keterangan kategori"
                       },
                       domProps: { value: _vm.formKategori.deskripsi },
                       on: {
@@ -78073,6 +78112,11 @@ var artikelKategori = {
       var commit = _ref14.commit;
 
       commit('setArtikelKategoriUpdateStat', '');
+    },
+    resetArtikelKategoriLoadStat: function resetArtikelKategoriLoadStat(_ref15) {
+      var commit = _ref15.commit;
+
+      commit('setArtikelKategoriLoadStat', '');
     }
   },
 
@@ -79832,6 +79876,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -80007,7 +80074,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.selectedItem = item;
 		},
 		ubahData: function ubahData(id) {
-			this.$router.push('/' + this.kelas + '/edit/' + id);
+			this.$router.push({ name: this.kelas + 'Edit', params: { id: id } });
+		},
+		lihatArtikel: function lihatArtikel(id) {
+			this.$store.dispatch('resetArtikelKategoriLoadStat');
+			this.$router.push({ name: 'artikelFilterKategori', params: { id: id } });
 		},
 		modalConfirmOpen: function modalConfirmOpen(source, isMobile, itemMobile) {
 			this.modalShow = true;
@@ -80778,6 +80849,46 @@ var render = function() {
                                               )
                                             ]
                                           )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.userData.can &&
+                                      _vm.userData.can["index artikel"]
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass: "pb-10 pl-15 pr-15"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-default btn-icon btn-block",
+                                                  attrs: {
+                                                    disabled:
+                                                      _vm.selectedItem
+                                                        .has_artikel_count === 0
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      $event.preventDefault()
+                                                      _vm.lihatArtikel(
+                                                        props.item.id
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "icon-file-eye"
+                                                  }),
+                                                  _vm._v(
+                                                    " Lihat artikel \n\t\t\t\t\t\t\t\t\t\t"
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
                                         : _vm._e()
                                     ]
                                   )
@@ -80879,6 +80990,41 @@ var render = function() {
                             [
                               _c("i", { staticClass: "icon-bin2" }),
                               _vm._v(" Hapus\n\t\t\t\t\t\t\t")
+                            ]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.userData.can && _vm.userData.can["index artikel"]
+                      ? _c("div", { staticClass: "btn-group pb-5" }, [
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip:top",
+                                  value: "Lihat artikel yang ditulis",
+                                  expression: "'Lihat artikel yang ditulis'",
+                                  arg: "top"
+                                }
+                              ],
+                              staticClass: "btn btn-default btn-icon",
+                              attrs: {
+                                disabled:
+                                  !_vm.selectedItem.id ||
+                                  _vm.selectedItem.has_artikel_count === 0
+                              },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.lihatArtikel(_vm.selectedItem.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-file-eye" }),
+                              _vm._v(" Lihat artikel \n\t\t\t\t\t\t\t")
                             ]
                           )
                         ])
@@ -80992,6 +81138,43 @@ var render = function() {
                               [
                                 _c("i", { staticClass: "icon-bin2" }),
                                 _vm._v(" Hapus\n\t\t\t\t\t\t\t\t")
+                              ]
+                            )
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.userData.can && _vm.userData.can["index artikel"]
+                      ? _c("li", [
+                          _c("div", { staticClass: "pl-5 pr-5 pb-5" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "tooltip",
+                                    rawName: "v-tooltip:top",
+                                    value: "Lihat artikel yang ditulis",
+                                    expression: "'Lihat artikel yang ditulis'",
+                                    arg: "top"
+                                  }
+                                ],
+                                staticClass:
+                                  "btn btn-default btn-icon btn-block",
+                                attrs: {
+                                  disabled:
+                                    _vm.selectedItem.has_artikel_count === 0
+                                },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.lihatArtikel(_vm.selectedItem.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-file-eye" }),
+                                _vm._v(" Lihat artikel \n\t\t\t\t\t\t\t\t")
                               ]
                             )
                           ])
@@ -81791,7 +81974,7 @@ var render = function() {
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tProfil:\n\t\t\t\t\t\t\t\t\t\t"
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKeterangan:\n\t\t\t\t\t\t\t\t\t\t"
                                   )
                                 ]
                               ),
@@ -81817,7 +82000,7 @@ var render = function() {
                                   type: "text",
                                   name: "penulisDeskripsi",
                                   placeholder:
-                                    "Silahkan masukkan profil penulis",
+                                    "Silahkan masukkan keterangan kategori",
                                   "data-vv-as": "Profil"
                                 },
                                 domProps: { value: _vm.form.deskripsi },

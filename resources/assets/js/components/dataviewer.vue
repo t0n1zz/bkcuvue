@@ -675,7 +675,7 @@
   import contextMenu from 'vue-context-menu';
 
   export default {
-    props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params'],
+    props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params','extSearchQuery1','extSearchColumn'],
     components: {
       jsonExcel,
       appModal,
@@ -761,6 +761,12 @@
     watch: {
       itemDataStat(value){
         this.excelLoadStat = value;
+      },
+      extSearchQuery1(value){
+        this.searchQuery1 = value;
+      },
+      extSearchColumn(value){
+        this.searchColumn = value;
       },
       searchQuery1: function (search_query) {
         if(this.params.search_operator === 'like'){

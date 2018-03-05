@@ -185,6 +185,9 @@ export const artikelKategori = {
     // reset status
     resetArtikelKategoriUpdateStat( {commit} ){
       commit('setArtikelKategoriUpdateStat', '');
+    },
+    resetArtikelKategoriLoadStat( {commit} ){
+      commit('setArtikelKategoriLoadStat', '');
     }
   },
 
