@@ -59586,6 +59586,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			titleDesc: 'Menambah artikel baru',
 			titleIcon: 'icon-plus3',
 			kelas: 'artikel',
+			kelasVuex: 'Artikel',
+			redirect: '/artikel/',
 			formKategori: {
 				id_cu: '',
 				name: '',
@@ -59615,7 +59617,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			modalTitle: '',
 			modalColor: '',
 			modalContent: '',
-			redirect: '/artikel/',
 			submited: false,
 			submitedKategori: false,
 			submitedPenulis: false
@@ -59695,12 +59696,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 
 			if (this.$route.meta.mode === 'edit') {
-				this.$store.dispatch('editArtikel', this.$route.params.id);
+				this.$store.dispatch('edit' + this.kelasVuex, this.$route.params.id);
 				this.title = 'Ubah Artikel';
 				this.titleDesc = 'Mengubah artikel';
 				this.titleIcon = 'icon-pencil5';
 			} else {
-				this.$store.dispatch('createArtikel');
+				this.$store.dispatch('create' + this.kelasVuex);
 			}
 		},
 		save: function save() {
@@ -59710,9 +59711,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.$validator.validateAll('form').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
-						_this.$store.dispatch('updateArtikel', [_this.$route.params.id, formData]);
+						_this.$store.dispatch('update' + _this.kelasVuex, [_this.$route.params.id, formData]);
 					} else {
-						_this.$store.dispatch('storeArtikel', formData);
+						_this.$store.dispatch('store' + _this.kelasVuex, formData);
 					}
 					_this.submited = false;
 				} else {
@@ -78824,8 +78825,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			if (this.$route.meta.mode === 'edit') {
 				this.$store.dispatch('edit' + this.kelasVuex, this.$route.params.id);
-				this.title = 'Ubah Artikel';
-				this.titleDesc = 'Mengubah artikel';
+				this.title = 'Ubah Penulis Artikel';
+				this.titleDesc = 'Mengubah penulis artikel';
 				this.titleIcon = 'icon-pencil5';
 			} else {
 				this.$store.dispatch('create' + this.kelasVuex);
@@ -81273,18 +81274,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -81302,12 +81291,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
-			title: 'Tambah Penulis',
-			titleDesc: 'Menambah penulis artikel baru',
+			title: 'Tambah Kategori Artikel',
+			titleDesc: 'Menambah kategori artikel baru',
 			titleIcon: 'icon-plus3',
-			kelas: 'artikelPenulis',
-			kelasVuex: 'ArtikelPenulis',
-			redirect: '/artikelPenulis/',
+			kelas: 'artikelKategori',
+			kelasVuex: 'ArtikelKategori',
+			redirect: '/artikelKategori/',
 			modalShow: false,
 			modalState: '',
 			modalTitle: '',
@@ -81364,8 +81353,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			if (this.$route.meta.mode === 'edit') {
 				this.$store.dispatch('edit' + this.kelasVuex, this.$route.params.id);
-				this.title = 'Ubah Artikel';
-				this.titleDesc = 'Mengubah artikel';
+				this.title = 'Ubah Kategori Artikel';
+				this.titleDesc = 'Mengubah kategori artikel';
 				this.titleIcon = 'icon-pencil5';
 			} else {
 				this.$store.dispatch('create' + this.kelasVuex);
@@ -81424,22 +81413,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return this.$store.getters.getUserDataLoadStat;
 		},
 		form: function form() {
-			return this.$store.getters.getArtikelPenulis;
+			return this.$store.getters.getArtikelKategori;
 		},
 		formStat: function formStat() {
-			return this.$store.getters.getArtikelPenulisLoadStat;
+			return this.$store.getters.getArtikelKategoriLoadStat;
 		},
 		rules: function rules() {
-			return this.$store.getters.getArtikelPenulisRules;
+			return this.$store.getters.getArtikelKategoriRules;
 		},
 		option: function option() {
-			return this.$store.getters.getArtikelPenulisOption;
+			return this.$store.getters.getArtikelKategoriOption;
 		},
 		updateResponse: function updateResponse() {
-			return this.$store.getters.getArtikelPenulisUpdate;
+			return this.$store.getters.getArtikelKategoriUpdate;
 		},
 		updateStat: function updateStat() {
-			return this.$store.getters.getArtikelPenulisUpdateStat;
+			return this.$store.getters.getArtikelKategoriUpdateStat;
 		},
 		modelPus: function modelPus() {
 			return this.$store.getters.getPusS;
@@ -81547,31 +81536,6 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("h5", [_vm._v("Foto:")]),
-                              _vm._v(" "),
-                              _c("app-image-upload", {
-                                attrs: {
-                                  image_loc: "/images/artikel/",
-                                  image_temp: _vm.form.gambar
-                                },
-                                model: {
-                                  value: _vm.form.gambar,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "gambar", $$v)
-                                  },
-                                  expression: "form.gambar"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
                           _c(
                             "div",

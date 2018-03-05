@@ -38,18 +38,6 @@
 							<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 								<div class="row">
 
-									<!-- gambar utama -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Foto:</h5>
-
-											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
-										</div>
-									</div>
-
 									<!-- name -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -181,12 +169,12 @@
 		},
 		data() {
 			return {
-				title: 'Tambah Penulis',
-				titleDesc: 'Menambah penulis artikel baru',
+				title: 'Tambah Kategori Artikel',
+				titleDesc: 'Menambah kategori artikel baru',
 				titleIcon: 'icon-plus3',
-				kelas: 'artikelPenulis',
-				kelasVuex: 'ArtikelPenulis',
-				redirect: '/artikelPenulis/',
+				kelas: 'artikelKategori',
+				kelasVuex: 'ArtikelKategori',
+				redirect: '/artikelKategori/',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -241,8 +229,8 @@
 
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
-					this.title = 'Ubah Artikel';
-					this.titleDesc = 'Mengubah artikel';
+					this.title = 'Ubah Kategori Artikel';
+					this.titleDesc = 'Mengubah kategori artikel';
 					this.titleIcon = 'icon-pencil5';
 				} else {
 					this.$store.dispatch('create' + this.kelasVuex);
@@ -299,22 +287,22 @@
 				return this.$store.getters.getUserDataLoadStat;
 			},
 			form(){
-				return this.$store.getters.getArtikelPenulis;
+				return this.$store.getters.getArtikelKategori;
 			},
 			formStat(){
-				return this.$store.getters.getArtikelPenulisLoadStat;
+				return this.$store.getters.getArtikelKategoriLoadStat;
 			},
 			rules(){
-				return this.$store.getters.getArtikelPenulisRules;
+				return this.$store.getters.getArtikelKategoriRules;
 			},
 			option(){
-				return this.$store.getters.getArtikelPenulisOption;
+				return this.$store.getters.getArtikelKategoriOption;
 			},
 			updateResponse(){
-				return this.$store.getters.getArtikelPenulisUpdate;
+				return this.$store.getters.getArtikelKategoriUpdate;
 			},
 			updateStat(){
-				return this.$store.getters.getArtikelPenulisUpdateStat;
+				return this.$store.getters.getArtikelKategoriUpdateStat;
 			},
 			modelPus() {
 				return this.$store.getters.getPusS;

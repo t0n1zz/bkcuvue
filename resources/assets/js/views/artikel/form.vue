@@ -497,6 +497,8 @@
 				titleDesc: 'Menambah artikel baru',
 				titleIcon: 'icon-plus3',
 				kelas: 'artikel',
+				kelasVuex: 'Artikel',
+				redirect: '/artikel/',
 				formKategori: {
 					id_cu: '',
 					name: '',
@@ -539,7 +541,6 @@
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
-				redirect: '/artikel/',
 				submited: false,
 				submitedKategori: false,
 				submitedPenulis: false
@@ -617,12 +618,12 @@
 				}
 
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch('editArtikel',this.$route.params.id);	
+					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
 					this.title = 'Ubah Artikel';
 					this.titleDesc = 'Mengubah artikel';
 					this.titleIcon = 'icon-pencil5';
 				} else {
-					this.$store.dispatch('createArtikel');
+					this.$store.dispatch('create' + this.kelasVuex);
 				}
 			},
 			save() {
@@ -630,9 +631,9 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch('updateArtikel', [this.$route.params.id, formData]);
+							this.$store.dispatch('update' + this.kelasVuex, [this.$route.params.id, formData]);
 						}else{
-							this.$store.dispatch('storeArtikel', formData);
+							this.$store.dispatch('store' + this.kelasVuex, formData);
 						}
 						this.submited = false;
 					}else{

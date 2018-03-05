@@ -241,8 +241,8 @@
 
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
-					this.title = 'Ubah Artikel';
-					this.titleDesc = 'Mengubah artikel';
+					this.title = 'Ubah Penulis Artikel';
+					this.titleDesc = 'Mengubah penulis artikel';
 					this.titleIcon = 'icon-pencil5';
 				} else {
 					this.$store.dispatch('create' + this.kelasVuex);
