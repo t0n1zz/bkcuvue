@@ -536,6 +536,19 @@
 					this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.modelKategori.id_cu]);
 				}
 			},
+			modelPenulisLoadStat(value){
+				if(value === 'success'){
+					this.params.search_column = 'artikelPenulis.name';
+					this.params.search_query_1 = this.modelPenulis.name;
+
+					this.extSearchColumn = 'Penulis';
+					this.extSearchQuery1 = this.modelPenulis.name;
+
+					this.id_cu = this.modelPenulis.id_cu;
+
+					this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.modelPenulis.id_cu]);
+				}
+			},
       updateStat(value) {
 				this.modalState = value;
 				this.modalButton = 'Ok';
@@ -562,6 +575,12 @@
 								}else{
 									this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
 								}
+							}else if(this.$route.meta.mode === 'penulis'){ //if artikelFilterPenulis
+								if(this.modelPenulisLoadStat !== 'success'){
+									this.$store.dispatch('editArtikelPenulis',this.$route.params.id);
+								}else{
+									this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
+								}
 							}else{
 								this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.id_cu]);
 							}
@@ -572,9 +591,6 @@
 			},
 			fetchCU(){
 				this.$store.dispatch('loadCUPus', this.userData.id_pus);
-			},
-			fetchKategori(){
-
 			},
 			changeCU(id){
 				this.id_cu = id;
@@ -656,6 +672,12 @@
 			},
 			modelKategoriLoadStat(){
 				return this.$store.getters.getArtikelKategoriLoadStat;
+			},
+			modelPenulis(){
+				return this.$store.getters.getArtikelPenulis;
+			},
+			modelPenulisLoadStat(){
+				return this.$store.getters.getArtikelPenulisLoadStat;
 			},
 			itemData(){
 				return this.$store.getters.getArtikelS;

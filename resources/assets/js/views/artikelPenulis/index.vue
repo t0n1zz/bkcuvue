@@ -120,6 +120,13 @@
 									<i class="icon-bin2"></i> Hapus
 								</button>
 							</div>
+
+							<!-- lihat artikel -->
+							<div class="btn-group pb-5" v-if="userData.can && userData.can['index artikel']">
+								<button @click.prevent="lihatArtikel(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Lihat artikel yang ditulis'" :disabled="!selectedItem.id || selectedItem.has_artikel_count === 0">
+									<i class="icon-file-eye"></i> Lihat artikel 
+								</button>
+							</div>
 						</template>
 
 						<!-- button context -->
@@ -148,6 +155,15 @@
 								<div class="pl-5 pr-5 pb-5">
 									<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
+									</button>
+								</div>
+							</li>
+
+							<!-- lihat artikel -->
+							<li v-if="userData.can && userData.can['index artikel']">
+								<div class="pl-5 pr-5 pb-5">
+									<button @click.prevent="lihatArtikel(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Lihat artikel yang ditulis'" :disabled="selectedItem.has_artikel_count === 0">
+										<i class="icon-file-eye"></i> Lihat artikel 
 									</button>
 								</div>
 							</li>
@@ -244,6 +260,13 @@
 										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['destroy ' + kelas]">
 											<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 												<i class="icon-bin2"></i> <span>Hapus</span>
+											</button>
+										</div>
+
+										<!-- lihat artikel -->
+										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['index artikel']">
+											<button @click.prevent="lihatArtikel(props.item.id)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_artikel_count === 0">
+												<i class="icon-file-eye"></i> Lihat artikel 
 											</button>
 										</div>
 		
@@ -459,7 +482,11 @@
 				this.selectedItem = item;
 			},
 			ubahData(id) {
-				this.$router.push('/' + this.kelas + '/edit/' + id);
+				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
+			},
+			lihatArtikel(id){
+				this.$store.dispatch('resetArtikelPenulisLoadStat');
+				this.$router.push({name: 'artikelFilterPenulis', params: { id: id }});
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

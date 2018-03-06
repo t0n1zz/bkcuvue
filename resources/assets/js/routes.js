@@ -30,6 +30,7 @@ const routes = [
 	// artikel
 	{ path: '/artikel',name: 'artikel', components: { default: artikel, 'header': header }},
 	{ path: '/artikel/kategori/:id',name: 'artikelFilterKategori', components: { default: artikel, 'header': header }, meta: { mode:'kategori' }},
+	{ path: '/artikel/penulis/:id',name: 'artikelFilterPenulis', components: { default: artikel, 'header': header }, meta: { mode:'penulis' }},
 	{ path: '/artikel/create',name: 'artikelCreate', components: { default: artikel_form, 'header': header} },
 	{ path: '/artikel/edit/:id',name: 'artikelEdit', components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } },
 

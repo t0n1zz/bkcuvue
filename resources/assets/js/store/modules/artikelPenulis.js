@@ -185,6 +185,9 @@ export const artikelPenulis = {
     // reset status
     resetArtikelPenulisUpdateStat( {commit} ){
       commit('setArtikelPenulisUpdateStat', '');
+    },
+    resetArtikelPenulisLoadStat( {commit} ){
+      commit('setArtikelPenulisLoadStat', '');
     }
   },
 
