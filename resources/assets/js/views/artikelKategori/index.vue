@@ -52,7 +52,7 @@
 										<option value="semua">Semua</option>
 										<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 										<option data-divider="true"></option>
-										<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+										<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 									</select>
 
 									<!-- reload cu -->
@@ -78,7 +78,7 @@
 									<option value="semua">Semua</option>
 									<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 									<option data-divider="true"></option>
-									<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+									<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 								</select>
 							</div>
 
@@ -242,21 +242,21 @@
 
 										<!-- update -->
 										<div class="pt-10 pb-10 pl-15 pr-15" v-if="userData.can && userData.can['update ' + kelas]">
-											<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
+											<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block" v-if="props.item.id">
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 										</div>
 										
 										<!-- destroy -->
 										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['destroy ' + kelas]">
-											<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
+											<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block" v-if="props.item">
 												<i class="icon-bin2"></i> <span>Hapus</span>
 											</button>
 										</div>
 
 										<!-- lihat artikel -->
 										<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['index artikel']">
-											<button @click.prevent="lihatArtikel(props.item.id)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_artikel_count === 0">
+											<button @click.prevent="lihatArtikel(props.item.id)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_artikel_count === 0" v-if="props.item.id">
 												<i class="icon-file-eye"></i> Lihat artikel 
 											</button>
 										</div>

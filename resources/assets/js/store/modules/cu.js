@@ -8,9 +8,12 @@ export const CU = {
     CULoadStat: '',
     CUUpdate: [],
     CUUpdateStat: '',
+    CURules: [],
+    CUOption: [],
   },
 
   actions: {
+    // load all
     loadCUS( { commit }, p ){
       commit('setCULoadStatS', 'loading');
       
@@ -19,8 +22,8 @@ export const CU = {
           commit('setCUS', response.data.model);
           commit('setCULoadStatS', 'success');
         })
-        .catch( function(){
-          commit('setCUS', []);
+        .catch( error => {
+          commit('setCUS', error.response);
           commit('setCULoadStatS', 'fail');
         });
     },
@@ -37,6 +40,8 @@ export const CU = {
           commit('setCULoadStatS', 'fail');
         });
     },
+
+    //load single data
     loadCU( {commit}, id ){
       commit('setCULoadStat', 'loading');
       
@@ -50,6 +55,9 @@ export const CU = {
           commit('setCULoadStat', 'fail');
         });
     },
+
+
+    //load cu pus
     loadCUPus( {commit}, id ){
       commit('setCULoadStatS', 'loading');
       
@@ -63,45 +71,120 @@ export const CU = {
           commit('setCULoadStatS', 'fail');
         });
     },
+
+    // create page
+    createCU( {commit} ){
+      commit('setCULoadStat', 'loading');
+      
+      CUAPI.createCU()
+        .then( function( response ){
+          commit('setCU', response.data.form );
+          commit('setCURules', response.data.rules);
+          commit('setCUOption', response.data.option)
+          commit('setCULoadStat', 'success');
+        })
+        .catch( function(){
+          commit('setCU', []);
+          commit('setCURules', []);
+          commit('setCUOption', [])
+          commit('setCULoadStat', 'fail');
+        });
+    },
+
+    //store data
     storeCU( {commit, state, dispatch}, form ){
       commit('setCUUpdateStat', 'loading');
 
       CUAPI.storeCU( form )
         .then( function( response ){
-          commit('setCUUpdate', response.data);
-          commit('setCUUpdateStat', 'success');
+          if(response.data.saved){
+            commit('setCUUpdate', response.data);
+            commit('setCUUpdateStat', 'success');
+          }else{
+            commit('setCUUpdateStat', 'fail');
+          }
         })
-        .catch( function(){
-          commit('setCUUpdate', response.data);
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setCUUpdate', this.errors);         
+          }else{
+            commit('setCUUpdate', 'Oops terjadi kesalahan :(');
+          }
           commit('setCUUpdateStat', 'fail');
         });
     },
-    updateCU( {commit, state, dispatch}, form ){
+
+
+    // edit page
+    editCU( {commit}, id ){
+      commit('setCULoadStat', 'loading');
+      
+      CUAPI.editCU( id )
+        .then( function( response ){
+          commit('setCU', response.data.form );
+          commit('setCURules', response.data.rules);
+          commit('setCUOption', response.data.option)
+          commit('setCULoadStat', 'success');
+        })
+        .catch( function(){
+          commit('setCU', []);
+          commit('setCURules', []);
+          commit('setCUOption', [])
+          commit('setCULoadStat', 'fail');
+        });
+    },
+
+    // update data
+    updateCU( {commit, state, dispatch}, [id, form] ){
       commit('setCUUpdateStat', 'loading');
 
-      CUAPI.updateCU( form )
+      CUAPI.updateCU( id, form )
         .then( function( response ){
-          commit('setCUUpdate', response.data);
-          commit('setCUUpdateStat', 'success');
+          if(response.data.saved){
+            commit('setCUUpdate', response.data);
+            commit('setCUUpdateStat', 'success');
+          }else{
+            commit('setCUUpdateStat', 'fail');
+          }
         })
-        .catch( function(){
-          commit('setCUUpdate', response.data);
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setCUUpdate', this.errors);         
+          }else{
+            commit('setCUUpdate', 'Oops terjadi kesalahan :(');
+          }
           commit('setCUUpdateStat', 'fail');
         });
     },
+
+    // delete data
     deleteCU( {commit, state, dispatch}, id ){
       commit('setCUUpdateStat', 'loading');
 
       CUAPI.deleteCU( id )
         .then( function( response ){
-          commit('setCUUpdate', response.data);
-          commit('setCUUpdateStat', 'success');
+          if(response.data.saved){
+            commit('setCUUpdate', response.data);
+            commit('setCUUpdateStat', 'success');
+          }else{
+            commit('setCUUpdateStat', 'fail');
+          }
         })
-        .catch( function(){
-          commit('setCUUpdate', response.data);
+        .catch(error => {
+          if (error.response.status) {
+            this.errors = error.response.data;
+            commit('setCUUpdate', this.errors);         
+          }else{
+            commit('setCUUpdate', 'Oops terjadi kesalahan :(');
+          }
           commit('setCUUpdateStat', 'fail');
         });
     },
+
+
+    // reset
     resetCUUpdateStat( {commit} ){
       commit('setCUUpdateStat', '');
     }

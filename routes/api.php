@@ -61,9 +61,13 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     // cu
     Route::get('/cu', 'CUController@index');
-    Route::get('/cu_all', 'CUController@indexAll');
+    Route::get('/cu/indexAll', 'CUController@indexAll');
     Route::get('/cu/pus/{id}', 'CUController@indexPus');
+    Route::get('/cu/create', 'CUController@create');
+    Route::get('/cu/edit/{id}', 'CUController@edit');
     Route::post('/cu/store', 'CUController@store');
+    Route::post('/cu/update/{id}', 'CUController@update');
+    Route::delete('/cu/{id}', 'CUController@destroy');
 
     // puskopdit
     Route::get('/pus', 'PusController@index');

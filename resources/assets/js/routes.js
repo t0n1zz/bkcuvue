@@ -7,6 +7,8 @@ import artikelPenulis from './views/artikelPenulis/index.vue';
 import artikelPenulis_form from './views/artikelPenulis/form.vue';
 import artikelKategori from './views/artikelKategori/index.vue';
 import artikelKategori_form from './views/artikelKategori/form.vue';
+import cu from './views/cu/index.vue';
+import cu_form from './views/cu/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import role from './views/role/index.vue';
@@ -44,6 +46,10 @@ const routes = [
 	{ path: '/artikelPenulis/create',name: 'artikelPenulisCreate', components: { default: artikelPenulis_form, 'header': header} },
 	{ path: '/artikelPenulis/edit/:id',name: 'artikelPenulisEdit', components: { default: artikelPenulis_form, 'header': header}, meta: { mode:'edit' } },
 
+	// cu
+	{ path: '/cu',name: 'cu', components: { default: cu, 'header': header }},
+	{ path: '/cu/create',name: 'cuCreate', components: { default: cu_form, 'header': header} },
+	{ path: '/cu/edit/:id',name: 'cuEdit', components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
 ]
 
 export default routes

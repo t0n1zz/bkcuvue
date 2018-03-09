@@ -35,18 +35,18 @@ Route::get('/testroute', function () {
     // $userdata = $user->combine($roles);
 
     // create permission
-    // Spatie\Permission\Models\Permission::create(['name' => 'index artikelKategori']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'create artikelKategori']); 
-    // Spatie\Permission\Models\Permission::create(['name' => 'update artikelKategori']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'destroy artikelKategori']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'index cu']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'create cu']); 
+    // Spatie\Permission\Models\Permission::create(['name' => 'update cu']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'destroy cu']);
 
     // give permission to role
     // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
     // $role->givePermissionTo([
-    //     'index artikelKategori',
-    //     'create artikelKategori',
-    //     'destroy artikelKategori',
-    //     'update artikelKategori']);
+    //     'index cu',
+    //     'create cu',
+    //     'destroy cu',
+    //     'update cu']);
 
     // activity log
     // $activity = Spatie\Activitylog\Models\Activity::all()->last();

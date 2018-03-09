@@ -45,7 +45,7 @@
 										<option value="semua">Semua</option>
 										<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 										<option data-divider="true"></option>
-										<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+										<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 									</select>
 
 									<!-- reload cu -->
@@ -71,7 +71,7 @@
 									<option value="semua">Semua</option>
 									<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
 									<option data-divider="true"></option>
-									<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+									<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 								</select>
 							</div>
 

@@ -15,6 +15,7 @@ export const user = {
   },
 
   actions: {
+    // load single user
     loadUserData({commit}){
       commit('setUserDataLoadStat', 'loading');
 
@@ -28,6 +29,8 @@ export const user = {
           commit('setUserDataLoadStat', 'fail');
         });
     },
+
+    // load all
     loadUserS( { commit }, p ){
       commit('setUserLoadStatS', 'loading');
       
@@ -41,6 +44,8 @@ export const user = {
           commit('setUserLoadStatS', 'fail');
         });
     },
+
+    // load by cu
     loadUserCUS( { commit }, [p, id] ){
       commit('setUserLoadStatS', 'loading');
       
@@ -54,6 +59,8 @@ export const user = {
           commit('setUserLoadStatS', 'fail');
         });
     },
+
+    // load single data
     loadUser( {commit}, id ){
       commit('setUserLoadStat', 'loading');
       
@@ -67,6 +74,8 @@ export const user = {
           commit('setUserLoadStatS', 'fail');
         });
     },
+
+    // create page
     createUser( {commit} ){
       commit('setUserLoadStat', 'loading');
       
@@ -84,6 +93,8 @@ export const user = {
           commit('setUserLoadStat', 'fail');
         });
     },
+
+    // store data
     storeUser( {commit, state, dispatch}, form ){
       commit('setUserUpdateStat', 'loading');
 
@@ -106,6 +117,8 @@ export const user = {
           commit('setUserUpdateStat', 'fail');
         });
     },
+
+    // edit page
     editUser( {commit}, id ){
       commit('setUserLoadStat', 'loading');
       
@@ -123,6 +136,8 @@ export const user = {
           commit('setUserLoadStat', 'fail');
         });
     },
+
+    // update data
     updateUser( {commit, state, dispatch}, [id, form] ){
       commit('setUserUpdateStat', form);
 
@@ -145,6 +160,8 @@ export const user = {
           commit('setUserUpdateStat', 'fail');
         });
     },
+
+    // reset password
     updateUserResetPassword( {commit, state, dispatch}, id ){
       commit('setUserUpdateStat', 'loading');
 
@@ -161,6 +178,8 @@ export const user = {
           }
         });
     },
+
+    // update status
     updateUserStatus( {commit, state, dispatch}, id ){
       commit('setUserUpdateStat', 'loading');
 
@@ -177,6 +196,8 @@ export const user = {
           }
         });
     },
+
+    // delete user
     deleteUser( {commit, state, dispatch}, id ){
       commit('setUserUpdateStat', 'loading');
 
@@ -190,6 +211,8 @@ export const user = {
           commit('setUserLoadStatS', 'fail');
         });
     },
+
+    // reset
     resetUserUpdateStat( {commit} ){
       commit('setUserUpdateStat', '');
     }

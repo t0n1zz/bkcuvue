@@ -31,9 +31,9 @@ class ArtikelKategori extends Model {
 
     public function artikel(){
         return $this->hasMany('App\Artikel','id_artikel_kategori','id')
-                    ->where('status','=','1')
-                    ->orderBy('created_at','desc')
-                    ->take(3);
+            ->where('status','=','1')
+            ->orderBy('created_at','desc')
+            ->take(3);
     }
 
     public static function initialize(){

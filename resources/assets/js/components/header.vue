@@ -106,6 +106,29 @@
 						</ul>
 					</li>
 
+					<!-- organisasi -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+							<i class="icon-library2 position-left"></i> Organisasi
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+
+							<!-- tambah artikel -->
+							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create cu']">
+								<a><i class="icon-plus22"></i> Tambah CU</a>
+							</router-link>
+
+							<!-- separator -->
+							<li class="divider"></li>
+
+							<!-- artikel -->
+							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index cu']">
+								<a><i class="icon-office"></i> CU</a>
+							</router-link>
+						</ul>
+					</li>
+
 					<!-- pengaturan -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">

@@ -268,7 +268,7 @@
                 Kelompok {{ group.title }}: <b>{{index}}</b>
               </td>
             </tr>
-            <slot name="item-desktop" v-for="item in items" :item="item"></slot>
+            <slot name="item-desktop" v-for="(item,index) in items" :item="item" :index="index"></slot>
           </tbody>
 
           <!-- error body -->
@@ -533,6 +533,7 @@
         </li>
       </ul>
     </div>
+
     
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
@@ -953,9 +954,11 @@
           vm.columnData.forEach(function (key) {
             if (!key.hide && !key.disable) {
               if (key.groupKey) {
-                object[key.key] = _.get(item, key.groupKey);
+                const value = _.get(item, key.groupKey, '-');
+                object[key.key] = value === '' ? '-' : value;
               } else {
-                object[key.key] = _.get(item, key.key);
+                const value = _.get(item, key.key, '-');
+                object[key.key] = value === '' ? '-' : value;
               }
             }
           })

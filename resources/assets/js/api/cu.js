@@ -18,8 +18,16 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/cu/pus/' + id);
   },
 
+  createCU: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/create');
+  },
+
   storeCU: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/cu/store', form);
+  },
+
+  editCU: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/edit/' + id);
   },
 
   updateCU: function ( id, form ){

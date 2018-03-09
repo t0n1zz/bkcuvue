@@ -10,6 +10,8 @@ use Image;
 class ArtikelController extends Controller{
 
 	protected $imagepath = 'images/artikel/';
+	protected $width = 300;
+	protected $height = 200;
 
 	public function index()
 	{
@@ -49,7 +51,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request);
+			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request);
 		else
 			$fileName = '';
 
@@ -101,7 +103,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
+			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
 		else
 			$fileName = '';
 
@@ -179,7 +181,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Artikel' .$name. 'berhasil dihapus'
+				'message' => 'Artikel ' .$name. 'berhasil dihapus'
 			]);
 	}
 
