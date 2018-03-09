@@ -82729,6 +82729,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed__ = __webpack_require__(307);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue__);
 //
 //
 //
@@ -83076,8 +83078,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
+
 
 
 
@@ -83092,7 +83093,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a,
-		truncate: __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default.a
+		truncate: __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default.a,
+		collapseButton: __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -83814,10 +83816,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c("td", [
                                             _vm._v(
-                                              ": " +
-                                                _vm._s(props.item.name) +
-                                                " | " +
-                                                _vm._s(props.index)
+                                              ": " + _vm._s(props.item.name)
                                             )
                                           ])
                                         ])
@@ -84361,25 +84360,16 @@ var render = function() {
                                       : _vm._e(),
                                     _vm._v(" "),
                                     _c("tr", [
-                                      _c("td", { attrs: { colspan: "2" } }, [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-link btn-block",
-                                            attrs: {
-                                              "data-toggle": "collapse",
-                                              "data-target":
-                                                ".collap" + props.item.id
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-menu"
-                                            })
-                                          ]
-                                        )
-                                      ])
+                                      _c(
+                                        "td",
+                                        { attrs: { colspan: "2" } },
+                                        [
+                                          _c("collapse-button", {
+                                            attrs: { id: props.item.id }
+                                          })
+                                        ],
+                                        1
+                                      )
                                     ])
                                   ])
                                 ]
@@ -116219,6 +116209,126 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-57cc3c67", module.exports)
+  }
+}
+
+/***/ }),
+/* 367 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(368)
+/* template */
+var __vue_template__ = __webpack_require__(369)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/collapseButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3ad758d4", Component.options)
+  } else {
+    hotAPI.reload("data-v-3ad758d4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 368 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      default: ''
+    }
+  },
+  data: function data() {
+    return {
+      clicked: false
+    };
+  },
+
+  methods: {
+    btnClick: function btnClick() {
+      if (this.clicked) {
+        this.clicked = false;
+      } else {
+        this.clicked = true;
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 369 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-link btn-block",
+        attrs: { "data-toggle": "collapse", "data-target": ".collap" + _vm.id },
+        on: { click: _vm.btnClick }
+      },
+      [
+        _c("i", {
+          staticClass: "icon-arrow-down12",
+          class: { "rotate-180": _vm.clicked }
+        })
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3ad758d4", module.exports)
   }
 }
 

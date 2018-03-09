@@ -195,7 +195,7 @@
 										</tr>
 										<tr v-if="!columnData[1].hide">
 											<td><b>{{columnData[1].title}}</b></td>
-											<td>: {{props.item.name}} | {{props.index}}</td>
+											<td>: {{props.item.name}}</td>
 										</tr>
 										<tr v-if="!columnData[2].hide">
 											<td><b>{{columnData[2].title}}</b></td>
@@ -298,9 +298,7 @@
 										</tr>
 										<tr>
 											<td colspan="2">
-												<button class="btn btn-link btn-block" data-toggle="collapse" :data-target="'.collap'+props.item.id">
-													<i class="icon-menu"></i>
-												</button>
+												<collapse-button :id="props.item.id"></collapse-button>
 											</td>
 										</tr>
 									</tbody>
@@ -354,6 +352,7 @@
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import truncate from 'vue-truncate-collapsed';
+	import collapseButton from '../../components/collapseButton.vue';
 
 	export default {
 		name: 'CU',
@@ -361,7 +360,8 @@
 			DataViewer,
 			appModal,
 			message,
-			truncate
+			truncate,
+			collapseButton
 		},
 		data() {
 			return {
