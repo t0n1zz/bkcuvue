@@ -109,19 +109,16 @@
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
 								<td v-if="!columnData[1].hide" class="text-nowrap">
-									<span v-if="props.item.name">{{props.item.name}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.name"></check-value>
 								</td>
 								<td v-if="!columnData[2].hide">
-									<span v-if="props.item.no_ba">{{props.item.no_ba}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.no_ba"></check-value>
 								</td>
 								<td v-if="!columnData[3].hide">
-									<span v-if="props.item.badan_hukum">{{props.item.badan_hukum}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.badan_hukum"></check-value>
 								</td>
 								<td v-if="!columnData[4].hide && !columnData[4].disable">
-									<span v-if="props.item.provinces">{{props.item.provinces.name}}</span>
+									<check-value :value="props.item.provinces.name" :empty="columnData[4].groupNoKey" v-if="props.item.provinces"></check-value>
 									<span v-else>{{columnData[4].groupNoKey}}</span>
 								</td>
 								<td v-if="!columnData[5].hide && !columnData[5].disable">
@@ -129,19 +126,18 @@
 									<span v-else>{{columnData[5].groupNoKey}}</span>
 								</td>
 								<td v-if="!columnData[6].hide && !columnData[6].disable">
-									<span v-if="props.item.districts">{{props.item.districts.name}}</span>
+									<check-value :value="props.item.districts.name" :empty="columnData[6].groupNoKey" v-if="props.item.districts"></check-value>
 									<span v-else>{{columnData[6].groupNoKey}}</span>
 								</td>
 								<td v-if="!columnData[7].hide && !columnData[7].disable">
-									<span v-if="props.item.villages">{{props.item.villages.name}}</span>
+									<check-value :value="props.item.villages.name" :empty="columnData[7].groupNoKey" v-if="props.item.villages"></check-value>
 									<span v-else>{{columnData[7].groupNoKey}}</span>
 								</td>
 								<td v-if="!columnData[8].hide" class="text-nowrap">
-									<truncate clamp="...selengkapnya" :length="50" less="...kembali" :text="props.item.alamat"></truncate>
+									<check-value :value="props.item.alamat"></check-value>
 								</td>
 								<td v-if="!columnData[9].hide" class="text-nowrap">
-									<span v-if="props.item.app">{{props.item.app}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.app"></check-value>
 								</td>
 								<td v-if="!columnData[10].hide" v-html="$options.filters.date(props.item.ultah)"></td>
 								<td v-if="!columnData[11].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
@@ -150,20 +146,16 @@
 									<span v-else>-</span>
 								</td>
 								<td v-if="!columnData[13].hide">
-									<span v-if="props.item.email">{{props.item.email}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.email"></check-value>
 								</td>
 								<td v-if="!columnData[14].hide">
-									<span v-if="props.item.telp">{{props.item.telp}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.telp"></check-value>
 								</td>
 								<td v-if="!columnData[15].hide">
-									<span v-if="props.item.hp">{{props.item.hp}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.hp"></check-value>
 								</td>
 								<td v-if="!columnData[16].hide">
-									<span v-if="props.item.pos">{{props.item.pos}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.pos"></check-value>
 								</td>
 								<td v-if="!columnData[17].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
 								<td v-if="!columnData[18].hide" class="text-nowrap">
@@ -195,61 +187,53 @@
 										</tr>
 										<tr v-if="!columnData[1].hide">
 											<td><b>{{columnData[1].title}}</b></td>
-											<td>: {{props.item.name}}</td>
+											<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[2].hide">
 											<td><b>{{columnData[2].title}}</b></td>
-											<td>: {{props.item.no_ba}} {{props.index}}</td>
+											<td><check-value :value="props.item.no_ba" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[3].hide">
 											<td><b>{{columnData[3].title}}</b></td>
-											<td>: {{props.item.badan_hukum}}</td>
+											<td><check-value :value="props.item.badan_hukum" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[4].hide">
 											<td><b>{{columnData[4].title}}</b></td>
 											<td>
-												<span v-if="props.item.provinces">
-													: {{props.item.provinces.name}}
-												</span>
-												<span v-else>: -</span>	
+												<check-value :value="props.item.provinces.name" :isTrim="false" :frontText="': '" v-if="props.item.provinces"></check-value>
+												<span v-else>: {{columnData[4].groupNoKey}}</span>	
 											</td>
 										</tr>
 										<tr v-if="!columnData[5].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[5].title}}</b></td>
 											<td>
-												<span v-if="props.item.regencies">
-													: {{props.item.regencies.name}}
-												</span>
-												<span v-else>: -</span>	
+												<check-value :value="props.item.regencies.name" :isTrim="false" :frontText="': '" v-if="props.item.regencies"></check-value>
+												<span v-else>: {{columnData[5].groupNoKey}}</span>	
 											</td>
 										</tr>
 										<tr v-if="!columnData[6].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[6].title}}</b></td>
 											<td>
-												<span v-if="props.item.districts">
-													: {{props.item.districts.name}}
-												</span>
-												<span v-else>: -</span>	
+												<check-value :value="props.item.districts.name" :isTrim="false" :frontText="': '" v-if="props.item.districts"></check-value>
+												<span v-else>: {{columnData[6].groupNoKey}}</span>	
 											</td>
 										</tr>
 										<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[7].title}}</b></td>
 											<td>
-												<span v-if="props.item.villages">
-													: {{props.item.villages.name}}
-												</span>
-												<span v-else>: -</span>	
+												<check-value :value="props.item.villages.name" :isTrim="false" :frontText="': '" v-if="props.item.villages"></check-value>
+												<span v-else>: {{columnData[7].groupNoKey}}</span>	
 											</td>
 										</tr>
 										<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
 											<td colspan="2"><b>{{columnData[8].title}}</b></td>
 										</tr>
 										<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
-											<td  colspan="2" style="word-wrap: break-word;">{{props.item.alamat}} </td>
+											<td colspan="2" style="word-wrap: break-word;"><check-value :value="props.item.alamat" :isTrim="false"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[9].title}}</b></td>
-											<td>: {{props.item.app}}</td>
+											<td><check-value :value="props.item.app" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[10].title}}</b></td>
@@ -265,23 +249,23 @@
 										</tr>
 										<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[12].title}}</b></td>
-											<td>: {{props.item.website}}</td>
+											<td><check-value :value="props.item.website" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[13].title}}</b></td>
-											<td>: {{props.item.email}}</td>
+											<td><check-value :value="props.item.email" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[14].title}}</b></td>
-											<td>: {{props.item.telp}}</td>
+											<td><check-value :value="props.item.telp" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[15].title}}</b></td>
-											<td>: {{props.item.hp}}</td>
+											<td><check-value :value="props.item.hp" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[16].title}}</b></td>
-											<td>: {{props.item.pos}}</td>
+											<td><check-value :value="props.item.pos" :isTrim="false" :frontText="': '"></check-value></td>
 										</tr>
 										<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
 											<td><b>{{columnData[17].title}}</b></td>
@@ -353,6 +337,7 @@
 	import message from "../../components/message.vue";
 	import truncate from 'vue-truncate-collapsed';
 	import collapseButton from '../../components/collapseButton.vue';
+	import checkValue from '../../components/checkValue.vue';
 
 	export default {
 		name: 'CU',
@@ -361,7 +346,8 @@
 			appModal,
 			message,
 			truncate,
-			collapseButton
+			collapseButton,
+			checkValue
 		},
 		data() {
 			return {
@@ -656,10 +642,6 @@
 			},
 			date: function (value) {
 				return moment(value).format('DD-MM-YYYY');
-			},
-			trimString: function (string) {
-				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
-					' [...]';
 			}
 		}
 	}

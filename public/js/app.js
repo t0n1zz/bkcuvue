@@ -82731,6 +82731,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue__);
 //
 //
 //
@@ -83062,22 +83064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -83094,7 +83081,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a,
 		truncate: __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default.a,
-		collapseButton: __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default.a
+		collapseButton: __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -83366,9 +83354,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		date: function date(value) {
 			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY');
-		},
-		trimString: function trimString(string) {
-			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
 		}
 	}
 });
@@ -83528,50 +83513,65 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[1].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
-                                    props.item.name
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.name))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    { staticClass: "text-nowrap" },
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.name }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[2].hide
-                                ? _c("td", [
-                                    props.item.no_ba
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.no_ba))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.no_ba }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[3].hide
-                                ? _c("td", [
-                                    props.item.badan_hukum
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.badan_hukum))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.badan_hukum }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[4].hide &&
                               !_vm.columnData[4].disable
-                                ? _c("td", [
-                                    props.item.provinces
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(props.item.provinces.name)
-                                          )
-                                        ])
-                                      : _c("span", [
-                                          _vm._v(
-                                            _vm._s(_vm.columnData[4].groupNoKey)
-                                          )
-                                        ])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.provinces
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value: props.item.provinces.name,
+                                              empty:
+                                                _vm.columnData[4].groupNoKey
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[4].groupNoKey
+                                              )
+                                            )
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[5].hide &&
@@ -83593,36 +83593,52 @@ var render = function() {
                               _vm._v(" "),
                               !_vm.columnData[6].hide &&
                               !_vm.columnData[6].disable
-                                ? _c("td", [
-                                    props.item.districts
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(props.item.districts.name)
-                                          )
-                                        ])
-                                      : _c("span", [
-                                          _vm._v(
-                                            _vm._s(_vm.columnData[6].groupNoKey)
-                                          )
-                                        ])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.districts
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value: props.item.districts.name,
+                                              empty:
+                                                _vm.columnData[6].groupNoKey
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[6].groupNoKey
+                                              )
+                                            )
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[7].hide &&
                               !_vm.columnData[7].disable
-                                ? _c("td", [
-                                    props.item.villages
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(props.item.villages.name)
-                                          )
-                                        ])
-                                      : _c("span", [
-                                          _vm._v(
-                                            _vm._s(_vm.columnData[7].groupNoKey)
-                                          )
-                                        ])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.villages
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value: props.item.villages.name,
+                                              empty:
+                                                _vm.columnData[7].groupNoKey
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[7].groupNoKey
+                                              )
+                                            )
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[8].hide
@@ -83630,13 +83646,8 @@ var render = function() {
                                     "td",
                                     { staticClass: "text-nowrap" },
                                     [
-                                      _c("truncate", {
-                                        attrs: {
-                                          clamp: "...selengkapnya",
-                                          length: 50,
-                                          less: "...kembali",
-                                          text: props.item.alamat
-                                        }
+                                      _c("check-value", {
+                                        attrs: { value: props.item.alamat }
                                       })
                                     ],
                                     1
@@ -83644,13 +83655,16 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[9].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
-                                    props.item.app
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.app))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    { staticClass: "text-nowrap" },
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.app }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[10].hide
@@ -83688,43 +83702,51 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[13].hide
-                                ? _c("td", [
-                                    props.item.email
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.email))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.email }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[14].hide
-                                ? _c("td", [
-                                    props.item.telp
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.telp))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.telp }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[15].hide
-                                ? _c("td", [
-                                    props.item.hp
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.hp))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.hp }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[16].hide
-                                ? _c("td", [
-                                    props.item.pos
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.pos))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.pos }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[17].hide
@@ -83814,11 +83836,19 @@ var render = function() {
                                             ])
                                           ]),
                                           _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              ": " + _vm._s(props.item.name)
-                                            )
-                                          ])
+                                          _c(
+                                            "td",
+                                            [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.name,
+                                                  isTrim: false,
+                                                  frontText: ": "
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
                                         ])
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -83832,14 +83862,19 @@ var render = function() {
                                             ])
                                           ]),
                                           _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              ": " +
-                                                _vm._s(props.item.no_ba) +
-                                                " " +
-                                                _vm._s(props.index)
-                                            )
-                                          ])
+                                          _c(
+                                            "td",
+                                            [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.no_ba,
+                                                  isTrim: false,
+                                                  frontText: ": "
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
                                         ])
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -83853,12 +83888,19 @@ var render = function() {
                                             ])
                                           ]),
                                           _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              ": " +
-                                                _vm._s(props.item.badan_hukum)
-                                            )
-                                          ])
+                                          _c(
+                                            "td",
+                                            [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.badan_hukum,
+                                                  isTrim: false,
+                                                  frontText: ": "
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
                                         ])
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -83872,20 +83914,31 @@ var render = function() {
                                             ])
                                           ]),
                                           _vm._v(" "),
-                                          _c("td", [
-                                            props.item.provinces
-                                              ? _c("span", [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                      _vm._s(
+                                          _c(
+                                            "td",
+                                            [
+                                              props.item.provinces
+                                                ? _c("check-value", {
+                                                    attrs: {
+                                                      value:
                                                         props.item.provinces
-                                                          .name
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  )
-                                                ])
-                                              : _c("span", [_vm._v(": -")])
-                                          ])
+                                                          .name,
+                                                      isTrim: false,
+                                                      frontText: ": "
+                                                    }
+                                                  })
+                                                : _c("span", [
+                                                    _vm._v(
+                                                      ": " +
+                                                        _vm._s(
+                                                          _vm.columnData[4]
+                                                            .groupNoKey
+                                                        )
+                                                    )
+                                                  ])
+                                            ],
+                                            1
+                                          )
                                         ])
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -83907,20 +83960,31 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              props.item.regencies
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
+                                            _c(
+                                              "td",
+                                              [
+                                                props.item.regencies
+                                                  ? _c("check-value", {
+                                                      attrs: {
+                                                        value:
                                                           props.item.regencies
-                                                            .name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
+                                                            .name,
+                                                        isTrim: false,
+                                                        frontText: ": "
+                                                      }
+                                                    })
+                                                  : _c("span", [
+                                                      _vm._v(
+                                                        ": " +
+                                                          _vm._s(
+                                                            _vm.columnData[5]
+                                                              .groupNoKey
+                                                          )
+                                                      )
+                                                    ])
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -83943,20 +84007,31 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              props.item.districts
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
+                                            _c(
+                                              "td",
+                                              [
+                                                props.item.districts
+                                                  ? _c("check-value", {
+                                                      attrs: {
+                                                        value:
                                                           props.item.districts
-                                                            .name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
+                                                            .name,
+                                                        isTrim: false,
+                                                        frontText: ": "
+                                                      }
+                                                    })
+                                                  : _c("span", [
+                                                      _vm._v(
+                                                        ": " +
+                                                          _vm._s(
+                                                            _vm.columnData[6]
+                                                              .groupNoKey
+                                                          )
+                                                      )
+                                                    ])
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -83979,20 +84054,31 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              props.item.villages
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
+                                            _c(
+                                              "td",
+                                              [
+                                                props.item.villages
+                                                  ? _c("check-value", {
+                                                      attrs: {
+                                                        value:
                                                           props.item.villages
-                                                            .name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
+                                                            .name,
+                                                        isTrim: false,
+                                                        frontText: ": "
+                                                      }
+                                                    })
+                                                  : _c("span", [
+                                                      _vm._v(
+                                                        ": " +
+                                                          _vm._s(
+                                                            _vm.columnData[7]
+                                                              .groupNoKey
+                                                          )
+                                                      )
+                                                    ])
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -84039,11 +84125,14 @@ var render = function() {
                                                 attrs: { colspan: "2" }
                                               },
                                               [
-                                                _vm._v(
-                                                  _vm._s(props.item.alamat) +
-                                                    " "
-                                                )
-                                              ]
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.alamat,
+                                                    isTrim: false
+                                                  }
+                                                })
+                                              ],
+                                              1
                                             )
                                           ]
                                         )
@@ -84067,11 +84156,19 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " + _vm._s(props.item.app)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.app,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -84166,12 +84263,19 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " +
-                                                  _vm._s(props.item.website)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.website,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -84194,11 +84298,19 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " + _vm._s(props.item.email)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.email,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -84221,11 +84333,19 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " + _vm._s(props.item.telp)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.telp,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -84248,11 +84368,19 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " + _vm._s(props.item.hp)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.hp,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -84275,11 +84403,19 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " + _vm._s(props.item.pos)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.pos,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ]
                                         )
                                       : _vm._e(),
@@ -116273,6 +116409,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -116314,10 +116455,17 @@ var render = function() {
         on: { click: _vm.btnClick }
       },
       [
-        _c("i", {
-          staticClass: "icon-arrow-down12",
-          class: { "rotate-180": _vm.clicked }
-        })
+        _vm.clicked
+          ? _c("span", [
+              _c("i", { staticClass: "icon-arrow-up12" }),
+              _vm._v(" Kembali "),
+              _c("i", { staticClass: "icon-arrow-up12" })
+            ])
+          : _c("span", [
+              _c("i", { staticClass: "icon-arrow-down12" }),
+              _vm._v(" Selengkapnya "),
+              _c("i", { staticClass: "icon-arrow-down12" })
+            ])
       ]
     )
   ])
@@ -116329,6 +116477,143 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-3ad758d4", module.exports)
+  }
+}
+
+/***/ }),
+/* 370 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(371)
+/* template */
+var __vue_template__ = __webpack_require__(372)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/checkValue.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-56ee5620", Component.options)
+  } else {
+    hotAPI.reload("data-v-56ee5620", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 371 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_truncate_collapsed__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_truncate_collapsed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_truncate_collapsed__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    truncate: __WEBPACK_IMPORTED_MODULE_0_vue_truncate_collapsed___default.a
+  },
+  props: {
+    value: {
+      default: ''
+    },
+    frontText: {
+      default: ''
+    },
+    trimLength: {
+      default: 50
+    },
+    isTrim: {
+      default: true
+    },
+    empty: {
+      default: '-'
+    }
+  }
+});
+
+/***/ }),
+/* 372 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.value
+      ? _c("span", [
+          _vm.isTrim
+            ? _c(
+                "span",
+                [
+                  _vm._v("\n      " + _vm._s(_vm.frontText) + " "),
+                  _c("truncate", {
+                    attrs: {
+                      clamp: "...selengkapnya",
+                      length: _vm.trimLength,
+                      less: "...kembali",
+                      text: _vm.value
+                    }
+                  })
+                ],
+                1
+              )
+            : _c("span", [
+                _vm._v(_vm._s(_vm.frontText) + " " + _vm._s(_vm.value))
+              ])
+        ])
+      : _c("span", [_vm._v(_vm._s(_vm.frontText) + " " + _vm._s(_vm.empty))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-56ee5620", module.exports)
   }
 }
 
