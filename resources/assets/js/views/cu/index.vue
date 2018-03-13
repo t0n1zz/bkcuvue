@@ -377,15 +377,99 @@
 						disable: false
 					},
 					{
-						title: 'Tgl. Buat',
-						key: 'created_at',
+						title: 'No. BA',
+						key: 'no_ba',
+						type: 'number',
+						disable: false
+					},
+					{
+						title: 'Provinsi',
+						key: 'provinces.name',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Kabupaten',
+						key: 'regencies.name',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Kecamatan',
+						key: 'districts.name',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Desa',
+						key: 'villages.name',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Alamat',
+						key: 'alamat',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Aplikasi',
+						key: 'app',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Tgl. Berdiri',
+						key: 'ultah',
 						type: 'date',
 						disable: false
 					},
 					{
-						title: 'Tgl. Ubah',
-						key: 'updated_at',
+						title: 'Tgl. Bergabung',
+						key: 'bergabung',
 						type: 'date',
+						disable: false
+					},
+					{
+						title: 'Website',
+						key: 'website',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'E-mail',
+						key: 'email',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'No. Telp',
+						key: 'telp',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'No. Hp',
+						key: 'hp',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Kode Pos',
+						key: 'pos',
+						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Tgl. / Waktu Buat',
+						key: 'created_at',
+						type: 'datetime',
+						disable: false
+					},
+					{
+						title: 'Tgl. / Waktu Ubah',
+						key: 'updated_at',
+						type: 'datetime',
 						disable: false
 					}
 				],
@@ -418,13 +502,13 @@
 						title: 'Badan Hukum',
 						key: 'badan_hukum',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},
 					{
 						title: 'Provinsi',
-						key: 'id_province',
+						key: 'id_provinces',
 						groupKey: 'provinces.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -434,7 +518,7 @@
 					},
 					{
 						title: 'Kabupaten',
-						key: 'id_regency',
+						key: 'id_regencies',
 						groupKey: 'regencies.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -444,7 +528,7 @@
 					},
 					{
 						title: 'Kecamatan',
-						key: 'id_district',
+						key: 'id_districts',
 						groupKey: 'districts.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -454,7 +538,7 @@
 					},
 					{
 						title: 'Desa',
-						key: 'id_village',
+						key: 'id_villages',
 						groupKey: 'villages.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -466,7 +550,7 @@
 						title: 'Alamat',
 						key: 'alamat',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},
@@ -498,7 +582,7 @@
 						title: 'Website',
 						key: 'website',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},
@@ -506,7 +590,7 @@
 						title: 'E-mail',
 						key: 'email',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},
@@ -514,7 +598,7 @@
 						title: 'No. Telp',
 						key: 'telp',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},
@@ -522,7 +606,7 @@
 						title: 'No. Hp',
 						key: 'hp',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},
@@ -530,7 +614,7 @@
 						title: 'Kode Pos',
 						key: 'pos',
 						excelType: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false
 					},

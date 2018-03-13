@@ -202,7 +202,7 @@
 								</td>
 								<td v-if="!columnData[3].hide && !columnData[3].disable">
 									<span v-if="props.item.artikel_penulis">{{props.item.artikel_penulis.name}}</span>
-								</td>
+								</td> 
 								<td v-if="!columnData[4].hide && !columnData[4].disable">
 									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
 								</td>

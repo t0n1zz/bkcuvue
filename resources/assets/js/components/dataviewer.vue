@@ -2,36 +2,49 @@
   <div>
 
     <!-- desktop -->
-    <div class="panel panel-flat hidden-xs">
-      <div class="panel-heading has-visible-elements">
+    <div class="panel panel-flat">
+      <!-- heading desktop -->
+      <div class="panel-heading has-visible-elements hidden-xs hidden-print">
         <h5 class="panel-title">Tabel {{ title }}</h5>
         <div class="heading-elements visible-elements">
           <ul class="icons-list">
-            <li><a data-action="collapse" v-tooltip:top="'Collapse'"></a></li>
             <li>
               <a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
             </li>
           </ul>
         </div>
       </div>
+
+      <!-- heading mobile -->
+      <div class="panel-heading has-visible-elements visible-xs hidden-print">
+        <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
+        <div class="heading-elements visible-elements">
+          <ul class="icons-list">
+            <li><a data-action="collapse" ></a></li>
+            <li>
+              <a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <div class="panel-body hidden-print">
         <div class="row">
-          <!-- search -->
-          <div class="col-md-12 pb-15">
+          <!-- search desktop-->
+          <div class="col-md-12 pb-15 hidden-xs">
             <div class="input-group">
 
-              <!-- input -->
-              <!-- date -->
+              <!-- datetime -->
               <masked-input
                 type="text"
                 name="date"
                 class="form-control"
                 v-model="searchQuery1"
                 :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
-                :guide="true"
+                :guide="false"
                 :disabled="itemDataStat === 'loading'"
                 placeholder="YYYY-MM-DD HH:MM:SS"
-                v-if="searchColumnType === 'date'">
+                v-if="searchColumnType === 'datetime'">
               </masked-input>
               <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
               <masked-input
@@ -40,12 +53,37 @@
                 class="form-control"
                 v-model="params.search_query_2"
                 :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
-                :guide="true"
+                :guide="false"
                 :disabled="itemDataStat === 'loading'"
                 placeholder="YYYY-MM-DD HH:MM:SS"
+                v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">
+              </masked-input>
+
+              <!-- date -->
+              <masked-input
+                type="text"
+                name="date"
+                class="form-control"
+                v-model="searchQuery1"
+                :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
+                :guide="false"
+                :disabled="itemDataStat === 'loading'"
+                placeholder="YYYY-MM-DD"
+                v-if="searchColumnType === 'date'">
+              </masked-input>
+              <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+              <masked-input
+                type="text"
+                name="date2"
+                class="form-control"
+                v-model="params.search_query_2"
+                :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
+                :guide="false"
+                :disabled="itemDataStat === 'loading'"
+                placeholder="YYYY-MM-DD"
                 v-if="searchColumnType === 'date' && params.search_operator === 'between'">
               </masked-input>
-              
+
               <!-- number -->
               <masked-input
                 type="text"
@@ -53,8 +91,8 @@
                 class="form-control"
                 v-model="searchQuery1"
                 :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
-                :guide="true"
                 placeholder="999.999.999"
+                :guide="false"
                 :disabled="itemDataStat === 'loading'"
                 v-if="searchColumnType === 'number'">
               </masked-input>
@@ -65,19 +103,22 @@
                 class="form-control"
                 v-model="params.search_query_2"
                 :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
-                :guide="true"
                 placeholder="999.999.999"
+                :guide="false"
                 :disabled="itemDataStat === 'loading'"
                 v-if="searchColumnType === 'number' && params.search_operator === 'between'">
               </masked-input>
-              
+
+              <!-- select -->
+                
               <!-- string -->
               <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
-              
-              <!-- filter -->
+
+              <!-- filter desktop -->
               <div class="input-group-btn">
+                
                 <!-- kolom -->
-                <div class="btn-group">
+                <div class="btn-group ">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kategori Pencarian'"  :disabled="itemDataStat === 'loading'">
                     <i class="icon-filter4"></i> Berdasarkan {{searchColumn}} &nbsp;
                     <span class="caret"></span>
@@ -92,7 +133,7 @@
                 </div>
 
                 <!-- operator -->
-                <div class="btn-group" v-if="params.search_operator !== 'like'">
+                <div class="btn-group " v-if="params.search_operator !== 'like'">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Operator Pencarian'"  :disabled="itemDataStat === 'loading'">
                     <i class="icon-equalizer"></i> Operator {{searchOperator}} &nbsp;
                     <span class="caret"></span>
@@ -112,13 +153,130 @@
                     <i class="icon-search4"></i>  Cari
                   </button>
                 </div>
+
+                <!-- hapus pencarian -->
+                <div class="btn-group" v-if="searchQuery1 !=='' || params.search_query_2 !==''">
+                  <button class="btn btn-default btn-icon" @click="emptySearch()"  v-tooltip:top="'Hapus pencarian'" ><i class="icon-cross"></i></button>
+                </div>
               </div>
+
             </div>
           </div>
+
+          <!-- search mobile -->
+          <div class="col-md-12 pb-15 visible-xs">
+            <!-- input -->
+            <!-- datetime -->
+            <masked-input
+              type="text"
+              name="date"
+              class="form-control"
+              v-model="searchQuery1"
+              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
+              :guide="false"
+              :disabled="itemDataStat === 'loading'"
+              placeholder="YYYY-MM-DD HH:MM:SS"
+              v-if="searchColumnType === 'datetime'">
+            </masked-input>
+            <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+            <masked-input
+              type="text"
+              name="date2"
+              class="form-control"
+              v-model="params.search_query_2"
+              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
+              :guide="false"
+              :disabled="itemDataStat === 'loading'"
+              placeholder="YYYY-MM-DD HH:MM:SS"
+              v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">
+            </masked-input>
+
+            <!-- date -->
+            <masked-input
+              type="text"
+              name="date"
+              class="form-control"
+              v-model="searchQuery1"
+              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
+              :guide="false"
+              :disabled="itemDataStat === 'loading'"
+              placeholder="YYYY-MM-DD"
+              v-if="searchColumnType === 'date'">
+            </masked-input>
+            <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+            <masked-input
+              type="text"
+              name="date2"
+              class="form-control"
+              v-model="params.search_query_2"
+              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
+              :guide="false"
+              :disabled="itemDataStat === 'loading'"
+              placeholder="YYYY-MM-DD"
+              v-if="searchColumnType === 'date' && params.search_operator === 'between'">
+            </masked-input>
+
+            <!-- number -->
+            <masked-input
+              type="text"
+              name="number"
+              class="form-control"
+              v-model="searchQuery1"
+              :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
+              placeholder="999.999.999"
+              :guide="false"
+              :disabled="itemDataStat === 'loading'"
+              v-if="searchColumnType === 'number'">
+            </masked-input>
+              <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
+            <masked-input
+              type="text"
+              name="number"
+              class="form-control"
+              v-model="params.search_query_2"
+              :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
+              placeholder="999.999.999"
+              :guide="false"
+              :disabled="itemDataStat === 'loading'"
+              v-if="searchColumnType === 'number' && params.search_operator === 'between'">
+            </masked-input>
+
+            <!-- select -->
+            
+            <!-- string -->
+            <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
+
+            <!-- kolom -->
+            <div class="pb-15 pt-15">
+              <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('filter')">
+                <i class="icon-filter4"></i> Pencarian berdasarkan {{searchColumn}} 
+              </button>
+            </div>
+
+            <!-- operator -->
+            <div class="pb-15" v-if="params.search_operator !== 'like'">
+              <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('operator')">
+                <i class="icon-equalizer"></i>  Operator {{searchOperator}} 
+              </button>
+            </div>
+
+            <!-- button cari -->
+            <div class="pb-15" v-if="params.search_operator !== 'like'">
+              <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+                <i class="icon-search4"></i>  Cari
+              </button>
+            </div>
+
+            <!-- hapus pencarian -->
+            <div v-if="searchQuery1 !=='' || params.search_query_2 !==''">
+              <button class="btn btn-default btn-icon btn-block" @click="emptySearch()"><i class="icon-cross"></i></button>
+            </div>
+          </div>
+
         </div>
 
         <!-- button row -->
-        <div class="row">
+        <div class="row hidden-xs">
           <div class="col-md-12">
             <!-- success button row -->
             <div class="btn-toolbar">
@@ -226,7 +384,7 @@
       </div>
 
       <!-- table-->
-      <div class="table-responsive">
+      <div class="table-responsive hidden-xs">
         <table class="table table-striped">
 
           <!-- header -->
@@ -282,13 +440,13 @@
         </table>
       </div>
 
-      <context-menu ref="menu">
+      <context-menu ref="menu" class="hidden-xs">
         <!-- slot button -->
         <slot name="button-context"></slot>
       </context-menu>
 
       <!-- footer info -->
-      <div class="panel-footer has-visible-elements hidden-print">
+      <div class="panel-footer has-visible-elements hidden-print hidden-xs">
         <div class="heading-elements visible-elements">
 
           <!-- total entri note success-->
@@ -340,93 +498,6 @@
 
     <!-- mobile -->
     <!-- top panel -->
-    <!-- search -->
-    <div class="panel panel-flat visible-xs hidden-print">
-      <div class="panel-heading has-visible-elements">
-        <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
-        <div class="heading-elements visible-elements">
-          <ul class="icons-list">
-            <li><a data-action="collapse" ></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="panel-body">
-        <!-- input -->
-        <!-- date -->
-        <masked-input
-          type="text"
-          name="date"
-          class="form-control"
-          v-model="searchQuery1"
-          :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
-          :guide="true"
-          :disabled="itemDataStat === 'loading'"
-          placeholder="YYYY-MM-DD HH:MM:SS"
-          v-if="searchColumnType === 'date'">
-        </masked-input>
-        <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
-        <masked-input
-          type="text"
-          name="date2"
-          class="form-control"
-          v-model="params.search_query_2"
-          :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
-          :guide="true"
-          :disabled="itemDataStat === 'loading'"
-          placeholder="YYYY-MM-DD HH:MM:SS"
-          v-if="searchColumnType === 'date' && params.search_operator === 'between'">
-        </masked-input>
-        
-        <!-- number -->
-        <masked-input
-          type="text"
-          name="number"
-          class="form-control"
-          v-model="searchQuery1"
-          :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
-          :guide="true"
-          placeholder="999.999.999"
-          :disabled="itemDataStat === 'loading'"
-          v-if="searchColumnType === 'number'">
-        </masked-input>
-          <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
-        <masked-input
-          type="text"
-          name="number"
-          class="form-control"
-          v-model="params.search_query_2"
-          :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
-          :guide="true"
-          placeholder="999.999.999"
-          :disabled="itemDataStat === 'loading'"
-          v-if="searchColumnType === 'number' && params.search_operator === 'between'">
-        </masked-input>
-        
-        <!-- string -->
-        <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
-
-        <!-- filter -->
-        <div class="pb-15 pt-15">
-           <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('filter')">
-            <i class="icon-filter4"></i> Pencarian berdasarkan {{searchColumn}} 
-          </button>
-        </div>
-
-        <!-- operator -->
-        <div class="pb-15" v-if="params.search_operator !== 'like'">
-           <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('operator')">
-            <i class="icon-equalizer"></i>  Operator {{searchOperator}} 
-          </button>
-        </div>
-
-        <!-- cari -->
-        <div v-if="params.search_operator !== 'like'">
-          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
-            <i class="icon-search4"></i>  Cari
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- option -->
     <div class="panel panel-flat visible-xs hidden-print">
@@ -837,6 +908,11 @@
         }
 
         this.modalTutup();
+      },
+      emptySearch(){
+        this.searchQuery1 = '';
+        this.params.search_query_1 = '';
+        this.params.search_query_2 = '';
       },
 
       // show column
