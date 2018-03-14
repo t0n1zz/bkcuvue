@@ -7,7 +7,7 @@ export default {
   },
 
   getProvincesAll: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/provinces_all');
+    return axios.get(BKCU_CONFIG.API_URL + '/provinces/indexAll');
   },
 
   getProvinces: function( id ){

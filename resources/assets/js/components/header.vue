@@ -163,7 +163,7 @@
 </template>
 
 <script type="text/javascript">
-	import corefunc from '../assets/plugins/buttons/hover_dropdown.min.js'
+	import corefunc from '../assets/plugins/buttons/hover_dropdown.min.js';
 
 	export default {
 		data() {

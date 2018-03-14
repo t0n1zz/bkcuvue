@@ -80,16 +80,16 @@
 												No. BA:</h5>
 
 											<!-- text -->
-											<masked-input
-												type="text"
+											<the-mask
+												type="tel"
 												name="no_ba"
 												class="form-control"
 												v-model="form.no_ba"
-												:mask="[ /\d/, /\d/, /\d/ ]"
-												placeholder="Silahkan masukkan no BA"
-												:guide="false"
-												v-validate="'required|min:5'" data-vv-as="Nama">
-											</masked-input>	
+												:mask="['###']"
+												:masked="true"
+												placeholder="Silahkan masukkan no ba."
+												v-validate="'required'" data-vv-as="No. BA">
+											</the-mask>	
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
@@ -106,7 +106,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.badan_hukum')}">
 												<i class="icon-cross2" v-if="errors.has('form.badan_hukum')"></i>
-												Nama:</h5>
+												Badan Hukum:</h5>
 
 											<!-- text -->
 											<input type="text" name="badan_hukum" class="form-control" placeholder="Silahkan masukkan nama CU"  v-model="form.badan_hukum">
@@ -156,10 +156,9 @@
 
 											<!-- success -->
 											<div v-else>
-												<div class="input-group">
 
 													<!-- select -->
-													<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelRegencies.length === 0" @change="changeRegencies($event.target.value)">
+													<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 														<option disabled value="">
 															<span>Silahkan pilih kabupaten</span>
 														</option>
@@ -167,7 +166,6 @@
 														<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
 													</select>
 
-												</div>
 											</div>
 
 											<!-- error message -->
@@ -195,7 +193,6 @@
 
 											<!-- success -->
 											<div v-else>
-												<div class="input-group">
 
 													<!-- select -->
 													<select class="bootstrap-select"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
@@ -206,7 +203,6 @@
 														<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
 													</select>
 
-												</div>
 											</div>
 
 											<!-- error message -->
@@ -217,14 +213,14 @@
 										</div>
 									</div>
 
-									<!-- desa -->
+									<!-- kelurahan -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_villages')}">
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_villages')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_villages')"></i>
-												Desa:
+												Kelurahan:
 											</h5>
 
 											<!-- loading -->
@@ -234,18 +230,16 @@
 
 											<!-- success -->
 											<div v-else>
-												<div class="input-group">
 
 													<!-- select -->
 													<select class="bootstrap-select"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
 														<option disabled value="">
-															<span>Silahkan pilih desa</span>
+															<span>Silahkan pilih kelurahan</span>
 														</option>
 														<option data-divider="true"></option>
 														<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
 													</select>
 
-												</div>
 											</div>
 
 											<!-- error message -->
@@ -278,19 +272,19 @@
 
 									<!-- aplikasi -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.aplikasi')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.aplikasi')}">
-												<i class="icon-cross2" v-if="errors.has('form.aplikasi')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.app')}">
+												<i class="icon-cross2" v-if="errors.has('form.app')"></i>
 												Aplikasi Keuangan Utama:</h5>
 
 											<!-- text -->
-											<input type="text" name="aplikasi" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.aplikasi">
+											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.aplikasi')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.aplikasi') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.app')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.app') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -306,16 +300,16 @@
 												Tgl. Berdiri:</h5>
 
 											<!-- text -->
-											<masked-input
-												type="text"
+											<the-mask
+												type="tel"
 												name="ultah"
 												class="form-control"
 												v-model="form.ultah"
-												:mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
+												:mask="['####-##-##']"
+												:masked="true"
 												placeholder="Silahkan masukkan tgl. berdiri"
-												:guide="false"
 												v-validate="'required'" data-vv-as="Tgl. berdiri">
-											</masked-input>	
+											</the-mask>	
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
@@ -335,16 +329,16 @@
 												Tgl. Bergabung:</h5>
 
 											<!-- text -->
-											<masked-input
-												type="text"
-												name="ultah"
+											<the-mask
+												type="tel"
+												name="bergabung"
 												class="form-control"
 												v-model="form.bergabung"
-												:mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
+												:mask="['####-##-##']"
+												:masked="true"
 												placeholder="Silahkan masukkan tgl. bergabung"
-												:guide="false"
 												v-validate="'required'" data-vv-as="Tgl. bergabung">
-											</masked-input>	
+											</the-mask>	
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
@@ -421,7 +415,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.hp')}">
 												<i class="icon-cross2" v-if="errors.has('form.hp')"></i>
-												No. helpers:</h5>
+												No. Hp:</h5>
 
 											<!-- text -->
 											<input type="number" name="hp" class="form-control" placeholder="Silahkan masukkan no hp" v-model="form.hp">
@@ -509,14 +503,14 @@
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
-	import maskedInput from 'vue-text-mask';
+	import {TheMask} from 'vue-the-mask';
 
 	export default {
 		components: {
 			appModal,
 			appImageUpload,
 			message,
-			maskedInput
+			TheMask
 		},
 		data() {
 			return {
@@ -586,6 +580,8 @@
 				} else {
 					this.$store.dispatch('create' + this.kelasVuex);
 				}
+
+				this.$store.dispatch('loadProvincesAll');
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -604,13 +600,13 @@
 				});
 			},
 			changeProvinces(id){
-
+				this.$store.dispatch('loadRegenciesProvinces', id);
 			},
 			changeRegencies(id){
-
+				this.$store.dispatch('loadDistrictsRegencies', id);
 			},
 			changeDistricts(id){
-
+				this.$store.dispatch('loadVillagesDistricts', id);
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){

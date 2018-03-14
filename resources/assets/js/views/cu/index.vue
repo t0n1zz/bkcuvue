@@ -103,12 +103,12 @@
 
 						<!-- item desktop -->
 						<template slot="item-desktop" slot-scope="props">
-							<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowarp" @click="selectedRow(props.item)">
+							<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
 									<img :src="'/images/cu/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[1].hide" class="text-nowrap">
+								<td v-if="!columnData[1].hide">
 									<check-value :value="props.item.name"></check-value>
 								</td>
 								<td v-if="!columnData[2].hide">
@@ -133,10 +133,10 @@
 									<check-value :value="props.item.villages.name" :empty="columnData[7].groupNoKey" v-if="props.item.villages"></check-value>
 									<span v-else>{{columnData[7].groupNoKey}}</span>
 								</td>
-								<td v-if="!columnData[8].hide" class="text-nowrap">
+								<td v-if="!columnData[8].hide">
 									<check-value :value="props.item.alamat"></check-value>
 								</td>
-								<td v-if="!columnData[9].hide" class="text-nowrap">
+								<td v-if="!columnData[9].hide">
 									<check-value :value="props.item.app"></check-value>
 								</td>
 								<td v-if="!columnData[10].hide" v-html="$options.filters.date(props.item.ultah)"></td>
@@ -158,7 +158,7 @@
 									<check-value :value="props.item.pos"></check-value>
 								</td>
 								<td v-if="!columnData[17].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
-								<td v-if="!columnData[18].hide" class="text-nowrap">
+								<td v-if="!columnData[18].hide">
 									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 									<span v-else>-</span>
 								</td>
@@ -401,7 +401,7 @@
 						disable: false
 					},
 					{
-						title: 'Desa',
+						title: 'Kelurahan',
 						key: 'villages.name',
 						type: 'string',
 						disable: false
@@ -537,7 +537,7 @@
 						disable: false
 					},
 					{
-						title: 'Desa',
+						title: 'Kelurahan',
 						key: 'id_villages',
 						groupKey: 'villages.name',
 						groupNoKey: '-',

@@ -40312,6 +40312,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_id__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_id___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_id__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vee_validate__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config_js__ = __webpack_require__(12);
+
 
 
 
@@ -79063,7 +79065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				type: 'string',
 				disable: false
 			}, {
-				title: 'Desa',
+				title: 'Kelurahan',
 				key: 'villages.name',
 				type: 'string',
 				disable: false
@@ -79179,7 +79181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				hide: false,
 				disable: false
 			}, {
-				title: 'Desa',
+				title: 'Kelurahan',
 				key: 'id_villages',
 				groupKey: 'villages.name',
 				groupNoKey: '-',
@@ -99325,7 +99327,7 @@ var render = function() {
                           _c(
                             "tr",
                             {
-                              staticClass: "text-nowarp",
+                              staticClass: "text-nowrap",
                               class: {
                                 info: _vm.selectedItem.id === props.item.id
                               },
@@ -99362,7 +99364,6 @@ var render = function() {
                               !_vm.columnData[1].hide
                                 ? _c(
                                     "td",
-                                    { staticClass: "text-nowrap" },
                                     [
                                       _c("check-value", {
                                         attrs: { value: props.item.name }
@@ -99491,7 +99492,6 @@ var render = function() {
                               !_vm.columnData[8].hide
                                 ? _c(
                                     "td",
-                                    { staticClass: "text-nowrap" },
                                     [
                                       _c("check-value", {
                                         attrs: { value: props.item.alamat }
@@ -99504,7 +99504,6 @@ var render = function() {
                               !_vm.columnData[9].hide
                                 ? _c(
                                     "td",
-                                    { staticClass: "text-nowrap" },
                                     [
                                       _c("check-value", {
                                         attrs: { value: props.item.app }
@@ -99610,7 +99609,7 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[18].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
+                                ? _c("td", [
                                     props.item.created_at !==
                                     props.item.updated_at
                                       ? _c("span", {
@@ -100822,14 +100821,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_message_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_message_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_text_mask__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_text_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_text_mask__);
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_the_mask__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_the_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_the_mask__);
 //
 //
 //
@@ -101340,7 +101333,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		appModal: __WEBPACK_IMPORTED_MODULE_5__components_modal___default.a,
 		appImageUpload: __WEBPACK_IMPORTED_MODULE_4__components_ImageUpload_vue___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_6__components_message_vue___default.a,
-		maskedInput: __WEBPACK_IMPORTED_MODULE_7_vue_text_mask___default.a
+		TheMask: __WEBPACK_IMPORTED_MODULE_7_vue_the_mask__["TheMask"]
 	},
 	data: function data() {
 		return {
@@ -101412,6 +101405,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			} else {
 				this.$store.dispatch('create' + this.kelasVuex);
 			}
+
+			this.$store.dispatch('loadProvincesAll');
 		},
 		save: function save() {
 			var _this = this;
@@ -101431,9 +101426,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			});
 		},
-		changeProvinces: function changeProvinces(id) {},
-		changeRegencies: function changeRegencies(id) {},
-		changeDistricts: function changeDistricts(id) {},
+		changeProvinces: function changeProvinces(id) {
+			this.$store.dispatch('loadRegenciesProvinces', id);
+		},
+		changeRegencies: function changeRegencies(id) {
+			this.$store.dispatch('loadDistrictsRegencies', id);
+		},
+		changeDistricts: function changeDistricts(id) {
+			this.$store.dispatch('loadVillagesDistricts', id);
+		},
 		modalTutup: function modalTutup() {
 			if (this.updateStat === 'success') {
 				this.$router.push(this.redirect);
@@ -101752,23 +101753,23 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("masked-input", {
+                              _c("the-mask", {
                                 directives: [
                                   {
                                     name: "validate",
                                     rawName: "v-validate",
-                                    value: "required|min:5",
-                                    expression: "'required|min:5'"
+                                    value: "required",
+                                    expression: "'required'"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "text",
+                                  type: "tel",
                                   name: "no_ba",
-                                  mask: [/\d/, /\d/, /\d/],
-                                  placeholder: "Silahkan masukkan no BA",
-                                  guide: false,
-                                  "data-vv-as": "Nama"
+                                  mask: ["###"],
+                                  masked: true,
+                                  placeholder: "Silahkan masukkan no ba.",
+                                  "data-vv-as": "No. BA"
                                 },
                                 model: {
                                   value: _vm.form.no_ba,
@@ -101827,7 +101828,7 @@ var render = function() {
                                   _vm.errors.has("form.badan_hukum")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNama:")
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tBadan Hukum:")
                                 ]
                               ),
                               _vm._v(" "),
@@ -102031,89 +102032,85 @@ var render = function() {
                                     })
                                   ])
                                 : _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.id_regencies,
-                                              expression: "form.id_regencies"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_regencies",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Kabupaten",
-                                            disabled:
-                                              _vm.modelRegencies.length === 0
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_regencies,
+                                            expression: "form.id_regencies"
                                           },
-                                          on: {
-                                            change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "id_regencies",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              },
-                                              function($event) {
-                                                _vm.changeRegencies(
-                                                  $event.target.value
-                                                )
-                                              }
-                                            ]
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
                                           }
-                                        },
-                                        [
-                                          _vm._m(0),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelRegencies, function(
-                                            regencies
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: {
-                                                  value: regencies.id
-                                                }
-                                              },
-                                              [_vm._v(_vm._s(regencies.name))]
-                                            )
-                                          })
                                         ],
-                                        2
-                                      )
-                                    ])
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_regencies",
+                                          "data-width": "100%",
+                                          "data-vv-as": "Kabupaten",
+                                          disabled:
+                                            _vm.modelRegencies.length === 0
+                                        },
+                                        on: {
+                                          change: [
+                                            function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "id_regencies",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            },
+                                            function($event) {
+                                              _vm.changeRegencies(
+                                                $event.target.value
+                                              )
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [
+                                        _vm._m(0),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelRegencies, function(
+                                          regencies
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              domProps: { value: regencies.id }
+                                            },
+                                            [_vm._v(_vm._s(regencies.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
                                   ]),
                               _vm._v(" "),
                               _vm.errors.has("form.id_regencies")
@@ -102178,89 +102175,85 @@ var render = function() {
                                     })
                                   ])
                                 : _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.id_districts,
-                                              expression: "form.id_districts"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_districts",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Kabupaten",
-                                            disabled:
-                                              _vm.modelDistricts.length === 0
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_districts,
+                                            expression: "form.id_districts"
                                           },
-                                          on: {
-                                            change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "id_districts",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              },
-                                              function($event) {
-                                                _vm.changeDistricts(
-                                                  $event.target.value
-                                                )
-                                              }
-                                            ]
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
                                           }
-                                        },
-                                        [
-                                          _vm._m(1),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelDistricts, function(
-                                            districts
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: {
-                                                  value: districts.id
-                                                }
-                                              },
-                                              [_vm._v(_vm._s(districts.name))]
-                                            )
-                                          })
                                         ],
-                                        2
-                                      )
-                                    ])
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_districts",
+                                          "data-width": "100%",
+                                          "data-vv-as": "Kabupaten",
+                                          disabled:
+                                            _vm.modelDistricts.length === 0
+                                        },
+                                        on: {
+                                          change: [
+                                            function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "id_districts",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            },
+                                            function($event) {
+                                              _vm.changeDistricts(
+                                                $event.target.value
+                                              )
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [
+                                        _vm._m(1),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelDistricts, function(
+                                          districts
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              domProps: { value: districts.id }
+                                            },
+                                            [_vm._v(_vm._s(districts.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
                                   ]),
                               _vm._v(" "),
                               _vm.errors.has("form.id_regency")
@@ -102311,7 +102304,7 @@ var render = function() {
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tDesa:\n\t\t\t\t\t\t\t\t\t\t"
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKelurahan:\n\t\t\t\t\t\t\t\t\t\t"
                                   )
                                 ]
                               ),
@@ -102323,80 +102316,78 @@ var render = function() {
                                     })
                                   ])
                                 : _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.id_villages,
-                                              expression: "form.id_villages"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_villages",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Desa",
-                                            disabled:
-                                              _vm.modelVillages.length === 0
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_villages,
+                                            expression: "form.id_villages"
                                           },
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.form,
-                                                "id_villages",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            }
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
                                           }
-                                        },
-                                        [
-                                          _vm._m(2),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelVillages, function(
-                                            villages
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: { value: villages.id }
-                                              },
-                                              [_vm._v(_vm._s(villages.name))]
-                                            )
-                                          })
                                         ],
-                                        2
-                                      )
-                                    ])
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_villages",
+                                          "data-width": "100%",
+                                          "data-vv-as": "Desa",
+                                          disabled:
+                                            _vm.modelVillages.length === 0
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "id_villages",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._m(2),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelVillages, function(
+                                          villages
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              domProps: { value: villages.id }
+                                            },
+                                            [_vm._v(_vm._s(villages.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
                                   ]),
                               _vm._v(" "),
                               _vm.errors.has("form.id_villages")
@@ -102514,22 +102505,18 @@ var render = function() {
                             "div",
                             {
                               staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.aplikasi")
-                              }
+                              class: { "has-error": _vm.errors.has("form.app") }
                             },
                             [
                               _c(
                                 "h5",
                                 {
                                   class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.aplikasi"
-                                    )
+                                    "text-danger": _vm.errors.has("form.app")
                                   }
                                 },
                                 [
-                                  _vm.errors.has("form.aplikasi")
+                                  _vm.errors.has("form.app")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
                                   _vm._v(
@@ -102549,19 +102536,19 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.aplikasi,
-                                    expression: "form.aplikasi"
+                                    value: _vm.form.app,
+                                    expression: "form.app"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  name: "aplikasi",
+                                  name: "app",
                                   placeholder:
                                     "Silahkan masukkan nama aplikasi keuangan utama",
                                   "data-vv-as": "Aplikasi keuangan utama"
                                 },
-                                domProps: { value: _vm.form.aplikasi },
+                                domProps: { value: _vm.form.app },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
@@ -102569,14 +102556,14 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.form,
-                                      "aplikasi",
+                                      "app",
                                       $event.target.value
                                     )
                                   }
                                 }
                               }),
                               _vm._v(" "),
-                              _vm.errors.has("form.aplikasi")
+                              _vm.errors.has("form.app")
                                 ? _c(
                                     "small",
                                     { staticClass: "text-muted text-danger" },
@@ -102586,9 +102573,7 @@ var render = function() {
                                       }),
                                       _vm._v(
                                         " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.aplikasi")
-                                          ) +
+                                          _vm._s(_vm.errors.first("form.app")) +
                                           "\n\t\t\t\t\t\t\t\t\t\t"
                                       )
                                     ]
@@ -102627,7 +102612,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("masked-input", {
+                              _c("the-mask", {
                                 directives: [
                                   {
                                     name: "validate",
@@ -102638,22 +102623,11 @@ var render = function() {
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "text",
+                                  type: "tel",
                                   name: "ultah",
-                                  mask: [
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    "-",
-                                    /\d/,
-                                    /\d/,
-                                    "-",
-                                    /\d/,
-                                    /\d/
-                                  ],
+                                  mask: ["####-##-##"],
+                                  masked: true,
                                   placeholder: "Silahkan masukkan tgl. berdiri",
-                                  guide: false,
                                   "data-vv-as": "Tgl. berdiri"
                                 },
                                 model: {
@@ -102719,7 +102693,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("masked-input", {
+                              _c("the-mask", {
                                 directives: [
                                   {
                                     name: "validate",
@@ -102730,23 +102704,12 @@ var render = function() {
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "text",
-                                  name: "ultah",
-                                  mask: [
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    "-",
-                                    /\d/,
-                                    /\d/,
-                                    "-",
-                                    /\d/,
-                                    /\d/
-                                  ],
+                                  type: "tel",
+                                  name: "bergabung",
+                                  mask: ["####-##-##"],
+                                  masked: true,
                                   placeholder:
                                     "Silahkan masukkan tgl. bergabung",
-                                  guide: false,
                                   "data-vv-as": "Tgl. bergabung"
                                 },
                                 model: {
@@ -103040,7 +103003,7 @@ var render = function() {
                                 _vm.errors.has("form.hp")
                                   ? _c("i", { staticClass: "icon-cross2" })
                                   : _vm._e(),
-                                _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNo. helpers:")
+                                _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNo. Hp:")
                               ]
                             ),
                             _vm._v(" "),
@@ -103299,7 +103262,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("option", { attrs: { disabled: "", value: "" } }, [
-      _c("span", [_vm._v("Silahkan pilih desa")])
+      _c("span", [_vm._v("Silahkan pilih kelurahan")])
     ])
   },
   function() {
@@ -108273,9 +108236,17 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_artikelPenulis__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_cu__ = __webpack_require__(357);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_pus__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__getters__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__mutations__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__actions__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_provinces__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_regencies__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_districts__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_villages__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__getters__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__mutations__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__actions__ = __webpack_require__(363);
+
+
+
+
 
 
 
@@ -108296,9 +108267,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: {},
-	getters: __WEBPACK_IMPORTED_MODULE_10__getters__["a" /* default */],
-	mutations: __WEBPACK_IMPORTED_MODULE_11__mutations__["a" /* default */],
-	actions: __WEBPACK_IMPORTED_MODULE_12__actions__["a" /* default */],
+	getters: __WEBPACK_IMPORTED_MODULE_14__getters__["a" /* default */],
+	mutations: __WEBPACK_IMPORTED_MODULE_15__mutations__["a" /* default */],
+	actions: __WEBPACK_IMPORTED_MODULE_16__actions__["a" /* default */],
 	modules: {
 		global: __WEBPACK_IMPORTED_MODULE_4__modules_global__["a" /* global */],
 		user: __WEBPACK_IMPORTED_MODULE_2__modules_user__["a" /* user */],
@@ -108307,7 +108278,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		artikelKategori: __WEBPACK_IMPORTED_MODULE_6__modules_artikelKategori__["a" /* artikelKategori */],
 		artikelPenulis: __WEBPACK_IMPORTED_MODULE_7__modules_artikelPenulis__["a" /* artikelPenulis */],
 		CU: __WEBPACK_IMPORTED_MODULE_8__modules_cu__["a" /* CU */],
-		pus: __WEBPACK_IMPORTED_MODULE_9__modules_pus__["a" /* pus */]
+		pus: __WEBPACK_IMPORTED_MODULE_9__modules_pus__["a" /* pus */],
+		provinces: __WEBPACK_IMPORTED_MODULE_10__modules_provinces__["a" /* provinces */],
+		regencies: __WEBPACK_IMPORTED_MODULE_11__modules_regencies__["a" /* regencies */],
+		districts: __WEBPACK_IMPORTED_MODULE_12__modules_districts__["a" /* districts */],
+		villages: __WEBPACK_IMPORTED_MODULE_13__modules_villages__["a" /* villages */]
 	}
 });
 
@@ -111113,7 +111088,7 @@ var CU = {
         commit('setCUS', response.data.model);
         commit('setCULoadStatS', 'success');
       }).catch(function (error) {
-        commit('setCUS', error.response);
+        commit('setCUS', error.response.data.message);
         commit('setCULoadStatS', 'fail');
       });
     },
@@ -111321,6 +111296,12 @@ var CU = {
     },
     setCUUpdateStat: function setCUUpdateStat(state, status) {
       state.CUUpdateStat = status;
+    },
+    setCURules: function setCURules(state, rules) {
+      state.CURules = rules;
+    },
+    setCUOption: function setCUOption(state, option) {
+      state.CUOption = option;
     }
   },
 
@@ -111342,6 +111323,12 @@ var CU = {
     },
     getCUUpdate: function getCUUpdate(state) {
       return state.CUUpdate;
+    },
+    getCURules: function getCURules(state) {
+      return state.CURules;
+    },
+    getCUOption: function getCUOption(state) {
+      return state.CUOption;
     }
   }
 };
@@ -111357,7 +111344,7 @@ var CU = {
 /* harmony default export */ __webpack_exports__["a"] = ({
 
   getCUS: function getCUS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu', { params: p });
   },
 
   getCUAll: function getCUAll() {
@@ -111385,7 +111372,7 @@ var CU = {
   },
 
   updateCU: function updateCU(id, form) {
-    return axios.put(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/update/' + id, form);
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/update/' + id, form);
   },
 
   deleteCU: function deleteCU(id) {
@@ -118604,6 +118591,1324 @@ var index_esm = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.VueTheMask=t():e.VueTheMask=t()})(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p=".",t(t.s=10)}([function(e,t){e.exports={"#":{pattern:/\d/},X:{pattern:/[0-9a-zA-Z]/},S:{pattern:/[a-zA-Z]/},A:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleUpperCase()}},a:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleLowerCase()}},"!":{escape:!0}}},function(e,t,n){"use strict";function r(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!0),t}var a=n(2),o=n(0),i=n.n(o);t.a=function(e,t){var o=t.value;if((Array.isArray(o)||"string"==typeof o)&&(o={mask:o,tokens:i.a}),"INPUT"!==e.tagName.toLocaleUpperCase()){var u=e.getElementsByTagName("input");if(1!==u.length)throw new Error("v-mask directive requires 1 input, found "+u.length);e=u[0]}e.oninput=function(t){if(t.isTrusted){var i=e.selectionEnd,u=e.value[i-1];for(e.value=n.i(a.a)(e.value,o.mask,!0,o.tokens);i<e.value.length&&e.value.charAt(i-1)!==u;)i++;e===document.activeElement&&(e.setSelectionRange(i,i),setTimeout(function(){e.setSelectionRange(i,i)},0)),e.dispatchEvent(r("input"))}};var s=n.i(a.a)(e.value,o.mask,!0,o.tokens);s!==e.value&&(e.value=s,e.dispatchEvent(r("input")))}},function(e,t,n){"use strict";var r=n(6),a=n(5);t.a=function(e,t){var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=arguments[3];return Array.isArray(t)?n.i(a.a)(r.a,t,i)(e,t,o,i):n.i(r.a)(e,t,o,i)}},function(e,t,n){"use strict";function r(e){e.component(s.a.name,s.a),e.directive("mask",i.a)}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),o=n.n(a),i=n(1),u=n(7),s=n.n(u);n.d(t,"TheMask",function(){return s.a}),n.d(t,"mask",function(){return i.a}),n.d(t,"tokens",function(){return o.a}),n.d(t,"version",function(){return c});var c="0.11.1";t.default=r,"undefined"!=typeof window&&window.Vue&&window.Vue.use(r)},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),a=n(0),o=n.n(a),i=n(2);t.default={name:"TheMask",props:{value:[String,Number],mask:{type:[String,Array],required:!0},masked:{type:Boolean,default:!1},tokens:{type:Object,default:function(){return o.a}}},directives:{mask:r.a},data:function(){return{lastValue:null,display:this.value}},watch:{value:function(e){e!==this.lastValue&&(this.display=e)},masked:function(){this.refresh(this.display)}},computed:{config:function(){return{mask:this.mask,tokens:this.tokens,masked:this.masked}}},methods:{onInput:function(e){e.isTrusted||this.refresh(e.target.value)},refresh:function(e){this.display=e;var e=n.i(i.a)(e,this.mask,this.masked,this.tokens);e!==this.lastValue&&(this.lastValue=e,this.$emit("input",e))}}}},function(e,t,n){"use strict";function r(e,t,n){return t=t.sort(function(e,t){return e.length-t.length}),function(r,a){for(var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=0;i<t.length;){var u=t[i];i++;var s=t[i];if(!(s&&e(r,s,!0,n).length>u.length))return e(r,u,o,n)}return""}}t.a=r},function(e,t,n){"use strict";function r(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=arguments[3];e=e||"",t=t||"";for(var a=0,o=0,i="";a<t.length&&o<e.length;){var u=t[a],s=r[u],c=e[o];s&&!s.escape?(s.pattern.test(c)&&(i+=s.transform?s.transform(c):c,a++),o++):(s&&s.escape&&(a++,u=t[a]),n&&(i+=u),c===u&&o++,a++)}for(var f="";a<t.length&&n;){var u=t[a];if(r[u]){f="";break}f+=u,a++}return i+f}t.a=r},function(e,t,n){var r=n(8)(n(4),n(9),null,null);e.exports=r.exports},function(e,t){e.exports=function(e,t,n,r){var a,o=e=e||{},i=typeof e.default;"object"!==i&&"function"!==i||(a=e,o=e.default);var u="function"==typeof o?o.options:o;if(t&&(u.render=t.render,u.staticRenderFns=t.staticRenderFns),n&&(u._scopeId=n),r){var s=u.computed||(u.computed={});Object.keys(r).forEach(function(e){var t=r[e];s[e]=function(){return t}})}return{esModule:a,exports:o,options:u}}},function(e,t){e.exports={render:function(){var e=this,t=e.$createElement;return(e._self._c||t)("input",{directives:[{name:"mask",rawName:"v-mask",value:e.config,expression:"config"}],attrs:{type:"text"},domProps:{value:e.display},on:{input:e.onInput}})},staticRenderFns:[]}},function(e,t,n){e.exports=n(3)}])});
+
+/***/ }),
+/* 372 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return provinces; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__ = __webpack_require__(373);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+
+
+var provinces = {
+  state: {
+    provincesS: [],
+    provincesLoadStatS: '',
+    provinces: {},
+    provincesLoadStat: '',
+    provincesUpdate: '',
+    provincesUpdateStat: '',
+    provincesRules: [],
+    provincesOption: []
+  },
+
+  actions: {
+
+    // load all
+    loadProvincesS: function loadProvincesS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setProvincesLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].getProvincesS(p).then(function (response) {
+        commit('setProvincesS', response.data.model);
+        commit('setProvincesLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setProvincesS', error.response);
+        commit('setProvincesLoadStatS', 'fail');
+      });
+    },
+    loadProvincesAll: function loadProvincesAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setProvincesLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].getProvincesAll().then(function (response) {
+        commit('setProvincesS', response.data.model);
+        commit('setProvincesLoadStatS', 'success');
+      }).catch(function () {
+        commit('setProvincesS', []);
+        commit('setProvincesLoadStatS', 'fail');
+      });
+    },
+
+
+    // load single data
+    loadProvinces: function loadProvinces(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setProvincesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].getProvinces(id).then(function (response) {
+        commit('setProvinces', response.data);
+        commit('setProvincesLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setProvincesS', error.response);
+        commit('setProvincesLoadStatS', 'fail');
+      });
+    },
+
+
+    // create data
+    createProvinces: function createProvinces(_ref4) {
+      var commit = _ref4.commit;
+
+      commit('setProvincesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].createProvinces().then(function (response) {
+        commit('setProvinces', response.data.form);
+        commit('setProvincesRules', response.data.rules);
+        commit('setProvincesOption', response.data.option);
+        commit('setProvincesLoadStat', 'success');
+      }).catch(function () {
+        commit('setProvinces', []);
+        commit('setProvincesRules', []);
+        commit('setProvincesOption', []);
+        commit('setProvincesLoadStat', 'fail');
+      });
+    },
+
+
+    // store data
+    storeProvinces: function storeProvinces(_ref5, form) {
+      var _this = this;
+
+      var commit = _ref5.commit,
+          state = _ref5.state,
+          dispatch = _ref5.dispatch;
+
+      commit('setProvincesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].storeProvinces(form).then(function (response) {
+        if (response.data.saved) {
+          commit('setProvincesUpdate', response.data);
+          commit('setProvincesUpdateStat', 'success');
+        } else {
+          commit('setProvincesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this.errors = error.response.data;
+          commit('setProvincesUpdate', _this.errors);
+        } else {
+          commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setProvincesUpdateStat', 'fail');
+      });
+    },
+
+
+    // edit page
+    editProvinces: function editProvinces(_ref6, id) {
+      var commit = _ref6.commit;
+
+      commit('setProvincesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].editProvinces(id).then(function (response) {
+        commit('setProvinces', response.data.form);
+        commit('setProvincesRules', response.data.rules);
+        commit('setProvincesOption', response.data.option);
+        commit('setProvincesLoadStat', 'success');
+      }).catch(function () {
+        commit('setProvinces', []);
+        commit('setProvincesRules', []);
+        commit('setProvincesOption', []);
+        commit('setProvincesLoadStat', 'fail');
+      });
+    },
+
+
+    // update data
+    updateProvinces: function updateProvinces(_ref7, _ref8) {
+      var _this2 = this;
+
+      var commit = _ref7.commit,
+          state = _ref7.state,
+          dispatch = _ref7.dispatch;
+
+      var _ref9 = _slicedToArray(_ref8, 2),
+          id = _ref9[0],
+          form = _ref9[1];
+
+      commit('setProvincesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].updateProvinces(id, form).then(function (response) {
+        if (response.data.saved) {
+          commit('setProvincesUpdate', response.data);
+          commit('setProvincesUpdateStat', 'success');
+        } else {
+          commit('setProvincesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this2.errors = error.response.data;
+          commit('setProvincesUpdate', _this2.errors);
+        } else {
+          commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setProvincesUpdateStat', 'fail');
+      });
+    },
+
+
+    // delete data
+    deleteProvinces: function deleteProvinces(_ref10, id) {
+      var _this3 = this;
+
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
+
+      commit('setProvincesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].deleteProvinces(id).then(function (response) {
+        if (response.data.saved) {
+          commit('setProvincesUpdate', response.data);
+          commit('setProvincesUpdateStat', 'success');
+        } else {
+          commit('setProvincesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this3.errors = error.response.data;
+          commit('setProvincesUpdate', _this3.errors);
+        } else {
+          commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setProvincesUpdateStat', 'fail');
+      });
+    },
+
+
+    // reset status
+    resetProvincesUpdateStat: function resetProvincesUpdateStat(_ref11) {
+      var commit = _ref11.commit;
+
+      commit('setProvincesUpdateStat', '');
+    },
+    resetProvincesLoadStat: function resetProvincesLoadStat(_ref12) {
+      var commit = _ref12.commit;
+
+      commit('setProvincesLoadStat', '');
+    }
+  },
+
+  mutations: {
+    setProvincesS: function setProvincesS(state, provincesS) {
+      state.provincesS = provincesS;
+    },
+    setProvincesLoadStatS: function setProvincesLoadStatS(state, status) {
+      state.provincesLoadStatS = status;
+    },
+    setProvinces: function setProvinces(state, provinces) {
+      state.provinces = provinces;
+    },
+    setProvincesLoadStat: function setProvincesLoadStat(state, status) {
+      state.provincesLoadStat = status;
+    },
+    setProvincesUpdateStat: function setProvincesUpdateStat(state, status) {
+      state.provincesUpdateStat = status;
+    },
+    setProvincesUpdate: function setProvincesUpdate(state, data) {
+      state.provincesUpdate = data;
+    },
+    setProvincesRules: function setProvincesRules(state, rules) {
+      state.provincesRules = rules;
+    },
+    setProvincesOption: function setProvincesOption(state, option) {
+      state.provincesOption = option;
+    }
+  },
+
+  getters: {
+    getProvincesS: function getProvincesS(state) {
+      return state.provincesS;
+    },
+    getProvincesLoadStatS: function getProvincesLoadStatS(state) {
+      return state.provincesLoadStatS;
+    },
+    getProvinces: function getProvinces(state) {
+      return state.provinces;
+    },
+    getProvincesLoadStat: function getProvincesLoadStat(state) {
+      return state.provincesLoadStat;
+    },
+    getProvincesUpdateStat: function getProvincesUpdateStat(state) {
+      return state.provincesUpdateStat;
+    },
+    getProvincesUpdate: function getProvincesUpdate(state) {
+      return state.provincesUpdate;
+    },
+    getProvincesRules: function getProvincesRules(state) {
+      return state.provincesRules;
+    },
+    getProvincesOption: function getProvincesOption(state) {
+      return state.provincesOption;
+    }
+  }
+};
+
+/***/ }),
+/* 373 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(12);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getProvincesS: function getProvincesS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getProvincesAll: function getProvincesAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/indexAll');
+  },
+
+  getProvinces: function getProvinces(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/' + id);
+  },
+
+  createProvinces: function createProvinces() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/create');
+  },
+
+  storeProvinces: function storeProvinces(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/store', form);
+  },
+
+  editProvinces: function editProvinces(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/edit/' + id);
+  },
+
+  updateProvinces: function updateProvinces(id, form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/update/' + id, form);
+  },
+
+  deleteProvinces: function deleteProvinces(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/' + id);
+  }
+});
+
+/***/ }),
+/* 374 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return regencies; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__ = __webpack_require__(375);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+
+
+var regencies = {
+  state: {
+    regenciesS: [],
+    regenciesLoadStatS: '',
+    regencies: {},
+    regenciesLoadStat: '',
+    regenciesUpdate: '',
+    regenciesUpdateStat: '',
+    regenciesRules: [],
+    regenciesOption: []
+  },
+
+  actions: {
+
+    // load all
+    loadRegenciesS: function loadRegenciesS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setRegenciesLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegenciesS(p).then(function (response) {
+        commit('setRegenciesS', response.data.model);
+        commit('setRegenciesLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setRegenciesS', error.response);
+        commit('setRegenciesLoadStatS', 'fail');
+      });
+    },
+    loadRegenciesAll: function loadRegenciesAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setRegenciesLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegenciesAll().then(function (response) {
+        commit('setRegenciesS', response.data.model);
+        commit('setRegenciesLoadStatS', 'success');
+      }).catch(function () {
+        commit('setRegenciesS', []);
+        commit('setRegenciesLoadStatS', 'fail');
+      });
+    },
+
+
+    // load by provinces
+    loadRegenciesProvinces: function loadRegenciesProvinces(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setRegenciesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegenciesProvinces(id).then(function (response) {
+        commit('setRegenciesS', response.data.model);
+        commit('setRegenciesLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setRegenciesS', error.response);
+        commit('setRegenciesLoadStatS', 'fail');
+      });
+    },
+
+
+    // load single data
+    loadRegencies: function loadRegencies(_ref4, id) {
+      var commit = _ref4.commit;
+
+      commit('setRegenciesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegencies(id).then(function (response) {
+        commit('setRegencies', response.data);
+        commit('setRegenciesLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setRegenciesS', error.response);
+        commit('setRegenciesLoadStatS', 'fail');
+      });
+    },
+
+
+    // create data
+    createRegencies: function createRegencies(_ref5) {
+      var commit = _ref5.commit;
+
+      commit('setRegenciesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].createRegencies().then(function (response) {
+        commit('setRegencies', response.data.form);
+        commit('setRegenciesRules', response.data.rules);
+        commit('setRegenciesOption', response.data.option);
+        commit('setRegenciesLoadStat', 'success');
+      }).catch(function () {
+        commit('setRegencies', []);
+        commit('setRegenciesRules', []);
+        commit('setRegenciesOption', []);
+        commit('setRegenciesLoadStat', 'fail');
+      });
+    },
+
+
+    // store data
+    storeRegencies: function storeRegencies(_ref6, form) {
+      var _this = this;
+
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setRegenciesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].storeRegencies(form).then(function (response) {
+        if (response.data.saved) {
+          commit('setRegenciesUpdate', response.data);
+          commit('setRegenciesUpdateStat', 'success');
+        } else {
+          commit('setRegenciesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this.errors = error.response.data;
+          commit('setRegenciesUpdate', _this.errors);
+        } else {
+          commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setRegenciesUpdateStat', 'fail');
+      });
+    },
+
+
+    // edit page
+    editRegencies: function editRegencies(_ref7, id) {
+      var commit = _ref7.commit;
+
+      commit('setRegenciesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].editRegencies(id).then(function (response) {
+        commit('setRegencies', response.data.form);
+        commit('setRegenciesRules', response.data.rules);
+        commit('setRegenciesOption', response.data.option);
+        commit('setRegenciesLoadStat', 'success');
+      }).catch(function () {
+        commit('setRegencies', []);
+        commit('setRegenciesRules', []);
+        commit('setRegenciesOption', []);
+        commit('setRegenciesLoadStat', 'fail');
+      });
+    },
+
+
+    // update data
+    updateRegencies: function updateRegencies(_ref8, _ref9) {
+      var _this2 = this;
+
+      var commit = _ref8.commit,
+          state = _ref8.state,
+          dispatch = _ref8.dispatch;
+
+      var _ref10 = _slicedToArray(_ref9, 2),
+          id = _ref10[0],
+          form = _ref10[1];
+
+      commit('setRegenciesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].updateRegencies(id, form).then(function (response) {
+        if (response.data.saved) {
+          commit('setRegenciesUpdate', response.data);
+          commit('setRegenciesUpdateStat', 'success');
+        } else {
+          commit('setRegenciesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this2.errors = error.response.data;
+          commit('setRegenciesUpdate', _this2.errors);
+        } else {
+          commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setRegenciesUpdateStat', 'fail');
+      });
+    },
+
+
+    // delete data
+    deleteRegencies: function deleteRegencies(_ref11, id) {
+      var _this3 = this;
+
+      var commit = _ref11.commit,
+          state = _ref11.state,
+          dispatch = _ref11.dispatch;
+
+      commit('setRegenciesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].deleteRegencies(id).then(function (response) {
+        if (response.data.saved) {
+          commit('setRegenciesUpdate', response.data);
+          commit('setRegenciesUpdateStat', 'success');
+        } else {
+          commit('setRegenciesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this3.errors = error.response.data;
+          commit('setRegenciesUpdate', _this3.errors);
+        } else {
+          commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setRegenciesUpdateStat', 'fail');
+      });
+    },
+
+
+    // reset status
+    resetRegenciesUpdateStat: function resetRegenciesUpdateStat(_ref12) {
+      var commit = _ref12.commit;
+
+      commit('setRegenciesUpdateStat', '');
+    },
+    resetRegenciesLoadStat: function resetRegenciesLoadStat(_ref13) {
+      var commit = _ref13.commit;
+
+      commit('setRegenciesLoadStat', '');
+    }
+  },
+
+  mutations: {
+    setRegenciesS: function setRegenciesS(state, regenciesS) {
+      state.regenciesS = regenciesS;
+    },
+    setRegenciesLoadStatS: function setRegenciesLoadStatS(state, status) {
+      state.regenciesLoadStatS = status;
+    },
+    setRegencies: function setRegencies(state, regencies) {
+      state.regencies = regencies;
+    },
+    setRegenciesLoadStat: function setRegenciesLoadStat(state, status) {
+      state.regenciesLoadStat = status;
+    },
+    setRegenciesUpdateStat: function setRegenciesUpdateStat(state, status) {
+      state.regenciesUpdateStat = status;
+    },
+    setRegenciesUpdate: function setRegenciesUpdate(state, data) {
+      state.regenciesUpdate = data;
+    },
+    setRegenciesRules: function setRegenciesRules(state, rules) {
+      state.regenciesRules = rules;
+    },
+    setRegenciesOption: function setRegenciesOption(state, option) {
+      state.regenciesOption = option;
+    }
+  },
+
+  getters: {
+    getRegenciesS: function getRegenciesS(state) {
+      return state.regenciesS;
+    },
+    getRegenciesLoadStatS: function getRegenciesLoadStatS(state) {
+      return state.regenciesLoadStatS;
+    },
+    getRegencies: function getRegencies(state) {
+      return state.regencies;
+    },
+    getRegenciesLoadStat: function getRegenciesLoadStat(state) {
+      return state.regenciesLoadStat;
+    },
+    getRegenciesUpdateStat: function getRegenciesUpdateStat(state) {
+      return state.regenciesUpdateStat;
+    },
+    getRegenciesUpdate: function getRegenciesUpdate(state) {
+      return state.regenciesUpdate;
+    },
+    getRegenciesRules: function getRegenciesRules(state) {
+      return state.regenciesRules;
+    },
+    getRegenciesOption: function getRegenciesOption(state) {
+      return state.regenciesOption;
+    }
+  }
+};
+
+/***/ }),
+/* 375 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(12);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getRegenciesS: function getRegenciesS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getRegenciesAll: function getRegenciesAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies_all');
+  },
+
+  getRegencies: function getRegencies(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/' + id);
+  },
+
+  getRegenciesProvinces: function getRegenciesProvinces(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/provinces/' + id);
+  },
+
+  createRegencies: function createRegencies() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/create');
+  },
+
+  storeRegencies: function storeRegencies(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/store', form);
+  },
+
+  editRegencies: function editRegencies(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/edit/' + id);
+  },
+
+  updateRegencies: function updateRegencies(id, form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/update/' + id, form);
+  },
+
+  deleteRegencies: function deleteRegencies(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/' + id);
+  }
+});
+
+/***/ }),
+/* 376 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return districts; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_districts_js__ = __webpack_require__(377);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+
+
+var districts = {
+  state: {
+    districtsS: [],
+    districtsLoadStatS: '',
+    districts: {},
+    districtsLoadStat: '',
+    districtsUpdate: '',
+    districtsUpdateStat: '',
+    districtsRules: [],
+    districtsOption: []
+  },
+
+  actions: {
+
+    // load all
+    loadDistrictsS: function loadDistrictsS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setDistrictsLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistrictsS(p).then(function (response) {
+        commit('setDistrictsS', response.data.model);
+        commit('setDistrictsLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setDistrictsS', error.response);
+        commit('setDistrictsLoadStatS', 'fail');
+      });
+    },
+    loadDistrictsAll: function loadDistrictsAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setDistrictsLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistrictsAll().then(function (response) {
+        commit('setDistrictsS', response.data.model);
+        commit('setDistrictsLoadStatS', 'success');
+      }).catch(function () {
+        commit('setDistrictsS', []);
+        commit('setDistrictsLoadStatS', 'fail');
+      });
+    },
+
+
+    // load by regencies
+    loadDistrictsRegencies: function loadDistrictsRegencies(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setDistrictsLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistrictsRegencies(id).then(function (response) {
+        commit('setDistrictsS', response.data.model);
+        commit('setDistrictsLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setDistrictsS', error.response);
+        commit('setDistrictsLoadStatS', 'fail');
+      });
+    },
+
+
+    // load single data
+    loadDistricts: function loadDistricts(_ref4, id) {
+      var commit = _ref4.commit;
+
+      commit('setDistrictsLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistricts(id).then(function (response) {
+        commit('setDistricts', response.data);
+        commit('setDistrictsLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setDistrictsS', error.response);
+        commit('setDistrictsLoadStatS', 'fail');
+      });
+    },
+
+
+    // create data
+    createDistricts: function createDistricts(_ref5) {
+      var commit = _ref5.commit;
+
+      commit('setDistrictsLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].createDistricts().then(function (response) {
+        commit('setDistricts', response.data.form);
+        commit('setDistrictsRules', response.data.rules);
+        commit('setDistrictsOption', response.data.option);
+        commit('setDistrictsLoadStat', 'success');
+      }).catch(function () {
+        commit('setDistricts', []);
+        commit('setDistrictsRules', []);
+        commit('setDistrictsOption', []);
+        commit('setDistrictsLoadStat', 'fail');
+      });
+    },
+
+
+    // store data
+    storeDistricts: function storeDistricts(_ref6, form) {
+      var _this = this;
+
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setDistrictsUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].storeDistricts(form).then(function (response) {
+        if (response.data.saved) {
+          commit('setDistrictsUpdate', response.data);
+          commit('setDistrictsUpdateStat', 'success');
+        } else {
+          commit('setDistrictsUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this.errors = error.response.data;
+          commit('setDistrictsUpdate', _this.errors);
+        } else {
+          commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setDistrictsUpdateStat', 'fail');
+      });
+    },
+
+
+    // edit page
+    editDistricts: function editDistricts(_ref7, id) {
+      var commit = _ref7.commit;
+
+      commit('setDistrictsLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].editDistricts(id).then(function (response) {
+        commit('setDistricts', response.data.form);
+        commit('setDistrictsRules', response.data.rules);
+        commit('setDistrictsOption', response.data.option);
+        commit('setDistrictsLoadStat', 'success');
+      }).catch(function () {
+        commit('setDistricts', []);
+        commit('setDistrictsRules', []);
+        commit('setDistrictsOption', []);
+        commit('setDistrictsLoadStat', 'fail');
+      });
+    },
+
+
+    // update data
+    updateDistricts: function updateDistricts(_ref8, _ref9) {
+      var _this2 = this;
+
+      var commit = _ref8.commit,
+          state = _ref8.state,
+          dispatch = _ref8.dispatch;
+
+      var _ref10 = _slicedToArray(_ref9, 2),
+          id = _ref10[0],
+          form = _ref10[1];
+
+      commit('setDistrictsUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].updateDistricts(id, form).then(function (response) {
+        if (response.data.saved) {
+          commit('setDistrictsUpdate', response.data);
+          commit('setDistrictsUpdateStat', 'success');
+        } else {
+          commit('setDistrictsUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this2.errors = error.response.data;
+          commit('setDistrictsUpdate', _this2.errors);
+        } else {
+          commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setDistrictsUpdateStat', 'fail');
+      });
+    },
+
+
+    // delete data
+    deleteDistricts: function deleteDistricts(_ref11, id) {
+      var _this3 = this;
+
+      var commit = _ref11.commit,
+          state = _ref11.state,
+          dispatch = _ref11.dispatch;
+
+      commit('setDistrictsUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].deleteDistricts(id).then(function (response) {
+        if (response.data.saved) {
+          commit('setDistrictsUpdate', response.data);
+          commit('setDistrictsUpdateStat', 'success');
+        } else {
+          commit('setDistrictsUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this3.errors = error.response.data;
+          commit('setDistrictsUpdate', _this3.errors);
+        } else {
+          commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setDistrictsUpdateStat', 'fail');
+      });
+    },
+
+
+    // reset status
+    resetDistrictsUpdateStat: function resetDistrictsUpdateStat(_ref12) {
+      var commit = _ref12.commit;
+
+      commit('setDistrictsUpdateStat', '');
+    },
+    resetDistrictsLoadStat: function resetDistrictsLoadStat(_ref13) {
+      var commit = _ref13.commit;
+
+      commit('setDistrictsLoadStat', '');
+    }
+  },
+
+  mutations: {
+    setDistrictsS: function setDistrictsS(state, districtsS) {
+      state.districtsS = districtsS;
+    },
+    setDistrictsLoadStatS: function setDistrictsLoadStatS(state, status) {
+      state.districtsLoadStatS = status;
+    },
+    setDistricts: function setDistricts(state, districts) {
+      state.districts = districts;
+    },
+    setDistrictsLoadStat: function setDistrictsLoadStat(state, status) {
+      state.districtsLoadStat = status;
+    },
+    setDistrictsUpdateStat: function setDistrictsUpdateStat(state, status) {
+      state.districtsUpdateStat = status;
+    },
+    setDistrictsUpdate: function setDistrictsUpdate(state, data) {
+      state.districtsUpdate = data;
+    },
+    setDistrictsRules: function setDistrictsRules(state, rules) {
+      state.districtsRules = rules;
+    },
+    setDistrictsOption: function setDistrictsOption(state, option) {
+      state.districtsOption = option;
+    }
+  },
+
+  getters: {
+    getDistrictsS: function getDistrictsS(state) {
+      return state.districtsS;
+    },
+    getDistrictsLoadStatS: function getDistrictsLoadStatS(state) {
+      return state.districtsLoadStatS;
+    },
+    getDistricts: function getDistricts(state) {
+      return state.districts;
+    },
+    getDistrictsLoadStat: function getDistrictsLoadStat(state) {
+      return state.districtsLoadStat;
+    },
+    getDistrictsUpdateStat: function getDistrictsUpdateStat(state) {
+      return state.districtsUpdateStat;
+    },
+    getDistrictsUpdate: function getDistrictsUpdate(state) {
+      return state.districtsUpdate;
+    },
+    getDistrictsRules: function getDistrictsRules(state) {
+      return state.districtsRules;
+    },
+    getDistrictsOption: function getDistrictsOption(state) {
+      return state.districtsOption;
+    }
+  }
+};
+
+/***/ }),
+/* 377 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(12);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getDistrictsS: function getDistrictsS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getDistrictsAll: function getDistrictsAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts_all');
+  },
+
+  getDistricts: function getDistricts(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/' + id);
+  },
+
+  getDistrictsRegencies: function getDistrictsRegencies(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/regencies/' + id);
+  },
+
+  createDistricts: function createDistricts() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/create');
+  },
+
+  storeDistricts: function storeDistricts(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/store', form);
+  },
+
+  editDistricts: function editDistricts(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/edit/' + id);
+  },
+
+  updateDistricts: function updateDistricts(id, form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/update/' + id, form);
+  },
+
+  deleteDistricts: function deleteDistricts(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/' + id);
+  }
+});
+
+/***/ }),
+/* 378 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return villages; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_villages_js__ = __webpack_require__(379);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+
+
+var villages = {
+  state: {
+    villagesS: [],
+    villagesLoadStatS: '',
+    villages: {},
+    villagesLoadStat: '',
+    villagesUpdate: '',
+    villagesUpdateStat: '',
+    villagesRules: [],
+    villagesOption: []
+  },
+
+  actions: {
+
+    // load all
+    loadVillagesS: function loadVillagesS(_ref, p) {
+      var commit = _ref.commit;
+
+      commit('setVillagesLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillagesS(p).then(function (response) {
+        commit('setVillagesS', response.data.model);
+        commit('setVillagesLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setVillagesS', error.response);
+        commit('setVillagesLoadStatS', 'fail');
+      });
+    },
+    loadVillagesAll: function loadVillagesAll(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('setVillagesLoadStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillagesAll().then(function (response) {
+        commit('setVillagesS', response.data.model);
+        commit('setVillagesLoadStatS', 'success');
+      }).catch(function () {
+        commit('setVillagesS', []);
+        commit('setVillagesLoadStatS', 'fail');
+      });
+    },
+
+
+    // load by districts
+    loadVillagesDistricts: function loadVillagesDistricts(_ref3, id) {
+      var commit = _ref3.commit;
+
+      commit('setVillagesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillagesDistricts(id).then(function (response) {
+        commit('setVillagesS', response.data.model);
+        commit('setVillagesLoadStatS', 'success');
+      }).catch(function (error) {
+        commit('setVillagesS', error.response);
+        commit('setVillagesLoadStatS', 'fail');
+      });
+    },
+
+
+    // load single data
+    loadVillages: function loadVillages(_ref4, id) {
+      var commit = _ref4.commit;
+
+      commit('setVillagesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillages(id).then(function (response) {
+        commit('setVillages', response.data);
+        commit('setVillagesLoadStat', 'success');
+      }).catch(function (error) {
+        commit('setVillagesS', error.response);
+        commit('setVillagesLoadStatS', 'fail');
+      });
+    },
+
+
+    // create data
+    createVillages: function createVillages(_ref5) {
+      var commit = _ref5.commit;
+
+      commit('setVillagesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].createVillages().then(function (response) {
+        commit('setVillages', response.data.form);
+        commit('setVillagesRules', response.data.rules);
+        commit('setVillagesOption', response.data.option);
+        commit('setVillagesLoadStat', 'success');
+      }).catch(function () {
+        commit('setVillages', []);
+        commit('setVillagesRules', []);
+        commit('setVillagesOption', []);
+        commit('setVillagesLoadStat', 'fail');
+      });
+    },
+
+
+    // store data
+    storeVillages: function storeVillages(_ref6, form) {
+      var _this = this;
+
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
+
+      commit('setVillagesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].storeVillages(form).then(function (response) {
+        if (response.data.saved) {
+          commit('setVillagesUpdate', response.data);
+          commit('setVillagesUpdateStat', 'success');
+        } else {
+          commit('setVillagesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this.errors = error.response.data;
+          commit('setVillagesUpdate', _this.errors);
+        } else {
+          commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setVillagesUpdateStat', 'fail');
+      });
+    },
+
+
+    // edit page
+    editVillages: function editVillages(_ref7, id) {
+      var commit = _ref7.commit;
+
+      commit('setVillagesLoadStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].editVillages(id).then(function (response) {
+        commit('setVillages', response.data.form);
+        commit('setVillagesRules', response.data.rules);
+        commit('setVillagesOption', response.data.option);
+        commit('setVillagesLoadStat', 'success');
+      }).catch(function () {
+        commit('setVillages', []);
+        commit('setVillagesRules', []);
+        commit('setVillagesOption', []);
+        commit('setVillagesLoadStat', 'fail');
+      });
+    },
+
+
+    // update data
+    updateVillages: function updateVillages(_ref8, _ref9) {
+      var _this2 = this;
+
+      var commit = _ref8.commit,
+          state = _ref8.state,
+          dispatch = _ref8.dispatch;
+
+      var _ref10 = _slicedToArray(_ref9, 2),
+          id = _ref10[0],
+          form = _ref10[1];
+
+      commit('setVillagesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].updateVillages(id, form).then(function (response) {
+        if (response.data.saved) {
+          commit('setVillagesUpdate', response.data);
+          commit('setVillagesUpdateStat', 'success');
+        } else {
+          commit('setVillagesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this2.errors = error.response.data;
+          commit('setVillagesUpdate', _this2.errors);
+        } else {
+          commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setVillagesUpdateStat', 'fail');
+      });
+    },
+
+
+    // delete data
+    deleteVillages: function deleteVillages(_ref11, id) {
+      var _this3 = this;
+
+      var commit = _ref11.commit,
+          state = _ref11.state,
+          dispatch = _ref11.dispatch;
+
+      commit('setVillagesUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].deleteVillages(id).then(function (response) {
+        if (response.data.saved) {
+          commit('setVillagesUpdate', response.data);
+          commit('setVillagesUpdateStat', 'success');
+        } else {
+          commit('setVillagesUpdateStat', 'fail');
+        }
+      }).catch(function (error) {
+        if (error.response.status) {
+          _this3.errors = error.response.data;
+          commit('setVillagesUpdate', _this3.errors);
+        } else {
+          commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
+        }
+        commit('setVillagesUpdateStat', 'fail');
+      });
+    },
+
+
+    // reset status
+    resetVillagesUpdateStat: function resetVillagesUpdateStat(_ref12) {
+      var commit = _ref12.commit;
+
+      commit('setVillagesUpdateStat', '');
+    },
+    resetVillagesLoadStat: function resetVillagesLoadStat(_ref13) {
+      var commit = _ref13.commit;
+
+      commit('setVillagesLoadStat', '');
+    }
+  },
+
+  mutations: {
+    setVillagesS: function setVillagesS(state, villagesS) {
+      state.villagesS = villagesS;
+    },
+    setVillagesLoadStatS: function setVillagesLoadStatS(state, status) {
+      state.villagesLoadStatS = status;
+    },
+    setVillages: function setVillages(state, villages) {
+      state.villages = villages;
+    },
+    setVillagesLoadStat: function setVillagesLoadStat(state, status) {
+      state.villagesLoadStat = status;
+    },
+    setVillagesUpdateStat: function setVillagesUpdateStat(state, status) {
+      state.villagesUpdateStat = status;
+    },
+    setVillagesUpdate: function setVillagesUpdate(state, data) {
+      state.villagesUpdate = data;
+    },
+    setVillagesRules: function setVillagesRules(state, rules) {
+      state.villagesRules = rules;
+    },
+    setVillagesOption: function setVillagesOption(state, option) {
+      state.villagesOption = option;
+    }
+  },
+
+  getters: {
+    getVillagesS: function getVillagesS(state) {
+      return state.villagesS;
+    },
+    getVillagesLoadStatS: function getVillagesLoadStatS(state) {
+      return state.villagesLoadStatS;
+    },
+    getVillages: function getVillages(state) {
+      return state.villages;
+    },
+    getVillagesLoadStat: function getVillagesLoadStat(state) {
+      return state.villagesLoadStat;
+    },
+    getVillagesUpdateStat: function getVillagesUpdateStat(state) {
+      return state.villagesUpdateStat;
+    },
+    getVillagesUpdate: function getVillagesUpdate(state) {
+      return state.villagesUpdate;
+    },
+    getVillagesRules: function getVillagesRules(state) {
+      return state.villagesRules;
+    },
+    getVillagesOption: function getVillagesOption(state) {
+      return state.villagesOption;
+    }
+  }
+};
+
+/***/ }),
+/* 379 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_js__ = __webpack_require__(12);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  getVillagesS: function getVillagesS(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  },
+
+  getVillagesAll: function getVillagesAll() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages_all');
+  },
+
+  getVillages: function getVillages(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/' + id);
+  },
+
+  getVillagesDistricts: function getVillagesDistricts(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/districts/' + id);
+  },
+
+  createVillages: function createVillages() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/create');
+  },
+
+  storeVillages: function storeVillages(form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/store', form);
+  },
+
+  editVillages: function editVillages(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/edit/' + id);
+  },
+
+  updateVillages: function updateVillages(id, form) {
+    return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/update/' + id, form);
+  },
+
+  deleteVillages: function deleteVillages(id) {
+    return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/' + id);
+  }
+});
 
 /***/ })
 /******/ ]);

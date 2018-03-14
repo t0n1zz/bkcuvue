@@ -12,6 +12,7 @@ class ArtikelController extends Controller{
 	protected $imagepath = 'images/artikel/';
 	protected $width = 300;
 	protected $height = 200;
+	protected $message = 'Artikel';
 
 	public function index()
 	{
@@ -68,7 +69,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Artikel ' .$name. ' berhasil ditambah'
+				'message' => $this->message. ' ' .$name. ' berhasil ditambah'
 			]);
 	}
 
@@ -120,7 +121,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Artikel ' .$name. ' berhasil diubah'
+				'message' => $this->message. ' ' .$name. ' berhasil diubah'
 			]);
 	}
 
@@ -130,10 +131,10 @@ class ArtikelController extends Controller{
 
 		if($kelas->terbitkan == 1){
 			$kelas->terbitkan = 0;
-			$message = "Artikel berhasil tidak diterbitkan";
+			$message = $this->message. " berhasil tidak diterbitkan";
 		}else{
 			$kelas->terbitkan = 1;
-			$message = "Artikel berhasil diterbitkan";
+			$message = $this->message. " berhasil diterbitkan";
 		}
 
 		$kelas->update();
@@ -151,10 +152,10 @@ class ArtikelController extends Controller{
 
 		if($kelas->utamakan == 1){
 			$kelas->utamakan = 0;
-			$message = "Artikel berhasil tidak diutamakan";
+			$message = $this->message. " berhasil tidak diutamakan";
 		}else{
 			$kelas->utamakan = 1;
-			$message = "Artikel berhasil diutamakan";
+			$message = $this->message. " berhasil diutamakan";
 		}
 
 		$kelas->update();
@@ -181,7 +182,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Artikel ' .$name. 'berhasil dihapus'
+				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
 

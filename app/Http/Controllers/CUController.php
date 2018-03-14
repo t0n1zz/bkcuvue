@@ -12,6 +12,7 @@ class CUController extends Controller{
 	protected $imagepath = 'images/cu/';
 	protected $width = 200;
 	protected $height = 200;
+	protected $message = "CU";
 
 	public function index()
 	{
@@ -79,7 +80,7 @@ class CUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = User::findOrFail($id);
+		$kelas = CU::findOrFail($id);
 
 		return response()
 				->json([
@@ -101,6 +102,16 @@ class CUController extends Controller{
 			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
 		else
 			$fileName = '';
+
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $fileName
+		]);	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+			]);
 	}
 
 	public function destroy($id)

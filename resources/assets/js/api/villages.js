@@ -14,8 +14,8 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/villages/' + id);
   },
 
-  getVillagesRegencies: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/villages/regencies/' + id);
+  getVillagesDistricts: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/villages/districts/' + id);
   },
 
   createVillages: function(){

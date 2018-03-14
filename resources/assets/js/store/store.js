@@ -9,6 +9,10 @@ import { artikelKategori } from './modules/artikelKategori';
 import { artikelPenulis } from './modules/artikelPenulis';
 import { CU } from './modules/cu';
 import { pus } from './modules/pus';
+import { provinces } from './modules/provinces';
+import { regencies } from './modules/regencies';
+import { districts } from './modules/districts';
+import { villages } from './modules/villages';
 
 import getters from './getters';
 import mutations from './mutations';
@@ -31,6 +35,10 @@ export const store = new Vuex.Store({
 		 artikelKategori,
 		 artikelPenulis,
 		 CU,
-		 pus
+		 pus,
+		 provinces,
+		 regencies,
+		 districts,
+		 villages
 	 }
 });

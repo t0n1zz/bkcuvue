@@ -3,7 +3,7 @@ import { BKCU_CONFIG } from '../config.js';
 export default {
   
   getCUS: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/cu' + `?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`);
+    return axios.get(BKCU_CONFIG.API_URL +  '/cu' , {params: p});
   },
 
   getCUAll: function(){
@@ -31,7 +31,7 @@ export default {
   },
 
   updateCU: function ( id, form ){
-    return axios.put(BKCU_CONFIG.API_URL + '/cu/update/' + id, form);
+    return axios.post(BKCU_CONFIG.API_URL + '/cu/update/' + id, form);
   },
 
   deleteCU: function( id ){

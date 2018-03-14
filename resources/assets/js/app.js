@@ -6,6 +6,7 @@ import { store } from './store/store';
 import Axios from 'axios';
 import id from 'vee-validate/dist/locale/id';
 import VeeValidate, { Validator } from 'vee-validate';
+import { BKCU_CONFIG } from './config.js';
 
 Validator.localize('id',id); //localization
 Vue.use(VueRouter);

@@ -23,7 +23,7 @@ export const CU = {
           commit('setCULoadStatS', 'success');
         })
         .catch( error => {
-          commit('setCUS', error.response);
+          commit('setCUS', error.response.data.message);
           commit('setCULoadStatS', 'fail');
         });
     },
@@ -208,6 +208,12 @@ export const CU = {
     },
     setCUUpdateStat( state,status ){
       state.CUUpdateStat = status;
+    },
+    setCURules( state, rules ){
+      state.CURules = rules;
+    },
+    setCUOption( state, option ){
+      state.CUOption = option;
     }
   },
 
@@ -230,5 +236,11 @@ export const CU = {
     getCUUpdate ( state ){
       return state.CUUpdate;
     },
+    getCURules ( state ){
+      return state.CURules;
+    },
+    getCUOption ( state ){
+      return state.CUOption;
+    }
   }
 }

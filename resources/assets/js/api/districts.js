@@ -14,7 +14,7 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/districts/' + id);
   },
 
-  getDistrictsRegecies: function( id ){
+  getDistrictsRegencies: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/districts/regencies/' + id);
   },
 
