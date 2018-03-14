@@ -22,6 +22,7 @@
     "dependencies": {
         "moment": "^2.20.1",
         "vee-validate": "^2.0.4",
+        "vue-cleave-component": "^1.0.2",
         "vue-context-menu": "^2.0.6",
         "vue-json-excel": "^0.2.1",
         "vue-masked-input": "^0.5.2",

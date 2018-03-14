@@ -80,16 +80,13 @@
 												No. BA:</h5>
 
 											<!-- text -->
-											<the-mask
-												type="tel"
-												name="no_ba"
-												class="form-control"
-												v-model="form.no_ba"
-												:mask="['###']"
-												:masked="true"
+											<cleave 
+												v-model="form.no_ba" 
+												class="form-control" 
+												:options="cleaveOption.number3"
 												placeholder="Silahkan masukkan no ba."
-												v-validate="'required'" data-vv-as="No. BA">
-											</the-mask>	
+												v-validate="'required'" data-vv-as="No. BA"></cleave>
+											
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
@@ -299,17 +296,15 @@
 												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
 												Tgl. Berdiri:</h5>
 
-											<!-- text -->
-											<the-mask
-												type="tel"
+											<!-- input -->
+											<cleave 
 												name="ultah"
-												class="form-control"
-												v-model="form.ultah"
-												:mask="['####-##-##']"
-												:masked="true"
+												v-model="form.ultah" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
 												placeholder="Silahkan masukkan tgl. berdiri"
-												v-validate="'required'" data-vv-as="Tgl. berdiri">
-											</the-mask>	
+												v-validate="'required'" data-vv-as="Tgl. berdiri"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
@@ -328,17 +323,15 @@
 												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
 												Tgl. Bergabung:</h5>
 
-											<!-- text -->
-											<the-mask
-												type="tel"
+											<!-- input  -->
+											<cleave 
 												name="bergabung"
-												class="form-control"
-												v-model="form.bergabung"
-												:mask="['####-##-##']"
-												:masked="true"
+												v-model="form.bergabung" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
 												placeholder="Silahkan masukkan tgl. bergabung"
-												v-validate="'required'" data-vv-as="Tgl. bergabung">
-											</the-mask>	
+												v-validate="'required'" data-vv-as="Tgl. bergabung"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
@@ -398,7 +391,12 @@
 												No. Telp:</h5>
 
 											<!-- text -->
-											<input type="number" name="telp" class="form-control" placeholder="Silahkan masukkan no telp" v-model="form.telp">
+											<cleave 
+												v-model="form.telp" 
+												class="form-control" 
+												:options="cleaveOption.number12"
+												placeholder="Silahkan masukkan no telp"
+												v-validate="'required'" data-vv-as="No. Telp"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.telp')">
@@ -418,7 +416,12 @@
 												No. Hp:</h5>
 
 											<!-- text -->
-											<input type="number" name="hp" class="form-control" placeholder="Silahkan masukkan no hp" v-model="form.hp">
+											<cleave 
+												v-model="form.hp" 
+												class="form-control" 
+												:options="cleaveOption.number12"
+												placeholder="Silahkan masukkan no hp"
+												v-validate="'required'" data-vv-as="No. HP"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.hp')">
@@ -438,7 +441,12 @@
 												Kode Pos:</h5>
 
 											<!-- text -->
-											<input type="number" name="pos" class="form-control" placeholder="Silahkan masukkan kode pos" v-model="form.pos">
+											<cleave 
+												v-model="form.pos" 
+												class="form-control" 
+												:options="cleaveOption.number12"
+												placeholder="Silahkan masukkan kode pos"
+												v-validate="'required'" data-vv-as="No. Pos"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.pos')">
@@ -504,13 +512,15 @@
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import {TheMask} from 'vue-the-mask';
+	import Cleave from 'vue-cleave-component';
 
 	export default {
 		components: {
 			appModal,
 			appImageUpload,
 			message,
-			TheMask
+			TheMask,
+			Cleave
 		},
 		data() {
 			return {
@@ -520,6 +530,33 @@
 				kelas: 'cu',
 				kelasVuex: 'CU',
 				redirect: '/cu/',
+				cleaveOption: {
+          date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+          },
+          number12: {
+            numeral: true,
+            numeralIntegerScale: 12,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
+					number3: {
+            numeral: true,
+            numeralIntegerScale: 3,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
+          numeric: {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand',
+            numeralDecimalScale: 2,
+            numeralDecimalMark: ',',
+            delimiter: '.'
+          }
+        },
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',

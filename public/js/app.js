@@ -46048,15 +46048,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_json_excel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_text_mask__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_text_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_text_mask__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_context_menu__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_context_menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_context_menu__);
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_context_menu__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_context_menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_context_menu__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_cleave_component__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_cleave_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_cleave_component__);
 //
 //
 //
@@ -46805,8 +46800,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     jsonExcel: __WEBPACK_IMPORTED_MODULE_3_vue_json_excel___default.a,
     appModal: __WEBPACK_IMPORTED_MODULE_4__components_modal___default.a,
-    maskedInput: __WEBPACK_IMPORTED_MODULE_5_vue_text_mask___default.a,
-    contextMenu: __WEBPACK_IMPORTED_MODULE_6_vue_context_menu___default.a
+    contextMenu: __WEBPACK_IMPORTED_MODULE_5_vue_context_menu___default.a,
+    Cleave: __WEBPACK_IMPORTED_MODULE_6_vue_cleave_component___default.a
   },
   data: function data() {
     return {
@@ -46853,6 +46848,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         key: '',
         title: '',
         noKey: ''
+      },
+      cleaveOption: {
+        date: {
+          date: true,
+          datePattern: ['Y', 'm', 'd'],
+          delimiter: '-'
+        },
+        number: {
+          numeral: true,
+          numeralThousandsGroupStyle: 'none',
+          numeralDecimalScale: 0,
+          stripLeadingZeroes: false
+        },
+        numeric: {
+          numeral: true,
+          numeralThousandsGroupStyle: 'thousand',
+          numeralDecimalScale: 2,
+          numeralDecimalMark: ',',
+          delimiter: '.'
+        },
+        dateTime: {
+          blocks: [4, 2, 2, 2, 2, 2],
+          delimiters: ['-', '-', ' ', ':', ':'],
+          delimiterLazyShow: true
+        }
       },
       excelLoadStat: '',
       isSearch: false,
@@ -46921,6 +46941,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.params.search_operator = this.operator[6].key;
         this.searchOperator = this.operator[6].title;
         this.searchColumnType = 'date';
+      } else if (type === 'datetime') {
+        this.params.search_operator = this.operator[6].key;
+        this.searchOperator = this.operator[6].title;
+        this.searchColumnType = 'datetime';
       } else if (type === 'number') {
         this.params.search_operator = this.operator[0].key;
         this.searchOperator = this.operator[0].title;
@@ -66404,12 +66428,7 @@ if (false) {
 }
 
 /***/ }),
-/* 240 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.vueTextMask=t():e.vueTextMask=t()}(this,function(){return function(e){function t(n){if(r[n])return r[n].exports;var i=r[n]={exports:{},id:n,loaded:!1};return e[n].call(i.exports,i,i.exports,t),i.loaded=!0,i.exports}var r={};return t.m=e,t.c=r,t.p="",t(0)}([function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.conformToMask=void 0;var i=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},o=r(2);Object.defineProperty(t,"conformToMask",{enumerable:!0,get:function(){return n(o).default}});var a=r(5),u=n(a);t.default={render:function(e){var t=this;return e("input",{ref:"input",domProps:{value:this.value},on:{input:function(e){return t.updateValue(e.target.value)},focus:function(e){return t.emitEvent(e)},blur:function(e){return t.emitEvent(e)},keypress:function(e){return t.emitEvent(e)},click:function(e){return t.emitEvent(e)}}})},name:"masked-input",props:{value:{type:String,required:!1,default:""},mask:{type:[Array,Function,Boolean,Object],required:!0},guide:{type:Boolean,required:!1},placeholderChar:{type:String,required:!1},keepCharPositions:{type:Boolean,required:!1},pipe:{type:Function,required:!1},showMask:{type:Boolean,required:!1}},mounted:function(){this.initMask()},methods:{createTextMaskInputElement:u.default,setTextMaskInputElement:function(){this.textMaskInputElement=this.createTextMaskInputElement(i({inputElement:this.$refs.input},this.$options.propsData))},initMask:function(){this.setTextMaskInputElement(),this.textMaskInputElement.update(this.value)},bind:function(){this.setTextMaskInputElement(),this.updateValue(this.value)},updateValue:function(e){this.textMaskInputElement.update(e),this.$emit("input",this.$refs.input.value)},emitEvent:function(e){this.$emit(e.type,e)}},watch:{mask:function(e,t){this.mask!==t&&this.bind()},guide:function(){this.bind()},placeholderChar:function(){this.bind()},keepCharPositions:function(){this.bind()},pipe:function(){this.bind()},showMask:function(){this.bind()}}}},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.placeholderChar="_"},function(e,t,r){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:a,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:a,r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=r.guide,u=void 0===n||n,s=r.previousConformedValue,l=void 0===s?a:s,f=r.placeholderChar,d=void 0===f?o.placeholderChar:f,c=r.placeholder,p=void 0===c?(0,i.convertMaskToPlaceholder)(t,d):c,h=r.currentCaretPosition,v=r.keepCharPositions,m=u===!1&&void 0!==l,g=e.length,y=l.length,b=p.length,k=t.length,C=g-y,x=C>0,P=h+(x?-C:0),M=P+Math.abs(C);if(v===!0&&!x){for(var O=a,T=P;T<M;T++)p[T]===d&&(O+=d);e=e.slice(0,P)+O+e.slice(P,g)}for(var w=e.split(a).map(function(e,t){return{char:e,isNew:t>=P&&t<M}}),E=g-1;E>=0;E--){var j=w[E].char;if(j!==d){var V=E>=P&&y===k;j===p[V?E-C:E]&&w.splice(E,1)}}var S=a,_=!1;e:for(var I=0;I<b;I++){var N=p[I];if(N===d){if(w.length>0)for(;w.length>0;){var q=w.shift(),A=q.char,$=q.isNew;if(A===d&&m!==!0){S+=d;continue e}if(t[I].test(A)){if(v===!0&&$!==!1&&l!==a&&u!==!1&&x){for(var B=w.length,F=null,R=0;R<B;R++){var J=w[R];if(J.char!==d&&J.isNew===!1)break;if(J.char===d){F=R;break}}null!==F?(S+=A,w.splice(F,1)):I--}else S+=A;continue e}_=!0}m===!1&&(S+=p.substr(I,b));break}S+=N}if(m&&x===!1){for(var L=null,W=0;W<S.length;W++)p[W]===d&&(L=W);S=null!==L?S.substr(0,L+1):a}return{conformedValue:S,meta:{someCharsRejected:_}}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=n;var i=r(3),o=r(1),a=""},function(e,t,r){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:s,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:u.placeholderChar;if(e.indexOf(t)!==-1)throw new Error("Placeholder character must not be used as part of the mask. Please specify a character that is not present in your mask as your placeholder character.\n\n"+("The placeholder character that was received is: "+JSON.stringify(t)+"\n\n")+("The mask that was received is: "+JSON.stringify(e)));return e.map(function(e){return e instanceof RegExp?t:e}).join("")}function i(e){return"string"==typeof e||e instanceof String}function o(e){return"number"==typeof e&&void 0===e.length&&!isNaN(e)}function a(e){for(var t=[],r=void 0;r=e.indexOf(l),r!==-1;)t.push(r),e.splice(r,1);return{maskWithoutCaretTraps:e,indexes:t}}Object.defineProperty(t,"__esModule",{value:!0}),t.convertMaskToPlaceholder=n,t.isString=i,t.isNumber=o,t.processCaretTraps=a;var u=r(1),s=[],l="[]"},function(e,t){"use strict";function r(e){var t=e.previousConformedValue,r=void 0===t?i:t,o=e.previousPlaceholder,a=void 0===o?i:o,u=e.currentCaretPosition,s=void 0===u?0:u,l=e.conformedValue,f=e.rawValue,d=e.placeholderChar,c=e.placeholder,p=e.indexesOfPipedChars,h=void 0===p?n:p,v=e.caretTrapIndexes,m=void 0===v?n:v;if(0===s)return 0;var g=f.length,y=r.length,b=c.length,k=l.length,C=g-y,x=C>0,P=0===y,M=C>1&&!x&&!P;if(M)return s;var O=x&&(r===l||l===c),T=0,w=void 0,E=void 0;if(O)T=s-C;else{var j=l.toLowerCase(),V=f.toLowerCase(),S=V.substr(0,s).split(i),_=S.filter(function(e){return j.indexOf(e)!==-1});E=_[_.length-1];var I=a.substr(0,_.length).split(i).filter(function(e){return e!==d}).length,N=c.substr(0,_.length).split(i).filter(function(e){return e!==d}).length,q=N!==I,A=void 0!==a[_.length-1]&&void 0!==c[_.length-2]&&a[_.length-1]!==d&&a[_.length-1]!==c[_.length-1]&&a[_.length-1]===c[_.length-2];!x&&(q||A)&&I>0&&c.indexOf(E)>-1&&void 0!==f[s]&&(w=!0,E=f[s]);for(var $=h.map(function(e){return j[e]}),B=$.filter(function(e){return e===E}).length,F=_.filter(function(e){return e===E}).length,R=c.substr(0,c.indexOf(d)).split(i).filter(function(e,t){return e===E&&f[t]!==e}).length,J=R+F+B+(w?1:0),L=0,W=0;W<k;W++){var D=j[W];if(T=W+1,D===E&&L++,L>=J)break}}if(x){for(var z=T,G=T;G<=b;G++)if(c[G]===d&&(z=G),c[G]===d||m.indexOf(G)!==-1||G===b)return z}else if(w){for(var H=T-1;H>=0;H--)if(l[H]===E||m.indexOf(H)!==-1||0===H)return H}else for(var K=T;K>=0;K--)if(c[K-1]===d||m.indexOf(K)!==-1||0===K)return K}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var n=[],i=""},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function i(e){var t={previousConformedValue:void 0,previousPlaceholder:void 0};return{state:t,update:function(r){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:e,i=n.inputElement,l=n.mask,d=n.guide,g=n.pipe,b=n.placeholderChar,k=void 0===b?h.placeholderChar:b,C=n.keepCharPositions,x=void 0!==C&&C,P=n.showMask,M=void 0!==P&&P;if("undefined"==typeof r&&(r=i.value),r!==t.previousConformedValue){("undefined"==typeof l?"undefined":s(l))===y&&void 0!==l.pipe&&void 0!==l.mask&&(g=l.pipe,l=l.mask);var O=void 0,T=void 0;if(l instanceof Array&&(O=(0,p.convertMaskToPlaceholder)(l,k)),l!==!1){var w=a(r),E=i.selectionEnd,j=t.previousConformedValue,V=t.previousPlaceholder,S=void 0;if(("undefined"==typeof l?"undefined":s(l))===v){if(T=l(w,{currentCaretPosition:E,previousConformedValue:j,placeholderChar:k}),T===!1)return;var _=(0,p.processCaretTraps)(T),I=_.maskWithoutCaretTraps,N=_.indexes;T=I,S=N,O=(0,p.convertMaskToPlaceholder)(T,k)}else T=l;var q={previousConformedValue:j,guide:d,placeholderChar:k,pipe:g,placeholder:O,currentCaretPosition:E,keepCharPositions:x},A=(0,c.default)(w,T,q),$=A.conformedValue,B=("undefined"==typeof g?"undefined":s(g))===v,F={};B&&(F=g($,u({rawValue:w},q)),F===!1?F={value:j,rejected:!0}:(0,p.isString)(F)&&(F={value:F}));var R=B?F.value:$,J=(0,f.default)({previousConformedValue:j,previousPlaceholder:V,conformedValue:R,placeholder:O,rawValue:w,currentCaretPosition:E,placeholderChar:k,indexesOfPipedChars:F.indexesOfPipedChars,caretTrapIndexes:S}),L=R===O&&0===J,W=M?O:m,D=L?W:R;t.previousConformedValue=D,t.previousPlaceholder=O,i.value!==D&&(i.value=D,o(i,J))}}}}}function o(e,t){document.activeElement===e&&(b?k(function(){return e.setSelectionRange(t,t,g)},0):e.setSelectionRange(t,t,g))}function a(e){if((0,p.isString)(e))return e;if((0,p.isNumber)(e))return String(e);if(void 0===e||null===e)return m;throw new Error("The 'value' provided to Text Mask needs to be a string or a number. The value received was:\n\n "+JSON.stringify(e))}Object.defineProperty(t,"__esModule",{value:!0});var u=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};t.default=i;var l=r(4),f=n(l),d=r(2),c=n(d),p=r(3),h=r(1),v="function",m="",g="none",y="object",b="undefined"!=typeof navigator&&/Android/i.test(navigator.userAgent),k="undefined"!=typeof requestAnimationFrame?requestAnimationFrame:setTimeout}])});
-
-/***/ }),
+/* 240 */,
 /* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -66530,35 +66549,13 @@ var render = function() {
                   { staticClass: "input-group" },
                   [
                     _vm.searchColumnType === "datetime"
-                      ? _c("masked-input", {
+                      ? _c("cleave", {
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            name: "date",
-                            mask: [
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/,
-                              " ",
-                              /\d/,
-                              /\d/,
-                              ":",
-                              /\d/,
-                              /\d/,
-                              ":",
-                              /\d/,
-                              /\d/
-                            ],
-                            guide: false,
-                            disabled: _vm.itemDataStat === "loading",
-                            placeholder: "YYYY-MM-DD HH:MM:SS"
+                            raw: false,
+                            options: _vm.cleaveOption.dateTime,
+                            placeholder: "YYYY-MM-DD HH:MM:SS",
+                            disabled: _vm.itemDataStat === "loading"
                           },
                           model: {
                             value: _vm.searchQuery1,
@@ -66570,7 +66567,7 @@ var render = function() {
                         })
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.searchColumnType === "date" &&
+                    _vm.searchColumnType === "datetime" &&
                     _vm.params.search_operator === "between"
                       ? _c("span", { staticClass: "input-group-addon" }, [
                           _vm._v("sampai")
@@ -66579,35 +66576,13 @@ var render = function() {
                     _vm._v(" "),
                     _vm.searchColumnType === "datetime" &&
                     _vm.params.search_operator === "between"
-                      ? _c("masked-input", {
+                      ? _c("cleave", {
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            name: "date2",
-                            mask: [
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/,
-                              " ",
-                              /\d/,
-                              /\d/,
-                              ":",
-                              /\d/,
-                              /\d/,
-                              ":",
-                              /\d/,
-                              /\d/
-                            ],
-                            guide: false,
-                            disabled: _vm.itemDataStat === "loading",
-                            placeholder: "YYYY-MM-DD HH:MM:SS"
+                            raw: false,
+                            options: _vm.cleaveOption.dateTime,
+                            placeholder: "YYYY-MM-DD HH:MM:SS",
+                            disabled: _vm.itemDataStat === "loading"
                           },
                           model: {
                             value: _vm.params.search_query_2,
@@ -66620,26 +66595,13 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.searchColumnType === "date"
-                      ? _c("masked-input", {
+                      ? _c("cleave", {
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            name: "date",
-                            mask: [
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/
-                            ],
-                            guide: false,
-                            disabled: _vm.itemDataStat === "loading",
-                            placeholder: "YYYY-MM-DD"
+                            raw: false,
+                            options: _vm.cleaveOption.date,
+                            placeholder: "YYYY-MM-DD",
+                            disabled: _vm.itemDataStat === "loading"
                           },
                           model: {
                             value: _vm.searchQuery1,
@@ -66660,26 +66622,13 @@ var render = function() {
                     _vm._v(" "),
                     _vm.searchColumnType === "date" &&
                     _vm.params.search_operator === "between"
-                      ? _c("masked-input", {
+                      ? _c("cleave", {
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            name: "date2",
-                            mask: [
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/,
-                              "-",
-                              /\d/,
-                              /\d/
-                            ],
-                            guide: false,
-                            disabled: _vm.itemDataStat === "loading",
-                            placeholder: "YYYY-MM-DD"
+                            raw: false,
+                            options: _vm.cleaveOption.date,
+                            placeholder: "YYYY-MM-DD",
+                            disabled: _vm.itemDataStat === "loading"
                           },
                           model: {
                             value: _vm.params.search_query_2,
@@ -66692,24 +66641,11 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.searchColumnType === "number"
-                      ? _c("masked-input", {
+                      ? _c("cleave", {
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            name: "number",
-                            mask: [
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/
-                            ],
-                            placeholder: "999.999.999",
-                            guide: false,
+                            options: _vm.cleaveOption.number,
+                            placeholder: "0-9",
                             disabled: _vm.itemDataStat === "loading"
                           },
                           model: {
@@ -66731,24 +66667,55 @@ var render = function() {
                     _vm._v(" "),
                     _vm.searchColumnType === "number" &&
                     _vm.params.search_operator === "between"
-                      ? _c("masked-input", {
+                      ? _c("cleave", {
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            name: "number",
-                            mask: [
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/,
-                              /\d/
-                            ],
-                            placeholder: "999.999.999",
-                            guide: false,
+                            options: _vm.cleaveOption.number,
+                            placeholder: "0-9",
+                            disabled: _vm.itemDataStat === "loading"
+                          },
+                          model: {
+                            value: _vm.params.search_query_2,
+                            callback: function($$v) {
+                              _vm.$set(_vm.params, "search_query_2", $$v)
+                            },
+                            expression: "params.search_query_2"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.searchColumnType === "numeric"
+                      ? _c("cleave", {
+                          staticClass: "form-control",
+                          attrs: {
+                            options: _vm.cleaveOption.numeric,
+                            placeholder: "999.999.999,99",
+                            disabled: _vm.itemDataStat === "loading"
+                          },
+                          model: {
+                            value: _vm.searchQuery1,
+                            callback: function($$v) {
+                              _vm.searchQuery1 = $$v
+                            },
+                            expression: "searchQuery1"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.searchColumnType === "numeric" &&
+                    _vm.params.search_operator === "between"
+                      ? _c("span", { staticClass: "input-group-addon" }, [
+                          _vm._v("sampai")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.searchColumnType === "numeric" &&
+                    _vm.params.search_operator === "between"
+                      ? _c("cleave", {
+                          staticClass: "form-control",
+                          attrs: {
+                            options: _vm.cleaveOption.numeric,
+                            placeholder: "999.999.999,99",
                             disabled: _vm.itemDataStat === "loading"
                           },
                           model: {
@@ -67057,7 +67024,7 @@ var render = function() {
                       })
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.searchColumnType === "date" &&
+                  _vm.searchColumnType === "datetime" &&
                   _vm.params.search_operator === "between"
                     ? _c("span", { staticClass: "input-group-addon" }, [
                         _vm._v("sampai")
@@ -100823,6 +100790,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_message_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_the_mask__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_the_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_the_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_cleave_component__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_cleave_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vue_cleave_component__);
 //
 //
 //
@@ -101318,6 +101287,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -101333,7 +101311,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		appModal: __WEBPACK_IMPORTED_MODULE_5__components_modal___default.a,
 		appImageUpload: __WEBPACK_IMPORTED_MODULE_4__components_ImageUpload_vue___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_6__components_message_vue___default.a,
-		TheMask: __WEBPACK_IMPORTED_MODULE_7_vue_the_mask__["TheMask"]
+		TheMask: __WEBPACK_IMPORTED_MODULE_7_vue_the_mask__["TheMask"],
+		Cleave: __WEBPACK_IMPORTED_MODULE_8_vue_cleave_component___default.a
 	},
 	data: function data() {
 		return {
@@ -101343,6 +101322,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			kelas: 'cu',
 			kelasVuex: 'CU',
 			redirect: '/cu/',
+			cleaveOption: {
+				date: {
+					date: true,
+					datePattern: ['Y', 'm', 'd'],
+					delimiter: '-'
+				},
+				number12: {
+					numeral: true,
+					numeralIntegerScale: 12,
+					numeralDecimalScale: 0,
+					stripLeadingZeroes: false,
+					delimiter: ''
+				},
+				number3: {
+					numeral: true,
+					numeralIntegerScale: 3,
+					numeralDecimalScale: 0,
+					stripLeadingZeroes: false
+				},
+				numeric: {
+					numeral: true,
+					numeralThousandsGroupStyle: 'thousand',
+					numeralDecimalScale: 2,
+					numeralDecimalMark: ',',
+					delimiter: '.'
+				}
+			},
 			modalShow: false,
 			modalState: '',
 			modalTitle: '',
@@ -101753,7 +101759,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("the-mask", {
+                              _c("cleave", {
                                 directives: [
                                   {
                                     name: "validate",
@@ -101764,10 +101770,7 @@ var render = function() {
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "tel",
-                                  name: "no_ba",
-                                  mask: ["###"],
-                                  masked: true,
+                                  options: _vm.cleaveOption.number3,
                                   placeholder: "Silahkan masukkan no ba.",
                                   "data-vv-as": "No. BA"
                                 },
@@ -102612,7 +102615,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("the-mask", {
+                              _c("cleave", {
                                 directives: [
                                   {
                                     name: "validate",
@@ -102623,10 +102626,9 @@ var render = function() {
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "tel",
                                   name: "ultah",
-                                  mask: ["####-##-##"],
-                                  masked: true,
+                                  raw: false,
+                                  options: _vm.cleaveOption.date,
                                   placeholder: "Silahkan masukkan tgl. berdiri",
                                   "data-vv-as": "Tgl. berdiri"
                                 },
@@ -102693,7 +102695,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("the-mask", {
+                              _c("cleave", {
                                 directives: [
                                   {
                                     name: "validate",
@@ -102704,10 +102706,9 @@ var render = function() {
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
-                                  type: "tel",
                                   name: "bergabung",
-                                  mask: ["####-##-##"],
-                                  masked: true,
+                                  raw: false,
+                                  options: _vm.cleaveOption.date,
                                   placeholder:
                                     "Silahkan masukkan tgl. bergabung",
                                   "data-vv-as": "Tgl. bergabung"
@@ -102923,199 +102924,206 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c(
-                              "h5",
-                              {
-                                class: {
-                                  "text-danger": _vm.errors.has("form.telp")
-                                }
-                              },
-                              [
-                                _vm.errors.has("form.telp")
-                                  ? _c("i", { staticClass: "icon-cross2" })
-                                  : _vm._e(),
-                                _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNo. Telp:")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c(
+                                "h5",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
+                                  class: {
+                                    "text-danger": _vm.errors.has("form.telp")
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.telp")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNo. Telp:")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("cleave", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  options: _vm.cleaveOption.number12,
+                                  placeholder: "Silahkan masukkan no telp",
+                                  "data-vv-as": "No. Telp"
+                                },
+                                model: {
                                   value: _vm.form.telp,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "telp", $$v)
+                                  },
                                   expression: "form.telp"
                                 }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "number",
-                                name: "telp",
-                                placeholder: "Silahkan masukkan no telp"
-                              },
-                              domProps: { value: _vm.form.telp },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "telp",
-                                    $event.target.value
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.telp")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.telp")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
                                   )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.has("form.telp")
-                              ? _c(
-                                  "small",
-                                  { staticClass: "text-muted text-danger" },
-                                  [
-                                    _c("i", {
-                                      staticClass: "icon-arrow-small-right"
-                                    }),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.errors.first("form.telp")) +
-                                        "\n\t\t\t\t\t\t\t\t\t\t"
-                                    )
-                                  ]
-                                )
-                              : _c("small", { staticClass: "text-muted" }, [
-                                  _vm._v(" ")
-                                ])
-                          ])
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ],
+                            1
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c(
-                              "h5",
-                              {
-                                class: {
-                                  "text-danger": _vm.errors.has("form.hp")
-                                }
-                              },
-                              [
-                                _vm.errors.has("form.hp")
-                                  ? _c("i", { staticClass: "icon-cross2" })
-                                  : _vm._e(),
-                                _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNo. Hp:")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c(
+                                "h5",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
+                                  class: {
+                                    "text-danger": _vm.errors.has("form.hp")
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.hp")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNo. Hp:")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("cleave", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  options: _vm.cleaveOption.number12,
+                                  placeholder: "Silahkan masukkan no hp",
+                                  "data-vv-as": "No. HP"
+                                },
+                                model: {
                                   value: _vm.form.hp,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "hp", $$v)
+                                  },
                                   expression: "form.hp"
                                 }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "number",
-                                name: "hp",
-                                placeholder: "Silahkan masukkan no hp"
-                              },
-                              domProps: { value: _vm.form.hp },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(_vm.form, "hp", $event.target.value)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.has("form.hp")
-                              ? _c(
-                                  "small",
-                                  { staticClass: "text-muted text-danger" },
-                                  [
-                                    _c("i", {
-                                      staticClass: "icon-arrow-small-right"
-                                    }),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.errors.first("form.hp")) +
-                                        "\n\t\t\t\t\t\t\t\t\t\t"
-                                    )
-                                  ]
-                                )
-                              : _c("small", { staticClass: "text-muted" }, [
-                                  _vm._v(" ")
-                                ])
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.hp")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(_vm.errors.first("form.hp")) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ],
+                            1
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c(
-                              "h5",
-                              {
-                                class: {
-                                  "text-danger": _vm.errors.has("form.pos")
-                                }
-                              },
-                              [
-                                _vm.errors.has("form.pos")
-                                  ? _c("i", { staticClass: "icon-cross2" })
-                                  : _vm._e(),
-                                _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tKode Pos:")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c(
+                                "h5",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
+                                  class: {
+                                    "text-danger": _vm.errors.has("form.pos")
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.pos")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tKode Pos:")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("cleave", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  options: _vm.cleaveOption.number12,
+                                  placeholder: "Silahkan masukkan kode pos",
+                                  "data-vv-as": "No. Pos"
+                                },
+                                model: {
                                   value: _vm.form.pos,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "pos", $$v)
+                                  },
                                   expression: "form.pos"
                                 }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "number",
-                                name: "pos",
-                                placeholder: "Silahkan masukkan kode pos"
-                              },
-                              domProps: { value: _vm.form.pos },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(_vm.form, "pos", $event.target.value)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.has("form.pos")
-                              ? _c(
-                                  "small",
-                                  { staticClass: "text-muted text-danger" },
-                                  [
-                                    _c("i", {
-                                      staticClass: "icon-arrow-small-right"
-                                    }),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.errors.first("form.pos")) +
-                                        "\n\t\t\t\t\t\t\t\t\t\t"
-                                    )
-                                  ]
-                                )
-                              : _c("small", { staticClass: "text-muted" }, [
-                                  _vm._v(" ")
-                                ])
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.pos")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(_vm.errors.first("form.pos")) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ],
+                            1
+                          )
                         ])
                       ]),
                       _vm._v(" "),
@@ -119909,6 +119917,1510 @@ var villages = {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/' + id);
   }
 });
+
+/***/ }),
+/* 380 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory(__webpack_require__(381));
+	else if(typeof define === 'function' && define.amd)
+		define("VueCleave", ["cleave.js"], factory);
+	else if(typeof exports === 'object')
+		exports["VueCleave"] = factory(require("cleave.js"));
+	else
+		root["VueCleave"] = factory(root["Cleave"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: external {"commonjs":"cleave.js","commonjs2":"cleave.js","amd":"cleave.js","root":"Cleave"}
+var external___commonjs___cleave_js___commonjs2___cleave_js___amd___cleave_js___root___Cleave__ = __webpack_require__(2);
+var external___commonjs___cleave_js___commonjs2___cleave_js___amd___cleave_js___root___Cleave___default = /*#__PURE__*/__webpack_require__.n(external___commonjs___cleave_js___commonjs2___cleave_js___amd___cleave_js___root___Cleave__);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/component.vue
+//
+//
+//
+//
+
+
+
+/* harmony default export */ var component = ({
+  name: 'cleave',
+  props: {
+    value: {
+      default: null,
+      required: true,
+      validator: function validator(value) {
+        return value === null || typeof value === 'string' || value instanceof String || typeof value === 'number';
+      }
+    },
+    // https://github.com/nosir/cleave.js/blob/master/doc/options.md
+    options: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    // Set this prop to false to emit masked value
+    raw: {
+      type: Boolean,
+      default: true
+    },
+    type: {
+      type: String,
+      default: 'text'
+    }
+  },
+  data: function data() {
+    return {
+      // cleave.js instance
+      cleave: null
+    };
+  },
+  mounted: function mounted() {
+    /* istanbul ignore if */
+    if (this.cleave) return;
+
+    this.cleave = new external___commonjs___cleave_js___commonjs2___cleave_js___amd___cleave_js___root___Cleave___default.a(this.$el, this.options);
+    this.cleave.setRawValue(this.value);
+  },
+
+  methods: {
+    /**
+     * Watch for value changed by cleave and notify parent component
+     * Note: we have to wait for DOM to get updated by cleave.js in order to get final value
+     *
+     * @param event
+     */
+    onInput: function onInput(event) {
+      var _this = this;
+
+      this.$nextTick(function () {
+        var value = _this.raw ? _this.cleave.getRawValue() : event.target.value;
+        _this.$emit('input', value);
+      });
+    }
+  },
+  watch: {
+    /**
+     * Watch for any changes in options and redraw
+     *
+     * @param newOptions Object
+     */
+    options: {
+      deep: true,
+      handler: function handler(newOptions) {
+        this.cleave.destroy();
+        this.cleave = new external___commonjs___cleave_js___commonjs2___cleave_js___amd___cleave_js___root___Cleave___default.a(this.$el, newOptions);
+        this.cleave.setRawValue(this.value);
+      }
+    },
+
+    /**
+     * Watch for changes from parent component and notify cleave instance
+     *
+     * @param newValue
+     */
+    value: function value(newValue) {
+      this.cleave && this.cleave.setRawValue(newValue);
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    // Free up memory
+    /* istanbul ignore else */
+    if (this.cleave) {
+      this.cleave.destroy();
+      this.cleave = null;
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-ad643094","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/component.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{attrs:{"type":_vm.type},on:{"input":_vm.onInput}})}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var selectortype_template_index_0_src_component = (esExports);
+// CONCATENATED MODULE: ./src/component.vue
+var normalizeComponent = __webpack_require__(1)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  component,
+  selectortype_template_index_0_src_component,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ var src_component = (Component.exports);
+
+// CONCATENATED MODULE: ./src/index.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return src_plugin; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "component", function() { return src_component; });
+
+
+var src_plugin = function plugin(Vue, params) {
+  var name = 'cleave';
+  /* istanbul ignore else */
+  if (typeof params === 'string') name = params;
+
+  Vue.component(name, src_component);
+};
+
+src_component.install = src_plugin;
+
+/* harmony default export */ var src = __webpack_exports__["default"] = (src_component);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ })
+/******/ ])["default"];
+});
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Cleave"] = factory();
+	else
+		root["Cleave"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	/**
+	 * Construct a new Cleave instance by passing the configuration object
+	 *
+	 * @param {String | HTMLElement} element
+	 * @param {Object} opts
+	 */
+	var Cleave = function (element, opts) {
+	    var owner = this;
+
+	    if (typeof element === 'string') {
+	        owner.element = document.querySelector(element);
+	    } else {
+	        owner.element = ((typeof element.length !== 'undefined') && element.length > 0) ? element[0] : element;
+	    }
+
+	    if (!owner.element) {
+	        throw new Error('[cleave.js] Please check the element');
+	    }
+
+	    opts.initValue = owner.element.value;
+
+	    owner.properties = Cleave.DefaultProperties.assign({}, opts);
+
+	    owner.init();
+	};
+
+	Cleave.prototype = {
+	    init: function () {
+	        var owner = this, pps = owner.properties;
+
+	        // no need to use this lib
+	        if (!pps.numeral && !pps.phone && !pps.creditCard && !pps.date && (pps.blocksLength === 0 && !pps.prefix)) {
+	            owner.onInput(pps.initValue);
+
+	            return;
+	        }
+
+	        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
+
+	        owner.isAndroid = Cleave.Util.isAndroid();
+	        owner.lastInputValue = '';
+
+	        owner.onChangeListener = owner.onChange.bind(owner);
+	        owner.onKeyDownListener = owner.onKeyDown.bind(owner);
+	        owner.onCutListener = owner.onCut.bind(owner);
+	        owner.onCopyListener = owner.onCopy.bind(owner);
+
+	        owner.element.addEventListener('input', owner.onChangeListener);
+	        owner.element.addEventListener('keydown', owner.onKeyDownListener);
+	        owner.element.addEventListener('cut', owner.onCutListener);
+	        owner.element.addEventListener('copy', owner.onCopyListener);
+
+
+	        owner.initPhoneFormatter();
+	        owner.initDateFormatter();
+	        owner.initNumeralFormatter();
+
+	        // avoid touch input field if value is null
+	        // otherwise Firefox will add red box-shadow for <input required />
+	        if (pps.initValue || (pps.prefix && !pps.noImmediatePrefix)) {
+	            owner.onInput(pps.initValue);
+	        }
+	    },
+
+	    initNumeralFormatter: function () {
+	        var owner = this, pps = owner.properties;
+
+	        if (!pps.numeral) {
+	            return;
+	        }
+
+	        pps.numeralFormatter = new Cleave.NumeralFormatter(
+	            pps.numeralDecimalMark,
+	            pps.numeralIntegerScale,
+	            pps.numeralDecimalScale,
+	            pps.numeralThousandsGroupStyle,
+	            pps.numeralPositiveOnly,
+	            pps.stripLeadingZeroes,
+	            pps.delimiter
+	        );
+	    },
+
+	    initDateFormatter: function () {
+	        var owner = this, pps = owner.properties;
+
+	        if (!pps.date) {
+	            return;
+	        }
+
+	        pps.dateFormatter = new Cleave.DateFormatter(pps.datePattern);
+	        pps.blocks = pps.dateFormatter.getBlocks();
+	        pps.blocksLength = pps.blocks.length;
+	        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
+	    },
+
+	    initPhoneFormatter: function () {
+	        var owner = this, pps = owner.properties;
+
+	        if (!pps.phone) {
+	            return;
+	        }
+
+	        // Cleave.AsYouTypeFormatter should be provided by
+	        // external google closure lib
+	        try {
+	            pps.phoneFormatter = new Cleave.PhoneFormatter(
+	                new pps.root.Cleave.AsYouTypeFormatter(pps.phoneRegionCode),
+	                pps.delimiter
+	            );
+	        } catch (ex) {
+	            throw new Error('[cleave.js] Please include phone-type-formatter.{country}.js lib');
+	        }
+	    },
+
+	    onKeyDown: function (event) {
+	        var owner = this, pps = owner.properties,
+	            charCode = event.which || event.keyCode,
+	            Util = Cleave.Util,
+	            currentValue = owner.element.value;
+
+	        if (Util.isAndroidBackspaceKeydown(owner.lastInputValue, currentValue)) {
+	            charCode = 8;
+	        }
+
+	        owner.lastInputValue = currentValue;
+
+	        // hit backspace when last character is delimiter
+	        if (charCode === 8 && Util.isDelimiter(currentValue.slice(-pps.delimiterLength), pps.delimiter, pps.delimiters)) {
+	            pps.backspace = true;
+
+	            return;
+	        }
+
+	        pps.backspace = false;
+	    },
+
+	    onChange: function () {
+	        this.onInput(this.element.value);
+	    },
+
+	    onCut: function (e) {
+	        this.copyClipboardData(e);
+	        this.onInput('');
+	    },
+
+	    onCopy: function (e) {
+	        this.copyClipboardData(e);
+	    },
+
+	    copyClipboardData: function (e) {
+	        var owner = this,
+	            pps = owner.properties,
+	            Util = Cleave.Util,
+	            inputValue = owner.element.value,
+	            textToCopy = '';
+
+	        if (!pps.copyDelimiter) {
+	            textToCopy = Util.stripDelimiters(inputValue, pps.delimiter, pps.delimiters);
+	        } else {
+	            textToCopy = inputValue;
+	        }
+
+	        try {
+	            if (e.clipboardData) {
+	                e.clipboardData.setData('Text', textToCopy);
+	            } else {
+	                window.clipboardData.setData('Text', textToCopy);
+	            }
+
+	            e.preventDefault();
+	        } catch (ex) {
+	            //  empty
+	        }
+	    },
+
+	    onInput: function (value) {
+	        var owner = this, pps = owner.properties,
+	            Util = Cleave.Util;
+
+	        // case 1: delete one more character "4"
+	        // 1234*| -> hit backspace -> 123|
+	        // case 2: last character is not delimiter which is:
+	        // 12|34* -> hit backspace -> 1|34*
+	        // note: no need to apply this for numeral mode
+	        if (!pps.numeral && pps.backspace && !Util.isDelimiter(value.slice(-pps.delimiterLength), pps.delimiter, pps.delimiters)) {
+	            value = Util.headStr(value, value.length - pps.delimiterLength);
+	        }
+
+	        // phone formatter
+	        if (pps.phone) {
+	            if (pps.prefix && (!pps.noImmediatePrefix || value.length)) {
+	                pps.result = pps.prefix + pps.phoneFormatter.format(value).slice(pps.prefix.length);
+	            } else {
+	                pps.result = pps.phoneFormatter.format(value);
+	            }
+	            owner.updateValueState();
+
+	            return;
+	        }
+
+	        // numeral formatter
+	        if (pps.numeral) {
+	            if (pps.prefix && (!pps.noImmediatePrefix || value.length)) {
+	                pps.result = pps.prefix + pps.numeralFormatter.format(value);
+	            } else {
+	                pps.result = pps.numeralFormatter.format(value);
+	            }
+	            owner.updateValueState();
+
+	            return;
+	        }
+
+	        // date
+	        if (pps.date) {
+	            value = pps.dateFormatter.getValidatedDate(value);
+	        }
+
+	        // strip delimiters
+	        value = Util.stripDelimiters(value, pps.delimiter, pps.delimiters);
+
+	        // strip prefix
+	        value = Util.getPrefixStrippedValue(value, pps.prefix, pps.prefixLength);
+
+	        // strip non-numeric characters
+	        value = pps.numericOnly ? Util.strip(value, /[^\d]/g) : value;
+
+	        // convert case
+	        value = pps.uppercase ? value.toUpperCase() : value;
+	        value = pps.lowercase ? value.toLowerCase() : value;
+
+	        // prefix
+	        if (pps.prefix && (!pps.noImmediatePrefix || value.length)) {
+	            value = pps.prefix + value;
+
+	            // no blocks specified, no need to do formatting
+	            if (pps.blocksLength === 0) {
+	                pps.result = value;
+	                owner.updateValueState();
+
+	                return;
+	            }
+	        }
+
+	        // update credit card props
+	        if (pps.creditCard) {
+	            owner.updateCreditCardPropsByValue(value);
+	        }
+
+	        // strip over length characters
+	        value = Util.headStr(value, pps.maxLength);
+
+	        // apply blocks
+	        pps.result = Util.getFormattedValue(
+	            value,
+	            pps.blocks, pps.blocksLength,
+	            pps.delimiter, pps.delimiters, pps.delimiterLazyShow
+	        );
+
+	        owner.updateValueState();
+	    },
+
+	    updateCreditCardPropsByValue: function (value) {
+	        var owner = this, pps = owner.properties,
+	            Util = Cleave.Util,
+	            creditCardInfo;
+
+	        // At least one of the first 4 characters has changed
+	        if (Util.headStr(pps.result, 4) === Util.headStr(value, 4)) {
+	            return;
+	        }
+
+	        creditCardInfo = Cleave.CreditCardDetector.getInfo(value, pps.creditCardStrictMode);
+
+	        pps.blocks = creditCardInfo.blocks;
+	        pps.blocksLength = pps.blocks.length;
+	        pps.maxLength = Util.getMaxLength(pps.blocks);
+
+	        // credit card type changed
+	        if (pps.creditCardType !== creditCardInfo.type) {
+	            pps.creditCardType = creditCardInfo.type;
+
+	            pps.onCreditCardTypeChanged.call(owner, pps.creditCardType);
+	        }
+	    },
+
+	    setCurrentSelection: function (endPos, oldValue) {
+	        var elem = this.element;
+
+	        // If cursor was at the end of value, just place it back.
+	        // Because new value could contain additional chars.
+	        if (oldValue.length !== endPos && elem === document.activeElement) {
+	          if ( elem.createTextRange ) {
+	            var range = elem.createTextRange();
+
+	            range.move('character', endPos);
+	            range.select();
+	          } else {
+	            elem.setSelectionRange(endPos, endPos);
+	          }
+	        }
+	    },
+
+	    updateValueState: function () {
+	        var owner = this;
+
+	        if (!owner.element) {
+	            return;
+	        }
+
+	        var endPos = owner.element.selectionEnd;
+	        var oldValue = owner.element.value;
+
+	        // fix Android browser type="text" input field
+	        // cursor not jumping issue
+	        if (owner.isAndroid) {
+	            window.setTimeout(function () {
+	                owner.element.value = owner.properties.result;
+	                owner.setCurrentSelection(endPos, oldValue);
+	            }, 1);
+
+	            return;
+	        }
+
+	        owner.element.value = owner.properties.result;
+	        owner.setCurrentSelection(endPos, oldValue);
+	    },
+
+	    setPhoneRegionCode: function (phoneRegionCode) {
+	        var owner = this, pps = owner.properties;
+
+	        pps.phoneRegionCode = phoneRegionCode;
+	        owner.initPhoneFormatter();
+	        owner.onChange();
+	    },
+
+	    setRawValue: function (value) {
+	        var owner = this, pps = owner.properties;
+
+	        value = value !== undefined && value !== null ? value.toString() : '';
+
+	        if (pps.numeral) {
+	            value = value.replace('.', pps.numeralDecimalMark);
+	        }
+
+	        pps.backspace = false;
+	        
+	        owner.element.value = value;
+	        owner.onInput(value);
+	    },
+
+	    getRawValue: function () {
+	        var owner = this,
+	            pps = owner.properties,
+	            Util = Cleave.Util,
+	            rawValue = owner.element.value;
+
+	        if (pps.rawValueTrimPrefix) {
+	            rawValue = Util.getPrefixStrippedValue(rawValue, pps.prefix, pps.prefixLength);
+	        }
+
+	        if (pps.numeral) {
+	            rawValue = pps.numeralFormatter.getRawValue(rawValue);
+	        } else {
+	            rawValue = Util.stripDelimiters(rawValue, pps.delimiter, pps.delimiters);
+	        }
+
+	        return rawValue;
+	    },
+
+	    getISOFormatDate: function () {
+	        var owner = this,
+	            pps = owner.properties;
+
+	        return pps.date ? pps.dateFormatter.getISOFormatDate() : '';
+	    },
+
+	    getFormattedValue: function () {
+	        return this.element.value;
+	    },
+
+	    destroy: function () {
+	        var owner = this;
+
+	        owner.element.removeEventListener('input', owner.onChangeListener);
+	        owner.element.removeEventListener('keydown', owner.onKeyDownListener);
+	        owner.element.removeEventListener('cut', owner.onCutListener);
+	        owner.element.removeEventListener('copy', owner.onCopyListener);
+	    },
+
+	    toString: function () {
+	        return '[Cleave Object]';
+	    }
+	};
+
+	Cleave.NumeralFormatter = __webpack_require__(1);
+	Cleave.DateFormatter = __webpack_require__(2);
+	Cleave.PhoneFormatter = __webpack_require__(3);
+	Cleave.CreditCardDetector = __webpack_require__(4);
+	Cleave.Util = __webpack_require__(5);
+	Cleave.DefaultProperties = __webpack_require__(6);
+
+	// for angular directive
+	((typeof global === 'object' && global) ? global : window)['Cleave'] = Cleave;
+
+	// CommonJS
+	module.exports = Cleave;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var NumeralFormatter = function (numeralDecimalMark,
+	                                 numeralIntegerScale,
+	                                 numeralDecimalScale,
+	                                 numeralThousandsGroupStyle,
+	                                 numeralPositiveOnly,
+	                                 stripLeadingZeroes,
+	                                 delimiter) {
+	    var owner = this;
+
+	    owner.numeralDecimalMark = numeralDecimalMark || '.';
+	    owner.numeralIntegerScale = numeralIntegerScale > 0 ? numeralIntegerScale : 0;
+	    owner.numeralDecimalScale = numeralDecimalScale >= 0 ? numeralDecimalScale : 2;
+	    owner.numeralThousandsGroupStyle = numeralThousandsGroupStyle || NumeralFormatter.groupStyle.thousand;
+	    owner.numeralPositiveOnly = !!numeralPositiveOnly;
+	    owner.stripLeadingZeroes = stripLeadingZeroes !== false;
+	    owner.delimiter = (delimiter || delimiter === '') ? delimiter : ',';
+	    owner.delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
+	};
+
+	NumeralFormatter.groupStyle = {
+	    thousand: 'thousand',
+	    lakh:     'lakh',
+	    wan:      'wan',
+	    none:     'none'    
+	};
+
+	NumeralFormatter.prototype = {
+	    getRawValue: function (value) {
+	        return value.replace(this.delimiterRE, '').replace(this.numeralDecimalMark, '.');
+	    },
+
+	    format: function (value) {
+	        var owner = this, parts, partInteger, partDecimal = '';
+
+	        // strip alphabet letters
+	        value = value.replace(/[A-Za-z]/g, '')
+	            // replace the first decimal mark with reserved placeholder
+	            .replace(owner.numeralDecimalMark, 'M')
+
+	            // strip non numeric letters except minus and "M"
+	            // this is to ensure prefix has been stripped
+	            .replace(/[^\dM-]/g, '')
+
+	            // replace the leading minus with reserved placeholder
+	            .replace(/^\-/, 'N')
+
+	            // strip the other minus sign (if present)
+	            .replace(/\-/g, '')
+
+	            // replace the minus sign (if present)
+	            .replace('N', owner.numeralPositiveOnly ? '' : '-')
+
+	            // replace decimal mark
+	            .replace('M', owner.numeralDecimalMark);
+
+	        // strip any leading zeros
+	        if (owner.stripLeadingZeroes) {
+	            value = value.replace(/^(-)?0+(?=\d)/, '$1');
+	        }
+
+	        partInteger = value;
+
+	        if (value.indexOf(owner.numeralDecimalMark) >= 0) {
+	            parts = value.split(owner.numeralDecimalMark);
+	            partInteger = parts[0];
+	            partDecimal = owner.numeralDecimalMark + parts[1].slice(0, owner.numeralDecimalScale);
+	        }
+
+	        if (owner.numeralIntegerScale > 0) {
+	          partInteger = partInteger.slice(0, owner.numeralIntegerScale + (value.slice(0, 1) === '-' ? 1 : 0));
+	        }
+
+	        switch (owner.numeralThousandsGroupStyle) {
+	        case NumeralFormatter.groupStyle.lakh:
+	            partInteger = partInteger.replace(/(\d)(?=(\d\d)+\d$)/g, '$1' + owner.delimiter);
+
+	            break;
+
+	        case NumeralFormatter.groupStyle.wan:
+	            partInteger = partInteger.replace(/(\d)(?=(\d{4})+$)/g, '$1' + owner.delimiter);
+
+	            break;
+
+	        case NumeralFormatter.groupStyle.thousand:
+	            partInteger = partInteger.replace(/(\d)(?=(\d{3})+$)/g, '$1' + owner.delimiter);
+
+	            break;
+	        }
+
+	        return partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '');
+	    }
+	};
+
+	module.exports = NumeralFormatter;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var DateFormatter = function (datePattern) {
+	    var owner = this;
+
+	    owner.date = [];
+	    owner.blocks = [];
+	    owner.datePattern = datePattern;
+	    owner.initBlocks();
+	};
+
+	DateFormatter.prototype = {
+	    initBlocks: function () {
+	        var owner = this;
+	        owner.datePattern.forEach(function (value) {
+	            if (value === 'Y') {
+	                owner.blocks.push(4);
+	            } else {
+	                owner.blocks.push(2);
+	            }
+	        });
+	    },
+
+	    getISOFormatDate: function () {
+	        var owner = this,
+	            date = owner.date;
+
+	        return date[2] ? (
+	            date[2] + '-' + owner.addLeadingZero(date[1]) + '-' + owner.addLeadingZero(date[0])
+	        ) : '';
+	    },
+
+	    getBlocks: function () {
+	        return this.blocks;
+	    },
+
+	    getValidatedDate: function (value) {
+	        var owner = this, result = '';
+
+	        value = value.replace(/[^\d]/g, '');
+
+	        owner.blocks.forEach(function (length, index) {
+	            if (value.length > 0) {
+	                var sub = value.slice(0, length),
+	                    sub0 = sub.slice(0, 1),
+	                    rest = value.slice(length);
+
+	                switch (owner.datePattern[index]) {
+	                case 'd':
+	                    if (sub === '00') {
+	                        sub = '01';
+	                    } else if (parseInt(sub0, 10) > 3) {
+	                        sub = '0' + sub0;
+	                    } else if (parseInt(sub, 10) > 31) {
+	                        sub = '31';
+	                    }
+
+	                    break;
+
+	                case 'm':
+	                    if (sub === '00') {
+	                        sub = '01';
+	                    } else if (parseInt(sub0, 10) > 1) {
+	                        sub = '0' + sub0;
+	                    } else if (parseInt(sub, 10) > 12) {
+	                        sub = '12';
+	                    }
+
+	                    break;
+	                }
+
+	                result += sub;
+
+	                // update remaining string
+	                value = rest;
+	            }
+	        });
+
+	        return this.getFixedDateString(result);
+	    },
+
+	    getFixedDateString: function (value) {
+	        var owner = this, datePattern = owner.datePattern, date = [],
+	            dayIndex = 0, monthIndex = 0, yearIndex = 0,
+	            dayStartIndex = 0, monthStartIndex = 0, yearStartIndex = 0,
+	            day, month, year;
+
+	        // mm-dd || dd-mm
+	        if (value.length === 4 && datePattern[0].toLowerCase() !== 'y' && datePattern[1].toLowerCase() !== 'y') {
+	            dayStartIndex = datePattern[0] === 'd' ? 0 : 2;
+	            monthStartIndex = 2 - dayStartIndex;
+	            day = parseInt(value.slice(dayStartIndex, dayStartIndex + 2), 10);
+	            month = parseInt(value.slice(monthStartIndex, monthStartIndex + 2), 10);
+
+	            date = this.getFixedDate(day, month, 0);
+	        }
+
+	        // yyyy-mm-dd || yyyy-dd-mm || mm-dd-yyyy || dd-mm-yyyy || dd-yyyy-mm || mm-yyyy-dd
+	        if (value.length === 8) {
+	            datePattern.forEach(function (type, index) {
+	                switch (type) {
+	                case 'd':
+	                    dayIndex = index;
+	                    break;
+	                case 'm':
+	                    monthIndex = index;
+	                    break;
+	                default:
+	                    yearIndex = index;
+	                    break;
+	                }
+	            });
+
+	            yearStartIndex = yearIndex * 2;
+	            dayStartIndex = (dayIndex <= yearIndex) ? dayIndex * 2 : (dayIndex * 2 + 2);
+	            monthStartIndex = (monthIndex <= yearIndex) ? monthIndex * 2 : (monthIndex * 2 + 2);
+
+	            day = parseInt(value.slice(dayStartIndex, dayStartIndex + 2), 10);
+	            month = parseInt(value.slice(monthStartIndex, monthStartIndex + 2), 10);
+	            year = parseInt(value.slice(yearStartIndex, yearStartIndex + 4), 10);
+
+	            date = this.getFixedDate(day, month, year);
+	        }
+
+	        owner.date = date;
+
+	        return date.length === 0 ? value : datePattern.reduce(function (previous, current) {
+	            switch (current) {
+	            case 'd':
+	                return previous + owner.addLeadingZero(date[0]);
+	            case 'm':
+	                return previous + owner.addLeadingZero(date[1]);
+	            default:
+	                return previous + '' + (date[2] || '');
+	            }
+	        }, '');
+	    },
+
+	    getFixedDate: function (day, month, year) {
+	        day = Math.min(day, 31);
+	        month = Math.min(month, 12);
+	        year = parseInt((year || 0), 10);
+
+	        if ((month < 7 && month % 2 === 0) || (month > 8 && month % 2 === 1)) {
+	            day = Math.min(day, month === 2 ? (this.isLeapYear(year) ? 29 : 28) : 30);
+	        }
+
+	        return [day, month, year];
+	    },
+
+	    isLeapYear: function (year) {
+	        return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+	    },
+
+	    addLeadingZero: function (number) {
+	        return (number < 10 ? '0' : '') + number;
+	    }
+	};
+
+	module.exports = DateFormatter;
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var PhoneFormatter = function (formatter, delimiter) {
+	    var owner = this;
+
+	    owner.delimiter = (delimiter || delimiter === '') ? delimiter : ' ';
+	    owner.delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
+
+	    owner.formatter = formatter;
+	};
+
+	PhoneFormatter.prototype = {
+	    setFormatter: function (formatter) {
+	        this.formatter = formatter;
+	    },
+
+	    format: function (phoneNumber) {
+	        var owner = this;
+
+	        owner.formatter.clear();
+
+	        // only keep number and +
+	        phoneNumber = phoneNumber.replace(/[^\d+]/g, '');
+
+	        // strip delimiter
+	        phoneNumber = phoneNumber.replace(owner.delimiterRE, '');
+
+	        var result = '', current, validated = false;
+
+	        for (var i = 0, iMax = phoneNumber.length; i < iMax; i++) {
+	            current = owner.formatter.inputDigit(phoneNumber.charAt(i));
+
+	            // has ()- or space inside
+	            if (/[\s()-]/g.test(current)) {
+	                result = current;
+
+	                validated = true;
+	            } else {
+	                if (!validated) {
+	                    result = current;
+	                }
+	                // else: over length input
+	                // it turns to invalid number again
+	            }
+	        }
+
+	        // strip ()
+	        // e.g. US: 7161234567 returns (716) 123-4567
+	        result = result.replace(/[()]/g, '');
+	        // replace library delimiter with user customized delimiter
+	        result = result.replace(/[\s-]/g, owner.delimiter);
+
+	        return result;
+	    }
+	};
+
+	module.exports = PhoneFormatter;
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var CreditCardDetector = {
+	    blocks: {
+	        uatp:          [4, 5, 6],
+	        amex:          [4, 6, 5],
+	        diners:        [4, 6, 4],
+	        discover:      [4, 4, 4, 4],
+	        mastercard:    [4, 4, 4, 4],
+	        dankort:       [4, 4, 4, 4],
+	        instapayment:  [4, 4, 4, 4],
+	        jcb:           [4, 4, 4, 4],
+	        maestro:       [4, 4, 4, 4],
+	        visa:          [4, 4, 4, 4],
+	        mir:           [4, 4, 4, 4],
+	        general:       [4, 4, 4, 4],
+	        unionPay:      [4, 4, 4, 4],
+	        generalStrict: [4, 4, 4, 7]
+	    },
+
+	    re: {
+	        // starts with 1; 15 digits, not starts with 1800 (jcb card)
+	        uatp: /^(?!1800)1\d{0,14}/,
+
+	        // starts with 34/37; 15 digits
+	        amex: /^3[47]\d{0,13}/,
+
+	        // starts with 6011/65/644-649; 16 digits
+	        discover: /^(?:6011|65\d{0,2}|64[4-9]\d?)\d{0,12}/,
+
+	        // starts with 300-305/309 or 36/38/39; 14 digits
+	        diners: /^3(?:0([0-5]|9)|[689]\d?)\d{0,11}/,
+
+	        // starts with 51-55/2221–2720; 16 digits
+	        mastercard: /^(5[1-5]\d{0,2}|22[2-9]\d{0,1}|2[3-7]\d{0,2})\d{0,12}/,
+
+	        // starts with 5019/4175/4571; 16 digits
+	        dankort: /^(5019|4175|4571)\d{0,12}/,
+
+	        // starts with 637-639; 16 digits
+	        instapayment: /^63[7-9]\d{0,13}/,
+
+	        // starts with 2131/1800/35; 16 digits
+	        jcb: /^(?:2131|1800|35\d{0,2})\d{0,12}/,
+
+	        // starts with 50/56-58/6304/67; 16 digits
+	        maestro: /^(?:5[0678]\d{0,2}|6304|67\d{0,2})\d{0,12}/,
+	        
+	        // starts with 22; 16 digits
+	        mir: /^220[0-4]\d{0,12}/,
+
+	        // starts with 4; 16 digits
+	        visa: /^4\d{0,15}/,
+
+	        // starts with 62; 16 digits
+	        unionPay: /^62\d{0,14}/
+	    },
+
+	    getInfo: function (value, strictMode) {
+	        var blocks = CreditCardDetector.blocks,
+	            re = CreditCardDetector.re;
+
+	        // In theory, visa credit card can have up to 19 digits number.
+	        // Set strictMode to true will remove the 16 max-length restrain,
+	        // however, I never found any website validate card number like
+	        // this, hence probably you don't need to enable this option.
+	        strictMode = !!strictMode;
+
+	        for (var key in re) {
+	            if (re[key].test(value)) {
+	                var block;
+	                if (
+	                    key === 'discover' ||
+	                    key === 'maestro' ||
+	                    key === 'visa' ||
+	                    key === 'mir' ||
+	                    key === 'unionPay'
+	                ) {
+	                    block = strictMode ? blocks.generalStrict : blocks[key];
+	                } else {
+	                    block = blocks[key];
+	                }
+	                return {
+	                    type: key,
+	                    blocks: block
+	                };
+	            }
+	        }
+
+	        return {
+	            type:   'unknown',
+	            blocks: strictMode ? blocks.generalStrict : blocks.general
+	        };
+	    }
+	};
+
+	module.exports = CreditCardDetector;
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var Util = {
+	    noop: function () {
+	    },
+
+	    strip: function (value, re) {
+	        return value.replace(re, '');
+	    },
+
+	    isDelimiter: function (letter, delimiter, delimiters) {
+	        // single delimiter
+	        if (delimiters.length === 0) {
+	            return letter === delimiter;
+	        }
+
+	        // multiple delimiters
+	        return delimiters.some(function (current) {
+	            if (letter === current) {
+	                return true;
+	            }
+	        });
+	    },
+
+	    getDelimiterREByDelimiter: function (delimiter) {
+	        return new RegExp(delimiter.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1'), 'g');
+	    },
+
+	    stripDelimiters: function (value, delimiter, delimiters) {
+	        var owner = this;
+
+	        // single delimiter
+	        if (delimiters.length === 0) {
+	            var delimiterRE = delimiter ? owner.getDelimiterREByDelimiter(delimiter) : '';
+
+	            return value.replace(delimiterRE, '');
+	        }
+
+	        // multiple delimiters
+	        delimiters.forEach(function (current) {
+	            value = value.replace(owner.getDelimiterREByDelimiter(current), '');
+	        });
+
+	        return value;
+	    },
+
+	    headStr: function (str, length) {
+	        return str.slice(0, length);
+	    },
+
+	    getMaxLength: function (blocks) {
+	        return blocks.reduce(function (previous, current) {
+	            return previous + current;
+	        }, 0);
+	    },
+
+	    // strip value by prefix length
+	    // for prefix: PRE
+	    // (PRE123, 3) -> 123
+	    // (PR123, 3) -> 23 this happens when user hits backspace in front of "PRE"
+	    getPrefixStrippedValue: function (value, prefix, prefixLength) {
+	        if (value.slice(0, prefixLength) !== prefix) {
+	            var diffIndex = this.getFirstDiffIndex(prefix, value.slice(0, prefixLength));
+
+	            value = prefix + value.slice(diffIndex, diffIndex + 1) + value.slice(prefixLength + 1);
+	        }
+
+	        return value.slice(prefixLength);
+	    },
+
+	    getFirstDiffIndex: function (prev, current) {
+	        var index = 0;
+
+	        while (prev.charAt(index) === current.charAt(index)) {
+	            if (prev.charAt(index++) === '') {
+	                return -1;
+	            }
+	        }
+
+	        return index;
+	    },
+
+	    getFormattedValue: function (value, blocks, blocksLength, delimiter, delimiters, delimiterLazyShow) {
+	        var result = '',
+	            multipleDelimiters = delimiters.length > 0,
+	            currentDelimiter;
+
+	        // no options, normal input
+	        if (blocksLength === 0) {
+	            return value;
+	        }
+
+	        blocks.forEach(function (length, index) {
+	            if (value.length > 0) {
+	                var sub = value.slice(0, length),
+	                    rest = value.slice(length);
+
+	                if (multipleDelimiters) {
+	                    currentDelimiter = delimiters[delimiterLazyShow ? (index - 1) : index] || currentDelimiter;
+	                } else {
+	                    currentDelimiter = delimiter;
+	                }
+
+	                if (delimiterLazyShow) {
+	                    if (index > 0) {
+	                        result += currentDelimiter;
+	                    }
+
+	                    result += sub;
+	                } else {
+	                    result += sub;
+
+	                    if (sub.length === length && index < blocksLength - 1) {
+	                        result += currentDelimiter;
+	                    }
+	                }
+
+	                // update remaining string
+	                value = rest;
+	            }
+	        });
+
+	        return result;
+	    },
+
+	    isAndroid: function () {
+	        return navigator && /android/i.test(navigator.userAgent);
+	    },
+
+	    // On Android chrome, the keyup and keydown events
+	    // always return key code 229 as a composition that
+	    // buffers the user’s keystrokes
+	    // see https://github.com/nosir/cleave.js/issues/147
+	    isAndroidBackspaceKeydown: function (lastInputValue, currentInputValue) {
+	        if (!this.isAndroid() || !lastInputValue || !currentInputValue) {
+	            return false;
+	        }
+
+	        return currentInputValue === lastInputValue.slice(0, -1);
+	    }
+	};
+
+	module.exports = Util;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	/**
+	 * Props Assignment
+	 *
+	 * Separate this, so react module can share the usage
+	 */
+	var DefaultProperties = {
+	    // Maybe change to object-assign
+	    // for now just keep it as simple
+	    assign: function (target, opts) {
+	        target = target || {};
+	        opts = opts || {};
+
+	        // credit card
+	        target.creditCard = !!opts.creditCard;
+	        target.creditCardStrictMode = !!opts.creditCardStrictMode;
+	        target.creditCardType = '';
+	        target.onCreditCardTypeChanged = opts.onCreditCardTypeChanged || (function () {});
+
+	        // phone
+	        target.phone = !!opts.phone;
+	        target.phoneRegionCode = opts.phoneRegionCode || 'AU';
+	        target.phoneFormatter = {};
+
+	        // date
+	        target.date = !!opts.date;
+	        target.datePattern = opts.datePattern || ['d', 'm', 'Y'];
+	        target.dateFormatter = {};
+
+	        // numeral
+	        target.numeral = !!opts.numeral;
+	        target.numeralIntegerScale = opts.numeralIntegerScale > 0 ? opts.numeralIntegerScale : 0;
+	        target.numeralDecimalScale = opts.numeralDecimalScale >= 0 ? opts.numeralDecimalScale : 2;
+	        target.numeralDecimalMark = opts.numeralDecimalMark || '.';
+	        target.numeralThousandsGroupStyle = opts.numeralThousandsGroupStyle || 'thousand';
+	        target.numeralPositiveOnly = !!opts.numeralPositiveOnly;
+	        target.stripLeadingZeroes = opts.stripLeadingZeroes !== false;
+
+	        // others
+	        target.numericOnly = target.creditCard || target.date || !!opts.numericOnly;
+
+	        target.uppercase = !!opts.uppercase;
+	        target.lowercase = !!opts.lowercase;
+
+	        target.prefix = (target.creditCard || target.date) ? '' : (opts.prefix || '');
+	        target.noImmediatePrefix = !!opts.noImmediatePrefix;
+	        target.prefixLength = target.prefix.length;
+	        target.rawValueTrimPrefix = !!opts.rawValueTrimPrefix;
+	        target.copyDelimiter = !!opts.copyDelimiter;
+
+	        target.initValue = (opts.initValue !== undefined && opts.initValue !== null) ? opts.initValue.toString() : '';
+
+	        target.delimiter =
+	            (opts.delimiter || opts.delimiter === '') ? opts.delimiter :
+	                (opts.date ? '/' :
+	                    (opts.numeral ? ',' :
+	                        (opts.phone ? ' ' :
+	                            ' ')));
+	        target.delimiterLength = target.delimiter.length;
+	        target.delimiterLazyShow = !!opts.delimiterLazyShow;
+	        target.delimiters = opts.delimiters || [];
+
+	        target.blocks = opts.blocks || [];
+	        target.blocksLength = target.blocks.length;
+
+	        target.root = (typeof global === 'object' && global) ? global : window;
+
+	        target.maxLength = 0;
+
+	        target.backspace = false;
+	        target.result = '';
+
+	        return target;
+	    }
+	};
+
+	module.exports = DefaultProperties;
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ })
+/******/ ])
+});
+;
 
 /***/ })
 /******/ ]);
