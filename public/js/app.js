@@ -45061,6 +45061,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue__);
 //
 //
 //
@@ -45408,6 +45410,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -45420,7 +45426,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
-		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a
+		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -45467,12 +45474,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}, {
 				title: 'Tgl. Tulis',
 				key: 'created_at',
-				type: 'date',
+				type: 'datetime',
 				disable: false
 			}, {
 				title: 'Tgl. Ubah',
 				key: 'updated_at',
-				type: 'date',
+				type: 'datetime',
 				disable: false
 			}],
 			columnData: [{
@@ -45493,7 +45500,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: 'Kategori',
 				key: 'id_artikel_kategori',
 				groupKey: 'artikel_kategori.name',
-				groupNoKey: 'Tidak terkategori',
+				groupNoKey: '-',
 				excelType: 'string',
 				sort: true,
 				hide: false,
@@ -45502,7 +45509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: 'Penulis',
 				key: 'id_artikel_penulis',
 				groupKey: 'artikel_penulis.name',
-				groupNoKey: 'Tidak ada data penulis',
+				groupNoKey: '-',
 				sort: true,
 				hide: false,
 				disable: false
@@ -45743,11 +45750,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	},
 	filters: {
-		publishDate: function publishDate(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '<br/>' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+		dateTime: function dateTime(value) {
+			if (value) {
+				return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+			} else {
+				return '-';
+			}
 		},
-		publishDateMobile: function publishDateMobile(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + ' | ' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+		date: function date(value) {
+			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY');
 		},
 		trimString: function trimString(string) {
 			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
@@ -46052,9 +46063,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_context_menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_context_menu__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_cleave_component__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_cleave_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_cleave_component__);
-//
-//
-//
 //
 //
 //
@@ -66984,35 +66992,13 @@ var render = function() {
                 { staticClass: "col-md-12 pb-15 visible-xs" },
                 [
                   _vm.searchColumnType === "datetime"
-                    ? _c("masked-input", {
+                    ? _c("cleave", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          name: "date",
-                          mask: [
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/,
-                            " ",
-                            /\d/,
-                            /\d/,
-                            ":",
-                            /\d/,
-                            /\d/,
-                            ":",
-                            /\d/,
-                            /\d/
-                          ],
-                          guide: false,
-                          disabled: _vm.itemDataStat === "loading",
-                          placeholder: "YYYY-MM-DD HH:MM:SS"
+                          raw: false,
+                          options: _vm.cleaveOption.dateTime,
+                          placeholder: "YYYY-MM-DD HH:MM:SS",
+                          disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
                           value: _vm.searchQuery1,
@@ -67033,35 +67019,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm.searchColumnType === "datetime" &&
                   _vm.params.search_operator === "between"
-                    ? _c("masked-input", {
+                    ? _c("cleave", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          name: "date2",
-                          mask: [
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/,
-                            " ",
-                            /\d/,
-                            /\d/,
-                            ":",
-                            /\d/,
-                            /\d/,
-                            ":",
-                            /\d/,
-                            /\d/
-                          ],
-                          guide: false,
-                          disabled: _vm.itemDataStat === "loading",
-                          placeholder: "YYYY-MM-DD HH:MM:SS"
+                          raw: false,
+                          options: _vm.cleaveOption.dateTime,
+                          placeholder: "YYYY-MM-DD HH:MM:SS",
+                          disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
                           value: _vm.params.search_query_2,
@@ -67074,26 +67038,13 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.searchColumnType === "date"
-                    ? _c("masked-input", {
+                    ? _c("cleave", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          name: "date",
-                          mask: [
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/
-                          ],
-                          guide: false,
-                          disabled: _vm.itemDataStat === "loading",
-                          placeholder: "YYYY-MM-DD"
+                          raw: false,
+                          options: _vm.cleaveOption.date,
+                          placeholder: "YYYY-MM-DD",
+                          disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
                           value: _vm.searchQuery1,
@@ -67114,26 +67065,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm.searchColumnType === "date" &&
                   _vm.params.search_operator === "between"
-                    ? _c("masked-input", {
+                    ? _c("cleave", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          name: "date2",
-                          mask: [
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/,
-                            "-",
-                            /\d/,
-                            /\d/
-                          ],
-                          guide: false,
-                          disabled: _vm.itemDataStat === "loading",
-                          placeholder: "YYYY-MM-DD"
+                          raw: false,
+                          options: _vm.cleaveOption.date,
+                          placeholder: "YYYY-MM-DD",
+                          disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
                           value: _vm.params.search_query_2,
@@ -67146,24 +67084,11 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.searchColumnType === "number"
-                    ? _c("masked-input", {
+                    ? _c("cleave", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          name: "number",
-                          mask: [
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/
-                          ],
-                          placeholder: "999.999.999",
-                          guide: false,
+                          options: _vm.cleaveOption.number,
+                          placeholder: "0-9",
                           disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
@@ -67185,24 +67110,55 @@ var render = function() {
                   _vm._v(" "),
                   _vm.searchColumnType === "number" &&
                   _vm.params.search_operator === "between"
-                    ? _c("masked-input", {
+                    ? _c("cleave", {
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          name: "number",
-                          mask: [
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/
-                          ],
-                          placeholder: "999.999.999",
-                          guide: false,
+                          options: _vm.cleaveOption.number,
+                          placeholder: "0-9",
+                          disabled: _vm.itemDataStat === "loading"
+                        },
+                        model: {
+                          value: _vm.params.search_query_2,
+                          callback: function($$v) {
+                            _vm.$set(_vm.params, "search_query_2", $$v)
+                          },
+                          expression: "params.search_query_2"
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.searchColumnType === "numeric"
+                    ? _c("cleave", {
+                        staticClass: "form-control",
+                        attrs: {
+                          options: _vm.cleaveOption.numeric,
+                          placeholder: "999.999.999,99",
+                          disabled: _vm.itemDataStat === "loading"
+                        },
+                        model: {
+                          value: _vm.searchQuery1,
+                          callback: function($$v) {
+                            _vm.searchQuery1 = $$v
+                          },
+                          expression: "searchQuery1"
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.searchColumnType === "numeric" &&
+                  _vm.params.search_operator === "between"
+                    ? _c("span", { staticClass: "input-group-addon" }, [
+                        _vm._v("sampai")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.searchColumnType === "numeric" &&
+                  _vm.params.search_operator === "between"
+                    ? _c("cleave", {
+                        staticClass: "form-control",
+                        attrs: {
+                          options: _vm.cleaveOption.numeric,
+                          placeholder: "999.999.999,99",
                           disabled: _vm.itemDataStat === "loading"
                         },
                         model: {
@@ -69038,31 +68994,35 @@ var render = function() {
               "div",
               { staticClass: "heading-btn-group" },
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-link btn-icon btn-float has-text",
-                    attrs: { to: { name: "artikelKategori" } }
-                  },
-                  [
-                    _c("i", { staticClass: "icon-grid6 text-primary" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Kategori Artikel")])
-                  ]
-                ),
+                _vm.userData.can && _vm.userData.can["index artikelKategori"]
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-link btn-icon btn-float has-text",
+                        attrs: { to: { name: "artikelKategori" } }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-grid6 text-primary" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Kategori Artikel")])
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-link btn-icon btn-float has-text",
-                    attrs: { to: { name: "artikelPenulis" } }
-                  },
-                  [
-                    _c("i", { staticClass: "icon-pencil6 text-primary" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Penulis Artikel")])
-                  ]
-                )
+                _vm.userData.can && _vm.userData.can["index artikelPenulis"]
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-link btn-icon btn-float has-text",
+                        attrs: { to: { name: "artikelPenulis" } }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-pencil6 text-primary" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Penulis Artikel")])
+                      ]
+                    )
+                  : _vm._e()
               ],
               1
             )
@@ -69366,6 +69326,7 @@ var render = function() {
                           _c(
                             "tr",
                             {
+                              staticClass: "text-nowrap",
                               class: {
                                 info: _vm.selectedItem.id === props.item.id
                               },
@@ -69400,50 +69361,86 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[1].hide
-                                ? _c("td", { staticClass: "warptext" }, [
-                                    _vm._v(_vm._s(props.item.name))
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.name }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[2].hide &&
                               !_vm.columnData[2].disable
-                                ? _c("td", [
-                                    props.item.artikel_kategori
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(
-                                              props.item.artikel_kategori.name
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.artikel_kategori
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value:
+                                                props.item.artikel_kategori.name
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[2].groupNoKey
+                                              )
                                             )
-                                          )
-                                        ])
-                                      : _vm._e()
-                                  ])
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[3].hide &&
                               !_vm.columnData[3].disable
-                                ? _c("td", [
-                                    props.item.artikel_penulis
-                                      ? _c("span", [
-                                          _vm._v(
-                                            _vm._s(
-                                              props.item.artikel_penulis.name
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.artikel_penulis
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value:
+                                                props.item.artikel_penulis.name
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[3].groupNoKey
+                                              )
                                             )
-                                          )
-                                        ])
-                                      : _vm._e()
-                                  ])
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[4].hide &&
                               !_vm.columnData[4].disable
-                                ? _c("td", [
-                                    props.item.c_u
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.c_u.name))
-                                        ])
-                                      : _vm._e()
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.c_u
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value: props.item.c_u.name
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[4].groupNoKey
+                                              )
+                                            )
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[5].hide
@@ -69472,10 +69469,9 @@ var render = function() {
                               _vm._v(" "),
                               !_vm.columnData[7].hide
                                 ? _c("td", {
-                                    staticClass: "text-nowrap",
                                     domProps: {
                                       innerHTML: _vm._s(
-                                        _vm.$options.filters.publishDate(
+                                        _vm.$options.filters.dateTime(
                                           props.item.created_at
                                         )
                                       )
@@ -69484,19 +69480,19 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[8].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
+                                ? _c("td", [
                                     props.item.created_at !==
                                     props.item.updated_at
                                       ? _c("span", {
                                           domProps: {
                                             innerHTML: _vm._s(
-                                              _vm.$options.filters.publishDate(
+                                              _vm.$options.filters.dateTime(
                                                 props.item.updated_at
                                               )
                                             )
                                           }
                                         })
-                                      : _vm._e()
+                                      : _c("span", [_vm._v("-")])
                                   ])
                                 : _vm._e()
                             ]
@@ -69512,45 +69508,47 @@ var render = function() {
                             "div",
                             { staticClass: "panel panel-flat visible-xs" },
                             [
-                              _c("div", { staticClass: "table-responsive" }, [
-                                _c(
-                                  "table",
-                                  { staticClass: "table table-striped" },
-                                  [
-                                    _c("tbody", [
-                                      !_vm.columnData[0].hide
-                                        ? _c("tr", [
-                                            _c(
-                                              "td",
-                                              { attrs: { colspan: "2" } },
-                                              [
-                                                props.item.gambar
-                                                  ? _c("img", {
-                                                      staticClass:
-                                                        "img-rounded img-responsive center-block",
-                                                      attrs: {
-                                                        src:
-                                                          "/images/artikel/" +
-                                                          props.item.gambar +
-                                                          "n.jpg"
-                                                      }
-                                                    })
-                                                  : _c("img", {
-                                                      staticClass:
-                                                        "img-rounded img-responsive center-block",
-                                                      attrs: {
-                                                        src:
-                                                          "/images/image-articlen.jpg"
-                                                      }
-                                                    })
-                                              ]
-                                            )
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[1].hide
-                                        ? _c("tr", [
-                                            _c("td", [
+                              _c(
+                                "table",
+                                { staticClass: "table table-striped" },
+                                [
+                                  _c("tbody", [
+                                    !_vm.columnData[0].hide
+                                      ? _c("tr", [
+                                          _c(
+                                            "td",
+                                            { attrs: { colspan: "2" } },
+                                            [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-responsive center-block",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/artikel/" +
+                                                        props.item.gambar +
+                                                        "n.jpg"
+                                                    }
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-responsive center-block",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/image-articlen.jpg"
+                                                    }
+                                                  })
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[1].hide
+                                      ? _c("tr", [
+                                          _c(
+                                            "td",
+                                            { attrs: { colspan: "2" } },
+                                            [
                                               _c("b", [
                                                 _vm._v(
                                                   _vm._s(
@@ -69558,226 +69556,262 @@ var render = function() {
                                                   )
                                                 )
                                               ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[1].hide
+                                      ? _c("tr", [
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                "word-wrap": "break-word"
+                                              },
+                                              attrs: { colspan: "2" }
+                                            },
+                                            [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.name,
+                                                  isTrim: false
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[2].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
                                               _vm._v(
-                                                ": " + _vm._s(props.item.name)
+                                                _vm._s(_vm.columnData[2].title)
                                               )
                                             ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[2].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[2].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            [
                                               props.item.artikel_kategori
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item
-                                                            .artikel_kategori
-                                                            .name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[3].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[3].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              props.item.artikel_penulis
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item
-                                                            .artikel_penulis
-                                                            .name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[4].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[4].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              props.item.c_u
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item.c_u.name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[5].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[5].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.$options.filters.checkStatus(
-                                                      props.item.terbitkan
-                                                    )
-                                                  )
-                                                }
-                                              })
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[6].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[6].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.$options.filters.checkStatus(
-                                                      props.item.utamakan
-                                                    )
-                                                  )
-                                                }
-                                              })
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[7].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[7].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.$options.filters.publishDateMobile(
-                                                      props.item.created_at
-                                                    )
-                                                  )
-                                                }
-                                              })
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[8].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[8].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              props.item.created_at !==
-                                              props.item.updated_at
-                                                ? _c("span", {
-                                                    domProps: {
-                                                      innerHTML: _vm._s(
-                                                        _vm.$options.filters.publishDateMobile(
-                                                          props.item.updated_at
-                                                        )
-                                                      )
+                                                ? _c("check-value", {
+                                                    attrs: {
+                                                      value:
+                                                        props.item
+                                                          .artikel_kategori
+                                                          .name,
+                                                      isTrim: false,
+                                                      frontText: ": "
                                                     }
                                                   })
-                                                : _vm._e()
+                                                : _c("span", [
+                                                    _vm._v(
+                                                      ": " +
+                                                        _vm._s(
+                                                          _vm.columnData[2]
+                                                            .groupNoKey
+                                                        )
+                                                    )
+                                                  ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[3].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(_vm.columnData[3].title)
+                                              )
                                             ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            [
+                                              props.item.artikel_penulis
+                                                ? _c("check-value", {
+                                                    attrs: {
+                                                      value:
+                                                        props.item
+                                                          .artikel_penulis.name,
+                                                      isTrim: false,
+                                                      frontText: ": "
+                                                    }
+                                                  })
+                                                : _c("span", [
+                                                    _vm._v(
+                                                      ": " +
+                                                        _vm._s(
+                                                          _vm.columnData[3]
+                                                            .groupNoKey
+                                                        )
+                                                    )
+                                                  ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[4].hide &&
+                                    !_vm.columnData[4].disable
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(_vm.columnData[4].title)
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            [
+                                              props.item.c_u
+                                                ? _c("check-value", {
+                                                    attrs: {
+                                                      value:
+                                                        props.item.c_u.name,
+                                                      isTrim: false,
+                                                      frontText: ": "
+                                                    }
+                                                  })
+                                                : _c("span", [
+                                                    _vm._v(
+                                                      ": " +
+                                                        _vm._s(
+                                                          _vm.columnData[4]
+                                                            .groupNoKey
+                                                        )
+                                                    )
+                                                  ])
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[5].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(_vm.columnData[5].title)
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t: "
+                                            ),
+                                            _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.checkStatus(
+                                                    props.item.terbitkan
+                                                  )
+                                                )
+                                              }
+                                            })
                                           ])
-                                        : _vm._e()
-                                    ])
-                                  ]
-                                )
-                              ]),
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[6].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(_vm.columnData[6].title)
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t: "
+                                            ),
+                                            _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.checkStatus(
+                                                    props.item.utamakan
+                                                  )
+                                                )
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[7].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(_vm.columnData[7].title)
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t: "
+                                            ),
+                                            _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.dateTime(
+                                                    props.item.created_at
+                                                  )
+                                                )
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[8].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(_vm.columnData[8].title)
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t: "
+                                            ),
+                                            props.item.created_at !==
+                                            props.item.updated_at
+                                              ? _c("span", {
+                                                  domProps: {
+                                                    innerHTML: _vm._s(
+                                                      _vm.$options.filters.dateTime(
+                                                        props.item.updated_at
+                                                      )
+                                                    )
+                                                  }
+                                                })
+                                              : _c("span", [_vm._v("-")])
+                                          ])
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                ]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -73206,6 +73240,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue__);
 //
 //
 //
@@ -73496,6 +73532,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -73508,7 +73553,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
-		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a
+		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -73736,14 +73782,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	},
 	filters: {
-		publishDate: function publishDate(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '<br/>' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+		dateTime: function dateTime(value) {
+			if (value) {
+				return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+			} else {
+				return '-';
+			}
 		},
-		publishDateMobile: function publishDateMobile(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + ' | ' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
-		},
-		trimString: function trimString(string) {
-			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
+		date: function date(value) {
+			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY');
 		},
 		checkImages: function checkImages(value) {
 			return '/images/penulis/' + value + 'n.jpg';
@@ -73798,31 +73845,35 @@ var render = function() {
               "div",
               { staticClass: "heading-btn-group" },
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-link btn-icon btn-float has-text",
-                    attrs: { to: { name: "artikel" } }
-                  },
-                  [
-                    _c("i", { staticClass: "icon-newspaper text-primary" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Artikel")])
-                  ]
-                ),
+                _vm.userData.can && _vm.userData.can["index artikel"]
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-link btn-icon btn-float has-text",
+                        attrs: { to: { name: "artikel" } }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-newspaper text-primary" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Artikel")])
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-link btn-icon btn-float has-text",
-                    attrs: { to: { name: "artikel" } }
-                  },
-                  [
-                    _c("i", { staticClass: "icon-grid6 text-primary" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Kategori Artikel")])
-                  ]
-                )
+                _vm.userData.can && _vm.userData.can["index artikelKategori"]
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-link btn-icon btn-float has-text",
+                        attrs: { to: { name: "artikelKategori" } }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-grid6 text-primary" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Kategori Artikel")])
+                      ]
+                    )
+                  : _vm._e()
               ],
               1
             )
@@ -74124,6 +74175,7 @@ var render = function() {
                           _c(
                             "tr",
                             {
+                              staticClass: "text-nowrap",
                               class: {
                                 info: _vm.selectedItem.id === props.item.id
                               },
@@ -74158,40 +74210,65 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[1].hide
-                                ? _c("td", { staticClass: "warptext" }, [
-                                    _vm._v(_vm._s(props.item.name))
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.name }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[2].hide
-                                ? _c("td", { staticClass: "warptext" }, [
-                                    _vm._v(_vm._s(props.item.deskripsi))
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.deskripsi }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[3].hide &&
                               !_vm.columnData[3].disable
-                                ? _c("td", [
-                                    props.item.c_u
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.c_u.name))
-                                        ])
-                                      : _vm._e()
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.c_u
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value: props.item.c_u.name,
+                                              empty:
+                                                _vm.columnData[3].groupNoKey
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[3].groupNoKey
+                                              )
+                                            )
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[4].hide
-                                ? _c("td", { staticClass: "warptext" }, [
+                                ? _c("td", [
                                     _vm._v(_vm._s(props.item.has_artikel_count))
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[5].hide
                                 ? _c("td", {
-                                    staticClass: "text-nowrap",
                                     domProps: {
                                       innerHTML: _vm._s(
-                                        _vm.$options.filters.publishDate(
+                                        _vm.$options.filters.dateTime(
                                           props.item.created_at
                                         )
                                       )
@@ -74200,19 +74277,19 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[6].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
+                                ? _c("td", [
                                     props.item.created_at !==
                                     props.item.updated_at
                                       ? _c("span", {
                                           domProps: {
                                             innerHTML: _vm._s(
-                                              _vm.$options.filters.publishDate(
+                                              _vm.$options.filters.dateTime(
                                                 props.item.updated_at
                                               )
                                             )
                                           }
                                         })
-                                      : _vm._e()
+                                      : _c("span", [_vm._v("-")])
                                   ])
                                 : _vm._e()
                             ]
@@ -74276,36 +74353,65 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " + _vm._s(props.item.name)
-                                              )
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.name,
+                                                    isTrim: false,
+                                                    frontText: ": "
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
                                       !_vm.columnData[2].hide
                                         ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[2].title
+                                            _c(
+                                              "td",
+                                              { attrs: { colspan: "2" } },
+                                              [
+                                                _c("b", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.columnData[2].title
+                                                    )
                                                   )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(
-                                                ": " +
-                                                  _vm._s(props.item.deskripsi)
-                                              )
-                                            ])
+                                                ])
+                                              ]
+                                            )
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      !_vm.columnData[3].hide
+                                      !_vm.columnData[2].hide
+                                        ? _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticStyle: {
+                                                  "word-wrap": "break-word"
+                                                },
+                                                attrs: { colspan: "2" }
+                                              },
+                                              [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value: props.item.deskripsi,
+                                                    isTrim: false
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      !_vm.columnData[3].hide &&
+                                      !_vm.columnData[3].disable
                                         ? _c("tr", [
                                             _c("td", [
                                               _c("b", [
@@ -74317,19 +74423,30 @@ var render = function() {
                                               ])
                                             ]),
                                             _vm._v(" "),
-                                            _c("td", [
-                                              props.item.c_u
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item.c_u.name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
-                                                : _c("span", [_vm._v(": -")])
-                                            ])
+                                            _c(
+                                              "td",
+                                              [
+                                                props.item.c_u
+                                                  ? _c("check-value", {
+                                                      attrs: {
+                                                        value:
+                                                          props.item.c_u.name,
+                                                        isTrim: false,
+                                                        frontText: ": "
+                                                      }
+                                                    })
+                                                  : _c("span", [
+                                                      _vm._v(
+                                                        ": " +
+                                                          _vm._s(
+                                                            _vm.columnData[3]
+                                                              .groupNoKey
+                                                          )
+                                                      )
+                                                    ])
+                                              ],
+                                              1
+                                            )
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
@@ -74375,7 +74492,7 @@ var render = function() {
                                               _c("span", {
                                                 domProps: {
                                                   innerHTML: _vm._s(
-                                                    _vm.$options.filters.publishDateMobile(
+                                                    _vm.$options.filters.dateTime(
                                                       props.item.created_at
                                                     )
                                                   )
@@ -74406,7 +74523,7 @@ var render = function() {
                                                 ? _c("span", {
                                                     domProps: {
                                                       innerHTML: _vm._s(
-                                                        _vm.$options.filters.publishDateMobile(
+                                                        _vm.$options.filters.dateTime(
                                                           props.item.updated_at
                                                         )
                                                       )
@@ -75966,6 +76083,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue__);
 //
 //
 //
@@ -76247,6 +76366,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -76259,7 +76382,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
-		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a
+		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_5__components_checkValue_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -76294,12 +76418,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}, {
 				title: 'Tgl. Buat',
 				key: 'created_at',
-				type: 'date',
+				type: 'datetime',
 				disable: false
 			}, {
 				title: 'Tgl. Ubah',
 				key: 'updated_at',
-				type: 'date',
+				type: 'datetime',
 				disable: false
 			}],
 			columnData: [{
@@ -76480,11 +76604,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	},
 	filters: {
-		publishDate: function publishDate(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '<br/>' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+		dateTime: function dateTime(value) {
+			if (value) {
+				return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+			} else {
+				return '-';
+			}
 		},
-		publishDateMobile: function publishDateMobile(value) {
-			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY') + ' | ' + __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('kk:mm:ss');
+		date: function date(value) {
+			return __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).format('DD-MM-YYYY');
 		},
 		trimString: function trimString(string) {
 			return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) + ' [...]';
@@ -76539,31 +76667,35 @@ var render = function() {
               "div",
               { staticClass: "heading-btn-group" },
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-link btn-icon btn-float has-text",
-                    attrs: { to: { name: "artikel" } }
-                  },
-                  [
-                    _c("i", { staticClass: "icon-newspaper text-primary" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Artikel")])
-                  ]
-                ),
+                _vm.userData.can && _vm.userData.can["index artikel"]
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-link btn-icon btn-float has-text",
+                        attrs: { to: { name: "artikel" } }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-newspaper text-primary" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Artikel")])
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-link btn-icon btn-float has-text",
-                    attrs: { to: { name: "artikelPenulis" } }
-                  },
-                  [
-                    _c("i", { staticClass: "icon-pencil6 text-primary" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Penulis Artikel")])
-                  ]
-                )
+                _vm.userData.can && _vm.userData.can["index artikelPenulis"]
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-link btn-icon btn-float has-text",
+                        attrs: { to: { name: "artikelPenulis" } }
+                      },
+                      [
+                        _c("i", { staticClass: "icon-pencil6 text-primary" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Penulis Artikel")])
+                      ]
+                    )
+                  : _vm._e()
               ],
               1
             )
@@ -76865,6 +76997,7 @@ var render = function() {
                           _c(
                             "tr",
                             {
+                              staticClass: "text-nowrap",
                               class: {
                                 info: _vm.selectedItem.id === props.item.id
                               },
@@ -76876,44 +77009,65 @@ var render = function() {
                             },
                             [
                               !_vm.columnData[0].hide
-                                ? _c("td", { staticClass: "warptext" }, [
-                                    _vm._v(_vm._s(props.item.name))
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.name }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[1].hide
-                                ? _c("td", { staticClass: "warptext" }, [
-                                    _vm._v(_vm._s(props.item.deskripsi))
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.deskripsi }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[2].hide &&
                               !_vm.columnData[2].disable
-                                ? _c("td", [
-                                    props.item.c_u
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.c_u.name))
-                                        ])
-                                      : _c("span", [
-                                          _vm._v(
-                                            _vm._s(_vm.columnData[2].groupNoKey)
-                                          )
-                                        ])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      props.item.c_u
+                                        ? _c("check-value", {
+                                            attrs: {
+                                              value: props.item.c_u.name,
+                                              empty:
+                                                _vm.columnData[2].groupNoKey
+                                            }
+                                          })
+                                        : _c("span", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.columnData[2].groupNoKey
+                                              )
+                                            )
+                                          ])
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[3].hide
-                                ? _c("td", { staticClass: "warptext" }, [
+                                ? _c("td", [
                                     _vm._v(_vm._s(props.item.has_artikel_count))
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[4].hide
                                 ? _c("td", {
-                                    staticClass: "text-nowrap",
                                     domProps: {
                                       innerHTML: _vm._s(
-                                        _vm.$options.filters.publishDate(
+                                        _vm.$options.filters.dateTime(
                                           props.item.created_at
                                         )
                                       )
@@ -76922,19 +77076,19 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[5].hide
-                                ? _c("td", { staticClass: "text-nowrap" }, [
+                                ? _c("td", [
                                     props.item.created_at !==
                                     props.item.updated_at
                                       ? _c("span", {
                                           domProps: {
                                             innerHTML: _vm._s(
-                                              _vm.$options.filters.publishDate(
+                                              _vm.$options.filters.dateTime(
                                                 props.item.updated_at
                                               )
                                             )
                                           }
                                         })
-                                      : _vm._e()
+                                      : _c("span", [_vm._v("-")])
                                   ])
                                 : _vm._e()
                             ]
@@ -76950,35 +77104,43 @@ var render = function() {
                             "div",
                             { staticClass: "panel panel-flat visible-xs" },
                             [
-                              _c("div", { staticClass: "table-responsive" }, [
-                                _c(
-                                  "table",
-                                  { staticClass: "table table-striped" },
-                                  [
-                                    _c("tbody", [
-                                      !_vm.columnData[0].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[0].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                              _c(
+                                "table",
+                                { staticClass: "table table-striped" },
+                                [
+                                  _c("tbody", [
+                                    !_vm.columnData[0].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
                                               _vm._v(
-                                                ": " + _vm._s(props.item.name)
+                                                _vm._s(_vm.columnData[0].title)
                                               )
                                             ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[1].hide
-                                        ? _c("tr", [
-                                            _c("td", [
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.name,
+                                                  isTrim: false,
+                                                  frontText: ": "
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[1].hide
+                                      ? _c("tr", [
+                                          _c(
+                                            "td",
+                                            { attrs: { colspan: "2" } },
+                                            [
                                               _c("b", [
                                                 _vm._v(
                                                   _vm._s(
@@ -76986,40 +77148,57 @@ var render = function() {
                                                   )
                                                 )
                                               ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[1].hide
+                                      ? _c("tr", [
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                "word-wrap": "break-word"
+                                              },
+                                              attrs: { colspan: "2" }
+                                            },
+                                            [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.deskripsi,
+                                                  isTrim: false
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[2].hide &&
+                                    !_vm.columnData[2].disable
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
                                               _vm._v(
-                                                ": " +
-                                                  _vm._s(props.item.deskripsi)
+                                                _vm._s(_vm.columnData[2].title)
                                               )
                                             ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[2].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[2].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            [
                                               props.item.c_u
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t: " +
-                                                        _vm._s(
-                                                          props.item.c_u.name
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                    )
-                                                  ])
+                                                ? _c("check-value", {
+                                                    attrs: {
+                                                      value:
+                                                        props.item.c_u.name,
+                                                      isTrim: false,
+                                                      frontText: ": "
+                                                    }
+                                                  })
                                                 : _c("span", [
                                                     _vm._v(
                                                       ": " +
@@ -77029,97 +77208,92 @@ var render = function() {
                                                         )
                                                     )
                                                   ])
-                                            ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[3].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[3].title
-                                                  )
-                                                )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[3].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
                                               _vm._v(
-                                                ": " +
-                                                  _vm._s(
-                                                    props.item.has_artikel_count
-                                                  )
+                                                _vm._s(_vm.columnData[3].title)
                                               )
                                             ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[4].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[4].title
-                                                  )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              ": " +
+                                                _vm._s(
+                                                  props.item.has_artikel_count
                                                 )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                            )
+                                          ])
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[4].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
                                               _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.$options.filters.publishDateMobile(
-                                                      props.item.created_at
-                                                    )
-                                                  )
-                                                }
-                                              })
+                                                _vm._s(_vm.columnData[4].title)
+                                              )
                                             ])
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      !_vm.columnData[5].hide
-                                        ? _c("tr", [
-                                            _c("td", [
-                                              _c("b", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.columnData[5].title
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t: "
+                                            ),
+                                            _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.dateTime(
+                                                    props.item.created_at
                                                   )
                                                 )
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                              }
+                                            })
+                                          ])
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.columnData[5].hide
+                                      ? _c("tr", [
+                                          _c("td", [
+                                            _c("b", [
                                               _vm._v(
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t: "
-                                              ),
-                                              props.item.created_at !==
-                                              props.item.updated_at
-                                                ? _c("span", {
-                                                    domProps: {
-                                                      innerHTML: _vm._s(
-                                                        _vm.$options.filters.publishDateMobile(
-                                                          props.item.updated_at
-                                                        )
+                                                _vm._s(_vm.columnData[5].title)
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t: "
+                                            ),
+                                            props.item.created_at !==
+                                            props.item.updated_at
+                                              ? _c("span", {
+                                                  domProps: {
+                                                    innerHTML: _vm._s(
+                                                      _vm.$options.filters.dateTime(
+                                                        props.item.updated_at
                                                       )
-                                                    }
-                                                  })
-                                                : _vm._e()
-                                            ])
+                                                    )
+                                                  }
+                                                })
+                                              : _vm._e()
                                           ])
-                                        : _vm._e()
-                                    ])
-                                  ]
-                                )
-                              ]),
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                ]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -77905,9 +78079,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			if (this.$route.meta.mode === 'edit') {
 				this.$store.dispatch('edit' + this.kelasVuex, this.$route.params.id);
-				this.title = 'Ubah Kategori Artikel';
-				this.titleDesc = 'Mengubah kategori artikel';
-				this.titleIcon = 'icon-pencil5';
 			} else {
 				this.$store.dispatch('create' + this.kelasVuex);
 			}
@@ -78629,12 +78800,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_message_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_collapseButton_vue__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_collapseButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_collapseButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_checkValue_vue__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_checkValue_vue__);
 //
 //
 //
@@ -78965,8 +79134,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
 
 
 
@@ -78982,9 +79149,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
 		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_4__components_message_vue___default.a,
-		truncate: __WEBPACK_IMPORTED_MODULE_5_vue_truncate_collapsed___default.a,
-		collapseButton: __WEBPACK_IMPORTED_MODULE_6__components_collapseButton_vue___default.a,
-		checkValue: __WEBPACK_IMPORTED_MODULE_7__components_checkValue_vue___default.a
+		collapseButton: __WEBPACK_IMPORTED_MODULE_5__components_collapseButton_vue___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_6__components_checkValue_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -99505,13 +99671,15 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[12].hide
-                                ? _c("td", [
-                                    props.item.website
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(props.item.website))
-                                        ])
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                ? _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: props.item.website }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               !_vm.columnData[13].hide
@@ -101288,6 +101456,150 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -101588,24 +101900,26 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "panel panel-flat" }, [
-                _c("div", { staticClass: "panel-body" }, [
-                  _c(
-                    "form",
-                    {
-                      attrs: {
-                        enctype: "multipart/form-data",
-                        "data-vv-scope": "form"
-                      },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          _vm.save($event)
-                        }
-                      }
-                    },
-                    [
+              _c(
+                "form",
+                {
+                  attrs: {
+                    enctype: "multipart/form-data",
+                    "data-vv-scope": "form"
+                  },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.save($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
                       _c("div", { staticClass: "row" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
                         _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
@@ -101855,645 +102169,6 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.id_provinces")
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.id_provinces"
-                                    )
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.id_provinces")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tProvinsi:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.id_provinces,
-                                      expression: "form.id_provinces"
-                                    },
-                                    {
-                                      name: "validate",
-                                      rawName: "v-validate",
-                                      value: "required",
-                                      expression: "'required'"
-                                    }
-                                  ],
-                                  staticClass: "bootstrap-select",
-                                  attrs: {
-                                    name: "id_provinces",
-                                    "data-width": "100%",
-                                    "data-vv-as": "Provinsi",
-                                    disabled: _vm.modelCU.length === 0
-                                  },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "id_provinces",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      },
-                                      function($event) {
-                                        _vm.changeProvinces($event.target.value)
-                                      }
-                                    ]
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { disabled: "", value: "" } },
-                                    [_vm._v("Silahkan pilih Provinsi")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", {
-                                    attrs: { "data-divider": "true" }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.modelProvinces, function(
-                                    provinces
-                                  ) {
-                                    return _c(
-                                      "option",
-                                      { domProps: { value: provinces.id } },
-                                      [_vm._v(_vm._s(provinces.name))]
-                                    )
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _vm.errors.has("form.id_provinces")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first(
-                                              "form.id_provinces"
-                                            )
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.id_regencies")
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.id_regencies"
-                                    )
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.id_regencies")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tKabupaten:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _vm.modelRegenciesLoadStat === "loading"
-                                ? _c("div", [
-                                    _c("i", {
-                                      staticClass: "icon-spinner spinner"
-                                    })
-                                  ])
-                                : _c("div", [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.form.id_regencies,
-                                            expression: "form.id_regencies"
-                                          },
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate",
-                                            value: "required",
-                                            expression: "'required'"
-                                          }
-                                        ],
-                                        staticClass: "bootstrap-select",
-                                        attrs: {
-                                          name: "id_regencies",
-                                          "data-width": "100%",
-                                          "data-vv-as": "Kabupaten",
-                                          disabled:
-                                            _vm.modelRegencies.length === 0
-                                        },
-                                        on: {
-                                          change: [
-                                            function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.form,
-                                                "id_regencies",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            },
-                                            function($event) {
-                                              _vm.changeRegencies(
-                                                $event.target.value
-                                              )
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      [
-                                        _vm._m(1),
-                                        _vm._v(" "),
-                                        _c("option", {
-                                          attrs: { "data-divider": "true" }
-                                        }),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.modelRegencies, function(
-                                          regencies
-                                        ) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              domProps: { value: regencies.id }
-                                            },
-                                            [_vm._v(_vm._s(regencies.name))]
-                                          )
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  ]),
-                              _vm._v(" "),
-                              _vm.errors.has("form.id_regencies")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first(
-                                              "form.id_regencies"
-                                            )
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.id_districts")
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.id_districts"
-                                    )
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.id_districts")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tKecamatan:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _vm.modelDistrictsLoadStat === "loading"
-                                ? _c("div", [
-                                    _c("i", {
-                                      staticClass: "icon-spinner spinner"
-                                    })
-                                  ])
-                                : _c("div", [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.form.id_districts,
-                                            expression: "form.id_districts"
-                                          },
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate",
-                                            value: "required",
-                                            expression: "'required'"
-                                          }
-                                        ],
-                                        staticClass: "bootstrap-select",
-                                        attrs: {
-                                          name: "id_districts",
-                                          "data-width": "100%",
-                                          "data-vv-as": "Kabupaten",
-                                          disabled:
-                                            _vm.modelDistricts.length === 0
-                                        },
-                                        on: {
-                                          change: [
-                                            function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.form,
-                                                "id_districts",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            },
-                                            function($event) {
-                                              _vm.changeDistricts(
-                                                $event.target.value
-                                              )
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      [
-                                        _vm._m(2),
-                                        _vm._v(" "),
-                                        _c("option", {
-                                          attrs: { "data-divider": "true" }
-                                        }),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.modelDistricts, function(
-                                          districts
-                                        ) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              domProps: { value: districts.id }
-                                            },
-                                            [_vm._v(_vm._s(districts.name))]
-                                          )
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  ]),
-                              _vm._v(" "),
-                              _vm.errors.has("form.id_regency")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.id_regency")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.id_villages")
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.id_villages"
-                                    )
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.id_villages")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tKelurahan:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _vm.modelVillagesLoadStat === "loading"
-                                ? _c("div", [
-                                    _c("i", {
-                                      staticClass: "icon-spinner spinner"
-                                    })
-                                  ])
-                                : _c("div", [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.form.id_villages,
-                                            expression: "form.id_villages"
-                                          },
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate",
-                                            value: "required",
-                                            expression: "'required'"
-                                          }
-                                        ],
-                                        staticClass: "bootstrap-select",
-                                        attrs: {
-                                          name: "id_villages",
-                                          "data-width": "100%",
-                                          "data-vv-as": "Desa",
-                                          disabled:
-                                            _vm.modelVillages.length === 0
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              _vm.form,
-                                              "id_villages",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._m(3),
-                                        _vm._v(" "),
-                                        _c("option", {
-                                          attrs: { "data-divider": "true" }
-                                        }),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.modelVillages, function(
-                                          villages
-                                        ) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              domProps: { value: villages.id }
-                                            },
-                                            [_vm._v(_vm._s(villages.name))]
-                                          )
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  ]),
-                              _vm._v(" "),
-                              _vm.errors.has("form.id_villages")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.id_villages")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.alamat")
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has("form.alamat")
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.alamat")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tAlamat:")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required|min:5",
-                                    expression: "'required|min:5'"
-                                  },
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.alamat,
-                                    expression: "form.alamat"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "alamat",
-                                  placeholder: "Silahkan masukkan alamat",
-                                  "data-vv-as": "Alamat"
-                                },
-                                domProps: { value: _vm.form.alamat },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "alamat",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.errors.has("form.alamat")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.alamat")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(4),
-                        _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
                           _c(
                             "div",
@@ -102736,7 +102411,15 @@ var render = function() {
                             ],
                             1
                           )
-                        ]),
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _vm._m(1),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
                           _c(
@@ -102744,7 +102427,7 @@ var render = function() {
                             {
                               staticClass: "form-group",
                               class: {
-                                "has-error": _vm.errors.has("form.website")
+                                "has-error": _vm.errors.has("form.id_provinces")
                               }
                             },
                             [
@@ -102753,57 +102436,97 @@ var render = function() {
                                 {
                                   class: {
                                     "text-danger": _vm.errors.has(
-                                      "form.website"
+                                      "form.id_provinces"
                                     )
                                   }
                                 },
                                 [
-                                  _vm.errors.has("form.website")
+                                  _vm.errors.has("form.id_provinces")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tWebsite:")
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tProvinsi:\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.website,
-                                    expression: "form.website"
-                                  },
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "url",
-                                    expression: "'url'"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "website",
-                                  placeholder:
-                                    "Silahkan masukkan alamat website",
-                                  "data-vv-as": "Website"
-                                },
-                                domProps: { value: _vm.form.website },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.id_provinces,
+                                      expression: "form.id_provinces"
+                                    },
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
                                     }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "website",
-                                      $event.target.value
-                                    )
+                                  ],
+                                  staticClass: "bootstrap-select",
+                                  attrs: {
+                                    name: "id_provinces",
+                                    "data-width": "100%",
+                                    "data-vv-as": "Provinsi",
+                                    disabled: _vm.modelCU.length === 0
+                                  },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "id_provinces",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      function($event) {
+                                        _vm.changeProvinces($event.target.value)
+                                      }
+                                    ]
                                   }
-                                }
-                              }),
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "" } },
+                                    [_vm._v("Silahkan pilih Provinsi")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", {
+                                    attrs: { "data-divider": "true" }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.modelProvinces, function(
+                                    provinces
+                                  ) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: provinces.id } },
+                                      [_vm._v(_vm._s(provinces.name))]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
                               _vm._v(" "),
-                              _vm.errors.has("form.website")
+                              _vm.errors.has("form.id_provinces")
                                 ? _c(
                                     "small",
                                     { staticClass: "text-muted text-danger" },
@@ -102814,7 +102537,9 @@ var render = function() {
                                       _vm._v(
                                         " " +
                                           _vm._s(
-                                            _vm.errors.first("form.website")
+                                            _vm.errors.first(
+                                              "form.id_provinces"
+                                            )
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t\t"
                                       )
@@ -102833,7 +102558,7 @@ var render = function() {
                             {
                               staticClass: "form-group",
                               class: {
-                                "has-error": _vm.errors.has("form.email")
+                                "has-error": _vm.errors.has("form.id_regencies")
                               }
                             },
                             [
@@ -102841,56 +102566,110 @@ var render = function() {
                                 "h5",
                                 {
                                   class: {
-                                    "text-danger": _vm.errors.has("form.email")
+                                    "text-danger": _vm.errors.has(
+                                      "form.id_regencies"
+                                    )
                                   }
                                 },
                                 [
-                                  _vm.errors.has("form.email")
+                                  _vm.errors.has("form.id_regencies")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tE-mail:")
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKabupaten:\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required|email",
-                                    expression: "'required|email'"
-                                  },
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.email,
-                                    expression: "form.email"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "email",
-                                  placeholder:
-                                    "Silahkan masukkan alamat e-mail",
-                                  "data-vv-as": "E-mail"
-                                },
-                                domProps: { value: _vm.form.email },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "email",
-                                      $event.target.value
+                              _vm.modelRegenciesLoadStat === "loading"
+                                ? _c("div", [
+                                    _c("i", {
+                                      staticClass: "icon-spinner spinner"
+                                    })
+                                  ])
+                                : _c("div", [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_regencies,
+                                            expression: "form.id_regencies"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_regencies",
+                                          "data-width": "100%",
+                                          "data-vv-as": "Kabupaten",
+                                          disabled:
+                                            _vm.modelRegencies.length === 0
+                                        },
+                                        on: {
+                                          change: [
+                                            function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "id_regencies",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            },
+                                            function($event) {
+                                              _vm.changeRegencies(
+                                                $event.target.value
+                                              )
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [
+                                        _vm._m(2),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelRegencies, function(
+                                          regencies
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              domProps: { value: regencies.id }
+                                            },
+                                            [_vm._v(_vm._s(regencies.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
                                     )
-                                  }
-                                }
-                              }),
+                                  ]),
                               _vm._v(" "),
-                              _vm.errors.has("form.email")
+                              _vm.errors.has("form.id_regencies")
                                 ? _c(
                                     "small",
                                     { staticClass: "text-muted text-danger" },
@@ -102901,7 +102680,9 @@ var render = function() {
                                       _vm._v(
                                         " " +
                                           _vm._s(
-                                            _vm.errors.first("form.email")
+                                            _vm.errors.first(
+                                              "form.id_regencies"
+                                            )
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t\t"
                                       )
@@ -102913,6 +102694,375 @@ var render = function() {
                             ]
                           )
                         ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.id_districts")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form.id_districts"
+                                    )
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.id_districts")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKecamatan:\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.modelDistrictsLoadStat === "loading"
+                                ? _c("div", [
+                                    _c("i", {
+                                      staticClass: "icon-spinner spinner"
+                                    })
+                                  ])
+                                : _c("div", [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_districts,
+                                            expression: "form.id_districts"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_districts",
+                                          "data-width": "100%",
+                                          "data-vv-as": "Kabupaten",
+                                          disabled:
+                                            _vm.modelDistricts.length === 0
+                                        },
+                                        on: {
+                                          change: [
+                                            function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "id_districts",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            },
+                                            function($event) {
+                                              _vm.changeDistricts(
+                                                $event.target.value
+                                              )
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [
+                                        _vm._m(3),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelDistricts, function(
+                                          districts
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              domProps: { value: districts.id }
+                                            },
+                                            [_vm._v(_vm._s(districts.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  ]),
+                              _vm._v(" "),
+                              _vm.errors.has("form.id_regency")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.id_regency")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.id_villages")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form.id_villages"
+                                    )
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.id_villages")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKelurahan:\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.modelVillagesLoadStat === "loading"
+                                ? _c("div", [
+                                    _c("i", {
+                                      staticClass: "icon-spinner spinner"
+                                    })
+                                  ])
+                                : _c("div", [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_villages,
+                                            expression: "form.id_villages"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_villages",
+                                          "data-width": "100%",
+                                          "data-vv-as": "Desa",
+                                          disabled:
+                                            _vm.modelVillages.length === 0
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "id_villages",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._m(4),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelVillages, function(
+                                          villages
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              domProps: { value: villages.id }
+                                            },
+                                            [_vm._v(_vm._s(villages.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  ]),
+                              _vm._v(" "),
+                              _vm.errors.has("form.id_villages")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.id_villages")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.alamat")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has("form.alamat")
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.alamat")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tAlamat:")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5",
+                                    expression: "'required|min:5'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.alamat,
+                                    expression: "form.alamat"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "alamat",
+                                  placeholder: "Silahkan masukkan alamat",
+                                  "data-vv-as": "Alamat"
+                                },
+                                domProps: { value: _vm.form.alamat },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "alamat",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.alamat")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.alamat")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _vm._m(5),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
                           _c(
@@ -103041,104 +103191,543 @@ var render = function() {
                             ],
                             1
                           )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.email")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has("form.email")
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.email")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tE-mail:")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|email",
+                                    expression: "'required|email'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.email,
+                                    expression: "form.email"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "email",
+                                  placeholder:
+                                    "Silahkan masukkan alamat e-mail",
+                                  "data-vv-as": "E-mail"
+                                },
+                                domProps: { value: _vm.form.email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "email",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.email")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.email")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.website")
+                              }
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form.website"
+                                    )
+                                  }
+                                },
+                                [
+                                  _vm.errors.has("form.website")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tWebsite:")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.website,
+                                    expression: "form.website"
+                                  },
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "url",
+                                    expression: "'url'"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "website",
+                                  placeholder:
+                                    "Silahkan masukkan alamat website",
+                                  "data-vv-as": "Website"
+                                },
+                                domProps: { value: _vm.form.website },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "website",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.website")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right"
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.website")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" ")
+                                  ])
+                            ]
+                          )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _vm._m(6),
-                      _vm._v(" "),
-                      _vm._m(7),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "text-right hidden-xs" },
-                        [
-                          _c(
-                            "router-link",
-                            {
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Misi:")]),
+                            _vm._v(" "),
+                            _c("textarea", {
                               directives: [
                                 {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip:top",
-                                  value: "Batal",
-                                  expression: "'Batal'",
-                                  arg: "top"
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.misi,
+                                  expression: "form.misi"
                                 }
                               ],
-                              staticClass: "btn btn-default",
-                              attrs: { type: "button", to: { name: _vm.kelas } }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-arrow-left13" }),
-                              _vm._v(" Batal\n\t\t\t\t\t\t\t\t")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "5",
+                                type: "text",
+                                name: "misi",
+                                placeholder: "Silahkan masukkan misi"
+                              },
+                              domProps: { value: _vm.form.misi },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "misi",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Visi:")]),
+                            _vm._v(" "),
+                            _c("textarea", {
                               directives: [
                                 {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip:top",
-                                  value: "Simpan Data",
-                                  expression: "'Simpan Data'",
-                                  arg: "top"
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.visi,
+                                  expression: "form.visi"
                                 }
                               ],
-                              staticClass: "btn btn-primary",
+                              staticClass: "form-control",
                               attrs: {
-                                type: "submit",
-                                disabled: _vm.errors.any("form")
+                                rows: "5",
+                                type: "text",
+                                name: "visi",
+                                placeholder: "Silahkan masukkan visi"
+                              },
+                              domProps: { value: _vm.form.visi },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "visi",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(" Simpan")
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "visible-xs" },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary btn-block pb-5",
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Nilai-nilai Inti:")]),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.nilai,
+                                  expression: "form.nilai"
+                                }
+                              ],
+                              staticClass: "form-control",
                               attrs: {
-                                type: "submit",
-                                disabled: _vm.errors.any("form")
+                                rows: "5",
+                                type: "text",
+                                name: "nilai",
+                                placeholder:
+                                  "Silahkan masukkan nilai-nilai inti"
+                              },
+                              domProps: { value: _vm.form.nilai },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "nilai",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(" Simpan")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-default btn-block",
-                              attrs: { type: "button", to: { name: _vm.kelas } }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-arrow-left13" }),
-                              _vm._v(" Batal\n\t\t\t\t\t\t\t\t")
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ])
-              ])
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Slogan:")]),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.slogan,
+                                  expression: "form.slogan"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "5",
+                                type: "text",
+                                name: "slogan",
+                                placeholder: "Silahkan masukkan slogan"
+                              },
+                              domProps: { value: _vm.form.slogan },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "slogan",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Sejarah:")]),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.sejarah,
+                                  expression: "form.sejarah"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "5",
+                                type: "text",
+                                name: "sejarah",
+                                placeholder: "Silahkan masukkan sejarah"
+                              },
+                              domProps: { value: _vm.form.sejarah },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sejarah",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Deskripsi:")]),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.deskripsi,
+                                  expression: "form.deskripsi"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "5",
+                                type: "text",
+                                name: "deskripsi",
+                                placeholder: "Silahkan masukkan deskripsi"
+                              },
+                              domProps: { value: _vm.form.deskripsi },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "deskripsi",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(" ")
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _vm._m(7),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "text-right hidden-xs" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                directives: [
+                                  {
+                                    name: "tooltip",
+                                    rawName: "v-tooltip:top",
+                                    value: "Batal",
+                                    expression: "'Batal'",
+                                    arg: "top"
+                                  }
+                                ],
+                                staticClass: "btn btn-default",
+                                attrs: {
+                                  type: "button",
+                                  to: { name: _vm.kelas }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-arrow-left13" }),
+                                _vm._v(" Batal\n\t\t\t\t\t\t\t\t\t")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "tooltip",
+                                    rawName: "v-tooltip:top",
+                                    value: "Simpan Data",
+                                    expression: "'Simpan Data'",
+                                    arg: "top"
+                                  }
+                                ],
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.errors.any("form")
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-floppy-disk" }),
+                                _vm._v(" Simpan")
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "visible-xs" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-block pb-5",
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.errors.any("form")
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-floppy-disk" }),
+                                _vm._v(" Simpan")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-default btn-block",
+                                attrs: {
+                                  type: "button",
+                                  to: { name: _vm.kelas }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-arrow-left13" }),
+                                _vm._v(" Batal\n\t\t\t\t\t\t\t\t\t")
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              )
             ],
             1
           )
@@ -103170,7 +103759,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h6", { staticClass: "form-wizard-title text-semibold" }, [
+        _c("span", { staticClass: "form-wizard-count" }, [_vm._v("1")]),
+        _vm._v(" Informasi Umum\n\t\t\t\t\t\t\t\t\t\t"),
+        _c("small", { staticClass: "display-block" }, [
+          _vm._v("Gambaran awal Credit Union anda")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h6", { staticClass: "form-wizard-title text-semibold" }, [
+        _c("span", { staticClass: "form-wizard-count" }, [_vm._v("2")]),
+        _vm._v(" Lokasi\n\t\t\t\t\t\t\t\t\t\t"),
+        _c("small", { staticClass: "display-block" }, [
+          _vm._v("Letak kantor pusat Credit Union anda")
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -103200,13 +103811,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h6", { staticClass: "form-wizard-title text-semibold" }, [
+        _c("span", { staticClass: "form-wizard-count" }, [_vm._v("3")]),
+        _vm._v(" Kontak\n\t\t\t\t\t\t\t\t\t\t"),
+        _c("small", { staticClass: "display-block" }, [
+          _vm._v("Menghubungi Credit Union anda")
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h6", { staticClass: "form-wizard-title text-semibold" }, [
+        _c("span", { staticClass: "form-wizard-count" }, [_vm._v("4")]),
+        _vm._v(" Profil\n\t\t\t\t\t\t\t\t\t\t"),
+        _c("small", { staticClass: "display-block" }, [
+          _vm._v("Mengenai Credit Union anda")
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -103218,12 +103845,6 @@ var staticRenderFns = [
         _vm._v(" Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
   }
 ]
 render._withStripped = true
@@ -110271,11 +110892,11 @@ var artikel = {
 /* harmony default export */ __webpack_exports__["a"] = ({
 
   getArtikelS: function getArtikelS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel', { params: p });
   },
 
   getArtikelCUS: function getArtikelCUS(p, id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/indexCU/' + id + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/indexCU/' + id, { params: p });
   },
 
   getArtikel: function getArtikel(id) {

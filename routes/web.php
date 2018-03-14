@@ -41,12 +41,12 @@ Route::get('/testroute', function () {
     // Spatie\Permission\Models\Permission::create(['name' => 'destroy cu']);
 
     // give permission to role
-    $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
-    $role->givePermissionTo([
-        'index artikel',
-        'create artikel',
-        'destroy artikel',
-        'update artikel']);
+    // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
+    // $role->givePermissionTo([
+    //     'aktifkan user',
+    //     'reset password',
+    //     'terbitkan artikel',
+    //     'utamakan artikel']);
 
     // activity log
     // $activity = Spatie\Activitylog\Models\Activity::all()->last();

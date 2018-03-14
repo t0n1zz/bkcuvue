@@ -229,9 +229,6 @@
 
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
-					this.title = 'Ubah Kategori Artikel';
-					this.titleDesc = 'Mengubah kategori artikel';
-					this.titleIcon = 'icon-pencil5';
 				} else {
 					this.$store.dispatch('create' + this.kelasVuex);
 				}

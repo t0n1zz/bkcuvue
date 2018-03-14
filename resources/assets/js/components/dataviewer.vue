@@ -162,79 +162,76 @@
           <div class="col-md-12 pb-15 visible-xs">
             <!-- input -->
             <!-- datetime -->
-            <masked-input
-              type="text"
-              name="date"
-              class="form-control"
-              v-model="searchQuery1"
-              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
-              :guide="false"
-              :disabled="itemDataStat === 'loading'"
-              placeholder="YYYY-MM-DD HH:MM:SS"
-              v-if="searchColumnType === 'datetime'">
-            </masked-input>
+            <cleave 
+                v-model="searchQuery1" 
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.dateTime" 
+                placeholder="YYYY-MM-DD HH:MM:SS" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'datetime'"></cleave>
             <span class="input-group-addon" v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">sampai</span>
-            <masked-input
-              type="text"
-              name="date2"
-              class="form-control"
-              v-model="params.search_query_2"
-              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/ ,':', /\d/, /\d/]"
-              :guide="false"
-              :disabled="itemDataStat === 'loading'"
-              placeholder="YYYY-MM-DD HH:MM:SS"
-              v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">
-            </masked-input>
+            <cleave 
+              v-model="params.search_query_2" 
+              class="form-control" 
+              :raw="false" 
+              :options="cleaveOption.dateTime" 
+              placeholder="YYYY-MM-DD HH:MM:SS" 
+              :disabled="itemDataStat === 'loading'" 
+              v-if="searchColumnType === 'datetime' && params.search_operator === 'between'"></cleave>
 
             <!-- date -->
-            <masked-input
-              type="text"
-              name="date"
-              class="form-control"
-              v-model="searchQuery1"
-              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
-              :guide="false"
-              :disabled="itemDataStat === 'loading'"
-              placeholder="YYYY-MM-DD"
-              v-if="searchColumnType === 'date'">
-            </masked-input>
+            <cleave 
+              v-model="searchQuery1" 
+              class="form-control" 
+              :raw="false" 
+              :options="cleaveOption.date" 
+              placeholder="YYYY-MM-DD" 
+              :disabled="itemDataStat === 'loading'" 
+              v-if="searchColumnType === 'date'"></cleave>
             <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
-            <masked-input
-              type="text"
-              name="date2"
-              class="form-control"
-              v-model="params.search_query_2"
-              :mask="[ /\d/, /\d/, /\d/, /\d/, '-',/\d/, /\d/, '-', /\d/, /\d/]"
-              :guide="false"
-              :disabled="itemDataStat === 'loading'"
-              placeholder="YYYY-MM-DD"
-              v-if="searchColumnType === 'date' && params.search_operator === 'between'">
-            </masked-input>
+            <cleave 
+              v-model="params.search_query_2" 
+              class="form-control" 
+              :raw="false" 
+              :options="cleaveOption.date" 
+              placeholder="YYYY-MM-DD" 
+              :disabled="itemDataStat === 'loading'" 
+              v-if="searchColumnType === 'date' && params.search_operator === 'between'"></cleave>
 
-            <!-- number -->
-            <masked-input
-              type="text"
-              name="number"
-              class="form-control"
-              v-model="searchQuery1"
-              :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
-              placeholder="999.999.999"
-              :guide="false"
-              :disabled="itemDataStat === 'loading'"
-              v-if="searchColumnType === 'number'">
-            </masked-input>
+              <!-- number -->
+              <cleave 
+                v-model="searchQuery1" 
+                class="form-control" 
+                :options="cleaveOption.number" 
+                placeholder="0-9" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'number'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
-            <masked-input
-              type="text"
-              name="number"
-              class="form-control"
-              v-model="params.search_query_2"
-              :mask="[ /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/ ]"
-              placeholder="999.999.999"
-              :guide="false"
-              :disabled="itemDataStat === 'loading'"
-              v-if="searchColumnType === 'number' && params.search_operator === 'between'">
-            </masked-input>
+              <cleave 
+                v-model="params.search_query_2" 
+                class="form-control" 
+                :options="cleaveOption.number" 
+                placeholder="0-9" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'number' && params.search_operator === 'between'"></cleave>
+
+              <!-- numeric -->
+              <cleave 
+                v-model="searchQuery1" 
+                class="form-control" 
+                :options="cleaveOption.numeric" 
+                placeholder="999.999.999,99" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'numeric'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'numeric' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="params.search_query_2" 
+                class="form-control" 
+                :options="cleaveOption.numeric" 
+                placeholder="999.999.999,99" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'numeric' && params.search_operator === 'between'"></cleave>  
 
             <!-- select -->
             

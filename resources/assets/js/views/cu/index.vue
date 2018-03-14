@@ -142,8 +142,7 @@
 								<td v-if="!columnData[10].hide" v-html="$options.filters.date(props.item.ultah)"></td>
 								<td v-if="!columnData[11].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
 								<td v-if="!columnData[12].hide">
-									<span v-if="props.item.website">{{props.item.website}}</span>
-									<span v-else>-</span>
+									<check-value :value="props.item.website"></check-value>
 								</td>
 								<td v-if="!columnData[13].hide">
 									<check-value :value="props.item.email"></check-value>
@@ -335,7 +334,6 @@
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
-	import truncate from 'vue-truncate-collapsed';
 	import collapseButton from '../../components/collapseButton.vue';
 	import checkValue from '../../components/checkValue.vue';
 
@@ -345,7 +343,6 @@
 			DataViewer,
 			appModal,
 			message,
-			truncate,
 			collapseButton,
 			checkValue
 		},

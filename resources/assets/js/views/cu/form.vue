@@ -33,12 +33,22 @@
 					</message>
 
 					<!-- main panel -->
-					<div class="panel panel-flat">
-						<div class="panel-body">
-							<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+					
+						<!-- informasi umum -->
+						<div class="panel panel-flat">
+							<div class="panel-body">	
 								<div class="row">
 
-									<!-- gambar utama -->
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold">
+											<span class="form-wizard-count">1</span> Informasi Umum
+											<small class="display-block">Gambaran awal Credit Union anda</small>
+										</h6>
+									</div>
+									
+									<!-- foto -->
 									<div class="col-md-12">
 										<div class="form-group">
 
@@ -112,9 +122,97 @@
 										</div>
 									</div>
 
-									<!-- separator -->
-									<div class="col-md-12"><hr/></div>
+									<!-- aplikasi -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
 
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.app')}">
+												<i class="icon-cross2" v-if="errors.has('form.app')"></i>
+												Aplikasi Keuangan Utama:</h5>
+
+											<!-- text -->
+											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.app')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.app') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- ultah -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.ultah')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
+												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
+												Tgl. Berdiri:</h5>
+
+											<!-- input -->
+											<cleave 
+												name="ultah"
+												v-model="form.ultah" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
+												placeholder="Silahkan masukkan tgl. berdiri"
+												v-validate="'required'" data-vv-as="Tgl. berdiri"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.ultah') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- bergabung -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.bergabung')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
+												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
+												Tgl. Bergabung:</h5>
+
+											<!-- input  -->
+											<cleave 
+												name="bergabung"
+												v-model="form.bergabung" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
+												placeholder="Silahkan masukkan tgl. bergabung"
+												v-validate="'required'" data-vv-as="Tgl. bergabung"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.bergabung') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<!-- lokasi -->
+						<div class="panel panel-flat">
+							<div class="panel-body">
+								<div class="row">
+
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold">
+											<span class="form-wizard-count">2</span> Lokasi
+											<small class="display-block">Letak kantor pusat Credit Union anda</small>
+										</h6>
+									</div>
+									
 									<!-- Provinsi -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_provinces')}">
@@ -252,7 +350,7 @@
 									</div>
 
 									<!-- alamat -->
-									<div class="col-md-4">
+									<div class="col-md-8">
 										<div class="form-group" :class="{'has-error' : errors.has('form.alamat')}">
 
 											<!-- title -->
@@ -271,121 +369,21 @@
 										</div>
 									</div>
 
-									<!-- separator -->
-									<div class="col-md-12"><hr/></div>
+								</div>
+							</div>
+						</div>
 
-									<!-- aplikasi -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
+						<!-- informasi kontak -->
+						<div class="panel panel-flat">
+							<div class="panel-body">
+								<div class="row">
 
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.app')}">
-												<i class="icon-cross2" v-if="errors.has('form.app')"></i>
-												Aplikasi Keuangan Utama:</h5>
-
-											<!-- text -->
-											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.app')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.app') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- ultah -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.ultah')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
-												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri:</h5>
-
-											<!-- input -->
-											<cleave 
-												name="ultah"
-												v-model="form.ultah" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. berdiri"
-												v-validate="'required'" data-vv-as="Tgl. berdiri"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.ultah') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- bergabung -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.bergabung')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
-												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
-												Tgl. Bergabung:</h5>
-
-											<!-- input  -->
-											<cleave 
-												name="bergabung"
-												v-model="form.bergabung" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. bergabung"
-												v-validate="'required'" data-vv-as="Tgl. bergabung"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.bergabung') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- website -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.website')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.website')}">
-												<i class="icon-cross2" v-if="errors.has('form.website')"></i>
-												Website:</h5>
-
-											<!-- text -->
-											<input type="text" name="website" class="form-control" placeholder="Silahkan masukkan alamat website" v-model="form.website" v-validate="'url'" data-vv-as="Website">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.website')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.website') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- email -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.email')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.email')}">
-												<i class="icon-cross2" v-if="errors.has('form.email')"></i>
-												E-mail:</h5>
-
-											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.email')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.email') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold">
+											<span class="form-wizard-count">3</span> Kontak
+											<small class="display-block">Menghubungi Credit Union anda</small>
+										</h6>
 									</div>
 
 									<!-- no telp -->
@@ -451,39 +449,185 @@
 										</div>
 									</div>
 
-								</div>
+									<!-- email -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.email')}">
 
-								<!-- separator -->
-								<div class="col-md-12"><br/></div>
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.email')}">
+												<i class="icon-cross2" v-if="errors.has('form.email')"></i>
+												E-mail:</h5>
 
-								<!-- confirmation -->
-								<div class="form-group">
-									<div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
-								</div>
+											<!-- text -->
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
 
-								<!-- separator -->
-								<div class="col-md-12"><hr/></div>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.email')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.email') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
 
-								<!-- tombol desktop-->
-								<div class="text-right hidden-xs">
-									<router-link type="button" :to="{ name: kelas }" class="btn btn-default" v-tooltip:top="'Batal'">
-										<i class="icon-arrow-left13"></i> Batal
-									</router-link>
-									<button type="submit" class="btn btn-primary" :disabled="errors.any('form')" v-tooltip:top="'Simpan Data'">
-										<i class="icon-floppy-disk"></i> Simpan</button>
-								</div>
+									<!-- website -->
+									<div class="col-md-8">
+										<div class="form-group" :class="{'has-error' : errors.has('form.website')}">
 
-								<!-- tombol mobile-->
-								<div class="visible-xs">
-									<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form')">
-										<i class="icon-floppy-disk"></i> Simpan</button>
-									<router-link type="button" :to="{ name: kelas }" class="btn btn-default btn-block">
-										<i class="icon-arrow-left13"></i> Batal
-									</router-link>
-								</div>
-							</form>
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.website')}">
+												<i class="icon-cross2" v-if="errors.has('form.website')"></i>
+												Website:</h5>
+
+											<!-- text -->
+											<input type="text" name="website" class="form-control" placeholder="Silahkan masukkan alamat website" v-model="form.website" v-validate="'url'" data-vv-as="Website">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.website')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.website') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+								</div>	
+							</div>
 						</div>
-					</div>
+
+						<!-- informasi profil -->
+						<div class="panel panel-flat">
+							<div class="panel-body">
+								<div class="row">
+
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold">
+											<span class="form-wizard-count">4</span> Profil
+											<small class="display-block">Mengenai Credit Union anda</small>
+										</h6>
+									</div>
+								
+									<!-- misi -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Misi:</h5>
+
+											<!-- textarea -->
+											<textarea rows="5" type="text" name="misi" class="form-control" v-model="form.misi" placeholder="Silahkan masukkan misi"></textarea>
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- visi -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Visi:</h5>
+
+											<!-- textarea -->
+											<textarea rows="5" type="text" name="visi" class="form-control" v-model="form.visi" placeholder="Silahkan masukkan visi"></textarea>
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- nilai -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Nilai-nilai Inti:</h5>
+
+											<!-- textarea -->
+											<textarea rows="5" type="text" name="nilai" class="form-control" v-model="form.nilai" placeholder="Silahkan masukkan nilai-nilai inti"></textarea>
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- slogan -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Slogan:</h5>
+
+											<!-- textarea -->
+											<textarea rows="5" type="text" name="slogan" class="form-control" v-model="form.slogan" placeholder="Silahkan masukkan slogan"></textarea>
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- sejarah -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Sejarah:</h5>
+
+											<!-- textarea -->
+											<textarea rows="5" type="text" name="sejarah" class="form-control" v-model="form.sejarah" placeholder="Silahkan masukkan sejarah"></textarea>
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- deskripsi -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Deskripsi:</h5>
+
+											<!-- textarea -->
+											<textarea rows="5" type="text" name="deskripsi" class="form-control" v-model="form.deskripsi" placeholder="Silahkan masukkan deskripsi"></textarea>
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- tombol -->
+						<div class="panel panel-flat">
+							<div class="panel-body">
+								
+								<div class="row">
+
+									<!-- confirmation -->
+									<div class="form-group">
+										<div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
+									</div>
+
+									<!-- tombol desktop-->
+									<div class="text-right hidden-xs">
+										<router-link type="button" :to="{ name: kelas }" class="btn btn-default" v-tooltip:top="'Batal'">
+											<i class="icon-arrow-left13"></i> Batal
+										</router-link>
+										<button type="submit" class="btn btn-primary" :disabled="errors.any('form')" v-tooltip:top="'Simpan Data'">
+											<i class="icon-floppy-disk"></i> Simpan</button>
+									</div>
+
+									<!-- tombol mobile-->
+									<div class="visible-xs">
+										<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form')">
+											<i class="icon-floppy-disk"></i> Simpan</button>
+										<router-link type="button" :to="{ name: kelas }" class="btn btn-default btn-block">
+											<i class="icon-arrow-left13"></i> Batal
+										</router-link>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+					</form>
 				</div>
 			</div>
 		</div>

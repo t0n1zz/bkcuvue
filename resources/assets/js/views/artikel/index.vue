@@ -16,10 +16,10 @@
 				</div>
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
-						<router-link :to="{ name:'artikelKategori' }" class="btn btn-link btn-icon btn-float has-text">
+						<router-link :to="{ name:'artikelKategori' }" class="btn btn-link btn-icon btn-float has-text" v-if="userData.can && userData.can['index artikelKategori']">
 							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
 						</router-link>
-						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
+						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text" v-if="userData.can && userData.can['index artikelPenulis']">
 							<i class="icon-pencil6 text-primary"></i> <span>Penulis Artikel</span>
 						</router-link>
 					</div>
@@ -191,26 +191,32 @@
 
 						<!-- item desktop -->
 						<template slot="item-desktop" slot-scope="props">
-							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
+							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
 								<td v-if="!columnData[0].hide">
 									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
+								<td v-if="!columnData[1].hide">
+									<check-value :value="props.item.name"></check-value>
+								</td>
 								<td v-if="!columnData[2].hide && !columnData[2].disable">
-									<span v-if="props.item.artikel_kategori">{{props.item.artikel_kategori.name}}</span>
+									<check-value :value="props.item.artikel_kategori.name" v-if="props.item.artikel_kategori"></check-value>
+									<span v-else>{{columnData[2].groupNoKey}}</span>
 								</td>
 								<td v-if="!columnData[3].hide && !columnData[3].disable">
-									<span v-if="props.item.artikel_penulis">{{props.item.artikel_penulis.name}}</span>
+									<check-value :value="props.item.artikel_penulis.name" v-if="props.item.artikel_penulis"></check-value>
+									<span v-else>{{columnData[3].groupNoKey}}</span>
 								</td> 
 								<td v-if="!columnData[4].hide && !columnData[4].disable">
-									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
+									<check-value :value="props.item.c_u.name" v-if="props.item.c_u"></check-value>
+									<span v-else>{{columnData[4].groupNoKey}}</span>
 								</td>
 								<td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
 								<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-								<td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
-								<td v-if="!columnData[8].hide" class="text-nowrap">
-									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDate(props.item.updated_at)"></span>
+								<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+								<td v-if="!columnData[8].hide">
+									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+									<span v-else>-</span>
 								</td>
 							</tr>
 						</template>
@@ -227,73 +233,70 @@
 						<!-- item mobile -->
 						<template slot="item-mobile" slot-scope="props">
 							<div class="panel panel-flat visible-xs">
-								<div class="table-responsive">
-									<table class="table table-striped">
-										<tbody>
-											<tr v-if="!columnData[0].hide">
-												<td colspan="2">
-													<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-													<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive center-block" v-else>
+								<table class="table table-striped">
+									<tbody>
+										<tr v-if="!columnData[0].hide">
+											<td colspan="2">
+												<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
+												<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive center-block" v-else>
+											</td>
+										</tr>
+										<tr v-if="!columnData[1].hide">
+											<td colspan="2"><b>{{columnData[1].title}}</b></td>
+										</tr>
+										<tr v-if="!columnData[1].hide">
+											<td colspan="2" style="word-wrap: break-word;">
+												<check-value :value="props.item.name" :isTrim="false"></check-value>
 												</td>
-											</tr>
-											<tr v-if="!columnData[1].hide">
-												<td><b>{{columnData[1].title}}</b></td>
-												<td>: {{props.item.name}}</td>
-											</tr>
-											<tr v-if="!columnData[2].hide">
-												<td><b>{{columnData[2].title}}</b></td>
-												<td>
-													<span v-if="props.item.artikel_kategori">
-														: {{props.item.artikel_kategori.name}}
-													</span>
-													<span v-else>: -</span>	
-												</td>
-											</tr>
-											<tr v-if="!columnData[3].hide">
-												<td><b>{{columnData[3].title}}</b></td>
-												<td>
-													<span v-if="props.item.artikel_penulis">
-													: {{props.item.artikel_penulis.name}}
-													</span>
-													<span v-else>: -</span>	
-												</td>
-											</tr>
-											<tr v-if="!columnData[4].hide">
-												<td><b>{{columnData[4].title}}</b></td>
-												<td>
-													<span v-if="props.item.c_u">
-														: {{props.item.c_u.name}}
-													</span>
-													<span v-else>: -</span>	
-												</td>
-											</tr>
-											<tr v-if="!columnData[5].hide">
-												<td><b>{{columnData[5].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.checkStatus(props.item.terbitkan)"></span>
-												</td>
-											</tr>
-											<tr v-if="!columnData[6].hide">
-												<td><b>{{columnData[6].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.checkStatus(props.item.utamakan)"></span>
-												</td>
-											</tr>
-											<tr v-if="!columnData[7].hide">
-												<td><b>{{columnData[7].title}}</b></td>
-												<td>
-													: <span v-html="$options.filters.publishDateMobile(props.item.created_at)"></span>
-												</td>
-											</tr>
-											<tr v-if="!columnData[8].hide">
-												<td><b>{{columnData[8].title}}</b></td>
-												<td>
-													: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDateMobile(props.item.updated_at)"></span>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+										</tr>
+										<tr v-if="!columnData[2].hide">
+											<td><b>{{columnData[2].title}}</b></td>
+											<td>
+												<check-value :value="props.item.artikel_kategori.name" :isTrim="false" :frontText="': '" v-if="props.item.artikel_kategori"></check-value>
+												<span v-else>: {{columnData[2].groupNoKey}}</span>	
+											</td>
+										</tr>
+										<tr v-if="!columnData[3].hide">
+											<td><b>{{columnData[3].title}}</b></td>
+											<td>
+												<check-value :value="props.item.artikel_penulis.name" :isTrim="false" :frontText="': '" v-if="props.item.artikel_penulis"></check-value>
+												<span v-else>: {{columnData[3].groupNoKey}}</span>	
+											</td>
+										</tr>
+										<tr v-if="!columnData[4].hide && !columnData[4].disable">
+											<td><b>{{columnData[4].title}}</b></td>
+											<td>
+												<check-value :value="props.item.c_u.name" :isTrim="false" :frontText="': '" v-if="props.item.c_u"></check-value>
+												<span v-else>: {{columnData[4].groupNoKey}}</span>	
+											</td>
+										</tr>
+										<tr v-if="!columnData[5].hide">
+											<td><b>{{columnData[5].title}}</b></td>
+											<td>
+												: <span v-html="$options.filters.checkStatus(props.item.terbitkan)"></span>
+											</td>
+										</tr>
+										<tr v-if="!columnData[6].hide">
+											<td><b>{{columnData[6].title}}</b></td>
+											<td>
+												: <span v-html="$options.filters.checkStatus(props.item.utamakan)"></span>
+											</td>
+										</tr>
+										<tr v-if="!columnData[7].hide">
+											<td><b>{{columnData[7].title}}</b></td>
+											<td>
+												: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
+											</td>
+										</tr>
+										<tr v-if="!columnData[8].hide">
+											<td><b>{{columnData[8].title}}</b></td>
+											<td>
+												: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+												<span v-else>-</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 								<div class="panel-footer hidden-print">
 									<div class="text-center button-toolbar">
 
@@ -351,13 +354,15 @@
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
+	import checkValue from '../../components/checkValue.vue';
 
 	export default {
 		name: 'ArtikelIndex',
 		components: {
 			DataViewer,
 			appModal,
-			message
+			message,
+			checkValue
 		},
 		data() {
 			return {
@@ -408,13 +413,13 @@
 					{
 						title: 'Tgl. Tulis',
 						key: 'created_at',
-						type: 'date',
+						type: 'datetime',
 						disable: false
 					},
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
-						type: 'date',
+						type: 'datetime',
 						disable: false
 					}
 				],
@@ -439,7 +444,7 @@
 						title: 'Kategori',
 						key: 'id_artikel_kategori',
 						groupKey: 'artikel_kategori.name',
-						groupNoKey: 'Tidak terkategori',
+						groupNoKey: '-',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -449,7 +454,7 @@
 						title: 'Penulis',
 						key: 'id_artikel_penulis',
 						groupKey: 'artikel_penulis.name',
-						groupNoKey: 'Tidak ada data penulis',
+						groupNoKey: '-',
 						sort: true,
 						hide: false,
 						disable: false
@@ -693,11 +698,15 @@
 			}
 		},
 		filters: {
-			publishDate: function (value) {
-				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm:ss');
+			dateTime: function (value) {
+				if(value){
+					return moment(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;'  + moment(value).format('kk:mm:ss');
+				}else{
+					return '-';
+				}
 			},
-			publishDateMobile: function (value) {
-				return moment(value).format('DD-MM-YYYY') + ' | ' + moment(value).format('kk:mm:ss');
+			date: function (value) {
+				return moment(value).format('DD-MM-YYYY');
 			},
 			trimString: function (string) {
 				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +

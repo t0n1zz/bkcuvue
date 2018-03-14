@@ -3,11 +3,11 @@ import { BKCU_CONFIG } from '../config.js';
 export default {
   
   getArtikelS: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikel' + `?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`);
+    return axios.get( BKCU_CONFIG.API_URL + '/artikel' ,{params: p});
   },
 
   getArtikelCUS: function( p, id ){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCU/' + id + `?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`);
+    return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCU/' + id, {params: p});
   },
 
   getArtikel: function( id ){

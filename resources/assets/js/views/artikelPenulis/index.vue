@@ -16,10 +16,10 @@
 				</div>
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
-						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
+						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text" v-if="userData.can && userData.can['index artikel']">
 							<i class="icon-newspaper text-primary"></i> <span>Artikel</span>
 						</router-link>
-						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
+						<router-link :to="{ name:'artikelKategori' }" class="btn btn-link btn-icon btn-float has-text" v-if="userData.can && userData.can['index artikelKategori']">
 							<i class="icon-grid6 text-primary"></i> <span>Kategori Artikel</span>
 						</router-link>
 					</div>
@@ -171,20 +171,26 @@
 
 						<!-- item desktop -->
 						<template slot="item-desktop" slot-scope="props">
-							<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
+							<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
 								<td v-if="!columnData[0].hide">
 									<img :src="'/images/penulis/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 									<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
 								</td>
-								<td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
-								<td v-if="!columnData[2].hide" class="warptext">{{props.item.deskripsi}}</td>
-								<td v-if="!columnData[3].hide && !columnData[3].disable">
-									<span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
+								<td v-if="!columnData[1].hide">
+									<check-value :value="props.item.name"></check-value>
 								</td>
-								<td v-if="!columnData[4].hide" class="warptext">{{props.item.has_artikel_count}}</td>
-								<td v-if="!columnData[5].hide" class="text-nowrap" v-html="$options.filters.publishDate(props.item.created_at)"></td>
-								<td v-if="!columnData[6].hide" class="text-nowrap">
-									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDate(props.item.updated_at)"></span>
+								<td v-if="!columnData[2].hide">
+									<check-value :value="props.item.deskripsi"></check-value>
+								</td>
+								<td v-if="!columnData[3].hide && !columnData[3].disable">
+									<check-value :value="props.item.c_u.name" :empty="columnData[3].groupNoKey" v-if="props.item.c_u"></check-value>
+									<span v-else>{{columnData[3].groupNoKey}}</span>
+								</td>
+								<td v-if="!columnData[4].hide">{{props.item.has_artikel_count}}</td>
+								<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+								<td v-if="!columnData[6].hide">
+									<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+									<span v-else>-</span>
 								</td>
 							</tr>
 						</template>
@@ -212,19 +218,21 @@
 											</tr>
 											<tr v-if="!columnData[1].hide">
 												<td><b>{{columnData[1].title}}</b></td>
-												<td>: {{props.item.name}}</td>
+												<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
 											</tr>
 											<tr v-if="!columnData[2].hide">
-												<td><b>{{columnData[2].title}}</b></td>
-												<td>: {{props.item.deskripsi}}</td>
+												<td colspan="2"><b>{{columnData[2].title}}</b></td>
 											</tr>
-											<tr v-if="!columnData[3].hide">
+											<tr v-if="!columnData[2].hide">
+												<td colspan="2" style="word-wrap: break-word;">
+													<check-value :value="props.item.deskripsi" :isTrim="false"></check-value>
+												</td>
+											</tr>
+											<tr v-if="!columnData[3].hide && !columnData[3].disable">
 												<td><b>{{columnData[3].title}}</b></td>
 												<td>
-													<span v-if="props.item.c_u">
-														: {{props.item.c_u.name}}
-													</span>
-													<span v-else>: -</span>	
+													<check-value :value="props.item.c_u.name" :isTrim="false" :frontText="': '" v-if="props.item.c_u"></check-value>
+													<span v-else>: {{columnData[3].groupNoKey}}</span>
 												</td>
 											</tr>
 											<tr v-if="!columnData[4].hide">
@@ -234,13 +242,13 @@
 											<tr v-if="!columnData[5].hide">
 												<td><b>{{columnData[5].title}}</b></td>
 												<td>
-													: <span v-html="$options.filters.publishDateMobile(props.item.created_at)"></span>
+													: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 												</td>
 											</tr>
 											<tr v-if="!columnData[6].hide">
 												<td><b>{{columnData[6].title}}</b></td>
 												<td>
-													: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.publishDateMobile(props.item.updated_at)"></span>
+													: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 												</td>
 											</tr>
 										</tbody>
@@ -294,13 +302,15 @@
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
+	import checkValue from '../../components/checkValue.vue';
 
 	export default {
 		name: 'ArtikelIndex',
 		components: {
 			DataViewer,
 			appModal,
-			message
+			message,
+			checkValue
 		},
 		data() {
 			return {
@@ -540,15 +550,15 @@
 			}
 		},
 		filters: {
-			publishDate: function (value) {
-				return moment(value).format('DD-MM-YYYY') + '<br/>' + moment(value).format('kk:mm:ss');
+			dateTime: function (value) {
+				if(value){
+					return moment(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;'  + moment(value).format('kk:mm:ss');
+				}else{
+					return '-';
+				}
 			},
-			publishDateMobile: function (value) {
-				return moment(value).format('DD-MM-YYYY') + ' | ' + moment(value).format('kk:mm:ss');
-			},
-			trimString: function (string) {
-				return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
-					' [...]';
+			date: function (value) {
+				return moment(value).format('DD-MM-YYYY');
 			},
 			checkImages: function (value) {
 				return '/images/penulis/' + value + 'n.jpg';
