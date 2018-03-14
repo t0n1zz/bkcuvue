@@ -48,7 +48,7 @@
 											<!-- imageupload -->
 											<app-image-upload :image_loc="'/images/cu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
-									</div>
+									</div>  
 
 									<!-- name -->
 									<div class="col-md-4">
@@ -108,8 +108,12 @@
 											<!-- text -->
 											<input type="text" name="badan_hukum" class="form-control" placeholder="Silahkan masukkan nama CU"  v-model="form.badan_hukum">
 
+											<small class="text-muted">&nbsp;</small>	
 										</div>
 									</div>
+
+									<!-- separator -->
+									<div class="col-md-12"><hr/></div>
 
 									<!-- Provinsi -->
 									<div class="col-md-4">
@@ -267,6 +271,9 @@
 										</div>
 									</div>
 
+									<!-- separator -->
+									<div class="col-md-12"><hr/></div>
+
 									<!-- aplikasi -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
@@ -395,14 +402,10 @@
 												v-model="form.telp" 
 												class="form-control" 
 												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no telp"
-												v-validate="'required'" data-vv-as="No. Telp"></cleave>
+												placeholder="Silahkan masukkan no telp"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.telp')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.telp') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted">&nbsp;</small>	
 										</div>
 									</div>
 
@@ -420,14 +423,10 @@
 												v-model="form.hp" 
 												class="form-control" 
 												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no hp"
-												v-validate="'required'" data-vv-as="No. HP"></cleave>
+												placeholder="Silahkan masukkan no hp"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.hp')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.hp') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted">&nbsp;</small>	
 										</div>
 									</div>
 
@@ -445,14 +444,10 @@
 												v-model="form.pos" 
 												class="form-control" 
 												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan kode pos"
-												v-validate="'required'" data-vv-as="No. Pos"></cleave>
+												placeholder="Silahkan masukkan kode pos"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.pos')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.pos') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted">&nbsp;</small>	
 										</div>
 									</div>
 
@@ -511,7 +506,6 @@
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
-	import {TheMask} from 'vue-the-mask';
 	import Cleave from 'vue-cleave-component';
 
 	export default {
@@ -519,7 +513,6 @@
 			appModal,
 			appImageUpload,
 			message,
-			TheMask,
 			Cleave
 		},
 		data() {
@@ -576,17 +569,14 @@
 			this.fetch();
 		},
 		watch: {
-			userDataStat(value){ //jika refresh halaman maka reload userData
-				if(value === "success"){
-					if(this.userData.id_cu === 0){
-						this.$store.dispatch('loadCUPus',this.userData.id_pus);
-					}
-				}
-			},
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
 						this.form.id_cu = this.userData.id_cu;
+					}else{
+						this.changeProvinces(this.form.id_provinces);
+						this.changeRegencies(this.form.id_regencies);
+					this.changeDistricts(this.form.id_districts);
 					}
 				}
 			},
@@ -605,15 +595,12 @@
     },
 		methods: {
 			fetch(){
-				if(this.userData.id_cu === 0){
-					this.$store.dispatch('loadCUPus',this.userData.id_pus);
-				}
-
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
 					this.title = 'Ubah CU';
 					this.titleDesc = 'Mengubah CU';
 					this.titleIcon = 'icon-pencil5';
+					
 				} else {
 					this.$store.dispatch('create' + this.kelasVuex);
 				}

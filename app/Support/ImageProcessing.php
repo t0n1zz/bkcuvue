@@ -12,7 +12,7 @@ class ImageProcessing{
 	{
 		$path = public_path($imagepath);
 
-		if(!empty($kelas) && $request->gambar == "no_image"){
+		if(!empty($kelas) && $request->gambar == "no_image"){// no image
 			File::delete($path . $kelas->gambar . '.jpg');
 			File::delete($path . $kelas->gambar . 'n.jpg');
 			$formatedName = '';
@@ -24,11 +24,15 @@ class ImageProcessing{
 			]);
 
 			if ($validator->fails()) {
+				if(!empty($request->gambar)){
+					return $request->gambar;
+				}else{
 					$formatedName = '';
 					return $formatedName;
+				}
 			}
 			
-			if(!empty($kelas) && $request->gambar != ''){
+			if(!empty($kelas) && $request->gambar != ''){ //change image
 				File::delete($path . $kelas->gambar . '.jpg');
 				File::delete($path . $kelas->gambar . 'n.jpg');
 			}

@@ -67,7 +67,7 @@
 			close() {
 				this.$emit('input', 'no_image');
 				this.image = '/images/no_image.jpg';
-				this.$refs.fileInput.value = 'no_image';
+				this.$refs.fileInput.value = '';
 			}
 		}
 	}
