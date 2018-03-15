@@ -1,24 +1,8 @@
 <template>
 	<div>
 		<!-- header -->
-		<div class="page-header">
-			<div class="page-header-content has-visible-elements">
-				<div class="page-title">
-					<h4>
-						<i class="position-left" :class="titleIcon"></i>
-						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
-						<ul class="breadcrumb breadcrumb-caret position-right">
-							<router-link :to="{ name:'dashboard' }" tag="li">
-								<a>Dashboard</a>
-							</router-link>
-							<router-link :to="{ name: kelas }" tag="li">
-								<a>CU</a>
-							</router-link>
-							<li class="active">{{ title }}</li>
-						</ul>
-				</div>
-			</div>
-		</div>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
@@ -630,7 +614,6 @@
 
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
-			
 		</app-modal>
 
 	</div>
@@ -641,6 +624,7 @@
 	import axios from 'axios';
 	import { mapGetters } from 'vuex'
 	import corefunc from '../../assets/core/app.js';
+	import pageHeader from "../../components/pageHeader.vue";
 	import {
 		toMulipartedForm
 	} from '../../helpers/form';
@@ -651,6 +635,7 @@
 
 	export default {
 		components: {
+			pageHeader,
 			appModal,
 			appImageUpload,
 			message,
@@ -661,6 +646,7 @@
 				title: 'Tambah CU',
 				titleDesc: 'Menambah CU baru',
 				titleIcon: 'icon-plus3',
+				level2Title: 'CU',
 				kelas: 'cu',
 				kelasVuex: 'CU',
 				redirect: '/cu/',
@@ -717,7 +703,7 @@
 					}else{
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
-					this.changeDistricts(this.form.id_districts);
+						this.changeDistricts(this.form.id_districts);
 					}
 				}
 			},
@@ -741,9 +727,11 @@
 					this.title = 'Ubah CU';
 					this.titleDesc = 'Mengubah CU';
 					this.titleIcon = 'icon-pencil5';
-					
 				} else {
 					this.$store.dispatch(this.kelasVuex + '/create');
+					this.title = 'Tambah CU';
+					this.titleDesc = 'Menambah CU';
+					this.titleIcon = 'icon-plus3';
 				}
 
 				this.$store.dispatch('loadProvincesAll');

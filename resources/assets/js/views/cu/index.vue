@@ -1,34 +1,8 @@
 <template>
 	<div>
 		<!-- Page header -->
-		<div class="page-header">
-			<div class="page-header-content">
-				<div class="page-title">
-					<h4>
-						<i class="position-left" :class="titleIcon"></i>
-						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
-					<ul class="breadcrumb breadcrumb-caret position-right hidden-print">
-						<router-link :to="{ name:'dashboard' }" tag="li">
-							<a>Dashboard</a>
-						</router-link>
-						<li class="active">{{ title }}</li>
-					</ul>
-				</div>
-				<div class="heading-elements hidden-print">
-					<div class="heading-btn-group">
-						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-home9 text-primary"></i> <span>KP/TP</span>
-						</router-link>
-						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-user-tie text-primary"></i> <span>Staf/Aktivis</span>
-						</router-link>
-						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-store2 text-primary"></i> <span>Kelompok</span>
-						</router-link>
-					</div>
-				</div>
-			</div>
-		</div>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :btn1Route="btn1Header.route" :btn1Title="btn1Header.title" :btn1Icon="btn1Header.icon" :btn2Route="btn2Header.route" :btn2Title="btn2Header.title" :btn2Icon="btn2Header.icon" :btn3Route="btn3Header.route" :btn3Title="btn3Header.title" :btn3Icon="btn3Header.icon"></page-header>
+
 		
 		<!-- page container -->
 		<div class="page-container">
@@ -332,7 +306,8 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import { mapGetters } from 'vuex';
+	import pageHeader from "../../components/pageHeader.vue";
 	import corefunc from '../../assets/core/app.js';
 	import moment from 'moment';
 	import DataViewer from '../../components/dataviewer.vue';
@@ -344,6 +319,7 @@
 	export default {
 		name: 'CU',
 		components: {
+			pageHeader,
 			DataViewer,
 			appModal,
 			message,
@@ -357,6 +333,21 @@
 				kelasVuex: 'CU',
 				titleDesc: 'Mengelola data CU',
 				titleIcon: 'icon-office',
+				btn1Header: {
+					route: 'artikel',
+					icon: 'icon-home9',
+					title: 'KP/TP'
+				},
+				btn2Header: {
+					route: 'artikel',
+					icon: 'icon-user-tie',
+					title: 'Staf/Aktivis'
+				},
+				btn3Header: {
+					route: 'artikel',
+					icon: 'icon-store2',
+					title: 'Kelompok'
+				},
 				id_cu: '',
 				source: '',
 				selectedItem: [],
