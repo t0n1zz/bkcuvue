@@ -2,10 +2,10 @@
   <div>
 
     <!-- desktop -->
-    <div class="panel panel-flat">
+    <div class="panel panel-white border-top-xlg border-top-info">
       <!-- heading desktop -->
       <div class="panel-heading has-visible-elements hidden-xs hidden-print">
-        <h5 class="panel-title">Tabel {{ title }}</h5>
+        <h5 class="panel-title text-semibold"><i class="icon-list2 position-left"></i> Tabel {{ title }}</h5>
         <div class="heading-elements visible-elements">
           <ul class="icons-list">
             <li>
@@ -492,7 +492,7 @@
     <!-- top panel -->
 
     <!-- option -->
-    <div class="panel panel-flat visible-xs hidden-print">
+    <div class="panel panel-flat panel-white border-top-xlg border-top-info visible-xs hidden-print">
       <div class="panel-heading has-visible-elements">
         <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
         <div class="heading-elements visible-elements">

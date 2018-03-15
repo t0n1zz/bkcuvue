@@ -2,39 +2,35 @@ import { BKCU_CONFIG } from '../config.js';
 
 export default {
   
-  getCUS: function( p ){
+  index: function( p ){
     return axios.get(BKCU_CONFIG.API_URL +  '/cu' , {params: p});
   },
 
-  getCUAll: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/cu_all');
+  indexAll: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/indexAll');
   },
 
-  getCU: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/cu/' + id);
-  },
-
-  getCUPus: function( id ){
+  indexPus: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/cu/pus/' + id);
   },
 
-  createCU: function(){
+  create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/cu/create');
   },
 
-  storeCU: function ( form ){
+  store: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/cu/store', form);
   },
 
-  editCU: function( id ){
+  edit: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/cu/edit/' + id);
   },
 
-  updateCU: function ( id, form ){
+  update: function ( id, form ){
     return axios.post(BKCU_CONFIG.API_URL + '/cu/update/' + id, form);
   },
 
-  deleteCU: function( id ){
+  destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/cu/' + id);
   }
 }

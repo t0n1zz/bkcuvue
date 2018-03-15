@@ -17,10 +17,13 @@
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
 						<router-link :to="{ name:'artikel' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-newspaper text-primary"></i> <span>Artikel</span>
+							<i class="icon-home9 text-primary"></i> <span>KP/TP</span>
 						</router-link>
 						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
-							<i class="icon-pencil6 text-primary"></i> <span>Penulis Artikel</span>
+							<i class="icon-user-tie text-primary"></i> <span>Staf/Aktivis</span>
+						</router-link>
+						<router-link :to="{ name:'artikelPenulis' }" class="btn btn-link btn-icon btn-float has-text">
+							<i class="icon-store2 text-primary"></i> <span>Kelompok</span>
 						</router-link>
 					</div>
 				</div>
@@ -329,6 +332,7 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
 	import corefunc from '../../assets/core/app.js';
 	import moment from 'moment';
 	import DataViewer from '../../components/dataviewer.vue';
@@ -660,7 +664,7 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch('load' + this.kelasVuex + 'S', this.params);
+				this.$store.dispatch(this.kelasVuex + '/index', this.params);
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -684,34 +688,28 @@
 			},
 			modalTutup() {
 				this.modalShow = false;
-				this.$store.dispatch('reset' + this.kelasVuex + 'UpdateStat');
+				this.$store.dispatch(this.kelasVuex + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
 				var vm = this;
 				if (vm.source == 'hapus') {
-					this.$store.dispatch('delete' + this.kelasVuex, this.selectedItem.id);
+					this.$store.dispatch(this.kelasVuex + '/destroy', this.selectedItem.id);
 				}
 			}
 		},
 		computed: {
+			...mapGetters('CU',{
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS',
+				updateStat: 'updateStat',
+				updateMessage: 'update'
+			}),
 			userData(){
 				return this.$store.getters.getUserData;
 			},
 			userDataStat(){
 				return this.$store.getters.getUserDataLoadStat;
 			},
-			itemData(){
-				return this.$store.getters.getCUS;
-			},
-			itemDataStat(){
-				return this.$store.getters.getCULoadStatS;
-			},
-			updateStat() {
-				return this.$store.getters.getCUUpdateStat;
-			},
-			updateMessage() {
-				return this.$store.getters.getCUUpdateMessage;
-			}
 		},
 		filters: {
 			dateTime: function (value) {

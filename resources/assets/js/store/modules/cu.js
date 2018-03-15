@@ -1,246 +1,218 @@
 import CUAPI from '../../api/cu.js';
 
 export const CU = {
+  namespaced: true,
+
   state: {
-    CUS: [],
-    CULoadStatS: '',
-    CU: {},
-    CULoadStat: '',
-    CUUpdate: [],
-    CUUpdateStat: '',
-    CURules: [],
-    CUOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-    // load all
-    loadCUS( { commit }, p ){
-      commit('setCULoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      CUAPI.getCUS( p )
+      CUAPI.index( p )
         .then( function( response ){
-          commit('setCUS', response.data.model);
-          commit('setCULoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setCUS', error.response.data.message);
-          commit('setCULoadStatS', 'fail');
-        });
-    },
-    loadCUAll( { commit } ){
-      commit('setCULoadStatS', 'loading');
-      
-      CUAPI.getCUAll()
-        .then( function( response ){
-          commit('setCUS', response.data.model);
-          commit('setCULoadStatS', 'success');
-        })
-        .catch( function(){
-          commit('setCUS', []);
-          commit('setCULoadStatS', 'fail');
+          commit('setDataS', error.response.data.message);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    //load single data
-    loadCU( {commit}, id ){
-      commit('setCULoadStat', 'loading');
+    //load collection without params
+    indexAll( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      CUAPI.getCU( id )
+      CUAPI.indexAll()
         .then( function( response ){
-          commit('setCU', response.data );
-          commit('setCULoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
-        .catch( function(){
-          commit('setCU', []);
-          commit('setCULoadStat', 'fail');
+        .catch( error => {
+          commit('setDataS', error.response.data.message);
+          commit('setDataStatS', 'fail');
         });
     },
-
 
     //load cu pus
-    loadCUPus( {commit}, id ){
-      commit('setCULoadStatS', 'loading');
+    indexPus( {commit}, id ){
+      commit('setDataStatS', 'loading');
       
-      CUAPI.getCUPus( id )
+      CUAPI.indexPus( id )
         .then( function( response ){
-          commit('setCUS', response.data.model );
-          commit('setCULoadStatS', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setCUS', error.response);
-          commit('setCULoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
     // create page
-    createCU( {commit} ){
-      commit('setCULoadStat', 'loading');
+    create( {commit} ){
+      commit('setDataStat', 'loading');
       
-      CUAPI.createCU()
+      CUAPI.create()
         .then( function( response ){
-          commit('setCU', response.data.form );
-          commit('setCURules', response.data.rules);
-          commit('setCUOption', response.data.option)
-          commit('setCULoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
         .catch( function(){
-          commit('setCU', []);
-          commit('setCURules', []);
-          commit('setCUOption', [])
-          commit('setCULoadStat', 'fail');
+          commit('setData', []);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     //store data
-    storeCU( {commit, state, dispatch}, form ){
-      commit('setCUUpdateStat', 'loading');
+    store( {commit, state, dispatch}, form ){
+      commit('setDataUpdateStat', 'loading');
 
-      CUAPI.storeCU( form )
+      CUAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setCUUpdate', response.data);
-            commit('setCUUpdateStat', 'success');
+            commit('setDataUpdate', response.data);
+            commit('setDataUpdateStat', 'success');
           }else{
-            commit('setCUUpdateStat', 'fail');
+            commit('setDataUpdateStat', 'fail');
           }
         })
         .catch(error => {
           if (error.response.status) {
             this.errors = error.response.data;
-            commit('setCUUpdate', this.errors);         
+            commit('setDataUpdate', this.errors);         
           }else{
-            commit('setCUUpdate', 'Oops terjadi kesalahan :(');
+            commit('setDataUpdate', 'Oops terjadi kesalahan :(');
           }
-          commit('setCUUpdateStat', 'fail');
+          commit('setDataUpdateStat', 'fail');
         });
     },
 
 
     // edit page
-    editCU( {commit}, id ){
-      commit('setCULoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      CUAPI.editCU( id )
+      CUAPI.edit( id )
         .then( function( response ){
-          commit('setCU', response.data.form );
-          commit('setCURules', response.data.rules);
-          commit('setCUOption', response.data.option)
-          commit('setCULoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
         .catch( function(){
-          commit('setCU', []);
-          commit('setCURules', []);
-          commit('setCUOption', [])
-          commit('setCULoadStat', 'fail');
+          commit('setData', []);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateCU( {commit, state, dispatch}, [id, form] ){
-      commit('setCUUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setDataUpdateStat', 'loading');
 
-      CUAPI.updateCU( id, form )
+      CUAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setCUUpdate', response.data);
-            commit('setCUUpdateStat', 'success');
+            commit('setDataUpdate', response.data);
+            commit('setDataUpdateStat', 'success');
           }else{
-            commit('setCUUpdateStat', 'fail');
+            commit('setDataUpdateStat', 'fail');
           }
         })
         .catch(error => {
           if (error.response.status) {
             this.errors = error.response.data;
-            commit('setCUUpdate', this.errors);         
+            commit('setDataUpdate', this.errors);         
           }else{
-            commit('setCUUpdate', 'Oops terjadi kesalahan :(');
+            commit('setDataUpdate', 'Oops terjadi kesalahan :(');
           }
-          commit('setCUUpdateStat', 'fail');
+          commit('setDataUpdateStat', 'fail');
         });
     },
 
     // delete data
-    deleteCU( {commit, state, dispatch}, id ){
-      commit('setCUUpdateStat', 'loading');
+    delete( {commit, state, dispatch}, id ){
+      commit('setDataUpdateStat', 'loading');
 
-      CUAPI.deleteCU( id )
+      CUAPI.delete( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setCUUpdate', response.data);
-            commit('setCUUpdateStat', 'success');
+            commit('setDataUpdate', response.data);
+            commit('setDataUpdateStat', 'success');
           }else{
-            commit('setCUUpdateStat', 'fail');
+            commit('setDataUpdateStat', 'fail');
           }
         })
         .catch(error => {
           if (error.response.status) {
             this.errors = error.response.data;
-            commit('setCUUpdate', this.errors);         
+            commit('setDataUpdate', this.errors);         
           }else{
-            commit('setCUUpdate', 'Oops terjadi kesalahan :(');
+            commit('setDataUpdate', 'Oops terjadi kesalahan :(');
           }
-          commit('setCUUpdateStat', 'fail');
+          commit('setDataUpdateStat', 'fail');
         });
     },
 
-
     // reset
-    resetCUUpdateStat( {commit} ){
-      commit('setCUUpdateStat', '');
+    resetUpdateStat( {commit} ){
+      commit('setDataUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setCUS ( state, CUS ){
-      state.CUS = CUS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setCULoadStatS( state,status ){
-      state.CULoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setCU ( state, CU ){
-      state.CU = CU;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setCULoadStat( state,status ){
-      state.CULoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setCUUpdate ( state, data ){
-      state.CUUpdate = data;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setCUUpdateStat( state,status ){
-      state.CUUpdateStat = status;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setCURules( state, rules ){
-      state.CURules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setCUOption( state, option ){
-      state.CUOption = option;
-    }
-  },
-
-  getters: {
-    getCUS( state ){
-      return state.CUS;
-    },
-    getCULoadStatS ( state ){
-      return state.CULoadStatS;
-    },
-    getCU( state ){
-      return state.CU;
-    },
-    getCULoadStat ( state ){
-      return state.CULoadStat;
-    },
-    getCUUpdateStat ( state ){
-      return state.CUUpdateStat;
-    },
-    getCUUpdate ( state ){
-      return state.CUUpdate;
-    },
-    getCURules ( state ){
-      return state.CURules;
-    },
-    getCUOption ( state ){
-      return state.CUOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

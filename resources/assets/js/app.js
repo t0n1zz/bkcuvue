@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Admin from './admin.vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
-import { store } from './store/store';
+import store from './store';
 import Axios from 'axios';
 import id from 'vee-validate/dist/locale/id';
 import VeeValidate, { Validator } from 'vee-validate';

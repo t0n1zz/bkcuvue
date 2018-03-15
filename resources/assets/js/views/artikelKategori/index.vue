@@ -219,7 +219,7 @@
 											<td><b>{{columnData[2].title}}</b></td>
 											<td>
 												<check-value :value="props.item.c_u.name" :isTrim="false" :frontText="': '" v-if="props.item.c_u"></check-value>
-												<span v-else>: {{columnData[2].groupNoKey}}</span>		
+												<span v-else>: {{columnData[2].groupNoKey}}</span>
 											</td>
 										</tr>
 											<tr v-if="!columnData[3].hide">

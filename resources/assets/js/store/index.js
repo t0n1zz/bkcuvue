@@ -14,19 +14,9 @@ import { regencies } from './modules/regencies';
 import { districts } from './modules/districts';
 import { villages } from './modules/villages';
 
-import getters from './getters';
-import mutations from './mutations';
-import actions from './actions';
-
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
-	 state: {
-
-	 },
-	 getters,
-	 mutations,
-	 actions,
+export default new Vuex.Store({
 	 modules: {
 		 global,
 		 user,

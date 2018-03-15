@@ -36,13 +36,13 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 					
 						<!-- informasi umum -->
-						<div class="panel panel-flat">
+						<div class="panel panel-flat border-left-xlg border-left-info">
 							<div class="panel-body">	
 								<div class="row">
 
 									<!-- judul -->
 									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold">
+										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">1</span> Informasi Umum
 											<small class="display-block">Gambaran awal Credit Union anda</small>
 										</h6>
@@ -201,13 +201,13 @@
 						</div>
 
 						<!-- lokasi -->
-						<div class="panel panel-flat">
+						<div class="panel panel-flat border-left-xlg border-left-info">
 							<div class="panel-body">
 								<div class="row">
 
 									<!-- judul -->
 									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold">
+										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">2</span> Lokasi
 											<small class="display-block">Letak kantor pusat Credit Union anda</small>
 										</h6>
@@ -224,7 +224,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelCU.length === 0" @change="changeProvinces($event.target.value)">
+											<select class="bootstrap-select" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
 												<option disabled value="">Silahkan pilih Provinsi</option>
 												<option data-divider="true"></option>
 												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
@@ -374,13 +374,13 @@
 						</div>
 
 						<!-- informasi kontak -->
-						<div class="panel panel-flat">
+						<div class="panel panel-flat border-left-xlg border-left-info">
 							<div class="panel-body">
 								<div class="row">
 
 									<!-- judul -->
 									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold">
+										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">3</span> Kontak
 											<small class="display-block">Menghubungi Credit Union anda</small>
 										</h6>
@@ -494,13 +494,13 @@
 						</div>
 
 						<!-- informasi profil -->
-						<div class="panel panel-flat">
+						<div class="panel panel-flat border-left-xlg border-left-info">
 							<div class="panel-body">
 								<div class="row">
 
 									<!-- judul -->
 									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold">
+										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">4</span> Profil
 											<small class="display-block">Mengenai Credit Union anda</small>
 										</h6>
@@ -594,19 +594,15 @@
 							</div>
 						</div>
 
+						<div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
+						<br/>
 						<!-- tombol -->
 						<div class="panel panel-flat">
 							<div class="panel-body">
 								
 								<div class="row">
-
-									<!-- confirmation -->
-									<div class="form-group">
-										<div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
-									</div>
-
 									<!-- tombol desktop-->
-									<div class="text-right hidden-xs">
+									<div class="text-center hidden-xs">
 										<router-link type="button" :to="{ name: kelas }" class="btn btn-default" v-tooltip:top="'Batal'">
 											<i class="icon-arrow-left13"></i> Batal
 										</router-link>
@@ -643,6 +639,7 @@
 <script>
 	import Vue from 'vue';
 	import axios from 'axios';
+	import { mapGetters } from 'vuex'
 	import corefunc from '../../assets/core/app.js';
 	import {
 		toMulipartedForm
@@ -702,15 +699,15 @@
 				submited: false,
 			}
 		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => vm.fetch());
+		},
 		mounted() {
 			corefunc.core_function();
 			this.other();
 		},
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
-		},
-		created(){
-			this.fetch();
 		},
 		watch: {
 			formStat(value){
@@ -740,13 +737,13 @@
 		methods: {
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
+					this.$store.dispatch(this.kelasVuex + '/edit',this.$route.params.id);	
 					this.title = 'Ubah CU';
 					this.titleDesc = 'Mengubah CU';
 					this.titleIcon = 'icon-pencil5';
 					
 				} else {
-					this.$store.dispatch('create' + this.kelasVuex);
+					this.$store.dispatch(this.kelasVuex + '/create');
 				}
 
 				this.$store.dispatch('loadProvincesAll');
@@ -804,38 +801,23 @@
 			}
 		},
 		computed: {
+			...mapGetters('CU',{
+				form: 'data',
+				formStat: 'dataStat',
+				rules: 'rules',
+				options: 'options',
+			}),
 			userData(){
 				return this.$store.getters.getUserData;
 			},
 			userDataStat(){
 				return this.$store.getters.getUserDataLoadStat;
 			},
-			form(){
-				return this.$store.getters.getCU;
-			},
-			formStat(){
-				return this.$store.getters.getCULoadStat;
-			},
-			rules(){
-				return this.$store.getters.getCURules;
-			},
-			option(){
-				return this.$store.getters.getCUOption;
-			},
 			updateResponse(){
 				return this.$store.getters.getCUUpdate;
 			},
 			updateStat(){
 				return this.$store.getters.getCUUpdateStat;
-			},
-			modelPus() {
-				return this.$store.getters.getPusS;
-			},
-			modelCU() {
-				return this.$store.getters.getCUS;
-			},
-			modelCULoadStat() {
-				return this.$store.getters.getCULoadStatS;
 			},
 			modelProvinces() {
 				return this.$store.getters.getProvincesS;
