@@ -8,6 +8,7 @@
 						<div class="modal-content">
 							<div class="modal-header" :class="color">
 								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
+								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
 								<h6 class="modal-title" v-if="state === 'normal1' || state === 'normal2'">
 									<slot name="modal-title"></slot>
 								</h6>
@@ -88,16 +89,52 @@
 										<span class="text-danger">
 											<i class="icon-cancel-circle2" style="font-size: 5em"></i>
 										</span>
-										<h2>{{ title }}</h2>
-										<pre class="pre-scrollable language-markup content-group text-left" v-if="content"><code>{{ content }}</code></pre>
-										<br>
+										<h2>Oops terjadi kesalahan</h2>
+
+										<!-- error message -->
+										<div v-if="content">
+											<span v-if="content.status === 404">
+												<b>ERROR 404:</b> Data tidak ditemukan, silahkan coba lagi
+											</span>
+											<span v-else-if="content.status === 419">
+												<b>ERROR 419:</b> Kesalahan sesi, silahkan refresh halaman ini
+											</span>
+											<span v-else-if="content.status === 422">
+												<b>ERROR 422:</b> Username atau password anda salah
+											</span>
+											<span v-else-if="content.status === 500">
+												<b>ERROR 500:</b> {{ content.data.message }}
+											</span>
+										</div>
+										<br/>
+
+										<!-- error detail -->
+										<transition 
+											enter-active-class="animated flipInX "
+											leave-active-class="animated flipOutX  "
+											mode="out-in"
+										>
+										<div v-if="content && showDetail">
+											<hr/>
+											<pre class="pre-scrollable language-markup content-group text-left"><code>{{ content.data }}</code></pre>
+										</div>
+										</transition>
+
+										<!-- error detail button -->
+										<button class="btn btn-default btn-block" @click="detail">
+											<span v-if="showDetail">TUTUP DETAIL ERROR</span>
+											<span v-else>BUKA DETAIL ERROR</span>
+										</button>
+
+										<hr>
+
 										<ul class="list-inline hidden-xs">
 											<li>
 												<button type="button" class="btn btn-danger" @click="failOk">{{ button }}</button>
 											</li>
 										</ul>
 										<div class="visible-xs">
-											<button type="button" class="btn btn-default btn-block" @click="failOk">{{ button }}</button>
+											<button type="button" class="btn btn-danger btn-block" @click="failOk">{{ button }}</button>
 										</div>
 									</div>
 
@@ -175,6 +212,7 @@
 		data() {
 			return {
 				created: false,
+				showDetail: false,
 			}
 		},
 		mounted() {
@@ -186,8 +224,10 @@
 		},
 		methods: {
 			backgroundClick() {
-				if(this.state !== 'loading')
+				if(this.state !== 'loading'){
 					this.$emit('backgroundClick');
+					this.showDetail = false;
+				}	
 			},
 			tutup() {
 				if(this.state !== 'loading')
@@ -204,6 +244,7 @@
 			},
 			failOk() {
 				this.$emit('failOk');
+				this.showDetail = false;
 			},
 			beforeEnter() {
 				this.created = true;
@@ -212,6 +253,13 @@
 			afterLeave() {
 				this.created = false;
 				document.body.classList.remove("modal-open");
+			},
+			detail(){
+				if(this.showDetail === true){
+					this.showDetail = false;
+				}else{
+					this.showDetail = true;
+				}
 			}
 		}
 	}

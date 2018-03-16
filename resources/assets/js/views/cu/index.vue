@@ -10,7 +10,7 @@
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData" :showDebug="true">
+					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
 					<!-- main panel -->
@@ -297,7 +297,7 @@
 		</div>
 		
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 		</app-modal>
 
 	</div>
@@ -626,6 +626,7 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
+				modalContent: '',
 				modalButton: ''
 			}
 		},
@@ -644,10 +645,13 @@
 				this.modalButton = 'Ok';
 				
 				if(value === "success"){
-					this.modalTitle = this.updateMessage;
+					this.modalTitle = this.updateMessage.message;
+					this.modalContent = '';
 					this.fetch();
+				}else if(value === "fail"){
+					this.modalContent = this.updateMessage;
 				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
+					this.modalContent = '';
 				}
       }
     },
@@ -690,8 +694,8 @@
 			...mapGetters('CU',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
-				updateStat: 'updateStat',
-				updateMessage: 'update'
+				updateMessage: 'update',
+				updateStat: 'updateStat'
 			}),
 			userData(){
 				return this.$store.getters.getUserData;

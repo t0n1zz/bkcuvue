@@ -20,6 +20,7 @@ export const CU = {
     dataS: state => state.dataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
     options: state => state.options,
@@ -82,8 +83,8 @@ export const CU = {
           commit('setOptions', response.data.options)
           commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setData', []);
+        .catch(error => {
+          commit('setData', error.response);
           commit('setRules', []);
           commit('setOptions', [])
           commit('setDataStat', 'fail');
@@ -92,25 +93,20 @@ export const CU = {
 
     //store data
     store( {commit, state, dispatch}, form ){
-      commit('setDataUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
       CUAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setDataUpdate', response.data);
-            commit('setDataUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setDataUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setDataUpdate', this.errors);         
-          }else{
-            commit('setDataUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setDataUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
@@ -126,8 +122,8 @@ export const CU = {
           commit('setOptions', response.data.options)
           commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setData', []);
+        .catch(error => {
+          commit('setData', error.response);
           commit('setRules', []);
           commit('setOptions', [])
           commit('setDataStat', 'fail');
@@ -136,55 +132,45 @@ export const CU = {
 
     // update data
     update( {commit, state, dispatch}, [id, form] ){
-      commit('setDataUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
       CUAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setDataUpdate', response.data);
-            commit('setDataUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setDataUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setDataUpdate', this.errors);         
-          }else{
-            commit('setDataUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setDataUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    delete( {commit, state, dispatch}, id ){
-      commit('setDataUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      CUAPI.delete( id )
+      CUAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setDataUpdate', response.data);
-            commit('setDataUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setDataUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setDataUpdate', this.errors);         
-          }else{
-            commit('setDataUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setDataUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
     // reset
     resetUpdateStat( {commit} ){
-      commit('setDataUpdateStat', '');
+      commit('setUpdateStat', '');
     }
   },
 

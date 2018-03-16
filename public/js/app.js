@@ -66323,6 +66323,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -66365,7 +66402,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
-			created: false
+			created: false,
+			showDetail: false
 		};
 	},
 	mounted: function mounted() {
@@ -66380,7 +66418,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		backgroundClick: function backgroundClick() {
-			if (this.state !== 'loading') this.$emit('backgroundClick');
+			if (this.state !== 'loading') {
+				this.$emit('backgroundClick');
+				this.showDetail = false;
+			}
 		},
 		tutup: function tutup() {
 			if (this.state !== 'loading') this.$emit('tutup');
@@ -66396,6 +66437,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		failOk: function failOk() {
 			this.$emit('failOk');
+			this.showDetail = false;
 		},
 		beforeEnter: function beforeEnter() {
 			this.created = true;
@@ -66404,6 +66446,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		afterLeave: function afterLeave() {
 			this.created = false;
 			document.body.classList.remove("modal-open");
+		},
+		detail: function detail() {
+			if (this.showDetail === true) {
+				this.showDetail = false;
+			} else {
+				this.showDetail = true;
+			}
 		}
 	}
 });
@@ -66463,6 +66512,18 @@ var render = function() {
                           "div",
                           { staticClass: "modal-header", class: _vm.color },
                           [
+                            _vm.state !== "loading"
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "close",
+                                    attrs: { type: "button" },
+                                    on: { click: _vm.tutup }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
                             _vm.state !== "loading"
                               ? _c(
                                   "button",
@@ -66832,27 +66893,125 @@ var render = function() {
                                             ),
                                             _vm._v(" "),
                                             _c("h2", [
-                                              _vm._v(_vm._s(_vm.title))
+                                              _vm._v("Oops terjadi kesalahan")
                                             ]),
                                             _vm._v(" "),
                                             _vm.content
-                                              ? _c(
-                                                  "pre",
-                                                  {
-                                                    staticClass:
-                                                      "pre-scrollable language-markup content-group text-left"
-                                                  },
-                                                  [
-                                                    _c("code", [
-                                                      _vm._v(
-                                                        _vm._s(_vm.content)
-                                                      )
-                                                    ])
-                                                  ]
-                                                )
+                                              ? _c("div", [
+                                                  _vm.content.status === 404
+                                                    ? _c("span", [
+                                                        _c("b", [
+                                                          _vm._v("ERROR 404:")
+                                                        ]),
+                                                        _vm._v(
+                                                          " Data tidak ditemukan, silahkan coba lagi\n\t\t\t\t\t\t\t\t\t\t"
+                                                        )
+                                                      ])
+                                                    : _vm.content.status === 419
+                                                      ? _c("span", [
+                                                          _c("b", [
+                                                            _vm._v("ERROR 419:")
+                                                          ]),
+                                                          _vm._v(
+                                                            " Kesalahan sesi, silahkan refresh halaman ini\n\t\t\t\t\t\t\t\t\t\t"
+                                                          )
+                                                        ])
+                                                      : _vm.content.status ===
+                                                        422
+                                                        ? _c("span", [
+                                                            _c("b", [
+                                                              _vm._v(
+                                                                "ERROR 422:"
+                                                              )
+                                                            ]),
+                                                            _vm._v(
+                                                              " Username atau password anda salah\n\t\t\t\t\t\t\t\t\t\t"
+                                                            )
+                                                          ])
+                                                        : _vm.content.status ===
+                                                          500
+                                                          ? _c("span", [
+                                                              _c("b", [
+                                                                _vm._v(
+                                                                  "ERROR 500:"
+                                                                )
+                                                              ]),
+                                                              _vm._v(
+                                                                " " +
+                                                                  _vm._s(
+                                                                    _vm.content
+                                                                      .data
+                                                                      .message
+                                                                  ) +
+                                                                  "\n\t\t\t\t\t\t\t\t\t\t"
+                                                              )
+                                                            ])
+                                                          : _vm._e()
+                                                ])
                                               : _vm._e(),
                                             _vm._v(" "),
                                             _c("br"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "transition",
+                                              {
+                                                attrs: {
+                                                  "enter-active-class":
+                                                    "animated flipInX ",
+                                                  "leave-active-class":
+                                                    "animated flipOutX  ",
+                                                  mode: "out-in"
+                                                }
+                                              },
+                                              [
+                                                _vm.content && _vm.showDetail
+                                                  ? _c("div", [
+                                                      _c("hr"),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "pre",
+                                                        {
+                                                          staticClass:
+                                                            "pre-scrollable language-markup content-group text-left"
+                                                        },
+                                                        [
+                                                          _c("code", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm.content.data
+                                                              )
+                                                            )
+                                                          ])
+                                                        ]
+                                                      )
+                                                    ])
+                                                  : _vm._e()
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-default btn-block",
+                                                on: { click: _vm.detail }
+                                              },
+                                              [
+                                                _vm.showDetail
+                                                  ? _c("span", [
+                                                      _vm._v(
+                                                        "TUTUP DETAIL ERROR"
+                                                      )
+                                                    ])
+                                                  : _c("span", [
+                                                      _vm._v(
+                                                        "BUKA DETAIL ERROR"
+                                                      )
+                                                    ])
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("hr"),
                                             _vm._v(" "),
                                             _c(
                                               "ul",
@@ -66884,7 +67043,7 @@ var render = function() {
                                                   "button",
                                                   {
                                                     staticClass:
-                                                      "btn btn-default btn-block",
+                                                      "btn btn-danger btn-block",
                                                     attrs: { type: "button" },
                                                     on: { click: _vm.failOk }
                                                   },
@@ -66892,7 +67051,8 @@ var render = function() {
                                                 )
                                               ]
                                             )
-                                          ]
+                                          ],
+                                          1
                                         )
                                       : _vm.state === "loading"
                                         ? _c(
@@ -100818,6 +100978,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			modalShow: false,
 			modalState: '',
 			modalTitle: '',
+			modalContent: '',
 			modalButton: ''
 		};
 	},
@@ -100837,10 +100998,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			this.modalButton = 'Ok';
 
 			if (value === "success") {
-				this.modalTitle = this.updateMessage;
+				this.modalTitle = this.updateMessage.message;
+				this.modalContent = '';
 				this.fetch();
+			} else if (value === "fail") {
+				this.modalContent = this.updateMessage;
 			} else {
-				this.modalTitle = 'Oops terjadi kesalahan :(';
+				this.modalContent = '';
 			}
 		}
 	},
@@ -100882,8 +101046,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('CU', {
 		itemData: 'dataS',
 		itemDataStat: 'dataStatS',
-		updateStat: 'updateStat',
-		updateMessage: 'update'
+		updateMessage: 'update',
+		updateStat: 'updateStat'
 	}), {
 		userData: function userData() {
 			return this.$store.getters.getUserData;
@@ -101076,8 +101240,7 @@ var render = function() {
                 ? _c("message", {
                     attrs: {
                       title: "Oops terjadi kesalahan:",
-                      errorData: _vm.itemData,
-                      showDebug: true
+                      errorData: _vm.itemData
                     }
                   })
                 : _vm._e(),
@@ -102511,7 +102674,8 @@ var render = function() {
           show: _vm.modalShow,
           state: _vm.modalState,
           title: _vm.modalTitle,
-          button: _vm.modalButton
+          button: _vm.modalButton,
+          content: _vm.modalContent
         },
         on: {
           tutup: _vm.modalTutup,
@@ -113263,6 +113427,9 @@ var CU = {
     dataStatS: function dataStatS(state) {
       return state.dataStatS;
     },
+    update: function update(state) {
+      return state.update;
+    },
     updateStat: function updateStat(state) {
       return state.updateStat;
     },
@@ -113334,8 +113501,8 @@ var CU = {
         commit('setRules', response.data.rules);
         commit('setOptions', response.data.options);
         commit('setDataStat', 'success');
-      }).catch(function () {
-        commit('setData', []);
+      }).catch(function (error) {
+        commit('setData', error.response);
         commit('setRules', []);
         commit('setOptions', []);
         commit('setDataStat', 'fail');
@@ -113345,29 +113512,22 @@ var CU = {
 
     //store data
     store: function store(_ref5, form) {
-      var _this = this;
-
       var commit = _ref5.commit,
           state = _ref5.state,
           dispatch = _ref5.dispatch;
 
-      commit('setDataUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
       __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setDataUpdate', response.data);
-          commit('setDataUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setDataUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setDataUpdate', _this.errors);
-        } else {
-          commit('setDataUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setDataUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
@@ -113383,8 +113543,8 @@ var CU = {
         commit('setRules', response.data.rules);
         commit('setOptions', response.data.options);
         commit('setDataStat', 'success');
-      }).catch(function () {
-        commit('setData', []);
+      }).catch(function (error) {
+        commit('setData', error.response);
         commit('setRules', []);
         commit('setOptions', []);
         commit('setDataStat', 'fail');
@@ -113394,8 +113554,6 @@ var CU = {
 
     // update data
     update: function update(_ref7, _ref8) {
-      var _this2 = this;
-
       var commit = _ref7.commit,
           state = _ref7.state,
           dispatch = _ref7.dispatch;
@@ -113404,52 +113562,40 @@ var CU = {
           id = _ref9[0],
           form = _ref9[1];
 
-      commit('setDataUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
       __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setDataUpdate', response.data);
-          commit('setDataUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setDataUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setDataUpdate', _this2.errors);
-        } else {
-          commit('setDataUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setDataUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    delete: function _delete(_ref10, id) {
-      var _this3 = this;
-
+    // destroy data
+    destroy: function destroy(_ref10, id) {
       var commit = _ref10.commit,
           state = _ref10.state,
           dispatch = _ref10.dispatch;
 
-      commit('setDataUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].delete(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setDataUpdate', response.data);
-          commit('setDataUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setDataUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setDataUpdate', _this3.errors);
-        } else {
-          commit('setDataUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setDataUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
@@ -113458,7 +113604,7 @@ var CU = {
     resetUpdateStat: function resetUpdateStat(_ref11) {
       var commit = _ref11.commit;
 
-      commit('setDataUpdateStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
