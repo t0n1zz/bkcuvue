@@ -18,7 +18,7 @@ class ProvincesController extends Controller{
 			]);
 	}
 
-	public function indexAll()
+	public function get()
 	{
 		$table_data = Provinces::orderby('name','asc')->get();
 

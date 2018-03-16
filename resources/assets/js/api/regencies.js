@@ -2,39 +2,39 @@ import { BKCU_CONFIG } from '../config.js';
 
 export default {
   
-  getRegenciesS: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/regencies' + `?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`);
+  index: function( p ){
+    return axios.get( BKCU_CONFIG.API_URL + '/regencies' , {params: p});
   },
 
-  getRegenciesAll: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies_all');
+  get: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/regencies/get');
+  },
+  
+  indexProvinces: function( p, id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/regencies/indexProvinces/' + id, {params: p});
   },
 
-  getRegencies: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/' + id);
+  getProvinces: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/regencies/getProvinces/' + id);
   },
 
-  getRegenciesProvinces: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/provinces/' + id);
-  },
-
-  createRegencies: function(){
+  create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/regencies/create');
   },
 
-  storeRegencies: function ( form ){
+  store: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/regencies/store', form);
   },
 
-  editRegencies: function( id ){
+  edit: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/regencies/edit/' + id);
   },
 
-  updateRegencies: function ( id, form ){
+  update: function ( id, form ){
     return axios.post(BKCU_CONFIG.API_URL + '/regencies/update/' + id, form);
   },
 
-  deleteRegencies: function( id ){
+  destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/regencies/' + id);
   }
 }

@@ -265,7 +265,7 @@
 			appModal,
 			checkValue
 		},
-		props:['title','kelas','kelasVuex','userData','userDataStat','itemData','itemDataStat','updateMessage','updateStat','idCU','modelCUStat','modelPenulis','modelPenulisStat','modelKategori','modelKategoriStat'],
+		props:['title','kelas','userData','userDataStat','itemData','itemDataStat','updateMessage','updateStat','idCU','modelCUStat','modelPenulis','modelPenulisStat','modelKategori','modelKategoriStat'],
 		data() {
 			return {
 				source: '',
@@ -416,7 +416,7 @@
 
 					this.$store.dispatch('artikel/changeIdCU', this.modelKategori.idCU);
 
-					this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.modelKategori.idCU]);
+					this.$store.dispatch('load' + this.kelas + 'CUS', [this.params,this.modelKategori.idCU]);
 				}
 			},
 			modelPenulisStat(value){
@@ -429,7 +429,7 @@
 
 					this.$store.dispatch('artikel/changeIdCU', this.modelPenulis.idCU);
 
-					this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params,this.modelPenulis.idCU]);
+					this.$store.dispatch('load' + this.kelas + 'CUS', [this.params,this.modelPenulis.idCU]);
 				}
 			},
       updateStat(value) {
@@ -451,7 +451,7 @@
 			fetch(){
 				if(this.modelCUStat === 'success'){
 					if(this.idCU === 'semua'){
-						this.$store.dispatch(this.kelasVuex + '/index', this.params);
+						this.$store.dispatch(this.kelas + '/index', this.params);
 						this.disableColumnCU(false);
 					}else{
 						if(this.idCU !== undefined){
@@ -459,16 +459,16 @@
 								if(this.modelKategoriStat !== 'success'){
 									this.$store.dispatch('editArtikelKategori',this.$route.params.id);
 								}else{
-									this.$store.dispatch(this.kelasVuex + '/indexCU', [this.params,this.idCU]);
+									this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 								}
 							}else if(this.$route.meta.mode === 'penulis'){ //if artikelFilterPenulis
 								if(this.modelPenulisLoadStat !== 'success'){
 									this.$store.dispatch('editArtikelPenulis',this.$route.params.id);
 								}else{
-									this.$store.dispatch(this.kelasVuex + '/indexCU', [this.params,this.idCU]);
+									this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 								}
 							}else{
-								this.$store.dispatch(this.kelasVuex + '/indexCU', [this.params,this.idCU]);
+								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 							}
 						}
 						this.disableColumnCU(true);
@@ -517,15 +517,15 @@
 			},
 			modalTutup() {
 				this.modalShow = false;
-				this.$store.dispatch(this.kelasVuex + '/resetUpdateStat');
+				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
 				if (this.source == 'hapus') {
-					this.$store.dispatch(this.kelasVuex + '/delete', this.selectedItem.id);
+					this.$store.dispatch(this.kelas + '/delete', this.selectedItem.id);
 				} else if (this.source == "updateTerbitkan"){
-					this.$store.dispatch(this.kelasVuex + '/updateTerbitkan', this.selectedItem.id);
+					this.$store.dispatch(this.kelas + '/updateTerbitkan', this.selectedItem.id);
 				} else if (this.source == "updateUtamakan") {
-					this.$store.dispatch(this.kelasVuex + '/updateUtamakan', this.selectedItem.id);
+					this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
 				}
 			}
 		},

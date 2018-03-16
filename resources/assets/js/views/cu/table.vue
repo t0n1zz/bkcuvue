@@ -301,7 +301,7 @@
 			collapseButton,
 			checkValue
 		},
-		props:['title','kelas','kelasVuex','userData','itemData','itemDataStat','updateMessage','updateStat'],
+		props:['title','kelas','userData','itemData','itemDataStat','updateMessage','updateStat'],
 		data() {
 			return {
 				source: '',
@@ -608,7 +608,7 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch(this.kelasVuex + '/index', this.params);
+				this.$store.dispatch(this.kelas + '/index', this.params);
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -632,11 +632,11 @@
 			},
 			modalTutup() {
 				this.modalShow = false;
-				this.$store.dispatch(this.kelasVuex + '/resetUpdateStat');
+				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
 				if (this.source == 'hapus') {
-					this.$store.dispatch(this.kelasVuex + '/destroy', this.selectedItem.id);
+					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
 			}
 		},

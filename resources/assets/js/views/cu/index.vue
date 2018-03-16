@@ -31,8 +31,7 @@
 					<!-- table data -->
 					<table-data 
 						:title="title" 
-						:kelas="kelas" 
-						:kelasVuex="kelasVuex"
+						:kelas="kelas"
 						:userData="userData"
 						:userDataStat="userDataStat"
 						:itemData="itemData"
@@ -61,9 +60,8 @@
 		},
 		data() {
 			return {
-				title: 'CU',
+				title: 'Credit Union',
 				kelas: 'cu',
-				kelasVuex: 'CU',
 				titleDesc: 'Mengelola data CU',
 				titleIcon: 'icon-office',
 				btn1Header: {
@@ -96,7 +94,7 @@
 		methods: {
 		},
 		computed: {
-			...mapGetters('CU',{
+			...mapGetters('cu',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				updateMessage: 'update',

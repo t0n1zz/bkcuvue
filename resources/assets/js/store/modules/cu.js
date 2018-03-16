@@ -1,6 +1,6 @@
 import CUAPI from '../../api/cu.js';
 
-export const CU = {
+export const cu = {
   namespaced: true,
 
   // state
@@ -44,10 +44,10 @@ export const CU = {
     },
 
     //load collection without params
-    indexAll( { commit } ){
+    get( { commit } ){
       commit('setDataStatS', 'loading');
       
-      CUAPI.indexAll()
+      CUAPI.get()
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -58,11 +58,10 @@ export const CU = {
         });
     },
 
-    //load cu pus
-    indexPus( {commit}, id ){
+    getPus( {commit}, id ){
       commit('setDataStatS', 'loading');
       
-      CUAPI.indexPus( id )
+      CUAPI.getPus( id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');

@@ -1,232 +1,190 @@
 import ProvincesAPI from '../../api/provinces.js';
 
 export const provinces = {
+  namespaced: true,
+
+  // state
   state: {
-    provincesS: [],
-    provincesLoadStatS: '',
-    provinces: {},
-    provincesLoadStat: '',
-    provincesUpdate: '',
-    provincesUpdateStat: '',
-    provincesRules: [],
-    provincesOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-
-    // load all
-    loadProvincesS( { commit }, p ){
-      commit('setProvincesLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      ProvincesAPI.getProvincesS( p )
+      ProvincesAPI.index( p )
         .then( function( response ){
-          commit('setProvincesS', response.data.model);
-          commit('setProvincesLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setProvincesS', error.response);
-          commit('setProvincesLoadStatS', 'fail');
-        });
-    },
-    loadProvincesAll( { commit } ){
-      commit('setProvincesLoadStatS', 'loading');
-      
-      ProvincesAPI.getProvincesAll()
-        .then( function( response ){
-          commit('setProvincesS', response.data.model);
-          commit('setProvincesLoadStatS', 'success');
-        })
-        .catch( function(){
-          commit('setProvincesS', []);
-          commit('setProvincesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadProvinces( {commit}, id ){
-      commit('setProvincesLoadStat', 'loading');
+    //load collection without params
+    get( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      ProvincesAPI.getProvinces( id )
+      ProvincesAPI.get()
         .then( function( response ){
-          commit('setProvinces', response.data );
-          commit('setProvincesLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setProvincesS', error.response);
-          commit('setProvincesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // create data
-    createProvinces( {commit} ){
-      commit('setProvincesLoadStat', 'loading');
+    // create page
+    create( {commit} ){
+      commit('setDataStat', 'loading');
       
-      ProvincesAPI.createProvinces()
+      ProvincesAPI.create()
         .then( function( response ){
-          commit('setProvinces', response.data.form );
-          commit('setProvincesRules', response.data.rules);
-          commit('setProvincesOption', response.data.option)
-          commit('setProvincesLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setProvinces', []);
-          commit('setProvincesRules', []);
-          commit('setProvincesOption', [])
-          commit('setProvincesLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
-    // store data
-    storeProvinces( {commit, state, dispatch}, form ){
-      commit('setProvincesUpdateStat', 'loading');
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
 
-      ProvincesAPI.storeProvinces( form )
+      ProvincesAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setProvincesUpdate', response.data);
-            commit('setProvincesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setProvincesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setProvincesUpdate', this.errors);         
-          }else{
-            commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setProvincesUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editProvinces( {commit}, id ){
-      commit('setProvincesLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      ProvincesAPI.editProvinces( id )
+      ProvincesAPI.edit( id )
         .then( function( response ){
-          commit('setProvinces', response.data.form );
-          commit('setProvincesRules', response.data.rules);
-          commit('setProvincesOption', response.data.option)
-          commit('setProvincesLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setProvinces', []);
-          commit('setProvincesRules', []);
-          commit('setProvincesOption', [])
-          commit('setProvincesLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateProvinces( {commit, state, dispatch}, [id, form] ){
-      commit('setProvincesUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      ProvincesAPI.updateProvinces( id, form )
+      ProvincesAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setProvincesUpdate', response.data);
-            commit('setProvincesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setProvincesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setProvincesUpdate', this.errors);         
-          }else{
-            commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setProvincesUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    deleteProvinces( {commit, state, dispatch}, id ){
-      commit('setProvincesUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      ProvincesAPI.deleteProvinces( id )
+      ProvincesAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setProvincesUpdate', response.data);
-            commit('setProvincesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setProvincesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setProvincesUpdate', this.errors);         
-          }else{
-            commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setProvincesUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // reset status
-    resetProvincesUpdateStat( {commit} ){
-      commit('setProvincesUpdateStat', '');
-    },
-    resetProvincesLoadStat( {commit} ){
-      commit('setProvincesLoadStat', '');
+    // reset
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setProvincesS ( state, provincesS ){
-      state.provincesS = provincesS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setProvincesLoadStatS( state, status ){
-      state.provincesLoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setProvinces ( state, provinces ){
-      state.provinces = provinces;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setProvincesLoadStat( state, status ){
-      state.provincesLoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setProvincesUpdateStat( state, status ){
-      state.provincesUpdateStat = status;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setProvincesUpdate( state, data ){
-      state.provincesUpdate = data;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setProvincesRules( state, rules ){
-      state.provincesRules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setProvincesOption( state, option ){
-      state.provincesOption = option;
-    }
-  },
-
-  getters: {
-    getProvincesS( state ){
-      return state.provincesS;
-    },
-    getProvincesLoadStatS ( state ){
-      return state.provincesLoadStatS;
-    },
-    getProvinces( state ){
-      return state.provinces;
-    },
-    getProvincesLoadStat ( state ){
-      return state.provincesLoadStat;
-    },
-    getProvincesUpdateStat ( state ){
-      return state.provincesUpdateStat;
-    },
-    getProvincesUpdate ( state ){
-      return state.provincesUpdate;
-    },
-    getProvincesRules ( state ){
-      return state.provincesRules;
-    },
-    getProvincesOption ( state ){
-      return state.provincesOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

@@ -45684,7 +45684,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		return {
 			title: 'Artikel',
 			kelas: 'artikel',
-			kelasVuex: 'artikel',
 			titleDesc: 'Mengelola data artikel',
 			titleIcon: 'icon-magazine',
 			btn1Header: {
@@ -45694,7 +45693,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				can: 'index artikelKategori'
 			},
 			btn2Header: {
-				route: 'artikePenulis',
+				route: 'artikelPenulis',
 				icon: 'icon-pencil6',
 				title: 'Penulis Artikel',
 				can: 'index artikelPenulis'
@@ -45717,7 +45716,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		idCU: 'idCU',
 		updateMessage: 'update',
 		updateStat: 'updateStat'
-	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('CU', {
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
 		modelCU: 'dataS',
 		modelCUStat: 'dataStatS',
 		updateMessage: 'update',
@@ -89946,7 +89945,8 @@ var render = function() {
           btn2Route: _vm.btn2Header.route,
           btn2Title: _vm.btn2Header.title,
           btn2Icon: _vm.btn2Header.icon,
-          btn2Can: _vm.btn2Header.can
+          btn2Can: _vm.btn2Header.can,
+          userData: _vm.userData
         }
       }),
       _vm._v(" "),
@@ -89979,7 +89979,6 @@ var render = function() {
                 attrs: {
                   title: _vm.title,
                   kelas: _vm.kelas,
-                  kelasVuex: _vm.kelasVuex,
                   userData: _vm.userData,
                   userDataStat: _vm.userDataStat,
                   itemData: _vm.itemData,
@@ -90070,16 +90069,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_form__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modules_summernote_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_core_app_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_form__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_message_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_formButton_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_formButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_formButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -90522,38 +90530,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+
+
 
 
 
@@ -90566,18 +90546,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	components: {
-		appModal: __WEBPACK_IMPORTED_MODULE_6__components_modal___default.a,
-		appSummernote: __WEBPACK_IMPORTED_MODULE_4__modules_summernote_js___default.a,
-		appImageUpload: __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default.a,
-		message: __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default.a
+		pageHeader: __WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue___default.a,
+		appModal: __WEBPACK_IMPORTED_MODULE_8__components_modal___default.a,
+		appSummernote: __WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js___default.a,
+		appImageUpload: __WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_9__components_message_vue___default.a,
+		formButton: __WEBPACK_IMPORTED_MODULE_10__components_formButton_vue___default.a,
+		formInfo: __WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue___default.a
 	},
 	data: function data() {
 		return {
 			title: 'Tambah Artikel',
 			titleDesc: 'Menambah artikel baru',
 			titleIcon: 'icon-plus3',
+			level2Title: 'Artikel',
 			kelas: 'artikel',
-			kelasVuex: 'Artikel',
 			redirect: '/artikel/',
 			formKategori: {
 				id_cu: '',
@@ -90613,15 +90596,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			submitedPenulis: false
 		};
 	},
+	beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+		next(function (vm) {
+			return vm.fetch();
+		});
+	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_2__assets_core_app_js__["a" /* default */].core_function();
+		__WEBPACK_IMPORTED_MODULE_3__assets_core_app_js__["a" /* default */].core_function();
 		this.other();
 	},
 	updated: function updated() {
 		$('.bootstrap-select').selectpicker('refresh');
-	},
-	created: function created() {
-		this.fetch();
 	},
 
 	watch: {
@@ -90629,7 +90614,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			//jika refresh halaman maka reload userData
 			if (value === "success") {
 				if (this.userData.id_cu === 0) {
-					this.$store.dispatch('loadCUPus', this.userData.id_pus);
+					this.$store.dispatch('cu/getPus', this.userData.id_pus);
+				}
+				if (this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined) {
+					this.form.id_cu = this.userData.id_cu;
+					this.changeCU(this.userData.id_cu);
 				}
 			}
 		},
@@ -90638,7 +90627,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				if (this.$route.meta.mode !== 'edit') {
 					this.form.id_cu = this.userData.id_cu;
 				}
-				this.changeCU(this.form.id_cu);
+				if (this.form.id_cu !== undefined) {
+					this.changeCU(this.form.id_cu);
+				}
 			}
 		},
 		updateStat: function updateStat(value) {
@@ -90683,28 +90674,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		fetch: function fetch() {
 			if (this.userData.id_cu === 0) {
-				this.$store.dispatch('loadCUPus', this.userData.id_pus);
+				this.$store.dispatch('cu/getPus', this.userData.id_pus);
 			}
 
 			if (this.$route.meta.mode === 'edit') {
-				this.$store.dispatch('edit' + this.kelasVuex, this.$route.params.id);
+				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				this.title = 'Ubah Artikel';
 				this.titleDesc = 'Mengubah artikel';
 				this.titleIcon = 'icon-pencil5';
 			} else {
-				this.$store.dispatch('create' + this.kelasVuex);
+				this.$store.dispatch(this.kelas + '/create');
 			}
 		},
 		save: function save() {
 			var _this = this;
 
-			var formData = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
 			this.$validator.validateAll('form').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
-						_this.$store.dispatch('update' + _this.kelasVuex, [_this.$route.params.id, formData]);
+						_this.$store.dispatch(_this.kelas + '/update', [_this.$route.params.id, formData]);
 					} else {
-						_this.$store.dispatch('store' + _this.kelasVuex, formData);
+						_this.$store.dispatch(_this.kelas + '/store', formData);
 					}
 					_this.submited = false;
 				} else {
@@ -90716,7 +90707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		savePenulis: function savePenulis() {
 			var _this2 = this;
 
-			var formData = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_form__["a" /* toMulipartedForm */])(this.formPenulis, this.$route.meta.mode);
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_form__["a" /* toMulipartedForm */])(this.formPenulis, this.$route.meta.mode);
 			this.$validator.validateAll('form-penulis').then(function (result) {
 				if (result) {
 					_this2.$store.dispatch('storeArtikelPenulis', _this2.formPenulis);
@@ -90789,31 +90780,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			$('.bootstrap-select').selectpicker();
 		}
 	},
-	computed: {
-		userData: function userData() {
-			return this.$store.getters.getUserData;
-		},
-		userDataStat: function userDataStat() {
-			return this.$store.getters.getUserDataLoadStat;
-		},
-		form: function form() {
-			return this.$store.getters.getArtikel;
-		},
-		formStat: function formStat() {
-			return this.$store.getters.getArtikelLoadStat;
-		},
-		rules: function rules() {
-			return this.$store.getters.getArtikelRules;
-		},
-		option: function option() {
-			return this.$store.getters.getArtikelOption;
-		},
-		updateResponse: function updateResponse() {
-			return this.$store.getters.getArtikelUpdate;
-		},
-		updateStat: function updateStat() {
-			return this.$store.getters.getArtikelUpdateStat;
-		},
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('user', {
+		userData: 'data',
+		userDataStat: 'dataStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('artikel', {
+		form: 'data',
+		formStat: 'dataStat',
+		rules: 'rules',
+		options: 'options',
+		updateResponse: 'update',
+		updateStat: 'updateStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('cu', {
+		modelCU: 'dataS',
+		modelCUStat: 'dataStatS'
+	}), {
 		updateKategoriResponse: function updateKategoriResponse() {
 			return this.$store.getters.getArtikelKategoriUpdate;
 		},
@@ -90829,76 +90809,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		modelPenulis: function modelPenulis() {
 			return this.$store.getters.getArtikelPenulisS;
 		},
-		modelPenulisLoadStat: function modelPenulisLoadStat() {
+		modelPenulisStat: function modelPenulisStat() {
 			return this.$store.getters.getArtikelPenulisLoadStatS;
 		},
 		modelPus: function modelPus() {
 			return this.$store.getters.getPusS;
 		},
-		modelCU: function modelCU() {
-			return this.$store.getters.getCUS;
-		},
-		modelCULoadStat: function modelCULoadStat() {
-			return this.$store.getters.getCULoadStatS;
-		},
 		modelKategori: function modelKategori() {
 			return this.$store.getters.getArtikelKategoriS;
 		},
-		modelKategoriLoadStat: function modelKategoriLoadStat() {
+		modelKategoriStat: function modelKategoriStat() {
 			return this.$store.getters.getArtikelKategoriLoadStatS;
 		}
-	}
+	})
 });
 
 /***/ }),
-/* 309 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    template: '<textarea :name="name"></textarea>',
-    props: {
-        model: {
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        config: {
-            type: Object,
-            default: {}
-        }
-    },
-    mounted: function mounted() {
-        var vm = this;
-        var config = this.config;
-        config.callbacks = {
-            onInit: function onInit() {
-                $(vm.$el).summernote("code", '');
-            },
-            onChange: function onChange() {
-                vm.$emit('change', $(vm.$el).summernote('code'));
-            },
-            onBlur: function onBlur() {
-                vm.$emit('change', $(vm.$el).summernote('code'));
-            }
-        };
-        $(vm.$el).summernote(config);
-    },
-
-    watch: {
-        formStat: function formStat(value) {
-            $(this.$el).summernote("code", this.model);
-        }
-    },
-    computed: {
-        formStat: function formStat() {
-            return this.$store.getters.getArtikelLoadStat;
-        }
-    }
-};
-
-/***/ }),
+/* 309 */,
 /* 310 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -91056,41 +90983,16 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "page-header" }, [
-        _c("div", { staticClass: "page-header-content has-visible-elements" }, [
-          _c("div", { staticClass: "page-title" }, [
-            _c("h4", [
-              _c("i", { staticClass: "position-left", class: _vm.titleIcon }),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-semibold" }, [
-                _vm._v(_vm._s(_vm.title))
-              ]),
-              _vm._v(" - " + _vm._s(_vm.titleDesc))
-            ]),
-            _vm._v(" "),
-            _c(
-              "ul",
-              { staticClass: "breadcrumb breadcrumb-caret position-right" },
-              [
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: "dashboard" }, tag: "li" } },
-                  [_c("a", [_vm._v("Dashboard")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: _vm.kelas }, tag: "li" } },
-                  [_c("a", [_vm._v("Artikel")])]
-                ),
-                _vm._v(" "),
-                _c("li", { staticClass: "active" }, [_vm._v(_vm._s(_vm.title))])
-              ],
-              1
-            )
-          ])
-        ])
-      ]),
+      _c("page-header", {
+        attrs: {
+          title: _vm.title,
+          titleDesc: _vm.titleDesc,
+          titleIcon: _vm.titleIcon,
+          level: 2,
+          level2Title: _vm.level2Title,
+          level2Route: _vm.kelas
+        }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "page-container" }, [
         _c("div", { staticClass: "page-content" }, [
@@ -91098,1086 +91000,1081 @@ var render = function() {
             "div",
             { staticClass: "content-wrapper" },
             [
-              _vm.submited
-                ? _c(
-                    "message",
-                    {
-                      class: "bg-danger",
-                      attrs: { show: _vm.errors.any("form") }
-                    },
-                    [
-                      _c("h4", [
-                        _c("i", { staticClass: "icon-cancel-circle2" }),
-                        _vm._v(" Oops terjadi kesalahan")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "ul",
-                        _vm._l(_vm.errors.items, function(error) {
-                          return _c("li", [_vm._v(_vm._s(error.msg))])
-                        })
-                      )
-                    ]
-                  )
+              _vm.errors.any("form") && _vm.submited
+                ? _c("message", {
+                    attrs: {
+                      title: "Oops terjadi kesalahan",
+                      errorItem: _vm.errors.items
+                    }
+                  })
                 : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "panel panel-flat" }, [
-                _c("div", { staticClass: "panel-body" }, [
+              _c(
+                "form",
+                {
+                  attrs: {
+                    enctype: "multipart/form-data",
+                    "data-vv-scope": "form"
+                  },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.save($event)
+                    }
+                  }
+                },
+                [
                   _c(
-                    "form",
+                    "div",
                     {
-                      attrs: {
-                        enctype: "multipart/form-data",
-                        "data-vv-scope": "form"
-                      },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          _vm.save($event)
-                        }
-                      }
+                      staticClass:
+                        "panel panel-flat border-left-xlg border-left-info"
                     },
                     [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.name")
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has("form.name")
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.name")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tJudul:")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
+                      _c("div", { staticClass: "panel-body" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-group",
+                                class: {
+                                  "has-error": _vm.errors.has("form.name")
+                                }
+                              },
+                              [
+                                _c(
+                                  "h5",
                                   {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required|min:5",
-                                    expression: "'required|min:5'"
-                                  },
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.name,
-                                    expression: "form.name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "name",
-                                  placeholder:
-                                    "Silahkan masukkan judul artikel",
-                                  "data-vv-as": "Judul"
-                                },
-                                domProps: { value: _vm.form.name },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                                    class: {
+                                      "text-danger": _vm.errors.has("form.name")
                                     }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.errors.has("form.name")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.name")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.userData.id_cu === 0
-                          ? _c("div", { staticClass: "col-md-4" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "form-group",
-                                  class: {
-                                    "has-error": _vm.errors.has("form.id_cu")
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "h5",
-                                    {
-                                      class: {
-                                        "text-danger": _vm.errors.has(
-                                          "form.id_cu"
-                                        )
-                                      }
-                                    },
-                                    [
-                                      _vm.errors.has("form.id_cu")
-                                        ? _c("i", {
-                                            staticClass: "icon-cross2"
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tCU:\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.id_cu,
-                                          expression: "form.id_cu"
-                                        },
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate",
-                                          value: "required",
-                                          expression: "'required'"
-                                        }
-                                      ],
-                                      staticClass: "bootstrap-select",
-                                      attrs: {
-                                        name: "id_cu",
-                                        "data-width": "100%",
-                                        "data-vv-as": "CU",
-                                        disabled: _vm.modelCU.length === 0
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              _vm.form,
-                                              "id_cu",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          },
-                                          function($event) {
-                                            _vm.changeCU($event.target.value)
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { disabled: "", value: "" } },
-                                        [_vm._v("Silahkan pilih CU")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "0" } }, [
-                                        _vm.userData.pus
-                                          ? _c("span", [
-                                              _vm._v(
-                                                _vm._s(_vm.userData.pus.name)
-                                              )
-                                            ])
-                                          : _c("span", [_vm._v("Puskopdit")])
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", {
-                                        attrs: { "data-divider": "true" }
-                                      }),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.modelCU, function(cu) {
-                                        return _c(
-                                          "option",
-                                          { domProps: { value: cu.id } },
-                                          [_vm._v(_vm._s(cu.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form.id_cu")
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass: "text-muted text-danger"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "icon-arrow-small-right"
-                                          }),
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm.errors.first("form.id_cu")
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    : _c(
-                                        "small",
-                                        { staticClass: "text-muted" },
-                                        [_vm._v(" ")]
-                                      )
-                                ]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has(
-                                  "form.id_artikel_penulis"
-                                )
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.id_artikel_penulis"
-                                    )
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.id_artikel_penulis")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tPenulis:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _vm.modelPenulisLoadStat === "loading"
-                                ? _c("div", [
-                                    _c("i", {
-                                      staticClass: "icon-spinner spinner"
-                                    })
-                                  ])
-                                : _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value:
-                                                _vm.form.id_artikel_penulis,
-                                              expression:
-                                                "form.id_artikel_penulis"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_artikel_penulis",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Penulis",
-                                            disabled:
-                                              _vm.modelPenulis.length === 0
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.form,
-                                                "id_artikel_penulis",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "option",
-                                            {
-                                              attrs: { disabled: "", value: "" }
-                                            },
-                                            [
-                                              _vm.form.id_cu !== 0 &&
-                                              _vm.modelPenulis.length === 0
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "Silahkan tambah penulis baru"
-                                                    )
-                                                  ])
-                                                : _vm.form.id_cu === 0
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        "Silahkan pilih CU terlebih dahulu"
-                                                      )
-                                                    ])
-                                                  : _c("span", [
-                                                      _vm._v(
-                                                        "Silahkan pilih penulis"
-                                                      )
-                                                    ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelPenulis, function(
-                                            penulis
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: { value: penulis.id }
-                                              },
-                                              [_vm._v(_vm._s(penulis.name))]
-                                            )
-                                          })
-                                        ],
-                                        2
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "input-group-btn" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "tooltip",
-                                                  rawName: "v-tooltip:top",
-                                                  value: "Tambah Penulis",
-                                                  expression:
-                                                    "'Tambah Penulis'",
-                                                  arg: "top"
-                                                }
-                                              ],
-                                              staticClass: "btn btn-default",
-                                              attrs: {
-                                                type: "button",
-                                                disabled: _vm.form.id_cu === ""
-                                              },
-                                              on: {
-                                                click: _vm.modalOpen_Penulis
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "icon-plus22"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]),
-                              _vm._v(" "),
-                              _vm.errors.has("form.id_cu")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.id_cu")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has(
-                                  "form.id_artikel_kategori"
-                                )
-                              }
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has(
-                                      "form.id_artikel_kategori"
-                                    )
-                                  }
-                                },
-                                [
-                                  _vm.errors.has("form.id_artikel_kategori")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tKategori:\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _vm.modelKategoriLoadStat === "loading"
-                                ? _c("div", [
-                                    _c("i", {
-                                      staticClass: "icon-spinner spinner"
-                                    })
-                                  ])
-                                : _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value:
-                                                _vm.form.id_artikel_kategori,
-                                              expression:
-                                                "form.id_artikel_kategori"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_artikel_kategori",
-                                            "data-width": "100%",
-                                            disabled:
-                                              _vm.modelKategori.length === 0,
-                                            "data-vv-as": "Kategori"
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.form,
-                                                "id_artikel_kategori",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "option",
-                                            {
-                                              attrs: { disabled: "", value: "" }
-                                            },
-                                            [
-                                              _vm.form.id_cu !== 0 &&
-                                              _vm.modelKategori.length === 0
-                                                ? _c("span", [
-                                                    _vm._v(
-                                                      "Silahkan tambah kategori baru"
-                                                    )
-                                                  ])
-                                                : _c("span", [
-                                                    _vm._v(
-                                                      "Silahkan pilih kategori"
-                                                    )
-                                                  ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelKategori, function(
-                                            kategori
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: { value: kategori.id }
-                                              },
-                                              [_vm._v(_vm._s(kategori.name))]
-                                            )
-                                          })
-                                        ],
-                                        2
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "input-group-btn" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "tooltip",
-                                                  rawName: "v-tooltip:top",
-                                                  value: "Tambah Kategori",
-                                                  expression:
-                                                    "'Tambah Kategori'",
-                                                  arg: "top"
-                                                }
-                                              ],
-                                              staticClass: "btn btn-default",
-                                              attrs: {
-                                                type: "button",
-                                                disabled: _vm.form.id_cu === ""
-                                              },
-                                              on: {
-                                                click: _vm.modalOpen_Kategori
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "icon-plus22"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]),
-                              _vm._v(" "),
-                              _vm.errors.has("form.id_cu")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right"
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.id_cu")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" ")
-                                  ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _vm.userData.can &&
-                        _vm.userData.can["terbitkan " + _vm.kelas]
-                          ? _c("div", { staticClass: "col-md-4" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "form-group",
-                                  class: {
-                                    "has-error": _vm.errors.has(
-                                      "form.terbitkan"
-                                    )
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "h5",
-                                    {
-                                      class: {
-                                        "text-danger": _vm.errors.has(
-                                          "form.terbitkan"
-                                        )
-                                      }
-                                    },
-                                    [
-                                      _vm.errors.has("form.terbitkan")
-                                        ? _c("i", {
-                                            staticClass: "icon-cross2"
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tStatus Penerbitan:\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "radio-inline" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate",
-                                          value: "required|in:1,0",
-                                          expression: "'required|in:1,0'"
-                                        },
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.terbitkan,
-                                          expression: "form.terbitkan"
-                                        }
-                                      ],
-                                      attrs: {
-                                        type: "radio",
-                                        name: "terbitkan",
-                                        value: "1",
-                                        "data-vv-as": "Status Penerbitan"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.form.terbitkan, "1")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          _vm.$set(_vm.form, "terbitkan", "1")
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "radio-inline" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.terbitkan,
-                                          expression: "form.terbitkan"
-                                        }
-                                      ],
-                                      attrs: {
-                                        type: "radio",
-                                        name: "terbitkan",
-                                        value: "0"
-                                      },
-                                      domProps: {
-                                        checked: _vm._q(_vm.form.terbitkan, "0")
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          _vm.$set(_vm.form, "terbitkan", "0")
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form.terbitkan")
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass: "text-muted text-danger"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "icon-arrow-small-right"
-                                          }),
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm.errors.first(
-                                                  "form.terbitkan"
-                                                )
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    : _c(
-                                        "small",
-                                        { staticClass: "text-muted" },
-                                        [_vm._v(" \n\t\t\t\t\t\t\t\t\t\t")]
-                                      )
-                                ]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.userData.can &&
-                        _vm.userData.can["utamakan " + _vm.kelas]
-                          ? _c("div", { staticClass: "col-md-4" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "form-group",
-                                  class: {
-                                    "has-error": _vm.errors.has("form.utamakan")
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "h5",
-                                    {
-                                      class: {
-                                        "text-danger": _vm.errors.has(
-                                          "form.utamakan"
-                                        )
-                                      }
-                                    },
-                                    [
-                                      _vm.errors.has("form.utamakan")
-                                        ? _c("i", {
-                                            staticClass: "icon-cross2"
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tUtamakan:\n\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "radio-inline" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate",
-                                          value: "required|in:1,0",
-                                          expression: "'required|in:1,0'"
-                                        },
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.utamakan,
-                                          expression: "form.utamakan"
-                                        }
-                                      ],
-                                      attrs: {
-                                        type: "radio",
-                                        name: "utamakan",
-                                        "data-vv-as": "Utamakan"
-                                      },
-                                      domProps: {
-                                        value: 1,
-                                        checked: _vm._q(_vm.form.utamakan, 1)
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          _vm.$set(_vm.form, "utamakan", 1)
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("label", { staticClass: "radio-inline" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.utamakan,
-                                          expression: "form.utamakan"
-                                        }
-                                      ],
-                                      attrs: {
-                                        type: "radio",
-                                        name: "utamakan"
-                                      },
-                                      domProps: {
-                                        value: 0,
-                                        checked: _vm._q(_vm.form.utamakan, 0)
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          _vm.$set(_vm.form, "utamakan", 0)
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form.utamakan")
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass: "text-muted text-danger"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "icon-arrow-small-right"
-                                          }),
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm.errors.first(
-                                                  "form.utamakan"
-                                                )
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    : _c(
-                                        "small",
-                                        { staticClass: "text-muted" },
-                                        [_vm._v(" \n\t\t\t\t\t\t\t\t\t\t")]
-                                      )
-                                ]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("h5", [_vm._v("Gambar Utama:")]),
-                              _vm._v(" "),
-                              _c("app-image-upload", {
-                                attrs: {
-                                  image_loc: "/images/artikel/",
-                                  image_temp: _vm.form.gambar
-                                },
-                                model: {
-                                  value: _vm.form.gambar,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "gambar", $$v)
                                   },
-                                  expression: "form.gambar"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("h5", [_vm._v("Isi Artikel:")]),
-                              _vm._v(" "),
-                              _c("app-summernote", {
-                                attrs: {
-                                  name: "editor",
-                                  model: _vm.form.content,
-                                  config: _vm.summernoteconfig
-                                },
-                                on: {
-                                  change: function(value) {
-                                    _vm.form.content = value
+                                  [
+                                    _vm.errors.has("form.name")
+                                      ? _c("i", { staticClass: "icon-cross2" })
+                                      : _vm._e(),
+                                    _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tJudul:")
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required|min:5",
+                                      expression: "'required|min:5'"
+                                    },
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.name,
+                                      expression: "form.name"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "name",
+                                    placeholder:
+                                      "Silahkan masukkan judul artikel",
+                                    "data-vv-as": "Judul"
+                                  },
+                                  domProps: { value: _vm.form.name },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    }
                                   }
+                                }),
+                                _vm._v(" "),
+                                _vm.errors.has("form.name")
+                                  ? _c(
+                                      "small",
+                                      { staticClass: "text-muted text-danger" },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-arrow-small-right"
+                                        }),
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              _vm.errors.first("form.name")
+                                            ) +
+                                            "\n\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]
+                                    )
+                                  : _c("small", { staticClass: "text-muted" }, [
+                                      _vm._v(" ")
+                                    ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm.userData.id_cu === 0
+                            ? _c("div", { staticClass: "col-md-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-group",
+                                    class: {
+                                      "has-error": _vm.errors.has("form.id_cu")
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "h5",
+                                      {
+                                        class: {
+                                          "text-danger": _vm.errors.has(
+                                            "form.id_cu"
+                                          )
+                                        }
+                                      },
+                                      [
+                                        _vm.errors.has("form.id_cu")
+                                          ? _c("i", {
+                                              staticClass: "icon-cross2"
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(
+                                          "\n\t\t\t\t\t\t\t\t\t\t\tCU:\n\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_cu,
+                                            expression: "form.id_cu"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        staticClass: "bootstrap-select",
+                                        attrs: {
+                                          name: "id_cu",
+                                          "data-width": "100%",
+                                          "data-vv-as": "CU",
+                                          disabled: _vm.modelCU.length === 0
+                                        },
+                                        on: {
+                                          change: [
+                                            function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "id_cu",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            },
+                                            function($event) {
+                                              _vm.changeCU($event.target.value)
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { disabled: "", value: "" }
+                                          },
+                                          [_vm._v("Silahkan pilih CU")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "0" } },
+                                          [
+                                            _vm.userData.pus
+                                              ? _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.userData.pus.name
+                                                    )
+                                                  )
+                                                ])
+                                              : _c("span", [
+                                                  _vm._v("Puskopdit")
+                                                ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("option", {
+                                          attrs: { "data-divider": "true" }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelCU, function(cu) {
+                                          return _c(
+                                            "option",
+                                            { domProps: { value: cu.id } },
+                                            [_vm._v(_vm._s(cu.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.errors.has("form.id_cu")
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "text-muted text-danger"
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "icon-arrow-small-right"
+                                            }),
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(
+                                                  _vm.errors.first("form.id_cu")
+                                                ) +
+                                                "\n\t\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      : _c(
+                                          "small",
+                                          { staticClass: "text-muted" },
+                                          [_vm._v(" ")]
+                                        )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-group",
+                                class: {
+                                  "has-error": _vm.errors.has(
+                                    "form.id_artikel_penulis"
+                                  )
                                 }
-                              })
-                            ],
-                            1
-                          )
+                              },
+                              [
+                                _c(
+                                  "h5",
+                                  {
+                                    class: {
+                                      "text-danger": _vm.errors.has(
+                                        "form.id_artikel_penulis"
+                                      )
+                                    }
+                                  },
+                                  [
+                                    _vm.errors.has("form.id_artikel_penulis")
+                                      ? _c("i", { staticClass: "icon-cross2" })
+                                      : _vm._e(),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\tPenulis:\n\t\t\t\t\t\t\t\t\t\t"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.modelPenulisStat === "loading"
+                                  ? _c("div", [
+                                      _c("i", {
+                                        staticClass: "icon-spinner spinner"
+                                      })
+                                    ])
+                                  : _c("div", [
+                                      _c(
+                                        "div",
+                                        { staticClass: "input-group" },
+                                        [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form.id_artikel_penulis,
+                                                  expression:
+                                                    "form.id_artikel_penulis"
+                                                },
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate",
+                                                  value: "required",
+                                                  expression: "'required'"
+                                                }
+                                              ],
+                                              staticClass: "bootstrap-select",
+                                              attrs: {
+                                                name: "id_artikel_penulis",
+                                                "data-width": "100%",
+                                                "data-vv-as": "Penulis",
+                                                disabled:
+                                                  _vm.modelPenulis.length === 0
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "id_artikel_penulis",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                {
+                                                  attrs: {
+                                                    disabled: "",
+                                                    value: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm.form.id_cu !== 0 &&
+                                                  _vm.modelPenulis.length === 0
+                                                    ? _c("span", [
+                                                        _vm._v(
+                                                          "Silahkan tambah penulis baru"
+                                                        )
+                                                      ])
+                                                    : _vm.form.id_cu === 0
+                                                      ? _c("span", [
+                                                          _vm._v(
+                                                            "Silahkan pilih CU terlebih dahulu"
+                                                          )
+                                                        ])
+                                                      : _c("span", [
+                                                          _vm._v(
+                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tSilahkan pilih penulis\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                          )
+                                                        ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("option", {
+                                                attrs: {
+                                                  "data-divider": "true"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _vm._l(_vm.modelPenulis, function(
+                                                penulis
+                                              ) {
+                                                return _c(
+                                                  "option",
+                                                  {
+                                                    domProps: {
+                                                      value: penulis.id
+                                                    }
+                                                  },
+                                                  [_vm._v(_vm._s(penulis.name))]
+                                                )
+                                              })
+                                            ],
+                                            2
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "input-group-btn" },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "tooltip",
+                                                      rawName: "v-tooltip:top",
+                                                      value: "Tambah Penulis",
+                                                      expression:
+                                                        "'Tambah Penulis'",
+                                                      arg: "top"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "btn btn-default",
+                                                  attrs: {
+                                                    type: "button",
+                                                    disabled:
+                                                      _vm.form.id_cu === ""
+                                                  },
+                                                  on: {
+                                                    click: _vm.modalOpen_Penulis
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "icon-plus22"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                _vm._v(" "),
+                                _vm.errors.has("form.id_cu")
+                                  ? _c(
+                                      "small",
+                                      { staticClass: "text-muted text-danger" },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-arrow-small-right"
+                                        }),
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              _vm.errors.first("form.id_cu")
+                                            ) +
+                                            "\n\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]
+                                    )
+                                  : _c("small", { staticClass: "text-muted" }, [
+                                      _vm._v(" ")
+                                    ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-group",
+                                class: {
+                                  "has-error": _vm.errors.has(
+                                    "form.id_artikel_kategori"
+                                  )
+                                }
+                              },
+                              [
+                                _c(
+                                  "h5",
+                                  {
+                                    class: {
+                                      "text-danger": _vm.errors.has(
+                                        "form.id_artikel_kategori"
+                                      )
+                                    }
+                                  },
+                                  [
+                                    _vm.errors.has("form.id_artikel_kategori")
+                                      ? _c("i", { staticClass: "icon-cross2" })
+                                      : _vm._e(),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\tKategori:\n\t\t\t\t\t\t\t\t\t\t"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.modelKategoriStat === "loading"
+                                  ? _c("div", [
+                                      _c("i", {
+                                        staticClass: "icon-spinner spinner"
+                                      })
+                                    ])
+                                  : _c("div", [
+                                      _c(
+                                        "div",
+                                        { staticClass: "input-group" },
+                                        [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form
+                                                      .id_artikel_kategori,
+                                                  expression:
+                                                    "form.id_artikel_kategori"
+                                                },
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate",
+                                                  value: "required",
+                                                  expression: "'required'"
+                                                }
+                                              ],
+                                              staticClass: "bootstrap-select",
+                                              attrs: {
+                                                name: "id_artikel_kategori",
+                                                "data-width": "100%",
+                                                disabled:
+                                                  _vm.modelKategori.length ===
+                                                  0,
+                                                "data-vv-as": "Kategori"
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "id_artikel_kategori",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                {
+                                                  attrs: {
+                                                    disabled: "",
+                                                    value: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm.form.id_cu !== 0 &&
+                                                  _vm.modelKategori.length === 0
+                                                    ? _c("span", [
+                                                        _vm._v(
+                                                          "Silahkan tambah kategori baru"
+                                                        )
+                                                      ])
+                                                    : _c("span", [
+                                                        _vm._v(
+                                                          "Silahkan pilih kategori"
+                                                        )
+                                                      ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("option", {
+                                                attrs: {
+                                                  "data-divider": "true"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _vm._l(
+                                                _vm.modelKategori,
+                                                function(kategori) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      domProps: {
+                                                        value: kategori.id
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(kategori.name)
+                                                      )
+                                                    ]
+                                                  )
+                                                }
+                                              )
+                                            ],
+                                            2
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "input-group-btn" },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "tooltip",
+                                                      rawName: "v-tooltip:top",
+                                                      value: "Tambah Kategori",
+                                                      expression:
+                                                        "'Tambah Kategori'",
+                                                      arg: "top"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "btn btn-default",
+                                                  attrs: {
+                                                    type: "button",
+                                                    disabled:
+                                                      _vm.form.id_cu === ""
+                                                  },
+                                                  on: {
+                                                    click:
+                                                      _vm.modalOpen_Kategori
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "icon-plus22"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                _vm._v(" "),
+                                _vm.errors.has("form.id_cu")
+                                  ? _c(
+                                      "small",
+                                      { staticClass: "text-muted text-danger" },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-arrow-small-right"
+                                        }),
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              _vm.errors.first("form.id_cu")
+                                            ) +
+                                            "\n\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]
+                                    )
+                                  : _c("small", { staticClass: "text-muted" }, [
+                                      _vm._v(" ")
+                                    ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _vm.userData.can &&
+                          _vm.userData.can["terbitkan " + _vm.kelas]
+                            ? _c("div", { staticClass: "col-md-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-group",
+                                    class: {
+                                      "has-error": _vm.errors.has(
+                                        "form.terbitkan"
+                                      )
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "h5",
+                                      {
+                                        class: {
+                                          "text-danger": _vm.errors.has(
+                                            "form.terbitkan"
+                                          )
+                                        }
+                                      },
+                                      [
+                                        _vm.errors.has("form.terbitkan")
+                                          ? _c("i", {
+                                              staticClass: "icon-cross2"
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(
+                                          "\n\t\t\t\t\t\t\t\t\t\t\tStatus Penerbitan:\n\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { staticClass: "radio-inline" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "validate",
+                                              rawName: "v-validate",
+                                              value: "required|in:1,0",
+                                              expression: "'required|in:1,0'"
+                                            },
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.terbitkan,
+                                              expression: "form.terbitkan"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            name: "terbitkan",
+                                            value: "1",
+                                            "data-vv-as": "Status Penerbitan"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.form.terbitkan,
+                                              "1"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "terbitkan",
+                                                "1"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { staticClass: "radio-inline" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.terbitkan,
+                                              expression: "form.terbitkan"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            name: "terbitkan",
+                                            value: "0"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.form.terbitkan,
+                                              "0"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "terbitkan",
+                                                "0"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm.errors.has("form.terbitkan")
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "text-muted text-danger"
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "icon-arrow-small-right"
+                                            }),
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(
+                                                  _vm.errors.first(
+                                                    "form.terbitkan"
+                                                  )
+                                                ) +
+                                                "\n\t\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      : _c(
+                                          "small",
+                                          { staticClass: "text-muted" },
+                                          [_vm._v(" \n\t\t\t\t\t\t\t\t\t\t")]
+                                        )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.userData.can &&
+                          _vm.userData.can["utamakan " + _vm.kelas]
+                            ? _c("div", { staticClass: "col-md-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-group",
+                                    class: {
+                                      "has-error": _vm.errors.has(
+                                        "form.utamakan"
+                                      )
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "h5",
+                                      {
+                                        class: {
+                                          "text-danger": _vm.errors.has(
+                                            "form.utamakan"
+                                          )
+                                        }
+                                      },
+                                      [
+                                        _vm.errors.has("form.utamakan")
+                                          ? _c("i", {
+                                              staticClass: "icon-cross2"
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(
+                                          "\n\t\t\t\t\t\t\t\t\t\t\tUtamakan:\n\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { staticClass: "radio-inline" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "validate",
+                                              rawName: "v-validate",
+                                              value: "required|in:1,0",
+                                              expression: "'required|in:1,0'"
+                                            },
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.utamakan,
+                                              expression: "form.utamakan"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            name: "utamakan",
+                                            "data-vv-as": "Utamakan"
+                                          },
+                                          domProps: {
+                                            value: 1,
+                                            checked: _vm._q(
+                                              _vm.form.utamakan,
+                                              1
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              _vm.$set(_vm.form, "utamakan", 1)
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" Ya\n\t\t\t\t\t\t\t\t\t\t")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      { staticClass: "radio-inline" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.utamakan,
+                                              expression: "form.utamakan"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            name: "utamakan"
+                                          },
+                                          domProps: {
+                                            value: 0,
+                                            checked: _vm._q(
+                                              _vm.form.utamakan,
+                                              0
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              _vm.$set(_vm.form, "utamakan", 0)
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" Tidak\n\t\t\t\t\t\t\t\t\t\t")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm.errors.has("form.utamakan")
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "text-muted text-danger"
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "icon-arrow-small-right"
+                                            }),
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(
+                                                  _vm.errors.first(
+                                                    "form.utamakan"
+                                                  )
+                                                ) +
+                                                "\n\t\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      : _c(
+                                          "small",
+                                          { staticClass: "text-muted" },
+                                          [_vm._v(" \n\t\t\t\t\t\t\t\t\t\t")]
+                                        )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "div",
+                              { staticClass: "form-group" },
+                              [
+                                _c("h5", [_vm._v("Gambar Utama:")]),
+                                _vm._v(" "),
+                                _c("app-image-upload", {
+                                  attrs: {
+                                    image_loc: "/images/artikel/",
+                                    image_temp: _vm.form.gambar
+                                  },
+                                  model: {
+                                    value: _vm.form.gambar,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "gambar", $$v)
+                                    },
+                                    expression: "form.gambar"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "div",
+                              { staticClass: "form-group" },
+                              [
+                                _c("h5", [_vm._v("Isi Artikel:")]),
+                                _vm._v(" "),
+                                _c("app-summernote", {
+                                  attrs: {
+                                    name: "editor",
+                                    model: _vm.form.content,
+                                    config: _vm.summernoteconfig
+                                  },
+                                  on: {
+                                    change: function(value) {
+                                      _vm.form.content = value
+                                    }
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _vm._m(4),
-                      _vm._v(" "),
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "text-right hidden-xs" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip:top",
-                                  value: "Batal",
-                                  expression: "'Batal'",
-                                  arg: "top"
-                                }
-                              ],
-                              staticClass: "btn btn-default",
-                              attrs: { type: "button", to: { name: _vm.kelas } }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-arrow-left13" }),
-                              _vm._v(" Batal\n\t\t\t\t\t\t\t\t")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip:top",
-                                  value: "Simpan Data",
-                                  expression: "'Simpan Data'",
-                                  arg: "top"
-                                }
-                              ],
-                              staticClass: "btn btn-primary",
-                              attrs: {
-                                type: "submit",
-                                disabled: _vm.errors.any("form")
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(" Simpan")
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "visible-xs" },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary btn-block pb-5",
-                              attrs: {
-                                type: "submit",
-                                disabled: _vm.errors.any("form")
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(" Simpan")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-default btn-block",
-                              attrs: { type: "button", to: { name: _vm.kelas } }
-                            },
-                            [
-                              _c("i", { staticClass: "icon-arrow-left13" }),
-                              _vm._v(" Batal\n\t\t\t\t\t\t\t\t")
-                            ]
-                          )
-                        ],
-                        1
-                      )
+                      ])
                     ]
-                  )
-                ])
-              ])
+                  ),
+                  _vm._v(" "),
+                  _c("form-info"),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("form-button", {
+                    attrs: { batalRoute: _vm.kelas, formValidation: "form" }
+                  })
+                ],
+                1
+              )
             ],
             1
           )
@@ -92748,29 +92645,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12" }, [_c("br")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("br")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "well well-sm bg-info" }, [
-        _c("i", { staticClass: "icon-info22" }),
-        _vm._v(" Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [_c("hr")])
   }
 ]
 render._withStripped = true
@@ -98452,7 +98326,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -98468,9 +98341,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	},
 	data: function data() {
 		return {
-			title: 'CU',
+			title: 'Credit Union',
 			kelas: 'cu',
-			kelasVuex: 'CU',
 			titleDesc: 'Mengelola data CU',
 			titleIcon: 'icon-office',
 			btn1Header: {
@@ -98500,7 +98372,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 	watch: {},
 	methods: {},
-	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('CU', {
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
 		itemData: 'dataS',
 		itemDataStat: 'dataStatS',
 		updateMessage: 'update',
@@ -98693,7 +98565,6 @@ var render = function() {
                 attrs: {
                   title: _vm.title,
                   kelas: _vm.kelas,
-                  kelasVuex: _vm.kelasVuex,
                   userData: _vm.userData,
                   userDataStat: _vm.userDataStat,
                   itemData: _vm.itemData,
@@ -98789,8 +98660,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_message_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_message_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_cleave_component__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_cleave_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vue_cleave_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_formButton_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_formButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_formButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_formInfo_vue__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_formInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_formInfo_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_vue_cleave_component__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_vue_cleave_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_vue_cleave_component__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -99364,53 +99239,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 
@@ -99429,7 +99259,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		appModal: __WEBPACK_IMPORTED_MODULE_7__components_modal___default.a,
 		appImageUpload: __WEBPACK_IMPORTED_MODULE_6__components_ImageUpload_vue___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_8__components_message_vue___default.a,
-		Cleave: __WEBPACK_IMPORTED_MODULE_9_vue_cleave_component___default.a
+		formButton: __WEBPACK_IMPORTED_MODULE_9__components_formButton_vue___default.a,
+		formInfo: __WEBPACK_IMPORTED_MODULE_10__components_formInfo_vue___default.a,
+		Cleave: __WEBPACK_IMPORTED_MODULE_11_vue_cleave_component___default.a
 	},
 	data: function data() {
 		return {
@@ -99438,7 +99270,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			titleIcon: 'icon-plus3',
 			level2Title: 'CU',
 			kelas: 'cu',
-			kelasVuex: 'CU',
 			redirect: '/cu/',
 			cleaveOption: {
 				date: {
@@ -99516,18 +99347,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	methods: {
 		fetch: function fetch() {
 			if (this.$route.meta.mode === 'edit') {
-				this.$store.dispatch(this.kelasVuex + '/edit', this.$route.params.id);
+				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				this.title = 'Ubah CU';
 				this.titleDesc = 'Mengubah CU';
 				this.titleIcon = 'icon-pencil5';
 			} else {
-				this.$store.dispatch(this.kelasVuex + '/create');
+				this.$store.dispatch(this.kelas + '/create');
 				this.title = 'Tambah CU';
 				this.titleDesc = 'Menambah CU';
 				this.titleIcon = 'icon-plus3';
 			}
 
-			this.$store.dispatch('loadProvincesAll');
+			this.$store.dispatch('provinces/get');
 		},
 		save: function save() {
 			var _this = this;
@@ -99536,9 +99367,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			this.$validator.validateAll('form').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
-						_this.$store.dispatch('update' + _this.kelasVuex, [_this.$route.params.id, formData]);
+						_this.$store.dispatch('update' + _this.kelas, [_this.$route.params.id, formData]);
 					} else {
-						_this.$store.dispatch('store' + _this.kelasVuex, formData);
+						_this.$store.dispatch('store' + _this.kelas, formData);
 					}
 					_this.submited = false;
 				} else {
@@ -99548,13 +99379,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			});
 		},
 		changeProvinces: function changeProvinces(id) {
-			this.$store.dispatch('loadRegenciesProvinces', id);
+			this.$store.dispatch('regencies/getProvinces', id);
 		},
 		changeRegencies: function changeRegencies(id) {
-			this.$store.dispatch('loadDistrictsRegencies', id);
+			this.$store.dispatch('districts/getRegencies', id);
 		},
 		changeDistricts: function changeDistricts(id) {
-			this.$store.dispatch('loadVillagesDistricts', id);
+			this.$store.dispatch('villages/getDistricts', id);
 		},
 		modalTutup: function modalTutup() {
 			if (this.updateStat === 'success') {
@@ -99583,49 +99414,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			$('.bootstrap-select').selectpicker();
 		}
 	},
-	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('CU', {
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('cu', {
 		form: 'data',
 		formStat: 'dataStat',
 		rules: 'rules',
-		options: 'options'
-	}), {
-		userData: function userData() {
-			return this.$store.getters.getUserData;
-		},
-		userDataStat: function userDataStat() {
-			return this.$store.getters.getUserDataLoadStat;
-		},
-		updateResponse: function updateResponse() {
-			return this.$store.getters.getCUUpdate;
-		},
-		updateStat: function updateStat() {
-			return this.$store.getters.getCUUpdateStat;
-		},
-		modelProvinces: function modelProvinces() {
-			return this.$store.getters.getProvincesS;
-		},
-		modelProvincesLoadStat: function modelProvincesLoadStat() {
-			return this.$store.getters.getProvincesLoadStatS;
-		},
-		modelRegencies: function modelRegencies() {
-			return this.$store.getters.getRegenciesS;
-		},
-		modelRegenciesLoadStat: function modelRegenciesLoadStat() {
-			return this.$store.getters.getRegenciesLoadStatS;
-		},
-		modelDistricts: function modelDistricts() {
-			return this.$store.getters.getDistrictsS;
-		},
-		modelDistrictsLoadStat: function modelDistrictsLoadStat() {
-			return this.$store.getters.getDistrictsLoadStatS;
-		},
-		modelVillages: function modelVillages() {
-			return this.$store.getters.getVillagesS;
-		},
-		modelVillagesLoadStat: function modelVillagesLoadStat() {
-			return this.$store.getters.getVillagesLoadStatS;
-		}
-	})
+		options: 'options',
+		updateResponse: 'update',
+		updateStat: 'updateStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('user', {
+		userData: 'data',
+		userDataStat: 'dataStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('provinces', {
+		modelProvinces: 'dataS',
+		modelProvincesStat: 'dataStatS'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('regencies', {
+		modelRegencies: 'dataS',
+		modelRegenciesStat: 'dataStatS'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('districts', {
+		modelDistricts: 'dataS',
+		modelDistrictsStat: 'dataStatS'
+	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('villages', {
+		modelVillages: 'dataS',
+		modelVillagesStat: 'dataStatS'
+	}))
 });
 
 /***/ }),
@@ -100382,95 +100193,97 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm.modelRegenciesLoadStat === "loading"
-                                  ? _c("div", [
-                                      _c("i", {
-                                        staticClass: "icon-spinner spinner"
-                                      })
-                                    ])
-                                  : _c("div", [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.id_regencies,
-                                              expression: "form.id_regencies"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_regencies",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Kabupaten",
-                                            disabled:
-                                              _vm.modelRegencies.length === 0
-                                          },
-                                          on: {
-                                            change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "id_regencies",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              },
-                                              function($event) {
-                                                _vm.changeRegencies(
-                                                  $event.target.value
-                                                )
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_regencies,
+                                        expression: "form.id_regencies"
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
+                                    staticClass: "bootstrap-select",
+                                    attrs: {
+                                      name: "id_regencies",
+                                      "data-width": "100%",
+                                      "data-vv-as": "Kabupaten",
+                                      disabled: _vm.modelRegencies.length === 0
+                                    },
+                                    on: {
+                                      change: [
+                                        function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
                                               }
-                                            ]
-                                          }
-                                        },
-                                        [
-                                          _vm._m(2),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelRegencies, function(
-                                            regencies
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: {
-                                                  value: regencies.id
-                                                }
-                                              },
-                                              [_vm._v(_vm._s(regencies.name))]
                                             )
-                                          })
-                                        ],
-                                        2
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_regencies",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        function($event) {
+                                          _vm.changeRegencies(
+                                            $event.target.value
+                                          )
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [
+                                        _vm.modelRegenciesStat === "loading"
+                                          ? _c("span", [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-spinner spinner"
+                                              })
+                                            ])
+                                          : _c("span", [
+                                              _vm._v("Silahkan pilih kabupaten")
+                                            ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("option", {
+                                      attrs: { "data-divider": "true" }
+                                    }),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelRegencies, function(
+                                      regencies
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: regencies.id } },
+                                        [_vm._v(_vm._s(regencies.name))]
                                       )
-                                    ]),
+                                    })
+                                  ],
+                                  2
+                                ),
                                 _vm._v(" "),
                                 _vm.errors.has("form.id_regencies")
                                   ? _c(
@@ -100529,95 +100342,97 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm.modelDistrictsLoadStat === "loading"
-                                  ? _c("div", [
-                                      _c("i", {
-                                        staticClass: "icon-spinner spinner"
-                                      })
-                                    ])
-                                  : _c("div", [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.id_districts,
-                                              expression: "form.id_districts"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_districts",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Kabupaten",
-                                            disabled:
-                                              _vm.modelDistricts.length === 0
-                                          },
-                                          on: {
-                                            change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "id_districts",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              },
-                                              function($event) {
-                                                _vm.changeDistricts(
-                                                  $event.target.value
-                                                )
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_districts,
+                                        expression: "form.id_districts"
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
+                                    staticClass: "bootstrap-select",
+                                    attrs: {
+                                      name: "id_districts",
+                                      "data-width": "100%",
+                                      "data-vv-as": "Kabupaten",
+                                      disabled: _vm.modelDistricts.length === 0
+                                    },
+                                    on: {
+                                      change: [
+                                        function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
                                               }
-                                            ]
-                                          }
-                                        },
-                                        [
-                                          _vm._m(3),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelDistricts, function(
-                                            districts
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: {
-                                                  value: districts.id
-                                                }
-                                              },
-                                              [_vm._v(_vm._s(districts.name))]
                                             )
-                                          })
-                                        ],
-                                        2
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_districts",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        function($event) {
+                                          _vm.changeDistricts(
+                                            $event.target.value
+                                          )
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [
+                                        _vm.modelDistrictsStat === "loading"
+                                          ? _c("span", [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-spinner spinner"
+                                              })
+                                            ])
+                                          : _c("span", [
+                                              _vm._v("Silahkan pilih kecamatan")
+                                            ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("option", {
+                                      attrs: { "data-divider": "true" }
+                                    }),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelDistricts, function(
+                                      districts
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: districts.id } },
+                                        [_vm._v(_vm._s(districts.name))]
                                       )
-                                    ]),
+                                    })
+                                  ],
+                                  2
+                                ),
                                 _vm._v(" "),
                                 _vm.errors.has("form.id_regency")
                                   ? _c(
@@ -100676,86 +100491,88 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm.modelVillagesLoadStat === "loading"
-                                  ? _c("div", [
-                                      _c("i", {
-                                        staticClass: "icon-spinner spinner"
-                                      })
-                                    ])
-                                  : _c("div", [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.form.id_villages,
-                                              expression: "form.id_villages"
-                                            },
-                                            {
-                                              name: "validate",
-                                              rawName: "v-validate",
-                                              value: "required",
-                                              expression: "'required'"
-                                            }
-                                          ],
-                                          staticClass: "bootstrap-select",
-                                          attrs: {
-                                            name: "id_villages",
-                                            "data-width": "100%",
-                                            "data-vv-as": "Desa",
-                                            disabled:
-                                              _vm.modelVillages.length === 0
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.form,
-                                                "id_villages",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._m(4),
-                                          _vm._v(" "),
-                                          _c("option", {
-                                            attrs: { "data-divider": "true" }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.modelVillages, function(
-                                            villages
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_villages,
+                                        expression: "form.id_villages"
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
+                                    staticClass: "bootstrap-select",
+                                    attrs: {
+                                      name: "id_villages",
+                                      "data-width": "100%",
+                                      "data-vv-as": "Desa",
+                                      disabled: _vm.modelVillages.length === 0
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
                                           ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                domProps: { value: villages.id }
-                                              },
-                                              [_vm._v(_vm._s(villages.name))]
-                                            )
+                                            return o.selected
                                           })
-                                        ],
-                                        2
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "id_villages",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [
+                                        _vm.modelVillagesStat === "loading"
+                                          ? _c("span", [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-spinner spinner"
+                                              }),
+                                              _vm._v(" mohon tunggu")
+                                            ])
+                                          : _c("span", [
+                                              _vm._v("Silahkan pilih kelurahan")
+                                            ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("option", {
+                                      attrs: { "data-divider": "true" }
+                                    }),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelVillages, function(
+                                      villages
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: villages.id } },
+                                        [_vm._v(_vm._s(villages.name))]
                                       )
-                                    ]),
+                                    })
+                                  ],
+                                  2
+                                ),
                                 _vm._v(" "),
                                 _vm.errors.has("form.id_villages")
                                   ? _c(
@@ -100884,7 +100701,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "panel-body" }, [
                         _c("div", { staticClass: "row" }, [
-                          _vm._m(5),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-4" }, [
                             _c(
@@ -101206,7 +101023,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "panel-body" }, [
                         _c("div", { staticClass: "row" }, [
-                          _vm._m(6),
+                          _vm._m(3),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
                             _c("div", { staticClass: "form-group" }, [
@@ -101459,108 +101276,15 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(7),
+                  _c("form-info"),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _c("div", { staticClass: "panel panel-flat" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "text-center hidden-xs" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                directives: [
-                                  {
-                                    name: "tooltip",
-                                    rawName: "v-tooltip:top",
-                                    value: "Batal",
-                                    expression: "'Batal'",
-                                    arg: "top"
-                                  }
-                                ],
-                                staticClass: "btn btn-default",
-                                attrs: {
-                                  type: "button",
-                                  to: { name: _vm.kelas }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-arrow-left13" }),
-                                _vm._v(" Batal\n\t\t\t\t\t\t\t\t\t")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "tooltip",
-                                    rawName: "v-tooltip:top",
-                                    value: "Simpan Data",
-                                    expression: "'Simpan Data'",
-                                    arg: "top"
-                                  }
-                                ],
-                                staticClass: "btn btn-primary",
-                                attrs: {
-                                  type: "submit",
-                                  disabled: _vm.errors.any("form")
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-floppy-disk" }),
-                                _vm._v(" Simpan")
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "visible-xs" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary btn-block pb-5",
-                                attrs: {
-                                  type: "submit",
-                                  disabled: _vm.errors.any("form")
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-floppy-disk" }),
-                                _vm._v(" Simpan")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-default btn-block",
-                                attrs: {
-                                  type: "button",
-                                  to: { name: _vm.kelas }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "icon-arrow-left13" }),
-                                _vm._v(" Batal\n\t\t\t\t\t\t\t\t\t")
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ])
-                  ])
-                ]
+                  _c("form-button", {
+                    attrs: { batalRoute: _vm.kelas, formValidation: "form" }
+                  })
+                ],
+                1
               )
             ],
             1
@@ -101629,30 +101353,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("option", { attrs: { disabled: "", value: "" } }, [
-      _c("span", [_vm._v("Silahkan pilih kabupaten")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("option", { attrs: { disabled: "", value: "" } }, [
-      _c("span", [_vm._v("Silahkan pilih kecamatan")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("option", { attrs: { disabled: "", value: "" } }, [
-      _c("span", [_vm._v("Silahkan pilih kelurahan")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12" }, [
       _c(
         "h6",
@@ -101683,15 +101383,6 @@ var staticRenderFns = [
           ])
         ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "well well-sm bg-info" }, [
-      _c("i", { staticClass: "icon-info22" }),
-      _vm._v(" Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
     ])
   }
 ]
@@ -108575,19 +108266,19 @@ var artikel = {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/indexCU/' + id, { params: p });
   },
 
-  createArtikel: function createArtikel() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/create');
   },
 
-  storeArtikel: function storeArtikel(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/store', form);
   },
 
-  editArtikel: function editArtikel(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/edit/' + id);
   },
 
-  updateArtikel: function updateArtikel(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/update/' + id, form);
   },
 
@@ -108599,7 +108290,7 @@ var artikel = {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/updateUtamakan/' + id);
   },
 
-  deleteArtikel: function deleteArtikel(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikel/' + id);
   }
 });
@@ -109289,13 +108980,13 @@ var artikelPenulis = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CU; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return cu; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_cu_js__ = __webpack_require__(359);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 
 
-var CU = {
+var cu = {
   namespaced: true,
 
   // state
@@ -109356,12 +109047,12 @@ var CU = {
 
 
     //load collection without params
-    indexAll: function indexAll(_ref2) {
+    get: function get(_ref2) {
       var commit = _ref2.commit;
 
       commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].indexAll().then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].get().then(function (response) {
         commit('setDataS', response.data.model);
         commit('setDataStatS', 'success');
       }).catch(function (error) {
@@ -109369,15 +109060,12 @@ var CU = {
         commit('setDataStatS', 'fail');
       });
     },
-
-
-    //load cu pus
-    indexPus: function indexPus(_ref3, id) {
+    getPus: function getPus(_ref3, id) {
       var commit = _ref3.commit;
 
       commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].indexPus(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_cu_js__["a" /* default */].getPus(id).then(function (response) {
         commit('setDataS', response.data.model);
         commit('setDataStatS', 'success');
       }).catch(function (error) {
@@ -109548,12 +109236,12 @@ var CU = {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu', { params: p });
   },
 
-  indexAll: function indexAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/indexAll');
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/get');
   },
 
-  indexPus: function indexPus(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/pus/' + id);
+  getPus: function getPus(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/cu/getPus/' + id);
   },
 
   create: function create() {
@@ -109778,259 +109466,224 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 var provinces = {
+  namespaced: true,
+
+  // state
   state: {
-    provincesS: [],
-    provincesLoadStatS: '',
-    provinces: {},
-    provincesLoadStat: '',
-    provincesUpdate: '',
-    provincesUpdateStat: '',
-    provincesRules: [],
-    provincesOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [] //laravel options
+  },
+
+  // getters
+  getters: {
+    data: function data(state) {
+      return state.data;
+    },
+    dataS: function dataS(state) {
+      return state.dataS;
+    },
+    dataStat: function dataStat(state) {
+      return state.dataStat;
+    },
+    dataStatS: function dataStatS(state) {
+      return state.dataStatS;
+    },
+    update: function update(state) {
+      return state.update;
+    },
+    updateStat: function updateStat(state) {
+      return state.updateStat;
+    },
+    rules: function rules(state) {
+      return state.rules;
+    },
+    options: function options(state) {
+      return state.options;
+    }
   },
 
   actions: {
-
-    // load all
-    loadProvincesS: function loadProvincesS(_ref, p) {
+    //load collection with params
+    index: function index(_ref, p) {
       var commit = _ref.commit;
 
-      commit('setProvincesLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].getProvincesS(p).then(function (response) {
-        commit('setProvincesS', response.data.model);
-        commit('setProvincesLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].index(p).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setProvincesS', error.response);
-        commit('setProvincesLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-    loadProvincesAll: function loadProvincesAll(_ref2) {
+
+
+    //load collection without params
+    get: function get(_ref2) {
       var commit = _ref2.commit;
 
-      commit('setProvincesLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].getProvincesAll().then(function (response) {
-        commit('setProvincesS', response.data.model);
-        commit('setProvincesLoadStatS', 'success');
-      }).catch(function () {
-        commit('setProvincesS', []);
-        commit('setProvincesLoadStatS', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].get().then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // load single data
-    loadProvinces: function loadProvinces(_ref3, id) {
+    // create page
+    create: function create(_ref3) {
       var commit = _ref3.commit;
 
-      commit('setProvincesLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].getProvinces(id).then(function (response) {
-        commit('setProvinces', response.data);
-        commit('setProvincesLoadStat', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].create().then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
       }).catch(function (error) {
-        commit('setProvincesS', error.response);
-        commit('setProvincesLoadStatS', 'fail');
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
-    // create data
-    createProvinces: function createProvinces(_ref4) {
-      var commit = _ref4.commit;
+    //store data
+    store: function store(_ref4, form) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
 
-      commit('setProvincesLoadStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].createProvinces().then(function (response) {
-        commit('setProvinces', response.data.form);
-        commit('setProvincesRules', response.data.rules);
-        commit('setProvincesOption', response.data.option);
-        commit('setProvincesLoadStat', 'success');
-      }).catch(function () {
-        commit('setProvinces', []);
-        commit('setProvincesRules', []);
-        commit('setProvincesOption', []);
-        commit('setProvincesLoadStat', 'fail');
-      });
-    },
-
-
-    // store data
-    storeProvinces: function storeProvinces(_ref5, form) {
-      var _this = this;
-
-      var commit = _ref5.commit,
-          state = _ref5.state,
-          dispatch = _ref5.dispatch;
-
-      commit('setProvincesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].storeProvinces(form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setProvincesUpdate', response.data);
-          commit('setProvincesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setProvincesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setProvincesUpdate', _this.errors);
-        } else {
-          commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setProvincesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
     // edit page
-    editProvinces: function editProvinces(_ref6, id) {
-      var commit = _ref6.commit;
+    edit: function edit(_ref5, id) {
+      var commit = _ref5.commit;
 
-      commit('setProvincesLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].editProvinces(id).then(function (response) {
-        commit('setProvinces', response.data.form);
-        commit('setProvincesRules', response.data.rules);
-        commit('setProvincesOption', response.data.option);
-        commit('setProvincesLoadStat', 'success');
-      }).catch(function () {
-        commit('setProvinces', []);
-        commit('setProvincesRules', []);
-        commit('setProvincesOption', []);
-        commit('setProvincesLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].edit(id).then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
     // update data
-    updateProvinces: function updateProvinces(_ref7, _ref8) {
-      var _this2 = this;
+    update: function update(_ref6, _ref7) {
+      var commit = _ref6.commit,
+          state = _ref6.state,
+          dispatch = _ref6.dispatch;
 
-      var commit = _ref7.commit,
-          state = _ref7.state,
-          dispatch = _ref7.dispatch;
+      var _ref8 = _slicedToArray(_ref7, 2),
+          id = _ref8[0],
+          form = _ref8[1];
 
-      var _ref9 = _slicedToArray(_ref8, 2),
-          id = _ref9[0],
-          form = _ref9[1];
+      commit('setUpdateStat', 'loading');
 
-      commit('setProvincesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].updateProvinces(id, form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setProvincesUpdate', response.data);
-          commit('setProvincesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setProvincesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setProvincesUpdate', _this2.errors);
-        } else {
-          commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setProvincesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    deleteProvinces: function deleteProvinces(_ref10, id) {
-      var _this3 = this;
+    // destroy data
+    destroy: function destroy(_ref9, id) {
+      var commit = _ref9.commit,
+          state = _ref9.state,
+          dispatch = _ref9.dispatch;
 
-      var commit = _ref10.commit,
-          state = _ref10.state,
-          dispatch = _ref10.dispatch;
+      commit('setUpdateStat', 'loading');
 
-      commit('setProvincesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].deleteProvinces(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_provinces_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setProvincesUpdate', response.data);
-          commit('setProvincesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setProvincesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setProvincesUpdate', _this3.errors);
-        } else {
-          commit('setProvincesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setProvincesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // reset status
-    resetProvincesUpdateStat: function resetProvincesUpdateStat(_ref11) {
-      var commit = _ref11.commit;
+    // reset
+    resetUpdateStat: function resetUpdateStat(_ref10) {
+      var commit = _ref10.commit;
 
-      commit('setProvincesUpdateStat', '');
-    },
-    resetProvincesLoadStat: function resetProvincesLoadStat(_ref12) {
-      var commit = _ref12.commit;
-
-      commit('setProvincesLoadStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setProvincesS: function setProvincesS(state, provincesS) {
-      state.provincesS = provincesS;
+    setData: function setData(state, data) {
+      state.data = data;
     },
-    setProvincesLoadStatS: function setProvincesLoadStatS(state, status) {
-      state.provincesLoadStatS = status;
+    setDataS: function setDataS(state, data) {
+      state.dataS = data;
     },
-    setProvinces: function setProvinces(state, provinces) {
-      state.provinces = provinces;
+    setDataStat: function setDataStat(state, status) {
+      state.dataStat = status;
     },
-    setProvincesLoadStat: function setProvincesLoadStat(state, status) {
-      state.provincesLoadStat = status;
+    setDataStatS: function setDataStatS(state, status) {
+      state.dataStatS = status;
     },
-    setProvincesUpdateStat: function setProvincesUpdateStat(state, status) {
-      state.provincesUpdateStat = status;
+    setUpdate: function setUpdate(state, data) {
+      state.update = data;
     },
-    setProvincesUpdate: function setProvincesUpdate(state, data) {
-      state.provincesUpdate = data;
+    setUpdateStat: function setUpdateStat(state, status) {
+      state.updateStat = status;
     },
-    setProvincesRules: function setProvincesRules(state, rules) {
-      state.provincesRules = rules;
+    setRules: function setRules(state, rules) {
+      state.rules = rules;
     },
-    setProvincesOption: function setProvincesOption(state, option) {
-      state.provincesOption = option;
-    }
-  },
-
-  getters: {
-    getProvincesS: function getProvincesS(state) {
-      return state.provincesS;
-    },
-    getProvincesLoadStatS: function getProvincesLoadStatS(state) {
-      return state.provincesLoadStatS;
-    },
-    getProvinces: function getProvinces(state) {
-      return state.provinces;
-    },
-    getProvincesLoadStat: function getProvincesLoadStat(state) {
-      return state.provincesLoadStat;
-    },
-    getProvincesUpdateStat: function getProvincesUpdateStat(state) {
-      return state.provincesUpdateStat;
-    },
-    getProvincesUpdate: function getProvincesUpdate(state) {
-      return state.provincesUpdate;
-    },
-    getProvincesRules: function getProvincesRules(state) {
-      return state.provincesRules;
-    },
-    getProvincesOption: function getProvincesOption(state) {
-      return state.provincesOption;
+    setOptions: function setOptions(state, options) {
+      state.options = options;
     }
   }
 };
@@ -110045,35 +109698,31 @@ var provinces = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  getProvincesS: function getProvincesS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  index: function index(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces', { params: p });
   },
 
-  getProvincesAll: function getProvincesAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/indexAll');
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/get');
   },
 
-  getProvinces: function getProvinces(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/' + id);
-  },
-
-  createProvinces: function createProvinces() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/create');
   },
 
-  storeProvinces: function storeProvinces(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/store', form);
   },
 
-  editProvinces: function editProvinces(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/edit/' + id);
   },
 
-  updateProvinces: function updateProvinces(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/update/' + id, form);
   },
 
-  deleteProvinces: function deleteProvinces(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/provinces/' + id);
   }
 });
@@ -110090,275 +109739,254 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 var regencies = {
+  namespaced: true,
+
+  // state
   state: {
-    regenciesS: [],
-    regenciesLoadStatS: '',
-    regencies: {},
-    regenciesLoadStat: '',
-    regenciesUpdate: '',
-    regenciesUpdateStat: '',
-    regenciesRules: [],
-    regenciesOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [] //laravel options
+  },
+
+  // getters
+  getters: {
+    data: function data(state) {
+      return state.data;
+    },
+    dataS: function dataS(state) {
+      return state.dataS;
+    },
+    dataStat: function dataStat(state) {
+      return state.dataStat;
+    },
+    dataStatS: function dataStatS(state) {
+      return state.dataStatS;
+    },
+    update: function update(state) {
+      return state.update;
+    },
+    updateStat: function updateStat(state) {
+      return state.updateStat;
+    },
+    rules: function rules(state) {
+      return state.rules;
+    },
+    options: function options(state) {
+      return state.options;
+    }
   },
 
   actions: {
-
-    // load all
-    loadRegenciesS: function loadRegenciesS(_ref, p) {
+    //load collection with params
+    index: function index(_ref, p) {
       var commit = _ref.commit;
 
-      commit('setRegenciesLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegenciesS(p).then(function (response) {
-        commit('setRegenciesS', response.data.model);
-        commit('setRegenciesLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].index(p).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setRegenciesS', error.response);
-        commit('setRegenciesLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-    loadRegenciesAll: function loadRegenciesAll(_ref2) {
+    indexProvinces: function indexProvinces(_ref2, _ref3) {
       var commit = _ref2.commit;
 
-      commit('setRegenciesLoadStatS', 'loading');
+      var _ref4 = _slicedToArray(_ref3, 2),
+          p = _ref4[0],
+          id = _ref4[1];
 
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegenciesAll().then(function (response) {
-        commit('setRegenciesS', response.data.model);
-        commit('setRegenciesLoadStatS', 'success');
-      }).catch(function () {
-        commit('setRegenciesS', []);
-        commit('setRegenciesLoadStatS', 'fail');
-      });
-    },
+      commit('setDataStatS', 'loading');
 
-
-    // load by provinces
-    loadRegenciesProvinces: function loadRegenciesProvinces(_ref3, id) {
-      var commit = _ref3.commit;
-
-      commit('setRegenciesLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegenciesProvinces(id).then(function (response) {
-        commit('setRegenciesS', response.data.model);
-        commit('setRegenciesLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].indexProvinces(p, id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setRegenciesS', error.response);
-        commit('setRegenciesLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // load single data
-    loadRegencies: function loadRegencies(_ref4, id) {
-      var commit = _ref4.commit;
-
-      commit('setRegenciesLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getRegencies(id).then(function (response) {
-        commit('setRegencies', response.data);
-        commit('setRegenciesLoadStat', 'success');
-      }).catch(function (error) {
-        commit('setRegenciesS', error.response);
-        commit('setRegenciesLoadStatS', 'fail');
-      });
-    },
-
-
-    // create data
-    createRegencies: function createRegencies(_ref5) {
+    //load collection without params
+    get: function get(_ref5) {
       var commit = _ref5.commit;
 
-      commit('setRegenciesLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].createRegencies().then(function (response) {
-        commit('setRegencies', response.data.form);
-        commit('setRegenciesRules', response.data.rules);
-        commit('setRegenciesOption', response.data.option);
-        commit('setRegenciesLoadStat', 'success');
-      }).catch(function () {
-        commit('setRegencies', []);
-        commit('setRegenciesRules', []);
-        commit('setRegenciesOption', []);
-        commit('setRegenciesLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].get().then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
+      });
+    },
+    getProvinces: function getProvinces(_ref6, id) {
+      var commit = _ref6.commit;
+
+      commit('setDataStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].getProvinces(id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // store data
-    storeRegencies: function storeRegencies(_ref6, form) {
-      var _this = this;
+    // create page
+    create: function create(_ref7) {
+      var commit = _ref7.commit;
 
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
+      commit('setDataStat', 'loading');
 
-      commit('setRegenciesUpdateStat', 'loading');
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].create().then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
+      });
+    },
 
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].storeRegencies(form).then(function (response) {
+
+    //store data
+    store: function store(_ref8, form) {
+      var commit = _ref8.commit,
+          state = _ref8.state,
+          dispatch = _ref8.dispatch;
+
+      commit('setUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setRegenciesUpdate', response.data);
-          commit('setRegenciesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setRegenciesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setRegenciesUpdate', _this.errors);
-        } else {
-          commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setRegenciesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
     // edit page
-    editRegencies: function editRegencies(_ref7, id) {
-      var commit = _ref7.commit;
+    edit: function edit(_ref9, id) {
+      var commit = _ref9.commit;
 
-      commit('setRegenciesLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].editRegencies(id).then(function (response) {
-        commit('setRegencies', response.data.form);
-        commit('setRegenciesRules', response.data.rules);
-        commit('setRegenciesOption', response.data.option);
-        commit('setRegenciesLoadStat', 'success');
-      }).catch(function () {
-        commit('setRegencies', []);
-        commit('setRegenciesRules', []);
-        commit('setRegenciesOption', []);
-        commit('setRegenciesLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].edit(id).then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
     // update data
-    updateRegencies: function updateRegencies(_ref8, _ref9) {
-      var _this2 = this;
+    update: function update(_ref10, _ref11) {
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
 
-      var commit = _ref8.commit,
-          state = _ref8.state,
-          dispatch = _ref8.dispatch;
+      var _ref12 = _slicedToArray(_ref11, 2),
+          id = _ref12[0],
+          form = _ref12[1];
 
-      var _ref10 = _slicedToArray(_ref9, 2),
-          id = _ref10[0],
-          form = _ref10[1];
+      commit('setUpdateStat', 'loading');
 
-      commit('setRegenciesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].updateRegencies(id, form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setRegenciesUpdate', response.data);
-          commit('setRegenciesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setRegenciesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setRegenciesUpdate', _this2.errors);
-        } else {
-          commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setRegenciesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    deleteRegencies: function deleteRegencies(_ref11, id) {
-      var _this3 = this;
+    // destroy data
+    destroy: function destroy(_ref13, id) {
+      var commit = _ref13.commit,
+          state = _ref13.state,
+          dispatch = _ref13.dispatch;
 
-      var commit = _ref11.commit,
-          state = _ref11.state,
-          dispatch = _ref11.dispatch;
+      commit('setUpdateStat', 'loading');
 
-      commit('setRegenciesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].deleteRegencies(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_regencies_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setRegenciesUpdate', response.data);
-          commit('setRegenciesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setRegenciesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setRegenciesUpdate', _this3.errors);
-        } else {
-          commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setRegenciesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // reset status
-    resetRegenciesUpdateStat: function resetRegenciesUpdateStat(_ref12) {
-      var commit = _ref12.commit;
+    // reset
+    resetUpdateStat: function resetUpdateStat(_ref14) {
+      var commit = _ref14.commit;
 
-      commit('setRegenciesUpdateStat', '');
-    },
-    resetRegenciesLoadStat: function resetRegenciesLoadStat(_ref13) {
-      var commit = _ref13.commit;
-
-      commit('setRegenciesLoadStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setRegenciesS: function setRegenciesS(state, regenciesS) {
-      state.regenciesS = regenciesS;
+    setData: function setData(state, data) {
+      state.data = data;
     },
-    setRegenciesLoadStatS: function setRegenciesLoadStatS(state, status) {
-      state.regenciesLoadStatS = status;
+    setDataS: function setDataS(state, data) {
+      state.dataS = data;
     },
-    setRegencies: function setRegencies(state, regencies) {
-      state.regencies = regencies;
+    setDataStat: function setDataStat(state, status) {
+      state.dataStat = status;
     },
-    setRegenciesLoadStat: function setRegenciesLoadStat(state, status) {
-      state.regenciesLoadStat = status;
+    setDataStatS: function setDataStatS(state, status) {
+      state.dataStatS = status;
     },
-    setRegenciesUpdateStat: function setRegenciesUpdateStat(state, status) {
-      state.regenciesUpdateStat = status;
+    setUpdate: function setUpdate(state, data) {
+      state.update = data;
     },
-    setRegenciesUpdate: function setRegenciesUpdate(state, data) {
-      state.regenciesUpdate = data;
+    setUpdateStat: function setUpdateStat(state, status) {
+      state.updateStat = status;
     },
-    setRegenciesRules: function setRegenciesRules(state, rules) {
-      state.regenciesRules = rules;
+    setRules: function setRules(state, rules) {
+      state.rules = rules;
     },
-    setRegenciesOption: function setRegenciesOption(state, option) {
-      state.regenciesOption = option;
-    }
-  },
-
-  getters: {
-    getRegenciesS: function getRegenciesS(state) {
-      return state.regenciesS;
-    },
-    getRegenciesLoadStatS: function getRegenciesLoadStatS(state) {
-      return state.regenciesLoadStatS;
-    },
-    getRegencies: function getRegencies(state) {
-      return state.regencies;
-    },
-    getRegenciesLoadStat: function getRegenciesLoadStat(state) {
-      return state.regenciesLoadStat;
-    },
-    getRegenciesUpdateStat: function getRegenciesUpdateStat(state) {
-      return state.regenciesUpdateStat;
-    },
-    getRegenciesUpdate: function getRegenciesUpdate(state) {
-      return state.regenciesUpdate;
-    },
-    getRegenciesRules: function getRegenciesRules(state) {
-      return state.regenciesRules;
-    },
-    getRegenciesOption: function getRegenciesOption(state) {
-      return state.regenciesOption;
+    setOptions: function setOptions(state, options) {
+      state.options = options;
     }
   }
 };
@@ -110373,39 +110001,39 @@ var regencies = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  getRegenciesS: function getRegenciesS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  index: function index(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies', { params: p });
   },
 
-  getRegenciesAll: function getRegenciesAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies_all');
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/get');
   },
 
-  getRegencies: function getRegencies(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/' + id);
+  indexProvinces: function indexProvinces(p, id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/indexProvinces/' + id, { params: p });
   },
 
-  getRegenciesProvinces: function getRegenciesProvinces(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/provinces/' + id);
+  getProvinces: function getProvinces(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/getProvinces/' + id);
   },
 
-  createRegencies: function createRegencies() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/create');
   },
 
-  storeRegencies: function storeRegencies(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/store', form);
   },
 
-  editRegencies: function editRegencies(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/edit/' + id);
   },
 
-  updateRegencies: function updateRegencies(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/update/' + id, form);
   },
 
-  deleteRegencies: function deleteRegencies(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/' + id);
   }
 });
@@ -110422,275 +110050,254 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 var districts = {
+  namespaced: true,
+
+  // state
   state: {
-    districtsS: [],
-    districtsLoadStatS: '',
-    districts: {},
-    districtsLoadStat: '',
-    districtsUpdate: '',
-    districtsUpdateStat: '',
-    districtsRules: [],
-    districtsOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [] //laravel options
+  },
+
+  // getters
+  getters: {
+    data: function data(state) {
+      return state.data;
+    },
+    dataS: function dataS(state) {
+      return state.dataS;
+    },
+    dataStat: function dataStat(state) {
+      return state.dataStat;
+    },
+    dataStatS: function dataStatS(state) {
+      return state.dataStatS;
+    },
+    update: function update(state) {
+      return state.update;
+    },
+    updateStat: function updateStat(state) {
+      return state.updateStat;
+    },
+    rules: function rules(state) {
+      return state.rules;
+    },
+    options: function options(state) {
+      return state.options;
+    }
   },
 
   actions: {
-
-    // load all
-    loadDistrictsS: function loadDistrictsS(_ref, p) {
+    //load collection with params
+    index: function index(_ref, p) {
       var commit = _ref.commit;
 
-      commit('setDistrictsLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistrictsS(p).then(function (response) {
-        commit('setDistrictsS', response.data.model);
-        commit('setDistrictsLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].index(p).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setDistrictsS', error.response);
-        commit('setDistrictsLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-    loadDistrictsAll: function loadDistrictsAll(_ref2) {
+    indexRegencies: function indexRegencies(_ref2, _ref3) {
       var commit = _ref2.commit;
 
-      commit('setDistrictsLoadStatS', 'loading');
+      var _ref4 = _slicedToArray(_ref3, 2),
+          p = _ref4[0],
+          id = _ref4[1];
 
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistrictsAll().then(function (response) {
-        commit('setDistrictsS', response.data.model);
-        commit('setDistrictsLoadStatS', 'success');
-      }).catch(function () {
-        commit('setDistrictsS', []);
-        commit('setDistrictsLoadStatS', 'fail');
-      });
-    },
+      commit('setDataStatS', 'loading');
 
-
-    // load by regencies
-    loadDistrictsRegencies: function loadDistrictsRegencies(_ref3, id) {
-      var commit = _ref3.commit;
-
-      commit('setDistrictsLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistrictsRegencies(id).then(function (response) {
-        commit('setDistrictsS', response.data.model);
-        commit('setDistrictsLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].indexRegencies(p, id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setDistrictsS', error.response);
-        commit('setDistrictsLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // load single data
-    loadDistricts: function loadDistricts(_ref4, id) {
-      var commit = _ref4.commit;
-
-      commit('setDistrictsLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getDistricts(id).then(function (response) {
-        commit('setDistricts', response.data);
-        commit('setDistrictsLoadStat', 'success');
-      }).catch(function (error) {
-        commit('setDistrictsS', error.response);
-        commit('setDistrictsLoadStatS', 'fail');
-      });
-    },
-
-
-    // create data
-    createDistricts: function createDistricts(_ref5) {
+    //load collection without params
+    get: function get(_ref5) {
       var commit = _ref5.commit;
 
-      commit('setDistrictsLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].createDistricts().then(function (response) {
-        commit('setDistricts', response.data.form);
-        commit('setDistrictsRules', response.data.rules);
-        commit('setDistrictsOption', response.data.option);
-        commit('setDistrictsLoadStat', 'success');
-      }).catch(function () {
-        commit('setDistricts', []);
-        commit('setDistrictsRules', []);
-        commit('setDistrictsOption', []);
-        commit('setDistrictsLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].get().then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
+      });
+    },
+    getRegencies: function getRegencies(_ref6, id) {
+      var commit = _ref6.commit;
+
+      commit('setDataStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].getRegencies(id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // store data
-    storeDistricts: function storeDistricts(_ref6, form) {
-      var _this = this;
+    // create page
+    create: function create(_ref7) {
+      var commit = _ref7.commit;
 
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
+      commit('setDataStat', 'loading');
 
-      commit('setDistrictsUpdateStat', 'loading');
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].create().then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
+      });
+    },
 
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].storeDistricts(form).then(function (response) {
+
+    //store data
+    store: function store(_ref8, form) {
+      var commit = _ref8.commit,
+          state = _ref8.state,
+          dispatch = _ref8.dispatch;
+
+      commit('setUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setDistrictsUpdate', response.data);
-          commit('setDistrictsUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setDistrictsUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setDistrictsUpdate', _this.errors);
-        } else {
-          commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setDistrictsUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
     // edit page
-    editDistricts: function editDistricts(_ref7, id) {
-      var commit = _ref7.commit;
+    edit: function edit(_ref9, id) {
+      var commit = _ref9.commit;
 
-      commit('setDistrictsLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].editDistricts(id).then(function (response) {
-        commit('setDistricts', response.data.form);
-        commit('setDistrictsRules', response.data.rules);
-        commit('setDistrictsOption', response.data.option);
-        commit('setDistrictsLoadStat', 'success');
-      }).catch(function () {
-        commit('setDistricts', []);
-        commit('setDistrictsRules', []);
-        commit('setDistrictsOption', []);
-        commit('setDistrictsLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].edit(id).then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
     // update data
-    updateDistricts: function updateDistricts(_ref8, _ref9) {
-      var _this2 = this;
+    update: function update(_ref10, _ref11) {
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
 
-      var commit = _ref8.commit,
-          state = _ref8.state,
-          dispatch = _ref8.dispatch;
+      var _ref12 = _slicedToArray(_ref11, 2),
+          id = _ref12[0],
+          form = _ref12[1];
 
-      var _ref10 = _slicedToArray(_ref9, 2),
-          id = _ref10[0],
-          form = _ref10[1];
+      commit('setUpdateStat', 'loading');
 
-      commit('setDistrictsUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].updateDistricts(id, form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setDistrictsUpdate', response.data);
-          commit('setDistrictsUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setDistrictsUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setDistrictsUpdate', _this2.errors);
-        } else {
-          commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setDistrictsUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    deleteDistricts: function deleteDistricts(_ref11, id) {
-      var _this3 = this;
+    // destroy data
+    destroy: function destroy(_ref13, id) {
+      var commit = _ref13.commit,
+          state = _ref13.state,
+          dispatch = _ref13.dispatch;
 
-      var commit = _ref11.commit,
-          state = _ref11.state,
-          dispatch = _ref11.dispatch;
+      commit('setUpdateStat', 'loading');
 
-      commit('setDistrictsUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].deleteDistricts(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_districts_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setDistrictsUpdate', response.data);
-          commit('setDistrictsUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setDistrictsUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setDistrictsUpdate', _this3.errors);
-        } else {
-          commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setDistrictsUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // reset status
-    resetDistrictsUpdateStat: function resetDistrictsUpdateStat(_ref12) {
-      var commit = _ref12.commit;
+    // reset
+    resetUpdateStat: function resetUpdateStat(_ref14) {
+      var commit = _ref14.commit;
 
-      commit('setDistrictsUpdateStat', '');
-    },
-    resetDistrictsLoadStat: function resetDistrictsLoadStat(_ref13) {
-      var commit = _ref13.commit;
-
-      commit('setDistrictsLoadStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setDistrictsS: function setDistrictsS(state, districtsS) {
-      state.districtsS = districtsS;
+    setData: function setData(state, data) {
+      state.data = data;
     },
-    setDistrictsLoadStatS: function setDistrictsLoadStatS(state, status) {
-      state.districtsLoadStatS = status;
+    setDataS: function setDataS(state, data) {
+      state.dataS = data;
     },
-    setDistricts: function setDistricts(state, districts) {
-      state.districts = districts;
+    setDataStat: function setDataStat(state, status) {
+      state.dataStat = status;
     },
-    setDistrictsLoadStat: function setDistrictsLoadStat(state, status) {
-      state.districtsLoadStat = status;
+    setDataStatS: function setDataStatS(state, status) {
+      state.dataStatS = status;
     },
-    setDistrictsUpdateStat: function setDistrictsUpdateStat(state, status) {
-      state.districtsUpdateStat = status;
+    setUpdate: function setUpdate(state, data) {
+      state.update = data;
     },
-    setDistrictsUpdate: function setDistrictsUpdate(state, data) {
-      state.districtsUpdate = data;
+    setUpdateStat: function setUpdateStat(state, status) {
+      state.updateStat = status;
     },
-    setDistrictsRules: function setDistrictsRules(state, rules) {
-      state.districtsRules = rules;
+    setRules: function setRules(state, rules) {
+      state.rules = rules;
     },
-    setDistrictsOption: function setDistrictsOption(state, option) {
-      state.districtsOption = option;
-    }
-  },
-
-  getters: {
-    getDistrictsS: function getDistrictsS(state) {
-      return state.districtsS;
-    },
-    getDistrictsLoadStatS: function getDistrictsLoadStatS(state) {
-      return state.districtsLoadStatS;
-    },
-    getDistricts: function getDistricts(state) {
-      return state.districts;
-    },
-    getDistrictsLoadStat: function getDistrictsLoadStat(state) {
-      return state.districtsLoadStat;
-    },
-    getDistrictsUpdateStat: function getDistrictsUpdateStat(state) {
-      return state.districtsUpdateStat;
-    },
-    getDistrictsUpdate: function getDistrictsUpdate(state) {
-      return state.districtsUpdate;
-    },
-    getDistrictsRules: function getDistrictsRules(state) {
-      return state.districtsRules;
-    },
-    getDistrictsOption: function getDistrictsOption(state) {
-      return state.districtsOption;
+    setOptions: function setOptions(state, options) {
+      state.options = options;
     }
   }
 };
@@ -110705,39 +110312,39 @@ var districts = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  getDistrictsS: function getDistrictsS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  index: function index(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts', { params: p });
   },
 
-  getDistrictsAll: function getDistrictsAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts_all');
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/get');
   },
 
-  getDistricts: function getDistricts(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/' + id);
+  indexRegencies: function indexRegencies(p, id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/indexRegencies/' + id, { params: p });
   },
 
-  getDistrictsRegencies: function getDistrictsRegencies(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/regencies/' + id);
+  getRegencies: function getRegencies(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/getRegencies/' + id);
   },
 
-  createDistricts: function createDistricts() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/create');
   },
 
-  storeDistricts: function storeDistricts(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/store', form);
   },
 
-  editDistricts: function editDistricts(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/edit/' + id);
   },
 
-  updateDistricts: function updateDistricts(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/update/' + id, form);
   },
 
-  deleteDistricts: function deleteDistricts(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/districts/' + id);
   }
 });
@@ -110754,275 +110361,254 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 var villages = {
+  namespaced: true,
+
+  // state
   state: {
-    villagesS: [],
-    villagesLoadStatS: '',
-    villages: {},
-    villagesLoadStat: '',
-    villagesUpdate: '',
-    villagesUpdateStat: '',
-    villagesRules: [],
-    villagesOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [] //laravel options
+  },
+
+  // getters
+  getters: {
+    data: function data(state) {
+      return state.data;
+    },
+    dataS: function dataS(state) {
+      return state.dataS;
+    },
+    dataStat: function dataStat(state) {
+      return state.dataStat;
+    },
+    dataStatS: function dataStatS(state) {
+      return state.dataStatS;
+    },
+    update: function update(state) {
+      return state.update;
+    },
+    updateStat: function updateStat(state) {
+      return state.updateStat;
+    },
+    rules: function rules(state) {
+      return state.rules;
+    },
+    options: function options(state) {
+      return state.options;
+    }
   },
 
   actions: {
-
-    // load all
-    loadVillagesS: function loadVillagesS(_ref, p) {
+    //load collection with params
+    index: function index(_ref, p) {
       var commit = _ref.commit;
 
-      commit('setVillagesLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillagesS(p).then(function (response) {
-        commit('setVillagesS', response.data.model);
-        commit('setVillagesLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].index(p).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setVillagesS', error.response);
-        commit('setVillagesLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-    loadVillagesAll: function loadVillagesAll(_ref2) {
+    indexDistricts: function indexDistricts(_ref2, _ref3) {
       var commit = _ref2.commit;
 
-      commit('setVillagesLoadStatS', 'loading');
+      var _ref4 = _slicedToArray(_ref3, 2),
+          p = _ref4[0],
+          id = _ref4[1];
 
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillagesAll().then(function (response) {
-        commit('setVillagesS', response.data.model);
-        commit('setVillagesLoadStatS', 'success');
-      }).catch(function () {
-        commit('setVillagesS', []);
-        commit('setVillagesLoadStatS', 'fail');
-      });
-    },
+      commit('setDataStatS', 'loading');
 
-
-    // load by districts
-    loadVillagesDistricts: function loadVillagesDistricts(_ref3, id) {
-      var commit = _ref3.commit;
-
-      commit('setVillagesLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillagesDistricts(id).then(function (response) {
-        commit('setVillagesS', response.data.model);
-        commit('setVillagesLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].indexDistricts(p, id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setVillagesS', error.response);
-        commit('setVillagesLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // load single data
-    loadVillages: function loadVillages(_ref4, id) {
-      var commit = _ref4.commit;
-
-      commit('setVillagesLoadStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getVillages(id).then(function (response) {
-        commit('setVillages', response.data);
-        commit('setVillagesLoadStat', 'success');
-      }).catch(function (error) {
-        commit('setVillagesS', error.response);
-        commit('setVillagesLoadStatS', 'fail');
-      });
-    },
-
-
-    // create data
-    createVillages: function createVillages(_ref5) {
+    //load collection without params
+    get: function get(_ref5) {
       var commit = _ref5.commit;
 
-      commit('setVillagesLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].createVillages().then(function (response) {
-        commit('setVillages', response.data.form);
-        commit('setVillagesRules', response.data.rules);
-        commit('setVillagesOption', response.data.option);
-        commit('setVillagesLoadStat', 'success');
-      }).catch(function () {
-        commit('setVillages', []);
-        commit('setVillagesRules', []);
-        commit('setVillagesOption', []);
-        commit('setVillagesLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].get().then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
+      });
+    },
+    getDistricts: function getDistricts(_ref6, id) {
+      var commit = _ref6.commit;
+
+      commit('setDataStatS', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].getDistricts(id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
+      }).catch(function (error) {
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // store data
-    storeVillages: function storeVillages(_ref6, form) {
-      var _this = this;
+    // create page
+    create: function create(_ref7) {
+      var commit = _ref7.commit;
 
-      var commit = _ref6.commit,
-          state = _ref6.state,
-          dispatch = _ref6.dispatch;
+      commit('setDataStat', 'loading');
 
-      commit('setVillagesUpdateStat', 'loading');
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].create().then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
+      });
+    },
 
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].storeVillages(form).then(function (response) {
+
+    //store data
+    store: function store(_ref8, form) {
+      var commit = _ref8.commit,
+          state = _ref8.state,
+          dispatch = _ref8.dispatch;
+
+      commit('setUpdateStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setVillagesUpdate', response.data);
-          commit('setVillagesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setVillagesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setVillagesUpdate', _this.errors);
-        } else {
-          commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setVillagesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
     // edit page
-    editVillages: function editVillages(_ref7, id) {
-      var commit = _ref7.commit;
+    edit: function edit(_ref9, id) {
+      var commit = _ref9.commit;
 
-      commit('setVillagesLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].editVillages(id).then(function (response) {
-        commit('setVillages', response.data.form);
-        commit('setVillagesRules', response.data.rules);
-        commit('setVillagesOption', response.data.option);
-        commit('setVillagesLoadStat', 'success');
-      }).catch(function () {
-        commit('setVillages', []);
-        commit('setVillagesRules', []);
-        commit('setVillagesOption', []);
-        commit('setVillagesLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].edit(id).then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
     // update data
-    updateVillages: function updateVillages(_ref8, _ref9) {
-      var _this2 = this;
+    update: function update(_ref10, _ref11) {
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
 
-      var commit = _ref8.commit,
-          state = _ref8.state,
-          dispatch = _ref8.dispatch;
+      var _ref12 = _slicedToArray(_ref11, 2),
+          id = _ref12[0],
+          form = _ref12[1];
 
-      var _ref10 = _slicedToArray(_ref9, 2),
-          id = _ref10[0],
-          form = _ref10[1];
+      commit('setUpdateStat', 'loading');
 
-      commit('setVillagesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].updateVillages(id, form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setVillagesUpdate', response.data);
-          commit('setVillagesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setVillagesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setVillagesUpdate', _this2.errors);
-        } else {
-          commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setVillagesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    deleteVillages: function deleteVillages(_ref11, id) {
-      var _this3 = this;
+    // destroy data
+    destroy: function destroy(_ref13, id) {
+      var commit = _ref13.commit,
+          state = _ref13.state,
+          dispatch = _ref13.dispatch;
 
-      var commit = _ref11.commit,
-          state = _ref11.state,
-          dispatch = _ref11.dispatch;
+      commit('setUpdateStat', 'loading');
 
-      commit('setVillagesUpdateStat', 'loading');
-
-      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].deleteVillages(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_villages_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setVillagesUpdate', response.data);
-          commit('setVillagesUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setVillagesUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setVillagesUpdate', _this3.errors);
-        } else {
-          commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setVillagesUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // reset status
-    resetVillagesUpdateStat: function resetVillagesUpdateStat(_ref12) {
-      var commit = _ref12.commit;
+    // reset
+    resetUpdateStat: function resetUpdateStat(_ref14) {
+      var commit = _ref14.commit;
 
-      commit('setVillagesUpdateStat', '');
-    },
-    resetVillagesLoadStat: function resetVillagesLoadStat(_ref13) {
-      var commit = _ref13.commit;
-
-      commit('setVillagesLoadStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setVillagesS: function setVillagesS(state, villagesS) {
-      state.villagesS = villagesS;
+    setData: function setData(state, data) {
+      state.data = data;
     },
-    setVillagesLoadStatS: function setVillagesLoadStatS(state, status) {
-      state.villagesLoadStatS = status;
+    setDataS: function setDataS(state, data) {
+      state.dataS = data;
     },
-    setVillages: function setVillages(state, villages) {
-      state.villages = villages;
+    setDataStat: function setDataStat(state, status) {
+      state.dataStat = status;
     },
-    setVillagesLoadStat: function setVillagesLoadStat(state, status) {
-      state.villagesLoadStat = status;
+    setDataStatS: function setDataStatS(state, status) {
+      state.dataStatS = status;
     },
-    setVillagesUpdateStat: function setVillagesUpdateStat(state, status) {
-      state.villagesUpdateStat = status;
+    setUpdate: function setUpdate(state, data) {
+      state.update = data;
     },
-    setVillagesUpdate: function setVillagesUpdate(state, data) {
-      state.villagesUpdate = data;
+    setUpdateStat: function setUpdateStat(state, status) {
+      state.updateStat = status;
     },
-    setVillagesRules: function setVillagesRules(state, rules) {
-      state.villagesRules = rules;
+    setRules: function setRules(state, rules) {
+      state.rules = rules;
     },
-    setVillagesOption: function setVillagesOption(state, option) {
-      state.villagesOption = option;
-    }
-  },
-
-  getters: {
-    getVillagesS: function getVillagesS(state) {
-      return state.villagesS;
-    },
-    getVillagesLoadStatS: function getVillagesLoadStatS(state) {
-      return state.villagesLoadStatS;
-    },
-    getVillages: function getVillages(state) {
-      return state.villages;
-    },
-    getVillagesLoadStat: function getVillagesLoadStat(state) {
-      return state.villagesLoadStat;
-    },
-    getVillagesUpdateStat: function getVillagesUpdateStat(state) {
-      return state.villagesUpdateStat;
-    },
-    getVillagesUpdate: function getVillagesUpdate(state) {
-      return state.villagesUpdate;
-    },
-    getVillagesRules: function getVillagesRules(state) {
-      return state.villagesRules;
-    },
-    getVillagesOption: function getVillagesOption(state) {
-      return state.villagesOption;
+    setOptions: function setOptions(state, options) {
+      state.options = options;
     }
   }
 };
@@ -111037,39 +110623,39 @@ var villages = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  getVillagesS: function getVillagesS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  index: function index(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages', { params: p });
   },
 
-  getVillagesAll: function getVillagesAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages_all');
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/get');
   },
 
-  getVillages: function getVillages(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/' + id);
+  indexDistrics: function indexDistrics(p, id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/regencies/indexDistricts/' + id, { params: p });
   },
 
-  getVillagesDistricts: function getVillagesDistricts(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/districts/' + id);
+  getDistricts: function getDistricts(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/getDistricts/' + id);
   },
 
-  createVillages: function createVillages() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/create');
   },
 
-  storeVillages: function storeVillages(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/store', form);
   },
 
-  editVillages: function editVillages(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/edit/' + id);
   },
 
-  updateVillages: function updateVillages(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/update/' + id, form);
   },
 
-  deleteVillages: function deleteVillages(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/villages/' + id);
   }
 });
@@ -118116,7 +117702,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 		artikel: __WEBPACK_IMPORTED_MODULE_5__modules_artikel__["a" /* artikel */],
 		artikelKategori: __WEBPACK_IMPORTED_MODULE_6__modules_artikelKategori__["a" /* artikelKategori */],
 		artikelPenulis: __WEBPACK_IMPORTED_MODULE_7__modules_artikelPenulis__["a" /* artikelPenulis */],
-		CU: __WEBPACK_IMPORTED_MODULE_8__modules_cu__["a" /* CU */],
+		cu: __WEBPACK_IMPORTED_MODULE_8__modules_cu__["a" /* cu */],
 		pus: __WEBPACK_IMPORTED_MODULE_9__modules_pus__["a" /* pus */],
 		provinces: __WEBPACK_IMPORTED_MODULE_10__modules_provinces__["a" /* provinces */],
 		regencies: __WEBPACK_IMPORTED_MODULE_11__modules_regencies__["a" /* regencies */],
@@ -118792,7 +118378,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		collapseButton: __WEBPACK_IMPORTED_MODULE_3__components_collapseButton_vue___default.a,
 		checkValue: __WEBPACK_IMPORTED_MODULE_4__components_checkValue_vue___default.a
 	},
-	props: ['title', 'kelas', 'kelasVuex', 'userData', 'itemData', 'itemDataStat', 'updateMessage', 'updateStat'],
+	props: ['title', 'kelas', 'userData', 'itemData', 'itemDataStat', 'updateMessage', 'updateStat'],
 	data: function data() {
 		return {
 			source: '',
@@ -119062,7 +118648,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		fetch: function fetch() {
-			this.$store.dispatch(this.kelasVuex + '/index', this.params);
+			this.$store.dispatch(this.kelas + '/index', this.params);
 		},
 		selectedRow: function selectedRow(item) {
 			this.selectedItem = item;
@@ -119086,11 +118672,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		modalTutup: function modalTutup() {
 			this.modalShow = false;
-			this.$store.dispatch(this.kelasVuex + '/resetUpdateStat');
+			this.$store.dispatch(this.kelas + '/resetUpdateStat');
 		},
 		modalConfirmOk: function modalConfirmOk() {
 			if (this.source == 'hapus') {
-				this.$store.dispatch(this.kelasVuex + '/destroy', this.selectedItem.id);
+				this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 			}
 		}
 	},
@@ -120695,7 +120281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		appModal: __WEBPACK_IMPORTED_MODULE_1__components_modal___default.a,
 		checkValue: __WEBPACK_IMPORTED_MODULE_2__components_checkValue_vue___default.a
 	},
-	props: ['title', 'kelas', 'kelasVuex', 'userData', 'userDataStat', 'itemData', 'itemDataStat', 'updateMessage', 'updateStat', 'idCU', 'modelCUStat', 'modelPenulis', 'modelPenulisStat', 'modelKategori', 'modelKategoriStat'],
+	props: ['title', 'kelas', 'userData', 'userDataStat', 'itemData', 'itemDataStat', 'updateMessage', 'updateStat', 'idCU', 'modelCUStat', 'modelPenulis', 'modelPenulisStat', 'modelKategori', 'modelKategoriStat'],
 	data: function data() {
 		return {
 			source: '',
@@ -120831,7 +120417,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 				this.$store.dispatch('artikel/changeIdCU', this.modelKategori.idCU);
 
-				this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params, this.modelKategori.idCU]);
+				this.$store.dispatch('load' + this.kelas + 'CUS', [this.params, this.modelKategori.idCU]);
 			}
 		},
 		modelPenulisStat: function modelPenulisStat(value) {
@@ -120844,7 +120430,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 				this.$store.dispatch('artikel/changeIdCU', this.modelPenulis.idCU);
 
-				this.$store.dispatch('load' + this.kelasVuex + 'CUS', [this.params, this.modelPenulis.idCU]);
+				this.$store.dispatch('load' + this.kelas + 'CUS', [this.params, this.modelPenulis.idCU]);
 			}
 		},
 		updateStat: function updateStat(value) {
@@ -120866,7 +120452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		fetch: function fetch() {
 			if (this.modelCUStat === 'success') {
 				if (this.idCU === 'semua') {
-					this.$store.dispatch(this.kelasVuex + '/index', this.params);
+					this.$store.dispatch(this.kelas + '/index', this.params);
 					this.disableColumnCU(false);
 				} else {
 					if (this.idCU !== undefined) {
@@ -120875,17 +120461,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 							if (this.modelKategoriStat !== 'success') {
 								this.$store.dispatch('editArtikelKategori', this.$route.params.id);
 							} else {
-								this.$store.dispatch(this.kelasVuex + '/indexCU', [this.params, this.idCU]);
+								this.$store.dispatch(this.kelas + '/indexCU', [this.params, this.idCU]);
 							}
 						} else if (this.$route.meta.mode === 'penulis') {
 							//if artikelFilterPenulis
 							if (this.modelPenulisLoadStat !== 'success') {
 								this.$store.dispatch('editArtikelPenulis', this.$route.params.id);
 							} else {
-								this.$store.dispatch(this.kelasVuex + '/indexCU', [this.params, this.idCU]);
+								this.$store.dispatch(this.kelas + '/indexCU', [this.params, this.idCU]);
 							}
 						} else {
-							this.$store.dispatch(this.kelasVuex + '/indexCU', [this.params, this.idCU]);
+							this.$store.dispatch(this.kelas + '/indexCU', [this.params, this.idCU]);
 						}
 					}
 					this.disableColumnCU(true);
@@ -120934,15 +120520,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		modalTutup: function modalTutup() {
 			this.modalShow = false;
-			this.$store.dispatch(this.kelasVuex + '/resetUpdateStat');
+			this.$store.dispatch(this.kelas + '/resetUpdateStat');
 		},
 		modalConfirmOk: function modalConfirmOk() {
 			if (this.source == 'hapus') {
-				this.$store.dispatch(this.kelasVuex + '/delete', this.selectedItem.id);
+				this.$store.dispatch(this.kelas + '/delete', this.selectedItem.id);
 			} else if (this.source == "updateTerbitkan") {
-				this.$store.dispatch(this.kelasVuex + '/updateTerbitkan', this.selectedItem.id);
+				this.$store.dispatch(this.kelas + '/updateTerbitkan', this.selectedItem.id);
 			} else if (this.source == "updateUtamakan") {
-				this.$store.dispatch(this.kelasVuex + '/updateUtamakan', this.selectedItem.id);
+				this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
 			}
 		}
 	},
@@ -122015,11 +121601,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['idCU', 'userData', 'userDataStat', 'modelCU', 'modelCUStat'],
-	data: function data() {
-		return {
-			id_cu: ''
-		};
-	},
 	updated: function updated() {
 		$('.bootstrap-select').selectpicker('refresh');
 	},
@@ -122030,9 +121611,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	watch: {
-		idCU: function idCU(value) {
-			this.id_cu = value;
-		},
 		userDataStat: function userDataStat(value) {
 			if (value === "success" && this.userData.id_pus !== undefined) {
 				this.fetchCU();
@@ -122046,7 +121624,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		fetchCU: function fetchCU() {
-			this.$store.dispatch('CU/indexPus', this.userData.id_pus);
+			this.$store.dispatch('cu/getPus', this.userData.id_pus);
 		},
 		changeCU: function changeCU(id) {
 			this.$store.dispatch('artikel/changeIdCU', id);
@@ -122079,8 +121657,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.id_cu,
-                          expression: "id_cu"
+                          value: _vm.idCU,
+                          expression: "idCU"
                         }
                       ],
                       staticClass: "bootstrap-select",
@@ -122100,7 +121678,7 @@ var render = function() {
                                 var val = "_value" in o ? o._value : o.value
                                 return val
                               })
-                            _vm.id_cu = $event.target.multiple
+                            _vm.idCU = $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
                           },
@@ -122184,8 +121762,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.id_cu,
-                      expression: "id_cu"
+                      value: _vm.idCU,
+                      expression: "idCU"
                     }
                   ],
                   staticClass: "form-control",
@@ -122205,7 +121783,7 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.id_cu = $event.target.multiple
+                        _vm.idCU = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       },
@@ -122282,6 +121860,352 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2d260824", module.exports)
+  }
+}
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    template: '<textarea :name="name"></textarea>',
+    props: {
+        model: {
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        config: {
+            type: Object,
+            default: {}
+        }
+    },
+    mounted: function mounted() {
+        var vm = this;
+        var config = this.config;
+        config.callbacks = {
+            onInit: function onInit() {
+                $(vm.$el).summernote("code", '');
+            },
+            onChange: function onChange() {
+                vm.$emit('change', $(vm.$el).summernote('code'));
+            },
+            onBlur: function onBlur() {
+                vm.$emit('change', $(vm.$el).summernote('code'));
+            }
+        };
+        $(vm.$el).summernote(config);
+    },
+
+    watch: {
+        formStat: function formStat(value) {
+            $(this.$el).summernote("code", this.model);
+        }
+    },
+    computed: {
+        formStat: function formStat() {
+            return this.$store.getters.getArtikelLoadStat;
+        }
+    }
+};
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(395)
+/* template */
+var __vue_template__ = __webpack_require__(396)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/formButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-427cf926", Component.options)
+  } else {
+    hotAPI.reload("data-v-427cf926", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 395 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['batalRoute', 'formValidation']
+});
+
+/***/ }),
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "panel panel-flat" }, [
+      _c("div", { staticClass: "panel-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "text-center hidden-xs" },
+            [
+              _c(
+                "router-link",
+                {
+                  directives: [
+                    {
+                      name: "tooltip",
+                      rawName: "v-tooltip:top",
+                      value: "Batal",
+                      expression: "'Batal'",
+                      arg: "top"
+                    }
+                  ],
+                  staticClass: "btn btn-default",
+                  attrs: { type: "button", to: { name: _vm.batalRoute } }
+                },
+                [
+                  _c("i", { staticClass: "icon-arrow-left13" }),
+                  _vm._v(" Batal\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "tooltip",
+                      rawName: "v-tooltip:top",
+                      value: "Simpan Data",
+                      expression: "'Simpan Data'",
+                      arg: "top"
+                    }
+                  ],
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any(_vm.formValidation)
+                  }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "visible-xs" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block pb-5",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.errors.any(_vm.formValidation)
+                  }
+                },
+                [
+                  _c("i", { staticClass: "icon-floppy-disk" }),
+                  _vm._v(" Simpan")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-default btn-block",
+                  attrs: { type: "button", to: { name: _vm.batalRoute } }
+                },
+                [
+                  _c("i", { staticClass: "icon-arrow-left13" }),
+                  _vm._v(" Batal\n          ")
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-427cf926", module.exports)
+  }
+}
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(398)
+/* template */
+var __vue_template__ = __webpack_require__(399)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/formInfo.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-77f7efa9", Component.options)
+  } else {
+    hotAPI.reload("data-v-77f7efa9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 398 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: []
+});
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "well well-sm bg-info" }, [
+        _c("i", { staticClass: "icon-info22" }),
+        _vm._v(" Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-77f7efa9", module.exports)
   }
 }
 

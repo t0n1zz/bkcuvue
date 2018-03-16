@@ -10,19 +10,19 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCU/' + id, {params: p});
   },
 
-  createArtikel: function(){
+  create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/artikel/create');
   },
 
-  storeArtikel: function ( form ){
+  store: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/artikel/store', form);
   },
 
-  editArtikel: function( id ){
+  edit: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/artikel/edit/' + id);
   },
 
-  updateArtikel: function ( id, form ){
+  update: function ( id, form ){
     return axios.post(BKCU_CONFIG.API_URL + '/artikel/update/' + id, form);
   },
 
@@ -34,7 +34,7 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/artikel/updateUtamakan/' + id);
   },
 
-  deleteArtikel: function( id ){
+  destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/artikel/' + id);
   }
 }

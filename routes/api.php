@@ -62,8 +62,8 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     // cu
     Route::group(['middleware' => ['permission:index cu']], function () {
         Route::get('/cu', 'CUController@index');
-        Route::get('/cu/indexAll', 'CUController@indexAll');
-        Route::get('/cu/pus/{id}', 'CUController@indexPus');
+        Route::get('/cu/get', 'CUController@get');
+        Route::get('/cu/getPus/{id}', 'CUController@getPus');
     });
     Route::group(['middleware' => ['permission:create cu']], function () {
         Route::get('/cu/create', 'CUController@create');
@@ -84,7 +84,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //provinces
     Route::get('/provinces', 'ProvincesController@index');
-    Route::get('/provinces/indexAll', 'ProvincesController@indexAll');
+    Route::get('/provinces/get', 'ProvincesController@get');
     Route::get('/provinces/create', 'ProvincesController@create');
     Route::get('/provinces/edit/{id}', 'ProvincesController@edit');
     Route::post('/provinces/store', 'ProvincesController@store');
@@ -93,9 +93,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //regencies
     Route::get('/regencies', 'RegenciesController@index');
-    Route::get('/regencies/indexAll', 'RegenciesController@indexAll');
+    Route::get('/regencies/get', 'RegenciesController@get');
     Route::get('/regencies/indexProvinces/{id}', 'RegenciesController@indexProvinces');
-    Route::get('/regencies/provinces/{id}', 'RegenciesController@getProvinces');
+    Route::get('/regencies/getProvinces/{id}', 'RegenciesController@getProvinces');
     Route::get('/regencies/create', 'RegenciesController@create');
     Route::get('/regencies/edit/{id}', 'RegenciesController@edit');
     Route::post('/regencies/store', 'RegenciesController@store');
@@ -104,9 +104,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //districts
     Route::get('/districts', 'DistrictsController@index');
-    Route::get('/districts/indexAll', 'DistrictsController@indexAll');
+    Route::get('/districts/get', 'DistrictsController@get');
     Route::get('/districts/indexRegencies/{id}', 'DistrictsController@indexRegencies');
-    Route::get('/districts/regencies/{id}', 'DistrictsController@getRegencies');
+    Route::get('/districts/getRegencies/{id}', 'DistrictsController@getRegencies');
     Route::get('/districts/create', 'DistrictsController@create');
     Route::get('/districts/edit/{id}', 'DistrictsController@edit');
     Route::post('/districts/store', 'DistrictsController@store');
@@ -115,9 +115,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //villages
     Route::get('/villages', 'VillagesController@index');
-    Route::get('/villages/indexAll', 'VillagesController@indexAll');
+    Route::get('/villages/get', 'VillagesController@get');
     Route::get('/villages/indexDistricts/{id}', 'VillagesController@indexDistricts');
-    Route::get('/villages/districts/{id}', 'VillagesController@getDistricts');
+    Route::get('/villages/getDistricts/{id}', 'VillagesController@getDistricts');
     Route::get('/villages/create', 'VillagesController@create');
     Route::get('/villages/edit/{id}', 'VillagesController@edit');
     Route::post('/villages/store', 'VillagesController@store');

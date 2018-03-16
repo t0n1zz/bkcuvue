@@ -6,12 +6,12 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL +  '/cu' , {params: p});
   },
 
-  indexAll: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/cu/indexAll');
+  get: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/get');
   },
 
-  indexPus: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/cu/pus/' + id);
+  getPus: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/getPus/' + id);
   },
 
   create: function(){

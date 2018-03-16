@@ -1,247 +1,218 @@
 import RegenciesAPI from '../../api/regencies.js';
 
 export const regencies = {
+  namespaced: true,
+
+  // state
   state: {
-    regenciesS: [],
-    regenciesLoadStatS: '',
-    regencies: {},
-    regenciesLoadStat: '',
-    regenciesUpdate: '',
-    regenciesUpdateStat: '',
-    regenciesRules: [],
-    regenciesOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-
-    // load all
-    loadRegenciesS( { commit }, p ){
-      commit('setRegenciesLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      RegenciesAPI.getRegenciesS( p )
+      RegenciesAPI.index( p )
         .then( function( response ){
-          commit('setRegenciesS', response.data.model);
-          commit('setRegenciesLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setRegenciesS', error.response);
-          commit('setRegenciesLoadStatS', 'fail');
-        });
-    },
-    loadRegenciesAll( { commit } ){
-      commit('setRegenciesLoadStatS', 'loading');
-      
-      RegenciesAPI.getRegenciesAll()
-        .then( function( response ){
-          commit('setRegenciesS', response.data.model);
-          commit('setRegenciesLoadStatS', 'success');
-        })
-        .catch( function(){
-          commit('setRegenciesS', []);
-          commit('setRegenciesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load by provinces
-    loadRegenciesProvinces( {commit}, id ){
-      commit('setRegenciesLoadStat', 'loading');
+    indexProvinces( {commit}, [p, id] ){
+      commit('setDataStatS', 'loading');
       
-      RegenciesAPI.getRegenciesProvinces( id )
+      RegenciesAPI.indexProvinces( p, id )
         .then( function( response ){
-          commit('setRegenciesS', response.data.model);
-          commit('setRegenciesLoadStatS', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setRegenciesS', error.response);
-          commit('setRegenciesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadRegencies( {commit}, id ){
-      commit('setRegenciesLoadStat', 'loading');
+    //load collection without params
+    get( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      RegenciesAPI.getRegencies( id )
+      RegenciesAPI.get()
         .then( function( response ){
-          commit('setRegencies', response.data );
-          commit('setRegenciesLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setRegenciesS', error.response);
-          commit('setRegenciesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // create data
-    createRegencies( {commit} ){
-      commit('setRegenciesLoadStat', 'loading');
+    getProvinces( { commit }, id ){
+      commit('setDataStatS', 'loading');
       
-      RegenciesAPI.createRegencies()
+      RegenciesAPI.getProvinces( id )
         .then( function( response ){
-          commit('setRegencies', response.data.form );
-          commit('setRegenciesRules', response.data.rules);
-          commit('setRegenciesOption', response.data.option)
-          commit('setRegenciesLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
-        .catch( function(){
-          commit('setRegencies', []);
-          commit('setRegenciesRules', []);
-          commit('setRegenciesOption', [])
-          commit('setRegenciesLoadStat', 'fail');
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // store data
-    storeRegencies( {commit, state, dispatch}, form ){
-      commit('setRegenciesUpdateStat', 'loading');
+    // create page
+    create( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      RegenciesAPI.create()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
 
-      RegenciesAPI.storeRegencies( form )
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      RegenciesAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setRegenciesUpdate', response.data);
-            commit('setRegenciesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setRegenciesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setRegenciesUpdate', this.errors);         
-          }else{
-            commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setRegenciesUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editRegencies( {commit}, id ){
-      commit('setRegenciesLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      RegenciesAPI.editRegencies( id )
+      RegenciesAPI.edit( id )
         .then( function( response ){
-          commit('setRegencies', response.data.form );
-          commit('setRegenciesRules', response.data.rules);
-          commit('setRegenciesOption', response.data.option)
-          commit('setRegenciesLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setRegencies', []);
-          commit('setRegenciesRules', []);
-          commit('setRegenciesOption', [])
-          commit('setRegenciesLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateRegencies( {commit, state, dispatch}, [id, form] ){
-      commit('setRegenciesUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      RegenciesAPI.updateRegencies( id, form )
+      RegenciesAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setRegenciesUpdate', response.data);
-            commit('setRegenciesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setRegenciesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setRegenciesUpdate', this.errors);         
-          }else{
-            commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setRegenciesUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    deleteRegencies( {commit, state, dispatch}, id ){
-      commit('setRegenciesUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      RegenciesAPI.deleteRegencies( id )
+      RegenciesAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setRegenciesUpdate', response.data);
-            commit('setRegenciesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setRegenciesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setRegenciesUpdate', this.errors);         
-          }else{
-            commit('setRegenciesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setRegenciesUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // reset status
-    resetRegenciesUpdateStat( {commit} ){
-      commit('setRegenciesUpdateStat', '');
-    },
-    resetRegenciesLoadStat( {commit} ){
-      commit('setRegenciesLoadStat', '');
+    // reset
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setRegenciesS ( state, regenciesS ){
-      state.regenciesS = regenciesS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setRegenciesLoadStatS( state, status ){
-      state.regenciesLoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setRegencies ( state, regencies ){
-      state.regencies = regencies;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setRegenciesLoadStat( state, status ){
-      state.regenciesLoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setRegenciesUpdateStat( state, status ){
-      state.regenciesUpdateStat = status;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setRegenciesUpdate( state, data ){
-      state.regenciesUpdate = data;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setRegenciesRules( state, rules ){
-      state.regenciesRules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setRegenciesOption( state, option ){
-      state.regenciesOption = option;
-    }
-  },
-
-  getters: {
-    getRegenciesS( state ){
-      return state.regenciesS;
-    },
-    getRegenciesLoadStatS ( state ){
-      return state.regenciesLoadStatS;
-    },
-    getRegencies( state ){
-      return state.regencies;
-    },
-    getRegenciesLoadStat ( state ){
-      return state.regenciesLoadStat;
-    },
-    getRegenciesUpdateStat ( state ){
-      return state.regenciesUpdateStat;
-    },
-    getRegenciesUpdate ( state ){
-      return state.regenciesUpdate;
-    },
-    getRegenciesRules ( state ){
-      return state.regenciesRules;
-    },
-    getRegenciesOption ( state ){
-      return state.regenciesOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

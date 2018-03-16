@@ -12,7 +12,8 @@
 		:btn2Route="btn2Header.route" 
 		:btn2Title="btn2Header.title" 
 		:btn2Icon="btn2Header.icon"
-		:btn2Can="btn2Header.can" ></page-header>
+		:btn2Can="btn2Header.can" 
+		:userData="userData"></page-header>
 		
 		<!-- page container -->
 		<div class="page-container">
@@ -36,8 +37,7 @@
 					<!-- table data -->
 					<table-data 
 						:title="title" 
-						:kelas="kelas" 
-						:kelasVuex="kelasVuex"
+						:kelas="kelas"
 						:userData="userData"
 						:userDataStat="userDataStat"
 						:itemData="itemData"
@@ -78,7 +78,6 @@
 			return {
 				title: 'Artikel',
 				kelas: 'artikel',
-				kelasVuex: 'artikel',
 				titleDesc: 'Mengelola data artikel',
 				titleIcon: 'icon-magazine',
 				btn1Header: {
@@ -88,7 +87,7 @@
 					can: 'index artikelKategori'
 				},
 				btn2Header: {
-					route: 'artikePenulis',
+					route: 'artikelPenulis',
 					icon: 'icon-pencil6',
 					title: 'Penulis Artikel',
 					can: 'index artikelPenulis'
@@ -116,7 +115,7 @@
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),
-			...mapGetters('CU',{
+			...mapGetters('cu',{
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
 				updateMessage: 'update',

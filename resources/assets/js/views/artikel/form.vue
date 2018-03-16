@@ -1,41 +1,24 @@
 <template>
 	<div>
-		<!-- header -->
-		<div class="page-header">
-			<div class="page-header-content has-visible-elements">
-				<div class="page-title">
-					<h4>
-						<i class="position-left" :class="titleIcon"></i>
-						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
-						<ul class="breadcrumb breadcrumb-caret position-right">
-							<router-link :to="{ name:'dashboard' }" tag="li">
-								<a>Dashboard</a>
-							</router-link>
-							<router-link :to="{ name: kelas }" tag="li">
-								<a>Artikel</a>
-							</router-link>
-							<li class="active">{{ title }}</li>
-						</ul>
-				</div>
-			</div>
-		</div>
+		<!-- page-header -->
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message :show="errors.any('form')" :class="'bg-danger'" v-if="submited">
-						<h4><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan</h4>
-						<ul>
-							<li v-for="error in errors.items">{{error.msg}}</li>
-						</ul>
+					<message v-if="errors.any('form') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
 					<!-- main panel -->
-					<div class="panel panel-flat">
-						<div class="panel-body">
-							<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+
+						<!-- main form -->
+						<div class="panel panel-flat border-left-xlg border-left-info">
+							<div class="panel-body">
+								
 								<div class="row">
 
 									<!-- name -->
@@ -95,7 +78,7 @@
 											</h5>
 
 											<!-- loading -->
-											<div v-if="modelPenulisLoadStat === 'loading'">
+											<div v-if="modelPenulisStat === 'loading'">
 													<i class="icon-spinner spinner"></i>
 											</div>
 
@@ -108,7 +91,9 @@
 														<option disabled value="">
 															<span v-if="form.id_cu !== 0 && modelPenulis.length === 0">Silahkan tambah penulis baru</span>
 															<span v-else-if="form.id_cu === 0">Silahkan pilih CU terlebih dahulu</span>
-															<span v-else>Silahkan pilih penulis</span>
+															<span v-else>
+																Silahkan pilih penulis
+															</span>
 														</option>
 														<option data-divider="true"></option>
 														<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.name}}</option>
@@ -142,7 +127,7 @@
 											</h5>
 
 											<!-- loading -->
-											<div v-if="modelKategoriLoadStat === 'loading'">
+											<div v-if="modelKategoriStat === 'loading'">
 													<i class="icon-spinner spinner"></i>
 											</div>
 
@@ -267,38 +252,21 @@
 										</div>
 									</div>
 								</div>
-
-								<!-- separator -->
-								<div class="col-md-12"><br/></div>
-
-								<!-- confirmation -->
-								<div class="form-group">
-									<div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
-								</div>
-
-								<!-- separator -->
-								<div class="col-md-12"><hr/></div>
-
-								<!-- tombol desktop-->
-								<div class="text-right hidden-xs">
-									<router-link type="button" :to="{ name: kelas }" class="btn btn-default" v-tooltip:top="'Batal'">
-										<i class="icon-arrow-left13"></i> Batal
-									</router-link>
-									<button type="submit" class="btn btn-primary" :disabled="errors.any('form')" v-tooltip:top="'Simpan Data'">
-										<i class="icon-floppy-disk"></i> Simpan</button>
-								</div>
-
-								<!-- tombol mobile-->
-								<div class="visible-xs">
-									<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form')">
-										<i class="icon-floppy-disk"></i> Simpan</button>
-									<router-link type="button" :to="{ name: kelas}" class="btn btn-default btn-block">
-										<i class="icon-arrow-left13"></i> Batal
-									</router-link>
-								</div>
-							</form>
+								
+							</div>
 						</div>
-					</div>
+
+						<!-- form info -->
+						<form-info></form-info>	
+						<br/>
+
+						<!-- form button -->
+						<form-button
+							:batalRoute="kelas"
+							:formValidation="'form'"></form-button>
+
+					</form>
+
 				</div>
 			</div>
 		</div>
@@ -475,29 +443,36 @@
 <script>
 	import Vue from 'vue';
 	import axios from 'axios';
+	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
+	import pageHeader from "../../components/pageHeader.vue";
 	import {
 		toMulipartedForm
 	} from '../../helpers/form';
-	import appSummernote from '../../modules/summernote.js';
+	import appSummernote from '../../helpers/summernote.js';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
+	import formButton from "../../components/formButton.vue";
+	import formInfo from "../../components/formInfo.vue";
 
 	export default {
 		components: {
+			pageHeader,
 			appModal,
 			appSummernote,
 			appImageUpload,
-			message
+			message,
+			formButton,
+			formInfo
 		},
 		data() {
 			return {
 				title: 'Tambah Artikel',
 				titleDesc: 'Menambah artikel baru',
 				titleIcon: 'icon-plus3',
+				level2Title: 'Artikel',
 				kelas: 'artikel',
-				kelasVuex: 'Artikel',
 				redirect: '/artikel/',
 				formKategori: {
 					id_cu: '',
@@ -546,6 +521,9 @@
 				submitedPenulis: false
 			}
 		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => vm.fetch());
+		},
 		mounted() {
 			corefunc.core_function();
 			this.other();
@@ -553,14 +531,15 @@
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
 		},
-		created(){
-			this.fetch();
-		},
 		watch: {
 			userDataStat(value){ //jika refresh halaman maka reload userData
 				if(value === "success"){
 					if(this.userData.id_cu === 0){
-						this.$store.dispatch('loadCUPus',this.userData.id_pus);
+						this.$store.dispatch('cu/getPus',this.userData.id_pus);
+					}
+					if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
+						this.form.id_cu = this.userData.id_cu;
+						this.changeCU(this.userData.id_cu);
 					}
 				}
 			},
@@ -569,7 +548,9 @@
 					if(this.$route.meta.mode !== 'edit'){
 						this.form.id_cu = this.userData.id_cu;
 					}
-					this.changeCU(this.form.id_cu);
+					if(this.form.id_cu !== undefined){
+						this.changeCU(this.form.id_cu);
+					}	
 				}
 			},
 			updateStat(value){
@@ -614,16 +595,16 @@
 		methods: {
 			fetch(){
 				if(this.userData.id_cu === 0){
-					this.$store.dispatch('loadCUPus',this.userData.id_pus);
+					this.$store.dispatch('cu/getPus',this.userData.id_pus);
 				}
 
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch('edit' + this.kelasVuex,this.$route.params.id);	
+					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 					this.title = 'Ubah Artikel';
 					this.titleDesc = 'Mengubah artikel';
 					this.titleIcon = 'icon-pencil5';
 				} else {
-					this.$store.dispatch('create' + this.kelasVuex);
+					this.$store.dispatch(this.kelas + '/create');
 				}
 			},
 			save() {
@@ -631,9 +612,9 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch('update' + this.kelasVuex, [this.$route.params.id, formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
-							this.$store.dispatch('store' + this.kelasVuex, formData);
+							this.$store.dispatch(this.kelas + '/store', formData);
 						}
 						this.submited = false;
 					}else{
@@ -715,30 +696,22 @@
 			}
 		},
 		computed: {
-			userData(){
-				return this.$store.getters.getUserData;
-			},
-			userDataStat(){
-				return this.$store.getters.getUserDataLoadStat;
-			},
-			form(){
-				return this.$store.getters.getArtikel;
-			},
-			formStat(){
-				return this.$store.getters.getArtikelLoadStat;
-			},
-			rules(){
-				return this.$store.getters.getArtikelRules;
-			},
-			option(){
-				return this.$store.getters.getArtikelOption;
-			},
-			updateResponse(){
-				return this.$store.getters.getArtikelUpdate;
-			},
-			updateStat(){
-				return this.$store.getters.getArtikelUpdateStat;
-			},
+			...mapGetters('user',{
+				userData: 'data',
+				userDataStat: 'dataStat'
+			}),
+			...mapGetters('artikel',{
+				form: 'data',
+				formStat: 'dataStat',
+				rules: 'rules',
+				options: 'options',
+				updateResponse: 'update',
+				updateStat: 'updateStat'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'dataS',
+				modelCUStat: 'dataStatS',
+			}),
 			updateKategoriResponse(){
 				return this.$store.getters.getArtikelKategoriUpdate;
 			},
@@ -754,22 +727,16 @@
 			modelPenulis() {
 				return this.$store.getters.getArtikelPenulisS;
 			},
-			modelPenulisLoadStat() {
+			modelPenulisStat() {
 				return this.$store.getters.getArtikelPenulisLoadStatS;
 			},
 			modelPus() {
 				return this.$store.getters.getPusS;
 			},
-			modelCU() {
-				return this.$store.getters.getCUS;
-			},
-			modelCULoadStat() {
-				return this.$store.getters.getCULoadStatS;
-			},
 			modelKategori() {
 				return this.$store.getters.getArtikelKategoriS;
 			},
-			modelKategoriLoadStat() {
+			modelKategoriStat() {
 				return this.$store.getters.getArtikelKategoriLoadStatS;
 			}
 		}

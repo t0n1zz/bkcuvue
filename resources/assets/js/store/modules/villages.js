@@ -1,247 +1,218 @@
 import VillagesAPI from '../../api/villages.js';
 
 export const villages = {
+  namespaced: true,
+
+  // state
   state: {
-    villagesS: [],
-    villagesLoadStatS: '',
-    villages: {},
-    villagesLoadStat: '',
-    villagesUpdate: '',
-    villagesUpdateStat: '',
-    villagesRules: [],
-    villagesOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-
-    // load all
-    loadVillagesS( { commit }, p ){
-      commit('setVillagesLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      VillagesAPI.getVillagesS( p )
+      VillagesAPI.index( p )
         .then( function( response ){
-          commit('setVillagesS', response.data.model);
-          commit('setVillagesLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setVillagesS', error.response);
-          commit('setVillagesLoadStatS', 'fail');
-        });
-    },
-    loadVillagesAll( { commit } ){
-      commit('setVillagesLoadStatS', 'loading');
-      
-      VillagesAPI.getVillagesAll()
-        .then( function( response ){
-          commit('setVillagesS', response.data.model);
-          commit('setVillagesLoadStatS', 'success');
-        })
-        .catch( function(){
-          commit('setVillagesS', []);
-          commit('setVillagesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load by districts
-    loadVillagesDistricts( {commit}, id ){
-      commit('setVillagesLoadStat', 'loading');
+    indexDistricts( {commit}, [p, id] ){
+      commit('setDataStatS', 'loading');
       
-      VillagesAPI.getVillagesDistricts( id )
+      VillagesAPI.indexDistricts( p, id )
         .then( function( response ){
-          commit('setVillagesS', response.data.model);
-          commit('setVillagesLoadStatS', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setVillagesS', error.response);
-          commit('setVillagesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadVillages( {commit}, id ){
-      commit('setVillagesLoadStat', 'loading');
+    //load collection without params
+    get( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      VillagesAPI.getVillages( id )
+      VillagesAPI.get()
         .then( function( response ){
-          commit('setVillages', response.data );
-          commit('setVillagesLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setVillagesS', error.response);
-          commit('setVillagesLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // create data
-    createVillages( {commit} ){
-      commit('setVillagesLoadStat', 'loading');
+    getDistricts( { commit }, id ){
+      commit('setDataStatS', 'loading');
       
-      VillagesAPI.createVillages()
+      VillagesAPI.getDistricts( id )
         .then( function( response ){
-          commit('setVillages', response.data.form );
-          commit('setVillagesRules', response.data.rules);
-          commit('setVillagesOption', response.data.option)
-          commit('setVillagesLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
-        .catch( function(){
-          commit('setVillages', []);
-          commit('setVillagesRules', []);
-          commit('setVillagesOption', [])
-          commit('setVillagesLoadStat', 'fail');
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // store data
-    storeVillages( {commit, state, dispatch}, form ){
-      commit('setVillagesUpdateStat', 'loading');
+    // create page
+    create( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      VillagesAPI.create()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
 
-      VillagesAPI.storeVillages( form )
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      VillagesAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setVillagesUpdate', response.data);
-            commit('setVillagesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setVillagesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setVillagesUpdate', this.errors);         
-          }else{
-            commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setVillagesUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editVillages( {commit}, id ){
-      commit('setVillagesLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      VillagesAPI.editVillages( id )
+      VillagesAPI.edit( id )
         .then( function( response ){
-          commit('setVillages', response.data.form );
-          commit('setVillagesRules', response.data.rules);
-          commit('setVillagesOption', response.data.option)
-          commit('setVillagesLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setVillages', []);
-          commit('setVillagesRules', []);
-          commit('setVillagesOption', [])
-          commit('setVillagesLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateVillages( {commit, state, dispatch}, [id, form] ){
-      commit('setVillagesUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      VillagesAPI.updateVillages( id, form )
+      VillagesAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setVillagesUpdate', response.data);
-            commit('setVillagesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setVillagesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setVillagesUpdate', this.errors);         
-          }else{
-            commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setVillagesUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    deleteVillages( {commit, state, dispatch}, id ){
-      commit('setVillagesUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      VillagesAPI.deleteVillages( id )
+      VillagesAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setVillagesUpdate', response.data);
-            commit('setVillagesUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setVillagesUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setVillagesUpdate', this.errors);         
-          }else{
-            commit('setVillagesUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setVillagesUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // reset status
-    resetVillagesUpdateStat( {commit} ){
-      commit('setVillagesUpdateStat', '');
-    },
-    resetVillagesLoadStat( {commit} ){
-      commit('setVillagesLoadStat', '');
+    // reset
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setVillagesS ( state, villagesS ){
-      state.villagesS = villagesS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setVillagesLoadStatS( state, status ){
-      state.villagesLoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setVillages ( state, villages ){
-      state.villages = villages;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setVillagesLoadStat( state, status ){
-      state.villagesLoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setVillagesUpdateStat( state, status ){
-      state.villagesUpdateStat = status;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setVillagesUpdate( state, data ){
-      state.villagesUpdate = data;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setVillagesRules( state, rules ){
-      state.villagesRules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setVillagesOption( state, option ){
-      state.villagesOption = option;
-    }
-  },
-
-  getters: {
-    getVillagesS( state ){
-      return state.villagesS;
-    },
-    getVillagesLoadStatS ( state ){
-      return state.villagesLoadStatS;
-    },
-    getVillages( state ){
-      return state.villages;
-    },
-    getVillagesLoadStat ( state ){
-      return state.villagesLoadStat;
-    },
-    getVillagesUpdateStat ( state ){
-      return state.villagesUpdateStat;
-    },
-    getVillagesUpdate ( state ){
-      return state.villagesUpdate;
-    },
-    getVillagesRules ( state ){
-      return state.villagesRules;
-    },
-    getVillagesOption ( state ){
-      return state.villagesOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

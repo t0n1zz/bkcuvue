@@ -18,7 +18,7 @@ class RegenciesController extends Controller{
 			]);
 	}
 
-	public function indexAll()
+	public function get()
 	{
 		$table_data = Regencies::orderby('name','asc')->get();
 

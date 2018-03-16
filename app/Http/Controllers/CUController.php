@@ -24,7 +24,7 @@ class CUController extends Controller{
 		]);
 	}
 
-	public function indexAll()
+	public function get()
 	{
 		$table_data = CU::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
 
@@ -34,7 +34,7 @@ class CUController extends Controller{
 			]);
   }
   
-  public function indexPus($id)
+  public function getPus($id)
 	{
 		$table_data = CU::where('id_pus','=',$id)->select('id','name')->orderby('name','asc')->get();
 

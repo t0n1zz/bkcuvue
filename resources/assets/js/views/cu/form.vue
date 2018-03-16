@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- header -->
+		<!-- page-header -->
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
 
 		<!-- content -->
@@ -229,24 +229,15 @@
 												Kabupaten:
 											</h5>
 
-											<!-- loading -->
-											<div v-if="modelRegenciesLoadStat === 'loading'">
-													<i class="icon-spinner spinner"></i>
-											</div>
-
-											<!-- success -->
-											<div v-else>
-
-													<!-- select -->
-													<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
-														<option disabled value="">
-															<span>Silahkan pilih kabupaten</span>
-														</option>
-														<option data-divider="true"></option>
-														<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
-													</select>
-
-											</div>
+											<!-- select -->
+											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+												<option disabled value="">
+													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-else>Silahkan pilih kabupaten</span>
+												</option>
+												<option data-divider="true"></option>
+												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+											</select>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
@@ -266,24 +257,15 @@
 												Kecamatan:
 											</h5>
 
-											<!-- loading -->
-											<div v-if="modelDistrictsLoadStat === 'loading'">
-													<i class="icon-spinner spinner"></i>
-											</div>
-
-											<!-- success -->
-											<div v-else>
-
-													<!-- select -->
-													<select class="bootstrap-select"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
-														<option disabled value="">
-															<span>Silahkan pilih kecamatan</span>
-														</option>
-														<option data-divider="true"></option>
-														<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
-													</select>
-
-											</div>
+											<!-- select -->
+											<select class="bootstrap-select"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+												<option disabled value="">
+													<span v-if="modelDistrictsStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-else>Silahkan pilih kecamatan</span>
+												</option>
+												<option data-divider="true"></option>
+												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
+											</select>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_regency')">
@@ -303,24 +285,15 @@
 												Kelurahan:
 											</h5>
 
-											<!-- loading -->
-											<div v-if="modelVillagesLoadStat === 'loading'">
-													<i class="icon-spinner spinner"></i>
-											</div>
-
-											<!-- success -->
-											<div v-else>
-
-													<!-- select -->
-													<select class="bootstrap-select"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
-														<option disabled value="">
-															<span>Silahkan pilih kelurahan</span>
-														</option>
-														<option data-divider="true"></option>
-														<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
-													</select>
-
-											</div>
+											<!-- select -->
+											<select class="bootstrap-select"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
+												<option disabled value="">
+													<span v-if="modelVillagesStat === 'loading'"><i class="icon-spinner spinner"></i> mohon tunggu</span>
+													<span v-else>Silahkan pilih kelurahan</span>
+												</option>
+												<option data-divider="true"></option>
+												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
+											</select>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_villages')">
@@ -575,34 +548,14 @@
 							</div>
 						</div>
 
-						<div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
+						<!-- form info -->
+						<form-info></form-info>	
 						<br/>
-						<!-- tombol -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								
-								<div class="row">
-									<!-- tombol desktop-->
-									<div class="text-center hidden-xs">
-										<router-link type="button" :to="{ name: kelas }" class="btn btn-default" v-tooltip:top="'Batal'">
-											<i class="icon-arrow-left13"></i> Batal
-										</router-link>
-										<button type="submit" class="btn btn-primary" :disabled="errors.any('form')" v-tooltip:top="'Simpan Data'">
-											<i class="icon-floppy-disk"></i> Simpan</button>
-									</div>
 
-									<!-- tombol mobile-->
-									<div class="visible-xs">
-										<button type="submit" class="btn btn-primary btn-block pb-5" :disabled="errors.any('form')">
-											<i class="icon-floppy-disk"></i> Simpan</button>
-										<router-link type="button" :to="{ name: kelas }" class="btn btn-default btn-block">
-											<i class="icon-arrow-left13"></i> Batal
-										</router-link>
-									</div>
-									
-								</div>
-							</div>
-						</div>
+						<!-- form button -->
+						<form-button
+							:batalRoute="kelas"
+							:formValidation="'form'"></form-button>
 
 					</form>
 				</div>
@@ -628,6 +581,8 @@
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
+	import formButton from "../../components/formButton.vue";
+	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
 
 	export default {
@@ -636,6 +591,8 @@
 			appModal,
 			appImageUpload,
 			message,
+			formButton,
+			formInfo,
 			Cleave
 		},
 		data() {
@@ -645,7 +602,6 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'CU',
 				kelas: 'cu',
-				kelasVuex: 'CU',
 				redirect: '/cu/',
 				cleaveOption: {
           date:{
@@ -720,27 +676,27 @@
 		methods: {
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch(this.kelasVuex + '/edit',this.$route.params.id);	
+					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 					this.title = 'Ubah CU';
 					this.titleDesc = 'Mengubah CU';
 					this.titleIcon = 'icon-pencil5';
 				} else {
-					this.$store.dispatch(this.kelasVuex + '/create');
+					this.$store.dispatch(this.kelas + '/create');
 					this.title = 'Tambah CU';
 					this.titleDesc = 'Menambah CU';
 					this.titleIcon = 'icon-plus3';
 				}
 
-				this.$store.dispatch('loadProvincesAll');
+				this.$store.dispatch('provinces/get');
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch('update' + this.kelasVuex, [this.$route.params.id, formData]);
+							this.$store.dispatch('update' + this.kelas, [this.$route.params.id, formData]);
 						}else{
-						this.$store.dispatch('store' + this.kelasVuex, formData);
+						this.$store.dispatch('store' + this.kelas, formData);
 					}
 						this.submited = false;
 					}else{
@@ -750,13 +706,13 @@
 				});
 			},
 			changeProvinces(id){
-				this.$store.dispatch('loadRegenciesProvinces', id);
+				this.$store.dispatch('regencies/getProvinces', id);
 			},
 			changeRegencies(id){
-				this.$store.dispatch('loadDistrictsRegencies', id);
+				this.$store.dispatch('districts/getRegencies', id);
 			},
 			changeDistricts(id){
-				this.$store.dispatch('loadVillagesDistricts', id);
+				this.$store.dispatch('villages/getDistricts', id);
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
@@ -786,48 +742,34 @@
 			}
 		},
 		computed: {
-			...mapGetters('CU',{
+			...mapGetters('cu',{
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',
 				options: 'options',
+				updateResponse: 'update',
+				updateStat: 'updateStat'
 			}),
-			userData(){
-				return this.$store.getters.getUserData;
-			},
-			userDataStat(){
-				return this.$store.getters.getUserDataLoadStat;
-			},
-			updateResponse(){
-				return this.$store.getters.getCUUpdate;
-			},
-			updateStat(){
-				return this.$store.getters.getCUUpdateStat;
-			},
-			modelProvinces() {
-				return this.$store.getters.getProvincesS;
-			},
-			modelProvincesLoadStat() {
-				return this.$store.getters.getProvincesLoadStatS;
-			},
-			modelRegencies() {
-				return this.$store.getters.getRegenciesS;
-			},
-			modelRegenciesLoadStat() {
-				return this.$store.getters.getRegenciesLoadStatS;
-			},
-			modelDistricts() {
-				return this.$store.getters.getDistrictsS;
-			},
-			modelDistrictsLoadStat() {
-				return this.$store.getters.getDistrictsLoadStatS;
-			},
-			modelVillages() {
-				return this.$store.getters.getVillagesS;
-			},
-			modelVillagesLoadStat() {
-				return this.$store.getters.getVillagesLoadStatS;
-			}
+			...mapGetters('user',{
+				userData: 'data',
+				userDataStat: 'dataStat'
+			}),
+			...mapGetters('provinces',{
+				modelProvinces: 'dataS',
+				modelProvincesStat: 'dataStatS'
+			}),
+			...mapGetters('regencies',{
+				modelRegencies: 'dataS',
+				modelRegenciesStat: 'dataStatS'
+			}),
+			...mapGetters('districts',{
+				modelDistricts: 'dataS',
+				modelDistrictsStat: 'dataStatS'
+			}),
+			...mapGetters('villages',{
+				modelVillages: 'dataS',
+				modelVillagesStat: 'dataStatS'
+			})
 		}
 	}
 </script>

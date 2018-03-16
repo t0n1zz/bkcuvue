@@ -1,247 +1,218 @@
 import DistrictsAPI from '../../api/districts.js';
 
 export const districts = {
+  namespaced: true,
+
+  // state
   state: {
-    districtsS: [],
-    districtsLoadStatS: '',
-    districts: {},
-    districtsLoadStat: '',
-    districtsUpdate: '',
-    districtsUpdateStat: '',
-    districtsRules: [],
-    districtsOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-
-    // load all
-    loadDistrictsS( { commit }, p ){
-      commit('setDistrictsLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      DistrictsAPI.getDistrictsS( p )
+      DistrictsAPI.index( p )
         .then( function( response ){
-          commit('setDistrictsS', response.data.model);
-          commit('setDistrictsLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setDistrictsS', error.response);
-          commit('setDistrictsLoadStatS', 'fail');
-        });
-    },
-    loadDistrictsAll( { commit } ){
-      commit('setDistrictsLoadStatS', 'loading');
-      
-      DistrictsAPI.getDistrictsAll()
-        .then( function( response ){
-          commit('setDistrictsS', response.data.model);
-          commit('setDistrictsLoadStatS', 'success');
-        })
-        .catch( function(){
-          commit('setDistrictsS', []);
-          commit('setDistrictsLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load by regencies
-    loadDistrictsRegencies( {commit}, id ){
-      commit('setDistrictsLoadStat', 'loading');
+    indexRegencies( {commit}, [p, id] ){
+      commit('setDataStatS', 'loading');
       
-      DistrictsAPI.getDistrictsRegencies( id )
+      DistrictsAPI.indexRegencies( p, id )
         .then( function( response ){
-          commit('setDistrictsS', response.data.model);
-          commit('setDistrictsLoadStatS', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setDistrictsS', error.response);
-          commit('setDistrictsLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadDistricts( {commit}, id ){
-      commit('setDistrictsLoadStat', 'loading');
+    //load collection without params
+    get( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      DistrictsAPI.getDistricts( id )
+      DistrictsAPI.get()
         .then( function( response ){
-          commit('setDistricts', response.data );
-          commit('setDistrictsLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setDistrictsS', error.response);
-          commit('setDistrictsLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // create data
-    createDistricts( {commit} ){
-      commit('setDistrictsLoadStat', 'loading');
+    getRegencies( { commit }, id ){
+      commit('setDataStatS', 'loading');
       
-      DistrictsAPI.createDistricts()
+      DistrictsAPI.getRegencies( id )
         .then( function( response ){
-          commit('setDistricts', response.data.form );
-          commit('setDistrictsRules', response.data.rules);
-          commit('setDistrictsOption', response.data.option)
-          commit('setDistrictsLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
-        .catch( function(){
-          commit('setDistricts', []);
-          commit('setDistrictsRules', []);
-          commit('setDistrictsOption', [])
-          commit('setDistrictsLoadStat', 'fail');
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // store data
-    storeDistricts( {commit, state, dispatch}, form ){
-      commit('setDistrictsUpdateStat', 'loading');
+    // create page
+    create( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      DistrictsAPI.create()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
 
-      DistrictsAPI.storeDistricts( form )
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      DistrictsAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setDistrictsUpdate', response.data);
-            commit('setDistrictsUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setDistrictsUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setDistrictsUpdate', this.errors);         
-          }else{
-            commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setDistrictsUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editDistricts( {commit}, id ){
-      commit('setDistrictsLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      DistrictsAPI.editDistricts( id )
+      DistrictsAPI.edit( id )
         .then( function( response ){
-          commit('setDistricts', response.data.form );
-          commit('setDistrictsRules', response.data.rules);
-          commit('setDistrictsOption', response.data.option)
-          commit('setDistrictsLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setDistricts', []);
-          commit('setDistrictsRules', []);
-          commit('setDistrictsOption', [])
-          commit('setDistrictsLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateDistricts( {commit, state, dispatch}, [id, form] ){
-      commit('setDistrictsUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      DistrictsAPI.updateDistricts( id, form )
+      DistrictsAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setDistrictsUpdate', response.data);
-            commit('setDistrictsUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setDistrictsUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setDistrictsUpdate', this.errors);         
-          }else{
-            commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setDistrictsUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    deleteDistricts( {commit, state, dispatch}, id ){
-      commit('setDistrictsUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      DistrictsAPI.deleteDistricts( id )
+      DistrictsAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setDistrictsUpdate', response.data);
-            commit('setDistrictsUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setDistrictsUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setDistrictsUpdate', this.errors);         
-          }else{
-            commit('setDistrictsUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setDistrictsUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // reset status
-    resetDistrictsUpdateStat( {commit} ){
-      commit('setDistrictsUpdateStat', '');
-    },
-    resetDistrictsLoadStat( {commit} ){
-      commit('setDistrictsLoadStat', '');
+    // reset
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setDistrictsS ( state, districtsS ){
-      state.districtsS = districtsS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setDistrictsLoadStatS( state, status ){
-      state.districtsLoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setDistricts ( state, districts ){
-      state.districts = districts;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setDistrictsLoadStat( state, status ){
-      state.districtsLoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setDistrictsUpdateStat( state, status ){
-      state.districtsUpdateStat = status;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setDistrictsUpdate( state, data ){
-      state.districtsUpdate = data;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setDistrictsRules( state, rules ){
-      state.districtsRules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setDistrictsOption( state, option ){
-      state.districtsOption = option;
-    }
-  },
-
-  getters: {
-    getDistrictsS( state ){
-      return state.districtsS;
-    },
-    getDistrictsLoadStatS ( state ){
-      return state.districtsLoadStatS;
-    },
-    getDistricts( state ){
-      return state.districts;
-    },
-    getDistrictsLoadStat ( state ){
-      return state.districtsLoadStat;
-    },
-    getDistrictsUpdateStat ( state ){
-      return state.districtsUpdateStat;
-    },
-    getDistrictsUpdate ( state ){
-      return state.districtsUpdate;
-    },
-    getDistrictsRules ( state ){
-      return state.districtsRules;
-    },
-    getDistrictsOption ( state ){
-      return state.districtsOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

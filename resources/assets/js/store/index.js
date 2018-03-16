@@ -7,7 +7,7 @@ import { global } from './modules/global';
 import { artikel } from './modules/artikel';
 import { artikelKategori } from './modules/artikelKategori';
 import { artikelPenulis } from './modules/artikelPenulis';
-import { CU } from './modules/cu';
+import { cu } from './modules/cu';
 import { pus } from './modules/pus';
 import { provinces } from './modules/provinces';
 import { regencies } from './modules/regencies';
@@ -24,7 +24,7 @@ export default new Vuex.Store({
 		 artikel,
 		 artikelKategori,
 		 artikelPenulis,
-		 CU,
+		 cu,
 		 pus,
 		 provinces,
 		 regencies,
