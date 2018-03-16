@@ -1,3 +1,4 @@
+
 <template>
 	<div class="login-container">
 		<!-- Page container -->
@@ -15,10 +16,10 @@
 							</h5>
 						</div>
 
-						<message :show="message.show" :errorData="message.content">
+						<message v-if="message.show" :errorData="message.content" :showDebug="false">
 						</message>
 
-						<message :show="errors.any()" :title="'Oops terjadi kesalahan'" :errorItem="errors.item" v-if="submited">
+						<message v-if="errors.any() && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.item" :showDebug="false">
 						</message>
 
 						<div class="form-group has-feedback has-feedback-right" :class="{'has-error' : errors.has('Username')}">

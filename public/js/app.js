@@ -44769,6 +44769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -44900,11 +44901,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		className: {
 			default: 'alert-danger'
 		},
-		show: {
-			default: true
-		},
 		showDebug: {
-			default: false
+			default: true
 		},
 		errorItem: {},
 		errorData: {
@@ -44916,17 +44914,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
-			errorShow: false
+			show: true,
+			showDetail: false
 		};
 	},
 
 	methods: {
-		openDetail: function openDetail() {
-			if (this.errorShow === false) {
-				this.errorShow = true;
+		detail: function detail() {
+			if (this.showDetail === false) {
+				this.showDetail = true;
 			} else {
-				this.errorShow = false;
+				this.showDetail = false;
 			}
+		},
+		close: function close() {
+			this.show = false;
 		}
 	}
 });
@@ -44959,25 +44961,7 @@ var render = function() {
           class: _vm.className
         },
         [
-          _c(
-            "button",
-            {
-              directives: [
-                {
-                  name: "tooltip",
-                  rawName: "v-tooltip:top",
-                  value: "Tutup",
-                  expression: "'Tutup'",
-                  arg: "top"
-                }
-              ],
-              staticClass: "close",
-              attrs: { type: "button", "data-dismiss": "alert" }
-            },
-            [_c("span", [_c("i", { staticClass: "icon-cross" })])]
-          ),
-          _vm._v(" "),
-          _vm.errorData && _vm.showDebug
+          !_vm.errorItem
             ? _c(
                 "button",
                 {
@@ -44985,21 +44969,16 @@ var render = function() {
                     {
                       name: "tooltip",
                       rawName: "v-tooltip:top",
-                      value: "detail error",
-                      expression: "'detail error'",
+                      value: "Tutup",
+                      expression: "'Tutup'",
                       arg: "top"
                     }
                   ],
                   staticClass: "close",
                   attrs: { type: "button" },
-                  on: { click: _vm.openDetail }
+                  on: { click: _vm.close }
                 },
-                [
-                  _c("span", [
-                    _c("i", { staticClass: "icon-embed2" }),
-                    _vm._v("  ")
-                  ])
-                ]
+                [_c("span", [_c("i", { staticClass: "icon-cross" })])]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -45011,12 +44990,16 @@ var render = function() {
           _vm._v(" "),
           _vm.desc ? _c("span", [_vm._v(_vm._s(_vm.desc))]) : _vm._e(),
           _vm._v(" "),
-          _c(
-            "ul",
-            _vm._l(_vm.errorItem, function(error) {
-              return _c("li", [_vm._v(_vm._s(error.msg))])
-            })
-          ),
+          _vm.errorItem
+            ? _c("div", [
+                _c(
+                  "ul",
+                  _vm._l(_vm.errorItem, function(error) {
+                    return _c("li", [_vm._v(_vm._s(error.msg))])
+                  })
+                )
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm.errorData
             ? _c("div", [
@@ -45058,51 +45041,40 @@ var render = function() {
                                 "\n\t\t\t\t\t\t"
                             )
                           ])
-                        : _vm._e()
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "transition",
-            {
-              attrs: {
-                "enter-active-class": "animated flipInX ",
-                "leave-active-class": "animated flipOutX  ",
-                mode: "out-in"
-              }
-            },
-            [
-              _vm.errorData && _vm.showDebug
-                ? _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.errorShow === true,
-                          expression: "errorShow === true"
-                        }
-                      ]
-                    },
-                    [
+                        : _vm._e(),
+                _vm._v(" "),
+                _vm.showDebug
+                  ? _c("div", [
                       _c("hr"),
                       _vm._v(" "),
+                      _vm.showDetail
+                        ? _c(
+                            "pre",
+                            {
+                              staticClass:
+                                "pre-scrollable language-markup content-group text-left"
+                            },
+                            [_c("code", [_vm._v(_vm._s(_vm.errorData.data))])]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
-                        "pre",
+                        "button",
                         {
-                          staticClass:
-                            "pre-scrollable language-markup content-group text-left"
+                          staticClass: "btn btn-default btn-block text-left",
+                          on: { click: _vm.detail }
                         },
-                        [_c("code", [_vm._v(_vm._s(_vm.errorData.data))])]
+                        [
+                          _vm.showDetail
+                            ? _c("span", [_vm._v("TUTUP DETAIL ERROR")])
+                            : _c("span", [_vm._v("BUKA DETAIL ERROR")])
+                        ]
                       )
-                    ]
-                  )
-                : _vm._e()
-            ]
-          )
-        ],
-        1
+                    ])
+                  : _vm._e()
+              ])
+            : _vm._e()
+        ]
       )
     ]
   )
@@ -45189,19 +45161,18 @@ var render = function() {
             [
               _vm._m(0),
               _vm._v(" "),
-              _c("message", {
-                attrs: {
-                  show: _vm.message.show,
-                  errorData: _vm.message.content
-                }
-              }),
+              _vm.message.show
+                ? _c("message", {
+                    attrs: { errorData: _vm.message.content, showDebug: false }
+                  })
+                : _vm._e(),
               _vm._v(" "),
-              _vm.submited
+              _vm.errors.any() && _vm.submited
                 ? _c("message", {
                     attrs: {
-                      show: _vm.errors.any(),
                       title: "Oops terjadi kesalahan",
-                      errorItem: _vm.errors.item
+                      errorItem: _vm.errors.item,
+                      showDebug: false
                     }
                   })
                 : _vm._e(),
@@ -66354,12 +66325,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -66952,42 +66917,28 @@ var render = function() {
                                             _vm._v(" "),
                                             _c("br"),
                                             _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated flipInX ",
-                                                  "leave-active-class":
-                                                    "animated flipOutX  ",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _vm.content && _vm.showDetail
-                                                  ? _c("div", [
-                                                      _c("hr"),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "pre",
-                                                        {
-                                                          staticClass:
-                                                            "pre-scrollable language-markup content-group text-left"
-                                                        },
-                                                        [
-                                                          _c("code", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                _vm.content.data
-                                                              )
-                                                            )
-                                                          ])
-                                                        ]
-                                                      )
-                                                    ])
-                                                  : _vm._e()
-                                              ]
-                                            ),
+                                            _vm.content && _vm.showDetail
+                                              ? _c("div", [
+                                                  _c("hr"),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "pre",
+                                                    {
+                                                      staticClass:
+                                                        "pre-scrollable language-markup content-group text-left"
+                                                    },
+                                                    [
+                                                      _c("code", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.content.data
+                                                          )
+                                                        )
+                                                      ])
+                                                    ]
+                                                  )
+                                                ])
+                                              : _vm._e(),
                                             _vm._v(" "),
                                             _c(
                                               "button",
@@ -67051,8 +67002,7 @@ var render = function() {
                                                 )
                                               ]
                                             )
-                                          ],
-                                          1
+                                          ]
                                         )
                                       : _vm.state === "loading"
                                         ? _c(
@@ -103389,9 +103339,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
 
 
 
@@ -103637,27 +103584,13 @@ var render = function() {
             "div",
             { staticClass: "content-wrapper" },
             [
-              _vm.submited
-                ? _c(
-                    "message",
-                    {
-                      class: "bg-danger",
-                      attrs: { show: _vm.errors.any("form") }
-                    },
-                    [
-                      _c("h4", [
-                        _c("i", { staticClass: "icon-cancel-circle2" }),
-                        _vm._v(" Oops terjadi kesalahan")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "ul",
-                        _vm._l(_vm.errors.items, function(error) {
-                          return _c("li", [_vm._v(_vm._s(error.msg))])
-                        })
-                      )
-                    ]
-                  )
+              _vm.errors.any("form") && _vm.submited
+                ? _c("message", {
+                    attrs: {
+                      title: "Oops terjadi kesalahan",
+                      errorItem: _vm.errors.items
+                    }
+                  })
                 : _vm._e(),
               _vm._v(" "),
               _c(
@@ -103835,6 +103768,7 @@ var render = function() {
                                   ],
                                   staticClass: "form-control",
                                   attrs: {
+                                    name: "no_ba",
                                     options: _vm.cleaveOption.number3,
                                     placeholder: "Silahkan masukkan no ba.",
                                     "data-vv-as": "No. BA"

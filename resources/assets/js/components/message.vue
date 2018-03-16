@@ -1,15 +1,11 @@
 <template>
-    <transition enter-active-class="animated shake">
+    <transition 
+			enter-active-class="animated shake">
 			<div class="alert alert-styled-left alert-arrow-left alert-component content-group-lg" :class="className" v-show="show">
 
 					<!-- close -->
-					<button type="button" class="close" data-dismiss="alert" v-tooltip:top="'Tutup'">
+					<button type="button" class="close" @click="close" v-tooltip:top="'Tutup'" v-if="!errorItem">
 							<span><i class="icon-cross"></i></span>
-					</button>
-
-					<!-- error detail -->
-					<button type="button" class="close" @click="openDetail" v-tooltip:top="'detail error'" v-if="errorData && showDebug">
-							<span><i class="icon-embed2"></i> &nbsp;</span>
 					</button>
 
 					<!-- title -->
@@ -19,9 +15,12 @@
 					<span v-if="desc">{{ desc }}</span>
 
 					<!-- collection -->
-					<ul>
-						<li v-for="error in errorItem">{{error.msg}}</li>
-					</ul>
+					<div v-if="errorItem">
+						<ul>
+							<li v-for="error in errorItem">{{error.msg}}</li>
+						</ul>
+					</div>
+				
 
 					<!-- error status -->
 					<div v-if="errorData">
@@ -37,19 +36,20 @@
 						<span v-else-if="errorData.status === 500">
 							<b v-if="showDebug">ERROR 500:</b> {{ errorData.data.message }}
 						</span>
-					</div>
 
-					<!-- error detail -->
-					<transition 
-						enter-active-class="animated flipInX "
-						leave-active-class="animated flipOutX  "
-						mode="out-in"
-					>
-					<div v-if="errorData && showDebug" v-show="errorShow === true">
-						<hr>
-						<pre class="pre-scrollable language-markup content-group text-left" ><code>{{ errorData.data }}</code></pre>
+						<!-- debug -->
+						<div v-if="showDebug">
+							<hr/>
+							<pre class="pre-scrollable language-markup content-group text-left" v-if="showDetail"><code>{{ errorData.data }}</code></pre>
+
+							<!-- debug button -->
+							<button class="btn btn-default btn-block text-left" @click="detail">
+								<span v-if="showDetail">TUTUP DETAIL ERROR</span>
+								<span v-else>BUKA DETAIL ERROR</span>
+							</button>
+						</div>
 					</div>
-					</transition>
+					
 			</div>
     </transition>
 </template>
@@ -70,11 +70,8 @@
 					className: {
 							default: 'alert-danger'
 					},
-					show: {
-							default: true
-					},
 					showDebug: {
-						default: false
+						default: true
 					},
 					errorItem:{
 					},
@@ -87,16 +84,20 @@
 			},
 			data(){
 				return {
-					errorShow: false,
+					show:true,
+					showDetail:false
 				}
 			},
 			methods: {
-				openDetail(){
-					if(this.errorShow === false){
-						this.errorShow = true;
+				detail(){
+					if(this.showDetail === false){
+						this.showDetail = true;
 					}else{
-						this.errorShow = false;
+						this.showDetail = false;
 					}
+				},
+				close(){
+					this.show = false;
 				}
 			}
     }

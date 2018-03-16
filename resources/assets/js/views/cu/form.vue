@@ -2,18 +2,14 @@
 	<div>
 		<!-- header -->
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
-		
+
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message :show="errors.any('form')" :class="'bg-danger'" v-if="submited">
-						<h4><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan</h4>
-						<ul>
-							<li v-for="error in errors.items">{{error.msg}}</li>
-						</ul>
+					<message v-if="errors.any('form') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
 					<!-- main panel -->
@@ -75,6 +71,7 @@
 
 											<!-- text -->
 											<cleave 
+												name="no_ba"
 												v-model="form.no_ba" 
 												class="form-control" 
 												:options="cleaveOption.number3"

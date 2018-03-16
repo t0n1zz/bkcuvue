@@ -109,16 +109,10 @@
 										<br/>
 
 										<!-- error detail -->
-										<transition 
-											enter-active-class="animated flipInX "
-											leave-active-class="animated flipOutX  "
-											mode="out-in"
-										>
 										<div v-if="content && showDetail">
 											<hr/>
 											<pre class="pre-scrollable language-markup content-group text-left"><code>{{ content.data }}</code></pre>
 										</div>
-										</transition>
 
 										<!-- error detail button -->
 										<button class="btn btn-default btn-block" @click="detail">

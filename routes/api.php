@@ -73,9 +73,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/cu/edit/{id}', 'CUController@edit');
         Route::post('/cu/update/{id}', 'CUController@update');
     });
-    // Route::group(['middleware' => ['permission:destroy cu']], function () {
-    //     Route::delete('/cu/{id}', 'CUController@destroy');
-    // });
+    Route::group(['middleware' => ['permission:destroy cu']], function () {
+        Route::delete('/cu/{id}', 'CUController@destroy');
+    });
 
     // puskopdit
     Route::get('/pus', 'PusController@index');
