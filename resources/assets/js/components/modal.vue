@@ -89,11 +89,11 @@
 											<i class="icon-cancel-circle2" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<pre class="pre-scrollable text-left" v-if="content">{{ content }}</pre>
+										<pre class="pre-scrollable language-markup content-group text-left" v-if="content"><code>{{ content }}</code></pre>
 										<br>
 										<ul class="list-inline hidden-xs">
 											<li>
-												<button type="button" class="btn btn-default" @click="failOk">{{ button }}</button>
+												<button type="button" class="btn btn-danger" @click="failOk">{{ button }}</button>
 											</li>
 										</ul>
 										<div class="visible-xs">

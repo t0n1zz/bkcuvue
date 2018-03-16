@@ -44769,12 +44769,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -44790,7 +44784,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			submited: '',
 			message: {
 				show: false,
-				className: '',
 				content: ''
 			}
 		};
@@ -44814,12 +44807,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						_this.$router.push('/');
 					}).catch(function (error) {
 						_this.message.show = true;
-						_this.message.className = 'bg-danger';
-						if (error.response.status === 422) {
-							_this.message.content = "Username atau password anda salah.";
-						} else {
-							_this.message.content = error.response.data.message;
-						}
+						_this.message.content = error.response;
 						_this.loading = false;
 					});
 					_this.submited = false;
@@ -44838,6 +44826,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__modal__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44851,15 +44885,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        className: {
-            default: 'bg-danger'
-        },
-        show: {
-            default: true
-        }
-    }
+	components: {
+		appModal: __WEBPACK_IMPORTED_MODULE_0__modal___default.a
+	},
+	props: {
+		title: {
+			default: ''
+		},
+		desc: {
+			default: ''
+		},
+		className: {
+			default: 'alert-danger'
+		},
+		show: {
+			default: true
+		},
+		showDebug: {
+			default: false
+		},
+		errorItem: {},
+		errorData: {
+			default: ''
+		},
+		errorStatus: {
+			default: ''
+		}
+	},
+	data: function data() {
+		return {
+			errorShow: false
+		};
+	},
+
+	methods: {
+		openDetail: function openDetail() {
+			if (this.errorShow === false) {
+				this.errorShow = true;
+			} else {
+				this.errorShow = false;
+			}
+		}
+	}
 });
 
 /***/ }),
@@ -44885,26 +44954,155 @@ var render = function() {
               expression: "show"
             }
           ],
-          staticClass: "alert ",
+          staticClass:
+            "alert alert-styled-left alert-arrow-left alert-component content-group-lg",
           class: _vm.className
         },
         [
           _c(
             "button",
             {
+              directives: [
+                {
+                  name: "tooltip",
+                  rawName: "v-tooltip:top",
+                  value: "Tutup",
+                  expression: "'Tutup'",
+                  arg: "top"
+                }
+              ],
               staticClass: "close",
               attrs: { type: "button", "data-dismiss": "alert" }
             },
-            [
-              _c("span", [_vm._v("×")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "sr-only" }, [_vm._v("Tutup")])
-            ]
+            [_c("span", [_c("i", { staticClass: "icon-cross" })])]
           ),
           _vm._v(" "),
-          _vm._t("default")
+          _vm.errorData && _vm.showDebug
+            ? _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "tooltip",
+                      rawName: "v-tooltip:top",
+                      value: "detail error",
+                      expression: "'detail error'",
+                      arg: "top"
+                    }
+                  ],
+                  staticClass: "close",
+                  attrs: { type: "button" },
+                  on: { click: _vm.openDetail }
+                },
+                [
+                  _c("span", [
+                    _c("i", { staticClass: "icon-embed2" }),
+                    _vm._v("  ")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.title
+            ? _c("h5", { staticClass: "alert-heading text-semibold" }, [
+                _vm._v(_vm._s(_vm.title))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.desc ? _c("span", [_vm._v(_vm._s(_vm.desc))]) : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.errorItem, function(error) {
+              return _c("li", [_vm._v(_vm._s(error.msg))])
+            })
+          ),
+          _vm._v(" "),
+          _vm.errorData
+            ? _c("div", [
+                _vm.errorData.status === 404
+                  ? _c("span", [
+                      _vm.showDebug
+                        ? _c("b", [_vm._v("ERROR 404:")])
+                        : _vm._e(),
+                      _vm._v(
+                        " Data tidak ditemukan, silahkan coba lagi\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm.errorData.status === 419
+                    ? _c("span", [
+                        _vm.showDebug
+                          ? _c("b", [_vm._v("ERROR 419:")])
+                          : _vm._e(),
+                        _vm._v(
+                          " Kesalahan sesi, silahkan refresh halaman ini\n\t\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm.errorData.status === 422
+                      ? _c("span", [
+                          _vm.showDebug
+                            ? _c("b", [_vm._v("ERROR 422:")])
+                            : _vm._e(),
+                          _vm._v(
+                            " Username atau password anda salah\n\t\t\t\t\t\t"
+                          )
+                        ])
+                      : _vm.errorData.status === 500
+                        ? _c("span", [
+                            _vm.showDebug
+                              ? _c("b", [_vm._v("ERROR 500:")])
+                              : _vm._e(),
+                            _vm._v(
+                              " " +
+                                _vm._s(_vm.errorData.data.message) +
+                                "\n\t\t\t\t\t\t"
+                            )
+                          ])
+                        : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "transition",
+            {
+              attrs: {
+                "enter-active-class": "animated flipInX ",
+                "leave-active-class": "animated flipOutX  ",
+                mode: "out-in"
+              }
+            },
+            [
+              _vm.errorData && _vm.showDebug
+                ? _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.errorShow === true,
+                          expression: "errorShow === true"
+                        }
+                      ]
+                    },
+                    [
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c(
+                        "pre",
+                        {
+                          staticClass:
+                            "pre-scrollable language-markup content-group text-left"
+                        },
+                        [_c("code", [_vm._v(_vm._s(_vm.errorData.data))])]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ]
+          )
         ],
-        2
+        1
       )
     ]
   )
@@ -44991,24 +45189,21 @@ var render = function() {
             [
               _vm._m(0),
               _vm._v(" "),
-              _c("message", { attrs: { show: _vm.message.show } }, [
-                _c("p", [_vm._v(_vm._s(_vm.message.content))])
-              ]),
+              _c("message", {
+                attrs: {
+                  show: _vm.message.show,
+                  errorData: _vm.message.content
+                }
+              }),
               _vm._v(" "),
               _vm.submited
-                ? _c("message", { attrs: { show: _vm.errors.any() } }, [
-                    _c("h4", [
-                      _c("i", { staticClass: "icon-cancel-circle2" }),
-                      _vm._v(" Oops terjadi kesalahan")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      _vm._l(_vm.errors.items, function(error) {
-                        return _c("li", [_vm._v(_vm._s(error.msg))])
-                      })
-                    )
-                  ])
+                ? _c("message", {
+                    attrs: {
+                      show: _vm.errors.any(),
+                      title: "Oops terjadi kesalahan",
+                      errorItem: _vm.errors.item
+                    }
+                  })
                 : _vm._e(),
               _vm._v(" "),
               _c(
@@ -66645,9 +66840,15 @@ var render = function() {
                                                   "pre",
                                                   {
                                                     staticClass:
-                                                      "pre-scrollable text-left"
+                                                      "pre-scrollable language-markup content-group text-left"
                                                   },
-                                                  [_vm._v(_vm._s(_vm.content))]
+                                                  [
+                                                    _c("code", [
+                                                      _vm._v(
+                                                        _vm._s(_vm.content)
+                                                      )
+                                                    ])
+                                                  ]
                                                 )
                                               : _vm._e(),
                                             _vm._v(" "),
@@ -66665,7 +66866,7 @@ var render = function() {
                                                     "button",
                                                     {
                                                       staticClass:
-                                                        "btn btn-default",
+                                                        "btn btn-danger",
                                                       attrs: { type: "button" },
                                                       on: { click: _vm.failOk }
                                                     },
@@ -100332,8 +100533,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
 
 
 
@@ -100874,16 +101073,13 @@ var render = function() {
             { staticClass: "content-wrapper" },
             [
               _vm.itemDataStat === "fail"
-                ? _c("message", [
-                    _c("h4", [
-                      _c("i", { staticClass: "icon-cancel-circle2" }),
-                      _vm._v(" Oops terjadi kesalahan: ")
-                    ]),
-                    _vm._v(" "),
-                    _c("pre", { staticClass: "pre-scrollable" }, [
-                      _vm._v(_vm._s(_vm.itemData))
-                    ])
-                  ])
+                ? _c("message", {
+                    attrs: {
+                      title: "Oops terjadi kesalahan:",
+                      errorData: _vm.itemData,
+                      showDebug: true
+                    }
+                  })
                 : _vm._e(),
               _vm._v(" "),
               _c(
@@ -113089,7 +113285,7 @@ var CU = {
         commit('setDataS', response.data.model);
         commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setDataS', error.response.data.message);
+        commit('setDataS', error.response);
         commit('setDataStatS', 'fail');
       });
     },
@@ -113105,7 +113301,7 @@ var CU = {
         commit('setDataS', response.data.model);
         commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setDataS', error.response.data.message);
+        commit('setDataS', error.response);
         commit('setDataStatS', 'fail');
       });
     },

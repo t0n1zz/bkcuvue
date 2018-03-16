@@ -10,9 +10,7 @@
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message v-if="itemDataStat === 'fail'">
-						<h4><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan: </h4>
-						<pre class="pre-scrollable">{{ itemData }}</pre>
+					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData" :showDebug="true">
 					</message>
 
 					<!-- main panel -->

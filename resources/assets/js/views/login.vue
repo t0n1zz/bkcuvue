@@ -15,16 +15,10 @@
 							</h5>
 						</div>
 
-						<message :show="message.show">
-							<p>{{message.content}}</p>
+						<message :show="message.show" :errorData="message.content">
 						</message>
 
-						<message :show="errors.any()" v-if="submited">
-							<h4>
-								<i class="icon-cancel-circle2"></i> Oops terjadi kesalahan</h4>
-							<ul>
-								<li v-for="error in errors.items">{{error.msg}}</li>
-							</ul>
+						<message :show="errors.any()" :title="'Oops terjadi kesalahan'" :errorItem="errors.item" v-if="submited">
 						</message>
 
 						<div class="form-group has-feedback has-feedback-right" :class="{'has-error' : errors.has('Username')}">
@@ -88,7 +82,6 @@
 				submited: '',
 				message: {
 					show: false,
-					className: '',
 					content: ''
 				}
 			}
@@ -110,12 +103,7 @@
 								this.$router.push('/');
 							}).catch(error => {
 								this.message.show = true;
-								this.message.className = 'bg-danger';
-								if (error.response.status === 422) {
-									this.message.content = "Username atau password anda salah.";
-								} else {
-									this.message.content = error.response.data.message;
-								}
+								this.message.content = error.response;
 								this.loading = false;
 							});
 							this.submited = false;

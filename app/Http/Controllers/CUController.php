@@ -16,12 +16,12 @@ class CUController extends Controller{
 
 	public function index()
 	{
-    	$table_data = CU::with('Villages','Districts','Regencies','Provinces')->filterPaginateOrder();
+		$table_data = CU::with('Villages','Districts','Regencies','Provinces')->filterPaginateOrder();
 
-    	return response()
-			->json([
-				'model' => $table_data
-			]);
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function indexAll()

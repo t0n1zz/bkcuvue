@@ -36,7 +36,7 @@ export const CU = {
           commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setDataS', error.response.data.message);
+          commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
@@ -51,7 +51,7 @@ export const CU = {
           commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setDataS', error.response.data.message);
+          commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
