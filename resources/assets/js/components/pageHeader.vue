@@ -24,13 +24,13 @@
 				</div>
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
-						<router-link :to="{ name: btn1Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn1Route">
+						<router-link :to="{ name: btn1Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn1Route && userData.can && userData.can[btn1Can]">
 							<i class="text-primary" :class="btn1Icon"></i> <span>{{btn1Title}}</span>
 						</router-link>
-                        <router-link :to="{ name: btn2Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn2Route">
+                        <router-link :to="{ name: btn2Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn2Route && userData.can && userData.can[btn2Can]">
 							<i class="text-primary" :class="btn2Icon"></i> <span>{{btn2Title}}</span>
 						</router-link>
-                        <router-link :to="{ name: btn3Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn3Route">
+                        <router-link :to="{ name: btn3Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn3Route && userData.can && userData.can[btn3Can]">
 							<i class="text-primary" :class="btn3Icon"></i> <span>{{btn3Title}}</span>
 						</router-link>
 					</div>
@@ -52,6 +52,9 @@ export default {
         titleDesc: {
             default: ''
         },
+        userData: {
+            default: ''
+        },
         level: {
             default: 1
         },
@@ -70,6 +73,9 @@ export default {
         btn1Title: {
             default: ''
         },
+        btn1Can: {
+            default: ''
+        },
         btn2Route: {
             default: ''
         },
@@ -77,6 +83,9 @@ export default {
             default: ''
         },
         btn2Title: {
+            default: ''
+        },
+        btn2Can: {
             default: ''
         },
         btn3Route: {
@@ -87,7 +96,10 @@ export default {
         },
         btn3Title: {
             default: ''
-        }
+        },
+        btn3Can: {
+            default: ''
+        },
     }
 }
 </script>

@@ -164,7 +164,8 @@ class UserController extends Controller
 			]);
 	}
     
-	public function getUser(){
+	public function userId()
+	{
 			$id = Auth::user()->getId();
 
 			return response()
@@ -173,7 +174,8 @@ class UserController extends Controller
 			]);
 	}
 
-	public function userData(){
+	public function userData()
+	{
 			$id = Auth::user()->getId();
 
 			$kelas = User::with('pus','cu')->findOrFail($id);

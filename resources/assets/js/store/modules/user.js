@@ -1,286 +1,221 @@
 import UserAPI from '../../api/user.js';
 
 export const user = {
+  namespaced: true,
+
+  // state
   state: {
-    userData: [],
-    userDataLoad:'',
-    userS: [],
-    userLoadStatS: '',
-    user: {},
-    userLoadStat: '',
-    userUpdate: '',
-    userUpdateStat: '',
-    userRules: [],
-    userOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-    // load single user
-    loadUserData({commit}){
-      commit('setUserDataLoadStat', 'loading');
-
-      UserAPI.getUserData( )
+    //user profil
+    userData( { commit }, p ){
+      commit('setDataStat', 'loading');
+      
+      UserAPI.userData( p )
         .then( function( response ){
-          commit('setUserData', response.data.model);
-          commit('setUserDataLoadStat', 'success');
+          commit('setData', response.data.model );
+          commit('setDataStat', 'success');
         })
         .catch( error => {
-          commit('setUserData', error.response);
-          commit('setUserDataLoadStat', 'fail');
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
         });
     },
 
-    // load all
-    loadUserS( { commit }, p ){
-      commit('setUserLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      UserAPI.getUserS( p )
+      UserAPI.index( p )
         .then( function( response ){
-          commit('setUserS', response.data.model);
-          commit('setUserLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setUserS', error.response);
-          commit('setUserLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load by cu
-    loadUserCUS( { commit }, [p, id] ){
-      commit('setUserLoadStatS', 'loading');
+    //load collection without params
+    indexAll( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      UserAPI.getUserCUS( p, id )
+      UserAPI.indexAll()
         .then( function( response ){
-          commit('setUserS', response.data.model);
-          commit('setUserLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setUserS', error.response);
-          commit('setUserLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadUser( {commit}, id ){
-      commit('setUserLoadStat', 'loading');
+    //load cu pus
+    indexPus( {commit}, id ){
+      commit('setDataStatS', 'loading');
       
-      UserAPI.getUser( id )
+      UserAPI.indexPus( id )
         .then( function( response ){
-          commit('setUser', response.data );
-          commit('setUserLoadStat', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setUserS', error.response);
-          commit('setUserLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
     // create page
-    createUser( {commit} ){
-      commit('setUserLoadStat', 'loading');
+    create( {commit} ){
+      commit('setDataStat', 'loading');
       
-      UserAPI.createUser()
+      UserAPI.create()
         .then( function( response ){
-          commit('setUser', response.data.form );
-          commit('setUserRules', response.data.rules);
-          commit('setUserOption', response.data.option)
-          commit('setUserLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setUser', []);
-          commit('setUserRules', []);
-          commit('setUserOption', [])
-          commit('setUserLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
-    // store data
-    storeUser( {commit, state, dispatch}, form ){
-      commit('setUserUpdateStat', 'loading');
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
 
-      UserAPI.storeUser( form )
+      UserAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUserUpdate', response.data);
-            commit('setUserUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setUserUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setUserUpdate', this.errors);         
-          }else{
-            commit('setUserUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setUserUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editUser( {commit}, id ){
-      commit('setUserLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      UserAPI.editUser( id )
+      UserAPI.edit( id )
         .then( function( response ){
-          commit('setUser', response.data.form );
-          commit('setUserRules', response.data.rules);
-          commit('setUserOption', response.data.option)
-          commit('setUserLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setUser', []);
-          commit('setUserRules', []);
-          commit('setUserOption', [])
-          commit('setUserLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateUser( {commit, state, dispatch}, [id, form] ){
-      commit('setUserUpdateStat', form);
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      UserAPI.updateUser( id, form )
+      UserAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUserUpdate', response.data);
-            commit('setUserUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setUserUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setUserUpdate', this.errors);         
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setUserUpdate', 'Oops terjadi kesalahan :(');
+            commit('setUpdateStat', 'fail');
           }
-          commit('setUserUpdateStat', 'fail');
-        });
-    },
-
-    // reset password
-    updateUserResetPassword( {commit, state, dispatch}, id ){
-      commit('setUserUpdateStat', 'loading');
-
-      UserAPI.updateResetPassword( id )
-        .then( function( response ){
-          commit('setUserUpdate', response.data);
-          commit('setUserUpdateStat', 'success');
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setUserUpdate', this.errors);
-            commit('setUserUpdateStat', 'fail');
-          }
-        });
-    },
-
-    // update status
-    updateUserStatus( {commit, state, dispatch}, id ){
-      commit('setUserUpdateStat', 'loading');
-
-      UserAPI.updateStatus( id )
-        .then( function( response ){
-          commit('setUserUpdate', response.data);
-          commit('setUserUpdateStat', 'success');
-        })
-        .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setUserUpdate', this.errors);
-            commit('setUserUpdateStat', 'fail');
-          }
-        });
-    },
-
-    // delete user
-    deleteUser( {commit, state, dispatch}, id ){
-      commit('setUserUpdateStat', 'loading');
-
-      UserAPI.deleteUser( id )
-        .then( function( response ){
-          commit('setUserUpdate', response.data);
-          commit('setUserUpdateStat', 'success');
-        })
-        .catch( error => {
-          commit('setUserS', error.response);
-          commit('setUserLoadStatS', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
     // reset
-    resetUserUpdateStat( {commit} ){
-      commit('setUserUpdateStat', '');
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setUserData ( state, data ){
-      state.userData = data;
+    setData ( state, data ){
+      state.data = data;
     },
-    setUserDataLoadStat( state, status ){
-      state.userDataLoad = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setUserS ( state, userS ){
-      state.userS = userS;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setUserLoadStatS( state, status ){
-      state.userLoadStatS = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setUser ( state, user ){
-      state.user = user;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setUserLoadStat( state, status ){
-      state.userLoadStat = status;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setUserUpdateStat( state, status ){
-      state.userUpdateStat = status;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setUserUpdate( state, data ){
-      state.userUpdate = data;
-    },
-    setUserRules( state, rules ){
-      state.userRules = rules;
-    },
-    setUserOption( state, option ){
-      state.userOption = option;
-    }
-  },
-
-  getters: {
-    getUserData( state ){
-      return state.userData;
-    },
-    getUserDataLoadStat( state ){
-      return state.userDataLoad;
-    },
-    getUserS( state ){
-      return state.userS;
-    },
-    getUserLoadStatS ( state ){
-      return state.userLoadStatS;
-    },
-    getUser( state ){
-      return state.user;
-    },
-    getUserLoadStat ( state ){
-      return state.userLoadStat;
-    },
-    getUserUpdateStat ( state ){
-      return state.userUpdateStat;
-    },
-    getUserUpdate ( state ){
-      return state.userUpdate;
-    },
-    getUserRules ( state ){
-      return state.userRules;
-    },
-    getUserOption ( state ){
-      return state.userOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
+
 }

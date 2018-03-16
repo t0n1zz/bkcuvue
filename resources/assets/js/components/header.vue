@@ -163,6 +163,7 @@
 </template>
 
 <script type="text/javascript">
+	import { mapGetters } from 'vuex';
 	import corefunc from '../assets/plugins/buttons/hover_dropdown.min.js';
 
 	export default {
@@ -175,7 +176,7 @@
 			corefunc.hover_function();
 		},
 		created() {
-			this.$store.dispatch('loadUserData');
+			this.$store.dispatch('user/userData');
 		},
 		methods: {
 			logout() {
@@ -187,9 +188,9 @@
 			}
 		},
 		computed: {
-			userData() {
-				return this.$store.getters.getUserData;
-			}
+			...mapGetters('user',{
+				userData: 'data',
+			})
 		}
 	}
 </script>

@@ -2,16 +2,12 @@ import { BKCU_CONFIG } from '../config.js';
 
 export default {
   
-  getArtikelS: function( p ){
+  index: function( p ){
     return axios.get( BKCU_CONFIG.API_URL + '/artikel' ,{params: p});
   },
 
-  getArtikelCUS: function( p, id ){
+  indexCU: function( p, id ){
     return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCU/' + id, {params: p});
-  },
-
-  getArtikel: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikel/' + id);
   },
 
   createArtikel: function(){

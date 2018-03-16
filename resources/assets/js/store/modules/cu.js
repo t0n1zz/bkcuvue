@@ -3,6 +3,7 @@ import CUAPI from '../../api/cu.js';
 export const CU = {
   namespaced: true,
 
+  // state
   state: {
     data: {}, //single data
     dataS: [], //collection
