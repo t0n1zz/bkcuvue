@@ -1,247 +1,218 @@
 import ArtikelKategoriAPI from '../../api/artikelKategori.js';
 
 export const artikelKategori = {
+  namespaced: true,
+
+  // state
   state: {
-    artikelKategoriS: [],
-    artikelKategoriLoadStatS: '',
-    artikelKategori: {},
-    artikelKategoriLoadStat: '',
-    artikelKategoriUpdate: '',
-    artikelKategoriUpdateStat: '',
-    artikelKategoriRules: [],
-    artikelKategoriOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-
-    // load all
-    loadArtikelKategoriS( { commit }, p ){
-      commit('setArtikelKategoriLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelKategoriAPI.getArtikelKategoriS( p )
+      ArtikelKategoriAPI.index( p )
         .then( function( response ){
-          commit('setArtikelKategoriS', response.data.model);
-          commit('setArtikelKategoriLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelKategoriS', error.response);
-          commit('setArtikelKategoriLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load by cu
-    loadArtikelKategoriCUS( { commit }, [p, id] ){
-      commit('setArtikelKategoriLoadStatS', 'loading');
+    indexCU( {commit}, [p, id] ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelKategoriAPI.getArtikelKategoriCUS( p, id )
+      ArtikelKategoriAPI.indexCU( p, id )
         .then( function( response ){
-          commit('setArtikelKategoriS', response.data.model);
-          commit('setArtikelKategoriLoadStatS', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelKategoriS', error.response);
-          commit('setArtikelKategoriLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
-    loadArtikelKategoriCU( {commit}, id ){
-      commit('setArtikelKategoriLoadStat', 'loading');
+
+    //load collection without params
+    get( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelKategoriAPI.getArtikelKategoriCU( id )
+      ArtikelKategoriAPI.get()
         .then( function( response ){
-          commit('setArtikelKategoriS', response.data.model);
-          commit('setArtikelKategoriLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelKategoriS', error.response);
-          commit('setArtikelKategoriLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadArtikelKategori( {commit}, id ){
-      commit('setArtikelKategoriLoadStat', 'loading');
+    getCU( { commit }, id ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelKategoriAPI.getArtikelKategori( id )
+      ArtikelKategoriAPI.getCU( id )
         .then( function( response ){
-          commit('setArtikelKategori', response.data );
-          commit('setArtikelKategoriLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelKategoriS', error.response);
-          commit('setArtikelKategoriLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // create data
-    createArtikelKategori( {commit} ){
-      commit('setArtikelKategoriLoadStat', 'loading');
+    // create page
+    create( {commit} ){
+      commit('setDataStat', 'loading');
       
-      ArtikelKategoriAPI.createArtikelKategori()
+      ArtikelKategoriAPI.create()
         .then( function( response ){
-          commit('setArtikelKategori', response.data.form );
-          commit('setArtikelKategoriRules', response.data.rules);
-          commit('setArtikelKategoriOption', response.data.option)
-          commit('setArtikelKategoriLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setArtikelKategori', []);
-          commit('setArtikelKategoriRules', []);
-          commit('setArtikelKategoriOption', [])
-          commit('setArtikelKategoriLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
-    // store data
-    storeArtikelKategori( {commit, state, dispatch}, form ){
-      commit('setArtikelKategoriUpdateStat', 'loading');
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
 
-      ArtikelKategoriAPI.storeArtikelKategori( form )
+      ArtikelKategoriAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setArtikelKategoriUpdate', response.data);
-            commit('setArtikelKategoriUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setArtikelKategoriUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setArtikelKategoriUpdate', this.errors);         
-          }else{
-            commit('setArtikelKategoriUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setArtikelKategoriUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editArtikelKategori( {commit}, id ){
-      commit('setArtikelKategoriLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      ArtikelKategoriAPI.editArtikelKategori( id )
+      ArtikelKategoriAPI.edit( id )
         .then( function( response ){
-          commit('setArtikelKategori', response.data.form );
-          commit('setArtikelKategoriRules', response.data.rules);
-          commit('setArtikelKategoriOption', response.data.option)
-          commit('setArtikelKategoriLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setArtikelKategori', []);
-          commit('setArtikelKategoriRules', []);
-          commit('setArtikelKategoriOption', [])
-          commit('setArtikelKategoriLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateArtikelKategori( {commit, state, dispatch}, [id, form] ){
-      commit('setArtikelKategoriUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      ArtikelKategoriAPI.updateArtikelKategori( id, form )
+      ArtikelKategoriAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setArtikelKategoriUpdate', response.data);
-            commit('setArtikelKategoriUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setArtikelKategoriUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setArtikelKategoriUpdate', this.errors);         
-          }else{
-            commit('setArtikelKategoriUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setArtikelKategoriUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    deleteArtikelKategori( {commit, state, dispatch}, id ){
-      commit('setArtikelKategoriUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      ArtikelKategoriAPI.deleteArtikelKategori( id )
+      ArtikelKategoriAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setArtikelKategoriUpdate', response.data);
-            commit('setArtikelKategoriUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setArtikelKategoriUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setArtikelKategoriUpdate', this.errors);         
-          }else{
-            commit('setArtikelKategoriUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setArtikelKategoriUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // reset status
-    resetArtikelKategoriUpdateStat( {commit} ){
-      commit('setArtikelKategoriUpdateStat', '');
-    },
-    resetArtikelKategoriLoadStat( {commit} ){
-      commit('setArtikelKategoriLoadStat', '');
+    // reset
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setArtikelKategoriS ( state, artikelKategoriS ){
-      state.artikelKategoriS = artikelKategoriS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setArtikelKategoriLoadStatS( state, status ){
-      state.artikelKategoriLoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setArtikelKategori ( state, artikelKategori ){
-      state.artikelKategori = artikelKategori;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setArtikelKategoriLoadStat( state, status ){
-      state.artikelKategoriLoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setArtikelKategoriUpdateStat( state, status ){
-      state.artikelKategoriUpdateStat = status;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setArtikelKategoriUpdate( state, data ){
-      state.artikelKategoriUpdate = data;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setArtikelKategoriRules( state, rules ){
-      state.artikelKategoriRules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setArtikelKategoriOption( state, option ){
-      state.artikelKategoriOption = option;
-    }
-  },
-
-  getters: {
-    getArtikelKategoriS( state ){
-      return state.artikelKategoriS;
-    },
-    getArtikelKategoriLoadStatS ( state ){
-      return state.artikelKategoriLoadStatS;
-    },
-    getArtikelKategori( state ){
-      return state.artikelKategori;
-    },
-    getArtikelKategoriLoadStat ( state ){
-      return state.artikelKategoriLoadStat;
-    },
-    getArtikelKategoriUpdateStat ( state ){
-      return state.artikelKategoriUpdateStat;
-    },
-    getArtikelKategoriUpdate ( state ){
-      return state.artikelKategoriUpdate;
-    },
-    getArtikelKategoriRules ( state ){
-      return state.artikelKategoriRules;
-    },
-    getArtikelKategoriOption ( state ){
-      return state.artikelKategoriOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

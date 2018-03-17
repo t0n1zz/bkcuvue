@@ -90065,164 +90065,29 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_core_app_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_form__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_modal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_message_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_message_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_formButton_vue__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_formButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_formButton_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_core_app_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_form__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_summernote_js__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_summernote_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__helpers_summernote_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_formButton_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_formButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_formButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_formInfo_vue__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_formInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_formInfo_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__formKategori_vue__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__formKategori_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__formKategori_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__formPenulis_vue__ = __webpack_require__(403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__formPenulis_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__formPenulis_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -90546,13 +90411,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	components: {
-		pageHeader: __WEBPACK_IMPORTED_MODULE_4__components_pageHeader_vue___default.a,
-		appModal: __WEBPACK_IMPORTED_MODULE_8__components_modal___default.a,
-		appSummernote: __WEBPACK_IMPORTED_MODULE_6__helpers_summernote_js___default.a,
-		appImageUpload: __WEBPACK_IMPORTED_MODULE_7__components_ImageUpload_vue___default.a,
-		message: __WEBPACK_IMPORTED_MODULE_9__components_message_vue___default.a,
-		formButton: __WEBPACK_IMPORTED_MODULE_10__components_formButton_vue___default.a,
-		formInfo: __WEBPACK_IMPORTED_MODULE_11__components_formInfo_vue___default.a
+		pageHeader: __WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue___default.a,
+		appModal: __WEBPACK_IMPORTED_MODULE_6__components_modal___default.a,
+		appSummernote: __WEBPACK_IMPORTED_MODULE_4__helpers_summernote_js___default.a,
+		appImageUpload: __WEBPACK_IMPORTED_MODULE_5__components_ImageUpload_vue___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_7__components_message_vue___default.a,
+		formButton: __WEBPACK_IMPORTED_MODULE_8__components_formButton_vue___default.a,
+		formInfo: __WEBPACK_IMPORTED_MODULE_9__components_formInfo_vue___default.a,
+		formKategori: __WEBPACK_IMPORTED_MODULE_10__formKategori_vue___default.a,
+		formPenulis: __WEBPACK_IMPORTED_MODULE_11__formPenulis_vue___default.a
 	},
 	data: function data() {
 		return {
@@ -90562,17 +90429,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			level2Title: 'Artikel',
 			kelas: 'artikel',
 			redirect: '/artikel/',
-			formKategori: {
-				id_cu: '',
-				name: '',
-				deskripsi: ''
-			},
-			formPenulis: {
-				id_cu: '',
-				name: '',
-				deskripsi: '',
-				gambar: ''
-			},
+			id_cu: '',
 			utama: '',
 			summernoteconfig: {
 				height: 400,
@@ -90602,7 +90459,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		});
 	},
 	mounted: function mounted() {
-		__WEBPACK_IMPORTED_MODULE_3__assets_core_app_js__["a" /* default */].core_function();
+		__WEBPACK_IMPORTED_MODULE_1__assets_core_app_js__["a" /* default */].core_function();
 		this.other();
 	},
 	updated: function updated() {
@@ -90689,7 +90546,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		save: function save() {
 			var _this = this;
 
-			var formData = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
+			var formData = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_form__["a" /* toMulipartedForm */])(this.form, this.$route.meta.mode);
 			this.$validator.validateAll('form').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
@@ -90704,34 +90561,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				}
 			});
 		},
-		savePenulis: function savePenulis() {
-			var _this2 = this;
-
-			var formData = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_form__["a" /* toMulipartedForm */])(this.formPenulis, this.$route.meta.mode);
-			this.$validator.validateAll('form-penulis').then(function (result) {
-				if (result) {
-					_this2.$store.dispatch('storeArtikelPenulis', _this2.formPenulis);
-				} else {
-					window.scrollTo(0, 0);
-					_this2.submitedPenulis = true;
-				}
-			});
-		},
-		saveKategori: function saveKategori() {
-			var _this3 = this;
-
-			this.$validator.validateAll('form-kategori').then(function (result) {
-				if (result) {
-					_this3.$store.dispatch('storeArtikelKategori', _this3.formKategori);
-				} else {
-					window.scrollTo(0, 0);
-					_this3.submitedKategori = true;
-				}
-			});
-		},
 		changeCU: function changeCU(id) {
-			this.$store.dispatch('loadArtikelPenulisCU', id);
-			this.$store.dispatch('loadArtikelKategoriCU', id);
+			this.$store.dispatch('artikelPenulis/getCU', id);
+			this.$store.dispatch('artikelKategori/getCU', id);
 		},
 		modalTutup: function modalTutup() {
 			if (this.updateStat === 'success') {
@@ -90752,24 +90584,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			}
 		},
 		modalOpen_Penulis: function modalOpen_Penulis() {
-			this.formPenulis.id_cu = this.form.id_cu;
-
-			this.modalShow = true;
-			this.modalState = 'normal2';
-			this.modalColor = 'bg-primary';
-			this.modalTitle = 'Tambah penulis artikel';
-			this.formPenulis.name = '';
-			this.formPenulis.deskripsi = '';
-		},
-		modalOpen_Kategori: function modalOpen_Kategori() {
-			this.formKategori.id_cu = this.form.id_cu;
+			this.id_cu = this.form.id_cu;
 
 			this.modalShow = true;
 			this.modalState = 'normal1';
 			this.modalColor = 'bg-primary';
+			this.modalTitle = 'Tambah penulis artikel';
+		},
+		modalOpen_Kategori: function modalOpen_Kategori() {
+			this.id_cu = this.form.id_cu;
+
+			this.modalShow = true;
+			this.modalState = 'normal2';
+			this.modalColor = 'bg-primary';
 			this.modalTitle = 'Tambah kategori artikel';
-			this.formKategori.name = '';
-			this.formKategori.deskripsi = '';
 		},
 		processFile: function processFile(event) {
 			this.form.gambar = event.target.files[0];
@@ -90780,46 +90608,32 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			$('.bootstrap-select').selectpicker();
 		}
 	},
-	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('user', {
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
 		userData: 'data',
 		userDataStat: 'dataStat'
-	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('artikel', {
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('artikel', {
 		form: 'data',
 		formStat: 'dataStat',
 		rules: 'rules',
 		options: 'options',
 		updateResponse: 'update',
 		updateStat: 'updateStat'
-	}), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('cu', {
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
 		modelCU: 'dataS',
 		modelCUStat: 'dataStatS'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('artikelKategori', {
+		modelKategori: 'dataS',
+		modelKategoriStat: 'dataStatS',
+		updateKategoriResponse: 'update',
+		updateKategoriStat: 'updateStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('artikelPenulis', {
+		modelPenulis: 'dataS',
+		modelPenulisStat: 'dataStatS',
+		updatePenulisResponse: 'update',
+		updatePenulisStat: 'updateStat'
 	}), {
-		updateKategoriResponse: function updateKategoriResponse() {
-			return this.$store.getters.getArtikelKategoriUpdate;
-		},
-		updateKategoriStat: function updateKategoriStat() {
-			return this.$store.getters.getArtikelKategoriUpdateStat;
-		},
-		updatePenulisResponse: function updatePenulisResponse() {
-			return this.$store.getters.getArtikelPenulisUpdate;
-		},
-		updatePenulisStat: function updatePenulisStat() {
-			return this.$store.getters.getArtikelPenulisUpdateStat;
-		},
-		modelPenulis: function modelPenulis() {
-			return this.$store.getters.getArtikelPenulisS;
-		},
-		modelPenulisStat: function modelPenulisStat() {
-			return this.$store.getters.getArtikelPenulisLoadStatS;
-		},
 		modelPus: function modelPus() {
 			return this.$store.getters.getPusS;
-		},
-		modelKategori: function modelKategori() {
-			return this.$store.getters.getArtikelKategoriS;
-		},
-		modelKategoriStat: function modelKategoriStat() {
-			return this.$store.getters.getArtikelKategoriLoadStatS;
 		}
 	})
 });
@@ -92069,9 +91883,23 @@ var render = function() {
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _c("form-button", {
-                    attrs: { batalRoute: _vm.kelas, formValidation: "form" }
-                  })
+                  _c("div", { staticClass: "panel panel-flat" }, [
+                    _c("div", { staticClass: "panel-body" }, [
+                      _c(
+                        "div",
+                        { staticClass: "row" },
+                        [
+                          _c("form-button", {
+                            attrs: {
+                              cancelLink: _vm.kelas,
+                              formValidation: "form"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ])
                 ],
                 1
               )
@@ -92104,522 +91932,30 @@ var render = function() {
             _vm._v("\n\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t")
           ]),
           _vm._v(" "),
-          _c("template", { slot: "modal-body1" }, [
-            _c(
-              "form",
-              { attrs: { "data-vv-scope": "form-kategori" } },
-              [
-                _vm.submitedKategori
-                  ? _c(
-                      "message",
-                      { attrs: { show: _vm.errors.any("form-kategori") } },
-                      [
-                        _c("p", [
-                          _c("i", { staticClass: "icon-cancel-circle2" }),
-                          _vm._v(" Oops terjadi kesalahan:")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          _vm._l(_vm.errors.items, function(error) {
-                            return _c("li", [_vm._v(_vm._s(error.msg))])
-                          })
-                        )
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group",
-                    class: {
-                      "has-error": _vm.errors.has("form-kategori.kategoriNama")
-                    }
-                  },
-                  [
-                    _c(
-                      "h5",
-                      {
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriNama"
-                          )
-                        }
-                      },
-                      [
-                        _vm.errors.has("form-kategori.kategoriNama")
-                          ? _c("i", { staticClass: "icon-cross2" })
-                          : _vm._e(),
-                        _vm._v("\n\t\t\t\t\t\tNama:\n\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required",
-                          expression: "'required'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formKategori.name,
-                          expression: "formKategori.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "kategoriNama",
-                        placeholder: "Silahkan masukkan name kategori",
-                        "data-vv-as": "Nama"
-                      },
-                      domProps: { value: _vm.formKategori.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formKategori,
-                            "name",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.has("form-kategori.kategoriNama")
-                      ? _c("small", { staticClass: "text-muted text-danger" }, [
-                          _c("i", { staticClass: "icon-arrow-small-right" }),
-                          _vm._v(
-                            " " +
-                              _vm._s(
-                                _vm.errors.first("form-kategori.kategoriNama")
-                              ) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ])
-                      : _c("small", { staticClass: "text-muted" }, [
-                          _vm._v(" \n\t\t\t\t\t")
-                        ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group",
-                    class: {
-                      "has-error": _vm.errors.has(
-                        "form-kategori.kategoriDeskripsi"
-                      )
-                    }
-                  },
-                  [
-                    _c(
-                      "h5",
-                      {
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-kategori.kategoriDeskripsi"
-                          )
-                        }
-                      },
-                      [
-                        _vm.errors.has("form-kategori.kategoriDeskripsi")
-                          ? _c("i", { staticClass: "icon-cross2" })
-                          : _vm._e(),
-                        _vm._v("\n\t\t\t\t\t\tKeterangan:\n\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|min:5",
-                          expression: "'required|min:5'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formKategori.deskripsi,
-                          expression: "formKategori.deskripsi"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        rows: "5",
-                        type: "text",
-                        name: "kategoriDeskripsi",
-                        placeholder: "Silahkan masukkan keterangan kategori"
-                      },
-                      domProps: { value: _vm.formKategori.deskripsi },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formKategori,
-                            "deskripsi",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.has("form-kategori.kategoriDeskripsi")
-                      ? _c("small", { staticClass: "text-muted text-danger" }, [
-                          _c("i", { staticClass: "icon-arrow-small-right" }),
-                          _vm._v(
-                            " " +
-                              _vm._s(
-                                _vm.errors.first(
-                                  "form-kategori.kategoriDeskripsi"
-                                )
-                              ) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ])
-                      : _c("small", { staticClass: "text-muted" }, [
-                          _vm._v(" \n\t\t\t\t\t")
-                        ])
-                  ]
-                )
-              ],
-              1
-            )
-          ]),
+          _c(
+            "template",
+            { slot: "modal-body1" },
+            [
+              _c("form-penulis", {
+                attrs: { id_cu: _vm.id_cu },
+                on: { cancelClick: _vm.modalTutup }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("template", { slot: "modal-footer1" }, [
-            _c("div", { staticClass: "hidden-xs" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  on: { click: _vm.modalTutup }
-                },
-                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: {
-                    type: "submit",
-                    disabled: _vm.errors.any("form-kategori")
-                  },
-                  on: { click: _vm.saveKategori }
-                },
-                [
-                  _c("i", { staticClass: "icon-floppy-disk" }),
-                  _vm._v(" Simpan")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "visible-xs" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-block pb-5",
-                  attrs: {
-                    type: "submit",
-                    disabled: _vm.errors.any("form-kategori")
-                  },
-                  on: { click: _vm.saveKategori }
-                },
-                [
-                  _c("i", { staticClass: "icon-floppy-disk" }),
-                  _vm._v(" Simpan")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default btn-block",
-                  on: { click: _vm.modalTutup }
-                },
-                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "modal-body2" }, [
-            _c(
-              "form",
-              { attrs: { "data-vv-scope": "form-penulis" } },
-              [
-                _vm.submitedPenulis
-                  ? _c(
-                      "message",
-                      { attrs: { show: _vm.errors.any("form-penulis") } },
-                      [
-                        _c("p", [
-                          _c("i", { staticClass: "icon-cancel-circle2" }),
-                          _vm._v(" Oops terjadi kesalahan:")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          _vm._l(_vm.errors.items, function(error) {
-                            return _c("li", [_vm._v(_vm._s(error.msg))])
-                          })
-                        )
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "form-group" },
-                  [
-                    _c("h5", [_vm._v("Foto:")]),
-                    _vm._v(" "),
-                    _c("app-image-upload", {
-                      attrs: { image_loc: "/images/artikel/" },
-                      model: {
-                        value: _vm.formPenulis.gambar,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formPenulis, "gambar", $$v)
-                        },
-                        expression: "formPenulis.gambar"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group",
-                    class: {
-                      "has-error": _vm.errors.has("form-penulis.penulisNama")
-                    }
-                  },
-                  [
-                    _c(
-                      "h5",
-                      {
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-penulis.penulisNama"
-                          )
-                        }
-                      },
-                      [
-                        _vm.errors.has("form-penulis.penulisNama")
-                          ? _c("i", { staticClass: "icon-cross2" })
-                          : _vm._e(),
-                        _vm._v("\n\t\t\t\t\t\tNama:\n\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required",
-                          expression: "'required'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formPenulis.name,
-                          expression: "formPenulis.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "penulisNama",
-                        placeholder: "Silahkan masukkan name penulis",
-                        "data-vv-as": "Nama"
-                      },
-                      domProps: { value: _vm.formPenulis.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.formPenulis, "name", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.has("form-kategori.kategoriDeskripsi")
-                      ? _c("small", { staticClass: "text-muted text-danger" }, [
-                          _c("i", { staticClass: "icon-arrow-small-right" }),
-                          _vm._v(
-                            " " +
-                              _vm._s(
-                                _vm.errors.first(
-                                  "form-kategori.kategoriDeskripsi"
-                                )
-                              ) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ])
-                      : _c("small", { staticClass: "text-muted" }, [
-                          _vm._v(" \n\t\t\t\t\t")
-                        ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group",
-                    class: {
-                      "has-error": _vm.errors.has(
-                        "form-penulis.penulisDeskripsi"
-                      )
-                    }
-                  },
-                  [
-                    _c(
-                      "h5",
-                      {
-                        class: {
-                          "text-danger": _vm.errors.has(
-                            "form-penulis.penulisDeskripsi"
-                          )
-                        }
-                      },
-                      [
-                        _vm.errors.has("form-penulis.penulisDeskripsi")
-                          ? _c("i", { staticClass: "icon-cross2" })
-                          : _vm._e(),
-                        _vm._v("\n\t\t\t\t\t\tProfil:\n\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|min:5",
-                          expression: "'required|min:5'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formPenulis.deskripsi,
-                          expression: "formPenulis.deskripsi"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        rows: "5",
-                        type: "text",
-                        name: "penulisDeskripsi",
-                        placeholder: "Silahkan masukkan profil penulis",
-                        "data-vv-as": "Profil"
-                      },
-                      domProps: { value: _vm.formPenulis.deskripsi },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formPenulis,
-                            "deskripsi",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.has("form-kategori.kategoriDeskripsi")
-                      ? _c("small", { staticClass: "text-muted text-danger" }, [
-                          _c("i", { staticClass: "icon-arrow-small-right" }),
-                          _vm._v(
-                            " " +
-                              _vm._s(
-                                _vm.errors.first(
-                                  "form-kategori.kategoriDeskripsi"
-                                )
-                              ) +
-                              "\n\t\t\t\t\t"
-                          )
-                        ])
-                      : _c("small", { staticClass: "text-muted" }, [
-                          _vm._v(" \n\t\t\t\t\t")
-                        ])
-                  ]
-                )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "modal-footer2" }, [
-            _c("div", { staticClass: "hidden-xs" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  on: { click: _vm.modalTutup }
-                },
-                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: {
-                    type: "submit",
-                    disabled: _vm.errors.any("form-penulis")
-                  },
-                  on: { click: _vm.savePenulis }
-                },
-                [
-                  _c("i", { staticClass: "icon-floppy-disk" }),
-                  _vm._v(" Simpan")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "visible-xs" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-block pb-5",
-                  attrs: {
-                    type: "submit",
-                    disabled: _vm.errors.any("form-penulis")
-                  },
-                  on: { click: _vm.savePenulis }
-                },
-                [
-                  _c("i", { staticClass: "icon-floppy-disk" }),
-                  _vm._v(" Simpan")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default btn-block",
-                  on: { click: _vm.modalTutup }
-                },
-                [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-              )
-            ])
-          ])
+          _c(
+            "template",
+            { slot: "modal-body2" },
+            [
+              _c("form-kategori", {
+                attrs: { id_cu: _vm.id_cu },
+                on: { cancelClick: _vm.modalTutup }
+              })
+            ],
+            1
+          ),
+          _vm._v("]\n\n\t")
         ],
         2
       )
@@ -101281,7 +100617,7 @@ var render = function() {
                   _c("br"),
                   _vm._v(" "),
                   _c("form-button", {
-                    attrs: { batalRoute: _vm.kelas, formValidation: "form" }
+                    attrs: { cancelLink: _vm.kelas, formValidation: "form" }
                   })
                 ],
                 1
@@ -108307,157 +107643,175 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 var artikelKategori = {
+  namespaced: true,
+
+  // state
   state: {
-    artikelKategoriS: [],
-    artikelKategoriLoadStatS: '',
-    artikelKategori: {},
-    artikelKategoriLoadStat: '',
-    artikelKategoriUpdate: '',
-    artikelKategoriUpdateStat: '',
-    artikelKategoriRules: [],
-    artikelKategoriOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [] //laravel options
+  },
+
+  // getters
+  getters: {
+    data: function data(state) {
+      return state.data;
+    },
+    dataS: function dataS(state) {
+      return state.dataS;
+    },
+    dataStat: function dataStat(state) {
+      return state.dataStat;
+    },
+    dataStatS: function dataStatS(state) {
+      return state.dataStatS;
+    },
+    update: function update(state) {
+      return state.update;
+    },
+    updateStat: function updateStat(state) {
+      return state.updateStat;
+    },
+    rules: function rules(state) {
+      return state.rules;
+    },
+    options: function options(state) {
+      return state.options;
+    }
   },
 
   actions: {
-
-    // load all
-    loadArtikelKategoriS: function loadArtikelKategoriS(_ref, p) {
+    //load collection with params
+    index: function index(_ref, p) {
       var commit = _ref.commit;
 
-      commit('setArtikelKategoriLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].getArtikelKategoriS(p).then(function (response) {
-        commit('setArtikelKategoriS', response.data.model);
-        commit('setArtikelKategoriLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].index(p).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelKategoriS', error.response);
-        commit('setArtikelKategoriLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-
-
-    // load by cu
-    loadArtikelKategoriCUS: function loadArtikelKategoriCUS(_ref2, _ref3) {
+    indexCU: function indexCU(_ref2, _ref3) {
       var commit = _ref2.commit;
 
       var _ref4 = _slicedToArray(_ref3, 2),
           p = _ref4[0],
           id = _ref4[1];
 
-      commit('setArtikelKategoriLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].getArtikelKategoriCUS(p, id).then(function (response) {
-        commit('setArtikelKategoriS', response.data.model);
-        commit('setArtikelKategoriLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].indexCU(p, id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelKategoriS', error.response);
-        commit('setArtikelKategoriLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-    loadArtikelKategoriCU: function loadArtikelKategoriCU(_ref5, id) {
+
+
+    //load collection without params
+    get: function get(_ref5) {
       var commit = _ref5.commit;
 
-      commit('setArtikelKategoriLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].getArtikelKategoriCU(id).then(function (response) {
-        commit('setArtikelKategoriS', response.data.model);
-        commit('setArtikelKategoriLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].get().then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelKategoriS', error.response);
-        commit('setArtikelKategoriLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-
-
-    // load single data
-    loadArtikelKategori: function loadArtikelKategori(_ref6, id) {
+    getCU: function getCU(_ref6, id) {
       var commit = _ref6.commit;
 
-      commit('setArtikelKategoriLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].getArtikelKategori(id).then(function (response) {
-        commit('setArtikelKategori', response.data);
-        commit('setArtikelKategoriLoadStat', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].getCU(id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelKategoriS', error.response);
-        commit('setArtikelKategoriLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // create data
-    createArtikelKategori: function createArtikelKategori(_ref7) {
+    // create page
+    create: function create(_ref7) {
       var commit = _ref7.commit;
 
-      commit('setArtikelKategoriLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].createArtikelKategori().then(function (response) {
-        commit('setArtikelKategori', response.data.form);
-        commit('setArtikelKategoriRules', response.data.rules);
-        commit('setArtikelKategoriOption', response.data.option);
-        commit('setArtikelKategoriLoadStat', 'success');
-      }).catch(function () {
-        commit('setArtikelKategori', []);
-        commit('setArtikelKategoriRules', []);
-        commit('setArtikelKategoriOption', []);
-        commit('setArtikelKategoriLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].create().then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
-    // store data
-    storeArtikelKategori: function storeArtikelKategori(_ref8, form) {
-      var _this = this;
-
+    //store data
+    store: function store(_ref8, form) {
       var commit = _ref8.commit,
           state = _ref8.state,
           dispatch = _ref8.dispatch;
 
-      commit('setArtikelKategoriUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].storeArtikelKategori(form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setArtikelKategoriUpdate', response.data);
-          commit('setArtikelKategoriUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setArtikelKategoriUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setArtikelKategoriUpdate', _this.errors);
-        } else {
-          commit('setArtikelKategoriUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setArtikelKategoriUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
     // edit page
-    editArtikelKategori: function editArtikelKategori(_ref9, id) {
+    edit: function edit(_ref9, id) {
       var commit = _ref9.commit;
 
-      commit('setArtikelKategoriLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].editArtikelKategori(id).then(function (response) {
-        commit('setArtikelKategori', response.data.form);
-        commit('setArtikelKategoriRules', response.data.rules);
-        commit('setArtikelKategoriOption', response.data.option);
-        commit('setArtikelKategoriLoadStat', 'success');
-      }).catch(function () {
-        commit('setArtikelKategori', []);
-        commit('setArtikelKategoriRules', []);
-        commit('setArtikelKategoriOption', []);
-        commit('setArtikelKategoriLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].edit(id).then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
     // update data
-    updateArtikelKategori: function updateArtikelKategori(_ref10, _ref11) {
-      var _this2 = this;
-
+    update: function update(_ref10, _ref11) {
       var commit = _ref10.commit,
           state = _ref10.state,
           dispatch = _ref10.dispatch;
@@ -108466,120 +107820,77 @@ var artikelKategori = {
           id = _ref12[0],
           form = _ref12[1];
 
-      commit('setArtikelKategoriUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].updateArtikelKategori(id, form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setArtikelKategoriUpdate', response.data);
-          commit('setArtikelKategoriUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setArtikelKategoriUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setArtikelKategoriUpdate', _this2.errors);
-        } else {
-          commit('setArtikelKategoriUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setArtikelKategoriUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    deleteArtikelKategori: function deleteArtikelKategori(_ref13, id) {
-      var _this3 = this;
-
+    // destroy data
+    destroy: function destroy(_ref13, id) {
       var commit = _ref13.commit,
           state = _ref13.state,
           dispatch = _ref13.dispatch;
 
-      commit('setArtikelKategoriUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].deleteArtikelKategori(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelKategori_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setArtikelKategoriUpdate', response.data);
-          commit('setArtikelKategoriUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setArtikelKategoriUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setArtikelKategoriUpdate', _this3.errors);
-        } else {
-          commit('setArtikelKategoriUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setArtikelKategoriUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // reset status
-    resetArtikelKategoriUpdateStat: function resetArtikelKategoriUpdateStat(_ref14) {
+    // reset
+    resetUpdateStat: function resetUpdateStat(_ref14) {
       var commit = _ref14.commit;
 
-      commit('setArtikelKategoriUpdateStat', '');
-    },
-    resetArtikelKategoriLoadStat: function resetArtikelKategoriLoadStat(_ref15) {
-      var commit = _ref15.commit;
-
-      commit('setArtikelKategoriLoadStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setArtikelKategoriS: function setArtikelKategoriS(state, artikelKategoriS) {
-      state.artikelKategoriS = artikelKategoriS;
+    setData: function setData(state, data) {
+      state.data = data;
     },
-    setArtikelKategoriLoadStatS: function setArtikelKategoriLoadStatS(state, status) {
-      state.artikelKategoriLoadStatS = status;
+    setDataS: function setDataS(state, data) {
+      state.dataS = data;
     },
-    setArtikelKategori: function setArtikelKategori(state, artikelKategori) {
-      state.artikelKategori = artikelKategori;
+    setDataStat: function setDataStat(state, status) {
+      state.dataStat = status;
     },
-    setArtikelKategoriLoadStat: function setArtikelKategoriLoadStat(state, status) {
-      state.artikelKategoriLoadStat = status;
+    setDataStatS: function setDataStatS(state, status) {
+      state.dataStatS = status;
     },
-    setArtikelKategoriUpdateStat: function setArtikelKategoriUpdateStat(state, status) {
-      state.artikelKategoriUpdateStat = status;
+    setUpdate: function setUpdate(state, data) {
+      state.update = data;
     },
-    setArtikelKategoriUpdate: function setArtikelKategoriUpdate(state, data) {
-      state.artikelKategoriUpdate = data;
+    setUpdateStat: function setUpdateStat(state, status) {
+      state.updateStat = status;
     },
-    setArtikelKategoriRules: function setArtikelKategoriRules(state, rules) {
-      state.artikelKategoriRules = rules;
+    setRules: function setRules(state, rules) {
+      state.rules = rules;
     },
-    setArtikelKategoriOption: function setArtikelKategoriOption(state, option) {
-      state.artikelKategoriOption = option;
-    }
-  },
-
-  getters: {
-    getArtikelKategoriS: function getArtikelKategoriS(state) {
-      return state.artikelKategoriS;
-    },
-    getArtikelKategoriLoadStatS: function getArtikelKategoriLoadStatS(state) {
-      return state.artikelKategoriLoadStatS;
-    },
-    getArtikelKategori: function getArtikelKategori(state) {
-      return state.artikelKategori;
-    },
-    getArtikelKategoriLoadStat: function getArtikelKategoriLoadStat(state) {
-      return state.artikelKategoriLoadStat;
-    },
-    getArtikelKategoriUpdateStat: function getArtikelKategoriUpdateStat(state) {
-      return state.artikelKategoriUpdateStat;
-    },
-    getArtikelKategoriUpdate: function getArtikelKategoriUpdate(state) {
-      return state.artikelKategoriUpdate;
-    },
-    getArtikelKategoriRules: function getArtikelKategoriRules(state) {
-      return state.artikelKategoriRules;
-    },
-    getArtikelKategoriOption: function getArtikelKategoriOption(state) {
-      return state.artikelKategoriOption;
+    setOptions: function setOptions(state, options) {
+      state.options = options;
     }
   }
 };
@@ -108594,43 +107905,39 @@ var artikelKategori = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  getArtikelKategoriS: function getArtikelKategoriS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  index: function index(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori', { params: p });
   },
 
-  getArtikelKategoriCUS: function getArtikelKategoriCUS(p, id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/indexCU/' + id + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/get');
   },
 
-  getArtikelKategoriAll: function getArtikelKategoriAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori_all');
+  indexCU: function indexCU(p, id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/indexCU/' + id, { params: p });
   },
 
-  getArtikelKategori: function getArtikelKategori(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/' + id);
+  getCU: function getCU(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/getCU/' + id);
   },
 
-  getArtikelKategoriCU: function getArtikelKategoriCU(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/cu/' + id);
-  },
-
-  createArtikelKategori: function createArtikelKategori() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/create');
   },
 
-  storeArtikelKategori: function storeArtikelKategori(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/store', form);
   },
 
-  editArtikelKategori: function editArtikelKategori(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/edit/' + id);
   },
 
-  updateArtikelKategori: function updateArtikelKategori(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/update/' + id, form);
   },
 
-  deleteArtikelKategori: function deleteArtikelKategori(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelKategori/' + id);
   }
 });
@@ -108647,157 +107954,175 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 
 var artikelPenulis = {
+  namespaced: true,
+
+  // state
   state: {
-    artikelPenulisS: [],
-    artikelPenulisLoadStatS: '',
-    artikelPenulis: {},
-    artikelPenulisLoadStat: '',
-    artikelPenulisUpdate: '',
-    artikelPenulisUpdateStat: '',
-    artikelPenulisRules: [],
-    artikelPenulisOption: []
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [] //laravel options
+  },
+
+  // getters
+  getters: {
+    data: function data(state) {
+      return state.data;
+    },
+    dataS: function dataS(state) {
+      return state.dataS;
+    },
+    dataStat: function dataStat(state) {
+      return state.dataStat;
+    },
+    dataStatS: function dataStatS(state) {
+      return state.dataStatS;
+    },
+    update: function update(state) {
+      return state.update;
+    },
+    updateStat: function updateStat(state) {
+      return state.updateStat;
+    },
+    rules: function rules(state) {
+      return state.rules;
+    },
+    options: function options(state) {
+      return state.options;
+    }
   },
 
   actions: {
-
-    // load all
-    loadArtikelPenulisS: function loadArtikelPenulisS(_ref, p) {
+    //load collection with params
+    index: function index(_ref, p) {
       var commit = _ref.commit;
 
-      commit('setArtikelPenulisLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].getArtikelPenulisS(p).then(function (response) {
-        commit('setArtikelPenulisS', response.data.model);
-        commit('setArtikelPenulisLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].index(p).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelPenulisS', error.response);
-        commit('setArtikelPenulisLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-
-
-    // load by cu
-    loadArtikelPenulisCUS: function loadArtikelPenulisCUS(_ref2, _ref3) {
+    indexCU: function indexCU(_ref2, _ref3) {
       var commit = _ref2.commit;
 
       var _ref4 = _slicedToArray(_ref3, 2),
           p = _ref4[0],
           id = _ref4[1];
 
-      commit('setArtikelPenulisLoadStatS', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].getArtikelPenulisCUS(p, id).then(function (response) {
-        commit('setArtikelPenulisS', response.data.model);
-        commit('setArtikelPenulisLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].indexCU(p, id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelPenulisS', error.response);
-        commit('setArtikelPenulisLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-    loadArtikelPenulisCU: function loadArtikelPenulisCU(_ref5, id) {
+
+
+    //load collection without params
+    get: function get(_ref5) {
       var commit = _ref5.commit;
 
-      commit('setArtikelPenulisLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].getArtikelPenulisCU(id).then(function (response) {
-        commit('setArtikelPenulisS', response.data.model);
-        commit('setArtikelPenulisLoadStatS', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].get().then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelPenulisS', error.response);
-        commit('setArtikelPenulisLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
-
-
-    // load single data
-    loadArtikelPenulis: function loadArtikelPenulis(_ref6, id) {
+    getCU: function getCU(_ref6, id) {
       var commit = _ref6.commit;
 
-      commit('setArtikelPenulisLoadStat', 'loading');
+      commit('setDataStatS', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].getArtikelPenulis(id).then(function (response) {
-        commit('setArtikelPenulis', response.data);
-        commit('setArtikelPenulisLoadStat', 'success');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].getCU(id).then(function (response) {
+        commit('setDataS', response.data.model);
+        commit('setDataStatS', 'success');
       }).catch(function (error) {
-        commit('setArtikelPenulisS', error.response);
-        commit('setArtikelPenulisLoadStatS', 'fail');
+        commit('setDataS', error.response);
+        commit('setDataStatS', 'fail');
       });
     },
 
 
-    // create data
-    createArtikelPenulis: function createArtikelPenulis(_ref7) {
+    // create page
+    create: function create(_ref7) {
       var commit = _ref7.commit;
 
-      commit('setArtikelPenulisLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].createArtikelPenulis().then(function (response) {
-        commit('setArtikelPenulis', response.data.form);
-        commit('setArtikelPenulisRules', response.data.rules);
-        commit('setArtikelPenulisOption', response.data.option);
-        commit('setArtikelPenulisLoadStat', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulis', []);
-        commit('setArtikelPenulisRules', []);
-        commit('setArtikelPenulisOption', []);
-        commit('setArtikelPenulisLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].create().then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
-    // store data
-    storeArtikelPenulis: function storeArtikelPenulis(_ref8, form) {
-      var _this = this;
-
+    //store data
+    store: function store(_ref8, form) {
       var commit = _ref8.commit,
           state = _ref8.state,
           dispatch = _ref8.dispatch;
 
-      commit('setArtikelPenulisUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].storeArtikelPenulis(form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].store(form).then(function (response) {
         if (response.data.saved) {
-          commit('setArtikelPenulisUpdate', response.data);
-          commit('setArtikelPenulisUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setArtikelPenulisUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this.errors = error.response.data;
-          commit('setArtikelPenulisUpdate', _this.errors);
-        } else {
-          commit('setArtikelPenulisUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setArtikelPenulisUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
     // edit page
-    editArtikelPenulis: function editArtikelPenulis(_ref9, id) {
+    edit: function edit(_ref9, id) {
       var commit = _ref9.commit;
 
-      commit('setArtikelPenulisLoadStat', 'loading');
+      commit('setDataStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].editArtikelPenulis(id).then(function (response) {
-        commit('setArtikelPenulis', response.data.form);
-        commit('setArtikelPenulisRules', response.data.rules);
-        commit('setArtikelPenulisOption', response.data.option);
-        commit('setArtikelPenulisLoadStat', 'success');
-      }).catch(function () {
-        commit('setArtikelPenulis', []);
-        commit('setArtikelPenulisRules', []);
-        commit('setArtikelPenulisOption', []);
-        commit('setArtikelPenulisLoadStat', 'fail');
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].edit(id).then(function (response) {
+        commit('setData', response.data.form);
+        commit('setRules', response.data.rules);
+        commit('setOptions', response.data.options);
+        commit('setDataStat', 'success');
+      }).catch(function (error) {
+        commit('setData', error.response);
+        commit('setRules', []);
+        commit('setOptions', []);
+        commit('setDataStat', 'fail');
       });
     },
 
 
     // update data
-    updateArtikelPenulis: function updateArtikelPenulis(_ref10, _ref11) {
-      var _this2 = this;
-
+    update: function update(_ref10, _ref11) {
       var commit = _ref10.commit,
           state = _ref10.state,
           dispatch = _ref10.dispatch;
@@ -108806,120 +108131,77 @@ var artikelPenulis = {
           id = _ref12[0],
           form = _ref12[1];
 
-      commit('setArtikelPenulisUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].updateArtikelPenulis(id, form).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].update(id, form).then(function (response) {
         if (response.data.saved) {
-          commit('setArtikelPenulisUpdate', response.data);
-          commit('setArtikelPenulisUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setArtikelPenulisUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this2.errors = error.response.data;
-          commit('setArtikelPenulisUpdate', _this2.errors);
-        } else {
-          commit('setArtikelPenulisUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setArtikelPenulisUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // delete data
-    deleteArtikelPenulis: function deleteArtikelPenulis(_ref13, id) {
-      var _this3 = this;
-
+    // destroy data
+    destroy: function destroy(_ref13, id) {
       var commit = _ref13.commit,
           state = _ref13.state,
           dispatch = _ref13.dispatch;
 
-      commit('setArtikelPenulisUpdateStat', 'loading');
+      commit('setUpdateStat', 'loading');
 
-      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].deleteArtikelPenulis(id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__api_artikelPenulis_js__["a" /* default */].destroy(id).then(function (response) {
         if (response.data.saved) {
-          commit('setArtikelPenulisUpdate', response.data);
-          commit('setArtikelPenulisUpdateStat', 'success');
+          commit('setUpdate', response.data);
+          commit('setUpdateStat', 'success');
         } else {
-          commit('setArtikelPenulisUpdateStat', 'fail');
+          commit('setUpdateStat', 'fail');
         }
       }).catch(function (error) {
-        if (error.response.status) {
-          _this3.errors = error.response.data;
-          commit('setArtikelPenulisUpdate', _this3.errors);
-        } else {
-          commit('setArtikelPenulisUpdate', 'Oops terjadi kesalahan :(');
-        }
-        commit('setArtikelPenulisUpdateStat', 'fail');
+        commit('setUpdate', error.response);
+        commit('setUpdateStat', 'fail');
       });
     },
 
 
-    // reset status
-    resetArtikelPenulisUpdateStat: function resetArtikelPenulisUpdateStat(_ref14) {
+    // reset
+    resetUpdateStat: function resetUpdateStat(_ref14) {
       var commit = _ref14.commit;
 
-      commit('setArtikelPenulisUpdateStat', '');
-    },
-    resetArtikelPenulisLoadStat: function resetArtikelPenulisLoadStat(_ref15) {
-      var commit = _ref15.commit;
-
-      commit('setArtikelPenulisLoadStat', '');
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setArtikelPenulisS: function setArtikelPenulisS(state, artikelPenulisS) {
-      state.artikelPenulisS = artikelPenulisS;
+    setData: function setData(state, data) {
+      state.data = data;
     },
-    setArtikelPenulisLoadStatS: function setArtikelPenulisLoadStatS(state, status) {
-      state.artikelPenulisLoadStatS = status;
+    setDataS: function setDataS(state, data) {
+      state.dataS = data;
     },
-    setArtikelPenulis: function setArtikelPenulis(state, artikelPenulis) {
-      state.artikelPenulis = artikelPenulis;
+    setDataStat: function setDataStat(state, status) {
+      state.dataStat = status;
     },
-    setArtikelPenulisLoadStat: function setArtikelPenulisLoadStat(state, status) {
-      state.artikelPenulisLoadStat = status;
+    setDataStatS: function setDataStatS(state, status) {
+      state.dataStatS = status;
     },
-    setArtikelPenulisUpdateStat: function setArtikelPenulisUpdateStat(state, status) {
-      state.artikelPenulisUpdateStat = status;
+    setUpdate: function setUpdate(state, data) {
+      state.update = data;
     },
-    setArtikelPenulisUpdate: function setArtikelPenulisUpdate(state, data) {
-      state.artikelPenulisUpdate = data;
+    setUpdateStat: function setUpdateStat(state, status) {
+      state.updateStat = status;
     },
-    setArtikelPenulisRules: function setArtikelPenulisRules(state, rules) {
-      state.artikelPenulisRules = rules;
+    setRules: function setRules(state, rules) {
+      state.rules = rules;
     },
-    setArtikelPenulisOption: function setArtikelPenulisOption(state, option) {
-      state.artikelPenulisOption = option;
-    }
-  },
-
-  getters: {
-    getArtikelPenulisS: function getArtikelPenulisS(state) {
-      return state.artikelPenulisS;
-    },
-    getArtikelPenulisLoadStatS: function getArtikelPenulisLoadStatS(state) {
-      return state.artikelPenulisLoadStatS;
-    },
-    getArtikelPenulis: function getArtikelPenulis(state) {
-      return state.artikelPenulis;
-    },
-    getArtikelPenulisLoadStat: function getArtikelPenulisLoadStat(state) {
-      return state.artikelPenulisLoadStat;
-    },
-    getArtikelPenulisUpdateStat: function getArtikelPenulisUpdateStat(state) {
-      return state.artikelPenulisUpdateStat;
-    },
-    getArtikelPenulisUpdate: function getArtikelPenulisUpdate(state) {
-      return state.artikelPenulisUpdate;
-    },
-    getArtikelPenulisRules: function getArtikelPenulisRules(state) {
-      return state.artikelPenulisRules;
-    },
-    getArtikelPenulisOption: function getArtikelPenulisOption(state) {
-      return state.artikelPenulisOption;
+    setOptions: function setOptions(state, options) {
+      state.options = options;
     }
   }
 };
@@ -108934,43 +108216,39 @@ var artikelPenulis = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  getArtikelPenulisS: function getArtikelPenulisS(p) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis' + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  index: function index(p) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis', { params: p });
   },
 
-  getArtikelPenulisCUS: function getArtikelPenulisCUS(p, id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/indexCU/' + id + ('?column=' + p.column + '&direction=' + p.direction + '&per_page=' + p.per_page + '&page=' + p.page + '&search_column=' + p.search_column + '&search_operator=' + p.search_operator + '&search_query_1=' + p.search_query_1 + '&search_query_2=' + p.search_query_2));
+  get: function get() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/get');
   },
 
-  getArtikelPenulisAll: function getArtikelPenulisAll() {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis_all');
+  indexCU: function indexCU(p, id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/indexCU/' + id, { params: p });
   },
 
-  getArtikelPenulis: function getArtikelPenulis(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/' + id);
+  getCU: function getCU(id) {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/getCU/' + id);
   },
 
-  getArtikelPenulisCU: function getArtikelPenulisCU(id) {
-    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/cu/' + id);
-  },
-
-  createArtikelPenulis: function createArtikelPenulis() {
+  create: function create() {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/create');
   },
 
-  storeArtikelPenulis: function storeArtikelPenulis(form) {
+  store: function store(form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/store', form);
   },
 
-  editArtikelPenulis: function editArtikelPenulis(id) {
+  edit: function edit(id) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/edit/' + id);
   },
 
-  updateArtikelPenulis: function updateArtikelPenulis(id, form) {
+  update: function update(id, form) {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/update/' + id, form);
   },
 
-  deleteArtikelPenulis: function deleteArtikelPenulis(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/artikelPenulis/' + id);
   }
 });
@@ -121601,6 +120879,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['idCU', 'userData', 'userDataStat', 'modelCU', 'modelCUStat'],
+	data: function data() {
+		return {
+			id_cu: ''
+		};
+	},
 	updated: function updated() {
 		$('.bootstrap-select').selectpicker('refresh');
 	},
@@ -121611,6 +120894,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	watch: {
+		idCU: function idCU(value) {
+			this.id_cu = value;
+		},
 		userDataStat: function userDataStat(value) {
 			if (value === "success" && this.userData.id_pus !== undefined) {
 				this.fetchCU();
@@ -121657,8 +120943,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.idCU,
-                          expression: "idCU"
+                          value: _vm.id_cu,
+                          expression: "id_cu"
                         }
                       ],
                       staticClass: "bootstrap-select",
@@ -121678,7 +120964,7 @@ var render = function() {
                                 var val = "_value" in o ? o._value : o.value
                                 return val
                               })
-                            _vm.idCU = $event.target.multiple
+                            _vm.id_cu = $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
                           },
@@ -121762,8 +121048,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.idCU,
-                      expression: "idCU"
+                      value: _vm.id_cu,
+                      expression: "id_cu"
                     }
                   ],
                   staticClass: "form-control",
@@ -121783,7 +121069,7 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.idCU = $event.target.multiple
+                        _vm.id_cu = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       },
@@ -121994,10 +121280,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['batalRoute', 'formValidation']
+  props: {
+    formValidation: {},
+    cancelTitle: {
+      default: 'Batal'
+    },
+    cancelIcon: {
+      default: 'icon-arrow-left13'
+    },
+    cancelLink: {
+      default: ''
+    },
+    cancelState: {
+      default: 'link'
+    }
+  },
+  methods: {
+    cancelClick: function cancelClick() {
+      this.$emit('cancelClick');
+    }
+  }
 });
 
 /***/ }),
@@ -122009,97 +121330,133 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "panel panel-flat" }, [
-      _c("div", { staticClass: "panel-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "text-center hidden-xs" },
-            [
-              _c(
-                "router-link",
-                {
-                  directives: [
-                    {
-                      name: "tooltip",
-                      rawName: "v-tooltip:top",
-                      value: "Batal",
-                      expression: "'Batal'",
-                      arg: "top"
-                    }
-                  ],
-                  staticClass: "btn btn-default",
-                  attrs: { type: "button", to: { name: _vm.batalRoute } }
-                },
-                [
-                  _c("i", { staticClass: "icon-arrow-left13" }),
-                  _vm._v(" Batal\n          ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  directives: [
-                    {
-                      name: "tooltip",
-                      rawName: "v-tooltip:top",
-                      value: "Simpan Data",
-                      expression: "'Simpan Data'",
-                      arg: "top"
-                    }
-                  ],
-                  staticClass: "btn btn-primary",
-                  attrs: {
-                    type: "submit",
-                    disabled: _vm.errors.any(_vm.formValidation)
+    _c(
+      "div",
+      { staticClass: "text-center hidden-xs" },
+      [
+        _vm.cancelState === "methods"
+          ? _c(
+              "button",
+              {
+                directives: [
+                  {
+                    name: "tooltip",
+                    rawName: "v-tooltip:top",
+                    value: "Tutup",
+                    expression: "'Tutup'",
+                    arg: "top"
                   }
-                },
-                [
-                  _c("i", { staticClass: "icon-floppy-disk" }),
-                  _vm._v(" Simpan")
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "visible-xs" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-block pb-5",
-                  attrs: {
-                    type: "submit",
-                    disabled: _vm.errors.any(_vm.formValidation)
+                ],
+                staticClass: "btn btn-default",
+                attrs: { type: "button" },
+                on: { click: _vm.cancelClick }
+              },
+              [
+                _c("i", { class: _vm.cancelIcon }),
+                _vm._v(" " + _vm._s(_vm.cancelTitle) + "\n    ")
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.cancelState === "link"
+          ? _c(
+              "router-link",
+              {
+                directives: [
+                  {
+                    name: "tooltip",
+                    rawName: "v-tooltip:top",
+                    value: "Batal",
+                    expression: "'Batal'",
+                    arg: "top"
                   }
-                },
-                [
-                  _c("i", { staticClass: "icon-floppy-disk" }),
-                  _vm._v(" Simpan")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-default btn-block",
-                  attrs: { type: "button", to: { name: _vm.batalRoute } }
-                },
-                [
-                  _c("i", { staticClass: "icon-arrow-left13" }),
-                  _vm._v(" Batal\n          ")
-                ]
-              )
+                ],
+                staticClass: "btn btn-default",
+                attrs: { type: "button", to: { name: _vm.cancelLink } }
+              },
+              [
+                _c("i", { class: _vm.cancelIcon }),
+                _vm._v(" " + _vm._s(_vm.cancelTitle) + "\n    ")
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            directives: [
+              {
+                name: "tooltip",
+                rawName: "v-tooltip:top",
+                value: "Simpan Data",
+                expression: "'Simpan Data'",
+                arg: "top"
+              }
             ],
-            1
-          )
-        ])
-      ])
-    ])
+            staticClass: "btn btn-primary",
+            attrs: {
+              type: "submit",
+              disabled: _vm.errors.any(_vm.formValidation)
+            }
+          },
+          [
+            _c("i", { staticClass: "icon-floppy-disk" }),
+            _vm._v(" Simpan\n    ")
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "visible-xs" },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-block pb-5",
+            attrs: {
+              type: "submit",
+              disabled: _vm.errors.any(_vm.formValidation)
+            }
+          },
+          [
+            _c("i", { staticClass: "icon-floppy-disk" }),
+            _vm._v(" Simpan\n    ")
+          ]
+        ),
+        _vm._v(" "),
+        _vm.cancelState === "methods"
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-default btn-block",
+                on: { click: _vm.cancelClick }
+              },
+              [
+                _c("i", { class: _vm.cancelIcon }),
+                _vm._v(" " + _vm._s(_vm.cancelTitle) + "\n    ")
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.cancelState === "link"
+          ? _c(
+              "router-link",
+              {
+                staticClass: "btn btn-default btn-block",
+                attrs: { type: "button", to: { name: _vm.cancelLink } }
+              },
+              [
+                _c("i", { class: _vm.cancelIcon }),
+                _vm._v(" " + _vm._s(_vm.cancelTitle) + "\n    ")
+              ]
+            )
+          : _vm._e()
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -122206,6 +121563,751 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-77f7efa9", module.exports)
+  }
+}
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(401)
+/* template */
+var __vue_template__ = __webpack_require__(402)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/artikel/formKategori.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-550edd80", Component.options)
+  } else {
+    hotAPI.reload("data-v-550edd80", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 401 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_formButton_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_formButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_formButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_formInfo_vue__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_formInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_formInfo_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['id_cu'],
+	components: {
+		message: __WEBPACK_IMPORTED_MODULE_0__components_message_vue___default.a,
+		formButton: __WEBPACK_IMPORTED_MODULE_1__components_formButton_vue___default.a,
+		formInfo: __WEBPACK_IMPORTED_MODULE_2__components_formInfo_vue___default.a
+	},
+	data: function data() {
+		return {
+			kelas: 'artikel',
+			form: {
+				id_cu: '',
+				name: '',
+				deskripsi: ''
+			},
+			submited: false,
+			cancelTitle: 'Tutup',
+			cancelIcon: 'icon-cross',
+			cancelState: 'methods'
+		};
+	},
+
+	methods: {
+		save: function save() {
+			var _this = this;
+
+			this.form.id_cu = this.id_cu;
+			this.$validator.validateAll('form').then(function (result) {
+				if (result) {
+					_this.$store.dispatch('storeArtikelKategori', _this.form);
+				} else {
+					window.scrollTo(0, 0);
+					_this.submited = true;
+				}
+			});
+		},
+		cancelClick: function cancelClick() {
+			this.$emit('cancelClick');
+		}
+	}
+});
+
+/***/ }),
+/* 402 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { "data-vv-scope": "form" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.save($event)
+          }
+        }
+      },
+      [
+        _vm.errors.any("form") && _vm.submited
+          ? _c("message", {
+              attrs: {
+                title: "Oops terjadi kesalahan",
+                errorItem: _vm.errors.items
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.has("form.kategoriNama") }
+          },
+          [
+            _c(
+              "h5",
+              { class: { "text-danger": _vm.errors.has("form.name") } },
+              [
+                _vm.errors.has("form.name")
+                  ? _c("i", { staticClass: "icon-cross2" })
+                  : _vm._e(),
+                _vm._v("\n\t\t\t\tNama:\n\t\t\t")
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required",
+                  expression: "'required'"
+                },
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.name,
+                  expression: "form.name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "name",
+                placeholder: "Silahkan masukkan name kategori",
+                "data-vv-as": "Nama"
+              },
+              domProps: { value: _vm.form.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.has("form.name")
+              ? _c("small", { staticClass: "text-muted text-danger" }, [
+                  _c("i", { staticClass: "icon-arrow-small-right" }),
+                  _vm._v(
+                    " " + _vm._s(_vm.errors.first("form.name")) + "\n\t\t\t"
+                  )
+                ])
+              : _c("small", { staticClass: "text-muted" }, [
+                  _vm._v(" \n\t\t\t")
+                ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.has("form.deskripsi") }
+          },
+          [
+            _c(
+              "h5",
+              { class: { "text-danger": _vm.errors.has("form.deskripsi") } },
+              [
+                _vm.errors.has("form.deskripsi")
+                  ? _c("i", { staticClass: "icon-cross2" })
+                  : _vm._e(),
+                _vm._v("\n\t\t\t\tKeterangan:\n\t\t\t")
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required|min:5",
+                  expression: "'required|min:5'"
+                },
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.deskripsi,
+                  expression: "form.deskripsi"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                rows: "5",
+                type: "text",
+                name: "deskripsi",
+                placeholder: "Silahkan masukkan keterangan kategori"
+              },
+              domProps: { value: _vm.form.deskripsi },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "deskripsi", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.has("form.deskripsi")
+              ? _c("small", { staticClass: "text-muted text-danger" }, [
+                  _c("i", { staticClass: "icon-arrow-small-right" }),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.errors.first("form.deskripsi")) +
+                      "\n\t\t\t"
+                  )
+                ])
+              : _c("small", { staticClass: "text-muted" }, [
+                  _vm._v(" \n\t\t\t")
+                ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("form-button", {
+          attrs: {
+            cancelTitle: _vm.cancelTitle,
+            cancelIcon: _vm.cancelIcon,
+            cancelState: _vm.cancelState,
+            formValidation: "form"
+          },
+          on: { cancelClick: _vm.cancelClick }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-550edd80", module.exports)
+  }
+}
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(404)
+/* template */
+var __vue_template__ = __webpack_require__(405)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/artikel/formPenulis.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-53af71f0", Component.options)
+  } else {
+    hotAPI.reload("data-v-53af71f0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 404 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ImageUpload_vue__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ImageUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ImageUpload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_form__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_message_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_message_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_formButton_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_formButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_formButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_formInfo_vue__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_formInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_formInfo_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['id_cu'],
+	components: {
+		appImageUpload: __WEBPACK_IMPORTED_MODULE_0__components_ImageUpload_vue___default.a,
+		message: __WEBPACK_IMPORTED_MODULE_2__components_message_vue___default.a,
+		formButton: __WEBPACK_IMPORTED_MODULE_3__components_formButton_vue___default.a,
+		formInfo: __WEBPACK_IMPORTED_MODULE_4__components_formInfo_vue___default.a
+	},
+	data: function data() {
+		return {
+			kelas: 'artikel',
+			form: {
+				id_cu: '',
+				gambar: '',
+				name: '',
+				deskripsi: ''
+			},
+			submited: false,
+			cancelTitle: 'Tutup',
+			cancelIcon: 'icon-cross',
+			cancelState: 'methods'
+		};
+	},
+
+	methods: {
+		save: function save() {
+			var _this = this;
+
+			this.form.id_cu = this.id_cu;
+			this.$validator.validateAll('form').then(function (result) {
+				if (result) {
+					_this.$store.dispatch('storeArtikelKategori', _this.form);
+				} else {
+					window.scrollTo(0, 0);
+					_this.submited = true;
+				}
+			});
+		},
+		cancelClick: function cancelClick() {
+			this.$emit('cancelClick');
+		}
+	}
+});
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { enctype: "multipart/form-data", "data-vv-scope": "form" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.save($event)
+          }
+        }
+      },
+      [
+        _vm.errors.any("form") && _vm.submited
+          ? _c("message", {
+              attrs: {
+                title: "Oops terjadi kesalahan",
+                errorItem: _vm.errors.items
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("h5", [_vm._v("Foto:")]),
+            _vm._v(" "),
+            _c("app-image-upload", {
+              attrs: { image_loc: "/images/artikel/" },
+              model: {
+                value: _vm.form.gambar,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "gambar", $$v)
+                },
+                expression: "form.gambar"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.has("form.name") }
+          },
+          [
+            _c(
+              "h5",
+              { class: { "text-danger": _vm.errors.has("form.name") } },
+              [
+                _vm.errors.has("form.name")
+                  ? _c("i", { staticClass: "icon-cross2" })
+                  : _vm._e(),
+                _vm._v("\n\t\t\t\tNama:\n\t\t\t")
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required",
+                  expression: "'required'"
+                },
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.name,
+                  expression: "form.name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "name",
+                placeholder: "Silahkan masukkan name kategori",
+                "data-vv-as": "Nama"
+              },
+              domProps: { value: _vm.form.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.has("form.name")
+              ? _c("small", { staticClass: "text-muted text-danger" }, [
+                  _c("i", { staticClass: "icon-arrow-small-right" }),
+                  _vm._v(
+                    " " + _vm._s(_vm.errors.first("form.name")) + "\n\t\t\t"
+                  )
+                ])
+              : _c("small", { staticClass: "text-muted" }, [
+                  _vm._v(" \n\t\t\t")
+                ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.has("form.deskripsi") }
+          },
+          [
+            _c(
+              "h5",
+              { class: { "text-danger": _vm.errors.has("form.deskripsi") } },
+              [
+                _vm.errors.has("form.deskripsi")
+                  ? _c("i", { staticClass: "icon-cross2" })
+                  : _vm._e(),
+                _vm._v("\n\t\t\t\tKeterangan:\n\t\t\t")
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required|min:5",
+                  expression: "'required|min:5'"
+                },
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.deskripsi,
+                  expression: "form.deskripsi"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                rows: "5",
+                type: "text",
+                name: "deskripsi",
+                placeholder: "Silahkan masukkan keterangan kategori"
+              },
+              domProps: { value: _vm.form.deskripsi },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "deskripsi", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.has("form.deskripsi")
+              ? _c("small", { staticClass: "text-muted text-danger" }, [
+                  _c("i", { staticClass: "icon-arrow-small-right" }),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.errors.first("form.deskripsi")) +
+                      "\n\t\t\t"
+                  )
+                ])
+              : _c("small", { staticClass: "text-muted" }, [
+                  _vm._v(" \n\t\t\t")
+                ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("form-button", {
+          attrs: {
+            cancelTitle: _vm.cancelTitle,
+            cancelIcon: _vm.cancelIcon,
+            cancelState: _vm.cancelState,
+            formValidation: "form"
+          },
+          on: { cancelClick: _vm.cancelClick }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-53af71f0", module.exports)
   }
 }
 

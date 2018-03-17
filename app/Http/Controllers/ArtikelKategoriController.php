@@ -17,7 +17,7 @@ class ArtikelKategoriController extends Controller{
 			]);
 	}
 
-	public function indexAll()
+	public function get()
 	{
 		$table_data = ArtikelKategori::where('id','!=',1)->select('id','name')->orderby('name','asc')->get();
 

@@ -1,247 +1,218 @@
 import ArtikelPenulisAPI from '../../api/artikelPenulis.js';
 
 export const artikelPenulis = {
+  namespaced: true,
+
+  // state
   state: {
-    artikelPenulisS: [],
-    artikelPenulisLoadStatS: '',
-    artikelPenulis: {},
-    artikelPenulisLoadStat: '',
-    artikelPenulisUpdate: '',
-    artikelPenulisUpdateStat: '',
-    artikelPenulisRules: [],
-    artikelPenulisOption: [],
+    data: {}, //single data
+    dataS: [], //collection
+    dataStat: '',
+    dataStatS: '',
+    update: [], //update data
+    updateStat: '',
+    rules: [], //laravel rules
+    options: [], //laravel options
+  },
+
+  // getters
+  getters: {
+    data: state => state.data,
+    dataS: state => state.dataS,
+    dataStat: state => state.dataStat,
+    dataStatS: state => state.dataStatS,
+    update: state => state.update,
+    updateStat: state => state.updateStat,
+    rules: state => state.rules,
+    options: state => state.options,
   },
 
   actions: {
-
-    // load all
-    loadArtikelPenulisS( { commit }, p ){
-      commit('setArtikelPenulisLoadStatS', 'loading');
+    //load collection with params
+    index( { commit }, p ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelPenulisAPI.getArtikelPenulisS( p )
+      ArtikelPenulisAPI.index( p )
         .then( function( response ){
-          commit('setArtikelPenulisS', response.data.model);
-          commit('setArtikelPenulisLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelPenulisS', error.response);
-          commit('setArtikelPenulisLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load by cu
-    loadArtikelPenulisCUS( { commit }, [p, id] ){
-      commit('setArtikelPenulisLoadStatS', 'loading');
+    indexCU( {commit}, [p, id] ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelPenulisAPI.getArtikelPenulisCUS( p, id )
+      ArtikelPenulisAPI.indexCU( p, id )
         .then( function( response ){
-          commit('setArtikelPenulisS', response.data.model);
-          commit('setArtikelPenulisLoadStatS', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelPenulisS', error.response);
-          commit('setArtikelPenulisLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
-    loadArtikelPenulisCU( {commit}, id ){
-      commit('setArtikelPenulisLoadStat', 'loading');
+
+    //load collection without params
+    get( { commit } ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelPenulisAPI.getArtikelPenulisCU( id )
+      ArtikelPenulisAPI.get()
         .then( function( response ){
-          commit('setArtikelPenulisS', response.data.model);
-          commit('setArtikelPenulisLoadStatS', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelPenulisS', error.response);
-          commit('setArtikelPenulisLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // load single data
-    loadArtikelPenulis( {commit}, id ){
-      commit('setArtikelPenulisLoadStat', 'loading');
+    getCU( { commit }, id ){
+      commit('setDataStatS', 'loading');
       
-      ArtikelPenulisAPI.getArtikelPenulis( id )
+      ArtikelPenulisAPI.getCU( id )
         .then( function( response ){
-          commit('setArtikelPenulis', response.data );
-          commit('setArtikelPenulisLoadStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
         .catch( error => {
-          commit('setArtikelPenulisS', error.response);
-          commit('setArtikelPenulisLoadStatS', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
-    // create data
-    createArtikelPenulis( {commit} ){
-      commit('setArtikelPenulisLoadStat', 'loading');
+    // create page
+    create( {commit} ){
+      commit('setDataStat', 'loading');
       
-      ArtikelPenulisAPI.createArtikelPenulis()
+      ArtikelPenulisAPI.create()
         .then( function( response ){
-          commit('setArtikelPenulis', response.data.form );
-          commit('setArtikelPenulisRules', response.data.rules);
-          commit('setArtikelPenulisOption', response.data.option)
-          commit('setArtikelPenulisLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setArtikelPenulis', []);
-          commit('setArtikelPenulisRules', []);
-          commit('setArtikelPenulisOption', [])
-          commit('setArtikelPenulisLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
-    // store data
-    storeArtikelPenulis( {commit, state, dispatch}, form ){
-      commit('setArtikelPenulisUpdateStat', 'loading');
+    //store data
+    store( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
 
-      ArtikelPenulisAPI.storeArtikelPenulis( form )
+      ArtikelPenulisAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setArtikelPenulisUpdate', response.data);
-            commit('setArtikelPenulisUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setArtikelPenulisUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setArtikelPenulisUpdate', this.errors);         
-          }else{
-            commit('setArtikelPenulisUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setArtikelPenulisUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
+
     // edit page
-    editArtikelPenulis( {commit}, id ){
-      commit('setArtikelPenulisLoadStat', 'loading');
+    edit( {commit}, id ){
+      commit('setDataStat', 'loading');
       
-      ArtikelPenulisAPI.editArtikelPenulis( id )
+      ArtikelPenulisAPI.edit( id )
         .then( function( response ){
-          commit('setArtikelPenulis', response.data.form );
-          commit('setArtikelPenulisRules', response.data.rules);
-          commit('setArtikelPenulisOption', response.data.option)
-          commit('setArtikelPenulisLoadStat', 'success');
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
         })
-        .catch( function(){
-          commit('setArtikelPenulis', []);
-          commit('setArtikelPenulisRules', []);
-          commit('setArtikelPenulisOption', [])
-          commit('setArtikelPenulisLoadStat', 'fail');
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
         });
     },
 
     // update data
-    updateArtikelPenulis( {commit, state, dispatch}, [id, form] ){
-      commit('setArtikelPenulisUpdateStat', 'loading');
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
 
-      ArtikelPenulisAPI.updateArtikelPenulis( id, form )
+      ArtikelPenulisAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setArtikelPenulisUpdate', response.data);
-            commit('setArtikelPenulisUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setArtikelPenulisUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setArtikelPenulisUpdate', this.errors);         
-          }else{
-            commit('setArtikelPenulisUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setArtikelPenulisUpdateStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // delete data
-    deleteArtikelPenulis( {commit, state, dispatch}, id ){
-      commit('setArtikelPenulisUpdateStat', 'loading');
+    // destroy data
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
 
-      ArtikelPenulisAPI.deleteArtikelPenulis( id )
+      ArtikelPenulisAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setArtikelPenulisUpdate', response.data);
-            commit('setArtikelPenulisUpdateStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           }else{
-            commit('setArtikelPenulisUpdateStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          if (error.response.status) {
-            this.errors = error.response.data;
-            commit('setArtikelPenulisUpdate', this.errors);         
-          }else{
-            commit('setArtikelPenulisUpdate', 'Oops terjadi kesalahan :(');
-          }
-          commit('setArtikelPenulisUpdateStat', 'fail');
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
         });
     },
 
-    // reset status
-    resetArtikelPenulisUpdateStat( {commit} ){
-      commit('setArtikelPenulisUpdateStat', '');
-    },
-    resetArtikelPenulisLoadStat( {commit} ){
-      commit('setArtikelPenulisLoadStat', '');
+    // reset
+    resetUpdateStat( {commit} ){
+      commit('setUpdateStat', '');
     }
   },
 
+  // mutations
   mutations: {
-    setArtikelPenulisS ( state, artikelPenulisS ){
-      state.artikelPenulisS = artikelPenulisS;
+    setData ( state, data ){
+      state.data = data;
     },
-    setArtikelPenulisLoadStatS( state, status ){
-      state.artikelPenulisLoadStatS = status;
+    setDataS ( state, data ){
+      state.dataS = data;
     },
-    setArtikelPenulis ( state, artikelPenulis ){
-      state.artikelPenulis = artikelPenulis;
+    setDataStat( state, status ){
+      state.dataStat = status;
     },
-    setArtikelPenulisLoadStat( state, status ){
-      state.artikelPenulisLoadStat = status;
+    setDataStatS( state, status ){
+      state.dataStatS = status;
     },
-    setArtikelPenulisUpdateStat( state, status ){
-      state.artikelPenulisUpdateStat = status;
+    setUpdate ( state, data ){
+      state.update = data;
     },
-    setArtikelPenulisUpdate( state, data ){
-      state.artikelPenulisUpdate = data;
+    setUpdateStat( state,status ){
+      state.updateStat = status;
     },
-    setArtikelPenulisRules( state, rules ){
-      state.artikelPenulisRules = rules;
+    setRules( state, rules ){
+      state.rules = rules;
     },
-    setArtikelPenulisOption( state, option ){
-      state.artikelPenulisOption = option;
-    }
-  },
-
-  getters: {
-    getArtikelPenulisS( state ){
-      return state.artikelPenulisS;
-    },
-    getArtikelPenulisLoadStatS ( state ){
-      return state.artikelPenulisLoadStatS;
-    },
-    getArtikelPenulis( state ){
-      return state.artikelPenulis;
-    },
-    getArtikelPenulisLoadStat ( state ){
-      return state.artikelPenulisLoadStat;
-    },
-    getArtikelPenulisUpdateStat ( state ){
-      return state.artikelPenulisUpdateStat;
-    },
-    getArtikelPenulisUpdate ( state ){
-      return state.artikelPenulisUpdate;
-    },
-    getArtikelPenulisRules ( state ){
-      return state.artikelPenulisRules;
-    },
-    getArtikelPenulisOption ( state ){
-      return state.artikelPenulisOption;
+    setOptions( state, options ){
+      state.options = options;
     }
   }
 }

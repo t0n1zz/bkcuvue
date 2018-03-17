@@ -554,7 +554,7 @@
 
 						<!-- form button -->
 						<form-button
-							:batalRoute="kelas"
+							:cancelLink="kelas"
 							:formValidation="'form'"></form-button>
 
 					</form>

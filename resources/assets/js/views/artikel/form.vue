@@ -261,9 +261,16 @@
 						<br/>
 
 						<!-- form button -->
-						<form-button
-							:batalRoute="kelas"
-							:formValidation="'form'"></form-button>
+						<div class="panel panel-flat">
+							<div class="panel-body">
+								<div class="row">
+									<form-button
+										:cancelLink="kelas"
+										:formValidation="'form'"></form-button>
+								</div>
+							</div>
+						</div>
+						
 
 					</form>
 
@@ -279,161 +286,19 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah kategori -->
-			<template slot="modal-body1">
-				<form data-vv-scope="form-kategori">
-
-					<!-- message -->
-					<message :show="errors.any('form-kategori')" v-if="submitedKategori">
-						<p><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan:</p>
-						<ul>
-							<li v-for="error in errors.items">{{error.msg}}</li>
-						</ul>
-					</message>
-
-					<!-- name -->
-					<div class="form-group" :class="{'has-error' : errors.has('form-kategori.kategoriNama')}">
-
-						<!-- title -->
-						<h5 :class="{ 'text-danger' : errors.has('form-kategori.kategoriNama')}">
-							<i class="icon-cross2" v-if="errors.has('form-kategori.kategoriNama')"></i>
-							Nama:
-						</h5>
-
-						<!-- text -->
-						<input type="text" name="kategoriNama" class="form-control" placeholder="Silahkan masukkan name kategori" v-validate="'required'" data-vv-as="Nama" v-model="formKategori.name">
-
-						<!-- error message -->
-						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriNama')">
-							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriNama') }}
-						</small>
-						<small class="text-muted" v-else>&nbsp;
-						</small>
-					</div>
-
-					<!-- deskripsi -->
-					<div class="form-group" :class="{'has-error' : errors.has('form-kategori.kategoriDeskripsi')}">
-
-						<!-- title -->
-						<h5 :class="{ 'text-danger' : errors.has('form-kategori.kategoriDeskripsi')}">
-							<i class="icon-cross2" v-if="errors.has('form-kategori.kategoriDeskripsi')"></i>
-							Keterangan:
-						</h5>
-
-						<!-- textarea -->
-						<textarea rows="5" type="text" name="kategoriDeskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori"
-							v-validate="'required|min:5'" v-model="formKategori.deskripsi"></textarea>
-
-						<!-- error message -->
-						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriDeskripsi')">
-							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriDeskripsi') }}
-						</small>
-						<small class="text-muted" v-else>&nbsp;
-						</small>
-					</div>
-				</form>
-			</template>
-			<template slot="modal-footer1">
-
-				<!-- button desktop -->
-				<div class="hidden-xs">
-					<button class="btn btn-default" @click="modalTutup">
-					<i class="icon-cross"></i> Tutup</button>
-					<button type="submit" class="btn btn-primary" @click="saveKategori" :disabled="errors.any('form-kategori')">
-					<i class="icon-floppy-disk"></i> Simpan</button>
-				</div>
-
-				<!-- button mobile -->
-				<div class="visible-xs">
-					<button type="submit" class="btn btn-primary btn-block pb-5" @click="saveKategori" :disabled="errors.any('form-kategori')">
-					<i class="icon-floppy-disk"></i> Simpan</button>
-					<button class="btn btn-default btn-block" @click="modalTutup">
-					<i class="icon-cross"></i> Tutup</button>
-				</div>
-				
-			</template>
-
 			<!-- tambah penulis -->
+			<template slot="modal-body1">
+				<form-penulis 
+				:id_cu="id_cu"
+				@cancelClick="modalTutup"></form-penulis>
+			</template>
+
+			<!-- tambah kategori -->
 			<template slot="modal-body2">
-				<form data-vv-scope="form-penulis">
-
-					<!-- message -->
-					<message :show="errors.any('form-penulis')" v-if="submitedPenulis">
-						<p><i class="icon-cancel-circle2"></i> Oops terjadi kesalahan:</p>
-						<ul>
-							<li v-for="error in errors.items">{{error.msg}}</li>
-						</ul>
-					</message>
-					
-					<!-- gambar utama -->
-					<div class="form-group">
-
-						<!-- title -->
-						<h5>Foto:</h5>
-
-						<!-- imageupload -->
-						<app-image-upload :image_loc="'/images/artikel/'" v-model="formPenulis.gambar"></app-image-upload>
-					</div>
-
-					<!-- name -->
-					<div class="form-group" :class="{'has-error' : errors.has('form-penulis.penulisNama')}">
-
-						<!-- title -->
-						<h5 :class="{ 'text-danger' : errors.has('form-penulis.penulisNama')}">
-							<i class="icon-cross2" v-if="errors.has('form-penulis.penulisNama')"></i>
-							Nama:
-						</h5>
-						<!-- text -->
-						<input type="text" name="penulisNama" class="form-control" placeholder="Silahkan masukkan name penulis" v-validate="'required'" data-vv-as="Nama" v-model="formPenulis.name">
-
-						<!-- error message -->
-						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriDeskripsi')">
-							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriDeskripsi') }}
-						</small>
-						<small class="text-muted" v-else>&nbsp;
-						</small>
-					</div>
-
-					<!-- deskripsi -->
-					<div class="form-group" :class="{'has-error' : errors.has('form-penulis.penulisDeskripsi')}">
-
-						<!-- title -->
-						<h5 :class="{ 'text-danger' : errors.has('form-penulis.penulisDeskripsi')}">
-							<i class="icon-cross2" v-if="errors.has('form-penulis.penulisDeskripsi')"></i>
-							Profil:
-						</h5>
-
-						<!-- textarea -->
-						<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan profil penulis" v-validate="'required|min:5'" data-vv-as="Profil" v-model="formPenulis.deskripsi"></textarea>
-
-						<!-- error message -->
-						<small class="text-muted text-danger" v-if="errors.has('form-kategori.kategoriDeskripsi')">
-							<i class="icon-arrow-small-right"></i> {{ errors.first('form-kategori.kategoriDeskripsi') }}
-						</small>
-						<small class="text-muted" v-else>&nbsp;
-						</small>
-					</div>
-				</form>
-			</template>
-			<template slot="modal-footer2">
-
-				<!-- button desktop -->
-				<div class="hidden-xs">
-					<button class="btn btn-default" @click="modalTutup">
-					<i class="icon-cross"></i> Tutup</button>
-					<button type="submit" class="btn btn-primary" @click="savePenulis" :disabled="errors.any('form-penulis')">
-					<i class="icon-floppy-disk"></i> Simpan</button>
-				</div>
-
-				<!-- button mobile -->
-				<div class="visible-xs">
-					<button type="submit" class="btn btn-primary btn-block pb-5" @click="savePenulis" :disabled="errors.any('form-penulis')">
-					<i class="icon-floppy-disk"></i> Simpan</button>
-					<button class="btn btn-default btn-block" @click="modalTutup">
-					<i class="icon-cross"></i> Tutup</button>
-				</div>
-				
-			</template>
+				<form-kategori
+				:id_cu="id_cu"
+				@cancelClick="modalTutup"></form-kategori>
+			</template>]
 
 		</app-modal>
 
@@ -441,20 +306,18 @@
 </template>
 
 <script>
-	import Vue from 'vue';
-	import axios from 'axios';
 	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
-	import {
-		toMulipartedForm
-	} from '../../helpers/form';
+	import { toMulipartedForm } from '../../helpers/form';
 	import appSummernote from '../../helpers/summernote.js';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import formKategori from "./formKategori.vue";
+	import formPenulis from "./formPenulis.vue";
 
 	export default {
 		components: {
@@ -464,7 +327,9 @@
 			appImageUpload,
 			message,
 			formButton,
-			formInfo
+			formInfo,
+			formKategori,
+			formPenulis
 		},
 		data() {
 			return {
@@ -474,17 +339,7 @@
 				level2Title: 'Artikel',
 				kelas: 'artikel',
 				redirect: '/artikel/',
-				formKategori: {
-					id_cu: '',
-					name: '',
-					deskripsi: ''
-				},
-				formPenulis: {
-					id_cu: '',
-					name: '',
-					deskripsi: '',
-					gambar:''
-				},
+				id_cu: '',
 				utama: '',
 				summernoteconfig: {
 					height: 400,
@@ -623,30 +478,9 @@
 					}
 				});
 			},
-			savePenulis(){
-				const formData = toMulipartedForm(this.formPenulis, this.$route.meta.mode);
-				this.$validator.validateAll('form-penulis').then((result) => {
-					if(result){
-						this.$store.dispatch('storeArtikelPenulis',this.formPenulis);
-					}else{
-						window.scrollTo(0, 0);
-						this.submitedPenulis = true;
-					}
-				});	
-			},
-			saveKategori() {
-				this.$validator.validateAll('form-kategori').then((result) => {
-					if(result){
-						this.$store.dispatch('storeArtikelKategori',this.formKategori);
-					}else{
-						window.scrollTo(0, 0);
-						this.submitedKategori = true;
-					}
-				});	
-			},
 			changeCU(id){
-				this.$store.dispatch('loadArtikelPenulisCU', id);	
-				this.$store.dispatch('loadArtikelKategoriCU', id);
+				this.$store.dispatch('artikelPenulis/getCU', id);	
+				this.$store.dispatch('artikelKategori/getCU', id);
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
@@ -667,24 +501,20 @@
 				}
 			},
 			modalOpen_Penulis(){
-				this.formPenulis.id_cu = this.form.id_cu;
-
-				this.modalShow = true;
-				this.modalState = 'normal2';
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah penulis artikel';
-				this.formPenulis.name = '';
-				this.formPenulis.deskripsi = '';
-			},
-			modalOpen_Kategori() {
-				this.formKategori.id_cu = this.form.id_cu;
+				this.id_cu = this.form.id_cu;
 
 				this.modalShow = true;
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
+				this.modalTitle = 'Tambah penulis artikel';
+			},
+			modalOpen_Kategori() {
+				this.id_cu = this.form.id_cu;
+
+				this.modalShow = true;
+				this.modalState = 'normal2';
+				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Tambah kategori artikel';
-				this.formKategori.name = '';
-				this.formKategori.deskripsi = '';
 			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
@@ -712,32 +542,20 @@
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
 			}),
-			updateKategoriResponse(){
-				return this.$store.getters.getArtikelKategoriUpdate;
-			},
-			updateKategoriStat(){
-				return this.$store.getters.getArtikelKategoriUpdateStat;
-			},
-			updatePenulisResponse(){
-				return this.$store.getters.getArtikelPenulisUpdate;
-			},
-			updatePenulisStat(){
-				return this.$store.getters.getArtikelPenulisUpdateStat;
-			},
-			modelPenulis() {
-				return this.$store.getters.getArtikelPenulisS;
-			},
-			modelPenulisStat() {
-				return this.$store.getters.getArtikelPenulisLoadStatS;
-			},
+			...mapGetters('artikelKategori',{
+				modelKategori: 'dataS',
+				modelKategoriStat: 'dataStatS',
+				updateKategoriResponse: 'update',
+				updateKategoriStat: 'updateStat',
+			}),
+			...mapGetters('artikelPenulis',{
+				modelPenulis: 'dataS',
+				modelPenulisStat: 'dataStatS',
+				updatePenulisResponse: 'update',
+				updatePenulisStat: 'updateStat',
+			}),
 			modelPus() {
 				return this.$store.getters.getPusS;
-			},
-			modelKategori() {
-				return this.$store.getters.getArtikelKategoriS;
-			},
-			modelKategoriStat() {
-				return this.$store.getters.getArtikelKategoriLoadStatS;
 			}
 		}
 	}

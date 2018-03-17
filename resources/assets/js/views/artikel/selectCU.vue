@@ -10,7 +10,7 @@
 						</div>
 
 						<!-- select -->
-						<select class="bootstrap-select" name="idCU" v-model="idCU" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+						<select class="bootstrap-select" name="idCU" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<option value="semua">Semua</option>
 							<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
@@ -36,7 +36,7 @@
 					<div class="input-group-addon">
 						Pilih Data
 					</div>
-					<select class="form-control" name="idCU" v-model="idCU" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+					<select class="form-control" name="idCU" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 						<option disabled value="">Silahkan pilih data</option>
 						<option value="semua">Semua</option>
 						<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
@@ -60,6 +60,11 @@
 <script>
 	export default {
 		props:['idCU','userData','userDataStat','modelCU','modelCUStat'],
+		data(){
+			return {
+				id_cu: ''
+			}
+		},
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
 		},
@@ -69,6 +74,9 @@
 			}	
 		},
 		watch: {
+			idCU(value){
+				this.id_cu = value;
+			},
 			userDataStat(value){
 				if(value === "success" && this.userData.id_pus !== undefined){
 					this.fetchCU();

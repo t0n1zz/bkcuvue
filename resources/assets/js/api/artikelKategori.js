@@ -2,43 +2,39 @@ import { BKCU_CONFIG } from '../config.js';
 
 export default {
   
-  getArtikelKategoriS: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikelKategori' + `?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`);
+  index: function( p ){
+    return axios.get( BKCU_CONFIG.API_URL + '/artikelKategori' , {params: p});
   },
 
-  getArtikelKategoriCUS: function( p , id){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikelKategori/indexCU/' + id + `?column=${p.column}&direction=${p.direction}&per_page=${p.per_page}&page=${p.page}&search_column=${p.search_column}&search_operator=${p.search_operator}&search_query_1=${p.search_query_1}&search_query_2=${p.search_query_2}`);
+  get: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/get');
+  },
+  
+  indexCU: function( p, id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/indexCU/' + id, {params: p});
   },
 
-  getArtikelKategoriAll: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori_all');
+  getCU: function(  id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/getCU/' + id);
   },
 
-  getArtikelKategori: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/' + id);
-  },
-
-  getArtikelKategoriCU: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/cu/' + id);
-  },
-
-  createArtikelKategori: function(){
+  create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/create');
   },
 
-  storeArtikelKategori: function ( form ){
+  store: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/artikelKategori/store', form);
   },
 
-  editArtikelKategori: function( id ){
+  edit: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/edit/' + id);
   },
 
-  updateArtikelKategori: function ( id, form ){
+  update: function ( id, form ){
     return axios.post(BKCU_CONFIG.API_URL + '/artikelKategori/update/' + id, form);
   },
 
-  deleteArtikelKategori: function( id ){
+  destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/artikelKategori/' + id);
   }
 }
