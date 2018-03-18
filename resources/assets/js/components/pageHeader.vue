@@ -24,13 +24,13 @@
 				</div>
 				<div class="heading-elements hidden-print">
 					<div class="heading-btn-group">
-						<router-link :to="{ name: btn1Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn1Route && userData.can && userData.can[btn1Can]">
+						<router-link :to="{ name: btn1Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn1Route && profile.can && profile.can[btn1Can]">
 							<i class="text-primary" :class="btn1Icon"></i> <span>{{btn1Title}}</span>
 						</router-link>
-                        <router-link :to="{ name: btn2Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn2Route && userData.can && userData.can[btn2Can]">
+                        <router-link :to="{ name: btn2Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn2Route && profile.can && profile.can[btn2Can]">
 							<i class="text-primary" :class="btn2Icon"></i> <span>{{btn2Title}}</span>
 						</router-link>
-                        <router-link :to="{ name: btn3Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn3Route && userData.can && userData.can[btn3Can]">
+                        <router-link :to="{ name: btn3Route }" class="btn btn-link btn-icon btn-float has-text" v-if="btn3Route && profile.can && profile.can[btn3Can]">
 							<i class="text-primary" :class="btn3Icon"></i> <span>{{btn3Title}}</span>
 						</router-link>
 					</div>
@@ -101,8 +101,8 @@ export default {
     },
     computed:{
         ...mapGetters('user',{
-            userData: 'data',
-            userDataStat: 'dataStat'
+            profile: 'profile',
+            profileStat: 'profileStat'
         }),
     }
 }

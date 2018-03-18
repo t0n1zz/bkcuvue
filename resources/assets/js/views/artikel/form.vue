@@ -9,7 +9,7 @@
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message v-if="errors.any('form') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
+					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
 					<!-- main panel -->
@@ -42,7 +42,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="userData.id_cu === 0">
+									<div class="col-md-4" v-if="profile.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -54,7 +54,7 @@
 											<!-- select -->
 											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
-												<option value="0"><span v-if="userData.pus">{{userData.pus.name}}</span> <span v-else>Puskopdit</span></option>
+												<option value="0"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 												<option data-divider="true"></option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
@@ -166,7 +166,7 @@
 									<div class="col-md-12"><br/></div>
 
 									<!-- terbitkan -->
-									<div class="col-md-4" v-if="userData.can && userData.can['terbitkan ' + kelas]">
+									<div class="col-md-4" v-if="profile.can && profile.can['terbitkan ' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.terbitkan')}">
 
 											<!-- title -->
@@ -195,7 +195,7 @@
 									</div>
 
 									<!-- utamakan -->
-									<div class="col-md-4" v-if="userData.can && userData.can['utamakan ' + kelas]">
+									<div class="col-md-4" v-if="profile.can && profile.can['utamakan ' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.utamakan')}">
 
 											<!-- title -->
@@ -386,21 +386,21 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
-			userDataStat(value){ //jika refresh halaman maka reload userData
+			profileStat(value){ //jika refresh halaman maka reload profile
 				if(value === "success"){
-					if(this.userData.id_cu === 0){
-						this.$store.dispatch('cu/getPus',this.userData.id_pus);
+					if(this.profile.id_cu === 0){
+						this.$store.dispatch('cu/getPus',this.profile.id_pus);
 					}
 					if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
-						this.form.id_cu = this.userData.id_cu;
-						this.changeCU(this.userData.id_cu);
+						this.form.id_cu = this.profile.id_cu;
+						this.changeCU(this.profile.id_cu);
 					}
 				}
 			},
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
-						this.form.id_cu = this.userData.id_cu;
+						this.form.id_cu = this.profile.id_cu;
 					}
 					if(this.form.id_cu !== undefined){
 						this.changeCU(this.form.id_cu);
@@ -448,8 +448,8 @@
     },
 		methods: {
 			fetch(){
-				if(this.userData.id_cu === 0){
-					this.$store.dispatch('cu/getPus',this.userData.id_pus);
+				if(this.profile.id_cu === 0){
+					this.$store.dispatch('cu/getPus',this.profile.id_pus);
 				}
 
 				if(this.$route.meta.mode === 'edit'){
@@ -526,8 +526,8 @@
 		},
 		computed: {
 			...mapGetters('user',{
-				userData: 'data',
-				userDataStat: 'dataStat'
+				profile: 'profile',
+				profileStat: 'profileStat'
 			}),
 			...mapGetters('artikel',{
 				form: 'data',

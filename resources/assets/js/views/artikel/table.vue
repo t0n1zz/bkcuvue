@@ -11,28 +11,28 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-5" v-if="userData.can && userData.can['create ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['create ' + kelas]">
 					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
 						<i class="icon-plus3"></i> Tambah 
 					</router-link>
 				</div>
 
 				<!-- ubah-->
-				<div class="btn-group pb-5" v-if="userData.can && userData.can['update ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
 					<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
 
 				<!-- hapus -->
-				<div class="btn-group pb-5" v-if="userData.can && userData.can['destroy ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy ' + kelas]">
 					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
 					</button>
 				</div>
 
 				<!-- terbitkan -->
-				<div class="btn-group pb-5" v-if="userData.can && userData.can['terbitkan ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['terbitkan ' + kelas]">
 					<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
 						<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
 						<span v-else>Terbitkan</span>
@@ -40,7 +40,7 @@
 				</div>
 
 				<!-- utamakan -->
-				<div class="btn-group pb-5" v-if="userData.can && userData.can['utamakan ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['utamakan ' + kelas]">
 					<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
 						<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
 						<span v-else>Utamakan</span>
@@ -61,7 +61,7 @@
 				<li><hr class="no-margin-top no-margin-bottom"/></li>
 
 				<!-- update -->
-				<li v-if="userData.can && userData.can['update ' + kelas]">
+				<li v-if="profile.can && profile.can['update ' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
 						<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 							<i class="icon-pencil5"></i> Ubah
@@ -70,7 +70,7 @@
 				</li>
 
 				<!-- destroy -->
-				<li v-if="userData.can && userData.can['destroy ' + kelas]">
+				<li v-if="profile.can && profile.can['destroy ' + kelas]">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 							<i class="icon-bin2"></i> Hapus
@@ -79,7 +79,7 @@
 				</li>
 
 				<!-- terbitkan -->
-				<li v-if="userData.can && userData.can['terbitkan ' + kelas]">
+				<li v-if="profile.can && profile.can['terbitkan ' + kelas]">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
 							<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
@@ -89,7 +89,7 @@
 				</li>
 
 				<!-- utamakan -->
-				<li v-if="userData.can && userData.can['utamakan ' + kelas]">
+				<li v-if="profile.can && profile.can['utamakan ' + kelas]">
 					<div class="pl-5 pr-5">
 						<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
 							<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
@@ -133,7 +133,7 @@
 
 			<!-- mobile -->
 			<!-- button mobile -->
-			<template slot="button-mobile" class="hidden-print" v-if="userData.can && userData.can['create ' + kelas]">
+			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create ' + kelas]">
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
 					<i class="icon-plus3"></i> Tambah
@@ -211,21 +211,21 @@
 						<div class="text-center button-toolbar">
 
 							<!-- update -->
-							<div class="pt-10 pb-10 pl-15 pr-15" v-if="userData.can && userData.can['update ' + kelas]">
+							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update ' + kelas]">
 								<button @click.prevent="ubahData(props.item.id,props.item.id_cu)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 							
 							<!-- destroy -->
-							<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['destroy ' + kelas]">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-bin2"></i> <span>Hapus</span>
 								</button>
 							</div>
 							
 							<!-- terbitkan -->
-							<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['terbitkan ' + kelas]">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['terbitkan ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('updateTerbitkan',true,props.item)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-file-upload"></i> <span v-if="props.item.terbitkan === 1">Tidak Terbitkan</span>
 									<span v-else>Terbitkan</span> 
@@ -233,7 +233,7 @@
 							</div>
 
 							<!-- utamakan -->
-							<div class="pb-10 pl-15 pr-15" v-if="userData.can && userData.can['utamakan ' + kelas]">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['utamakan ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('updateUtamakan',true,props.item)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pushpin"></i> <span v-if="props.item.utamakan === 1">Tidak Utamakan</span>
 									<span v-else>Utamakan</span>
@@ -266,13 +266,14 @@
 			appModal,
 			checkValue
 		},
-		props:['title','kelas','modelPenulis','modelPenulisStat','modelKategori','modelKategoriStat'],
+		props:['title','kelas'],
 		data() {
 			return {
 				source: '',
 				extSearchQuery1: '',
 				extSearchColumn: '',
 				selectedItem: [],
+				isloaded: false,
 				params: {
           column: 'id',
           direction: 'desc',
@@ -400,30 +401,59 @@
 				modalContent: '',
 				modalButton: ''
 			}
-		},	
+		},
+		beforeRouteUpdate(to, from, next){
+			this.checkMeta();
+		},
 		watch: {
-			idCU(value){
-				if(value !== ''){
-					this.fetch();
-				}
-			},
-			itemDataStat(value){
+			// profileStat(value){
+			// 	if(value === "success"){
+			// 		this.checkMeta();
+			// 		console.log('yo'); 
+			// 	}
+			// },
+			// idCU(value){ //fetch on selectCU change
+			// 	if(value !== ''){
+			// 		if(this.modelCUStat === 'success'){
+			// 			this.fetch();
+			// 		}
+			// 	}
+			// },
+			modelCUStat(value){ //fetch on load page
 				if(value === 'success'){
-					// reset idcuupdate so when navigating to other page it will load default idcu not the one from edit route
-					this.$store.dispatch('global/resetIdCUUpdate');
+					this.checkMeta();
+					this.fetch();
 				}
 			},
 			modelKategoriStat(value){
 				if(value === 'success'){
-					this.params.search_column = 'artikelkategori.name';
-					this.params.search_query_1 = this.modelKategori.name;
 
-					this.extSearchColumn = 'Kategori';
-					this.extSearchQuery1 = this.modelKategori.name;
+					// if user data id cu is not bkcu
+					if(this.profile.id_cu !== 0){
+						// if kategori artikel id cu is match with user data id cu
+						if(this.profile.id_cu === this.modelKategori.id_cu){
+							this.params.search_column = 'artikelkategori.name';
+							this.params.search_query_1 = this.modelKategori.name;
 
-					this.$store.dispatch('artikel/changeIdCU', this.modelKategori.idCU);
+							this.extSearchColumn = 'Kategori';
+							this.extSearchQuery1 = this.modelKategori.name;
 
-					this.$store.dispatch('load' + this.kelas + 'CUS', [this.params,this.modelKategori.idCU]);
+							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						}else{
+							//else page not found
+							// this.$router.push({name: 'notFound'});
+							console.log('notfound');
+						}
+					}else{
+						// if user data id cu is bkcu
+						this.params.search_column = 'artikelkategori.name';
+						this.params.search_query_1 = this.modelKategori.name;
+
+						this.extSearchColumn = 'Kategori';
+						this.extSearchQuery1 = this.modelKategori.name;
+
+						this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+					}
 				}
 			},
 			modelPenulisStat(value){
@@ -434,9 +464,7 @@
 					this.extSearchColumn = 'Penulis';
 					this.extSearchQuery1 = this.modelPenulis.name;
 
-					this.$store.dispatch('artikel/changeIdCU', this.modelPenulis.idCU);
-
-					this.$store.dispatch('load' + this.kelas + 'CUS', [this.params,this.modelPenulis.idCU]);
+					this.$store.dispatch('load' + this.kelas + 'CUS', [this.params,this.modelPenulis.id_cu]);
 				}
 			},
       updateStat(value) {
@@ -453,45 +481,76 @@
 					this.modalContent = '';
 				}
       }
-    },
+		},
 		methods: {
 			fetch(){
-				if(this.modelCUStat === 'success'){
-					if(this.idCU === 'semua'){
-						this.$store.dispatch(this.kelas + '/index', this.params);
-						this.disableColumnCU(false);
-					}else{
-						if(this.idCU !== undefined){
-							if(this.$route.meta.mode === 'kategori'){ //if artikelFilterKategori
-								if(this.modelKategoriStat !== 'success'){
-									this.$store.dispatch('editArtikelKategori',this.$route.params.id);
-								}else{
-									this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
-								}
-							}else if(this.$route.meta.mode === 'penulis'){ //if artikelFilterPenulis
-								if(this.modelPenulisLoadStat !== 'success'){
-									this.$store.dispatch('editArtikelPenulis',this.$route.params.id);
-								}else{
-									this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
-								}
+				
+				// if show all
+				if(this.idCU === 'semua'){
+					this.$store.dispatch(this.kelas + '/index', this.params);
+
+					// show cu column
+					this.disableColumnCU(false);
+				}else{
+
+					// if show cu & pus
+					if(this.idCU !== undefined){
+
+						//if artikelFilterKategori
+						if(this.$route.meta.mode === 'kategori'){ 
+
+							//if modelkategori is not loaded yet
+							if(this.modelKategoriStat !== 'success'){	
+								this.$store.dispatch('artikelKategori/edit',this.$route.params.id);
+
+							//for changing parameters in kategori meta mode
 							}else{
 								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 							}
+
+						//if artikelFilterPenulis
+						}else if(this.$route.meta.mode === 'penulis'){ 
+							if(this.modelPenulisLoadStat !== 'success'){
+								this.$store.dispatch('artikelPenulis/edit',this.$route.params.id);
+							}else{
+								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+							}
+						}else{
+							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 						}
-						this.disableColumnCU(true);
 					}
+
+					// hide cu column
+					this.disableColumnCU(true);
+				}
+			},
+			checkMeta(){
+				if(this.$route.meta.mode === 'kategori' || this.$route.meta.mode === 'penulis'){
+					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+				}else if(this.$route.meta.mode === 'cu'){
+					this.resetParams();
+					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+				}else{
+					this.resetParams();
+					this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
 				}
 			},
 			disableColumnCU(status){
 				this.columnData[4].disable = status;
 				this.filterData[3].disable = status;
 			},
+			resetParams(){
+				this.params.search_column = 'name';
+				this.params.search_query_1 = '';
+
+				this.extSearchColumn = 'name';
+				this.extSearchQuery1 = '';
+			},
 			selectedRow(item){
 				this.selectedItem = item;
 			},
 			ubahData(id, id_cu) {
-				this.$store.dispatch('global/changeIdCUUpdate',id_cu);
-				this.$router.push('/' + this.kelas + '/edit/' + id);
+				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -503,22 +562,22 @@
 				}
 
 				if (source == 'hapus') {
-					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 				} else if (source == 'updateTerbitkan') {
 					if (this.selectedItem.terbitkan == 0) {
-						this.modalTitle = 'Terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+						this.modalTitle = 'Terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, terbitkan';
 					} else {
-						this.modalTitle = 'Tidak terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+						this.modalTitle = 'Tidak terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, tidak terbitkan';
 					}
 				} else if (source == 'updateUtamakan') {
 					if (this.selectedItem.utamakan == 0) {
-						this.modalTitle = 'Utamakan ' + this.title + ' ' + this.selectedItem.name + '  artikel ini?';
+						this.modalTitle = 'Utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, utamakan';
 					} else {
-						this.modalTitle = 'Tidak utamakan ' + this.title + ' ' + this.selectedItem.name + ' ni?';
+						this.modalTitle = 'Tidak utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, tidak utamakan';
 					}
 				}
@@ -539,11 +598,15 @@
 		},
 		computed:{
 			...mapGetters('user',{
-				userData: 'data',
-				userDataStat: 'dataStat'
+				profile: 'profile',
+				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
 				idCU: 'idCU'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'dataS',
+				modelCUStat: 'dataStatS',
 			}),
 			...mapGetters('artikel',{
 				itemData: 'dataS',
@@ -551,11 +614,13 @@
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),
-			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
+			...mapGetters('artikelKategori',{
+				modelKategori: 'data',
+				modelKategoriStat: 'dataStat',
+			}),
+			...mapGetters('artikelPenulis',{
+				modelPenulis: 'data',
+				modelPenulisStat: 'dataStat',
 			}),
 		},
 		filters: {

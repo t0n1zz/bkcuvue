@@ -651,9 +651,10 @@
 		watch: {
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode !== 'edit'){
-						this.form.id_cu = this.userData.id_cu;
-					}else{
+					if(this.$route.meta.mode === 'edit'){
+						if(this.profile.id_cu !== 0 && this.profile.id_cu !== this.form.id){
+							this.$router.push({name: 'notFound'});
+						}
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
@@ -751,8 +752,8 @@
 				updateStat: 'updateStat'
 			}),
 			...mapGetters('user',{
-				userData: 'data',
-				userDataStat: 'dataStat'
+				profile: 'profile',
+				profileStat: 'profileStat'
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

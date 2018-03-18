@@ -36,12 +36,12 @@ router.beforeEach((to, from, next) => {
     window.scrollTo(0, 0);
     if (to.fullPath !== "/login") {
         axios.get('/api/v1/userId').then(response => {
-            next();
+            next(vm => vm.$store.dispatch('user/profile'));
         }).catch(error => {
             router.push('/login');
         })
     }else{
-        next();
+        next(vm => vm.$store.dispatch('user/profile'));
     }
 });
 

@@ -14,8 +14,8 @@
 				</ul>
 				<p class="navbar-text">
 					<span class="label bg-success-400">
-						<span v-if="userData.pus">{{userData.pus.name}}</span>
-						<span v-if="userData.cu">- CU {{userData.cu.name}}</span>
+						<span v-if="profile.pus">{{profile.pus.name}}</span>
+						<span v-if="profile.cu">- CU {{profile.cu.name}}</span>
 					</span>
 				</p>
 			</div>
@@ -23,9 +23,9 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown dropdown-user">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<img :src="'/images/user/' + userData.gambar + 'n.jpg'" alt="user image" v-if="userData.gambar">
+							<img :src="'/images/user/' + profile.gambar + 'n.jpg'" alt="user image" v-if="profile.gambar">
 							<img src="/images/no_image_man.jpg" alt="user image" v-else>
-							<span>{{userData.name}}</span>
+							<span>{{profile.name}}</span>
 							<i class="caret"></i>
 						</a>
 
@@ -59,8 +59,7 @@
 
 					<!-- dashboard -->
 					<router-link :to="{ name: 'dashboard' }" tag="li" active-class="active" exact>
-						<a>
-							<i class="icon-display4 position-left"></i> Dashboard</a>
+						<a><i class="icon-display4 position-left"></i> Dashboard</a>
 					</router-link>
 
 					<!-- publikasi -->
@@ -72,17 +71,17 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah artikel -->
-							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikel']">
+							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create artikel']">
 								<a><i class="icon-plus22"></i> Tambah Artikel</a>
 							</router-link>
 
 							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikelKategori']">
+							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create artikelKategori']">
 								<a><i class="icon-plus22"></i> Tambah Kategori Artikel</a>
 							</router-link>
 
 							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create artikelPenulis']">
+							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create artikelPenulis']">
 								<a><i class="icon-plus22"></i> Tambah Penulis Artikel</a>
 							</router-link>
 
@@ -90,7 +89,7 @@
 							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikel']">
+							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
 							</router-link>
 
@@ -100,7 +99,7 @@
 							</router-link>
 
 							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index artikelPenulis']">
+							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikelPenulis']">
 								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
 							</router-link>
 						</ul>
@@ -115,7 +114,7 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah artikel -->
-							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create cu']">
+							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create cu']">
 								<a><i class="icon-plus22"></i> Tambah CU</a>
 							</router-link>
 
@@ -123,7 +122,7 @@
 							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index cu']">
+							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index cu']">
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
 						</ul>
@@ -138,7 +137,7 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah user -->
-							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['create user']">
+							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create user']">
 								<a><i class="icon-plus22"></i> Tambah User</a>
 							</router-link>
 
@@ -146,7 +145,7 @@
 							<li class="divider"></li>
 
 							<!-- user -->
-							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact v-if="userData.can && userData.can['index user']">
+							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index user']">
 								<a><i class="icon-users"></i> User</a>
 							</router-link>
 
@@ -167,16 +166,11 @@
 	import corefunc from '../assets/plugins/buttons/hover_dropdown.min.js';
 
 	export default {
-		data() {
-			return {
-				name: ''
-			}
-		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => vm.$store.dispatch('user/userData'));
-		},
 		mounted() {
 			corefunc.hover_function();
+		},
+		beforeRouteEnter(to, from, next){
+			next(vm => vm.$store.dispatch('user/profile'));
 		},
 		methods: {
 			logout() {
@@ -189,7 +183,8 @@
 		},
 		computed: {
 			...mapGetters('user',{
-				userData: 'data',
+				profile: 'profile',
+				profileStat: 'profileStat'
 			})
 		}
 	}

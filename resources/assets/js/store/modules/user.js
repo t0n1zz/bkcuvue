@@ -5,6 +5,8 @@ export const user = {
 
   // state
   state: {
+    profile: {},
+    profileStat: '',
     data: {}, //single data
     dataS: [], //collection
     dataStat: '',
@@ -17,6 +19,8 @@ export const user = {
 
   // getters
   getters: {
+    profile: state => state.profile,
+    profileStat: state => state.profileStat,
     data: state => state.data,
     dataS: state => state.dataS,
     dataStat: state => state.dataStat,
@@ -28,18 +32,19 @@ export const user = {
   },
 
   actions: {
+
     //user profil
-    userData( { commit }, p ){
-      commit('setDataStat', 'loading');
+    profile( { commit }, p ){
+      commit('setProfileStat', 'loading');
       
-      UserAPI.userData( p )
+      UserAPI.profile( p )
         .then( function( response ){
-          commit('setData', response.data.model );
-          commit('setDataStat', 'success');
+          commit('setProfile', response.data.model );
+          commit('setProfileStat', 'success');
         })
         .catch( error => {
-          commit('setData', error.response);
-          commit('setDataStat', 'fail');
+          commit('setProfile', error.response);
+          commit('setProfileStat', 'fail');
         });
     },
 
@@ -188,14 +193,16 @@ export const user = {
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     },
-
-    profile({commit}, data){
-      commit('setData', data );
-    }
   },
 
   // mutations
   mutations: {
+    setProfile ( state, profile ){
+      state.profile = profile;
+    },
+    setProfileStat( state, status ){
+      state.profileStat = status;
+    },
     setData ( state, data ){
       state.data = data;
     },

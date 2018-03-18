@@ -16,6 +16,30 @@ class UserController extends Controller
 {
   protected $imagepath = 'images/user/';
 
+
+	    
+	public function userId()
+	{
+			$id = Auth::user()->getId();
+
+			return response()
+			->json([
+					$id
+			]);
+	}
+
+	public function profile()
+	{
+			$id = Auth::user()->getId();
+
+			$kelas = User::with('pus','cu')->findOrFail($id);
+
+			return response()
+					->json([
+							'model' => $kelas
+					]);
+	}
+
 	public function index()
 	{
 			$table_data = User::with('CU','pus','roles_custom')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
@@ -162,28 +186,6 @@ class UserController extends Controller
 				'saved' => true,
 				'message' => 'Password user ' .$username. ' telah berhasil direset'
 			]);
-	}
-    
-	public function userId()
-	{
-			$id = Auth::user()->getId();
-
-			return response()
-			->json([
-					$id
-			]);
-	}
-
-	public function userData()
-	{
-			$id = Auth::user()->getId();
-
-			$kelas = User::with('pus','cu')->findOrFail($id);
-
-			return response()
-					->json([
-							'model' => $kelas
-					]);
 	}
 
 	private function check_data($request)

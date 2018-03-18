@@ -183,6 +183,9 @@ export const artikelKategori = {
     },
 
     // reset
+    resetDataStat( {commit} ){
+      commit('setDataStat', '');
+    },
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     }

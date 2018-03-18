@@ -6,7 +6,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 // Route::group(['prefix'=>'v1'],function(){
     // user
     Route::get('/userId', 'UserController@userId');
-    Route::get('/userData', 'UserController@userData');
+    Route::get('/profile', 'UserController@profile');
     Route::get('/user', 'UserController@index');
     Route::get('/user/indexCU/{id}', 'UserController@indexCU');
     Route::get('/user/create', 'UserController@create');

@@ -31,13 +31,7 @@
 					<!-- table data -->
 					<table-data 
 						:title="title" 
-						:kelas="kelas"
-						:userData="userData"
-						:userDataStat="userDataStat"
-						:itemData="itemData"
-						:itemDataStat="itemDataStat"
-						:updateMessage="updateMessage"
-						:updateStat="updateStat"></table-data>
+						:kelas="kelas"></table-data>
 				</div>
 			</div>
 		</div>
@@ -87,23 +81,11 @@
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
 		},
-		created(){
-		},
-		watch: {
-    },
-		methods: {
-		},
 		computed: {
 			...mapGetters('cu',{
 				itemData: 'dataS',
-				itemDataStat: 'dataStatS',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
+				itemDataStat: 'dataStatS'
 			}),
-			...mapGetters('user',{
-				userData: 'data',
-				userDataStat: 'dataStat'
-			})
 		}
 	}
 </script>

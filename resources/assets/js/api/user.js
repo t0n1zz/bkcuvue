@@ -3,8 +3,8 @@ import { BKCU_CONFIG } from '../config.js';
 export default {
   
   // get user profil
-  userData: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/userData');
+  profile: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/profile');
   },
 
   index: function( p ){

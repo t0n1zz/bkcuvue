@@ -5,7 +5,6 @@ export const global = {
   // state
   state: {
     idCU: '',
-    idCUUpdate: '', // track which idCU use for update
     message: '',
     messageType: '',
   },
@@ -13,7 +12,6 @@ export const global = {
   // getters
   getters: {
     idCU: state => state.idCU,
-    idCUUpdate: state => state.idCUUpdate,
     message: state => state.message,
     messageType: state => state.messageType,
   },
@@ -25,16 +23,9 @@ export const global = {
       commit('setIdCU', id);
     },
 
-    changeIdCUUpdate({commit}, id){
-      commit('setIdCUUpdate', id);
-    },
-
     // reset idcu
     resetIdCU( {commit} ){
       commit('setIdCU', '');
-    },
-    resetIdCUUpdate( {commit} ){
-      commit('setIdCUUpdate', '');
     },
 
     // create message
@@ -54,9 +45,6 @@ export const global = {
   mutations: {
     setIdCU ( state, id ){
       state.idCU = id;
-    },
-    setIdCUUpdate ( state, id ){
-      state.idCUUpdate = id;
     },
     setMessage ( state, message ){
       state.message = message;

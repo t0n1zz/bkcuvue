@@ -24,19 +24,15 @@
 					</message>
 
 					<!-- select data -->
-					<!-- cu desktop --> 
 					<select-c-u 
 						:kelas="kelas"
-						:idCU="idCU"></select-c-u>
+						:path="'artikelCU'"
+						:isPus="true"></select-c-u>
 
 					<!-- table data -->
 					<table-data 
 						:title="title" 
-						:kelas="kelas"
-						:modelPenulis="modelPenulis"
-						:modelPenulisStat="modelPenulisStat"
-						:modelKategori="modelKategori"
-						:modelKategoriStat="modelKategoriStat"></table-data>
+						:kelas="kelas"></table-data>
 				</div>
 			</div>
 		</div>
@@ -49,12 +45,10 @@
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectCU from "./selectCU.vue";
+	import selectCU from "../../components/selectCU.vue";
 	import tableData from "./table.vue";
 	
-
 	export default {
-		name: 'ArtikelIndex',
 		components: {
 			pageHeader,
 			message,
@@ -84,36 +78,11 @@
 		mounted() {
 			corefunc.core_function();
 		},
-		created(){
-		},
-		watch: {
-    },
-		methods: {
-		},
 		computed: {
 			...mapGetters('artikel',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
-				idCU: 'idCU',
 			}),
-			
-			modelKategori(){
-				return this.$store.getters.getArtikelKategori;
-			},
-			modelKategoriStat(){
-				return this.$store.getters.getArtikelKategoriLoadStat;
-			},
-			modelPenulis(){
-				return this.$store.getters.getArtikelPenulis;
-			},
-			modelPenulisStat(){
-				return this.$store.getters.getArtikelPenulisLoadStat;
-			},
-		},
-		filters: {
-			checkImages: function (value) {
-				return '/images/' + this.kelas + '/' + value + 'n.jpg';
-			}
 		}
 	}
 </script>

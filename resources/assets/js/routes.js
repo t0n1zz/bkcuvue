@@ -1,6 +1,7 @@
 import header from './components/header.vue';
 import login from './views/login.vue';
 import dashboard from './views/dashboard.vue';
+import notFound from './views/notFound.vue';
 import artikel from './views/artikel/index.vue';
 import artikel_form from './views/artikel/form.vue';
 import artikelPenulis from './views/artikelPenulis/index.vue';
@@ -29,12 +30,26 @@ const routes = [
 	// dashboard
 	{ path: '/',name: 'dashboard', components: { default: dashboard,'header': header } },
 
+	// not found
+	{ path: '/notFound',name: 'notFound', components: { default: notFound,'header': header } },
+
 	// artikel
-	{ path: '/artikel',name: 'artikel', components: { default: artikel, 'header': header }},
-	{ path: '/artikel/kategori/:id',name: 'artikelFilterKategori', components: { default: artikel, 'header': header }, meta: { mode:'kategori' }},
-	{ path: '/artikel/penulis/:id',name: 'artikelFilterPenulis', components: { default: artikel, 'header': header }, meta: { mode:'penulis' }},
-	{ path: '/artikel/create',name: 'artikelCreate', components: { default: artikel_form, 'header': header} },
-	{ path: '/artikel/edit/:id',name: 'artikelEdit', components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } },
+	{ path: '/artikel',name: 'artikel', 
+		components: { default: artikel, 'header': header }},
+	{ path: '/artikel/cu/:cu',name: 'artikelCU', 
+		components: { default: artikel, 'header': header }, 
+		meta: { mode:'cu' }},
+	{ path: '/artikel/kategori/:id/cu/:cu',name: 'artikelFilterKategori', 
+		components: { default: artikel, 'header': header }, 
+		meta: { mode:'kategori' }},
+	{ path: '/artikel/penulis/:id/cu/:cu',name: 'artikelFilterPenulis', 
+		components: { default: artikel, 'header': header }, 
+		meta: { mode:'penulis' }},
+	{ path: '/artikel/create',name: 'artikelCreate', 
+		components: { default: artikel_form, 'header': header} },
+	{ path: '/artikel/edit/:id',name: 'artikelEdit', 
+		components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } },
+	
 
 	// artikel kategori
 	{ path: '/artikelKategori',name: 'artikelKategori', components: { default: artikelKategori, 'header': header }},
