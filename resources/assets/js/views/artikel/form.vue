@@ -338,7 +338,6 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'Artikel',
 				kelas: 'artikel',
-				redirect: '/artikel/',
 				id_cu: '',
 				utama: '',
 				summernoteconfig: {
@@ -484,7 +483,7 @@
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
-					this.$router.push(this.redirect);
+					this.$router.push({name: this.kelas});
 				}
 
 				this.modalShow = false;

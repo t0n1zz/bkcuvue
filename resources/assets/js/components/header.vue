@@ -172,11 +172,11 @@
 				name: ''
 			}
 		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => vm.$store.dispatch('user/userData'));
+		},
 		mounted() {
 			corefunc.hover_function();
-		},
-		created() {
-			this.$store.dispatch('user/userData');
 		},
 		methods: {
 			logout() {

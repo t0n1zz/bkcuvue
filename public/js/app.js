@@ -44053,11 +44053,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			name: ''
 		};
 	},
+	beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+		next(function (vm) {
+			return vm.$store.dispatch('user/userData');
+		});
+	},
 	mounted: function mounted() {
 		__WEBPACK_IMPORTED_MODULE_1__assets_plugins_buttons_hover_dropdown_min_js__["a" /* default */].hover_function();
-	},
-	created: function created() {
-		this.$store.dispatch('user/userData');
 	},
 
 	methods: {
@@ -45651,19 +45653,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -45707,20 +45696,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 	watch: {},
 	methods: {},
-	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
-		userData: 'data',
-		userDataStat: 'dataStat'
-	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('artikel', {
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('artikel', {
 		itemData: 'dataS',
 		itemDataStat: 'dataStatS',
-		idCU: 'idCU',
-		updateMessage: 'update',
-		updateStat: 'updateStat'
-	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
-		modelCU: 'dataS',
-		modelCUStat: 'dataStatS',
-		updateMessage: 'update',
-		updateStat: 'updateStat'
+		idCU: 'idCU'
 	}), {
 		modelKategori: function modelKategori() {
 			return this.$store.getters.getArtikelKategori;
@@ -89945,8 +89924,7 @@ var render = function() {
           btn2Route: _vm.btn2Header.route,
           btn2Title: _vm.btn2Header.title,
           btn2Icon: _vm.btn2Header.icon,
-          btn2Can: _vm.btn2Header.can,
-          userData: _vm.userData
+          btn2Can: _vm.btn2Header.can
         }
       }),
       _vm._v(" "),
@@ -89965,28 +89943,12 @@ var render = function() {
                   })
                 : _vm._e(),
               _vm._v(" "),
-              _c("select-c-u", {
-                attrs: {
-                  idCU: _vm.idCU,
-                  userData: _vm.userData,
-                  userDataStat: _vm.userDataStat,
-                  modelCU: _vm.modelCU,
-                  modelCUStat: _vm.modelCUStat
-                }
-              }),
+              _c("select-c-u", { attrs: { kelas: _vm.kelas, idCU: _vm.idCU } }),
               _vm._v(" "),
               _c("table-data", {
                 attrs: {
                   title: _vm.title,
                   kelas: _vm.kelas,
-                  userData: _vm.userData,
-                  userDataStat: _vm.userDataStat,
-                  itemData: _vm.itemData,
-                  itemDataStat: _vm.itemDataStat,
-                  updateMessage: _vm.updateMessage,
-                  updateStat: _vm.updateStat,
-                  idCU: _vm.idCU,
-                  modelCUStat: _vm.modelCUStat,
                   modelPenulis: _vm.modelPenulis,
                   modelPenulisStat: _vm.modelPenulisStat,
                   modelKategori: _vm.modelKategori,
@@ -90428,7 +90390,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			titleIcon: 'icon-plus3',
 			level2Title: 'Artikel',
 			kelas: 'artikel',
-			redirect: '/artikel/',
 			id_cu: '',
 			utama: '',
 			summernoteconfig: {
@@ -90567,7 +90528,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		},
 		modalTutup: function modalTutup() {
 			if (this.updateStat === 'success') {
-				this.$router.push(this.redirect);
+				this.$router.push({ name: this.kelas });
 			}
 
 			this.modalShow = false;
@@ -98703,9 +98664,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			this.$validator.validateAll('form').then(function (result) {
 				if (result) {
 					if (_this.$route.meta.mode === 'edit') {
-						_this.$store.dispatch('update' + _this.kelas, [_this.$route.params.id, formData]);
+						_this.$store.dispatch(_this.kelas + '/update', [_this.$route.params.id, formData]);
 					} else {
-						_this.$store.dispatch('store' + _this.kelas, formData);
+						_this.$store.dispatch(_this.kelas + '/store', formData);
 					}
 					_this.submited = false;
 				} else {
@@ -106832,6 +106793,11 @@ var user = {
       var commit = _ref12.commit;
 
       commit('setUpdateStat', '');
+    },
+    profile: function profile(_ref13, data) {
+      var commit = _ref13.commit;
+
+      commit('setData', data);
     }
   },
 
@@ -106912,7 +106878,7 @@ var user = {
     return axios.post(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/resetPassword/' + id);
   },
 
-  delete: function _delete(id) {
+  destroy: function destroy(id) {
     return axios.delete(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/user/' + id);
   }
 });
@@ -107239,59 +107205,95 @@ var role = {
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var global = {
+  namespaced: true,
+
+  // state
   state: {
-    globalMessage: '',
-    globalMessageType: '',
-    globalMessageClass: ''
+    idCU: '',
+    idCUUpdate: '', // track which idCU use for update
+    message: '',
+    messageType: ''
   },
 
-  actions: {
-    createGlobalMessage: function createGlobalMessage(_ref, _ref2) {
-      var commit = _ref.commit,
-          state = _ref.state,
-          dispatch = _ref.dispatch;
-
-      var _ref3 = _slicedToArray(_ref2, 3),
-          message = _ref3[0],
-          type = _ref3[1],
-          classname = _ref3[2];
-
-      commit('setGlobalMessage', message);
-      commit('setGlobalMessageType', type);
-      commit('setGlobalMessageClass', classname);
-    },
-    deleteGlobalMessage: function deleteGlobalMessage(_ref4) {
-      var commit = _ref4.commit,
-          state = _ref4.state,
-          dispatch = _ref4.dispatch;
-
-      commit('setGlobalMessage', '');
-      commit('setGlobalMessageType', '');
-      commit('setGlobalMessageClass', '');
-    }
-  },
-
-  mutations: {
-    setGlobalMessage: function setGlobalMessage(state, message) {
-      state.globalMessage = message;
-    },
-    setGlobalMessageType: function setGlobalMessageType(state, type) {
-      state.globalMessageType = type;
-    },
-    setGlobalMessageClass: function setGlobalMessageClass(state, classname) {
-      state.globalMessageClass = classname;
-    }
-  },
-
+  // getters
   getters: {
-    getGlobalMessage: function getGlobalMessage(state) {
-      return state.globalMessage;
+    idCU: function idCU(state) {
+      return state.idCU;
     },
-    getGlobalMessageType: function getGlobalMessageType(state) {
-      return state.globalMessageType;
+    idCUUpdate: function idCUUpdate(state) {
+      return state.idCUUpdate;
     },
-    getGlobalMessageClass: function getGlobalMessageClass(state) {
-      return state.globalMessageClass;
+    message: function message(state) {
+      return state.message;
+    },
+    messageType: function messageType(state) {
+      return state.messageType;
+    }
+  },
+
+  // actions
+  actions: {
+    // change idcu
+    changeIdCU: function changeIdCU(_ref, id) {
+      var commit = _ref.commit;
+
+      commit('setIdCU', id);
+    },
+    changeIdCUUpdate: function changeIdCUUpdate(_ref2, id) {
+      var commit = _ref2.commit;
+
+      commit('setIdCUUpdate', id);
+    },
+
+
+    // reset idcu
+    resetIdCU: function resetIdCU(_ref3) {
+      var commit = _ref3.commit;
+
+      commit('setIdCU', '');
+    },
+    resetIdCUUpdate: function resetIdCUUpdate(_ref4) {
+      var commit = _ref4.commit;
+
+      commit('setIdCUUpdate', '');
+    },
+
+
+    // create message
+    createMessage: function createMessage(_ref5, _ref6) {
+      var commit = _ref5.commit;
+
+      var _ref7 = _slicedToArray(_ref6, 2),
+          message = _ref7[0],
+          type = _ref7[1];
+
+      commit('setMessage', message);
+      commit('setMessageType', type);
+    },
+
+
+    // reset message
+    resetMessage: function resetMessage(_ref8) {
+      var commit = _ref8.commit;
+
+      commit('setMessage', '');
+      commit('setMessageType', '');
+    }
+  },
+
+  // mutations
+  mutations: {
+    setIdCU: function setIdCU(state, id) {
+      state.idCU = id;
+    },
+    setIdCUUpdate: function setIdCUUpdate(state, id) {
+      state.idCUUpdate = id;
+    },
+    setMessage: function setMessage(state, message) {
+      state.message = message;
+    },
+    setMessageType: function setMessageType(state, type) {
+      state.messageType = type;
     }
   }
 };
@@ -107316,7 +107318,6 @@ var artikel = {
     dataS: [], //collection
     dataStat: '',
     dataStatS: '',
-    idCU: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -107536,17 +107537,9 @@ var artikel = {
     },
 
 
-    // change idcu
-    changeIdCU: function changeIdCU(_ref14, id) {
-      var commit = _ref14.commit;
-
-      commit('setIdCU', id);
-    },
-
-
     // reset
-    resetUpdateStat: function resetUpdateStat(_ref15) {
-      var commit = _ref15.commit;
+    resetUpdateStat: function resetUpdateStat(_ref14) {
+      var commit = _ref14.commit;
 
       commit('setUpdateStat', '');
     }
@@ -117043,6 +117036,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(346);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -117086,6 +117082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         title: {
@@ -117095,9 +117092,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: ''
         },
         titleDesc: {
-            default: ''
-        },
-        userData: {
             default: ''
         },
         level: {
@@ -117145,7 +117139,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         btn3Can: {
             default: ''
         }
-    }
+    },
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
+        userData: 'data',
+        userDataStat: 'dataStat'
+    }))
 });
 
 /***/ }),
@@ -119286,12 +119284,15 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_dataviewer_vue__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_dataviewer_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkValue_vue__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_checkValue_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -119548,6 +119549,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -119555,11 +119557,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	components: {
-		DataViewer: __WEBPACK_IMPORTED_MODULE_0__components_dataviewer_vue___default.a,
-		appModal: __WEBPACK_IMPORTED_MODULE_1__components_modal___default.a,
-		checkValue: __WEBPACK_IMPORTED_MODULE_2__components_checkValue_vue___default.a
+		DataViewer: __WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue___default.a,
+		appModal: __WEBPACK_IMPORTED_MODULE_2__components_modal___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue___default.a
 	},
-	props: ['title', 'kelas', 'userData', 'userDataStat', 'itemData', 'itemDataStat', 'updateMessage', 'updateStat', 'idCU', 'modelCUStat', 'modelPenulis', 'modelPenulisStat', 'modelKategori', 'modelKategoriStat'],
+	props: ['title', 'kelas', 'modelPenulis', 'modelPenulisStat', 'modelKategori', 'modelKategoriStat'],
 	data: function data() {
 		return {
 			source: '',
@@ -119685,6 +119687,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.fetch();
 			}
 		},
+		itemDataStat: function itemDataStat(value) {
+			if (value === 'success') {
+				// reset idcuupdate so when navigating to other page it will load default idcu not the one from edit route
+				this.$store.dispatch('global/resetIdCUUpdate');
+			}
+		},
 		modelKategoriStat: function modelKategoriStat(value) {
 			if (value === 'success') {
 				this.params.search_column = 'artikelkategori.name';
@@ -119763,7 +119771,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		selectedRow: function selectedRow(item) {
 			this.selectedItem = item;
 		},
-		ubahData: function ubahData(id) {
+		ubahData: function ubahData(id, id_cu) {
+			this.$store.dispatch('global/changeIdCUUpdate', id_cu);
 			this.$router.push('/' + this.kelas + '/edit/' + id);
 		},
 		modalConfirmOpen: function modalConfirmOpen(source, isMobile, itemMobile) {
@@ -119810,6 +119819,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 		}
 	},
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
+		userData: 'data',
+		userDataStat: 'dataStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('global', {
+		idCU: 'idCU'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('artikel', {
+		itemData: 'dataS',
+		itemDataStat: 'dataStatS',
+		updateMessage: 'update',
+		updateStat: 'updateStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
+		modelCU: 'dataS',
+		modelCUStat: 'dataStatS',
+		updateMessage: 'update',
+		updateStat: 'updateStat'
+	})),
 	filters: {
 		checkImages: function checkImages(value) {
 			return '/images/' + this.kelas + '/' + value + 'n.jpg';
@@ -120272,7 +120297,10 @@ var render = function() {
                                     on: {
                                       click: function($event) {
                                         $event.preventDefault()
-                                        _vm.ubahData(props.item.id)
+                                        _vm.ubahData(
+                                          props.item.id,
+                                          props.item.id_cu
+                                        )
                                       }
                                     }
                                   },
@@ -120431,7 +120459,10 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          _vm.ubahData(_vm.selectedItem.id)
+                          _vm.ubahData(
+                            _vm.selectedItem.id,
+                            _vm.selectedItem.id_cu
+                          )
                         }
                       }
                     },
@@ -120592,7 +120623,10 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            _vm.ubahData(_vm.selectedItem.id)
+                            _vm.ubahData(
+                              _vm.selectedItem.id,
+                              _vm.selectedItem.id_cu
+                            )
                           }
                         }
                       },
@@ -120817,6 +120851,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(346);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -120877,8 +120914,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['idCU', 'userData', 'userDataStat', 'modelCU', 'modelCUStat'],
+	props: ['kelas'],
 	data: function data() {
 		return {
 			id_cu: ''
@@ -120891,11 +120929,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		if (this.userData.id_pus !== undefined) {
 			this.fetchCU();
 		}
+
+		// resetting idCU for table parameters
+		this.$store.dispatch('global/resetIdCU');
 	},
 
 	watch: {
 		idCU: function idCU(value) {
-			this.id_cu = value;
+			if (this.idCUUpdate === '') {
+				this.id_cu = value;
+			}
+		},
+
+		// if come from edit route
+		idCUUpdate: function idCUUpdate(value) {
+			if (value !== '') {
+				this.id_cu = value;
+			}
 		},
 		userDataStat: function userDataStat(value) {
 			if (value === "success" && this.userData.id_pus !== undefined) {
@@ -120904,7 +120954,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		modelCUStat: function modelCUStat(value) {
 			if (value === "success") {
-				this.$store.dispatch('artikel/changeIdCU', this.userData.id_cu);
+				if (this.idCUUpdate !== '') {
+					// if come from edit route
+					this.id_cu = this.idCUUpdate;
+					this.changeCU(this.idCUUpdate);
+				} else {
+					this.id_cu = this.userData.id_cu;
+					this.changeCU(this.userData.id_cu);
+				}
 			}
 		}
 	},
@@ -120913,9 +120970,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.$store.dispatch('cu/getPus', this.userData.id_pus);
 		},
 		changeCU: function changeCU(id) {
-			this.$store.dispatch('artikel/changeIdCU', id);
+			this.$store.dispatch('global/changeIdCU', id);
 		}
-	}
+	},
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
+		userData: 'data',
+		userDataStat: 'dataStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('global', {
+		idCU: 'idCU',
+		idCUUpdate: 'idCUUpdate'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
+		modelCU: 'dataS',
+		modelCUStat: 'dataStatS',
+		updateMessage: 'update',
+		updateStat: 'updateStat'
+	}))
 });
 
 /***/ }),

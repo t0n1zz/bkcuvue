@@ -58,8 +58,9 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	export default {
-		props:['idCU','userData','userDataStat','modelCU','modelCUStat'],
+		props:['kelas'],
 		data(){
 			return {
 				id_cu: ''
@@ -72,10 +73,21 @@
 			if(this.userData.id_pus !== undefined){
 				this.fetchCU();
 			}	
+
+			// resetting idCU for table parameters
+			this.$store.dispatch('global/resetIdCU');
 		},
 		watch: {
 			idCU(value){
-				this.id_cu = value;
+				if(this.idCUUpdate === ''){
+					this.id_cu = value;
+				}
+			},
+			// if come from edit route
+			idCUUpdate(value){
+				if(value !== ''){
+					this.id_cu = value;
+				}
 			},
 			userDataStat(value){
 				if(value === "success" && this.userData.id_pus !== undefined){
@@ -84,7 +96,13 @@
 			},
 			modelCUStat(value){
 				if(value === "success"){
-					this.$store.dispatch('artikel/changeIdCU', this.userData.id_cu);
+					if(this.idCUUpdate !== ''){// if come from edit route
+						this.id_cu = this.idCUUpdate;
+						this.changeCU(this.idCUUpdate);
+					}else{
+						this.id_cu = this.userData.id_cu;
+						this.changeCU(this.userData.id_cu);
+					}
 				}
 			},
     },
@@ -93,8 +111,24 @@
 				this.$store.dispatch('cu/getPus', this.userData.id_pus);
 			},
 			changeCU(id){
-				this.$store.dispatch('artikel/changeIdCU', id);
-			},
+				this.$store.dispatch('global/changeIdCU', id);
+			}
+		},
+		computed: {
+			...mapGetters('user',{
+				userData: 'data',
+				userDataStat: 'dataStat'
+			}),
+			...mapGetters('global',{
+				idCU: 'idCU',
+				idCUUpdate: 'idCUUpdate'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'dataS',
+				modelCUStat: 'dataStatS',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
+			}),
 		}
 	}
 </script>

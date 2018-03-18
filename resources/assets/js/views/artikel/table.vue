@@ -19,7 +19,7 @@
 
 				<!-- ubah-->
 				<div class="btn-group pb-5" v-if="userData.can && userData.can['update ' + kelas]">
-					<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+					<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
@@ -63,7 +63,7 @@
 				<!-- update -->
 				<li v-if="userData.can && userData.can['update ' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+						<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 							<i class="icon-pencil5"></i> Ubah
 						</button>
 					</div>
@@ -212,7 +212,7 @@
 
 							<!-- update -->
 							<div class="pt-10 pb-10 pl-15 pr-15" v-if="userData.can && userData.can['update ' + kelas]">
-								<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
+								<button @click.prevent="ubahData(props.item.id,props.item.id_cu)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
@@ -255,6 +255,7 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
@@ -265,7 +266,7 @@
 			appModal,
 			checkValue
 		},
-		props:['title','kelas','userData','userDataStat','itemData','itemDataStat','updateMessage','updateStat','idCU','modelCUStat','modelPenulis','modelPenulisStat','modelKategori','modelKategoriStat'],
+		props:['title','kelas','modelPenulis','modelPenulisStat','modelKategori','modelKategoriStat'],
 		data() {
 			return {
 				source: '',
@@ -399,11 +400,17 @@
 				modalContent: '',
 				modalButton: ''
 			}
-		},
+		},	
 		watch: {
 			idCU(value){
 				if(value !== ''){
 					this.fetch();
+				}
+			},
+			itemDataStat(value){
+				if(value === 'success'){
+					// reset idcuupdate so when navigating to other page it will load default idcu not the one from edit route
+					this.$store.dispatch('global/resetIdCUUpdate');
 				}
 			},
 			modelKategoriStat(value){
@@ -482,7 +489,8 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			ubahData(id) {
+			ubahData(id, id_cu) {
+				this.$store.dispatch('global/changeIdCUUpdate',id_cu);
 				this.$router.push('/' + this.kelas + '/edit/' + id);
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
@@ -528,6 +536,27 @@
 					this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
 				}
 			}
+		},
+		computed:{
+			...mapGetters('user',{
+				userData: 'data',
+				userDataStat: 'dataStat'
+			}),
+			...mapGetters('global',{
+				idCU: 'idCU'
+			}),
+			...mapGetters('artikel',{
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'dataS',
+				modelCUStat: 'dataStatS',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
+			}),
 		},
 		filters: {
 			checkImages: function (value) {

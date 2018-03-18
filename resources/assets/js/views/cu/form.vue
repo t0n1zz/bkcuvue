@@ -694,9 +694,9 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch('update' + this.kelas, [this.$route.params.id, formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
-						this.$store.dispatch('store' + this.kelas, formData);
+						this.$store.dispatch(this.kelas + '/store', formData);
 					}
 						this.submited = false;
 					}else{

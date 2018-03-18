@@ -12,8 +12,7 @@
 		:btn2Route="btn2Header.route" 
 		:btn2Title="btn2Header.title" 
 		:btn2Icon="btn2Header.icon"
-		:btn2Can="btn2Header.can" 
-		:userData="userData"></page-header>
+		:btn2Can="btn2Header.can"></page-header>
 		
 		<!-- page container -->
 		<div class="page-container">
@@ -24,28 +23,16 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
-
 					<!-- select data -->
 					<!-- cu desktop --> 
-					<select-c-u
-						:idCU="idCU"
-						:userData="userData"
-						:userDataStat="userDataStat"
-						:modelCU="modelCU"
-						:modelCUStat="modelCUStat"></select-c-u>
+					<select-c-u 
+						:kelas="kelas"
+						:idCU="idCU"></select-c-u>
 
 					<!-- table data -->
 					<table-data 
 						:title="title" 
 						:kelas="kelas"
-						:userData="userData"
-						:userDataStat="userDataStat"
-						:itemData="itemData"
-						:itemDataStat="itemDataStat"
-						:updateMessage="updateMessage"
-						:updateStat="updateStat"
-						:idCU="idCU"
-						:modelCUStat='modelCUStat'
 						:modelPenulis="modelPenulis"
 						:modelPenulisStat="modelPenulisStat"
 						:modelKategori="modelKategori"
@@ -104,22 +91,10 @@
 		methods: {
 		},
 		computed: {
-			...mapGetters('user',{
-				userData: 'data',
-				userDataStat: 'dataStat'
-			}),
 			...mapGetters('artikel',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				idCU: 'idCU',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
-			}),
-			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
 			}),
 			
 			modelKategori(){

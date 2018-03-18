@@ -41,6 +41,7 @@
 </template>
 
 <script type="text/javascript">
+import { mapGetters } from 'vuex';
 export default {
     props: {
         title: {
@@ -50,9 +51,6 @@ export default {
             default: ''
         },
         titleDesc: {
-            default: ''
-        },
-        userData: {
             default: ''
         },
         level: {
@@ -100,6 +98,12 @@ export default {
         btn3Can: {
             default: ''
         },
+    },
+    computed:{
+        ...mapGetters('user',{
+            userData: 'data',
+            userDataStat: 'dataStat'
+        }),
     }
 }
 </script>

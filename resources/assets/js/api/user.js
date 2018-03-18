@@ -39,7 +39,7 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/user/resetPassword/' + id);
   },
 
-  delete: function( id ){
+  destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/user/' + id);
   }
 }

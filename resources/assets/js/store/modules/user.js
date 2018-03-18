@@ -187,6 +187,10 @@ export const user = {
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
+    },
+
+    profile({commit}, data){
+      commit('setData', data );
     }
   },
 

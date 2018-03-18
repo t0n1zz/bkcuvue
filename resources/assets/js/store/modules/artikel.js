@@ -9,7 +9,6 @@ export const artikel = {
     dataS: [], //collection
     dataStat: '',
     dataStatS: '',
-    idCU: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -191,15 +190,11 @@ export const artikel = {
         });
     },
 
-    // change idcu
-    changeIdCU({commit}, id){
-      commit('setIdCU', id);
-    },
-
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
-    }
+    },
+    
   },
 
   // mutations
