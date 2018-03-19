@@ -194,6 +194,14 @@ export const artikel = {
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     },
+    resetData( {commit} ){
+      commit('setData', '');
+      commit('setDataStat', '');
+    },
+    resetDataS( {commit} ){
+      commit('setDataS', '');
+      commit('setDataStatS', '');
+    },
     
   },
 

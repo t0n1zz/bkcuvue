@@ -2,8 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData="filterData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :extSearchColumn="extSearchColumn"
-		:params="params"
+		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData="filterData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :extSearchColumn="extSearchColumn" :params="params"
 		@fetch="fetch">
 
 			<!-- desktop -->
@@ -34,7 +33,7 @@
 				<!-- terbitkan -->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['terbitkan ' + kelas]">
 					<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
-						<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
+						<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
 						<span v-else>Terbitkan</span>
 					</button>
 				</div>
@@ -42,7 +41,7 @@
 				<!-- utamakan -->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['utamakan ' + kelas]">
 					<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
-						<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
+						<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
 						<span v-else>Utamakan</span>
 					</button>
 				</div>
@@ -82,7 +81,7 @@
 				<li v-if="profile.can && profile.can['terbitkan ' + kelas]">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
-							<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan === 1">Tidak Terbitkan</span>
+							<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
 							<span v-else>Terbitkan</span>
 						</button>
 					</div>
@@ -92,7 +91,7 @@
 				<li v-if="profile.can && profile.can['utamakan ' + kelas]">
 					<div class="pl-5 pr-5">
 						<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
-							<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan === 1">Tidak Utamakan</span>
+							<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
 							<span v-else>Utamakan</span>
 						</button>
 					</div>
@@ -101,7 +100,7 @@
 
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
-				<tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
+				<tr :class="{ 'info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
 					<td v-if="!columnData[0].hide">
 						<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
 						<img :src="'/images/image-articlen.jpg'" class="img-rounded img-responsive img-sm" v-else>
@@ -227,7 +226,7 @@
 							<!-- terbitkan -->
 							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['terbitkan ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('updateTerbitkan',true,props.item)" class="btn btn-default btn-icon btn-block">
-									<i class="icon-file-upload"></i> <span v-if="props.item.terbitkan === 1">Tidak Terbitkan</span>
+									<i class="icon-file-upload"></i> <span v-if="props.item.terbitkan == 1">Tidak Terbitkan</span>
 									<span v-else>Terbitkan</span> 
 								</button>
 							</div>
@@ -235,7 +234,7 @@
 							<!-- utamakan -->
 							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['utamakan ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('updateUtamakan',true,props.item)" class="btn btn-default btn-icon btn-block">
-									<i class="icon-pushpin"></i> <span v-if="props.item.utamakan === 1">Tidak Utamakan</span>
+									<i class="icon-pushpin"></i> <span v-if="props.item.utamakan == 1">Tidak Utamakan</span>
 									<span v-else>Utamakan</span>
 								</button>
 							</div>
@@ -273,7 +272,6 @@
 				extSearchQuery1: '',
 				extSearchColumn: '',
 				selectedItem: [],
-				isloaded: false,
 				params: {
           column: 'id',
           direction: 'desc',
@@ -402,80 +400,76 @@
 				modalButton: ''
 			}
 		},
-		beforeRouteUpdate(to, from, next){
-			this.checkMeta();
-		},
 		watch: {
-			// profileStat(value){
-			// 	if(value === "success"){
-			// 		this.checkMeta();
-			// 		console.log('yo'); 
-			// 	}
-			// },
-			// idCU(value){ //fetch on selectCU change
-			// 	if(value !== ''){
-			// 		if(this.modelCUStat === 'success'){
-			// 			this.fetch();
-			// 		}
-			// 	}
-			// },
-			modelCUStat(value){ //fetch on load page
-				if(value === 'success'){
+			// check route changes
+			'$route' (to, from){
+
+				// check current page meta
+				this.checkMeta();
+			},
+	
+			profileStat(value){
+				if(value == "success"){
+					
+					// check if current user id_cu have access to this page
+					this.checkUser();
+				}
+			},
+
+			// fetch on selectCU change
+			idCU(value){ 
+				if(value !== ''){
+					if(this.itemDataStat == 'success'){
+						this.checkMeta();
+						this.fetch();
+					}
+				}
+			},
+
+			// fetch on load page
+			modelCUStat(value){ 
+				if(value == 'success'){
 					this.checkMeta();
 					this.fetch();
 				}
 			},
+
+			// check kategori data from kategori route
 			modelKategoriStat(value){
-				if(value === 'success'){
+				if(value == 'success'){
+					this.params.search_column = 'artikelkategori.name';
+					this.params.search_query_1 = this.modelKategori.name;
 
-					// if user data id cu is not bkcu
-					if(this.profile.id_cu !== 0){
-						// if kategori artikel id cu is match with user data id cu
-						if(this.profile.id_cu === this.modelKategori.id_cu){
-							this.params.search_column = 'artikelkategori.name';
-							this.params.search_query_1 = this.modelKategori.name;
+					this.extSearchColumn = 'Kategori';
+					this.extSearchQuery1 = this.modelKategori.name;
 
-							this.extSearchColumn = 'Kategori';
-							this.extSearchQuery1 = this.modelKategori.name;
-
-							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
-						}else{
-							//else page not found
-							// this.$router.push({name: 'notFound'});
-							console.log('notfound');
-						}
-					}else{
-						// if user data id cu is bkcu
-						this.params.search_column = 'artikelkategori.name';
-						this.params.search_query_1 = this.modelKategori.name;
-
-						this.extSearchColumn = 'Kategori';
-						this.extSearchQuery1 = this.modelKategori.name;
-
-						this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
-					}
+					this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 				}
 			},
+
+			// check penulis data from penulis route
 			modelPenulisStat(value){
-				if(value === 'success'){
+				if(value == 'success'){
 					this.params.search_column = 'artikelPenulis.name';
 					this.params.search_query_1 = this.modelPenulis.name;
 
 					this.extSearchColumn = 'Penulis';
 					this.extSearchQuery1 = this.modelPenulis.name;
 
-					this.$store.dispatch('load' + this.kelas + 'CUS', [this.params,this.modelPenulis.id_cu]);
+					this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 				}
 			},
+
+			// when updating data
       updateStat(value) {
 				this.modalState = value;
 				this.modalButton = 'Ok';
 				
-				if(value === "success"){
+				if(value == "success"){
 					this.modalTitle = this.updateMessage.message;
 					this.modalContent = '';
 					this.fetch();
-				}else if(value === "fail"){
+				}else if(value == "fail"){
 					this.modalContent = this.updateMessage;
 				}else{
 					this.modalContent = '';
@@ -486,8 +480,8 @@
 			fetch(){
 				
 				// if show all
-				if(this.idCU === 'semua'){
-					this.$store.dispatch(this.kelas + '/index', this.params);
+				if(this.idCU == 'semua'){
+						this.$store.dispatch(this.kelas + '/index', this.params);
 
 					// show cu column
 					this.disableColumnCU(false);
@@ -497,7 +491,7 @@
 					if(this.idCU !== undefined){
 
 						//if artikelFilterKategori
-						if(this.$route.meta.mode === 'kategori'){ 
+						if(this.$route.meta.mode == 'kategori'){ 
 
 							//if modelkategori is not loaded yet
 							if(this.modelKategoriStat !== 'success'){	
@@ -505,11 +499,12 @@
 
 							//for changing parameters in kategori meta mode
 							}else{
+
 								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 							}
 
 						//if artikelFilterPenulis
-						}else if(this.$route.meta.mode === 'penulis'){ 
+						}else if(this.$route.meta.mode == 'penulis'){ 
 							if(this.modelPenulisLoadStat !== 'success'){
 								this.$store.dispatch('artikelPenulis/edit',this.$route.params.id);
 							}else{
@@ -525,14 +520,33 @@
 				}
 			},
 			checkMeta(){
-				if(this.$route.meta.mode === 'kategori' || this.$route.meta.mode === 'penulis'){
+				// route form kategori and penulis
+				if(this.$route.meta.mode == 'kategori' || this.$route.meta.mode == 'penulis'){
 					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
-				}else if(this.$route.meta.mode === 'cu'){
+				
+				// route from edit and when change cu data selected
+				}else if(this.$route.meta.mode == 'cu'){
 					this.resetParams();
 					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+				
+				// default route
 				}else{
 					this.resetParams();
 					this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
+				}
+
+				// check if current user id_cu have access to this page
+				if(this.profileStat == 'success'){
+					this.checkUser();
+				}
+			},
+			checkUser(){
+				if(this.$route.meta.mode == 'kategori' || this.$route.meta.mode == 'penulis' || this.$route.meta.mode == 'cu'){
+					if(this.profile.id_cu != 0){
+						if(this.profile.id_cu != this.$route.params.cu){
+							this.$router.push({name: 'notFound'});
+						}
+					}
 				}
 			},
 			disableColumnCU(status){

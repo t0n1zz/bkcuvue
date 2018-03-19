@@ -730,8 +730,6 @@
   </div>
 </template>
 <script>
-  import Vue from 'vue';
-  import axios from 'axios';
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
@@ -830,6 +828,7 @@
         excelLoadStat: '',
         isSearch: false,
         isExcelAll: false,
+        isFirstLoad: true,
         modalShow: false,
         modalState: '',
         modalTitle: '',
@@ -848,8 +847,16 @@
       // this.fetch();
     },
     watch: {
+      // check route changes
+			'$route' (to, from){
+				this.isFirstLoad = true;
+      },
+      
       itemDataStat(value){
         this.excelLoadStat = value;
+        if(value == 'success'){
+          this.isFirstLoad = false;
+        }
       },
       extSearchQuery1(value){
         this.searchQuery1 = value;
@@ -860,7 +867,9 @@
       searchQuery1: function (search_query) {
         if(this.params.search_operator === 'like'){
           this.params.search_query_1 = search_query;
-          this.searchData();
+
+          if(!this.isFirstLoad)
+            this.searchData();
         }else{
           if(search_query === '' && this.params.search_operator !== 'between'){
             this.params.search_query_1 = search_query;
