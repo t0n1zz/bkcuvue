@@ -265,13 +265,13 @@
 							<div class="panel-body">
 								<div class="row">
 									<form-button
-										:cancelLink="kelas"
-										:formValidation="'form'"></form-button>
+										:cancelState="'methods'"
+										:formValidation="'form'"
+										@cancelClick="back"></form-button>
 								</div>
 							</div>
 						</div>
 						
-
 					</form>
 
 				</div>
@@ -458,6 +458,9 @@
 					this.titleDesc = 'Mengubah artikel';
 					this.titleIcon = 'icon-pencil5';
 				} else {
+					this.title = 'Tambah Artikel';
+					this.titleDesc = 'Menambah artikel';
+					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}
 			},
@@ -481,9 +484,16 @@
 				this.$store.dispatch('artikelPenulis/getCU', id);	
 				this.$store.dispatch('artikelKategori/getCU', id);
 			},
+			back(){
+				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+				}else{
+					this.$router.push({name: this.kelas});
+				}
+			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
-					this.$router.push({name: this.kelas});
+					this.back();
 				}
 
 				this.modalShow = false;
@@ -517,7 +527,6 @@
 			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
-				console.log(event.target.files[0].name);
 			},
 			other() {
 				// bootstrap select

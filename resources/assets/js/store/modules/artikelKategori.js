@@ -55,7 +55,7 @@ export const artikelKategori = {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
-    },
+    }, 
 
     //load collection without params
     get( { commit } ){
@@ -167,7 +167,7 @@ export const artikelKategori = {
     destroy( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      ArtikelKategoriAPI.destroy( id )
+      ArtikelKategoriAPI.destroy( id ) 
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

@@ -26,6 +26,7 @@
 					<!-- select data -->
 					<select-c-u 
 						:kelas="kelas"
+						:path="selectCUPath"
 						:isPus="true"></select-c-u>
 
 					<!-- table data -->
@@ -62,9 +63,10 @@
 				kelas: 'artikelKategori',
 				titleDesc: 'Mengelola data kategori artikel',
 				titleIcon: 'icon-grid6',
+				selectCUPath: 'artikelKategoriCU',
 				btn1Header: {
 					route: 'artikel',
-					icon: 'icon-grid6',
+					icon: 'icon-magazine',
 					title: 'Artikel',
 					can: 'index artikel'
 				},

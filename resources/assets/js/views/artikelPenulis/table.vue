@@ -384,11 +384,11 @@
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
 			lihatArtikel(id, id_cu){
-				this.$store.dispatch('artikelKategori/resetDataStat');
+				this.$store.dispatch(this.kelas + '/resetDataStat');
 				if(this.profile.id_cu != 0){
-					this.$router.push({name: 'artikelFilterKategori', params: { id: id }});
+					this.$router.push({name: 'artikelFilterPenulis', params: { id: id }});
 				}else{
-					this.$router.push({name: 'artikelFilterKategoriCU', params: { id: id, cu: id_cu }});
+					this.$router.push({name: 'artikelFilterPenulisCU', params: { id: id, cu: id_cu }});
 				}
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
@@ -427,7 +427,7 @@
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
 			}),
-			...mapGetters('artikelKategori',{
+			...mapGetters('artikelPenulis',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				updateMessage: 'update',

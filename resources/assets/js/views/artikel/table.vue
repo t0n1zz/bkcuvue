@@ -403,16 +403,14 @@
 		watch: {
 			// check route changes
 			'$route' (to, from){
-
-				// check current page meta
 				this.checkMeta();
 			},
-	
+
 			profileStat(value){
-				if(value == "success"){
-					
-					// check if current user id_cu have access to this page
-					this.checkUser();
+				if(value == 'success'){
+					if(this.modelKategoriStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
+						this.$router.push({name: 'notFound'});
+					}
 				}
 			},
 
@@ -437,26 +435,34 @@
 			// check kategori data from kategori route
 			modelKategoriStat(value){
 				if(value == 'success'){
-					this.params.search_column = 'artikelkategori.name';
-					this.params.search_query_1 = this.modelKategori.name;
+					if(this.profileStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
+						this.$router.push({name: 'notFound'});
+					}else{
+						this.params.search_column = 'artikelkategori.name';
+						this.params.search_query_1 = this.modelKategori.name;
 
-					this.extSearchColumn = 'Kategori';
-					this.extSearchQuery1 = this.modelKategori.name;
+						this.extSearchColumn = 'Kategori';
+						this.extSearchQuery1 = this.modelKategori.name;
 
-					this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+					}
 				}
 			},
 
 			// check penulis data from penulis route
 			modelPenulisStat(value){
 				if(value == 'success'){
-					this.params.search_column = 'artikelPenulis.name';
-					this.params.search_query_1 = this.modelPenulis.name;
+					if(this.profileStat == 'success' && this.profile.id_cu != this.modelPenulis.id_cu && this.profile.id_cu != 0){
+						this.$router.push({name: 'notFound'});
+					}else{
+						this.params.search_column = 'artikelPenulis.name';
+						this.params.search_query_1 = this.modelPenulis.name;
 
-					this.extSearchColumn = 'Penulis';
-					this.extSearchQuery1 = this.modelPenulis.name;
+						this.extSearchColumn = 'Penulis';
+						this.extSearchQuery1 = this.modelPenulis.name;
 
-					this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+					}
 				}
 			},
 
@@ -499,17 +505,21 @@
 
 							//for changing parameters in kategori meta mode
 							}else{
-
 								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 							}
 
 						//if artikelFilterPenulis
 						}else if(this.$route.meta.mode == 'penulis'){ 
+
+							//if modelPenulis is not loaded yet
 							if(this.modelPenulisLoadStat !== 'success'){
 								this.$store.dispatch('artikelPenulis/edit',this.$route.params.id);
+
+							//for changing parameters in kategori meta mode
 							}else{
 								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 							}
+							
 						}else{
 							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
 						}
@@ -522,7 +532,11 @@
 			checkMeta(){
 				// route form kategori and penulis
 				if(this.$route.meta.mode == 'kategori' || this.$route.meta.mode == 'penulis'){
-					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+					if(this.profile.id_cu == 0){
+						this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+					}else{
+						this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
+					}	
 				
 				// route from edit and when change cu data selected
 				}else if(this.$route.meta.mode == 'cu'){
@@ -533,20 +547,6 @@
 				}else{
 					this.resetParams();
 					this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
-				}
-
-				// check if current user id_cu have access to this page
-				if(this.profileStat == 'success'){
-					this.checkUser();
-				}
-			},
-			checkUser(){
-				if(this.$route.meta.mode == 'kategori' || this.$route.meta.mode == 'penulis' || this.$route.meta.mode == 'cu'){
-					if(this.profile.id_cu != 0){
-						if(this.profile.id_cu != this.$route.params.cu){
-							this.$router.push({name: 'notFound'});
-						}
-					}
 				}
 			},
 			disableColumnCU(status){
@@ -602,7 +602,7 @@
 			},
 			modalConfirmOk() {
 				if (this.source == 'hapus') {
-					this.$store.dispatch(this.kelas + '/delete', this.selectedItem.id);
+					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				} else if (this.source == "updateTerbitkan"){
 					this.$store.dispatch(this.kelas + '/updateTerbitkan', this.selectedItem.id);
 				} else if (this.source == "updateUtamakan") {

@@ -183,6 +183,9 @@ export const artikelPenulis = {
     },
 
     // reset
+    resetDataStat( {commit} ){
+      commit('setDataStat', '');
+    },
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     }
