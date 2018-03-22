@@ -338,8 +338,8 @@
 					},
 					{
 						title: 'Kategori',
-						key: 'id_artikel_kategori',
-						groupKey: 'artikel_kategori.name',
+						key: 'kategori_name',
+						groupKey: 'kategori_name',
 						groupNoKey: '-',
 						excelType: 'string',
 						sort: true,
@@ -348,8 +348,8 @@
 					},
 					{
 						title: 'Penulis',
-						key: 'id_artikel_penulis',
-						groupKey: 'artikel_penulis.name',
+						key: 'penulis_name',
+						groupKey: 'penulis_name',
 						groupNoKey: '-',
 						sort: true,
 						hide: false,

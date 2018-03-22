@@ -76,6 +76,17 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/cu/{id}', 'CUController@destroy');
     });
 
+    //laporan cu
+    Route::get('/laporanCu', 'laporanCuController@index');
+    Route::get('/laporanCu/get', 'laporanCuController@get');
+    Route::get('/laporanCu/indexCU/{id}', 'laporanCuController@indexCU');
+    Route::get('/laporanCu/getCU/{id}', 'laporanCuController@getCU');
+    Route::get('/laporanCu/create', 'laporanCuController@create');
+    Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');
+    Route::post('/laporanCu/store', 'laporanCuController@store');
+    Route::post('/laporanCu/update/{id}', 'laporanCuController@update');
+    Route::delete('/laporanCu/{id}', 'laporanCuController@destroy');
+
     // puskopdit
     Route::get('/pus', 'PusController@index');
     Route::get('/pus_all', 'PusController@indexAll');

@@ -8,6 +8,8 @@ import artikelPenulis from './views/artikelPenulis/index.vue';
 import artikelPenulis_form from './views/artikelPenulis/form.vue';
 import artikelKategori from './views/artikelKategori/index.vue';
 import artikelKategori_form from './views/artikelKategori/form.vue';
+import laporanCu from './views/laporanCu/index.vue';
+import laporanCu_form from './views/laporanCu/form.vue';
 import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
 import user from './views/user/index.vue';
@@ -80,9 +82,23 @@ const routes = [
 		components: { default: artikelPenulis_form, 'header': header}, meta: { mode:'edit' } },
 
 	// cu
-	{ path: '/cu',name: 'cu', components: { default: cu, 'header': header }},
-	{ path: '/cu/create',name: 'cuCreate', components: { default: cu_form, 'header': header} },
-	{ path: '/cu/edit/:id',name: 'cuEdit', components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
+	{ path: '/cu',name: 'cu', 
+		components: { default: cu, 'header': header }},
+	{ path: '/cu/create',name: 'cuCreate', 
+		components: { default: cu_form, 'header': header} },
+	{ path: '/cu/edit/:id',name: 'cuEdit', 
+		components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
+
+	// artikel kategori
+	{ path: '/laporancu',name: 'laporanCu', 
+		components: { default: laporanCu, 'header': header }},
+	{ path: '/laporancu/cu/:cu',name: 'laporanCuCU', 
+		components: { default: laporanCu, 'header': header },
+		meta: { mode:'cu' }},
+	{ path: '/laporancu/create',name: 'laporanCuCreate', 
+		components: { default: laporanCu_form, 'header': header} },
+	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 
+		components: { default: laporanCu_form, 'header': header}, meta: { mode:'edit' } },
 ]
 
 export default routes

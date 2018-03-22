@@ -1,55 +1,78 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\LaporanCU;
+use DB;
+use App\LaporanCu;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
 
-class LaporanCUController extends Controller{
+class LaporanCuController extends Controller{
 
 	protected $message = 'Laporan CU';
 
 	public function index()
 	{
-    	$table_data = LaporanCU::with('CU')->join(DB::RAW('(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
-					$join->on('laporancu.no_ba','=','latest_report.no_ba');
-					$join->on('laporancu.periode','=','latest_report.max_periode');
-			})->FilterPaginateOrder();
+
+		$table_data = LaporanCu::with('CU.Provinces')->join(DB::RAW('(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
+				$join->on('laporancu.no_ba','=','latest_report.no_ba');
+				$join->on('laporancu.periode','=','latest_report.max_periode');
+		})->addSelect(['*',DB::raw('
+			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
+			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
+			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
+		)])->FilterPaginateOrder();
 
 
-    	return response()
-			->json([
-				'model' => $table_data
-			]);
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function indexCU($id)
 	{
-    	$table_data = LaporanCU::with('CU')->where('no_ba',$id)->filterPaginateOrder();
+		$table_data = LaporanCu::with('CU')->where('no_ba',$id)->filterPaginateOrder();
 
-    	return response()
-			->json([
-				'model' => $table_data
-			]);
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPeriode($periode)
+	{
+    $table_data = LaporanCu::with('CU.Provinces')->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY no_ba) latest_report"),function($join){
+        $join->on('laporancu.no_ba','=','latest_report.no_ba');
+        $join->on('laporancu.periode','=','latest_report.max_periode');
+		})->addSelect(['*',DB::raw('
+			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
+			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
+			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
+		)])->FilterPaginateOrder();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function create()
 	{
 		return response()
 			->json([
-					'form' => LaporanCU::initialize(),
-					'rules' => LaporanCU::$rules,
+					'form' => LaporanCu::initialize(),
+					'rules' => LaporanCu::$rules,
 					'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-		$this->validate($request,LaporanCU::$rules);
+		$this->validate($request,LaporanCu::$rules);
 
 		$name = $request->name;
 
-		$kelas = LaporanCU::create($request->all());
+		$kelas = LaporanCu::create($request->all());
 
 		return response()
 			->json([
@@ -60,7 +83,7 @@ class LaporanCUController extends Controller{
 
 	public function show($id)
 	{
-		$kelas = LaporanCU::with('LaporanCUKategori')->findOrFail($id);
+		$kelas = LaporanCu::with('LaporanCuKategori')->findOrFail($id);
 
 		return response()
 			->json([
@@ -70,7 +93,7 @@ class LaporanCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = LaporanCU::findOrFail($id);
+		$kelas = LaporanCu::findOrFail($id);
 
 		return response()
 				->json([
@@ -81,11 +104,11 @@ class LaporanCUController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request,LaporanCU::$rules);
+		$this->validate($request,LaporanCu::$rules);
 
 		$name = $request->name;
 
-		$kelas = LaporanCU::findOrFail($id);
+		$kelas = LaporanCu::findOrFail($id);
 
 
 		$kelas->update($request->all());
@@ -100,7 +123,7 @@ class LaporanCUController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = LaporanCU::findOrFail($id);
+		$kelas = LaporanCu::findOrFail($id);
 		$name = $kelas->name;
 
 		$kelas->delete();

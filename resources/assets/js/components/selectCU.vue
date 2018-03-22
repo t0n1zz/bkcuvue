@@ -12,8 +12,9 @@
 						<!-- select -->
 						<select class="bootstrap-select" name="idCU" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
+							<slot></slot>
 							<option value="semua">Semua</option>
-							<option value="0"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
+							<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 							<option data-divider="true"></option>
 							<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 						</select>

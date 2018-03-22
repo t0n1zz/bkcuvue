@@ -128,6 +128,29 @@
 						</ul>
 					</li>
 
+					<!-- keuangan -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+							<i class="icon-calculator3 position-left"></i> Keuangan
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+
+							<!-- tambah artikel -->
+							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create laporanCu']">
+								<a><i class="icon-plus22"></i> Tambah Laporan CU</a>
+							</router-link>
+
+							<!-- separator -->
+							<li class="divider"></li>
+
+							<!-- artikel -->
+							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index laporanCu']">
+								<a><i class="icon-graph"></i> Laporan CU</a>
+							</router-link>
+						</ul>
+					</li>
+
 					<!-- pengaturan -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">

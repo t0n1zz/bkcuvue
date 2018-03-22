@@ -27,6 +27,7 @@
         "vue-json-excel": "^0.2.1",
         "vue-router": "^3.0.1",
         "vue-truncate-collapsed": "^1.3.0",
+        "vue2-filters": "^0.3.0",
         "vuex": "^3.0.1"
     }
 }

@@ -41,7 +41,7 @@ class Artikel extends Model {
 
     public function ArtikelKategori()
     {
-        return $this->belongsTo('App\ArtikelKategori','id_artikel_kategori','id')->select('id','name');
+        return $this->belongsTo('App\ArtikelKategori','id_artikel_kategori','id')->select('id','name','created_at');
     }
 
     public function ArtikelPenulis()

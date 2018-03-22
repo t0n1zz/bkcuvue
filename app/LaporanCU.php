@@ -5,7 +5,7 @@ use illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class LaporanCU extends Model {
+class LaporanCu extends Model {
 
     use FilterPaginateOrder, LogsActivity;
 
@@ -39,6 +39,6 @@ class LaporanCU extends Model {
 
     public function CU()
     {
-        return $this->belongsTo('App\CU','no_ba','no_ba')->select('id','no_ba','name');
+        return $this->belongsTo('App\CU','no_ba','no_ba')->select('id','no_ba','name','id_provinces');
     }
 }

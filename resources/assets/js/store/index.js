@@ -13,6 +13,7 @@ import { provinces } from './modules/provinces';
 import { regencies } from './modules/regencies';
 import { districts } from './modules/districts';
 import { villages } from './modules/villages';
+import { laporanCu } from './modules/laporanCu';
 
 Vue.use(Vuex);
 
@@ -29,6 +30,7 @@ export default new Vuex.Store({
 		 provinces,
 		 regencies,
 		 districts,
-		 villages
+		 villages,
+		 laporanCu
 	 }
 });

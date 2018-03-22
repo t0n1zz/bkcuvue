@@ -285,12 +285,12 @@
                   <li>
                     <a @click.prevent="showAllColumn">Semua Kolom</a>
                   </li>
-                  <slot name="button-kolom"></slot>
                   <li class="divider"></li>
                   <li v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null && !column.disable">
                     <a @click.prevent="hideColumn(index)">{{column.title}}</a>
                   </li>
                 </ul>
+                <slot name="button-kolom"></slot>
               </div>
 
               <!-- entri view -->
@@ -377,7 +377,7 @@
 
       <!-- table-->
       <div class="table-responsive hidden-xs">
-        <table class="table table-striped">
+        <table class="table table-striped" :class="tableClass">
 
           <!-- header -->
           <thead class="bg-primary">
@@ -737,7 +737,7 @@
   import Cleave from 'vue-cleave-component'
 
   export default {
-    props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params','extSearchQuery1','extSearchColumn'],
+    props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params','extSearchQuery1','extSearchColumn','tableClass'],
     components: {
       jsonExcel,
       appModal,

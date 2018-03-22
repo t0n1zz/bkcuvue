@@ -8,10 +8,12 @@ import id from 'vee-validate/dist/locale/id';
 import VeeValidate, { Validator } from 'vee-validate';
 import { BKCU_CONFIG } from './config.js';
 import moment from 'moment';
+import Vue2Filters from 'vue2-filters';
 
 Validator.localize('id',id); //localization
 Vue.use(VueRouter);
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
+Vue.use(Vue2Filters);
 
 window.moment = moment;
 window.axios = Axios;
@@ -45,7 +47,7 @@ router.beforeEach((to, from, next) => {
     }
 });
 
-// filter
+// filters
 Vue.filter('dateTime', function(value){
     if(value){
         return window.moment(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;'  + moment(value).format('kk:mm:ss');
@@ -67,6 +69,33 @@ Vue.filter('trimString', function(string){
     return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
 					' [...]';
 });
+Vue.filter('percentage', function(value, decimals) {
+    if(!value) {
+        value = 0;
+    }
+
+    if(!decimals) {
+        decimals = 0;
+    }
+
+    value = value * 100;
+    value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+    value = value + '%';
+    return value;
+});
+Vue.filter('round', function(value, decimals) {
+    if(!value) {
+      value = 0;
+    }
+  
+    if(!decimals) {
+      decimals = 0;
+    }
+  
+    value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+    return value;
+});
+
 
 Vue.directive('tooltip', function(el, binding){
     $(el).tooltip({

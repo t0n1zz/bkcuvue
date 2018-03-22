@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use DB;
 use App\Artikel;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
@@ -16,7 +17,11 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-    	$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+			DB::raw(
+				'(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name,
+				(SELECT name FROM artikelPenulis WHERE artikel.id_artikel_penulis = artikelPenulis.id) as penulis_name'
+			))->filterPaginateOrder();
 
     	return response()
 			->json([
@@ -26,7 +31,11 @@ class ArtikelController extends Controller{
 
 	public function indexCU($id)
 	{
-    	$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at')->filterPaginateOrder();
+			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+			DB::raw(
+				'(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name,
+				(SELECT name FROM artikelPenulis WHERE artikel.id_artikel_penulis = artikelPenulis.id) as penulis_name'
+			))->filterPaginateOrder();
 
     	return response()
 			->json([
