@@ -207,7 +207,7 @@
                 placeholder="0-9" 
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'number'"></cleave>
-              <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
+              <span class="input-group-addon" v-if="searchColumnType === 'number'">sampai</span>
               <cleave 
                 v-model="params.search_query_2" 
                 class="form-control" 
@@ -547,7 +547,7 @@
     </div>
 
     <div class="visible-xs" v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
-      <slot name="item-mobile" v-for="item in items" :item="item"></slot>
+      <slot name="item-mobile" v-for="(item,index) in items" :item="item" :index="index"></slot>
     </div>
 
     <div class="visible-xs" v-else-if="itemDataStat === 'fail'">
@@ -901,19 +901,19 @@
         if(type === 'date'){
           this.params.search_operator = this.operator[6].key;
           this.searchOperator = this.operator[6].title;
-          this.searchColumnType = 'date';
         }else if(type === 'datetime'){
           this.params.search_operator = this.operator[6].key;
           this.searchOperator = this.operator[6].title;
-          this.searchColumnType = 'datetime';
         }else if(type === 'number'){
           this.params.search_operator = this.operator[0].key;
           this.searchOperator = this.operator[0].title;
-          this.searchColumnType = 'number'
+        }else if(type === 'numeric'){
+          this.params.search_operator = this.operator[0].key;
+          this.searchOperator = this.operator[0].title;
         }else{
           this.params.search_operator = 'like';
-          this.searchColumnType = 'string';
         }
+        this.searchColumnType = type;
         this.params.search_query_2 = '';
         
         if (this.params.search_column !== value) {

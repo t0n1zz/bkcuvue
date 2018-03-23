@@ -73,7 +73,7 @@ const routes = [
 	// artikel penulis
 	{ path: '/artikelPenulis',name: 'artikelPenulis', 
 		components: { default: artikelPenulis, 'header': header }},
-	{ path: '/artikelKategori/cu/:cu',name: 'artikelPenulisCU', 
+	{ path: '/artikelPenulis/cu/:cu',name: 'artikelPenulisCU', 
 		components: { default: artikelPenulis, 'header': header },
 		meta: { mode:'cu' }},
 	{ path: '/artikelPenulis/create',name: 'artikelPenulisCreate', 

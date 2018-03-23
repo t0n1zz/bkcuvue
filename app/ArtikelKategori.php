@@ -22,7 +22,7 @@ class ArtikelKategori extends Model {
     protected $fillable = ['id_cu','name','deskripsi'];
 
     protected $filter = [
-        'id','id_cu','name','deskripsi','created_at','updated_at'
+        'id','id_cu','name','deskripsi','created_at','updated_at','has_artikel_count'
     ];
 
     public function getNameAttribute($value){

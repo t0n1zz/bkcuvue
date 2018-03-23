@@ -61,7 +61,7 @@
 				title: 'Laporan CU',
 				kelas: 'laporanCu',
 				titleDesc: 'Mengelola data laporan CU',
-				titleIcon: 'icon-grid6',
+				titleIcon: 'icon-graph',
 				selectCUPath: 'laporanCuCU',
 				btn1Header: {
 					route: 'artikel',

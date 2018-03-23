@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use DB;
 use App\ArtikelKategori;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,8 @@ class ArtikelKategoriController extends Controller{
 
 	public function index()
 	{
-    	$table_data = ArtikelKategori::with('CU')->withCount('hasArtikel')->filterPaginateOrder();
+			DB::statement(DB::raw('set @cnt:=0'));
+    	$table_data = ArtikelKategori::with('CU')->addSelect(DB::raw("(@cnt:=@cnt + 1) AS number"))->withCount('hasArtikel')->filterPaginateOrder();
 
     	return response()
 			->json([

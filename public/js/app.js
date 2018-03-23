@@ -44935,7 +44935,7 @@ var routes = [
 
 // artikel penulis
 { path: '/artikelPenulis', name: 'artikelPenulis',
-	components: { default: __WEBPACK_IMPORTED_MODULE_6__views_artikelPenulis_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikelKategori/cu/:cu', name: 'artikelPenulisCU',
+	components: { default: __WEBPACK_IMPORTED_MODULE_6__views_artikelPenulis_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikelPenulis/cu/:cu', name: 'artikelPenulisCU',
 	components: { default: __WEBPACK_IMPORTED_MODULE_6__views_artikelPenulis_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a },
 	meta: { mode: 'cu' } }, { path: '/artikelPenulis/create', name: 'artikelPenulisCreate',
 	components: { default: __WEBPACK_IMPORTED_MODULE_7__views_artikelPenulis_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/artikelPenulis/edit/:id', name: 'artikelPenulisEdit',
@@ -49038,6 +49038,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49099,6 +49105,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}],
 			columnData: [{
+				title: 'No.',
+				key: 'No.',
+				excelType: 'string',
+				sort: false,
+				hide: false,
+				disable: false
+			}, {
 				title: 'Foto',
 				key: 'gambar',
 				excelType: 'string',
@@ -49323,8 +49336,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			}
 		},
 		disableColumnCU: function disableColumnCU(status) {
-			this.columnData[4].disable = status;
-			this.filterData[3].disable = status;
+			this.columnData[5].disable = status;
+			this.filterData[4].disable = status;
 		},
 		resetParams: function resetParams() {
 			this.params.search_column = 'name';
@@ -50318,19 +50331,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (type === 'date') {
         this.params.search_operator = this.operator[6].key;
         this.searchOperator = this.operator[6].title;
-        this.searchColumnType = 'date';
       } else if (type === 'datetime') {
         this.params.search_operator = this.operator[6].key;
         this.searchOperator = this.operator[6].title;
-        this.searchColumnType = 'datetime';
       } else if (type === 'number') {
         this.params.search_operator = this.operator[0].key;
         this.searchOperator = this.operator[0].title;
-        this.searchColumnType = 'number';
+      } else if (type === 'numeric') {
+        this.params.search_operator = this.operator[0].key;
+        this.searchOperator = this.operator[0].title;
       } else {
         this.params.search_operator = 'like';
-        this.searchColumnType = 'string';
       }
+      this.searchColumnType = type;
       this.params.search_query_2 = '';
 
       if (this.params.search_column !== value) {
@@ -69901,8 +69914,7 @@ var render = function() {
                       })
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.searchColumnType === "number" &&
-                  _vm.params.search_operator === "between"
+                  _vm.searchColumnType === "number"
                     ? _c("span", { staticClass: "input-group-addon" }, [
                         _vm._v("sampai")
                       ])
@@ -70951,8 +70963,11 @@ var render = function() {
                 "div",
                 { staticClass: "visible-xs" },
                 [
-                  _vm._l(items, function(item) {
-                    return _vm._t("item-mobile", null, { item: item })
+                  _vm._l(items, function(item, index) {
+                    return _vm._t("item-mobile", null, {
+                      item: item,
+                      index: index
+                    })
                   })
                 ],
                 2
@@ -91453,13 +91468,12 @@ var render = function() {
             ? _c(
                 "span",
                 [
-                  _vm._v("\n      " + _vm._s(_vm.frontText) + " "),
                   _c("truncate", {
                     attrs: {
                       clamp: "...selengkapnya",
                       length: _vm.trimLength,
                       less: "...kembali",
-                      text: _vm.value
+                      text: _vm.frontText + " " + _vm.value
                     }
                   })
                 ],
@@ -91540,6 +91554,22 @@ var render = function() {
                     [
                       !_vm.columnData[0].hide
                         ? _c("td", [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(
+                                  props.index +
+                                    1 +
+                                    (+_vm.itemData.current_page - 1) *
+                                      +_vm.itemData.per_page +
+                                    "."
+                                ) +
+                                "\n\t\t\t\t"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[1].hide
+                        ? _c("td", [
                             props.item.gambar
                               ? _c("img", {
                                   staticClass:
@@ -91554,12 +91584,12 @@ var render = function() {
                               : _c("img", {
                                   staticClass:
                                     "img-rounded img-responsive img-sm",
-                                  attrs: { src: "/images/image-articlen.jpg" }
+                                  attrs: { src: "/images/no_image.jpg" }
                                 })
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[1].hide
+                      !_vm.columnData[2].hide
                         ? _c(
                             "td",
                             [
@@ -91571,7 +91601,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[2].hide && !_vm.columnData[2].disable
+                      !_vm.columnData[3].hide && !_vm.columnData[3].disable
                         ? _c(
                             "td",
                             [
@@ -91579,24 +91609,6 @@ var render = function() {
                                 ? _c("check-value", {
                                     attrs: {
                                       value: props.item.artikel_kategori.name
-                                    }
-                                  })
-                                : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[2].groupNoKey))
-                                  ])
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[3].hide && !_vm.columnData[3].disable
-                        ? _c(
-                            "td",
-                            [
-                              props.item.artikel_penulis
-                                ? _c("check-value", {
-                                    attrs: {
-                                      value: props.item.artikel_penulis.name
                                     }
                                   })
                                 : _c("span", [
@@ -91611,9 +91623,11 @@ var render = function() {
                         ? _c(
                             "td",
                             [
-                              props.item.c_u
+                              props.item.artikel_penulis
                                 ? _c("check-value", {
-                                    attrs: { value: props.item.c_u.name }
+                                    attrs: {
+                                      value: props.item.artikel_penulis.name
+                                    }
                                   })
                                 : _c("span", [
                                     _vm._v(_vm._s(_vm.columnData[4].groupNoKey))
@@ -91623,7 +91637,23 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide
+                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
+                        ? _c(
+                            "td",
+                            [
+                              props.item.c_u
+                                ? _c("check-value", {
+                                    attrs: { value: props.item.c_u.name }
+                                  })
+                                : _c("span", [
+                                    _vm._v(_vm._s(_vm.columnData[5].groupNoKey))
+                                  ])
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[6].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -91635,7 +91665,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[6].hide
+                      !_vm.columnData[7].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -91647,7 +91677,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide
+                      !_vm.columnData[8].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -91659,7 +91689,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide
+                      !_vm.columnData[9].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -91688,6 +91718,30 @@ var render = function() {
                       _c("tbody", [
                         !_vm.columnData[0].hide
                           ? _c("tr", [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "text-center bg-primary-300",
+                                  attrs: { colspan: "2" }
+                                },
+                                [
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        props.index +
+                                          1 +
+                                          (+_vm.itemData.current_page - 1) *
+                                            +_vm.itemData.per_page
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[1].hide
+                          ? _c("tr", [
                               _c("td", { attrs: { colspan: "2" } }, [
                                 props.item.gambar
                                   ? _c("img", {
@@ -91703,25 +91757,23 @@ var render = function() {
                                   : _c("img", {
                                       staticClass:
                                         "img-rounded img-responsive center-block",
-                                      attrs: {
-                                        src: "/images/image-articlen.jpg"
-                                      }
+                                      attrs: { src: "/images/no_image.jpg" }
                                     })
                               ])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[1].hide
+                        !_vm.columnData[2].hide
                           ? _c("tr", [
                               _c("td", { attrs: { colspan: "2" } }, [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[1].title))
+                                  _vm._v(_vm._s(_vm.columnData[2].title))
                                 ])
                               ])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[1].hide
+                        !_vm.columnData[2].hide
                           ? _c("tr", [
                               _c(
                                 "td",
@@ -91742,11 +91794,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[2].hide
+                        !_vm.columnData[3].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[2].title))
+                                  _vm._v(_vm._s(_vm.columnData[3].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -91765,7 +91817,7 @@ var render = function() {
                                     : _c("span", [
                                         _vm._v(
                                           ": " +
-                                            _vm._s(_vm.columnData[2].groupNoKey)
+                                            _vm._s(_vm.columnData[3].groupNoKey)
                                         )
                                       ])
                                 ],
@@ -91774,11 +91826,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[3].hide
+                        !_vm.columnData[4].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[3].title))
+                                  _vm._v(_vm._s(_vm.columnData[4].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -91797,7 +91849,7 @@ var render = function() {
                                     : _c("span", [
                                         _vm._v(
                                           ": " +
-                                            _vm._s(_vm.columnData[3].groupNoKey)
+                                            _vm._s(_vm.columnData[4].groupNoKey)
                                         )
                                       ])
                                 ],
@@ -91806,11 +91858,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[4].hide && !_vm.columnData[4].disable
+                        !_vm.columnData[5].hide && !_vm.columnData[5].disable
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[4].title))
+                                  _vm._v(_vm._s(_vm.columnData[5].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -91828,35 +91880,12 @@ var render = function() {
                                     : _c("span", [
                                         _vm._v(
                                           ": " +
-                                            _vm._s(_vm.columnData[4].groupNoKey)
+                                            _vm._s(_vm.columnData[5].groupNoKey)
                                         )
                                       ])
                                 ],
                                 1
                               )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.columnData[5].hide
-                          ? _c("tr", [
-                              _c("td", [
-                                _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[5].title))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v("\n\t\t\t\t\t\t\t\t: "),
-                                _c("span", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.checkStatus(
-                                        props.item.terbitkan
-                                      )
-                                    )
-                                  }
-                                })
-                              ])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -91874,7 +91903,7 @@ var render = function() {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.$options.filters.checkStatus(
-                                        props.item.utamakan
+                                        props.item.terbitkan
                                       )
                                     )
                                   }
@@ -91896,8 +91925,8 @@ var render = function() {
                                 _c("span", {
                                   domProps: {
                                     innerHTML: _vm._s(
-                                      _vm.$options.filters.dateTime(
-                                        props.item.created_at
+                                      _vm.$options.filters.checkStatus(
+                                        props.item.utamakan
                                       )
                                     )
                                   }
@@ -91911,6 +91940,29 @@ var render = function() {
                               _c("td", [
                                 _c("b", [
                                   _vm._v(_vm._s(_vm.columnData[8].title))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v("\n\t\t\t\t\t\t\t\t: "),
+                                _c("span", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.$options.filters.dateTime(
+                                        props.item.created_at
+                                      )
+                                    )
+                                  }
+                                })
+                              ])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[9].hide
+                          ? _c("tr", [
+                              _c("td", [
+                                _c("b", [
+                                  _vm._v(_vm._s(_vm.columnData[9].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -95979,6 +96031,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -96028,6 +96096,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}],
 			columnData: [{
+				title: 'No.',
+				key: 'No.',
+				excelType: 'string',
+				sort: false,
+				hide: false,
+				disable: false
+			}, {
+				title: 'Foto',
+				key: 'gambar',
+				excelType: 'string',
+				sort: false,
+				hide: false,
+				disable: false
+			}, {
 				title: 'Nama',
 				key: 'name',
 				excelType: 'string',
@@ -96150,8 +96232,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			}
 		},
 		disableColumnCU: function disableColumnCU(status) {
-			this.columnData[2].disable = status;
-			this.filterData[1].disable = status;
+			this.columnData[4].disable = status;
+			this.filterData[3].disable = status;
 		},
 		resetParams: function resetParams() {
 			this.params.search_column = 'name';
@@ -96257,6 +96339,43 @@ var render = function() {
                     },
                     [
                       !_vm.columnData[0].hide
+                        ? _c("td", [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(
+                                  props.index +
+                                    1 +
+                                    (+_vm.itemData.current_page - 1) *
+                                      +_vm.itemData.per_page +
+                                    "."
+                                ) +
+                                "\n\t\t\t\t"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[1].hide
+                        ? _c("td", [
+                            props.item.gambar
+                              ? _c("img", {
+                                  staticClass:
+                                    "img-rounded img-responsive img-sm",
+                                  attrs: {
+                                    src:
+                                      "/images/penulis/" +
+                                      props.item.gambar +
+                                      "n.jpg"
+                                  }
+                                })
+                              : _c("img", {
+                                  staticClass:
+                                    "img-rounded img-responsive img-sm",
+                                  attrs: { src: "/images/no_image.jpg" }
+                                })
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[2].hide
                         ? _c(
                             "td",
                             [
@@ -96268,7 +96387,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[1].hide
+                      !_vm.columnData[3].hide
                         ? _c(
                             "td",
                             [
@@ -96280,7 +96399,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[2].hide && !_vm.columnData[2].disable
+                      !_vm.columnData[4].hide && !_vm.columnData[4].disable
                         ? _c(
                             "td",
                             [
@@ -96288,24 +96407,24 @@ var render = function() {
                                 ? _c("check-value", {
                                     attrs: {
                                       value: props.item.c_u.name,
-                                      empty: _vm.columnData[2].groupNoKey
+                                      empty: _vm.columnData[4].groupNoKey
                                     }
                                   })
                                 : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[2].groupNoKey))
+                                    _vm._v(_vm._s(_vm.columnData[4].groupNoKey))
                                   ])
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[3].hide
+                      !_vm.columnData[5].hide
                         ? _c("td", [
                             _vm._v(_vm._s(props.item.has_artikel_count))
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[4].hide
+                      !_vm.columnData[6].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -96317,7 +96436,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide
+                      !_vm.columnData[7].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -96346,9 +96465,56 @@ var render = function() {
                       _c("tbody", [
                         !_vm.columnData[0].hide
                           ? _c("tr", [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "text-center bg-primary-300",
+                                  attrs: { colspan: "2" }
+                                },
+                                [
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        props.index +
+                                          1 +
+                                          (+_vm.itemData.current_page - 1) *
+                                            +_vm.itemData.per_page
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[1].hide
+                          ? _c("tr", [
+                              _c("td", { attrs: { colspan: "2" } }, [
+                                props.item.gambar
+                                  ? _c("img", {
+                                      staticClass:
+                                        "img-rounded img-responsive center-block",
+                                      attrs: {
+                                        src:
+                                          "/images/penulis/" +
+                                          props.item.gambar +
+                                          "n.jpg"
+                                      }
+                                    })
+                                  : _c("img", {
+                                      staticClass:
+                                        "img-rounded img-responsive center-block",
+                                      attrs: { src: "/images/no_image.jpg" }
+                                    })
+                              ])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[2].hide
+                          ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[0].title))
+                                  _vm._v(_vm._s(_vm.columnData[2].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -96358,7 +96524,6 @@ var render = function() {
                                   _c("check-value", {
                                     attrs: {
                                       value: props.item.name,
-                                      isTrim: false,
                                       frontText: ": "
                                     }
                                   })
@@ -96368,17 +96533,17 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[1].hide
+                        !_vm.columnData[3].hide
                           ? _c("tr", [
                               _c("td", { attrs: { colspan: "2" } }, [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[1].title))
+                                  _vm._v(_vm._s(_vm.columnData[3].title))
                                 ])
                               ])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[1].hide
+                        !_vm.columnData[4].hide
                           ? _c("tr", [
                               _c(
                                 "td",
@@ -96399,11 +96564,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[2].hide && !_vm.columnData[2].disable
+                        !_vm.columnData[4].hide && !_vm.columnData[4].disable
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[2].title))
+                                  _vm._v(_vm._s(_vm.columnData[4].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -96414,14 +96579,13 @@ var render = function() {
                                     ? _c("check-value", {
                                         attrs: {
                                           value: props.item.c_u.name,
-                                          isTrim: false,
                                           frontText: ": "
                                         }
                                       })
                                     : _c("span", [
                                         _vm._v(
                                           ": " +
-                                            _vm._s(_vm.columnData[2].groupNoKey)
+                                            _vm._s(_vm.columnData[4].groupNoKey)
                                         )
                                       ])
                                 ],
@@ -96430,11 +96594,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[3].hide
+                        !_vm.columnData[5].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[3].title))
+                                  _vm._v(_vm._s(_vm.columnData[5].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -96446,11 +96610,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[4].hide
+                        !_vm.columnData[6].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[4].title))
+                                  _vm._v(_vm._s(_vm.columnData[6].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -96469,11 +96633,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[5].hide
+                        !_vm.columnData[7].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[5].title))
+                                  _vm._v(_vm._s(_vm.columnData[7].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -99272,6 +99436,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -99321,6 +99491,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}],
 			columnData: [{
+				title: 'No.',
+				key: 'No.',
+				excelType: 'string',
+				sort: false,
+				hide: false,
+				disable: false
+			}, {
 				title: 'Nama',
 				key: 'name',
 				excelType: 'string',
@@ -99443,8 +99620,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			}
 		},
 		disableColumnCU: function disableColumnCU(status) {
-			this.columnData[2].disable = status;
-			this.filterData[1].disable = status;
+			this.columnData[3].disable = status;
+			this.filterData[2].disable = status;
 		},
 		resetParams: function resetParams() {
 			this.params.search_column = 'name';
@@ -99550,6 +99727,22 @@ var render = function() {
                     },
                     [
                       !_vm.columnData[0].hide
+                        ? _c("td", [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(
+                                  props.index +
+                                    1 +
+                                    (+_vm.itemData.current_page - 1) *
+                                      +_vm.itemData.per_page +
+                                    "."
+                                ) +
+                                "\n\t\t\t\t"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[1].hide
                         ? _c(
                             "td",
                             [
@@ -99561,7 +99754,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[1].hide
+                      !_vm.columnData[2].hide
                         ? _c(
                             "td",
                             [
@@ -99573,7 +99766,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[2].hide && !_vm.columnData[2].disable
+                      !_vm.columnData[3].hide && !_vm.columnData[3].disable
                         ? _c(
                             "td",
                             [
@@ -99581,24 +99774,24 @@ var render = function() {
                                 ? _c("check-value", {
                                     attrs: {
                                       value: props.item.c_u.name,
-                                      empty: _vm.columnData[2].groupNoKey
+                                      empty: _vm.columnData[3].groupNoKey
                                     }
                                   })
                                 : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[2].groupNoKey))
+                                    _vm._v(_vm._s(_vm.columnData[3].groupNoKey))
                                   ])
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[3].hide
+                      !_vm.columnData[4].hide
                         ? _c("td", [
                             _vm._v(_vm._s(props.item.has_artikel_count))
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[4].hide
+                      !_vm.columnData[5].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -99610,7 +99803,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide
+                      !_vm.columnData[6].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -99639,9 +99832,33 @@ var render = function() {
                       _c("tbody", [
                         !_vm.columnData[0].hide
                           ? _c("tr", [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "text-center bg-primary-300",
+                                  attrs: { colspan: "2" }
+                                },
+                                [
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        props.index +
+                                          1 +
+                                          (+_vm.itemData.current_page - 1) *
+                                            +_vm.itemData.per_page
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[1].hide
+                          ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[0].title))
+                                  _vm._v(_vm._s(_vm.columnData[1].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -99661,17 +99878,17 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[1].hide
+                        !_vm.columnData[2].hide
                           ? _c("tr", [
                               _c("td", { attrs: { colspan: "2" } }, [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[1].title))
+                                  _vm._v(_vm._s(_vm.columnData[2].title))
                                 ])
                               ])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[1].hide
+                        !_vm.columnData[2].hide
                           ? _c("tr", [
                               _c(
                                 "td",
@@ -99692,11 +99909,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[2].hide && !_vm.columnData[2].disable
+                        !_vm.columnData[3].hide && !_vm.columnData[3].disable
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[2].title))
+                                  _vm._v(_vm._s(_vm.columnData[3].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -99723,11 +99940,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[3].hide
+                        !_vm.columnData[4].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[3].title))
+                                  _vm._v(_vm._s(_vm.columnData[4].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -99739,11 +99956,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[4].hide
+                        !_vm.columnData[5].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[4].title))
+                                  _vm._v(_vm._s(_vm.columnData[5].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -99762,11 +99979,11 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[5].hide
+                        !_vm.columnData[6].hide
                           ? _c("tr", [
                               _c("td", [
                                 _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[5].title))
+                                  _vm._v(_vm._s(_vm.columnData[6].title))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -101603,6 +101820,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -101720,6 +101943,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}],
 			columnData: [{
+				title: 'No.',
+				key: 'No.',
+				excelType: 'string',
+				sort: false,
+				hide: false,
+				disable: false
+			}, {
 				title: 'Foto',
 				key: 'gambar',
 				excelType: 'string',
@@ -102112,6 +102342,22 @@ var render = function() {
                     [
                       !_vm.columnData[0].hide
                         ? _c("td", [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(
+                                  props.index +
+                                    1 +
+                                    (+_vm.itemData.current_page - 1) *
+                                      +_vm.itemData.per_page +
+                                    "."
+                                ) +
+                                "\n\t\t\t\t"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[1].hide
+                        ? _c("td", [
                             props.item.gambar
                               ? _c("img", {
                                   staticClass:
@@ -102128,12 +102374,12 @@ var render = function() {
                               : _c("img", {
                                   staticClass:
                                     "img-rounded img-responsive img-sm",
-                                  attrs: { src: "/images/image-articlen.jpg" }
+                                  attrs: { src: "/images/no_image.jpg" }
                                 })
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[1].hide
+                      !_vm.columnData[2].hide
                         ? _c(
                             "td",
                             [
@@ -102145,7 +102391,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[2].hide
+                      !_vm.columnData[3].hide
                         ? _c(
                             "td",
                             [
@@ -102157,7 +102403,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[3].hide
+                      !_vm.columnData[4].hide
                         ? _c(
                             "td",
                             [
@@ -102169,7 +102415,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[4].hide && !_vm.columnData[4].disable
+                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
                         ? _c(
                             "td",
                             [
@@ -102181,26 +102427,26 @@ var render = function() {
                                     }
                                   })
                                 : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[4].groupNoKey))
+                                    _vm._v(_vm._s(_vm.columnData[5].groupNoKey))
                                   ])
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
+                      !_vm.columnData[6].hide && !_vm.columnData[6].disable
                         ? _c("td", [
                             props.item.regencies
                               ? _c("span", [
                                   _vm._v(_vm._s(props.item.regencies.name))
                                 ])
                               : _c("span", [
-                                  _vm._v(_vm._s(_vm.columnData[5].groupNoKey))
+                                  _vm._v(_vm._s(_vm.columnData[6].groupNoKey))
                                 ])
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[6].hide && !_vm.columnData[6].disable
+                      !_vm.columnData[7].hide && !_vm.columnData[7].disable
                         ? _c(
                             "td",
                             [
@@ -102212,14 +102458,14 @@ var render = function() {
                                     }
                                   })
                                 : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[6].groupNoKey))
+                                    _vm._v(_vm._s(_vm.columnData[7].groupNoKey))
                                   ])
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide && !_vm.columnData[7].disable
+                      !_vm.columnData[8].hide && !_vm.columnData[8].disable
                         ? _c(
                             "td",
                             [
@@ -102231,14 +102477,14 @@ var render = function() {
                                     }
                                   })
                                 : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[7].groupNoKey))
+                                    _vm._v(_vm._s(_vm.columnData[8].groupNoKey))
                                   ])
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide
+                      !_vm.columnData[9].hide
                         ? _c(
                             "td",
                             [
@@ -102250,7 +102496,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[9].hide
+                      !_vm.columnData[10].hide
                         ? _c(
                             "td",
                             [
@@ -102262,7 +102508,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[10].hide
+                      !_vm.columnData[11].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -102272,7 +102518,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[11].hide
+                      !_vm.columnData[12].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -102282,7 +102528,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[12].hide
+                      !_vm.columnData[13].hide
                         ? _c(
                             "td",
                             [
@@ -102294,7 +102540,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[13].hide
+                      !_vm.columnData[14].hide
                         ? _c(
                             "td",
                             [
@@ -102306,7 +102552,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[14].hide
+                      !_vm.columnData[15].hide
                         ? _c(
                             "td",
                             [
@@ -102318,7 +102564,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[15].hide
+                      !_vm.columnData[16].hide
                         ? _c(
                             "td",
                             [
@@ -102330,7 +102576,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[16].hide
+                      !_vm.columnData[17].hide
                         ? _c(
                             "td",
                             [
@@ -102342,7 +102588,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[17].hide
+                      !_vm.columnData[18].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -102355,7 +102601,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[18].hide
+                      !_vm.columnData[19].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -102384,6 +102630,30 @@ var render = function() {
                       _c("tbody", [
                         !_vm.columnData[0].hide
                           ? _c("tr", [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "text-center bg-primary-300",
+                                  attrs: { colspan: "2" }
+                                },
+                                [
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        props.index +
+                                          1 +
+                                          (+_vm.itemData.current_page - 1) *
+                                            +_vm.itemData.per_page
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[1].hide
+                          ? _c("tr", [
                               _c("td", { attrs: { colspan: "2" } }, [
                                 props.item.gambar
                                   ? _c("img", {
@@ -102401,35 +102671,9 @@ var render = function() {
                                   : _c("img", {
                                       staticClass:
                                         "img-rounded img-responsive center-block",
-                                      attrs: {
-                                        src: "/images/image-articlen.jpg"
-                                      }
+                                      attrs: { src: "/images/no_image.jpg" }
                                     })
                               ])
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.columnData[1].hide
-                          ? _c("tr", [
-                              _c("td", [
-                                _c("b", [
-                                  _vm._v(_vm._s(_vm.columnData[1].title))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c("check-value", {
-                                    attrs: {
-                                      value: props.item.name,
-                                      isTrim: false,
-                                      frontText: ": "
-                                    }
-                                  })
-                                ],
-                                1
-                              )
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -102446,7 +102690,7 @@ var render = function() {
                                 [
                                   _c("check-value", {
                                     attrs: {
-                                      value: props.item.no_ba,
+                                      value: props.item.name,
                                       isTrim: false,
                                       frontText: ": "
                                     }
@@ -102470,7 +102714,7 @@ var render = function() {
                                 [
                                   _c("check-value", {
                                     attrs: {
-                                      value: props.item.badan_hukum,
+                                      value: props.item.no_ba,
                                       isTrim: false,
                                       frontText: ": "
                                     }
@@ -102492,6 +102736,30 @@ var render = function() {
                               _c(
                                 "td",
                                 [
+                                  _c("check-value", {
+                                    attrs: {
+                                      value: props.item.badan_hukum,
+                                      isTrim: false,
+                                      frontText: ": "
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[5].hide
+                          ? _c("tr", [
+                              _c("td", [
+                                _c("b", [
+                                  _vm._v(_vm._s(_vm.columnData[5].title))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
                                   props.item.provinces
                                     ? _c("check-value", {
                                         attrs: {
@@ -102503,53 +102771,13 @@ var render = function() {
                                     : _c("span", [
                                         _vm._v(
                                           ": " +
-                                            _vm._s(_vm.columnData[4].groupNoKey)
+                                            _vm._s(_vm.columnData[5].groupNoKey)
                                         )
                                       ])
                                 ],
                                 1
                               )
                             ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.columnData[5].hide
-                          ? _c(
-                              "tr",
-                              {
-                                staticClass: "collapse",
-                                class: "collap" + props.item.id
-                              },
-                              [
-                                _c("td", [
-                                  _c("b", [
-                                    _vm._v(_vm._s(_vm.columnData[5].title))
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    props.item.regencies
-                                      ? _c("check-value", {
-                                          attrs: {
-                                            value: props.item.regencies.name,
-                                            isTrim: false,
-                                            frontText: ": "
-                                          }
-                                        })
-                                      : _c("span", [
-                                          _vm._v(
-                                            ": " +
-                                              _vm._s(
-                                                _vm.columnData[5].groupNoKey
-                                              )
-                                          )
-                                        ])
-                                  ],
-                                  1
-                                )
-                              ]
-                            )
                           : _vm._e(),
                         _vm._v(" "),
                         !_vm.columnData[6].hide
@@ -102569,10 +102797,10 @@ var render = function() {
                                 _c(
                                   "td",
                                   [
-                                    props.item.districts
+                                    props.item.regencies
                                       ? _c("check-value", {
                                           attrs: {
-                                            value: props.item.districts.name,
+                                            value: props.item.regencies.name,
                                             isTrim: false,
                                             frontText: ": "
                                           }
@@ -102609,10 +102837,10 @@ var render = function() {
                                 _c(
                                   "td",
                                   [
-                                    props.item.villages
+                                    props.item.districts
                                       ? _c("check-value", {
                                           attrs: {
-                                            value: props.item.villages.name,
+                                            value: props.item.districts.name,
                                             isTrim: false,
                                             frontText: ": "
                                           }
@@ -102640,16 +102868,56 @@ var render = function() {
                                 class: "collap" + props.item.id
                               },
                               [
-                                _c("td", { attrs: { colspan: "2" } }, [
+                                _c("td", [
                                   _c("b", [
                                     _vm._v(_vm._s(_vm.columnData[8].title))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    props.item.villages
+                                      ? _c("check-value", {
+                                          attrs: {
+                                            value: props.item.villages.name,
+                                            isTrim: false,
+                                            frontText: ": "
+                                          }
+                                        })
+                                      : _c("span", [
+                                          _vm._v(
+                                            ": " +
+                                              _vm._s(
+                                                _vm.columnData[8].groupNoKey
+                                              )
+                                          )
+                                        ])
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[9].hide
+                          ? _c(
+                              "tr",
+                              {
+                                staticClass: "collapse",
+                                class: "collap" + props.item.id
+                              },
+                              [
+                                _c("td", { attrs: { colspan: "2" } }, [
+                                  _c("b", [
+                                    _vm._v(_vm._s(_vm.columnData[9].title))
                                   ])
                                 ])
                               ]
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[8].hide
+                        !_vm.columnData[9].hide
                           ? _c(
                               "tr",
                               {
@@ -102677,7 +102945,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[9].hide
+                        !_vm.columnData[10].hide
                           ? _c(
                               "tr",
                               {
@@ -102687,7 +102955,7 @@ var render = function() {
                               [
                                 _c("td", [
                                   _c("b", [
-                                    _vm._v(_vm._s(_vm.columnData[9].title))
+                                    _vm._v(_vm._s(_vm.columnData[10].title))
                                   ])
                                 ]),
                                 _vm._v(" "),
@@ -102704,36 +102972,6 @@ var render = function() {
                                   ],
                                   1
                                 )
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.columnData[10].hide
-                          ? _c(
-                              "tr",
-                              {
-                                staticClass: "collapse",
-                                class: "collap" + props.item.id
-                              },
-                              [
-                                _c("td", [
-                                  _c("b", [
-                                    _vm._v(_vm._s(_vm.columnData[10].title))
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v("\n\t\t\t\t\t\t\t\t: "),
-                                  _c("span", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.date(
-                                          props.item.ultah
-                                        )
-                                      )
-                                    }
-                                  })
-                                ])
                               ]
                             )
                           : _vm._e(),
@@ -102758,7 +102996,7 @@ var render = function() {
                                     domProps: {
                                       innerHTML: _vm._s(
                                         _vm.$options.filters.date(
-                                          props.item.bergabung
+                                          props.item.ultah
                                         )
                                       )
                                     }
@@ -102782,19 +103020,18 @@ var render = function() {
                                   ])
                                 ]),
                                 _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c("check-value", {
-                                      attrs: {
-                                        value: props.item.website,
-                                        isTrim: false,
-                                        frontText: ": "
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
+                                _c("td", [
+                                  _vm._v("\n\t\t\t\t\t\t\t\t: "),
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.date(
+                                          props.item.bergabung
+                                        )
+                                      )
+                                    }
+                                  })
+                                ])
                               ]
                             )
                           : _vm._e(),
@@ -102818,7 +103055,7 @@ var render = function() {
                                   [
                                     _c("check-value", {
                                       attrs: {
-                                        value: props.item.email,
+                                        value: props.item.website,
                                         isTrim: false,
                                         frontText: ": "
                                       }
@@ -102849,7 +103086,7 @@ var render = function() {
                                   [
                                     _c("check-value", {
                                       attrs: {
-                                        value: props.item.telp,
+                                        value: props.item.email,
                                         isTrim: false,
                                         frontText: ": "
                                       }
@@ -102880,7 +103117,7 @@ var render = function() {
                                   [
                                     _c("check-value", {
                                       attrs: {
-                                        value: props.item.hp,
+                                        value: props.item.telp,
                                         isTrim: false,
                                         frontText: ": "
                                       }
@@ -102911,7 +103148,7 @@ var render = function() {
                                   [
                                     _c("check-value", {
                                       attrs: {
-                                        value: props.item.pos,
+                                        value: props.item.hp,
                                         isTrim: false,
                                         frontText: ": "
                                       }
@@ -102937,6 +103174,37 @@ var render = function() {
                                   ])
                                 ]),
                                 _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c("check-value", {
+                                      attrs: {
+                                        value: props.item.pos,
+                                        isTrim: false,
+                                        frontText: ": "
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.columnData[18].hide
+                          ? _c(
+                              "tr",
+                              {
+                                staticClass: "collapse",
+                                class: "collap" + props.item.id
+                              },
+                              [
+                                _c("td", [
+                                  _c("b", [
+                                    _vm._v(_vm._s(_vm.columnData[18].title))
+                                  ])
+                                ]),
+                                _vm._v(" "),
                                 _c("td", [
                                   _vm._v("\n\t\t\t\t\t\t\t\t: "),
                                   _c("span", {
@@ -102953,7 +103221,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        !_vm.columnData[18].hide
+                        !_vm.columnData[19].hide
                           ? _c(
                               "tr",
                               {
@@ -102963,7 +103231,7 @@ var render = function() {
                               [
                                 _c("td", [
                                   _c("b", [
-                                    _vm._v(_vm._s(_vm.columnData[18].title))
+                                    _vm._v(_vm._s(_vm.columnData[19].title))
                                   ])
                                 ]),
                                 _vm._v(" "),
@@ -121955,7 +122223,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			title: 'Laporan CU',
 			kelas: 'laporanCu',
 			titleDesc: 'Mengelola data laporan CU',
-			titleIcon: 'icon-grid6',
+			titleIcon: 'icon-graph',
 			selectCUPath: 'laporanCuCU',
 			btn1Header: {
 				route: 'artikel',
@@ -122401,6 +122669,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			// 	disable: false
 			// },
 			{
+				title: 'Lelaki Biasa',
+				key: 'l_biasa',
+				type: 'numeric',
+				disable: false
+			}, {
+				title: 'Aset',
+				key: 'aset',
+				type: 'numeric',
+				disable: false
+			}, {
 				title: 'Tgl. Buat',
 				key: 'created_at',
 				type: 'datetime',
@@ -122419,15 +122697,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				hide: false,
 				disable: false
 			}, {
-				title: 'No. BA',
-				key: 'laporancu.no_ba',
+				title: 'CU',
+				key: 'cu_name',
 				excelType: 'string',
 				sort: true,
 				hide: false,
 				disable: false
 			}, {
-				title: 'CU',
-				key: 'cu_name',
+				title: 'No. BA',
+				key: 'laporancu.no_ba',
 				excelType: 'string',
 				sort: true,
 				hide: false,
@@ -122928,10 +123206,16 @@ var render = function() {
                     },
                     [
                       !_vm.columnData[0].hide
-                        ? _c("td", { staticClass: "bg-blue-300" }, [
+                        ? _c("td", [
                             _vm._v(
                               "\n\t\t\t\t\t" +
-                                _vm._s(props.index + 1) +
+                                _vm._s(
+                                  props.index +
+                                    1 +
+                                    (+_vm.itemData.current_page - 1) *
+                                      +_vm.itemData.per_page +
+                                    "."
+                                ) +
                                 "\n\t\t\t\t"
                             )
                           ])
@@ -122942,7 +123226,7 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.no_ba }
+                                attrs: { value: props.item.cu_name }
                               })
                             ],
                             1
@@ -122954,7 +123238,7 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.cu_name }
+                                attrs: { value: props.item.no_ba }
                               })
                             ],
                             1

@@ -22,7 +22,7 @@ class ArtikelPenulis extends Model {
     protected $fillable = ['id_cu','id_staf','name','deskripsi','gambar'];
 
     protected $filter = [
-        'id','id_cu','name','deskripsi','gambar','utamakan','created_at','updated_at'
+        'id','id_cu','name','deskripsi','gambar','utamakan','created_at','updated_at','has_artikel_count'
     ];
 
     public function getNameAttribute($value){

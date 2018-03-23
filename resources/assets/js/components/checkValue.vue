@@ -2,7 +2,7 @@
     <div>
       <span v-if="value">
         <span v-if="valueType == 'trim'">
-          {{frontText}} <truncate clamp="...selengkapnya" :length="trimLength" less="...kembali" :text="value"></truncate>
+          <truncate clamp="...selengkapnya" :length="trimLength" less="...kembali" :text="frontText + ' ' +value"></truncate>
         </span>
         <span v-else-if="valueType == 'currency'">{{ value | currency('',0,{ thousandsSeparator: '.'}) }}</span>
         <span v-else-if="valueType == 'percentage'">{{ value | percentage }}</span>

@@ -83,18 +83,21 @@
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
 					<td v-if="!columnData[0].hide">
-						<check-value :value="props.item.name"></check-value>
+						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
+						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.deskripsi"></check-value>
 					</td>
-					<td v-if="!columnData[2].hide && !columnData[2].disable">
-						<check-value :value="props.item.c_u.name" :empty="columnData[2].groupNoKey" v-if="props.item.c_u"></check-value>
-						<span v-else>{{columnData[2].groupNoKey}}</span>
+					<td v-if="!columnData[3].hide && !columnData[3].disable">
+						<check-value :value="props.item.c_u.name" :empty="columnData[3].groupNoKey" v-if="props.item.c_u"></check-value>
+						<span v-else>{{columnData[3].groupNoKey}}</span>
 					</td>
-					<td v-if="!columnData[3].hide">{{props.item.has_artikel_count}}</td>
-					<td v-if="!columnData[4].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[4].hide">{{props.item.has_artikel_count}}</td>
+					<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[6].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -116,34 +119,37 @@
 					<table class="table table-striped">
 						<tbody>
 							<tr v-if="!columnData[0].hide">
-								<td><b>{{columnData[0].title}}</b></td>
+								<td colspan="2" class="text-center bg-primary-300"><b>{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</b></td>
+							</tr>
+							<tr v-if="!columnData[1].hide">
+								<td><b>{{columnData[1].title}}</b></td>
 								<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[1].hide">
-								<td colspan="2"><b>{{columnData[1].title}}</b></td>
+							<tr v-if="!columnData[2].hide">
+								<td colspan="2"><b>{{columnData[2].title}}</b></td>
 							</tr>
-							<tr v-if="!columnData[1].hide">
+							<tr v-if="!columnData[2].hide">
 								<td colspan="2" style="word-wrap: break-word;"><check-value :value="props.item.deskripsi" :isTrim="false"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[2].hide && !columnData[2].disable">
-								<td><b>{{columnData[2].title}}</b></td>
+							<tr v-if="!columnData[3].hide && !columnData[3].disable">
+								<td><b>{{columnData[3].title}}</b></td>
 								<td>
 									<check-value :value="props.item.c_u.name" :isTrim="false" :frontText="': '" v-if="props.item.c_u"></check-value>
 									<span v-else>: {{columnData[2].groupNoKey}}</span>
 								</td>
 							</tr>
-								<tr v-if="!columnData[3].hide">
-								<td><b>{{columnData[3].title}}</b></td>
+								<tr v-if="!columnData[4].hide">
+								<td><b>{{columnData[4].title}}</b></td>
 								<td>: {{props.item.has_artikel_count}}</td>
 							</tr>
-							<tr v-if="!columnData[4].hide">
-								<td><b>{{columnData[4].title}}</b></td>
+							<tr v-if="!columnData[5].hide">
+								<td><b>{{columnData[5].title}}</b></td>
 								<td>
 									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[5].hide">
-								<td><b>{{columnData[5].title}}</b></td>
+							<tr v-if="!columnData[6].hide">
+								<td><b>{{columnData[6].title}}</b></td>
 								<td>
 									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 								</td>
@@ -242,6 +248,14 @@
 					}
 				],
 				columnData: [
+					{
+						title: 'No.',
+						key: 'No.',
+						excelType: 'string',
+						sort: false,
+						hide: false,
+						disable: false
+					},
 					{
 						title: 'Nama',
 						key: 'name',
@@ -367,8 +381,8 @@
 				}
 			},
 			disableColumnCU(status){
-				this.columnData[2].disable = status;
-				this.filterData[1].disable = status;
+				this.columnData[3].disable = status;
+				this.filterData[2].disable = status;
 			},
 			resetParams(){
 				this.params.search_column = 'name';

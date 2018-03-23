@@ -88,14 +88,14 @@
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
-					<td v-if="!columnData[0].hide" class="bg-blue-300">
-						{{ props.index + 1 }}
+					<td v-if="!columnData[0].hide">
+						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.no_ba"></check-value>
+						<check-value :value="props.item.cu_name"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide && !columnData[2].disable">
-						<check-value :value="props.item.cu_name"></check-value>
+						<check-value :value="props.item.no_ba"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
 						<check-value :value="props.item.provinces_name"></check-value>
@@ -357,6 +357,18 @@
 					// 	disable: false
 					// },
 					{
+						title: 'Lelaki Biasa',
+						key: 'l_biasa',
+						type: 'numeric',
+						disable: false
+					},
+					{
+						title: 'Aset',
+						key: 'aset',
+						type: 'numeric',
+						disable: false
+					},
+					{
 						title: 'Tgl. Buat',
 						key: 'created_at',
 						type: 'datetime',
@@ -379,16 +391,16 @@
 						disable: false
 					},
 					{
-						title: 'No. BA',
-						key: 'laporancu.no_ba',
+						title: 'CU',
+						key: 'cu_name',
 						excelType: 'string',
 						sort: true,
 						hide: false,
 						disable: false
 					},
 					{
-						title: 'CU',
-						key: 'cu_name',
+						title: 'No. BA',
+						key: 'laporancu.no_ba',
 						excelType: 'string',
 						sort: true,
 						hide: false,
