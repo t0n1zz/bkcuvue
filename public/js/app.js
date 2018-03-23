@@ -101749,7 +101749,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}, {
 				title: 'Provinsi',
-				key: 'id_provinces',
+				key: 'provinces_name',
 				groupKey: 'provinces.name',
 				groupNoKey: '-',
 				excelType: 'string',
@@ -101758,7 +101758,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}, {
 				title: 'Kabupaten',
-				key: 'id_regencies',
+				key: 'regencies_name',
 				groupKey: 'regencies.name',
 				groupNoKey: '-',
 				excelType: 'string',
@@ -101767,7 +101767,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}, {
 				title: 'Kecamatan',
-				key: 'id_districts',
+				key: 'districts_name',
 				groupKey: 'districts.name',
 				groupNoKey: '-',
 				excelType: 'string',
@@ -101776,7 +101776,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}, {
 				title: 'Kelurahan',
-				key: 'id_villages',
+				key: 'villages_name',
 				groupKey: 'villages.name',
 				groupNoKey: '-',
 				excelType: 'string',
@@ -122361,8 +122361,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
 
 
 
@@ -122381,7 +122379,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			source: '',
 			selectedItem: [],
 			params: {
-				column: 'id',
+				column: 'periode',
 				direction: 'desc',
 				per_page: 50,
 				page: 1,
@@ -122395,7 +122393,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				key: 'cu.name',
 				type: 'string',
 				disable: false
-			}, {
+			},
+			// { TODO: FIX THIS!!
+			// 	title: 'Provinsi',
+			// 	key: 'provinces.name',
+			// 	type: 'string',
+			// 	disable: false
+			// },
+			{
 				title: 'Tgl. Buat',
 				key: 'created_at',
 				type: 'datetime',
@@ -122422,15 +122427,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				disable: false
 			}, {
 				title: 'CU',
-				key: 'no_ba',
+				key: 'cu_name',
 				excelType: 'string',
 				sort: true,
 				hide: false,
 				disable: false
 			}, {
 				title: 'Provinsi',
-				key: 'aggregate',
-				groupKey: 'cu.provinces.name',
+				key: 'provinces_name',
+				groupKey: 'provinces_name',
 				groupNoKey: '-',
 				sort: true,
 				hide: false,
@@ -122811,7 +122816,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				// default route
 			} else {
 				this.resetParams();
-				this.$store.dispatch('global/changeIdCU', this.profile.id_cu);
+				this.$store.dispatch('global/changeIdCU', 'semua');
 			}
 		},
 		disableColumnCU: function disableColumnCU(status) {
@@ -122902,8 +122907,7 @@ var render = function() {
             toolbarButton: 4,
             itemData: _vm.itemData,
             itemDataStat: _vm.itemDataStat,
-            params: _vm.params,
-            tableClass: "table-xs"
+            params: _vm.params
           },
           on: { fetch: _vm.fetch },
           scopedSlots: _vm._u([
@@ -122949,16 +122953,9 @@ var render = function() {
                         ? _c(
                             "td",
                             [
-                              props.item.c_u
-                                ? _c("check-value", {
-                                    attrs: {
-                                      value: props.item.c_u.name,
-                                      empty: _vm.columnData[2].groupNoKey
-                                    }
-                                  })
-                                : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[2].groupNoKey))
-                                  ])
+                              _c("check-value", {
+                                attrs: { value: props.item.cu_name }
+                              })
                             ],
                             1
                           )
@@ -122968,16 +122965,9 @@ var render = function() {
                         ? _c(
                             "td",
                             [
-                              props.item.c_u.provinces
-                                ? _c("check-value", {
-                                    attrs: {
-                                      value: props.item.c_u.provinces.name,
-                                      empty: _vm.columnData[3].groupNoKey
-                                    }
-                                  })
-                                : _c("span", [
-                                    _vm._v(_vm._s(_vm.columnData[3].groupNoKey))
-                                  ])
+                              _c("check-value", {
+                                attrs: { value: props.item.provinces_name }
+                              })
                             ],
                             1
                           )

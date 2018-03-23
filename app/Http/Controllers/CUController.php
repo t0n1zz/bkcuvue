@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use DB;
 use App\CU;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
@@ -16,7 +17,15 @@ class CUController extends Controller{
 
 	public function index()
 	{
-		$table_data = CU::with('Villages','Districts','Regencies','Provinces')->filterPaginateOrder();
+		$table_data = CU::with('Villages','Districts','Regencies','Provinces')->select(
+			'cu.*',
+			DB::raw(
+				'(SELECT name FROM villages WHERE cu.id_villages = villages.id) as villages_name,
+				(SELECT name FROM districts WHERE cu.id_districts = districts.id) as districts_name,
+				(SELECT name FROM regencies WHERE cu.id_regencies = regencies.id) as regencies_name,
+				(SELECT name FROM provinces WHERE cu.id_provinces = provinces.id) as provinces_name'
+			)
+		)->filterPaginateOrder();
 
 		return response()
 		->json([

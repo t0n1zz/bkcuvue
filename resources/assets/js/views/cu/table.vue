@@ -456,7 +456,7 @@
 					},
 					{
 						title: 'Provinsi',
-						key: 'id_provinces',
+						key: 'provinces_name',
 						groupKey: 'provinces.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -466,7 +466,7 @@
 					},
 					{
 						title: 'Kabupaten',
-						key: 'id_regencies',
+						key: 'regencies_name',
 						groupKey: 'regencies.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -476,7 +476,7 @@
 					},
 					{
 						title: 'Kecamatan',
-						key: 'id_districts',
+						key: 'districts_name',
 						groupKey: 'districts.name',
 						groupNoKey: '-',
 						excelType: 'string',
@@ -486,7 +486,7 @@
 					},
 					{
 						title: 'Kelurahan',
-						key: 'id_villages',
+						key: 'villages_name',
 						groupKey: 'villages.name',
 						groupNoKey: '-',
 						excelType: 'string',

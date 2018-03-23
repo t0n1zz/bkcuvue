@@ -3,7 +3,7 @@
 
 		<!-- main panel -->
 		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
-		:params="params" :tableClass="'table-xs'"
+		:params="params"
 		@fetch="fetch">
 
 			<!-- desktop -->
@@ -95,12 +95,10 @@
 						<check-value :value="props.item.no_ba"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide && !columnData[2].disable">
-						<check-value :value="props.item.c_u.name" :empty="columnData[2].groupNoKey" v-if="props.item.c_u"></check-value>
-						<span v-else>{{columnData[2].groupNoKey}}</span>
+						<check-value :value="props.item.cu_name"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
-						<check-value :value="props.item.c_u.provinces.name" :empty="columnData[3].groupNoKey" v-if="props.item.c_u.provinces"></check-value>
-						<span v-else>{{columnData[3].groupNoKey}}</span>
+						<check-value :value="props.item.provinces_name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide" v-html="$options.filters.date(props.item.periode)"></td>
 					<td v-if="!columnData[5].hide">
@@ -336,7 +334,7 @@
 				source: '',
 				selectedItem: [],
 				params: {
-          column: 'id',
+          column: 'periode',
           direction: 'desc',
           per_page: 50,
           page: 1,
@@ -352,6 +350,12 @@
 						type: 'string',
 						disable: false
 					},
+					// { TODO: FIX THIS!!
+					// 	title: 'Provinsi',
+					// 	key: 'provinces.name',
+					// 	type: 'string',
+					// 	disable: false
+					// },
 					{
 						title: 'Tgl. Buat',
 						key: 'created_at',
@@ -384,7 +388,7 @@
 					},
 					{
 						title: 'CU',
-						key: 'no_ba',
+						key: 'cu_name',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -392,8 +396,8 @@
 					},
 					{
 						title: 'Provinsi',
-						key: 'aggregate',
-						groupKey: 'cu.provinces.name',
+						key: 'provinces_name',
+						groupKey: 'provinces_name',
 						groupNoKey: '-',
 						sort: true,
 						hide: false,
@@ -814,7 +818,7 @@
 				// default route
 				}else{
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
+					this.$store.dispatch('global/changeIdCU','semua');
 				}
 			},
 			disableColumnCU(status){

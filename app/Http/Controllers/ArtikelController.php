@@ -34,7 +34,8 @@ class ArtikelController extends Controller{
 			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
 			DB::raw(
 				'(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name,
-				(SELECT name FROM artikelPenulis WHERE artikel.id_artikel_penulis = artikelPenulis.id) as penulis_name'
+				(SELECT name FROM artikelPenulis WHERE artikel.id_artikel_penulis = artikelPenulis.id) as penulis_name,
+				(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name'
 			))->filterPaginateOrder();
 
     	return response()
