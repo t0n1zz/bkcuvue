@@ -91,7 +91,7 @@
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
-					<td v-if="!columnData[1].hide">
+					<td v-if="!columnData[1].hide && !columnData[2].disable">
 						<check-value :value="props.item.cu_name"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide && !columnData[2].disable">
@@ -771,6 +771,7 @@
 
 				// check current page meta
 				this.checkMeta();
+				this.fetch();
 			},
 
 			// fetch on selectCU change
@@ -811,7 +812,21 @@
 			fetch(){
 				if(this.modelCUStat === 'success'){
 					if(this.idCU === 'semua'){
-						this.$store.dispatch(this.kelas + '/index', this.params);
+
+						// if route is periode
+						if(this.$route.meta.mode == 'periode'){
+							// fetch according to periode value
+							this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
+
+							//change selected in select data
+							this.$store.dispatch('global/changeData', this.$route.params.periode);
+							
+						// default route	
+						}else{
+							this.$store.dispatch(this.kelas + '/index', this.params);
+						}
+						
+						this.$store.dispatch(this.kelas + '/getPeriode');
 						this.disableColumnCU(false);
 					}else{
 						if(this.idCU !== undefined){
@@ -826,16 +841,19 @@
 				if(this.$route.meta.mode == 'cu'){
 					this.resetParams();
 					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
-				
-				// default route
+
+				// default route and periode route
 				}else{
 					this.resetParams();
 					this.$store.dispatch('global/changeIdCU','semua');
 				}
 			},
 			disableColumnCU(status){
+				this.columnData[1].disable = status;
 				this.columnData[2].disable = status;
+				this.columnData[3].disable = status;
 				this.filterData[1].disable = status;
+				this.filterData[2].disable = status;
 			},
 			kolomAnggota(){
 

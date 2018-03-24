@@ -64,10 +64,10 @@ Route::get('/testroute', function () {
     // $data = DB::select("SELECT rh.no_ba, rh.periode FROM laporancu rh, (SELECT no_ba, MAX(periode) AS max_periode FROM laporancu WHERE periode < '2016-01-01'  GROUP BY no_ba) maxresult WHERE rh.no_ba = maxresult.no_ba AND rh.periode = maxresult.max_periode");
     
     // $periode = '2016-01-01';
-    $data = App\LaporanCU::with('CU','CU.Provinces')
-    ->leftjoin('cu','laporancu.no_ba','cu.no_ba')
-    ->leftjoin('provinces','cu.id_provinces','provinces.id')
-    ->FilterPaginateOrder();
+    // $data = App\LaporanCU::with('CU','CU.Provinces')
+    // ->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+    // ->leftjoin('provinces','cu.id_provinces','provinces.id')
+    // ->FilterPaginateOrder();
 
     // ->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu  GROUP BY no_ba) latest_report"),function($join){
     //     $join->on('laporancu.no_ba','=','latest_report.no_ba');
@@ -102,10 +102,40 @@ Route::get('/testroute', function () {
     //     }])->select('id','id_artikel_kategori','name')->orderBy('name','asc')->get();
 
     // $data = App\Artikel::with('ArtikelKategori')->select('artikel.id_artikel_kategori', \DB::raw('(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name'))->orderBy('kategori_name','desc')->get();
+
+    // $table_data = App\LaporanCu::select('laporancu.*',
+		// 	'cu.name as cu_name',
+		// 	'provinces.name as provinces_name')
+		// 	->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+		// 	->leftjoin('provinces','cu.id_provinces','provinces.id')
+		// 	->join(DB::RAW('(SELECT no_ba, GROUP_CONCAT(periode ORDER BY periode DESC) grouped_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
+		// 			$join->on('laporancu.no_ba','=','latest_report.no_ba');
+		// 			$join->whereBetween(DB::raw('FIND_IN_SET(`laporancu`.`periode`, `latest_report`.`grouped_periode`)'), [1, 2]);
+		// 	})->addSelect([DB::raw('
+		// 		(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
+		// 		((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
+		// 		(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
+		// 	)])->FilterPaginateOrder();
+
+		// dd($table_data->reverse());	
+
+		// $table_data_prev = collect([]);
+		// foreach($table_data as $table_data_current){
+		// 	$prev = App\LaporanCu::where('no_ba',$table_data_current->no_ba)
+		// 		->where('periode','<',$table_data_current->periode)
+		// 		->addSelect(['*',DB::raw('
+		// 			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
+		// 			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
+		// 			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
+		// 		)])->orderBy('periode','DESC')->first();
+		// 	$table_data_prev->push($table_data);	
+		// }
+
+		$table_data = App\LaporanCu::select('periode')->distinct()->orderBy('periode','DESC')->get();
     
     return response()
     ->json([
-        'model' => $data
+        'model' => $table_data
     ]);
 
 });

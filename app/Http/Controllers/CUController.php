@@ -45,7 +45,7 @@ class CUController extends Controller{
   
   public function getPus($id)
 	{
-		$table_data = CU::where('id_pus','=',$id)->select('id','name')->orderby('name','asc')->get();
+		$table_data = CU::where('id_pus','=',$id)->select('id','no_ba','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([

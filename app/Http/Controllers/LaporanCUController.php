@@ -12,21 +12,19 @@ class LaporanCuController extends Controller{
 
 	public function index()
 	{
-
 		$table_data = LaporanCu::select('laporancu.*',
-		'cu.name as cu_name',
-		'provinces.name as provinces_name')
-		->leftjoin('cu','laporancu.no_ba','cu.no_ba')
-    ->leftjoin('provinces','cu.id_provinces','provinces.id')
-		->join(DB::RAW('(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
-				$join->on('laporancu.no_ba','=','latest_report.no_ba');
-				$join->on('laporancu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw('
-			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
-			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
-			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
-		)])->FilterPaginateOrder();
-
+			'cu.name as cu_name',
+			'provinces.name as provinces_name')
+			->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+			->leftjoin('provinces','cu.id_provinces','provinces.id')
+			->join(DB::RAW('(SELECT no_ba, GROUP_CONCAT(periode ORDER BY periode DESC) grouped_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
+					$join->on('laporancu.no_ba','=','latest_report.no_ba');
+					$join->whereBetween(DB::raw('FIND_IN_SET(`laporancu`.`periode`, `latest_report`.`grouped_periode`)'), [1, 2]);
+			})->addSelect([DB::raw('
+				(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
+				((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
+				(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
+			)])->FilterPaginateOrder();
 
 		return response()
 		->json([
@@ -36,7 +34,11 @@ class LaporanCuController extends Controller{
 
 	public function indexCU($id)
 	{
-		$table_data = LaporanCu::with('CU')->where('no_ba',$id)->filterPaginateOrder();
+		$table_data = LaporanCu::where('no_ba',$id)->addSelect(['*',DB::raw('
+			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
+			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
+			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
+		)])->filterPaginateOrder();
 
 		return response()
 		->json([
@@ -54,11 +56,21 @@ class LaporanCuController extends Controller{
 		->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY no_ba) latest_report"),function($join){
         $join->on('laporancu.no_ba','=','latest_report.no_ba');
         $join->on('laporancu.periode','=','latest_report.max_periode');
-		})->addSelect(['*',DB::raw('
+		})->addSelect([DB::raw('
 			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
 			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
 			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
 		)])->FilterPaginateOrder();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function getPeriode()
+	{
+		$table_data = LaporanCu::select('periode')->distinct()->orderBy('periode','DESC')->get();
 
 		return response()
 		->json([

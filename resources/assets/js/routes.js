@@ -89,12 +89,15 @@ const routes = [
 	{ path: '/cu/edit/:id',name: 'cuEdit', 
 		components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
 
-	// artikel kategori
+	// laporan cu
 	{ path: '/laporancu',name: 'laporanCu', 
 		components: { default: laporanCu, 'header': header }},
 	{ path: '/laporancu/cu/:cu',name: 'laporanCuCU', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'cu' }},
+		{ path: '/laporancu/periode/:periode',name: 'laporanCuPeriode', 
+		components: { default: laporanCu, 'header': header },
+		meta: { mode:'periode' }},
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
 		components: { default: laporanCu_form, 'header': header} },
 	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 

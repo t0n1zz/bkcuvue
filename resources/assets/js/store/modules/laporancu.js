@@ -7,8 +7,10 @@ export const laporanCu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    periode: [],
     dataStat: '',
     dataStatS: '',
+    periodeStat: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -19,8 +21,10 @@ export const laporanCu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    periode: state => state.periode,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    periodeStat: state => state.periodeStat,
     idCU: state => state.idCU,
     update: state => state.update,
     updateStat: state => state.updateStat,
@@ -71,6 +75,21 @@ export const laporanCu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+    
+    // load collection of periode
+    getPeriode( {commit} ){
+      commit('setPeriodeStat', 'loading');
+      
+      laporanCuAPI.getPeriode()
+        .then( function( response ){
+          commit('setPeriode', response.data.model);
+          commit('setPeriodeStat', 'success');
+        })
+        .catch(error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
         });
     },
 
@@ -228,11 +247,17 @@ export const laporanCu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setPeriode( state, data ){
+      state.periode = data;
+    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setPeriodeStat( state, status ){
+      state.periodeStatS = status;
     },
     setIdCU ( state, id ){
       state.idCU = id;

@@ -24,10 +24,11 @@
 					</message>
 
 					<!-- select data -->
-					<select-c-u 
+					<select-data 
 						:kelas="kelas"
 						:path="selectCUPath"
-						:isPus="false"></select-c-u>
+						:isPus="false"
+						:isNo_ba="true"></select-data>
 
 					<!-- table data -->
 					<table-data 
@@ -46,14 +47,14 @@
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectCU from "../../components/selectCU.vue";
+	import selectData from "./select.vue";
 	import tableData from "./table.vue";
 
 	export default {
 		components: {
 			pageHeader,
 			message,
-			selectCU,
+			selectData,
 			tableData,
 		},
 		data() {

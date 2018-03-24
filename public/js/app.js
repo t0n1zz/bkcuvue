@@ -44947,11 +44947,13 @@ var routes = [
 	components: { default: __WEBPACK_IMPORTED_MODULE_13__views_cu_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/cu/edit/:id', name: 'cuEdit',
 	components: { default: __WEBPACK_IMPORTED_MODULE_13__views_cu_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a }, meta: { mode: 'edit' } },
 
-// artikel kategori
+// laporan cu
 { path: '/laporancu', name: 'laporanCu',
 	components: { default: __WEBPACK_IMPORTED_MODULE_10__views_laporanCu_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/laporancu/cu/:cu', name: 'laporanCuCU',
 	components: { default: __WEBPACK_IMPORTED_MODULE_10__views_laporanCu_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a },
-	meta: { mode: 'cu' } }, { path: '/laporancu/create', name: 'laporanCuCreate',
+	meta: { mode: 'cu' } }, { path: '/laporancu/periode/:periode', name: 'laporanCuPeriode',
+	components: { default: __WEBPACK_IMPORTED_MODULE_10__views_laporanCu_index_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a },
+	meta: { mode: 'periode' } }, { path: '/laporancu/create', name: 'laporanCuCreate',
 	components: { default: __WEBPACK_IMPORTED_MODULE_11__views_laporanCu_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a } }, { path: '/laporancu/edit/:id', name: 'laporanCuEdit',
 	components: { default: __WEBPACK_IMPORTED_MODULE_11__views_laporanCu_form_vue___default.a, 'header': __WEBPACK_IMPORTED_MODULE_0__components_header_vue___default.a }, meta: { mode: 'edit' } }];
 
@@ -48424,10 +48426,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['kelas', 'isPus', 'path'],
+	props: ['kelas', 'isPus', 'path', 'isNo_ba'],
 	data: function data() {
 		return {
 			id_cu: ''
@@ -48562,8 +48566,16 @@ var render = function() {
                       _c("option", { attrs: { "data-divider": "true" } }),
                       _vm._v(" "),
                       _vm._l(_vm.modelCU, function(cu) {
-                        return cu
+                        return !_vm.isNo_ba && cu
                           ? _c("option", { domProps: { value: cu.id } }, [
+                              _vm._v(_vm._s(cu.name))
+                            ])
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.modelCU, function(cu) {
+                        return _vm.isNo_ba && cu
+                          ? _c("option", { domProps: { value: cu.no_ba } }, [
                               _vm._v(_vm._s(cu.name))
                             ])
                           : _vm._e()
@@ -48669,8 +48681,16 @@ var render = function() {
                   _c("option", { attrs: { "data-divider": "true" } }),
                   _vm._v(" "),
                   _vm._l(_vm.modelCU, function(cu) {
-                    return cu
+                    return !_vm.isNo_ba && cu
                       ? _c("option", { domProps: { value: cu.id } }, [
+                          _vm._v(_vm._s(cu.name))
+                        ])
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.modelCU, function(cu) {
+                    return _vm.isNo_ba && cu
+                      ? _c("option", { domProps: { value: cu.no_ba } }, [
                           _vm._v(_vm._s(cu.name))
                         ])
                       : _vm._e()
@@ -112375,6 +112395,7 @@ var global = {
 
   // state
   state: {
+    data: '',
     idCU: '',
     message: '',
     messageType: ''
@@ -112382,6 +112403,9 @@ var global = {
 
   // getters
   getters: {
+    data: function data(state) {
+      return state.data;
+    },
     idCU: function idCU(state) {
       return state.idCU;
     },
@@ -112395,29 +112419,38 @@ var global = {
 
   // actions
   actions: {
-    // change idcu
-    changeIdCU: function changeIdCU(_ref, id) {
+
+    // change data
+    changeData: function changeData(_ref, data) {
       var commit = _ref.commit;
+
+      commit('setData', data);
+    },
+
+
+    // change idcu
+    changeIdCU: function changeIdCU(_ref2, id) {
+      var commit = _ref2.commit;
 
       commit('setIdCU', id);
     },
 
 
     // reset idcu
-    resetIdCU: function resetIdCU(_ref2) {
-      var commit = _ref2.commit;
+    resetIdCU: function resetIdCU(_ref3) {
+      var commit = _ref3.commit;
 
       commit('setIdCU', '');
     },
 
 
     // create message
-    createMessage: function createMessage(_ref3, _ref4) {
-      var commit = _ref3.commit;
+    createMessage: function createMessage(_ref4, _ref5) {
+      var commit = _ref4.commit;
 
-      var _ref5 = _slicedToArray(_ref4, 2),
-          message = _ref5[0],
-          type = _ref5[1];
+      var _ref6 = _slicedToArray(_ref5, 2),
+          message = _ref6[0],
+          type = _ref6[1];
 
       commit('setMessage', message);
       commit('setMessageType', type);
@@ -112425,8 +112458,8 @@ var global = {
 
 
     // reset message
-    resetMessage: function resetMessage(_ref6) {
-      var commit = _ref6.commit;
+    resetMessage: function resetMessage(_ref7) {
+      var commit = _ref7.commit;
 
       commit('setMessage', '');
       commit('setMessageType', '');
@@ -112435,6 +112468,9 @@ var global = {
 
   // mutations
   mutations: {
+    setData: function setData(state, data) {
+      state.data = data;
+    },
     setIdCU: function setIdCU(state, id) {
       state.idCU = id;
     },
@@ -122154,12 +122190,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_message_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_message_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_message_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_selectCU_vue__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_selectCU_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_selectCU_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_vue__ = __webpack_require__(422);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__select_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__table_vue__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__table_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
 //
 //
 //
@@ -122215,7 +122252,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	components: {
 		pageHeader: __WEBPACK_IMPORTED_MODULE_2__components_pageHeader_vue___default.a,
 		message: __WEBPACK_IMPORTED_MODULE_3__components_message_vue___default.a,
-		selectCU: __WEBPACK_IMPORTED_MODULE_4__components_selectCU_vue___default.a,
+		selectData: __WEBPACK_IMPORTED_MODULE_4__select_vue___default.a,
 		tableData: __WEBPACK_IMPORTED_MODULE_5__table_vue___default.a
 	},
 	data: function data() {
@@ -123032,6 +123069,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 			// check current page meta
 			this.checkMeta();
+			this.fetch();
 		},
 
 
@@ -123075,7 +123113,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		fetch: function fetch() {
 			if (this.modelCUStat === 'success') {
 				if (this.idCU === 'semua') {
-					this.$store.dispatch(this.kelas + '/index', this.params);
+
+					// if route is periode
+					if (this.$route.meta.mode == 'periode') {
+						// fetch according to periode value
+						this.$store.dispatch(this.kelas + '/indexPeriode', [this.params, this.$route.params.periode]);
+
+						//change selected in select data
+						this.$store.dispatch('global/changeData', this.$route.params.periode);
+
+						// default route	
+					} else {
+						this.$store.dispatch(this.kelas + '/index', this.params);
+					}
+
+					this.$store.dispatch(this.kelas + '/getPeriode');
 					this.disableColumnCU(false);
 				} else {
 					if (this.idCU !== undefined) {
@@ -123091,15 +123143,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				this.resetParams();
 				this.$store.dispatch('global/changeIdCU', this.$route.params.cu);
 
-				// default route
+				// default route and periode route
 			} else {
 				this.resetParams();
 				this.$store.dispatch('global/changeIdCU', 'semua');
 			}
 		},
 		disableColumnCU: function disableColumnCU(status) {
+			this.columnData[1].disable = status;
 			this.columnData[2].disable = status;
+			this.columnData[3].disable = status;
 			this.filterData[1].disable = status;
+			this.filterData[2].disable = status;
 		},
 		kolomAnggota: function kolomAnggota() {},
 		resetParams: function resetParams() {
@@ -123221,7 +123276,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[1].hide
+                      !_vm.columnData[1].hide && !_vm.columnData[2].disable
                         ? _c(
                             "td",
                             [
@@ -124568,11 +124623,12 @@ var render = function() {
                   })
                 : _vm._e(),
               _vm._v(" "),
-              _c("select-c-u", {
+              _c("select-data", {
                 attrs: {
                   kelas: _vm.kelas,
                   path: _vm.selectCUPath,
-                  isPus: false
+                  isPus: false,
+                  isNo_ba: true
                 }
               }),
               _vm._v(" "),
@@ -125433,8 +125489,10 @@ var laporanCu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    periode: [],
     dataStat: '',
     dataStatS: '',
+    periodeStat: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -125449,11 +125507,17 @@ var laporanCu = {
     dataS: function dataS(state) {
       return state.dataS;
     },
+    periode: function periode(state) {
+      return state.periode;
+    },
     dataStat: function dataStat(state) {
       return state.dataStat;
     },
     dataStatS: function dataStatS(state) {
       return state.dataStatS;
+    },
+    periodeStat: function periodeStat(state) {
+      return state.periodeStat;
     },
     idCU: function idCU(state) {
       return state.idCU;
@@ -125527,8 +125591,24 @@ var laporanCu = {
         commit('setDataStatS', 'fail');
       });
     },
-    create: function create(_ref8) {
+
+
+    // load collection of periode
+    getPeriode: function getPeriode(_ref8) {
       var commit = _ref8.commit;
+
+      commit('setPeriodeStat', 'loading');
+
+      __WEBPACK_IMPORTED_MODULE_0__api_laporanCu_js__["a" /* default */].getPeriode().then(function (response) {
+        commit('setPeriode', response.data.model);
+        commit('setPeriodeStat', 'success');
+      }).catch(function (error) {
+        commit('setPeriode', error.response);
+        commit('setPeriodeStat', 'fail');
+      });
+    },
+    create: function create(_ref9) {
+      var commit = _ref9.commit;
 
       commit('setDataStat', 'loading');
 
@@ -125547,10 +125627,10 @@ var laporanCu = {
 
 
     //store data
-    store: function store(_ref9, form) {
-      var commit = _ref9.commit,
-          state = _ref9.state,
-          dispatch = _ref9.dispatch;
+    store: function store(_ref10, form) {
+      var commit = _ref10.commit,
+          state = _ref10.state,
+          dispatch = _ref10.dispatch;
 
       commit('setUpdateStat', 'loading');
 
@@ -125569,8 +125649,8 @@ var laporanCu = {
 
 
     // edit page
-    edit: function edit(_ref10, id) {
-      var commit = _ref10.commit;
+    edit: function edit(_ref11, id) {
+      var commit = _ref11.commit;
 
       commit('setDataStat', 'loading');
 
@@ -125589,14 +125669,14 @@ var laporanCu = {
 
 
     // update data
-    update: function update(_ref11, _ref12) {
-      var commit = _ref11.commit,
-          state = _ref11.state,
-          dispatch = _ref11.dispatch;
+    update: function update(_ref12, _ref13) {
+      var commit = _ref12.commit,
+          state = _ref12.state,
+          dispatch = _ref12.dispatch;
 
-      var _ref13 = _slicedToArray(_ref12, 2),
-          id = _ref13[0],
-          form = _ref13[1];
+      var _ref14 = _slicedToArray(_ref13, 2),
+          id = _ref14[0],
+          form = _ref14[1];
 
       commit('setUpdateStat', 'loading');
 
@@ -125612,10 +125692,10 @@ var laporanCu = {
         commit('setUpdateStat', 'fail');
       });
     },
-    updateTerbitkan: function updateTerbitkan(_ref14, id) {
-      var commit = _ref14.commit,
-          state = _ref14.state,
-          dispatch = _ref14.dispatch;
+    updateTerbitkan: function updateTerbitkan(_ref15, id) {
+      var commit = _ref15.commit,
+          state = _ref15.state,
+          dispatch = _ref15.dispatch;
 
       commit('setUpdateStat', 'loading');
 
@@ -125631,10 +125711,10 @@ var laporanCu = {
         commit('setUpdateStat', 'fail');
       });
     },
-    updateUtamakan: function updateUtamakan(_ref15, id) {
-      var commit = _ref15.commit,
-          state = _ref15.state,
-          dispatch = _ref15.dispatch;
+    updateUtamakan: function updateUtamakan(_ref16, id) {
+      var commit = _ref16.commit,
+          state = _ref16.state,
+          dispatch = _ref16.dispatch;
 
       commit('setUpdateStat', 'loading');
 
@@ -125653,10 +125733,10 @@ var laporanCu = {
 
 
     // destroy data
-    destroy: function destroy(_ref16, id) {
-      var commit = _ref16.commit,
-          state = _ref16.state,
-          dispatch = _ref16.dispatch;
+    destroy: function destroy(_ref17, id) {
+      var commit = _ref17.commit,
+          state = _ref17.state,
+          dispatch = _ref17.dispatch;
 
       commit('setUpdateStat', 'loading');
 
@@ -125675,19 +125755,19 @@ var laporanCu = {
 
 
     // reset
-    resetUpdateStat: function resetUpdateStat(_ref17) {
-      var commit = _ref17.commit;
+    resetUpdateStat: function resetUpdateStat(_ref18) {
+      var commit = _ref18.commit;
 
       commit('setUpdateStat', '');
     },
-    resetData: function resetData(_ref18) {
-      var commit = _ref18.commit;
+    resetData: function resetData(_ref19) {
+      var commit = _ref19.commit;
 
       commit('setData', '');
       commit('setDataStat', '');
     },
-    resetDataS: function resetDataS(_ref19) {
-      var commit = _ref19.commit;
+    resetDataS: function resetDataS(_ref20) {
+      var commit = _ref20.commit;
 
       commit('setDataS', '');
       commit('setDataStatS', '');
@@ -125702,11 +125782,17 @@ var laporanCu = {
     setDataS: function setDataS(state, data) {
       state.dataS = data;
     },
+    setPeriode: function setPeriode(state, data) {
+      state.periode = data;
+    },
     setDataStat: function setDataStat(state, status) {
       state.dataStat = status;
     },
     setDataStatS: function setDataStatS(state, status) {
       state.dataStatS = status;
+    },
+    setPeriodeStat: function setPeriodeStat(state, status) {
+      state.periodeStatS = status;
     },
     setIdCU: function setIdCU(state, id) {
       state.idCU = id;
@@ -125746,6 +125832,10 @@ var laporanCu = {
 
   indexPeriode: function indexPeriode(p, periode) {
     return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/laporanCu/indexPeriode/' + periode, { params: p });
+  },
+
+  getPeriode: function getPeriode() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config_js__["a" /* BKCU_CONFIG */].API_URL + '/laporanCu/getPeriode');
   },
 
   create: function create() {
@@ -126457,6 +126547,555 @@ function pluralize (value) {
 /***/ })
 /******/ ]);
 });
+
+/***/ }),
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(423)
+/* template */
+var __vue_template__ = __webpack_require__(424)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/laporanCu/select.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e22cc27e", Component.options)
+  } else {
+    hotAPI.reload("data-v-e22cc27e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 423 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['kelas', 'path'],
+	data: function data() {
+		return {
+			id_cu: '',
+			selectData: ''
+		};
+	},
+	updated: function updated() {
+		$('.bootstrap-select').selectpicker('refresh');
+	},
+	created: function created() {
+		if (this.profile.id_pus !== undefined) {
+			this.fetchCU();
+		}
+	},
+
+	watch: {
+		idCU: function idCU(value) {
+			this.id_cu = value;
+		},
+		globalData: function globalData(value) {
+			this.selectData = value;
+		},
+		profileStat: function profileStat(value) {
+			if (value === "success") {
+				this.fetchCU();
+			}
+		},
+		modelCUStat: function modelCUStat(value) {
+			if (value === "success") {
+				this.id_cu = this.idCU;
+			}
+		}
+	},
+	methods: {
+		fetchCU: function fetchCU() {
+			this.$store.dispatch('cu/getPus', this.profile.id_pus);
+		},
+		fetchPeriode: function fetchPeriode() {
+			this.$store.dispatch('laporancu/getPeriode');
+		},
+		changeCU: function changeCU(id) {
+			this.$router.push({ name: this.path, params: { cu: id } });
+		},
+		changePeriode: function changePeriode(periode) {
+			this.$router.push({ name: 'laporanCuPeriode', params: { periode: periode } });
+		},
+		checkClass: function checkClass(value) {
+			return {
+				'col-sm-12': value != 'semua',
+				'col-sm-6': value == 'semua'
+			};
+		}
+	},
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
+		profile: 'profile',
+		profileStat: 'profileStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('global', {
+		idCU: 'idCU',
+		globalData: 'data'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('laporanCu', {
+		modelPeriode: 'periode',
+		modelPeriodeStat: 'periodeStat'
+	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
+		modelCU: 'dataS',
+		modelCUStat: 'dataStatS',
+		updateMessage: 'update',
+		updateStat: 'updateStat'
+	}))
+});
+
+/***/ }),
+/* 424 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    this.profile.id_cu === 0
+      ? _c("div", { staticClass: "panel panel-flat hidden-xs hidden-print " }, [
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { class: _vm.checkClass(_vm.idCU) }, [
+                this.profile.id_cu === 0
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("\n\t\t\t\t\t\t\tPilih Data\n\t\t\t\t\t\t")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.id_cu,
+                              expression: "id_cu"
+                            }
+                          ],
+                          staticClass: "bootstrap-select",
+                          attrs: {
+                            name: "idCU",
+                            "data-width": "100%",
+                            disabled: _vm.modelCUStat === "loading"
+                          },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.id_cu = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              function($event) {
+                                _vm.changeCU($event.target.value)
+                              }
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { disabled: "", value: "" } }, [
+                            _vm._v("Silahkan pilih data")
+                          ]),
+                          _vm._v(" "),
+                          _vm._t("default"),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "semua" } }, [
+                            _vm._v("Semua")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { "data-divider": "true" } }),
+                          _vm._v(" "),
+                          _vm._l(_vm.modelCU, function(cu) {
+                            return cu
+                              ? _c(
+                                  "option",
+                                  { domProps: { value: cu.no_ba } },
+                                  [_vm._v(_vm._s(cu.name))]
+                                )
+                              : _vm._e()
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-btn" }, [
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "tooltip",
+                                rawName: "v-tooltip:top",
+                                value: "Reload",
+                                expression: "'Reload'",
+                                arg: "top"
+                              }
+                            ],
+                            staticClass: "btn btn-default",
+                            attrs: { disabled: _vm.modelCUStat === "loading" },
+                            on: { click: _vm.fetchCU }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "icon-sync",
+                              class: { spinner: _vm.modelCUStat === "loading" }
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm.idCU == "semua"
+                ? _c("div", { staticClass: "col-sm-6" }, [
+                    this.profile.id_cu === 0
+                      ? _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\tPeriode Laporan\n\t\t\t\t\t\t"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selectData,
+                                  expression: "selectData"
+                                }
+                              ],
+                              staticClass: "bootstrap-select",
+                              attrs: {
+                                name: "periode",
+                                "data-width": "100%",
+                                disabled: _vm.modelPeriodeStat === "loading"
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selectData = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function($event) {
+                                    _vm.changePeriode($event.target.value)
+                                  }
+                                ]
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { disabled: "", value: "" } },
+                                [_vm._v("Silahkan pilih periode laporan")]
+                              ),
+                              _vm._v(" "),
+                              _vm._t("default"),
+                              _vm._v(" "),
+                              _vm._l(_vm.modelPeriode, function(periode) {
+                                return periode
+                                  ? _c(
+                                      "option",
+                                      { domProps: { value: periode.periode } },
+                                      [_vm._v(_vm._s(periode.periode))]
+                                    )
+                                  : _vm._e()
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-btn" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "tooltip",
+                                    rawName: "v-tooltip:top",
+                                    value: "Reload",
+                                    expression: "'Reload'",
+                                    arg: "top"
+                                  }
+                                ],
+                                staticClass: "btn btn-default",
+                                attrs: {
+                                  disabled: _vm.modelPeriodeStat === "loading"
+                                },
+                                on: { click: _vm.fetchPeriode }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "icon-sync",
+                                  class: {
+                                    spinner: _vm.modelCUStat === "loading"
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    this.profile.id_cu === 0
+      ? _c("div", { staticClass: "panel panel-flat visible-xs hidden-print" }, [
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "input-group" }, [
+              _c("div", { staticClass: "input-group-addon" }, [
+                _vm._v("\n\t\t\t\t\tPilih Data\n\t\t\t\t")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.id_cu,
+                      expression: "id_cu"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "idCU",
+                    "data-width": "100%",
+                    disabled: _vm.modelCUStat === "loading"
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.id_cu = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        _vm.changeCU($event.target.value)
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: "", value: "" } }, [
+                    _vm._v("Silahkan pilih data")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "semua" } }, [
+                    _vm._v("Semua")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { "data-divider": "true" } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.modelCU, function(cu) {
+                    return cu
+                      ? _c("option", { domProps: { value: cu.no_ba } }, [
+                          _vm._v(_vm._s(cu.name))
+                        ])
+                      : _vm._e()
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "pt-15" }, [
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "tooltip",
+                      rawName: "v-tooltip:top",
+                      value: "Reload",
+                      expression: "'Reload'",
+                      arg: "top"
+                    }
+                  ],
+                  staticClass: "btn btn-default btn-lg btn-block",
+                  attrs: { disabled: _vm.modelCUStat === "loading" },
+                  on: { click: _vm.fetchCU }
+                },
+                [
+                  _c("i", {
+                    staticClass: "icon-sync",
+                    class: { spinner: _vm.modelCUStat === "loading" }
+                  }),
+                  _vm._v(" Reload\n\t\t\t\t")
+                ]
+              )
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e22cc27e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

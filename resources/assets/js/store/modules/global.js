@@ -4,6 +4,7 @@ export const global = {
   
   // state
   state: {
+    data: '',
     idCU: '',
     message: '',
     messageType: '',
@@ -11,6 +12,7 @@ export const global = {
 
   // getters
   getters: {
+    data: state => state.data,
     idCU: state => state.idCU,
     message: state => state.message,
     messageType: state => state.messageType,
@@ -18,6 +20,12 @@ export const global = {
 
   // actions
   actions: {
+
+    // change data
+    changeData({commit}, data){
+      commit('setData', data);
+    },
+
     // change idcu
     changeIdCU({commit}, id){
       commit('setIdCU', id);
@@ -43,6 +51,9 @@ export const global = {
 
   // mutations
   mutations: {
+    setData ( state, data ){
+      state.data = data;
+    },
     setIdCU ( state, id ){
       state.idCU = id;
     },

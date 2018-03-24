@@ -16,7 +16,8 @@
 							<option value="semua">Semua</option>
 							<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 							<option data-divider="true"></option>
-							<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
+							<option v-for="cu in modelCU" :value="cu.id" v-if="!isNo_ba && cu">{{cu.name}}</option>
+							<option v-for="cu in modelCU" :value="cu.no_ba" v-if="isNo_ba && cu">{{cu.name}}</option>
 						</select>
 
 						<!-- reload cu -->
@@ -42,7 +43,8 @@
 						<option value="semua">Semua</option>
 						<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 						<option data-divider="true"></option>
-						<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
+						<option v-for="cu in modelCU" :value="cu.id" v-if="!isNo_ba && cu">{{cu.name}}</option>
+						<option v-for="cu in modelCU" :value="cu.no_ba" v-if="isNo_ba && cu">{{cu.name}}</option>
 					</select>
 				</div>
 
@@ -61,7 +63,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	export default {
-		props:['kelas','isPus','path'],
+		props:['kelas','isPus','path','isNo_ba'],
 		data(){
 			return {
 				id_cu: ''
