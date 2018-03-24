@@ -257,7 +257,7 @@ export const laporanCu = {
       state.dataStatS = status;
     },
     setPeriodeStat( state, status ){
-      state.periodeStatS = status;
+      state.periodeStat = status;
     },
     setIdCU ( state, id ){
       state.idCU = id;

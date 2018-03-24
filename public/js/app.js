@@ -41860,6 +41860,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('dateTime', function (value) 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('date', function (value) {
     return window.moment(value).format('DD-MM-YYYY');
 });
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('dateMonth', function (value) {
+    return window.moment(value).format('DD MMMM YYYY');
+});
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('checkStatus', function (value) {
     if (value > 0) {
         return '<span class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>';
@@ -122339,13 +122342,15 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_modal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkValue_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkValue_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_checkValue_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -122666,6 +122671,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -122674,9 +122686,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	components: {
-		DataViewer: __WEBPACK_IMPORTED_MODULE_1__components_dataviewer_vue___default.a,
-		appModal: __WEBPACK_IMPORTED_MODULE_2__components_modal___default.a,
-		checkValue: __WEBPACK_IMPORTED_MODULE_3__components_checkValue_vue___default.a
+		DataViewer: __WEBPACK_IMPORTED_MODULE_2__components_dataviewer_vue___default.a,
+		appModal: __WEBPACK_IMPORTED_MODULE_3__components_modal___default.a,
+		checkValue: __WEBPACK_IMPORTED_MODULE_4__components_checkValue_vue___default.a
 	},
 	props: ['title', 'kelas'],
 	data: function data() {
@@ -123093,6 +123105,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		},
 
 
+		// if route is semua laporan
+		periodeStat: function periodeStat(value) {
+			if (value == 'success') {
+				if (this.$route.meta.mode == 'periode') {
+					this.$store.dispatch('global/changeData', this.$route.params.periode);
+				} else {
+					this.$store.dispatch('global/changeData', this.periodeData[0].periode);
+				}
+			}
+		},
+
+
 		// when updating data
 		updateStat: function updateStat(value) {
 			this.modalState = value;
@@ -123116,11 +123140,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 					// if route is periode
 					if (this.$route.meta.mode == 'periode') {
-						// fetch according to periode value
 						this.$store.dispatch(this.kelas + '/indexPeriode', [this.params, this.$route.params.periode]);
-
-						//change selected in select data
-						this.$store.dispatch('global/changeData', this.$route.params.periode);
 
 						// default route	
 					} else {
@@ -123200,19 +123220,25 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			if (this.source == 'hapus') {
 				this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 			}
+		},
+		formatPeriode: function formatPeriode() {
+			return __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('dateMonth')(this.selectData);
 		}
 	},
-	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('user', {
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])('user', {
 		profile: 'profile',
 		profileStat: 'profileStat'
-	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('global', {
-		idCU: 'idCU'
-	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('cu', {
+	}), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])('global', {
+		idCU: 'idCU',
+		selectData: 'data'
+	}), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])('cu', {
 		modelCU: 'dataS',
 		modelCUStat: 'dataStatS'
-	}), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])('laporanCu', {
+	}), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])('laporanCu', {
 		itemData: 'dataS',
 		itemDataStat: 'dataStatS',
+		periodeData: 'periode',
+		periodeStat: 'periodeStat',
 		updateMessage: 'update',
 		updateStat: 'updateStat'
 	}))
@@ -123252,7 +123278,13 @@ var render = function() {
                     "tr",
                     {
                       staticClass: "text-nowrap",
-                      class: { info: _vm.selectedItem.id === props.item.id },
+                      class: {
+                        info: _vm.selectedItem.id === props.item.id,
+                        warning:
+                          props.item.periode < _vm.selectData &&
+                          _vm.selectedItem.id !== props.item.id &&
+                          _vm.idCU == "semua"
+                      },
                       on: {
                         click: function($event) {
                           _vm.selectedRow(props.item)
@@ -123313,13 +123345,41 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[4].hide
-                        ? _c("td", {
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.$options.filters.date(props.item.periode)
-                              )
-                            }
-                          })
+                        ? _c("td", [
+                            props.item.periode < _vm.selectData &&
+                            _vm.idCU == "semua"
+                              ? _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "tooltip",
+                                        rawName: "v-tooltip:top",
+                                        value:
+                                          "Laporan ini bukanlah laporan periode " +
+                                          _vm.formatPeriode(),
+                                        expression:
+                                          "'Laporan ini bukanlah laporan periode ' + formatPeriode()",
+                                        arg: "top"
+                                      }
+                                    ],
+                                    staticClass: "label label-warning"
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "icon-alert text-size-base"
+                                    })
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(
+                              "\n\t\t\t\t\t \t\n\t\t\t\t\t" +
+                                _vm._s(
+                                  _vm._f("dateMonth")(props.item.periode)
+                                ) +
+                                "\n\t\t\t\t"
+                            )
+                          ])
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[5].hide
@@ -125792,7 +125852,7 @@ var laporanCu = {
       state.dataStatS = status;
     },
     setPeriodeStat: function setPeriodeStat(state, status) {
-      state.periodeStatS = status;
+      state.periodeStat = status;
     },
     setIdCU: function setIdCU(state, id) {
       state.idCU = id;
@@ -126733,7 +126793,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			this.$store.dispatch('cu/getPus', this.profile.id_pus);
 		},
 		fetchPeriode: function fetchPeriode() {
-			this.$store.dispatch('laporancu/getPeriode');
+			this.$store.dispatch('laporanCu/getPeriode');
 		},
 		changeCU: function changeCU(id) {
 			this.$router.push({ name: this.path, params: { cu: id } });
@@ -126941,7 +127001,13 @@ var render = function() {
                                   ? _c(
                                       "option",
                                       { domProps: { value: periode.periode } },
-                                      [_vm._v(_vm._s(periode.periode))]
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("dateMonth")(periode.periode)
+                                          )
+                                        )
+                                      ]
                                     )
                                   : _vm._e()
                               })

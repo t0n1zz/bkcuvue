@@ -42,4 +42,10 @@ class LaporanCu extends Model {
     {
         return $this->belongsTo('App\CU','no_ba','no_ba')->select('id','no_ba','name','id_provinces');
     }
+
+    public function hasCU()
+    {
+        return $this->hasMany('App\CU','no_ba','no_ba')->select('no_ba');
+    }
+
 }

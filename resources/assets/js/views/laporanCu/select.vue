@@ -38,7 +38,7 @@
 							<select class="bootstrap-select" name="periode" v-model="selectData" data-width="100%" @change="changePeriode($event.target.value)" :disabled="modelPeriodeStat === 'loading'">
 								<option disabled value="">Silahkan pilih periode laporan</option>
 								<slot></slot>
-								<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode}}</option>
+								<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
 							</select>
 
 							<!-- reload cu -->
@@ -123,7 +123,7 @@
 				this.$store.dispatch('cu/getPus', this.profile.id_pus);
 			},
 			fetchPeriode(){
-				this.$store.dispatch('laporancu/getPeriode');
+				this.$store.dispatch('laporanCu/getPeriode');
 			},
 			changeCU(id){
 				this.$router.push({name: this.path, params:{cu: id} });

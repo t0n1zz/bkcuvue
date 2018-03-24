@@ -87,7 +87,9 @@
 
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
-				<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
+				<tr :class="{ 
+					'info': selectedItem.id === props.item.id, 
+					'warning' : props.item.periode < selectData && selectedItem.id !== props.item.id && idCU == 'semua' }" class="text-nowrap" @click="selectedRow(props.item)">
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
@@ -100,7 +102,11 @@
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
 						<check-value :value="props.item.provinces_name"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide" v-html="$options.filters.date(props.item.periode)"></td>
+					<td v-if="!columnData[4].hide">
+						<span v-if="props.item.periode < selectData && idCU == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode()"><i class="icon-alert text-size-base"></i></span>
+						&nbsp;	
+						{{ props.item.periode | dateMonth }}
+					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.l_biasa" valueType="currency"></check-value>
 					</td>
@@ -317,6 +323,7 @@
 </template>
 
 <script>
+	import Vue from 'vue';
 	import { mapGetters } from 'vuex';
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
@@ -342,7 +349,7 @@
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''
-        },
+				},
 				filterData: [
 					{
 						title: 'CU',
@@ -792,6 +799,17 @@
 				}
 			},
 
+			// if route is semua laporan
+			periodeStat(value){
+				if(value == 'success'){
+					if(this.$route.meta.mode == 'periode'){
+						this.$store.dispatch('global/changeData', this.$route.params.periode);
+					}else{
+						this.$store.dispatch('global/changeData', this.periodeData[0].periode);
+					}
+				}
+			},
+
 			// when updating data
       updateStat(value) {
 				this.modalState = value;
@@ -815,12 +833,8 @@
 
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
-							// fetch according to periode value
 							this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
 
-							//change selected in select data
-							this.$store.dispatch('global/changeData', this.$route.params.periode);
-							
 						// default route	
 						}else{
 							this.$store.dispatch(this.kelas + '/index', this.params);
@@ -901,6 +915,9 @@
 				if (this.source == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
+			},
+			formatPeriode(){
+				return Vue.filter('dateMonth')(this.selectData);
 			}
 		},
 		computed: {
@@ -909,7 +926,8 @@
 				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
-				idCU: 'idCU'
+				idCU: 'idCU',
+				selectData: 'data'
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',
@@ -918,6 +936,8 @@
 			...mapGetters('laporanCu',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
+				periodeData: 'periode',
+				periodeStat: 'periodeStat',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),
