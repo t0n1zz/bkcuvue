@@ -26,7 +26,7 @@
         methods: {
           btnClick(){
             if(this.clicked){
-              this.clicked = false;
+              setTimeout( ()=> this.clicked = false, 400 );
             }else{
               this.clicked = true;
             }

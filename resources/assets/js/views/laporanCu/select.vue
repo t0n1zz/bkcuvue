@@ -76,6 +76,31 @@
 						<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i> Reload
 					</button>
 				</div> 
+
+				<hr v-if="idCU == 'semua'">
+
+				<!-- periode -->
+				<div class="input-group" v-if="this.profile.id_cu === 0 && idCU == 'semua'">
+					<div class="input-group-addon">
+						Periode Laporan
+					</div>
+
+					<!-- select -->
+					<select class="form-control" name="periode" v-model="selectData" data-width="100%" @change="changePeriode($event.target.value)" :disabled="modelPeriodeStat === 'loading'">
+						<option disabled value="">Silahkan pilih periode laporan</option>
+						<slot></slot>
+						<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
+					</select>
+					
+					</div>
+
+					<!-- reload periode -->
+				<div class="pt-15" v-if="idCU == 'semua'">
+					<button class="btn btn-default btn-lg btn-block" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
+						<i class="icon-sync" :class="{'spinner' : modelPeriodeStat === 'loading'}"></i> Reload
+					</button>
+				</div> 
+
 			</div>
 		</div>
 
@@ -99,6 +124,9 @@
 			if(this.profile.id_pus !== undefined){
 				this.fetchCU();
 			}	
+			if(this.globalData !== undefined){
+				this.selectData = this.globalData;
+			}
 		},
 		watch: {
 			idCU(value){

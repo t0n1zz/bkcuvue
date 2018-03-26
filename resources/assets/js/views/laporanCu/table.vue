@@ -75,14 +75,6 @@
 					</div>
 				</li>
 
-				<!-- lihat artikel -->
-				<li v-if="profile.can && profile.can['index artikel']">
-					<div class="pl-5 pr-5 pb-5">
-						<button @click.prevent="lihatArtikel(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Lihat artikel yang ditulis'" :disabled="selectedItem.has_artikel_count === 0">
-							<i class="icon-file-eye"></i> Lihat artikel 
-						</button>
-					</div>
-				</li>
 			</template>
 
 			<!-- item desktop -->
@@ -103,8 +95,8 @@
 						<check-value :value="props.item.provinces_name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<span v-if="props.item.periode < selectData && idCU == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode()"><i class="icon-alert text-size-base"></i></span>
-						&nbsp;	
+						<span v-if="props.item.periode < selectData && idCU == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(selectData)"><i class="icon-alert text-size-base"></i></span>
+						&nbsp;
 						{{ props.item.periode | dateMonth }}
 					</td>
 					<td v-if="!columnData[5].hide">
@@ -250,36 +242,240 @@
 					<table class="table table-striped">
 						<tbody>
 							<tr v-if="!columnData[0].hide">
-								<td><b>{{columnData[0].title}}</b></td>
-								<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
+								<td colspan="2" class="text-center bg-primary-300"><b>{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</b></td>
 							</tr>
 							<tr v-if="!columnData[1].hide">
-								<td colspan="2"><b>{{columnData[1].title}}</b></td>
+								<td><b>{{columnData[1].title}}</b></td>
+								<td><check-value :value="props.item.cu_name" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[1].hide">
-								<td colspan="2" style="word-wrap: break-word;"><check-value :value="props.item.deskripsi" :isTrim="false"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[2].hide && !columnData[2].disable">
+							<tr v-if="!columnData[2].hide">
 								<td><b>{{columnData[2].title}}</b></td>
-								<td>
-									<check-value :value="props.item.c_u.name" :isTrim="false" :frontText="': '" v-if="props.item.c_u"></check-value>
-									<span v-else>: {{columnData[2].groupNoKey}}</span>
-								</td>
+								<td><check-value :value="props.item.no_ba" :frontText="': '"></check-value></td>
 							</tr>
-								<tr v-if="!columnData[3].hide">
+							<tr v-if="!columnData[3].hide">
 								<td><b>{{columnData[3].title}}</b></td>
-								<td>: {{props.item.has_artikel_count}}</td>
+								<td><check-value :value="props.item.provinces_name" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[4].hide">
 								<td><b>{{columnData[4].title}}</b></td>
 								<td>
+									<check-value :value="formatPeriode(props.item.perode)" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[5].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[5].title}}</b></td>
+								<td><check-value :value="props.item.l_biasa"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[6].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[6].title}}</b></td>
+								<td><check-value :value="props.item.l_lbiasa"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[7].title}}</b></td>
+								<td><check-value :value="props.item.p_biasa"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[8].title}}</b></td>
+								<td><check-value :value="props.item.p_lbiasa"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[9].hide">
+								<td><b>{{columnData[9].title}}</b></td>
+								<td><check-value :value="props.item.total_anggota"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[10].title}}</b></td>
+								<td><check-value :value="props.item.total_anggota_lalu"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[11].hide">
+								<td><b>{{columnData[11].title}}</b></td>
+								<td><check-value :value="props.item.aset"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[12].title}}</b></td>
+								<td><check-value :value="props.item.aset_lalu"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[13].title}}</b></td>
+								<td><check-value :value="props.item.aset_masalah"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[14].title}}</b></td>
+								<td><check-value :value="props.item.aset_tidak_menghasilkan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[15].title}}</b></td>
+								<td><check-value :value="props.item.aktiva_lancar"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[16].title}}</b></td>
+								<td><check-value :value="props.item.simpanan_saham"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[17].title}}</b></td>
+								<td><check-value :value="props.item.simpanan_saham_lalu"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[18].title}}</b></td>
+								<td><check-value :value="props.item.simpanan_saham_des"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[19].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[19].title}}</b></td>
+								<td><check-value :value="props.item.nonsaham_unggulan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[20].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[20].title}}</b></td>
+								<td><check-value :value="props.item.nonsaham_harian"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[21].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[21].title}}</b></td>
+								<td><check-value :value="props.item.hutang_spd"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[22].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[22].title}}</b></td>
+								<td><check-value :value="props.item.hutang_tidak_berbiaya_30hari"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[23].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[23].title}}</b></td>
+								<td><check-value :value="props.item.total_hutang_pihak3"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[24].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[24].title}}</b></td>
+								<td><check-value :value="props.item.piutang_beredar"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[25].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[25].title}}</b></td>
+								<td><check-value :value="props.item.piutang_bersih"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[26].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[26].title}}</b></td>
+								<td><check-value :value="props.item.piutang_anggota"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[27].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[27].title}}</b></td>
+								<td><check-value :value="props.item.piutang_lalai_1bulan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[28].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[28].title}}</b></td>
+								<td><check-value :value="props.item.piutang_lalai_12bulan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[29].hide">
+								<td><b>{{columnData[29].title}}</b></td>
+								<td><check-value :value="props.item.rasio_piutang_beredar"
+								valueType="percentage" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[30].hide">
+								<td><b>{{columnData[30].title}}</b></td>
+								<td><check-value :value="props.item.rasio_piutang_lalai"
+								valueType="percentage" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[31].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[31].title}}</b></td>
+								<td><check-value :value="props.item.dcr"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[32].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[32].title}}</b></td>
+								<td><check-value :value="props.item.dcu"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[33].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[33].title}}</b></td>
+								<td><check-value :value="props.item.iuran_gedung"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[34].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[34].title}}</b></td>
+								<td><check-value :value="props.item.donasi"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[35].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[35].title}}</b></td>
+								<td><check-value :value="props.item.bjs_saham"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[36].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[36].title}}</b></td>
+								<td><check-value :value="props.item.beban_penyisihan_dcr"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[37].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[37].title}}</b></td>
+								<td><check-value :value="props.item.investasi_likuid"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[38].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[38].title}}</b></td>
+								<td><check-value :value="props.item.total_pendapatan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[39].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[39].title}}</b></td>
+								<td><check-value :value="props.item.total_biaya"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[40].hide">
+								<td><b>{{columnData[40].title}}</b></td>
+								<td><check-value :value="props.item.shu"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[41].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[41].title}}</b></td>
+								<td><check-value :value="props.item.shu_lalu"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[42].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[42].title}}</b></td>
+								<td><check-value :value="props.item.rata_aset"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[43].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[43].title}}</b></td>
+								<td><check-value :value="props.item.laju_inflasi"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[44].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[44].title}}</b></td>
+								<td><check-value :value="props.item.harga_pasar"
+								valueType="percentage" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[45].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[45].title}}</b></td>
+								<td>
 									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[5].hide">
-								<td><b>{{columnData[5].title}}</b></td>
+							<tr v-if="!columnData[46].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[46].title}}</b></td>
 								<td>
 									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<collapse-button :id="props.item.id"></collapse-button>
 								</td>
 							</tr>
 						</tbody>
@@ -298,13 +494,6 @@
 							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy ' + kelas]">
 								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block" v-if="props.item">
 									<i class="icon-bin2"></i> <span>Hapus</span>
-								</button>
-							</div>
-
-							<!-- lihat artikel -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['index artikel']">
-								<button @click.prevent="lihatArtikel(props.item.id,props.item.id_cu)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_artikel_count === 0" v-if="props.item.id">
-									<i class="icon-file-eye"></i> Lihat artikel 
 								</button>
 							</div>
 
@@ -328,12 +517,14 @@
 	import DataViewer from '../../components/dataviewer.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
+	import collapseButton from '../../components/collapseButton.vue';
 
 	export default {
 		components: {
 			DataViewer,
 			appModal,
-			checkValue
+			checkValue,
+			collapseButton
 		},
 		props:['title','kelas'],
 		data() {
@@ -363,18 +554,6 @@
 					// 	type: 'string',
 					// 	disable: false
 					// },
-					{
-						title: 'Lelaki Biasa',
-						key: 'l_biasa',
-						type: 'numeric',
-						disable: false
-					},
-					{
-						title: 'Aset',
-						key: 'aset',
-						type: 'numeric',
-						disable: false
-					},
 					{
 						title: 'Tgl. Buat',
 						key: 'created_at',
@@ -916,8 +1095,8 @@
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
 			},
-			formatPeriode(){
-				return Vue.filter('dateMonth')(this.selectData);
+			formatPeriode(value){
+				return Vue.filter('dateMonth')(value);
 			}
 		},
 		computed: {

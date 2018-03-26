@@ -30,10 +30,25 @@
 						:isPus="false"
 						:isNo_ba="true"></select-data>
 
+					<div class="tabbable">
+						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
+							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="tabName = 'table'"><i class="icon-list2 position-left"></i> Tabel {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'infografis'}"><a @click.prevent="tabName = 'infografis'"><i class="icon-graph position-left"></i> Infografis {{ title }}</a></li>
+						</ul>
+					</div>
+
+
 					<!-- table data -->
-					<table-data 
-						:title="title" 
-						:kelas="kelas"></table-data>
+					<div v-show="tabName == 'table'">
+						<table-data 
+							:title="title" 
+							:kelas="kelas"></table-data>
+					</div>
+
+					<div v-show="tabName =='infografis'">
+						<infografis-data></infografis-data>
+					</div>
+					
 
 				</div>
 			</div>
@@ -49,6 +64,7 @@
 	import message from "../../components/message.vue";
 	import selectData from "./select.vue";
 	import tableData from "./table.vue";
+	import infografisData from "./infografis.vue";
 
 	export default {
 		components: {
@@ -56,14 +72,16 @@
 			message,
 			selectData,
 			tableData,
+			infografisData
 		},
 		data() {
 			return {
 				title: 'Laporan CU',
 				kelas: 'laporanCu',
-				titleDesc: 'Mengelola data laporan CU',
-				titleIcon: 'icon-graph',
+				titleDesc: 'Mengelola data perkembangan CU',
+				titleIcon: 'icon-stats-growth',
 				selectCUPath: 'laporanCuCU',
+				tabName: 'table',
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-magazine',

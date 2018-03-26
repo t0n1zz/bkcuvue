@@ -111,11 +111,13 @@ Route::get('/testroute', function () {
 			->join(DB::RAW('(SELECT no_ba, GROUP_CONCAT(periode ORDER BY periode DESC) grouped_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
 					$join->on('laporancu.no_ba','=','latest_report.no_ba');
 					$join->whereBetween(DB::raw('FIND_IN_SET(`laporancu`.`periode`, `latest_report`.`grouped_periode`)'), [1, 2]);
-			})->addSelect([DB::raw('
-				(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
-				((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
-				(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
-			)])->FilterPaginateOrder();
+			})->FilterPaginateOrder();
+			
+
+		// App\salesreport::join(DB::RAW('(SELECT company_id, GROUP_CONCAT(periods ORDER BY periods DESC) grouped_periods FROM salesreport GROUP BY company_id ) latest_report'),function($join){
+    //     $join->on('salesreport.company_id','=','latest_report.company_id');
+    //     $join->whereBetween(DB::raw('FIND_IN_SET(`salesreport`.`periods`, `latest_report`.`grouped_periods`)'), [1, 2]);
+    // })->addSelect([DB::raw('(row1.value - row2.value) as row_differences')])->get();
 
 		// dd($table_data->reverse());	
 
@@ -135,7 +137,7 @@ Route::get('/testroute', function () {
     
     return response()
     ->json([
-        'model' => $first
+        'model' => $table_data_curr
     ]);
 
 });

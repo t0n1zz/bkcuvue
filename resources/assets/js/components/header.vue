@@ -146,7 +146,7 @@
 
 							<!-- artikel -->
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index laporanCu']">
-								<a><i class="icon-graph"></i> Laporan CU</a>
+								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
 						</ul>
 					</li>
