@@ -32,8 +32,8 @@
 
 					<div class="tabbable">
 						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="tabName = 'table'"><i class="icon-list2 position-left"></i> Tabel {{ title }}</a></li>
-							<li :class="{'active' : tabName == 'infografis'}"><a @click.prevent="tabName = 'infografis'"><i class="icon-graph position-left"></i> Infografis {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> Tabel {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'infografis'}"><a @click.prevent="changeTab('infografis')"><i class="icon-graph position-left"></i> Infografis {{ title }}</a></li>
 						</ul>
 					</div>
 
@@ -45,8 +45,10 @@
 							:kelas="kelas"></table-data>
 					</div>
 
-					<div v-show="tabName =='infografis'">
-						<infografis-data></infografis-data>
+					<div v-show="tabName =='infografis'" v-if="isInfografis">
+						<infografis-data
+							:title="title"
+							:kelas="kelas"></infografis-data>
 					</div>
 					
 
@@ -93,11 +95,20 @@
 					icon: 'icon-pencil6',
 					title: 'Penulis Artikel',
 					can: 'index artikelPenulis'
-				}
+				},
+				isInfografis: false
 			}
 		},
 		mounted() {
 			corefunc.core_function();
+		},
+		methods:{
+			changeTab(value){
+				this.tabName = value;
+				if(value == 'infografis' && !this.isInfografis){
+					this.isInfografis = true;
+				}
+			} 
 		},
 		computed: {
 			...mapGetters('laporanCu',{

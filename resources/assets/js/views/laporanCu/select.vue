@@ -122,7 +122,7 @@
 		},
 		created(){
 			if(this.profile.id_pus !== undefined){
-				this.fetchCU();
+				this.fetchCU(); 
 			}	
 			if(this.globalData !== undefined){
 				this.selectData = this.globalData;

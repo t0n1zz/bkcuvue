@@ -574,7 +574,8 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					},
 					{
 						title: 'CU',
@@ -582,7 +583,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					},
 					{
 						title: 'No. BA',
@@ -590,7 +592,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					},
 					{
 						title: 'Provinsi',
@@ -599,7 +602,8 @@
 						groupNoKey: '-',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					},
 					{
 						title: 'Periode',
@@ -608,7 +612,8 @@
 						groupNoKey: '-',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					},
 					{
 						title: 'Lelaki Biasa',
@@ -616,7 +621,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Lelaki L.Biasa',
@@ -624,7 +631,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Perempuan Biasa',
@@ -632,7 +641,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Perempuan L.Biasa',
@@ -640,7 +651,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Total Anggota',
@@ -648,7 +661,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: true
 					},
 					{
 						title: 'Total Anggota Lalu',
@@ -656,7 +671,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Aset',
@@ -664,7 +681,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Aset Lalu',
@@ -672,7 +691,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Aset Masalah',
@@ -680,7 +701,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Aset Tdk Menghasilkan',
@@ -688,7 +711,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Aktiva Lancar',
@@ -696,7 +721,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Simp. Saham',
@@ -704,7 +731,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Simp. Saham Lalu',
@@ -712,7 +741,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Simp. Saham Des',
@@ -720,7 +751,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Simp. Nonsaham Unggulan',
@@ -728,7 +761,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Simp. Nonsaham Harian',
@@ -736,7 +771,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Hutang SPD',
@@ -744,7 +781,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Hutang Tdk Berbiaya',
@@ -752,7 +791,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Total Hutang Pihak Ke-3',
@@ -760,7 +801,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Piutang Beredar',
@@ -768,7 +811,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Piutang Bersih',
@@ -776,7 +821,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Piutang Anggota',
@@ -784,7 +831,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Piutang Lalai 1-12 Bulan',
@@ -792,7 +841,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Piutang Lalai > 12 Bulan',
@@ -800,7 +851,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Rasio Piutang Beredar',
@@ -808,7 +861,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Rasio Piutang Lalai',
@@ -816,7 +871,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'DCR',
@@ -824,7 +881,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'DCU',
@@ -832,7 +891,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Iuran Gedung',
@@ -840,7 +901,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Donasi',
@@ -848,7 +911,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'BJS Saham',
@@ -856,7 +921,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Beban Penyisihan DCR',
@@ -864,7 +931,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Investasi Likuid',
@@ -872,7 +941,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Total Pendapatan',
@@ -880,7 +951,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Total Biaya',
@@ -888,7 +961,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'SHU',
@@ -896,7 +971,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'SHU Lalu',
@@ -904,7 +981,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Rata-rata Aset',
@@ -912,7 +991,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Laju Inflasi',
@@ -920,7 +1001,9 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Harga Pasar',
@@ -928,21 +1011,25 @@
 						excelType: 'number',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: true,
+						isChartSelect: false
 					},
 					{
 						title: 'Tgl. Buat',
 						key: 'created_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					},
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						isChart: false
 					}
 				],
 				modalShow: false,
@@ -950,6 +1037,9 @@
 				modalTitle: '',
 				modalButton: ''
 			}
+		},
+		created(){
+			this.$store.dispatch(this.kelas + '/addColumnData', this.columnData);
 		},
 		watch: {
 			// check route changes

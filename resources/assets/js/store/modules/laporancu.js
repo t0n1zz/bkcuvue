@@ -7,9 +7,12 @@ export const laporanCu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    grafik: [],
     periode: [],
+    columnData: [],
     dataStat: '',
     dataStatS: '',
+    grafikStat:'',
     periodeStat: '',
     update: [], //update data
     updateStat: '',
@@ -21,9 +24,12 @@ export const laporanCu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    grafik: state => state.grafik,
     periode: state => state.periode,
+    columnData: state => state.columnData,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    grafikStat: state => state.grafikStat,
     periodeStat: state => state.periodeStat,
     idCU: state => state.idCU,
     update: state => state.update,
@@ -92,6 +98,38 @@ export const laporanCu = {
           commit('setPeriodeStat', 'fail');
         });
     },
+
+    // load by periode
+    grafikPeriode( { commit }, [p, periode] ){
+      commit('setGrafikStat', 'loading');
+      
+      laporanCuAPI.indexPeriode( p, periode )
+        .then( function( response ){
+          commit('setGrafik', response.data.model);
+          commit('setGrafikStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafik', error.response);
+          commit('setGrafikStat', 'fail');
+        });
+    },
+
+    // load by cu
+    grafikCU( { commit }, [p, id] ){
+      commit('setGrafikStat', 'loading');
+      
+      laporanCuAPI.indexCU( p, id )
+        .then( function( response ){
+          commit('setGrafik', response.data.model);
+          commit('setGrafikStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafik', error.response);
+          commit('setGrafikStat', 'fail');
+        });
+    },
+
+
 
     create( {commit} ){
       commit('setDataStat', 'loading');
@@ -224,6 +262,10 @@ export const laporanCu = {
         });
     },
 
+    addColumnData( {commit}, data){
+      commit('setColumnData', data);
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -247,14 +289,23 @@ export const laporanCu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setGrafik( state, data ){
+      state.grafik = data;
+    },
     setPeriode( state, data ){
       state.periode = data;
+    },
+    setColumnData(state, data){
+      state.columnData = data;
     },
     setDataStat( state, status ){
       state.dataStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setGrafikStat( state, status ){
+      state.grafikStat = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;
