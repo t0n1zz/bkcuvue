@@ -36,6 +36,8 @@ export default {
 			dataShownTitle1:'Aset',
 			dataShownKey1:'aset',
 			axisLabelKey:'cu_name',
+			isFirstLoad: true,
+			cuName:'',
 			params: {
 				column: 'periode',
 				direction: 'desc',
@@ -56,21 +58,52 @@ export default {
 	},
 	watch: {
 		// check route changes
+		idCU(valeu){
+			this.isFirstLoad = true;
 
+			if(this.idCU !== 'semua'){
+				this.fetch();
+			}
+		},
 		selectData(value){
+			this.isFirstLoad = true;
 			this.fetch();
 		},
+		itemDataStat(value){
+			if(value == "success"){
+				if(this.isFirstLoad){
+					if(this.itemData.total >= 11 && this.itemData.total <= 25){
+						this.params.per_page = 25;
+					}else if(this.itemData.total > 25){
+						this.params.per_page = 50;
+					}else{
+						this.params.per_page = 10;
+					}
+					this.isFirstLoad = false;
+
+					if(this.idCU !== 'semua'){
+						this.titleText = 'Grafik ' + this.title + ' ' + this.itemData.data[0].c_u.name;
+					}
+				}
+			}
+		}
 	},
 	methods: {
 		// fetching data from database
 		fetch(){
-			this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData); 
-
+			 
 			if(this.idCU === 'semua'){
+				this.params.per_page = 50;
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
+
+				this.axisLabelKey = 'cu_name';
+				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
 			}else{
 				if(this.idCU !== undefined){
 					this.$store.dispatch(this.kelas + '/grafikCU', [this.params,this.idCU]);
+
+					this.axisLabelKey = 'periode';
+					
 				}
 			}
 		},

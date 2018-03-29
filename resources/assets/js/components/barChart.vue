@@ -47,15 +47,6 @@
 								<li :class="{'active' : params.per_page === 50}" v-if="itemData.total > 25">
 									<a @click.prevent="entriPage(50)">50 Entri</a>
 								</li>
-								<li :class="{'active' : params.per_page === 100}" v-if="itemData.total > 50">
-									<a @click.prevent="entriPage(100)">100 Entri</a>
-								</li>
-								<li :class="{'active' : params.per_page === 200}" v-if="itemData.total > 100">
-									<a @click.prevent="entriPage(200)">200 Entri</a>
-								</li>
-								<li :class="{'active' : params.per_page === 400}" v-if="itemData.total > 200">
-									<a @click.prevent="entriPage(400)">400 Entri</a>
-								</li> 
 							</ul>
 						</div>
 
@@ -122,7 +113,6 @@
 						</div>
 
 					</div>
-
 				</div>
 
 				
@@ -214,10 +204,12 @@ export default {
     }
 	},
 	created() {
+		// default select data
 		this.dataShown.push({title: this.dataShownTitle1, key: this.dataShownKey1});
 
 		// default series
 		this.addSeries();
+
 	},
 	updated() {
 		$('.bootstrap-select').selectpicker('refresh');
@@ -228,6 +220,9 @@ export default {
 				this.emptyGraph();
 				this.setGraph();
 				this.calculatePagination();
+
+				// default entri data
+				this.checkEntriPage(this.params.per_page);	
 			}
 		},
 	},
@@ -303,6 +298,9 @@ export default {
 				this.fetch();
 			}
 
+			this.checkEntriPage(value);	
+		},
+		checkEntriPage(value){
 			if(value >= 11 && value <= 25){
 				this.bar.xAxis.axisLabel.rotate = 30;
 			}else if(value > 25){

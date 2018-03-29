@@ -34,7 +34,7 @@ class LaporanCuController extends Controller{
 
 	public function indexCU($id)
 	{
-		$table_data = LaporanCu::where('no_ba',$id)->addSelect(['*',DB::raw('
+		$table_data = LaporanCu::with('CU')->where('no_ba',$id)->addSelect(['*',DB::raw('
 			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
 			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
 			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
