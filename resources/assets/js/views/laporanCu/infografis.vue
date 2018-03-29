@@ -90,7 +90,7 @@
 
 						<!-- entri view -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Atur Jumlah Entri Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
+							<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Menambah data yang ingin ditampilkan di grafik'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
 								<i class="icon-database-add"></i> Tambah Data
 							</button>
 						</div>
@@ -105,14 +105,14 @@
 						<div class="input-group-addon">
 							Pilih Data	
 						</div>
-						<select class="bootstrap-select" data-width="100%" v-model="dataShown[index].name" @change="changeColumn($event.target.value,index)" :disabled="itemDataStat === 'loading'">
+						<select class="bootstrap-select" data-width="100%" v-model="dataShown[index].key" @change="changeColumn($event.target.value,index)" :disabled="itemDataStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
 							<option v-for="column in columnData" :value="column.key" v-if="column.isChart">{{column.title}}</option>
 						</select>
 						<div class="input-group-btn" v-if="dataShown.length > 1">
-							<button class="btn btn-default" v-tooltip:top="'Reload'" @click="removeColumn(index)" :disabled="itemDataStat === 'loading'">
-								<i class="icon-database-remove"></i> Hapus Data
+							<button class="btn btn-default" v-tooltip:top="'Hapus data '" @click="removeColumn(index)" :disabled="itemDataStat === 'loading'">
+								<i class="icon-database-remove"></i>
 							</button>
 						</div>
 					</div>
@@ -157,7 +157,7 @@ export default {
 			pages: [],
 			sortState: '',
 			dataShown: [
-				{name:'total_anggota'}
+				{title:"Total Anggota", key:'total_anggota'}
 			],
 			params: {
 				column: 'periode',
@@ -236,23 +236,28 @@ export default {
 
 		// to configure which data to be shown
 		addColumn(){
-			this.dataShown.push({name:this.dataShown[0].name});
+			this.dataShown.push({title:this.dataShown[0].title, key:this.dataShown[0].key});
 			this.addSeries();
 			let length = this.dataShown.length;
-			this.bar.series[length-1].data = _.map(this.itemData.data, this.dataShown[0].name);
+			this.bar.series[length-1].data = _.map(this.itemData.data, this.dataShown[0].key);
+		},
+		addSeries(){
+			let data = _.find(this.columnData,{'key':this.dataShown[0].key});
+			let series = { name:data.title, data:[], type:'bar'};
+			this.bar.series.push(series);
 		},
 		removeColumn(index){
 			this.dataShown.splice(index,1);
 			this.bar.series.splice(index,1);
 		},
 		changeColumn(value,index){
-			this.bar.series[index].name = value;
+			let data = _.find(this.columnData,{'key':value});
+			
+			this.bar.series[index].name = data.title;
 			this.bar.series[index].data = _.map(this.itemData.data, value);
-			this.dataShown[index].name = value;
-		},
-		addSeries(){
-			let series = { name:this.dataShown[0].name, data:[], type:'bar'};
-			this.bar.series.push(series);
+
+			this.dataShown[index].title = data.title;
+			this.dataShown[index].key = value;
 		},
 		checkClass(){
 			return {
@@ -273,7 +278,7 @@ export default {
 
 			// series
 			for (let i = 0, len = this.dataShown.length ; i < len; i++){
-				this.bar.series[i].data = _.map(this.itemData.data, this.dataShown[i].name);
+				this.bar.series[i].data = _.map(this.itemData.data, this.dataShown[i].key);
 			}
 		},
 		emptyGraph(){
