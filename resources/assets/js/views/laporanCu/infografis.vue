@@ -27,8 +27,10 @@
 			</div>
 			<hr>
 			<div class="row">
+
 				<div class="col-md-12">
-					<div class="btn-toolbar">
+
+					<div class="btn-toolbar pb-5">
 
 						<!-- entri view -->
 						<div class="btn-group">
@@ -86,17 +88,36 @@
 							</button>
 						</div>
 
-						<!-- sorting -->
-						<div class="btn-group" v-if="itemDataStat === 'success'">
-							<button class="btn btn-default btn-icon" @click.prevent="sortData('asc')" :class="{'disabled' : sortState == 'asc'}">
-								asc
+						<!-- entri view -->
+						<div class="btn-group">
+							<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Atur Jumlah Entri Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
+								<i class="icon-database-add"></i> Tambah Data
 							</button>
-							<button class="btn btn-default btn-icon" @click.prevent="sortData('desc')" :class="{'disabled' : sortState == 'desc'}">
-								desc
+						</div>
+
+					</div>
+
+				</div>
+
+				
+				<div class="pb-5" :class="checkClass()" v-for="(data,index) in dataShown">
+					<div class="input-group">
+						<div class="input-group-addon">
+							Pilih Data	
+						</div>
+						<select class="bootstrap-select" data-width="100%" v-model="dataShown[index].name" @change="changeColumn($event.target.value,index)" :disabled="itemDataStat === 'loading'">
+							<option disabled value="">Silahkan pilih data</option>
+							<slot></slot>
+							<option v-for="column in columnData" :value="column.key" v-if="column.isChart">{{column.title}}</option>
+						</select>
+						<div class="input-group-btn" v-if="dataShown.length > 1">
+							<button class="btn btn-default" v-tooltip:top="'Reload'" @click="removeColumn(index)" :disabled="itemDataStat === 'loading'">
+								<i class="icon-database-remove"></i> Hapus Data
 							</button>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 
@@ -135,6 +156,9 @@ export default {
     return {
 			pages: [],
 			sortState: '',
+			dataShown: [
+				{name:'total_anggota'}
+			],
 			params: {
 				column: 'periode',
 				direction: 'desc',
@@ -156,12 +180,6 @@ export default {
 								type : 'shadow'
 						}
 				},
-				legend:{
-					type:'scroll',
-					bottom:10,
-					data: [],
-					selected: {},
-				},
 				grid: {
 					left: '0%',
 					containLabel: true
@@ -178,19 +196,13 @@ export default {
     }
 	},
 	created() {
-		for (let i = 0, len = this.columnData.length; i < len; i++){
-			if(this.columnData[i].isChart){
-				let data = { name: this.columnData[i].title, data: [], type: 'bar'};
-
-				let item = {};
-				item[this.columnData[i].title] = this.columnData[i].isChartSelect;
-
-				this.bar.series.push(data);
-				this.bar.legend.data.push(this.columnData[i].title); 
-				// this.bar.legend.selected.push(item);
-			}
-		}
 		this.fetch();
+
+		// default series
+		this.addSeries();
+	},
+	updated() {
+		$('.bootstrap-select').selectpicker('refresh');
 	},
 	watch: {
 		// check route changes
@@ -200,6 +212,7 @@ export default {
 
 		itemDataStat(value){
 			if(value == 'success'){
+				this.emptyGraph();
 				this.setGraph();
 				this.calculatePagination();
 			}
@@ -210,6 +223,7 @@ export default {
 		},
 	},
 	methods: {
+		// fetching data from database
 		fetch(){
 			if(this.idCU === 'semua'){
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
@@ -219,29 +233,58 @@ export default {
 				}
 			}
 		},
+
+		// to configure which data to be shown
+		addColumn(){
+			this.dataShown.push({name:this.dataShown[0].name});
+			this.addSeries();
+			let length = this.dataShown.length;
+			this.bar.series[length-1].data = _.map(this.itemData.data, this.dataShown[0].name);
+		},
+		removeColumn(index){
+			this.dataShown.splice(index,1);
+			this.bar.series.splice(index,1);
+		},
+		changeColumn(value,index){
+			this.bar.series[index].name = value;
+			this.bar.series[index].data = _.map(this.itemData.data, value);
+			this.dataShown[index].name = value;
+		},
+		addSeries(){
+			let series = { name:this.dataShown[0].name, data:[], type:'bar'};
+			this.bar.series.push(series);
+		},
+		checkClass(){
+			return {
+				'col-sm-12': this.dataShown.length == 1,
+				'col-sm-6': this.dataShown.length == 2,
+				'col-sm-4' : this.dataShown.length > 2
+			};
+		},
+
+		// only when fetching data from database
 		setGraph(){
+			// title
 			this.bar.title.text = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
 			this.bar.title.subtext = 'Menampilkan ' + this.itemData.from + ' - ' + this.itemData.to + ' entri dari ' + this.itemData.total + ' entri';
 
+			// yAxis
 			this.bar.yAxis.data = _.map(this.itemData.data,'cu_name');
-			
-			let i = 0;
-			this.columnData.forEach((product,index)=>{
-				if(this.columnData[index].isChart == true){
-					this.bar.series[i].data = _.map(this.itemData.data,this.columnData[i].key);
-					i++;
-				}
-			})
+
+			// series
+			for (let i = 0, len = this.dataShown.length ; i < len; i++){
+				this.bar.series[i].data = _.map(this.itemData.data, this.dataShown[i].name);
+			}
 		},
 		emptyGraph(){
+			// resetAll
 			this.bar.title.text = '';
 			this.bar.title.subtext = '';
 
 			this.bar.yAxis.data = []
-			for (let i = 0, len = '4'; i < len; i++){
+			for (let i = 0, len = this.dataShown.length ; i < len; i++){
 				this.bar.series[i].data = [];
 			}
-
 		},
 
 		// entri page
@@ -253,7 +296,7 @@ export default {
 			}
 		},
 
-		// pagination
+		// pagination from database
 		calculatePagination() {
 			var i = 0;
 			var startPage = 0;
