@@ -9,13 +9,16 @@
 			<!-- desktop -->
 			<!-- button desktop -->
 			<template slot="button-kolom">
-				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom Anggota'" :disabled="itemDataStat === 'loading'" @click.prevent="kolomAnggota()">
+				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom Anggota'" :disabled="itemDataStat === 'loading'" @click.prevent="columnGroup('anggota')">
 					Anggota
 				</button>
-				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom SHU'" :disabled="itemDataStat === 'loading'" @click.prevent="kolomAnggota()">
+				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom Aset'" :disabled="itemDataStat === 'loading'" @click.prevent="columnGroup('aset')">
+					Aset
+				</button>
+				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom SHU'" :disabled="itemDataStat === 'loading'" @click.prevent="columnGroup('shu')">
 					SHU
 				</button>
-				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom Piutang'" :disabled="itemDataStat === 'loading'" @click.prevent="kolomAnggota()">
+				<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Kolom Piutang'" :disabled="itemDataStat === 'loading'" @click.prevent="columnGroup('piutang')">
 					Piutang
 				</button>
 			</template>	
@@ -575,7 +578,8 @@
 						sort: false,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					},
 					{
 						title: 'CU',
@@ -584,7 +588,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					},
 					{
 						title: 'No. BA',
@@ -593,7 +598,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					},
 					{
 						title: 'Provinsi',
@@ -603,7 +609,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					},
 					{
 						title: 'Periode',
@@ -613,7 +620,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					},
 					{
 						title: 'Lelaki Biasa',
@@ -623,7 +631,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'anggota'
 					},
 					{
 						title: 'Lelaki L.Biasa',
@@ -633,7 +642,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'anggota'
 					},
 					{
 						title: 'Perempuan Biasa',
@@ -643,7 +653,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'anggota'
 					},
 					{
 						title: 'Perempuan L.Biasa',
@@ -653,7 +664,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'anggota'
 					},
 					{
 						title: 'Total Anggota',
@@ -663,7 +675,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: true
+						isChartSelect: true,
+						columnGroup: 'anggota'
 					},
 					{
 						title: 'Total Anggota Lalu',
@@ -673,7 +686,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'anggota'
 					},
 					{
 						title: 'Aset',
@@ -683,7 +697,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'aset'
 					},
 					{
 						title: 'Aset Lalu',
@@ -693,7 +708,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'aset'
 					},
 					{
 						title: 'Aset Masalah',
@@ -703,7 +719,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'aset'
 					},
 					{
 						title: 'Aset Tdk Menghasilkan',
@@ -713,7 +730,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'aset'
 					},
 					{
 						title: 'Aktiva Lancar',
@@ -813,7 +831,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'Piutang Bersih',
@@ -823,7 +842,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'Piutang Anggota',
@@ -833,7 +853,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'Piutang Lalai 1-12 Bulan',
@@ -843,7 +864,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'Piutang Lalai > 12 Bulan',
@@ -853,7 +875,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'Rasio Piutang Beredar',
@@ -863,7 +886,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'Rasio Piutang Lalai',
@@ -873,7 +897,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'piutang'
 					},
 					{
 						title: 'DCR',
@@ -953,7 +978,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'shu'
 					},
 					{
 						title: 'Total Biaya',
@@ -963,7 +989,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'shu'
 					},
 					{
 						title: 'SHU',
@@ -973,7 +1000,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'shu'
 					},
 					{
 						title: 'SHU Lalu',
@@ -983,7 +1011,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'shu'
 					},
 					{
 						title: 'Rata-rata Aset',
@@ -993,7 +1022,8 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						columnGroup: 'aset'
 					},
 					{
 						title: 'Laju Inflasi',
@@ -1021,7 +1051,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					},
 					{
 						title: 'Tgl. Ubah',
@@ -1029,7 +1060,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						columnGroup: 'all'
 					}
 				],
 				modalShow: false,
@@ -1138,8 +1170,14 @@
 				this.filterData[1].disable = status;
 				this.filterData[2].disable = status;
 			},
-			kolomAnggota(){
-
+			columnGroup(value){
+				for (let i = 0, len = this.columnData.length ; i < len; i++){
+					if(this.columnData[i].columnGroup == value || this.columnData[i].columnGroup == 'all'){
+						this.columnData[i].hide = false;
+					}else{
+						this.columnData[i].hide = true;
+					}
+				}
 			},
 			resetParams(){
 				this.params.search_column = 'cu.name';

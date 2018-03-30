@@ -81,26 +81,26 @@
 						<div class="btn-group">
 							<!-- asc -->
 							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Mengurutkan data dari yang terkecil ke terbesar'" :disabled="itemDataStat === 'loading'">
-								<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscKey }} &nbsp;
+								<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscTitle }} &nbsp;
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Data yang diurutkan</li>
 								<li class="divider"></li>
-								<li :class="{'active' : data.key === sortAscKey}" v-for="data in dataShown">
+								<li :class="{'active' : data.title === sortAscTitle}" v-for="data in dataShown">
 									<a @click.prevent="sortAscData(data.key,data.title)">{{ data.title }}</a>
 								</li>
 							</ul>
 
 							<!-- desc -->
 							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Mengurutkan data dari yang terbesar ke terkecil'" :disabled="itemDataStat === 'loading'">
-								<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescKey }} &nbsp;
+								<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescTitle }} &nbsp;
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Data yang diurutkan</li>
 								<li class="divider"></li>
-								<li :class="{'active' : data.key === sortDescKey}" v-for="data in dataShown">
+								<li :class="{'active' : data.title === sortDescTitle}" v-for="data in dataShown">
 									<a @click.prevent="sortDescData(data.key,data.title)">{{ data.title }}</a>
 								</li>
 							</ul>
@@ -157,13 +157,13 @@
 					<div class="btn-group special pb-5">
 						<!-- asc -->
 						<button type="button" class="btn btn-default btn-icon" :disabled="itemDataStat === 'loading'"  @click.prevent="modalMobileOptionOpen('sortAsc')">
-							<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscKey }} &nbsp;
+							<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscTitle }} &nbsp;
 							<span class="caret"></span>
 						</button>
 
 						<!-- desc -->
 						<button type="button" class="btn btn-default btn-icon" :disabled="itemDataStat === 'loading'"  @click.prevent="modalMobileOptionOpen('sortDesc')">
-							<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescKey }} &nbsp;
+							<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescTitle }} &nbsp;
 							<span class="caret"></span>
 						</button>
 					</div>
@@ -207,18 +207,29 @@
         <div v-if="modalMobileOptionState === 'entri'">
           <h2 class="text-center">Entri yang ditampilkan</h2>
           <hr/>
-          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 10}" @click.prevent="entriPage(10,'mobile')" >10 Entri</a>
-          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 25}" @click.prevent="entriPage(25,'mobile')" v-if="itemData.total > 10">25 Entri</a>
-          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 50}" @click.prevent="entriPage(50,'mobile')" v-if="itemData.total > 25">50 Entri</a>
+          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 10, 'btn-default': params.per_page !== 10}" @click.prevent="entriPage(10,'mobile')" >10 Entri</a>
+          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 25, 'btn-default': params.per_page !== 25}" @click.prevent="entriPage(25,'mobile')" v-if="itemData.total > 10">25 Entri</a>
+          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 50, 'btn-default': params.per_page !== 50}" @click.prevent="entriPage(50,'mobile')" v-if="itemData.total > 25">50 Entri</a>
           <slot name="button-entri-mobile"></slot>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
 
-        <div v-if="modalMobileOptionState === 'sort'">
-          <h2 class="text-center">Urutkan berdasarkan</h2>
+        <div v-if="modalMobileOptionState === 'sortAsc'">
+          <h2 class="text-center">Mengurutkan data dari yang terkecil ke terbesar</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="item in columnData" v-if="!item.hide && !item.disable && item.sort" @click.prevent="sort(item.key)">
+          <a class="btn btn-block" :class="{'btn-primary' : data.title === sortAscTitle, 'btn-default': data.title !== sortAscTitle}" v-for="data in dataShown" @click.prevent="sortAscData(data.key,data.title,'mobile')">
+						{{ data.title }}
+          </a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+				<div v-if="modalMobileOptionState === 'sortDesc'">
+          <h2 class="text-center">Mengurutkan data dari yang terbesar ke terkecil</h2>
+          <hr/>
+          <a class="btn btn-block" :class="{'btn-primary' : data.title === sortDescTitle, 'btn-default': data.title !== sortDescTitle}" v-for="data in dataShown" @click.prevent="sortDescData(data.key,data.title,'mobile')">
+						{{ data.title }}
           </a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
@@ -266,8 +277,8 @@ export default {
     return {
 			pages: [],
 			sortState: '',
-			sortAscKey: '',
-			sortDescKey: '',
+			sortAscTitle: '',
+			sortDescTitle: '',
 			dataShown: [],
 			bar:{
 				title:{
@@ -416,19 +427,27 @@ export default {
 		},
 
 		//sort data
-		sortAscData(key,title){
+		sortAscData(key, title, type){
 			this.params.direction = 'asc';
 			this.params.column = key;
-			this.sortDescKey = '';
-			this.sortAscKey = title;
+			this.sortDescTitle = '';
+			this.sortAscTitle = title;
 			this.fetch();
+
+			if(type == 'mobile'){
+				this.modalTutup();
+			}
 		},
-		sortDescData(key,title){
+		sortDescData(key, title, type){
 			this.params.direction = 'desc';
 			this.params.column = key;
-			this.sortAscKey = '';
-			this.sortDescKey = title;
+			this.sortAscTitle = '';
+			this.sortDescTitle = title;
 			this.fetch();
+
+			if(type == 'mobile'){
+				this.modalTutup();
+			}
 		},
 
 		// pagination from database

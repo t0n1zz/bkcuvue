@@ -70,20 +70,13 @@ export default {
 		},
 		itemDataStat(value){
 			if(value == "success"){
-				if(this.isFirstLoad){
-					if(this.itemData.total >= 11 && this.itemData.total <= 25){
-						this.params.per_page = 25;
-					}else if(this.itemData.total > 25){
-						this.params.per_page = 50;
-					}else{
-						this.params.per_page = 10;
-					}
-					this.isFirstLoad = false;
-
-					if(this.idCU !== 'semua'){
+				// if(this.isFirstLoad){ TODO: fix this
+				// 	this.checkPage();
+				// 	this.isFirstLoad = false;
+				// }
+				if(this.idCU !== 'semua'){
 						this.titleText = 'Grafik ' + this.title + ' ' + this.itemData.data[0].c_u.name;
 					}
-				}
 			}
 		}
 	},
@@ -92,7 +85,6 @@ export default {
 		fetch(){
 			 
 			if(this.idCU === 'semua'){
-				this.params.per_page = 50;
 				if(this.selectData){
 					this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
 
@@ -106,6 +98,16 @@ export default {
 					this.axisLabelKey = 'periode';
 					
 				}
+			}
+		},
+
+		checkPage(){
+			if(this.itemData.total >= 11 && this.itemData.total <= 25){
+				this.params.per_page = 25;
+			}else if(this.itemData.total > 25){
+				this.params.per_page = 50;
+			}else{
+				this.params.per_page = 10;
 			}
 		},
 
