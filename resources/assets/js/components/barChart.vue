@@ -23,9 +23,10 @@
 					auto-resize></echarts>	
 			</div>
 			<hr>
-			<div class="row">
+			<div class="row hidden-print">
 
-				<div class="col-md-12">
+				<!-- desktop button -->
+				<div class="col-md-12 hidden-xs">
 
 					<div class="btn-toolbar pb-5">
 
@@ -78,6 +79,7 @@
 
 						<!-- sorting -->
 						<div class="btn-group">
+							<!-- asc -->
 							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Mengurutkan data dari yang terkecil ke terbesar'" :disabled="itemDataStat === 'loading'">
 								<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscKey }} &nbsp;
 								<span class="caret"></span>
@@ -89,9 +91,8 @@
 									<a @click.prevent="sortAscData(data.key,data.title)">{{ data.title }}</a>
 								</li>
 							</ul>
-						</div>
 
-						<div class="btn-group">
+							<!-- desc -->
 							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Mengurutkan data dari yang terbesar ke terkecil'" :disabled="itemDataStat === 'loading'">
 								<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescKey }} &nbsp;
 								<span class="caret"></span>
@@ -114,7 +115,67 @@
 
 					</div>
 				</div>
+				
+				<!-- mobile -->
+				<div class="col-sm-12 visible-xs">
 
+					<!-- entri page -->
+					<div class="pb-5">
+						<button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('entri')">
+							<i class="icon-menu7"></i> {{params.per_page}} Entri yang ditampilkan
+						</button>
+					</div>
+					
+
+					<!-- pagination success -->
+					<div class="btn-group special pb-5" v-if="itemDataStat === 'success'">
+						<button class="btn btn-default btn-icon" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prev">
+							<i class="icon-arrow-left12"></i>
+						</button>
+						<button class="btn btn-default btn-icon" v-for="n in pages" :class="{'active' : params.page == n}" @click.prevent="goToPage(n)">
+							{{n}}
+						</button>
+						<button class="btn btn-default btn-icon" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="next">
+							<i class="icon-arrow-right13"></i>
+						</button>
+					</div>
+
+					<!-- pagination loading -->
+					<div class="btn-group special pb-5" v-else-if="itemDataStat === 'loading'">
+						<button class="btn btn-default btn-icon disabled">
+							<i class="icon-arrow-left12"></i>
+						</button>
+						<button class="btn btn-default btn-icon disabled">
+							<i class="icon-spinner2 spinner"></i>
+						</button>
+						<button class="btn btn-default btn-icon disabled">
+							<i class="icon-arrow-right13"></i>
+						</button>
+					</div>
+
+					<!-- sorting -->
+					<div class="btn-group special pb-5">
+						<!-- asc -->
+						<button type="button" class="btn btn-default btn-icon" :disabled="itemDataStat === 'loading'"  @click.prevent="modalMobileOptionOpen('sortAsc')">
+							<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscKey }} &nbsp;
+							<span class="caret"></span>
+						</button>
+
+						<!-- desc -->
+						<button type="button" class="btn btn-default btn-icon" :disabled="itemDataStat === 'loading'"  @click.prevent="modalMobileOptionOpen('sortDesc')">
+							<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescKey }} &nbsp;
+							<span class="caret"></span>
+						</button>
+					</div>
+
+					<!-- tambah data -->
+					<div class="pb-5">
+						<button type="button" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Menambah data yang ingin ditampilkan di grafik'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
+							<i class="icon-database-add"></i> Tambah Data
+						</button>
+					</div>
+					
+				</div>
 				
 				<div class="pb-5" :class="checkClass()" v-for="(data,index) in dataShown">
 					<div class="input-group">
@@ -139,6 +200,32 @@
 
 	</div>
 
+	<!-- modal -->
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
+      <div slot="modal-body1">
+        <!-- entri -->
+        <div v-if="modalMobileOptionState === 'entri'">
+          <h2 class="text-center">Entri yang ditampilkan</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 10}" @click.prevent="entriPage(10,'mobile')" >10 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 25}" @click.prevent="entriPage(25,'mobile')" v-if="itemData.total > 10">25 Entri</a>
+          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 50}" @click.prevent="entriPage(50,'mobile')" v-if="itemData.total > 25">50 Entri</a>
+          <slot name="button-entri-mobile"></slot>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+
+        <div v-if="modalMobileOptionState === 'sort'">
+          <h2 class="text-center">Urutkan berdasarkan</h2>
+          <hr/>
+          <a class="btn btn-default btn-block" v-for="item in columnData" v-if="!item.hide && !item.disable && item.sort" @click.prevent="sort(item.key)">
+          </a>
+          <hr/>
+          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+        </div>
+      </div>
+    </app-modal>
+
 </div>
 </template>
 
@@ -154,16 +241,25 @@
 		width: 100vw;
 		height: 70vh;
 	}
+	.btn-group.special {
+		display: flex;
+	}
+
+	.special .btn {
+		flex: 1
+	}
 </style>
 
 
 <script>
 import _ from 'lodash';
 import ECharts from 'vue-echarts';
+import appModal from '../components/modal';
 
 export default {
 	components:{
-		echarts: ECharts
+		echarts: ECharts,
+		appModal,
 	},
 	props:['titleText','title','kelas','params','dataShownTitle1','dataShownKey1','axisLabelKey','itemData','itemDataStat','columnData'],
   data(){
@@ -200,7 +296,12 @@ export default {
 						data: [],
 				},
 				series: []
-			}
+			},
+			modalShow: false,
+			modalState: '',
+			modalTitle: '',
+			modalButton: '',
+			modalMobileOptionState: ''
     }
 	},
 	created() {
@@ -291,7 +392,7 @@ export default {
 		},
 
 		// entri data
-		entriPage(value) {
+		entriPage(value, type) {
 			if (this.params.per_page != value) {
 				this.params.per_page = value;
 				this.params.page = 1;
@@ -299,6 +400,10 @@ export default {
 			}
 
 			this.checkEntriPage(value);	
+
+			if(type == 'mobile'){
+				this.modalTutup();
+			}
 		},
 		checkEntriPage(value){
 			if(value >= 11 && value <= 25){
@@ -361,7 +466,17 @@ export default {
 				this.params.page = value;
 				this.fetch();
 			}
-		}
+		},
+
+		// modal
+		modalMobileOptionOpen(state){
+			this.modalShow = true;
+			this.modalState = "normal1";
+			this.modalMobileOptionState = state;
+		},
+		modalTutup() {
+			this.modalShow = false;
+		},
 	}
 }
 </script>

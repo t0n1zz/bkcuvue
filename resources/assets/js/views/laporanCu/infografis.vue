@@ -60,14 +60,13 @@ export default {
 		// check route changes
 		idCU(valeu){
 			this.isFirstLoad = true;
-
-			if(this.idCU !== 'semua'){
-				this.fetch();
-			}
+			this.fetch();
 		},
 		selectData(value){
 			this.isFirstLoad = true;
-			this.fetch();
+			if(this.idCU == 'semua'){
+				this.fetch();
+			}
 		},
 		itemDataStat(value){
 			if(value == "success"){
@@ -94,10 +93,12 @@ export default {
 			 
 			if(this.idCU === 'semua'){
 				this.params.per_page = 50;
-				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
+				if(this.selectData){
+					this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
 
-				this.axisLabelKey = 'cu_name';
-				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
+					this.axisLabelKey = 'cu_name';
+					this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
+				}
 			}else{
 				if(this.idCU !== undefined){
 					this.$store.dispatch(this.kelas + '/grafikCU', [this.params,this.idCU]);

@@ -311,15 +311,6 @@
                   <li :class="{'active' : params.per_page === 50}" v-if="itemData.total > 25">
                     <a @click.prevent="entriPage(50)">50 Entri</a>
                   </li>
-                  <li :class="{'active' : params.per_page === 100}" v-if="itemData.total > 50">
-                    <a @click.prevent="entriPage(100)">100 Entri</a>
-                  </li>
-                  <li :class="{'active' : params.per_page === 200}" v-if="itemData.total > 100">
-                    <a @click.prevent="entriPage(200)">200 Entri</a>
-                  </li>
-                  <li :class="{'active' : params.per_page === 400}" v-if="itemData.total > 200">
-                    <a @click.prevent="entriPage(400)">400 Entri</a>
-                  </li>  
                   <slot name="button-entri-desktop"></slot>
                 </ul>
               </div>
@@ -685,9 +676,6 @@
           <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 10}" @click.prevent="entriPage(10)" >10 Entri</a>
           <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 25}" @click.prevent="entriPage(25)" v-if="itemData.total > 10">25 Entri</a>
           <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 50}" @click.prevent="entriPage(50)" v-if="itemData.total > 25">50 Entri</a>
-          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 100}" @click.prevent="entriPage(100)" v-if="itemData.total > 50">100 Entri</a>
-          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 200}" @click.prevent="entriPage(200)" v-if="itemData.total > 100">200 Entri</a>
-          <a class="btn btn-default btn-block" :class="{'btn-primary' : params.per_page === 400}" @click.prevent="entriPage(400)" v-if="itemData.total > 200">400 Entri</a>
           <slot name="button-entri-mobile"></slot>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
