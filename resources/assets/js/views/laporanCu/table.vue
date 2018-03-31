@@ -175,10 +175,10 @@
 						<check-value :value="props.item.piutang_lalai_12bulan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[29].hide">
-						<check-value :value="props.item.rasio_piutang_beredar" valueType="percentage"></check-value>
+						<check-value :value="props.item.rasio_beredar" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[30].hide">
-						<check-value :value="props.item.rasio_piutang_lalai" valueType="percentage"></check-value>
+						<check-value :value="props.item.rasio_lalai" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[31].hide">
 						<check-value :value="props.item.dcr" valueType="currency"></check-value>

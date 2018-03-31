@@ -8,11 +8,13 @@ export const laporanCu = {
     data: {}, //single data
     dataS: [], //collection
     grafik: [],
+    pearls: [],
     periode: [],
     columnData: [],
     dataStat: '',
     dataStatS: '',
     grafikStat:'',
+    pearlsStat:'',
     periodeStat: '',
     update: [], //update data
     updateStat: '',
@@ -25,10 +27,12 @@ export const laporanCu = {
     data: state => state.data,
     dataS: state => state.dataS,
     grafik: state => state.grafik,
+    pearls: state => state.pearls,
     periode: state => state.periode,
     columnData: state => state.columnData,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    pearlsStat: state => state.pearlsStat,
     grafikStat: state => state.grafikStat,
     periodeStat: state => state.periodeStat,
     idCU: state => state.idCU,
@@ -81,6 +85,51 @@ export const laporanCu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    //load collection with params
+    indexPearls( { commit }, p ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanCuAPI.indexPearls( p )
+        .then( function( response ){
+          commit('setPearls', response.data.model );
+          commit('setPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
+        });
+    },
+
+    // load by cu
+    indexPearlsCU( { commit }, [p, id] ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanCuAPI.indexPearlsCU( p, id )
+        .then( function( response ){
+          commit('setPearls', response.data.model);
+          commit('setPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
+        });
+    },
+
+    // load by periode
+    indexPearlsPeriode( { commit }, [p, periode] ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanCuAPI.indexPearlsPeriode( p, periode )
+        .then( function( response ){
+          commit('setPearls', response.data.model);
+          commit('setPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
         });
     },
     
@@ -292,6 +341,9 @@ export const laporanCu = {
     setGrafik( state, data ){
       state.grafik = data;
     },
+    setPearls( state, data ){
+      state.pearls = data;
+    },
     setPeriode( state, data ){
       state.periode = data;
     },
@@ -303,6 +355,9 @@ export const laporanCu = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setPearlsStat( state, status ){
+      state.pearlsStat = status;
     },
     setGrafikStat( state, status ){
       state.grafikStat = status;

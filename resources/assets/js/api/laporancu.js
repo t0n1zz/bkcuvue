@@ -18,6 +18,18 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/getPeriode');
   },
 
+  indexPearls: function( p ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexPearls' ,{params: p});
+  },
+
+  indexPearlsCU: function( p, id ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexPearlsCU/' + id, {params: p});
+  },
+
+  indexPearlsPeriode: function( p, periode ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexPearlsPeriode/' + periode, {params: p});
+  },
+
   create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/laporanCu/create');
   },

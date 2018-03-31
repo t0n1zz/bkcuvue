@@ -23,6 +23,9 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
+					<message v-if="itemPearlsStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemPearls">
+					</message>
+
 					<!-- select data -->
 					<select-data 
 						:kelas="kelas"
@@ -33,6 +36,7 @@
 					<div class="tabbable">
 						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
 							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> Tabel {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'tablePearls'}"><a @click.prevent="changeTab('tablePearls')"><i class="icon-list2 position-left"></i> Tabel {{ titlePearls }}</a></li>
 							<li :class="{'active' : tabName == 'infografis'}"><a @click.prevent="changeTab('infografis')"><i class="icon-graph position-left"></i> Infografis {{ title }}</a></li>
 						</ul>
 					</div>
@@ -43,6 +47,12 @@
 						<table-data 
 							:title="title" 
 							:kelas="kelas"></table-data>
+					</div>
+
+					<div v-show="tabName == 'tablePearls'">
+						<table-pearls 
+							:title="titlePearls" 
+							:kelas="kelas"></table-pearls>
 					</div>
 
 					<div v-show="tabName =='infografis'" v-if="isInfografis">
@@ -66,6 +76,7 @@
 	import message from "../../components/message.vue";
 	import selectData from "./select.vue";
 	import tableData from "./table.vue";
+	import tablePearls from "./tablePearls.vue";
 	import infografisData from "./infografis.vue";
 
 	export default {
@@ -74,11 +85,13 @@
 			message,
 			selectData,
 			tableData,
+			tablePearls,
 			infografisData
 		},
 		data() {
 			return {
 				title: 'Laporan CU',
+				titlePearls: 'P.E.A.R.L.S',
 				kelas: 'laporanCu',
 				titleDesc: 'Mengelola data perkembangan CU',
 				titleIcon: 'icon-stats-growth',
@@ -114,6 +127,8 @@
 			...mapGetters('laporanCu',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
+				itemPearls: 'pearls',
+				itemPearlsStat: 'pearlsStat',
 			}),
 		}
 	}

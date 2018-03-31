@@ -80,6 +80,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::get('/laporanCu', 'laporanCuController@index');
     Route::get('/laporanCu/indexCU/{id}', 'laporanCuController@indexCU');
     Route::get('/laporanCu/indexPeriode/{periode}', 'laporanCuController@indexPeriode');
+    Route::get('/laporanCu/indexPearls', 'laporanCuController@indexPearls');
+    Route::get('/laporanCu/indexPearlsCU/{id}', 'laporanCuController@indexPearlsCU');
+    Route::get('/laporanCu/indexPearlsPeriode/{periode}', 'laporanCuController@indexPearlsPeriode');
     Route::get('/laporanCu/getPeriode', 'laporanCuController@getPeriode');
     Route::get('/laporanCu/create', 'laporanCuController@create');
     Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');

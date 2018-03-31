@@ -5,7 +5,7 @@
           <truncate clamp="...selengkapnya" :length="trimLength" less="...kembali" :text="frontText + ' ' +value"></truncate>
         </span>
         <span v-else-if="valueType == 'currency'">{{frontText}} {{ value | currency('',0,{ thousandsSeparator: '.'}) }}</span>
-        <span v-else-if="valueType == 'percentage'">{{frontText}} {{ value | percentage }}</span>
+        <span v-else-if="valueType == 'percentage'">{{frontText}} {{ value | percentage(2) }}</span>
         <span v-else>{{frontText}} {{value}}</span>
       </span>
       <span v-else>{{frontText}} {{empty}}</span>
