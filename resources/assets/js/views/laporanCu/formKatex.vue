@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<h5 class="text-semibold">Rumus</h5>
+		<h5 class="text-semibold">RUMUS</h5>
 
 		<!-- katex1 -->
 		<div v-for="katex in modalKatex.katex1" v-if="katex.content">
-			<p>{{katex.title}}</p>
-			<div class="well pre-scrollable text-center">
+			<p v-if="katex.title"><b>Keterangan:</b> {{katex.title}}</p>
+			<div class="well mb-20 pre-scrollable text-center">
 				<div v-katex="katex.content"></div>
 			</div>
 		</div>
@@ -19,12 +19,12 @@
 		<!-- separator	 -->
 		<hr>
 
-		<h5 class="text-semibold">Perhitungan {{ modalKatex.section }}</h5>
+		<h5 class="text-semibold">PERHITUNGAN <small>{{ modalKatex.section }}</small></h5>
 
 		<!-- katex2 -->
 		<div v-for="katex in modalKatex.katex2" v-if="katex.content">
-			<p>{{katex.title}}</p>
-			<div class="well pre-scrollable text-center">
+			<p v-if="katex.title"><b>Keterangan:</b> {{katex.title}}</p>
+			<div class="well mb-20 pre-scrollable text-center">
 				<div v-katex="katex.content"></div>
 			</div>
 		</div>
@@ -44,7 +44,7 @@
 							v-model="form.value" 
 							class="form-control" 
 							:options="cleaveOption.numeric"
-							:placeholder="'Silahkan masukkan' + form.title"></cleave>
+							:placeholder="'Silahkan masukkan ' + form.title"></cleave>
 
 					</div>
 				</div>

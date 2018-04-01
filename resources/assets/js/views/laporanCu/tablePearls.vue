@@ -87,9 +87,9 @@
 						&nbsp;
 						{{ props.item.periode | dateMonth }}
 					</td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[5].hide" @click.prevent="modelKatexOpen(props.item,'p1')" style="cursor:pointer;">
 						<div class="media-left media-middle">
-							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p1 >= 1, 'btn-danger': props.item.p1 < 1}" @click.prevent="modelKatexOpen(props.item,'p1')">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p1 >= 1, 'btn-danger': props.item.p1 < 1}">
 								<span class="letter-icon">P1</span>
 							</a>
 						</div>
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[6].hide" @click.prevent="modelKatexOpen(props.item,'p2')" style="cursor:pointer;">
 						<div class="media-left media-middle">
 							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p2 > 0.35, 'btn-danger': props.item.p2 <= 0.35}">
 								<span class="letter-icon">P2</span>
@@ -121,7 +121,7 @@
 							</div>
 						</div>
 					</td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[7].hide" @click.prevent="modelKatexOpen(props.item,'e1')" style="cursor:pointer;">
 						<div class="media-left media-middle">
 							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e1 >= 0.7 && props.item.e1 <= 0.8, 'btn-danger': props.item.e1 < 0.7 || props.item.e1 > 0.8}">
 								<span class="letter-icon">E1</span>
@@ -138,7 +138,7 @@
 							</div>
 						</div>
 					</td>
-					<td v-if="!columnData[8].hide">
+					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
 						<div class="media-left media-middle">
 							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e5 >= 0.7 && props.item.e5 <= 0.8, 'btn-danger': props.item.e5 < 0.7 || props.item.e5 > 0.8}">
 								<span class="letter-icon">E5</span>
@@ -155,7 +155,7 @@
 							</div>
 						</div>
 					</td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[9].hide" @click.prevent="modelKatexOpen(props.item,'e6')" style="cursor:pointer;">
 						<div class="media-left media-middle">
 							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e6 <= 0.05, 'btn-danger': props.item.e6 > 0.05}">
 								<span class="letter-icon">E6</span>
@@ -172,10 +172,10 @@
 							</div>
 						</div>
 					</td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[10].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
 						<div class="media-left media-middle">
 							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e9 >= 0.1, 'btn-danger': props.item.e9 < 0.1}">
-								<span class="letter-icon">E6</span>
+								<span class="letter-icon">E9</span>
 							</a>
 						</div>
 						<div class="media-body">
@@ -189,26 +189,116 @@
 							</div>
 						</div>
 					</td>
-					<td v-if="!columnData[11].hide">
-						<check-value :value="props.item.a1" valueType="percentage"></check-value>
+					<td v-if="!columnData[11].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.a1 <= 0.05, 'btn-danger': props.item.a1 > 0.05}">
+								<span class="letter-icon">A1</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.a1" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.a1 <= 0.05, 'border-red': props.item.a1 > 0.05}"></span>
+								<span v-if="props.item.a1 <= 0.05">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
-					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.a2" valueType="percentage"></check-value>
+					<td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.a2 < 0.05, 'btn-danger': props.item.a2 >= 0.05}">
+								<span class="letter-icon">A2</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.a2" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.a2 < 0.05, 'border-red': props.item.a2 > 0.05}"></span>
+								<span v-if="props.item.a2 < 0.05">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
-					<td v-if="!columnData[13].hide">
-						<check-value :value="props.item.r7" valueType="percentage"></check-value>
+					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.r7 == props.item.harga_pasar, 'btn-danger': props.item.r7 != props.item.harga_pasar}">
+								<span class="letter-icon">R7</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.r7" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.r7 == props.item.harga_pasar , 'border-red': props.item.r7 != props.item.harga_pasar}"></span>
+								<span v-if="props.item.r7 == props.item.harga_pasar">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
-					<td v-if="!columnData[14].hide">
-						<check-value :value="props.item.l1" valueType="percentage"></check-value>
+					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.l1 >= 0.15 && props.item.l1 <= 0.2, 'btn-danger': props.item.l1 < 0.15 || props.item.l1 > 0.2}">
+								<span class="letter-icon">L1</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.l1" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.l1 >= 0.15 && props.item.l1 <= 0.2, 'border-red': props.item.l1 < 0.15 || props.item.l1 > 0.2,}"></span>
+								<span v-if="props.item.l1 >= 0.15 && props.item.l1 <= 0.2">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
-					<td v-if="!columnData[15].hide">
-						<check-value :value="props.item.s10" valueType="percentage"></check-value>
+					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.s10 > 0.12, 'btn-danger': props.item.s10 <= 0.12}">
+								<span class="letter-icon">S10</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.s10" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.s10 > 0.12, 'border-red': props.item.s10 <= 0.12}"></span>
+								<span v-if="props.item.s10 > 0.12">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
-					<td v-if="!columnData[16].hide">
-						<check-value :value="props.item.s11" valueType="percentage"></check-value>
+					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.s11 > (0.1 + props.item.laju_inflasi), 'btn-danger': props.item.s11 <= (0.1 + props.item.laju_inflasi)}">
+								<span class="letter-icon">S11</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.s11" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.s11 > (0.1 + props.item.laju_inflasi), 'border-red': props.item.s11 <= (0.1 + props.item.laju_inflasi)}"></span>
+								<span v-if="props.item.s11 > (0.1 + props.item.laju_inflasi)">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
-					<td v-if="!columnData[17].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[17].hide">
+						<check-value :value="props.item.harga_pasar" valueType="percentage"></check-value>
+					</td>
 					<td v-if="!columnData[18].hide">
+						<check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value>
+					</td>
+					<td v-if="!columnData[19].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[20].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -306,17 +396,27 @@
 							</tr>
 							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[16].title}}</b></td>
-								<td><check-value :value="props.item.s11"
+								<td><check-value :value="props.item.harga_pasar"
 								valueType="percentage" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[17].title}}</b></td>
+								<td><check-value :value="props.item.laju_inflasi"
+								valueType="percentage" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[18].title}}</b></td>
+								<td><check-value :value="props.item.s11"
+								valueType="percentage" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[19].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[19].title}}</b></td>
 								<td>
 									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[18].title}}</b></td>
+							<tr v-if="!columnData[20].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[20].title}}</b></td>
 								<td>
 									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 								</td>
@@ -588,6 +688,26 @@
 						isChartSelect: false
 					},
 					{
+						title: 'Harga Pasar',
+						key: 'harga_pasar',
+						excelType: 'number',
+						sort: true,
+						hide: false,
+						disable: false,
+						isChart: true,
+						isChartSelect: false
+					},
+					{
+						title: 'Laju Inflasi',
+						key: 'laju_inflasi',
+						excelType: 'number',
+						sort: true,
+						hide: false,
+						disable: false,
+						isChart: true,
+						isChartSelect: false
+					},
+					{
 						title: 'Tgl. Buat',
 						key: 'created_at',
 						sort: true,
@@ -745,8 +865,9 @@
 				this.modalKatex.id = itemData.id;
 				this.modalKatex.no_ba = itemData.no_ba;
 				this.modalKatex.periode = itemData.periode;
-				this.modalKatex.section = 'CU ' + itemData.cu_name + ' ' + this.formatPeriode(itemData.periode);
+				this.modalKatex.section = 'CU ' + itemData.cu_name + ' periode ' + this.formatPeriode(itemData.periode);
 
+				// p1	
 				if(type == 'p1'){
 					this.modalTitle = 'P1 - Provisi Pinjaman Lalai Di Atas 12 Bulan';
 
@@ -763,8 +884,114 @@
 					
 					this.modalKatex.katex1.push({title:'',content:katex1Content1});
 					this.modalKatex.katex2.push({title:'',content:katex2Content1});
-				}
+
+				// p2
+				}else if(type == 'p2'){
+					this.modalTitle = 'P2 -  Provisi pinjaman lalai 1 - 12 bulan';
+
+					this.modalKatex.form.push(
+						{title:'Cadangan Resiko',key:'dcr',value:itemData.dcr},
+						{title:'Piutang Lalai Di Atas 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan},
+						{title:'Piutang Lalai 1 - 12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan},
+					);
+					
+					this.modalKatex.indikator = '35% provisi tersedia untuk pinjaman lalai 1 – 12 bulan dan setiap triwulan dilakukan charge off dari waktu ke waktu';
+
+					let katex1Content1 = '\\text{P2} = \\dfrac{\\text{Saldo Cadangan Resiko setelah P1}[\\text{'+ this.modalKatex.form[0].title +'} - \\text{'+ this.modalKatex.form[1].title +'}]}{\\text{'+ this.modalKatex.form[2].title +'}} \\times \\text{100} \\% = \\text{Di Atas 35} \\% (\\text{IDEAL})';
+
+					let katex2Content1 = '\\text{P2} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} - \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{'+ this.formatCurrency(this.modalKatex.form[2].value) +'} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.p2) +' \\% (\\text{'+ (itemData.p2 >=0.35 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					
+					this.modalKatex.katex1.push({title:'',content:katex1Content1});
+
+					if(itemData.p1 >= 1){
+						this.modalKatex.katex2.push({title:'',content:katex2Content1});
+					}else{
+						this.modalKatex.katex2.push({title:'Karena tidak ada saldo cadangan resiko setelah P1, maka P2 (TIDAK IDEAL)',content:katex2Content1});
+					}
+
+				// e1
+				}else if(type == 'e1'){
+					this.modalTitle = 'E1 - Piutang Bersih / Total Aset';
+
+					if(itemData.p1 >= 1 && itemData.p2 > 0.35){
+						this.modalKatex.form.push(
+							{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar},
+							{title:'Piutang Lalai Di Atas 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan},
+							{title:'Piutang Lalai 1 - 12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan},
+							{title:'Aset',key:'aset',value:itemData.aset},
+						);
+					}else{
+						this.modalKatex.form.push(
+							{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar},
+							{title:'Cadangan Resiko',key:'dcr',value:itemData.dcr},
+							{title:'Aset',key:'aset',value:itemData.aset},
+						);
+					}
+					
+					this.modalKatex.indikator = 'Rasio Piutang Bersih adalah 70% – 80% dari total aset dan portofolio pinjaman beragam dengan setidaknya 5 macam produk pinjaman yang berbeda';
+
+					let katex1Content1 = '\\text{E1} = \\dfrac{\\text{Piutang Beredar} - ((\\text{100} \\% \\times \\text{Piutang Lalai Di Atas 12 Bulan}) + (\\text{35} \\% \\times \\text{Piutang Lalai 1 - 12 Bulan}))}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})';
+
+					let katex1Content2 = '\\text{E1} = \\dfrac{\\text{Piutang Beredar} - \\text{Cadangan Resiko}}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})';
+
+					let katex2Content1 = '';
+					let katex2Title1 = '';
+					if(itemData.p1 >= 1 && itemData.p2 > 0.35){
+						katex2Title1 = 'Dikarenakan P1 dan P2 (IDEAL), maka rumus yang digunakan adalah rumus 1'
+						katex2Content1 = '\\text{E1} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} - ((\\text{100} \\% \\times \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}) + (\\text{35} \\% \\times \\text{'+ this.formatCurrency(this.modalKatex.form[2].value) +'}))}{\\text{'+ this.formatCurrency(this.modalKatex.form[3].value)+'}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e1) +' \\% (\\text{'+ (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					}else{
+						katex2Title1 = 'Dikarenakan P1 dan P2 (TIDAK IDEAL), maka rumus yang digunakan adalah rumus 2'
+						katex2Content1 = '\\text{E1} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} - \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{\\text{'+ this.formatCurrency(this.modalKatex.form[2].value) +'}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e1) +' \\% (\\text{'+ (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					}	
+
+					this.modalKatex.katex1.push(
+						{title:'Rumus 1 - apabila P1 dan P2 (IDEAL)',content:katex1Content1},
+						{title:'Rumus 2 - apabila P1 dan P2 (TIDAK IDEAL)',content:katex1Content2}
+					);
+					this.modalKatex.katex2.push({title:katex2Title1 ,content:katex2Content1});
 				
+				// e5
+				}else if(type == 'e5'){
+					this.modalTitle = 'E5 - Simpanan Non Saham / Total Aset';
+
+					this.modalKatex.form.push(
+						{title:'Simpanan Non Saham Unggulan',key:'nonsaham_unggulan',value:itemData.nonsaham_unggulan},
+						{title:'Simpanan Non Saham Harian',key:'nonsaham_harian',value:itemData.nonsaham_harian},
+						{title:'Aset',key:'aset',value:itemData.aset},
+					);
+					
+					this.modalKatex.indikator = 'Rasio 70% – 80% dari total aset dan memiliki beragam jenis simpanan minimal 5 jenis produk simpanan yang berbeda.';
+
+					let katex1Content1 = '\\text{E5} = \\dfrac{\\text{'+ this.modalKatex.form[0].title +'} + \\text{'+ this.modalKatex.form[1].title +'}}{\\text{'+ this.modalKatex.form[2].title +'}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\%(\\text{IDEAL})';
+
+					let katex2Content1 = '\\text{P1} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{'+ this.formatCurrency(this.modalKatex.form[2].value) +'} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e5) +' \\% (\\text{'+ (itemData.e5 >= 0.7 && itemData.e5 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					
+					this.modalKatex.katex1.push({title:'',content:katex1Content1});
+					this.modalKatex.katex2.push({title:'',content:katex2Content1});
+				
+				// e6
+				}else if(type == 'e6'){
+					this.modalTitle = 'E6 - Pinjaman Kepada Pihak Luar Terhadap Total Aset';
+
+					this.modalKatex.form.push(
+						{title:'Total Hutang Pihak Ke-3',key:'total_hutang_pihak3',value:itemData.total_hutang_pihak3},
+						{title:'Aset',key:'aset',value:itemData.aset},
+					);
+					
+					this.modalKatex.indikator = 'Jumlah pinjaman kepada pihak eksternal 1% – 5% dari total aset.';
+
+					let katex1Content1 = '\\text{P1} = \\dfrac{\\text{'+ this.modalKatex.form[0].title +'}}{\\text{'+ this.modalKatex.form[1].title +'}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
+
+					let katex2Content1 = '\\text{P1} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'}}{'+ this.formatCurrency(this.modalKatex.form[1].value) +'} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) +' \\% ( \\text{'+ (itemData.e6 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					
+					this.modalKatex.katex1.push({title:'',content:katex1Content1});
+					this.modalKatex.katex2.push({title:'',content:katex2Content1});
+
+				// e9
+				}else if(type == 'e9'){
+
+				}
+
 			},	
 			modalKatexReset(){
 				this.modalKatex.isUbah = false;

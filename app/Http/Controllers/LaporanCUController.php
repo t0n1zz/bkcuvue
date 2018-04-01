@@ -92,13 +92,15 @@ class LaporanCuController extends Controller{
 
 				@p1 := IFNULL(laporancu.dcr, 0) / IFNULL(laporancu.piutang_lalai_12bulan,0) as p1,
 
-				@p2 := (IFNULL(laporancu.dcr,0) - IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_lalai_1bulan,0) as p2,
+				@p2_1 := (IFNULL(laporancu.dcr,0) - IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_lalai_1bulan,0) as p2_1,
+
+				if(@p1 >= 1, @p2_1, 0) as p2,
 
 				@e1_1 := (IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)))) / IFNULL(laporancu.aset,0) as e1_1,
 
 				@e1_2 := (IFNULL(laporancu.piutang_beredar,0) - IFNULL(laporancu.dcr,0)) / IFNULL(laporancu.aset,0) as e1_2,
 
-				IF(@p1 = 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
+				IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
 
 				(IFNULL(laporancu.nonsaham_unggulan,0) + IFNULL(laporancu.nonsaham_harian,0)) / IFNULL(laporancu.aset,0) as e5,
 
