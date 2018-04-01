@@ -264,7 +264,6 @@ class LaporanCuController extends Controller{
 
 		$kelas = LaporanCu::findOrFail($id);
 
-
 		$kelas->update($request->all());
 
 		return response()

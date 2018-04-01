@@ -26,6 +26,9 @@
 					<message v-if="itemPearlsStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemPearls">
 					</message>
 
+					
+						
+
 					<!-- select data -->
 					<select-data 
 						:kelas="kelas"
@@ -97,6 +100,7 @@
 				titleIcon: 'icon-stats-growth',
 				selectCUPath: 'laporanCuCU',
 				tabName: 'table',
+				katax: '\\frac{1.7888}{1,6777}',
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-magazine',
@@ -133,3 +137,6 @@
 		}
 	}
 </script>
+<style>
+	@import "../../../../../node_modules/katex/dist/katex.min.css"
+</style>

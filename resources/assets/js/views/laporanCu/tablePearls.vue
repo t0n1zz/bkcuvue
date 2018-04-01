@@ -89,7 +89,7 @@
 					</td>
 					<td v-if="!columnData[5].hide">
 						<div class="media-left media-middle">
-							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p1 >= 1, 'btn-danger': props.item.p1 < 1}" @click.prevent="modalCalculation()">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p1 >= 1, 'btn-danger': props.item.p1 < 1}" @click.prevent="modelKatexOpen(props.item,'p1')">
 								<span class="letter-icon">P1</span>
 							</a>
 						</div>
@@ -353,7 +353,15 @@
 		</data-viewer>
 					
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+			<template slot="modal-title">{{ modalTitle }}</template>
+
+			<template slot="modal-body1">
+				<form-katex 
+					:modalKatex="modalKatex"
+					@tutup="modalTutup"></form-katex>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -366,13 +374,15 @@
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
 	import collapseButton from '../../components/collapseButton.vue';
+	import formKatex from './formKatex.vue';
 
 	export default {
 		components: {
 			DataViewer,
 			appModal,
 			checkValue,
-			collapseButton
+			collapseButton,
+			formKatex
 		},
 		props:['title','kelas'],
 		data() {
@@ -597,7 +607,20 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
-				modalButton: ''
+				modalSize: '',
+				modalColor: '',
+				modalButton: '',
+				modalKatex: {
+					id: '',
+					no_ba: '',
+					periode: '',
+					section: '',
+					katex1:[],
+					katex2:[],
+					form: [],
+					indikator: '',
+					isUbah: false
+				}
 			}
 		},
 		created(){
@@ -713,8 +736,41 @@
 			ubahData(id, id_cu) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
-			modalCalculation(){
+			modelKatexOpen(itemData, type){
+				this.modalSize = 'modal-lg';
+				this.modalColor = 'bg-primary';
+				this.modalShow = true;
+				this.modalState = 'normal1'; 
 
+				this.modalKatex.id = itemData.id;
+				this.modalKatex.no_ba = itemData.no_ba;
+				this.modalKatex.periode = itemData.periode;
+				this.modalKatex.section = 'CU ' + itemData.cu_name + ' ' + this.formatPeriode(itemData.periode);
+
+				if(type == 'p1'){
+					this.modalTitle = 'P1 - Provisi Pinjaman Lalai Di Atas 12 Bulan';
+
+					this.modalKatex.form.push(
+						{title:'Cadangan Resiko',key:'dcr',value:itemData.dcr},
+						{title:'Piutang Lalai Di Atas 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan},
+					);
+					
+					this.modalKatex.indikator = '100% provisi tersedia untuk pinjaman lalai di atas 12 bulan dan setiap triwulan dilakukan charge off secara konsisten.';
+
+					let katex1Content1 = '\\text{P1} = \\dfrac{\\text{'+ this.modalKatex.form[0].title +'}}{\\text{'+ this.modalKatex.form[1].title +'}} \\times \\text{100} \\% = \\text{100} \\% (\\text{IDEAL})';
+
+					let katex2Content1 = '\\text{P1} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'}}{'+ this.formatCurrency(this.modalKatex.form[1].value) +'} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.p1) +' \\% (\\text{'+ (itemData.p1 >=1 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					
+					this.modalKatex.katex1.push({title:'',content:katex1Content1});
+					this.modalKatex.katex2.push({title:'',content:katex2Content1});
+				}
+				
+			},	
+			modalKatexReset(){
+				this.modalKatex.isUbah = false;
+				this.modalKatex.katex1 = [];
+				this.modalKatex.katex2 = [];
+				this.modalKatex.form = [];
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -731,16 +787,25 @@
 				}
 			},
 			modalTutup() {
+				this.modalSize = '';
 				this.modalShow = false;
+				this.modalKatexReset(); //reset modal katex
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
 				if (this.source == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
+				this.modalSize = '';
 			},
 			formatPeriode(value){
 				return Vue.filter('dateMonth')(value);
+			},
+			formatCurrency(value){
+				return this.$options.filters.currency(value,'',0,{ thousandsSeparator: '.'});
+			},
+			formatPercentage(value){
+				return Vue.filter('percentage2')(value,2);
 			}
 		},
 		computed: {

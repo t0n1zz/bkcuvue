@@ -19,7 +19,7 @@ class LaporanCu extends Model {
     ];
     
     protected $fillable = [
-        'no_ba','l_biasa','l_lbiasa','p_biasa','p_lbiasa','totalanggota_lalu','aset','aset_lalu','aset_masalah','aset_tidak_menghasilkan','aktivalancar','simpanansaham','simpanansaham_lalu','simpanansaham_des','nonsaham_unggulan','nonsaham_harian','hutangspd','hutang_tidak_berbiaya_30hari','piutangberedar','piutanganggota','piutanglalai_1bulan','piutanglalai_12bulan','dcr','dcu','totalhutang_pihak3','iuran_gedung','donasi','bjs_saham','beban_penyisihandcr','investasi_likuid','totalpendapatan','totalbiaya','shu','shu_lalu','rataaset','lajuinflasi','hargapasar','periode'
+        'no_ba','l_biasa','l_lbiasa','p_biasa','p_lbiasa','total_anggota_lalu','aset','aset_lalu','aset_masalah','aset_tidak_menghasilkan','aktivalancar','simpanan_saham','simpanan_saham_lalu','simpanan_saham_des','nonsaham_unggulan','nonsaham_harian','hutangspd','hutang_tidak_berbiaya_30hari','piutang_beredar','piutang_anggota','piutang_lalai_1bulan','piutang_lalai_12bulan','dcr','dcu','total_hutang_pihak3','iuran_gedung','donasi','bjs_saham','beban_penyisihan_dcr','investasi_likuid','total_pendapatan','total_biaya','shu','shu_lalu','rata_aset','laju_inflasi','harga_pasar','periode'
     ];
 
     protected $filter = [

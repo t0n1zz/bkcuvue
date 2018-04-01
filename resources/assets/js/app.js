@@ -9,11 +9,13 @@ import VeeValidate, { Validator } from 'vee-validate';
 import { BKCU_CONFIG } from './config.js';
 import moment from 'moment';
 import Vue2Filters from 'vue2-filters';
+import VueKatex from 'vue-katex';
 
 Validator.localize('id',id); //localization
 Vue.use(VueRouter);
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
 Vue.use(Vue2Filters);
+Vue.use(VueKatex);
 
 window.moment = moment;
 window.axios = Axios;
@@ -84,6 +86,20 @@ Vue.filter('percentage', function(value, decimals) {
     value = value * 100;
     value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
     value = value + '%';
+    return value;
+});
+Vue.filter('percentage2', function(value, decimals) {
+    if(!value) {
+        value = 0;
+    }
+
+    if(!decimals) {
+        decimals = 0;
+    }
+
+    value = value * 100;
+    value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+    value = value;
     return value;
 });
 Vue.filter('round', function(value, decimals) {
