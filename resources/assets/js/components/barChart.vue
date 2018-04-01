@@ -378,6 +378,7 @@ export default {
 		},
 		addSeries(){
 			let data = _.find(this.columnData,{'key':this.dataShown[0].key});
+			console.log(data);
 			let series = { name:data.title, data:[], type:'bar'};
 			this.bar.series.push(series);
 		},

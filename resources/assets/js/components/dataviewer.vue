@@ -375,7 +375,7 @@
             <tr class="text-nowrap">
               <th v-for="item in columnData" v-if="!item.hide && !item.disable">
                 <div @click="sort(item.key)" v-if="item.sort" class="cursor-pointer">
-                  <span>{{item.title}}</span>
+                  <span v-html="item.title"></span>
                   <span v-if="params.column === item.key">
                     <span v-if="params.direction === 'asc'"><i class="icon-sort-amount-asc"></i></span>
                     <span v-else><i class="icon-sort-amount-desc"></i></span>
@@ -383,7 +383,7 @@
                   <span class="icon-sort text-muted" v-else></span>
                 </div>
                 <div v-else>
-                  <span>{{item.title}}</span>
+                  <span v-html="item.title"></span>  
                 </div>
               </th>
             </tr>

@@ -89,7 +89,7 @@
 					</td>
 					<td v-if="!columnData[5].hide">
 						<div class="media-left media-middle">
-							<a href="#" class="btn btn-primary btn-rounded btn-icon btn-xs">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p1 >= 1, 'btn-danger': props.item.p1 < 1}" @click.prevent="modalCalculation()">
 								<span class="letter-icon">P1</span>
 							</a>
 						</div>
@@ -98,26 +98,96 @@
 								<check-value :value="props.item.p1" valueType="percentage"></check-value>
 							</span>
 							<div class="text-muted text-size-small">
-								<span class="status-mark border-blue position-left"></span>
-								Ideal
+								<span class="status-mark position-left" :class="{'border-blue': props.item.p1 >= 1, 'border-red': props.item.p1 < 1}"></span>
+								<span v-if="props.item.p1 >= 1">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
 							</div>
 						</div>
-						
 					</td>
 					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.p2" valueType="percentage"></check-value>
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.p2 > 0.35, 'btn-danger': props.item.p2 <= 0.35}">
+								<span class="letter-icon">P2</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.p2" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.p2 > 0.35, 'border-red': props.item.p2 <= 0.35}"></span>
+								<span v-if="props.item.p2 > 0.35">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
 					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.e1" valueType="percentage"></check-value>
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e1 >= 0.7 && props.item.e1 <= 0.8, 'btn-danger': props.item.e1 < 0.7 || props.item.e1 > 0.8}">
+								<span class="letter-icon">E1</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.e1" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark border-blue position-left" :class="{'border-blue': props.item.e1 >= 0.7 && props.item.e1 <= 0.8, 'border-red': props.item.e1 < 0.7 || props.item.e1 > 0.8,}"></span>
+								<span v-if="props.item.e1 >= 0.7 && props.item.e1 <= 0.8">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.e5" valueType="percentage"></check-value>
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e5 >= 0.7 && props.item.e5 <= 0.8, 'btn-danger': props.item.e5 < 0.7 || props.item.e5 > 0.8}">
+								<span class="letter-icon">E5</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.e5" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.e5 >= 0.7 && props.item.e5 <= 0.8, 'border-red': props.item.e5 < 0.7 || props.item.e5 > 0.8,}"></span>
+								<span v-if="props.item.e5 >= 0.7 && props.item.e5 <= 0.8">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.e6" valueType="percentage"></check-value>
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e6 <= 0.05, 'btn-danger': props.item.e6 > 0.05}">
+								<span class="letter-icon">E6</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.e6" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.e6 <= 0.05, 'border-red': props.item.e6 > 0.05}"></span>
+								<span v-if="props.item.e6 <= 0.05">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
 					<td v-if="!columnData[10].hide">
-						<check-value :value="props.item.e9" valueType="percentage"></check-value>
+						<div class="media-left media-middle">
+							<a class="btn btn-rounded btn-icon btn-xs" :class="{'btn-primary': props.item.e9 >= 0.1, 'btn-danger': props.item.e9 < 0.1}">
+								<span class="letter-icon">E6</span>
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="display-inline-block text-default text-semibold letter-icon-title">
+								<check-value :value="props.item.e9" valueType="percentage"></check-value>
+							</span>
+							<div class="text-muted text-size-small">
+								<span class="status-mark position-left" :class="{'border-blue': props.item.e9 >= 0.1, 'border-red': props.item.e9 < 0.1}"></span>
+								<span v-if="props.item.e9 >= 0.1">IDEAL</span>
+								<span v-else>TIDAK IDEAL</span>
+							</div>
+						</div>
 					</td>
 					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.a1" valueType="percentage"></check-value>
@@ -388,7 +458,7 @@
 						isChart: false
 					},
 					{
-						title: 'P1',
+						title: 'P1 (= 100%)',
 						key: 'p1',
 						excelType: 'number',
 						sort: true,
@@ -398,7 +468,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'P2',
+						title: 'P2 (&gt; 100%)',
 						key: 'p2',
 						excelType: 'number',
 						sort: true,
@@ -408,7 +478,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'E1',
+						title: 'E1 (70% - 80%)',
 						key: 'e1',
 						excelType: 'number',
 						sort: true,
@@ -418,7 +488,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'E5',
+						title: 'E5 (70% - 80%)',
 						key: 'e5',
 						excelType: 'number',
 						sort: true,
@@ -428,7 +498,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'E6',
+						title: 'E6 (&le; 5%)',
 						key: 'e6',
 						excelType: 'number',
 						sort: true,
@@ -438,7 +508,7 @@
 						isChartSelect: true
 					},
 					{
-						title: 'E9',
+						title: 'E9 (&ge; 10%)',
 						key: 'e9',
 						excelType: 'number',
 						sort: true,
@@ -448,7 +518,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'A1',
+						title: 'A1 (&le; 5%)',
 						key: 'a1',
 						excelType: 'number',
 						sort: true,
@@ -458,7 +528,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'A2',
+						title: 'A2 (&lt; 5%)',
 						key: 'a2',
 						excelType: 'number',
 						sort: true,
@@ -468,7 +538,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'R7',
+						title: 'R7 (= harga pasar)',
 						key: 'r7',
 						excelType: 'number',
 						sort: true,
@@ -478,7 +548,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'L1',
+						title: 'L1 (15% - 20%)',
 						key: 'l1',
 						excelType: 'number',
 						sort: true,
@@ -488,7 +558,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'S10',
+						title: 'S10 (&gt; 12%)',
 						key: 's10',
 						excelType: 'number',
 						sort: true,
@@ -498,7 +568,7 @@
 						isChartSelect: false
 					},
 					{
-						title: 'S11',
+						title: 'S11 (&gt; 10% + Laju Inflasi)',
 						key: 's11',
 						excelType: 'number',
 						sort: true,
@@ -531,7 +601,7 @@
 			}
 		},
 		created(){
-			this.$store.dispatch(this.kelas + '/addColumnData', this.columnData);
+			// this.$store.dispatch(this.kelas + '/addColumnData', this.columnData);
 		},
 		watch: {
 			// check route changes
@@ -630,9 +700,6 @@
 				this.filterData[1].disable = status;
 				this.filterData[2].disable = status;
 			},
-			kolomAnggota(){
-
-			},
 			resetParams(){
 				this.params.search_column = 'cu.name';
 				this.params.search_query_1 = '';
@@ -645,6 +712,9 @@
 			},
 			ubahData(id, id_cu) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
+			},
+			modalCalculation(){
+
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
