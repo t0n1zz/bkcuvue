@@ -107,7 +107,7 @@
 					</td>
 					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
 						<item-pearls
-							:type="'p5'"
+							:type="'e5'"
 							:props="props"
 						></item-pearls>
 					</td>
@@ -160,10 +160,10 @@
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[17].hide">
-						<check-value :value="props.item.harga_pasar" valueType="percentage"></check-value>
+						<check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[18].hide">
-						<check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value>
+						<check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[19].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[20].hide">
@@ -365,11 +365,11 @@
 
 							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[17].title}}</b></td>
-								<td><check-value :value="props.item.harga_pasar" valueType="percentage"></check-value></td>
+								<td><check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[18].title}}</b></td>
-								<td><check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value></td>
+								<td><check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[19].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[19].title}}</b></td>
@@ -420,6 +420,7 @@
 
 			<template slot="modal-body1">
 				<form-katex 
+					:kelas="kelas"
 					:modalKatex="modalKatex"
 					@tutup="modalTutup"></form-katex>
 			</template>

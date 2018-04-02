@@ -96,37 +96,42 @@ class LaporanCuController extends Controller{
 
 				@p2_1 := (IFNULL(laporancu.dcr,0) - IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_lalai_1bulan,0) as p2_1,
 
-				if(@p1 >= 1, @p2_1, 0) as p2,
+				@p2 := if(@p1 >= 1, @p2_1, 0) as p2,
 
 				@e1_1 := (IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)))) / IFNULL(laporancu.aset,0) as e1_1,
 
 				@e1_2 := (IFNULL(laporancu.piutang_beredar,0) - IFNULL(laporancu.dcr,0)) / IFNULL(laporancu.aset,0) as e1_2,
 
-				IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
+				@e1 := IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
 
-				(IFNULL(laporancu.nonsaham_unggulan,0) + IFNULL(laporancu.nonsaham_harian,0)) / IFNULL(laporancu.aset,0) as e5,
+				@e5 := (IFNULL(laporancu.nonsaham_unggulan,0) + IFNULL(laporancu.nonsaham_harian,0)) / IFNULL(laporancu.aset,0) as e5,
 
-				IFNULL(laporancu.total_hutang_pihak3,0) / IFNULL(laporancu.aset,0) as e6,
+				@e6 := IFNULL(laporancu.total_hutang_pihak3,0) / IFNULL(laporancu.aset,0) as e6,
 
-				(@piutang_bersih - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)) + IFNULL(laporancu.aset_masalah,0))) / IFNULL(laporancu.aset,0) as e9,
+				@e9 := (@piutang_bersih - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)) + IFNULL(laporancu.aset_masalah,0))) / IFNULL(laporancu.aset,0) as e9,
 
-				(IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0)) / IFNULL(laporancu.piutang_beredar,0) as a1,
+				@a1 := (IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0)) / IFNULL(laporancu.piutang_beredar,0) as a1,
 
-				IFNULL(laporancu.aset_tidak_menghasilkan,0) / IFNULL(laporancu.aset,0) as a2,
+				@a2 := IFNULL(laporancu.aset_tidak_menghasilkan,0) / IFNULL(laporancu.aset,0) as a2,
 				
 				@r7_1 := IFNULL(laporancu.bjs_saham,0) / @rata_saham as r7_1,
 
 				@r7_2 := IFNULL(laporancu.bjs_saham,0) / ((IFNULL(laporancu.simpanan_saham_lalu,0) + IFNULL(laporancu.simpanan_saham,0)) / 2) as r7_2,
 
-				IF(IFNULL(laporancu.simpanan_saham_des,0) = 0 && IFNULL(laporancu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
+				@e7_1 := IF(IFNULL(laporancu.simpanan_saham_des,0) = 0 && IFNULL(laporancu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
 
-				(IFNULL(laporancu.total_biaya,0) - IFNULL(laporancu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
+				@e9 := (IFNULL(laporancu.total_biaya,0) - IFNULL(laporancu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
-				(IFNULL(laporancu.investasi_likuid,0) + IFNULL(laporancu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporancu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
+				@l1 := (IFNULL(laporancu.investasi_likuid,0) + IFNULL(laporancu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporancu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
 
-				(@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
+				@s10 := (@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
 
-				(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11'
+				@s1 := (IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11,
+				
+				@ideal := 0 as ideal,
+				@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
+
+				'
 			)])->FilterPaginateOrder();
 
 		return response()
@@ -182,7 +187,11 @@ class LaporanCuController extends Controller{
 
 			(@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
 
-			(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11'
+			(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11,
+			
+			@ideal := 0 as ideal,
+			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
+			'
 		)])->FilterPaginateOrder();
 
 		return response()
@@ -246,7 +255,11 @@ class LaporanCuController extends Controller{
 
 			(@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
 
-			(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11'
+			(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11,
+			
+			@ideal := 0 as ideal,
+			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
+			'
 		)])->FilterPaginateOrder();
 
 		return response()

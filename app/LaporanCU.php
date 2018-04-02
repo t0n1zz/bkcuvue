@@ -2,12 +2,13 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\FilterPaginateOrder;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class LaporanCu extends Model {
 
-    use FilterPaginateOrder, LogsActivity;
+    use FilterPaginateOrder, LogsActivity, SoftDeletes;
 
     protected $table = 'laporancu';
 
@@ -34,7 +35,7 @@ class LaporanCu extends Model {
     public static function initialize()
     {
         return [
-            'no_ba' => '0','cu_name' => '0','l_biasa' => '0','l_lbiasa' => '0','p_biasa' => '0','p_lbiasa' => '0','totalanggota_lalu' => '0','aset' => '0','aset_lalu' => '0','aset_masalah' => '0','aset_tidak_menghasilkan' => '0','aktivalancar' => '0','simpanansaham' => '0','simpanansaham_lalu' => '0','simpanansaham_des' => '0','nonsaham_unggulan' => '0','nonsaham_harian' => '0','hutangspd' => '0','hutang_tidak_berbiaya_30hari' => '0','piutangberedar' => '0','piutanganggota' => '0','piutanglalai_1bulan' => '0','piutanglalai_12bulan' => '0','dcr' => '0','dcu' => '0','totalhutang_pihak3' => '0','iuran_gedung' => '0','donasi' => '0','bjs_saham' => '0','beban_penyisihandcr' => '0','investasi_likuid' => '0','totalpendapatan' => '0','totalbiaya' => '0','shu' => '0','shu_lalu' => '0','rataaset' => '0','lajuinflasi' => '0','hargapasar' => '0','periode' => ''
+            'no_ba' => '0','cu_name' => '0','l_biasa' => '0','l_lbiasa' => '0','p_biasa' => '0','p_lbiasa' => '0','total_anggota_lalu' => '0','aset' => '0','aset_lalu' => '0','aset_masalah' => '0','aset_tidak_menghasilkan' => '0','aktiva_lancar' => '0','simpanan_saham' => '0','simpanan_saham_lalu' => '0','simpanan_saham_des' => '0','nonsaham_unggulan' => '0','nonsaham_harian' => '0','hutang_spd' => '0','hutang_tidak_berbiaya_30hari' => '0','piutang_beredar' => '0','piutang_anggota' => '0','piutang_lalai_1bulan' => '0','piutang_lalai_12bulan' => '0','dcr' => '0','dcu' => '0','total_hutang_pihak3' => '0','iuran_gedung' => '0','donasi' => '0','bjs_saham' => '0','beban_penyisihan_dcr' => '0','investasi_likuid' => '0','total_pendapatan' => '0','total_biaya' => '0','shu' => '0','shu_lalu' => '0','rata_aset' => '0','laju_inflasi' => '0','harga_pasar' => '0','periode' => ''
         ];
     }
 

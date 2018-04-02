@@ -31,8 +31,8 @@
 
 		<!-- ubah -->
 		<form @submit.prevent="save" data-vv-scope="form">
-		<hr v-if="modalKatex.isUbah">
-		<div class="row" v-if="modalKatex.isUbah">
+		<hr v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+		<div class="row" v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
 				<div class="col-sm-6" v-if="!form.hideForm && form.title" v-for="form in modalKatex.form">
 					<div class="form-group">
 
@@ -53,12 +53,12 @@
 		
 
 		<hr>
-		<div class="text-center">
+		<div class="text-center hidden-xs">
 			<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
 				<i class="icon-cross"></i> Tutup
 			</button>
-			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-warning" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah">
-				<i class="icon-pencil6"></i> Ubah
+			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah">
+				<i class="icon-pencil5"></i> Ubah
 			</button>
 
 			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-default" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalKatex.isUbah">
@@ -68,18 +68,40 @@
 				<i class="icon-floppy-disk"></i> Simpan
 			</button>
 		</div>
+
+		<div class="visible-xs">
+
+			<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+				<i class="icon-floppy-disk"></i> Simpan
+			</button>
+
+			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-default btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+				<i class="icon-arrow-left13"></i> Batal
+			</button>
+
+			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-default btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+				<i class="icon-pencil5"></i> Ubah
+			</button>
+
+			<button type="button" @click.prevent="modalTutup" class="btn btn-default btn-block" v-tooltip:top="'Tutup'">
+				<i class="icon-cross"></i> Tutup
+			</button>
+			
+		</div>
+
 		</form>
 	</div>
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
 
 	export default {
 		components:{
 			Cleave
 		},
-		props:['modalKatex'],
+		props:['modalKatex','kelas'],
 		data() {
 			return {
 				cleaveOption: {
@@ -118,6 +140,10 @@
 			}
 		},
 		computed: {
+			...mapGetters('user',{
+				profile: 'profile',
+				profileStat: 'profileStat'
+			})
 		}
 	}
 </script>
