@@ -429,8 +429,8 @@
       </context-menu>
 
       <!-- footer info -->
-      <div class="panel-footer has-visible-elements hidden-print hidden-xs">
-        <div class="heading-elements visible-elements">
+      <div class="panel-footer hidden-print hidden-xs">
+        <div class="heading-elements">
 
           <!-- total entri note success-->
           <span class="heading-text text-semibold" v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} - {{itemData.to}} entri dari {{itemData.total}} entri</span>

@@ -9,11 +9,11 @@
 				<div v-katex="katex.content"></div>
 			</div>
 		</div>
-
+ 
 		<!-- indikator -->
 		<div class="alert bg-info alert-styled-left mt-10 pt-5 pb-5">
 			<span class="mb-5 text-semibold"><u>Indikator:</u></span>
-			<p>{{ modalKatex.indikator }}</p>
+			<p v-html="modalKatex.indikator"></p>
 		</div>
 		
 		<!-- separator	 -->
@@ -33,7 +33,7 @@
 		<form @submit.prevent="save" data-vv-scope="form">
 		<hr v-if="modalKatex.isUbah">
 		<div class="row" v-if="modalKatex.isUbah">
-				<div class="col-sm-6" v-if="form.title" v-for="form in modalKatex.form" >
+				<div class="col-sm-6" v-if="!form.hideForm && form.title" v-for="form in modalKatex.form">
 					<div class="form-group">
 
 						<!-- title -->

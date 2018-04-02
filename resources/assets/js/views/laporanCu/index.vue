@@ -52,7 +52,7 @@
 							:kelas="kelas"></table-data>
 					</div>
 
-					<div v-show="tabName == 'tablePearls'">
+					<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
 						<table-pearls 
 							:title="titlePearls" 
 							:kelas="kelas"></table-pearls>
@@ -113,7 +113,8 @@
 					title: 'Penulis Artikel',
 					can: 'index artikelPenulis'
 				},
-				isInfografis: false
+				isInfografis: false,
+				isTablePearls: false
 			}
 		},
 		mounted() {
@@ -124,6 +125,9 @@
 				this.tabName = value;
 				if(value == 'infografis' && !this.isInfografis){
 					this.isInfografis = true;
+				}
+				if(value == 'tablePearls' && !this.isTablePearls){
+					this.isTablePearls = true;
 				}
 			} 
 		},
