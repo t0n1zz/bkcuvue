@@ -84,20 +84,20 @@
 						<check-value :value="props.item.badan_hukum"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
-						<check-value :value="props.item.provinces.name" :empty="columnData[4].groupNoKey" v-if="props.item.provinces"></check-value>
-						<span v-else>{{columnData[5].groupNoKey}}</span>
+						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
+						<span v-else>: {{columnData[5].groupNoKey}}</span>	
 					</td>
 					<td v-if="!columnData[6].hide && !columnData[6].disable">
-						<span v-if="props.item.regencies">{{props.item.regencies.name}}</span>
-						<span v-else>{{columnData[6].groupNoKey}}</span>
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>: {{columnData[6].groupNoKey}}</span>	
 					</td>
 					<td v-if="!columnData[7].hide && !columnData[7].disable">
-						<check-value :value="props.item.districts.name" :empty="columnData[6].groupNoKey" v-if="props.item.districts"></check-value>
-						<span v-else>{{columnData[7].groupNoKey}}</span>
+						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
+						<span v-else>: {{columnData[7].groupNoKey}}</span>	
 					</td>
 					<td v-if="!columnData[8].hide && !columnData[8].disable">
-						<check-value :value="props.item.villages.name" :empty="columnData[7].groupNoKey" v-if="props.item.villages"></check-value>
-						<span v-else>{{columnData[8].groupNoKey}}</span>
+						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
+						<span v-else>: {{columnData[8].groupNoKey}}</span>	
 					</td>
 					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.alamat"></check-value>
@@ -176,13 +176,13 @@
 								<td><b>{{columnData[6].title}}</b></td>
 								<td>
 									<check-value :value="props.item.regencies.name" :isTrim="false" :frontText="': '" v-if="props.item.regencies"></check-value>
-									<span v-else>: {{columnData[6].groupNoKey}}</span>	
+									<span v-else>: {{columnData[8].groupNoKey}}</span>	
 								</td>
 							</tr>
 							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[7].title}}</b></td>
 								<td>
-									<check-value :value="props.item.districts.name" :isTrim="false" :frontText="': '" v-if="props.item.districts"></check-value>
+									<check-value :value="props.item.districts.name" :isTrim="false" :frontText="': '" v-if="props.item.districts"></check-value>	
 									<span v-else>: {{columnData[7].groupNoKey}}</span>	
 								</td>
 							</tr>

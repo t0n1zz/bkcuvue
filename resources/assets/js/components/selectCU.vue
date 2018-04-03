@@ -92,7 +92,7 @@
 			},
 			modelCUStat(value){
 				if(value === "success"){
-					this.id_cu = this.idCU;
+						this.id_cu = this.idCU;
 				}
 			},
     },

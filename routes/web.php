@@ -36,18 +36,18 @@ Route::get('/testroute', function () {
     // $userdata = $user->combine($roles);
 
     // create permission
-    // Spatie\Permission\Models\Permission::create(['name' => 'index laporanCu']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'create laporanCu']); 
-    // Spatie\Permission\Models\Permission::create(['name' => 'update laporanCu']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'destroy laporanCu']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'index tpCu']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'create tpCu']); 
+    // Spatie\Permission\Models\Permission::create(['name' => 'update tpCu']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'destroy tpCu']);
 
     // give permission to role
     // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
     // $role->givePermissionTo([
-    //     'index laporancu',
-    //     'create laporancu',
-    //     'update laporancu',
-    //     'destroy laporancu']);
+    //     'index tpCu',
+    //     'create tpCu',
+    //     'update tpCu',
+    //     'destroy tpCu']);
 
     // activity log
     // $activity = Spatie\Activitylog\Models\Activity::all()->last();
@@ -103,15 +103,15 @@ Route::get('/testroute', function () {
 
     // $data = App\Artikel::with('ArtikelKategori')->select('artikel.id_artikel_kategori', \DB::raw('(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name'))->orderBy('kategori_name','desc')->get();
 
-    $table_data = App\LaporanCu::select('laporancu.*',
-			'cu.name as cu_name',
-			'provinces.name as provinces_name')
-			->leftjoin('cu','laporancu.no_ba','cu.no_ba')
-			->leftjoin('provinces','cu.id_provinces','provinces.id')
-			->join(DB::RAW('(SELECT no_ba, GROUP_CONCAT(periode ORDER BY periode DESC) grouped_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
-					$join->on('laporancu.no_ba','=','latest_report.no_ba');
-					$join->whereBetween(DB::raw('FIND_IN_SET(`laporancu`.`periode`, `latest_report`.`grouped_periode`)'), [1, 2]);
-			})->FilterPaginateOrder();
+    // $table_data = App\LaporanCu::select('laporancu.*',
+	// 		'cu.name as cu_name',
+	// 		'provinces.name as provinces_name')
+	// 		->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+	// 		->leftjoin('provinces','cu.id_provinces','provinces.id')
+	// 		->join(DB::RAW('(SELECT no_ba, GROUP_CONCAT(periode ORDER BY periode DESC) grouped_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
+	// 				$join->on('laporancu.no_ba','=','latest_report.no_ba');
+	// 				$join->whereBetween(DB::raw('FIND_IN_SET(`laporancu`.`periode`, `latest_report`.`grouped_periode`)'), [1, 2]);
+	// 		})->FilterPaginateOrder();
 			
 
 		// App\salesreport::join(DB::RAW('(SELECT company_id, GROUP_CONCAT(periods ORDER BY periods DESC) grouped_periods FROM salesreport GROUP BY company_id ) latest_report'),function($join){
@@ -135,10 +135,10 @@ Route::get('/testroute', function () {
 
 		// $table_data = App\LaporanCu::select('periode')->withCount('hasCU')->orderBy('periode','DESC')->get();
     
-    return response()
-    ->json([
-        'model' => $table_data_curr
-    ]);
+    // return response()
+    // ->json([
+    //     'model' => $table_data_curr
+    // ]);
 
 });
 

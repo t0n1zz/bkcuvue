@@ -884,12 +884,12 @@
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Ubah Laporan CU';
-					this.titleDesc = 'Mengubah Laporan CU';
+					this.title = 'Ubah ' + this.level2Title;
+					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
 				} else {
-					this.title = 'Tambah Laporan CU';
-					this.titleDesc = 'Menambah Laporan CU';
+					this.title = 'Tambah ' + this.level2Title;
+					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}

@@ -113,17 +113,26 @@
 						</a>
 						<ul class="dropdown-menu">
 
-							<!-- tambah artikel -->
+							<!-- tambah cu -->
 							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create cu']">
 								<a><i class="icon-plus22"></i> Tambah CU</a>
+							</router-link>
+
+							<!-- tambah tpcu -->
+							<router-link :to="{ name:'tpCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create tpCu']">
+								<a><i class="icon-plus22"></i> Tambah TP/KP</a>
 							</router-link>
 
 							<!-- separator -->
 							<li class="divider"></li>
 
-							<!-- artikel -->
+							<!-- cu -->
 							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index cu']">
 								<a><i class="icon-office"></i> CU</a>
+							</router-link>
+							<!-- cu -->
+							<router-link :to="{ name: 'tpCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tpCu']">
+								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 						</ul>
 					</li>

@@ -8,6 +8,7 @@ import { artikel } from './modules/artikel';
 import { artikelKategori } from './modules/artikelKategori';
 import { artikelPenulis } from './modules/artikelPenulis';
 import { cu } from './modules/cu';
+import { tpCu } from './modules/tpCu';
 import { pus } from './modules/pus';
 import { provinces } from './modules/provinces';
 import { regencies } from './modules/regencies';
@@ -26,6 +27,7 @@ export default new Vuex.Store({
 		 artikelKategori,
 		 artikelPenulis,
 		 cu,
+		 tpCu,
 		 pus,
 		 provinces,
 		 regencies,

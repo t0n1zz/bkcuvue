@@ -26,7 +26,7 @@ class CU extends Model {
     ];
 
     protected $filter = [
-        'id','id_villages','id_districts','id_regencies','id_provinces','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','deleted_at, villages.name, districts.name, regencies.name, provinces.name, villages_name, districts_name, regencies_name, provinces_name'
+        'id','id_villages','id_districts','id_regencies','id_provinces','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','deleted_at', 'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name'
     ];
 
     public function getNameAttribute($value){
@@ -42,7 +42,7 @@ class CU extends Model {
         
     public function LaporanCu()
     {
-        return $this->hasMany('App\LaporanCu','no_ba','no_ba');
+        return $this->hasMany('App\LaporanCu','id_cu','id');
     }
 
     public function Provinces()

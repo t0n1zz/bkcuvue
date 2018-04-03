@@ -138,7 +138,7 @@ class CUController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'CU ' .$name. 'berhasil dihapus'
+				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
 }

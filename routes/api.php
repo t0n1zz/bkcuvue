@@ -61,7 +61,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     // cu
     Route::group(['middleware' => ['permission:index cu']], function () {
         Route::get('/cu', 'CUController@index');
-        Route::get('/cu/get', 'CUController@get');
+        Route::get('/cu/get', 'CUController@get');       
         Route::get('/cu/getPus/{id}', 'CUController@getPus');
     });
     Route::group(['middleware' => ['permission:create cu']], function () {
@@ -74,6 +74,25 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     });
     Route::group(['middleware' => ['permission:destroy cu']], function () {
         Route::delete('/cu/{id}', 'CUController@destroy');
+    });
+
+    // tpcu
+    Route::group(['middleware' => ['permission:index tpCu']], function () {
+        Route::get('/tpCu', 'TpCuController@index');
+        Route::get('/tpCu/get', 'TpCuController@get');
+        Route::get('/tpCu/indexCU/{id}', 'TpCuController@indexCU'); 
+        Route::get('/tpCu/getCU/{id}', 'TpCuController@getCU');
+    });
+    Route::group(['middleware' => ['permission:create tpCu']], function () {
+        Route::get('/tpCu/create', 'TpCuController@create');
+        Route::post('/tpCu/store', 'TpCuController@store');
+    });
+    Route::group(['middleware' => ['permission:update tpCu']], function () {
+        Route::get('/tpCu/edit/{id}', 'TpCuController@edit');
+        Route::post('/tpCu/update/{id}', 'TpCuController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy tpCu']], function () {
+        Route::delete('/tpCu/{id}', 'TpCuController@destroy');
     });
 
     //laporan cu
