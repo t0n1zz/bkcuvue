@@ -880,7 +880,7 @@
 					},
 					{
 						title: 'Rasio Piutang Beredar',
-						key: 'rasio_piutang_beredar',
+						key: 'rasio_beredar',
 						excelType: 'number',
 						sort: true,
 						hide: false,
@@ -891,7 +891,7 @@
 					},
 					{
 						title: 'Rasio Piutang Lalai',
-						key: 'rasio_piutang_lalai',
+						key: 'rasio_lalai',
 						excelType: 'number',
 						sort: true,
 						hide: false,

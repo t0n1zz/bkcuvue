@@ -15,10 +15,10 @@ class LaporanCuController extends Controller{
 		$table_data = LaporanCu::select('laporancu.*',
 			'cu.name as cu_name',
 			'provinces.name as provinces_name')
-			->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+			->leftjoin('cu','laporancu.id_cu','cu.id')
 			->leftjoin('provinces','cu.id_provinces','provinces.id')
-			->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu GROUP BY no_ba) latest_report"),function($join){
-        $join->on('laporancu.no_ba','=','latest_report.no_ba');
+			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporancu.id_cu','=','latest_report.id_cu');
         $join->on('laporancu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
 				(IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0)) as total_anggota,
@@ -35,7 +35,7 @@ class LaporanCuController extends Controller{
 
 	public function indexCU($id)
 	{
-		$table_data = LaporanCu::with('CU')->where('no_ba',$id)->addSelect(['*',DB::raw('
+		$table_data = LaporanCu::with('CU')->where('id_cu',$id)->addSelect(['*',DB::raw('
 			(IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0)) as total_anggota,
 			(IFNULL(laporancu.piutang_beredar,0)/IFNULL(laporancu.aset,0)) as rasio_beredar,
 			((IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_beredar,0)) as rasio_lalai,
@@ -53,10 +53,10 @@ class LaporanCuController extends Controller{
 		$table_data = LaporanCu::select('laporancu.*',
 		'cu.name as cu_name',
 		'provinces.name as provinces_name')
-		->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+		->leftjoin('cu','laporancu.id_cu','cu.id')
     ->leftjoin('provinces','cu.id_provinces','provinces.id')
-		->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY no_ba) latest_report"),function($join){
-        $join->on('laporancu.no_ba','=','latest_report.no_ba');
+		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporancu.id_cu','=','latest_report.id_cu');
         $join->on('laporancu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
 			IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
@@ -76,10 +76,10 @@ class LaporanCuController extends Controller{
 		$table_data = LaporanCu::select('laporancu.*',
 			'cu.name as cu_name',
 			'provinces.name as provinces_name')
-			->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+			->leftjoin('cu','laporancu.id_cu','cu.id')
 			->leftjoin('provinces','cu.id_provinces','provinces.id')
-			->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu GROUP BY no_ba) latest_report"),function($join){
-        $join->on('laporancu.no_ba','=','latest_report.no_ba');
+			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporancu.id_cu','=','latest_report.id_cu');
         $join->on('laporancu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
 				@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
@@ -142,7 +142,7 @@ class LaporanCuController extends Controller{
 
 	public function indexPearlsCU($id)
 	{
-		$table_data = LaporanCu::with('CU')->where('no_ba',$id)->addSelect(['*',DB::raw('
+		$table_data = LaporanCu::with('CU')->where('id_cu',$id)->addSelect(['*',DB::raw('
 			@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
 
 			@piutang_bersih := IFNULL(laporancu.dcr,0) + IFNULL(laporancu.dcu,0) + IFNULL(laporancu.iuran_gedung,0) + IFNULL(laporancu.donasi,0) + IFNULL(laporancu.shu_lalu,0) as piutang_bersih,	
@@ -205,10 +205,10 @@ class LaporanCuController extends Controller{
 		$table_data = LaporanCu::select('laporancu.*',
 		'cu.name as cu_name',
 		'provinces.name as provinces_name')
-		->leftjoin('cu','laporancu.no_ba','cu.no_ba')
+		->leftjoin('cu','laporancu.id_cu','cu.id')
     ->leftjoin('provinces','cu.id_provinces','provinces.id')
-		->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY no_ba) latest_report"),function($join){
-        $join->on('laporancu.no_ba','=','latest_report.no_ba');
+		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporancu.id_cu','=','latest_report.id_cu');
         $join->on('laporancu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
 			@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,

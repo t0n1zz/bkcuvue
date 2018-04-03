@@ -17,7 +17,7 @@
 								<slot></slot>
 								<option value="semua">Semua</option>
 								<option data-divider="true"></option>
-								<option v-for="cu in modelCU" :value="cu.no_ba" v-if="cu">{{cu.name}}</option>
+								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>
 
 							<!-- reload cu -->
@@ -66,7 +66,7 @@
 						<option disabled value="">Silahkan pilih data</option>
 						<option value="semua">Semua</option>
 						<option data-divider="true"></option>
-						<option v-for="cu in modelCU" :value="cu.no_ba" v-if="cu">{{cu.name}}</option>
+						<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 					</select>
 				</div>
 

@@ -21,24 +21,24 @@
 
 									<!-- CU -->
 									<div class="col-md-4" v-if="profile.id_cu === 0">
-										<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.no_ba')}">
-												<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
 												CU:
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="no_ba" v-model="form.no_ba" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+											<select class="bootstrap-select" name="id)cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option data-divider="true"></option>
-												<option v-for="cu in modelCU" :value="cu.no_ba">{{cu.name}}</option>
+												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -912,13 +912,13 @@
 			},
 			back(){
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.no_ba}});
+					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
 				}else{
 					if(this.profile.id_cu == 0){
 						if(this.form.id_cu == 0){
 							this.$router.push({name: this.kelas});
 						}else{
-							this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.no_ba}});
+							this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
 						}
 					}else{
 						this.$router.push({name: this.kelas});

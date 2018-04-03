@@ -12,8 +12,22 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
+		v-if="idCU === 'semua'"
 		></bar-chart>
-
+	<line-chart
+		:titleText="titleText"
+		:title="title"
+		:kelas="kelas"
+		:params="params"
+		:dataShownTitle1="dataShownTitle1"
+		:dataShownKey1="dataShownKey1"
+		:axisLabelKey="axisLabelKey"
+		:itemData="itemData"
+		:itemDataStat="itemDataStat"
+		:columnData="columnData"
+		@fetch="fetch()"
+		v-else
+		></line-chart>
 </div>
 </template>
 
@@ -23,10 +37,12 @@
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import barChart from '../../components/barChart.vue';
+import lineChart from '../../components/lineChart.vue';
 
 export default {
 	components:{
-		barChart
+		barChart,
+		lineChart
 	},
 	props:['title','kelas'],
   data(){
