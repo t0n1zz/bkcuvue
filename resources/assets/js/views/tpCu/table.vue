@@ -681,11 +681,6 @@
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			})
-		},
-		filters: {
-			checkImages: function (value) {
-				return '/images/' + this.kelas + '/' + value + 'n.jpg';
-			}
 		}
 	}
 </script>

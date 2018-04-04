@@ -678,13 +678,13 @@
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Ubah CU';
-					this.titleDesc = 'Mengubah CU';
+					this.title = 'Ubah ' + this.level2Title;
+					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
 				} else {
 					this.$store.dispatch(this.kelas + '/create');
-					this.title = 'Tambah CU';
-					this.titleDesc = 'Menambah CU';
+					this.title = 'Tambah ' + this.level2Title;
+					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
 				}
 

@@ -76,7 +76,7 @@
 											</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori" v-validate="'required|min:5'" data-vv-as="Profil" v-model="form.deskripsi"></textarea>
+											<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori" v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="form.deskripsi"></textarea>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.deskripsi')">
@@ -111,11 +111,6 @@
 			</div>
 		</div>
 
-		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
-			
-		</app-modal>
-
 	</div>
 </template>
 
@@ -125,7 +120,6 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
-	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
@@ -133,7 +127,6 @@
 	export default {
 		components: {
 			pageHeader,
-			appModal,
 			appImageUpload,
 			message,
 			formButton,

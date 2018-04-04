@@ -1,44 +1,95 @@
 <template>
 	<div>
-		<!-- page-header -->
+		<!-- header -->
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
-
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
 
 					<!-- message -->
-					<message v-if="errors.any('form') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
+					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
 					<!-- main panel -->
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
-					
+
 						<!-- informasi umum -->
 						<div class="panel panel-flat border-left-xlg border-left-info">
-							<div class="panel-body">	
+							<div class="panel-body">
 								<div class="row">
 
 									<!-- judul -->
 									<div class="col-md-12">
 										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">1</span> Informasi Umum
-											<small class="display-block">Gambaran awal Credit Union anda</small>
+											<small class="display-block">Gambaran awal TP/KP anda</small>
 										</h6>
 									</div>
-									
+
 									<!-- foto -->
 									<div class="col-md-12">
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Foto Kantor Pusat:</h5>
+											<h5>Foto TP/KP:</h5>
 
 											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/cu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<app-image-upload :image_loc="'/images/tp/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>  
+
+									<!-- CU -->
+									<div class="col-md-4" v-if="profile.id_cu === 0">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+												CU:
+											</h5>
+
+											<!-- select -->
+											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+												<option disabled value="">Silahkan pilih CU</option>
+												<option data-divider="true"></option>
+												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- no_ba -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.no_tp')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.no_tp')}">
+												<i class="icon-cross2" v-if="errors.has('form.no_tp')"></i>
+												No. TP/KP:</h5>
+
+											<!-- text -->
+											<cleave 
+												name="no_tp"
+												v-model="form.no_tp" 
+												class="form-control" 
+												:options="cleaveOption.number3"
+												placeholder="Silahkan masukkan no TP/KP."
+												v-validate="'required'" data-vv-as="No. BA"></cleave>
+											
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.no_tp')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_tp') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
 
 									<!-- name -->
 									<div class="col-md-4">
@@ -50,74 +101,11 @@
 												Nama:</h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama TP/KP" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- no_ba -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.no_ba')}">
-												<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
-												No. BA:</h5>
-
-											<!-- text -->
-											<cleave 
-												name="no_ba"
-												v-model="form.no_ba" 
-												class="form-control" 
-												:options="cleaveOption.number3"
-												placeholder="Silahkan masukkan no ba."
-												v-validate="'required'" data-vv-as="No. BA"></cleave>
-											
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- badan hukum -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.badan_hukum')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.badan_hukum')}">
-												<i class="icon-cross2" v-if="errors.has('form.badan_hukum')"></i>
-												Badan Hukum:</h5>
-
-											<!-- text -->
-											<input type="text" name="badan_hukum" class="form-control" placeholder="Silahkan masukkan nama CU"  v-model="form.badan_hukum">
-
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aplikasi -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.app')}">
-												<i class="icon-cross2" v-if="errors.has('form.app')"></i>
-												Aplikasi Keuangan Utama:</h5>
-
-											<!-- text -->
-											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.app')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.app') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -150,33 +138,6 @@
 										</div>
 									</div>
 
-									<!-- bergabung -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.bergabung')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
-												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
-												Tgl. Bergabung:</h5>
-
-											<!-- input  -->
-											<cleave 
-												name="bergabung"
-												v-model="form.bergabung" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. bergabung"
-												v-validate="'required'" data-vv-as="Tgl. bergabung"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.bergabung') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-									
 								</div>
 							</div>
 						</div>
@@ -190,7 +151,7 @@
 									<div class="col-md-12">
 										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">2</span> Lokasi
-											<small class="display-block">Letak kantor pusat Credit Union anda</small>
+											<small class="display-block">Letak TP/KP anda</small>
 										</h6>
 									</div>
 									
@@ -336,7 +297,7 @@
 									<div class="col-md-12">
 										<h6 class="form-wizard-title text-semibold text-primary">
 											<span class="form-wizard-count">3</span> Kontak
-											<small class="display-block">Menghubungi Credit Union anda</small>
+											<small class="display-block">Menghubungi TP/KP anda</small>
 										</h6>
 									</div>
 
@@ -423,31 +384,11 @@
 										</div>
 									</div>
 
-									<!-- website -->
-									<div class="col-md-8">
-										<div class="form-group" :class="{'has-error' : errors.has('form.website')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.website')}">
-												<i class="icon-cross2" v-if="errors.has('form.website')"></i>
-												Website:</h5>
-
-											<!-- text -->
-											<input type="text" name="website" class="form-control" placeholder="Silahkan masukkan alamat website" v-model="form.website" v-validate="'url'" data-vv-as="Website">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.website')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.website') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
 								</div>	
 							</div>
 						</div>
 
-						<!-- informasi profil -->
+						<!-- informasi tambahan -->
 						<div class="panel panel-flat border-left-xlg border-left-info">
 							<div class="panel-body">
 								<div class="row">
@@ -455,79 +396,9 @@
 									<!-- judul -->
 									<div class="col-md-12">
 										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">4</span> Profil
-											<small class="display-block">Mengenai Credit Union anda</small>
+											<span class="form-wizard-count">4</span> Informasi Tambahan
+											<small class="display-block">Mengenai TP/KP anda</small>
 										</h6>
-									</div>
-								
-									<!-- misi -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Misi:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="misi" class="form-control" v-model="form.misi" placeholder="Silahkan masukkan misi"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- visi -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Visi:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="visi" class="form-control" v-model="form.visi" placeholder="Silahkan masukkan visi"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- nilai -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Nilai-nilai Inti:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="nilai" class="form-control" v-model="form.nilai" placeholder="Silahkan masukkan nilai-nilai inti"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- slogan -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Slogan:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="slogan" class="form-control" v-model="form.slogan" placeholder="Silahkan masukkan slogan"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- sejarah -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Sejarah:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="sejarah" class="form-control" v-model="form.sejarah" placeholder="Silahkan masukkan sejarah"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
 									</div>
 
 									<!-- deskripsi -->
@@ -535,10 +406,10 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Deskripsi:</h5>
+											<h5>Informasi Tambahan:</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="deskripsi" class="form-control" v-model="form.deskripsi" placeholder="Silahkan masukkan deskripsi"></textarea>
+											<textarea rows="5" type="text" name="deskripsi" class="form-control" v-model="form.deskripsi" placeholder="Silahkan masukkan informasi tambahan"></textarea>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -553,33 +424,31 @@
 						<br/>
 
 						<!-- form button -->
-						<form-button
-							:cancelLink="kelas"
-							:formValidation="'form'"></form-button>
+						<div class="panel panel-flat">
+							<div class="panel-body">
+								<div class="row">
+									<form-button
+										:cancelState="'methods'"
+										:formValidation="'form'"
+										@cancelClick="back"></form-button>
+								</div>
+							</div>
+						</div>
 
 					</form>
 				</div>
 			</div>
 		</div>
 
-		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
-		</app-modal>
-
 	</div>
 </template>
 
 <script>
-	import Vue from 'vue';
-	import axios from 'axios';
-	import { mapGetters } from 'vuex'
+	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
-	import {
-		toMulipartedForm
-	} from '../../helpers/form';
+	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
-	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
@@ -588,7 +457,6 @@
 	export default {
 		components: {
 			pageHeader,
-			appModal,
 			appImageUpload,
 			message,
 			formButton,
@@ -597,12 +465,11 @@
 		},
 		data() {
 			return {
-				title: 'Tambah CU',
-				titleDesc: 'Menambah CU baru',
-				titleIcon: 'icon-plus3',
-				level2Title: 'CU',
-				kelas: 'cu',
-				redirect: '/cu/',
+				title: '',
+				titleDesc: '',
+				titleIcon: '',
+				kelas: 'tpCu',
+				level2Title: 'TP/KP',
 				cleaveOption: {
           date:{
             date: true,
@@ -649,6 +516,14 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
+			profileStat(value){ //jika refresh halaman maka reload profile
+				if(value === "success"){
+					if(this.profile.id_cu === 0){
+						this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					}
+					this.form.id_cu = this.profile.id_cu;
+				}
+			},
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode === 'edit'){
@@ -678,14 +553,14 @@
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Ubah CU';
-					this.titleDesc = 'Mengubah CU';
+					this.title = 'Ubah ' + this.level2Title;
+					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
 				} else {
-					this.$store.dispatch(this.kelas + '/create');
-					this.title = 'Tambah CU';
-					this.titleDesc = 'Menambah CU';
+					this.title = 'Tambah ' + this.level2Title;
+					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
+					this.$store.dispatch(this.kelas + '/create');
 				}
 
 				this.$store.dispatch('provinces/get');
@@ -697,7 +572,7 @@
 						if(this.$route.meta.mode === 'edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
-						this.$store.dispatch(this.kelas + '/store', formData);
+							this.$store.dispatch(this.kelas + '/store', formData);
 					}
 						this.submited = false;
 					}else{
@@ -705,6 +580,21 @@
 						this.submited = true;
 					}
 				});
+			},
+			back(){
+				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+				}else{
+					if(this.profile.id_cu == 0){
+						if(this.form.id_cu == 0){
+							this.$router.push({name: this.kelas});
+						}else{
+							this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+						}
+					}else{
+						this.$router.push({name: this.kelas});
+					}
+				}
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -717,7 +607,7 @@
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
-					this.$router.push(this.redirect);
+					this.back();
 				}
 
 				this.modalShow = false;
@@ -733,17 +623,17 @@
 					this.modalShow = false
 				}
 			},
-			processFile(event) {
-				this.form.gambar = event.target.files[0]
-				console.log(event.target.files[0].name);
-			},
 			other() {
 				// bootstrap select
 				$('.bootstrap-select').selectpicker();
 			}
 		},
 		computed: {
-			...mapGetters('cu',{
+			...mapGetters('user',{
+				profile: 'profile',
+				profileStat: 'profileStat'
+			}),
+			...mapGetters('tpCu',{
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',
@@ -751,9 +641,9 @@
 				updateResponse: 'update',
 				updateStat: 'updateStat'
 			}),
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('cu',{
+				modelCU: 'dataS',
+				modelCUStat: 'dataStatS',
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',
@@ -770,7 +660,10 @@
 			...mapGetters('villages',{
 				modelVillages: 'dataS',
 				modelVillagesStat: 'dataStatS'
-			})
+			}),
+			modelPus() {
+				return this.$store.getters.getPusS;
+			}
 		}
 	}
 </script>

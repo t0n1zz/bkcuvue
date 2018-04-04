@@ -666,11 +666,6 @@
 				profile: 'profile',
 				profileStat: 'profileStat'
 			})
-		},
-		filters: {
-			checkImages: function (value) {
-				return '/images/' + this.kelas + '/' + value + 'n.jpg';
-			}
 		}
 	}
 </script>
