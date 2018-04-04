@@ -81,7 +81,7 @@
 						<check-value :value="props.item.no_tp"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.c_u.name" v-if="props.item.c_u"></check-value>
+						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
 						<span v-else>{{columnData[4].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
@@ -158,7 +158,7 @@
 							<tr v-if="!columnData[4].hide">
 								<td><b>{{columnData[4].title}}</b></td>
 								<td>
-									<check-value :value="props.item.c_u.name" :isTrim="false" :frontText="': '" v-if="props.item.c_u"></check-value>
+									<check-value :value="props.item.cu.name" :isTrim="false" :frontText="': '" v-if="props.item.cu"></check-value>
 									<span v-else>: {{columnData[4].groupNoKey}}</span>	
 								</td>
 							</tr>
@@ -320,7 +320,7 @@
 						disable: false
 					},
 					{
-						title: 'CU',
+						title: 'Cu',
 						key: 'cu.name',
 						type: 'number',
 						disable: false
@@ -438,9 +438,9 @@
 						disable: false
 					},
 					{
-						title: 'CU',
+						title: 'Cu',
 						key: 'cu_name',
-						groupKey: 'c_u.name',
+						groupKey: 'cu.name',
 						groupNoKey: '-',
 						excelType: 'string',
 						sort: true,
@@ -563,8 +563,8 @@
 				this.checkMeta();
 			},
 
-			// fetch on selectCU change
-			idCU(value){ 
+			// fetch on selectCu change
+			idCu(value){ 
 				if(value !== ''){
 					if(this.itemDataStat == 'success'){
 						this.checkMeta();
@@ -574,7 +574,7 @@
 			},
 
 			// fetch on load page
-			modelCUStat(value){ 
+			modelCuStat(value){ 
 				if(value == 'success'){
 					this.checkMeta();
 					this.fetch();
@@ -598,15 +598,15 @@
     },
 		methods: {
 			fetch(){
-				if(this.modelCUStat === 'success'){
-					if(this.idCU === 'semua'){
+				if(this.modelCuStat === 'success'){
+					if(this.idCu === 'semua'){
 						this.$store.dispatch(this.kelas + '/index', this.params);
-						this.disableColumnCU(false);
+						this.disableColumnCu(false);
 					}else{
-						if(this.idCU !== undefined){
-							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						if(this.idCu !== undefined){
+							this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 						}
-						this.disableColumnCU(true);
+						this.disableColumnCu(true);
 					}
 				}
 			},
@@ -614,15 +614,15 @@
 				// route from edit and when change cu data selected
 				if(this.$route.meta.mode == 'cu'){
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
 				
 				// default route
 				}else{
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU','semua');
+					this.$store.dispatch('global/changeIdCu','semua');
 				}
 			},
-			disableColumnCU(status){
+			disableColumnCu(status){
 				this.columnData[4].disable = status;
 				this.filterData[2].disable = status;
 			},
@@ -669,11 +669,11 @@
 				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
-				idCU: 'idCU'
+				idCu: 'idCu'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCu: 'dataS',
+				modelCuStat: 'dataStatS',
 			}),
 			...mapGetters('tpCu',{
 				itemData: 'dataS',

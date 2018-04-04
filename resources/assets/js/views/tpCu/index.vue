@@ -29,10 +29,10 @@
 					</message>
 
 					<!-- select data -->
-					<select-c-u 
+					<select-cu 
 						:kelas="kelas"
-						:path="'tpCuCU'"
-						:isPus="false"></select-c-u>
+						:path="selectCuPath"
+						:isPus="false"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -51,14 +51,14 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
-	import selectCU from "../../components/selectCU.vue";
+	import selectCu from "../../components/selectCu.vue";
 	
 	export default {
 		components: {
 			pageHeader,
 			tableData,
 			message,
-			selectCU
+			selectCu
 		},
 		data() {
 			return {
@@ -66,6 +66,7 @@
 				kelas: 'tpCu',
 				titleDesc: 'Mengelola data TP/KP',
 				titleIcon: 'icon-home9',
+				selectCuPath: 'tpCuCu',
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-home9',

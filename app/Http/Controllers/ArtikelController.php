@@ -17,7 +17,7 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','CU')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','Cu')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
 			DB::raw(
 				'(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name,
 				(SELECT name FROM artikelPenulis WHERE artikel.id_artikel_penulis = artikelPenulis.id) as penulis_name'

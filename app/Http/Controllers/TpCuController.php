@@ -17,7 +17,7 @@ class TpCuController extends Controller{
 
 	public function index()
 	{
-		$table_data = TpCu::with('CU','Villages','Districts','Regencies','Provinces')->select(
+		$table_data = TpCu::with('Cu','Villages','Districts','Regencies','Provinces')->select(
 			'tpcu.*',
 			DB::raw(
 				'(SELECT name FROM cu WHERE tpcu.id_cu = cu.id) as cu_name,
@@ -36,7 +36,7 @@ class TpCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = TpCu::with('CU','Villages','Districts','Regencies','Provinces')->where('id_cu',$id)->select(
+		$table_data = TpCu::with('Cu','Villages','Districts','Regencies','Provinces')->where('id_cu',$id)->select(
 			'tpcu.*',
 			DB::raw(
 				'(SELECT name FROM cu WHERE tpcu.id_cu = cu.id) as cu_name,

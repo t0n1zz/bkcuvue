@@ -96,7 +96,7 @@
 						<check-value :value="props.item.deskripsi"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.c_u.name" :empty="columnData[4].groupNoKey" v-if="props.item.c_u"></check-value>
+						<check-value :value="props.item.cu.name" :empty="columnData[4].groupNoKey" v-if="props.item.cu"></check-value>
 						<span v-else>{{columnData[4].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[5].hide">{{props.item.has_artikel_count}}</td>
@@ -144,7 +144,7 @@
 							<tr v-if="!columnData[4].hide && !columnData[4].disable">
 								<td><b>{{columnData[4].title}}</b></td>
 								<td>
-									<check-value :value="props.item.c_u.name" :frontText="': '" v-if="props.item.c_u"></check-value>
+									<check-value :value="props.item.cu.name" :frontText="': '" v-if="props.item.cu"></check-value>
 									<span v-else>: {{columnData[4].groupNoKey}}</span>
 								</td>
 							</tr>
@@ -293,7 +293,7 @@
 					{
 						title: 'CU',
 						key: 'id_cu',
-						groupKey: 'c_u.name',
+						groupKey: 'cu.name',
 						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
 						hide: false,

@@ -24,10 +24,10 @@
 					</message>
 
 					<!-- select data -->
-					<select-c-u 
+					<select-cu 
 						:kelas="kelas"
-						:path="selectCUPath"
-						:isPus="true"></select-c-u>
+						:path="selectCuPath"
+						:isPus="true"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -47,14 +47,14 @@
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectCU from "../../components/selectCU.vue";
+	import selectCu from "../../components/selectCu.vue";
 	import tableData from "./table.vue";
 
 	export default {
 		components: {
 			pageHeader,
 			message,
-			selectCU,
+			selectCu,
 			tableData,
 		},
 		data() {
@@ -63,7 +63,7 @@
 				kelas: 'artikelKategori',
 				titleDesc: 'Mengelola data kategori artikel',
 				titleIcon: 'icon-grid6',
-				selectCUPath: 'artikelKategoriCU',
+				selectCuPath: 'artikelKategoriCu',
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-magazine',
