@@ -42,7 +42,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('CU','pus','roles_custom')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('Cu','pus','roles_custom')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -50,9 +50,9 @@ class UserController extends Controller
 			]);
 	}
 
-	public function indexCU($id)
+	public function indexCu($id)
 	{
-			$table_data = User::with('CU','pus','roles_custom')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('Cu','pus','roles_custom')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -113,7 +113,7 @@ class UserController extends Controller
 
 	public function edit($id)
 	{
-		$kelas = User::with('CU','pus','roles')->findOrFail($id);
+		$kelas = User::with('Cu','pus','roles')->findOrFail($id);
 		
 		return response()
 				->json([

@@ -10,12 +10,12 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/artikelPenulis/get');
   },
   
-  indexCU: function( p, id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelPenulis/indexCU/' + id, {params: p});
+  indexCu: function( p, id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelPenulis/indexCu/' + id, {params: p});
   },
 
-  getCU: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelPenulis/getCU/' + id);
+  getCu: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelPenulis/getCu/' + id);
   },
 
   create: function(){

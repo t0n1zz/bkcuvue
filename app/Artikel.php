@@ -49,8 +49,8 @@ class Artikel extends Model {
         return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id')->select('id','name');
     }
 
-    public function CU()
+    public function Cu()
     {
-        return $this->belongsTo('App\CU','id_cu','id')->select('id','name');
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
     }
 }

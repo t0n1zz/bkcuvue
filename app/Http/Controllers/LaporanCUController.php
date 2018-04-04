@@ -33,7 +33,7 @@ class LaporanCuController extends Controller{
 		]);
 	}
 
-	public function indexCU($id)
+	public function indexCu($id)
 	{
 		$table_data = LaporanCu::with('CU')->where('id_cu',$id)->addSelect(['*',DB::raw('
 			(IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0)) as total_anggota,
@@ -140,7 +140,7 @@ class LaporanCuController extends Controller{
 		]);
 	}
 
-	public function indexPearlsCU($id)
+	public function indexPearlsCu($id)
 	{
 		$table_data = LaporanCu::with('CU')->where('id_cu',$id)->addSelect(['*',DB::raw('
 			@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,

@@ -6,8 +6,8 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/artikel' ,{params: p});
   },
 
-  indexCU: function( p, id ){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCU/' + id, {params: p});
+  indexCu: function( p, id ){
+    return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCu/' + id, {params: p});
   },
 
   create: function(){

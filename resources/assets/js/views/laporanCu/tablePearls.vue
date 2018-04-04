@@ -69,7 +69,7 @@
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 
 					'info': selectedItem.id === props.item.id, 
-					'warning' : props.item.periode < selectData && selectedItem.id !== props.item.id && idCU == 'semua' }" class="text-nowrap" @click="selectedRow(props.item)">
+					'warning' : props.item.periode < selectData && selectedItem.id !== props.item.id && idCu == 'semua' }" class="text-nowrap" @click="selectedRow(props.item)">
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
@@ -83,7 +83,7 @@
 						<check-value :value="props.item.provinces_name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<span v-if="props.item.periode < selectData && idCU == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(selectData)"><i class="icon-alert text-size-base"></i></span>
+						<span v-if="props.item.periode < selectData && idCu == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(selectData)"><i class="icon-alert text-size-base"></i></span>
 						&nbsp;
 						{{ props.item.periode | dateMonth }}
 					</td>
@@ -713,7 +713,7 @@
 		},
 		watch: {
 			// fetch on selectCU change
-			idCU(value){
+			idCu(value){
 				this.isFirstLoad = true;
 				if(value !== ''){
 					if(this.itemDataStat == 'success'){
@@ -725,7 +725,7 @@
 
 			selectData(value){
 				this.isFirstLoad = true;
-				if(this.idCU == 'semua'){
+				if(this.idCu == 'semua'){
 					this.fetch();
 				}
 			},
@@ -768,7 +768,7 @@
 		methods: {
 			fetch(){
 				if(this.modelCUStat === 'success'){
-					if(this.idCU === 'semua'){
+					if(this.idCu === 'semua'){
 
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
@@ -782,8 +782,8 @@
 						this.$store.dispatch(this.kelas + '/getPeriode');
 						this.disableColumnCU(false);
 					}else{
-						if(this.idCU !== undefined){
-							this.$store.dispatch(this.kelas + '/indexPearlsCU', [this.params,this.idCU]);
+						if(this.idCu !== undefined){
+							this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.idCu]);
 						}
 						this.disableColumnCU(true);
 					}
@@ -793,12 +793,12 @@
 				// route from edit and when change cu data selected
 				if(this.$route.meta.mode == 'cu'){
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
 
 				// default route and periode route
 				}else{
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU','semua');
+					this.$store.dispatch('global/changeIdCu','semua');
 				}
 			},
 			disableColumnCU(status){
@@ -1190,7 +1190,7 @@
 				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
-				idCU: 'idCU',
+				idCu: 'idCu',
 				selectData: 'data'
 			}),
 			...mapGetters('cu',{

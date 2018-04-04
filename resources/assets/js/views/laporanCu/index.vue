@@ -32,7 +32,6 @@
 					<!-- select data -->
 					<select-data 
 						:kelas="kelas"
-						:path="selectCUPath"
 						:isPus="false"
 						:isNo_ba="true"></select-data>
 

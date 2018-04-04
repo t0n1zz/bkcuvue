@@ -320,8 +320,8 @@
 				this.checkMeta();
 			},
 
-			// fetch on selectCU change
-			idCU(value){
+			// fetch on selectCu change
+			idCu(value){
 				if(value !== ''){
 					if(this.itemDataStat == 'success'){
 						this.checkMeta();
@@ -331,7 +331,7 @@
 			},
 
 			// fetch on load page
-			modelCUStat(value){ 
+			modelCuStat(value){ 
 				if(value == 'success'){
 					this.checkMeta();
 					this.fetch();
@@ -356,15 +356,15 @@
     },
 		methods: {
 			fetch(){
-				if(this.modelCUStat === 'success'){
-					if(this.idCU === 'semua'){
+				if(this.modelCuStat === 'success'){
+					if(this.idCu === 'semua'){
 						this.$store.dispatch(this.kelas + '/index', this.params);
-						this.disableColumnCU(false);
+						this.disableColumnCu(false);
 					}else{
-						if(this.idCU !== undefined){
-							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						if(this.idCu !== undefined){
+							this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 						}
-						this.disableColumnCU(true);
+						this.disableColumnCu(true);
 					}
 				}
 			},
@@ -372,15 +372,15 @@
 				// route from edit and when change cu data selected
 				if(this.$route.meta.mode == 'cu'){
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
 				
 				// default route
 				}else{
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
+					this.$store.dispatch('global/changeIdCu',this.profile.id_cu);
 				}
 			},
-			disableColumnCU(status){
+			disableColumnCu(status){
 				this.columnData[3].disable = status;
 				this.filterData[2].disable = status;
 			},
@@ -402,7 +402,7 @@
 				if(this.profile.id_cu != 0){
 					this.$router.push({name: 'artikelFilterKategori', params: { id: id }});
 				}else{
-					this.$router.push({name: 'artikelFilterKategoriCU', params: { id: id, cu: id_cu }});
+					this.$router.push({name: 'artikelFilterKategoriCu', params: { id: id, cu: id_cu }});
 				}
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
@@ -435,11 +435,11 @@
 				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
-				idCU: 'idCU'
+				idCu: 'idCu'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCu: 'dataS',
+				modelCuStat: 'dataStatS',
 			}),
 			...mapGetters('artikelKategori',{
 				itemData: 'dataS',

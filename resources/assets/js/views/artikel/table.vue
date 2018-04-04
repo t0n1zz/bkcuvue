@@ -371,7 +371,7 @@
 					},
 					{
 						title: 'CU',
-						key: 'idCU',
+						key: 'idCu',
 						groupKey: 'c_u.name',
 						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
@@ -428,8 +428,8 @@
 				}
 			},
 
-			// fetch on selectCU change
-			idCU(value){ 
+			// fetch on selectCu change
+			idCu(value){ 
 				if(value !== ''){
 					if(this.itemDataStat == 'success'){
 						this.checkMeta();
@@ -439,7 +439,7 @@
 			},
 
 			// fetch on load page
-			modelCUStat(value){ 
+			modelCuStat(value){ 
 				if(value == 'success'){
 					this.checkMeta();
 					this.fetch();
@@ -458,7 +458,7 @@
 						this.extSearchColumn = 'Kategori';
 						this.extSearchQuery1 = this.modelKategori.name;
 
-						this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 					}
 				}
 			},
@@ -475,7 +475,7 @@
 						this.extSearchColumn = 'Penulis';
 						this.extSearchQuery1 = this.modelPenulis.name;
 
-						this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 					}
 				}
 			},
@@ -500,15 +500,15 @@
 			fetch(){
 				
 				// if show all
-				if(this.idCU == 'semua'){
+				if(this.idCu == 'semua'){
 						this.$store.dispatch(this.kelas + '/index', this.params);
 
 					// show cu column
-					this.disableColumnCU(false);
+					this.disableColumnCu(false);
 				}else{
 
 					// if show cu & pus
-					if(this.idCU !== undefined){
+					if(this.idCu !== undefined){
 
 						//if artikelFilterKategori
 						if(this.$route.meta.mode == 'kategori'){ 
@@ -519,7 +519,7 @@
 
 							//for changing parameters in kategori meta mode
 							}else{
-								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+								this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 							}
 
 						//if artikelFilterPenulis
@@ -531,39 +531,39 @@
 
 							//for changing parameters in kategori meta mode
 							}else{
-								this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+								this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 							}
 							
 						}else{
-							this.$store.dispatch(this.kelas + '/indexCU', [this.params,this.idCU]);
+							this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 						}
 					}
 
 					// hide cu column
-					this.disableColumnCU(true);
+					this.disableColumnCu(true);
 				}
 			},
 			checkMeta(){
 				// route form kategori and penulis
 				if(this.$route.meta.mode == 'kategori' || this.$route.meta.mode == 'penulis'){
 					if(this.profile.id_cu == 0){
-						this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+						this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
 					}else{
-						this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
+						this.$store.dispatch('global/changeIdCu',this.profile.id_cu);
 					}	
 				
 				// route from edit and when change cu data selected
 				}else if(this.$route.meta.mode == 'cu'){
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.$route.params.cu);
+					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
 				
 				// default route
 				}else{
 					this.resetParams();
-					this.$store.dispatch('global/changeIdCU',this.profile.id_cu);
+					this.$store.dispatch('global/changeIdCu',this.profile.id_cu);
 				}
 			},
-			disableColumnCU(status){
+			disableColumnCu(status){
 				this.columnData[5].disable = status;
 				this.filterData[4].disable = status;
 			},
@@ -630,11 +630,11 @@
 				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
-				idCU: 'idCU'
+				idCu: 'idCu'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCu: 'dataS',
+				modelCuStat: 'dataStatS',
 			}),
 			...mapGetters('artikel',{
 				itemData: 'dataS',

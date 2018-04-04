@@ -5,7 +5,8 @@ export const global = {
   // state
   state: {
     data: '',
-    idCU: '',
+    idCu: '',
+    idTpCu: '',
     message: '',
     messageType: '',
   },
@@ -13,7 +14,8 @@ export const global = {
   // getters
   getters: {
     data: state => state.data,
-    idCU: state => state.idCU,
+    idCu: state => state.idCu,
+    idTpCu: state => state.idTpCu,
     message: state => state.message,
     messageType: state => state.messageType,
   },
@@ -27,13 +29,23 @@ export const global = {
     },
 
     // change idcu
-    changeIdCU({commit}, id){
-      commit('setIdCU', id);
+    changeIdCu({commit}, id){
+      commit('setIdCu', id);
+    },
+
+    // change idtpcu
+    changeIdTpCu({commit}, id){
+      commit('setIdTpCu', id);
     },
 
     // reset idcu
-    resetIdCU( {commit} ){
-      commit('setIdCU', '');
+    resetIdCu( {commit} ){
+      commit('setIdCu', '');
+    },
+
+    // reset idcu
+    resetIdTpCu( {commit} ){
+      commit('setIdTpCu', '');
     },
 
     // create message
@@ -54,8 +66,11 @@ export const global = {
     setData ( state, data ){
       state.data = data;
     },
-    setIdCU ( state, id ){
-      state.idCU = id;
+    setIdCu ( state, id ){
+      state.idCu = id;
+    },
+    setIdTpCu ( state, id ){
+      state.idTpCu = id;
     },
     setMessage ( state, message ){
       state.message = message;

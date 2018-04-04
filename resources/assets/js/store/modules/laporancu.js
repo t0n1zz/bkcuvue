@@ -59,10 +59,10 @@ export const laporanCu = {
     },
 
     // load by cu
-    indexCU( { commit }, [p, id] ){
+    indexCu( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.indexCU( p, id )
+      laporanCuAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -104,10 +104,10 @@ export const laporanCu = {
     },
 
     // load by cu
-    indexPearlsCU( { commit }, [p, id] ){
+    indexPearlsCu( { commit }, [p, id] ){
       commit('setPearlsStat', 'loading');
       
-      laporanCuAPI.indexPearlsCU( p, id )
+      laporanCuAPI.indexPearlsCu( p, id )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');

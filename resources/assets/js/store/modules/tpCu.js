@@ -43,10 +43,10 @@ export const tpCu = {
         });
     },
 
-    indexCU( {commit}, [p, id] ){
+    indexCu( {commit}, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      TpCuAPI.indexCU( p, id )
+      TpCuAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');

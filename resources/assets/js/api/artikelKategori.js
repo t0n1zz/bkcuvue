@@ -10,12 +10,12 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/get');
   },
   
-  indexCU: function( p, id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/indexCU/' + id, {params: p});
+  indexCu: function( p, id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/indexCu/' + id, {params: p});
   },
 
-  getCU: function(  id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/getCU/' + id);
+  getCu: function(  id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/artikelKategori/getCu/' + id);
   },
 
   create: function(){

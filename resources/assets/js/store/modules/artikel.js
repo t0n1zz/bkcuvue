@@ -21,7 +21,6 @@ export const artikel = {
     dataS: state => state.dataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
-    idCU: state => state.idCU,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -45,10 +44,10 @@ export const artikel = {
     },
 
     // load by cu
-    indexCU( { commit }, [p, id] ){
+    indexCu( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      ArtikelAPI.indexCU( p, id )
+      ArtikelAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -218,9 +217,6 @@ export const artikel = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
-    },
-    setIdCU ( state, id ){
-      state.idCU = id;
     },
     setUpdate ( state, data ){
       state.update = data;

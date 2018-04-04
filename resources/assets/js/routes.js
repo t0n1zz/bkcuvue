@@ -105,9 +105,12 @@ const routes = [
 	// laporan cu
 	{ path: '/laporancu',name: 'laporanCu', 
 		components: { default: laporanCu, 'header': header }},
-	{ path: '/laporancu/cu/:cu',name: 'laporanCuCU', 
+	{ path: '/laporancu/cu/:cu',name: 'laporanCuCu', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'cu' }},
+	{ path: '/laporancu/cu/:cu/tpcu/:tpcu',name: 'laporanCuTpCu', 
+		components: { default: laporanCu, 'header': header },
+		meta: { mode:'tpcu' }},
 	{ path: '/laporancu/periode/:periode',name: 'laporanCuPeriode', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'periode' }},

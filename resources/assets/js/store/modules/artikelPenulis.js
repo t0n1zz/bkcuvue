@@ -43,10 +43,10 @@ export const artikelPenulis = {
         });
     },
 
-    indexCU( {commit}, [p, id] ){
+    indexCu( {commit}, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      ArtikelPenulisAPI.indexCU( p, id )
+      ArtikelPenulisAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -72,10 +72,10 @@ export const artikelPenulis = {
         });
     },
 
-    getCU( { commit }, id ){
+    getCu( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      ArtikelPenulisAPI.getCU( id )
+      ArtikelPenulisAPI.getCu( id )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

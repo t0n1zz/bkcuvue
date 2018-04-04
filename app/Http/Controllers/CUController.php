@@ -2,22 +2,22 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\CU;
+use App\Cu;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
 use File;
 use Image;
 
-class CUController extends Controller{
+class CuController extends Controller{
 
 	protected $imagepath = 'images/cu/';
 	protected $width = 200;
 	protected $height = 200;
-	protected $message = "CU";
+	protected $message = "Cu";
 
 	public function index()
 	{
-		$table_data = CU::with('Villages','Districts','Regencies','Provinces')->select(
+		$table_data = Cu::with('Villages','Districts','Regencies','Provinces')->select(
 			'cu.*',
 			DB::raw(
 				'(SELECT name FROM villages WHERE cu.id_villages = villages.id) as villages_name,
@@ -35,7 +35,7 @@ class CUController extends Controller{
 
 	public function get()
 	{
-		$table_data = CU::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
+		$table_data = Cu::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -45,7 +45,7 @@ class CUController extends Controller{
   
   public function getPus($id)
 	{
-		$table_data = CU::where('id_pus','=',$id)->select('id','no_ba','name')->orderby('name','asc')->get();
+		$table_data = Cu::where('id_pus','=',$id)->select('id','no_ba','name')->orderby('name','asc')->get();
 
 		return response()
 			->json([
@@ -57,15 +57,15 @@ class CUController extends Controller{
 	{
 		return response()
 			->json([
-					'form' => CU::initialize(),
-					'rules' => CU::$rules,
+					'form' => Cu::initialize(),
+					'rules' => Cu::$rules,
 					'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-		$this->validate($request,CU::$rules);
+		$this->validate($request,Cu::$rules);
 
 		$name = $request->name;
 
@@ -75,21 +75,21 @@ class CUController extends Controller{
 		else
 			$fileName = '';
 
-		$kelas = CU::create($request->except('gambar') + [
+		$kelas = Cu::create($request->except('gambar') + [
 			'gambar' => $fileName
 		]);
 		
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'CU ' .$name. ' berhasil ditambah',
+				'message' => 'Cu ' .$name. ' berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}
 
 	public function edit($id)
 	{
-		$kelas = CU::findOrFail($id);
+		$kelas = Cu::findOrFail($id);
 
 		return response()
 				->json([
@@ -100,11 +100,11 @@ class CUController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, CU::$rules);
+		$this->validate($request, Cu::$rules);
 
 		$name = $request->name;
 
-		$kelas = CU::findOrFail($id);
+		$kelas = Cu::findOrFail($id);
 
 		// processing single image upload
 		if(!empty($request->gambar))
@@ -125,7 +125,7 @@ class CUController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = CU::findOrFail($id);
+		$kelas = Cu::findOrFail($id);
 		$name = $kelas->name;
 
 		if(!empty($kelas->gambar)){

@@ -43,10 +43,10 @@ export const artikelKategori = {
         });
     },
 
-    indexCU( {commit}, [p, id] ){
+    indexCu( {commit}, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      ArtikelKategoriAPI.indexCU( p, id )
+      ArtikelKategoriAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -72,10 +72,10 @@ export const artikelKategori = {
         });
     },
 
-    getCU( { commit }, id ){
+    getCu( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      ArtikelKategoriAPI.getCU( id )
+      ArtikelKategoriAPI.getCu( id )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

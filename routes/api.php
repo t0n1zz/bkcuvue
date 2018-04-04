@@ -8,7 +8,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::get('/userId', 'UserController@userId');
     Route::get('/profile', 'UserController@profile');
     Route::get('/user', 'UserController@index');
-    Route::get('/user/indexCU/{id}', 'UserController@indexCU');
+    Route::get('/user/indexCu/{id}', 'UserController@indexCu');
     Route::get('/user/create', 'UserController@create');
     Route::get('/user/edit/{id}', 'UserController@edit');
     Route::post('/user/store', 'UserController@store');
@@ -27,7 +27,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //artikel
     Route::get('/artikel', 'ArtikelController@index');
-    Route::get('/artikel/indexCU/{id}', 'ArtikelController@indexCU');
+    Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
     Route::get('/artikel/create', 'ArtikelController@create');
     Route::get('/artikel/edit/{id}', 'ArtikelController@edit');
     Route::post('/artikel/store', 'ArtikelController@store');
@@ -39,8 +39,8 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     //artikel kategori
     Route::get('/artikelKategori', 'ArtikelKategoriController@index');
     Route::get('/artikelKategori/get', 'ArtikelKategoriController@get');
-    Route::get('/artikelKategori/indexCU/{id}', 'ArtikelKategoriController@indexCU');
-    Route::get('/artikelKategori/getCU/{id}', 'ArtikelKategoriController@getCU');
+    Route::get('/artikelKategori/indexCu/{id}', 'ArtikelKategoriController@indexCu');
+    Route::get('/artikelKategori/getCu/{id}', 'ArtikelKategoriController@getCu');
     Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
     Route::get('/artikelKategori/edit/{id}', 'ArtikelKategoriController@edit');
     Route::post('/artikelKategori/store', 'ArtikelKategoriController@store');
@@ -50,8 +50,8 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     //artikel penulis
     Route::get('/artikelPenulis', 'ArtikelPenulisController@index');
     Route::get('/artikelPenulis/get', 'ArtikelPenulisController@get');
-    Route::get('/artikelPenulis/indexCU/{id}', 'ArtikelPenulisController@indexCU');
-    Route::get('/artikelPenulis/getCU/{id}', 'ArtikelPenulisController@getCU');
+    Route::get('/artikelPenulis/indexCu/{id}', 'ArtikelPenulisController@indexCu');
+    Route::get('/artikelPenulis/getCu/{id}', 'ArtikelPenulisController@getCu');
     Route::get('/artikelPenulis/create', 'ArtikelPenulisController@create');
     Route::get('/artikelPenulis/edit/{id}', 'ArtikelPenulisController@edit');
     Route::post('/artikelPenulis/store', 'ArtikelPenulisController@store');
@@ -60,28 +60,28 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     // cu
     Route::group(['middleware' => ['permission:index cu']], function () {
-        Route::get('/cu', 'CUController@index');
-        Route::get('/cu/get', 'CUController@get');       
-        Route::get('/cu/getPus/{id}', 'CUController@getPus');
+        Route::get('/cu', 'CuController@index');
+        Route::get('/cu/get', 'CuController@get');       
+        Route::get('/cu/getPus/{id}', 'CuController@getPus');
     });
     Route::group(['middleware' => ['permission:create cu']], function () {
-        Route::get('/cu/create', 'CUController@create');
-        Route::post('/cu/store', 'CUController@store');
+        Route::get('/cu/create', 'CuController@create');
+        Route::post('/cu/store', 'CuController@store');
     });
     Route::group(['middleware' => ['permission:update cu']], function () {
-        Route::get('/cu/edit/{id}', 'CUController@edit');
-        Route::post('/cu/update/{id}', 'CUController@update');
+        Route::get('/cu/edit/{id}', 'CuController@edit');
+        Route::post('/cu/update/{id}', 'CuController@update');
     });
     Route::group(['middleware' => ['permission:destroy cu']], function () {
-        Route::delete('/cu/{id}', 'CUController@destroy');
+        Route::delete('/cu/{id}', 'CuController@destroy');
     });
 
     // tpcu
     Route::group(['middleware' => ['permission:index tpCu']], function () {
         Route::get('/tpCu', 'TpCuController@index');
         Route::get('/tpCu/get', 'TpCuController@get');
-        Route::get('/tpCu/indexCU/{id}', 'TpCuController@indexCU'); 
-        Route::get('/tpCu/getCU/{id}', 'TpCuController@getCU');
+        Route::get('/tpCu/indexCu/{id}', 'TpCuController@indexCu'); 
+        Route::get('/tpCu/getCu/{id}', 'TpCuController@getCu');
     });
     Route::group(['middleware' => ['permission:create tpCu']], function () {
         Route::get('/tpCu/create', 'TpCuController@create');
@@ -96,18 +96,26 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     });
 
     //laporan cu
-    Route::get('/laporanCu', 'laporanCuController@index');
-    Route::get('/laporanCu/indexCU/{id}', 'laporanCuController@indexCU');
-    Route::get('/laporanCu/indexPeriode/{periode}', 'laporanCuController@indexPeriode');
-    Route::get('/laporanCu/indexPearls', 'laporanCuController@indexPearls');
-    Route::get('/laporanCu/indexPearlsCU/{id}', 'laporanCuController@indexPearlsCU');
-    Route::get('/laporanCu/indexPearlsPeriode/{periode}', 'laporanCuController@indexPearlsPeriode');
-    Route::get('/laporanCu/getPeriode', 'laporanCuController@getPeriode');
-    Route::get('/laporanCu/create', 'laporanCuController@create');
-    Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');
-    Route::post('/laporanCu/store', 'laporanCuController@store');
-    Route::post('/laporanCu/update/{id}', 'laporanCuController@update');
-    Route::delete('/laporanCu/{id}', 'laporanCuController@destroy');
+    Route::group(['middleware' => ['permission:index laporanCu']], function () {
+        Route::get('/laporanCu', 'laporanCuController@index');
+        Route::get('/laporanCu/indexCu/{id}', 'laporanCuController@indexCu');
+        Route::get('/laporanCu/indexPeriode/{periode}', 'laporanCuController@indexPeriode');
+        Route::get('/laporanCu/indexPearls', 'laporanCuController@indexPearls');
+        Route::get('/laporanCu/indexPearlsCu/{id}', 'laporanCuController@indexPearlsCu');
+        Route::get('/laporanCu/indexPearlsPeriode/{periode}', 'laporanCuController@indexPearlsPeriode');
+        Route::get('/laporanCu/getPeriode', 'laporanCuController@getPeriode');
+    });
+    Route::group(['middleware' => ['permission:create laporanCu']], function () {
+        Route::get('/laporanCu/create', 'laporanCuController@create');
+        Route::post('/laporanCu/store', 'laporanCuController@store');
+    });
+    Route::group(['middleware' => ['permission:update laporanCu']], function () {
+        Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');
+        Route::post('/laporanCu/update/{id}', 'laporanCuController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy laporanCu']], function () {
+        Route::delete('/laporanCu/{id}', 'laporanCuController@destroy');
+    });
 
     // puskopdit
     Route::get('/pus', 'PusController@index');

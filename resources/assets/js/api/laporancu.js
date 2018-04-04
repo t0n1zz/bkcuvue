@@ -6,8 +6,8 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/laporanCu' ,{params: p});
   },
 
-  indexCU: function( p, id ){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexCU/' + id, {params: p});
+  indexCu: function( p, id ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexCu/' + id, {params: p});
   },
 
   indexPeriode: function( p, periode ){
@@ -22,8 +22,8 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexPearls' ,{params: p});
   },
 
-  indexPearlsCU: function( p, id ){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexPearlsCU/' + id, {params: p});
+  indexPearlsCu: function( p, id ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexPearlsCu/' + id, {params: p});
   },
 
   indexPearlsPeriode: function( p, periode ){

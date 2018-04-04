@@ -47,8 +47,8 @@ class ArtikelKategori extends Model {
         return $this->hasMany('App\Artikel','id_artikel_kategori','id');
     }
 
-    public function CU()
+    public function Cu()
     {
-        return $this->belongsTo('App\CU','id_cu','id')->select('id','name');
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
     }
 }

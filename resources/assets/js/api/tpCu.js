@@ -10,8 +10,8 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/tpCu/get');
   },
 
-  indexCU: function( p, id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/tpCu/indexCU/' + id, {params: p});
+  indexCu: function( p, id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/tpCu/indexCu/' + id, {params: p});
   },
 
   getCu: function( id ){

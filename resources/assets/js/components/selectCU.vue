@@ -10,7 +10,7 @@
 						</div>
 
 						<!-- select -->
-						<select class="bootstrap-select" name="idCU" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+						<select class="bootstrap-select" name="idCu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
 							<option value="semua">Semua</option>
@@ -38,7 +38,7 @@
 					<div class="input-group-addon">
 						Pilih Data
 					</div>
-					<select class="form-control" name="idCU" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+					<select class="form-control" name="idCu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 						<option disabled value="">Silahkan pilih data</option>
 						<option value="semua">Semua</option>
 						<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
@@ -76,13 +76,13 @@
 			if(this.profile.id_pus !== undefined){
 				this.fetchCU();
 			}	
-			// if(this.idCU === this.profile.id_cu){
-			// 	// resetting idCU for table parameters
+			// if(this.idCu === this.profile.id_cu){
+			// 	// resetting idCu for table parameters
 			// 	this.$store.dispatch('global/resetIdCU');
 			// }
 		},
 		watch: {
-			idCU(value){
+			idCu(value){
 				this.id_cu = value;
 			},
 			profileStat(value){
@@ -92,7 +92,7 @@
 			},
 			modelCUStat(value){
 				if(value === "success"){
-						this.id_cu = this.idCU;
+						this.id_cu = this.idCu;
 				}
 			},
     },
@@ -110,7 +110,7 @@
 				profileStat: 'profileStat'
 			}),
 			...mapGetters('global',{
-				idCU: 'idCU',
+				idCu: 'idCu',
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',

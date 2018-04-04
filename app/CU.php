@@ -6,7 +6,7 @@ use App\Support\FilterPaginateOrder;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CU extends Model {
+class Cu extends Model {
     
     use FilterPaginateOrder, LogsActivity, SoftDeletes;
 

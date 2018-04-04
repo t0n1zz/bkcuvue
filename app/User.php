@@ -65,8 +65,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Pus','id_pus','id')->select('id','name');
     }
 
-    public function CU(){
-        return $this->belongsTo('App\CU','id_cu','id')->select('id','name');
+    public function Cu(){
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
     }
 
     public function Role(){
