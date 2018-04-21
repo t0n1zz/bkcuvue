@@ -26,9 +26,6 @@
 					<message v-if="itemPearlsStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemPearls">
 					</message>
 
-					
-						
-
 					<!-- select data -->
 					<select-data 
 						:kelas="kelas"

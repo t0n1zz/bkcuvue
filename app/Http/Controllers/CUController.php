@@ -25,7 +25,7 @@ class CuController extends Controller{
 				(SELECT name FROM regencies WHERE cu.id_regencies = regencies.id) as regencies_name,
 				(SELECT name FROM provinces WHERE cu.id_provinces = provinces.id) as provinces_name'
 			)
-		)->withCount('hasTpCu')->filterPaginateOrder();
+		)->withCount('hasTp')->filterPaginateOrder();
 
 		return response()
 		->json([

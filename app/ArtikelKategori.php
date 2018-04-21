@@ -9,7 +9,7 @@ class ArtikelKategori extends Model {
     
     use FilterPaginateOrder, LogsActivity;
 
-    protected $table = 'artikelKategori';
+    protected $table = 'artikel_kategori';
 
     protected static $logFillable = true;
     

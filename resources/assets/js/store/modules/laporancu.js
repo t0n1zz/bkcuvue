@@ -1,4 +1,5 @@
 import laporanCuAPI from '../../api/laporanCu.js';
+import laporanTpAPI from '../../api/laporanTp.js';
 
 export const laporanCu = {
   namespaced: true,
@@ -73,6 +74,21 @@ export const laporanCu = {
         });
     },
 
+    // load by tp
+    indexTp( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      laporanTpAPI.indexTp( p, id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // load by periode
     indexPeriode( { commit }, [p, periode] ){
       commit('setDataStatS', 'loading');
@@ -108,6 +124,21 @@ export const laporanCu = {
       commit('setPearlsStat', 'loading');
       
       laporanCuAPI.indexPearlsCu( p, id )
+        .then( function( response ){
+          commit('setPearls', response.data.model);
+          commit('setPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
+        });
+    },
+
+    // load by tp
+    indexPearlsTp( { commit }, [p, id] ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanTpAPI.indexPearlsTp( p, id )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -164,10 +195,10 @@ export const laporanCu = {
     },
 
     // load by cu
-    grafikCU( { commit }, [p, id] ){
+    grafikCu( { commit }, [p, id] ){
       commit('setGrafikStat', 'loading');
       
-      laporanCuAPI.indexCU( p, id )
+      laporanCuAPI.indexCu( p, id )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');

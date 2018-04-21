@@ -45,9 +45,9 @@ class Cu extends Model {
         return $this->hasMany('App\LaporanCu','id_cu','id');
     }
 
-    public function hasTpCu()
+    public function hasTp()
     {
-        return $this->hasMany('App\TpCu','id_cu','id');
+        return $this->hasMany('App\Tp','id_cu','id');
     }
 
     public function Provinces()

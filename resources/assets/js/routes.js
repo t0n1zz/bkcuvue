@@ -12,8 +12,8 @@ import laporanCu from './views/laporanCu/index.vue';
 import laporanCu_form from './views/laporanCu/form.vue';
 import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
-import tpCu from './views/tpCu/index.vue';
-import tpCu_form from './views/tpCu/form.vue';
+import tp from './views/tp/index.vue';
+import tp_form from './views/tp/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import role from './views/role/index.vue';
@@ -92,15 +92,15 @@ const routes = [
 		components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
 		
 	// tp cu
-	{ path: '/tpCu',name: 'tpCu', 
-		components: { default: tpCu, 'header': header }},
-	{ path: '/tpCu/cu/:cu',name: 'tpCuCu', 
-		components: { default: tpCu, 'header': header }, 
+	{ path: '/tp',name: 'tp', 
+		components: { default: tp, 'header': header }},
+	{ path: '/tp/cu/:cu',name: 'tpCu', 
+		components: { default: tp, 'header': header }, 
 		meta: { mode:'cu' }},
-	{ path: '/tpCu/create',name: 'tpCuCreate', 
-		components: { default: tpCu_form, 'header': header} },
-	{ path: '/tpCu/edit/:id',name: 'tpCuEdit', 
-		components: { default: tpCu_form, 'header': header}, meta: { mode:'edit' } },
+	{ path: '/tp/create',name: 'tpCreate', 
+		components: { default: tp_form, 'header': header} },
+	{ path: '/tp/edit/:id',name: 'tpEdit', 
+		components: { default: tp_form, 'header': header}, meta: { mode:'edit' } },
 
 	// laporan cu
 	{ path: '/laporancu',name: 'laporanCu', 
@@ -108,9 +108,9 @@ const routes = [
 	{ path: '/laporancu/cu/:cu',name: 'laporanCuCu', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'cu' }},
-	{ path: '/laporancu/cu/:cu/tpcu/:tpcu',name: 'laporanCuTpCu', 
+	{ path: '/laporancu/cu/:cu/tp/:tp',name: 'laporanCuTp', 
 		components: { default: laporanCu, 'header': header },
-		meta: { mode:'tpcu' }},
+		meta: { mode:'tp' }},
 	{ path: '/laporancu/periode/:periode',name: 'laporanCuPeriode', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'periode' }},

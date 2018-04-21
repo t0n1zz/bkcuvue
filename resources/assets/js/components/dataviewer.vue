@@ -121,8 +121,8 @@
                   <ul class="dropdown-menu dropdown-menu-right">
                     <li class="dropdown-header">Pencarian berdasarkan</li>
                     <li class="divider"></li>
-                    <li v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'active' : params.search_column === column.key}">
-                      <a @click.prevent="searchColumnData(column.key,column.title,column.type)">{{column.title}}</a>
+                    <li v-for="column in columnData" v-if="column.filterType !== '' && !column.disable" :class="{'active' : params.search_column == column.key}">
+                      <a @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)">{{column.title}}</a>
                     </li>
                   </ul>
                 </div>
@@ -547,7 +547,7 @@
     </div>
 
     <!-- divider -->
-    <hr class="visible-xs hidden-print" />
+    <hr class="visible-xs hidden-print"/>
     
     <!-- pagination-->
     <div class="text-center visible-xs hidden-print">
@@ -725,7 +725,7 @@
   import Cleave from 'vue-cleave-component'
 
   export default {
-    props: ['title','source', 'columnData','filterData','itemData','itemDataStat', 'toolbarButton','params','extSearchQuery1','extSearchColumn','tableClass'],
+    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','extSearchQuery1','extSearchColumn','tableClass'],
     components: {
       jsonExcel,
       appModal,
@@ -828,16 +828,15 @@
       $('.bootstrap-select').selectpicker();
     },
     created() {
-      this.params.search_column = this.filterData[0].key;
-      this.params.search_operator = 'like';
-      this.searchColumn = this.filterData[0].title;
+      this.searchParams();
 
       // this.fetch();
     },
     watch: {
       // check route changes
 			'$route' (to, from){
-				this.isFirstLoad = true;
+        this.isFirstLoad = true;
+        this.searchParams();
       },
       
       itemDataStat(value){
@@ -885,35 +884,54 @@
           this.fetch();
         },
         500),
-      searchColumnData(value, name, type) {
-        if(type === 'date'){
+      searchColumnData(key, title, filterType, filterKey) {
+        if(filterType === 'date'){
           this.params.search_operator = this.operator[6].key;
           this.searchOperator = this.operator[6].title;
-        }else if(type === 'datetime'){
+        }else if(filterType === 'datetime'){
           this.params.search_operator = this.operator[6].key;
           this.searchOperator = this.operator[6].title;
-        }else if(type === 'number'){
+        }else if(filterType === 'number'){
           this.params.search_operator = this.operator[0].key;
           this.searchOperator = this.operator[0].title;
-        }else if(type === 'numeric'){
+        }else if(filterType === 'numeric'){
           this.params.search_operator = this.operator[0].key;
           this.searchOperator = this.operator[0].title;
         }else{
           this.params.search_operator = 'like';
         }
-        this.searchColumnType = type;
+        this.searchColumnType = filterType;
         this.params.search_query_2 = '';
         
-        if (this.params.search_column !== value) {
-            this.params.search_column = value;
-            this.searchColumn = name;
+        let searchKey = '';
+        if(filterKey != ''){
+          searchKey = filterKey;
+        }else{
+          searchKey = key;
+        }
+
+        if (this.params.search_column !== searchKey) {
+          this.params.search_column = searchKey;
+          this.searchColumn = title;
           if(this.params.search_query_1 !== ''){
             this.params.page = 1;
             this.fetch();
           }
         }
-
+        
         this.modalTutup();
+      },
+      searchParams(){
+        let a = _.findIndex(this.columnData, {'filter': true,'disable': false });
+
+        if(this.columnData[a].filterKey){
+          this.params.search_column = this.columnData[a].filterKey;
+        }else{
+          this.params.search_column = this.columnData[a].key;
+        }
+        
+        this.params.search_operator = 'like';
+        this.searchColumn = this.columnData[a].title;
       },
       searchOperatorData(op){
         this.params.search_operator = op.key;

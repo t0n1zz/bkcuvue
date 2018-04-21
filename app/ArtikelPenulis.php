@@ -9,7 +9,7 @@ class ArtikelPenulis extends Model {
 
     use FilterPaginateOrder, LogsActivity;
     
-    protected $table = 'artikelPenulis';
+    protected $table = 'artikel_penulis';
 
     protected static $logFillable = true;
     

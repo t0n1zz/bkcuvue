@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 		:params="params"
 		@fetch="fetch">
 
@@ -101,6 +101,9 @@
 						<span v-if="props.item.periode < selectData && idCu == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(selectData)"><i class="icon-alert text-size-base"></i></span>
 						&nbsp;
 						{{ props.item.periode | dateMonth }}
+					</td>
+					<td v-if="!columnData[5].hide && !columnData[5].disable">
+						<check-value :value="props.item.tp"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.l_biasa" valueType="currency"></check-value>
@@ -544,32 +547,6 @@
           search_query_1: '',
           search_query_2: ''
 				},
-				filterData: [
-					{
-						title: 'CU',
-						key: 'cu.name',
-						type: 'string',
-						disable: false
-					},
-					// { TODO: FIX THIS!!
-					// 	title: 'Provinsi',
-					// 	key: 'provinces.name',
-					// 	type: 'string',
-					// 	disable: false
-					// },
-					{
-						title: 'Tgl. Buat',
-						key: 'created_at',
-						type: 'datetime',
-						disable: false
-					},
-					{
-						title: 'Tgl. Ubah',
-						key: 'updated_at',
-						type: 'datetime',
-						disable: false
-					}
-				],
 				columnData: [
 					{
 						title: 'No.',
@@ -588,12 +565,15 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'string',
+						filterKey: 'cu.name',
 						isChart: false,
 						columnGroup: 'all'
 					},
 					{
 						title: 'No. BA',
-						key: 'laporancu.no_ba',
+						key: 'laporan_cu.no_ba',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -620,6 +600,19 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'date',
+						isChart: false,
+						columnGroup: 'all'
+					},
+					{
+						title: 'Tp',
+						key: 'tp',
+						sort: true,
+						hide: false,
+						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: false,
 						columnGroup: 'all'
 					},
@@ -630,6 +623,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'anggota'
@@ -641,6 +636,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'anggota'
@@ -652,6 +649,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'anggota'
@@ -663,6 +662,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'anggota'
@@ -674,6 +675,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: true,
 						columnGroup: 'anggota'
@@ -685,6 +688,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'anggota'
@@ -696,6 +701,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'aset'
@@ -707,6 +714,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'aset'
@@ -718,6 +727,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'aset'
@@ -729,6 +740,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'aset'
@@ -740,6 +753,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -750,6 +765,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -760,6 +777,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -770,6 +789,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -780,6 +801,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -790,6 +813,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -800,6 +825,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -810,6 +837,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -820,6 +849,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -830,6 +861,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -841,6 +874,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -852,6 +887,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -863,6 +900,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -874,6 +913,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -885,6 +926,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -896,6 +939,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -907,6 +952,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -917,6 +964,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -927,6 +976,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -937,6 +988,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -947,6 +1000,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -957,6 +1012,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -967,6 +1024,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -977,6 +1036,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'shu'
@@ -988,6 +1049,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'shu'
@@ -999,6 +1062,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'shu'
@@ -1010,6 +1075,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'shu'
@@ -1021,6 +1088,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'aset'
@@ -1032,6 +1101,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -1042,6 +1113,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'number',
 						isChart: true,
 						isChartSelect: false
 					},
@@ -1051,6 +1124,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'datetime',
 						isChart: false,
 						columnGroup: 'all'
 					},
@@ -1060,6 +1135,8 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						isFilter: true,
+						filterType: 'datetime',
 						isChart: false,
 						columnGroup: 'all'
 					}
@@ -1092,8 +1169,8 @@
 				}
 			},
 
-			// fetch on selectTpCu change
-			idTpCu(value){
+			// fetch on selectTp change
+			idTp(value){
 				if(value !== ''){
 					if(this.itemDataStat == 'success'){
 						this.checkMeta();
@@ -1111,7 +1188,7 @@
 			},
 
 			// fetch on load page
-			modelTpCuStat(value){ 
+			modelTpStat(value){ 
 				if(value == 'success'){
 					this.checkMeta();
 					this.fetch();
@@ -1147,6 +1224,7 @@
     },
 		methods: {
 			fetch(){
+				this.resetParams();
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
 
@@ -1163,15 +1241,15 @@
 						this.disableColumnCU(false);
 					}else{
 						if(this.idCu !== undefined){
-							if(this.idTpCu !== undefined){
+							if(this.idTp !== undefined){
 
 								// konsolidasi
-								if(this.idTpCu == 'semua'){
+								if(this.idTp == 'semua'){
 									this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 								
 								// tp
 								}else{
-									this.$store.dispatch('laporanTpCu' + '/indexCu', [this.params,this.idTpCu]);
+									this.$store.dispatch(this.kelas + '/indexTp', [this.params,this.idTp]);
 								}
 							}
 						}
@@ -1182,18 +1260,15 @@
 			checkMeta(){
 				// route from edit and when change cu data selected
 				if(this.$route.meta.mode == 'cu'){
-					this.resetParams();
 					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-					this.$store.dispatch('global/changeIdTpCu','semua');
+					this.$store.dispatch('global/changeIdTp','semua');
 
 				// route from edit and when change tp cu data selected
-				}else if(this.$route.meta.mode == 'tpcu'){
-					this.resetParams();
+				}else if(this.$route.meta.mode == 'tp'){
 					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-					this.$store.dispatch('global/changeIdTpCu',this.$route.params.tpcu);
+					this.$store.dispatch('global/changeIdTp',this.$route.params.tp);
 				// default route and periode route
 				}else{
-					this.resetParams();
 					this.$store.dispatch('global/changeIdCu','semua');
 				}
 			},
@@ -1201,8 +1276,6 @@
 				this.columnData[1].disable = status;
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
-				this.filterData[1].disable = status;
-				this.filterData[2].disable = status;
 			},
 			columnGroup(value){
 				for (let i = 0, len = this.columnData.length ; i < len; i++){
@@ -1214,10 +1287,23 @@
 				}
 			},
 			resetParams(){
-				this.params.search_column = 'cu.name';
+				let search_column = '';
+				if(this.$route.meta.mode == 'tp'){
+						search_column = 'periode';
+				}else if(this.$route.meta.mode == 'cu'){
+					if(this.idCu == 'semua'){
+						search_column = 'cu.name';
+					}else{
+						search_column = 'periode';
+					}
+				}else{
+					search_column = 'cu.name';
+				}
+
+				this.params.search_column = search_column;
 				this.params.search_query_1 = '';
 
-				this.extSearchColumn = 'cu.name';
+				this.extSearchColumn = search_column;
 				this.extSearchQuery1 = '';
 			},
 			selectedRow(item){
@@ -1268,16 +1354,16 @@
 			}),
 			...mapGetters('global',{
 				idCu: 'idCu',
-				idTpCu: 'idTpCu',
+				idTp: 'idTp',
 				selectData: 'data'
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
 			}),
-			...mapGetters('tpCu',{
-				modelTpCu: 'dataS',
-				modelTpCuStat: 'dataStatS',
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 			...mapGetters('laporanCu',{
 				itemData: 'dataS',

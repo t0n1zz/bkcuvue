@@ -76,23 +76,23 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/cu/{id}', 'CuController@destroy');
     });
 
-    // tpcu
-    Route::group(['middleware' => ['permission:index tpCu']], function () {
-        Route::get('/tpCu', 'TpCuController@index');
-        Route::get('/tpCu/get', 'TpCuController@get');
-        Route::get('/tpCu/indexCu/{id}', 'TpCuController@indexCu'); 
-        Route::get('/tpCu/getCu/{id}', 'TpCuController@getCu');
+    // tp
+    Route::group(['middleware' => ['permission:index tp']], function () {
+        Route::get('/tp', 'TpController@index');
+        Route::get('/tp/get', 'TpController@get');
+        Route::get('/tp/indexCu/{id}', 'TpController@indexCu'); 
+        Route::get('/tp/getCu/{id}', 'TpController@getCu');
     });
-    Route::group(['middleware' => ['permission:create tpCu']], function () {
-        Route::get('/tpCu/create', 'TpCuController@create');
-        Route::post('/tpCu/store', 'TpCuController@store');
+    Route::group(['middleware' => ['permission:create tp']], function () {
+        Route::get('/tp/create', 'TpController@create');
+        Route::post('/tp/store', 'TpController@store');
     });
-    Route::group(['middleware' => ['permission:update tpCu']], function () {
-        Route::get('/tpCu/edit/{id}', 'TpCuController@edit');
-        Route::post('/tpCu/update/{id}', 'TpCuController@update');
+    Route::group(['middleware' => ['permission:update tp']], function () {
+        Route::get('/tp/edit/{id}', 'TpController@edit');
+        Route::post('/tp/update/{id}', 'TpController@update');
     });
-    Route::group(['middleware' => ['permission:destroy tpCu']], function () {
-        Route::delete('/tpCu/{id}', 'TpCuController@destroy');
+    Route::group(['middleware' => ['permission:destroy tp']], function () {
+        Route::delete('/tp/{id}', 'TpController@destroy');
     });
 
     //laporan cu
@@ -115,6 +115,28 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     });
     Route::group(['middleware' => ['permission:destroy laporanCu']], function () {
         Route::delete('/laporanCu/{id}', 'laporanCuController@destroy');
+    });
+
+    //laporan tp
+    Route::group(['middleware' => ['permission:index laporanTp']], function () {
+        Route::get('/laporanTp', 'laporanTpController@index');
+        Route::get('/laporanTp/indexTp/{id}', 'laporanTpController@indexTp');
+        Route::get('/laporanTp/indexPeriode/{periode}', 'laporanTpController@indexPeriode');
+        Route::get('/laporanTp/indexPearls', 'laporanTpController@indexPearls');
+        Route::get('/laporanTp/indexPearlsTp/{id}', 'laporanTpController@indexPearlsTp');
+        Route::get('/laporanTp/indexPearlsPeriode/{periode}', 'laporanTpController@indexPearlsPeriode');
+        Route::get('/laporanTp/getPeriode', 'laporanTpController@getPeriode');
+    });
+    Route::group(['middleware' => ['permission:create laporanTp']], function () {
+        Route::get('/laporanTp/create', 'laporanTpController@create');
+        Route::post('/laporanTp/store', 'laporanTpController@store');
+    });
+    Route::group(['middleware' => ['permission:update laporanTp']], function () {
+        Route::get('/laporanTp/edit/{id}', 'laporanTpController@edit');
+        Route::post('/laporanTp/update/{id}', 'laporanTpController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy laporanTp']], function () {
+        Route::delete('/laporanTp/{id}', 'laporanTpController@destroy');
     });
 
     // puskopdit

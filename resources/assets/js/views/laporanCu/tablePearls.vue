@@ -459,7 +459,7 @@
           direction: 'desc',
           per_page: 50,
           page: 1,
-          search_column: 'cu.name',
+          search_column: '',
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''
@@ -469,6 +469,12 @@
 						title: 'CU',
 						key: 'cu.name',
 						type: 'string',
+						disable: false
+					},
+					{
+						title: 'Periode',
+						key: 'periode',
+						type: 'date',
 						disable: false
 					},
 					{
@@ -505,7 +511,7 @@
 					},
 					{
 						title: 'No. BA',
-						key: 'laporancu.no_ba',
+						key: 'laporan_cu.no_ba',
 						excelType: 'string',
 						sort: true,
 						hide: false,
@@ -709,12 +715,24 @@
 			}
 		},
 		created(){
+			// this.checkMeta();
+
 			this.fetch();
 		},
 		watch: {
 			// fetch on selectCU change
 			idCu(value){
 				this.isFirstLoad = true;
+				if(value !== ''){
+					if(this.itemDataStat == 'success'){
+						// this.checkMeta();
+						this.fetch();
+					}
+				}
+			},
+
+			// fetch on selectTp change
+			idTp(value){
 				if(value !== ''){
 					if(this.itemDataStat == 'success'){
 						// this.checkMeta();
@@ -732,6 +750,14 @@
 
 			// fetch on load page
 			modelCUStat(value){ 
+				if(value == 'success'){
+					// this.checkMeta();
+					this.fetch();
+				}
+			},
+
+			// fetch on load page
+			modelTpStat(value){ 
 				if(value == 'success'){
 					// this.checkMeta();
 					this.fetch();
@@ -782,22 +808,38 @@
 						this.$store.dispatch(this.kelas + '/getPeriode');
 						this.disableColumnCU(false);
 					}else{
-						if(this.idCu !== undefined){
-							this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.idCu]);
-						}
 						this.disableColumnCU(true);
+						this.resetParams();
+						if(this.idCu !== undefined){
+							if(this.idTp !== undefined){
+
+								// konsolidasi
+								if(this.idTp == 'semua'){
+									this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.idCu]);
+
+								// tp	
+								}else{
+									this.$store.dispatch(this.kelas + '/indexPearlsTp', [this.params,this.idTp]);
+								}
+							}
+							
+						}
 					}
+					
 				}
 			},
 			checkMeta(){
 				// route from edit and when change cu data selected
 				if(this.$route.meta.mode == 'cu'){
-					this.resetParams();
 					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
+					this.$store.dispatch('global/changeIdTp','semua');
 
+				// route from edit and when change tp cu data selected
+				}else if(this.$route.meta.mode == 'tp'){
+					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
+					this.$store.dispatch('global/changeIdTp',this.$route.params.tp);
 				// default route and periode route
 				}else{
-					this.resetParams();
 					this.$store.dispatch('global/changeIdCu','semua');
 				}
 			},
@@ -805,14 +847,26 @@
 				this.columnData[1].disable = status;
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
-				this.filterData[1].disable = status;
-				this.filterData[2].disable = status;
+				this.filterData[0].disable = status;
 			},
 			resetParams(){
-				this.params.search_column = 'cu.name';
+				let search_column = '';
+				if(this.$route.meta.mode == 'tp'){
+						search_column = 'periode';
+				}else if(this.$route.meta.mode == 'cu'){
+					if(this.idCu == 'semua'){
+						search_column = 'cu.name';
+					}else{
+						search_column = 'periode';
+					}
+				}else{
+					search_column = 'cu.name';
+				}
+
+				this.params.search_column = search_column;
 				this.params.search_query_1 = '';
 
-				this.extSearchColumn = 'cu.name';
+				this.extSearchColumn = search_column;
 				this.extSearchQuery1 = '';
 			},
 			selectedRow(item){
@@ -1191,11 +1245,16 @@
 			}),
 			...mapGetters('global',{
 				idCu: 'idCu',
+				idTp: 'idTp',
 				selectData: 'data'
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 			...mapGetters('laporanCu',{
 				itemData: 'pearls',

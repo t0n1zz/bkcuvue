@@ -12,7 +12,7 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
-		v-if="idCU === 'semua'"
+		v-if="idCu === 'semua'"
 		></bar-chart>
 	<line-chart
 		:titleText="titleText"
@@ -74,13 +74,13 @@ export default {
 	},
 	watch: {
 		// check route changes
-		idCU(valeu){
+		idCu(valeu){
 			this.isFirstLoad = true;
 			this.fetch();
 		},
 		selectData(value){
 			this.isFirstLoad = true;
-			if(this.idCU == 'semua'){
+			if(this.idCu == 'semua'){
 				this.fetch();
 			}
 		},
@@ -90,7 +90,7 @@ export default {
 				// 	this.checkPage();
 				// 	this.isFirstLoad = false;
 				// }
-				if(this.idCU !== 'semua'){
+				if(this.idCu !== 'semua'){
 						this.titleText = 'Grafik ' + this.title + ' ' + this.itemData.data[0].c_u.name;
 					}
 			}
@@ -100,7 +100,7 @@ export default {
 		// fetching data from database
 		fetch(){
 			 
-			if(this.idCU === 'semua'){
+			if(this.idCu === 'semua'){
 				if(this.selectData){
 					this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
 
@@ -108,8 +108,8 @@ export default {
 					this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
 				}
 			}else{
-				if(this.idCU !== undefined){
-					this.$store.dispatch(this.kelas + '/grafikCU', [this.params,this.idCU]);
+				if(this.idCu !== undefined){
+					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.idCu]);
 
 					this.axisLabelKey = 'periode';
 					
@@ -134,7 +134,7 @@ export default {
 	},
 	computed: {
 		...mapGetters('global',{
-			idCU: 'idCU',
+			idCu: 'idCu',
 			selectData: 'data'
 		}),
 		...mapGetters('laporanCu',{

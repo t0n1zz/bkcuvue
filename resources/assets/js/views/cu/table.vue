@@ -82,7 +82,7 @@
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
-					<td v-if="!columnData[0].hide">
+					<td>
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
@@ -96,7 +96,7 @@
 						<check-value :value="props.item.no_ba"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.has_tp_cu_count"></check-value>
+						<check-value :value="props.item.has_tp_count"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.badan_hukum"></check-value>
@@ -316,6 +316,7 @@
 </template>
 
 <script>
+	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
 	import DataViewer from '../../components/dataviewer.vue';
@@ -345,110 +346,6 @@
           search_query_1: '',
           search_query_2: ''
         },
-				filterData: [
-					{
-						title: 'Nama',
-						key: 'name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'No. BA',
-						key: 'no_ba',
-						type: 'number',
-						disable: false
-					},
-					{
-						title: 'Provinsi',
-						key: 'provinces.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kabupaten',
-						key: 'regencies.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kecamatan',
-						key: 'districts.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kelurahan',
-						key: 'villages.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Alamat',
-						key: 'alamat',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Aplikasi',
-						key: 'app',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. Berdiri',
-						key: 'ultah',
-						type: 'date',
-						disable: false
-					},
-					{
-						title: 'Tgl. Bergabung',
-						key: 'bergabung',
-						type: 'date',
-						disable: false
-					},
-					{
-						title: 'Website',
-						key: 'website',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'E-mail',
-						key: 'email',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'No. Telp',
-						key: 'telp',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'No. Hp',
-						key: 'hp',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kode Pos',
-						key: 'pos',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. / Waktu Buat',
-						key: 'created_at',
-						type: 'datetime',
-						disable: false
-					},
-					{
-						title: 'Tgl. / Waktu Ubah',
-						key: 'updated_at',
-						type: 'datetime',
-						disable: false
-					}
-				],
 				columnData: [
 					{
 						title: 'No.',
@@ -472,7 +369,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'No. BA',
@@ -480,7 +378,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'number'
 					},
 					{
 						title: 'TP/KP',
@@ -490,7 +389,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'number'
 					},
 					{
 						title: 'Badan Hukum',
@@ -508,7 +408,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterKey: 'provinces.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Kabupaten',
@@ -518,7 +420,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterKey: 'regencies.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Kecamatan',
@@ -528,7 +432,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterKey: 'districts.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Kelurahan',
@@ -538,7 +444,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterKey: 'villages.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Alamat',
@@ -546,7 +454,8 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'Aplikasi',
@@ -554,7 +463,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'Tgl. Berdiri',
@@ -562,7 +472,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'date'
 					},
 					{
 						title: 'Tgl. Bergabung',
@@ -570,7 +481,8 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'date'
 					},
 					{
 						title: 'Website',
@@ -578,7 +490,8 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'E-mail',
@@ -586,7 +499,8 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'No. Telp',
@@ -594,7 +508,8 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'No. Hp',
@@ -602,7 +517,8 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'Kode Pos',
@@ -610,21 +526,24 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'string'
 					},
 					{
 						title: 'Tgl. / Waktu Buat',
 						key: 'created_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. / Waktu Ubah',
 						key: 'updated_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -664,7 +583,7 @@
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
 			lihatTpCu(id_cu){
-				this.$router.push({name: 'tpCuCU', params: { cu: id_cu }});
+				this.$router.push({name: 'tpCu', params: { cu: id_cu }});
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

@@ -30,7 +30,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id)cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option data-divider="true"></option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
@@ -39,6 +39,31 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_tp')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
+												TP:
+											</h5>
+
+											<!-- select -->
+											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="modelTp.length === 0">
+												<option disabled value="">Silahkan pilih TP</option>
+												<option value="0">Konsolidasi</option>
+												<option data-divider="true"></option>
+												<option v-for="tp in modelTp" :value="tp.id">{{tp.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tp') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -792,6 +817,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import _ from 'lodash';
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
@@ -894,6 +920,19 @@
 					this.$store.dispatch(this.kelas + '/create');
 				}
 			},
+			changeCu(id){
+				this.$store.dispatch('tp/getCu',id);
+				let model = _.find(this.modelCU, function(o){
+					return o.id == id
+				});
+				this.form.no_ba = model.no_ba;
+			},
+			changeTp(id){
+				let model = _.find(this.modelTp, function(o){
+					return o.id == id
+				});
+				this.form.no_tp = model.no_tp;
+			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
@@ -912,13 +951,17 @@
 			},
 			back(){
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
 					if(this.profile.id_cu == 0){
 						if(this.form.id_cu == 0){
 							this.$router.push({name: this.kelas});
 						}else{
-							this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+							if(this.form.id_tp == 0){
+								this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+							}else{
+								this.$router.push({name: this.kelas + 'Tp', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
+							}
 						}
 					}else{
 						this.$router.push({name: this.kelas});
@@ -964,6 +1007,10 @@
 			...mapGetters('cu',{
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 			modelPus() {
 				return this.$store.getters.getPusS;

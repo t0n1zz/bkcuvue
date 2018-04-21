@@ -2,29 +2,31 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Tp;
 use App\LaporanCu;
+use App\LaporanTp;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
 
 class LaporanCuController extends Controller{
 
-	protected $message = 'Laporan CU';
+	protected $message = 'Laporan Cu';
 
 	public function index()
 	{
-		$table_data = LaporanCu::select('laporancu.*',
+		$table_data = LaporanCu::select('laporan_cu.*',
 			'cu.name as cu_name',
 			'provinces.name as provinces_name')
-			->leftjoin('cu','laporancu.id_cu','cu.id')
+			->leftjoin('cu','laporan_cu.id_cu','cu.id')
 			->leftjoin('provinces','cu.id_provinces','provinces.id')
-			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu GROUP BY id_cu) latest_report"),function($join){
-        $join->on('laporancu.id_cu','=','latest_report.id_cu');
-        $join->on('laporancu.periode','=','latest_report.max_periode');
+			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
+        $join->on('laporan_cu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
-				(IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0)) as total_anggota,
-				(IFNULL(laporancu.piutang_beredar,0)/IFNULL(laporancu.aset,0)) as rasio_beredar,
-				((IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_beredar,0)) as rasio_lalai,
-				(IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))) as piutang_bersih'
+				(IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0)) as total_anggota,
+				(IFNULL(laporan_cu.piutang_beredar,0)/IFNULL(laporan_cu.aset,0)) as rasio_beredar,
+				((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0)) as rasio_lalai,
+				(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih'
 			)])->FilterPaginateOrder();
 
 		return response()
@@ -35,11 +37,11 @@ class LaporanCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = LaporanCu::with('CU')->where('id_cu',$id)->addSelect(['*',DB::raw('
-			(IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0)) as total_anggota,
-			(IFNULL(laporancu.piutang_beredar,0)/IFNULL(laporancu.aset,0)) as rasio_beredar,
-			((IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_beredar,0)) as rasio_lalai,
-			(IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))) as piutang_bersih'
+		$table_data = LaporanCu::with('Cu')->where('id_cu',$id)->addSelect(['*',DB::raw('
+			(IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0)) as total_anggota,
+			(IFNULL(laporan_cu.piutang_beredar,0)/IFNULL(laporan_cu.aset,0)) as rasio_beredar,
+			((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0)) as rasio_lalai,
+			(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih'
 		)])->filterPaginateOrder();
 
 		return response()
@@ -50,19 +52,19 @@ class LaporanCuController extends Controller{
 
 	public function indexPeriode($periode)
 	{
-		$table_data = LaporanCu::select('laporancu.*',
+		$table_data = LaporanCu::select('laporan_cu.*',
 		'cu.name as cu_name',
 		'provinces.name as provinces_name')
-		->leftjoin('cu','laporancu.id_cu','cu.id')
+		->leftjoin('cu','laporan_cu.id_cu','cu.id')
     ->leftjoin('provinces','cu.id_provinces','provinces.id')
-		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
-        $join->on('laporancu.id_cu','=','latest_report.id_cu');
-        $join->on('laporancu.periode','=','latest_report.max_periode');
+		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
+        $join->on('laporan_cu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
-			IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
-			(IFNULL(laporancu.piutang_beredar,0)/IFNULL(laporancu.aset,0)) as rasio_beredar,
-			((IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_beredar,0)) as rasio_lalai,
-			(IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0))) as piutang_bersih'
+			IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0) as total_anggota,
+			(IFNULL(laporan_cu.piutang_beredar,0)/IFNULL(laporan_cu.aset,0)) as rasio_beredar,
+			((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0)) as rasio_lalai,
+			(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih'
 		)])->FilterPaginateOrder();
 
 		return response()
@@ -73,60 +75,60 @@ class LaporanCuController extends Controller{
 
 	public function indexPearls()
 	{
-		$table_data = LaporanCu::select('laporancu.*',
+		$table_data = LaporanCu::select('laporan_cu.*',
 			'cu.name as cu_name',
 			'provinces.name as provinces_name')
-			->leftjoin('cu','laporancu.id_cu','cu.id')
+			->leftjoin('cu','laporan_cu.id_cu','cu.id')
 			->leftjoin('provinces','cu.id_provinces','provinces.id')
-			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu GROUP BY id_cu) latest_report"),function($join){
-        $join->on('laporancu.id_cu','=','latest_report.id_cu');
-        $join->on('laporancu.periode','=','latest_report.max_periode');
+			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
+        $join->on('laporan_cu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
-				@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
+				@total_anggota := IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0) as total_anggota,
 
-				@piutang_bersih := IFNULL(laporancu.dcr,0) + IFNULL(laporancu.dcu,0) + IFNULL(laporancu.iuran_gedung,0) + IFNULL(laporancu.donasi,0) + IFNULL(laporancu.shu_lalu,0) as piutang_bersih,	
+				@piutang_bersih := IFNULL(laporan_cu.dcr,0) + IFNULL(laporan_cu.dcu,0) + IFNULL(laporan_cu.iuran_gedung,0) + IFNULL(laporan_cu.donasi,0) + IFNULL(laporan_cu.shu_lalu,0) as piutang_bersih,	
 
-				@rata_saham := (((IFNULL(laporancu.simpanan_saham_des,0) + IFNULL(laporancu.simpanan_saham,0))/2) / MONTH(laporancu.periode) ) * 12 as rata_saham,
+				@rata_saham := (((IFNULL(laporan_cu.simpanan_saham_des,0) + IFNULL(laporan_cu.simpanan_saham,0))/2) / MONTH(laporan_cu.periode) ) * 12 as rata_saham,
 
-				@tot_nonsaham := IFNULL(laporancu.nonsaham_harian,0) + IFNULL(laporancu.nonsaham_unggulan,0) as tot_nonsaham,
+				@tot_nonsaham := IFNULL(laporan_cu.nonsaham_harian,0) + IFNULL(laporan_cu.nonsaham_unggulan,0) as tot_nonsaham,
 
-				@rata_aset := (IFNULL(laporancu.aset,0) + IFNULL(laporancu.aset_lalu,0)) / 2 as rata_aset,
+				@rata_aset := (IFNULL(laporan_cu.aset,0) + IFNULL(laporan_cu.aset_lalu,0)) / 2 as rata_aset,
 
-				@p1 := IFNULL(laporancu.dcr, 0) / IFNULL(laporancu.piutang_lalai_12bulan,0) as p1,
+				@p1 := IFNULL(laporan_cu.dcr, 0) / IFNULL(laporan_cu.piutang_lalai_12bulan,0) as p1,
 
-				@p2_1 := (IFNULL(laporancu.dcr,0) - IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_lalai_1bulan,0) as p2_1,
+				@p2_1 := (IFNULL(laporan_cu.dcr,0) - IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_lalai_1bulan,0) as p2_1,
 
 				@p2 := if(@p1 >= 1, @p2_1, 0) as p2,
 
-				@e1_1 := (IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)))) / IFNULL(laporancu.aset,0) as e1_1,
+				@e1_1 := (IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)))) / IFNULL(laporan_cu.aset,0) as e1_1,
 
-				@e1_2 := (IFNULL(laporancu.piutang_beredar,0) - IFNULL(laporancu.dcr,0)) / IFNULL(laporancu.aset,0) as e1_2,
+				@e1_2 := (IFNULL(laporan_cu.piutang_beredar,0) - IFNULL(laporan_cu.dcr,0)) / IFNULL(laporan_cu.aset,0) as e1_2,
 
 				@e1 := IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
 
-				@e5 := (IFNULL(laporancu.nonsaham_unggulan,0) + IFNULL(laporancu.nonsaham_harian,0)) / IFNULL(laporancu.aset,0) as e5,
+				@e5 := (IFNULL(laporan_cu.nonsaham_unggulan,0) + IFNULL(laporan_cu.nonsaham_harian,0)) / IFNULL(laporan_cu.aset,0) as e5,
 
-				@e6 := IFNULL(laporancu.total_hutang_pihak3,0) / IFNULL(laporancu.aset,0) as e6,
+				@e6 := IFNULL(laporan_cu.total_hutang_pihak3,0) / IFNULL(laporan_cu.aset,0) as e6,
 
-				@e9 := (@piutang_bersih - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)) + IFNULL(laporancu.aset_masalah,0))) / IFNULL(laporancu.aset,0) as e9,
+				@e9 := (@piutang_bersih - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + IFNULL(laporan_cu.aset_masalah,0))) / IFNULL(laporan_cu.aset,0) as e9,
 
-				@a1 := (IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0)) / IFNULL(laporancu.piutang_beredar,0) as a1,
+				@a1 := (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0)) / IFNULL(laporan_cu.piutang_beredar,0) as a1,
 
-				@a2 := IFNULL(laporancu.aset_tidak_menghasilkan,0) / IFNULL(laporancu.aset,0) as a2,
+				@a2 := IFNULL(laporan_cu.aset_tidak_menghasilkan,0) / IFNULL(laporan_cu.aset,0) as a2,
 				
-				@r7_1 := IFNULL(laporancu.bjs_saham,0) / @rata_saham as r7_1,
+				@r7_1 := IFNULL(laporan_cu.bjs_saham,0) / @rata_saham as r7_1,
 
-				@r7_2 := IFNULL(laporancu.bjs_saham,0) / ((IFNULL(laporancu.simpanan_saham_lalu,0) + IFNULL(laporancu.simpanan_saham,0)) / 2) as r7_2,
+				@r7_2 := IFNULL(laporan_cu.bjs_saham,0) / ((IFNULL(laporan_cu.simpanan_saham_lalu,0) + IFNULL(laporan_cu.simpanan_saham,0)) / 2) as r7_2,
 
-				@e7_1 := IF(IFNULL(laporancu.simpanan_saham_des,0) = 0 && IFNULL(laporancu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
+				@e7_1 := IF(IFNULL(laporan_cu.simpanan_saham_des,0) = 0 && IFNULL(laporan_cu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
 
-				@e9 := (IFNULL(laporancu.total_biaya,0) - IFNULL(laporancu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
+				@e9 := (IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
-				@l1 := (IFNULL(laporancu.investasi_likuid,0) + IFNULL(laporancu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporancu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
+				@l1 := (IFNULL(laporan_cu.investasi_likuid,0) + IFNULL(laporan_cu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporan_cu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
 
-				@s10 := (@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
+				@s10 := (@total_anggota - IFNULL(laporan_cu.total_anggota_lalu,0)) / IFNULL(laporan_cu.total_anggota_lalu,0) as s10,
 
-				@s1 := (IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11,
+				@s1 := (IFNULL(laporan_cu.aset,0) - IFNULL(laporan_cu.aset_lalu,0)) / IFNULL(laporan_cu.aset_lalu,0) as s11,
 				
 				@ideal := 0 as ideal,
 				@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
@@ -142,52 +144,52 @@ class LaporanCuController extends Controller{
 
 	public function indexPearlsCu($id)
 	{
-		$table_data = LaporanCu::with('CU')->where('id_cu',$id)->addSelect(['*',DB::raw('
-			@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
+		$table_data = LaporanCu::with('Cu')->where('id_cu',$id)->addSelect(['*',DB::raw('
+			@total_anggota := IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0) as total_anggota,
 
-			@piutang_bersih := IFNULL(laporancu.dcr,0) + IFNULL(laporancu.dcu,0) + IFNULL(laporancu.iuran_gedung,0) + IFNULL(laporancu.donasi,0) + IFNULL(laporancu.shu_lalu,0) as piutang_bersih,	
+			@piutang_bersih := IFNULL(laporan_cu.dcr,0) + IFNULL(laporan_cu.dcu,0) + IFNULL(laporan_cu.iuran_gedung,0) + IFNULL(laporan_cu.donasi,0) + IFNULL(laporan_cu.shu_lalu,0) as piutang_bersih,	
 
-			@rata_saham := (((IFNULL(laporancu.simpanan_saham_des,0) + IFNULL(laporancu.simpanan_saham,0))/2) / MONTH(laporancu.periode) ) * 12 as rata_saham,
+			@rata_saham := (((IFNULL(laporan_cu.simpanan_saham_des,0) + IFNULL(laporan_cu.simpanan_saham,0))/2) / MONTH(laporan_cu.periode) ) * 12 as rata_saham,
 
-			@tot_nonsaham := IFNULL(laporancu.nonsaham_harian,0) + IFNULL(laporancu.nonsaham_unggulan,0) as tot_nonsaham,
+			@tot_nonsaham := IFNULL(laporan_cu.nonsaham_harian,0) + IFNULL(laporan_cu.nonsaham_unggulan,0) as tot_nonsaham,
 
-			@rata_aset := (IFNULL(laporancu.aset,0) + IFNULL(laporancu.aset_lalu,0)) / 2 as rata_aset,
+			@rata_aset := (IFNULL(laporan_cu.aset,0) + IFNULL(laporan_cu.aset_lalu,0)) / 2 as rata_aset,
 
-			@p1 := IFNULL(laporancu.dcr, 0) / IFNULL(laporancu.piutang_lalai_12bulan,0) as p1,
+			@p1 := IFNULL(laporan_cu.dcr, 0) / IFNULL(laporan_cu.piutang_lalai_12bulan,0) as p1,
 
-			@p2_1 := (IFNULL(laporancu.dcr,0) - IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_lalai_1bulan,0) as p2_1,
+			@p2_1 := (IFNULL(laporan_cu.dcr,0) - IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_lalai_1bulan,0) as p2_1,
 
 			if(@p1 >= 1, @p2_1, 0) as p2,
 
-			@e1_1 := (IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)))) / IFNULL(laporancu.aset,0) as e1_1,
+			@e1_1 := (IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)))) / IFNULL(laporan_cu.aset,0) as e1_1,
 
-			@e1_2 := (IFNULL(laporancu.piutang_beredar,0) - IFNULL(laporancu.dcr,0)) / IFNULL(laporancu.aset,0) as e1_2,
+			@e1_2 := (IFNULL(laporan_cu.piutang_beredar,0) - IFNULL(laporan_cu.dcr,0)) / IFNULL(laporan_cu.aset,0) as e1_2,
 
 			IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
 
-			(IFNULL(laporancu.nonsaham_unggulan,0) + IFNULL(laporancu.nonsaham_harian,0)) / IFNULL(laporancu.aset,0) as e5,
+			(IFNULL(laporan_cu.nonsaham_unggulan,0) + IFNULL(laporan_cu.nonsaham_harian,0)) / IFNULL(laporan_cu.aset,0) as e5,
 
-			IFNULL(laporancu.total_hutang_pihak3,0) / IFNULL(laporancu.aset,0) as e6,
+			IFNULL(laporan_cu.total_hutang_pihak3,0) / IFNULL(laporan_cu.aset,0) as e6,
 
-			(@piutang_bersih - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)) + IFNULL(laporancu.aset_masalah,0))) / IFNULL(laporancu.aset,0) as e9,
+			(@piutang_bersih - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + IFNULL(laporan_cu.aset_masalah,0))) / IFNULL(laporan_cu.aset,0) as e9,
 
-			(IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0)) / IFNULL(laporancu.piutang_beredar,0) as a1,
+			(IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0)) / IFNULL(laporan_cu.piutang_beredar,0) as a1,
 
-			IFNULL(laporancu.aset_tidak_menghasilkan,0) / IFNULL(laporancu.aset,0) as a2,
+			IFNULL(laporan_cu.aset_tidak_menghasilkan,0) / IFNULL(laporan_cu.aset,0) as a2,
 			
-			@r7_1 := IFNULL(laporancu.bjs_saham,0) / @rata_saham as r7_1,
+			@r7_1 := IFNULL(laporan_cu.bjs_saham,0) / @rata_saham as r7_1,
 
-			@r7_2 := IFNULL(laporancu.bjs_saham,0) / ((IFNULL(laporancu.simpanan_saham_lalu,0) + IFNULL(laporancu.simpanan_saham,0)) / 2) as r7_2,
+			@r7_2 := IFNULL(laporan_cu.bjs_saham,0) / ((IFNULL(laporan_cu.simpanan_saham_lalu,0) + IFNULL(laporan_cu.simpanan_saham,0)) / 2) as r7_2,
 
-			IF(IFNULL(laporancu.simpanan_saham_des,0) = 0 && IFNULL(laporancu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
+			IF(IFNULL(laporan_cu.simpanan_saham_des,0) = 0 && IFNULL(laporan_cu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
 
-			(IFNULL(laporancu.total_biaya,0) - IFNULL(laporancu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
+			(IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
-			(IFNULL(laporancu.investasi_likuid,0) + IFNULL(laporancu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporancu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
+			(IFNULL(laporan_cu.investasi_likuid,0) + IFNULL(laporan_cu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporan_cu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
 
-			(@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
+			(@total_anggota - IFNULL(laporan_cu.total_anggota_lalu,0)) / IFNULL(laporan_cu.total_anggota_lalu,0) as s10,
 
-			(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11,
+			(IFNULL(laporan_cu.aset,0) - IFNULL(laporan_cu.aset_lalu,0)) / IFNULL(laporan_cu.aset_lalu,0) as s11,
 			
 			@ideal := 0 as ideal,
 			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
@@ -202,60 +204,60 @@ class LaporanCuController extends Controller{
 
 	public function indexPearlsPeriode($periode)
 	{
-		$table_data = LaporanCu::select('laporancu.*',
+		$table_data = LaporanCu::select('laporan_cu.*',
 		'cu.name as cu_name',
 		'provinces.name as provinces_name')
-		->leftjoin('cu','laporancu.id_cu','cu.id')
+		->leftjoin('cu','laporan_cu.id_cu','cu.id')
     ->leftjoin('provinces','cu.id_provinces','provinces.id')
-		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporancu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
-        $join->on('laporancu.id_cu','=','latest_report.id_cu');
-        $join->on('laporancu.periode','=','latest_report.max_periode');
+		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
+        $join->on('laporan_cu.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw('
-			@total_anggota := IFNULL(laporancu.l_biasa, 0) + IFNULL(laporancu.l_lbiasa,0) + IFNULL(laporancu.P_biasa,0) + IFNULL(laporancu.P_lbiasa,0) as total_anggota,
+			@total_anggota := IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0) as total_anggota,
 
-			@piutang_bersih := IFNULL(laporancu.dcr,0) + IFNULL(laporancu.dcu,0) + IFNULL(laporancu.iuran_gedung,0) + IFNULL(laporancu.donasi,0) + IFNULL(laporancu.shu_lalu,0) as piutang_bersih,	
+			@piutang_bersih := IFNULL(laporan_cu.dcr,0) + IFNULL(laporan_cu.dcu,0) + IFNULL(laporan_cu.iuran_gedung,0) + IFNULL(laporan_cu.donasi,0) + IFNULL(laporan_cu.shu_lalu,0) as piutang_bersih,	
 
-			@rata_saham := (((IFNULL(laporancu.simpanan_saham_des,0) + IFNULL(laporancu.simpanan_saham,0))/2) / MONTH(laporancu.periode) ) * 12 as rata_saham,
+			@rata_saham := (((IFNULL(laporan_cu.simpanan_saham_des,0) + IFNULL(laporan_cu.simpanan_saham,0))/2) / MONTH(laporan_cu.periode) ) * 12 as rata_saham,
 
-			@tot_nonsaham := IFNULL(laporancu.nonsaham_harian,0) + IFNULL(laporancu.nonsaham_unggulan,0) as tot_nonsaham,
+			@tot_nonsaham := IFNULL(laporan_cu.nonsaham_harian,0) + IFNULL(laporan_cu.nonsaham_unggulan,0) as tot_nonsaham,
 
-			@rata_aset := (IFNULL(laporancu.aset,0) + IFNULL(laporancu.aset_lalu,0)) / 2 as rata_aset,
+			@rata_aset := (IFNULL(laporan_cu.aset,0) + IFNULL(laporan_cu.aset_lalu,0)) / 2 as rata_aset,
 
-			@p1 := IFNULL(laporancu.dcr, 0) / IFNULL(laporancu.piutang_lalai_12bulan,0) as p1,
+			@p1 := IFNULL(laporan_cu.dcr, 0) / IFNULL(laporan_cu.piutang_lalai_12bulan,0) as p1,
 
-			@p2_1 := (IFNULL(laporancu.dcr,0) - IFNULL(laporancu.piutang_lalai_12bulan,0))/IFNULL(laporancu.piutang_lalai_1bulan,0) as p2_1,
+			@p2_1 := (IFNULL(laporan_cu.dcr,0) - IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_lalai_1bulan,0) as p2_1,
 
 			if(@p1 >= 1, @p2_1, 0) as p2,
 
-			@e1_1 := (IFNULL(laporancu.piutang_beredar,0) - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)))) / IFNULL(laporancu.aset,0) as e1_1,
+			@e1_1 := (IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)))) / IFNULL(laporan_cu.aset,0) as e1_1,
 
-			@e1_2 := (IFNULL(laporancu.piutang_beredar,0) - IFNULL(laporancu.dcr,0)) / IFNULL(laporancu.aset,0) as e1_2,
+			@e1_2 := (IFNULL(laporan_cu.piutang_beredar,0) - IFNULL(laporan_cu.dcr,0)) / IFNULL(laporan_cu.aset,0) as e1_2,
 
 			IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
 
-			(IFNULL(laporancu.nonsaham_unggulan,0) + IFNULL(laporancu.nonsaham_harian,0)) / IFNULL(laporancu.aset,0) as e5,
+			(IFNULL(laporan_cu.nonsaham_unggulan,0) + IFNULL(laporan_cu.nonsaham_harian,0)) / IFNULL(laporan_cu.aset,0) as e5,
 
-			IFNULL(laporancu.total_hutang_pihak3,0) / IFNULL(laporancu.aset,0) as e6,
+			IFNULL(laporan_cu.total_hutang_pihak3,0) / IFNULL(laporan_cu.aset,0) as e6,
 
-			(@piutang_bersih - (IFNULL(laporancu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporancu.piutang_lalai_1bulan,0)) + IFNULL(laporancu.aset_masalah,0))) / IFNULL(laporancu.aset,0) as e9,
+			(@piutang_bersih - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + IFNULL(laporan_cu.aset_masalah,0))) / IFNULL(laporan_cu.aset,0) as e9,
 
-			(IFNULL(laporancu.piutang_lalai_1bulan,0) + IFNULL(laporancu.piutang_lalai_12bulan,0)) / IFNULL(laporancu.piutang_beredar,0) as a1,
+			(IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0)) / IFNULL(laporan_cu.piutang_beredar,0) as a1,
 
-			IFNULL(laporancu.aset_tidak_menghasilkan,0) / IFNULL(laporancu.aset,0) as a2,
+			IFNULL(laporan_cu.aset_tidak_menghasilkan,0) / IFNULL(laporan_cu.aset,0) as a2,
 			
-			@r7_1 := IFNULL(laporancu.bjs_saham,0) / @rata_saham as r7_1,
+			@r7_1 := IFNULL(laporan_cu.bjs_saham,0) / @rata_saham as r7_1,
 
-			@r7_2 := IFNULL(laporancu.bjs_saham,0) / ((IFNULL(laporancu.simpanan_saham_lalu,0) + IFNULL(laporancu.simpanan_saham,0)) / 2) as r7_2,
+			@r7_2 := IFNULL(laporan_cu.bjs_saham,0) / ((IFNULL(laporan_cu.simpanan_saham_lalu,0) + IFNULL(laporan_cu.simpanan_saham,0)) / 2) as r7_2,
 
-			IF(IFNULL(laporancu.simpanan_saham_des,0) = 0 && IFNULL(laporancu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
+			IF(IFNULL(laporan_cu.simpanan_saham_des,0) = 0 && IFNULL(laporan_cu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
 
-			(IFNULL(laporancu.total_biaya,0) - IFNULL(laporancu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
+			(IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
-			(IFNULL(laporancu.investasi_likuid,0) + IFNULL(laporancu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporancu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
+			(IFNULL(laporan_cu.investasi_likuid,0) + IFNULL(laporan_cu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporan_cu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
 
-			(@total_anggota - IFNULL(laporancu.total_anggota_lalu,0)) / IFNULL(laporancu.total_anggota_lalu,0) as s10,
+			(@total_anggota - IFNULL(laporan_cu.total_anggota_lalu,0)) / IFNULL(laporan_cu.total_anggota_lalu,0) as s10,
 
-			(IFNULL(laporancu.aset,0) - IFNULL(laporancu.aset_lalu,0)) / IFNULL(laporancu.aset_lalu,0) as s11,
+			(IFNULL(laporan_cu.aset,0) - IFNULL(laporan_cu.aset_lalu,0)) / IFNULL(laporan_cu.aset_lalu,0) as s11,
 			
 			@ideal := 0 as ideal,
 			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
@@ -294,9 +296,43 @@ class LaporanCuController extends Controller{
 		$this->validate($request,LaporanCu::$rules);
 
 		$name = $request->name;
+		$id_tp = $request->id_tp;
+		$id_cu = $request->id_cu;
+		$no_ba = $request->no_ba;
+		$periode = $request->periode;
 
-		$kelas = LaporanCu::create($request->all());
+		if($id_tp == 0){
+			$kelas = LaporanCu::create($request->all());
+		}else{ 
+			$kelas = LaporanTp::create($request->all());
 
+			$laporantp = LaporanTp::whereHas('Tp',function($query) use ($id_cu){
+				$query->where('Tp.id_cu',$id_cu);
+			})->where('periode',$periode)->get();
+
+			$konsolidasi = [];
+
+			foreach(LaporanTp::$summable as $col){
+				$konsolidasi[$col] = $laporantp->sum($col);
+			}
+
+			$konsolidasi['id_cu'] = $id_cu;
+			$konsolidasi['no_ba'] = $no_ba;
+			$konsolidasi['tp'] = $laporantp->count();
+			$konsolidasi['laju_inflasi'] = $request->laju_inflasi;
+			$konsolidasi['harga_pasar'] = $request->harga_pasar;
+			$konsolidasi['periode'] = $periode;
+
+			$kelas2 = LaporanCu::where('id_cu',$id_cu)->where('periode',$periode)->first();
+
+			if(empty($kelas2)){
+				$kelas3 = LaporanCu::create($konsolidasi);
+			}else{
+				$kelas3 = LaporanCu::findOrFail($kelas2->id);
+				$kelas3->update($konsolidasi);
+			}
+		}
+		
 		return response()
 			->json([
 				'saved' => true,

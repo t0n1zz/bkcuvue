@@ -8,13 +8,14 @@ import { artikel } from './modules/artikel';
 import { artikelKategori } from './modules/artikelKategori';
 import { artikelPenulis } from './modules/artikelPenulis';
 import { cu } from './modules/cu';
-import { tpCu } from './modules/tpCu';
+import { tp } from './modules/tp';
 import { pus } from './modules/pus';
 import { provinces } from './modules/provinces';
 import { regencies } from './modules/regencies';
 import { districts } from './modules/districts';
 import { villages } from './modules/villages';
 import { laporanCu } from './modules/laporanCu';
+import { laporanTp } from './modules/laporanTp';
 
 Vue.use(Vuex);
 
@@ -27,12 +28,13 @@ export default new Vuex.Store({
 		 artikelKategori,
 		 artikelPenulis,
 		 cu,
-		 tpCu,
+		 tp,
 		 pus,
 		 provinces,
 		 regencies,
 		 districts,
 		 villages,
-		 laporanCu
+		 laporanCu,
+		 laporanTp
 	 }
 });

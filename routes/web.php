@@ -36,18 +36,18 @@ Route::get('/testroute', function () {
     // $userdata = $user->combine($roles);
 
     // create permission
-    // Spatie\Permission\Models\Permission::create(['name' => 'index tpCu']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'create tpCu']); 
-    // Spatie\Permission\Models\Permission::create(['name' => 'update tpCu']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'destroy tpCu']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'index tp']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'create tp']); 
+    // Spatie\Permission\Models\Permission::create(['name' => 'update tp']);
+    // Spatie\Permission\Models\Permission::create(['name' => 'destroy tp']);
 
     // give permission to role
     // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
     // $role->givePermissionTo([
-    //     'index tpCu',
-    //     'create tpCu',
-    //     'update tpCu',
-    //     'destroy tpCu']);
+    //     'index tp',
+    //     'create tp',
+    //     'update tp',
+    //     'destroy tp']);
 
     // activity log
     // $activity = Spatie\Activitylog\Models\Activity::all()->last();

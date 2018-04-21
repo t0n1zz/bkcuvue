@@ -119,7 +119,7 @@
 							</router-link>
 
 							<!-- tambah tpcu -->
-							<router-link :to="{ name:'tpCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create tpCu']">
+							<router-link :to="{ name:'tpCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create tp']">
 								<a><i class="icon-plus22"></i> Tambah TP/KP</a>
 							</router-link>
 
@@ -131,7 +131,7 @@
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
 							<!-- cu -->
-							<router-link :to="{ name: 'tpCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tpCu']">
+							<router-link :to="{ name: 'tp' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tp']">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 						</ul>

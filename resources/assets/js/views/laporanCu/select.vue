@@ -56,11 +56,11 @@
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="tpCu" v-model="id_tp_cu" data-width="100%" @change="changeTpCu($event.target.value)" :disabled="modelTpCuStat === 'loading'">
+							<select class="bootstrap-select" name="tp" v-model="id_tp" data-width="100%" @change="changeTp($event.target.value)" :disabled="modelTpStat === 'loading'">
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="semua">Konsolidasi</option>
 								<option data-divider="true"></option>
-								<option v-for="tpcu in modelTpCu" :value="tpcu.id" v-if="tpcu">{{tpcu.name}}</option>
+								<option v-for="tp in modelTp" :value="tp.id" v-if="tp">{{tp.name}}</option>
 							</select>
 
 							<!-- reload cu -->
@@ -136,7 +136,7 @@
 		data(){
 			return {
 				id_cu: '',
-				id_tp_cu: '',
+				id_tp: '',
 				selectData: '',
 			}
 		},
@@ -155,11 +155,11 @@
 			idCu(value){
 				this.id_cu = value;
 				if(value != 'semua'){
-					this.fetchTpCu();
+					this.fetchTp();
 				}
 			},
-			idTpCu(value){
-				this.id_tp_cu = value;
+			idTp(value){
+				this.id_tp = value;
 			},
 			globalData(value){
 				this.selectData = value;
@@ -174,9 +174,9 @@
 					this.id_cu = this.idCu;
 				}
 			},
-			modelTpCuStat(value){
+			modelTpStat(value){
 				if(value === "success"){
-					this.id_tp_cu = this.idTpCu;
+					this.id_tp = this.idTp;
 				}
 			},
     },
@@ -187,14 +187,14 @@
 			fetchPeriode(){
 				this.$store.dispatch('laporanCu/getPeriode');
 			},
-			fetchTpCu(){
-				this.$store.dispatch('tpCu/getCu',this.idCu);
+			fetchTp(){
+				this.$store.dispatch('tp/getCu',this.idCu);
 			},
 			changeCu(id){
 				this.$router.push({name: 'laporanCuCu', params:{cu: id} });
 			},
-			changeTpCu(id){
-				this.$router.push({name: 'laporanCuTpCu', params:{cu: this.id_cu, tpcu: id} });
+			changeTp(id){
+				this.$router.push({name: 'laporanCuTp', params:{cu: this.id_cu, tp: id} });
 			},
 			changePeriode(periode){
 				this.$router.push({name: 'laporanCuPeriode', params:{periode: periode} });
@@ -213,7 +213,7 @@
 			}),
 			...mapGetters('global',{
 				idCu: 'idCu',
-				idTpCu: 'idTpCu',
+				idTp: 'idTp',
 				globalData: 'data'
 			}),
 			...mapGetters('laporanCu',{
@@ -226,9 +226,9 @@
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),
-			...mapGetters('tpCu',{
-				modelTpCu: 'dataS',
-				modelTpCuStat: 'dataStatS',
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 		}
 	}
