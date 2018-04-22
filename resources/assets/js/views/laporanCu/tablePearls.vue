@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 		:params="params"
 		@fetch="fetch">
 
@@ -464,32 +464,6 @@
           search_query_1: '',
           search_query_2: ''
 				},
-				filterData: [
-					{
-						title: 'CU',
-						key: 'cu.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Periode',
-						key: 'periode',
-						type: 'date',
-						disable: false
-					},
-					{
-						title: 'Tgl. Buat',
-						key: 'created_at',
-						type: 'datetime',
-						disable: false
-					},
-					{
-						title: 'Tgl. Ubah',
-						key: 'updated_at',
-						type: 'datetime',
-						disable: false
-					}
-				],
 				columnData: [
 					{
 						title: 'No.',
@@ -507,7 +481,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						filter: true,
+						filterType: 'string',
+						filterKey: 'cu.name'
 					},
 					{
 						title: 'No. BA',
@@ -847,7 +824,6 @@
 				this.columnData[1].disable = status;
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
-				this.filterData[0].disable = status;
 			},
 			resetParams(){
 				let search_column = '';

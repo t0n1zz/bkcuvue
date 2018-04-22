@@ -565,11 +565,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'string',
-						filterKey: 'cu.name',
 						isChart: false,
-						columnGroup: 'all'
+						columnGroup: 'all',
+						filter: true,
+						filterType: 'string',
+						filterKey: 'cu.name'
 					},
 					{
 						title: 'No. BA',
@@ -579,7 +579,9 @@
 						hide: false,
 						disable: false,
 						isChart: false,
-						columnGroup: 'all'
+						columnGroup: 'all',
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'Provinsi',
@@ -600,10 +602,9 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'date',
 						isChart: false,
-						columnGroup: 'all'
+						columnGroup: 'all',
+						filterType: 'date',
 					},
 					{
 						title: 'Tp',
@@ -611,10 +612,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: false,
-						columnGroup: 'all'
+						columnGroup: 'all',
+						filterType: 'date',
+						filterKey: 'periode'
 					},
 					{
 						title: 'Lelaki Biasa',
@@ -1224,7 +1225,7 @@
     },
 		methods: {
 			fetch(){
-				this.resetParams();
+				// this.resetParams();
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
 
@@ -1311,14 +1312,6 @@
 			},
 			ubahData(id, id_cu) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
-			},
-			lihatArtikel(id, id_cu){
-				this.$store.dispatch('artikelKategori/resetDataStat');
-				if(this.profile.id_cu != 0){
-					this.$router.push({name: 'artikelFilterKategori', params: { id: id }});
-				}else{
-					this.$router.push({name: 'artikelFilterKategoriCU', params: { id: id, cu: id_cu }});
-				}
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
