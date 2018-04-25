@@ -604,6 +604,7 @@
 						disable: false,
 						isChart: false,
 						columnGroup: 'all',
+						filter: true,
 						filterType: 'date',
 					},
 					{
@@ -614,8 +615,8 @@
 						disable: false,
 						isChart: false,
 						columnGroup: 'all',
-						filterType: 'date',
-						filterKey: 'periode'
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Lelaki Biasa',
@@ -624,11 +625,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'anggota'
+						columnGroup: 'anggota',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Lelaki L.Biasa',
@@ -637,11 +638,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'anggota'
+						columnGroup: 'anggota',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Perempuan Biasa',
@@ -650,11 +651,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'anggota'
+						columnGroup: 'anggota',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Perempuan L.Biasa',
@@ -663,11 +664,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'anggota'
+						columnGroup: 'anggota',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Total Anggota',
@@ -676,8 +677,6 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: true,
 						columnGroup: 'anggota'
@@ -689,11 +688,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'anggota'
+						columnGroup: 'anggota',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Aset',
@@ -702,11 +701,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'aset'
+						columnGroup: 'aset',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Aset Lalu',
@@ -715,11 +714,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'aset'
+						columnGroup: 'aset',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Aset Masalah',
@@ -728,11 +727,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'aset'
+						columnGroup: 'aset',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Aset Tdk Menghasilkan',
@@ -741,11 +740,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'aset'
+						columnGroup: 'aset',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Aktiva Lancar',
@@ -754,10 +753,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Simp. Saham',
@@ -766,10 +765,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Simp. Saham Lalu',
@@ -778,10 +777,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Simp. Saham Des',
@@ -790,10 +789,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Simp. Nonsaham Unggulan',
@@ -802,10 +801,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Simp. Nonsaham Harian',
@@ -814,10 +813,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Hutang SPD',
@@ -826,10 +825,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Hutang Tdk Berbiaya',
@@ -838,10 +837,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Total Hutang Pihak Ke-3',
@@ -850,10 +849,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Piutang Beredar',
@@ -862,11 +861,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'piutang'
+						columnGroup: 'piutang',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Piutang Bersih',
@@ -875,8 +874,6 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -888,11 +885,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'piutang'
+						columnGroup: 'piutang',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Piutang Lalai 1-12 Bulan',
@@ -901,11 +898,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'piutang'
+						columnGroup: 'piutang',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Piutang Lalai > 12 Bulan',
@@ -914,11 +911,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'piutang'
+						columnGroup: 'piutang',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Rasio Piutang Beredar',
@@ -927,8 +924,6 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -940,8 +935,6 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
 						columnGroup: 'piutang'
@@ -953,10 +946,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'DCU',
@@ -965,10 +958,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Iuran Gedung',
@@ -977,10 +970,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Donasi',
@@ -989,10 +982,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'BJS Saham',
@@ -1001,10 +994,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Beban Penyisihan DCR',
@@ -1013,10 +1006,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Investasi Likuid',
@@ -1025,10 +1018,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Total Pendapatan',
@@ -1037,11 +1030,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'shu'
+						columnGroup: 'shu',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Total Biaya',
@@ -1050,11 +1043,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'shu'
+						columnGroup: 'shu',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'SHU',
@@ -1063,11 +1056,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'shu'
+						columnGroup: 'shu',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'SHU Lalu',
@@ -1076,11 +1069,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'shu'
+						columnGroup: 'shu',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Rata-rata Aset',
@@ -1089,11 +1082,11 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
 						isChartSelect: false,
-						columnGroup: 'aset'
+						columnGroup: 'aset',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Laju Inflasi',
@@ -1102,10 +1095,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Harga Pasar',
@@ -1114,10 +1107,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'number',
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Tgl. Buat',
@@ -1125,10 +1118,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'datetime',
 						isChart: false,
-						columnGroup: 'all'
+						columnGroup: 'all',
+						filter: true,
+						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. Ubah',
@@ -1136,10 +1129,10 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isFilter: true,
-						filterType: 'datetime',
 						isChart: false,
-						columnGroup: 'all'
+						columnGroup: 'all',
+						filter: true,
+						filterType: 'datetime'
 					}
 				],
 				modalShow: false,

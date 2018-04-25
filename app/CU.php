@@ -26,7 +26,7 @@ class Cu extends Model {
     ];
 
     protected $filter = [
-        'id','id_villages','id_districts','id_regencies','id_provinces','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','deleted_at', 'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name','has_tp_cu_count'
+        'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','deleted_at', 'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name','has_tp_cu_count'
     ];
 
     public function getNameAttribute($value){

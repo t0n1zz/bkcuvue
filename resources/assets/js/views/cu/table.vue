@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 		:params="params"
 		@fetch="fetch">
 
@@ -370,6 +370,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -379,6 +380,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'number'
 					},
 					{
@@ -389,8 +391,7 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false,
-						filterType: 'number'
+						disable: false
 					},
 					{
 						title: 'Badan Hukum',
@@ -409,6 +410,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterKey: 'provinces.name',
 						filterType: 'string'
 					},
@@ -421,6 +423,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterKey: 'regencies.name',
 						filterType: 'string'
 					},
@@ -433,6 +436,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterKey: 'districts.name',
 						filterType: 'string'
 					},
@@ -445,6 +449,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterKey: 'villages.name',
 						filterType: 'string'
 					},
@@ -455,6 +460,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -464,6 +470,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -473,6 +480,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'date'
 					},
 					{
@@ -482,6 +490,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'date'
 					},
 					{
@@ -491,6 +500,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -500,6 +510,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -509,6 +520,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -518,6 +530,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -527,6 +540,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'string'
 					},
 					{
@@ -535,6 +549,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'datetime'
 					},
 					{
@@ -543,6 +558,7 @@
 						sort: true,
 						hide: false,
 						disable: false,
+						filter: true,
 						filterType: 'datetime'
 					}
 				],

@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData="filterData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :extSearchColumn="extSearchColumn" :params="params"
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :extSearchColumn="extSearchColumn" :params="params"
 		@fetch="fetch">
 
 			<!-- desktop -->
@@ -288,43 +288,6 @@
           search_query_1: '',
           search_query_2: ''
         },
-				filterData: [{
-						title: 'Judul',
-						key: 'name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kategori',
-						key: 'artikelkategori.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Penulis',
-						key: 'artikelpenulis.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'CU',
-						key: 'cu.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. Tulis',
-						key: 'created_at',
-						type: 'datetime',
-						disable: false
-					},
-					{
-						title: 'Tgl. Ubah',
-						key: 'updated_at',
-						type: 'datetime',
-						disable: false
-					}
-				],
 				columnData: [
 					{
 						title: 'No.',
@@ -348,7 +311,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'Kategori',
@@ -358,7 +323,10 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'artikelKategori.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Penulis',
@@ -367,7 +335,10 @@
 						groupNoKey: '-',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'artikelPenulis.name',
+						filterType: 'string'
 					},
 					{
 						title: 'CU',
@@ -376,7 +347,10 @@
 						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'cu.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Terbitkan',
@@ -397,14 +371,18 @@
 						key: 'created_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -452,7 +430,7 @@
 					if(this.profileStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
 						this.$router.push({name: 'notFound'});
 					}else{
-						this.params.search_column = 'artikelkategori.name';
+						this.params.search_column = 'artikel_kategori.name';
 						this.params.search_query_1 = this.modelKategori.name;
 
 						this.extSearchColumn = 'Kategori';
@@ -469,7 +447,7 @@
 					if(this.profileStat == 'success' && this.profile.id_cu != this.modelPenulis.id_cu && this.profile.id_cu != 0){
 						this.$router.push({name: 'notFound'});
 					}else{
-						this.params.search_column = 'artikelPenulis.name';
+						this.params.search_column = 'artikel_penulis.name';
 						this.params.search_query_1 = this.modelPenulis.name;
 
 						this.extSearchColumn = 'Penulis';
@@ -515,7 +493,7 @@
 
 							//if modelkategori is not loaded yet
 							if(this.modelKategoriStat !== 'success'){	
-								this.$store.dispatch('artikelKategori/edit',this.$route.params.id);
+								this.$store.dispatch('artikel_kategori/edit',this.$route.params.id);
 
 							//for changing parameters in kategori meta mode
 							}else{
@@ -527,7 +505,7 @@
 
 							//if modelPenulis is not loaded yet
 							if(this.modelPenulisLoadStat !== 'success'){
-								this.$store.dispatch('artikelPenulis/edit',this.$route.params.id);
+								this.$store.dispatch('artikel_penulis/edit',this.$route.params.id);
 
 							//for changing parameters in kategori meta mode
 							}else{
@@ -565,7 +543,6 @@
 			},
 			disableColumnCu(status){
 				this.columnData[5].disable = status;
-				this.filterData[4].disable = status;
 			},
 			resetParams(){
 				this.params.search_column = 'name';

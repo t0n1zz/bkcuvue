@@ -122,7 +122,7 @@
                     <li class="dropdown-header">Pencarian berdasarkan</li>
                     <li class="divider"></li>
                     <li v-for="column in columnData" v-if="column.filter && !column.disable" :class="{'active' : params.search_column == column.key}">
-                      <a @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)">{{column.title}}</a>
+                      <a @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)">{{column.title }}</a>
                     </li>
                   </ul>
                 </div>
@@ -904,7 +904,7 @@
         this.params.search_query_2 = '';
         
         let searchKey = '';
-        if(filterKey != ''){
+        if(filterKey){
           searchKey = filterKey;
         }else{
           searchKey = key;

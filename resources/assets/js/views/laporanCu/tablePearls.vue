@@ -493,7 +493,9 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Provinsi',
@@ -513,7 +515,9 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						filter: true,
+						filterType: 'date'
 					},
 					{
 						title: 'P1 (= 100%)',
@@ -523,7 +527,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'P2 (&gt; 100%)',
@@ -533,7 +537,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'E1 (70% - 80%)',
@@ -543,7 +547,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'E5 (70% - 80%)',
@@ -553,7 +557,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'E6 (&le; 5%)',
@@ -563,7 +567,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: true
+						isChartSelect: true,
 					},
 					{
 						title: 'E9 (&ge; 10%)',
@@ -573,7 +577,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'A1 (&le; 5%)',
@@ -583,7 +587,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'A2 (&lt; 5%)',
@@ -593,7 +597,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'R7 (= harga pasar)',
@@ -603,7 +607,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'L1 (15% - 20%)',
@@ -613,7 +617,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'S10 (&gt; 12%)',
@@ -623,7 +627,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'S11 (&gt; 10% + Laju Inflasi)',
@@ -633,7 +637,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'Harga Pasar',
@@ -643,7 +647,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'Laju Inflasi',
@@ -653,7 +657,7 @@
 						hide: false,
 						disable: false,
 						isChart: true,
-						isChartSelect: false
+						isChartSelect: false,
 					},
 					{
 						title: 'Tgl. Buat',
@@ -661,7 +665,9 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						filter: true,
+						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. Ubah',
@@ -669,7 +675,9 @@
 						sort: true,
 						hide: false,
 						disable: false,
-						isChart: false
+						isChart: false,
+						filter: true,
+						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -826,24 +834,24 @@
 				this.columnData[3].disable = status;
 			},
 			resetParams(){
-				let search_column = '';
-				if(this.$route.meta.mode == 'tp'){
-						search_column = 'periode';
-				}else if(this.$route.meta.mode == 'cu'){
-					if(this.idCu == 'semua'){
-						search_column = 'cu.name';
-					}else{
-						search_column = 'periode';
-					}
-				}else{
-					search_column = 'cu.name';
-				}
+				// let search_column = '';
+				// if(this.$route.meta.mode == 'tp'){
+				// 		search_column = 'periode';
+				// }else if(this.$route.meta.mode == 'cu'){
+				// 	if(this.idCu == 'semua'){
+				// 		search_column = 'cu.name';
+				// 	}else{
+				// 		search_column = 'periode';
+				// 	}
+				// }else{
+				// 	search_column = 'cu.name';
+				// }
 
-				this.params.search_column = search_column;
-				this.params.search_query_1 = '';
+				// this.params.search_column = search_column;
+				// this.params.search_query_1 = '';
 
-				this.extSearchColumn = search_column;
-				this.extSearchQuery1 = '';
+				// this.extSearchColumn = search_column;
+				// this.extSearchQuery1 = '';
 			},
 			selectedRow(item){
 				this.selectedItem = item;

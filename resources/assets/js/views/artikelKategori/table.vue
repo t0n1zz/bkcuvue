@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 		:params="params"
 		@fetch="fetch">
 
@@ -221,32 +221,6 @@
           search_query_1: '',
           search_query_2: ''
         },
-				filterData: [
-					{
-						title: 'Nama',
-						key: 'name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'CU',
-						key: 'cu.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. Buat',
-						key: 'created_at',
-						type: 'datetime',
-						disable: false
-					},
-					{
-						title: 'Tgl. Ubah',
-						key: 'updated_at',
-						type: 'datetime',
-						disable: false
-					}
-				],
 				columnData: [
 					{
 						title: 'No.',
@@ -262,7 +236,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'Deskripsi',
@@ -279,7 +255,10 @@
 						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'cu.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Artikel',
@@ -296,14 +275,18 @@
 						key: 'created_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. Ubah',
 						key: 'updated_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -382,7 +365,6 @@
 			},
 			disableColumnCu(status){
 				this.columnData[3].disable = status;
-				this.filterData[2].disable = status;
 			},
 			resetParams(){
 				this.params.search_column = 'name';
