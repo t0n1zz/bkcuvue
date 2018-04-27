@@ -1218,7 +1218,7 @@
     },
 		methods: {
 			fetch(){
-				// this.resetParams();
+				this.resetParams();
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
 
@@ -1233,6 +1233,7 @@
 						
 						this.$store.dispatch(this.kelas + '/getPeriode');
 						this.disableColumnCU(false);
+						this.disableColumnTp(false);
 					}else{
 						if(this.idCu !== undefined){
 							if(this.idTp !== undefined){
@@ -1240,10 +1241,11 @@
 								// konsolidasi
 								if(this.idTp == 'semua'){
 									this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
-								
+									this.disableColumnTp(false);
 								// tp
 								}else{
 									this.$store.dispatch(this.kelas + '/indexTp', [this.params,this.idTp]);
+									this.disableColumnTp(true);
 								}
 							}
 						}
@@ -1271,6 +1273,9 @@
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
 			},
+			disableColumnTp(status){
+				this.columnData[5].disable = status;
+			},
 			columnGroup(value){
 				for (let i = 0, len = this.columnData.length ; i < len; i++){
 					if(this.columnData[i].columnGroup == value || this.columnData[i].columnGroup == 'all'){
@@ -1281,24 +1286,20 @@
 				}
 			},
 			resetParams(){
-				let search_column = '';
-				if(this.$route.meta.mode == 'tp'){
-						search_column = 'periode';
-				}else if(this.$route.meta.mode == 'cu'){
-					if(this.idCu == 'semua'){
-						search_column = 'cu.name';
-					}else{
-						search_column = 'periode';
-					}
-				}else{
-					search_column = 'cu.name';
-				}
+				// let search_column = '';
+				// if(this.$route.meta.mode == 'tp'){
+				// 		search_column = 'periode';
+				// }else if(this.$route.meta.mode == 'cu'){
+				// 	if(this.idCu == 'semua'){
+				// 		search_column = 'cu.name';
+				// 	}else{
+				// 		search_column = 'periode';
+				// 	}
+				// }else{
+				// 	search_column = 'cu.name';
+				// }
 
-				this.params.search_column = search_column;
-				this.params.search_query_1 = '';
-
-				this.extSearchColumn = search_column;
-				this.extSearchQuery1 = '';
+				// this.params.search_column = search_column;
 			},
 			selectedRow(item){
 				this.selectedItem = item;

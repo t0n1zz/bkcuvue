@@ -135,9 +135,11 @@ Route::get('/testroute', function () {
 
 		// $table_data = App\LaporanCu::select('periode')->withCount('hasCU')->orderBy('periode','DESC')->get();
     
+    // $table_data = DB::table('artikel')->select(DB::RAW('* from INFORMATION_SCHEMA.COLUMNS'))->where('COLUMN')  
+
     // return response()
     // ->json([
-    //     'model' => $table_data_curr
+    //     'model' => $table_data
     // ]);
 
 });

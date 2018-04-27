@@ -725,7 +725,7 @@
   import Cleave from 'vue-cleave-component'
 
   export default {
-    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','extSearchQuery1','extSearchColumn','tableClass'],
+    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','tableClass'],
     components: {
       jsonExcel,
       appModal,
@@ -845,12 +845,6 @@
           this.isFirstLoad = false;
         }
       },
-      extSearchQuery1(value){
-        this.searchQuery1 = value;
-      },
-      extSearchColumn(value){
-        this.searchColumn = value;
-      },
       searchQuery1: function (search_query) {
         if(this.params.search_operator === 'like'){
           this.params.search_query_1 = search_query;
@@ -885,24 +879,13 @@
         },
         500),
       searchColumnData(key, title, filterType, filterKey) {
-        if(filterType === 'date'){
-          this.params.search_operator = this.operator[6].key;
-          this.searchOperator = this.operator[6].title;
-        }else if(filterType === 'datetime'){
-          this.params.search_operator = this.operator[6].key;
-          this.searchOperator = this.operator[6].title;
-        }else if(filterType === 'number'){
-          this.params.search_operator = this.operator[0].key;
-          this.searchOperator = this.operator[0].title;
-        }else if(filterType === 'numeric'){
-          this.params.search_operator = this.operator[0].key;
-          this.searchOperator = this.operator[0].title;
-        }else{
-          this.params.search_operator = 'like';
-        }
-        this.searchColumnType = filterType;
+        // check filter type
+        this.checkSearchFilterType(filterType);
+
+        // clean 2nd search query
         this.params.search_query_2 = '';
         
+        // determine if there is filterkey for search
         let searchKey = '';
         if(filterKey){
           searchKey = filterKey;
@@ -910,6 +893,7 @@
           searchKey = key;
         }
 
+        // doing search to database
         if (this.params.search_column !== searchKey) {
           this.params.search_column = searchKey;
           this.searchColumn = title;
@@ -929,8 +913,7 @@
         }else{
           this.params.search_column = this.columnData[a].key;
         }
-        
-        this.params.search_operator = 'like';
+        this.checkSearchFilterType(this.columnData[a].filterType);
         this.searchColumn = this.columnData[a].title;
       },
       searchOperatorData(op){
@@ -949,6 +932,24 @@
         this.searchQuery1 = '';
         this.params.search_query_1 = '';
         this.params.search_query_2 = '';
+      },
+      checkSearchFilterType(filterType){
+        if(filterType === 'date'){
+          this.params.search_operator = this.operator[6].key;
+          this.searchOperator = this.operator[6].title;
+        }else if(filterType === 'datetime'){
+          this.params.search_operator = this.operator[6].key;
+          this.searchOperator = this.operator[6].title;
+        }else if(filterType === 'number'){
+          this.params.search_operator = this.operator[0].key;
+          this.searchOperator = this.operator[0].title;
+        }else if(filterType === 'numeric'){
+          this.params.search_operator = this.operator[0].key;
+          this.searchOperator = this.operator[0].title;
+        }else{
+          this.params.search_operator = 'like';
+        }
+        this.searchColumnType = filterType;
       },
 
       // show column
