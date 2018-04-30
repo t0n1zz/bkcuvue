@@ -542,7 +542,7 @@
           direction: 'desc',
           per_page: 50,
           page: 1,
-          search_column: 'cu.name',
+          search_column: 'id',
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''
@@ -1218,10 +1218,9 @@
     },
 		methods: {
 			fetch(){
-				this.resetParams();
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
-
+						this.resetParams('cu.name');
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
 							this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
@@ -1230,13 +1229,13 @@
 						}else{
 							this.$store.dispatch(this.kelas + '/index', this.params);
 						}
-						
 						this.$store.dispatch(this.kelas + '/getPeriode');
 						this.disableColumnCU(false);
 						this.disableColumnTp(false);
 					}else{
 						if(this.idCu !== undefined){
 							if(this.idTp !== undefined){
+								this.resetParams('id');
 
 								// konsolidasi
 								if(this.idTp == 'semua'){
@@ -1285,21 +1284,11 @@
 					}
 				}
 			},
-			resetParams(){
-				// let search_column = '';
-				// if(this.$route.meta.mode == 'tp'){
-				// 		search_column = 'periode';
-				// }else if(this.$route.meta.mode == 'cu'){
-				// 	if(this.idCu == 'semua'){
-				// 		search_column = 'cu.name';
-				// 	}else{
-				// 		search_column = 'periode';
-				// 	}
-				// }else{
-				// 	search_column = 'cu.name';
-				// }
-
-				// this.params.search_column = search_column;
+			resetParams(search_column){
+				this.params.search_column = search_column;
+				this.params.search_operator = 'like';
+				this.params.search_query_1 = '';
+				this.params.search_query_2 = '';
 			},
 			selectedRow(item){
 				this.selectedItem = item;

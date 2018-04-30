@@ -780,7 +780,7 @@
 			fetch(){
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
-
+						this.resetParams('cu.name');
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
 							this.$store.dispatch(this.kelas + '/indexPearlsPeriode', [this.params,this.$route.params.periode]);
@@ -794,10 +794,10 @@
 						this.disableColumnCU(false);
 					}else{
 						this.disableColumnCU(true);
-						this.resetParams();
+						
 						if(this.idCu !== undefined){
 							if(this.idTp !== undefined){
-
+								this.resetParams('id');
 								// konsolidasi
 								if(this.idTp == 'semua'){
 									this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.idCu]);
@@ -833,25 +833,12 @@
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
 			},
-			resetParams(){
-				// let search_column = '';
-				// if(this.$route.meta.mode == 'tp'){
-				// 		search_column = 'periode';
-				// }else if(this.$route.meta.mode == 'cu'){
-				// 	if(this.idCu == 'semua'){
-				// 		search_column = 'cu.name';
-				// 	}else{
-				// 		search_column = 'periode';
-				// 	}
-				// }else{
-				// 	search_column = 'cu.name';
-				// }
-
-				// this.params.search_column = search_column;
-				// this.params.search_query_1 = '';
-
-				// this.extSearchColumn = search_column;
-				// this.extSearchQuery1 = '';
+			resetParams(search_column){
+				this.params.search_column = search_column;
+				this.params.search_operator = 'like';
+				this.params.search_query_1 = '';
+				this.params.search_query_2 = '';
+				console.log('hello');
 			},
 			selectedRow(item){
 				this.selectedItem = item;

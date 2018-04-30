@@ -101,6 +101,7 @@ export default {
 		fetch(){
 			 
 			if(this.idCu === 'semua'){
+				this.resetParams('cu.name');
 				if(this.selectData){
 					this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
 
@@ -109,14 +110,19 @@ export default {
 				}
 			}else{
 				if(this.idCu !== undefined){
+					this.resetParams('id');
 					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.idCu]);
-
 					this.axisLabelKey = 'periode';
 					
 				}
 			}
 		},
-
+		resetParams(search_column){
+			this.params.search_column = search_column;
+			this.params.search_operator = 'like';
+			this.params.search_query_1 = '';
+			this.params.search_query_2 = '';
+		},
 		checkPage(){
 			if(this.itemData.total >= 11 && this.itemData.total <= 25){
 				this.params.per_page = 25;

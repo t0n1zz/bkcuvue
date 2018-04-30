@@ -60,7 +60,6 @@ const routes = [
 	{ path: '/artikel/edit/:id',name: 'artikelEdit', 
 		components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } },
 	
-
 	// artikel kategori
 	{ path: '/artikelKategori',name: 'artikelKategori', 
 		components: { default: artikelKategori, 'header': header }},

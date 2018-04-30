@@ -828,7 +828,7 @@
       $('.bootstrap-select').selectpicker();
     },
     created() {
-      this.searchParams();
+      // this.searchParams();
 
       // this.fetch();
     },
@@ -836,13 +836,14 @@
       // check route changes
 			'$route' (to, from){
         this.isFirstLoad = true;
-        this.searchParams();
+        // this.searchParams();
       },
       
       itemDataStat(value){
         this.excelLoadStat = value;
         if(value == 'success'){
           this.isFirstLoad = false;
+          this.searchParams();
         }
       },
       searchQuery1: function (search_query) {
@@ -902,7 +903,7 @@
             this.fetch();
           }
         }
-        
+
         this.modalTutup();
       },
       searchParams(){
