@@ -542,7 +542,7 @@
           direction: 'desc',
           per_page: 50,
           page: 1,
-          search_column: 'id',
+          search_column: 'cu.name',
           search_operator: 'like',
           search_query_1: '',
           search_query_2: ''
@@ -1138,7 +1138,7 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
-				modalButton: ''
+				modalButton: '',
 			}
 		},
 		created(){
@@ -1147,9 +1147,9 @@
 		watch: {
 			// check route changes
 			'$route' (to, from){
-
 				// check current page meta
 				this.checkMeta();
+				this.resetParams();
 				this.fetch();
 			},
 
@@ -1200,6 +1200,10 @@
 				}
 			},
 
+			itemDataStat(value){
+				this.isFirstLoad = false;
+      },
+
 			// when updating data
       updateStat(value) {
 				this.modalState = value;
@@ -1220,7 +1224,6 @@
 			fetch(){
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
-						this.resetParams('cu.name');
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
 							this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
@@ -1235,7 +1238,6 @@
 					}else{
 						if(this.idCu !== undefined){
 							if(this.idTp !== undefined){
-								this.resetParams('id');
 
 								// konsolidasi
 								if(this.idTp == 'semua'){
@@ -1284,8 +1286,18 @@
 					}
 				}
 			},
-			resetParams(search_column){
-				this.params.search_column = search_column;
+			resetParams(){
+				let searchColumn = '';
+				if(this.idCu === 'semua'){
+						searchColumn = 'cu.name';
+				}else{
+					if(this.idCu !== undefined){
+							if(this.idTp !== undefined){
+								searchColumn = 'id';
+							}
+					}
+				}	
+				this.params.search_column = searchColumn;
 				this.params.search_operator = 'like';
 				this.params.search_query_1 = '';
 				this.params.search_query_2 = '';

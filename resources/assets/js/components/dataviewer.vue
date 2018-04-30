@@ -842,8 +842,10 @@
       itemDataStat(value){
         this.excelLoadStat = value;
         if(value == 'success'){
+          if(this.isFirstLoad)
+            this.searchParams();
+
           this.isFirstLoad = false;
-          this.searchParams();
         }
       },
       searchQuery1: function (search_query) {
@@ -855,7 +857,7 @@
         }else{
           if(search_query === '' && this.params.search_operator !== 'between'){
             this.params.search_query_1 = search_query;
-            this.searchData();
+            // this.searchData();
           }else{
             this.params.search_query_1 = search_query;
           }
@@ -900,7 +902,9 @@
           this.searchColumn = title;
           if(this.params.search_query_1 !== ''){
             this.params.page = 1;
-            this.fetch();
+
+            if(this.params.search_operator === 'like')
+              this.fetch();
           }
         }
 
@@ -924,7 +928,6 @@
 
         if(this.params.search_query_1 !== ''){
           this.params.page = 1;
-          this.fetch();
         }
 
         this.modalTutup();
@@ -933,6 +936,7 @@
         this.searchQuery1 = '';
         this.params.search_query_1 = '';
         this.params.search_query_2 = '';
+        this.fetch();
       },
       checkSearchFilterType(filterType){
         if(filterType === 'date'){
