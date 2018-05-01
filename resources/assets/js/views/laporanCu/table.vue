@@ -581,7 +581,8 @@
 						isChart: false,
 						columnGroup: 'all',
 						filter: true,
-						filterType: 'string'
+						filterType: 'number',
+						filterKey: 'cu.no_ba'
 					},
 					{
 						title: 'Provinsi',

@@ -1,26 +1,13 @@
 <template>
   <div>
 
-    <!-- desktop -->
-    <div class="panel panel-white border-top-xlg border-top-info">
+    <!-- desktop  view-->
+    <div class="panel panel-white border-top-xlg border-top-info hidden-xs">
       <!-- heading desktop -->
-      <div class="panel-heading has-visible-elements hidden-xs hidden-print">
+      <div class="panel-heading has-visible-elements hidden-print">
         <h5 class="panel-title text-semibold"><i class="icon-list2 position-left"></i> Tabel {{ title }}</h5>
         <div class="heading-elements visible-elements">
           <ul class="icons-list">
-            <li>
-              <a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- heading mobile -->
-      <div class="panel-heading has-visible-elements visible-xs hidden-print">
-        <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
-        <div class="heading-elements visible-elements">
-          <ul class="icons-list">
-            <li><a data-action="collapse" ></a></li>
             <li>
               <a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
             </li>
@@ -32,8 +19,7 @@
 
         <!-- search row -->
         <div class="row">
-          <!-- search desktop-->
-          <div class="col-md-12 pb-15 hidden-xs">
+          <div class="col-md-12 pb-15">
             <div class="input-group">
 
               <!-- searchbox -->
@@ -43,6 +29,7 @@
                 :searchQuery2.sync="searchQuery2"
                 :itemDataStat="itemDataStat"
                 :params="params"
+                @fetch="fetch"
               ></search-box>
               
               <!-- filter desktop -->
@@ -57,7 +44,7 @@
                   <ul class="dropdown-menu dropdown-menu-right">
                     <li class="dropdown-header">Pencarian berdasarkan</li>
                     <li class="divider"></li>
-                    <li v-for="column in columnData" v-if="column.filter && !column.disable" :class="{'active' : params.search_column == column.key}">
+                    <li v-for="column in columnData" v-if="column.filter && !column.disable" :class="{'active' : params.search_column == column.key || params.search_column === column.filterKey}">
                       <a @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)">{{column.title }}</a>
                     </li>
                   </ul>
@@ -79,7 +66,7 @@
                 </div>
 
                 <!-- cari -->
-                <div class="btn-group" v-if="params.search_operator !== 'like'">
+                <div class="btn-group">
                   <button type="button" class="btn btn-default btn-icon " data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'"  :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
                     <i class="icon-search4"></i>  Cari
                   </button>
@@ -93,49 +80,10 @@
 
             </div>
           </div>
-
-          <!-- search mobile -->
-          <div class="col-md-12 pb-15 visible-xs">
-            <!-- searchbox -->
-            <search-box
-              :searchColumnType="searchColumnType"
-              :searchQuery1="searchQuery1"
-              :searchQuery2="searchQuery2"
-              :itemDataStat="itemDataStat"
-              :params="params"
-            ></search-box>
-
-            <!-- filter -->
-            <div class="pb-15 pt-15">
-              <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('filter')">
-                <i class="icon-filter4"></i> Pencarian berdasarkan {{searchColumn}} 
-              </button>
-            </div>
-
-            <!-- operator -->
-            <div class="pb-15" v-if="params.search_operator !== 'like'">
-              <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('operator')">
-                <i class="icon-equalizer"></i>  Operator {{searchOperator}} 
-              </button>
-            </div>
-
-            <!-- button cari -->
-            <div class="pb-15" v-if="params.search_operator !== 'like'">
-              <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
-                <i class="icon-search4"></i>  Cari
-              </button>
-            </div>
-
-            <!-- hapus pencarian -->
-            <div v-if="searchQuery1 !=='' || params.search_query_2 !==''">
-              <button class="btn btn-default btn-icon btn-block" @click="emptySearch()"><i class="icon-cross"></i></button>
-            </div>
-          </div>
-
         </div>
 
         <!-- button row -->
-        <div class="row hidden-xs">
+        <div class="row">
           <div class="col-md-12">
             <!-- success button row -->
             <div class="btn-toolbar">
@@ -234,7 +182,7 @@
       </div>
 
       <!-- table-->
-      <div class="table-responsive hidden-xs">
+      <div class="table-responsive">
         <table class="table table-striped" :class="tableClass">
 
           <!-- header -->
@@ -290,13 +238,13 @@
         </table>
       </div>
 
-      <context-menu ref="menu" class="hidden-xs">
+      <context-menu ref="menu">
         <!-- slot button -->
         <slot name="button-context"></slot>
       </context-menu>
 
       <!-- footer info -->
-      <div class="panel-footer hidden-print hidden-xs">
+      <div class="panel-footer hidden-print">
         <div class="heading-elements">
 
           <!-- total entri note success-->
@@ -347,116 +295,177 @@
       </div>
     </div>
 
-    <!-- mobile -->
+    <!-- mobile view -->
+    <div class="visible-xs">
+      <!-- search -->
+      <div class="panel panel-white border-top-xlg border-top-info">
+        <!-- heading -->
+        <div class="panel-heading has-visible-elements visible-xs hidden-print">
+          <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
+          <div class="heading-elements visible-elements">
+            <ul class="icons-list">
+              <li><a data-action="collapse" ></a></li>
+              <li>
+                <a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    <!-- option -->
-    <div class="panel panel-flat panel-white border-top-xlg border-top-info visible-xs hidden-print">
-      <div class="panel-heading has-visible-elements">
-        <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
-        <div class="heading-elements visible-elements">
-          <ul class="icons-list">
-            <li><a data-action="collapse"></a></li>
-          </ul>
+        <!-- body -->
+        <div class="panel-body hidden-print">
+          <div class="row">
+            <div class="col-md-12 pb-15">
+              <!-- searchbox -->
+              <search-box
+                :searchColumnType="searchColumnType"
+                :searchQuery1.sync="searchQuery1"
+                :searchQuery2.sync="searchQuery2"
+                :itemDataStat="itemDataStat"
+                :params="params"
+              ></search-box>
+
+              <!-- filter -->
+              <div class="pb-15 pt-15">
+                <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('filter')">
+                  <i class="icon-filter4"></i> {{searchColumn}} 
+                </button>
+              </div>
+
+              <!-- operator -->
+              <div class="pb-15">
+                <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('operator')">
+                  <i class="icon-equalizer"></i> {{searchOperator}}
+                </button>
+              </div>
+
+              <!-- button cari -->
+              <div class="pb-15">
+                <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+                  <i class="icon-search4"></i> Cari
+                </button>
+              </div>
+
+              <!-- hapus pencarian -->
+              <div v-if="searchQuery1 !=='' || params.search_query_2 !==''">
+                <button class="btn btn-default btn-icon btn-block" @click="emptySearch()"><i class="icon-cross"></i></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="panel-body">
-        <div class="pb-15">
-          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('column')">
-            <i class="icon-table2"></i> Kolom yang ditampilkan
-          </button>
+
+      <!-- button -->
+      <div class="panel panel-flat panel-white border-top-xlg border-top-info hidden-print">
+        <div class="panel-heading has-visible-elements">
+          <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
+          <div class="heading-elements visible-elements">
+            <ul class="icons-list">
+              <li><a data-action="collapse"></a></li>
+            </ul>
+          </div>
         </div>
+        <div class="panel-body">
+          <div class="pb-15">
+            <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('column')">
+              <i class="icon-table2"></i> Kolom yang ditampilkan
+            </button>
+          </div>
 
-        <div class="pb-15">
-          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('entri')">
-            <i class="icon-menu7"></i> {{params.per_page}} Entri yang ditampilkan
-          </button>
-        </div>
+          <div class="pb-15">
+            <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('entri')">
+              <i class="icon-menu7"></i> {{params.per_page}} Entri yang ditampilkan
+            </button>
+          </div>
 
-        <div class="pb-15">
-          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('sort')">
-            <i class="icon-sort"></i> Urutkan berdasarkan 
-          </button>
-        </div>
+          <div class="pb-15">
+            <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('sort')">
+              <i class="icon-sort"></i> Urutkan berdasarkan 
+            </button>
+          </div>
 
-        <div class="pb-15">
-          <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('excel')">
-            <i class="icon-file-excel"></i> Download excel 
-          </button>
-        </div>
+          <div class="pb-15">
+            <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('excel')">
+              <i class="icon-file-excel"></i> Download excel 
+            </button>
+          </div>
 
-        <!-- button -->
-        <slot name="button-mobile"></slot>
-      </div>
-    </div>
-
-    <!-- divider -->
-    <div class="text-center text-muted visible-xs hidden-print ">
-      <span>KONTEN</span>
-    </div>
-    <hr class="visible-xs no-margin-top hidden-print"/>
-
-    <!-- content -->
-    <div class="visible-xs" v-if="itemDataStat === 'loading'">
-      <div class="progress">
-        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
-          <span class="sr-only">100% Complete</span>
+          <!-- button -->
+          <slot name="button-mobile"></slot>
         </div>
       </div>
-    </div>
 
-    <div class="visible-xs" v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
-      <slot name="item-mobile" v-for="(item,index) in items" :item="item" :index="index"></slot>
-    </div>
+      <!-- divider -->
+      <div class="text-center text-muted hidden-print">
+        <span>KONTEN</span>
+      </div>
+      <hr class="visible-xs no-margin-top hidden-print"/>
 
-    <div class="visible-xs" v-else-if="itemDataStat === 'fail'">
-      <i class="icon-cancel-circle2" style="font-size: 5em"></i>
-      <h3>Oops.. Terjadi kesalahan, silahkan coba lagi.</h3>
-    </div>
+      <!-- content -->
+      <div v-if="itemDataStat === 'loading'">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+            <span class="sr-only">100% Complete</span>
+          </div>
+        </div>
+      </div>
 
-    <!-- divider -->
-    <hr class="visible-xs hidden-print"/>
-    
-    <!-- pagination-->
-    <div class="text-center visible-xs hidden-print">
-      <!-- pagination success -->
-      <ul class="pagination pagination-flat pagination-lg" v-if="itemDataStat === 'success'">
-        <li :class="{'disabled' : !itemData.prev_page_url}">
-          <a @click.prevent="prev">
-            <i class="icon-arrow-left12"></i>
-          </a>
-        </li>
-        <li v-for="n in pages" :class="{'active' : params.page == n}">
-          <a @click.prevent="goToPage(n)">{{n}}</a>
-        </li>
-        <li :class="{'disabled' : !itemData.next_page_url}">
-          <a @click.prevent="next">
-            <i class="icon-arrow-right13"></i>
-          </a>
-        </li>
-      </ul>
+      <div v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
+        <slot name="item-mobile" v-for="(item,index) in items" :item="item" :index="index"></slot>
+      </div>
 
-      <!-- pagination loading -->
-      <ul class="pagination pagination-flat pagination-xs" v-else-if="itemDataStat === 'loading'">
-        <li class="disabled">
-          <a>
-            <i class="icon-arrow-left12"></i>
-          </a>
-        </li>
-        <li class="active">
-          <a>
-            <i class="icon-spinner2 spinner"></i>
-          </a>
-        </li>
-        <li class="disabled">
-          <a>
-            <i class="icon-arrow-right13"></i>
-          </a>
-        </li>
-      </ul>
+      <div v-else-if="itemDataStat === 'fail'">
+        <i class="icon-cancel-circle2" style="font-size: 5em"></i>
+        <h3>Oops.. Terjadi kesalahan, silahkan coba lagi.</h3>
+      </div>
+
+      <!-- divider -->
+      <hr class="hidden-print"/>
+      
+      <!-- pagination-->
+      <div class="text-center hidden-print">
+        <!-- pagination success -->
+        <ul class="pagination pagination-flat pagination-lg" v-if="itemDataStat === 'success'">
+          <li :class="{'disabled' : !itemData.prev_page_url}">
+            <a @click.prevent="prev">
+              <i class="icon-arrow-left12"></i>
+            </a>
+          </li>
+          <li v-for="n in pages" :class="{'active' : params.page == n}">
+            <a @click.prevent="goToPage(n)">{{n}}</a>
+          </li>
+          <li :class="{'disabled' : !itemData.next_page_url}">
+            <a @click.prevent="next">
+              <i class="icon-arrow-right13"></i>
+            </a>
+          </li>
+        </ul>
+
+        <!-- pagination loading -->
+        <ul class="pagination pagination-flat pagination-xs" v-else-if="itemDataStat === 'loading'">
+          <li class="disabled">
+            <a>
+              <i class="icon-arrow-left12"></i>
+            </a>
+          </li>
+          <li class="active">
+            <a>
+              <i class="icon-spinner2 spinner"></i>
+            </a>
+          </li>
+          <li class="disabled">
+            <a>
+              <i class="icon-arrow-right13"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
     </div>
  
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
+      
       <div slot="modal-body1" class="text-center">
         <div v-if="excelLoadStat === ''">
           <span class="text-warning">
@@ -510,7 +519,7 @@
         <div v-if="modalMobileOptionState === 'filter'">
           <h2 class="text-center">Pencarian berdasarkan</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="column in filterData" v-if="column.key != null && !column.disable" :class="{'btn-primary' : params.search_column === column.key}" @click.prevent="searchColumnData(column.key,column.title,column.type)" >{{column.title}}</a>
+          <a class="btn btn-default btn-block" v-for="column in columnData" v-if="column.filter && !column.disable" :class="{'btn-primary' : params.search_column === column.key || params.search_column === column.filterKey}" @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)" >{{column.title}}</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
@@ -609,7 +618,7 @@
         operator: [
           {
             key: 'like',
-            title: 'Seperti [a...]',
+            title: 'Seperti [#...]',
           },
           {
             key: 'equal_to',
@@ -658,31 +667,6 @@
           title: '',
           noKey: ''
         },
-        cleaveOption: {
-          date:{
-            date: true,
-            datePattern: ['Y','m','d'],
-            delimiter: '-'
-          },
-          number: {
-            numeral: true,
-            numeralThousandsGroupStyle: 'none',
-            numeralDecimalScale: 0,
-            stripLeadingZeroes: false
-          },
-          numeric: {
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand',
-            numeralDecimalScale: 2,
-            numeralDecimalMark: ',',
-            delimiter: '.'
-          },
-          dateTime:{
-            blocks: [4,2,2,2,2,2],
-            delimiters: ['-','-',' ',':',':'],
-            delimiterLazyShow: true
-          }
-        },
         excelLoadStat: '',
         isSearch: false,
         isExcelAll: false,
@@ -719,21 +703,8 @@
       },
 
       searchQuery1: function (search_query) {
-        if(this.params.search_operator === 'like'){
-          this.params.search_query_1 = search_query;
-
-          if(!this.isFirstLoad)
-            this.searchData();
-        }else{
-          if(search_query === '' && this.params.search_operator !== 'between'){
-            this.params.search_query_1 = search_query;
-            // this.searchData();
-          }else{
-            this.params.search_query_1 = search_query;
-          }
-        }
+        this.params.search_query_1 = search_query;
       },
-
       searchQuery2: function (search_query) {
         this.params.search_query_2 = search_query;
       },
@@ -806,7 +777,7 @@
         this.params.search_operator = 'like';
         this.params.search_query_1 = '';
         this.params.search_query_2 = '';
-        // this.fetch();
+        this.fetch(); 
       },
       checkSearchFilterType(filterType){
         this.params.search_operator = this.operator[0].key;
