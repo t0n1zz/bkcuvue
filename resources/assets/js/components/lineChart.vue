@@ -113,11 +113,11 @@
 						</div>
 
 						<!-- add data -->
-						<div class="btn-group">
+						<!-- <div class="btn-group">
 							<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Menambah data yang ingin ditampilkan di grafik'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
 								<i class="icon-database-add"></i> Tambah Data
 							</button>
-						</div>
+						</div> -->
 
 					</div>
 				</div>
@@ -175,11 +175,11 @@
 					</div>
 
 					<!-- tambah data -->
-					<div class="pb-5">
+					<!-- <div class="pb-5">
 						<button type="button" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Menambah data yang ingin ditampilkan di grafik'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
 							<i class="icon-database-add"></i> Tambah Data
 						</button>
-					</div>
+					</div> -->
 					
 				</div>
 				

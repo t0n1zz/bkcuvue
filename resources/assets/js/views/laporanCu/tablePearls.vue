@@ -696,7 +696,8 @@
 					form: [],
 					indikator: '',
 					isUbah: false
-				}
+				},
+				isFirstLoad: true,
 			}
 		},
 		created(){
@@ -765,6 +766,10 @@
 				}
 			},
 
+			itemDataStat(value){
+				this.isFirstLoad = false;
+      },
+
 			// when updating data
       updateStat(value) {
 				this.modalState = value;
@@ -785,6 +790,7 @@
 			fetch(){
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
+						this.disableColumnCU(false);
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
 							this.$store.dispatch(this.kelas + '/indexPearlsPeriode', [this.params,this.$route.params.periode]);
@@ -795,7 +801,6 @@
 						}
 						
 						this.$store.dispatch(this.kelas + '/getPeriode');
-						this.disableColumnCU(false);
 					}else{
 						this.disableColumnCU(true);
 						
@@ -831,10 +836,22 @@
 					this.$store.dispatch('global/changeIdCu','semua');
 				}
 			},
+			checkParams(){
+				let a = _.findIndex(this.columnData, {'filter': true,'disable': false });
+
+        if(this.columnData[a].filterKey){
+          this.params.search_column = this.columnData[a].filterKey;
+        }else{
+          this.params.search_column = this.columnData[a].key;
+        }
+			},
 			disableColumnCU(status){
 				this.columnData[1].disable = status;
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
+				
+				if(this.isFirstLoad)
+					this.checkParams();
 			},
 			selectedRow(item){
 				this.selectedItem = item;

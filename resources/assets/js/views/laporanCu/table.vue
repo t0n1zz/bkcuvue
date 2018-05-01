@@ -1139,6 +1139,7 @@
 				modalState: '',
 				modalTitle: '',
 				modalButton: '',
+				isFirstLoad: true,
 			}
 		},
 		created(){
@@ -1223,6 +1224,8 @@
 			fetch(){
 				if(this.modelCUStat === 'success'){
 					if(this.idCu === 'semua'){
+						this.disableColumnCU(false);
+						this.disableColumnTp(false);
 						// if route is periode
 						if(this.$route.meta.mode == 'periode'){
 							this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
@@ -1232,24 +1235,23 @@
 							this.$store.dispatch(this.kelas + '/index', this.params);
 						}
 						this.$store.dispatch(this.kelas + '/getPeriode');
-						this.disableColumnCU(false);
-						this.disableColumnTp(false);
+						
 					}else{
+						this.disableColumnCU(true);
 						if(this.idCu !== undefined){
 							if(this.idTp !== undefined){
 
 								// konsolidasi
 								if(this.idTp == 'semua'){
-									this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 									this.disableColumnTp(false);
+									this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
 								// tp
 								}else{
-									this.$store.dispatch(this.kelas + '/indexTp', [this.params,this.idTp]);
 									this.disableColumnTp(true);
+									this.$store.dispatch(this.kelas + '/indexTp', [this.params,this.idTp]);
 								}
 							}
 						}
-						this.disableColumnCU(true);
 					}
 				}
 			},
@@ -1268,13 +1270,28 @@
 					this.$store.dispatch('global/changeIdCu','semua');
 				}
 			},
+			checkParams(){
+				let a = _.findIndex(this.columnData, {'filter': true,'disable': false });
+
+        if(this.columnData[a].filterKey){
+          this.params.search_column = this.columnData[a].filterKey;
+        }else{
+          this.params.search_column = this.columnData[a].key;
+        }
+			},
 			disableColumnCU(status){
 				this.columnData[1].disable = status;
 				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
+
+				if(this.isFirstLoad)
+					this.checkParams();
 			},
 			disableColumnTp(status){
 				this.columnData[5].disable = status;
+
+				if(this.isFirstLoad)
+					this.checkParams();
 			},
 			columnGroup(value){
 				for (let i = 0, len = this.columnData.length ; i < len; i++){
