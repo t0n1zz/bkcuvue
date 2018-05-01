@@ -107,7 +107,9 @@
                 v-if="searchColumnType === 'numeric' && params.search_operator === 'between'"></cleave>
                 
               <!-- string -->
-              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="params.search_operator === 'like'">
+              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery1" :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string'">
+              <span class="input-group-addon" v-if="searchColumnType === 'numeric' && params.search_operator === 'between'">sampai</span>
+              <input type="text" class="form-control" placeholder="Masukkan kata kunci pencarian" v-model="searchQuery2" :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string' && params.search_operator === 'between'">
 
               <!-- filter desktop -->
               <div class="input-group-btn">
@@ -115,7 +117,7 @@
                 <!-- kolom -->
                 <div class="btn-group ">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kategori Pencarian'"  :disabled="itemDataStat === 'loading'">
-                    <i class="icon-filter4"></i> Berdasarkan {{searchColumn}} &nbsp;
+                    <i class="icon-filter4"></i> {{searchColumn}} &nbsp;
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-right">
@@ -128,9 +130,9 @@
                 </div>
 
                 <!-- operator -->
-                <div class="btn-group " v-if="params.search_operator !== 'like'">
+                <div class="btn-group ">
                   <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Operator Pencarian'"  :disabled="itemDataStat === 'loading'">
-                    <i class="icon-equalizer"></i> Operator {{searchOperator}} &nbsp;
+                    <i class="icon-equalizer"></i> {{searchOperator}} &nbsp;
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-right">
@@ -266,6 +268,8 @@
           </div>
 
         </div>
+
+
 
         <!-- button row -->
         <div class="row hidden-xs">
@@ -742,6 +746,10 @@
         searchOperator: '',
         operator: [
           {
+            key: 'like',
+            title: 'Seperti [a...]',
+          },
+          {
             key: 'equal_to',
             title: 'Sama Dengan [=]',
           },
@@ -836,7 +844,7 @@
       // check route changes
 			'$route' (to, from){
         this.isFirstLoad = true;
-        // this.searchParams();
+        this.searchParams();
       },
       
       itemDataStat(value){
@@ -934,26 +942,14 @@
       },
       emptySearch(){
         this.searchQuery1 = '';
+        this.params.search_operator = 'like';
         this.params.search_query_1 = '';
         this.params.search_query_2 = '';
-        this.fetch();
+        // this.fetch();
       },
       checkSearchFilterType(filterType){
-        if(filterType === 'date'){
-          this.params.search_operator = this.operator[6].key;
-          this.searchOperator = this.operator[6].title;
-        }else if(filterType === 'datetime'){
-          this.params.search_operator = this.operator[6].key;
-          this.searchOperator = this.operator[6].title;
-        }else if(filterType === 'number'){
-          this.params.search_operator = this.operator[0].key;
-          this.searchOperator = this.operator[0].title;
-        }else if(filterType === 'numeric'){
-          this.params.search_operator = this.operator[0].key;
-          this.searchOperator = this.operator[0].title;
-        }else{
-          this.params.search_operator = 'like';
-        }
+        this.params.search_operator = this.operator[0].key;
+        this.searchOperator = this.operator[0].title;
         this.searchColumnType = filterType;
       },
 

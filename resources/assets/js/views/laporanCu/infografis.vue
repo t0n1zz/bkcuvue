@@ -74,7 +74,11 @@ export default {
 	},
 	watch: {
 		// check route changes
-		idCu(valeu){
+		idCu(value){
+			this.isFirstLoad = true;
+			this.fetch();
+		},
+		idTp(value){
 			this.isFirstLoad = true;
 			this.fetch();
 		},
@@ -141,6 +145,7 @@ export default {
 	computed: {
 		...mapGetters('global',{
 			idCu: 'idCu',
+			idTp: 'idTp',
 			selectData: 'data'
 		}),
 		...mapGetters('laporanCu',{

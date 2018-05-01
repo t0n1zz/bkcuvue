@@ -1149,7 +1149,6 @@
 			'$route' (to, from){
 				// check current page meta
 				this.checkMeta();
-				this.resetParams();
 				this.fetch();
 			},
 
@@ -1285,22 +1284,6 @@
 						this.columnData[i].hide = true;
 					}
 				}
-			},
-			resetParams(){
-				let searchColumn = '';
-				if(this.idCu === 'semua'){
-						searchColumn = 'cu.name';
-				}else{
-					if(this.idCu !== undefined){
-							if(this.idTp !== undefined){
-								searchColumn = 'id';
-							}
-					}
-				}	
-				this.params.search_column = searchColumn;
-				this.params.search_operator = 'like';
-				this.params.search_query_1 = '';
-				this.params.search_query_2 = '';
 			},
 			selectedRow(item){
 				this.selectedItem = item;
