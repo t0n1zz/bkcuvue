@@ -74,19 +74,8 @@ export default {
 	},
 	watch: {
 		// check route changes
-		idCu(value){
-			this.isFirstLoad = true;
+		'$route' (to, from){
 			this.fetch();
-		},
-		idTp(value){
-			this.isFirstLoad = true;
-			this.fetch();
-		},
-		selectData(value){
-			this.isFirstLoad = true;
-			if(this.idCu == 'semua'){
-				this.fetch();
-			}
 		},
 		itemDataStat(value){
 			if(value == "success"){
@@ -103,21 +92,29 @@ export default {
 	methods: {
 		// fetching data from database
 		fetch(){
-			 
-			if(this.idCu === 'semua'){
-				this.resetParams('cu.name');
-				if(this.selectData){
-					this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.selectData]);
+			 if(this.$route.meta.mode == 'periode'){
+				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
 
-					this.axisLabelKey = 'cu_name';
-					this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
-				}
-			}else{
-				if(this.idCu !== undefined){
+				this.axisLabelKey = 'cu_name';
+				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
+
+			// default route	
+			}else if(this.$route.meta.mode == 'cu'){
+				if(this.$route.params.tp == 'semua'){
 					this.resetParams('id');
-					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.idCu]);
+					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.$route.params.cu]);
+					this.axisLabelKey = 'periode';	
+
+				}else{
+					this.resetParams('id');
+					this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.$route.params.tp]);
 					this.axisLabelKey = 'periode';	
 				}
+			}else{
+				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
+
+				this.axisLabelKey = 'cu_name';
+				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
 			}
 		},
 		resetParams(search_column){

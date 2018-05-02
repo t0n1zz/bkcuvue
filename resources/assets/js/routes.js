@@ -102,17 +102,21 @@ const routes = [
 		components: { default: tp_form, 'header': header}, meta: { mode:'edit' } },
 
 	// laporan cu
+	// bkcu default route
 	{ path: '/laporancu',name: 'laporanCu', 
 		components: { default: laporanCu, 'header': header }},
-	{ path: '/laporancu/cu/:cu',name: 'laporanCuCu', 
-		components: { default: laporanCu, 'header': header },
-		meta: { mode:'cu' }},
-	{ path: '/laporancu/cu/:cu/tp/:tp',name: 'laporanCuTp', 
-		components: { default: laporanCu, 'header': header },
-		meta: { mode:'tp' }},
+	// bkcu periode route
 	{ path: '/laporancu/periode/:periode',name: 'laporanCuPeriode', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'periode' }},
+	// bkcu cu and tp route	
+	{ path: '/laporancu/cu/:cu/tp/:tp',name: 'laporanCuCu', 
+		components: { default: laporanCu, 'header': header },
+		meta: { mode:'cu' }},
+	// cu default route	
+	{ path: '/laporancu/:tp',name: 'laporanCuTp', 
+		components: { default: laporanCu, 'header': header },
+		meta: { mode:'tp' }},
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
 		components: { default: laporanCu_form, 'header': header} },
 	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 

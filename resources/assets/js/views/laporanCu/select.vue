@@ -12,7 +12,7 @@
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="idCu" v-model="id_cu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCUStat === 'loading'">
+							<select class="bootstrap-select" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)"  :disabled="modelCUStat === 'loading'">
 								<option disabled value="">Silahkan pilih data</option>
 								<slot></slot>
 								<option value="semua">Semua</option>
@@ -29,14 +29,15 @@
 						</div>
 					</div>
 					<!-- semua cu -->
-					<div class="col-sm-5" v-if="idCu == 'semua'">
+					<div :class="{'col-sm-5': profile.id_cu == 0, 'col-sm-12': profile.id_cu != 0}" v-if="idCu == 'semua'">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
 								Periode Laporan
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="periode" v-model="selectData" data-width="100%" @change="changePeriode($event.target.value)" :disabled="modelPeriodeStat === 'loading'">
+							<select class="bootstrap-select" name="periode" v-model="periode" data-width="100%" 
+							:disabled="modelPeriodeStat === 'loading'">
 								<option disabled value="">Silahkan pilih periode laporan</option>
 								<slot></slot>
 								<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
@@ -58,7 +59,7 @@
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="tp" v-model="id_tp" data-width="100%" @change="changeTp($event.target.value)" :disabled="modelTpStat === 'loading'">
+							<select class="bootstrap-select" name="tp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'" @change="changeTp($event.target.value)">
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="semua">Konsolidasi</option>
 								<option data-divider="true"></option>
@@ -74,7 +75,7 @@
 						</div>
 					</div>
 					<!-- find data button -->
-					<div class="col-sm-2">
+					<div class="col-sm-2" v-if="this.profile.id_cu === 0">
 						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()">
 							<i class="icon-search4"></i>  Cari
 						</button>
@@ -92,8 +93,8 @@
 					<div class="input-group-addon">
 						Pilih Data
 					</div>
-					<select class="form-control" name="idCu" v-model="id_cu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCUStat === 'loading'">
-						<option disabled value="">Silahkan pilih data</option>
+					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCUStat === 'loading'">
+						<option disabled value="">Silahkan pilih dataaaa</option>
 						<option value="semua">Semua</option>
 						<option data-divider="true"></option>
 						<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
@@ -116,7 +117,7 @@
 					</div>
 
 					<!-- select -->
-					<select class="form-control" name="periode" v-model="selectData" data-width="100%" @change="changePeriode($event.target.value)" :disabled="modelPeriodeStat === 'loading'">
+					<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelPeriodeStat === 'loading'">
 						<option disabled value="">Silahkan pilih periode laporan</option>
 						<slot></slot>
 						<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
@@ -143,52 +144,76 @@
 		props:['kelas','path'],
 		data(){
 			return {
-				id_cu: '',
-				id_tp: '',
-				selectData: '',
+				idCu: '',
+				idTp: '',
+				periode: '',
+			}
+		},
+		created(){
+			if(this.profile.id_cu != undefined){
+				this.checkProfileIdCU();
 			}
 		},
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
 		},
-		created(){
-			if(this.profile.id_pus !== undefined){
-				this.fetchCU(); 
-			}	
-			if(this.globalData !== undefined){
-				this.selectData = this.globalData;
-			}
+		mounted(){
+			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
-			idCu(value){
-				this.id_cu = value;
-				if(value != 'semua'){
-					this.fetchTp();
-				}
-			},
-			idTp(value){
-				this.id_tp = value;
-			},
-			globalData(value){
-				this.selectData = value;
+			'$route' (to, from){
+				// check current page meta
+				this.checkProfileIdCU(); 
 			},
 			profileStat(value){
 				if(value === "success"){
-					this.fetchCU();
+					this.checkProfileIdCU();
 				}
 			},
 			modelCUStat(value){
 				if(value === "success"){
-					this.id_cu = this.idCu;
+					if(this.$route.meta.mode == 'cu'){			
+						this.idCu = this.$route.params.cu;
+						this.changeCu(this.idCu);
+					}else{
+						this.idCu = 'semua';
+						this.changeCu(this.idCu);
+					}
 				}
 			},
 			modelTpStat(value){
 				if(value === "success"){
-					this.id_tp = this.idTp;
+					if(this.$route.meta.mode == 'cu'){
+						this.idTp = this.$route.params.tp;
+					}
 				}
 			},
+			modelPeriodeStat(value){
+				if(value === "success"){
+					if(this.$route.meta.mode == 'periode'){
+						this.periode = this.$route.params.periode;
+					}else{
+						this.periode = this.modelPeriode[0].periode;
+					}
+				}
+			}
     },
 		methods: {
+			checkProfileIdCU(){
+				if(this.profile.id_cu !== 0){
+					this.idCu = this.profile.id_cu;
+					this.fetchTp();
+				}else{
+					this.fetchCU();
+				}
+			},
+			fetch(){
+				if(this.idCu != 'semua'){
+					this.$router.push({name: 'laporanCuCu', params:{cu: this.idCu, tp: this.idTp} });
+				}else{
+					this.$router.push({name: 'laporanCuPeriode', params:{periode: this.periode} });
+				}
+			},
 			fetchCU(){
 				this.$store.dispatch('cu/getPus', this.profile.id_pus);
 			},
@@ -198,14 +223,18 @@
 			fetchTp(){
 				this.$store.dispatch('tp/getCu',this.idCu);
 			},
-			changeCu(id){
-				this.$router.push({name: 'laporanCuCu', params:{cu: id} });
+			changeCu(value){
+				if(value != 'semua'){
+					this.fetchTp();
+				}else{
+					this.fetchPeriode();
+				}
 			},
-			changeTp(id){
-				this.$router.push({name: 'laporanCuTp', params:{cu: this.id_cu, tp: id} });
-			},
-			changePeriode(periode){
-				this.$router.push({name: 'laporanCuPeriode', params:{periode: periode} });
+			// cu route
+			changeTp(value){
+				if(this.profile.id_cu !== 0){
+					this.$router.push({name: 'laporanCuTp', params:{tp: value} });
+				}
 			},
 			checkClass(value){
 				return {
@@ -218,11 +247,6 @@
 			...mapGetters('user',{
 				profile: 'profile',
 				profileStat: 'profileStat'
-			}),
-			...mapGetters('global',{
-				idCu: 'idCu',
-				idTp: 'idTp',
-				globalData: 'data'
 			}),
 			...mapGetters('laporanCu',{
 				modelPeriode: 'periode',

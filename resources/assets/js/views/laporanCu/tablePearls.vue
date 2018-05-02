@@ -701,69 +701,12 @@
 			}
 		},
 		created(){
-			// this.checkMeta();
 			this.fetch();
 		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
-				// check current page meta
-				this.checkMeta();
-			},
-
-			// fetch on selectCU change
-			idCu(value){
-				this.isFirstLoad = true;
-				if(value !== ''){
-					if(this.itemDataStat == 'success'){
-						// this.checkMeta();
-						this.fetch();
-					}
-				}
-			},
-
-			// fetch on selectTp change
-			idTp(value){
-				if(value !== ''){
-					if(this.itemDataStat == 'success'){
-						// this.checkMeta();
-						this.fetch();
-					}
-				}
-			},
-
-			selectData(value){
-				this.isFirstLoad = true;
-				if(this.idCu == 'semua'){
-					this.fetch();
-				}
-			},
-
-			// fetch on load page
-			modelCUStat(value){ 
-				if(value == 'success'){
-					// this.checkMeta();
-					this.fetch();
-				}
-			},
-
-			// fetch on load page
-			modelTpStat(value){ 
-				if(value == 'success'){
-					// this.checkMeta();
-					this.fetch();
-				}
-			},
-
-			// if route is semua laporan
-			periodeStat(value){
-				if(value == 'success'){
-					if(this.$route.meta.mode == 'periode'){
-						this.$store.dispatch('global/changeData', this.$route.params.periode);
-					}else{
-						this.$store.dispatch('global/changeData', this.periodeData[0].periode);
-					}
-				}
+				this.fetch();
 			},
 
 			itemDataStat(value){
@@ -788,53 +731,41 @@
     },
 		methods: {
 			fetch(){
-				if(this.modelCUStat === 'success'){
-					if(this.idCu === 'semua'){
-						this.disableColumnCU(false);
-						// if route is periode
-						if(this.$route.meta.mode == 'periode'){
-							this.$store.dispatch(this.kelas + '/indexPearlsPeriode', [this.params,this.$route.params.periode]);
+				if(this.$route.meta.mode == 'periode'){
+					this.disableColumnCU(false);
+					this.disableColumnTp(false);
 
-						// default route	
-						}else{
-							this.$store.dispatch(this.kelas + '/indexPearls', this.params);
-						}
-						
-						this.$store.dispatch(this.kelas + '/getPeriode');
+					this.$store.dispatch(this.kelas + '/indexPearlsPeriode', [this.params,this.$route.params.periode]);
+
+				// default route	
+				}else if(this.$route.meta.mode == 'cu'){
+					this.disableColumnCU(true);
+					if(this.$route.params.tp == 'semua'){
+						this.disableColumnTp(false);
+
+						this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.$route.params.cu]);
 					}else{
-						this.disableColumnCU(true);
-						
-						if(this.idCu !== undefined){
-							if(this.idTp !== undefined){
-								// konsolidasi
-								if(this.idTp == 'semua'){
-									this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.idCu]);
+						this.disableColumnTp(true);
 
-								// tp	
-								}else{
-									this.$store.dispatch(this.kelas + '/indexPearlsTp', [this.params,this.idTp]);
-								}
-							}
-							
-						}
+						this.$store.dispatch(this.kelas + '/indexPearlsTp', [this.params,this.$route.params.tp]);
 					}
-					
+				}else{
+					this.$store.dispatch(this.kelas + '/indexPearls', this.params);
 				}
 			},
-			checkMeta(){
-				// route from edit and when change cu data selected
-				if(this.$route.meta.mode == 'cu'){
-					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-					this.$store.dispatch('global/changeIdTp','semua');
+			disableColumnCU(status){
+				this.columnData[1].disable = status;
+				this.columnData[2].disable = status;
+				this.columnData[3].disable = status;
+				
+				if(this.isFirstLoad)
+					this.checkParams();
+			},
+			disableColumnTp(status){
+				this.columnData[5].disable = status;
 
-				// route from edit and when change tp cu data selected
-				}else if(this.$route.meta.mode == 'tp'){
-					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-					this.$store.dispatch('global/changeIdTp',this.$route.params.tp);
-				// default route and periode route
-				}else{
-					this.$store.dispatch('global/changeIdCu','semua');
-				}
+				if(this.isFirstLoad)
+					this.checkParams();
 			},
 			checkParams(){
 				let a = _.findIndex(this.columnData, {'filter': true,'disable': false });
@@ -844,14 +775,6 @@
         }else{
           this.params.search_column = this.columnData[a].key;
         }
-			},
-			disableColumnCU(status){
-				this.columnData[1].disable = status;
-				this.columnData[2].disable = status;
-				this.columnData[3].disable = status;
-				
-				if(this.isFirstLoad)
-					this.checkParams();
 			},
 			selectedRow(item){
 				this.selectedItem = item;
