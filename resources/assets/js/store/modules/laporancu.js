@@ -209,6 +209,21 @@ export const laporanCu = {
         });
     },
 
+    // load by tp
+    grafikTp( { commit }, [p, id] ){
+      commit('setGrafikStat', 'loading');
+      
+      laporanTpAPI.indexTp( p, id )
+        .then( function( response ){
+          commit('setGrafik', response.data.model);
+          commit('setGrafikStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafik', error.response);
+          commit('setGrafikStat', 'fail');
+        });
+    },
+
 
 
     create( {commit} ){

@@ -21,16 +21,94 @@
         <div class="row">
           <div class="col-md-12 pb-15">
             <div class="input-group">
+              <!-- datetime -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.dateTime" 
+                placeholder="YYYY-MM-DD HH:MM:SS" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'datetime'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.dateTime" 
+                placeholder="YYYY-MM-DD HH:MM:SS" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'datetime' && params.search_operator === 'between'"></cleave>
 
-              <!-- searchbox -->
-              <search-box
-                :searchColumnType="searchColumnType"
-                :searchQuery1.sync="searchQuery1"
-                :searchQuery2.sync="searchQuery2"
-                :itemDataStat="itemDataStat"
-                :params="params"
-                @fetch="fetch"
-              ></search-box>
+              <!-- date -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.date" 
+                placeholder="YYYY-MM-DD" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'date'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.date" 
+                placeholder="YYYY-MM-DD" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'date' && params.search_operator === 'between'"></cleave>
+
+              <!-- number -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :options="cleaveOption.number" 
+                placeholder="0-9" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'number'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :options="cleaveOption.number" 
+                placeholder="0-9" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'number' && params.search_operator === 'between'"></cleave>
+
+              <!-- numeric -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :options="cleaveOption.numeric" 
+                placeholder="999.999.999,99" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'numeric'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'numeric' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :options="cleaveOption.numeric" 
+                placeholder="999.999.999,99" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'numeric' && params.search_operator === 'between'"></cleave>
+                
+              <!-- string -->
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Masukkan kata kunci pencarian" 
+                v-model="searchQuery1"
+                @keyup.enter="fetch"
+                :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string'">
+              <span class="input-group-addon" v-if="searchColumnType === 'string' && params.search_operator === 'between'">sampai</span>
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Masukkan kata kunci pencarian" 
+                v-model="searchQuery2"
+                @keyup.enter="fetch"
+                :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string' && params.search_operator === 'between'"> 
               
               <!-- filter desktop -->
               <div class="input-group-btn">
@@ -238,6 +316,7 @@
         </table>
       </div>
 
+      <!-- table context menu -->
       <context-menu ref="menu">
         <!-- slot button -->
         <slot name="button-context"></slot>
@@ -317,13 +396,92 @@
           <div class="row">
             <div class="col-md-12 pb-15">
               <!-- searchbox -->
-              <search-box
-                :searchColumnType="searchColumnType"
-                :searchQuery1.sync="searchQuery1"
-                :searchQuery2.sync="searchQuery2"
-                :itemDataStat="itemDataStat"
-                :params="params"
-              ></search-box>
+              <!-- datetime -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.dateTime" 
+                placeholder="YYYY-MM-DD HH:MM:SS" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'datetime'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.dateTime" 
+                placeholder="YYYY-MM-DD HH:MM:SS" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'datetime' && params.search_operator === 'between'"></cleave>
+
+              <!-- date -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.date" 
+                placeholder="YYYY-MM-DD" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'date'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.date" 
+                placeholder="YYYY-MM-DD" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'date' && params.search_operator === 'between'"></cleave>
+
+              <!-- number -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :options="cleaveOption.number" 
+                placeholder="0-9" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'number'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :options="cleaveOption.number" 
+                placeholder="0-9" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'number' && params.search_operator === 'between'"></cleave>
+
+              <!-- numeric -->
+              <cleave 
+                v-model="searchQuery1"
+                class="form-control" 
+                :options="cleaveOption.numeric" 
+                placeholder="999.999.999,99" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'numeric'"></cleave>
+              <span class="input-group-addon" v-if="searchColumnType === 'numeric' && params.search_operator === 'between'">sampai</span>
+              <cleave 
+                v-model="searchQuery2"
+                class="form-control" 
+                :options="cleaveOption.numeric" 
+                placeholder="999.999.999,99" 
+                :disabled="itemDataStat === 'loading'" 
+                v-if="searchColumnType === 'numeric' && params.search_operator === 'between'"></cleave>
+                
+              <!-- string -->
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Masukkan kata kunci pencarian" 
+                v-model="searchQuery1"
+                :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string'">
+              <span class="input-group-addon" v-if="searchColumnType === 'string' && params.search_operator === 'between'">sampai</span>
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Masukkan kata kunci pencarian" 
+                v-model="searchQuery2"
+                :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string' && params.search_operator === 'between'"> 
 
               <!-- filter -->
               <div class="pb-15 pt-15">
@@ -465,7 +623,7 @@
  
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
-      
+
       <div slot="modal-body1" class="text-center">
         <div v-if="excelLoadStat === ''">
           <span class="text-warning">
@@ -596,8 +754,8 @@
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
-  import searchBox from '../components/searchBox';
   import contextMenu from 'vue-context-menu';
+  import Cleave from 'vue-cleave-component';
 
   export default {
     props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','tableClass'],
@@ -605,7 +763,7 @@
       jsonExcel,
       appModal,
       contextMenu,
-      searchBox,
+      Cleave
     },
     data() {
       return {
@@ -649,6 +807,31 @@
             title: 'Antara [#]-[#]',
           },
         ],
+        cleaveOption: {
+          date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+          },
+          number: {
+            numeral: true,
+            numeralThousandsGroupStyle: 'none',
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
+          numeric: {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand',
+            numeralDecimalScale: 2,
+            numeralDecimalMark: ',',
+            delimiter: '.'
+          },
+          dateTime:{
+            blocks: [4,2,2,2,2,2],
+            delimiters: ['-','-',' ',':',':'],
+            delimiterLazyShow: true
+          }
+        },
         excel: {
           fields: {},
           data: [],

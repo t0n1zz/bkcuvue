@@ -5,7 +5,7 @@
 		<div class="panel panel-flat hidden-xs hidden-print " v-if="this.profile.id_cu === 0">
 			<div class="panel-body">  
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-5">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
 								Pilih Data
@@ -28,7 +28,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6" v-if="idCu == 'semua'">
+					<!-- semua cu -->
+					<div class="col-sm-5" v-if="idCu == 'semua'">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
 								Periode Laporan
@@ -49,7 +50,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6" v-else>
+					<!-- tp cu -->
+					<div class="col-sm-5" v-else>
 						<div class="input-group">
 							<div class="input-group-addon">
 								TP/KP
@@ -70,6 +72,12 @@
 								</button>
 							</div>
 						</div>
+					</div>
+					<!-- find data button -->
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()">
+							<i class="icon-search4"></i>  Cari
+						</button>
 					</div>
 				</div>
 					

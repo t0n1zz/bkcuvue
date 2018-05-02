@@ -95,8 +95,8 @@ export default {
 				// 	this.isFirstLoad = false;
 				// }
 				if(this.idCu !== 'semua'){
-						this.titleText = 'Grafik ' + this.title + ' ' + this.itemData.data[0].c_u.name;
-					}
+						this.titleText = 'Grafik ' + this.title + ' ' + this.itemData.data[0].cu.name;
+				}
 			}
 		}
 	},
@@ -116,8 +116,7 @@ export default {
 				if(this.idCu !== undefined){
 					this.resetParams('id');
 					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.idCu]);
-					this.axisLabelKey = 'periode';
-					
+					this.axisLabelKey = 'periode';	
 				}
 			}
 		},
