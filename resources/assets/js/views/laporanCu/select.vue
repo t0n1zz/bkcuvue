@@ -2,10 +2,10 @@
 	<div>
 
 		<!-- cu desktop --> 
-		<div class="panel panel-flat hidden-xs hidden-print " v-if="this.profile.id_cu === 0">
+		<div class="panel panel-flat hidden-xs hidden-print " >
 			<div class="panel-body">  
 				<div class="row">
-					<div class="col-sm-5">
+					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
 								Pilih Data
@@ -15,7 +15,7 @@
 							<select class="bootstrap-select" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)"  :disabled="modelCUStat === 'loading'">
 								<option disabled value="">Silahkan pilih data</option>
 								<slot></slot>
-								<option value="semua">Semua</option>
+								<option value="semua">Semua CU</option>
 								<option data-divider="true"></option>
 								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>
@@ -29,10 +29,10 @@
 						</div>
 					</div>
 					<!-- semua cu -->
-					<div :class="{'col-sm-5': profile.id_cu == 0, 'col-sm-12': profile.id_cu != 0}" v-if="idCu == 'semua'">
+					<div class="col-sm-5" v-if="idCu == 'semua'">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
-								Periode Laporan
+								Pilih Periode
 							</div>
 
 							<!-- select -->
@@ -52,16 +52,16 @@
 						</div>
 					</div>
 					<!-- tp cu -->
-					<div class="col-sm-5" v-else>
+					<div :class="{'col-sm-5': profile.id_cu == 0, 'col-sm-12': profile.id_cu != 0}" v-else>
 						<div class="input-group">
 							<div class="input-group-addon">
-								TP/KP
+								Pilih TP/KP
 							</div>
 
 							<!-- select -->
 							<select class="bootstrap-select" name="tp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'" @change="changeTp($event.target.value)">
 								<option disabled value="">Silahkan pilih TP/KP</option>
-								<option value="semua">Konsolidasi</option>
+								<option value="konsolidasi">Konsolidasi</option>
 								<option data-divider="true"></option>
 								<option v-for="tp in modelTp" :value="tp.id" v-if="tp">{{tp.name}}</option>
 							</select>
@@ -77,7 +77,7 @@
 					<!-- find data button -->
 					<div class="col-sm-2" v-if="this.profile.id_cu === 0">
 						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()">
-							<i class="icon-search4"></i>  Cari
+							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
 					</div>
 				</div>
@@ -233,7 +233,7 @@
 			// cu route
 			changeTp(value){
 				if(this.profile.id_cu !== 0){
-					this.$router.push({name: 'laporanCuTp', params:{tp: value} });
+					this.$router.push({name: 'laporanCuCu', params:{cu: this.profile.id_cu, tp: value} });
 				}
 			},
 			checkClass(value){

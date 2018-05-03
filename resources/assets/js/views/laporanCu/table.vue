@@ -1150,6 +1150,7 @@
 		watch: {
 			// check route changes
 			'$route' (to, from){
+				this.isFirstLoad = true;
 				this.fetch();
 			},
 
@@ -1181,10 +1182,9 @@
 
 					this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
 
-				// default route	
 				}else if(this.$route.meta.mode == 'cu'){
 					this.disableColumnCU(true);
-					if(this.$route.params.tp == 'semua'){
+					if(this.$route.params.tp == 'konsolidasi'){
 						this.disableColumnTp(false);
 
 						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
@@ -1194,6 +1194,9 @@
 						this.$store.dispatch(this.kelas + '/indexTp', [this.params,this.$route.params.tp]);
 					}
 				}else{
+					this.disableColumnCU(false);
+					this.disableColumnTp(false);
+
 					this.$store.dispatch(this.kelas + '/index', this.params);
 				}
 			},

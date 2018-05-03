@@ -28,6 +28,7 @@
                 :raw="false" 
                 :options="cleaveOption.dateTime" 
                 placeholder="YYYY-MM-DD HH:MM:SS" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'datetime'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">sampai</span>
@@ -37,6 +38,7 @@
                 :raw="false" 
                 :options="cleaveOption.dateTime" 
                 placeholder="YYYY-MM-DD HH:MM:SS" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'datetime' && params.search_operator === 'between'"></cleave>
 
@@ -46,7 +48,8 @@
                 class="form-control" 
                 :raw="false" 
                 :options="cleaveOption.date" 
-                placeholder="YYYY-MM-DD" 
+                placeholder="YYYY-MM-DD"
+                @keyup.enter="fetch" 
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'date'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
@@ -56,6 +59,7 @@
                 :raw="false" 
                 :options="cleaveOption.date" 
                 placeholder="YYYY-MM-DD" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'date' && params.search_operator === 'between'"></cleave>
 
@@ -65,6 +69,7 @@
                 class="form-control" 
                 :options="cleaveOption.number" 
                 placeholder="0-9" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'number'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
@@ -73,6 +78,7 @@
                 class="form-control" 
                 :options="cleaveOption.number" 
                 placeholder="0-9" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'number' && params.search_operator === 'between'"></cleave>
 
@@ -82,6 +88,7 @@
                 class="form-control" 
                 :options="cleaveOption.numeric" 
                 placeholder="999.999.999,99" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'numeric'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'numeric' && params.search_operator === 'between'">sampai</span>
@@ -90,6 +97,7 @@
                 class="form-control" 
                 :options="cleaveOption.numeric" 
                 placeholder="999.999.999,99" 
+                @keyup.enter="fetch"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'numeric' && params.search_operator === 'between'"></cleave>
                 
@@ -931,9 +939,6 @@
           this.searchColumn = title;
           if(this.params.search_query_1 !== ''){
             this.params.page = 1;
-
-            if(this.params.search_operator === 'like')
-              this.fetch();
           }
         }
 

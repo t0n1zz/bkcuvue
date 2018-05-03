@@ -154,7 +154,10 @@
 							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index laporanCu']">
+							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index laporanCu'] && profile.id_cu == '0'">
+								<a><i class="icon-stats-growth"></i> Laporan CU</a>
+							</router-link>
+							<router-link :to="{ name: 'laporanCuCu',params: { cu: this.profile.id_cu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index laporanCu'] && profile.id_cu != '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
 						</ul>

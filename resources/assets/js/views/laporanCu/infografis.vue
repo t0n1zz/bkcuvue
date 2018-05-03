@@ -1,19 +1,5 @@
 <template>
 <div>
-	<bar-chart
-		:titleText="titleText"
-		:title="title"
-		:kelas="kelas"
-		:params="params"
-		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
-		:axisLabelKey="axisLabelKey"
-		:itemData="itemData"
-		:itemDataStat="itemDataStat"
-		:columnData="columnData"
-		@fetch="fetch()"
-		v-if="idCu === 'semua'"
-		></bar-chart>
 	<line-chart
 		:titleText="titleText"
 		:title="title"
@@ -26,8 +12,22 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
-		v-else
+		v-if="this.$route.meta.mode == 'cu'"
 		></line-chart>
+	<bar-chart
+		:titleText="titleText"
+		:title="title"
+		:kelas="kelas"
+		:params="params"
+		:dataShownTitle1="dataShownTitle1"
+		:dataShownKey1="dataShownKey1"
+		:axisLabelKey="axisLabelKey"
+		:itemData="itemData"
+		:itemDataStat="itemDataStat"
+		:columnData="columnData"
+		@fetch="fetch()"
+		v-else
+		></bar-chart>
 </div>
 </template>
 
@@ -83,8 +83,16 @@ export default {
 				// 	this.checkPage();
 				// 	this.isFirstLoad = false;
 				// }
-				if(this.idCu !== 'semua'){
-						this.titleText = 'Grafik ' + this.title + ' ' + this.itemData.data[0].cu.name;
+				if(this.$route.meta.mode == 'periode'){
+					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
+				}else if(this.$route.meta.mode == 'cu'){
+					if(this.$route.params.tp == 'konsolidasi'){
+						this.titleText = 'Grafik Laporan konsolidasi CU ' + this.itemData.data[0].cu.name;
+					}else{
+						this.titleText = 'Grafik Laporan ' + this.itemData.data[0].tp.name;
+					}	
+				}else{
+					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
 			}
 		}
@@ -100,7 +108,7 @@ export default {
 
 			// default route	
 			}else if(this.$route.meta.mode == 'cu'){
-				if(this.$route.params.tp == 'semua'){
+				if(this.$route.params.tp == 'konsolidasi'){
 					this.resetParams('id');
 					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.$route.params.cu]);
 					this.axisLabelKey = 'periode';	
@@ -139,11 +147,6 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters('global',{
-			idCu: 'idCu',
-			idTp: 'idTp',
-			selectData: 'data'
-		}),
 		...mapGetters('laporanCu',{
 			itemData: 'grafik',
 			itemDataStat: 'grafikStat',

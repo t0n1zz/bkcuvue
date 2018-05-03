@@ -740,7 +740,7 @@
 				// default route	
 				}else if(this.$route.meta.mode == 'cu'){
 					this.disableColumnCU(true);
-					if(this.$route.params.tp == 'semua'){
+					if(this.$route.params.tp == 'konsolidasi'){
 						this.disableColumnTp(false);
 
 						this.$store.dispatch(this.kelas + '/indexPearlsCu', [this.params,this.$route.params.cu]);

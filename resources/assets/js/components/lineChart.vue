@@ -4,7 +4,7 @@
 
 		<!-- heading -->
 		<div class="panel-heading has-visible-elements hidden-print">
-			<h5 class="panel-title text-semibold"><i class="icon-list2 position-left"></i> Grafik {{ title }}</h5>
+			<h5 class="panel-title text-semibold"><i class="icon-stats-growth position-left"></i> Grafik {{ title }}</h5>
 			<div class="heading-elements visible-elements">
 				<ul class="icons-list">
 					<li>

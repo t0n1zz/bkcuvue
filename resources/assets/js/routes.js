@@ -113,10 +113,6 @@ const routes = [
 	{ path: '/laporancu/cu/:cu/tp/:tp',name: 'laporanCuCu', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'cu' }},
-	// cu default route	
-	{ path: '/laporancu/:tp',name: 'laporanCuTp', 
-		components: { default: laporanCu, 'header': header },
-		meta: { mode:'tp' }},
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
 		components: { default: laporanCu_form, 'header': header} },
 	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 
