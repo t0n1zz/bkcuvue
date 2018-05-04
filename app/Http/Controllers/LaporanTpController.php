@@ -269,6 +269,17 @@ class LaporanTpController extends Controller{
 		]);
 	}
 
+	public function listLaporanTp($cu,$periode)
+	{
+		$table_data = LaporanTp::with('Tp')->select('id','id_tp')->whereHas('Tp', function($query) use ($cu){
+			$query->where('id_cu',15);
+		})->where('periode',$periode)->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
 
 	public function getPeriode()
 	{

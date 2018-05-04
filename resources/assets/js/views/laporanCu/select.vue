@@ -76,7 +76,7 @@
 					</div>
 					<!-- find data button -->
 					<div class="col-sm-2" v-if="this.profile.id_cu === 0">
-						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()">
+						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()" :disabled="itemDataStat == 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
 					</div>
@@ -263,6 +263,9 @@
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
+			}),
+			...mapGetters('laporanCu',{
+				itemDataStat: 'dataStatS',
 			}),
 		}
 	}

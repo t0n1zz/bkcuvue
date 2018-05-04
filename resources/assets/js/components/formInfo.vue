@@ -1,6 +1,8 @@
 <template>
     <div>
-      <div class="well well-sm bg-info"><i class="icon-info22"></i> Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</div>
+      <div class="alert bg-info alert-styled-left">
+        <p>Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</p>
+      </div>
     </div>
 </template>
 

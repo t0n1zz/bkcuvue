@@ -126,6 +126,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/laporanTp/indexPearlsTp/{id}', 'laporanTpController@indexPearlsTp');
         Route::get('/laporanTp/indexPearlsPeriode/{periode}', 'laporanTpController@indexPearlsPeriode');
         Route::get('/laporanTp/getPeriode', 'laporanTpController@getPeriode');
+        Route::get('/laporanTp/listLaporanTp/{cu}/{periode}', 'laporanTpController@listLaporanTp');
     });
     Route::group(['middleware' => ['permission:create laporanTp']], function () {
         Route::get('/laporanTp/create', 'laporanTpController@create');

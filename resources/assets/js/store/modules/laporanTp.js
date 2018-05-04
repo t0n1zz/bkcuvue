@@ -7,12 +7,14 @@ export const laporanTp = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    data2S: [],
     grafik: [],
     pearls: [],
     periode: [],
     columnData: [],
     dataStat: '',
     dataStatS: '',
+    dataStat2S:'',
     grafikStat:'',
     pearlsStat:'',
     periodeStat: '',
@@ -26,12 +28,14 @@ export const laporanTp = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    data2S: state => state.data2S,
     grafik: state => state.grafik,
     pearls: state => state.pearls,
     periode: state => state.periode,
     columnData: state => state.columnData,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataStat2S: state => state.dataStat2S,
     pearlsStat: state => state.pearlsStat,
     grafikStat: state => state.grafikStat,
     periodeStat: state => state.periodeStat,
@@ -130,6 +134,21 @@ export const laporanTp = {
         .catch( error => {
           commit('setPearls', error.response);
           commit('setPearlsStat', 'fail');
+        });
+    },
+
+    // get list of laporan tp for laporan cu
+    listLaporanTp( { commit }, [cu, periode] ){
+      commit('setDataStat2S', 'loading');
+      
+      laporanTpAPI.listLaporanTp( cu, periode )
+        .then( function( response ){
+          commit('setData2S', response.data.model);
+          commit('setDataStat2S', 'success');
+        })
+        .catch( error => {
+          commit('setData2S', error.response);
+          commit('setDataStat2S', 'fail');
         });
     },
     
@@ -338,6 +357,9 @@ export const laporanTp = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setData2S ( state, data ){
+      state.data2S = data;
+    },
     setGrafik( state, data ){
       state.grafik = data;
     },
@@ -355,6 +377,9 @@ export const laporanTp = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStat2S( state, status ){
+      state.dataStat2S = status;
     },
     setPearlsStat( state, status ){
       state.pearlsStat = status;

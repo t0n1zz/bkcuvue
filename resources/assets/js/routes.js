@@ -111,7 +111,7 @@ const routes = [
 	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 
 		components: { default: laporanCu_form, 'header': header}, meta: { mode:'edit' } },
 	// edit tp	
-	{ path: '/laporancu/edit/:id/tp/:tp',name: 'laporanTpEdit', 
+	{ path: '/laporantp/edit/:id',name: 'laporanTpEdit', 
 		components: { default: laporanCu_form, 'header': header}, meta: { mode:'editTp' } },	
 ]
 

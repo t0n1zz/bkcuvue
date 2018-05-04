@@ -258,7 +258,6 @@
 
 						<!-- form info -->
 						<form-info></form-info>	
-						<br/>
 
 						<!-- form button -->
 						<div class="panel panel-flat">

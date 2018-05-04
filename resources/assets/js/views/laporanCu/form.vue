@@ -11,6 +11,25 @@
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
+					<div class="panel panel-flat hidden-xs hidden-print " v-if="$route.meta.mode == 'editTp'">
+						<div class="panel-body"> 
+							<div class="alert bg-info alert-styled-left">
+								<p>Laporan ini merupakan bagian dari laporan konsolidasi, maka anda dapat melihat/mengubah laporan TP lain yang juga termasuk dalam laporan konsolidasi pada CU ini sesuai periode laporannya.</p>
+							</div> 
+							<div class="input-group">
+								<div class="input-group-addon">
+									Pilih Laporan
+								</div>
+
+								<!-- select -->
+								<select class="bootstrap-select" name="idLaporanTp" v-model="idLaporanTp" data-width="100%" @change="changeLaporanTp($event.target.value)" :disabled="listLaporanTpDataStat === 'loading'">
+									<option disabled value="">Silahkan pilih laporan tp</option>
+									<option v-for="tp in listLaporanTpData" :value="tp.id" v-if="tp">{{tp.tp.name}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
 					<!-- main panel -->
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
@@ -57,7 +76,7 @@
 											<!-- select -->
 											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)">
 												<option disabled value="">Silahkan pilih TP</option>
-												<option value="0">Konsolidasi</option>
+												<option value="0" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
 												<option data-divider="true" v-if="modelTp"></option>
 												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
 											</select>
@@ -794,7 +813,6 @@
 
 						<!-- form info -->
 						<form-info></form-info>	
-						<br/>
 
 						<!-- form button -->
 						<div class="panel panel-flat">
@@ -851,6 +869,7 @@
 				titleIcon: '',
 				level2Title: 'Laporan CU',
 				kelas: 'laporanCu',
+				idLaporanTp: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -884,6 +903,10 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
+			// check route changes
+			'$route' (to, from){
+				this.fetch();
+			},
 			profileStat(value){ //jika refresh halaman maka reload profile
 				if(value == "success"){
 					if(this.profile.id_cu == 0){
@@ -898,8 +921,7 @@
 					if(this.$route.meta.mode == 'edit' && this.modelCUStat == "success"){
 						this.changeCu(this.form.id_cu);
 					}else if(this.$route.meta.mode == 'editTp' && this.modelCUStat == "success"){
-						this.form.id_cu = this.form.tp.id_cu;
-						this.changeCu(this.form.tp.id_cu);
+						this.checkMetaEditTp();
 					}else if(this.$route.meta.mode !== 'edit'){
 						if(this.profile.id_cu == 0){
 							// this.form.id_cu = this.profile.id_cu;
@@ -912,8 +934,7 @@
 					if(this.$route.meta.mode == 'edit'){
 						this.changeCu(this.form.id_cu);
 					}else if(this.$route.meta.mode == 'editTp'){
-						this.form.id_cu = this.form.tp.id_cu;
-						this.changeCu(this.form.tp.id_cu);
+						this.checkMetaEditTp();
 					}
 				}
 			},
@@ -924,6 +945,11 @@
 					}else if(this.$route.meta.mode == 'editTp'){
 						this.changeTp(this.form.id_tp);
 					}
+				}
+			},
+			listLaporanTpDataStat(value){
+				if(value == "success"){
+					this.idLaporanTp = this.form.id;
 				}
 			},
 			updateStat(value){
@@ -947,7 +973,7 @@
 					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
 				}else if(this.$route.meta.mode === 'editTp'){
-					this.$store.dispatch(this.kelas + '/editTp',this.$route.params.id);	
+					this.$store.dispatch(this.kelas + '/editTp',this.$route.params.id)
 					this.title = 'Ubah ' + this.level2Title;
 					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
@@ -957,7 +983,11 @@
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}
-				
+			},
+			checkMetaEditTp(){
+				this.form.id_cu = this.form.tp.id_cu;
+				this.changeCu(this.form.tp.id_cu);
+				this.$store.dispatch('laporanTp/listLaporanTp', [this.form.tp.id_cu, this.form.periode]);
 			},
 			changeCu(id){
 				this.$store.dispatch('tp/getCu',id);
@@ -975,6 +1005,9 @@
 					});
 					this.form.no_tp = model.no_tp;
 				}
+			},
+			changeLaporanTp(id,tp){
+				this.$router.push({name: 'laporanTpEdit', params: { id: id}});
 			},
 			save() {
 				this.$validator.validateAll('form').then((result) => {
@@ -1001,7 +1034,7 @@
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 0}});
 				}else if(this.$route.meta.mode === 'editTp' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.$route.params.tp}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
 				}else{
 					if(this.profile.id_cu == 0){
 						if(this.form.id_cu == 0){
@@ -1053,6 +1086,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('laporanTp',{
+				listLaporanTpData: 'data2S',
+				listLaporanTpDataStat: 'dataStat2S',
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',

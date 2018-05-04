@@ -41,7 +41,7 @@
 
 				<!-- hapus -->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy ' + kelas]">
-					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id && selectedItem.tp">
+					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
 					</button>
 				</div>
@@ -511,7 +511,32 @@
 		</data-viewer>
 					
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :color="modalColor" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+			<template slot="modal-title">{{ modalTitle }}</template>
+			<template slot="modal-body1">
+				<div class="alert bg-info alert-styled-left mt-10 pt-5 pb-5">
+					<p>Laporan ini merupakan laporan konsolidasi dari beberapa laporan di Tp. Oleh karena hal tersebut maka untuk melakukan perubahan pada laporan konsolidasi mesti melakukan perubahan pada laporan Tp yang dapat dipilih dibawah:</p>
+				</div>
+				<hr>
+
+				<div class="row">
+					<div class="col-md-6  pt-5 pb-5" v-for="laporanTp in listLaporanTpData">
+						<a class="btn btn-default btn-block" @click.prevent="ubahLaporanTp(laporanTp.id)"><i class="icon-pencil5"></i> Ubah Laporan {{laporanTp.tp.name}}</a>
+					</div>
+				</div>
+
+				<hr>
+				<div class="text-center hidden-xs">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
+						<i class="icon-cross"></i> Tutup
+					</button>
+				</div>
+				<div class="visible-xs">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-default btn-block" v-tooltip:top="'Tutup'">
+						<i class="icon-cross"></i> Tutup
+					</button>
+				</div>
+			</template>
 		</app-modal>
 
 	</div>
@@ -1139,6 +1164,7 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
+				modalColor: '',
 				modalButton: '',
 				isFirstLoad: true,
 			}
@@ -1238,16 +1264,25 @@
 			ubahData(id, tp) {
 				if(tp){
 					if(tp.id){
-						this.$router.push({name: 'laporanTpEdit', params: { id: id, tp: tp.id }});
+						this.ubahLaporanTp(id);
 					}else{
-						
+						this.modalShow = true;
+						this.modalState = 'normal1';
+						this.modalColor = 'bg-primary';
+						this.modalTitle = 'Ubah Laporan Konsolidasi';
+						this.$store.dispatch('laporanTp/listLaporanTp', [this.selectedItem.id_cu, this.selectedItem.periode]);
 					}
 				}else{
 					this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 				}
 			},
+			ubahLaporanTp(id,tp){
+				this.modalShow = false;
+				this.$router.push({name: 'laporanTpEdit', params: { id: id }});
+			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
+				this.modalColor = '';
 				this.modalState = 'confirm-tutup';
 				this.source = source;
 
@@ -1298,6 +1333,10 @@
 				periodeStat: 'periodeStat',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('laporanTp',{
+				listLaporanTpData: 'data2S',
+				listLaporanTpDataStat: 'dataStat2S',
 			}),
 		}
 	}
