@@ -6,10 +6,12 @@
 		:titleDesc="titleDesc" 
 		:titleIcon="titleIcon" 
 		:btn1Route="btn1Header.route" 
+		:btn1RouteParams="btn1Header.params"
 		:btn1Title="btn1Header.title" 
 		:btn1Icon="btn1Header.icon" 
 		:btn1Can="btn1Header.can" 
 		:btn2Route="btn2Header.route" 
+		:btn2RouteParams="btn2Header.params"
 		:btn2Title="btn2Header.title" 
 		:btn2Icon="btn2Header.icon"
 		:btn2Can="btn2Header.can"></page-header>
@@ -63,13 +65,15 @@
 				titleIcon: 'icon-magazine',
 				selectCuPath: 'artikelCu',
 				btn1Header: {
-					route: 'artikelKategori',
+					route: 'artikelKategoriCu',
+					params: 0,
 					icon: 'icon-grid6',
 					title: 'Kategori Artikel',
 					can: 'index artikelKategori'
 				},
 				btn2Header: {
-					route: 'artikelPenulis',
+					route: 'artikelPenulisCu',
+					params: 0,
 					icon: 'icon-pencil6',
 					title: 'Penulis Artikel',
 					can: 'index artikelPenulis'
@@ -79,11 +83,15 @@
 		mounted() {
 			corefunc.core_function();
 		},
+		created(){
+			this.btn1Header.params = this.$route.params.cu;
+			this.btn2Header.params = this.$route.params.cu;
+		},
 		computed: {
 			...mapGetters('artikel',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
-			}),
+			})
 		}
 	}
 </script>

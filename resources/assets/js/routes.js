@@ -38,49 +38,43 @@ const routes = [
 	{ path: '/notFound',name: 'notFound', components: { default: notFound,'header': header } },
 
 	// artikel
-	{ path: '/artikel',name: 'artikel', 
-		components: { default: artikel, 'header': header }},
+	// default route
 	{ path: '/artikel/cu/:cu',name: 'artikelCu', 
 		components: { default: artikel, 'header': header }, 
 		meta: { mode:'cu' }},
-	{ path: '/artikel/kategori/:id',name: 'artikelFilterKategori', 
+	// kategori route	
+	{ path: '/artikel/cu/:cu/kategori/:kategori',name: 'artikelFilterKategoriCu',
 		components: { default: artikel, 'header': header }, 
 		meta: { mode:'kategori' }},
-	{ path: '/artikel/kategori/:id/cu/:cu',name: 'artikelFilterKategoriCu', 
-		components: { default: artikel, 'header': header }, 
-		meta: { mode:'kategori' }},
-		{ path: '/artikel/penulis/:id',name: 'artikelFilterPenulis', 
-		components: { default: artikel, 'header': header }, 
-		meta: { mode:'penulis' }},
-	{ path: '/artikel/penulis/:id/cu/:cu',name: 'artikelFilterPenulisCu', 
+	// penulis route
+	{ path: '/artikel/cu/:cu/penulis/:penulis/',name: 'artikelFilterPenulisCu', 
 		components: { default: artikel, 'header': header }, 
 		meta: { mode:'penulis' }},
 	{ path: '/artikel/create',name: 'artikelCreate', 
 		components: { default: artikel_form, 'header': header} },
 	{ path: '/artikel/edit/:id',name: 'artikelEdit', 
-		components: { default: artikel_form, 'header': header}, meta: { mode:'edit' } },
+		components: { default: artikel_form, 'header': header}, 
+		meta: { mode:'edit' } },
 	
 	// artikel kategori
-	{ path: '/artikelKategori',name: 'artikelKategori', 
-		components: { default: artikelKategori, 'header': header }},
 	{ path: '/artikelKategori/cu/:cu',name: 'artikelKategoriCu', 
 		components: { default: artikelKategori, 'header': header },
 		meta: { mode:'cu' }},
 	{ path: '/artikelKategori/create',name: 'artikelKategoriCreate', 
 		components: { default: artikelKategori_form, 'header': header} },
 	{ path: '/artikelKategori/edit/:id',name: 'artikelKategoriEdit', 
-		components: { default: artikelKategori_form, 'header': header}, meta: { mode:'edit' } },
+		components: { default: artikelKategori_form, 'header': header},
+		meta: { mode:'edit' } },
 
 	// artikel penulis
-	{ path: '/artikelPenulis',name: 'artikelPenulis', 
-		components: { default: artikelPenulis, 'header': header }},
 	{ path: '/artikelPenulis/cu/:cu',name: 'artikelPenulisCu', 
 		components: { default: artikelPenulis, 'header': header },
 		meta: { mode:'cu' }},
 	{ path: '/artikelPenulis/create',name: 'artikelPenulisCreate', 
 		components: { default: artikelPenulis_form, 'header': header} },
 	{ path: '/artikelPenulis/edit/:id',name: 'artikelPenulisEdit', 
-		components: { default: artikelPenulis_form, 'header': header}, meta: { mode:'edit' } },
+		components: { default: artikelPenulis_form, 'header': header}, 
+		meta: { mode:'edit' } },
 
 	// cu
 	{ path: '/cu',name: 'cu', 
@@ -91,8 +85,6 @@ const routes = [
 		components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
 		
 	// tp cu
-	{ path: '/tp',name: 'tp', 
-		components: { default: tp, 'header': header }},
 	{ path: '/tp/cu/:cu',name: 'tpCu', 
 		components: { default: tp, 'header': header }, 
 		meta: { mode:'cu' }},
@@ -115,8 +107,12 @@ const routes = [
 		meta: { mode:'cu' }},
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
 		components: { default: laporanCu_form, 'header': header} },
+	// edit konsolidasi	
 	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 
 		components: { default: laporanCu_form, 'header': header}, meta: { mode:'edit' } },
+	// edit tp	
+	{ path: '/laporancu/edit/:id/tp/:tp',name: 'laporanTpEdit', 
+		components: { default: laporanCu_form, 'header': header}, meta: { mode:'editTp' } },	
 ]
 
 export default routes

@@ -766,7 +766,7 @@
   import Cleave from 'vue-cleave-component';
 
   export default {
-    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','tableClass'],
+    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','tableClass','extSearchQuery1','extSearchQuery2'],
     components: {
       jsonExcel,
       appModal,
@@ -893,6 +893,12 @@
         }
       },
 
+      extSearchQuery1(value){
+        this.searchQuery1 = value;
+      },
+      extSearchQuery2(value){
+        this.searchQuery2 = value;
+      },
       searchQuery1: function (search_query) {
         this.params.search_query_1 = search_query;
       },

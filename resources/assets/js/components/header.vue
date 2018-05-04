@@ -89,17 +89,17 @@
 							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'artikel' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikel']">
+							<router-link :to="{ name: 'artikelCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
 							</router-link>
 
 							<!-- kategori artikel -->
-							<router-link :to="{ name: 'artikelKategori' }" tag="li" active-class="active" exact>
+							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: this.idCu} }" tag="li" active-class="active" exact>
 								<a><i class="icon-grid6"></i> Kategori Artikel</a>
 							</router-link>
 
 							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulis' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikelPenulis']">
+							<router-link :to="{ name: 'artikelPenulisCu', params:{cu:this.idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikelPenulis']">
 								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
 							</router-link>
 						</ul>
@@ -131,7 +131,10 @@
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
 							<!-- cu -->
-							<router-link :to="{ name: 'tp' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tp']">
+							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tp'] && profile.id_cu == 0">
+								<a><i class="icon-home9"></i> TP/KP</a>
+							</router-link>
+							<router-link :to="{ name: 'tpCu', params:{cu:this.idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tp'] && profile.id_cu != 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 						</ul>
@@ -145,7 +148,7 @@
 						</a>
 						<ul class="dropdown-menu">
 
-							<!-- tambah artikel -->
+							<!-- tambah laporan -->
 							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create laporanCu']">
 								<a><i class="icon-plus22"></i> Tambah Laporan CU</a>
 							</router-link>
@@ -153,11 +156,11 @@
 							<!-- separator -->
 							<li class="divider"></li>
 
-							<!-- artikel -->
+							<!-- laporancu -->
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index laporanCu'] && profile.id_cu == '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
-							<router-link :to="{ name: 'laporanCuCu',params: { cu: this.profile.id_cu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index laporanCu'] && profile.id_cu != '0'">
+							<router-link :to="{ name: 'laporanCuCu',params: { cu: this.idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index laporanCu'] && profile.id_cu != '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
 						</ul>
@@ -201,11 +204,23 @@
 	import corefunc from '../assets/plugins/buttons/hover_dropdown.min.js';
 
 	export default {
+		data(){
+			return {
+				idCu: 0
+			}
+		},
 		mounted() {
 			corefunc.hover_function();
 		},
 		beforeRouteEnter(to, from, next){
 			next(vm => vm.$store.dispatch('user/profile'));
+		},
+		watch: {
+			profileStat(value){
+				if(value === "success"){
+					this.idCu = this.profile.id_cu;
+				}
+			}
 		},
 		methods: {
 			logout() {

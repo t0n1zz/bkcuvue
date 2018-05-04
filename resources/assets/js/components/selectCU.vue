@@ -10,10 +10,10 @@
 						</div>
 
 						<!-- select -->
-						<select class="bootstrap-select" name="idCu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+						<select class="bootstrap-select" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
-							<option value="semua">Semua</option>
+							<option value="semua">Semua CU</option>
 							<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 							<option data-divider="true"></option>
 							<option v-for="cu in modelCU" :value="cu.id" v-if="!isNo_ba && cu">{{cu.name}}</option>
@@ -38,9 +38,9 @@
 					<div class="input-group-addon">
 						Pilih Data
 					</div>
-					<select class="form-control" name="idCu" v-model="id_cu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 						<option disabled value="">Silahkan pilih data</option>
-						<option value="semua">Semua</option>
+						<option value="semua">Semua CU</option>
 						<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 						<option data-divider="true"></option>
 						<option v-for="cu in modelCU" :value="cu.id" v-if="!isNo_ba && cu">{{cu.name}}</option>
@@ -66,7 +66,7 @@
 		props:['kelas','isPus','path','isNo_ba'],
 		data(){
 			return {
-				id_cu: ''
+				idCu: ''
 			}
 		},
 		updated() {
@@ -76,14 +76,11 @@
 			if(this.profile.id_pus !== undefined){
 				this.fetchCU();
 			}	
-			// if(this.idCu === this.profile.id_cu){
-			// 	// resetting idCu for table parameters
-			// 	this.$store.dispatch('global/resetIdCU');
-			// }
 		},
 		watch: {
-			idCu(value){
-				this.id_cu = value;
+			'$route' (to, from){
+				// check current page meta
+				this.fetchCU();
 			},
 			profileStat(value){
 				if(value === "success"){
@@ -92,7 +89,7 @@
 			},
 			modelCUStat(value){
 				if(value === "success"){
-						this.id_cu = this.idCu;
+					this.idCu = this.$route.params.cu;
 				}
 			},
     },
@@ -108,9 +105,6 @@
 			...mapGetters('user',{
 				profile: 'profile',
 				profileStat: 'profileStat'
-			}),
-			...mapGetters('global',{
-				idCu: 'idCu',
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',

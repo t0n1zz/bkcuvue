@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :extSearchColumn="extSearchColumn" :params="params"
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :params="params"
 		@fetch="fetch">
 
 			<!-- desktop -->
@@ -342,7 +342,7 @@
 					},
 					{
 						title: 'CU',
-						key: 'idCu',
+						key: 'cu_name',
 						groupKey: 'cu.name',
 						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
@@ -392,10 +392,14 @@
 				modalButton: ''
 			}
 		},
+		created(){
+			this.fetch();
+		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
-				this.checkMeta();
+				this.resetParams();
+				this.fetch();
 			},
 
 			profileStat(value){
@@ -406,37 +410,19 @@
 				}
 			},
 
-			// fetch on selectCu change
-			idCu(value){ 
-				if(value !== ''){
-					if(this.itemDataStat == 'success'){
-						this.checkMeta();
-						this.fetch();
-					}
-				}
-			},
-
-			// fetch on load page
-			modelCuStat(value){ 
-				if(value == 'success'){
-					this.checkMeta();
-					this.fetch();
-				}
-			},
-
 			// check kategori data from kategori route
 			modelKategoriStat(value){
 				if(value == 'success'){
 					if(this.profileStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
 						this.$router.push({name: 'notFound'});
 					}else{
-						this.params.search_column = 'artikel_kategori.name';
+						this.params.search_column = 'artikelKategori.name';
 						this.params.search_query_1 = this.modelKategori.name;
 
 						this.extSearchColumn = 'Kategori';
 						this.extSearchQuery1 = this.modelKategori.name;
 
-						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
+						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 					}
 				}
 			},
@@ -447,13 +433,13 @@
 					if(this.profileStat == 'success' && this.profile.id_cu != this.modelPenulis.id_cu && this.profile.id_cu != 0){
 						this.$router.push({name: 'notFound'});
 					}else{
-						this.params.search_column = 'artikel_penulis.name';
+						this.params.search_column = 'artikelPenulis.name';
 						this.params.search_query_1 = this.modelPenulis.name;
 
 						this.extSearchColumn = 'Penulis';
 						this.extSearchQuery1 = this.modelPenulis.name;
 
-						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
+						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 					}
 				}
 			},
@@ -476,69 +462,18 @@
 		},
 		methods: {
 			fetch(){
-				
-				// if show all
-				if(this.idCu == 'semua'){
-						this.$store.dispatch(this.kelas + '/index', this.params);
-
-					// show cu column
+				if(this.$route.params.cu == 'semua'){
 					this.disableColumnCu(false);
 				}else{
-
-					// if show cu & pus
-					if(this.idCu !== undefined){
-
-						//if artikelFilterKategori
-						if(this.$route.meta.mode == 'kategori'){ 
-
-							//if modelkategori is not loaded yet
-							if(this.modelKategoriStat !== 'success'){	
-								this.$store.dispatch('artikel_kategori/edit',this.$route.params.id);
-
-							//for changing parameters in kategori meta mode
-							}else{
-								this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
-							}
-
-						//if artikelFilterPenulis
-						}else if(this.$route.meta.mode == 'penulis'){ 
-
-							//if modelPenulis is not loaded yet
-							if(this.modelPenulisLoadStat !== 'success'){
-								this.$store.dispatch('artikel_penulis/edit',this.$route.params.id);
-
-							//for changing parameters in kategori meta mode
-							}else{
-								this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
-							}
-							
-						}else{
-							this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
-						}
-					}
-
-					// hide cu column
 					this.disableColumnCu(true);
 				}
-			},
-			checkMeta(){
-				// route form kategori and penulis
-				if(this.$route.meta.mode == 'kategori' || this.$route.meta.mode == 'penulis'){
-					if(this.profile.id_cu == 0){
-						this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-					}else{
-						this.$store.dispatch('global/changeIdCu',this.profile.id_cu);
-					}	
-				
-				// route from edit and when change cu data selected
-				}else if(this.$route.meta.mode == 'cu'){
-					this.resetParams();
-					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-				
-				// default route
+
+				if(this.$route.params.kategori){
+					this.$store.dispatch('artikelKategori/edit',this.$route.params.kategori);
+				}else if(this.$route.params.penulis){
+					this.$store.dispatch('artikelPenulis/edit',this.$route.params.penulis);
 				}else{
-					this.resetParams();
-					this.$store.dispatch('global/changeIdCu',this.profile.id_cu);
+					this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 				}
 			},
 			disableColumnCu(status){
@@ -547,7 +482,6 @@
 			resetParams(){
 				this.params.search_column = 'name';
 				this.params.search_query_1 = '';
-
 				this.extSearchColumn = 'name';
 				this.extSearchQuery1 = '';
 			},

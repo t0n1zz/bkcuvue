@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :filterData='filterData' :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
+		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
 		:params="params"
 		@fetch="fetch">
 
@@ -306,104 +306,6 @@
           search_query_1: '',
           search_query_2: ''
         },
-				filterData: [
-					{
-						title: 'Nama',
-						key: 'name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'No. TP/KP',
-						key: 'no_tp',
-						type: 'number',
-						disable: false
-					},
-					{
-						title: 'Cu',
-						key: 'cu.name',
-						type: 'number',
-						disable: false
-					},
-					{
-						title: 'Provinsi',
-						key: 'provinces.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kabupaten',
-						key: 'regencies.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kecamatan',
-						key: 'districts.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kelurahan',
-						key: 'villages.name',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Alamat',
-						key: 'alamat',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. Berdiri',
-						key: 'ultah',
-						type: 'date',
-						disable: false
-					},
-					{
-						title: 'Tgl. Bergabung',
-						key: 'bergabung',
-						type: 'date',
-						disable: false
-					},
-					{
-						title: 'E-mail',
-						key: 'email',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'No. Telp',
-						key: 'telp',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'No. Hp',
-						key: 'hp',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Kode Pos',
-						key: 'pos',
-						type: 'string',
-						disable: false
-					},
-					{
-						title: 'Tgl. / Waktu Buat',
-						key: 'created_at',
-						type: 'datetime',
-						disable: false
-					},
-					{
-						title: 'Tgl. / Waktu Ubah',
-						key: 'updated_at',
-						type: 'datetime',
-						disable: false
-					}
-				],
 				columnData: [
 					{
 						title: 'No.',
@@ -427,7 +329,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'No. Tp/Kp',
@@ -435,17 +339,22 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
-						title: 'Cu',
+						title: 'CU',
 						key: 'cu_name',
 						groupKey: 'cu.name',
 						groupNoKey: '-',
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'cu.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Provinsi',
@@ -455,7 +364,10 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'provinces.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Kabupaten',
@@ -465,7 +377,10 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'regencies.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Kecamatan',
@@ -475,7 +390,10 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'districts.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Kelurahan',
@@ -485,7 +403,10 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterKey: 'villages.name',
+						filterType: 'string'
 					},
 					{
 						title: 'Alamat',
@@ -493,7 +414,9 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'Tgl. Berdiri',
@@ -501,7 +424,9 @@
 						excelType: 'string',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'date'
 					},
 					{
 						title: 'E-mail',
@@ -509,7 +434,9 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'No. Telp',
@@ -517,7 +444,9 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'No. Hp',
@@ -525,7 +454,9 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Kode Pos',
@@ -533,21 +464,27 @@
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'Tgl. / Waktu Buat',
 						key: 'created_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. / Waktu Ubah',
 						key: 'updated_at',
 						sort: true,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -557,28 +494,13 @@
 				modalButton: ''
 			}
 		},
+		created(){
+			this.fetch();
+		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
-				this.checkMeta();
-			},
-
-			// fetch on selectCu change
-			idCu(value){ 
-				if(value !== ''){
-					if(this.itemDataStat == 'success'){
-						this.checkMeta();
-						this.fetch();
-					}
-				}
-			},
-
-			// fetch on load page
-			modelCuStat(value){ 
-				if(value == 'success'){
-					this.checkMeta();
-					this.fetch();
-				}
+				this.fetch();
 			},
 
       updateStat(value) {
@@ -598,16 +520,12 @@
     },
 		methods: {
 			fetch(){
-				if(this.modelCuStat === 'success'){
-					if(this.idCu === 'semua'){
-						this.$store.dispatch(this.kelas + '/index', this.params);
-						this.disableColumnCu(false);
-					}else{
-						if(this.idCu !== undefined){
-							this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
-						}
-						this.disableColumnCu(true);
-					}
+				if(this.$route.params.cu == 'semua'){
+					this.disableColumnCu(false);
+					this.$store.dispatch(this.kelas + '/index', this.params);
+				}else{
+					this.disableColumnCu(true);
+					this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 				}
 			},
 			checkMeta(){
@@ -624,7 +542,6 @@
 			},
 			disableColumnCu(status){
 				this.columnData[4].disable = status;
-				this.filterData[2].disable = status;
 			},
 			resetParams(){
 				this.params.search_column = 'name';

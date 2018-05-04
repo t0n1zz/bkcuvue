@@ -262,6 +262,23 @@ export const laporanCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    storeTp( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpAPI.store( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
 
     // edit page
@@ -269,6 +286,24 @@ export const laporanCu = {
       commit('setDataStat', 'loading');
       
       laporanCuAPI.edit( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+    //edit tp
+    editTp( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      laporanTpAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -301,29 +336,10 @@ export const laporanCu = {
           commit('setUpdateStat', 'fail');
         });
     },
-
-    updateTerbitkan( {commit, state, dispatch}, id ){
+    updateTp( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.updateTerbitkan( id )
-        .then( function( response ){
-          if(response.data.saved){
-            commit('setUpdate', response.data);
-            commit('setUpdateStat', 'success');
-          }else{
-            commit('setUpdateStat', 'fail');
-          }
-        })
-        .catch(error => {
-          commit('setUpdate', error.response);   
-          commit('setUpdateStat', 'fail');
-        });
-    },
-
-    updateUtamakan( {commit, state, dispatch}, id ){
-      commit('setUpdateStat', 'loading');
-
-      laporanCuAPI.updateUtamakan( id )
+      laporanTpAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -343,6 +359,23 @@ export const laporanCu = {
       commit('setUpdateStat', 'loading');
 
       laporanCuAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    destroyTp( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpAPI.destroy( id )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

@@ -34,14 +34,14 @@
 
 				<!-- ubah-->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
-					<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+					<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
 
 				<!-- hapus -->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy ' + kelas]">
-					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
+					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id && selectedItem.tp">
 						<i class="icon-bin2"></i> Hapus
 					</button>
 				</div>
@@ -63,7 +63,7 @@
 				<!-- update -->
 				<li v-if="profile.can && profile.can['update ' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id && selectedItem.tp">
 							<i class="icon-pencil5"></i> Ubah
 						</button>
 					</div>
@@ -1235,8 +1235,16 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			ubahData(id, id_cu) {
-				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
+			ubahData(id, tp) {
+				if(tp){
+					if(tp.id){
+						this.$router.push({name: 'laporanTpEdit', params: { id: id, tp: tp.id }});
+					}else{
+						
+					}
+				}else{
+					this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
+				}
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

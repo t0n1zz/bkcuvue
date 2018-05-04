@@ -250,7 +250,7 @@
 					},
 					{
 						title: 'CU',
-						key: 'id_cu',
+						key: 'cu_name',
 						groupKey: 'cu.name',
 						groupNoKey: 'Puskopdit BKCU Kalimantan',
 						sort: true,
@@ -295,30 +295,13 @@
 				modalButton: ''
 			}
 		},
+		created(){
+			this.fetch();
+		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
-
-				// check current page meta
-				this.checkMeta();
-			},
-
-			// fetch on selectCu change
-			idCu(value){
-				if(value !== ''){
-					if(this.itemDataStat == 'success'){
-						this.checkMeta();
-						this.fetch();
-					}
-				}
-			},
-
-			// fetch on load page
-			modelCuStat(value){ 
-				if(value == 'success'){
-					this.checkMeta();
-					this.fetch();
-				}
+				this.fetch();
 			},
 
 			// when updating data
@@ -339,28 +322,12 @@
     },
 		methods: {
 			fetch(){
-				if(this.modelCuStat === 'success'){
-					if(this.idCu === 'semua'){
-						this.$store.dispatch(this.kelas + '/index', this.params);
-						this.disableColumnCu(false);
-					}else{
-						if(this.idCu !== undefined){
-							this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.idCu]);
-						}
-						this.disableColumnCu(true);
-					}
-				}
-			},
-			checkMeta(){
-				// route from edit and when change cu data selected
-				if(this.$route.meta.mode == 'cu'){
-					this.resetParams();
-					this.$store.dispatch('global/changeIdCu',this.$route.params.cu);
-				
-				// default route
+				if(this.$route.params.cu == 'semua'){
+					this.disableColumnCu(false);
+					this.$store.dispatch(this.kelas + '/index', this.params);
 				}else{
-					this.resetParams();
-					this.$store.dispatch('global/changeIdCu',this.profile.id_cu);
+					this.disableColumnCu(true);
+					this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 				}
 			},
 			disableColumnCu(status){
@@ -381,11 +348,7 @@
 			},
 			lihatArtikel(id, id_cu){
 				this.$store.dispatch('artikelKategori/resetDataStat');
-				if(this.profile.id_cu != 0){
-					this.$router.push({name: 'artikelFilterKategori', params: { id: id }});
-				}else{
-					this.$router.push({name: 'artikelFilterKategoriCu', params: { id: id, cu: id_cu }});
-				}
+				this.$router.push({name: 'artikelFilterKategoriCu', params: { cu: id_cu, kategori: id }});
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\LaporanCu;
 use App\LaporanTp;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
@@ -297,6 +298,8 @@ class LaporanTpController extends Controller{
 
 		$kelas = LaporanTp::create($request->all());
 
+		$this->konsolidasi($request);
+
 		return response()
 			->json([
 				'saved' => true,
@@ -316,7 +319,7 @@ class LaporanTpController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = LaporanTp::findOrFail($id);
+		$kelas = LaporanTp::with('Tp')->findOrFail($id);
 
 		return response()
 				->json([
@@ -335,13 +338,14 @@ class LaporanTpController extends Controller{
 
 		$kelas->update($request->all());
 
+		$this->konsolidasi($request);
+
 		return response()
 			->json([
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil diubah'
 			]);
 	}
-
 
 	public function destroy($id)
 	{
@@ -355,5 +359,40 @@ class LaporanTpController extends Controller{
 				'deleted' => true,
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
+	}
+
+	public function konsolidasi($request)
+	{
+		$name = $request->name;
+		$id_tp = $request->id_tp;
+		$id_cu = $request->id_cu;
+		$no_ba = $request->no_ba;
+		$periode = $request->periode;
+
+		$laporantp = LaporanTp::whereHas('Tp',function($query) use ($id_cu){
+			$query->where('Tp.id_cu',$id_cu);
+		})->where('periode',$periode)->get();
+
+		$konsolidasi = [];
+
+		foreach(LaporanTp::$summable as $col){
+			$konsolidasi[$col] = $laporantp->sum($col);
+		}
+
+		$konsolidasi['id_cu'] = $id_cu;
+		$konsolidasi['no_ba'] = $no_ba;
+		$konsolidasi['tp'] = $laporantp->count();
+		$konsolidasi['laju_inflasi'] = $request->laju_inflasi;
+		$konsolidasi['harga_pasar'] = $request->harga_pasar;
+		$konsolidasi['periode'] = $periode;
+
+		$kelas2 = LaporanCu::where('id_cu',$id_cu)->where('periode',$periode)->first();
+
+		if(empty($kelas2)){
+			$kelas3 = LaporanCu::create($konsolidasi);
+		}else{
+			$kelas3 = LaporanCu::findOrFail($kelas2->id);
+			$kelas3->update($konsolidasi);
+		}
 	}
 }

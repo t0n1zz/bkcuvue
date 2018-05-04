@@ -185,6 +185,8 @@
 				if(value === "success"){
 					if(this.$route.meta.mode == 'cu'){
 						this.idTp = this.$route.params.tp;
+					}else{
+						this.idTp = 'konsolidasi';
 					}
 				}
 			},

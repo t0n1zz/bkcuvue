@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas">></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
@@ -44,6 +44,7 @@
 										</div>
 									</div>
 
+									<!-- tp -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
 
@@ -54,11 +55,11 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="modelTp.length === 0">
+											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)">
 												<option disabled value="">Silahkan pilih TP</option>
 												<option value="0">Konsolidasi</option>
-												<option data-divider="true"></option>
-												<option v-for="tp in modelTp" :value="tp.id">{{tp.name}}</option>
+												<option data-divider="true" v-if="modelTp"></option>
+												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -96,8 +97,13 @@
 										</div>
 									</div>
 
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-flat border-left-xlg border-left-info">
+							<div class="panel-body">
+								<div class="row">
 
 									<!-- l_biasa -->
 									<div class="col-md-4">
@@ -414,7 +420,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu Bulan Desember <i class="icon-info22" v-tooltip:top="'Simpanan saham bulan desember tahun lalu.'"></i></h5>
+											<h5>Simp. Saham Tahun Lalu Bulan Des <i class="icon-info22" v-tooltip:top="'Simpanan saham bulan desember tahun lalu.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -879,17 +885,44 @@
 		},
 		watch: {
 			profileStat(value){ //jika refresh halaman maka reload profile
-				if(value === "success"){
-					if(this.profile.id_cu === 0){
+				if(value == "success"){
+					if(this.profile.id_cu == 0){
 						this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					}else{
+						this.form.id_cu = this.profile.id_cu;
 					}
-					this.form.id_cu = this.profile.id_cu;
 				}
 			},
 			formStat(value){
-				if(value === "success"){
-					if(this.$route.meta.mode !== 'edit'){
-						this.form.id_cu = this.profile.id_cu;
+				if(value == "success"){
+					if(this.$route.meta.mode == 'edit' && this.modelCUStat == "success"){
+						this.changeCu(this.form.id_cu);
+					}else if(this.$route.meta.mode == 'editTp' && this.modelCUStat == "success"){
+						this.form.id_cu = this.form.tp.id_cu;
+						this.changeCu(this.form.tp.id_cu);
+					}else if(this.$route.meta.mode !== 'edit'){
+						if(this.profile.id_cu == 0){
+							// this.form.id_cu = this.profile.id_cu;
+						}	
+					}
+				}
+			},
+			modelCUStat(value){
+				if(value == "success"){
+					if(this.$route.meta.mode == 'edit'){
+						this.changeCu(this.form.id_cu);
+					}else if(this.$route.meta.mode == 'editTp'){
+						this.form.id_cu = this.form.tp.id_cu;
+						this.changeCu(this.form.tp.id_cu);
+					}
+				}
+			},
+			modelTpStat(value){
+				if(value == "success"){
+					if(this.$route.meta.mode == 'edit'){
+						this.form.id_tp = 0;
+					}else if(this.$route.meta.mode == 'editTp'){
+						this.changeTp(this.form.id_tp);
 					}
 				}
 			},
@@ -913,12 +946,18 @@
 					this.title = 'Ubah ' + this.level2Title;
 					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
-				} else {
+				}else if(this.$route.meta.mode === 'editTp'){
+					this.$store.dispatch(this.kelas + '/editTp',this.$route.params.id);	
+					this.title = 'Ubah ' + this.level2Title;
+					this.titleDesc = 'Mengubah ' + this.level2Title;
+					this.titleIcon = 'icon-pencil5';
+				}else {
 					this.title = 'Tambah ' + this.level2Title;
 					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}
+				
 			},
 			changeCu(id){
 				this.$store.dispatch('tp/getCu',id);
@@ -928,20 +967,29 @@
 				this.form.no_ba = model.no_ba;
 			},
 			changeTp(id){
-				let model = _.find(this.modelTp, function(o){
-					return o.id == id
-				});
-				this.form.no_tp = model.no_tp;
+				if(id == 0){
+					this.form.no_tp = 0;
+				}else{
+					let model = _.find(this.modelTp, function(o){
+						return o.id == id
+					});
+					this.form.no_tp = model.no_tp;
+				}
 			},
 			save() {
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
+						}else if(this.$route.meta.mode === 'editTp'){
+							this.$store.dispatch(this.kelas + '/updateTp', [this.$route.params.id, this.form]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', formData);
-					}
+							if(this.form.id_tp == 0){
+								this.$store.dispatch(this.kelas + '/store', this.form);
+							}else{
+								this.$store.dispatch(this.kelas + '/storeTp', this.form);
+							}
+						}
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -951,16 +999,18 @@
 			},
 			back(){
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 0}});
+				}else if(this.$route.meta.mode === 'editTp' && this.profile.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.$route.params.tp}});
 				}else{
 					if(this.profile.id_cu == 0){
 						if(this.form.id_cu == 0){
 							this.$router.push({name: this.kelas});
 						}else{
 							if(this.form.id_tp == 0){
-								this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+								this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 0}});
 							}else{
-								this.$router.push({name: this.kelas + 'Tp', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
+								this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
 							}
 						}
 					}else{
