@@ -2,16 +2,12 @@ import { BKCU_CONFIG } from '../config.js';
 
 export default {
   
-  index: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanTp' ,{params: p});
-  },
-
   indexTp: function( p, id ){
     return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexTp/' + id, {params: p});
   },
 
-  indexPeriode: function( p, periode ){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexPeriode/' + periode, {params: p});
+  indexPeriode: function( p, id, periode ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexPeriode/' + id + '/' + periode, {params: p});
   },
 
   listLaporanTp: function( cu, periode ){
@@ -30,8 +26,8 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexPearlsTp/' + id, {params: p});
   },
 
-  indexPearlsPeriode: function( p, periode ){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexPearlsPeriode/' + periode, {params: p});
+  indexPearlsPeriode: function( p, id, periode ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexPearlsPeriode/' + id + '/' + periode, {params: p});
   },
 
   create: function(){

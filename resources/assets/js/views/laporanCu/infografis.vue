@@ -14,6 +14,20 @@
 		@fetch="fetch()"
 		v-if="this.$route.meta.mode == 'cu'"
 		></line-chart>
+		<bar-chart
+		:titleText="titleText"
+		:title="title"
+		:kelas="kelas"
+		:params="params"
+		:dataShownTitle1="dataShownTitle1"
+		:dataShownKey1="dataShownKey1"
+		:axisLabelKey="axisLabelKey"
+		:itemData="itemData"
+		:itemDataStat="itemDataStat"
+		:columnData="columnData"
+		@fetch="fetch()"
+		v-else-if="this.$route.meta.mode == 'cuPeriode'"
+		></bar-chart>
 	<bar-chart
 		:titleText="titleText"
 		:title="title"
@@ -91,6 +105,8 @@ export default {
 					}else{
 						this.titleText = 'Grafik Laporan ' + this.itemData.data[0].tp.name;
 					}	
+				}else if(this.$route.meta.mode == 'cuPeriode'){
+					this.titleText = 'Grafik Laporan Semua TP Periode' + this.formatPeriode(this.$route.params.periode);
 				}else{
 					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
@@ -104,9 +120,7 @@ export default {
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
-				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
-
-			// default route	
+				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);	
 			}else if(this.$route.meta.mode == 'cu'){
 				if(this.$route.params.tp == 'konsolidasi'){
 					this.resetParams('id');
@@ -118,6 +132,10 @@ export default {
 					this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.$route.params.tp]);
 					this.axisLabelKey = 'periode';	
 				}
+			}else if(this.$route.meta.mode == 'cuPeriode'){
+				this.resetParams('tp.name');
+				this.$store.dispatch(this.kelas + '/grafikCuPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
+				this.axisLabelKey = 'tp_name';	
 			}else{
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
 

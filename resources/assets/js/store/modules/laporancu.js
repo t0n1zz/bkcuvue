@@ -75,6 +75,20 @@ export const laporanCu = {
     },
 
     // load by tp
+    indexTpPeriode( { commit }, [p, id, periode] ){
+      commit('setDataStatS', 'loading');
+      
+      laporanTpAPI.indexPeriode( p, id, periode )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     indexTp( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       
@@ -88,6 +102,7 @@ export const laporanCu = {
           commit('setDataStatS', 'fail');
         });
     },
+    
 
     // load by periode
     indexPeriode( { commit }, [p, periode] ){
@@ -148,6 +163,19 @@ export const laporanCu = {
           commit('setPearlsStat', 'fail');
         });
     },
+    indexPearlsTpPeriode( { commit }, [p, id, periode] ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanTpAPI.indexPearlsPeriode( p, id, periode )
+        .then( function( response ){
+          commit('setPearls', response.data.model);
+          commit('setPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
+        });
+    },
 
     // load by periode
     indexPearlsPeriode( { commit }, [p, periode] ){
@@ -199,6 +227,20 @@ export const laporanCu = {
       commit('setGrafikStat', 'loading');
       
       laporanCuAPI.indexCu( p, id )
+        .then( function( response ){
+          commit('setGrafik', response.data.model);
+          commit('setGrafikStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafik', error.response);
+          commit('setGrafikStat', 'fail');
+        });
+    },
+
+    grafikCuPeriode( { commit }, [p, id, periode] ){
+      commit('setGrafikStat', 'loading');
+      
+      laporanTpAPI.indexPeriode( p, id, periode )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');

@@ -119,12 +119,12 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     //laporan tp
     Route::group(['middleware' => ['permission:index laporanTp']], function () {
-        Route::get('/laporanTp', 'laporanTpController@index');
+        Route::get('/laporanTp/cu/{id}', 'laporanTpController@index');
         Route::get('/laporanTp/indexTp/{id}', 'laporanTpController@indexTp');
-        Route::get('/laporanTp/indexPeriode/{periode}', 'laporanTpController@indexPeriode');
+        Route::get('/laporanTp/indexPeriode/{id}/{periode}', 'laporanTpController@indexPeriode');
         Route::get('/laporanTp/indexPearls', 'laporanTpController@indexPearls');
         Route::get('/laporanTp/indexPearlsTp/{id}', 'laporanTpController@indexPearlsTp');
-        Route::get('/laporanTp/indexPearlsPeriode/{periode}', 'laporanTpController@indexPearlsPeriode');
+        Route::get('/laporanTp/indexPearlsPeriode/{id}/{periode}', 'laporanTpController@indexPearlsPeriode');
         Route::get('/laporanTp/getPeriode', 'laporanTpController@getPeriode');
         Route::get('/laporanTp/listLaporanTp/{cu}/{periode}', 'laporanTpController@listLaporanTp');
     });

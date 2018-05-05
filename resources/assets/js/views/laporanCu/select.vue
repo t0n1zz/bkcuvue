@@ -5,6 +5,7 @@
 		<div class="panel panel-flat hidden-xs hidden-print " >
 			<div class="panel-body">  
 				<div class="row">
+					<!-- cu -->
 					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
@@ -20,7 +21,7 @@
 								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>
 
-							<!-- reload cu -->
+							<!-- reload -->
 							<div class="input-group-btn">
 								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCUStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
@@ -28,7 +29,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- semua cu -->
+					<!-- periode cu -->
 					<div class="col-sm-5" v-if="idCu == 'semua'">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
@@ -43,16 +44,16 @@
 								<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
 							</select>
 
-							<!-- reload cu -->
+							<!-- reload -->
 							<div class="input-group-btn">
 								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
-									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
+									<i class="icon-sync" :class="{'spinner' : modelPeriodeStat === 'loading'}"></i>
 								</button>
 							</div>
 						</div>
 					</div>
-					<!-- tp cu -->
-					<div :class="{'col-sm-5': profile.id_cu == 0, 'col-sm-12': profile.id_cu != 0}" v-else>
+					<!-- tp  -->
+					<div :class="classTp()" v-else>
 						<div class="input-group">
 							<div class="input-group-addon">
 								Pilih TP/KP
@@ -62,11 +63,12 @@
 							<select class="bootstrap-select" name="tp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'" @change="changeTp($event.target.value)">
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="konsolidasi">Konsolidasi</option>
+								<option value="semua">Semua Tp</option>
 								<option data-divider="true"></option>
 								<option v-for="tp in modelTp" :value="tp.id" v-if="tp">{{tp.name}}</option>
 							</select>
 
-							<!-- reload cu -->
+							<!-- reload -->
 							<div class="input-group-btn">
 								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
@@ -74,8 +76,34 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- periode tp -->
+					<div :class="[{'col-sm-10': profile.id_cu == 0 && idTp == 'semua',
+					'col-sm-6': profile.id_cu != 0 && idTp == 'semua'},{'pt-10': profile.id_cu == 0}]" v-if="idTp == 'semua' && idCu != 'semua'">
+						<div class="input-group">
+							<div class="input-group-addon">
+								Pilih Periode
+							</div>
+
+							<!-- select -->
+							<select class="bootstrap-select" name="periodeTp" v-model="periodeTp" data-width="100%" @change="changeTpPeriode($event.target.value)"
+							:disabled="modelPeriodeTpStat === 'loading'">
+								<option disabled value="">Silahkan pilih periode laporan Tp</option>
+								<slot></slot>
+								<option v-for="periode in modelPeriodeTp" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
+							</select>
+
+							<!-- reload -->
+							<div class="input-group-btn">
+								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchPeriodeTp" :disabled="modelPeriodeTpStat === 'loading'">
+									<i class="icon-sync" :class="{'spinner' : modelPeriodeTpStat === 'loading'}"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
 					<!-- find data button -->
-					<div class="col-sm-2" v-if="this.profile.id_cu === 0">
+					<div class="col-sm-2" :class="{'pt-10': idCu !='semua' && idTp == 'semua'}" v-if="this.profile.id_cu === 0">
 						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()" :disabled="itemDataStat == 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
@@ -147,6 +175,7 @@
 				idCu: '',
 				idTp: '',
 				periode: '',
+				periodeTp: ''
 			}
 		},
 		created(){
@@ -172,7 +201,7 @@
 			},
 			modelCUStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode == 'cu'){			
+					if(this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'cuPeriode'){			
 						this.idCu = this.$route.params.cu;
 						this.changeCu(this.idCu);
 					}else{
@@ -185,6 +214,9 @@
 				if(value === "success"){
 					if(this.$route.meta.mode == 'cu'){
 						this.idTp = this.$route.params.tp;
+					}else if(this.$route.meta.mode == 'cuPeriode'){
+						this.idTp = 'semua';
+						this.changeTp(this.idTp);
 					}else{
 						this.idTp = 'konsolidasi';
 					}
@@ -197,6 +229,16 @@
 					}else{
 						this.periode = this.modelPeriode[0].periode;
 					}
+				}
+			},
+			modelPeriodeTpStat(value){
+				if(value === "success"){
+					if(this.$route.meta.mode == 'cuPeriode'){
+						this.periodeTp = this.$route.params.periode;
+					}else{
+						this.periodeTp = this.modelPeriodeTp[0].periode;
+					}
+					this.changeTpPeriode(this.periodeTp);
 				}
 			}
     },
@@ -211,7 +253,11 @@
 			},
 			fetch(){
 				if(this.idCu != 'semua'){
-					this.$router.push({name: 'laporanCuCu', params:{cu: this.idCu, tp: this.idTp} });
+					if(this.idTp != 'semua'){
+						this.$router.push({name: 'laporanCuCu', params:{cu: this.idCu, tp: this.idTp} });
+					}else{
+						this.$router.push({name: 'laporanCuCuPeriode', params:{cu: this.idCu, periode: this.periodeTp} });
+					}
 				}else{
 					this.$router.push({name: 'laporanCuPeriode', params:{periode: this.periode} });
 				}
@@ -222,6 +268,9 @@
 			fetchPeriode(){
 				this.$store.dispatch('laporanCu/getPeriode');
 			},
+			fetchPeriodeTp(){
+				this.$store.dispatch('laporanTp/getPeriode');
+			},
 			fetchTp(){
 				this.$store.dispatch('tp/getCu',this.idCu);
 			},
@@ -231,18 +280,38 @@
 				}else{
 					this.fetchPeriode();
 				}
+				this.idTp = '';
 			},
-			// cu route
 			changeTp(value){
-				if(this.profile.id_cu !== 0){
-					this.$router.push({name: 'laporanCuCu', params:{cu: this.profile.id_cu, tp: value} });
+				if(this.profile.id_cu != 0){
+					if(this.idTp != 'semua'){
+						this.$router.push({name: 'laporanCuCu', params:{cu: this.profile.id_cu, tp: value} });
+					}else{
+						this.$store.dispatch('laporanTp/getPeriode');
+					}
+				}else{
+					if(this.idTp == 'semua'){
+						this.$store.dispatch('laporanTp/getPeriode');
+					}
 				}
 			},
-			checkClass(value){
-				return {
-					'col-sm-12': value != 'semua',
-					'col-sm-6': value == 'semua'
-				};
+			changeTpPeriode(value){
+				if(this.profile.id_cu != 0){
+					this.$router.push({name: 'laporanCuCuPeriode', params:{cu: this.profile.id_cu, periode: value} });
+				}
+			},
+			classTp(){
+				let className = '';
+				if(this.profile.id_cu == 0){
+					className = 'col-sm-5';
+				}else{
+					if(this.idTp == 'semua'){
+						className = 'col-sm-6';
+					}else{
+						className = 'col-sm-12';
+					}
+				}
+				return className;
 			}
 		},
 		computed: {
@@ -253,6 +322,10 @@
 			...mapGetters('laporanCu',{
 				modelPeriode: 'periode',
 				modelPeriodeStat: 'periodeStat',
+			}),
+			...mapGetters('laporanTp',{
+				modelPeriodeTp: 'periode',
+				modelPeriodeTpStat: 'periodeStat',
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',

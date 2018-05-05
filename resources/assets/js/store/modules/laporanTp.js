@@ -48,10 +48,10 @@ export const laporanTp = {
 
   actions: {
     //load collection with params
-    index( { commit }, p ){
+    index( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      laporanTpAPI.index( p )
+      laporanTpAPI.index( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

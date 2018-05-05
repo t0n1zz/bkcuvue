@@ -97,14 +97,18 @@ const routes = [
 	// bkcu default route
 	{ path: '/laporancu',name: 'laporanCu', 
 		components: { default: laporanCu, 'header': header }},
-	// bkcu periode route
+	// bkcu and periode route
 	{ path: '/laporancu/periode/:periode',name: 'laporanCuPeriode', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'periode' }},
-	// bkcu cu and tp route	
+	// cu and tp route	
 	{ path: '/laporancu/cu/:cu/tp/:tp',name: 'laporanCuCu', 
 		components: { default: laporanCu, 'header': header },
 		meta: { mode:'cu' }},
+	// cu and periode  route	
+	{ path: '/laporancu/cu/:cu/periode/:periode',name: 'laporanCuCuPeriode', 
+	components: { default: laporanCu, 'header': header },
+	meta: { mode:'cuPeriode' }},
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
 		components: { default: laporanCu_form, 'header': header} },
 	// edit konsolidasi	

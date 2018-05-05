@@ -11,9 +11,9 @@ class LaporanTpController extends Controller{
 
 	protected $message = 'Laporan TP/KP';
 
-	public function index()
+	public function index($id)
 	{
-		$table_data = LaporanTp::select('Laporan_tp.*',
+		$table_data = LaporanTp::with('Tp')->select('Laporan_tp.*',
 			'tp.name as tp_name',
 			'provinces.name as provinces_name')
 			->leftjoin('tp','Laporan_tp.id_tp','tp.id')
@@ -26,7 +26,9 @@ class LaporanTpController extends Controller{
 				(IFNULL(Laporan_tp.piutang_beredar,0)/IFNULL(Laporan_tp.aset,0)) as rasio_beredar,
 				((IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))/IFNULL(Laporan_tp.piutang_beredar,0)) as rasio_lalai,
 				(IFNULL(Laporan_tp.piutang_beredar,0) - (IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))) as piutang_bersih'
-			)])->FilterPaginateOrder();
+			)])->whereHas('Tp', function($query) use ($id){
+				$query->where('id_cu',$id);
+			})->FilterPaginateOrder();
 
 		return response()
 		->json([
@@ -49,9 +51,11 @@ class LaporanTpController extends Controller{
 		]);
 	}
 
-	public function indexPeriode($periode)
+	public function indexPeriode($id, $periode)
 	{
-		$table_data = LaporanTp::select('Laporan_tp.*',
+		$table_data = LaporanTp::with('Tp')->whereHas('Tp', function($query) use ($id){
+			$query->where('id_cu',$id);
+		})->select('Laporan_tp.*',
 		'tp.name as tp_name',
 		'provinces.name as provinces_name')
 		->leftjoin('tp','Laporan_tp.id_tp','tp.id')
@@ -201,9 +205,11 @@ class LaporanTpController extends Controller{
 		]);
 	}
 
-	public function indexPearlsPeriode($periode)
+	public function indexPearlsPeriode($id, $periode)
 	{
-		$table_data = LaporanTp::select('Laporan_tp.*',
+		$table_data = LaporanTp::with('Tp')->whereHas('Tp', function($query) use ($id){
+			$query->where('id_cu',$id);
+		})->select('Laporan_tp.*',
 		'tp.name as tp_name',
 		'provinces.name as provinces_name')
 		->leftjoin('tp','Laporan_tp.id_tp','tp.id')
@@ -214,7 +220,7 @@ class LaporanTpController extends Controller{
 		})->addSelect([DB::raw('
 			@total_anggota := IFNULL(Laporan_tp.l_biasa, 0) + IFNULL(Laporan_tp.l_lbiasa,0) + IFNULL(Laporan_tp.P_biasa,0) + IFNULL(Laporan_tp.P_lbiasa,0) as total_anggota,
 
-			@piutang_bersih := IFNULL(Laporan_tp.dcr,0) + IFNULL(Laporan_tp.dtp,0) + IFNULL(Laporan_tp.iuran_gedung,0) + IFNULL(Laporan_tp.donasi,0) + IFNULL(Laporan_tp.shu_lalu,0) as piutang_bersih,	
+			@piutang_bersih := IFNULL(Laporan_tp.dcr,0) + IFNULL(Laporan_tp.dcu,0) + IFNULL(Laporan_tp.iuran_gedung,0) + IFNULL(Laporan_tp.donasi,0) + IFNULL(Laporan_tp.shu_lalu,0) as piutang_bersih,	
 
 			@rata_saham := (((IFNULL(Laporan_tp.simpanan_saham_des,0) + IFNULL(Laporan_tp.simpanan_saham,0))/2) / MONTH(Laporan_tp.periode) ) * 12 as rata_saham,
 
@@ -272,7 +278,7 @@ class LaporanTpController extends Controller{
 	public function listLaporanTp($cu,$periode)
 	{
 		$table_data = LaporanTp::with('Tp')->select('id','id_tp')->whereHas('Tp', function($query) use ($cu){
-			$query->where('id_cu',15);
+			$query->where('id_cu',$cu);
 		})->where('periode',$periode)->get();
 
 		return response()

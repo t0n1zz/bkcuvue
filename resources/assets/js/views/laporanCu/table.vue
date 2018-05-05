@@ -46,24 +46,48 @@
 					</button>
 				</div>
 
+				<!-- detail-->
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
+					<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon" v-tooltip:top="'Detail ' + title" :disabled="!selectedItem.id">
+						<i class="icon-pencil5"></i> Detail
+					</button>
+				</div>
+
+
 			</template>
 
 			<!-- button context -->
 			<template slot="button-context">
 				<!-- title -->
-				<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItem.name"><b class="text-size-large">{{ this.columnData[1].title }}</b></li>
-				<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
+				<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItem.cu_name">
+					<b class="text-size-large">{{ this.columnData[1].title }}</b>
+				</li>
+				<li class="text-center pb-5 pt-5 bg-primary" v-else-if="selectedItem.tp_name">
+					<b class="text-size-large">{{ this.columnData[2].title }}</b>
+				</li>
+				<li class="text-center pb-5 pt-5 bg-primary" v-else-if="!selectedItem.cu_name && !selectedItem.tp_name && selectedItem.periode">
+					<b class="text-size-large">Laporan {{ this.columnData[5].title }}</b>
+				</li>
+				<li class="text-center pb-5 pt-5 bg-warning" v-else>
+					<b class="text-size-large">Tidak ada data yang terpilih</b>
+				</li>
 				<li><hr class="no-margin-bottom no-margin-top"/></li>
 
 				<!-- selected content -->
-				<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItem.name">
-					<span class="text-size-large">{{selectedItem.name}}</span></li>
+				<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItem.cu_name">
+					<span class="text-size-large">{{selectedItem.cu_name}}</span>
+				</li>
+				<li class="text-center pb-10 pt-10 pl-5 pr-5" v-else-if="selectedItem.tp_name">
+					<span class="text-size-large">{{selectedItem.tp_name}}</span>
+				</li>
+				<li class="text-center pb-10 pt-10 pl-5 pr-5" v-else-if="!selectedItem.cu_name && !selectedItem.tp_name && selectedItem.periode">
+					<span class="text-size-large">{{formatPeriode(selectedItem.periode)}}</span>
+				</li>
 				<li><hr class="no-margin-top no-margin-bottom"/></li>
-
 				<!-- update -->
 				<li v-if="profile.can && profile.can['update ' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id && selectedItem.tp">
+						<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id && selectedItem.tp">
 							<i class="icon-pencil5"></i> Ubah
 						</button>
 					</div>
@@ -88,145 +112,148 @@
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
-					<td v-if="!columnData[1].hide && !columnData[2].disable">
+					<td v-if="!columnData[1].hide && !columnData[1].disable">
 						<check-value :value="props.item.cu_name"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide && !columnData[2].disable">
-						<check-value :value="props.item.no_ba"></check-value>
+						<check-value :value="props.item.tp_name"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
+						<check-value :value="props.item.no_ba"></check-value>
+					</td>
+					<td v-if="!columnData[4].hide && !columnData[4].disable">
 						<check-value :value="props.item.provinces_name"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide">
+					<td v-if="!columnData[5].hide">
 						<span v-if="props.item.periode < selectData && idCu == 'semua'" class="label label-warning"  v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(selectData)"><i class="icon-alert text-size-base"></i></span>
 						&nbsp;
 						{{ props.item.periode | dateMonth }}
 					</td>
-					<td v-if="!columnData[5].hide && !columnData[5].disable">
+					<td v-if="!columnData[6].hide && !columnData[6].disable">
 						<check-value :value="props.item.tp"></check-value>
 					</td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.l_biasa" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[8].hide">
 						<check-value :value="props.item.l_lbiasa" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.p_biasa" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[8].hide">
+					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.p_lbiasa" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.total_anggota" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.total_anggota_lalu" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
+					<td v-if="!columnData[13].hide">
 						<check-value :value="props.item.aset" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[12].hide">
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.aset_lalu" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.aset_masalah" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.aset_tidak_menghasilkan" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.aktiva_lancar" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.simpanan_saham" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.simpanan_saham_lalu" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[18].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.simpanan_saham_des" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.nonsaham_unggulan" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.nonsaham_harian" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.hutang_spd" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.hutang_tidak_berbiaya_30hari" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.total_hutang_pihak3" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[26].hide">
 						<check-value :value="props.item.piutang_beredar" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[27].hide">
 						<check-value :value="props.item.piutang_bersih" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[26].hide">
+					<td v-if="!columnData[28].hide">
 						<check-value :value="props.item.piutang_anggota" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[27].hide">
+					<td v-if="!columnData[29].hide">
 						<check-value :value="props.item.piutang_lalai_1bulan" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[28].hide">
+					<td v-if="!columnData[30].hide">
 						<check-value :value="props.item.piutang_lalai_12bulan" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[29].hide">
+					<td v-if="!columnData[31].hide">
 						<check-value :value="props.item.rasio_beredar" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[30].hide">
+					<td v-if="!columnData[32].hide">
 						<check-value :value="props.item.rasio_lalai" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[31].hide">
+					<td v-if="!columnData[33].hide">
 						<check-value :value="props.item.dcr" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[32].hide">
+					<td v-if="!columnData[34].hide">
 						<check-value :value="props.item.dcu" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[33].hide">
+					<td v-if="!columnData[35].hide">
 						<check-value :value="props.item.iuran_gedung" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[34].hide">
+					<td v-if="!columnData[36].hide">
 						<check-value :value="props.item.donasi" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[35].hide">
+					<td v-if="!columnData[37].hide">
 						<check-value :value="props.item.bjs_saham" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[36].hide">
+					<td v-if="!columnData[38].hide">
 						<check-value :value="props.item.beban_penyisihan_dcr" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[37].hide">
+					<td v-if="!columnData[39].hide">
 						<check-value :value="props.item.investasi_likuid" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[38].hide">
+					<td v-if="!columnData[40].hide">
 						<check-value :value="props.item.total_pendapatan" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[39].hide">
+					<td v-if="!columnData[41].hide">
 						<check-value :value="props.item.total_biaya" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[40].hide">
+					<td v-if="!columnData[42].hide">
 						<check-value :value="props.item.shu" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[41].hide">
+					<td v-if="!columnData[43].hide">
 						<check-value :value="props.item.shu_lalu" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[42].hide">
+					<td v-if="!columnData[44].hide">
 						<check-value :value="props.item.rata_aset" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[43].hide">
+					<td v-if="!columnData[45].hide">
 						<check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[44].hide">
+					<td v-if="!columnData[46].hide">
 						<check-value :value="props.item.harga_pasar" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[45].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[46].hide">
+					<td v-if="!columnData[47].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[48].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -256,225 +283,229 @@
 							</tr>
 							<tr v-if="!columnData[2].hide">
 								<td><b>{{columnData[2].title}}</b></td>
-								<td><check-value :value="props.item.no_ba" :frontText="': '"></check-value></td>
+								<td><check-value :value="props.item.tp_name" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[3].hide">
 								<td><b>{{columnData[3].title}}</b></td>
-								<td><check-value :value="props.item.provinces_name" :frontText="': '"></check-value></td>
+								<td><check-value :value="props.item.no_ba" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[4].hide">
 								<td><b>{{columnData[4].title}}</b></td>
+								<td><check-value :value="props.item.provinces_name" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[5].hide">
+								<td><b>{{columnData[5].title}}</b></td>
 								<td>
 									<check-value :value="formatPeriode(props.item.perode)" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[5].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[5].title}}</b></td>
-								<td><check-value :value="props.item.l_biasa"
-								valueType="currency" :frontText="': '"></check-value></td>
-							</tr>
 							<tr v-if="!columnData[6].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[6].title}}</b></td>
-								<td><check-value :value="props.item.l_lbiasa"
+								<td><check-value :value="props.item.l_biasa"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[7].title}}</b></td>
-								<td><check-value :value="props.item.p_biasa"
+								<td><check-value :value="props.item.l_lbiasa"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[8].title}}</b></td>
+								<td><check-value :value="props.item.p_biasa"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[9].title}}</b></td>
 								<td><check-value :value="props.item.p_lbiasa"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[9].hide">
-								<td><b>{{columnData[9].title}}</b></td>
+							<tr v-if="!columnData[10].hide">
+								<td><b>{{columnData[10].title}}</b></td>
 								<td><check-value :value="props.item.total_anggota"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[10].title}}</b></td>
+							<tr v-if="!columnData[11].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[11].title}}</b></td>
 								<td><check-value :value="props.item.total_anggota_lalu"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[11].hide">
-								<td><b>{{columnData[11].title}}</b></td>
-								<td><check-value :value="props.item.aset"
-								valueType="currency" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id">
+							<tr v-if="!columnData[12].hide">
 								<td><b>{{columnData[12].title}}</b></td>
-								<td><check-value :value="props.item.aset_lalu"
+								<td><check-value :value="props.item.aset"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[13].title}}</b></td>
-								<td><check-value :value="props.item.aset_masalah"
+								<td><check-value :value="props.item.aset_lalu"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[14].title}}</b></td>
-								<td><check-value :value="props.item.aset_tidak_menghasilkan"
+								<td><check-value :value="props.item.aset_masalah"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[15].title}}</b></td>
-								<td><check-value :value="props.item.aktiva_lancar"
+								<td><check-value :value="props.item.aset_tidak_menghasilkan"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[16].title}}</b></td>
-								<td><check-value :value="props.item.simpanan_saham"
+								<td><check-value :value="props.item.aktiva_lancar"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[17].title}}</b></td>
-								<td><check-value :value="props.item.simpanan_saham_lalu"
+								<td><check-value :value="props.item.simpanan_saham"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[18].title}}</b></td>
-								<td><check-value :value="props.item.simpanan_saham_des"
+								<td><check-value :value="props.item.simpanan_saham_lalu"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[19].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[19].title}}</b></td>
-								<td><check-value :value="props.item.nonsaham_unggulan"
+								<td><check-value :value="props.item.simpanan_saham_des"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[20].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[20].title}}</b></td>
-								<td><check-value :value="props.item.nonsaham_harian"
+								<td><check-value :value="props.item.nonsaham_unggulan"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[21].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[21].title}}</b></td>
-								<td><check-value :value="props.item.hutang_spd"
+								<td><check-value :value="props.item.nonsaham_harian"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[22].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[22].title}}</b></td>
-								<td><check-value :value="props.item.hutang_tidak_berbiaya_30hari"
+								<td><check-value :value="props.item.hutang_spd"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[23].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[23].title}}</b></td>
-								<td><check-value :value="props.item.total_hutang_pihak3"
+								<td><check-value :value="props.item.hutang_tidak_berbiaya_30hari"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[24].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[24].title}}</b></td>
-								<td><check-value :value="props.item.piutang_beredar"
+								<td><check-value :value="props.item.total_hutang_pihak3"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[25].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[25].title}}</b></td>
-								<td><check-value :value="props.item.piutang_bersih"
+								<td><check-value :value="props.item.piutang_beredar"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[26].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[26].title}}</b></td>
-								<td><check-value :value="props.item.piutang_anggota"
+								<td><check-value :value="props.item.piutang_bersih"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[27].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[27].title}}</b></td>
-								<td><check-value :value="props.item.piutang_lalai_1bulan"
+								<td><check-value :value="props.item.piutang_anggota"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[28].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[28].title}}</b></td>
+								<td><check-value :value="props.item.piutang_lalai_1bulan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[29].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[29].title}}</b></td>
 								<td><check-value :value="props.item.piutang_lalai_12bulan"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[29].hide">
-								<td><b>{{columnData[29].title}}</b></td>
+							<tr v-if="!columnData[30].hide">
+								<td><b>{{columnData[30].title}}</b></td>
 								<td><check-value :value="props.item.rasio_piutang_beredar"
 								valueType="percentage" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[30].hide">
-								<td><b>{{columnData[30].title}}</b></td>
+							<tr v-if="!columnData[31].hide">
+								<td><b>{{columnData[31].title}}</b></td>
 								<td><check-value :value="props.item.rasio_piutang_lalai"
 								valueType="percentage" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[31].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[31].title}}</b></td>
-								<td><check-value :value="props.item.dcr"
-								valueType="currency" :frontText="': '"></check-value></td>
-							</tr>
 							<tr v-if="!columnData[32].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[32].title}}</b></td>
-								<td><check-value :value="props.item.dcu"
+								<td><check-value :value="props.item.dcr"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[33].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[33].title}}</b></td>
-								<td><check-value :value="props.item.iuran_gedung"
+								<td><check-value :value="props.item.dcu"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[34].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[34].title}}</b></td>
-								<td><check-value :value="props.item.donasi"
+								<td><check-value :value="props.item.iuran_gedung"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[35].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[35].title}}</b></td>
-								<td><check-value :value="props.item.bjs_saham"
+								<td><check-value :value="props.item.donasi"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[36].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[36].title}}</b></td>
-								<td><check-value :value="props.item.beban_penyisihan_dcr"
+								<td><check-value :value="props.item.bjs_saham"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[37].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[37].title}}</b></td>
-								<td><check-value :value="props.item.investasi_likuid"
+								<td><check-value :value="props.item.beban_penyisihan_dcr"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[38].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[38].title}}</b></td>
-								<td><check-value :value="props.item.total_pendapatan"
+								<td><check-value :value="props.item.investasi_likuid"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[39].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[39].title}}</b></td>
+								<td><check-value :value="props.item.total_pendapatan"
+								valueType="currency" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[40].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[40].title}}</b></td>
 								<td><check-value :value="props.item.total_biaya"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[40].hide">
-								<td><b>{{columnData[40].title}}</b></td>
-								<td><check-value :value="props.item.shu"
-								valueType="currency" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[41].hide" class="collapse" :class="'collap'+props.item.id">
+							<tr v-if="!columnData[41].hide">
 								<td><b>{{columnData[41].title}}</b></td>
-								<td><check-value :value="props.item.shu_lalu"
+								<td><check-value :value="props.item.shu"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[42].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[42].title}}</b></td>
-								<td><check-value :value="props.item.rata_aset"
+								<td><check-value :value="props.item.shu_lalu"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[43].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[43].title}}</b></td>
-								<td><check-value :value="props.item.laju_inflasi"
+								<td><check-value :value="props.item.rata_aset"
 								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[44].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[44].title}}</b></td>
-								<td><check-value :value="props.item.harga_pasar"
-								valueType="percentage" :frontText="': '"></check-value></td>
+								<td><check-value :value="props.item.laju_inflasi"
+								valueType="currency" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[45].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[45].title}}</b></td>
+								<td><check-value :value="props.item.harga_pasar"
+								valueType="percentage" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[46].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[46].title}}</b></td>
 								<td>
 									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[46].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[46].title}}</b></td>
+							<tr v-if="!columnData[47].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[47].title}}</b></td>
 								<td>
 									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 								</td>
@@ -491,7 +522,7 @@
 
 							<!-- update -->
 							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update ' + kelas]">
-								<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block" v-if="props.item.id">
+								<button @click.prevent="ubahData(props.item.id,props.item.tp)" class="btn btn-default btn-icon btn-block" v-if="props.item.id">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
@@ -595,6 +626,19 @@
 						filter: true,
 						filterType: 'string',
 						filterKey: 'cu.name'
+					},
+					{
+						title: 'TP',
+						key: 'tp_name',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						isChart: false,
+						columnGroup: 'all',
+						filter: true,
+						filterType: 'string',
+						filterKey: 'tp.name'
 					},
 					{
 						title: 'No. BA',
@@ -1205,6 +1249,7 @@
 				if(this.$route.meta.mode == 'periode'){
 					this.disableColumnCU(false);
 					this.disableColumnTp(false);
+					this.disableColumnTpName(true);
 
 					this.$store.dispatch(this.kelas + '/indexPeriode', [this.params,this.$route.params.periode]);
 
@@ -1212,13 +1257,21 @@
 					this.disableColumnCU(true);
 					if(this.$route.params.tp == 'konsolidasi'){
 						this.disableColumnTp(false);
+						this.disableColumnTpName(true);
 
 						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 					}else{
 						this.disableColumnTp(true);
+						this.disableColumnTpName(true);
 
 						this.$store.dispatch(this.kelas + '/indexTp', [this.params,this.$route.params.tp]);
 					}
+				}else if(this.$route.meta.mode == 'cuPeriode'){
+					this.disableColumnCU(true);
+					this.disableColumnTp(true);
+					this.disableColumnTpName(false);
+
+					this.$store.dispatch(this.kelas + '/indexTpPeriode', [this.params,this.$route.params.cu,this.$route.params.periode]);
 				}else{
 					this.disableColumnCU(false);
 					this.disableColumnTp(false);
@@ -1228,14 +1281,20 @@
 			},
 			disableColumnCU(status){
 				this.columnData[1].disable = status;
-				this.columnData[2].disable = status;
 				this.columnData[3].disable = status;
+				this.columnData[4].disable = status;
 
 				if(this.isFirstLoad)
 					this.checkParams();
 			},
 			disableColumnTp(status){
-				this.columnData[5].disable = status;
+				this.columnData[6].disable = status;
+
+				if(this.isFirstLoad)
+					this.checkParams();
+			},
+			disableColumnTpName(status){
+				this.columnData[2].disable = status;
 
 				if(this.isFirstLoad)
 					this.checkParams();
