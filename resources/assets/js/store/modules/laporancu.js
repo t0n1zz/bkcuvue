@@ -9,12 +9,15 @@ export const laporanCu = {
     data: {}, //single data
     dataS: [], //collection
     grafik: [],
+    grafikPearls: [],
     pearls: [],
     periode: [],
     columnData: [],
+    columnDataPearls: [],
     dataStat: '',
     dataStatS: '',
     grafikStat:'',
+    grafikPearlsStat:'',
     pearlsStat:'',
     periodeStat: '',
     update: [], //update data
@@ -28,13 +31,16 @@ export const laporanCu = {
     data: state => state.data,
     dataS: state => state.dataS,
     grafik: state => state.grafik,
+    grafikPearls: state => state.grafikPearls,
     pearls: state => state.pearls,
     periode: state => state.periode,
     columnData: state => state.columnData,
+    columnDataPearls: state => state.columnDataPearls,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
     pearlsStat: state => state.pearlsStat,
     grafikStat: state => state.grafikStat,
+    grafikPearlsStat: state => state.grafikPearlsStat,
     periodeStat: state => state.periodeStat,
     idCU: state => state.idCU,
     update: state => state.update,
@@ -266,7 +272,64 @@ export const laporanCu = {
         });
     },
 
+    // load by periode
+    grafikPearlsPeriode( { commit }, [p, periode] ){
+      commit('setGrafikPearlsStat', 'loading');
+      
+      laporanCuAPI.indexPearlsPeriode( p, periode )
+        .then( function( response ){
+          commit('setGrafikPearls', response.data.model);
+          commit('setGrafikPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafikPearls', error.response);
+          commit('setGrafikPearlsStat', 'fail');
+        });
+    },
 
+    // load by cu
+    grafikPearlsCu( { commit }, [p, id] ){
+      commit('setGrafikPearlsStat', 'loading');
+      
+      laporanCuAPI.indexPearlsCu( p, id )
+        .then( function( response ){
+          commit('setGrafikPearls', response.data.model);
+          commit('setGrafikPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafikPearls', error.response);
+          commit('setGrafikPearlsStat', 'fail');
+        });
+    },
+
+    grafikPearlsCuPeriode( { commit }, [p, id, periode] ){
+      commit('setGrafikPearlsStat', 'loading');
+      
+      laporanTpAPI.indexPearlsPeriode( p, id, periode )
+        .then( function( response ){
+          commit('setGrafikPearls', response.data.model);
+          commit('setGrafikPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafikPearls', error.response);
+          commit('setGrafikPearlsStat', 'fail');
+        });
+    },
+
+    // load by tp
+    grafikPearlsTp( { commit }, [p, id] ){
+      commit('setGrafikPearlsStat', 'loading');
+      
+      laporanTpAPI.indexPearlsTp( p, id )
+        .then( function( response ){
+          commit('setGrafikPearls', response.data.model);
+          commit('setGrafikPearlsStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafikPearls', error.response);
+          commit('setGrafikPearlsStat', 'fail');
+        });
+    },
 
     create( {commit} ){
       commit('setDataStat', 'loading');
@@ -436,6 +499,10 @@ export const laporanCu = {
       commit('setColumnData', data);
     },
 
+    addColumnDataPearls( {commit}, data){
+      commit('setColumnDataPearls', data);
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -462,6 +529,9 @@ export const laporanCu = {
     setGrafik( state, data ){
       state.grafik = data;
     },
+    setGrafikPearls( state, data ){
+      state.grafikPearls = data;
+    },
     setPearls( state, data ){
       state.pearls = data;
     },
@@ -470,6 +540,9 @@ export const laporanCu = {
     },
     setColumnData(state, data){
       state.columnData = data;
+    },
+    setColumnDataPearls(state, data){
+      state.columnDataPearls = data;
     },
     setDataStat( state, status ){
       state.dataStat = status;
@@ -482,6 +555,9 @@ export const laporanCu = {
     },
     setGrafikStat( state, status ){
       state.grafikStat = status;
+    },
+    setGrafikPearlsStat( state, status ){
+      state.grafikPearlsStat = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;

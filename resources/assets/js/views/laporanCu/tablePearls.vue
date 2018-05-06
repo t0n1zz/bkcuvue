@@ -738,11 +738,13 @@
 			}
 		},
 		created(){
+			this.$store.dispatch(this.kelas + '/addColumnDataPearls', this.columnData);
 			this.fetch();
 		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
+				this.isFirstLoad = true;
 				this.fetch();
 			},
 

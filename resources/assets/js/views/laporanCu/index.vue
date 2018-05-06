@@ -48,7 +48,7 @@
 							:kelas="kelas"></table-data>
 					</div>
 
-					<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
+					<div v-show="tabName == 'tablePearls'">
 						<table-pearls 
 							:title="titlePearls" 
 							:kelas="kelas"></table-pearls>
@@ -58,6 +58,9 @@
 						<infografis-data
 							:title="title"
 							:kelas="kelas"></infografis-data>
+						<infografis-pearls-data
+							:title="titlePearls"
+							:kelas="kelas"></infografis-pearls-data>	
 					</div>
 					
 
@@ -77,6 +80,7 @@
 	import tableData from "./table.vue";
 	import tablePearls from "./tablePearls.vue";
 	import infografisData from "./infografis.vue";
+	import infografisPearlsData from "./infografisPearls.vue";
 
 	export default {
 		components: {
@@ -85,7 +89,8 @@
 			selectData,
 			tableData,
 			tablePearls,
-			infografisData
+			infografisData,
+			infografisPearlsData
 		},
 		data() {
 			return {

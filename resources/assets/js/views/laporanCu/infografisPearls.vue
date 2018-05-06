@@ -1,0 +1,178 @@
+<template>
+<div>
+	<!-- laporancu -->
+	<line-chart
+		:titleText="titleText"
+		:title="title"
+		:kelas="kelas"
+		:params="params"
+		:dataShownTitle1="dataShownTitle1"
+		:dataShownKey1="dataShownKey1"
+		:axisLabelKey="axisLabelKey"
+		:itemData="itemData"
+		:itemDataStat="itemDataStat"
+		:columnData="columnData"
+		@fetch="fetch()"
+		v-if="this.$route.meta.mode == 'cu'"
+		></line-chart>
+	<bar-chart
+		:titleText="titleText"
+		:title="title"
+		:kelas="kelas"
+		:params="params"
+		:dataShownTitle1="dataShownTitle1"
+		:dataShownKey1="dataShownKey1"
+		:axisLabelKey="axisLabelKey"
+		:itemData="itemData"
+		:itemDataStat="itemDataStat"
+		:columnData="columnData"
+		@fetch="fetch()"
+		v-else-if="this.$route.meta.mode == 'cuPeriode'"
+		></bar-chart>
+	<bar-chart
+		:titleText="titleText"
+		:title="title"
+		:kelas="kelas"
+		:params="params"
+		:dataShownTitle1="dataShownTitle1"
+		:dataShownKey1="dataShownKey1"
+		:axisLabelKey="axisLabelKey"
+		:itemData="itemData"
+		:itemDataStat="itemDataStat"
+		:columnData="columnData"
+		@fetch="fetch()"
+		v-else
+		></bar-chart>
+</div>
+</template>
+
+
+
+<script>
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import barChart from '../../components/barChart.vue';
+import lineChart from '../../components/lineChart.vue';
+
+export default {
+	components:{
+		barChart,
+		lineChart
+	},
+	props:['title','kelas'],
+  data(){
+    return {
+			pages: [],
+			titleText:'',
+			dataShownTitle1:'P1',
+			dataShownKey1:'p1',
+			axisLabelKey:'cu_name',
+			isFirstLoad: true,
+			cuName:'',
+			params: {
+				column: 'periode',
+				direction: 'desc',
+				per_page: 50,
+				page: 1,
+				search_column: 'cu.name',
+				search_operator: 'like',
+				search_query_1: '',
+				search_query_2: ''
+			},
+    }
+	},
+	created() {
+		this.fetch();
+	},
+	updated() {
+		$('.bootstrap-select').selectpicker('refresh');
+	},
+	watch: {
+		// check route changes
+		'$route' (to, from){
+			this.fetch();
+		},
+		itemDataStat(value){
+			if(value == "success"){
+				// if(this.isFirstLoad){ TODO: fix this
+				// 	this.checkPage();
+				// 	this.isFirstLoad = false;
+				// }
+				if(this.$route.meta.mode == 'periode'){
+					this.titleText = 'Grafik Laporan Pearls Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
+				}else if(this.$route.meta.mode == 'cu'){
+					if(this.$route.params.tp == 'konsolidasi'){
+						this.titleText = 'Grafik Laporan Pearls konsolidasi CU ' + this.itemData.data[0].cu.name;
+					}else{
+						this.titleText = 'Grafik Laporan Pearls' + this.itemData.data[0].tp.name;
+					}	
+				}else if(this.$route.meta.mode == 'cuPeriode'){
+					this.titleText = 'Grafik Laporan Pearls Semua TP Periode' + this.formatPeriode(this.$route.params.periode);
+				}else{
+					this.titleText = 'Grafik Laporan Pearls Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
+				}
+			}
+		}
+	},
+	methods: {
+		// fetching data from database
+		fetch(){
+			 if(this.$route.meta.mode == 'periode'){
+				this.resetParams('cu.name');
+				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.params,this.$route.params.periode]);
+
+				this.axisLabelKey = 'cu_name';
+				this.titleText = 'Grafik Pearls ' + this.title + ' periode ' + this.formatPeriode(this.selectData);	
+			}else if(this.$route.meta.mode == 'cu'){
+				if(this.$route.params.tp == 'konsolidasi'){
+					this.resetParams('id');
+					this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.params,this.$route.params.cu]);
+					this.axisLabelKey = 'periode';	
+
+				}else{
+					this.resetParams('id');
+					this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.params,this.$route.params.tp]);
+					this.axisLabelKey = 'periode';	
+				}
+			}else if(this.$route.meta.mode == 'cuPeriode'){
+				this.resetParams('tp.name');
+				this.$store.dispatch(this.kelas + '/grafikPearlsCuPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
+				this.axisLabelKey = 'tp_name';	
+			}else{
+				this.resetParams('cu.name');
+				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.params,this.$route.params.periode]);
+
+				this.axisLabelKey = 'cu_name';
+				this.titleText = 'Grafik Pearls' + this.title + ' periode ' + this.formatPeriode(this.selectData);
+			}
+		},
+		resetParams(search_column){
+			this.params.search_column = search_column;
+			this.params.search_operator = 'like';
+			this.params.search_query_1 = '';
+			this.params.search_query_2 = '';
+		},
+		checkPage(){
+			if(this.itemData.total >= 11 && this.itemData.total <= 25){
+				this.params.per_page = 25;
+			}else if(this.itemData.total > 25){
+				this.params.per_page = 50;
+			}else{
+				this.params.per_page = 10;
+			}
+		},
+
+		// helper
+		formatPeriode(value){
+			return Vue.filter('dateMonth')(value);
+		}
+	},
+	computed: {
+		...mapGetters('laporanCu',{
+			itemData: 'grafikPearls',
+			itemDataStat: 'grafikPearlsStat',
+			columnData: 'columnDataPearls',
+		}),
+	}
+}
+</script>

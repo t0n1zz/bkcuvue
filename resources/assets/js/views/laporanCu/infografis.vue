@@ -1,5 +1,6 @@
 <template>
 <div>
+	<!-- laporancu -->
 	<line-chart
 		:titleText="titleText"
 		:title="title"
@@ -14,7 +15,7 @@
 		@fetch="fetch()"
 		v-if="this.$route.meta.mode == 'cu'"
 		></line-chart>
-		<bar-chart
+	<bar-chart
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
@@ -117,6 +118,7 @@ export default {
 		// fetching data from database
 		fetch(){
 			 if(this.$route.meta.mode == 'periode'){
+				this.resetParams('cu.name');
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
@@ -137,6 +139,7 @@ export default {
 				this.$store.dispatch(this.kelas + '/grafikCuPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
 			}else{
+				this.resetParams('cu.name');
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
