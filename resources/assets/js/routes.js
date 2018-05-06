@@ -109,6 +109,7 @@ const routes = [
 	{ path: '/laporancu/cu/:cu/periode/:periode',name: 'laporanCuCuPeriode', 
 	components: { default: laporanCu, 'header': header },
 	meta: { mode:'cuPeriode' }},
+	// create
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
 		components: { default: laporanCu_form, 'header': header} },
 	// edit konsolidasi	

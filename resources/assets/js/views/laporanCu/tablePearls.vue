@@ -90,86 +90,89 @@
 						&nbsp;
 						{{ props.item.periode | dateMonth }}
 					</td>
-					<td v-if="!columnData[6].hide" @click.prevent="modelKatexOpen(props.item,'p1')" style="cursor:pointer;">
+					<td v-if="!columnData[6].hide && !columnData[6].disable">
+						<check-value :value="props.item.tp"></check-value>
+					</td>
+					<td v-if="!columnData[7].hide" @click.prevent="modelKatexOpen(props.item,'p1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'p1'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[7].hide" @click.prevent="modelKatexOpen(props.item,'p2')" style="cursor:pointer;">
+					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'p2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'p2'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'e1')" style="cursor:pointer;">
+					<td v-if="!columnData[9].hide" @click.prevent="modelKatexOpen(props.item,'e1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e1'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[9].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
+					<td v-if="!columnData[10].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e5'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[10].hide" @click.prevent="modelKatexOpen(props.item,'e6')" style="cursor:pointer;">
+					<td v-if="!columnData[11].hide" @click.prevent="modelKatexOpen(props.item,'e6')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e6'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[11].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
+					<td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e9'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
+					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a1'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
+					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a2'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
+					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r7'"
 							:props="props"
 						></item-pearls>	
 					</td>
-					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
+					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'l1'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
+					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s10'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
+					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s11'"
 							:props="props"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[18].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[20].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[21].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[22].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -211,14 +214,18 @@
 							</tr>
 							<tr v-if="!columnData[5].hide">
 								<td><b>{{columnData[5].title}}</b></td>
-								<td><check-value :value="formatPeriode(props.item.perode)" :frontText="': '"></check-value></td>
+								<td><check-value :value="formatPeriode(props.item.periode)" :frontText="': '"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[6].hide">
+								<td><b>{{columnData[6].title}}</b></td>
+								<td><check-value :value="props.item.tp" :frontText="': '"></check-value></td>
 							</tr>
 
 							<!-- p1 -->
-							<tr v-if="!columnData[6].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[6].title"></b></td>
+							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[7].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[6].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'p1')">
+							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'p1')">
 								<td colspan="2">
 									<item-pearls
 										:type="'p1'"
@@ -228,10 +235,10 @@
 							</tr>
 
 							<!-- p2 -->
-							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[7].title"></b></td>
+							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[8].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'p2')">
+							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'p2')">
 								<td colspan="2">
 									<item-pearls
 										:type="'p2'"
@@ -241,10 +248,10 @@
 							</tr>
 
 							<!-- e1 -->
-							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[8].title"></b></td>
+							<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[9].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e1')">
+							<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e1')">
 								<td colspan="2">
 									<item-pearls
 										:type="'e1'"
@@ -254,10 +261,10 @@
 							</tr>
 
 							<!-- e5 -->
-							<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[9].title"></b></td>
+							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[10].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e5')">
+							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e5')">
 								<td colspan="2">
 									<item-pearls
 										:type="'e5'"
@@ -267,10 +274,10 @@
 							</tr>
 
 							<!-- e6 -->
-							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[10].title"></b></td>
+							<tr v-if="!columnData[11].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[11].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e6')">
+							<tr v-if="!columnData[11].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e6')">
 								<td colspan="2">
 									<item-pearls
 										:type="'e6'"
@@ -280,10 +287,10 @@
 							</tr>
 
 							<!-- e9 -->
-							<tr v-if="!columnData[11].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[11].title"></b></td>
+							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[12].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[11].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e9')">
+							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'e9')">
 								<td colspan="2">
 									<item-pearls
 										:type="'e9'"
@@ -293,10 +300,10 @@
 							</tr>
 
 							<!--a1 -->
-							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[12].title"></b></td>
+							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[13].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'a1')">
+							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'a1')">
 								<td colspan="2">
 									<item-pearls
 										:type="'a1'"
@@ -306,10 +313,10 @@
 							</tr>
 
 							<!--a2 -->
-							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[13].title"></b></td>
+							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[14].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'a2')">
+							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'a2')">
 								<td colspan="2">
 									<item-pearls
 										:type="'a2'"
@@ -319,10 +326,10 @@
 							</tr>
 
 							<!--r7 -->
-							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[14].title"></b></td>
+							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[15].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'r7')">
+							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'r7')">
 								<td colspan="2">
 									<item-pearls
 										:type="'r7'"
@@ -332,10 +339,10 @@
 							</tr>
 
 							<!--l1 -->
-							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[15].title"></b></td>
+							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[16].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'l1')">
+							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'l1')">
 								<td colspan="2">
 									<item-pearls
 										:type="'l1'"
@@ -345,10 +352,10 @@
 							</tr>
 
 							<!--s10 -->
-							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[16].title"></b></td>
+							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[17].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'s10')">
+							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'s10')">
 								<td colspan="2">
 									<item-pearls
 										:type="'s10'"
@@ -358,10 +365,10 @@
 							</tr>
 
 							<!--s11 -->
-							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b v-html="columnData[17].title"></b></td>
+							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[18].title"></b></td>
 							</tr>
-							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'s11')">
+							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'s11')">
 								<td colspan="2">
 									<item-pearls
 										:type="'s11'"
@@ -370,22 +377,22 @@
 								</td>
 							</tr>
 
-							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[18].title}}</b></td>
-								<td><check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value></td>
-							</tr>
 							<tr v-if="!columnData[19].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[19].title}}</b></td>
-								<td><check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value></td>
+								<td><check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[20].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[20].title}}</b></td>
+								<td><check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value></td>
+							</tr>
+							<tr v-if="!columnData[21].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[21].title}}</b></td>
 								<td>
 									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[21].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[21].title}}</b></td>
+							<tr v-if="!columnData[22].hide" class="collapse" :class="'collap'+props.item.id">
+								<td><b>{{columnData[22].title}}</b></td>
 								<td>
 									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 								</td>
@@ -537,6 +544,17 @@
 						isChart: false,
 						filter: true,
 						filterType: 'date'
+					},
+					{
+						title: 'Tp',
+						key: 'tp',
+						sort: true,
+						hide: false,
+						disable: false,
+						isChart: false,
+						columnGroup: 'all',
+						filter: true,
+						filterType: 'number'
 					},
 					{
 						title: 'P1 (= 100%)',
@@ -780,6 +798,7 @@
 				}else{
 					this.disableColumnCU(false);
 					this.disableColumnTp(false);
+					this.disableColumnTpName(true);
 
 					this.$store.dispatch(this.kelas + '/indexPearls', this.params);
 				}
