@@ -738,7 +738,6 @@
 			}
 		},
 		created(){
-			this.$store.dispatch(this.kelas + '/addColumnDataPearls', this.columnData);
 			this.fetch();
 		},
 		watch: {

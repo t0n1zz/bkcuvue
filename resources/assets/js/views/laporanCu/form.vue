@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" @level2Back="back()"></page-header>
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
@@ -74,10 +74,10 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)">
+											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="!isModelTp">
 												<option disabled value="">Silahkan pilih TP</option>
 												<option value="0" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
-												<option data-divider="true" v-if="modelTp"></option>
+												<option data-divider="true" v-if="modelTp.length != 0"></option>
 												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
 											</select>
 
@@ -870,6 +870,7 @@
 				level2Title: 'Laporan CU',
 				kelas: 'laporanCu',
 				idLaporanTp: '',
+				isModelTp: false,
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -945,6 +946,7 @@
 					}else if(this.$route.meta.mode == 'editTp'){
 						this.changeTp(this.form.id_tp);
 					}
+					this.isModelTp = true;
 				}
 			},
 			listLaporanTpDataStat(value){
@@ -1031,9 +1033,9 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 0}});
-				}else if(this.$route.meta.mode === 'editTp' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode === 'edit'){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 'konsolidasi'}});
+				}else if(this.$route.meta.mode === 'editTp'){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
 				}else{
 					if(this.profile.id_cu == 0){

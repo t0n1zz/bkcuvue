@@ -104,6 +104,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/laporanCu/indexPearlsCu/{id}', 'laporanCuController@indexPearlsCu');
         Route::get('/laporanCu/indexPearlsPeriode/{periode}', 'laporanCuController@indexPearlsPeriode');
         Route::get('/laporanCu/getPeriode', 'laporanCuController@getPeriode');
+        Route::get('/laporanCu/getPeriodeCu/{id}', 'laporanCuController@getPeriodeCu');
     });
     Route::group(['middleware' => ['permission:create laporanCu']], function () {
         Route::get('/laporanCu/create', 'laporanCuController@create');
@@ -126,6 +127,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/laporanTp/indexPearlsTp/{id}', 'laporanTpController@indexPearlsTp');
         Route::get('/laporanTp/indexPearlsPeriode/{id}/{periode}', 'laporanTpController@indexPearlsPeriode');
         Route::get('/laporanTp/getPeriode', 'laporanTpController@getPeriode');
+        Route::get('/laporanTp/getPeriodeTp/{id}/{periode}', 'laporanTpController@getPeriodeTp');
         Route::get('/laporanTp/listLaporanTp/{cu}/{periode}', 'laporanTpController@listLaporanTp');
     });
     Route::group(['middleware' => ['permission:create laporanTp']], function () {

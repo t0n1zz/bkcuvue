@@ -3,9 +3,9 @@
 	<div class="panel panel-white border-top-xlg border-top-info">
 
 		<!-- heading -->
-		<div class="panel-heading has-visible-elements hidden-print">
+		<div class="panel-heading hidden-print">
 			<h5 class="panel-title text-semibold"><i class="icon-graph position-left"></i> Grafik {{ title }}</h5>
-			<div class="heading-elements visible-elements">
+			<div class="heading-elements">
 				<ul class="icons-list">
 					<li>
 						<a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>

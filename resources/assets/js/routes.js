@@ -10,6 +10,7 @@ import artikelKategori from './views/artikelKategori/index.vue';
 import artikelKategori_form from './views/artikelKategori/form.vue';
 import laporanCu from './views/laporanCu/index.vue';
 import laporanCu_form from './views/laporanCu/form.vue';
+import laporanCu_detail from './views/laporanCu/detail.vue';
 import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
 import tp from './views/tp/index.vue';
@@ -107,11 +108,25 @@ const routes = [
 		meta: { mode:'cu' }},
 	// cu and periode  route	
 	{ path: '/laporancu/cu/:cu/periode/:periode',name: 'laporanCuCuPeriode', 
-	components: { default: laporanCu, 'header': header },
-	meta: { mode:'cuPeriode' }},
+		components: { default: laporanCu, 'header': header },
+		meta: { mode:'cuPeriode' }},
+	// detail cu and tp route	
+	{ path: '/laporancu/detail/:id',name: 'laporanCuDetail', 
+		components: { default: laporanCu_detail, 'header': header },
+		meta: { mode:'detail' }},
+		{ path: '/laporancu/detail/cu/:cu/periode/:periode',name: 'laporanCuDetailPeriode', 
+		components: { default: laporanCu_detail, 'header': header },
+		meta: { mode:'detailPeriode' }},
+	// detail cu and tp route	
+	{ path: '/laporanTp/detail/:id',name: 'laporanTpDetail', 
+		components: { default: laporanCu_detail, 'header': header },
+		meta: { mode:'detailTp' }},
+	{ path: '/laporanTp/detail/tp/:tp/periode/:periode',name: 'laporanTpDetailPeriode', 
+		components: { default: laporanCu_detail, 'header': header },
+		meta: { mode:'detailTpPeriode' }},
 	// create
 	{ path: '/laporancu/create',name: 'laporanCuCreate', 
-		components: { default: laporanCu_form, 'header': header} },
+		components: { default: laporanCu_form, 'header': header} },	
 	// edit konsolidasi	
 	{ path: '/laporancu/edit/:id',name: 'laporanCuEdit', 
 		components: { default: laporanCu_form, 'header': header}, meta: { mode:'edit' } },

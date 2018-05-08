@@ -18,6 +18,10 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/getPeriode');
   },
 
+  getPeriodeTp: function( id, periode){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/getPeriodeTp/' + id + '/' + periode);
+  },
+
   indexPearls: function( p ){
     return axios.get( BKCU_CONFIG.API_URL + '/laporanTp/indexPearls' ,{params: p});
   },

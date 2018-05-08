@@ -16,7 +16,7 @@
 							<router-link :to="{ name:'dashboard' }" tag="li">
 									<a>Dashboard</a>
 							</router-link>
-							<li @click.prevent="level2R()">
+							<li @click.prevent="level2Back()">
 									<a>{{ level2Title }}</a>
 							</li>
 							<li class="active">{{ title }}</li>
@@ -110,12 +110,8 @@ export default {
 			},
 	},
 	methods:{
-		level2R(){
-			if(this.level2RouteParams){
-				this.$router.push({name: this.level2Route, params: { cu: this.level2RouteParams }});
-			}else{
-				this.$router.push({name: this.level2Route});
-			}
+		level2Back(){
+			this.$emit('level2Back');
 		},
 		route1(){
 			if(this.btn1RouteParams){

@@ -49,7 +49,7 @@
 				<!-- detail-->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
 					<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon" v-tooltip:top="'Detail ' + title" :disabled="!selectedItem.id">
-						<i class="icon-pencil5"></i> Detail
+						<i class="icon-file-stats"></i> Detail
 					</button>
 				</div>
 
@@ -1217,20 +1217,35 @@
 				isFirstLoad: true,
 			}
 		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => vm.fetch());
+		},
 		created(){
-			this.$store.dispatch(this.kelas + '/addColumnData', this.columnData);
-			this.fetch();
+			if(this.profileStat == "success"){
+				this.fetch();
+			}
 		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
 				this.isFirstLoad = true;
-				this.fetch();
+				if(this.profileStat == "success"){
+					this.fetch();
+				}
 			},
 
 			itemDataStat(value){
 				this.isFirstLoad = false;
-      },
+			},
+			
+			profileStat(value){
+				if(value == "success"){
+					this.checkProfile();
+					if(this.itemDataStat != "success"){
+						this.fetch();
+					}
+				}
+			},
 
 			// when updating data
       updateStat(value) {
@@ -1250,6 +1265,7 @@
     },
 		methods: {
 			fetch(){
+				this.checkProfile();
 				if(this.$route.meta.mode == 'periode'){
 					this.disableColumnCU(false);
 					this.disableColumnTp(false);
@@ -1313,6 +1329,19 @@
           this.params.search_column = this.columnData[a].key;
         }
 			},
+			checkProfile(){
+				if(this.profile.id_cu != 0){
+					if(this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'cuPeriode'){
+						if(this.profile.id_cu != this.$route.params.cu){
+							this.$router.push({name: 'notFound'});
+						}
+					}else if(this.$route.meta.mode == 'periode'){
+						this.$router.push({name: 'notFound'});
+					}else{
+						this.$router.push({name: 'notFound'});
+					}
+				}
+			},
 			columnGroup(value){
 				for (let i = 0, len = this.columnData.length ; i < len; i++){
 					if(this.columnData[i].columnGroup == value || this.columnData[i].columnGroup == 'all'){
@@ -1343,6 +1372,13 @@
 			ubahLaporanTp(id,tp){
 				this.modalShow = false;
 				this.$router.push({name: 'laporanTpEdit', params: { id: id }});
+			},
+			detailData(id,tp){
+				if(tp){
+					this.$router.push({name: 'laporanTpDetail', params: { id: tp.id }});
+				}else{
+					this.$router.push({name: 'laporanCuDetail', params: { id: id }});
+				}
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

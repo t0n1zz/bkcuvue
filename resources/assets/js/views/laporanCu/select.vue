@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- cu desktop --> 
-		<div class="panel panel-flat hidden-xs hidden-print " >
+		<div class="panel panel-flat hidden-print " >
 			<div class="panel-body">  
 				<div class="row">
 					<!-- cu -->
@@ -104,64 +104,17 @@
 
 					<!-- find data button -->
 					<div class="col-sm-2" :class="{'pt-10': idCu !='semua' && idTp == 'semua'}" v-if="this.profile.id_cu === 0">
-						<button type="button" class="btn btn-default btn-icon btn-block" data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'" @click.prevent="fetch()" :disabled="itemDataStat == 'loading'">
+						<button type="button" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Tampilkan data sesuai pilihan'" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
+						</button>
+						<button type="button" class="btn btn-default btn-icon btn-block" v-else>
+							<i class="icon-sync spinner"></i>
 						</button>
 					</div>
 				</div>
 					
 			</div>
 		</div>		
-
-		<!-- cu mobile -->
-		<div class="panel panel-flat visible-xs hidden-print" v-if="this.profile.id_cu === 0">
-			<div class="panel-body">  
-				<!-- select -->
-				<div class="input-group">
-					<div class="input-group-addon">
-						Pilih Data
-					</div>
-					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCUStat === 'loading'">
-						<option disabled value="">Silahkan pilih dataaaa</option>
-						<option value="semua">Semua</option>
-						<option data-divider="true"></option>
-						<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
-					</select>
-				</div>
-
-				<!-- reload cu -->
-				<div class="pt-15">
-					<button class="btn btn-default btn-lg btn-block" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCUStat === 'loading'">
-						<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i> Reload
-					</button>
-				</div> 
-
-				<hr v-if="idCu == 'semua'">
-
-				<!-- periode -->
-				<div class="input-group" v-if="this.profile.id_cu === 0 && idCu == 'semua'">
-					<div class="input-group-addon">
-						Periode Laporan
-					</div>
-
-					<!-- select -->
-					<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelPeriodeStat === 'loading'">
-						<option disabled value="">Silahkan pilih periode laporan</option>
-						<slot></slot>
-						<option v-for="periode in modelPeriode" :value="periode.periode" v-if="periode">{{periode.periode | dateMonth}}</option>
-					</select>
-					
-					</div>
-
-					<!-- reload periode -->
-				<div class="pt-15" v-if="idCu == 'semua'">
-					<button class="btn btn-default btn-lg btn-block" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
-						<i class="icon-sync" :class="{'spinner' : modelPeriodeStat === 'loading'}"></i> Reload
-					</button>
-				</div> 
-
-			</div>
-		</div>
 
 	</div>
 </template>

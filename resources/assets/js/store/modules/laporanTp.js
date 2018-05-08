@@ -167,6 +167,20 @@ export const laporanTp = {
         });
     },
 
+    getPeriodeTp( {commit}, [id, periode] ){
+      commit('setDataStatS', 'loading');
+      
+      laporanTpAPI.getPeriodeTp( id,periode )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch(error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // load by periode
     grafikPeriode( { commit }, [p, periode] ){
       commit('setGrafikStat', 'loading');

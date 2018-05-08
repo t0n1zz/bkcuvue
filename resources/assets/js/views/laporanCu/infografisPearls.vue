@@ -59,7 +59,7 @@ export default {
 		barChart,
 		lineChart
 	},
-	props:['title','kelas'],
+	props:['title','kelas','columnData'],
   data(){
     return {
 			pages: [],
@@ -170,8 +170,7 @@ export default {
 	computed: {
 		...mapGetters('laporanCu',{
 			itemData: 'grafikPearls',
-			itemDataStat: 'grafikPearlsStat',
-			columnData: 'columnDataPearls',
+			itemDataStat: 'grafikPearlsStat'
 		}),
 	}
 }

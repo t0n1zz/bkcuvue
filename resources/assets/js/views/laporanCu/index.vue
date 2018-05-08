@@ -48,7 +48,7 @@
 							:kelas="kelas"></table-data>
 					</div>
 
-					<div v-show="tabName == 'tablePearls'">
+					<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
 						<table-pearls 
 							:title="titlePearls" 
 							:kelas="kelas"></table-pearls>
@@ -57,10 +57,12 @@
 					<div v-show="tabName =='infografis'" v-if="isInfografis">
 						<infografis-data
 							:title="title"
-							:kelas="kelas"></infografis-data>
+							:kelas="kelas"
+							:columnData="columnData"></infografis-data>
 						<infografis-pearls-data
 							:title="titlePearls"
-							:kelas="kelas"></infografis-pearls-data>	
+							:kelas="kelas"
+							:columnData="columnDataPearls"></infografis-pearls-data>
 					</div>
 					
 
@@ -138,6 +140,8 @@
 				itemDataStat: 'dataStatS',
 				itemPearls: 'pearls',
 				itemPearlsStat: 'pearlsStat',
+				columnData: 'columnData',
+				columnDataPearls: 'columnDataPearls',
 			}),
 		}
 	}

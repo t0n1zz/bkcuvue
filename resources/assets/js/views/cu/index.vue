@@ -54,7 +54,7 @@
 		},
 		data() {
 			return {
-				title: 'Credit Union',
+				title: 'CU',
 				kelas: 'cu',
 				titleDesc: 'Mengelola data CU',
 				titleIcon: 'icon-office',
