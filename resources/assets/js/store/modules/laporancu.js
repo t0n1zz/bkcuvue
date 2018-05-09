@@ -1098,7 +1098,7 @@ export const laporanCu = {
         });
     },
 
-    grafikCuPeriode( { commit }, [p, id, periode] ){
+    grafikTpPeriode( { commit }, [p, id, periode] ){
       commit('setGrafikStat', 'loading');
       
       laporanTpAPI.indexPeriode( p, id, periode )
@@ -1157,7 +1157,7 @@ export const laporanCu = {
         });
     },
 
-    grafikPearlsCuPeriode( { commit }, [p, id, periode] ){
+    grafikPearlsTpPeriode( { commit }, [p, id, periode] ){
       commit('setGrafikPearlsStat', 'loading');
       
       laporanTpAPI.indexPearlsPeriode( p, id, periode )

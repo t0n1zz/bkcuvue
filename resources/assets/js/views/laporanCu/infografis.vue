@@ -13,7 +13,7 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
-		v-if="this.$route.meta.mode == 'cu'"
+		v-if="this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'detail'"
 		></line-chart>
 	<bar-chart
 		:titleText="titleText"
@@ -108,9 +108,16 @@ export default {
 					}	
 				}else if(this.$route.meta.mode == 'cuPeriode'){
 					this.titleText = 'Grafik Laporan Semua TP Periode' + this.formatPeriode(this.$route.params.periode);
+				}else if(this.$route.meta.mode == 'detail'){
+					this.titleText = 'Grafik Laporan konsolidasi CU ' + this.itemData.data[0].cu.name;
 				}else{
 					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
+			}
+		},
+		detailDataStat(value){
+			if(value == 'success'){
+				this.fetch();
 			}
 		}
 	},
@@ -124,20 +131,23 @@ export default {
 				this.axisLabelKey = 'cu_name';
 				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);	
 			}else if(this.$route.meta.mode == 'cu'){
-				if(this.$route.params.tp == 'konsolidasi'){
-					this.resetParams('id');
+				this.resetParams('id');
+				if(this.$route.params.tp == 'konsolidasi'){		
 					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.$route.params.cu]);
-					this.axisLabelKey = 'periode';	
-
 				}else{
-					this.resetParams('id');
-					this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.$route.params.tp]);
-					this.axisLabelKey = 'periode';	
+					this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.$route.params.tp]);	
 				}
+				this.axisLabelKey = 'periode';	
 			}else if(this.$route.meta.mode == 'cuPeriode'){
 				this.resetParams('tp.name');
-				this.$store.dispatch(this.kelas + '/grafikCuPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikTpPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
+			}else if(this.$route.meta.mode == 'detail'){
+				if(this.detailDataStat == 'success'){
+					this.resetParams('id');
+					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.detailData.id_cu]);
+					this.axisLabelKey = 'periode';
+				}
 			}else{
 				this.resetParams('cu.name');
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
@@ -169,6 +179,8 @@ export default {
 	},
 	computed: {
 		...mapGetters('laporanCu',{
+			detailData: 'data',
+			detailDataStat: 'dataStat',
 			itemData: 'grafik',
 			itemDataStat: 'grafikStat'
 		}),

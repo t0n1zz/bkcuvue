@@ -34,38 +34,25 @@
 
 					<div class="tabbable">
 						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-							<li :class="{'active' : tabName == 'analisis'}"><a @click.prevent="changeTab('analisis')"><i class="icon-dots position-left"></i> Analisis</a></li>
+							<li :class="{'active' : tabName == 'analisisLaporanCu'}"><a @click.prevent="changeTab('analisisLaporanCu')"><i class="icon-dots position-left"></i> Laporan CU</a></li>
+							<li :class="{'active' : tabName == 'analisisPearls'}"><a @click.prevent="changeTab('analisisPearls')"><i class="icon-dots position-left"></i> P.E.A.R.L.S.</a></li>
 							<li :class="{'active' : tabName == 'diskusi'}"><a @click.prevent="changeTab('diskusi')"><i class="icon-bubble2 position-left"></i> Diskusi</a></li>
 							<li :class="{'active' : tabName == 'revisi'}"><a @click.prevent="changeTab('revisi')"><i class="icon-stack2 position-left"></i> Revisi</a></li>
 						</ul>
 					</div>
 
 					<!-- table data -->
-					<div v-show="tabName == 'analisis'">
-						<!-- <infografis-data
+					<div v-show="tabName == 'analisisLaporanCu'">
+						<infografis-data
 							:title="title"
 							:kelas="kelas"
-							:columnData="columnData"></infografis-data> -->
+							:columnData="columnData"
+							></infografis-data>
+						<detail-widget></detail-widget>
+					</div>
 
-						<div class="row">
-							<div class="col-md-3">
-								<div class="panel bg-blue-400 has-bg-image">
-									<div class="panel-body">
-										<div class="heading-elements">
-											<ul class="icons-list">
-												<li><a data-action="reload"></a></li>
-											</ul>
-										</div>
+					<div v-show="tabName == 'analisisPearls'" v-if="isPearls">
 
-										<h2 class="no-margin text-semibold">4,389</h2>
-										Orders weekly
-										<div class="text-muted text-size-small">4,728 avg</div>
-									</div>
-
-									<div id="line_chart_simple"></div>
-								</div>
-							</div>
-						</div>	
 					</div>
 
 					<div v-show="tabName == 'diskusi'" v-if="isDiskusi">
@@ -90,6 +77,7 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import selectData from "./selectDetail.vue";
+	import detailWidget from "./detailWidget.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 
@@ -98,6 +86,7 @@
 			pageHeader,
 			message,
 			selectData,
+			detailWidget,
 			infografisData,
 			infografisPearlsData
 		},
@@ -109,7 +98,7 @@
 				titleDesc: 'Mengelola data perkembangan CU',
 				titleIcon: 'icon-stats-growth',
 				selectCUPath: 'laporanCuCU',
-				tabName: 'table',
+				tabName: 'analisisLaporanCu',
 				katax: '\\frac{1.7888}{1,6777}',
 				btn1Header: {
 					route: 'artikel',
@@ -123,6 +112,7 @@
 					title: 'Penulis Artikel',
 					can: 'index artikelPenulis'
 				},
+				isPearls: false,
 				isDiskusi: false,
 				isRevisi: false
 			}
@@ -130,17 +120,7 @@
 		mounted() {
 			corefunc.core_function();
 		},
-		created(){
-			this.fetch();
-		},
 		methods:{
-			fetch(){
-				if(this.$route.meta.mode == 'detail'){
-					this.$store.dispatch('laporanCu/edit',this.$route.params.id);
-				}else{
-					this.$store.dispatch('laporanCu/editTp',this.$route.params.id);
-				}
-			},
 			changeTab(value){
 				this.tabName = value;
 				if(value == 'diskusi' && !this.isDiskusi){
@@ -158,7 +138,7 @@
 				itemPearls: 'pearls',
 				itemPearlsStat: 'pearlsStat',
 				columnData: 'columnData',
-				columnData: 'columnDataPearls',
+				columnDataPearls: 'columnDataPearls',
 			}),
 		}
 	}

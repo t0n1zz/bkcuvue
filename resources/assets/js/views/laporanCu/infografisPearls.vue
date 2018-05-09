@@ -136,7 +136,7 @@ export default {
 				}
 			}else if(this.$route.meta.mode == 'cuPeriode'){
 				this.resetParams('tp.name');
-				this.$store.dispatch(this.kelas + '/grafikPearlsCuPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikPearlsTpPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
 			}else{
 				this.resetParams('cu.name');
