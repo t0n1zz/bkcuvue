@@ -48,7 +48,9 @@
 							:kelas="kelas"
 							:columnData="columnData"
 							></infografis-data>
-						<detail-widget></detail-widget>
+						<detail-laporan-cu
+							:columnData="columnData"
+							></detail-laporan-cu>
 					</div>
 
 					<div v-show="tabName == 'analisisPearls'" v-if="isPearls">
@@ -77,7 +79,7 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import selectData from "./selectDetail.vue";
-	import detailWidget from "./detailWidget.vue";
+	import detailLaporanCu from "./detailLaporanCu.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 
@@ -86,7 +88,7 @@
 			pageHeader,
 			message,
 			selectData,
-			detailWidget,
+			detailLaporanCu,
 			infografisData,
 			infografisPearlsData
 		},

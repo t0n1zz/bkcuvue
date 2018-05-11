@@ -1204,6 +1204,36 @@ export const laporanCu = {
         });
     },
 
+    // detail
+    // edit page
+    detail( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      laporanCuAPI.detail( id )
+        .then( function( response ){
+          commit('setData', response.data.model);
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+    //edit tp
+    detailTp( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      laporanTpAPI.detail( id )
+        .then( function( response ){
+          commit('setData', response.data.model);
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+
     //store data
     store( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');

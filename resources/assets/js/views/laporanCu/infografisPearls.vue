@@ -71,7 +71,7 @@ export default {
 			cuName:'',
 			params: {
 				column: 'periode',
-				direction: 'desc',
+				direction: 'asc',
 				per_page: 50,
 				page: 1,
 				search_column: 'cu.name',

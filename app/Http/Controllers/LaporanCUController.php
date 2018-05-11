@@ -291,6 +291,21 @@ class LaporanCuController extends Controller{
 		]);
 	}
 
+	public function detail($id)
+	{
+		$table_data = LaporanCu::with('cu')->where('id',$id)->addSelect([DB::raw('*,
+				(IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0)) as total_anggota,
+				(IFNULL(laporan_cu.piutang_beredar,0)/IFNULL(laporan_cu.aset,0)) as rasio_beredar,
+				((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0)) as rasio_lalai,
+				(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih'
+			)])->first();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	public function create()
 	{
 		return response()

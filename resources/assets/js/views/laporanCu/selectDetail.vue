@@ -9,7 +9,7 @@
 					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
 						<div class="input-group" v-if="this.profile.id_cu === 0">
 							<div class="input-group-addon">
-								Pilih Data
+								Pilih Data 
 							</div>
 
 							<!-- select -->

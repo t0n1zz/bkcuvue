@@ -287,6 +287,21 @@ class LaporanTpController extends Controller{
 		]);
 	}
 
+	public function detail($id)
+	{
+		$table_data = LaporanTp::with('Tp')->where('id',$id)->addSelect(['*',DB::raw('
+			(IFNULL(Laporan_tp.l_biasa, 0) + IFNULL(Laporan_tp.l_lbiasa,0) + IFNULL(Laporan_tp.P_biasa,0) + IFNULL(Laporan_tp.P_lbiasa,0)) as total_anggota,
+			(IFNULL(Laporan_tp.piutang_beredar,0)/IFNULL(Laporan_tp.aset,0)) as rasio_beredar,
+			((IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))/IFNULL(Laporan_tp.piutang_beredar,0)) as rasio_lalai,
+			(IFNULL(Laporan_tp.piutang_beredar,0) - (IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))) as piutang_bersih'
+		)])->first();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	public function getPeriode()
 	{
 		$table_data = LaporanTp::select('periode')->distinct()->orderBy('periode','DESC')->get();
