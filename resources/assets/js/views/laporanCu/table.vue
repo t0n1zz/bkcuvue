@@ -1375,7 +1375,7 @@
 			},
 			detailData(id,tp){
 				if(tp){
-					this.$router.push({name: 'laporanTpDetail', params: { id: tp.id }});
+					this.$router.push({name: 'laporanTpDetail', params: { id: id }});
 				}else{
 					this.$router.push({name: 'laporanCuDetail', params: { id: id }});
 				}

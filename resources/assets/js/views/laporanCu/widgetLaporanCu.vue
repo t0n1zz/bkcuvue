@@ -90,7 +90,11 @@
 				return this.itemData - this.itemDataBefore;
 			},
 			percentageData: function(){
-				return (this.totalData / this.itemDataBefore);
+				if(this.itemDataBefore > 0){
+					return (this.totalData / this.itemDataBefore);
+				}else{
+					return '0';
+				}
 			}
 		}
 	}

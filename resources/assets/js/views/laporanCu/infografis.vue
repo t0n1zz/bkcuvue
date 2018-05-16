@@ -92,10 +92,6 @@ export default {
 		},
 		itemDataStat(value){
 			if(value == "success"){
-				// if(this.isFirstLoad){ TODO: fix this
-				// 	this.checkPage();
-				// 	this.isFirstLoad = false;
-				// }
 				if(this.$route.meta.mode == 'periode'){
 					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}else if(this.$route.meta.mode == 'cu'){
@@ -169,7 +165,6 @@ export default {
 				this.params.per_page = 10;
 			}
 		},
-
 		// helper
 		formatPeriode(value){
 			return Vue.filter('dateMonth')(value);

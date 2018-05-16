@@ -60,7 +60,7 @@
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="idTp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'" @change="changeTp($event.target.value)">
+							<select class="bootstrap-select" name="idTp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'">
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="konsolidasi">Konsolidasi</option>
 								<option data-divider="true" v-if="modelTp.length != 0"></option>
@@ -94,6 +94,7 @@
 </template>
 
 <script>
+	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	export default {
 		props:['kelas','path'],
@@ -152,7 +153,7 @@
 					if(this.$route.meta.mode == 'detail'){
 						this.idTp = 'konsolidasi';
 					}else{
-						this.idTp = this.itemData.id_tp;
+						this.idTp = this.itemData.id;
 					}
 				}
 			},
@@ -169,18 +170,16 @@
 					this.idCu = this.profile.id_cu;
 					this.fetchTp();
 				}else{
-					this.fetchCU();
+					this.fetchCU();  
 				}
 			},
 			fetch(){
-				if(this.idCu != 'semua'){
-					if(this.idTp != 'semua'){
-						this.$router.push({name: 'laporanCuCu', params:{cu: this.idCu, tp: this.idTp} });
-					}else{
-						this.$router.push({name: 'laporanCuCuPeriode', params:{cu: this.idCu, periode: this.periodeTp} });
-					}
+				if(this.idTp == 'konsolidasi'){
+					let periode = 0;
+					periode = _.find(this.modelPeriode, {'periode':this.periode})
+					this.$router.push({name: 'laporanCuDetail', params: { id: periode.id }});
 				}else{
-					this.$router.push({name: 'laporanCuPeriode', params:{periode: this.periode} });
+					this.$router.push({name: 'laporanTpDetail', params: { id: this.idTp }});
 				}
 			},
 			fetchCU(){

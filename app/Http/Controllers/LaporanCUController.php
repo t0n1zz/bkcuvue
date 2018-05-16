@@ -283,7 +283,7 @@ class LaporanCuController extends Controller{
 
 	public function getPeriodeCu($id)
 	{
-		$table_data = LaporanCu::select('periode')->where('id_cu',$id)->distinct()->orderBy('periode','DESC')->get();
+		$table_data = LaporanCu::select('id','periode')->where('id_cu',$id)->distinct()->orderBy('periode','DESC')->get();
 
 		return response()
 		->json([
