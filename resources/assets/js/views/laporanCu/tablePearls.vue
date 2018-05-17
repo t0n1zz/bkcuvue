@@ -725,6 +725,7 @@
 				modalButton: '',
 				modalKatex: {
 					id: '',
+					id_cu:'',
 					no_ba: '',
 					periode: '',
 					section: '',
@@ -849,7 +850,8 @@
 				this.modalKatex.no_ba = itemData.no_ba;
 				this.modalKatex.periode = itemData.periode;
 				this.modalKatex.section = 'CU ' + itemData.cu_name + ' periode ' + this.formatPeriode(itemData.periode);
-
+				
+				this.modalKatex.id_cu = itemData.id_cu;
 				// p1	
 				if(type == 'p1'){
 					this.modalTitle = 'P1 - Provisi Pinjaman Lalai Di Atas 12 Bulan';

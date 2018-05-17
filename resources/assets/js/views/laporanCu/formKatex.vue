@@ -121,6 +121,7 @@
 		methods: {
 			save(){
 				this.form = _.chain(this.modalKatex.form).keyBy('key').mapValues('value').value();
+				this.form.id_cu = this.modalKatex.id_cu;
 				this.form.no_ba = this.modalKatex.no_ba;
 				this.form.periode = this.modalKatex.periode;
 				

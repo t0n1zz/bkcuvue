@@ -17,6 +17,8 @@
 								:itemData="itemData.l_biasa"
 								:itemDataBefore="itemDataBefore.l_biasa"
 								v-if="itemDataBefore"
+								@click.prevent="modalOpen()" 
+								style="cursor:pointer;"
 								></widget-data>
 							<widget-data
 								title="lelaki biasa"
@@ -665,6 +667,15 @@
 			</div>
 		</div>
 
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+			<template slot="modal-title">{{ modalTitle }}</template>
+
+			<template slot="modal-body1">
+
+			</template>
+
+		</app-modal>
 	</div>
 	
 </template>
@@ -673,9 +684,11 @@
   import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import widgetData from './widgetLaporanCu';
+	import appModal from '../../components/modal';
 	export default {
 		components:{
-			widgetData
+			widgetData,
+			appModal
 		},
 		props:['kelas','path','columnData'],
 		data(){
@@ -684,7 +697,13 @@
 				idTp: '',
 				periode: '',
 				periodeTp: '',
-				itemDataBefore: []
+				itemDataBefore: [],
+				modalShow: false,
+				modalState: '',
+				modalTitle: '',
+				modalSize: '',
+				modalColor: '',
+				modalButton: '',
 			}
 		},
 		created(){
@@ -727,7 +746,13 @@
 				}else{
 					this.$store.dispatch('laporanCu/detailTp',this.$route.params.id);
 				}
-			}
+			},
+			modalBuka(){
+
+			},
+			modalTutup(){
+
+			},
 		},
 		computed: {
 			...mapGetters('user',{

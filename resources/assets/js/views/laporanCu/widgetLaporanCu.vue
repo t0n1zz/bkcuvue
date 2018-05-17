@@ -1,5 +1,6 @@
 <template>
-	<div class="panel panel-body" :class="checkClass()">
+<div>
+	<div class="panel panel-body" :class="checkClass()"> 
 		<div class="media no-margin-top content-group">
 			<div class="media-body">
 				<!-- current value -->
@@ -41,13 +42,22 @@
 		<!-- title -->
 		<b>{{ title.toUpperCase() }}</b>
 	</div>
+
+	<app-modal :show="modalShow" :color="modalColor" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
+
+	</app-modal>	
+</div>
+
 </template>
 
 <script>
 	import checkValue from '../../components/checkValue.vue';
+	import appModal from '../../components/modal';
+
 	export default {
 		components: {
 			checkValue,
+			appModal
 		},
 		props:{
 			title:{
@@ -66,7 +76,23 @@
 				default: false
 			},
 		},
+		data(){
+			return {
+				modalShow: false,
+				modalState: 'normal1',
+				modalColor: 'bg-primary',
+				modalTitle: '',
+				modalButton: '',
+				modalMobileOptionState: ''
+			}
+		},
 		methods:{
+			modalOpen(){
+
+			},
+			modalTutup(){
+
+			},
 			checkClass(){
 				let className = '';
 				if(this.isOpposite){
