@@ -66,6 +66,9 @@ Vue.filter('dateMonth', function(value){
 Vue.filter('month', function(value){
     return window.moment(value).format('MMMM');
 });
+Vue.filter('year', function(value){
+    return window.moment(value).format('YYYY');
+});
 Vue.filter('checkStatus', function(value){
     if (value > 0) {
         return '<span class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>';

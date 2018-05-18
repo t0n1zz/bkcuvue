@@ -12,14 +12,14 @@
 
 					<div class="row">		
 						<div class="col-sm-3">
-							<widget-data
+							<div @click.prevent="modalBuka('Lelaki Biasa','l_biasa','currency',itemData.l_biasa,itemDataBefore.l_biasa,itemData.periode,itemDataBefore.periode,grafikData.data)" style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
 								title="lelaki biasa"
 								:itemData="itemData.l_biasa"
 								:itemDataBefore="itemDataBefore.l_biasa"
-								v-if="itemDataBefore"
-								@click.prevent="modalOpen()" 
-								style="cursor:pointer;"
 								></widget-data>
+							</div>
+							
 							<widget-data
 								title="lelaki biasa"
 								:itemData="itemData.l_biasa"
@@ -672,6 +672,84 @@
 			<template slot="modal-title">{{ modalTitle }}</template>
 
 			<template slot="modal-body1">
+				<div class="tabbable">
+					<ul class="nav nav-tabs nav-tabs-solid nav-justified">
+						<li :class="{'active' : modalDetail.tab == 'analisis'}"><a @click.prevent="modalDetail.tab = 'analisis'"><i class="icon-wave2 position-left"></i> Analisis</a></li>
+						<li :class="{'active' :  modalDetail.tab == 'tabel'}"><a @click.prevent="modalDetail.tab = 'tabel'"><i class="icon-list2 position-left"></i> Tabel</a></li>
+					</ul>
+				</div>
+
+				<!-- analisis -->
+				<div v-show="modalDetail.tab == 'analisis'">
+					<widget-data
+						:title="modalDetail.title"
+						:itemData="modalDetail.itemData"
+						:itemDataBefore="modalDetail.itemDataBefore"
+						></widget-data>	
+
+					<hr>
+
+					<div class="well well-sm border-top-lg border-top-blue">
+						<h6 v-html="modalDetail.analisis1"></h6>
+					</div>
+				</div>
+
+				<!-- tabel -->
+				<div v-show="modalDetail.tab == 'tabel'">
+					<div class="pre-scrollable">
+						<table class="table table-striped table-bordered">
+							<thead class="bg-primary">
+								<tr>
+									<th>Periode</th>
+									<th>Jumlah </th>
+									<th>Pertumbuhan</th>
+									<th>Pertumbuhan (%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-nowrap" v-for="grafik in modalDetail.grafikData" :class="{'info': Object.values(grafik)[0] == itemData.periode }">
+									<td>{{ Object.values(grafik)[0] | dateMonth }}</td>
+									<td>{{ Object.values(grafik)[1] | currency('',0,{ thousandsSeparator: '.'}) }}</td>
+									<td v-if="itemData.periode != Object.values(grafik)[0]" :class="{
+											'text-primary' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0,
+											'text-danger' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0}">
+										<i class="icon-chevron-up" v-if="countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0"></i>
+										<i class="icon-chevron-down" v-else-if="countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0"></i>	
+										{{ Math.abs(countTotal(modalDetail.itemData,Object.values(grafik)[1])) | currency('',0,{ thousandsSeparator: '.'}) }}
+									</td>
+									<td colspan="2" class="text-center" v-else>LAPORAN PERIODE INI</td>
+									<td v-if="itemData.periode != Object.values(grafik)[0]">
+										<span class="badge pull-right" :class="{
+											'badge-primary' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0,
+											'badge-danger' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0}">
+											<span v-if="countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0">+</span>
+											<span v-else-if="countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0">-</span>	
+											{{ Math.abs(countPercentage(modalDetail.itemData,Object.values(grafik)[1])) | currency('',2,{ thousandsSeparator: '.', decimalSeparator: ','}) }} %
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<hr>
+
+					<div class="alert bg-info alert-styled-left mt-10 pt-5 pb-5">
+						<span class="mb-5 text-semibold"><u>Bagaimana membaca tabel ini?</u></span>
+						<p>Kolom pertumbuhan adalah perbandingan nilai pada laporan periode ini dibandingan dengan periode lainnya sesuai pada tabel</p>
+					</div>
+				</div>
+
+				<hr>
+				
+				<div class="text-center hidden-xs">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
+						<i class="icon-cross"></i> Tutup
+					</button>
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data akun'" v-if="!modalDetail.isUbah">
+						<i class="icon-pencil5"></i> Ubah
+					</button>
+				</div>
 
 			</template>
 
@@ -681,6 +759,7 @@
 </template>
 
 <script>
+	import Vue from 'vue';
   import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import widgetData from './widgetLaporanCu';
@@ -704,6 +783,20 @@
 				modalSize: '',
 				modalColor: '',
 				modalButton: '',
+				modalDetail: {
+					id: '',
+					id_cu: '',
+					key: '',
+					title: '',
+					type:'',
+					itemData: '',
+					itemDataBefore: '',
+					grafikData: [],
+					form: [],
+					analisis1: '',
+					tab: 'analisis',
+					isUbah: false
+				}
 			}
 		},
 		created(){
@@ -746,15 +839,59 @@
 					this.$store.dispatch('laporanCu/detailTp',this.$route.params.id);
 				}
 			},
-			modalBuka(){
+			modalBuka(title,key,type,itemData,itemDataBefore,periode,periodeBefore,grafikData){
+				this.modalColor = 'bg-primary';
+				this.modalShow = true;
+				this.modalState = 'normal1'; 
+				this.modalTitle = 'Detail Akun ' + title;
 
+				this.modalDetail.tab = 'analisis';
+				this.modalDetail.title = title.toUpperCase();
+				this.modalDetail.type = type;
+				this.modalDetail.itemData = itemData;
+				this.modalDetail.itemDataBefore = itemDataBefore;
+
+				let selisih = itemData - itemDataBefore;
+				let keterangan = '';
+				let selisihView = this.formatCurrency(Math.abs(selisih))
+
+				this.modalDetail.grafikData = _.orderBy(_.map(grafikData, _.partialRight(_.pick, ['periode', 'l_biasa'])), ['periode'],['desc']);
+
+				if(selisih > 0){
+					keterangan = " mengalami <b>peningkatan</b> sebanyak <b>" + selisihView + "</b>";
+				}else if(selisih < 0){
+					keterangan =" mengalami <b>penurunan</b> sebanyak <b>" + selisihView + "</b>";
+				}else{
+					keterangan =" tidak mengalami perubahan "
+				}
+				
+				this.modalDetail.analisis1 = "Akun <b>" + title + "</b> sejumlah <b>" + this.formatCurrency(itemData) + '</b> periode ' + this.formatPeriode(periode) + keterangan + " dari periode " + this.formatPeriode(periodeBefore);
 			},
 			modalConfirmOk(){
 
 			},
 			modalTutup(){
-
+				this.modalShow = false;
 			},
+			formatPeriode(value){
+				return Vue.filter('month')(value) + ' ' + Vue.filter('year')(value);
+			},
+			formatCurrency(value){
+				return this.$options.filters.currency(value,'',0,{ thousandsSeparator: '.'});
+			},
+			formatPercentage(value){
+				return Vue.filter('percentage2')(value,2);
+			},
+			countTotal(value1,value2){
+				return value1 - value2;
+			},
+			countPercentage(value1,value2){
+				if(value2 > 0){
+					return this.formatPercentage((this.countTotal(value1,value2) / value2));
+				}else{
+					return this.formatPercentage('0');
+				}
+			}
 		},
 		computed: {
 			...mapGetters('user',{
