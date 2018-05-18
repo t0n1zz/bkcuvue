@@ -722,7 +722,6 @@
 			},
 			profileStat(value){
 				if(value == 'success'){
-
 				}
 			},
 			itemDataStat(value){
@@ -748,6 +747,9 @@
 				}
 			},
 			modalBuka(){
+
+			},
+			modalConfirmOk(){
 
 			},
 			modalTutup(){

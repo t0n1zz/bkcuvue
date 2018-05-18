@@ -111,7 +111,7 @@ export default {
 		},
 		detailDataStat(value){
 			if(value == 'success'){
-				this.fetch();
+				// this.fetch();
 			}
 		}
 	},
@@ -137,11 +137,9 @@ export default {
 				this.$store.dispatch(this.kelas + '/grafikTpPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
 			}else if(this.$route.meta.mode == 'detail'){
-				if(this.detailDataStat == 'success'){
-					this.resetParams('id');
-					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.detailData.id_cu]);
-					this.axisLabelKey = 'periode';
-				}
+				this.resetParams('id');
+				this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.detailData.id_cu]);
+				this.axisLabelKey = 'periode';
 			}else{
 				this.resetParams('cu.name');
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);

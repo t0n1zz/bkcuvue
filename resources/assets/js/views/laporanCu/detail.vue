@@ -47,6 +47,7 @@
 							:title="title"
 							:kelas="kelas"
 							:columnData="columnData"
+							v-if="itemDataStat == 'success'"
 							></infografis-data>
 						<detail-laporan-cu
 							:columnData="columnData"
