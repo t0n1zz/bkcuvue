@@ -12,7 +12,7 @@
 
 					<div class="row">		
 						<div class="col-sm-3">
-							<div @click.prevent="modalBuka('Lelaki Biasa', itemData.l_biasa, itemData.periode, itemDataBefore.l_biasa, itemDataBefore.periode, grafikData.data, [{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa}])" 
+							<div @click.prevent="modalBuka('Lelaki Biasa', 'l_biasa', itemData.l_biasa, itemData.periode, itemDataBefore.l_biasa, itemDataBefore.periode, grafikData.data, [{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa}])" 
 							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 								title="lelaki biasa"
@@ -21,7 +21,7 @@
 								></widget-data>
 							</div>
 							
-							<div @click.prevent="modalBuka('Lelaki Biasa', itemData.l_biasa, itemData.periode, '0', '', grafikData.data, [{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa}])" 
+							<div @click.prevent="modalBuka('Lelaki Biasa', 'l_biasa', itemData.l_biasa, itemData.periode, '0', '', grafikData.data, [{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa}])" 
 							style="cursor:pointer;" v-else>
 								<widget-data
 									title="lelaki biasa"
@@ -31,76 +31,106 @@
 							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="lelaki l.biasa"
-								:itemData="itemData.l_lbiasa"
-								:itemDataBefore="itemDataBefore.l_lbiasa"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="lelaki l.biasa"
-								:itemData="itemData.l_lbiasa"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Lelaki L.Biasa', 'l_lbiasa', itemData.l_lbiasa, itemData.periode, itemDataBefore.l_lbiasa, itemDataBefore.periode, grafikData.data, [{title:'Lelaki L.Biasa',key:'l_lbiasa',value:itemData.l_lbiasa}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="lelaki l.biasa"
+									:itemData="itemData.l_lbiasa"
+									:itemDataBefore="itemDataBefore.l_lbiasa"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Lelaki L.Biasa', 'l_lbiasa', itemData.l_lbiasa, itemData.periode, '0', '', grafikData.data, [{title:'Lelaki L.Biasa',key:'l_lbiasa',value:itemData.l_lbiasa}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="lelaki l.biasa"
+									:itemData="itemData.l_lbiasa"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="perempuan biasa"
-								:itemData="itemData.p_biasa"
-								:itemDataBefore="itemDataBefore.p_biasa"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="perempuan biasa"
-								:itemData="itemData.p_biasa"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Perempuan Biasa','p_biasa',  itemData.p_biasa, itemData.periode, itemDataBefore.p_biasa, itemDataBefore.periode, grafikData.data, [{title:'Perempuan Biasa',key:'p_biasa',value:itemData.p_biasa}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="perempuan biasa"
+									:itemData="itemData.p_biasa"
+									:itemDataBefore="itemDataBefore.p_biasa"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Perempuan Biasa','p_biasa',  itemData.p_biasa, itemData.periode, '0', '', grafikData.data, [{title:'Perempuan Biasa',key:'p_biasa',value:itemData.p_biasa}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="perempuan biasa"
+									:itemData="itemData.p_biasa"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="perempuan l.biasa"
-								:itemData="itemData.p_lbiasa"
-								:itemDataBefore="itemDataBefore.p_lbiasa"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="perempuan l.biasa"
-								:itemData="itemData.p_lbiasa"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Perempuan L.Biasa', 'p_lbiasa', itemData.p_lbiasa, itemData.periode, itemDataBefore.p_lbiasa, itemDataBefore.periode, grafikData.data, [{title:'Perempuan L.Biasa',key:'p_lbiasa',value:itemData.p_lbiasa}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="perempuan l.biasa"
+									:itemData="itemData.p_lbiasa"
+									:itemDataBefore="itemDataBefore.p_lbiasa"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Perempuan L.Biasa', 'p_lbiasa', itemData.p_lbiasa, itemData.periode, '0', '', grafikData.data, [{title:'Perempuan L.Biasa',key:'p_lbiasa',value:itemData.p_lbiasa}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="perempuan l.biasa"
+									:itemData="itemData.p_lbiasa"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 					<div class="row">		
 						<div class="col-sm-3">
-							<widget-data
-								title="total anggota"
-								:itemData="itemData.total_anggota"
-								:itemDataBefore="itemDataBefore.total_anggota"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="total anggota"
-								:itemData="itemData.total_anggota"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Total Anggota', 'total_anggota', itemData.total_anggota, itemData.periode, itemDataBefore.total_anggota, itemDataBefore.periode, grafikData.data, [
+								{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa},
+								{title:'Lelaki L.Biasa',key:'l_lbiasa',value:itemData.l_lbiasa},
+								{title:'Perempuan Biasa',key:'p_biasa',value:itemData.p_biasa},
+								{title:'Perempuan L.Biasa',key:'p_lbiasa',value:itemData.p_lbiasa}
+							])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="total anggota"
+									:itemData="itemData.total_anggota"
+									:itemDataBefore="itemDataBefore.total_anggota"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Total Anggota', 'total_anggota', itemData.total_anggota, itemData.periode, '0', '', grafikData.data, [
+								{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa},
+								{title:'Lelaki L.Biasa',key:'l_lbiasa',value:itemData.l_lbiasa},
+								{title:'Perempuan Biasa',key:'p_biasa',value:itemData.p_biasa},
+								{title:'Perempuan L.Biasa',key:'p_lbiasa',value:itemData.p_lbiasa}
+							])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="total anggota"
+									:itemData="itemData.total_anggota"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="total anggota lalu"
-								:itemData="itemData.total_anggota_lalu"
-								:itemDataBefore="itemDataBefore.total_anggota_lalu"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="total anggota lalu"
-								:itemData="itemData.total_anggota_lalu"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Total Anggota Lalu','total_anggota_lalu',  itemData.total_anggota_lalu, itemData.periode, itemDataBefore.total_anggota_lalu, itemDataBefore.periode, grafikData.data, [{title:'Total Anggota Lalu',key:'total_anggota_lalu',value:itemData.total_anggota_lalu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="total anggota lalu"
+									:itemData="itemData.total_anggota_lalu"
+									:itemDataBefore="itemDataBefore.total_anggota_lalu"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Total Anggota Lalu','total_anggota_lalu',  itemData.total_anggota_lalu, itemData.periode, '0', '', grafikData.data, [{title:'Total Anggota Lalu',key:'total_anggota_lalu',value:itemData.total_anggota_lalu}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="total anggota lalu"
+									:itemData="itemData.total_anggota_lalu"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 
@@ -118,90 +148,114 @@
 
 					<div class="row">	
 						<div class="col-sm-3">
-							<widget-data
-								title="aset"
-								:itemData="itemData.aset"
-								:itemDataBefore="itemDataBefore.aset"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="aset"
-								:itemData="itemData.aset"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Aset', 'aset', itemData.aset, itemData.periode, itemDataBefore.aset, itemDataBefore.periode, grafikData.data, [{title:'Aset',key:'aset',value:itemData.aset}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="aset"
+									:itemData="itemData.aset"
+									:itemDataBefore="itemDataBefore.aset"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Aset', 'aset', itemData.aset, itemData.periode, '0', '', grafikData.data, [{title:'Aset',key:'aset',value:itemData.aset}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="aset"
+									:itemData="itemData.aset"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="aset lalu"
-								:itemData="itemData.aset_lalu"
-								:itemDataBefore="itemDataBefore.aset_lalu"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="aset lalu"
-								:itemData="itemData.aset_lalu"
-								:itemDataBefore="''"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Aset Lalu', 'aset_lalu', itemData.aset_lalu, itemData.periode, itemDataBefore.aset_lalu, itemDataBefore.periode, grafikData.data, [{title:'Aset Lalu',key:'aset_lalu',value:itemData.aset_lalu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="aset lalu"
+									:itemData="itemData.aset_lalu"
+									:itemDataBefore="itemDataBefore.aset_lalu"
+									></widget-data>
+							</div>		
+							<div @click.prevent="modalBuka('Aset Lalu', 'aset_lalu', itemData.aset_lalu, itemData.periode, '0', '', grafikData.data, [{title:'Aset Lalu',key:'aset_lalu',value:itemData.aset_lalu}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="aset lalu"
+									:itemData="itemData.aset_lalu"
+									:itemDataBefore="''"
+									></widget-data>	
+							</div>	
 						</div>	
 						<div class="col-sm-3">
+							<div @click.prevent="modalBuka('Aset Masalah', 'aset_masalah', itemData.aset_masalah, itemData.periode, itemDataBefore.aset_masalah, itemDataBefore.periode, grafikData.data, [{title:'Aset Masalah',key:'aset_masalah',value:itemData.aset_masalah}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 									title="aset masalah"
 									:itemData="itemData.aset_masalah"
 									:itemDataBefore="itemDataBefore.aset_masalah"
-									v-if="itemDataBefore"
 									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Aset Masalah', 'aset_masalah', itemData.aset_masalah, itemData.periode, '0', '', grafikData.data, [{title:'Aset Masalah',key:'aset_masalah',value:itemData.aset_masalah}])" 
+							style="cursor:pointer;" v-else>	
 								<widget-data
 									title="aset masalah"
 									:itemData="itemData.aset_masalah"
 									:itemDataBefore="'0'"
-									v-else
 									></widget-data>	
+							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="aset tidak menghasilkan"
-								:itemData="itemData.aset_tidak_menghasilkan"
-								:itemDataBefore="itemDataBefore.aset_tidak_menghasilkan"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="aset tidak menghasilkan"
-								:itemData="itemData.aset_tidak_menghasilkan"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Aset Tidak Menghasilkan', 'aset_tidak_menghasilkan', itemData.aset_tidak_menghasilkan, itemData.periode, itemDataBefore.aset_tidak_menghasilkan, itemDataBefore.periode, grafikData.data, [{title:'Aset Tidak Menghasilkan',key:'aset_tidak_menghasilkan',value:itemData.aset_tidak_menghasilkan}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="aset tidak menghasilkan"
+									:itemData="itemData.aset_tidak_menghasilkan"
+									:itemDataBefore="itemDataBefore.aset_tidak_menghasilkan"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Aset Tidak Menghasilkan', 'aset_tidak_menghasilkan', itemData.aset_tidak_menghasilkan, itemData.periode, '0', '', grafikData.data, [{title:'Aset Tidak Menghasilkan',key:'aset_tidak_menghasilkan',value:itemData.aset_tidak_menghasilkan}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="aset tidak menghasilkan"
+									:itemData="itemData.aset_tidak_menghasilkan"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-3">
-							<widget-data
-								title="aktiva lancar"
-								:itemData="itemData.aktiva_lancar"
-								:itemDataBefore="itemDataBefore.aktiva_lancar"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="aktiva lancar"
-								:itemData="itemData.aktiva_lancar"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Aktiva Lancar', 'aktiva_lancar', itemData.aktiva_lancar, itemData.periode, itemDataBefore.aktiva_lancar, itemDataBefore.periode, grafikData.data, [{title:'Aktiva Lancar',key:'aktiva_lancar',value:itemData.aktiva_lancar}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="aktiva lancar"
+									:itemData="itemData.aktiva_lancar"
+									:itemDataBefore="itemDataBefore.aktiva_lancar"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Aktiva Lancar', 'aktiva_lancar', itemData.aktiva_lancar, itemData.periode, '0', '', grafikData.data, [{title:'Aktiva Lancar',key:'aktiva_lancar',value:itemData.aktiva_lancar}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="aktiva lancar"
+									:itemData="itemData.aktiva_lancar"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="rata-rata aset"
-								:itemData="itemData.rata_aset"
-								:itemDataBefore="itemDataBefore.rata_aset"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="rata-rata aset"
-								:itemData="itemData.rata_aset"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Rata-rata Aset', 'rata_aset', itemData.rata_aset, itemData.periode, itemDataBefore.rata_aset, itemDataBefore.periode, grafikData.data, [{title:'Rata-rata Aset',key:'rata_aset',value:itemData.rata_aset}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="rata-rata aset"
+									:itemData="itemData.rata_aset"
+									:itemDataBefore="itemDataBefore.rata_aset"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Rata-rata Aset', 'rata_aset', itemData.rata_aset, itemData.periode, '0', '', grafikData.data, [{title:'Rata-rata Aset',key:'rata_aset',value:itemData.rata_aset}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="rata-rata aset"
+									:itemData="itemData.rata_aset"
+									:itemDataBefore="'0'"
+									></widget-data>
+							</div>		
 						</div>
 					</div>
 
@@ -219,230 +273,309 @@
 
 					<div class="row">		
 						<div class="col-sm-3">
-							<widget-data
-								title="simp. saham"
-								:itemData="itemData.simpanan_saham"
-								:itemDataBefore="itemDataBefore.simpanan_saham"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="simp. saham"
-								:itemData="itemData.simpanan_saham"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Simp. Saham', 'simpanan_saham', itemData.simpanan_saham, itemData.periode, itemDataBefore.simpanan_saham, itemDataBefore.periode, grafikData.data, [{title:'Simp. Saham',key:'simpanan_saham',value:itemData.simpanan_saham}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="simp. saham"
+									:itemData="itemData.simpanan_saham"
+									:itemDataBefore="itemDataBefore.simpanan_saham"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Simp. Saham', 'simpanan_saham', itemData.simpanan_saham, itemData.periode, '0', '', grafikData.data, [{title:'Simp. Saham',key:'simpanan_saham',value:itemData.simpanan_saham}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="simp. saham"
+									:itemData="itemData.simpanan_saham"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
+							<div @click.prevent="modalBuka('Simp. Saham Lalu', 'simpanan_saham_lalu', itemData.simpanan_saham_lalu, itemData.periode, itemDataBefore.simpanan_saham_lalu, itemDataBefore.periode, grafikData.data, [{title:'Simp. Saham Lalu',key:'simpanan_saham_lalu',value:itemData.simpanan_saham_lalu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 									title="simp. saham lalu"
 									:itemData="itemData.simpanan_saham_lalu"
 									:itemDataBefore="itemDataBefore.simpanan_saham_lalu"
-									v-if="itemDataBefore"
 									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Simp. Saham Lalu', 'simpanan_saham_lalu', itemData.simpanan_saham_lalu, itemData.periode, '0', '', grafikData.data, [{title:'Simp. Saham Lalu',key:'simpanan_saham_lalu',value:itemData.simpanan_saham_lalu}])" 
+							style="cursor:pointer;" v-else>	
 								<widget-data
 									title="simp. saham lalu"
 									:itemData="itemData.simpanan_saham_lalu"
 									:itemDataBefore="'0'"
-									v-else
 									></widget-data>	
+							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="simp. saham des"
-								:itemData="itemData.simpanan_saham_des"
-								:itemDataBefore="itemDataBefore.simpanan_saham_des"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="simp. saham des"
-								:itemData="itemData.simpanan_saham_des"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Simp. Saham Des', 'simpanan_saham_des', itemData.simpanan_saham_des, itemData.periode, itemDataBefore.simpanan_saham_des, itemDataBefore.periode, grafikData.data, [{title:'Simp. Saham Des',key:'simpanan_saham_des',value:itemData.simpanan_saham_des}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="simp. saham des"
+									:itemData="itemData.simpanan_saham_des"
+									:itemDataBefore="itemDataBefore.simpanan_saham_des"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Simp. Saham Des', 'simpanan_saham_des', itemData.simpanan_saham_des, itemData.periode, '0', '', grafikData.data, [{title:'Simp. Saham Des',key:'simpanan_saham_des',value:itemData.simpanan_saham_des}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="simp. saham des"
+									:itemData="itemData.simpanan_saham_des"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="simp. nonsaham unggulan"
-								:itemData="itemData.nonsaham_unggulan"
-								:itemDataBefore="itemDataBefore.nonsaham_unggulan"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="simp. nonsaham unggulan"
-								:itemData="itemData.nonsaham_unggulan"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Simp. Nonsaham Unggulan', 'nonsaham_unggulan', itemData.nonsaham_unggulan, itemData.periode, itemDataBefore.nonsaham_unggulan, itemDataBefore.periode, grafikData.data, [{title:'Simp. Nonsaham Unggulan',key:'nonsaham_unggulan',value:itemData.nonsaham_unggulan}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="simp. nonsaham unggulan"
+									:itemData="itemData.nonsaham_unggulan"
+									:itemDataBefore="itemDataBefore.nonsaham_unggulan"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Simp. Nonsaham Unggulan', 'nonsaham_unggulan', itemData.nonsaham_unggulan, itemData.periode, '0', '', grafikData.data, [{title:'Simp. Nonsaham Unggulan',key:'nonsaham_unggulan',value:itemData.nonsaham_unggulan}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="simp. nonsaham unggulan"
+									:itemData="itemData.nonsaham_unggulan"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>	
 					<div class="row">	
 						<div class="col-sm-3">
-							<widget-data
-								title="simp. nonsaham harian"
-								:itemData="itemData.nonsaham_harian"
-								:itemDataBefore="itemDataBefore.nonsaham_harian"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="simp. nonsaham harian"
-								:itemData="itemData.nonsaham_harian"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Simp. Nonsaham Harian', 'nonsaham_harian', itemData.nonsaham_harian, itemData.periode, itemDataBefore.nonsaham_harian, itemDataBefore.periode, grafikData.data, [{title:'Simp. Nonsaham Harian',key:'nonsaham_harian',value:itemData.nonsaham_harian}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="simp. nonsaham harian"
+									:itemData="itemData.nonsaham_harian"
+									:itemDataBefore="itemDataBefore.nonsaham_harian"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Simp. Nonsaham Harian', 'nonsaham_harian', itemData.nonsaham_harian, itemData.periode, '0', '', grafikData.data, [{title:'Simp. Nonsaham Harian',key:'nonsaham_harian',value:itemData.nonsaham_harian}])" 
+							style="cursor:pointer;" v-else>		
+								<widget-data
+									title="simp. nonsaham harian"
+									:itemData="itemData.nonsaham_harian"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>	
 						<div class="col-sm-3">
-							<widget-data
-								title="hutang spd"
-								:itemData="itemData.hutang_spd"
-								:itemDataBefore="itemDataBefore.hutang_spd"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="hutang spd"
-								:itemData="itemData.hutang_spd"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Hutang SPD', 'hutang_spd', itemData.hutang_spd, itemData.periode, itemDataBefore.hutang_spd, itemDataBefore.periode, grafikData.data, [{title:'Hutang SPD',key:'hutang_spd',value:itemData.hutang_spd}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="hutang spd"
+									:itemData="itemData.hutang_spd"
+									:itemDataBefore="itemDataBefore.hutang_spd"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Hutang SPD', 'hutang_spd', itemData.hutang_spd, itemData.periode, '0', '', grafikData.data, [{title:'Hutang SPD',key:'hutang_spd',value:itemData.hutang_spd}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="hutang spd"
+									:itemData="itemData.hutang_spd"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="hutang tidak berbiaya"
-								:itemData="itemData.hutang_tidak_berbiaya_30hari"
-								:itemDataBefore="itemDataBefore.hutang_tidak_berbiaya_30hari"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="hutang tidak berbiaya"
-								:itemData="itemData.hutang_tidak_berbiaya_30hari"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Hutang Tidak Berbiaya', 'hutang_tidak_berbiaya_30hari', itemData.hutang_tidak_berbiaya_30hari, itemData.periode, itemDataBefore.hutang_tidak_berbiaya_30hari, itemDataBefore.periode, grafikData.data, [{title:'Hutang Tidak Berbiaya',key:'hutang_tidak_berbiaya_30hari',value:itemData.hutang_tidak_berbiaya_30hari}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="hutang tidak berbiaya"
+									:itemData="itemData.hutang_tidak_berbiaya_30hari"
+									:itemDataBefore="itemDataBefore.hutang_tidak_berbiaya_30hari"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Hutang Tidak Berbiaya', 'hutang_tidak_berbiaya_30hari', itemData.hutang_tidak_berbiaya_30hari, itemData.periode, '0','', grafikData.data, [{title:'Hutang Tidak Berbiaya',key:'hutang_tidak_berbiaya_30hari',value:itemData.hutang_tidak_berbiaya_30hari}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="hutang tidak berbiaya"
+									:itemData="itemData.hutang_tidak_berbiaya_30hari"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="total hutang pihak ke-3"
-								:itemData="itemData.total_hutang_pihak3"
-								:itemDataBefore="itemDataBefore.total_hutang_pihak3"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="total hutang pihak ke-3"
-								:itemData="itemData.total_hutang_pihak3"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Total Hutang Pihak Ke-3', 'total_hutang_pihak3', itemData.total_hutang_pihak3, itemData.periode, itemDataBefore.total_hutang_pihak3, itemDataBefore.periode, grafikData.data, [{title:'Total Hutang Pihak Ke-3',key:'total_hutang_pihak3',value:itemData.total_hutang_pihak3}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="total hutang pihak ke-3"
+									:itemData="itemData.total_hutang_pihak3"
+									:itemDataBefore="itemDataBefore.total_hutang_pihak3"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Total Hutang Pihak Ke-3', 'total_hutang_pihak3', itemData.total_hutang_pihak3, itemData.periode, '0', '', grafikData.data, [{title:'Total Hutang Pihak Ke-3',key:'total_hutang_pihak3',value:itemData.total_hutang_pihak3}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="total hutang pihak ke-3"
+									:itemData="itemData.total_hutang_pihak3"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 					<div class="row">	
 						<div class="col-sm-3">
-							<widget-data
-								title="piutang beredar"
-								:itemData="itemData.piutang_beredar"
-								:itemDataBefore="itemDataBefore.piutang_beredar"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="piutang beredar"
-								:itemData="itemData.piutang_beredar"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Piutang Beredar', 'piutang_beredar', itemData.piutang_beredar, itemData.periode, itemDataBefore.piutang_beredar, itemDataBefore.periode, grafikData.data, [{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="piutang beredar"
+									:itemData="itemData.piutang_beredar"
+									:itemDataBefore="itemDataBefore.piutang_beredar"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Piutang Beredar', 'piutang_beredar', itemData.piutang_beredar, itemData.periode, '0', '', grafikData.data, [{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="piutang beredar"
+									:itemData="itemData.piutang_beredar"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>	
 						<div class="col-sm-3">
+							<div @click.prevent="modalBuka('Piutang Bersih', 'piutang_bersih', itemData.piutang_bersih, itemData.periode, itemDataBefore.piutang_bersih, itemDataBefore.periode, grafikData.data, [{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar},
+							{title:'Piutang Lalai 1-12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan},{title:'Piutang Lalai > 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan}
+							])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 									title="piutang bersih"
 									:itemData="itemData.piutang_bersih"
 									:itemDataBefore="itemDataBefore.piutang_bersih"
-									v-if="itemDataBefore"
 									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Piutang Bersih', 'piutang_bersih', itemData.piutang_bersih, itemData.periode, '0', '', grafikData.data, [{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar},
+							{title:'Piutang Lalai 1-12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan},{title:'Piutang Lalai > 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan}
+							])" 
+							style="cursor:pointer;" v-else>	
 								<widget-data
 									title="piutang bersih"
 									:itemData="itemData.piutang_bersih"
 									:itemDataBefore="'0'"
-									v-else
 									></widget-data>	
+							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="piutang anggota"
-								:itemData="itemData.piutang_anggota"
-								:itemDataBefore="itemDataBefore.piutang_anggota"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="piutang anggota"
-								:itemData="itemData.piutang_anggota"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Piutang Anggota', 'piutang_anggota', itemData.piutang_anggota, itemData.periode, itemDataBefore.piutang_anggota, itemDataBefore.periode, grafikData.data, [{title:'Piutang Anggota',key:'piutang_anggota',value:itemData.piutang_anggota}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="piutang anggota"
+									:itemData="itemData.piutang_anggota"
+									:itemDataBefore="itemDataBefore.piutang_anggota"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Piutang Anggota', 'piutang_anggota', itemData.piutang_anggota, itemData.periode, itemDataBefore.piutang_anggota, itemDataBefore.periode, grafikData.data, [{title:'Piutang Anggota',key:'piutang_anggota',value:itemData.piutang_anggota}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="piutang anggota"
+									:itemData="itemData.piutang_anggota"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="piutang lalai 1-12 bulan"
-								:itemData="itemData.piutang_lalai_1bulan"
-								:itemDataBefore="itemDataBefore.piutang_lalai_1bulan"
-								:isOpposite="true"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="piutang lalai 1-12 bulan"
-								:itemData="itemData.piutang_lalai_1bulan"
-								:itemDataBefore="'0'"
-								:isOpposite="true"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Piutang Lalai 1-12 Bulan', 'piutang_lalai_1bulan', itemData.piutang_lalai_1bulan, itemData.periode, itemDataBefore.piutang_lalai_1bulan, itemDataBefore.periode, grafikData.data, [{title:'Piutang Lalai 1-12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan}], 'currency', true)" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="piutang lalai 1-12 bulan"
+									:itemData="itemData.piutang_lalai_1bulan"
+									:itemDataBefore="itemDataBefore.piutang_lalai_1bulan"
+									:isOpposite="true"
+									></widget-data>
+							</div>		
+							<div @click.prevent="modalBuka('Piutang Lalai 1-12 Bulan', 'piutang_lalai_1bulan', itemData.piutang_lalai_1bulan, itemData.periode, '0', '', grafikData.data, [{title:'Piutang Lalai 1-12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan}], 'currency', true)" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="piutang lalai 1-12 bulan"
+									:itemData="itemData.piutang_lalai_1bulan"
+									:itemDataBefore="'0'"
+									:isOpposite="true"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 					<div class="row">		
 						<div class="col-sm-3">
-							<widget-data
-								title="piutang lalai > 12 bulan"
-								:itemData="itemData.piutang_lalai_12bulan"
-								:itemDataBefore="itemDataBefore.piutang_lalai_12bulan"
-								:isOpposite="true"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="piutang lalai > 12 bulan"
-								:itemData="itemData.piutang_lalai_12bulan"
-								:itemDataBefore="'0'"
-								:isOpposite="true"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Piutang Lalai > 12 Bulan', 'piutang_lalai_12bulan', itemData.piutang_lalai_12bulan, itemData.periode, itemDataBefore.piutang_lalai_12bulan, itemDataBefore.periode, grafikData.data, [{title:'Piutang Lalai > 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan}], 'currency', true)" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="piutang lalai > 12 bulan"
+									:itemData="itemData.piutang_lalai_12bulan"
+									:itemDataBefore="itemDataBefore.piutang_lalai_12bulan"
+									:isOpposite="true"
+									v-if="itemDataBefore"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Piutang Lalai > 12 Bulan', 'piutang_lalai_12bulan', itemData.piutang_lalai_12bulan, itemData.periode, '0', '', grafikData.data, [{title:'Piutang Lalai > 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan}], 'currency', true)" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="piutang lalai > 12 bulan"
+									:itemData="itemData.piutang_lalai_12bulan"
+									:itemDataBefore="'0'"
+									:isOpposite="true"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
+							<div @click.prevent="modalBuka('Rasio Piutang Beredar', 'rasio_beredar', itemData.rasio_beredar, itemData.periode, itemDataBefore.rasio_beredar, itemDataBefore.periode, grafikData.data, [
+							{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar},
+							{title:'Aset',key:'aset',value:itemData.aset}
+							],'percent')" 
+							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 									title="rasio piutang beredar"
 									:itemData="itemData.rasio_beredar"
 									:itemDataBefore="itemDataBefore.rasio_beredar"
 									:isPercent="true"
-									v-if="itemDataBefore"
 									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Rasio Piutang Beredar', 'rasio_beredar', itemData.rasio_beredar, itemData.periode, '0', '', grafikData.data, [
+							{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar},
+							{title:'Aset',key:'aset',value:itemData.aset}
+							],'percent')" 
+							style="cursor:pointer;" v-else>		
 								<widget-data
 									title="rasio piutang beredar"
 									:itemData="itemData.rasio_beredar"
 									:itemDataBefore="'0'"
 									:isPercent="true"
-									v-else
 									></widget-data>	
+							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="rasio piutang lalai"
-								:itemData="itemData.rasio_lalai"
-								:itemDataBefore="itemDataBefore.rasio_lalai"
-								:isPercent="true"
-								:isOpposite="true"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="rasio piutang lalai"
-								:itemData="itemData.rasio_lalai"
-								:itemDataBefore="'0'"
-								:isPercent="true"
-								:isOpposite="true"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Rasio Piutang Lalai', 'rasio_lalai', itemData.rasio_lalai, itemData.periode, itemDataBefore.rasio_lalai, itemDataBefore.periode, grafikData.data, [
+							{title:'Piutang Lalai 1-12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan},
+							{title:'Piutang Lalai > 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan},
+							{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar}
+							],'percent',true)" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="rasio piutang lalai"
+									:itemData="itemData.rasio_lalai"
+									:itemDataBefore="itemDataBefore.rasio_lalai"
+									:isPercent="true"
+									:isOpposite="true"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Rasio Piutang Lalai', 'rasio_lalai', itemData.rasio_lalai, itemData.periode, '0', '', grafikData.data, [
+							{title:'Piutang Lalai 1-12 Bulan',key:'piutang_lalai_1bulan',value:itemData.piutang_lalai_1bulan},
+							{title:'Piutang Lalai > 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan},
+							{title:'Piutang Beredar',key:'piutang_beredar',value:itemData.piutang_beredar}
+							],'percent',true)" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="rasio piutang lalai"
+									:itemData="itemData.rasio_lalai"
+									:itemDataBefore="'0'"
+									:isPercent="true"
+									:isOpposite="true"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 
@@ -460,104 +593,134 @@
 
 					<div class="row">	
 						<div class="col-sm-3">
-							<widget-data
-								title="dcr"
-								:itemData="itemData.dcr"
-								:itemDataBefore="itemDataBefore.dcr"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="dcr"
-								:itemData="itemData.dcr"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('DCR', 'dcr', itemData.dcr, itemData.periode, itemDataBefore.dcr, itemDataBefore.periode, grafikData.data, [{title:'DCR',key:'dcr',value:itemData.dcr}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="dcr"
+									:itemData="itemData.dcr"
+									:itemDataBefore="itemDataBefore.dcr"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('DCR', 'dcr', itemData.dcr, itemData.periode, '0', '', grafikData.data, [{title:'DCR',key:'dcr',value:itemData.dcr}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="dcr"
+									:itemData="itemData.dcr"
+									:itemDataBefore="'0'"
+									></widget-data>
+							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="dcu"
-								:itemData="itemData.dcu"
-								:itemDataBefore="itemDataBefore.dcu"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="dcu"
-								:itemData="itemData.dcu"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('DCU', 'dcu', itemData.dcu, itemData.periode, itemDataBefore.dcu, itemDataBefore.periode, grafikData.data, [{title:'DCU',key:'dcu',value:itemData.dcu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="dcu"
+									:itemData="itemData.dcu"
+									:itemDataBefore="itemDataBefore.dcu"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('DCU', 'dcu', itemData.dcu, itemData.periode, '0', '', grafikData.data, [{title:'DCU',key:'dcu',value:itemData.dcu}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="dcu"
+									:itemData="itemData.dcu"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>	
 						<div class="col-sm-3">
-							<widget-data
-								title="iuran gedung"
-								:itemData="itemData.iuran_gedung"
-								:itemDataBefore="itemDataBefore.iuran_gedung"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="iuran gedung"
-								:itemData="itemData.iuran_gedung"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Iuran Gedung', 'iuran_gedung', itemData.iuran_gedung, itemData.periode, itemDataBefore.iuran_gedung, itemDataBefore.periode, grafikData.data, [{title:'Iuran Gedung',key:'iuran_gedung',value:itemData.iuran_gedung}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="iuran gedung"
+									:itemData="itemData.iuran_gedung"
+									:itemDataBefore="itemDataBefore.iuran_gedung"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Iuran Gedung', 'iuran_gedung', itemData.iuran_gedung, itemData.periode, '0', '', grafikData.data, [{title:'Iuran Gedung',key:'iuran_gedung',value:itemData.iuran_gedung}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="iuran gedung"
+									:itemData="itemData.iuran_gedung"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="donasi"
-								:itemData="itemData.donasi"
-								:itemDataBefore="itemDataBefore.donasi"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="donasi"
-								:itemData="itemData.donasi"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Donasi', 'donasi', itemData.donasi, itemData.periode, itemDataBefore.donasi, itemDataBefore.periode, grafikData.data, [{title:'Donasi',key:'donasi',value:itemData.donasi}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="donasi"
+									:itemData="itemData.donasi"
+									:itemDataBefore="itemDataBefore.donasi"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Donasi', 'donasi', itemData.donasi, itemData.periode, '0', '', grafikData.data, [{title:'Donasi',key:'donasi',value:itemData.donasi}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="donasi"
+									:itemData="itemData.donasi"
+									:itemDataBefore="'0'"
+									></widget-data>
+							</div>		
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-3">
-							<widget-data
-								title="bjs saham"
-								:itemData="itemData.bjs_saham"
-								:itemDataBefore="itemDataBefore.bjs_saham"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="bjs saham"
-								:itemData="itemData.bjs_saham"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('BJS Saham', 'bjs_saham', itemData.bjs_saham, itemData.periode, itemDataBefore.bjs_saham, itemDataBefore.periode, grafikData.data, [{title:'BJS Saham',key:'bjs_saham',value:itemData.bjs_saham}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="bjs saham"
+									:itemData="itemData.bjs_saham"
+									:itemDataBefore="itemDataBefore.bjs_saham"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('BJS Saham', 'bjs_saham', itemData.bjs_saham, itemData.periode, '0', '', grafikData.data, [{title:'BJS Saham',key:'bjs_saham',value:itemData.bjs_saham}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="bjs saham"
+									:itemData="itemData.bjs_saham"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="beban penyisihan dcr"
-								:itemData="itemData.beban_penyisihan_dcr"
-								:itemDataBefore="itemDataBefore.beban_penyisihan_dcr"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="beban penyisihan dcr"
-								:itemData="itemData.beban_penyisihan_dcr"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Beban Penyisihan DCR', 'beban_penyisihan_dcr', itemData.beban_penyisihan_dcr, itemData.periode, itemDataBefore.beban_penyisihan_dcr, itemDataBefore.periode, grafikData.data, [{title:'Beban Penyisihan DCR',key:'beban_penyisihan_dcr',value:itemData.beban_penyisihan_dcr}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="beban penyisihan dcr"
+									:itemData="itemData.beban_penyisihan_dcr"
+									:itemDataBefore="itemDataBefore.beban_penyisihan_dcr"
+									v-if="itemDataBefore"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Beban Penyisihan DCR', 'beban_penyisihan_dcr', itemData.beban_penyisihan_dcr, itemData.periode, '0', '', grafikData.data, [{title:'Beban Penyisihan DCR',key:'beban_penyisihan_dcr',value:itemData.beban_penyisihan_dcr}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="beban penyisihan dcr"
+									:itemData="itemData.beban_penyisihan_dcr"
+									:itemDataBefore="'0'"
+									></widget-data>
+							</div>		
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="investasi likuid"
-								:itemData="itemData.investasi_likuid"
-								:itemDataBefore="itemDataBefore.investasi_likuid"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="investasi likuid"
-								:itemData="itemData.investasi_likuid"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Investasi Likuid', 'investasi_likuid', itemData.investasi_likuid, itemData.periode, itemDataBefore.investasi_likuid, itemDataBefore.periode, grafikData.data, [{title:'Investasi Likuid',key:'investasi_likuid',value:itemData.investasi_likuid}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="investasi likuid"
+									:itemData="itemData.investasi_likuid"
+									:itemDataBefore="itemDataBefore.investasi_likuid"
+									v-if="itemDataBefore"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Investasi Likuid', 'investasi_likuid', itemData.investasi_likuid, itemData.periode, '0', '', grafikData.data, [{title:'Investasi Likuid',key:'investasi_likuid',value:itemData.investasi_likuid}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="investasi likuid"
+									:itemData="itemData.investasi_likuid"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 
@@ -575,94 +738,120 @@
 
 					<div class="row">		
 						<div class="col-sm-3">
-							<widget-data
-								title="total pendapatan"
-								:itemData="itemData.total_pendapatan"
-								:itemDataBefore="itemDataBefore.total_pendapatan"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="total pendapatan"
-								:itemData="itemData.total_pendapatan"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Total Pendapatan', 'total_pendapatan', itemData.total_pendapatan, itemData.periode, itemDataBefore.total_pendapatan, itemDataBefore.periode, grafikData.data, [{title:'Total Pendapatan',key:'total_pendapatan',value:itemData.total_pendapatan}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="total pendapatan"
+									:itemData="itemData.total_pendapatan"
+									:itemDataBefore="itemDataBefore.total_pendapatan"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Total Pendapatan', 'total_pendapatan', itemData.total_pendapatan, itemData.periode, '0', '', grafikData.data, [{title:'Total Pendapatan',key:'total_pendapatan',value:itemData.total_pendapatan}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="total pendapatan"
+									:itemData="itemData.total_pendapatan"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="total biaya"
-								:itemData="itemData.total_biaya"
-								:itemDataBefore="itemDataBefore.total_biaya"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="total biaya"
-								:itemData="itemData.total_biaya"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Total Biaya', 'total_biaya', itemData.total_biaya, itemData.periode, itemDataBefore.total_biaya, itemDataBefore.periode, grafikData.data, [{title:'Total Biaya',key:'total_biaya',value:itemData.total_biaya}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="total biaya"
+									:itemData="itemData.total_biaya"
+									:itemDataBefore="itemDataBefore.total_biaya"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('Total Biaya', 'total_biaya', itemData.total_biaya, itemData.periode, '0', '', grafikData.data, [{title:'Total Biaya',key:'total_biaya',value:itemData.total_biaya}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="total biaya"
+									:itemData="itemData.total_biaya"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="shu"
-								:itemData="itemData.shu"
-								:itemDataBefore="itemDataBefore.shu"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="shu"
-								:itemData="itemData.shu"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('SHU', 'shu', itemData.shu, itemData.periode, itemDataBefore.shu, itemDataBefore.periode, grafikData.data, [{title:'SHU',key:'shu',value:itemData.shu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="shu"
+									:itemData="itemData.shu"
+									:itemDataBefore="itemDataBefore.shu"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('SHU', 'shu', itemData.shu, itemData.periode, '0', '', grafikData.data, [{title:'SHU',key:'shu',value:itemData.shu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="shu"
+									:itemData="itemData.shu"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="shu lalu"
-								:itemData="itemData.shu_lalu"
-								:itemDataBefore="itemDataBefore.shu_lalu"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="shu lalu"
-								:itemData="itemData.shu_lalu"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('SHU Lalu', 'shu_lalu', itemData.shu_lalu, itemData.periode, itemDataBefore.shu_lalu, itemDataBefore.periode, grafikData.data, [{title:'SHU Lalu',key:'shu_lalu',value:itemData.shu_lalu}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="shu lalu"
+									:itemData="itemData.shu_lalu"
+									:itemDataBefore="itemDataBefore.shu_lalu"
+									></widget-data>
+							</div>	
+							<div @click.prevent="modalBuka('SHU Lalu', 'shu_lalu', itemData.shu_lalu, itemData.periode, '0', '', grafikData.data, [{title:'SHU Lalu',key:'shu_lalu',value:itemData.shu_lalu}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="shu lalu"
+									:itemData="itemData.shu_lalu"
+									:itemDataBefore="'0'"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 					<div class="row">			
 						<div class="col-sm-3">
-							<widget-data
-								title="laju inflasi"
-								:itemData="itemData.laju_inflasi"
-								:itemDataBefore="itemDataBefore.laju_inflasi"
-								:isPercent="true"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="laju inflasi"
-								:itemData="itemData.laju_inflasi"
-								:itemDataBefore="'0'"
-								:isPercent="true"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Laju Inflasi', 'laju_inflasi', itemData.laju_inflasi, itemData.periode, itemDataBefore.laju_inflasi, itemDataBefore.periode, grafikData.data, [{title:'Laju Inflasi',key:'laju_inflasi',value:itemData.laju_inflasi}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="laju inflasi"
+									:itemData="itemData.laju_inflasi"
+									:itemDataBefore="itemDataBefore.laju_inflasi"
+									:isPercent="true"
+									v-if="itemDataBefore"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Laju Inflasi', 'laju_inflasi', itemData.laju_inflasi, itemData.periode, '0', '', grafikData.data, [{title:'Laju Inflasi',key:'laju_inflasi',value:itemData.laju_inflasi}])" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="laju inflasi"
+									:itemData="itemData.laju_inflasi"
+									:itemDataBefore="'0'"
+									:isPercent="true"
+									></widget-data>	
+							</div>	
 						</div>
 						<div class="col-sm-3">
-							<widget-data
-								title="harga pasar"
-								:itemData="itemData.harga_pasar"
-								:itemDataBefore="itemDataBefore.harga_pasar"
-								:isPercent="true"
-								v-if="itemDataBefore"
-								></widget-data>
-							<widget-data
-								title="harga pasar"
-								:itemData="itemData.harga_pasar"
-								:itemDataBefore="'0'"
-								:isPercent="true"
-								v-else
-								></widget-data>	
+							<div @click.prevent="modalBuka('Harga Pasar', 'harga_pasar', itemData.harga_pasar, itemData.periode, itemDataBefore.harga_pasar, itemDataBefore.periode, grafikData.data, [{title:'Harga Pasar',key:'harga_pasar',value:itemData.harga_pasar}],'percent')" 
+							style="cursor:pointer;" v-if="itemDataBefore">
+								<widget-data
+									title="harga pasar"
+									:itemData="itemData.harga_pasar"
+									:itemDataBefore="itemDataBefore.harga_pasar"
+									:isPercent="true"
+									v-if="itemDataBefore"
+									></widget-data>
+							</div>
+							<div @click.prevent="modalBuka('Harga Pasar', 'harga_pasar', itemData.harga_pasar, itemData.periode, '0', '', grafikData.data, [{title:'Harga Pasar',key:'harga_pasar',value:itemData.harga_pasar}],'percent')" 
+							style="cursor:pointer;" v-else>	
+								<widget-data
+									title="harga pasar"
+									:itemData="itemData.harga_pasar"
+									:itemDataBefore="'0'"
+									:isPercent="true"
+									></widget-data>	
+							</div>	
 						</div>
 					</div>
 				</div>		
@@ -677,7 +866,7 @@
 			<template slot="modal-body1">
 				<form @submit.prevent="save" data-vv-scope="form">
 				<div class="tabbable">
-					<ul class="nav nav-tabs nav-tabs-solid nav-justified">
+					<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
 						<li :class="{'active' : modalDetail.tab == 'analisis'}"><a @click.prevent="modalDetail.tab = 'analisis'"><i class="icon-wave2 position-left"></i> Analisis</a></li>
 						<li :class="{'active' :  modalDetail.tab == 'tabel'}"><a @click.prevent="modalDetail.tab = 'tabel'"><i class="icon-list2 position-left"></i> Tabel</a></li>
 					</ul>
@@ -689,9 +878,9 @@
 						:title="modalDetail.title"
 						:itemData="modalDetail.itemData"
 						:itemDataBefore="modalDetail.itemDataBefore"
+						:isPercent="modalDetail.isPercent"
+						:isOpposite="modalDetail.isOpposite"
 						></widget-data>	
-
-					<hr>
 
 					<div class="well well-sm border-top-lg border-top-blue">
 						<h6 v-html="modalDetail.analisis1"></h6>
@@ -707,22 +896,29 @@
 									<th>Periode</th>
 									<th>Jumlah </th>
 									<th>Pertumbuhan</th>
-									<th>Pertumbuhan (%)</th>
+									<th v-if="!modalDetail.isPercent">Pertumbuhan (%)</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="text-nowrap" v-for="grafik in modalDetail.grafikData" :class="{'info': Object.values(grafik)[0] == itemData.periode }">
 									<td>{{ Object.values(grafik)[0] | dateMonth }}</td>
-									<td>{{ Object.values(grafik)[1] | currency('',0,{ thousandsSeparator: '.'}) }}</td>
+									<td v-if="modalDetail.isPercent">{{ Object.values(grafik)[1] | percentage(2) }}</td>
+									<td v-else>{{ Object.values(grafik)[1] | currency('',0,{ thousandsSeparator: '.'}) }}</td>
 									<td v-if="itemData.periode != Object.values(grafik)[0]" :class="{
 											'text-primary' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0,
 											'text-danger' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0}">
 										<i class="icon-chevron-up" v-if="countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0"></i>
 										<i class="icon-chevron-down" v-else-if="countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0"></i>	
-										{{ Math.abs(countTotal(modalDetail.itemData,Object.values(grafik)[1])) | currency('',0,{ thousandsSeparator: '.'}) }}
+										<span v-if="modalDetail.isPercent">
+											{{ Math.abs(countTotal(modalDetail.itemData,Object.values(grafik)[1])) | percentage(2) }}
+										</span>
+										<span v-else>
+											{{ Math.abs(countTotal(modalDetail.itemData,Object.values(grafik)[1])) | currency('',0,{ thousandsSeparator: '.'}) }}
+										</span>
+										
 									</td>
 									<td colspan="2" class="text-center" v-else>LAPORAN PERIODE INI</td>
-									<td v-if="itemData.periode != Object.values(grafik)[0]">
+									<td v-if="itemData.periode != Object.values(grafik)[0] && !modalDetail.isPercent">
 										<span class="badge pull-right" :class="{
 											'badge-primary' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) > 0,
 											'badge-danger' : countTotal(modalDetail.itemData,Object.values(grafik)[1]) < 0}">
@@ -747,7 +943,7 @@
 				<!-- ubah -->
 				<div v-if="modalDetail.isUbah" class="row">
 					<hr>
-					<div class="col-sm-6" v-if="form.title" v-for="form in modalDetail.form">
+					<div class="col-sm-12" v-if="form.title" v-for="form in modalDetail.form">
 						<div class="form-group">
 							<h5>{{form.title}}</h5>
 							<cleave 
@@ -842,7 +1038,9 @@
 					form: [],
 					analisis1: '',
 					tab: 'analisis',
-					isUbah: false
+					isUbah: false,
+					isOpposite: false,
+					isPercent: false,
 				},
 				form: [],
 				cleaveOption: {
@@ -919,7 +1117,7 @@
 				
 				this.$store.dispatch('laporanCu/update', [this.modalDetail.id,this.form]);
 			},
-			modalBuka(title, itemData, periode, itemDataBefore,  periodeBefore, grafikData, form, type = 'currency'){
+			modalBuka(title, key, itemData, periode, itemDataBefore,  periodeBefore, grafikData, form, type = 'currency', isOpposite = false){
 				// modal attribute
 				this.modalColor = 'bg-primary';
 				this.modalShow = true;
@@ -931,6 +1129,14 @@
 				this.modalDetail.type = type;
 				this.modalDetail.itemData = itemData;
 				this.modalDetail.itemDataBefore = itemDataBefore;
+				this.modalDetail.isUbah = false;
+				this.modalDetail.isOpposite = isOpposite;
+				
+				if(type != 'currency'){
+					this.modalDetail.isPercent = true;
+				}else{
+					this.modalDetail.isPercent = false;
+				}
 
 				// analisis view
 				let selisih = itemData - itemDataBefore;
@@ -947,13 +1153,13 @@
 
 				let formatedPeriodeBefore = '';
 				if(periodeBefore != ''){
-					formatedPeriodeBefore = " dari periode " . formatPeriode(periodeBefore);
+					formatedPeriodeBefore = " dari periode " + this.formatPeriode(periodeBefore);
 				}
 				
 				this.modalDetail.analisis1 = "Akun " + title + " sejumlah " + this.formatCurrency(itemData) + ' periode ' + this.formatPeriode(periode) + keterangan + formatedPeriodeBefore;
 
 				// table view
-				this.modalDetail.grafikData = _.orderBy(_.map(grafikData, _.partialRight(_.pick, ['periode', 'l_biasa'])), ['periode'],['desc']);
+				this.modalDetail.grafikData = _.orderBy(_.map(grafikData, _.partialRight(_.pick, ['periode', key])), ['periode'],['desc']);
 
 				// ubah view
 				this.modalDetail.id = this.itemData.id;
