@@ -941,16 +941,26 @@
 				</div>
 
 				<!-- ubah -->
-				<div v-if="modalDetail.isUbah" class="row">
+				<div v-if="modalDetail.isUbah">
 					<hr>
-					<div class="col-sm-12" v-if="form.title" v-for="form in modalDetail.form">
-						<div class="form-group">
-							<h5>{{form.title}}</h5>
-							<cleave 
-								v-model="form.value" 
-								class="form-control" 
-								:options="cleaveOption.numeric"
-								:placeholder="'Silahkan masukkan ' + form.title"></cleave>
+					<div v-if="modalDetail.canUbah">
+						<div class="well well-sm border-top-lg border-top-warning">
+							<div v-if="form.title" v-for="form in modalDetail.form">
+								<div class="form-group">
+									<h5>{{form.title}}</h5>
+									<cleave 
+										v-model="form.value" 
+										class="form-control" 
+										:options="cleaveOption.numeric"
+										:placeholder="'Silahkan masukkan ' + form.title"></cleave>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div v-else>
+						<div class="alert bg-warning alert-styled-left mt-10 pt-5 pb-5">
+							<span class="mb-5 text-semibold"><u>Maaf tidak bisa mengubah data disini.</u></span>
+							<p>Laporan berikut merupakan laporan konsolidasi dari beberapa data laporan TP pada periode ini, untuk melakukan pengubahan data silahkan buka laporan TP pada periode ini.</p>
 						</div>
 					</div>
 				</div>
@@ -961,21 +971,21 @@
 					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
 						<i class="icon-cross"></i> Tutup
 					</button>
-					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah">
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 
 					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-default" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah">
 						<i class="icon-arrow-left13"></i> Batal
 					</button>
-					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah">
+					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas] && modalDetail.canUbah">
 						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 				</div>
 
 				<div class="visible-xs">
 
-					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas] && modalDetail.canUbah">
 						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 
@@ -1040,6 +1050,7 @@
 					isUbah: false,
 					isOpposite: false,
 					isPercent: false,
+					canUbah: true,
 				},
 				form: [],
 				cleaveOption: {
@@ -1174,7 +1185,13 @@
 				if(this.itemData.id_tp){
 					this.modalDetail.id_tp = this.itemData.id_tp;
 					this.modalDetail.no_tp = this.itemData.no_tp;
+					this.modalDetail.canUbah = true;
 				}else{
+					if(this.itemData.tp){
+						this.modalDetail.canUbah = false;
+					}else{
+						this.modalDetail.canUbah = true;
+					}
 					this.modalDetail.id_cu = this.itemData.id_cu;
 					this.modalDetail.no_ba = this.itemData.cu.no_ba;
 				}
