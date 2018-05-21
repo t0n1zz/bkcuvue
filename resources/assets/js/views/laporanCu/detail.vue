@@ -50,6 +50,7 @@
 							v-if="itemDataStat == 'success'"
 							></infografis-data>
 						<detail-laporan-cu
+							:kelas="kelas"
 							:columnData="columnData"
 							></detail-laporan-cu>
 					</div>

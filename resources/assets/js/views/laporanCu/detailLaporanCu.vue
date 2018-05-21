@@ -12,7 +12,8 @@
 
 					<div class="row">		
 						<div class="col-sm-3">
-							<div @click.prevent="modalBuka('Lelaki Biasa','l_biasa','currency',itemData.l_biasa,itemDataBefore.l_biasa,itemData.periode,itemDataBefore.periode,grafikData.data)" style="cursor:pointer;" v-if="itemDataBefore">
+							<div @click.prevent="modalBuka('Lelaki Biasa', itemData.l_biasa, itemData.periode, itemDataBefore.l_biasa, itemDataBefore.periode, grafikData.data, [{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa}])" 
+							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 								title="lelaki biasa"
 								:itemData="itemData.l_biasa"
@@ -20,12 +21,14 @@
 								></widget-data>
 							</div>
 							
-							<widget-data
-								title="lelaki biasa"
-								:itemData="itemData.l_biasa"
-								:itemDataBefore="'0'"
-								v-else
-								></widget-data>
+							<div @click.prevent="modalBuka('Lelaki Biasa', itemData.l_biasa, itemData.periode, '0', '', grafikData.data, [{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa}])" 
+							style="cursor:pointer;" v-else>
+								<widget-data
+									title="lelaki biasa"
+									:itemData="itemData.l_biasa"
+									:itemDataBefore="'0'"
+									></widget-data>
+							</div>		
 						</div>
 						<div class="col-sm-3">
 							<widget-data
@@ -668,10 +671,11 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<template slot="modal-title">{{ modalTitle }}</template>
 
 			<template slot="modal-body1">
+				<form @submit.prevent="save" data-vv-scope="form">
 				<div class="tabbable">
 					<ul class="nav nav-tabs nav-tabs-solid nav-justified">
 						<li :class="{'active' : modalDetail.tab == 'analisis'}"><a @click.prevent="modalDetail.tab = 'analisis'"><i class="icon-wave2 position-left"></i> Analisis</a></li>
@@ -740,17 +744,59 @@
 					</div>
 				</div>
 
+				<!-- ubah -->
+				<div v-if="modalDetail.isUbah" class="row">
+					<hr>
+					<div class="col-sm-6" v-if="form.title" v-for="form in modalDetail.form">
+						<div class="form-group">
+							<h5>{{form.title}}</h5>
+							<cleave 
+								v-model="form.value" 
+								class="form-control" 
+								:options="cleaveOption.numeric"
+								:placeholder="'Silahkan masukkan ' + form.title"></cleave>
+						</div>
+					</div>
+				</div>
+
 				<hr>
 				
 				<div class="text-center hidden-xs">
 					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
 						<i class="icon-cross"></i> Tutup
 					</button>
-					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data akun'" v-if="!modalDetail.isUbah">
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah">
 						<i class="icon-pencil5"></i> Ubah
+					</button>
+
+					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-default" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah">
+						<i class="icon-arrow-left13"></i> Batal
+					</button>
+					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah">
+						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 				</div>
 
+				<div class="visible-xs">
+
+					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+						<i class="icon-floppy-disk"></i> Simpan
+					</button>
+
+					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-default btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+						<i class="icon-arrow-left13"></i> Batal
+					</button>
+
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+						<i class="icon-pencil5"></i> Ubah
+					</button>
+
+					<button type="button" @click.prevent="modalTutup" class="btn btn-default btn-block" v-tooltip:top="'Tutup'">
+						<i class="icon-cross"></i> Tutup
+					</button>
+					
+				</div>
+				</form>
 			</template>
 
 		</app-modal>
@@ -764,12 +810,14 @@
 	import { mapGetters } from 'vuex';
 	import widgetData from './widgetLaporanCu';
 	import appModal from '../../components/modal';
+	import Cleave from 'vue-cleave-component';
 	export default {
 		components:{
 			widgetData,
-			appModal
+			appModal,
+			Cleave
 		},
-		props:['kelas','path','columnData'],
+		props:['kelas','columnData'],
 		data(){
 			return {
 				idCu: '',
@@ -786,7 +834,6 @@
 				modalDetail: {
 					id: '',
 					id_cu: '',
-					key: '',
 					title: '',
 					type:'',
 					itemData: '',
@@ -796,7 +843,17 @@
 					analisis1: '',
 					tab: 'analisis',
 					isUbah: false
-				}
+				},
+				form: [],
+				cleaveOption: {
+          numeric: {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand',
+            numeralDecimalScale: 2,
+            numeralDecimalMark: ',',
+            delimiter: '.'
+          }
+				},
 			}
 		},
 		created(){
@@ -829,6 +886,21 @@
 						return o.periode < periodeNow;
 					});
 				}
+			},
+			// when updating data
+      updateStat(value) {
+				this.modalState = value;
+				this.modalButton = 'Ok';
+				
+				if(value === "success"){
+					this.modalTitle = this.updateMessage.message;
+					this.modalContent = '';
+					this.fetch();
+				}else if(value === "fail"){
+					this.modalContent = this.updateMessage;
+				}else{
+					this.modalContent = '';
+				}
 			}
     },
 		methods: {
@@ -839,7 +911,16 @@
 					this.$store.dispatch('laporanCu/detailTp',this.$route.params.id);
 				}
 			},
-			modalBuka(title,key,type,itemData,itemDataBefore,periode,periodeBefore,grafikData){
+			save(){
+				this.form = _.chain(this.modalDetail.form).keyBy('key').mapValues('value').value();
+				this.form.id_cu = this.modalDetail.id_cu;
+				this.form.no_ba = this.modalDetail.no_ba;
+				this.form.periode = this.modalDetail.periode;
+				
+				this.$store.dispatch('laporanCu/update', [this.modalDetail.id,this.form]);
+			},
+			modalBuka(title, itemData, periode, itemDataBefore,  periodeBefore, grafikData, form, type = 'currency'){
+				// modal attribute
 				this.modalColor = 'bg-primary';
 				this.modalShow = true;
 				this.modalState = 'normal1'; 
@@ -851,24 +932,35 @@
 				this.modalDetail.itemData = itemData;
 				this.modalDetail.itemDataBefore = itemDataBefore;
 
+				// analisis view
 				let selisih = itemData - itemDataBefore;
 				let keterangan = '';
-				let selisihView = this.formatCurrency(Math.abs(selisih))
-
-				this.modalDetail.grafikData = _.orderBy(_.map(grafikData, _.partialRight(_.pick, ['periode', 'l_biasa'])), ['periode'],['desc']);
+				let selisihView = this.formatCurrency(Math.abs(selisih));
 
 				if(selisih > 0){
-					keterangan = " mengalami <b>peningkatan</b> sebanyak <b>" + selisihView + "</b>";
+					keterangan = " mengalami peningkatan sebanyak " + selisihView;
 				}else if(selisih < 0){
-					keterangan =" mengalami <b>penurunan</b> sebanyak <b>" + selisihView + "</b>";
+					keterangan =" mengalami penurunan sebanyak " + selisihView;
 				}else{
 					keterangan =" tidak mengalami perubahan "
 				}
-				
-				this.modalDetail.analisis1 = "Akun <b>" + title + "</b> sejumlah <b>" + this.formatCurrency(itemData) + '</b> periode ' + this.formatPeriode(periode) + keterangan + " dari periode " + this.formatPeriode(periodeBefore);
-			},
-			modalConfirmOk(){
 
+				let formatedPeriodeBefore = '';
+				if(periodeBefore != ''){
+					formatedPeriodeBefore = " dari periode " . formatPeriode(periodeBefore);
+				}
+				
+				this.modalDetail.analisis1 = "Akun " + title + " sejumlah " + this.formatCurrency(itemData) + ' periode ' + this.formatPeriode(periode) + keterangan + formatedPeriodeBefore;
+
+				// table view
+				this.modalDetail.grafikData = _.orderBy(_.map(grafikData, _.partialRight(_.pick, ['periode', 'l_biasa'])), ['periode'],['desc']);
+
+				// ubah view
+				this.modalDetail.id = this.itemData.id;
+				this.modalDetail.id_cu = this.itemData.id_cu;
+				this.modalDetail.no_ba = this.itemData.cu.no_ba;
+				this.modalDetail.periode = periode;
+				this.modalDetail.form = form;
 			},
 			modalTutup(){
 				this.modalShow = false;
@@ -905,6 +997,8 @@
 				grafikDataStat: 'grafikStat',
 				modelPeriode: 'periode',
 				modelPeriodeStat: 'periodeStat',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
 			}),
 			...mapGetters('laporanTp',{
 				modelTp: 'dataS',
@@ -913,8 +1007,6 @@
 			...mapGetters('cu',{
 				modelCU: 'dataS',
 				modelCUStat: 'dataStatS',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
 			}),
 		}
 	}

@@ -1,4 +1,3 @@
-
 <template>
 	<div class="login-container">
 		<!-- Page container -->
