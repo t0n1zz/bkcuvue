@@ -783,7 +783,7 @@
 									></widget-data>
 							</div>	
 							<div @click.prevent="modalBuka('SHU', 'shu', itemData.shu, itemData.periode, '0', '', grafikData.data, [{title:'SHU',key:'shu',value:itemData.shu}])" 
-							style="cursor:pointer;" v-if="itemDataBefore">
+							style="cursor:pointer;" v-else>
 								<widget-data
 									title="shu"
 									:itemData="itemData.shu"
@@ -1029,7 +1029,6 @@
 				modalButton: '',
 				modalDetail: {
 					id: '',
-					id_cu: '',
 					title: '',
 					type:'',
 					itemData: '',
@@ -1111,11 +1110,19 @@
 			},
 			save(){
 				this.form = _.chain(this.modalDetail.form).keyBy('key').mapValues('value').value();
-				this.form.id_cu = this.modalDetail.id_cu;
-				this.form.no_ba = this.modalDetail.no_ba;
+
 				this.form.periode = this.modalDetail.periode;
-				
-				this.$store.dispatch('laporanCu/update', [this.modalDetail.id,this.form]);
+				if(this.itemData.id_tp){
+					this.form.id_tp = this.modalDetail.id_tp;
+					this.form.no_tp = this.modalDetail.no_tp;
+					this.form.id_cu = this.itemData.tp.cu.id;
+					this.form.no_ba = this.itemData.tp.cu.no_ba;
+					this.$store.dispatch('laporanCu/updateTp', [this.modalDetail.id,this.form]);
+				}else{
+					this.form.id_cu = this.modalDetail.id_cu;
+					this.form.no_ba = this.modalDetail.no_ba;
+					this.$store.dispatch('laporanCu/update', [this.modalDetail.id,this.form]);
+				}	
 			},
 			modalBuka(title, key, itemData, periode, itemDataBefore,  periodeBefore, grafikData, form, type = 'currency', isOpposite = false){
 				// modal attribute
@@ -1163,8 +1170,15 @@
 
 				// ubah view
 				this.modalDetail.id = this.itemData.id;
-				this.modalDetail.id_cu = this.itemData.id_cu;
-				this.modalDetail.no_ba = this.itemData.cu.no_ba;
+				
+				if(this.itemData.id_tp){
+					this.modalDetail.id_tp = this.itemData.id_tp;
+					this.modalDetail.no_tp = this.itemData.no_tp;
+				}else{
+					this.modalDetail.id_cu = this.itemData.id_cu;
+					this.modalDetail.no_ba = this.itemData.cu.no_ba;
+				}
+				
 				this.modalDetail.periode = periode;
 				this.modalDetail.form = form;
 			},

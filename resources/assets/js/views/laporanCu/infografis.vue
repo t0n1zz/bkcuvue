@@ -13,7 +13,7 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
-		v-if="this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'detail'"
+		v-if="this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'detail' || this.$route.meta.mode == 'detailTp'"
 		></line-chart>
 	<bar-chart
 		:titleText="titleText"
@@ -104,6 +104,8 @@ export default {
 					this.titleText = 'Grafik Laporan Semua TP Periode' + this.formatPeriode(this.$route.params.periode);
 				}else if(this.$route.meta.mode == 'detail'){
 					this.titleText = 'Grafik Laporan konsolidasi CU ' + this.itemData.data[0].cu.name;
+				}else if(this.$route.meta.mode == 'detailTp'){
+					this.titleText = 'Grafik Laporan ' + this.itemData.data[0].tp.name;
 				}else{
 					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
@@ -139,6 +141,10 @@ export default {
 			}else if(this.$route.meta.mode == 'detail'){
 				this.resetParams('id');
 				this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.detailData.id_cu]);
+				this.axisLabelKey = 'periode';
+			}else if(this.$route.meta.mode == 'detailTp'){
+				this.resetParams('id');
+				this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.detailData.id_tp]);
 				this.axisLabelKey = 'periode';
 			}else{
 				this.resetParams('cu.name');

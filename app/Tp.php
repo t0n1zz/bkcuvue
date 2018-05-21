@@ -38,9 +38,9 @@ class Tp extends Model {
         ];
     }
         
-    public function CU()
+    public function Cu()
     {
-        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
     }
 
     public function LaporanTp()
