@@ -56,7 +56,16 @@
 					</div>
 
 					<div v-show="tabName == 'analisisPearls'" v-if="isPearls">
-
+						<infografis-pearls-data
+							:title="titlePearls"
+							:kelas="kelas"
+							:columnData="columnDataPearls"
+							v-if="itemPearlsStat == 'success'"
+							></infografis-pearls-data>
+						<detail-pearls
+							:kelas="kelas"
+							:columnData="columnData"
+							></detail-pearls>	
 					</div>
 
 					<div v-show="tabName == 'diskusi'" v-if="isDiskusi">
@@ -82,6 +91,7 @@
 	import message from "../../components/message.vue";
 	import selectData from "./selectDetail.vue";
 	import detailLaporanCu from "./detailLaporanCu.vue";
+	import detailPearls from "./detailPearls.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 
@@ -91,6 +101,7 @@
 			message,
 			selectData,
 			detailLaporanCu,
+			detailPearls,
 			infografisData,
 			infografisPearlsData
 		},
@@ -127,6 +138,9 @@
 		methods:{
 			changeTab(value){
 				this.tabName = value;
+				if(value == 'analisisPearls' && !this.isPearls){
+					this.isPearls = true;
+				}
 				if(value == 'diskusi' && !this.isDiskusi){
 					this.isDiskusi = true;
 				}

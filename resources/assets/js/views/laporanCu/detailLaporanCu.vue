@@ -1125,7 +1125,7 @@
 				this.form.periode = this.modalDetail.periode;
 				if(this.itemData.id_tp){
 					this.form.id_tp = this.modalDetail.id_tp;
-					this.form.no_tp = this.modalDetail.no_tp;
+					this.form.no_tp = this.modalDetailpr.no_tp;
 					this.form.id_cu = this.itemData.tp.cu.id;
 					this.form.no_ba = this.itemData.tp.cu.no_ba;
 					this.$store.dispatch('laporanCu/updateTp', [this.modalDetail.id,this.form]);

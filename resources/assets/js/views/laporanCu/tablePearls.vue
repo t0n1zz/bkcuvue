@@ -96,73 +96,79 @@
 					<td v-if="!columnData[7].hide" @click.prevent="modelKatexOpen(props.item,'p1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'p1'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'p2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'p2'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[9].hide" @click.prevent="modelKatexOpen(props.item,'e1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e1'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[10].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e5'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[11].hide" @click.prevent="modelKatexOpen(props.item,'e6')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e6'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e9'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a1'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a2'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r7'"
-							:props="props"
+							:props="props.item"
+						></item-pearls>	
+					</td>
+					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'r9')" style="cursor:pointer;">
+						<item-pearls
+							:type="'r9'"
+							:props="props.item"
 						></item-pearls>	
 					</td>
 					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'l1'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s10'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s11'"
-							:props="props"
+							:props="props.item"
 						></item-pearls>
 					</td>
 					<td v-if="!columnData[19].hide">
@@ -229,7 +235,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'p1'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -242,7 +248,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'p2'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -255,7 +261,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'e1'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -268,7 +274,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'e5'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -281,7 +287,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'e6'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -294,7 +300,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'e9'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -307,7 +313,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'a1'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -320,7 +326,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'a2'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -333,7 +339,20 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'r7'"
-										:props="props"
+										:props="props.item"
+									></item-pearls>
+								</td>
+							</tr>
+
+							<!--r9 -->
+							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
+								<td colspan="2"><b v-html="columnData[16].title"></b></td>
+							</tr>
+							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id" @click.prevent="modelKatexOpen(props.item,'r9')">
+								<td colspan="2">
+									<item-pearls
+										:type="'r9'"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -346,7 +365,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'l1'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -359,7 +378,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'s10'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -372,7 +391,7 @@
 								<td colspan="2">
 									<item-pearls
 										:type="'s11'"
-										:props="props"
+										:props="props.item"
 									></item-pearls>
 								</td>
 							</tr>
@@ -647,6 +666,16 @@
 						isChartSelect: false,
 					},
 					{
+						title: 'R9 (= 5%)',
+						key: 'r9',
+						excelType: 'number',
+						sort: true,
+						hide: false,
+						disable: false,
+						isChart: true,
+						isChartSelect: false,
+					},
+					{
 						title: 'L1 (15% - 20%)',
 						key: 'l1',
 						excelType: 'number',
@@ -854,7 +883,7 @@
 				this.modalKatex.id_cu = itemData.id_cu;
 				// p1	
 				if(type == 'p1'){
-					this.modalTitle = 'P1 - Provisi Pinjaman Lalai Di Atas 12 Bulan';
+					this.modalTitle = 'P1 - Provisi pinjaman lalai di atas 12 bulan';
 
 					this.modalKatex.form.push(
 						{title:'Cadangan Resiko',key:'dcr',value:itemData.dcr},
@@ -896,7 +925,7 @@
 
 				// e1
 				}else if(type == 'e1'){
-					this.modalTitle = 'E1 - Piutang Bersih / Total Aset';
+					this.modalTitle = 'E1 - Piutang bersih / total aset';
 
 					if(itemData.p1 >= 1 && itemData.p2 > 0.35){
 						this.modalKatex.form.push(
@@ -937,7 +966,7 @@
 				
 				// e5
 				}else if(type == 'e5'){
-					this.modalTitle = 'E5 - Simpanan Non Saham / Total Aset';
+					this.modalTitle = 'E5 - Simpanan non saham / total aset';
 
 					this.modalKatex.form.push(
 						{title:'Simpanan Non Saham Unggulan',key:'nonsaham_unggulan',value:itemData.nonsaham_unggulan},
@@ -956,7 +985,7 @@
 				
 				// e6
 				}else if(type == 'e6'){
-					this.modalTitle = 'E6 - Pinjaman Kepada Pihak Luar Terhadap Total Aset';
+					this.modalTitle = 'E6 - Pinjaman kepada pihak luar terhadap total aset';
 
 					this.modalKatex.form.push(
 						{title:'Total Hutang Pihak Ke-3',key:'total_hutang_pihak3',value:itemData.total_hutang_pihak3},
@@ -974,7 +1003,7 @@
 
 				// e9
 				}else if(type == 'e9'){
-					this.modalTitle = 'E9 - Modal Lembaga Bersih';
+					this.modalTitle = 'E9 - Modal lembaga bersih';
 
 					this.modalKatex.form.push(
 						{title:'Cadangan Resiko',key:'dcr',value:itemData.dcr},
@@ -999,7 +1028,7 @@
 				
 				// a1
 				}else if(type == 'a1'){
-					this.modalTitle = 'A1 - Total Pinjaman Lalai / Total Pinjaman Beredar';
+					this.modalTitle = 'A1 - Total pinjaman lalai / total pinjaman beredar';
 
 					this.modalKatex.form.push(
 						{title:'Piutang Lalai Di Atas 12 Bulan',key:'piutang_lalai_12bulan',value:itemData.piutang_lalai_12bulan},
@@ -1018,7 +1047,7 @@
 
 				// a2	
 				}else if(type == 'a2'){
-					this.modalTitle = 'A2 - Aset yang tidak menghasilkan / Total Aset';
+					this.modalTitle = 'A2 - Aset yang tidak menghasilkan / total aset';
 
 					this.modalKatex.form.push(
 						{title:'Aset Tidak Menghasilkan',key:'aset_tidak_menghasilkan',value:itemData.aset_tidak_menghasilkan},
@@ -1036,7 +1065,7 @@
 				
 				// r7
 				}else if(type == 'r7'){
-					this.modalTitle = 'R7 - BJS Saham terhadap rata-rata aset';
+					this.modalTitle = 'R7 - BJS saham terhadap rata-rata aset';
 
 					this.modalKatex.form.push(
 						{title:'BJS Saham',key:'bjs_saham',value:itemData.bjs_saham},
@@ -1076,7 +1105,7 @@
 					
 				//r9	
 				}else if(type == 'r9'){
-					this.modalTitle = 'R9 - Biaya Operasional Terhadap Rata-rata Aset';
+					this.modalTitle = 'R9 - Biaya operasional terhadap rata-rata aset';
 
 					this.modalKatex.form.push(
 						{title:'Total Biaya',key:'total_biaya',value:itemData.total_biaya},
@@ -1089,14 +1118,14 @@
 
 					let katex1Content1 = '\\text{R9} = \\dfrac{\\text{Beban Operasional}(\\text{'+ this.modalKatex.form[0].title +'} - \\text{'+ this.modalKatex.form[1].title +'})}{\\text{Rata-rata Aset}(\\frac{\\text{'+ this.modalKatex.form[2].title +'} - \\text{'+ this.modalKatex.form[3].title +'}}{\\text{2}})} \\times \\text{100} \\% = \\text{5} \\% (\\text{IDEAL})';
 
-					let katex2Content1 = '\\text{R9} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{\\frac{\\text{'+ this.formatCurrency(this.modalKatex.form[2].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[3].value) +'}}{\\text{2}}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) +' \\% ( \\text{'+ (itemData.r9 == 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					let katex2Content1 = '\\text{R9} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{\\frac{\\text{'+ this.formatCurrency(this.modalKatex.form[2].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[3].value) +'}}{\\text{2}}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.r9) +' \\% ( \\text{'+ (itemData.r9 == 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
 					
 					this.modalKatex.katex1.push({title:'',content:katex1Content1});
 					this.modalKatex.katex2.push({title:'',content:katex2Content1});
 				
 				//l1
 				}else if(type == 'l1'){
-					this.modalTitle = 'L1 - (Investasi Likuid + Aset-aset Likuid - Hutang Jangka Pendek < 30 Hari) / Simpanan Non Saham';
+					this.modalTitle = 'L1 - (investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / simpanan non saham';
 
 					this.modalKatex.form.push(
 						{title:'Investasi Likuid',key:'investasi_likuid',value:itemData.investasi_likuid},
@@ -1116,7 +1145,7 @@
 
 				//s10	
 				}else if(type == 's10'){
-					this.modalTitle = 'S10 - Pertumbuhan Anggota';
+					this.modalTitle = 'S10 - Pertumbuhan anggota';
 
 					this.modalKatex.form.push(
 						{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa},
@@ -1138,7 +1167,7 @@
 				
 				//s11
 				}else if(type == 's11'){
-					this.modalTitle = 'S11 - Pertumbuhan Aset';
+					this.modalTitle = 'S11 - Pertumbuhan aset';
 
 					this.modalKatex.form.push(
 						{title:'Aset',key:'aset',value:itemData.aset},

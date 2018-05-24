@@ -1205,7 +1205,6 @@ export const laporanCu = {
     },
 
     // detail
-    // edit page
     detail( {commit}, id ){
       commit('setDataStat', 'loading');
       
@@ -1219,7 +1218,19 @@ export const laporanCu = {
           commit('setDataStat', 'fail');
         });
     },
-    //edit tp
+    detailPearls( {commit}, id ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanCuAPI.detailPearls( id )
+        .then( function( response ){
+          commit('setPearls', response.data.model);
+          commit('setPearlsStat', 'success');
+        })
+        .catch(error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
+        });
+    },
     detailTp( {commit}, id ){
       commit('setDataStat', 'loading');
       
@@ -1231,6 +1242,19 @@ export const laporanCu = {
         .catch(error => {
           commit('setData', error.response);
           commit('setDataStat', 'fail');
+        });
+    },
+    detailPearlsTp( {commit}, id ){
+      commit('setPearlsStat', 'loading');
+      
+      laporanTpAPI.detailPearls( id )
+        .then( function( response ){
+          commit('setPearls', response.data.model);
+          commit('setPearlsStat', 'success');
+        })
+        .catch(error => {
+          commit('setPearls', error.response);
+          commit('setPearlsStat', 'fail');
         });
     },
 

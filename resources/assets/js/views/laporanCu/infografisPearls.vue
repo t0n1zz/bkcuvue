@@ -13,7 +13,7 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
-		v-if="this.$route.meta.mode == 'cu'"
+		v-if="this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'detail' || this.$route.meta.mode == 'detailTp'"
 		></line-chart>
 	<bar-chart
 		:titleText="titleText"
@@ -108,6 +108,11 @@ export default {
 					}	
 				}else if(this.$route.meta.mode == 'cuPeriode'){
 					this.titleText = 'Grafik Laporan Pearls Semua TP Periode' + this.formatPeriode(this.$route.params.periode);
+				}else if(this.$route.meta.mode == 'detail'){
+					this.titleText = 'Grafik Laporan Pearls CU ' + this.itemData.data[0].cu.name;
+				}else if(this.$route.meta.mode == 'detailTp'){
+					console.log(this.itemData);
+					this.titleText = 'Grafik Laporan Pearls ' + this.itemData.data[0].tp.name;
 				}else{
 					this.titleText = 'Grafik Laporan Pearls Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
@@ -138,6 +143,14 @@ export default {
 				this.resetParams('tp.name');
 				this.$store.dispatch(this.kelas + '/grafikPearlsTpPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
+			}else if(this.$route.meta.mode == 'detail'){
+				this.resetParams('id');
+				this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.params,this.detailData.id_cu]);
+				this.axisLabelKey = 'periode';
+			}else if(this.$route.meta.mode == 'detailTp'){
+				this.resetParams('id');
+				this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.params,this.detailData.id_tp]);
+				this.axisLabelKey = 'periode';	
 			}else{
 				this.resetParams('cu.name');
 				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.params,this.$route.params.periode]);
@@ -169,6 +182,8 @@ export default {
 	},
 	computed: {
 		...mapGetters('laporanCu',{
+			detailData:'pearls',
+			detailDataStat: 'pearlsStat',
 			itemData: 'grafikPearls',
 			itemDataStat: 'grafikPearlsStat'
 		}),

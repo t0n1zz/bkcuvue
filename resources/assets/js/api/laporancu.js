@@ -38,6 +38,10 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/laporanCu/detail/' + id);
   },
 
+  detailPearls: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/laporanCu/detailPearls/' + id);
+  },
+
   create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/laporanCu/create');
   },

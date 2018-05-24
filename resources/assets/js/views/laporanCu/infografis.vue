@@ -105,15 +105,11 @@ export default {
 				}else if(this.$route.meta.mode == 'detail'){
 					this.titleText = 'Grafik Laporan konsolidasi CU ' + this.itemData.data[0].cu.name;
 				}else if(this.$route.meta.mode == 'detailTp'){
+					console.log(this.itemData);
 					this.titleText = 'Grafik Laporan ' + this.itemData.data[0].tp.name;
 				}else{
 					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
-			}
-		},
-		detailDataStat(value){
-			if(value == 'success'){
-				// this.fetch();
 			}
 		}
 	},
@@ -176,7 +172,7 @@ export default {
 	},
 	computed: {
 		...mapGetters('laporanCu',{
-			detailData: 'data',
+			detailData:'data',
 			detailDataStat: 'dataStat',
 			itemData: 'grafik',
 			itemDataStat: 'grafikStat'
