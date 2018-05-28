@@ -5,9 +5,10 @@
 		<div class="panel panel-flat hidden-print " >
 			<div class="panel-body">  
 				<div class="row">
+					
 					<!-- cu -->
 					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
-						<div class="input-group" v-if="this.profile.id_cu === 0">
+						<div class="input-group">
 							<div class="input-group-addon">
 								Pilih Data 
 							</div>
@@ -64,7 +65,7 @@
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="konsolidasi">Konsolidasi</option>
 								<option data-divider="true" v-if="modelTp.length != 0"></option>
-								<option v-for="tp in modelTp" :value="tp.id" v-if="tp">{{tp.tp.name}}</option>
+								<option v-for="tp in modelTp" :value="tp.id" v-if="tp.tp">{{tp.tp.name}}</option>
 							</select>
 
 							<!-- reload -->
@@ -107,8 +108,8 @@
 			}
 		},
 		created(){
-			if(this.profile.id_cu != undefined){
-				// this.checkProfileIdCU();
+			if(this.profileStat === 'success'){
+				this.checkProfileIdCU();
 			}
 		},
 		updated() {
@@ -120,13 +121,11 @@
 		watch: {
 			'$route' (to, from){
 				// check current page meta
-				if(this.profileStat === "success"){
-					this.fetchCU();
-				}
+				this.checkProfileIdCU();
 			},
 			profileStat(value){
 				if(value === "success"){
-					this.fetchCU();
+					this.checkProfileIdCU();
 				}
 			},
 			itemDataStat(value){
@@ -136,6 +135,8 @@
 							this.fetchCU();
 						}
 					}
+					this.periode = this.itemData.periode;
+					this.changePeriode(this.periode);
 				}
 			},
 			modelCUStat(value){
@@ -159,8 +160,10 @@
 			},
 			modelPeriodeStat(value){
 				if(value === "success"){
-					this.periode = this.itemData.periode;
-					this.changePeriode(this.periode);
+					if(this.itemDataStat == 'success'){
+						this.periode = this.itemData.periode;
+						this.changePeriode(this.periode);
+					}
 				}
 			}
     },
@@ -168,7 +171,7 @@
 			checkProfileIdCU(){
 				if(this.profile.id_cu !== 0){
 					this.idCu = this.profile.id_cu;
-					this.fetchTp();
+					this.changeCu(this.idCu);
 				}else{
 					this.fetchCU();  
 				}
@@ -195,7 +198,10 @@
 				this.fetchPeriode(value);
 			},
 			changePeriode(value){
-				this.fetchTp(this.idCu, value);
+				if(this.idCu){
+					this.fetchTp(this.idCu, value);
+				}
+				
 			}
 		},
 		computed: {

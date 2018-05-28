@@ -455,13 +455,11 @@
   import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import formKatex from './formKatex.vue';
-	import widgetData from './widgetPearls.vue';
 	import appModal from '../../components/modal';
 	import Cleave from 'vue-cleave-component';
 	export default {
 		components:{
 			formKatex,
-			widgetData,
 			appModal,
 			Cleave
 		},

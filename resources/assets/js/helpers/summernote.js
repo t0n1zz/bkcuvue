@@ -32,7 +32,7 @@ module.exports = {
     watch: {
         formStat(value){
             $(this.$el).summernote("code", this.model);
-        }
+        } 
     },
     computed: {
         formStat(){

@@ -146,6 +146,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/laporanTp/{id}', 'laporanTpController@destroy');
     });
 
+    // laporan cu diskusi
+    Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
+
     // puskopdit
     Route::get('/pus', 'PusController@index');
     Route::get('/pus_all', 'PusController@indexAll');

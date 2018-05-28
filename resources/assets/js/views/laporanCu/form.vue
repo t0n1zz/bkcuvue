@@ -903,6 +903,11 @@
 		updated() {
 			$('.bootstrap-select').selectpicker('refresh');
 		},
+		created(){
+			if(this.profile.id_cu != undefined){
+				this.checkProfileIdCU();
+			}
+		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
@@ -910,11 +915,7 @@
 			},
 			profileStat(value){ //jika refresh halaman maka reload profile
 				if(value == "success"){
-					if(this.profile.id_cu == 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
-					}else{
-						this.form.id_cu = this.profile.id_cu;
-					}
+					this.checkProfileIdCU();
 				}
 			},
 			formStat(value){
@@ -968,6 +969,14 @@
 			}
     },
 		methods: {
+			checkProfileIdCU(){
+				if(this.profile.id_cu == 0){
+					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+				}else{
+					this.form.id_cu = this.profile.id_cu;
+					this.isModelTp = true;
+				}
+			},
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
@@ -1012,6 +1021,9 @@
 				this.$router.push({name: 'laporanTpEdit', params: { id: id}});
 			},
 			save() {
+				if(this.profile.id_cu != 0){
+					this.form.id_cu = this.profile.id_cu;
+				}
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){

@@ -15,6 +15,7 @@ import { regencies } from './modules/regencies';
 import { districts } from './modules/districts';
 import { villages } from './modules/villages';
 import { laporanCu } from './modules/laporanCu';
+import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
 
 Vue.use(Vuex);
@@ -35,6 +36,7 @@ export default new Vuex.Store({
 		 districts,
 		 villages,
 		 laporanCu,
+		 laporanCuDiskusi,
 		 laporanTp
 	 }
 });

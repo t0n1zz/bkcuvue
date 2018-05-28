@@ -69,7 +69,7 @@
 					</div>
 
 					<div v-show="tabName == 'diskusi'" v-if="isDiskusi">
-
+						<diskusi></diskusi>
 					</div>
 
 					<div v-show="tabName =='revisi'" v-if="isRevisi">
@@ -92,6 +92,7 @@
 	import selectData from "./selectDetail.vue";
 	import detailLaporanCu from "./detailLaporanCu.vue";
 	import detailPearls from "./detailPearls.vue";
+	import diskusi from "./diskusi.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 
@@ -103,7 +104,8 @@
 			detailLaporanCu,
 			detailPearls,
 			infografisData,
-			infografisPearlsData
+			infografisPearlsData,
+			diskusi
 		},
 		data() {
 			return {

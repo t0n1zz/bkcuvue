@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
         }).catch(error => {
             router.push('/login');
         })
-    }else{
+    }else{ 
         next(vm => vm.$store.dispatch('user/profile'));
     }
 });

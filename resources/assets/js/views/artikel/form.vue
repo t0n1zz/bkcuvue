@@ -480,8 +480,8 @@
 				});
 			},
 			changeCU(id){
-				this.$store.dispatch('artikelPenulis/getCU', id);	
-				this.$store.dispatch('artikelKategori/getCU', id);
+				this.$store.dispatch('artikelPenulis/getCu', id);	
+				this.$store.dispatch('artikelKategori/getCu', id);
 			},
 			back(){
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
