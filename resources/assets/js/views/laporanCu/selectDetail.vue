@@ -200,8 +200,7 @@
 			changePeriode(value){
 				if(this.idCu){
 					this.fetchTp(this.idCu, value);
-				}
-				
+				}	
 			}
 		},
 		computed: {

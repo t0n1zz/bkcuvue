@@ -155,7 +155,7 @@ export const cu = {
 
       CUAPI.destroy( id )
         .then( function( response ){
-          if(response.data.saved){
+          if(response.data.deleted){
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{

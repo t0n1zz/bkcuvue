@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Artikel;
-use App\Support\ImageProcessing;
+use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
 use Image;
@@ -64,13 +64,13 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request);
 		else
 			$fileName = '';
 
 		// processing summernote content	
 		if(!empty($request->content))	
-			$content = $this->dom_processing($request);
+			$content = Helper::dom_processing($request,public_path($this->imagepath));
 		else
 			$content = '';		
 		
@@ -116,13 +116,13 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
 		else
 			$fileName = '';
 
 		// processing summernote content	
 		if(!empty($request->content))	
-			$content = $this->dom_processing($request);
+			$content = Helper::dom_processing($request,public_path($this->imagepath));
 		else
 			$content = '';	
 
@@ -196,49 +196,5 @@ class ArtikelController extends Controller{
 				'deleted' => true,
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
-	}
-
-	private function dom_processing($request){
-
-		$path = public_path($this->imagepath);
-		$dom = new \DomDocument();
-
-		$dom->loadHTML("<div>$request->content</div>");
-		$container = $dom->getElementsByTagName('div')->item(0);
-		$container = $container->parentNode->removeChild($container);
-
-		while($dom->firstChild){
-			$dom->removeChild($dom->firstChild);
-		}
-
-		while($container->firstChild){
-			$dom->appendChild($container->firstChild);
-		}
-
-		$images = $dom->getElementsByTagName('img');
-			// foreach <img> in the submited message
-			foreach($images as $img){
-				$src = $img->getAttribute('src');
-
-					// if the img source is 'data-url'
-				if(preg_match('/data:image/', $src)){ 
-					preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
-					$mimetype = $groups['mime']; 
-					// Generating a random filename
-					$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-					$filepath = "$path.$filename.$mimetype";
-					// You can put your directory to upload image 
-					$image = Image::make($src)
-					// resize if required
-					/* ->resize(300, 200) */
-					->encode($mimetype, 100) // encode file to the specified mimetype
-					->save(public_path($filepath)); 
-					$new_src = $filepath;
-					$img->removeAttribute('src');
-					$img->setAttribute('src', $new_src);
-				} // <!--endif
-			} // 
-
-		return $dom->saveHTML();
 	}
 }

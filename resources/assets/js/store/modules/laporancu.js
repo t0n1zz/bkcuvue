@@ -1374,7 +1374,7 @@ export const laporanCu = {
 
       laporanCuAPI.destroy( id )
         .then( function( response ){
-          if(response.data.saved){
+          if(response.data.deleted){
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
@@ -1391,7 +1391,7 @@ export const laporanCu = {
 
       laporanTpAPI.destroy( id )
         .then( function( response ){
-          if(response.data.saved){
+          if(response.data.deleted){
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{

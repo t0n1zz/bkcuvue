@@ -148,6 +148,9 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 
     // laporan cu diskusi
     Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
+    Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
+    Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
+    Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
 
     // puskopdit
     Route::get('/pus', 'PusController@index');
