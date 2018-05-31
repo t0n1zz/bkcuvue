@@ -170,7 +170,7 @@
 				
 				if(value === "success"){
 					this.modalTitle = this.updateMessage.message;
-					this.modalContent = '';
+					this.modalContent = ''; 
 					this.fetch();
 				}else if(value === "fail"){
 					this.modalContent = this.updateMessage;
@@ -190,7 +190,7 @@
 			save(){
 				this.form.id_laporan = this.$route.params.id;
 				this.form.id_user = this.profile.id;
-				
+
 				this.$store.dispatch(this.kelas + '/store', this.form);
 				
 				this.modalShow = true;
