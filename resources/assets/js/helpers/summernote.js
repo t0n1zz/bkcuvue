@@ -11,6 +11,9 @@ module.exports = {
         config: {
             type: Object,
             default: {}
+        },
+        formStat:{
+            default: ''
         }
     },
     mounted() {
@@ -18,7 +21,11 @@ module.exports = {
         let config = this.config;
         config.callbacks = {
             onInit: function () {
-                $(vm.$el).summernote("code",'');
+                if(this.model == ''){
+                    $(vm.$el).summernote("code",'');
+                }else{
+                    $(vm.$el).summernote("code",vm.model);
+                }
             },
             onChange: function () {
                 vm.$emit('change', $(vm.$el).summernote('code'));
@@ -33,10 +40,5 @@ module.exports = {
         formStat(value){
             $(this.$el).summernote("code", this.model);
         } 
-    },
-    computed: {
-        formStat(){
-            return this.$store.getters.getArtikelLoadStat;
-        }
     }
 }

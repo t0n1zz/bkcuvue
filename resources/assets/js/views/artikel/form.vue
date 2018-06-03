@@ -248,7 +248,7 @@
 											<h5>Isi Artikel:</h5>
 
 											<!-- summernote -->
-											<app-summernote name="editor" :model="form.content" :config="summernoteconfig" @change="value => { form.content = value }"></app-summernote>
+											<app-summernote name="editor" :model="form.content" :config="summernoteconfig" :formStat="formStat" @change="value => { form.content = value }"></app-summernote>
 										</div>
 									</div>
 								</div>

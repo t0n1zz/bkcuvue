@@ -62,7 +62,7 @@
 			<template slot="modal-title">{{ modalTitle }}</template>
 
 			<template slot="modal-body1">
-
+				<app-summernote name="editor" :model="form.content" :config="summernoteconfig" @change="value => { form.content = value }"></app-summernote>
 			</template>
 
 		</app-modal>
@@ -212,6 +212,7 @@
 				this.modalColor = 'bg-primary';
 
 				this.selectedItem = item;
+				this.form.content = item.content;
 			},
 			modalHapus(item){
 				this.modalShow = true;
