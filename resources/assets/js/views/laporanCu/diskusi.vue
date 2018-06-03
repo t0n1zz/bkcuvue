@@ -46,13 +46,13 @@
 
 		<div class="panel panel-white border-top-xlg border-top-info">
 			<div class="panel-body">
-				<h5>Silahkan masukkan komentar anda terhadap laporan keuangan ini</h5>
-				<app-summernote name="editor" :model="form.content" :config="summernoteconfig" @change="value => { form.content = value }"></app-summernote>
+				<h5 class="text-semibold">Silahkan masukkan komentar anda terhadap laporan keuangan ini</h5>
+				<app-summernote name="editor" :model="form.content" :config="summernoteconfig" :formStat="updateStat" @change="value => { form.content = value }"></app-summernote>
 
 				<hr>
 
-				<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Masukkan komentar'" @click.prevent="save()">
-					<i class="icon-floppy-disk"></i> Simpan
+				<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Kirim komentar'" @click.prevent="save('create')">
+					<i class="icon-paperplane"></i> Kirim
 				</button>
 			</div>
 		</div>
@@ -62,7 +62,31 @@
 			<template slot="modal-title">{{ modalTitle }}</template>
 
 			<template slot="modal-body1">
-				<app-summernote name="editor" :model="form.content" :config="summernoteconfig" @change="value => { form.content = value }"></app-summernote>
+				<h5 class="text-semibold">Komentar terhadap laporan keuangan ini</h5>
+
+				<app-summernote name="editor" :model="formEdit.content" :config="summernoteconfig" @change="value => { formEdit.content = value }"></app-summernote>
+
+				<hr>
+				<div class="text-center hidden-xs">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
+						<i class="icon-cross"></i> Tutup
+					</button>
+					<button type="submit" class="btn btn-primary" v-tooltip:top="'Kirim komentar'" @click.prevent="save('edit')">
+						<i class="icon-paperplane"></i> Kirim
+					</button>
+				</div>
+
+				<div class="visible-xs">
+
+					<button type="submit" class="btn btn-primary btn-block" @click.prevent="save('edit')">
+						<i class="icon-paperplane"></i> Kirim
+					</button>
+
+					<button type="button" @click.prevent="modalTutup" class="btn btn-default btn-block">
+						<i class="icon-cross"></i> Tutup
+					</button>
+					
+				</div>
 			</template>
 
 		</app-modal>
@@ -95,16 +119,6 @@
 				selectedItem: [],
 				summernoteconfig: {
 					height: 200,
-					popover: {
-						image: [
-							/* ['float', ['floatLeft', 'floatRight', 'floatNone']], */
-							/* Those are the old regular float buttons */
-							['floatBS', ['floatBSLeft', 'floatBSNone', 'floatBSRight']],
-							/* Those come from the BS plugin, in any order, you can even keep both! */
-							['custom', ['imageAttributes', 'imageShape']],
-							['remove', ['removeMedia']],
-						],
-					},
 					toolbar: [
 						['style', ['addclass', 'bold', 'italic', 'underline', 'hr']],
 						['font', ['strikethrough', 'superscript', 'subscript', 'clear']],
@@ -127,7 +141,13 @@
 					id: '',
 					id_laporan: '',
 					id_user: '',
-					content: '',
+					content: ''
+				},
+				formEdit:{
+					id: '',
+					id_laporan: '',
+					id_user: '',
+					content: ''
 				},
 				cleaveOption: {
           numeric: {
@@ -171,6 +191,7 @@
 				if(value === "success"){
 					this.modalTitle = this.updateMessage.message;
 					this.modalContent = ''; 
+					this.form.content = '';
 					this.fetch();
 				}else if(value === "fail"){
 					this.modalContent = this.updateMessage;
@@ -187,13 +208,18 @@
 					this.$store.dispatch('laporanCuDiskusi/get',this.$route.params.id);
 				}
 			},
-			save(){
-				this.form.id_laporan = this.$route.params.id;
-				this.form.id_user = this.profile.id;
+			save(type){
+				if(type == 'create'){
+					this.form.id = '';
+					this.form.id_laporan = this.$route.params.id;
+					this.form.id_user = this.profile.id;
 
-				this.$store.dispatch(this.kelas + '/store', this.form);
+					this.$store.dispatch(this.kelas + '/store', this.form);
+					this.modalShow = true;
+				}else if(type == 'edit'){
+					this.$store.dispatch(this.kelas + '/update', [this.formEdit.id, this.formEdit]);
+				}
 				
-				this.modalShow = true;
 				this.modalSize = '';
 				this.modalColor = '';
 			},
@@ -211,8 +237,10 @@
 				this.modalSize = 'modal-lg';
 				this.modalColor = 'bg-primary';
 
-				this.selectedItem = item;
-				this.form.content = item.content;
+				this.formEdit.id = item.id;
+				this.formEdit.id_user = item.id_user;
+				this.formEdit.id_laporan = item.id_laporan;
+				this.formEdit.content = item.content;
 			},
 			modalHapus(item){
 				this.modalShow = true;

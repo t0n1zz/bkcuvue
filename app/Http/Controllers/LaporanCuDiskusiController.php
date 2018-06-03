@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class LaporanCuDiskusiController extends Controller{
 
-	protected $message = "Diskusi Laporan Cu";
+	protected $message = "Komentar Laporan Cu";
 
 	public function index()
 	{
@@ -34,6 +34,7 @@ class LaporanCuDiskusiController extends Controller{
 	public function store(Request $request)
 	{
 		$this->validate($request,LaporanCuDiskusi::$rules);
+		
 
 		if(!empty($request->content))	
 			$content = Helper::dom_processing_no_image($request);
@@ -53,7 +54,23 @@ class LaporanCuDiskusiController extends Controller{
 
 	public function update(Request $request, $id)
 	{
+		$this->validate($request,LaporanCuDiskusi::$rules);
+
+		$kelas = LaporanCuDiskusi::findOrFail($id);
+
+		if(!empty($request->content))	
+			$content = Helper::dom_processing_no_image($request);
+		else
+			$content = '';	
 		
+		$kelas->update($request->except('content') + ['content' => $content
+		]);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' berhasil diubah'
+			]);
 	}
 
 	public function destroy($id)
