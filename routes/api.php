@@ -7,6 +7,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     // user
     Route::get('/userId', 'UserController@userId');
     Route::get('/profile', 'UserController@profile');
+    Route::get('/markNotifRead', 'UserController@markNotifRead');
     Route::get('/user', 'UserController@index');
     Route::get('/user/indexCu/{id}', 'UserController@indexCu');
     Route::get('/user/create', 'UserController@create');
@@ -120,6 +121,12 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/laporanCu/{id}', 'laporanCuController@destroy');
     });
 
+    // laporan cu diskusi
+    Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
+    Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
+    Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
+    Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
+
     //laporan tp
     Route::group(['middleware' => ['permission:index laporanTp']], function () {
         Route::get('/laporanTp/cu/{id}', 'laporanTpController@index');
@@ -146,11 +153,11 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/laporanTp/{id}', 'laporanTpController@destroy');
     });
 
-    // laporan cu diskusi
-    Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
-    Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
-    Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
-    Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
+    // laporan tp diskusi
+    Route::get('/laporanTpDiskusi/get/{id}', 'laporanTpDiskusiController@get');
+    Route::post('/laporanTpDiskusi/store', 'laporanTpDiskusiController@store');
+    Route::post('/laporanTpDiskusi/update/{id}', 'laporanTpDiskusiController@update');
+    Route::delete('/laporanTpDiskusi/{id}', 'laporanTpDiskusiController@destroy');
 
     // puskopdit
     Route::get('/pus', 'PusController@index');

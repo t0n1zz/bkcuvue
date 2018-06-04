@@ -61,7 +61,12 @@ class User extends Authenticatable
         return $this->id;
     }
 
-    public function pus(){
+    public function getIdCu()
+    {
+        return $this->id_cu;
+    }
+
+    public function Pus(){
         return $this->belongsTo('App\Pus','id_pus','id')->select('id','name');
     }
 

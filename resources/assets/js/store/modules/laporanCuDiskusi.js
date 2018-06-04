@@ -1,4 +1,5 @@
 import LaporanCuDiskusiAPI from '../../api/laporanCuDiskusi.js';
+import LaporanTpDiskusiAPI from '../../api/laporanTpDiskusi.js';
 
 export const laporanCuDiskusi = {
   namespaced: true,
@@ -58,22 +59,17 @@ export const laporanCuDiskusi = {
         });
     },
 
-    // create page
-    create( {commit} ){
-      commit('setDataStat', 'loading');
+    getTp( { commit }, id ){
+      commit('setDataStatS', 'loading');
       
-      LaporanCuDiskusiAPI.create()
+      LaporanTpDiskusiAPI.get( id )
         .then( function( response ){
-          commit('setData', response.data.form);
-          commit('setRules', response.data.rules);
-          commit('setOptions', response.data.options)
-          commit('setDataStat', 'success');
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
         })
-        .catch(error => {
-          commit('setData', error.response);
-          commit('setRules', []);
-          commit('setOptions', [])
-          commit('setDataStat', 'fail');
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
@@ -96,25 +92,24 @@ export const laporanCuDiskusi = {
         });
     },
 
-    // edit page
-    edit( {commit}, id ){
-      commit('setDataStat', 'loading');
-      
-      LaporanCuDiskusiAPI.edit( id )
+    storeTp( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      LaporanTpDiskusiAPI.store( form )
         .then( function( response ){
-          commit('setData', response.data.form);
-          commit('setRules', response.data.rules);
-          commit('setOptions', response.data.options)
-          commit('setDataStat', 'success');
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
         })
         .catch(error => {
-          commit('setData', error.response);
-          commit('setRules', []);
-          commit('setOptions', [])
-          commit('setDataStat', 'fail');
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
-
+    
     // update data
     update( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
@@ -134,11 +129,47 @@ export const laporanCuDiskusi = {
         });
     },
 
+    updateTp( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      LaporanTpDiskusiAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     // destroy data
     destroy( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
       LaporanCuDiskusiAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyTp( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      LaporanTpDiskusiAPI.destroy( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);

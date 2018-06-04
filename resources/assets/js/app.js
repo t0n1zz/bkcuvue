@@ -18,6 +18,7 @@ Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 
 window.moment = moment;
+window.moment.locale('id');
 window.axios = Axios;
 axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
@@ -68,6 +69,9 @@ Vue.filter('month', function(value){
 });
 Vue.filter('year', function(value){
     return window.moment(value).format('YYYY');
+});
+Vue.filter('relativeHour', function(value){
+    return window.moment(value).fromNow();
 });
 Vue.filter('checkStatus', function(value){
     if (value > 0) {

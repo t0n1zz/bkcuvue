@@ -7,6 +7,10 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/profile');
   },
 
+  markNotifRead: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/markNotifRead');
+  },
+
   index: function( p ){
     return axios.get( BKCU_CONFIG.API_URL + '/user', {params: p});
   },

@@ -33,11 +33,37 @@ class UserController extends Controller
 			$id = Auth::user()->getId();
 
 			$kelas = User::with('pus','cu')->findOrFail($id);
+			$notification = collect();
+
+			foreach ($kelas->notifications as $notif) {
+					$username = User::where('id',$notif->data['user'])->select('name')->first();
+					
+					$n = collect($notif);
+					$n->put('user',$username);
+					$notification->push($n);
+			}
 
 			return response()
 					->json([
-							'model' => $kelas
+							'model' => $kelas,
+							'notification' => $notification
 					]);
+	}
+
+	public function markNotifRead()
+	{
+		$id = Auth::user()->getId();
+		
+		$kelas = User::findOrFail($id);
+
+		foreach ($kelas->unreadNotifications as $notification) {
+				$notification->markAsRead();
+		}
+
+		return response()
+				->json([
+						'marked' => true
+				]);
 	}
 
 	public function index()

@@ -15,8 +15,8 @@
 
 					<div class="heading-elements">
 						<ul class="icons-list icons-list-extended heading-text">
-							<li><a data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)"><i class="icon-pencil5"></i></a></li>
-							<li><a data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)"><i class="icon-bin2"></i></a></li>
+							<li><a data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-pencil5"></i></a></li>
+							<li><a data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-bin2"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -116,7 +116,6 @@
 				idTp: '',
 				periode: '',
 				periodeTp: '',
-				selectedItem: [],
 				summernoteconfig: {
 					height: 200,
 					toolbar: [
@@ -141,12 +140,18 @@
 					id: '',
 					id_laporan: '',
 					id_user: '',
+					id_cu:'',
+					id_tp:'',
+					periode: '',
 					content: ''
 				},
 				formEdit:{
 					id: '',
 					id_laporan: '',
 					id_user: '',
+					id_cu:'',
+					id_tp:'',
+					periode:'',
 					content: ''
 				},
 				cleaveOption: {
@@ -204,8 +209,8 @@
 			fetch(){
 				if(this.$route.meta.mode == 'detail'){
 					this.$store.dispatch(this.kelas +'/get',this.$route.params.id);
-				}else{
-					this.$store.dispatch('laporanCuDiskusi/get',this.$route.params.id);
+				}else if(this.$route.meta.mode == 'detailTp'){
+					this.$store.dispatch(this.kelas +'/getTp',this.$route.params.id);
 				}
 			},
 			save(type){
@@ -213,11 +218,33 @@
 					this.form.id = '';
 					this.form.id_laporan = this.$route.params.id;
 					this.form.id_user = this.profile.id;
+					this.form.periode = this.modelLaporan.periode;
 
-					this.$store.dispatch(this.kelas + '/store', this.form);
+					if(this.$route.meta.mode == 'detail'){
+						this.form.id_cu = this.modelLaporan.id_cu;
+						this.form.id_tp = '';
+						this.$store.dispatch(this.kelas + '/store', this.form);
+					}else if(this.$route.meta.mode == 'detailTp'){
+						this.form.id_cu = this.modelLaporan.tp.id_cu;
+						this.form.id_tp = this.modelLaporan.tp.id;
+						this.$store.dispatch(this.kelas + '/storeTp', this.form);
+					}
+
 					this.modalShow = true;
 				}else if(type == 'edit'){
-					this.$store.dispatch(this.kelas + '/update', [this.formEdit.id, this.formEdit]);
+					this.formEdit.periode = this.modelLaporan.periode;
+
+					if(this.$route.meta.mode == 'detail'){
+						this.formEdit.id_cu = this.modelLaporan.id_cu;
+						this.formEdit.id_tp = '';
+
+						this.$store.dispatch(this.kelas + '/update', [this.formEdit.id,this.formEdit]);
+					}else if(this.$route.meta.mode == 'detailTp'){
+						this.formEdit.id_cu = this.modelLaporan.tp.id_cu;
+						this.formEdit.id_tp = this.modelLaporan.tp.id;
+
+						this.$store.dispatch(this.kelas + '/updateTp', [this.formEdit.id, this.formEdit]);
+					}
 				}
 				
 				this.modalSize = '';
@@ -250,14 +277,19 @@
 				this.modalColor = '';
 				this.modalButton = 'Iya, Hapus';
 
-				this.selectedItem = item
+				this.formEdit.id = item.id;
 			},
-			modalConfirmOk(){
-				this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
+			modalConfirmOk(){ // execute destroy
+				if(this.$route.meta.mode == 'detail'){
+					this.$store.dispatch(this.kelas + '/destroy', this.formEdit.id);
+				}else if(this.$route.meta.mode == 'detailTp'){
+					this.$store.dispatch(this.kelas + '/destroyTp', this.formEdit.id);
+				}
 			},
 			modalTutup(){
 				this.modalShow = false;
 			},
+			// formating
 			formatPeriode(value){
 				return Vue.filter('month')(value) + ' ' + Vue.filter('year')(value);
 			},
@@ -288,6 +320,10 @@
 				itemDataStat: 'dataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('laporanCu',{
+				modelLaporan: 'data',
+				modelLaporanStat: 'dataStat',
 			}),
 		}
 	}

@@ -1,10 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use DB;
 use App\LaporanCuDiskusi;
 use App\Support\Helper;
-use Illuminate\Http\Request;
+use App\Support\NotificationHelper;
+use App\User;
+
 
 class LaporanCuDiskusiController extends Controller{
 
@@ -45,6 +48,8 @@ class LaporanCuDiskusiController extends Controller{
 			'content' => $content
 		]);	
 
+		$this->store_notification($kelas->id,$request,'Menulis');
+
 		return response()
 			->json([
 				'saved' => true,
@@ -66,6 +71,8 @@ class LaporanCuDiskusiController extends Controller{
 		$kelas->update($request->except('content') + ['content' => $content
 		]);
 
+		$this->store_notification($id,$request,'Mengubah');
+
 		return response()
 			->json([
 				'saved' => true,
@@ -77,12 +84,27 @@ class LaporanCuDiskusiController extends Controller{
 	{
 		$kelas = LaporanCuDiskusi::findOrFail($id);
 
-		$kelas->delete();
+		LaporanCuDiskusi::destroy($id);
+
+		$this->store_notification($id,$kelas,'Menghapus');
 
 		return response()
 			->json([
 				'deleted' => true,
 				'message' => $this->message. ' berhasil dihapus'
 			]);
+	}
+
+	private function store_notification($id,$request,$tipe)
+	{
+		$id_cu = \Auth::user()->getIdCu();
+
+    $periode = \Carbon\Carbon::parse('2017-05-31')->format('d M Y');
+
+		if($id_cu == '0'){
+			NotificationHelper::store_diskusi_laporancu($request->id_cu,$id,'BKCU','',$periode,$tipe,$request->content);
+		}else{
+			NotificationHelper::store_diskusi_laporancu('0',$id,$cu->name,'',$periode,$tipe,$request->content);
+		}
 	}
 }

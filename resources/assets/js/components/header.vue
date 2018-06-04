@@ -21,6 +21,54 @@
 			</div>
 			<div class="navbar-collapse collapse" id="navbar-mobile">
 				<ul class="nav navbar-nav navbar-right">
+
+					<!-- notification -->
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+							<i class="icon-bell2"></i>
+							<span class="visible-xs-inline-block position-right">Notification</span>
+							<span class="badge bg-warning-400" v-if="notification.length > 0">{{notification.length}}</span>
+						</a>
+						
+						<div class="dropdown-menu dropdown-content width-350">
+							<div class="dropdown-content-heading" v-if="notification.length > 0">
+								Terdapat {{notification.length}} notifikasi
+
+								<ul class="icons-list">
+									<li><a @click.prevent="markNotifRead()" v-tooltip="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a></li>
+								</ul>
+							</div>
+							<div class="dropdown-content-heading text-center" v-else>
+								Tidak terdapat notifikasi
+							</div>	
+
+							<ul class="media-list dropdown-content-body" v-if="notification.length > 0">
+
+								<li class="media" v-for="notif in notification">
+									<div class="media-body" @click.prevent="goToPage(notif.data)" style="cursor:pointer;">
+										<a class="media-heading">
+											<i class="icon-checkmark-circle" v-if="notif.read_at != ''"></i> <b>{{notif.user.name}} 
+												[
+													{{notif.data.cu}}
+													<span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span>
+												]
+											</b>
+											<span class="media-annotation pull-right">{{notif.created_at | relativeHour}}</span>
+										</a>
+										<hr class="mt-5 mb-5">
+										<span class="text-muted">{{notif.data.message}}</span>
+									</div>
+								</li>
+							</ul>
+
+							<div class="dropdown-content-footer">
+								<a @click.prevent="goToNotifCenter()" data-popup="tooltip" title="All messages"><b>LIHAT SEMUA NOTIFIKASI</b></a>
+							</div>
+						</div>
+					</li>
+
+
+					<!-- account -->
 					<li class="dropdown dropdown-user">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							<img :src="'/images/user/' + profile.gambar + 'n.jpg'" alt="user image" v-if="profile.gambar">
@@ -223,6 +271,15 @@
 			}
 		},
 		methods: {
+			goToNotifCenter(){
+
+			},
+			goToPage(notif){
+
+			},
+			markNotifRead(){
+				this.$store.dispatch('user/markNotifRead');
+			},
 			logout() {
 				axios.post('/logout').then(response => {
 					location.reload();
@@ -234,7 +291,9 @@
 		computed: {
 			...mapGetters('user',{
 				profile: 'profile',
-				profileStat: 'profileStat'
+				notification: 'notification',
+				profileStat: 'profileStat',
+				markNotifStat: 'markNotifStat',
 			})
 		}
 	}
