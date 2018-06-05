@@ -6,18 +6,18 @@ use Image;
 use Validator;
 use Illuminate\Http\Request;
 use App\User;
-use App\Notifications\LaporanCu;
+use App\Notifications\Laporan;
 use Illuminate\Support\Facades\Notification;
 
 class NotificationHelper{
 
-	public static function store_diskusi_laporancu($id_cu,$id,$cu_name,$tp_name,$periodesave,$tipe,$content)
+	public static function store_diskusi_laporan($id_cu,$id_laporan,$cu_name,$tp_name,$periodesave,$tipe,$content)
 	{
 		$users = User::where('id_cu',$id_cu)->get();
 
 		foreach ($users as $user) {
-			Notification::send($user, new LaporanCu(
-				$id, 
+			Notification::send($user, new Laporan(
+				$id_laporan, 
 				$cu_name,
 				$tp_name,
 				$tipe.' komentar pada laporan periode '.$periodesave,
@@ -27,12 +27,12 @@ class NotificationHelper{
 		}
 	}
 
-	public static function store_laporancu($id_cu,$id,$cu_name,$tp_name,$periodesave,$tipe)
+	public static function store_laporan($id_cu,$id_laporan,$cu_name,$tp_name,$periodesave,$tipe)
 	{
 		$users = User::where('id_cu',$id_cu)->get();
 		foreach ($users as $user) {
-			Notification::send($user, new notifikasi(
-				$id,
+			Notification::send($user, new Laporan(
+				$id_laporan,
 				$cu_name,
 				$tp_name,
 				$tipe.' laporan periode '.$periodesave,

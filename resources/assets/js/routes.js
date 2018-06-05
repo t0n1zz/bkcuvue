@@ -114,7 +114,7 @@ const routes = [
 	{ path: '/laporancu/detail/:id',name: 'laporanCuDetail', 
 		components: { default: laporanCu_detail, 'header': header },
 		meta: { mode:'detail' }},
-		{ path: '/laporancu/detail/cu/:cu/periode/:periode',name: 'laporanCuDetailPeriode', 
+	{ path: '/laporancu/detail/cu/:cu/periode/:periode',name: 'laporanCuDetailPeriode', 
 		components: { default: laporanCu_detail, 'header': header },
 		meta: { mode:'detailPeriode' }},
 	// detail cu and tp route	

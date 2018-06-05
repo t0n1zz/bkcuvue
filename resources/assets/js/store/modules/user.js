@@ -7,6 +7,7 @@ export const user = {
   state: {
     profile: {},
     notification: {},
+    unreadNotification:'',
     profileStat: '',
     markNotifStat:'',
     data: {}, //single data
@@ -23,6 +24,7 @@ export const user = {
   getters: {
     profile: state => state.profile,
     notification: state => state.notification,
+    unreadNotification: state => state.unreadNotification,
     profileStat: state => state.profileStat,
     markNotifStat: state => state.markNotifStat,
     data: state => state.data,
@@ -45,6 +47,7 @@ export const user = {
         .then( function( response ){
           commit('setProfile', response.data.model );
           commit('setNotification', response.data.notification );
+          commit('setUnreadNotification', response.data.unreadNotification );
           commit('setProfileStat', 'success');
         })
         .catch( error => {
@@ -53,10 +56,22 @@ export const user = {
         });
     },
 
-    markNotifRead( { commit } ){
+    markAllNotifRead( { commit } ){
       commit('setMarkNotifStat', 'loading');
       
-      UserAPI.markNotifRead()
+      UserAPI.markAllNotifRead()
+        .then( function( response ){
+          commit('setMarkNotifStat', 'success');
+        })
+        .catch( error => {
+          commit('setMarkNotifStat', 'fail');
+        });
+    },
+
+    markNotifRead( { commit }, id){
+      commit('setMarkNotifStat', 'loading');
+      
+      UserAPI.markNotifRead(id)
         .then( function( response ){
           commit('setMarkNotifStat', 'success');
         })
@@ -217,8 +232,11 @@ export const user = {
     setProfile ( state, profile ){
       state.profile = profile;
     },
-    setNotification ( state, notification ){
-      state.notification = notification;
+    setNotification ( state, data ){
+      state.notification = data;
+    },
+    setUnreadNotification ( state, data ){
+      state.unreadNotification = data;
     },
     setProfileStat( state, status ){
       state.profileStat = status;

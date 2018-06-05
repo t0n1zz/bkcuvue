@@ -26,28 +26,29 @@
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							<i class="icon-bell2"></i>
-							<span class="visible-xs-inline-block position-right">Notification</span>
-							<span class="badge bg-warning-400" v-if="notification.length > 0">{{notification.length}}</span>
+							<span class="visible-xs-inline-block position-right">Pemberitahuan</span>
+							<span class="badge bg-warning-400" v-if="unreadNotification > 0">{{unreadNotification}}</span>
 						</a>
 						
 						<div class="dropdown-menu dropdown-content width-350">
-							<div class="dropdown-content-heading" v-if="notification.length > 0">
-								Terdapat {{notification.length}} notifikasi
+							<div class="dropdown-content-heading" v-if="unreadNotification > 0">
+								Terdapat {{unreadNotification}} pemberitahuan
 
 								<ul class="icons-list">
-									<li><a @click.prevent="markNotifRead()" v-tooltip="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a></li>
+									<li><a @click.prevent="markAllNotifRead()" v-tooltip="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a></li>
 								</ul>
 							</div>
 							<div class="dropdown-content-heading text-center" v-else>
-								Tidak terdapat notifikasi
+								Tidak terdapat pemberitahuan 
+								<span v-if="notification.length > 0">baru</span>
 							</div>	
 
 							<ul class="media-list dropdown-content-body" v-if="notification.length > 0">
 
 								<li class="media" v-for="notif in notification">
-									<div class="media-body" @click.prevent="goToPage(notif.data)" style="cursor:pointer;">
-										<a class="media-heading">
-											<i class="icon-checkmark-circle" v-if="notif.read_at != ''"></i> <b>{{notif.user.name}} 
+									<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+										<a class="media-heading" :class="{'text-muted' : notif.read_at != null}">
+											<b>{{notif.user.name}} 
 												[
 													{{notif.data.cu}}
 													<span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span>
@@ -56,13 +57,13 @@
 											<span class="media-annotation pull-right">{{notif.created_at | relativeHour}}</span>
 										</a>
 										<hr class="mt-5 mb-5">
-										<span class="text-muted">{{notif.data.message}}</span>
+										<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
 									</div>
 								</li>
 							</ul>
 
-							<div class="dropdown-content-footer">
-								<a @click.prevent="goToNotifCenter()" data-popup="tooltip" title="All messages"><b>LIHAT SEMUA NOTIFIKASI</b></a>
+							<div class="dropdown-content-footer" v-if="notification.length > 0">
+								<a @click.prevent="goToNotifCenter()" data-popup="tooltip" title="All messages"><b>LIHAT SEMUA PEMBERITAHUAN</b></a>
 							</div>
 						</div>
 					</li>
@@ -268,6 +269,11 @@
 				if(value === "success"){
 					this.idCu = this.profile.id_cu;
 				}
+			},
+			markNotifStat(value){
+				if(value === "success"){
+					this.$store.dispatch('user/profile');
+				}
 			}
 		},
 		methods: {
@@ -275,10 +281,15 @@
 
 			},
 			goToPage(notif){
-
+				if(notif.data.tp == ''){
+					this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
+				}else{
+					this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
+				}
+				this.$store.dispatch('user/markNotifRead',notif.id);
 			},
-			markNotifRead(){
-				this.$store.dispatch('user/markNotifRead');
+			markAllNotifRead(){
+				this.$store.dispatch('user/markAllNotifRead');
 			},
 			logout() {
 				axios.post('/logout').then(response => {
@@ -292,6 +303,7 @@
 			...mapGetters('user',{
 				profile: 'profile',
 				notification: 'notification',
+				unreadNotification: 'unreadNotification',
 				profileStat: 'profileStat',
 				markNotifStat: 'markNotifStat',
 			})

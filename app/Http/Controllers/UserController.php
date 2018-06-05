@@ -11,13 +11,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use App\Support\ImageProcessing;
+use Illuminate\Notifications\DatabaseNotification;
 
 class UserController extends Controller
 {
   protected $imagepath = 'images/user/';
-
-
-	    
+    
 	public function userId()
 	{
 			$id = Auth::user()->getId();
@@ -30,35 +29,48 @@ class UserController extends Controller
 
 	public function profile()
 	{
-			$id = Auth::user()->getId();
+		$id = Auth::user()->getId();
 
-			$kelas = User::with('pus','cu')->findOrFail($id);
-			$notification = collect();
+		$kelas = User::with('pus','cu')->findOrFail($id);
+		$notification = collect();
+		$unreadNotification = count($kelas->unreadNotifications);
 
-			foreach ($kelas->notifications as $notif) {
-					$username = User::where('id',$notif->data['user'])->select('name')->first();
-					
-					$n = collect($notif);
-					$n->put('user',$username);
-					$notification->push($n);
-			}
+		$i = 0;
+		foreach ($kelas->notifications as $notif) {
+			$username = User::where('id',$notif->data['user'])->select('name')->first();
+			
+			$n = collect($notif);
+			$n->put('user',$username);
+			$notification->push($n);
 
-			return response()
-					->json([
-							'model' => $kelas,
-							'notification' => $notification
-					]);
+			if (++$i == 15) break;
+		}
+
+		return response()
+				->json([
+						'model' => $kelas,
+						'notification' => $notification,
+						'unreadNotification' => $unreadNotification
+				]);
 	}
 
-	public function markNotifRead()
+	public function markAllNotifRead()
 	{
 		$id = Auth::user()->getId();
-		
+
 		$kelas = User::findOrFail($id);
 
-		foreach ($kelas->unreadNotifications as $notification) {
-				$notification->markAsRead();
-		}
+		$kelas->unreadNotifications->markAsRead();
+
+		return response()
+				->json([
+						'marked' => true
+				]);
+	}
+
+	public function markNotifRead($id)
+	{
+		auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
 
 		return response()
 				->json([

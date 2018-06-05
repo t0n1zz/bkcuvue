@@ -7,7 +7,8 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     // user
     Route::get('/userId', 'UserController@userId');
     Route::get('/profile', 'UserController@profile');
-    Route::get('/markNotifRead', 'UserController@markNotifRead');
+    Route::get('/markNotifRead/{id}', 'UserController@markNotifRead');
+    Route::get('/markAllNotifRead', 'UserController@markAllNotifRead');
     Route::get('/user', 'UserController@index');
     Route::get('/user/indexCu/{id}', 'UserController@indexCu');
     Route::get('/user/create', 'UserController@create');
