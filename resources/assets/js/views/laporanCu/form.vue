@@ -129,14 +129,14 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Anggota Lelaki Biasa</h5>
+											<h5>Lelaki Biasa</h5>
 
 											<!-- text -->
 											<cleave 
 												v-model="form.l_biasa" 
 												class="form-control" 
 												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah anggota lelaki biasa"></cleave>
+												placeholder="Silahkan masukkan jumlah lelaki biasa"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted">&nbsp;</small>	
@@ -148,14 +148,14 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Anggota Lelaki Luar Biasa</h5>
+											<h5>Lelaki Luar Biasa</h5>
 
 											<!-- text -->
 											<cleave 
 												v-model="form.l_lbiasa" 
 												class="form-control" 
 												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah anggota lelaki luar biasa"></cleave>
+												placeholder="Silahkan masukkan jumlah lelaki luar biasa"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted">&nbsp;</small>	
@@ -167,14 +167,14 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Anggota Perempuan Biasa</h5>
+											<h5>Perempuan Biasa</h5>
 
 											<!-- text -->
 											<cleave 
 												v-model="form.p_biasa" 
 												class="form-control" 
 												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah anggota perempuan biasa"></cleave>
+												placeholder="Silahkan masukkan jumlah perempuan biasa"></cleave>
 
 											<!-- error message -->
 											<small class="text-muted">&nbsp;</small>	
@@ -186,7 +186,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Anggota Perempuan Luar Biasa</h5>
+											<h5>Perempuan Luar Biasa</h5>
 
 											<!-- text -->
 											<cleave 

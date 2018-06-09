@@ -5,7 +5,7 @@
 			<div class="panel panel-white border-top-xlg border-top-info" v-for="(revisi,index) in history" >
 				<div class="panel-heading">
 					<h6 class="panel-title">
-						Revisi Tanggal <span v-html="$options.filters.date(index)"></span> jam <span v-html="$options.filters.time(index)"></span>
+						Revisi tanggal <span v-html="$options.filters.date(index)"></span>, jam <span v-html="$options.filters.time(index)"></span>
 					</h6>
 				</div>
 
@@ -19,7 +19,7 @@
 						<div class="media-body">
 							<b>{{ rev.user.name }}</b>
 							<br/>
-							Telah mengubah nilai pada akun {{ rev.key }} dari <check-value :value="rev.old_value" valueType="currency"></check-value> menjadi <check-value :value="rev.new_value" valueType="currency"></check-value>
+							Telah mengubah nilai pada akun <mark>{{ revisionField[rev.key] }}</mark> dari <mark><check-value :value="rev.old_value" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="rev.new_value" valueType="currency"></check-value></mark>
 						</div>
 
 						<hr v-if="revisi.length > 1 && index < revisi.length - 1">
@@ -262,9 +262,18 @@
 			...mapGetters('laporanCu',{
 				itemData: 'history',
 				itemDataStat: 'dataStatS',
+				columnData: 'columnData'
 			}),
 			history(){
 				return _.groupBy(this.itemData,'created_at');
+			},
+			revisionField(){
+				let newData = {};
+				this.columnData.forEach(e => {
+					newData[e.key] = e.title
+				})
+
+				return newData;
 			}
 		}
 	}
