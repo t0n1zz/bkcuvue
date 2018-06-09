@@ -61,6 +61,9 @@ Vue.filter('dateTime', function(value){
 Vue.filter('date', function(value){
     return window.moment(value).format('DD-MM-YYYY');
 });
+Vue.filter('time', function(value){
+    return window.moment(value).format('kk:mm:ss');
+});
 Vue.filter('dateMonth', function(value){
     return window.moment(value).format('DD MMMM YYYY');
 });

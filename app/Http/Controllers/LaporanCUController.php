@@ -299,11 +299,20 @@ class LaporanCuController extends Controller{
 				((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0)) as rasio_lalai,
 				(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih'
 			)])->first();
+	
+		$h = $table_data->revisionHistory;
+		$history = collect();		
+		foreach($h as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data,
+				'history' => $history
+			]);
 	}
 
 	public function detailPearls($id)

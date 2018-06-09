@@ -58,7 +58,7 @@
 		</div>
 		
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" @confirmOk="modalConfirmOk" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" :content="modalContent" @confirmOk="modalConfirmOk" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<template slot="modal-title">{{ modalTitle }}</template>
 
 			<template slot="modal-body1">
@@ -136,6 +136,7 @@
 				modalSize: '',
 				modalColor: '',
 				modalButton: '',
+				modalContent: '',
 				form: {
 					id: '',
 					id_laporan: '',

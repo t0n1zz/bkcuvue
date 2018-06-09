@@ -73,7 +73,7 @@
 					</div>
 
 					<div v-show="tabName =='revisi'" v-if="isRevisi">
-	
+						<revisi></revisi>
 					</div>
 					
 
@@ -93,6 +93,7 @@
 	import detailLaporanCu from "./detailLaporanCu.vue";
 	import detailPearls from "./detailPearls.vue";
 	import diskusi from "./diskusi.vue";
+	import revisi from "./revisi.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 
@@ -105,7 +106,8 @@
 			detailPearls,
 			infografisData,
 			infografisPearlsData,
-			diskusi
+			diskusi,
+			revisi
 		},
 		data() {
 			return {

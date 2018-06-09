@@ -3,11 +3,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\User;
+use App\LaporanTp;
 use App\LaporanTpDiskusi;
 use App\Support\Helper;
 use App\Support\NotificationHelper;
-use App\User;
-
 
 class LaporanTpDiskusiController extends Controller{
 
@@ -38,7 +38,6 @@ class LaporanTpDiskusiController extends Controller{
 	{
 		$this->validate($request,LaporanTpDiskusi::$rules);
 		
-
 		if(!empty($request->content))	
 			$content = Helper::dom_processing_no_image($request);
 		else
@@ -48,7 +47,7 @@ class LaporanTpDiskusiController extends Controller{
 			'content' => $content
 		]);	
 
-		$this->store_notification($kelas->id,$request,'Menulis');
+		$this->store_notification($request,'Menulis');
 
 		return response()
 			->json([
@@ -71,7 +70,7 @@ class LaporanTpDiskusiController extends Controller{
 		$kelas->update($request->except('content') + ['content' => $content
 		]);
 
-		$this->store_notification($id,$request,'Mengubah');
+		$this->store_notification($request,'Mengubah');
 
 		return response()
 			->json([
@@ -86,7 +85,9 @@ class LaporanTpDiskusiController extends Controller{
 
 		LaporanTpDiskusi::destroy($id);
 
-		$this->store_notification($id,$kelas,'Menghapus');
+		$request = LaporanTp::with('Tp')->where('id',$kelas->id_laporan)->select(array('id_tp','periode', DB::RAW('id as id_laporan')))->first();
+
+		$this->store_notification($request,'Menghapus');
 
 		return response()
 			->json([
@@ -95,19 +96,25 @@ class LaporanTpDiskusiController extends Controller{
 			]);
 	}
 
-	private function store_notification($id,$request,$tipe)
+	private function store_notification($request,$tipe)
 	{
 		$id_cu = \Auth::user()->getIdCu();
 
-    $periode = \Carbon\Carbon::parse('2017-05-31')->format('d M Y');
+    $periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+		
+		if($request->content != null){
+			$content = $request->content;
+		}else{
+			$content = "";
+		}
 
 		if($id_cu == '0'){
-			NotificationHelper::store_diskusi_laporan($request->id_cu,$id,'BKCU','',$periode,$tipe,$request->content);
+			NotificationHelper::store_diskusi_laporan($request->id_cu,$request->id_laporan,'BKCU','',$periode,$tipe,$request->content);
 		}else{
 			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
 			$tp = Tp::where('id',$request->id_tp)->select('name')->first();
 			
-			NotificationHelper::store_diskusi_laporan('0',$id,$cu->name,$tp->name,$periode,$tipe,$request->content);
+			NotificationHelper::store_diskusi_laporan('0',$request->id_laporan,$cu->name,$tp->name,$periode,$tipe,$request->content);
 		}
 	}
 }

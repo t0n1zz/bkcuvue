@@ -18,7 +18,7 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/laporanCuDiskusi/update/' + id, form);
   },
 
-  destroy: function( id ){
-    return axios.delete(BKCU_CONFIG.API_URL + '/laporanCuDiskusi/' + id);
+  destroy: function( id, form ){
+    return axios.delete(BKCU_CONFIG.API_URL + '/laporanCuDiskusi/' + id, form);
   }
 }

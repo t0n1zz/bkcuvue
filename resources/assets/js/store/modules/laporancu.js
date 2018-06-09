@@ -8,6 +8,7 @@ export const laporanCu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    history: [],
     grafik: [],
     grafikPearls: [],
     pearls: [],
@@ -869,6 +870,7 @@ export const laporanCu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    history: state => state.history,
     grafik: state => state.grafik,
     grafikPearls: state => state.grafikPearls,
     pearls: state => state.pearls,
@@ -1211,10 +1213,12 @@ export const laporanCu = {
       laporanCuAPI.detail( id )
         .then( function( response ){
           commit('setData', response.data.model);
+          commit('setHistory', response.data.history);
           commit('setDataStat', 'success');
         })
         .catch(error => {
           commit('setData', error.response);
+          commit('setHistory', '');
           commit('setDataStat', 'fail');
         });
     },
@@ -1237,10 +1241,12 @@ export const laporanCu = {
       laporanTpAPI.detail( id )
         .then( function( response ){
           commit('setData', response.data.model);
+          commit('setHistory', response.data.history);
           commit('setDataStat', 'success');
         })
         .catch(error => {
           commit('setData', error.response);
+          commit('setHistory', '');
           commit('setDataStat', 'fail');
         });
     },
@@ -1434,6 +1440,9 @@ export const laporanCu = {
     },
     setDataS ( state, data ){
       state.dataS = data;
+    },
+    setHistory ( state, data ){
+      state.history = data;
     },
     setGrafik( state, data ){
       state.grafik = data;
