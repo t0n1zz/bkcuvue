@@ -404,6 +404,8 @@ class LaporanTpController extends Controller{
 
 		$this->konsolidasi($request);
 
+		$this->store_notification($request,'Menambah');
+
 		return response()
 			->json([
 				'saved' => true,
@@ -444,6 +446,8 @@ class LaporanTpController extends Controller{
 
 		$this->konsolidasi($request);
 
+		$this->store_notification($request,'Mengubah');
+
 		return response()
 			->json([
 				'saved' => true,
@@ -457,6 +461,8 @@ class LaporanTpController extends Controller{
 		$name = $kelas->name;
 
 		$kelas->delete();
+
+		$this->store_notification($kelas,'Menghapus');
 
 		return response()
 			->json([
@@ -497,6 +503,22 @@ class LaporanTpController extends Controller{
 		}else{
 			$kelas3 = LaporanCu::findOrFail($kelas2->id);
 			$kelas3->update($konsolidasi);
+		}
+	}
+
+	private function store_notification($request,$tipe)
+	{
+		$id_cu = \Auth::user()->getIdCu();
+
+		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+		
+		if($id_cu == '0'){
+			$tp = Tp::where('id',$request->id_tp)->select('name')->first();
+			NotificationHelper::store_laporan($request->id_tp,$request->id,'BKCU',$tp->name,$periode,$tipe);
+		}else{
+			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
+			$tp = Tp::where('id',$request->id_tp)->select('name')->first();
+			NotificationHelper::store_laporan('0',$request->id,$cu->name,$tp->name,$periode,$tipe);
 		}
 	}
 }

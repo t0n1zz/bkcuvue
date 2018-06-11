@@ -109,7 +109,8 @@ class LaporanTpDiskusiController extends Controller{
 		}
 
 		if($id_cu == '0'){
-			NotificationHelper::store_diskusi_laporan($request->id_cu,$request->id_laporan,'BKCU','',$periode,$tipe,$request->content);
+			$tp = Tp::where('id',$request->id_tp)->select('name')->first();
+			NotificationHelper::store_diskusi_laporan($request->id_cu,$request->id_laporan,'BKCU',$tp->name,$periode,$tipe,$request->content);
 		}else{
 			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
 			$tp = Tp::where('id',$request->id_tp)->select('name')->first();

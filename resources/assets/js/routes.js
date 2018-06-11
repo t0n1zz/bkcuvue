@@ -25,7 +25,9 @@ const routes = [
 	{ path: '/login',name: 'login', components: { default: login } },
 
 	// user
-	{ path: '/user',name: 'user', components: { default: user, 'header': header }},
+	{ path: '/user/cu/:cu',name: 'userCu', 
+		components: { default: user, 'header': header }, 
+		meta: { mode:'cu' }},
 	{ path: '/user/create',name: 'userCreate', components: { default: user_form, 'header': header} },
 	{ path: '/user/edit/:id',name: 'userEdit', components: { default: user_form, 'header': header}, meta: { mode:'edit' } },
 

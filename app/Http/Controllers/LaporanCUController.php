@@ -391,6 +391,8 @@ class LaporanCuController extends Controller{
 		$name = $request->name;
 
 		$kelas = LaporanCu::create($request->all());
+
+		$this->store_notification($request,'Menambah');
 		
 		return response()
 			->json([
@@ -430,6 +432,8 @@ class LaporanCuController extends Controller{
 
 		$kelas->update($request->all());
 
+		$this->store_notification($request,'Mengubah');
+
 		return response()
 			->json([
 				'saved' => true,
@@ -445,10 +449,26 @@ class LaporanCuController extends Controller{
 
 		$kelas->delete();
 
+		$this->store_notification($kelas,'Menghapus');
+
 		return response()
 			->json([
 				'deleted' => true,
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
+	}
+
+	private function store_notification($request,$tipe)
+	{
+		$id_cu = \Auth::user()->getIdCu();
+
+		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+
+		if($id_cu == '0'){
+			NotificationHelper::store_laporan($request->id_cu,$request->id,'BKCU','',$periode,$tipe);
+		}else{
+			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
+			NotificationHelper::store_laporan('0',$request->id,$cu->name,'',$periode,$tipe);
+		}
 	}
 }

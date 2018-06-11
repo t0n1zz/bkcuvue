@@ -463,7 +463,7 @@
 		methods: {
 			fetch(){
 				if(this.$route.params.cu == 'semua'){
-				this.disableColumnCu(false);
+					this.disableColumnCu(false);
 				}else{
 					this.disableColumnCu(true);
 				}

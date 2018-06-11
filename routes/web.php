@@ -42,12 +42,12 @@ Route::get('/testroute', function () {
     // Spatie\Permission\Models\Permission::create(['name' => 'destroy tp']);
 
     // give permission to role
-    $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
-    $role->givePermissionTo([
-        'index tp',
-        'create tp',
-        'update tp',
-        'destroy tp']);
+    // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
+    // $role->givePermissionTo([
+    //     'index tp',
+    //     'create tp',
+    //     'update tp',
+    //     'destroy tp']);
 
     // activity log
     // $activity = Spatie\Activitylog\Models\Activity::all()->last();

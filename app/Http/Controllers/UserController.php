@@ -54,30 +54,6 @@ class UserController extends Controller
 				]);
 	}
 
-	public function markAllNotifRead()
-	{
-		$id = Auth::user()->getId();
-
-		$kelas = User::findOrFail($id);
-
-		$kelas->unreadNotifications->markAsRead();
-
-		return response()
-				->json([
-						'marked' => true
-				]);
-	}
-
-	public function markNotifRead($id)
-	{
-		auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
-
-		return response()
-				->json([
-						'marked' => true
-				]);
-	}
-
 	public function index()
 	{
 			$table_data = User::with('Cu','pus','roles_custom')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
@@ -137,10 +113,9 @@ class UserController extends Controller
 			'id_pus' => 1
 			]);
 		
-		//assigning user role
-		$role = Role::findOrFail($request->peran);
-		$user = User::where('username',$username)->first();
-		$user->assignrole($role->name);
+		$role = Role::create(['name' => $username]);
+
+		$this->hak_akses_save($request,$role);
 
 		return response()
 			->json([
@@ -285,5 +260,47 @@ class UserController extends Controller
 						->save($path . $fileName2);
 
 		return $formatedName;
+	}
+
+	public function hak_akses($request,$permission,$role)
+	{
+		if($request == true) {
+			$role->givePermissionTo($permission);
+		}else{
+			$role->revokePermissionTo($permission);
+		}
+	}
+		
+	public function hak_akses_save($request,$role)
+	{
+		$this->hak_akses($request->index_artikel,'index_artikel',$role);
+		$this->hak_akses($request->create_artikel,'create_artikel',$role);
+		$this->hak_akses($request->update_artikel,'update_artikel',$role);
+		$this->hak_akses($request->destroy_artikel,'destroy_artikel',$role);
+		$this->hak_akses($request->terbitkan_artikel,'terbitkan_artikel',$role);
+	}
+		
+	public function markAllNotifRead()
+	{
+		$id = Auth::user()->getId();
+
+		$kelas = User::findOrFail($id);
+
+		$kelas->unreadNotifications->markAsRead();
+
+		return response()
+				->json([
+						'marked' => true
+				]);
+	}
+
+	public function markNotifRead($id)
+	{
+		auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+
+		return response()
+				->json([
+						'marked' => true
+				]);
 	}
 }

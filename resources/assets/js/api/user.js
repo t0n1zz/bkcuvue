@@ -7,20 +7,12 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/profile');
   },
 
-  markAllNotifRead: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/markAllNotifRead');
-  },
-
-  markNotifRead: function(id){
-    return axios.get(BKCU_CONFIG.API_URL + '/markNotifRead/' + id);
-  },
-
   index: function( p ){
     return axios.get( BKCU_CONFIG.API_URL + '/user', {params: p});
   },
 
-  indexCU: function( p, id ){
-    return axios.get( BKCU_CONFIG.API_URL + '/user/indexCU/' + id, {params: p});
+  indexCu: function( p, id ){
+    return axios.get( BKCU_CONFIG.API_URL + '/user/indexCu/' + id, {params: p});
   },
 
   create: function(){
@@ -49,5 +41,13 @@ export default {
 
   destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/user/' + id);
-  }
+  },
+
+  markAllNotifRead: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/markAllNotifRead');
+  },
+
+  markNotifRead: function(id){
+    return axios.get(BKCU_CONFIG.API_URL + '/markNotifRead/' + id);
+  },
 }

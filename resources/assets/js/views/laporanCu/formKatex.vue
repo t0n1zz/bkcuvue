@@ -125,7 +125,7 @@
 				this.form.no_ba = this.modalKatex.no_ba;
 				this.form.periode = this.modalKatex.periode;
 				
-				this.$store.dispatch('laporanCu/update', [this.modalKatex.id,this.form]);
+				// this.$store.dispatch('laporanCu/update', [this.modalKatex.id,this.form]);
 			},
 			modalTutup(){
 				this.$emit('tutup');

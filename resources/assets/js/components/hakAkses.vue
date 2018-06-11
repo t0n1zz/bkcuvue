@@ -16,12 +16,12 @@
 				<!-- permission -->
 				<div class="col-sm-2 hidden-xs" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='All'">
 					<label class="checkbox-inline">
-						<input type="checkbox" :value="permission.key" v-model="hakAksesModel">
+						<input type="checkbox" :value="permission.key" v-model="form[permission.key]">
 						<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 					</label>
 				</div>
+
 				<div class="col-sm-12 hidden-xs"><br></div>
-				
 
 				<!-- mobile -->
 				<div class="col-xs-12 visible-xs">
@@ -50,7 +50,8 @@
 	export default {
 		props: {
 			tipeUser: '',
-			isDisabled: false
+			isDisabled: false,
+			form: {},
 		},
 		data() {
 			return {
@@ -63,39 +64,45 @@
 						tipe: 'All',
 						permission: [{
 								name: 'Lihat',
-								key: 'index artikel',
+								key: 'index_artikel',
 								icon: 'icon-eye',
-								tipe: 'All'
+								tipe: 'All',
+								value: false,
 							},
 							{
 								name: 'Tambah',
-								key: 'create artikel',
+								key: 'create_artikel',
 								icon: 'icon-plus3',
-								tipe: 'All'
+								tipe: 'All',
+								value: false,
 							},
 							{
 								name: 'Ubah',
-								key: 'update artikel',
+								key: 'update_artikel',
 								icon: 'icon-pencil',
-								tipe: 'All'
+								tipe: 'All',
+								value: false,
 							},
 							{
 								name: 'Hapus',
-								key: 'destroy artikel',
+								key: 'destroy_artikel',
 								icon: 'icon-bin2',
-								tipe: 'All'
+								tipe: 'All',
+								value: false,
 							},
 							{
 								name: 'Terbitkan',
-								key: 'terbitkan artikel',
+								key: 'terbitkan_artikel',
 								icon: 'icon-file-upload',
-								tipe: 'BKCU'
+								tipe: 'BKCU',
+								value: false,
 							},
 							{
 								name: 'Utamakan',
-								key: 'utamakan artikel',
+								key: 'utamakan_artikel',
 								icon: 'icon-pushpin',
-								tipe: 'BKCU'
+								tipe: 'BKCU',
+								value: false,
 							}
 						]
 					},
@@ -106,37 +113,37 @@
 						tipe: 'All',
 						permission: [{
 								name: 'Lihat',
-								key: 'index user',
+								key: 'index_user',
 								icon: 'icon-eye',
 								tipe: 'BKCU'
 							},
 							{
 								name: 'Tambah',
-								key: 'create user',
+								key: 'create_user',
 								icon: 'icon-plus3',
 								tipe: 'BKCU'
 							},
 							{
 								name: 'Ubah',
-								key: 'update user',
+								key: 'update_user',
 								icon: 'icon-pencil',
 								tipe: 'BKCU'
 							},
 							{
 								name: 'Hapus',
-								key: 'destroy user',
+								key: 'destroy_user',
 								icon: 'icon-bin2',
 								tipe: 'BKCU'
 							},
 							{
 								name: 'Reset Password',
-								key: 'reset password',
+								key: 'reset_password',
 								icon: 'icon-history',
 								tipe: 'BKCU'
 							},
 							{
 								name: 'Aktifkan',
-								key: 'aktifkan user',
+								key: 'aktifkan_user',
 								icon: 'icon-pushpin',
 								tipe: 'BKCU'
 							}

@@ -56,30 +56,6 @@ export const user = {
         });
     },
 
-    markAllNotifRead( { commit } ){
-      commit('setMarkNotifStat', 'loading');
-      
-      UserAPI.markAllNotifRead()
-        .then( function( response ){
-          commit('setMarkNotifStat', 'success');
-        })
-        .catch( error => {
-          commit('setMarkNotifStat', 'fail');
-        });
-    },
-
-    markNotifRead( { commit }, id){
-      commit('setMarkNotifStat', 'loading');
-      
-      UserAPI.markNotifRead(id)
-        .then( function( response ){
-          commit('setMarkNotifStat', 'success');
-        })
-        .catch( error => {
-          commit('setMarkNotifStat', 'fail');
-        });
-    },
-
     //load collection with params
     index( { commit }, p ){
       commit('setDataStatS', 'loading');
@@ -87,6 +63,21 @@ export const user = {
       UserAPI.index( p )
         .then( function( response ){
           commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    // load by cu
+    indexCu( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      UserAPI.indexCu( p, id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
         .catch( error => {
@@ -218,6 +209,30 @@ export const user = {
         .catch(error => {
           commit('setUpdate', error.response);         
           commit('setUpdateStat', 'fail');
+        });
+    },
+
+    markAllNotifRead( { commit } ){
+      commit('setMarkNotifStat', 'loading');
+      
+      UserAPI.markAllNotifRead()
+        .then( function( response ){
+          commit('setMarkNotifStat', 'success');
+        })
+        .catch( error => {
+          commit('setMarkNotifStat', 'fail');
+        });
+    },
+
+    markNotifRead( { commit }, id){
+      commit('setMarkNotifStat', 'loading');
+      
+      UserAPI.markNotifRead(id)
+        .then( function( response ){
+          commit('setMarkNotifStat', 'success');
+        })
+        .catch( error => {
+          commit('setMarkNotifStat', 'fail');
         });
     },
 

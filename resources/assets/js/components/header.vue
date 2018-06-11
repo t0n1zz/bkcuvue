@@ -120,17 +120,17 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah artikel -->
-							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create artikel']">
+							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel']">
 								<a><i class="icon-plus22"></i> Tambah Artikel</a>
 							</router-link>
 
 							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create artikelKategori']">
+							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_Kategori']">
 								<a><i class="icon-plus22"></i> Tambah Kategori Artikel</a>
 							</router-link>
 
 							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create artikelPenulis']">
+							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_penulis']">
 								<a><i class="icon-plus22"></i> Tambah Penulis Artikel</a>
 							</router-link>
 
@@ -138,7 +138,7 @@
 							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'artikelCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikel']">
+							<router-link :to="{ name: 'artikelCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
 							</router-link>
 
@@ -148,7 +148,7 @@
 							</router-link>
 
 							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu:this.idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index artikelPenulis']">
+							<router-link :to="{ name: 'artikelPenulisCu', params:{cu:this.idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
 								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
 							</router-link>
 						</ul>
@@ -163,12 +163,12 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah cu -->
-							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create cu']">
+							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_cu']">
 								<a><i class="icon-plus22"></i> Tambah CU</a>
 							</router-link>
 
 							<!-- tambah tpcu -->
-							<router-link :to="{ name:'tpCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create tp']">
+							<router-link :to="{ name:'tpCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_tp']">
 								<a><i class="icon-plus22"></i> Tambah TP/KP</a>
 							</router-link>
 
@@ -176,14 +176,14 @@
 							<li class="divider"></li>
 
 							<!-- cu -->
-							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index cu']">
+							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_cu']">
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
 							<!-- cu -->
-							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tp'] && profile.id_cu == 0">
+							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
-							<router-link :to="{ name: 'tpCu', params:{cu:this.idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index tp'] && profile.id_cu != 0">
+							<router-link :to="{ name: 'tpCu', params:{cu:this.idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 						</ul>
@@ -198,7 +198,7 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah laporan -->
-							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create laporanCu']">
+							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
 								<a><i class="icon-plus22"></i> Tambah Laporan CU</a>
 							</router-link>
 
@@ -206,10 +206,10 @@
 							<li class="divider"></li>
 
 							<!-- laporancu -->
-							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index laporanCu'] && profile.id_cu == '0'">
+							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
-							<router-link :to="{ name: 'laporanCuCu',params: { cu: this.idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index laporanCu'] && profile.id_cu != '0'">
+							<router-link :to="{ name: 'laporanCuCu',params: { cu: this.idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
 						</ul>
@@ -224,7 +224,7 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah user -->
-							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create user']">
+							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_user']">
 								<a><i class="icon-plus22"></i> Tambah User</a>
 							</router-link>
 
@@ -232,13 +232,8 @@
 							<li class="divider"></li>
 
 							<!-- user -->
-							<router-link :to="{ name: 'user' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index user']">
+							<router-link :to="{ name: 'userCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_user']">
 								<a><i class="icon-users"></i> User</a>
-							</router-link>
-
-							<!-- role -->
-							<router-link :to="{ name: 'role' }" tag="li" active-class="active" exact>
-								<a><i class="icon-hat"></i> Role</a>
 							</router-link>
 						</ul>
 					</li>

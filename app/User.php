@@ -15,6 +15,7 @@ class User extends Authenticatable
     use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder, ExposePermissions, LogsActivity;
 
     protected $table = 'users';
+    protected $guard_name = 'web';
     protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status'];
     /**
      * The accessors to append to the model's array form.
