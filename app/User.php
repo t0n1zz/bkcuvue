@@ -15,7 +15,7 @@ class User extends Authenticatable
     use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder, ExposePermissions, LogsActivity;
 
     protected $table = 'users';
-    protected $guard_name = 'web';
+    protected $guard_name = 'api';
     protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status'];
     /**
      * The accessors to append to the model's array form.
@@ -46,7 +46,7 @@ class User extends Authenticatable
     public static function initialize()
     {
         return [
-            'id_cu' => '0' , 'id_pus' => '0', 'name' => '','email' => '', 'username' => '', 'status' => '0', 'gambar' => ''
+            'id_cu' => '0' , 'id_pus' => '1', 'name' => '','email' => '', 'username' => '', 'status' => '1', 'gambar' => ''
         ];
     }
 

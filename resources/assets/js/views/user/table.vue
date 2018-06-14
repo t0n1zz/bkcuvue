@@ -9,38 +9,46 @@
       <template slot="button-desktop">
 
         <!-- tambah -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['create ' + kelas]">
+        <div class="btn-group pb-5" v-if="profile.can && profile.can['create_' + kelas]">
           <router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' + title">
             <i class="icon-plus3"></i> Tambah
           </router-link>
         </div>
 
         <!-- ubah-->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
+        <div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
           <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
             <i class="icon-pencil5"></i> Ubah
           </button>
         </div>
 
         <!-- hapus -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['destroy ' + kelas]">
+        <div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_' + kelas]">
           <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
             <i class="icon-bin2"></i> Hapus
           </button>
         </div>
 
         <!-- reset password -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['reset password']">
+        <div class="btn-group pb-5" v-if="profile.can && profile.can['reset_password']">
           <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-default btn-icon" v-tooltip:top="'Reset password ' + title"  :disabled="!selectedItem.id">
             <i class="icon-history"></i> Reset Password
           </button>
         </div>
 
-        <!-- aktifkan -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['aktifkan ' + kelas]">
+        <!-- aktifkan -->                                                                                                                            
+        <div class="btn-group pb-5" v-if="profile.can && profile.can['status_' + kelas]">
           <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
-            <i class="icon-user-check"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
-            <span v-else>Aktifkan</span>
+            <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
+            <span v-else-if="selectedItem.status == 0">Aktifkan</span>
+            <span v-else>Status</span>
+          </button> 
+        </div>
+
+        <!-- hak akses -->
+        <div class="btn-group pb-5">
+          <button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Hak Akses User'"  :disabled="!selectedItem.id">
+            <i class="icon-key"></i> Hak Akses
           </button>
         </div>
 
@@ -65,7 +73,7 @@
         <li><hr class="no-margin-top no-margin-bottom"/></li>
 
         <!-- update -->
-        <li v-if="profile.can && profile.can['update ' + kelas]">
+        <li v-if="profile.can && profile.can['update_' + kelas]">
           <div class="pl-5 pr-5 pb-5 pt-10">
             <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah' + title" :disabled="!selectedItem.id">
               <i class="icon-pencil5"></i> Ubah
@@ -74,7 +82,7 @@
         </li>
 
         <!-- destroy -->
-        <li v-if="profile.can && profile.can['destroy ' + kelas]">
+        <li v-if="profile.can && profile.can['destroy_' + kelas]">
           <div class="pl-5 pr-5 pb-5">
             <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
               <i class="icon-bin2"></i> Hapus
@@ -83,7 +91,7 @@
         </li>
 
         <!-- reset password -->
-        <li v-if="profile.can && profile.can['reset password']">
+        <li v-if="profile.can && profile.can['reset_password']">
           <div class="pl-5 pr-5 pb-5">
             <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Reset password ' + title"  :disabled="!selectedItem.id">
               <i class="icon-history"></i> Reset Password
@@ -92,7 +100,7 @@
         </li>
 
         <!-- aktifkan -->
-        <li v-if="profile.can && profile.can['aktifkan ' + kelas]">
+        <li v-if="profile.can && profile.can['aktifkan_' + kelas]">
           <div class="pl-5 pr-5 pb-5">
             <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
               <i class="icon-user-check"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
@@ -109,20 +117,19 @@
             <img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
             <img :src="'/images/no_image_man.jpg'" class="img-rounded img-responsive img-sm" v-else>
           </td>
-          <td v-if="!columnData[1].hide" class="warptext">{{props.item.name}}</td>
-          <td v-if="!columnData[2].hide" class="warptext">{{props.item.email}}</td>
-          <td v-if="!columnData[3].hide" class="warptext">{{props.item.username}}</td>
+          <td v-if="!columnData[1].hide" class="warptext">{{props.item.username}}</td>
+          <td v-if="!columnData[2].hide" class="warptext">{{props.item.name}}</td>
+          <td v-if="!columnData[3].hide" class="warptext">{{props.item.email}}</td>
           <td v-if="!columnData[4].hide && !columnData[4].disable">
             <span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
             <span v-else>Puskopdit BKCU Kalimantan</span>
           </td>
-          <td v-if="!columnData[5].hide && !columnData[5].disable">
-            <span v-if="props.item.roles" v-for="role in props.item.roles">{{role.name}}</span>
-            <span v-else>-</span>
-          </td>
-          <td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
-          <td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-          <td v-if="!columnData[8].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.updated_at)"></td>
+          <td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
+          <td v-if="!columnData[6].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+          <td v-if="!columnData[7].hide">
+						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+						<span v-else>-</span>
+					</td>
         </tr>
       </template>
 
@@ -150,14 +157,18 @@
                 </tr>
                 <tr v-if="!columnData[1].hide">
                   <td><b>{{columnData[1].title}}</b></td>
-                  <td>: {{props.item.name}}</td>
+                  <td>: {{props.item.username}}</td>
                 </tr>
                 <tr v-if="!columnData[2].hide">
                   <td><b>{{columnData[2].title}}</b></td>
-                  <td>: {{props.item.username}}</td>
+                  <td>: {{props.item.name}}</td>
                 </tr>
                 <tr v-if="!columnData[3].hide">
                   <td><b>{{columnData[3].title}}</b></td>
+                  <td>: {{props.item.email}}</td>
+                </tr>
+                <tr v-if="!columnData[4].hide">
+                  <td><b>{{columnData[4].title}}</b></td>
                   <td>
                     <span v-if="props.item.c_u">
                       : {{props.item.c_u.name}}
@@ -165,22 +176,22 @@
                     <span v-else>: Puskopdit BKCU Kalimantan</span>	
                   </td>
                 </tr>
-                <tr v-if="!columnData[4].hide">
-                  <td><b>{{columnData[4].title}}</b></td>
-                  <td>
-                    : <span v-html="$options.filters.checkStatus(props.item.status)"></span>
-                  </td>
-                </tr>
                 <tr v-if="!columnData[5].hide">
                   <td><b>{{columnData[5].title}}</b></td>
                   <td>
-                    : <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
+                    : <span v-html="$options.filters.checkStatus(props.item.status)"></span>
                   </td>
                 </tr>
                 <tr v-if="!columnData[6].hide">
                   <td><b>{{columnData[6].title}}</b></td>
                   <td>
-                    : <span v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+                    : <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
+                  </td>
+                </tr>
+                <tr v-if="!columnData[7].hide">
+                  <td><b>{{columnData[7].title}}</b></td>
+                  <td>
+                    : <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
                   </td>
                 </tr>
               </tbody>
@@ -234,7 +245,7 @@
 			<!-- hak akses -->
 			<template slot="modal-body1">
 				<!-- hak-akses -->
-				<hak-akses></hak-akses>
+				<hak-akses :form="modalForm"></hak-akses>
 				<!-- divider -->
 				<hr>
 			</template>
@@ -244,7 +255,7 @@
 				<!-- button -->
 				<button class="btn btn-default" @click="modalTutup">
 					<i class="icon-cross"></i> Tutup</button>
-				<button type="submit" class="btn btn-primary" @click="modalTutup">
+				<button type="submit" class="btn btn-primary" @click="modalHakAksesSave">
 					<i class="icon-floppy-disk"></i> Simpan</button>
 			</template>
 		</app-modal>
@@ -290,12 +301,21 @@ export default {
           disable: false
         },
         {
+          title: 'Username',
+          key: 'username',
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true,
+          filterType: 'string'
+        },
+        {
           title: 'Nama',
           key: 'name',
           sort: true,
           hide: false,
           disable: false,
-          fitler: true,
+          filter: true,
           filterType: 'string'
         },
         {
@@ -304,16 +324,7 @@ export default {
           sort: true,
           hide: false,
           disable: false,
-          fitler: true,
-          filterType: 'string'
-        },
-        {
-          title: 'Username',
-          key: 'username',
-          sort: true,
-          hide: false,
-          disable: false,
-          fitler: true,
+          filter: true,
           filterType: 'string'
         },
         {
@@ -324,18 +335,9 @@ export default {
           sort: true,
           hide: false,
           disable: false,
-          fitler: true,
+          filter: true,
           filterKey: 'c_u.name',
           filterType: 'string'
-        },
-        {
-          title: 'Peran',
-          key: 'roles.name',
-          groupKey: 'roles.name',
-          groupNoKey: '-',
-          sort: true,
-          hide: false,
-          disable: false,
         },
         {
           title: 'Status',
@@ -377,7 +379,6 @@ export default {
   watch: {
     // check route changes
     '$route' (to, from){
-      this.resetParams();
       this.fetch();
     },
 
@@ -420,9 +421,6 @@ export default {
     ubahData(id) {
       this.$router.push('/' + this.kelas + '/edit/' + id);
     },
-    changeRole(id){
-      this.$store.dispatch('loadRolePermission',id);
-    },
     modalConfirmOpen(source, isMobile, itemMobile) {
       this.modalShow = true;
       this.modalState = 'confirm-tutup';
@@ -451,16 +449,18 @@ export default {
     modalHakAksesOpen(isMobile,itemMobile){
       this.modalShow = true;
       this.modalColor = 'bg-primary';
-      this.modalTitle = 'Peran dan Hak Akses User'
+      this.modalTitle = 'Hak Akses User'
       this.modalState = 'normal1';
       this.modalSize = 'modal-full';
 
       if(isMobile){
         this.selectedItem = itemMobile;
       }
-
-      this.$store.dispatch('loadRoleAll');
+      this.$store.dispatch(this.kelas + '/editHakAkses', this.selectedItem.id);
       $('.bootstrap-select').selectpicker('render');
+    },
+    modalHakAksesSave(){
+      this.$store.dispatch(this.kelas + '/updateHakAkses', [this.selectedItem.id, this.modalForm]);
     },
     modalTutup() {
       this.modalShow = false;
@@ -468,7 +468,7 @@ export default {
       this.modalTitle = '';
       this.modalSize = '';
 
-      this.$store.dispatch('resetUserUpdateStat');
+      this.$store.dispatch(this.kelas + '/resetUpdateStat');
     },
     modalConfirmOk() {
       var vm = this;
@@ -491,12 +491,25 @@ export default {
       profileStat: 'profileStat',
       itemData: 'dataS',
       itemDataStat: 'dataStatS',
+      hakAkses: 'data',
+      hakAksesStat: 'dataStat',
       updateMessage: 'update',
       updateStat: 'updateStat'
     }),
     ...mapGetters('global',{
       idCu: 'idCu'
     }),
+    modalForm(){
+      let newData = {};
+
+      if(this.hakAkses.length > 0){
+        this.hakAkses.forEach(e => {
+          newData[e.name] = true
+        })
+      }
+				
+			return newData;
+    }
   }
 }
 </script>

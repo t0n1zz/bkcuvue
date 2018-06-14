@@ -94,7 +94,7 @@ class UserController extends Controller
 		$passwordConfirm = $request->passwordConfirm;
 
 		//check data
-		$this->check_data($request);
+		$this->checkData($request);
 
 		// processing single image upload
 		if(!empty($request->gambar))
@@ -111,11 +111,9 @@ class UserController extends Controller
 			'password' => $password, 
 			'status' => 1,
 			'id_pus' => 1
-			]);
-		
-		$role = Role::create(['name' => $username]);
+		]);
 
-		$this->hak_akses_save($request,$role);
+		$this->hakAksesSave($request,$kelas);
 
 		return response()
 			->json([
@@ -133,6 +131,18 @@ class UserController extends Controller
 						'form' => $kelas,
 						'option' => []
 				]);
+	}
+
+	public function editHakAkses($id)
+	{
+		$kelas = User::findOrFail($id);
+		
+		$table_data = $kelas->getAllPermissions();
+
+		return response()
+			->json([
+				'model' => $table_data,
+			]);
 	}
 
 	public function update(Request $request, $id)
@@ -183,6 +193,18 @@ class UserController extends Controller
 			]);
 	}
 
+	public function updateHakAkses(Request $request, $id)
+	{
+		$kelas = User::findOrFail($id);
+		$this->hakAksesSave($request,$kelas);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah'
+			]);
+	}
+
 	public function resetPassword($id)
 	{
 		$kelas = User::findOrFail($id);
@@ -201,7 +223,7 @@ class UserController extends Controller
 			]);
 	}
 
-	private function check_data($request)
+	private function checkData($request)
 	{
 		$username = $request->username;
 		$password = $request->password;
@@ -262,22 +284,55 @@ class UserController extends Controller
 		return $formatedName;
 	}
 
-	public function hak_akses($request,$permission,$role)
+	public function hakAkses($request,$permission,$user)
 	{
 		if($request == true) {
-			$role->givePermissionTo($permission);
+			if(!$user->hasPermissionTo($permission)){
+				$user->givePermissionTo($permission);
+			}
 		}else{
-			$role->revokePermissionTo($permission);
+			$user->revokePermissionTo($permission);
 		}
 	}
 		
-	public function hak_akses_save($request,$role)
+	public function hakAksesSave($request,$user)
 	{
-		$this->hak_akses($request->index_artikel,'index_artikel',$role);
-		$this->hak_akses($request->create_artikel,'create_artikel',$role);
-		$this->hak_akses($request->update_artikel,'update_artikel',$role);
-		$this->hak_akses($request->destroy_artikel,'destroy_artikel',$role);
-		$this->hak_akses($request->terbitkan_artikel,'terbitkan_artikel',$role);
+		$this->hakAkses($request->index_artikel,'index_artikel',$user);
+		$this->hakAkses($request->create_artikel,'create_artikel',$user);
+		$this->hakAkses($request->update_artikel,'update_artikel',$user);
+		$this->hakAkses($request->destroy_artikel,'destroy_artikel',$user);
+		$this->hakAkses($request->terbitkan_artikel,'terbitkan_artikel',$user);
+		$this->hakAkses($request->index_artikel_penulis,'index_artikel_penulis',$user);
+		$this->hakAkses($request->create_artikel_penulis,'create_artikel_penulis',$user);
+		$this->hakAkses($request->update_artikel_penulis,'update_artikel_penulis',$user);
+		$this->hakAkses($request->destroy_artikel_penulis,'destroy_artikel_penulis',$user);
+		$this->hakAkses($request->index_artikel_kategori,'index_artikel_kategori',$user);
+		$this->hakAkses($request->create_artikel_kategori,'create_artikel_kategori',$user);
+		$this->hakAkses($request->update_artikel_kategori,'update_artikel_kategori',$user);
+		$this->hakAkses($request->destroy_artikel_kategori,'destroy_artikel_kategori',$user);
+		$this->hakAkses($request->index_cu,'index_cu',$user);
+		$this->hakAkses($request->create_cu,'create_cu',$user);
+		$this->hakAkses($request->update_cu,'update_cu',$user);
+		$this->hakAkses($request->destroy_cu,'destroy_cu',$user);
+		$this->hakAkses($request->index_tp,'index_tp',$user);
+		$this->hakAkses($request->create_tp,'create_tp',$user);
+		$this->hakAkses($request->update_tp,'update_tp',$user);
+		$this->hakAkses($request->destroy_tp,'destroy_tp',$user);
+		$this->hakAkses($request->index_laporan_cu,'index_laporan_cu',$user);
+		$this->hakAkses($request->create_laporan_cu,'create_laporan_cu',$user);
+		$this->hakAkses($request->update_laporan_cu,'update_laporan_cu',$user);
+		$this->hakAkses($request->destroy_laporan_cu,'destroy_laporan_cu',$user);
+		$this->hakAkses($request->index_laporan_tp,'index_laporan_tp',$user);
+		$this->hakAkses($request->create_laporan_tp,'create_laporan_tp',$user);
+		$this->hakAkses($request->update_laporan_tp,'update_laporan_tp',$user);
+		$this->hakAkses($request->destroy_laporan_tp,'destroy_laporan_tp',$user);
+		$this->hakAkses($request->index_user,'index_user',$user);
+		$this->hakAkses($request->create_user,'create_user',$user);
+		$this->hakAkses($request->update_user,'update_user',$user);
+		$this->hakAkses($request->destroy_user,'destroy_user',$user);
+		$this->hakAkses($request->reset_password,'reset_password',$user);
+		$this->hakAkses($request->hak_akses_user,'hak_akses_user',$user);
+		$this->hakAkses($request->status_user,'status_user',$user);
 	}
 		
 	public function markAllNotifRead()

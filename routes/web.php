@@ -31,15 +31,24 @@ Route::get('/testroute', function () {
 
     // $role = Spatie\Permission\Models\Role::findOrFail(2);
 
-    // $user = App\User::find(8);
+    $user = App\User::find(21);
+    // $user->assignRole('cu-test');
+    // $rolename = $user->getRoleNames();
+    // if($rolename[0] == 'cu-test'){
+    //     echo $rolename;
+    // }else{
+    //     echo 'no role';
+    // }
+    $user->givePermissionTo('index_artikel');
+    dd($user->getAllPermissions());
     // $roles = $user->getRoleNames();
     // $userdata = $user->combine($roles);
 
     // create permission
-    // Spatie\Permission\Models\Permission::create(['name' => 'index tp']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'create tp']); 
-    // Spatie\Permission\Models\Permission::create(['name' => 'update tp']);
-    // Spatie\Permission\Models\Permission::create(['name' => 'destroy tp']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_tp']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_tp']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_tp']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_tp']);
 
     // give permission to role
     // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');

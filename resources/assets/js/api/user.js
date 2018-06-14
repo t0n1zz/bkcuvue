@@ -26,9 +26,17 @@ export default {
   edit: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/user/edit/' + id);
   },
+  
+  editHakAkses: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/user/editHakAkses/' + id);
+  },
 
   update: function ( id, form ){
     return axios.post(BKCU_CONFIG.API_URL + '/user/update/' + id, form);
+  },
+
+  updateHakAkses: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/user/updateHakAkses/' + id, form);
   },
 
   updateStatus: function( id ){

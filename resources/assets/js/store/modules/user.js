@@ -174,11 +174,43 @@ export const user = {
         });
     },
 
+    editHakAkses( {commit, state, dispatch}, id ){
+      commit('setDataStat', 'loading');
+      
+      UserAPI.editHakAkses( id )
+        .then( function( response ){
+          commit('setData', response.data.model);
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // update data
     update( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
       UserAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateHakAkses( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.updateHakAkses( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

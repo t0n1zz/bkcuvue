@@ -141,12 +141,9 @@
 										</div>
 									</div>
 
-									<!-- separator -->
-									<div class="col-md-12"><hr/></div>
-
 									<!-- tipe -->
 									<div class="col-md-12">
-										<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
+										<div class="form-group">
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.tipe')}">
@@ -154,13 +151,12 @@
 												Tipe:
 											</h5>
 
-											<!-- radio -->
-											<label class="radio-inline">
-												<input type="radio" name="tipe" :value="'BKCU'" v-validate="'required|in:BKCU,CU'" data-vv-as="Tipe" v-model="roleTipe"> User BKCU
-											</label>
-											<label class="radio-inline">
-												<input type="radio" name="tipe" :value="'CU'" v-model="roleTipe"> User CU
-											</label>
+											<!-- select -->
+											<select name="CU" data-width="100%" class="bootstrap-select" v-model="roleTipe">
+												<option disabled value="">Silahkan pilih tipe</option>
+												<option value="bkcu">User BKCU</option>
+												<option value="cu">User CU</option>
+											</select>
 
 											<!-- error message -->
 											<br/>
@@ -169,27 +165,28 @@
 											</small>
 											<small class="text-muted" v-else>&nbsp;
 											</small>
+
 										</div>
 									</div>
-									
+
 									<!-- select CU -->
-									<div class="col-md-12" v-if="roleTipe === 'CU'">
+									<div class="col-md-12" v-if="roleTipe === 'cu'">
 										<div class="form-group">
 
 											<!-- title -->
 											<h5>CU:</h5>
 
 											<!-- select -->
-											<select name="CU" data-width="100%" class="bootstrap-select" v-model="form.id_cu">
+											<select name="cu" data-width="100%" class="bootstrap-select" v-model="form.id_cu">
 												<option disabled value="">Silahkan pilih CU</option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+												<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
 											</select>
 
 										</div>
 									</div>
 
 									<!-- hak-akses -->
-									<div class="col-md-12" v-if="roleTipe === 'BKCU' || form.id_cu != 0">
+									<div class="col-md-12" v-if="roleTipe === 'bkcu' || form.id_cu != 0">
 										<hak-akses :tipeUser="roleTipe" :form="form"></hak-akses>
 									</div>
 								</div>
@@ -261,7 +258,6 @@
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
-				redirect: '/user/',
 				submited: false,
 			}
 		},
@@ -300,10 +296,13 @@
 				}
 			},
 			roleTipe(value){
-				if(value === 'CU'){
-					this.$store.dispatch('loadCuPus','1');
+				if(value == 'cu'){
+					if(this.modelCuStat != "success"){
+						this.$store.dispatch('cu/getPus', this.profile.id_pus);
+					}
+				}else{
+					this.form.id_cu = '0';
 				}
-				this.$store.dispatch('loadRoleTipe', value);
 			}
     },
 		methods: {
@@ -337,16 +336,18 @@
 				});
 			},
 			back(){
-
+				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+				}
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
-					this.$router.push(this.redirect);
+					this.back();
 				}
 
 				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
@@ -369,7 +370,6 @@
 			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
-				console.log(event.target.files[0].name);
 			},
 			other() {
 				// bootstrap select
@@ -388,8 +388,8 @@
 				updateStat: 'updateStat'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCu: 'dataS',
+				modelCuStat: 'dataStatS',
 			})
 		}
 	}

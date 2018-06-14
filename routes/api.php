@@ -13,9 +13,11 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::get('/user/indexCu/{id}', 'UserController@indexCu');
     Route::get('/user/create', 'UserController@create');
     Route::get('/user/edit/{id}', 'UserController@edit');
+    Route::get('/user/editHakAkses/{id}', 'UserController@editHakAkses');
     Route::post('/user/store', 'UserController@store');
     Route::post('/user/update/{id}', 'UserController@update');
     Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
+    Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses');
     Route::post('/user/resetPassword/{id}', 'UserController@resetPassword');
     // role
     Route::get('/role', 'RoleController@index');
@@ -61,44 +63,44 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::delete('/artikelPenulis/{id}', 'ArtikelPenulisController@destroy');
 
     // cu
-    Route::group(['middleware' => ['permission:index cu']], function () {
+    Route::group(['middleware' => ['permission:index_cu']], function () {
         Route::get('/cu', 'CuController@index');
         Route::get('/cu/get', 'CuController@get');       
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
     });
-    Route::group(['middleware' => ['permission:create cu']], function () {
+    Route::group(['middleware' => ['permission:create_cu']], function () {
         Route::get('/cu/create', 'CuController@create');
         Route::post('/cu/store', 'CuController@store');
     });
-    Route::group(['middleware' => ['permission:update cu']], function () {
+    Route::group(['middleware' => ['permission:update_cu']], function () {
         Route::get('/cu/edit/{id}', 'CuController@edit');
         Route::post('/cu/update/{id}', 'CuController@update');
     });
-    Route::group(['middleware' => ['permission:destroy cu']], function () {
+    Route::group(['middleware' => ['permission:destroy_cu']], function () {
         Route::delete('/cu/{id}', 'CuController@destroy');
     });
 
     // tp
-    Route::group(['middleware' => ['permission:index tp']], function () {
+    Route::group(['middleware' => ['permission:index_tp']], function () {
         Route::get('/tp', 'TpController@index');
         Route::get('/tp/get', 'TpController@get');
         Route::get('/tp/indexCu/{id}', 'TpController@indexCu'); 
         Route::get('/tp/getCu/{id}', 'TpController@getCu');
     });
-    Route::group(['middleware' => ['permission:create tp']], function () {
+    Route::group(['middleware' => ['permission:create_tp']], function () {
         Route::get('/tp/create', 'TpController@create');
         Route::post('/tp/store', 'TpController@store');
     });
-    Route::group(['middleware' => ['permission:update tp']], function () {
+    Route::group(['middleware' => ['permission:update_tp']], function () {
         Route::get('/tp/edit/{id}', 'TpController@edit');
         Route::post('/tp/update/{id}', 'TpController@update');
     });
-    Route::group(['middleware' => ['permission:destroy tp']], function () {
+    Route::group(['middleware' => ['permission:destroy_tp']], function () {
         Route::delete('/tp/{id}', 'TpController@destroy');
     });
 
     //laporan cu
-    Route::group(['middleware' => ['permission:index laporanCu']], function () {
+    Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::get('/laporanCu', 'laporanCuController@index');
         Route::get('/laporanCu/indexCu/{id}', 'laporanCuController@indexCu');
         Route::get('/laporanCu/indexPeriode/{periode}', 'laporanCuController@indexPeriode');
@@ -110,11 +112,11 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/laporanCu/detail/{id}', 'laporanCuController@detail');
         Route::get('/laporanCu/detailPearls/{id}', 'laporanCuController@detailPearls');
     });
-    Route::group(['middleware' => ['permission:create laporanCu']], function () {
+    Route::group(['middleware' => ['permission:create_laporan_cu']], function () {
         Route::get('/laporanCu/create', 'laporanCuController@create');
         Route::post('/laporanCu/store', 'laporanCuController@store');
     });
-    Route::group(['middleware' => ['permission:update laporanCu']], function () {
+    Route::group(['middleware' => ['permission:update_laporan_cu']], function () {
         Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');
         Route::post('/laporanCu/update/{id}', 'laporanCuController@update');
     });
@@ -129,7 +131,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
 
     //laporan tp
-    Route::group(['middleware' => ['permission:index laporanTp']], function () {
+    Route::group(['middleware' => ['permission:index_laporan_tp']], function () {
         Route::get('/laporanTp/cu/{id}', 'laporanTpController@index');
         Route::get('/laporanTp/indexTp/{id}', 'laporanTpController@indexTp');
         Route::get('/laporanTp/indexPeriode/{id}/{periode}', 'laporanTpController@indexPeriode');
@@ -142,15 +144,15 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/laporanTp/detail/{id}', 'laporanTpController@detail');
         Route::get('/laporanTp/detailPearls/{id}', 'laporanTpController@detailPearls');
     });
-    Route::group(['middleware' => ['permission:create laporanTp']], function () {
+    Route::group(['middleware' => ['permission:create_laporan_tp']], function () {
         Route::get('/laporanTp/create', 'laporanTpController@create');
         Route::post('/laporanTp/store', 'laporanTpController@store');
     });
-    Route::group(['middleware' => ['permission:update laporanTp']], function () {
+    Route::group(['middleware' => ['permission:update_laporan_tp']], function () {
         Route::get('/laporanTp/edit/{id}', 'laporanTpController@edit');
         Route::post('/laporanTp/update/{id}', 'laporanTpController@update');
     });
-    Route::group(['middleware' => ['permission:destroy laporanTp']], function () {
+    Route::group(['middleware' => ['permission:destroy_laporan_tp']], function () {
         Route::delete('/laporanTp/{id}', 'laporanTpController@destroy');
     });
 
