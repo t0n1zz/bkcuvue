@@ -462,18 +462,18 @@
 		},
 		methods: {
 			fetch(){
-				if(this.$route.params.cu == 'semua'){
-					this.disableColumnCu(false);
-				}else{
-					this.disableColumnCu(true);
-				}
-
 				if(this.$route.params.kategori){
 					this.$store.dispatch('artikelKategori/edit',this.$route.params.kategori);
 				}else if(this.$route.params.penulis){
 					this.$store.dispatch('artikelPenulis/edit',this.$route.params.penulis);
 				}else{
-					this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
+					if(this.$route.params.cu == 'semua'){
+						this.disableColumnCu(false);
+						this.$store.dispatch(this.kelas + '/index', this.params);
+					}else{
+						this.disableColumnCu(true);
+						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
+					}
 				}
 			},
 			disableColumnCu(status){

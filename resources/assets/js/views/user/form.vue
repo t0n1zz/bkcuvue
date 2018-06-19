@@ -87,7 +87,7 @@
 											</h5>
 
 											<!-- text -->
-											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" data-vv-as='Username' v-model="form.username">
+											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" data-vv-as='Username' v-model="form.username" v-if="this.$route.meta.mode != 'edit'">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.username')">
@@ -142,7 +142,7 @@
 									</div>
 
 									<!-- tipe -->
-									<div class="col-md-12">
+									<div class="col-md-12" v-if="profile.id_cu == 0">
 										<div class="form-group">
 
 											<!-- title -->
@@ -152,7 +152,7 @@
 											</h5>
 
 											<!-- select -->
-											<select name="CU" data-width="100%" class="bootstrap-select" v-model="roleTipe">
+											<select name="CU" data-width="100%" class="bootstrap-select" v-model="roleTipe" :disabled="this.$route.meta.mode == 'edit'">
 												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="bkcu">User BKCU</option>
 												<option value="cu">User CU</option>
@@ -170,7 +170,7 @@
 									</div>
 
 									<!-- select CU -->
-									<div class="col-md-12" v-if="roleTipe === 'cu'">
+									<div class="col-md-12" v-if="profile.id_cu == 0 && roleTipe == 'cu'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -186,7 +186,10 @@
 									</div>
 
 									<!-- hak-akses -->
-									<div class="col-md-12" v-if="roleTipe === 'bkcu' || form.id_cu != 0">
+									<div class="col-md-12" v-if="this.$route.meta.mode !== 'edit' && roleTipe == 'bkcu' || this.$route.meta.mode !== 'edit' && roleTipe == 'cu'">
+										<!-- title -->
+										<h5>Hak Akses:</h5>
+
 										<hak-akses :tipeUser="roleTipe" :form="form"></hak-akses>
 									</div>
 								</div>
@@ -252,7 +255,7 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'User',
 				kelas: 'user',
-				roleTipe: '',
+				roleTipe:'',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -272,13 +275,32 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
-			formStat(value){
-				if(value === 'success'){
-					if(this.$route.meta.mode === 'edit'){
-						if(this.form.id_cu === 0){
-							this.roleTipe = 'BKCU';
+			profileStat(value){
+				if(value == 'success'){
+					if(this.$route.meta.mode != 'edit'){
+						if(this.profile.id_cu == 0){
+							this.roleTipe = 'bkcu';
 						} else {
-							this.roleTipe = 'CU';
+							this.roleTipe = 'cu';
+						}
+					}
+				}
+			},
+			formStat(value){
+				if(value == 'success'){
+					if(this.$route.meta.mode == 'edit'){
+						if(this.form.id_cu == 0){
+							this.roleTipe = 'bkcu';
+						} else if(this.form.id_cu != 0){
+							this.roleTipe = 'cu';
+						}
+					}else{
+						if(this.profileStat == 'success'){
+							if(this.profile.id_cu == 0){
+								this.roleTipe = 'bkcu';
+							} else {
+								this.roleTipe = 'cu';
+							}
 						}
 					}
 				}
@@ -320,6 +342,12 @@
 				this.$store.dispatch('loadRolePermission',id);
 			},
 			save() {
+				if(this.$route.meta.mode != 'edit'){
+					if(this.profile.id_cu != 0){
+						this.form.id_cu = this.profile.id_cu;
+					}
+				}
+
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {

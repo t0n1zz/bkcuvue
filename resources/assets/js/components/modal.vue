@@ -106,7 +106,7 @@
 												<b>ERROR 500:</b> {{ content.data.message }}
 											</span>
 										</div>
-										<br/>
+										<br/> 
 
 										<!-- error detail -->
 										<div v-if="content && showDetail">

@@ -36,7 +36,7 @@
           </button>
         </div>
 
-        <!-- aktifkan -->                                                                                                                            
+        <!-- aktifkan -->                                           
         <div class="btn-group pb-5" v-if="profile.can && profile.can['status_' + kelas]">
           <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
             <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
@@ -62,7 +62,7 @@
         </li>
 
         <!-- separator -->
-        <li><hr class="no-margin-bottom no-margin-top"/></li>
+        <li><hr class="no-margin-bottom zz   o-margin-top"/></li>
 
         <!-- content -->
         <li class="text-center pb-10 pt-10 pl-5 pr-5">
@@ -121,7 +121,7 @@
           <td v-if="!columnData[2].hide" class="warptext">{{props.item.name}}</td>
           <td v-if="!columnData[3].hide" class="warptext">{{props.item.email}}</td>
           <td v-if="!columnData[4].hide && !columnData[4].disable">
-            <span v-if="props.item.c_u">{{props.item.c_u.name}}</span>
+            <span v-if="props.item.cu">{{props.item.cu.name}}</span>
             <span v-else>Puskopdit BKCU Kalimantan</span>
           </td>
           <td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
@@ -170,8 +170,8 @@
                 <tr v-if="!columnData[4].hide">
                   <td><b>{{columnData[4].title}}</b></td>
                   <td>
-                    <span v-if="props.item.c_u">
-                      : {{props.item.c_u.name}}
+                    <span v-if="props.item.cu">
+                      : {{props.item.cu.name}}
                     </span>
                     <span v-else>: Puskopdit BKCU Kalimantan</span>	
                   </td>
@@ -236,7 +236,7 @@
     </data-viewer>
 
     <!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :size="modalSize" :color="modalColor" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :size="modalSize" :color="modalColor" :title="modalTitle" :content="modalContent" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
@@ -370,7 +370,8 @@ export default {
       modalColor: '',
       modalSize: '',
       modalTitle: '',
-      modalButton: ''
+      modalButton: '',
+      modalContent: ''
     }
   },
   created(){
@@ -407,10 +408,11 @@ export default {
     fetch(){
       if(this.$route.params.cu == 'semua'){
         this.disableColumnCu(false);
+        this.$store.dispatch(this.kelas + '/index', this.params);
       }else{
         this.disableColumnCu(true);
+        this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
       }
-      this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
     },
     disableColumnCu(status){
       this.columnData[4].disable = status;
@@ -473,11 +475,11 @@ export default {
     modalConfirmOk() {
       var vm = this;
       if (vm.source == 'hapus') {
-        this.$store.dispatch('deleteUser', this.selectedItem.id);
+        this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
       } else if (vm.source == "resetPassword"){
-        this.$store.dispatch('updateUserResetPassword', this.selectedItem.id);
+        this.$store.dispatch(this.kelas + '/updateResetPassword', this.selectedItem.id);
       } else if (vm.source == "updateStatus"){
-        this.$store.dispatch('updateUserStatus', this.selectedItem.id);
+        this.$store.dispatch(this.kelas + '/updateStatus', this.selectedItem.id);
       }
     },
     reload(){
@@ -507,7 +509,7 @@ export default {
           newData[e.name] = true
         })
       }
-				
+
 			return newData;
     }
   }

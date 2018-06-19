@@ -207,6 +207,42 @@ export const user = {
         });
     },
 
+    updateResetPassword( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.updateResetPassword( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateStatus( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.updateStatus( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     updateHakAkses( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 

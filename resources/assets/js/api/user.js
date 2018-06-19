@@ -44,7 +44,7 @@ export default {
   },
 
   updateResetPassword: function( id ){
-    return axios.post(BKCU_CONFIG.API_URL + '/user/resetPassword/' + id);
+    return axios.post(BKCU_CONFIG.API_URL + '/user/updateResetPassword/' + id);
   },
 
   destroy: function( id ){

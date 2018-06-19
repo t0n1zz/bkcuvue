@@ -151,7 +151,7 @@ class UserController extends Controller
 
 		$username = $request->username;
 
-			// processing single image upload
+		// processing single image upload
 		if(!empty($request->gambar))
 			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
 		else
@@ -205,10 +205,10 @@ class UserController extends Controller
 			]);
 	}
 
-	public function resetPassword($id)
+	public function updateResetPassword($id)
 	{
 		$kelas = User::findOrFail($id);
-		$password = 'solusi';
+		$password = env('RESET_PASSWORD');
 		$password = Hash::make($password);
 
 		$username = $kelas->username;

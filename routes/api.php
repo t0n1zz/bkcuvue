@@ -18,7 +18,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::post('/user/update/{id}', 'UserController@update');
     Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
     Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses');
-    Route::post('/user/resetPassword/{id}', 'UserController@resetPassword');
+    Route::post('/user/updateResetPassword/{id}', 'UserController@updateResetPassword');
     // role
     Route::get('/role', 'RoleController@index');
     Route::get('/role_all', 'RoleController@indexAll');
