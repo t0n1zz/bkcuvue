@@ -147,8 +147,6 @@ class UserController extends Controller
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request,User::$rules);
-
 		$username = $request->username;
 
 		// processing single image upload

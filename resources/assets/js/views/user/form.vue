@@ -77,7 +77,7 @@
 									</div>
 
 									<!-- username -->
-									<div class="col-md-6">
+									<div class="col-md-6" v-if="this.$route.meta.mode != 'edit'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.username')}">
 
 											<!-- title -->
@@ -87,7 +87,7 @@
 											</h5>
 
 											<!-- text -->
-											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" data-vv-as='Username' v-model="form.username" v-if="this.$route.meta.mode != 'edit'">
+											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" data-vv-as='Username' v-model="form.username">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.username')">

@@ -99,12 +99,21 @@
           </div>
         </li>
 
-        <!-- aktifkan -->
-        <li v-if="profile.can && profile.can['aktifkan_' + kelas]">
+        <!-- status -->
+        <li v-if="profile.can && profile.can['status_' + kelas]">
           <div class="pl-5 pr-5 pb-5">
             <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
               <i class="icon-user-check"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
               <span v-else>Aktifkan</span>
+            </button>
+          </div>
+        </li>
+
+        <!-- hak akses -->
+        <li>
+          <div class="pl-5 pr-5 pb-5">
+            <button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Hak Akses User'"  :disabled="!selectedItem.id">
+              <i class="icon-key"></i> Hak Akses
             </button>
           </div>
         </li>
@@ -152,7 +161,6 @@
                   <td colspan="2">
                     <img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
                     <img :src="'/images/no_image_man.jpg'" class="img-rounded img-responsive center-block" v-else>
-                    
                   </td>
                 </tr>
                 <tr v-if="!columnData[1].hide">
@@ -228,6 +236,14 @@
                   <span v-else>Aktifkan</span> 
                 </button>
               </div>
+
+              <!-- hak akses mobile -->
+              <div class="pb-10 pl-15 pr-15">
+                <button @click.prevent="modalHakAksesOpen(true,props.item)" class="btn btn-default btn-icon btn-block">
+                  <i class="icon-key"></i> Hak Akses
+                </button>
+              </div>
+
             </div>
           </div>
         </div>
@@ -257,8 +273,10 @@
 					<i class="icon-cross"></i> Tutup</button>
 				<button type="submit" class="btn btn-primary" @click="modalHakAksesSave">
 					<i class="icon-floppy-disk"></i> Simpan</button>
+
 			</template>
 		</app-modal>
+
   </div>
 </template>
 

@@ -5,7 +5,7 @@
       <div class="text-center hidden-xs">
 
         <!-- tutup -->
-        <button type="button" @click="cancelClick" class="btn btn-default" v-tooltip:top="'Tutup'" v-if="cancelState ==='methods'">
+        <button type="button" @click.prevent="cancelClick" class="btn btn-default" v-tooltip:top="'Tutup'" v-if="cancelState ==='methods'">
           <i :class="cancelIcon"></i> {{ cancelTitle }}
         </button>
 
@@ -30,7 +30,7 @@
         </button>
 
         <!-- tutup -->
-        <button class="btn btn-default btn-block" @click="cancelClick"  v-if="cancelState ==='methods'">
+        <button class="btn btn-default btn-block" @click.prevent="cancelClick"  v-if="cancelState ==='methods'">
           <i :class="cancelIcon"></i> {{ cancelTitle }}
         </button>
 

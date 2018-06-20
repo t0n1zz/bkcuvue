@@ -6,11 +6,11 @@
 			
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h6 class="panel-title"><i :class="akses.icon"></i> {{ akses.name }}</h6>
+					<h6 class="panel-title"><i :class="akses.icon"></i> {{ akses.name }}
+					</h6>
 				</div>
 				<div class="panel-body">
 
-					<!-- mobile -->
 					<div class="checkbox checkbox-right" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='all'">
 						<label>
 							<input type="checkbox" :value="permission.key" v-model="form[permission.key]" v-if="permission.type != 'empty'">
@@ -48,6 +48,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Artikel'
 							},
 							{
 								name: 'Tambah',
@@ -55,6 +56,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Artikel'
 							},
 							{
 								name: 'Ubah',
@@ -62,6 +64,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Artikel'
 							},
 							{
 								name: 'Hapus',
@@ -69,6 +72,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Artikel'
 							},
 							{
 								name: 'Terbitkan',
@@ -76,6 +80,7 @@
 								icon: 'icon-file-upload',
 								tipe: 'all',
 								value: false,
+								group: 'Artikel'
 							},
 							{
 								name: 'Utamakan',
@@ -83,6 +88,7 @@
 								icon: 'icon-pushpin',
 								tipe: 'all',
 								value: false,
+								group: 'Artikel'
 							}
 						]
 					},

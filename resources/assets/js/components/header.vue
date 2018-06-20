@@ -126,12 +126,12 @@
 
 							<!-- tambah penulis -->
 							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_Kategori']">
-								<a><i class="icon-plus22"></i> Tambah Kategori Artikel</a>
+								<a><i class="icon-plus22"></i> Tambah Kategori</a>
 							</router-link>
 
 							<!-- tambah penulis -->
 							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_penulis']">
-								<a><i class="icon-plus22"></i> Tambah Penulis Artikel</a>
+								<a><i class="icon-plus22"></i> Tambah Penulis</a>
 							</router-link>
 
 							<!-- separator -->
@@ -209,9 +209,19 @@
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
-							<router-link :to="{ name: 'laporanCuCu',params: { cu: this.idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
+							<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
 								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
+							<li class="dropdown-submenu" v-if="modelTp.length > 0">
+								<a href="#"><i class="icon-stats-growth"></i> Laporan TP/KP</a>
+								<ul class="dropdown-menu width-100">
+									<li class="dropdown-header highlight">Laporan TP/KP</li>
+									<li v-for="tp in modelTp">
+										<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:tp.id } }">{{ tp.name }}
+										</router-link>
+									</li>		
+								</ul>
+							</li>
 						</ul>
 					</li>
 
@@ -263,6 +273,7 @@
 			profileStat(value){
 				if(value === "success"){
 					this.idCu = this.profile.id_cu;
+					this.fetchTp();
 				}
 			},
 			markNotifStat(value){
@@ -283,6 +294,9 @@
 				}
 				this.$store.dispatch('user/markNotifRead',notif.id);
 			},
+			fetchTp(){
+				this.$store.dispatch('tp/getCu',this.idCu);
+			},
 			markAllNotifRead(){
 				this.$store.dispatch('user/markAllNotifRead');
 			},
@@ -301,7 +315,11 @@
 				unreadNotification: 'unreadNotification',
 				profileStat: 'profileStat',
 				markNotifStat: 'markNotifStat',
-			})
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
+			}),
 		}
 	}
 </script>
