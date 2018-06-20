@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Cu;
-use App\Support\ImageProcessing;
+use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
 use Image;
@@ -71,7 +71,7 @@ class CuController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request);
 		else
 			$fileName = '';
 
@@ -89,7 +89,7 @@ class CuController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Cu::findOrFail($id);
+		$kelas = Cu::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 				->json([
@@ -108,7 +108,7 @@ class CuController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
 		else
 			$fileName = '';
 

@@ -138,17 +138,17 @@
 							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'artikelCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
+							<router-link :to="{ name: 'artikelCu', params:{cu: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
 								<a><i class="icon-magazine"></i> Artikel</a>
 							</router-link>
 
 							<!-- kategori artikel -->
-							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: this.idCu} }" tag="li" active-class="active" exact>
+							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" tag="li" active-class="active" exact>
 								<a><i class="icon-grid6"></i> Kategori Artikel</a>
 							</router-link>
 
 							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu:this.idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
+							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
 								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
 							</router-link>
 						</ul>
@@ -179,11 +179,15 @@
 							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
+
+							<router-link :to="{ name: 'cuEdit', params:{id: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.id_cu != 0 && profile.can && profile.can['update_cu']">
+								<a><i class="icon-office"></i> Profile CU</a>
+							</router-link>
 							<!-- cu -->
 							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
-							<router-link :to="{ name: 'tpCu', params:{cu:this.idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
+							<router-link :to="{ name: 'tpCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 						</ul>

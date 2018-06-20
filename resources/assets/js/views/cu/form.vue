@@ -655,7 +655,7 @@
 						if(this.profile.id_cu !== 0 && this.profile.id_cu !== this.form.id){
 							this.$router.push({name: 'notFound'});
 						}
-						this.changeProvinces(this.form.id_provinces);
+						this.changeProvinces(this. form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
 					}
