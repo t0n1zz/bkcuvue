@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- cu desktop --> 
-		<div class="panel panel-flat hidden-xs hidden-print " v-if="this.profile.id_cu === 0">
+		<div class="panel panel-flat hidden-xs hidden-print ">
 			<div class="panel-body">  
 					<div class="input-group" v-if="this.profile.id_cu === 0">
 						<div class="input-group-addon">
@@ -31,7 +31,7 @@
 		</div>		
 
 		<!-- cu mobile -->
-		<div class="panel panel-flat visible-xs hidden-print" v-if="this.profile.id_cu === 0">
+		<div class="panel panel-flat visible-xs hidden-print">
 			<div class="panel-body">  
 				<!-- select -->
 				<div class="input-group">

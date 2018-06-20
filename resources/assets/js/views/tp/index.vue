@@ -32,7 +32,8 @@
 					<select-cu 
 						:kelas="kelas"
 						:path="selectCuPath"
-						:isPus="false"></select-cu>
+						:isPus="false"
+						v-if="profile.id_cu == 0"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -70,7 +71,7 @@
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-home9',
-					title: 'KP/TP'
+					title: 'TP/KP'
 				},
 				btn2Header: {
 					route: 'artikel',
@@ -91,6 +92,10 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		computed: {
+			...mapGetters('user',{
+				profile: 'profile',
+				profileStat: 'profileStat'
+			}),
 			...mapGetters('tp',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS'

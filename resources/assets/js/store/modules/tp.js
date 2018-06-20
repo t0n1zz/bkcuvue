@@ -7,8 +7,10 @@ export const tp = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    headerDataS: [], //collection
     dataStat: '',
     dataStatS: '',
+    headerDataStatS:'',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -19,8 +21,10 @@ export const tp = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    headerDataStatS: state => state.headerDataStatS,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -83,6 +87,20 @@ export const tp = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    getCuHeader( {commit}, id ){
+      commit('setHeaderDataStatS', 'loading');
+      
+      TpAPI.getCu( id )
+        .then( function( response ){
+          commit('setHeaderDataS', response.data.model);
+          commit('setHeaderDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setHeaderDataS', error.response);
+          commit('setHeaderDataStatS', 'fail');
         });
     },
 
@@ -193,11 +211,17 @@ export const tp = {
     setData ( state, data ){
       state.data = data;
     },
+    setHeaderDataS ( state, data ){
+      state.headerDataS = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
     setDataStat( state, status ){
       state.dataStat = status;
+    },
+    setHeaderDataStatS( state, status ){
+      state.headerDataStatS = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;

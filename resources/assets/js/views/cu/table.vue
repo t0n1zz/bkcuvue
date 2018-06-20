@@ -11,28 +11,28 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['create ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['create_' + kelas]">
 					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
 						<i class="icon-plus3"></i> Tambah 
 					</router-link>
 				</div>
 
 				<!-- ubah-->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
 					<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
 
 				<!-- hapus -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_' + kelas]">
 					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
 					</button>
 				</div>
 
 				<!-- lihat tpcu -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['index tpCu']">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['index_tpCu']">
 					<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Lihat TP/KP'" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0">
 						<i class="icon-file-eye"></i> Lihat TP/KP 
 					</button>
@@ -52,7 +52,7 @@
 				<li><hr class="no-margin-top no-margin-bottom"/></li>
 
 				<!-- update -->
-				<li v-if="profile.can && profile.can['update ' + kelas]">
+				<li v-if="profile.can && profile.can['update_' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
 						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 							<i class="icon-pencil5"></i> Ubah
@@ -61,7 +61,7 @@
 				</li>
 
 				<!-- destroy -->
-				<li v-if="profile.can && profile.can['destroy ' + kelas]">
+				<li v-if="profile.can && profile.can['destroy_' + kelas]">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 							<i class="icon-bin2"></i> Hapus
@@ -70,7 +70,7 @@
 				</li>
 
 				<!-- lihat tpcu -->
-				<li v-if="profile.can && profile.can['index tpCu']">
+				<li v-if="profile.can && profile.can['index_tp_cu']">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Lihat TP/KP'" :disabled="selectedItem.has_tp_cu_count === 0">
 							<i class="icon-file-eye"></i> Lihat TP/KP 
@@ -150,7 +150,7 @@
 
 			<!-- mobile -->
 			<!-- button mobile -->
-			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create ' + kelas]">
+			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create_' + kelas]">
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
 					<i class="icon-plus3"></i> Tambah
@@ -281,21 +281,21 @@
 						<div class="text-center button-toolbar">
 							
 							<!-- update -->
-							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update ' + kelas]">
+							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_' + kelas]">
 								<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 							
 							<!-- destroy -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy ' + kelas]">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_' + kelas]">
 								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-bin2"></i> <span>Hapus</span>
 								</button>
 							</div>
 
 							<!-- lihat tpcu -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['index tpCu']">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['index_tp_cu']">
 								<button @click.prevent="lihatTpCu(props.item.id)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_tp_cu_count === 0">
 									<i class="icon-file-eye"></i> Lihat TP/KP 
 								</button>

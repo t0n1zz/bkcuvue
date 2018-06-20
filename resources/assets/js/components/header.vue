@@ -31,19 +31,19 @@
 						</a>
 						
 						<div class="dropdown-menu dropdown-content width-350">
-							<div class="dropdown-content-heading" v-if="unreadNotification > 0">
+							<div class="dropdown-content-heading bg-primary-300" v-if="unreadNotification > 0">
 								Terdapat {{unreadNotification}} pemberitahuan
 
 								<ul class="icons-list">
-									<li><a @click.prevent="markAllNotifRead()" v-tooltip="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a></li>
+									<li><a @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a></li>
 								</ul>
 							</div>
-							<div class="dropdown-content-heading text-center" v-else>
+							<div class="dropdown-content-heading text-center bg-primary-300" v-else>
 								Tidak terdapat pemberitahuan 
 								<span v-if="notification.length > 0">baru</span>
 							</div>	
 
-							<ul class="media-list dropdown-content-body" v-if="notification.length > 0">
+							<ul class="media-list dropdown-content-body mt-15" v-if="notification.length > 0">
 
 								<li class="media" v-for="notif in notification">
 									<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
@@ -63,7 +63,7 @@
 							</ul>
 
 							<div class="dropdown-content-footer" v-if="notification.length > 0">
-								<a @click.prevent="goToNotifCenter()" data-popup="tooltip" title="All messages"><b>LIHAT SEMUA PEMBERITAHUAN</b></a>
+								<a @click.prevent="goToNotifCenter()">LIHAT SEMUA PEMBERITAHUAN</a>
 							</div>
 						</div>
 					</li>
@@ -163,7 +163,7 @@
 						<ul class="dropdown-menu">
 
 							<!-- tambah cu -->
-							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_cu']">
+							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_cu']">
 								<a><i class="icon-plus22"></i> Tambah CU</a>
 							</router-link>
 
@@ -176,7 +176,7 @@
 							<li class="divider"></li>
 
 							<!-- cu -->
-							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_cu']">
+							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
 							<!-- cu -->
@@ -295,7 +295,7 @@
 				this.$store.dispatch('user/markNotifRead',notif.id);
 			},
 			fetchTp(){
-				this.$store.dispatch('tp/getCu',this.idCu);
+				this.$store.dispatch('tp/getCuHeader',this.idCu);
 			},
 			markAllNotifRead(){
 				this.$store.dispatch('user/markAllNotifRead');
@@ -317,8 +317,8 @@
 				markNotifStat: 'markNotifStat',
 			}),
 			...mapGetters('tp',{
-				modelTp: 'dataS',
-				modelTpStat: 'dataStatS',
+				modelTp: 'headerDataS',
+				modelTpStat: 'headerDataStatS',
 			}),
 		}
 	}

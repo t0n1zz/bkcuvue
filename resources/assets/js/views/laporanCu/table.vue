@@ -26,28 +26,28 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['create ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['create_laporan_cu']">
 					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
 						<i class="icon-plus3"></i> Tambah 
 					</router-link>
 				</div>
 
 				<!-- ubah-->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_laporan_cu']">
 					<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
 
 				<!-- hapus -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_laporan_cu']">
 					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
 					</button>
 				</div>
 
 				<!-- detail-->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['update ' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_laporan_cu']">
 					<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon" v-tooltip:top="'Detail ' + title" :disabled="!selectedItem.id">
 						<i class="icon-file-stats"></i> Detail
 					</button>
@@ -85,7 +85,7 @@
 				</li>
 				<li><hr class="no-margin-top no-margin-bottom"/></li>
 				<!-- update -->
-				<li v-if="profile.can && profile.can['update ' + kelas]">
+				<li v-if="profile.can && profile.can['update_laporan_cu']">
 					<div class="pl-5 pr-5 pb-5 pt-10">
 						<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id && selectedItem.tp">
 							<i class="icon-pencil5"></i> Ubah
@@ -94,7 +94,7 @@
 				</li>
 
 				<!-- destroy -->
-				<li v-if="profile.can && profile.can['destroy ' + kelas]">
+				<li v-if="profile.can && profile.can['destroy_laporan_cu']">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 							<i class="icon-bin2"></i> Hapus
@@ -262,7 +262,7 @@
 
 			<!-- mobile -->
 			<!-- button mobile -->
-			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create ' + kelas]">
+			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create_laporan_cu']">
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
 					<i class="icon-plus3"></i> Tambah
@@ -525,14 +525,14 @@
 						<div class="text-center button-toolbar">
 
 							<!-- update -->
-							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update ' + kelas]">
+							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_laporan_cu']">
 								<button @click.prevent="ubahData(props.item.id,props.item.tp)" class="btn btn-default btn-icon btn-block" v-if="props.item.id">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 							
 							<!-- destroy -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy ' + kelas]">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_laporan_cu']">
 								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block" v-if="props.item">
 									<i class="icon-bin2"></i> <span>Hapus</span>
 								</button>
