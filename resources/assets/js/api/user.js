@@ -43,6 +43,14 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/user/updateStatus/' + id);
   },
 
+  updateFoto: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/user/updateFoto/' + id, form);
+  },
+
+  updatePassword: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/user/updatePassword/' + id, form);
+  },
+
   updateResetPassword: function( id ){
     return axios.post(BKCU_CONFIG.API_URL + '/user/updateResetPassword/' + id);
   },

@@ -207,6 +207,42 @@ export const user = {
         });
     },
 
+    updateFoto( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.updateFoto( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updatePassword( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.updatePassword( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     updateResetPassword( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 

@@ -142,7 +142,7 @@
 									</div>
 
 									<!-- tipe -->
-									<div class="col-md-12" v-if="profile.id_cu == 0">
+									<div class="col-md-12" v-if="profile.id_cu == 0 && $route.meta.mode != 'edit'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -152,7 +152,7 @@
 											</h5>
 
 											<!-- select -->
-											<select name="CU" data-width="100%" class="bootstrap-select" v-model="roleTipe" :disabled="this.$route.meta.mode == 'edit'">
+											<select name="CU" data-width="100%" class="bootstrap-select" v-model="roleTipe">
 												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="bkcu">User BKCU</option>
 												<option value="cu">User CU</option>

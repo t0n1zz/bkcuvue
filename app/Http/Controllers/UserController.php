@@ -10,7 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
-use App\Support\ImageProcessing;
+use App\Support\Helper;
 use Illuminate\Notifications\DatabaseNotification;
 
 class UserController extends Controller
@@ -98,7 +98,7 @@ class UserController extends Controller
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request);
 		else
 			$fileName = '';
 
@@ -147,15 +147,17 @@ class UserController extends Controller
 
 	public function update(Request $request, $id)
 	{
-		$username = $request->username;
+		$kelas = User::findOrFail($id);
+
+		$username = $kelas->username;
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,$kelas);
 		else
 			$fileName = '';
 
-		$kelas = User::findOrFail($id);
+		
 
 		$kelas->update($request->except('gambar') + [
 			'gambar' => $fileName
@@ -200,6 +202,60 @@ class UserController extends Controller
 			->json([
 				'saved' => true,
 				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah'
+			]);
+	}
+
+	public function updateFoto(Request $request, $id)
+	{
+		$kelas = User::findOrFail($id);
+
+		$username = $kelas->username;
+
+		// processing single image upload
+		if(!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,$kelas);
+		else
+			$fileName = '';
+
+		$kelas->update(['gambar' => $fileName]);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Foto user ' .$username. ' berhasil diubah'
+			]);
+	}
+
+	public function updatePassword(Request $request, $id)
+	{
+		$kelas = User::findOrFail($id);
+
+		if (!Hash::check(request('password_old'), $kelas->password)) {
+				return response()->json([
+						'message' => 'Password lama anda salah',
+						'status' => 500
+				], 500);
+		}
+
+		if (Hash::check(request('password'), $kelas->password)) {
+			return response()->json([
+					'message' => 'Password baru tidak boleh sama dengan yang lama',
+					'status' => 500
+			], 500);
+		}
+	
+		$password = $request->password;
+		$password = Hash::make($password);
+
+		$username = $kelas->username;
+
+		$kelas->password = $password;
+		$kelas->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Password user ' .$username. ' telah berhasil diubah'
 			]);
 	}
 

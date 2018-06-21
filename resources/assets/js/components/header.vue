@@ -79,10 +79,9 @@
 						</a>
 
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li>
-								<a href="#">
-									<i class="icon-user-plus"></i> Profile</a>
-							</li>
+							<router-link :to="{ name: 'profile', params:{id: profile.id} }" tag="li" active-class="active" exact v-if="profile.can">
+								<a><i class="icon-user-plus"></i> Profile</a>
+							</router-link>
 							<li class="divider"></li>
 							<li>
 								<a href="#" @click.prevent="logout">

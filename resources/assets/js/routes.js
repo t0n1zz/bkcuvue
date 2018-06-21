@@ -15,14 +15,18 @@ import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
 import tp from './views/tp/index.vue';
 import tp_form from './views/tp/form.vue';
+import pengelola from './views/pengelola/index.vue';
+import pengelola_form from './views/pengelola/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
+import profile from './views/user/profile.vue';
 import role from './views/role/index.vue';
 
 const routes = [
 
 	// login
 	{ path: '/login',name: 'login', components: { default: login } },
+	
 
 	// user
 	{ path: '/user/cu/:cu',name: 'userCu', 
@@ -30,6 +34,7 @@ const routes = [
 		meta: { mode:'cu' }},
 	{ path: '/user/create',name: 'userCreate', components: { default: user_form, 'header': header} },
 	{ path: '/user/edit/:id',name: 'userEdit', components: { default: user_form, 'header': header}, meta: { mode:'edit' } },
+	{ path: '/profile/:id',name: 'profile', components: { default: profile, 'header': header}},
 
 	// role
 	{ path: '/role',name: 'role', components: { default: role, 'header': header }},
@@ -95,6 +100,15 @@ const routes = [
 		components: { default: tp_form, 'header': header} },
 	{ path: '/tp/edit/:id',name: 'tpEdit', 
 		components: { default: tp_form, 'header': header}, meta: { mode:'edit' } },
+
+	// pengelola cu
+	{ path: '/pengelola/cu/:cu',name: 'pengelolaCu', 
+	components: { default: pengelola, 'header': header }, 
+	meta: { mode:'cu' }},
+	{ path: '/pengelola/create',name: 'pengelolaCreate', 
+		components: { default: pengelola_form, 'header': header} },
+	{ path: '/pengelola/edit/:id',name: 'pengelolaEdit', 
+		components: { default: pengelola_form, 'header': header}, meta: { mode:'edit' } },
 
 	// laporan cu
 	// bkcu default route
