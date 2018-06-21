@@ -61,11 +61,11 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.email')}">
 												<i class="icon-cross2" v-if="errors.has('form.email')"></i>
-												E-mail:
+												Email:
 											</h5>
 
 											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan e-mail yang valid" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'required|email'" data-vv-as="Email" v-model="form.email">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.email')">
