@@ -356,6 +356,7 @@ class UserController extends Controller
 		$this->hakAkses($request->update_artikel,'update_artikel',$user);
 		$this->hakAkses($request->destroy_artikel,'destroy_artikel',$user);
 		$this->hakAkses($request->terbitkan_artikel,'terbitkan_artikel',$user);
+		$this->hakAkses($request->utamakan_artikel,'utamakan_artikel',$user);
 		$this->hakAkses($request->index_artikel_penulis,'index_artikel_penulis',$user);
 		$this->hakAkses($request->create_artikel_penulis,'create_artikel_penulis',$user);
 		$this->hakAkses($request->update_artikel_penulis,'update_artikel_penulis',$user);

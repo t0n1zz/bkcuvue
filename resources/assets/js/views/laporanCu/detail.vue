@@ -42,40 +42,47 @@
 					</div>
 
 					<!-- table data -->
-					<div v-show="tabName == 'analisisLaporanCu'">
-						<infografis-data
-							:title="title"
-							:kelas="kelas"
-							:columnData="columnData"
-							v-if="itemDataStat == 'success'"
-							></infografis-data>
-						<detail-laporan-cu
-							:kelas="kelas"
-							:columnData="columnData"
-							></detail-laporan-cu>
-					</div>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'analisisLaporanCu'">
+							<infografis-data
+								:title="title"
+								:kelas="kelas"
+								:columnData="columnData"
+								v-if="itemDataStat == 'success'"
+								></infografis-data>
+							<detail-laporan-cu
+								:kelas="kelas"
+								:columnData="columnData"
+								></detail-laporan-cu>
+						</div>
+					</transition>
 
-					<div v-show="tabName == 'analisisPearls'" v-if="isPearls">
-						<infografis-pearls-data
-							:title="titlePearls"
-							:kelas="kelas"
-							:columnData="columnDataPearls"
-							v-if="itemPearlsStat == 'success'"
-							></infografis-pearls-data>
-						<detail-pearls
-							:kelas="kelas"
-							:columnData="columnData"
-							></detail-pearls>	
-					</div>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'analisisPearls'" v-if="isPearls">
+							<infografis-pearls-data
+								:title="titlePearls"
+								:kelas="kelas"
+								:columnData="columnDataPearls"
+								v-if="itemPearlsStat == 'success'"
+								></infografis-pearls-data>
+							<detail-pearls
+								:kelas="kelas"
+								:columnData="columnData"
+								></detail-pearls>	
+						</div>
+					</transition>
 
-					<div v-show="tabName == 'diskusi'" v-if="isDiskusi">
-						<diskusi></diskusi>
-					</div>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'diskusi'" v-if="isDiskusi">
+							<diskusi></diskusi>
+						</div>
+					</transition>
 
-					<div v-show="tabName =='revisi'" v-if="isRevisi">
-						<revisi></revisi>
-					</div>
-					
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName =='revisi'" v-if="isRevisi">
+							<revisi></revisi>
+						</div>
+					</transition>
 
 				</div>
 			</div>

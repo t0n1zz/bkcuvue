@@ -8,8 +8,8 @@
 		<router-view name="header"></router-view>
 	</transition>
 	<transition 
-		enter-active-class="animated bounceInUp"
-		leave-active-class="animated bounceOutDown"
+		enter-active-class="animated fadeIn"
+		leave-active-class=""
 		mode="out-in"
 	>
 		<router-view></router-view>

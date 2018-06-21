@@ -29,7 +29,8 @@
 					<select-cu 
 						:kelas="kelas"
 						:path="selectCuPath"
-						:isPus="true"></select-cu>
+						:isPus="true"
+						v-if="profile.id_cu == 0"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -89,6 +90,10 @@
 			this.btn2Header.params = this.$route.params.cu;
 		},
 		computed: {
+			...mapGetters('user',{
+				profile: 'profile',
+				profileStat: 'profileStat'
+			}),
 			...mapGetters('artikelKategori',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',

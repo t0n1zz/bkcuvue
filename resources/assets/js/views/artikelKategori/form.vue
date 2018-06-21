@@ -12,7 +12,7 @@
 					</message>
 
 					<!-- main panel -->
-					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+					<form @submit.prevent="save" data-vv-scope="form">
 
 						<!-- main form -->
 						<div class="panel panel-flat border-left-xlg border-left-info">
@@ -40,7 +40,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="profile.id_cu === 0">
+									<div class="col-md-4" v-if="profile.id_cu == 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -111,6 +111,10 @@
 			</div>
 		</div>
 
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+		</app-modal>
+
 	</div>
 </template>
 
@@ -120,6 +124,7 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
+	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
@@ -127,6 +132,7 @@
 	export default {
 		components: {
 			pageHeader,
+			appModal,
 			appImageUpload,
 			message,
 			formButton,
@@ -201,14 +207,13 @@
 				}
 			},
 			save() {
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
+						if(this.$route.meta.mode == 'edit'){
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', formData);
-					}
+							this.$store.dispatch(this.kelas + '/store', this.form);
+						}
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -217,17 +222,17 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+				if(this.$route.meta.mode == 'edit' && this.profile.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
 					if(this.profile.id_cu == 0){
 						if(this.form.id_cu == 0){
-							this.$router.push({name: this.kelas});
+							this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 						}else{
-							this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+							this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 						}
 					}else{
-						this.$router.push({name: this.kelas});
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
 					}
 				}
 			},

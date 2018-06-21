@@ -124,7 +124,7 @@
 							</router-link>
 
 							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_Kategori']">
+							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_kategori']">
 								<a><i class="icon-plus22"></i> Tambah Kategori</a>
 							</router-link>
 
@@ -179,7 +179,7 @@
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
 
-							<router-link :to="{ name: 'cuEdit', params:{id: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.id_cu != 0 && profile.can && profile.can['update_cu']">
+							<router-link :to="{ name: 'cuProfile', params:{id: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.id_cu != 0 && profile.can && profile.can['update_cu']">
 								<a><i class="icon-office"></i> Profile CU</a>
 							</router-link>
 							<!-- cu -->
@@ -246,7 +246,7 @@
 
 							<!-- user -->
 							<router-link :to="{ name: 'userCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_user']">
-								<a><i class="icon-users"></i> User</a>
+								<a><i class="icon-users4"></i> User</a>
 							</router-link>
 						</ul>
 					</li>

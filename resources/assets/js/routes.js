@@ -91,6 +91,8 @@ const routes = [
 		components: { default: cu_form, 'header': header} },
 	{ path: '/cu/edit/:id',name: 'cuEdit', 
 		components: { default: cu_form, 'header': header}, meta: { mode:'edit' } },
+	{ path: '/cu/profile/:id',name: 'cuProfile', 
+		components: { default: cu_form, 'header': header}, meta: { mode:'profile' } },	
 		
 	// tp cu
 	{ path: '/tp/cu/:cu',name: 'tpCu', 

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- page-header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="level" :level2Title="level2Title" :level2Route="kelas"></page-header>
 
 		<!-- content -->
 		<div class="page-container">
@@ -554,6 +554,7 @@
 
 						<!-- form button -->
 						<form-button
+							:cancelState="cancelState"
 							:cancelLink="kelas"
 							:formValidation="'form'"></form-button>
 
@@ -600,6 +601,7 @@
 				title: 'Tambah CU',
 				titleDesc: 'Menambah CU baru',
 				titleIcon: 'icon-plus3',
+				level: '2',
 				level2Title: 'CU',
 				kelas: 'cu',
 				redirect: '/cu/',
@@ -629,7 +631,8 @@
             numeralDecimalMark: ',',
             delimiter: '.'
           }
-        },
+				},
+				cancelState: 'Batal',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -651,7 +654,7 @@
 		watch: {
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode === 'edit'){
+					if(this.$route.meta.mode == 'edit'|| this.$route.meta.mode == 'profile' ){
 						if(this.profile.id_cu !== 0 && this.profile.id_cu !== this.form.id){
 							this.$router.push({name: 'notFound'});
 						}
@@ -676,11 +679,19 @@
     },
 		methods: {
 			fetch(){
-				if(this.$route.meta.mode === 'edit'){
+				if(this.$route.meta.mode == 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 					this.title = 'Ubah ' + this.level2Title;
 					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
+				} else if(this.$route.meta.mode == 'profile'){
+					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
+					this.title = 'Profile ' + this.level2Title;
+					this.titleDesc = 'Mengubah profile ' + this.level2Title;
+					this.titleIcon = 'icon-office';
+					this.level = 1;
+					this.level2Title = '';
+					this.cancelState = '';
 				} else {
 					this.$store.dispatch(this.kelas + '/create');
 					this.title = 'Tambah ' + this.level2Title;
@@ -694,7 +705,7 @@
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
+						if(this.$route.meta.mode == 'edit' || this.$route.meta.mode == 'profile'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
 						this.$store.dispatch(this.kelas + '/store', formData);
@@ -716,7 +727,7 @@
 				this.$store.dispatch('villages/getDistricts', id);
 			},
 			modalTutup() {
- 				if(this.updateStat === 'success'){
+ 				if(this.updateStat === 'success' && this.$route.meta.mode == 'edit'){
 					this.$router.push(this.redirect);
 				}
 

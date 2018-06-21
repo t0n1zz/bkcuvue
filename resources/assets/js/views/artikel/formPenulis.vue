@@ -88,7 +88,7 @@
 		},
 		data() {
 			return {
-				kelas: 'artikel',
+				kelas: 'artikelPenulis',
 				form: {
 					id_cu: '',
 					gambar: '',
@@ -106,7 +106,7 @@
 				this.form.id_cu = this.id_cu;
 				this.$validator.validateAll('form').then((result) => {
 					if(result){
-						this.$store.dispatch('storeArtikelKategori',this.form);
+						this.$store.dispatch(this.kelas + '/store',this.form);
 					}else{
 						window.scrollTo(0, 0);
 						this.submited = true;

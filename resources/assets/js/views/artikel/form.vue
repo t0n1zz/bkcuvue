@@ -166,7 +166,7 @@
 									<div class="col-md-12"><br/></div>
 
 									<!-- terbitkan -->
-									<div class="col-md-4" v-if="profile.can && profile.can['terbitkan ' + kelas]">
+									<div class="col-md-4" v-if="profile.can && profile.can['terbitkan_' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.terbitkan')}">
 
 											<!-- title -->
@@ -195,7 +195,7 @@
 									</div>
 
 									<!-- utamakan -->
-									<div class="col-md-4" v-if="profile.can && profile.can['utamakan ' + kelas]">
+									<div class="col-md-4" v-if="profile.can && profile.can['utamakan_' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.utamakan')}">
 
 											<!-- title -->
@@ -424,7 +424,7 @@
 
 				if(value === "success"){
 					this.modalTitle = this.updateKategoriResponse.message;
-					this.$store.dispatch('loadArtikelKategoriCU', this.id_cu);
+					this.$store.dispatch('artikelKategori/getCu', this.id_cu);
 					this.form.id_artikel_kategori = this.updateKategoriResponse.id;
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -437,7 +437,7 @@
 
 				if(value === "success"){
 					this.modalTitle = this.updatePenulisResponse.message;
-					this.$store.dispatch('loadArtikelPenulisCU', this.id_cu);	
+					this.$store.dispatch('artikelPenulis/getCu', this.id_cu);	
 					this.form.id_artikel_penulis = this.updatePenulisResponse.id;
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -485,9 +485,9 @@
 			},
 			back(){
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
-					this.$router.push({name: this.kelas});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
 				}
 			},
 			modalTutup() {

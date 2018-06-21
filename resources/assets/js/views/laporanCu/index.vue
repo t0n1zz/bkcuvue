@@ -42,28 +42,35 @@
 
 
 					<!-- table data -->
-					<div v-show="tabName == 'table'">
-						<table-data 
-							:title="title" 
-							:kelas="kelas"></table-data>
-					</div>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'table'">
+							<table-data 
+								:title="title" 
+								:kelas="kelas"></table-data>
+						</div>
+					</transition>
 
-					<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
-						<table-pearls 
-							:title="titlePearls" 
-							:kelas="kelas"></table-pearls>
-					</div>
 
-					<div v-show="tabName =='infografis'" v-if="isInfografis">
-						<infografis-data
-							:title="title"
-							:kelas="kelas"
-							:columnData="columnData"></infografis-data>
-						<infografis-pearls-data
-							:title="titlePearls"
-							:kelas="kelas"
-							:columnData="columnDataPearls"></infografis-pearls-data>
-					</div>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
+							<table-pearls 
+								:title="titlePearls" 
+								:kelas="kelas"></table-pearls>
+						</div>
+					</transition>
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName =='infografis'" v-if="isInfografis">
+							<infografis-data
+								:title="title"
+								:kelas="kelas"
+								:columnData="columnData"></infografis-data>
+							<infografis-pearls-data
+								:title="titlePearls"
+								:kelas="kelas"
+								:columnData="columnDataPearls"></infografis-pearls-data>
+						</div>
+					</transition>
 					
 
 				</div>

@@ -29,7 +29,8 @@
 					<select-cu 
 						:kelas="kelas"
 						:path="selectCuPath"
-						:isPus="true"></select-cu>
+						:isPus="true"
+						v-if="profile.id_cu == 0"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -91,6 +92,10 @@
 			$('.bootstrap-select').selectpicker('refresh');
 		},
 		computed:{
+			...mapGetters('user',{
+				profile: 'profile',
+				profileStat: 'profileStat'
+			}),
 			...mapGetters('user',{
 				itemDataStat: 'dataStatS',
 			}),

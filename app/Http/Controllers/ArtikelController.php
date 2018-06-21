@@ -64,7 +64,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
 		else
 			$fileName = '';
 
