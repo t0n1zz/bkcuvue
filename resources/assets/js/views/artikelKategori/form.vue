@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
@@ -95,15 +95,11 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-									<form-button
-										:cancelState="'methods'"
-										:formValidation="'form'"
-										@cancelClick="back"></form-button>
-								</div>
-							</div>
+						<div class="panel panel-flat panel-body">
+							<form-button
+								:cancelState="'methods'"
+								:formValidation="'form'"
+								@cancelClick="back"></form-button>
 						</div>
 
 					</form>

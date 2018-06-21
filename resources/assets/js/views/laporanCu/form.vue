@@ -815,15 +815,11 @@
 						<form-info></form-info>	
 
 						<!-- form button -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-									<form-button
-										:cancelState="'methods'"
-										:formValidation="'form'"
-										@cancelClick="back"></form-button>
-								</div>
-							</div>
+						<div class="panel panel-flat panel-body">
+							<form-button
+								:cancelState="'methods'"
+								:formValidation="'form'"
+								@cancelClick="back"></form-button>
 						</div>
 
 					</form>

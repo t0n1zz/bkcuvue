@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- page-header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
 		<div class="page-container">
@@ -89,14 +89,14 @@
 													<!-- select -->
 													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPenulis.length === 0">
 														<option disabled value="">
-															<span v-if="form.id_cu !== 0 && modelPenulis.length === 0">Silahkan tambah penulis baru</span>
-															<span v-else-if="form.id_cu === 0">Silahkan pilih CU terlebih dahulu</span>
+															<span v-if="form.id_cu != 0 && modelPenulis.length == 0">Silahkan tambah penulis baru</span>
+															<span v-else-if="form.id_cu == '' && modelPenulis.length == 0">Silahkan pilih CU terlebih dahulu</span>
 															<span v-else>
 																Silahkan pilih penulis
 															</span>
 														</option>
 														<option data-divider="true"></option>
-														<option v-for="penulis in modelPenulis" :value="penulis.id">{{penulis.name}}</option>
+														<option v-for="penulis in modelPenulis" v-if="penulis" :value="penulis.id">{{penulis.name}}</option>
 													</select>
 
 													<!-- button -->
@@ -138,11 +138,11 @@
 													<!-- select -->
 													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
 														<option disabled value="">
-															<span v-if="form.id_cu !== 0 && modelKategori.length === 0">Silahkan tambah kategori baru</span>
+															<span v-if="form.id_cu != 0 && modelKategori.length == 0">Silahkan tambah kategori baru</span>
 															<span v-else>Silahkan pilih kategori</span>
 														</option>
 														<option data-divider="true"></option>
-														<option v-for="kategori in modelKategori" :value="kategori.id">{{kategori.name}}</option>
+														<option v-for="kategori in modelKategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
 													</select>
 
 													<!-- button -->

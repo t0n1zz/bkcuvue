@@ -424,15 +424,11 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-									<form-button
-										:cancelState="'methods'"
-										:formValidation="'form'"
-										@cancelClick="back"></form-button>
-								</div>
-							</div>
+						<div class="panel panel-flat panel-body">
+							<form-button
+								:cancelState="'methods'"
+								:formValidation="'form'"
+								@cancelClick="back"></form-button>
 						</div>
 
 					</form>
@@ -583,16 +579,16 @@
 			},
 			back(){
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
 					if(this.profile.id_cu == 0){
 						if(this.form.id_cu == 0){
-							this.$router.push({name: this.kelas});
+							this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
 						}else{
-							this.$router.push({name: this.kelas + 'CU', params:{cu: this.form.id_cu}});
+							this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 						}
 					}else{
-						this.$router.push({name: this.kelas});
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
 					}
 				}
 			},

@@ -553,10 +553,12 @@
 						<br/>
 
 						<!-- form button -->
-						<form-button
-							:cancelState="cancelState"
-							:cancelLink="kelas"
-							:formValidation="'form'"></form-button>
+						<div class="panel panel-flat panel-body">
+							<form-button
+								:cancelState="cancelState"
+								:cancelLink="kelas"
+								:formValidation="'form'"></form-button>
+						</div>	
 
 					</form>
 				</div>
@@ -632,7 +634,7 @@
             delimiter: '.'
           }
 				},
-				cancelState: 'Batal',
+				cancelState: 'link',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',

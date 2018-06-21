@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
 		<div class="page-container">
@@ -108,17 +108,12 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-									<form-button
-										:cancelState="'methods'"
-										:formValidation="'form'"
-										@cancelClick="back"></form-button>
-								</div>
-							</div>
+						<div class="panel panel-flat panel-body">
+							<form-button
+								:cancelState="'methods'"
+								:formValidation="'form'"
+								@cancelClick="back"></form-button>
 						</div>
-
 
 					</form>
 
@@ -181,15 +176,16 @@
 		watch: {
 			profileStat(value){ //jika refresh halaman maka reload profile
 				if(value === "success"){
-					if(this.profile.id_cu === 0){
-						this.$store.dispatch('loadCUPus',this.profile.id_pus);
+					if(this.profile.id_cu == 0){
+						this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					}else{
+						this.form.id_cu = this.profile.id_cu;
 					}
-					this.form.id_cu = this.profile.id_cu;
 				}
 			},
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode !== 'edit'){
+					if(this.$route.meta.mode != 'edit' && this.profile.id_cu != 0){
 						this.form.id_cu = this.profile.id_cu;
 					}
 				}
@@ -210,7 +206,7 @@
 		methods: {
 			fetch(){
 				if(this.profile.id_cu == 0){
-					this.$store.dispatch('loadCUPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.profile.id_pus);
 				}
 
 				if(this.$route.meta.mode === 'edit'){
