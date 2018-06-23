@@ -233,6 +233,41 @@
 						]
 					},
 					{
+						name: 'Pengelola',
+						icon: 'icon-user-tie',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_pengelola',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Tambah',
+								key: 'create_pengelola',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Ubah',
+								key: 'update_pengelola',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_pengelola',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							}
+						]
+					},
+					{
 						name: 'Laporan CU',
 						icon: 'icon-stats-growth',
 						secondRow: true,
@@ -262,6 +297,13 @@
 								name: 'Hapus',
 								key: 'destroy_laporan_cu',
 								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Diskusi',
+								key: 'diskusi_laporan_cu',
+								icon: 'icon-bubble7',
 								tipe: 'all',
 								value: false,
 							}
@@ -297,6 +339,13 @@
 								name: 'Hapus',
 								key: 'destroy_laporan_tp',
 								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Diskusi',
+								key: 'diskusi_laporan_tp',
+								icon: 'icon-bubble7',
 								tipe: 'all',
 								value: false,
 							}

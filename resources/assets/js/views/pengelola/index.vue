@@ -32,7 +32,7 @@
 					<select-cu 
 						:kelas="kelas"
 						:path="selectCuPath"
-						:isPus="false"
+						:isPus="true"
 						v-if="profile.id_cu == 0"></select-cu>
 
 					<!-- table data -->
@@ -67,7 +67,7 @@
 				kelas: 'pengelola',
 				titleDesc: 'Mengelola data Pengelola CU',
 				titleIcon: 'icon-home9',
-				selectCuPath: 'stafCu',
+				selectCuPath: 'pengelolaCu',
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-home9',
@@ -96,7 +96,7 @@
 				profile: 'profile',
 				profileStat: 'profileStat'
 			}),
-			...mapGetters('tp',{
+			...mapGetters('pengelola',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS'
 			}),

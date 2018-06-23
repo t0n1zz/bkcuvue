@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="modal-mask" @click="backgroundClick" v-show="created">
-			<transition name="modal-effect" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown" mode="out-in"
+			<transition name="modal-effect" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" mode="out-in"
 			  v-on:enter="beforeEnter" v-on:after-leave="afterLeave">
 				<div class="modal-show" v-if="show">
 					<div class="modal-dialog" :class="size" @click.stop>

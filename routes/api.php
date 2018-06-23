@@ -4,66 +4,91 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 // Route::group(['prefix'=>'v1'],function(){
+    
     // user
     Route::get('/userId', 'UserController@userId');
     Route::get('/profile', 'UserController@profile');
     Route::get('/markNotifRead/{id}', 'UserController@markNotifRead');
     Route::get('/markAllNotifRead', 'UserController@markAllNotifRead');
-    Route::get('/user', 'UserController@index');
-    Route::get('/user/indexCu/{id}', 'UserController@indexCu');
-    Route::get('/user/create', 'UserController@create');
-    Route::get('/user/edit/{id}', 'UserController@edit');
-    Route::get('/user/editHakAkses/{id}', 'UserController@editHakAkses');
-    Route::post('/user/store', 'UserController@store');
-    Route::post('/user/update/{id}', 'UserController@update');
-    Route::post('/user/updateFoto/{id}', 'UserController@updateFoto');
-    Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
-    Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses');
-    Route::post('/user/updateResetPassword/{id}', 'UserController@updateResetPassword');
-    Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
 
-    // role
-    Route::get('/role', 'RoleController@index');
-    Route::get('/role_all', 'RoleController@indexAll');
-    Route::get('/role_tipe/{tipe}', 'RoleController@indexTipe');
-    Route::get('/role_permission/{id}', 'RoleController@indexPermission');
-    Route::get('/role/create', 'RoleController@create');
-    Route::get('/role/edit/{id}', 'RoleController@edit');
-    Route::post('/role/store', 'RoleController@store');
-    Route::post('/role/update/{id}', 'RoleController@update');
+    Route::group(['middleware' => ['permission:index_user']], function () {
+        Route::get('/user', 'UserController@index');
+        Route::get('/user/indexCu/{id}', 'UserController@indexCu');
+    });
+    Route::group(['middleware' => ['permission:create_user']], function () {
+        Route::get('/user/create', 'UserController@create');
+        Route::post('/user/store', 'UserController@store');
+    }); 
+    Route::group(['middleware' => ['permission:update_user']], function () {   
+        Route::get('/user/edit/{id}', 'UserController@edit');
+        Route::get('/user/editHakAkses/{id}', 'UserController@editHakAkses');
+        Route::post('/user/update/{id}', 'UserController@update');
+        Route::post('/user/updateFoto/{id}', 'UserController@updateFoto');
+        Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
+        Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses');
+        Route::post('/user/updateResetPassword/{id}', 'UserController@updateResetPassword');
+        Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
+    });
+    Route::group(['middleware' => ['permission:destroy_user']], function () {
+        Route::delete('/user/{id}', 'UserController@destroy');
+    });
 
     //artikel
-    Route::get('/artikel', 'ArtikelController@index');
-    Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
-    Route::get('/artikel/create', 'ArtikelController@create');
-    Route::get('/artikel/edit/{id}', 'ArtikelController@edit');
-    Route::post('/artikel/store', 'ArtikelController@store');
-    Route::post('/artikel/update/{id}', 'ArtikelController@update');
-    Route::post('/artikel/updateTerbitkan/{id}', 'ArtikelController@updateTerbitkan');
-    Route::post('/artikel/updateUtamakan/{id}', 'ArtikelController@updateUtamakan');
-    Route::delete('/artikel/{id}', 'ArtikelController@destroy');
-
+    Route::group(['middleware' => ['permission:index_artikel']], function () {
+        Route::get('/artikel', 'ArtikelController@index');
+        Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
+    });
+    Route::group(['middleware' => ['permission:create_artikel']], function () {
+        Route::get('/artikel/create', 'ArtikelController@create');
+        Route::post('/artikel/store', 'ArtikelController@store');
+    });
+    Route::group(['middleware' => ['permission:update_artikel']], function () {
+        Route::get('/artikel/edit/{id}', 'ArtikelController@edit');
+        Route::post('/artikel/update/{id}', 'ArtikelController@update');
+        Route::post('/artikel/updateTerbitkan/{id}', 'ArtikelController@updateTerbitkan');
+        Route::post('/artikel/updateUtamakan/{id}', 'ArtikelController@updateUtamakan');
+    });
+    Route::group(['middleware' => ['permission:destroy_artikel']], function () {
+        Route::delete('/artikel/{id}', 'ArtikelController@destroy');
+    });
+    
     //artikel kategori
-    Route::get('/artikelKategori', 'ArtikelKategoriController@index');
-    Route::get('/artikelKategori/get', 'ArtikelKategoriController@get');
-    Route::get('/artikelKategori/indexCu/{id}', 'ArtikelKategoriController@indexCu');
-    Route::get('/artikelKategori/getCu/{id}', 'ArtikelKategoriController@getCu');
-    Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
-    Route::get('/artikelKategori/edit/{id}', 'ArtikelKategoriController@edit');
-    Route::post('/artikelKategori/store', 'ArtikelKategoriController@store');
-    Route::post('/artikelKategori/update/{id}', 'ArtikelKategoriController@update');
-    Route::delete('/artikelKategori/{id}', 'ArtikelKategoriController@destroy');
+    Route::group(['middleware' => ['permission:index_artikel_kategori']], function () {
+        Route::get('/artikelKategori', 'ArtikelKategoriController@index');
+        Route::get('/artikelKategori/get', 'ArtikelKategoriController@get');
+        Route::get('/artikelKategori/indexCu/{id}', 'ArtikelKategoriController@indexCu');
+        Route::get('/artikelKategori/getCu/{id}', 'ArtikelKategoriController@getCu');
+    });
+    Route::group(['middleware' => ['permission:create_artikel_kategori']], function () {
+        Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
+        Route::post('/artikelKategori/store', 'ArtikelKategoriController@store');
+    });
+    Route::group(['middleware' => ['permission:update_artikel_kategori']], function () {
+        Route::get('/artikelKategori/edit/{id}', 'ArtikelKategoriController@edit');
+        Route::post('/artikelKategori/update/{id}', 'ArtikelKategoriController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_artikel_kategori']], function () {
+        Route::delete('/artikelKategori/{id}', 'ArtikelKategoriController@destroy');
+    });
 
     //artikel penulis
-    Route::get('/artikelPenulis', 'ArtikelPenulisController@index');
-    Route::get('/artikelPenulis/get', 'ArtikelPenulisController@get');
-    Route::get('/artikelPenulis/indexCu/{id}', 'ArtikelPenulisController@indexCu');
-    Route::get('/artikelPenulis/getCu/{id}', 'ArtikelPenulisController@getCu');
-    Route::get('/artikelPenulis/create', 'ArtikelPenulisController@create');
-    Route::get('/artikelPenulis/edit/{id}', 'ArtikelPenulisController@edit');
-    Route::post('/artikelPenulis/store', 'ArtikelPenulisController@store');
-    Route::post('/artikelPenulis/update/{id}', 'ArtikelPenulisController@update');
-    Route::delete('/artikelPenulis/{id}', 'ArtikelPenulisController@destroy');
+    Route::group(['middleware' => ['permission:index_artikel_penulis']], function () {
+        Route::get('/artikelPenulis', 'ArtikelPenulisController@index');
+        Route::get('/artikelPenulis/get', 'ArtikelPenulisController@get');
+        Route::get('/artikelPenulis/indexCu/{id}', 'ArtikelPenulisController@indexCu');
+        Route::get('/artikelPenulis/getCu/{id}', 'ArtikelPenulisController@getCu');
+    });
+    Route::group(['middleware' => ['permission:create_artikel_penulis']], function () {
+        Route::get('/artikelPenulis/create', 'ArtikelPenulisController@create');
+        Route::post('/artikelPenulis/store', 'ArtikelPenulisController@store');
+    });
+    Route::group(['middleware' => ['permission:update_artikel_penulis']], function () {
+        Route::get('/artikelPenulis/edit/{id}', 'ArtikelPenulisController@edit');
+        Route::post('/artikelPenulis/update/{id}', 'ArtikelPenulisController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_artikel_penulis']], function () {
+        Route::delete('/artikelPenulis/{id}', 'ArtikelPenulisController@destroy');
+    });
 
     // cu
     Route::group(['middleware' => ['permission:index_cu']], function () {
@@ -102,6 +127,25 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/tp/{id}', 'TpController@destroy');
     });
 
+    // pengelola
+    Route::group(['middleware' => ['permission:index_pengelola']], function () {
+        Route::get('/pengelola', 'PengelolaController@index');
+        Route::get('/pengelola/get', 'PengelolaController@get');
+        Route::get('/pengelola/indexCu/{id}', 'PengelolaController@indexCu'); 
+        Route::get('/pengelola/getCu/{id}', 'PengelolaController@getCu');
+    });
+    Route::group(['middleware' => ['permission:create_pengelola']], function () {
+        Route::get('/pengelola/create', 'PengelolaController@create');
+        Route::post('/pengelola/store', 'PengelolaController@store');
+    });
+    Route::group(['middleware' => ['permission:update_pengelola']], function () {
+        Route::get('/pengelola/edit/{id}', 'PengelolaController@edit');
+        Route::post('/pengelola/update/{id}', 'PengelolaController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_pengelola']], function () {
+        Route::delete('/pengelola/{id}', 'PengelolaController@destroy');
+    });
+
     //laporan cu
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::get('/laporanCu', 'laporanCuController@index');
@@ -123,15 +167,15 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');
         Route::post('/laporanCu/update/{id}', 'laporanCuController@update');
     });
-    Route::group(['middleware' => ['permission:destroy laporanCu']], function () {
+    Route::group(['middleware' => ['permission:destroy_laporan_cu']], function () {
         Route::delete('/laporanCu/{id}', 'laporanCuController@destroy');
     });
-
-    // laporan cu diskusi
-    Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
-    Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
-    Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
-    Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
+    Route::group(['middleware' => ['permission:diskusi_laporan_cu']], function () {
+        Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
+        Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
+        Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
+        Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
+    });
 
     //laporan tp
     Route::group(['middleware' => ['permission:index_laporan_tp']], function () {
@@ -158,12 +202,12 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::group(['middleware' => ['permission:destroy_laporan_tp']], function () {
         Route::delete('/laporanTp/{id}', 'laporanTpController@destroy');
     });
-
-    // laporan tp diskusi
-    Route::get('/laporanTpDiskusi/get/{id}', 'laporanTpDiskusiController@get');
-    Route::post('/laporanTpDiskusi/store', 'laporanTpDiskusiController@store');
-    Route::post('/laporanTpDiskusi/update/{id}', 'laporanTpDiskusiController@update');
-    Route::delete('/laporanTpDiskusi/{id}', 'laporanTpDiskusiController@destroy');
+    Route::group(['middleware' => ['permission:diskusi_laporan_tp']], function () {
+        Route::get('/laporanTpDiskusi/get/{id}', 'laporanTpDiskusiController@get');
+        Route::post('/laporanTpDiskusi/store', 'laporanTpDiskusiController@store');
+        Route::post('/laporanTpDiskusi/update/{id}', 'laporanTpDiskusiController@update');
+        Route::delete('/laporanTpDiskusi/{id}', 'laporanTpDiskusiController@destroy');
+    });
 
     // puskopdit
     Route::get('/pus', 'PusController@index');
@@ -212,8 +256,6 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::post('/villages/update/{id}', 'VillagesController@update');
     Route::delete('/villages/{id}', 'VillagesController@destroy');
 });
-
-// Route::resource('artikel', 'ArtikelController');
 
 
 

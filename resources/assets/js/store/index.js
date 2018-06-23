@@ -17,6 +17,7 @@ import { villages } from './modules/villages';
 import { laporanCu } from './modules/laporanCu';
 import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
+import { pengelola } from './modules/pengelola';
 
 Vue.use(Vuex);
 
@@ -37,6 +38,7 @@ export default new Vuex.Store({
 		 villages,
 		 laporanCu,
 		 laporanCuDiskusi,
-		 laporanTp
+		 laporanTp,
+		 pengelola
 	 }
 });

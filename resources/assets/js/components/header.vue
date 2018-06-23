@@ -178,16 +178,22 @@
 							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
 								<a><i class="icon-office"></i> CU</a>
 							</router-link>
-
 							<router-link :to="{ name: 'cuProfile', params:{id: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.id_cu != 0 && profile.can && profile.can['update_cu']">
 								<a><i class="icon-office"></i> Profile CU</a>
 							</router-link>
-							<!-- cu -->
+							<!-- tp -->
 							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 							<router-link :to="{ name: 'tpCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
+							</router-link>
+							<!-- pengelola -->
+							<router-link :to="{ name: 'pengelolaCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola'] && profile.id_cu == 0">
+								<a><i class="icon-user-tie"></i> Pengelola</a>
+							</router-link>
+							<router-link :to="{ name: 'pengelolaCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola'] && profile.id_cu != 0">
+								<a><i class="icon-user-tie"></i> Pengelola</a>
 							</router-link>
 						</ul>
 					</li>
