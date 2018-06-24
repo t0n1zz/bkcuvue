@@ -18,12 +18,12 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/store', form);
   },
 
-  edit: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/edit/' + id);
+  editIdentitas: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/editIdentitas/' + id);
   },
 
-  update: function ( id, form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/pengelola/update/' + id, form);
+  updateIdentitas: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/pengelola/updateIdentitas/' + id, form);
   },
 
   destroy: function( id ){

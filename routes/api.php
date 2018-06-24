@@ -139,8 +139,8 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::post('/pengelola/store', 'PengelolaController@store');
     });
     Route::group(['middleware' => ['permission:update_pengelola']], function () {
-        Route::get('/pengelola/edit/{id}', 'PengelolaController@edit');
-        Route::post('/pengelola/update/{id}', 'PengelolaController@update');
+        Route::get('/pengelola/editIdentitas/{id}', 'PengelolaController@editIdentitas');
+        Route::post('/pengelola/updateIdentitas/{id}', 'PengelolaController@updateIdentitas');
     });
     Route::group(['middleware' => ['permission:destroy_pengelola']], function () {
         Route::delete('/pengelola/{id}', 'PengelolaController@destroy');

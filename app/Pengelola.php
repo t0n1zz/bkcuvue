@@ -20,7 +20,7 @@ class Pengelola extends Model {
     ];
     
     protected $fillable = [
-        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','berat','kontak','gambar'
+        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','berat','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces'
     ];
 
     protected $filter = [
@@ -30,7 +30,7 @@ class Pengelola extends Model {
     public static function initialize()
     {
         return [
-            'nim' => '','nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','gambar'=> ''
+            'nim' => '','nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','gambar'=> '','id_villages' => '0', 'id_districts' => '0', 'id_regencies' => '0', 'id_provinces' => '0'
         ];
     }
 
@@ -60,5 +60,25 @@ class Pengelola extends Model {
 
     public function organisasi(){
         return $this->hasMany('App\PengelolaOrganisasi','id_pengelola','id');
+    }
+
+    public function Provinces()
+    {
+        return $this->belongsTo('App\Region\Provinces','id_provinces','id')->select('id','name');
+    }
+		
+    public function Regencies()
+    {
+        return $this->belongsTo('App\Region\Regencies','id_regencies','id')->select('id','name');
+    }
+		
+    public function Districts()
+    {
+        return $this->belongsTo('App\Region\Districts','id_districts','id')->select('id','name');
+    }
+		
+    public function Villages()
+    {
+        return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
 }

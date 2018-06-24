@@ -145,19 +145,9 @@ class PengelolaController extends Controller{
 			]);
 	}
 
-	public function show($id)
+	public function editIdentitas($id)
 	{
-		$kelas = Pengelola::with('PengelolaKategori')->findOrFail($id);
-
-		return response()
-			->json([
-				'model' => $kelas
-			]);
-	}
-
-	public function edit($id)
-	{
-		$kelas = Pengelola::findOrFail($id);
+		$kelas = Pengelola::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 				->json([
@@ -166,7 +156,7 @@ class PengelolaController extends Controller{
 				]);
 	}
 
-	public function update(Request $request, $id)
+	public function updateIdentitas(Request $request, $id)
 	{
 		$this->validate($request,Pengelola::$rules);
 
@@ -426,6 +416,12 @@ class PengelolaController extends Controller{
 		}
 
 		$kelas->delete();
+
+		PengelolaPekerjaan::where('id_pengelola',$kelas->id)->delete();
+		PengelolaPendidikan::where('id_pengelola',$kelas->id)->delete();
+		PengelolaOrganisasi::where('id_pengelola',$kelas->id)->delete();
+		PengelolaKeluarga::where('id_pengelola',$kelas->id)->delete();
+		PengelolaAnggotacu::where('id_pengelola',$kelas->id)->delete();
 
 		return response()
 			->json([

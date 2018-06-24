@@ -108,9 +108,9 @@ const routes = [
 	components: { default: pengelola, 'header': header }, 
 	meta: { mode:'cu' }},
 	{ path: '/pengelola/create',name: 'pengelolaCreate', 
-		components: { default: pengelola_form, 'header': header} },
-	{ path: '/pengelola/edit/:id',name: 'pengelolaEdit', 
-		components: { default: pengelola_form, 'header': header}, meta: { mode:'edit' } },
+		components: { default: pengelola_form, 'header': header}, meta: { mode:'create' }  },
+	{ path: '/pengelola/edit/identitas/:id',name: 'pengelolaEditIdentitas', 
+		components: { default: pengelola_form, 'header': header}, meta: { mode:'editIdentitas' } },
 
 	// laporan cu
 	// bkcu default route

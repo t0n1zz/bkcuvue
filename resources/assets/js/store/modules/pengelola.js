@@ -97,10 +97,10 @@ export const pengelola = {
 
 
     // edit page
-    edit( {commit}, id ){
+    editIdentitas( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      pengelolaAPI.edit( id )
+      pengelolaAPI.editIdentitas( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -116,10 +116,10 @@ export const pengelola = {
     },
 
     // update data
-    update( {commit, state, dispatch}, [id, form] ){
+    updateIdentitas( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      pengelolaAPI.update( id, form )
+      pengelolaAPI.updateIdentitas( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

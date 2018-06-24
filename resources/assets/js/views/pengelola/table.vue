@@ -19,8 +19,8 @@
 
 				<!-- ubah-->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
-					<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-						<i class="icon-pencil5"></i> Ubah
+					<button @click.prevent="ubahIdentitas(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+						<i class="icon-pencil5"></i> Ubah Identitas
 					</button>
 				</div>
 
@@ -47,7 +47,7 @@
 				<!-- update -->
 				<li v-if="profile.can && profile.can['update_' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+						<button @click.prevent="ubahIdentitas(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 							<i class="icon-pencil5"></i> Ubah
 						</button>
 					</div>
@@ -287,7 +287,7 @@
 							
 							<!-- update -->
 							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_' + kelas]">
-								<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
+								<button @click.prevent="ubahIdentitas(props.item.id)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
@@ -645,8 +645,8 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			ubahData(id) {
-				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
+			ubahIdentitas(id) {
+				this.$router.push({name: this.kelas + 'EditIdentitas', params: { id: id }});
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

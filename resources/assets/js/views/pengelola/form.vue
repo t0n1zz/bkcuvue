@@ -475,7 +475,7 @@
 						</div>
 
 						<!-- keluarga -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="form.keluarga">
+						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.keluarga">
 							<div class="panel-body">
 								<div class="row">
 
@@ -581,7 +581,7 @@
 						</div>
 						
 						<!-- anggota cu -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="form.anggota_cu">
+						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.anggota_cu">
 							<div class="panel-body">
 								<div class="row">
 
@@ -600,7 +600,7 @@
 						</div>
 
 						<!-- pekerjaan -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="form.pekerjaan">
+						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.pekerjaan">
 							<div class="panel-body">
 								<div class="row">
 
@@ -619,7 +619,7 @@
 						</div>
 
 						<!-- pendidikan -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="form.pendidikan">
+						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.pendidikan">
 							<div class="panel-body">
 								<div class="row">
 
@@ -638,7 +638,7 @@
 						</div>
 
 						<!-- organisasi -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="form.organisasi">
+						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.organisasi">
 							<div class="panel-body">
 								<div class="row">
 
@@ -773,7 +773,7 @@
 					this.form.id_cu = this.profile.id_cu;
 
 					// check permission
-					if(this.$route.meta.mode === 'edit'){
+					if(this.$route.meta.mode === 'editIdentitas'){
 						if(!this.profile.can || !this.profile.can['update_' + this.kelas]){
 							this.$router.push({name: 'notFound'});
 						}
@@ -786,7 +786,7 @@
 			},
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode === 'edit'){
+					if(this.$route.meta.mode === 'editIdentitas'){
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
@@ -808,10 +808,10 @@
     },
 		methods: {
 			fetch(){
-				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Ubah ' + this.level2Title;
-					this.titleDesc = 'Mengubah ' + this.level2Title;
+				if(this.$route.meta.mode === 'editIdentitas'){
+					this.$store.dispatch(this.kelas + '/editIdentitas',this.$route.params.id);	
+					this.title = 'Ubah Identitas' + this.level2Title;
+					this.titleDesc = 'Mengubah Identitas' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
 				} else {
 					this.title = 'Tambah ' + this.level2Title;
@@ -824,20 +824,23 @@
 			},
 			save() {
 				this.form.anak = this.formAnak;
-				if(this.profile.id_cu == 0){
-					if(this.form.pekerjaan.tipe == 0){
-						this.form.pekerjaan.tipe = 3;
-					}
-				}else{
-					this.form.pekerjaan.tipe = 1;
-					this.form.pekerjaan.id_tempat = this.profile.id_cu;
-				}
 
+				if(this.$route.meta.mode == 'create'){
+					if(this.profile.id_cu == 0){
+						if(this.form.pekerjaan.tipe == 0){
+							this.form.pekerjaan.tipe = 3;
+						}
+					}else{
+						this.form.pekerjaan.tipe = 1;
+						this.form.pekerjaan.id_tempat = this.profile.id_cu;
+					}
+				}
+				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
+						if(this.$route.meta.mode === 'editIdentitas'){
+							this.$store.dispatch(this.kelas + '/updateIdentitas', [this.$route.params.id, formData]);
 						}else{
 							this.$store.dispatch(this.kelas + '/store', formData);
 					}
@@ -849,7 +852,7 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode === 'editIdentitas' && this.profile.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
