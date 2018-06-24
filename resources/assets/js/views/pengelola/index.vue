@@ -66,7 +66,7 @@
 				title: 'Pengelola CU',
 				kelas: 'pengelola',
 				titleDesc: 'Mengelola data Pengelola CU',
-				titleIcon: 'icon-home9',
+				titleIcon: 'icon-user-tie',
 				selectCuPath: 'pengelolaCu',
 				btn1Header: {
 					route: 'artikel',

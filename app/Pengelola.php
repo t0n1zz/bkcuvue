@@ -20,7 +20,7 @@ class Pengelola extends Model {
     ];
     
     protected $fillable = [
-        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','berat','kontak'
+        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','berat','kontak','gambar'
     ];
 
     protected $filter = [
@@ -30,7 +30,7 @@ class Pengelola extends Model {
     public static function initialize()
     {
         return [
-            'nim' => '','nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','berat' => '','kontak' => ''
+            'nim' => '','nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','gambar'=> ''
         ];
     }
 
@@ -47,7 +47,7 @@ class Pengelola extends Model {
     }
 
     public function pekerjaan_aktif(){
-        return $this->hasOne('App\PengelolaPekerjaan','id_pengelola','id')->where('sekarang','1')->orWhere('selesai','>',date('Y-m-d'))->latest();
+        return $this->hasOne('App\PengelolaPekerjaan','id_pengelola','id')->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->latest();
     }
 
     public function keluarga(){

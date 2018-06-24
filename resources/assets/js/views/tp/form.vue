@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<!-- header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
+		
 		<!-- content -->
 		<div class="page-container">
 			<div class="page-content">
@@ -80,7 +81,7 @@
 												class="form-control" 
 												:options="cleaveOption.number3"
 												placeholder="Silahkan masukkan no TP/KP."
-												v-validate="'required'" data-vv-as="No. BA"></cleave>
+												v-validate="'required'" data-vv-as="No. TP/KP"></cleave>
 											
 
 											<!-- error message -->
@@ -436,6 +437,10 @@
 			</div>
 		</div>
 
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+		</app-modal>
+
 	</div>
 </template>
 
@@ -445,6 +450,7 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
+	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
@@ -453,6 +459,7 @@
 	export default {
 		components: {
 			pageHeader,
+			appModal,
 			appImageUpload,
 			message,
 			formButton,
@@ -581,15 +588,7 @@
 				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
-					if(this.profile.id_cu == 0){
-						if(this.form.id_cu == 0){
-							this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
-						}else{
-							this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
-						}
-					}else{
-						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
-					}
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
 				}
 			},
 			changeProvinces(id){

@@ -6,6 +6,8 @@ use App\Pengelola;
 use App\PengelolaPekerjaan;
 use App\PengelolaPendidikan;
 use App\PengelolaOrganisasi;
+use App\PengelolaKeluarga;
+use App\PengelolaAnggotaCu;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
@@ -21,7 +23,7 @@ class PengelolaController extends Controller{
 	public function index()
 	{
 		$table_data = Pengelola::with('pekerjaan_aktif.cu','pendidikan_tertinggi')->whereHas('pekerjaan',function($query){
-			$query->where('sekarang','1')->orWhere('selesai','>',date('Y-m-d'));
+			$query->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
 		})->filterPaginateOrder();
 
 		return response()
@@ -43,7 +45,7 @@ class PengelolaController extends Controller{
 		->whereHas('pekerjaan', function($query) use ($id,$tipe){
 			$query->where('tipe',$tipe)->where('id_tempat',$id)
 			->where(function($q){
-				$q->where('sekarang','1')->orWhere('selesai','>',date('Y-m-d'));
+				$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
 			});
 		})->filterPaginateOrder();
 
@@ -56,9 +58,16 @@ class PengelolaController extends Controller{
 
 	public function create()
 	{
+		$form = Pengelola::initialize();
+		$form['pendidikan'] = PengelolaPendidikan::initialize();
+		$form['pekerjaan'] = PengelolaPekerjaan::initialize();
+		$form['keluarga'] = ['ayah' => '', 'ibu' => ''];
+		$form['anggota_cu'] = PengelolaAnggotaCu::initialize();
+		$form['organisasi'] = PengelolaOrganisasi::initialize();
+
 		return response()
 			->json([
-					'form' => Pengelola::initialize(),
+					'form' => $form,
 					'rules' => Pengelola::$rules,
 					'option' => []
 			]);
@@ -74,17 +83,60 @@ class PengelolaController extends Controller{
 		if(!empty($request->gambar))
 			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
 		else
-			$fileName = '';
-
-		// processing summernote content	
-		if(!empty($request->content))	
-			$content = Helper::dom_processing($request,public_path($this->imagepath));
-		else
-			$content = '';		
+			$fileName = '';	
 		
-		$kelas = Pengelola::create($request->except('gambar','content') + [
-			'gambar' => $fileName, 'content' => $content
+		// identitas	
+		$kelas = Pengelola::create($request->except('gambar','nim') + [
+			'gambar' => $fileName
 		]);
+
+		// keluarga
+		$ayah = $request->keluarga['ayah'];
+		$ibu = $request->keluarga['ibu'];
+		$pasangan = $request->keluarga['pasangan'];
+		$anak = $request->anak;
+
+		if(!empty($ayah))
+			$this->save_keluarga($request,$kelas->id,'Ayah',$ayah);
+		
+		if(!empty($ibu))
+			$this->save_keluarga($request,$kelas->id,'Ibu',$ibu);
+
+		if(!empty($pasangan))
+			$this->save_keluarga($request,$kelas->id,'Pasangan',$pasangan);	
+
+		if(!empty($anak)){
+			foreach($anak as $a){
+				$this->save_keluarga($request,$kelas->id,'Anak',$a['value']);
+			}
+		}	
+
+		// anggota cu, pendidikan, organisasi, pekerjaan
+		$this->save_anggota_cu($request,$kelas->id);
+		$this->save_pendidikan($request,$kelas->id);
+		$this->save_organisasi($request,$kelas->id);
+		$pekerjaan = $this->save_pekerjaan($request,$kelas->id,true);
+
+		// nim
+		$no_bkcu = sprintf("%'.03d", 15); //999
+		$no_cu = sprintf("%'.03d", $pekerjaan[1]); //999
+		$no_id = sprintf("%'.06d", $kelas->id); //999999
+
+		// cek nim
+		$cek_nim = $no_bkcu . $pekerjaan[0] . $no_cu;
+		$cekdata = Pengelola::where('nim','LIKE','%'.$cek_nim.'%')->select('nim')->orderBy('nim','desc')->first();
+
+		if(!empty($cekdata)){
+				$nim_baru = sprintf("%'.06d",ltrim(substr($cekdata->nim,7,6),'0')+1);
+		}else{
+				$nim_baru = sprintf("%'.06d", 1);
+		}
+
+		// save nim
+		$nim = $no_bkcu . $pekerjaan[0] . $no_cu  . $nim_baru;
+		$kelas2 = Pengelola::find($kelas->id);
+		$kelas2->nim = $nim;
+		$kelas2->save();
 
 		return response()
 			->json([
@@ -128,14 +180,8 @@ class PengelolaController extends Controller{
 		else
 			$fileName = '';
 
-		// processing summernote content	
-		if(!empty($request->content))	
-			$content = Helper::dom_processing($request,public_path($this->imagepath));
-		else
-			$content = '';	
-
-		$kelas->update($request->except('gambar','content') + [
-			'gambar' => $fileName, 'content' => $content
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $fileName
 		]);
 
 		return response()
@@ -145,47 +191,234 @@ class PengelolaController extends Controller{
 			]);
 	}
 
-	public function updateTerbitkan($id)
+	public function save_pekerjaan(Request $request, $id, $isReturnValue)
 	{
-		$kelas = Pengelola::findOrFail($id);
+		$tipe = $request->pekerjaan['tipe'];
+		$kelamin = $request->kelamin;
 
-		if($kelas->terbitkan == 1){
-			$kelas->terbitkan = 0;
-			$message = $this->message. " berhasil tidak diterbitkan";
+		if(array_key_exists('id', $request->pekerjaan)){
+			$kelas = PengelolaPekerjaan::findOrFail($request->pekerjaan['id']);
 		}else{
-			$kelas->terbitkan = 1;
-			$message = $this->message. " berhasil diterbitkan";
+			$kelas = new PengelolaPekerjaan();
 		}
 
-		$kelas->update();
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $message
-			]);
-	}
-
-	public function updateUtamakan($id)
-	{
-		$kelas = Pengelola::findOrFail($id);
-
-		if($kelas->utamakan == 1){
-			$kelas->utamakan = 0;
-			$message = $this->message. " berhasil tidak diutamakan";
+		if(!empty($id)){
+			$kelas->id_pengelola = $id;
 		}else{
-			$kelas->utamakan = 1;
-			$message = $this->message. " berhasil diutamakan";
+			$kelas->id_pengelola = $request->id_pengelola;
 		}
 
-		$kelas->update();
+		$kelas->tipe = $tipe;
+		$kelas->name = $request->pekerjaan['name'];
+		$kelas->tingkat = $request->pekerjaan['tingkat'];
+		$kelas->mulai = $request->pekerjaan['mulai'];
+		$kelas->selesai = $request->pekerjaan['selesai'];
 
-		return response()
+		if($tipe == '1'){ //cu
+			$kelas->id_tempat = $request->pekerjaan['id_tempat'];
+			$lembaga = $request->pekerjaan['id_tempat'];
+
+			if($kelamin == 'Pria')//no tipe utk nim
+					$no_tipe = 1;
+			else
+					$no_tipe = 2;
+		}elseif($tipe == '2'){//lembaga lain
+			$lembaga = $request->pekerjaan['id_lembaga'];
+
+			if($lembaga == 'tambah'){
+				$lembaga = $this->store_lembaga();
+			}
+
+			$kelas->id_tempat = $lembaga;
+
+			if($kelamin == 'Pria')//no tipe utk nim
+					$no_tipe = 3;
+			else
+					$no_tipe = 4;
+		}elseif($tipe == '3'){//bkcu
+			$kelas->id_tempat = 1;
+			$lembaga = 1;
+
+			if($kelamin == 'Pria')//no tipe utk nim
+					$no_tipe = 5;
+			else
+					$no_tipe = 6;
+		}
+
+		$kelas->save();
+
+		if($isReturnValue){
+			return array($no_tipe,$lembaga);
+		}else{
+			if(array_key_exists('id', $request->pekerjaan)){
+				return response()
+				->json([
+					'saved' => true,
+					'message' => 'Pekerjaan berhasil diubah'
+				]);
+			}else{
+				return response()
+				->json([
+					'saved' => true,
+					'message' => 'Pekerjaan berhasil ditambah'
+				]);
+			}
+		}
+	}
+
+	public function save_pendidikan(Request $request, $id)
+	{
+		if(array_key_exists('id', $request->pendidikan)){
+				$kelas = PengelolaPendidikan::findOrFail($request->pendidikan['id']);
+		}else{
+				$kelas = new PengelolaPendidikan();
+		}
+
+		if(!empty($id)){
+			$kelas->id_pengelola = $id;
+		}else{
+			$kelas->id_pengelola = $request->id_pengelola;
+		}
+
+		$kelas->name = $request->pendidikan['name'];
+		$kelas->tingkat = $request->pendidikan['tingkat'];
+		$kelas->tempat = $request->pendidikan['tempat'];
+		$kelas->mulai = $request->pendidikan['mulai'];
+		$kelas->selesai = $request->pendidikan['selesai'];
+
+		$kelas->save();
+
+		if(array_key_exists('id', $request->pendidikan)){
+			return response()
 			->json([
 				'saved' => true,
-				'message' => $message
+				'message' => 'Pendidikan berhasil diubah'
 			]);
+		}else{
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Pendidikan berhasil ditambah'
+			]);
+		}
 	}
+
+	public function save_organisasi(Request $request, $id)
+	{
+		if(array_key_exists('id', $request->organisasi)){
+				$kelas = PengelolaOrganisasi::findOrFail($request->organisasi['id']);
+		}else{
+				$kelas = new PengelolaOrganisasi();
+		}
+
+		if(!empty($id)){
+			$kelas->id_pengelola = $id;
+		}else{
+			$kelas->id_pengelola = $request->id_pengelola;
+		}
+
+		$kelas->name = $request->organisasi['name'];
+		$kelas->jabatan = $request->organisasi['jabatan'];
+		$kelas->tempat = $request->organisasi['tempat'];
+		$kelas->mulai = $request->organisasi['mulai'];
+		$kelas->selesai = $request->organisasi['selesai'];
+
+		$kelas->save();
+
+		if(array_key_exists('id', $request->organisasi)){
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Organisasi berhasil diubah'
+			]);
+		}else{
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Organisasi berhasil ditambah'
+			]);
+		}
+	}
+
+	public function save_keluarga(Request $request, $id, $tipe, $name)
+	{
+		if(array_key_exists('id', $request->keluarga)){
+			$kelas = PengelolaKeluarga::findOrFail($request->keluarga['id']);
+		}else{
+			$kelas = new PengelolaKeluarga();
+		}
+
+		$kelas->tipe = $tipe;
+
+		if(!empty($id)){
+			$kelas->id_pengelola = $id;
+		}else{
+			$kelas->id_pengelola = $request->id_pengelola;
+		}
+
+		if(!empty($name)){
+			$kelas->name = $name;
+		}else{
+			$kelas->name = $request->keluarga['name'];
+		}
+
+		$kelas->save();
+
+		if(array_key_exists('id', $request->keluarga)){
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keluarga berhasil diubah'
+			]);
+		}else{
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keluarga berhasil ditambah'
+			]);
+		}
+	}
+
+	public function save_anggota_cu(Request $request, $id)
+	{
+		if(array_key_exists('id', $request->anggota_cu)){
+				$kelas = PengelolaAnggotaCu::findOrFail($request->anggota_cu['id']);
+		}else{
+				$kelas = new PengelolaAnggotaCu();
+		}
+
+		$name = $request->anggota_cu['name'];
+
+		if(!empty($id)){
+			$kelas->id_pengelola = $id;
+		}else{
+			$kelas->id_pengelola = $request->id_pengelola;
+		}
+
+		if($name == 'lain'){
+			$kelas->name = $request->anggota_cu['cu_name'];
+		}else{
+			$kelas->name = $name;
+		}
+		$kelas->no_ba = $request->anggota_cu['no_ba'];
+
+		$kelas->save();
+
+		if(array_key_exists('id', $request->anggota_cu)){
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Anggota CU berhasil diubah'
+			]);
+		}else{
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Anggota CU berhasil ditambah'
+			]);
+		}
+	}
+
 
 	public function destroy($id)
 	{

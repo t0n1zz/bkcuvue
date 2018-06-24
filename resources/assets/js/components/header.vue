@@ -171,6 +171,11 @@
 								<a><i class="icon-plus22"></i> Tambah TP/KP</a>
 							</router-link>
 
+							<!-- tambah pengelola -->
+							<router-link :to="{ name:'pengelolaCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
+								<a><i class="icon-plus22"></i> Tambah Pengelola</a>
+							</router-link>
+
 							<!-- separator -->
 							<li class="divider"></li>
 
@@ -189,10 +194,7 @@
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
 							<!-- pengelola -->
-							<router-link :to="{ name: 'pengelolaCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola'] && profile.id_cu == 0">
-								<a><i class="icon-user-tie"></i> Pengelola</a>
-							</router-link>
-							<router-link :to="{ name: 'pengelolaCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola'] && profile.id_cu != 0">
+							<router-link :to="{ name: 'pengelolaCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola']">
 								<a><i class="icon-user-tie"></i> Pengelola</a>
 							</router-link>
 						</ul>

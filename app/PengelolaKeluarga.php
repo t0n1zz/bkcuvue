@@ -5,20 +5,20 @@ use illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class PengelolaPendidikan extends Model {
+class PengelolaKeluarga extends Model {
 
     use FilterPaginateOrder, LogsActivity;
 
-    protected $table = 'pengelola_pendidikan';
+    protected $table = 'pengelola_keluarga';
 
     protected static $logFillable = true;
 
     protected $fillable = [
-        'id_pengelola','name','tingkat','tempat','mulai','selesai'
+        'id_pengelola','name','tipe'
     ];
 
     protected $filter = [
-        'name','tingkat','tempat','mulai','selesai','created_at','updated_at'
+        'name','tipe','created_at','updated_at'
     ];
 
     public function getNameAttribute($value){
@@ -28,7 +28,7 @@ class PengelolaPendidikan extends Model {
     public static function initialize()
     {
         return [
-             'name' => '','tingkat' => '','tempat' => '','mulai' => '','selesai' => ''
+             'name' => '','tipe' => ''
         ];
     }
 

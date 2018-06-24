@@ -14,11 +14,11 @@ class PengelolaOrganisasi extends Model {
     protected static $logFillable = true;
 
     protected $fillable = [
-        'id_pengelola','tipe','name','jabatan','tempat','mulai','selesai','sekarang'
+        'id_pengelola','tipe','name','jabatan','tempat','mulai','selesai'
     ];
 
     protected $filter = [
-        'tipe','name','jabatan','tempat','mulai','selesai','sekarang','created_at','updated_at'
+        'name','jabatan','tempat','mulai','selesai','created_at','updated_at'
     ];
 
     public function getNameAttribute($value){
@@ -27,8 +27,7 @@ class PengelolaOrganisasi extends Model {
 
     public static function initialize()
     {
-        return [
-            'tipe' => '','name' => '','jabatan' => '','tempat' => '','mulai' => '','selesai' => '','sekarang' => ''
+        return ['name' => '','jabatan' => '','tempat' => '','mulai' => '','selesai' => ''
         ];
     }
 

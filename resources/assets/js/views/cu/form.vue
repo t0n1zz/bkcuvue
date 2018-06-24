@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- page-header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="level" :level2Title="level2Title" :level2Route="kelas"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="level" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
 		<div class="page-container">
@@ -556,8 +556,8 @@
 						<div class="panel panel-flat panel-body">
 							<form-button
 								:cancelState="cancelState"
-								:cancelLink="kelas"
-								:formValidation="'form'"></form-button>
+								:formValidation="'form'"
+								@cancelClick="back"></form-button>
 						</div>	
 
 					</form>
@@ -603,7 +603,7 @@
 				title: 'Tambah CU',
 				titleDesc: 'Menambah CU baru',
 				titleIcon: 'icon-plus3',
-				level: '2',
+				level: 2,
 				level2Title: 'CU',
 				kelas: 'cu',
 				redirect: '/cu/',
@@ -634,7 +634,7 @@
             delimiter: '.'
           }
 				},
-				cancelState: 'link',
+				cancelState: 'methods',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -718,6 +718,9 @@
 						this.submited = true;
 					}
 				});
+			},
+			back(){
+				this.$router.push({name: this.kelas});
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
