@@ -14,7 +14,7 @@ class PengelolaPekerjaan extends Model {
     protected static $logFillable = true;
 
     protected $fillable = [
-        'id_pengelola','id_tempat','tipe','name','tingkat','mulai','selesai'
+        'id_pengelola','id_tempat','lembaga_lain','tipe','name','tingkat','mulai','selesai'
     ];
 
     protected $filter = [
@@ -28,7 +28,7 @@ class PengelolaPekerjaan extends Model {
     public static function initialize()
     {
         return [
-            'id_tempat' => 0,'tipe' => 0,'name' => '','tingkat' => '','mulai' => '','selesai' => ''
+            'id_tempat' => 0,'tipe' => 0,'lembaga_lain' => '','name' => '','tingkat' => '','mulai' => '','selesai' => ''
         ];
     }
 

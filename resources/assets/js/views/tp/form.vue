@@ -525,14 +525,22 @@
 						this.$store.dispatch('cu/getPus',this.profile.id_pus);
 					}
 					this.form.id_cu = this.profile.id_cu;
+
+					// check permission
+					if(this.$route.meta.mode === 'edit'){
+						if(!this.profile.can || !this.profile.can['update_' + this.kelas]){
+							this.$router.push({name: 'notFound'});
+						}
+					}else{
+						if(!this.profile.can || !this.profile.can['create_' + this.kelas]){
+							this.$router.push({name: 'notFound'});
+						}
+					}
 				}
 			},
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode === 'edit'){
-						if(this.profile.id_cu !== 0 && this.profile.id_cu !== this.form.id){
-							this.$router.push({name: 'notFound'});
-						}
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);

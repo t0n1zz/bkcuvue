@@ -223,13 +223,8 @@ class PengelolaController extends Controller{
 			else
 					$no_tipe = 2;
 		}elseif($tipe == '2'){//lembaga lain
-			$lembaga = $request->pekerjaan['id_lembaga'];
-
-			if($lembaga == 'tambah'){
-				$lembaga = $this->store_lembaga();
-			}
-
-			$kelas->id_tempat = $lembaga;
+			$lembaga = 0;
+			$kelas->lembaga_lain = $request->pekerjaan['lembaga_lain'];
 
 			if($kelamin == 'Pria')//no tipe utk nim
 					$no_tipe = 3;
