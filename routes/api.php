@@ -139,6 +139,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::post('/pengelola/store', 'PengelolaController@store');
     });
     Route::group(['middleware' => ['permission:update_pengelola']], function () {
+        Route::get('/pengelola/detail/{id}', 'PengelolaController@detail');
         Route::get('/pengelola/editIdentitas/{id}', 'PengelolaController@editIdentitas');
         Route::post('/pengelola/updateIdentitas/{id}', 'PengelolaController@updateIdentitas');
     });

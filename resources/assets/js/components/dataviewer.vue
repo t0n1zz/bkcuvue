@@ -2,7 +2,7 @@
   <div>
 
     <!-- desktop  view-->
-    <div class="panel panel-white border-top-xlg border-top-info hidden-xs">
+    <div class="panel panel-white hidden-xs">
       <!-- heading desktop -->
       <div class="panel-heading hidden-print">
         <h5 class="panel-title text-semibold"><i class="icon-list2 position-left"></i> Tabel {{ title }}</h5>
@@ -385,7 +385,7 @@
     <!-- mobile view -->
     <div class="visible-xs">
       <!-- search -->
-      <div class="panel panel-white border-top-xlg border-top-info">
+      <div class="panel panel-white">
         <!-- heading -->
         <div class="panel-heading has-visible-elements visible-xs hidden-print">
           <h5 class="panel-title"><i class="icon-search4"></i> Pencarian</h5>
@@ -522,7 +522,7 @@
       </div>
 
       <!-- button -->
-      <div class="panel panel-flat panel-white border-top-xlg border-top-info hidden-print">
+      <div class="panel panel-flat panel-white hidden-print">
         <div class="panel-heading has-visible-elements">
           <h5 class="panel-title"><i class="icon-hammer-wrench"></i> Pengolahan</h5>
           <div class="heading-elements visible-elements">

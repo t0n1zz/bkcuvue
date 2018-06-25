@@ -17,6 +17,7 @@ import tp from './views/tp/index.vue';
 import tp_form from './views/tp/form.vue';
 import pengelola from './views/pengelola/index.vue';
 import pengelola_form from './views/pengelola/form.vue';
+import pengelola_detail from './views/pengelola/detail.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import profile from './views/user/profile.vue';
@@ -27,7 +28,6 @@ const routes = [
 	// login
 	{ path: '/login',name: 'login', components: { default: login } },
 	
-
 	// user
 	{ path: '/user/cu/:cu',name: 'userCu', 
 		components: { default: user, 'header': header }, 
@@ -111,6 +111,8 @@ const routes = [
 		components: { default: pengelola_form, 'header': header}, meta: { mode:'create' }  },
 	{ path: '/pengelola/edit/identitas/:id',name: 'pengelolaEditIdentitas', 
 		components: { default: pengelola_form, 'header': header}, meta: { mode:'editIdentitas' } },
+		{ path: '/pengelola/detail/:id',name: 'pengelolaDetail', 
+		components: { default: pengelola_detail, 'header': header}, meta: { mode:'detail' } },
 
 	// laporan cu
 	// bkcu default route

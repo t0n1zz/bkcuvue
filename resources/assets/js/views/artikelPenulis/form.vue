@@ -16,7 +16,7 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
 						<!-- main form -->
-						<div class="panel panel-flat border-left-xlg border-left-info">
+						<div class="panel panel-flat">
 							<div class="panel-body">
 									<div class="row">
 

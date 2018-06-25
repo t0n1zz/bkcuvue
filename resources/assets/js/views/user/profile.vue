@@ -20,8 +20,8 @@
 										<img :src="'/images/user/' + profile.gambar + 'n.jpg'" class="img-circle img-responsive center-block" v-if="profile.gambar">
 										<img :src="'/images/no_image_man.jpg'" class="img-circle img-responsive center-block" v-else>
 										<div class="caption">
-											<span>
-												<a href="#" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+											<span v-if="profile.gambar">
+												<a class="btn bg-primary-400 btn-icon btn-xs" @click.prevent="modalImageBuka('/images/user/' + profile.gambar + '.jpg')"><i class="icon-enlarge7"></i></a>
 											</span>
 										</div>
 									</div>
@@ -75,7 +75,7 @@
 									<form @submit.prevent="savePassword" enctype="multipart/form-data" data-vv-scope="formPassword">
 
 										<!-- form -->
-										<div class="panel panel-flat border-left-xlg border-left-info">
+										<div class="panel panel-flat">
 											<div class="panel-body">
 												
 												<!-- password -->
@@ -163,7 +163,7 @@
 									<form @submit.prevent="saveFoto" enctype="multipart/form-data">
 
 										<!-- form -->
-										<div class="panel panel-flat border-left-xlg border-left-info">
+										<div class="panel panel-flat">
 											<div class="panel-body">
 												<div class="form-group">
 
@@ -199,7 +199,7 @@
 									<form @submit.prevent="saveEmail" enctype="multipart/form-data" data-vv-scope="formEmail">
 
 										<!-- form -->
-										<div class="panel panel-flat border-left-xlg border-left-info">
+										<div class="panel panel-flat">
 											<div class="panel-body">
 												<!-- name -->
 												<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -270,8 +270,11 @@
 		
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalTutup">
-
 		</app-modal>
+
+		<!-- modal image -->
+		<app-modal-image :show="modalImageShow" :content="modalImageContent" @tutup="modalImageTutup" @backgroundClick="modalImageTutup">
+		</app-modal-image>
 
 	</div>
 </template>
@@ -282,6 +285,7 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import appModal from '../../components/modal';
+	import appModalImage from '../../components/modalImage';
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import formButton from "../../components/formButton.vue";
@@ -293,6 +297,7 @@
 			pageHeader,
 			message,
 			appModal,
+			appModalImage,
 			appImageUpload,
 			formInfo,
 			formButton,
@@ -312,6 +317,8 @@
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
+				modalImageShow: false,
+				modalImageContent: '',
 				submited: false,
 			}
 		},
@@ -374,6 +381,10 @@
 					this.formFoto.gambar = this.form.gambar;
 				}
 			},
+			modalImageBuka(content){
+				this.modalImageShow = true;
+				this.modalImageContent = content;
+			},
 			modalTutup() {
 				this.modalShow = false;
 				
@@ -382,6 +393,9 @@
 				}else if(this.tabName == 'password'){
 					this.formPasswordReset();
 				}
+			},
+			modalImageTutup() {
+				this.modalImageShow = false;
 			},
 			formPasswordReset(){
 				this.formPassword.password_old = '';

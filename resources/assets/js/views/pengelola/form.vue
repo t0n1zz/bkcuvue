@@ -16,7 +16,7 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
 						<!-- identitas -->
-						<div class="panel panel-flat border-left-xlg border-left-info">
+						<div class="panel panel-flat border-top-xlg border-top-info">
 							<div class="panel-body">
 								<div class="row">
 
@@ -277,7 +277,7 @@
 						</div>
 
 						<!-- lokasi -->
-						<div class="panel panel-flat border-left-xlg border-left-info">
+						<div class="panel panel-flat border-top-xlg border-top-info">
 							<div class="panel-body">
 								<div class="row">
 
@@ -475,7 +475,7 @@
 						</div>
 
 						<!-- keluarga -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.keluarga">
+						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.keluarga">
 							<div class="panel-body">
 								<div class="row">
 
@@ -581,7 +581,7 @@
 						</div>
 						
 						<!-- anggota cu -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.anggota_cu">
+						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.anggota_cu">
 							<div class="panel-body">
 								<div class="row">
 
@@ -600,7 +600,7 @@
 						</div>
 
 						<!-- pekerjaan -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.pekerjaan">
+						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.pekerjaan">
 							<div class="panel-body">
 								<div class="row">
 
@@ -619,7 +619,7 @@
 						</div>
 
 						<!-- pendidikan -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.pendidikan">
+						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.pendidikan">
 							<div class="panel-body">
 								<div class="row">
 
@@ -638,7 +638,7 @@
 						</div>
 
 						<!-- organisasi -->
-						<div class="panel panel-flat border-left-xlg border-left-info" v-if="$route.meta.mode == 'create' && form.organisasi">
+						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.organisasi">
 							<div class="panel-body">
 								<div class="row">
 

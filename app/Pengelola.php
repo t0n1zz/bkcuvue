@@ -38,12 +38,20 @@ class Pengelola extends Model {
         return $this->hasOne('App\PengelolaPendidikan','id_pengelola','id');
     }
 
+    public function pendidikans(){
+        return $this->hasMany('App\PengelolaPendidikan','id_pengelola','id');
+    }
+
     public function pendidikan_tertinggi(){
         return $this->hasOne('App\PengelolaPendidikan','id_pengelola','id')->oldest();
     }
 
     public function pekerjaan(){
         return $this->hasOne('App\PengelolaPekerjaan','id_pengelola','id');
+    }
+
+    public function pekerjaans(){
+        return $this->hasMany('App\PengelolaPekerjaan','id_pengelola','id');
     }
 
     public function pekerjaan_aktif(){

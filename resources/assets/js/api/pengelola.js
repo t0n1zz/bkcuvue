@@ -18,6 +18,10 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/store', form);
   },
 
+  detail: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/detail/' + id);
+  },
+
   editIdentitas: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/editIdentitas/' + id);
   },

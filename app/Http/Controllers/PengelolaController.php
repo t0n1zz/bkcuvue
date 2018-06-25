@@ -22,7 +22,7 @@ class PengelolaController extends Controller{
 
 	public function index()
 	{
-		$table_data = Pengelola::with('pekerjaan_aktif.cu','pendidikan_tertinggi')->whereHas('pekerjaan',function($query){
+		$table_data = Pengelola::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
 			$query->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
 		})->filterPaginateOrder();
 
@@ -41,7 +41,7 @@ class PengelolaController extends Controller{
 			$tipe = 1;
 		}
 
-		$table_data = Pengelola::with('pekerjaan_aktif.cu','pendidikan_tertinggi')
+		$table_data = Pengelola::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 		->whereHas('pekerjaan', function($query) use ($id,$tipe){
 			$query->where('tipe',$tipe)->where('id_tempat',$id)
 			->where(function($q){
@@ -154,6 +154,18 @@ class PengelolaController extends Controller{
 						'form' => $kelas,
 						'option' => []
 				]);
+	}
+
+	public function detail($id)
+	{
+		$form = Pengelola::with('pekerjaans','pendidikans','anggotacu','keluarga','organisasi','Villages','Districts','Regencies','Provinces')->where('id',$id)->first();
+
+		return response()
+			->json([
+					'form' => $form,
+					'rules' => Pengelola::$rules,
+					'option' => []
+			]);
 	}
 
 	public function updateIdentitas(Request $request, $id)

@@ -115,6 +115,25 @@ export const pengelola = {
         });
     },
 
+    // edit page
+    detail( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      pengelolaAPI.detail( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // update data
     updateIdentitas( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
