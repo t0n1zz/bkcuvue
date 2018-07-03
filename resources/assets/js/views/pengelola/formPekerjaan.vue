@@ -29,7 +29,7 @@
 		</div>
 
 		<!-- tempat -->
-		<div class="col-md-4" v-if="form.pekerjaan.id_tempat == 'lain'">
+		<div class="col-md-4" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.lembaga_lain')}">
 
 				<!-- title -->

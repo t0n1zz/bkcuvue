@@ -28,7 +28,7 @@
                 :raw="false" 
                 :options="cleaveOption.dateTime" 
                 placeholder="YYYY-MM-DD HH:MM:SS" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'datetime'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'datetime' && params.search_operator === 'between'">sampai</span>
@@ -38,7 +38,7 @@
                 :raw="false" 
                 :options="cleaveOption.dateTime" 
                 placeholder="YYYY-MM-DD HH:MM:SS" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'datetime' && params.search_operator === 'between'"></cleave>
 
@@ -49,7 +49,7 @@
                 :raw="false" 
                 :options="cleaveOption.date" 
                 placeholder="YYYY-MM-DD"
-                @keyup.enter="fetch" 
+                @keyup.enter="search()" 
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'date'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'date' && params.search_operator === 'between'">sampai</span>
@@ -59,7 +59,7 @@
                 :raw="false" 
                 :options="cleaveOption.date" 
                 placeholder="YYYY-MM-DD" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'date' && params.search_operator === 'between'"></cleave>
 
@@ -69,7 +69,7 @@
                 class="form-control" 
                 :options="cleaveOption.number" 
                 placeholder="0-9" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'number'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'number' && params.search_operator === 'between'">sampai</span>
@@ -78,7 +78,7 @@
                 class="form-control" 
                 :options="cleaveOption.number" 
                 placeholder="0-9" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'number' && params.search_operator === 'between'"></cleave>
 
@@ -88,7 +88,7 @@
                 class="form-control" 
                 :options="cleaveOption.numeric" 
                 placeholder="999.999.999,99" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'numeric'"></cleave>
               <span class="input-group-addon" v-if="searchColumnType === 'numeric' && params.search_operator === 'between'">sampai</span>
@@ -97,7 +97,7 @@
                 class="form-control" 
                 :options="cleaveOption.numeric" 
                 placeholder="999.999.999,99" 
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" 
                 v-if="searchColumnType === 'numeric' && params.search_operator === 'between'"></cleave>
                 
@@ -107,7 +107,7 @@
                 class="form-control" 
                 placeholder="Masukkan kata kunci pencarian" 
                 v-model="searchQuery1"
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string'">
               <span class="input-group-addon" v-if="searchColumnType === 'string' && params.search_operator === 'between'">sampai</span>
               <input 
@@ -115,7 +115,7 @@
                 class="form-control" 
                 placeholder="Masukkan kata kunci pencarian" 
                 v-model="searchQuery2"
-                @keyup.enter="fetch"
+                @keyup.enter="search()"
                 :disabled="itemDataStat === 'loading'" v-if="searchColumnType === 'string' && params.search_operator === 'between'"> 
               
               <!-- filter desktop -->
@@ -153,7 +153,7 @@
 
                 <!-- cari -->
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-icon " data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'"  :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+                  <button type="button" class="btn btn-default btn-icon " data-toggle="dropdown" v-tooltip:top="'Lakukan Pencarian'"  :disabled="itemDataStat === 'loading'" @click.prevent="search()">
                     <i class="icon-search4"></i>  Cari
                   </button>
                 </div>
@@ -507,14 +507,14 @@
 
               <!-- button cari -->
               <div class="pb-15">
-                <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+                <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="search()">
                   <i class="icon-search4"></i> Cari
                 </button>
               </div>
 
               <!-- hapus pencarian -->
               <div v-if="searchQuery1 !=='' || params.search_query_2 !==''">
-                <button class="btn btn-default btn-icon btn-block" @click="emptySearch()"><i class="icon-cross"></i></button>
+                <button class="btn btn-default btn-icon btn-block" @click.prevent="emptySearch()"><i class="icon-cross"></i></button>
               </div>
             </div>
           </div>
@@ -914,6 +914,11 @@
     methods: {
       fetch(){
         this.$emit('fetch');
+      },
+
+      search(){
+        this.params.page = 1;
+        this.fetch();
       },
       
       // search

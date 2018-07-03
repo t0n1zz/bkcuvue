@@ -76,6 +76,24 @@ export const pengelola = {
         });
     },
 
+    createPekerjaan( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      pengelolaAPI.createPekerjaan()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
     //store data
     store( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
@@ -117,20 +135,16 @@ export const pengelola = {
 
     // edit page
     detail( {commit}, id ){
-      commit('setDataStat', 'loading');
+      commit('setDataStatS', 'loading');
       
       pengelolaAPI.detail( id )
         .then( function( response ){
-          commit('setData', response.data.form);
-          commit('setRules', response.data.rules);
-          commit('setOptions', response.data.options)
-          commit('setDataStat', 'success');
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
-        .catch(error => {
-          commit('setData', error.response);
-          commit('setRules', []);
-          commit('setOptions', [])
-          commit('setDataStat', 'fail');
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 

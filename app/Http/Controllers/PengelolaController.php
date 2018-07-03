@@ -73,6 +73,16 @@ class PengelolaController extends Controller{
 			]);
 	}
 
+	public function createPekerjaan()
+	{
+		$form['pekerjaan'] = PengelolaPekerjaan::initialize();
+
+		return response()
+			->json([
+					'form' => $form
+			]);
+	}
+
 	public function store(Request $request)
 	{
 		$this->validate($request,Pengelola::$rules);
@@ -158,13 +168,11 @@ class PengelolaController extends Controller{
 
 	public function detail($id)
 	{
-		$form = Pengelola::with('pekerjaans','pendidikans','anggotacu','keluarga','organisasi','Villages','Districts','Regencies','Provinces')->where('id',$id)->first();
+		$table_data = Pengelola::with('pekerjaans.cu','pendidikans','anggotacu','keluarga','organisasi','Villages','Districts','Regencies','Provinces')->where('id',$id)->first();
 
 		return response()
 			->json([
-					'form' => $form,
-					'rules' => Pengelola::$rules,
-					'option' => []
+					'model' => $table_data,
 			]);
 	}
 

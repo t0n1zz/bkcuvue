@@ -31,8 +31,8 @@
 
 		<!-- ubah -->
 		<form @submit.prevent="save" data-vv-scope="form">
-		<hr v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
-		<div class="row" v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+		<hr v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+		<div class="row" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
 				<div class="col-sm-6" v-if="!form.hideForm && form.title" v-for="form in modalKatex.form">
 					<div class="form-group">
 
@@ -45,7 +45,6 @@
 							class="form-control" 
 							:options="cleaveOption.numeric"
 							:placeholder="'Silahkan masukkan ' + form.title"></cleave>
-
 					</div>
 				</div>
 
@@ -57,11 +56,11 @@
 			<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
 				<i class="icon-cross"></i> Tutup
 			</button>
-			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah">
+			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah && profile.can && profile.can['update_' + kelas]">
 				<i class="icon-pencil5"></i> Ubah
 			</button>
 
-			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-default" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalKatex.isUbah">
+			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-default" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
 				<i class="icon-arrow-left13"></i> Batal
 			</button>
 			<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalKatex.isUbah">
@@ -71,15 +70,15 @@
 
 		<div class="visible-xs">
 
-			<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+			<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update_' + kelas]">
 				<i class="icon-floppy-disk"></i> Simpan
 			</button>
 
-			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-default btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-default btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
 				<i class="icon-arrow-left13"></i> Batal
 			</button>
 
-			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-default btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah && profile.can && profile.can['update ' + kelas]">
+			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-default btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
 				<i class="icon-pencil5"></i> Ubah
 			</button>
 

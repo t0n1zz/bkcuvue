@@ -971,29 +971,29 @@
 					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
 						<i class="icon-cross"></i> Tutup
 					</button>
-					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update_laporan_cu']">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 
 					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-default" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah">
 						<i class="icon-arrow-left13"></i> Batal
 					</button>
-					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas] && modalDetail.canUbah">
+					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update_laporan_cu'] && modalDetail.canUbah">
 						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 				</div>
 
 				<div class="visible-xs">
 
-					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas] && modalDetail.canUbah">
+					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update_laporan_cu'] && modalDetail.canUbah">
 						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 
-					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-default btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-default btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update_laporan_cu']">
 						<i class="icon-arrow-left13"></i> Batal
 					</button>
 
-					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update ' + kelas]">
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-default btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update_laporan_cu']">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 

@@ -136,6 +136,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     });
     Route::group(['middleware' => ['permission:create_pengelola']], function () {
         Route::get('/pengelola/create', 'PengelolaController@create');
+        Route::get('/pengelola/createPekerjaan', 'PengelolaController@createPekerjaan');
         Route::post('/pengelola/store', 'PengelolaController@store');
     });
     Route::group(['middleware' => ['permission:update_pengelola']], function () {

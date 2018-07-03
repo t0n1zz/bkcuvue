@@ -51,7 +51,7 @@ class Pengelola extends Model {
     }
 
     public function pekerjaans(){
-        return $this->hasMany('App\PengelolaPekerjaan','id_pengelola','id');
+        return $this->hasMany('App\PengelolaPekerjaan','id_pengelola','id')->orderBy('mulai','desc');
     }
 
     public function pekerjaan_aktif(){

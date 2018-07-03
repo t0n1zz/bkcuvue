@@ -14,6 +14,10 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/create');
   },
 
+  createPekerjaan: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createPekerjaan');
+  },
+
   store: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/store', form);
   },
