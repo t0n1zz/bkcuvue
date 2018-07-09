@@ -194,6 +194,11 @@
 								<a><i class="icon-briefcase"></i> Pertemuan BKCU</a>
 							</router-link>
 
+							<!-- penulis artikel -->
+							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
+								<a><i class="icon-briefcase"></i> Pertemuan CU</a>
+							</router-link>
+
 							<!-- separator -->
 							<li class="divider"></li>
 							<!-- penulis artikel -->

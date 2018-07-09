@@ -22,8 +22,12 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/store', form);
   },
 
-  detail: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/detail/' + id);
+  savePekerjaan: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/pengelola/savePekerjaan/' + id, form);
+  },
+
+  indexPekerjaan: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexPekerjaan/' + id);
   },
 
   editIdentitas: function( id ){

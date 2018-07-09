@@ -216,6 +216,9 @@
 				}
 			});
 		},
+		updated() {
+			$('.bootstrap-select').selectpicker('refresh');
+		},
 		methods: {
 			backgroundClick() {
 				if(this.state !== 'loading'){

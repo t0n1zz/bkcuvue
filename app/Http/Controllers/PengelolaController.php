@@ -56,6 +56,57 @@ class PengelolaController extends Controller{
 		]);
 	}
 
+	public function indexPekerjaan($id)
+	{
+		$table_data = PengelolaPekerjaan::where('id_pengelola',$id)->orderBy('mulai','desc')->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+	public function indexPendidikan($id)
+	{
+		$table_data = PengelolaPendidikan::where('id_pengelola',$id)->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+	public function indexAnggotaCu($id)
+	{
+		$table_data = PengelolaAnggotaCu::where('id_pengelola',$id)->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+	public function indexKeluarga($id)
+	{
+		$table_data = PengelolaKeluarga::where('id_pengelola',$id)->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+	public function indexOrganisasi($id)
+	{
+		$table_data = PengelolaOrganisasi::where('id_pengelola',$id)->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+
 	public function create()
 	{
 		$form = Pengelola::initialize();
@@ -107,25 +158,25 @@ class PengelolaController extends Controller{
 		$anak = $request->anak;
 
 		if(!empty($ayah))
-			$this->save_keluarga($request,$kelas->id,'Ayah',$ayah);
+			$this->saveKeluarga($request,$kelas->id,'Ayah',$ayah);
 		
 		if(!empty($ibu))
-			$this->save_keluarga($request,$kelas->id,'Ibu',$ibu);
+			$this->saveKeluarga($request,$kelas->id,'Ibu',$ibu);
 
 		if(!empty($pasangan))
-			$this->save_keluarga($request,$kelas->id,'Pasangan',$pasangan);	
+			$this->saveKeluarga($request,$kelas->id,'Pasangan',$pasangan);	
 
 		if(!empty($anak)){
 			foreach($anak as $a){
-				$this->save_keluarga($request,$kelas->id,'Anak',$a['value']);
+				$this->saveKeluarga($request,$kelas->id,'Anak',$a['value']);
 			}
 		}	
 
 		// anggota cu, pendidikan, organisasi, pekerjaan
-		$this->save_anggota_cu($request,$kelas->id);
-		$this->save_pendidikan($request,$kelas->id);
-		$this->save_organisasi($request,$kelas->id);
-		$pekerjaan = $this->save_pekerjaan($request,$kelas->id,true);
+		$this->saveAnggotaCu($request,$kelas->id);
+		$this->savePendidikan($request,$kelas->id);
+		$this->saveOrganisasi($request,$kelas->id);
+		$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
 
 		// nim
 		$no_bkcu = sprintf("%'.03d", 15); //999
@@ -166,16 +217,6 @@ class PengelolaController extends Controller{
 				]);
 	}
 
-	public function detail($id)
-	{
-		$table_data = Pengelola::with('pekerjaans.cu','pendidikans','anggotacu','keluarga','organisasi','Villages','Districts','Regencies','Provinces')->where('id',$id)->first();
-
-		return response()
-			->json([
-					'model' => $table_data,
-			]);
-	}
-
 	public function updateIdentitas(Request $request, $id)
 	{
 		$this->validate($request,Pengelola::$rules);
@@ -201,7 +242,7 @@ class PengelolaController extends Controller{
 			]);
 	}
 
-	public function save_pekerjaan(Request $request, $id, $isReturnValue)
+	public function savePekerjaan(Request $request, $id, $isReturnValue = false)
 	{
 		$tipe = $request->pekerjaan['tipe'];
 		$kelamin = $request->kelamin;
@@ -271,7 +312,7 @@ class PengelolaController extends Controller{
 		}
 	}
 
-	public function save_pendidikan(Request $request, $id)
+	public function savePendidikan(Request $request, $id)
 	{
 		if(array_key_exists('id', $request->pendidikan)){
 				$kelas = PengelolaPendidikan::findOrFail($request->pendidikan['id']);
@@ -308,7 +349,7 @@ class PengelolaController extends Controller{
 		}
 	}
 
-	public function save_organisasi(Request $request, $id)
+	public function saveOrganisasi(Request $request, $id)
 	{
 		if(array_key_exists('id', $request->organisasi)){
 				$kelas = PengelolaOrganisasi::findOrFail($request->organisasi['id']);
@@ -345,7 +386,7 @@ class PengelolaController extends Controller{
 		}
 	}
 
-	public function save_keluarga(Request $request, $id, $tipe, $name)
+	public function saveKeluarga(Request $request, $id, $tipe, $name)
 	{
 		if(array_key_exists('id', $request->keluarga)){
 			$kelas = PengelolaKeluarga::findOrFail($request->keluarga['id']);
@@ -384,7 +425,7 @@ class PengelolaController extends Controller{
 		}
 	}
 
-	public function save_anggota_cu(Request $request, $id)
+	public function saveAnggotaCu(Request $request, $id)
 	{
 		if(array_key_exists('id', $request->anggota_cu)){
 				$kelas = PengelolaAnggotaCu::findOrFail($request->anggota_cu['id']);

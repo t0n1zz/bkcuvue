@@ -140,9 +140,15 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::post('/pengelola/store', 'PengelolaController@store');
     });
     Route::group(['middleware' => ['permission:update_pengelola']], function () {
-        Route::get('/pengelola/detail/{id}', 'PengelolaController@detail');
+        Route::get('/pengelola/indexPekerjaan/{id}', 'PengelolaController@indexPekerjaan');
+        Route::get('/pengelola/indexPendidikan/{id}', 'PengelolaController@indexPendidikan');
+        Route::get('/pengelola/indexAnggotaCu/{id}', 'PengelolaController@indexAnggotaCu');
+        Route::get('/pengelola/indexKeluarga/{id}', 'PengelolaController@indexKeluarga');
+        Route::get('/pengelola/indexOrganisasi/{id}', 'PengelolaController@indexOrganisasi');
         Route::get('/pengelola/editIdentitas/{id}', 'PengelolaController@editIdentitas');
         Route::post('/pengelola/updateIdentitas/{id}', 'PengelolaController@updateIdentitas');
+
+        Route::post('/pengelola/savePekerjaan/{id}', 'PengelolaController@savePekerjaan');
     });
     Route::group(['middleware' => ['permission:destroy_pengelola']], function () {
         Route::delete('/pengelola/{id}', 'PengelolaController@destroy');

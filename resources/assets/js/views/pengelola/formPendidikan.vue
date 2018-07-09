@@ -112,7 +112,7 @@
 				<!-- input -->
 				<cleave 
 					name="pendidikan_selesai"
-					v-model="form.pendidikan.seleasi" 
+					v-model="form.pendidikan.selesai" 
 					class="form-control" 
 					:raw="false" 
 					:options="cleaveOption.date" 

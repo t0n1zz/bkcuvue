@@ -19,8 +19,8 @@
 
 				<!-- ubah-->
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
-					<button @click.prevent="ubahIdentitas(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-						<i class="icon-pencil5"></i> Ubah Identitas
+					<button @click.prevent="ubah(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
 
@@ -28,13 +28,6 @@
 				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_' + kelas]">
 					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
-					</button>
-				</div>
-
-				<!-- ubah-->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
-					<button @click.prevent="detail(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Detail ' + title" :disabled="!selectedItem.id">
-						<i class="icon-pencil5"></i> Detail
 					</button>
 				</div>
 			</template>
@@ -54,7 +47,7 @@
 				<!-- update -->
 				<li v-if="profile.can && profile.can['update_' + kelas]">
 					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahIdentitas(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
+						<button @click.prevent="ubah(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 							<i class="icon-pencil5"></i> Ubah
 						</button>
 					</div>
@@ -331,7 +324,7 @@
 							
 							<!-- update -->
 							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_' + kelas]">
-								<button @click.prevent="ubahIdentitas(props.item.id)" class="btn btn-default btn-icon btn-block">
+								<button @click.prevent="ubah(props.item.id)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
@@ -340,13 +333,6 @@
 							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_' + kelas]">
 								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-bin2"></i> <span>Hapus</span>
-								</button>
-							</div>
-
-							<!-- lihat artikel -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['index artikel']">
-								<button @click.prevent="lihatArtikel(props.item.id)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_artikel_count === 0">
-									<i class="icon-file-eye"></i> Lihat artikel 
 								</button>
 							</div>
 
@@ -731,11 +717,8 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			detail(id) {
-				this.$router.push({name: this.kelas + 'Detail', params: { id: id }});
-			},
-			ubahIdentitas(id) {
-				this.$router.push({name: this.kelas + 'EditIdentitas', params: { id: id }});
+			ubah(id) {
+				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;

@@ -58,6 +58,21 @@ export const pengelola = {
         });
     },
 
+    // load by pekerjaan
+    indexPekerjaan( {commit}, id ){
+      commit('setDataStatS', 'loading');
+      
+      pengelolaAPI.indexPekerjaan( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     create( {commit} ){
       commit('setDataStat', 'loading');
       
@@ -113,6 +128,25 @@ export const pengelola = {
         });
     },
 
+    savePekerjaan( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.savePekerjaan( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+
 
     // edit page
     editIdentitas( {commit}, id ){
@@ -132,22 +166,7 @@ export const pengelola = {
           commit('setDataStat', 'fail');
         });
     },
-
-    // edit page
-    detail( {commit}, id ){
-      commit('setDataStatS', 'loading');
-      
-      pengelolaAPI.detail( id )
-        .then( function( response ){
-          commit('setDataS', response.data.model);
-          commit('setDataStatS', 'success');
-        })
-        .catch( error => {
-          commit('setDataS', error.response);
-          commit('setDataStatS', 'fail');
-        });
-    },
-
+    
     // update data
     updateIdentitas( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');

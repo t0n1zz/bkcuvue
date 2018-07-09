@@ -123,7 +123,7 @@
 				<!-- input -->
 				<cleave 
 					name="organisasi_selesai"
-					v-model="form.organisasi.seleasi" 
+					v-model="form.organisasi.selesai" 
 					class="form-control" 
 					:raw="false" 
 					:options="cleaveOption.date" 

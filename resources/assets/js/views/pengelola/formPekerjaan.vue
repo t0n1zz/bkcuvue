@@ -11,12 +11,9 @@
 				</h5>
 
 				<!-- select -->
-				<select class="bootstrap-select" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
-					<option disabled value="">Silahkan pilih CU</option>
-					<option data-divider="true"></option>
+				<select class="form-control" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
 					<option value="0">Puskopdit BKCU Kalimantan</option>
-					<option value="lain" v-if="$route.meta.mode == 'pekerjaan'">Lembaga lain</option>
-					<option data-divider="true"></option>
+					<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
 					<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
 				</select>
 
@@ -59,9 +56,7 @@
 				</h5>
 
 				<!-- select -->
-				<select class="bootstrap-select" name="pekerjaan_tingkat" v-model="form.pekerjaan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
-					<option disabled value="">Silahkan pilih tingkat pekerjaan</option>
-					<option data-divider="true"></option>
+				<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
 					<option value="Pengurus" v-if="form.pekerjaan.id_tempat != 'lain'">Pengurus</option>
 					<option value="Pengawas" v-if="form.pekerjaan.id_tempat != 'lain'">Pengawas</option>
 					<option value="Komite" v-if="form.pekerjaan.id_tempat != 'lain'">Komite</option>
@@ -136,7 +131,7 @@
 				<!-- input -->
 				<cleave 
 					name="pekerjaan_selesai"
-					v-model="form.pekerjaan.seleasi" 
+					v-model="form.pekerjaan.selesai" 
 					class="form-control" 
 					:raw="false" 
 					:options="cleaveOption.date" 
