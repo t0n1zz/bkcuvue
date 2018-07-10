@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- CU -->
-		<div class="col-md-4" v-if="profile.id_cu == 0">
+		<div class="col-sm-12" v-if="profile.id_cu == 0">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.id_tempat')}">
 
 				<!-- title -->
@@ -27,7 +27,7 @@
 		</div>
 
 		<!-- tempat -->
-		<div class="col-md-4" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
+		<div class="col-sm-12" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.lembaga_lain')}">
 
 				<!-- title -->
@@ -47,7 +47,7 @@
 		</div>
 
 		<!-- tingkat -->
-		<div class="col-md-4">
+		<div class="col-sm-12">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.tingkat')}">
 
 				<!-- title -->
@@ -77,7 +77,7 @@
 		</div>
 
 		<!-- jabatan -->
-		<div class="col-md-4" v-if="form.pekerjaan.tingkat != ''">
+		<div class="col-sm-12" v-if="form.pekerjaan.tingkat != ''">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
 
 				<!-- title -->
@@ -97,7 +97,7 @@
 		</div>
 
 		<!-- tanggal mulai -->
-		<div class="col-md-4" v-if="form.pekerjaan.tingkat != ''">
+		<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.mulai')}">
 
 				<!-- title -->
@@ -124,7 +124,7 @@
 		</div>
 
 		<!-- tanggal selesai -->
-		<div class="col-md-4" v-if="form.pekerjaan.tingkat != ''">
+		<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
 			<div class="form-group">
 
 				<!-- title -->

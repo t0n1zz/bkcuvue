@@ -27,7 +27,7 @@ class PengelolaOrganisasi extends Model {
 
     public static function initialize()
     {
-        return ['name' => '','jabatan' => '','tempat' => '','mulai' => '','selesai' => ''
+        return ['aktif' => '', 'name' => '','jabatan' => '','tempat' => '','mulai' => '','selesai' => ''
         ];
     }
 

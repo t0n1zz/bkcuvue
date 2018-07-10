@@ -228,7 +228,7 @@
 										</h6>
 									</div>
 
-									<form-organisasi :form="form"></form-organisasi>
+									<form-organisasi :form="form" :isAktif="true"></form-organisasi>
 
 								</div>
 							</div>

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- CU -->
-		<div class="col-md-4" v-if="profile.id_cu == 0">
+		<div class="col-sm-6" v-if="profile.id_cu == 0">
 			<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.id_tempat')}">
 
 				<!-- title -->
@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- no_ba -->
-		<div class="col-md-4" v-if="form.anggota_cu.name == 'lain'">
+		<div class="col-sm-6" v-if="form.anggota_cu.name == 'lain'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.cu_name')}">
 
 				<!-- title -->
@@ -48,7 +48,7 @@
 		</div>
 
 		<!-- no_ba -->
-		<div class="col-md-4" v-if="form.anggota_cu.name != ''">
+		<div class="col-sm-6" v-if="form.anggota_cu.name != ''">
 			<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.no_ba')}">
 
 				<!-- title -->

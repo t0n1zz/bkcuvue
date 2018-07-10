@@ -144,6 +144,36 @@ class PengelolaController extends Controller{
 			]);
 	}
 
+	public function createOrganisasi()
+	{
+		$form['organisasi'] = PengelolaOrganisasi::initialize();
+
+		return response()
+			->json([
+					'form' => $form
+			]);
+	}
+
+	public function createKeluarga()
+	{
+		$form['keluarga'] = PengelolaKeluarga::initialize();
+
+		return response()
+			->json([
+					'form' => $form
+			]);
+	}
+
+	public function createAnggotaCu()
+	{
+		$form['anggotaCu'] = PengelolaAnggotaCu::initialize();
+
+		return response()
+			->json([
+					'form' => $form
+			]);
+	}
+
 	public function store(Request $request)
 	{
 		$this->validate($request,Pengelola::$rules);
@@ -520,6 +550,39 @@ class PengelolaController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => 'Riwayat pendidikan berhasil dihapus'
+			]);
+	}
+
+	public function destroyOrganisasi($id)
+	{
+		PengelolaOrganisasi::where('id',$id)->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Riwayat organisasi berhasil dihapus'
+			]);
+	}
+
+	public function destroyKeluarga($id)
+	{
+		PengelolaKeluarga::where('id',$id)->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Keluarga berhasil dihapus'
+			]);
+	}
+
+	public function destroyAnggotaCu($id)
+	{
+		PengelolaAnggotaCu::where('id',$id)->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Anggota CU berhasil dihapus'
 			]);
 	}
 }

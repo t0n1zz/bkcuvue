@@ -88,6 +88,51 @@ export const pengelola = {
         });
     },
 
+    // load by organisasi
+    indexOrganisasi( {commit}, id ){
+      commit('setDataStatS', 'loading');
+      
+      pengelolaAPI.indexOrganisasi( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    // load by keluarga
+    indexKeluarga( {commit}, id ){
+      commit('setDataStatS', 'loading');
+      
+      pengelolaAPI.indexKeluarga( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    // load by keluarga
+    indexAnggotaCu( {commit}, id ){
+      commit('setDataStatS', 'loading');
+      
+      pengelolaAPI.indexAnggotaCu( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     create( {commit} ){
       commit('setDataStat', 'loading');
       
@@ -128,6 +173,60 @@ export const pengelola = {
       commit('setDataStat', 'loading');
       
       pengelolaAPI.createPendidikan()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
+    createOrganisasi( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      pengelolaAPI.createOrganisasi()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
+    createKeluarga( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      pengelolaAPI.createKeluarga()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
+    createAnggotaCu( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      pengelolaAPI.createAnggotaCu()
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -183,6 +282,60 @@ export const pengelola = {
       commit('setUpdateStat', 'loading');
 
       pengelolaAPI.savePendidikan( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    saveOrganisasi( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.saveOrganisasi( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    saveKeluarga( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.saveKeluarga( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    saveAnggotaCu( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.saveAnggotaCu( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -277,6 +430,60 @@ export const pengelola = {
       commit('setUpdateStat', 'loading');
 
       pengelolaAPI.destroyPendidikan( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyOrganisasi( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.destroyOrganisasi( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyKeluarga( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.destroyKeluarga( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyAnggotaCu( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.destroyAnggotaCu( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);

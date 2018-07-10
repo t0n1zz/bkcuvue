@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- tingkat -->
-		<div class="col-md-4">
+		<div class="col-sm-12" v-if="isAktif">
 			<div class="form-group" :class="{'has-error' : errors.has('form.organisasi.aktif')}">
 
 				<!-- title -->
@@ -11,9 +11,8 @@
 				</h5>
 
 				<!-- select -->
-				<select class="bootstrap-select" name="organisasi_aktif" v-model="form.organisasi.aktif" data-width="100%" v-validate="'required'" data-vv-as="Aktif Organisasi">
-					<option disabled value="">Apakah aktif dalam organisasi lain?</option>
-					<option data-divider="true"></option>
+				<select class="form-control" name="organisasi_aktif" v-model="form.organisasi.aktif" data-width="100%" v-validate="'required'" data-vv-as="Aktif Organisasi">
+					<option disabled>Apakah aktif dalam organisasi lain?</option>
 					<option value="Ya">Ya</option>
 					<option value="Tidak">Tidak</option>
 				</select>
@@ -27,7 +26,7 @@
 		</div>
 
 		<!-- nama -->
-		<div class="col-md-4" v-if="form.organisasi.aktif == 'Ya'">
+		<div class="col-sm-6" v-if="form.organisasi.aktif == 'Ya'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.organisasi.name')}">
 
 				<!-- title -->
@@ -47,7 +46,7 @@
 		</div>
 
 		<!-- jabatan -->
-		<div class="col-md-4" v-if="form.organisasi.aktif == 'Ya'">
+		<div class="col-sm-6" v-if="form.organisasi.aktif == 'Ya'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.organisasi.jabatan')}">
 
 				<!-- title -->
@@ -67,7 +66,7 @@
 		</div>
 
 		<!-- tempat -->
-		<div class="col-md-4" v-if="form.organisasi.aktif == 'Ya'">
+		<div class="col-sm-12" v-if="form.organisasi.aktif == 'Ya'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.organisasi.tempat')}">
 
 				<!-- title -->
@@ -87,7 +86,7 @@
 		</div>
 
 		<!-- tanggal mulai -->
-		<div class="col-md-4" v-if="form.organisasi.aktif == 'Ya'">
+		<div class="col-sm-6" v-if="form.organisasi.aktif == 'Ya'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.organisasi.mulai')}">
 
 				<!-- title -->
@@ -114,7 +113,7 @@
 		</div>
 
 		<!-- tanggal selesai -->
-		<div class="col-md-4" v-if="form.organisasi.aktif == 'Ya'">
+		<div class="col-sm-6" v-if="form.organisasi.aktif == 'Ya'">
 			<div class="form-group">
 
 				<!-- title -->
@@ -141,7 +140,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['form'],
+		props:['form','isAktif'],
 		components: {
 			Cleave
 		},

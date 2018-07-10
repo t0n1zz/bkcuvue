@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- tingkat -->
-		<div class="col-md-4">
+		<div class="col-sm-12">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.tingkat')}">
 
 				<!-- title -->
@@ -35,7 +35,7 @@
 		</div>
 
 		<!-- jurusan -->
-		<div class="col-md-4" v-if="form.pendidikan.tingkat != '' &&  form.pendidikan.tingkat != 'SD' && form.pendidikan.tingkat != 'SMP'">
+		<div class="col-sm-12" v-if="form.pendidikan.tingkat != '' &&  form.pendidikan.tingkat != 'SD' && form.pendidikan.tingkat != 'SMP'">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.name')}">
 
 				<!-- title -->
@@ -55,7 +55,7 @@
 		</div>
 
 		<!-- tempat -->
-		<div class="col-md-4" v-if="form.pendidikan.tingkat != ''">
+		<div class="col-sm-12" v-if="form.pendidikan.tingkat != ''">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.tempat')}">
 
 				<!-- title -->
@@ -75,7 +75,7 @@
 		</div>
 
 		<!-- tanggal mulai -->
-		<div class="col-md-4" v-if="form.pendidikan.tingkat != ''">
+		<div class="col-sm-6" v-if="form.pendidikan.tingkat != ''">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.mulai')}">
 
 				<!-- title -->
@@ -102,7 +102,7 @@
 		</div>
 
 		<!-- tanggal selesai -->
-		<div class="col-md-4" v-if="form.pendidikan.tingkat != ''">
+		<div class="col-sm-6" v-if="form.pendidikan.tingkat != ''">
 			<div class="form-group">
 
 				<!-- title -->

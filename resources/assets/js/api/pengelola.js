@@ -18,6 +18,18 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexPendidikan/' + id);
   },
 
+  indexOrganisasi: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexOrganisasi/' + id);
+  },
+
+  indexKeluarga: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexKeluarga/' + id);
+  },
+
+  indexAnggotaCu: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexAnggotaCu/' + id);
+  },
+
   create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/create');
   },
@@ -30,6 +42,18 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createPendidikan');
   },
 
+  createOrganisasi: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createOrganisasi');
+  },
+
+  createKeluarga: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createKeluarga');
+  },
+
+  createAnggotaCu: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createAnggotaCu');
+  },
+
   store: function ( form ){
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/store', form);
   },
@@ -40,6 +64,14 @@ export default {
 
   savePendidikan: function ( id, form ){
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/savePendidikan/' + id, form);
+  },
+
+  saveOrganisasi: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/pengelola/saveOrganisasi/' + id, form);
+  },
+
+  saveAnggotaCu: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/pengelola/saveAnggotaCu/' + id, form);
   },
   
   editIdentitas: function( id ){
@@ -60,5 +92,17 @@ export default {
 
   destroyPendidikan: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/pendidikan/' + id);
+  },
+
+  destroyOrganisasi: function( id ){
+    return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/organisasi/' + id);
+  },
+
+  destroyKeluarga: function( id ){
+    return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/keluarga/' + id);
+  },
+
+  destroyAnggotaCu: function( id ){
+    return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/anggotaCu/' + id);
   }
 }

@@ -27,6 +27,9 @@
 				<!-- success -->
 				<tbody v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open"> 
 					<slot name="item-desktop" v-for="(item,index) in items" :item="item" :index="index"></slot>
+					<tr v-if="items.length == 0">
+						<td :colspan="columnData.length">Data tidak ada</td>
+					</tr>
 				</tbody>
 
 				<!-- error -->
