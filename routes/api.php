@@ -131,28 +131,29 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::group(['middleware' => ['permission:index_pengelola']], function () {
         Route::get('/pengelola', 'PengelolaController@index');
         Route::get('/pengelola/get', 'PengelolaController@get');
-        Route::get('/pengelola/indexCu/{id}', 'PengelolaController@indexCu'); 
+        Route::get('/pengelola/indexCu/{id}', 'PengelolaController@indexCu');         Route::get('/pengelola/indexPekerjaan/{id}', 'PengelolaController@indexPekerjaan');
+        Route::get('/pengelola/indexPendidikan/{id}', 'PengelolaController@indexPendidikan');
+        Route::get('/pengelola/indexAnggotaCu/{id}', 'PengelolaController@indexAnggotaCu');
+        Route::get('/pengelola/indexKeluarga/{id}', 'PengelolaController@indexKeluarga');
+        Route::get('/pengelola/indexOrganisasi/{id}', 'PengelolaController@indexOrganisasi');
         Route::get('/pengelola/getCu/{id}', 'PengelolaController@getCu');
     });
     Route::group(['middleware' => ['permission:create_pengelola']], function () {
         Route::get('/pengelola/create', 'PengelolaController@create');
         Route::get('/pengelola/createPekerjaan', 'PengelolaController@createPekerjaan');
+        Route::get('/pengelola/createPendidikan', 'PengelolaController@createPendidikan');
         Route::post('/pengelola/store', 'PengelolaController@store');
     });
     Route::group(['middleware' => ['permission:update_pengelola']], function () {
-        Route::get('/pengelola/indexPekerjaan/{id}', 'PengelolaController@indexPekerjaan');
-        Route::get('/pengelola/indexPendidikan/{id}', 'PengelolaController@indexPendidikan');
-        Route::get('/pengelola/indexAnggotaCu/{id}', 'PengelolaController@indexAnggotaCu');
-        Route::get('/pengelola/indexKeluarga/{id}', 'PengelolaController@indexKeluarga');
-        Route::get('/pengelola/indexOrganisasi/{id}', 'PengelolaController@indexOrganisasi');
         Route::get('/pengelola/editIdentitas/{id}', 'PengelolaController@editIdentitas');
         Route::post('/pengelola/updateIdentitas/{id}', 'PengelolaController@updateIdentitas');
-
         Route::post('/pengelola/savePekerjaan/{id}', 'PengelolaController@savePekerjaan');
+        Route::post('/pengelola/savePendidikan/{id}', 'PengelolaController@savePendidikan');
     });
     Route::group(['middleware' => ['permission:destroy_pengelola']], function () {
         Route::delete('/pengelola/{id}', 'PengelolaController@destroy');
         Route::delete('/pengelola/pekerjaan/{id}', 'PengelolaController@destroyPekerjaan');
+        Route::delete('/pengelola/pendidikan/{id}', 'PengelolaController@destroyPendidikan');
     });
 
     //laporan cu

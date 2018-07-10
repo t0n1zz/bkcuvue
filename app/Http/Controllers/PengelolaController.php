@@ -68,7 +68,7 @@ class PengelolaController extends Controller{
 
 	public function indexPendidikan($id)
 	{
-		$table_data = PengelolaPendidikan::where('id_pengelola',$id)->get();
+		$table_data = PengelolaPendidikan::where('id_pengelola',$id)->orderBy('mulai','desc')->get();
 
 		return response()
 			->json([
@@ -98,7 +98,7 @@ class PengelolaController extends Controller{
 
 	public function indexOrganisasi($id)
 	{
-		$table_data = PengelolaOrganisasi::where('id_pengelola',$id)->get();
+		$table_data = PengelolaOrganisasi::where('id_pengelola',$id)->orderBy('mulai','desc')->get();
 
 		return response()
 			->json([
@@ -127,6 +127,16 @@ class PengelolaController extends Controller{
 	public function createPekerjaan()
 	{
 		$form['pekerjaan'] = PengelolaPekerjaan::initialize();
+
+		return response()
+			->json([
+					'form' => $form
+			]);
+	}
+
+	public function createPendidikan()
+	{
+		$form['pendidikan'] = PengelolaPendidikan::initialize();
 
 		return response()
 			->json([
@@ -499,6 +509,17 @@ class PengelolaController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => 'Riwayat pekerjaan berhasil dihapus'
+			]);
+	}
+
+	public function destroyPendidikan($id)
+	{
+		PengelolaPendidikan::where('id',$id)->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Riwayat pendidikan berhasil dihapus'
 			]);
 	}
 }

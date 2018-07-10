@@ -11,9 +11,8 @@
 				</h5>
 
 				<!-- select -->
-				<select class="bootstrap-select" name="pendidikan_tingkat" v-model="form.pendidikan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
-					<option disabled value="">Silahkan pilih tingkat pendidikan</option>
-					<option data-divider="true"></option>
+				<select class="form-control" name="pendidikan_tingkat" v-model="form.pendidikan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
+					<option disabled>Silahkan pilih tingkat pendidikan</option>
 					<option value="SD">SD</option>
 					<option value="SMP">SMP</option>
 					<option value="SMA/SMK">SMA/SMK</option>

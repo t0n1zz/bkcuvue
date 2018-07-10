@@ -12,7 +12,7 @@
 
 				<!-- select -->
 				<select class="form-control" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
-					<option selected disabled>Silahkan pilih tempat bekerja</option>
+					<option disabled>Silahkan pilih tempat bekerja</option>
 					<option value="0">Puskopdit BKCU Kalimantan</option>
 					<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
 					<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
@@ -58,7 +58,7 @@
 
 				<!-- select -->
 				<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
-					<option selected disabled>Silahkan pilih tingkat pekerjaan</option>
+					<option disabled>Silahkan pilih tingkat pekerjaan</option>
 					<option value="Pengurus" v-if="form.pekerjaan.id_tempat != 'lain'">Pengurus</option>
 					<option value="Pengawas" v-if="form.pekerjaan.id_tempat != 'lain'">Pengawas</option>
 					<option value="Komite" v-if="form.pekerjaan.id_tempat != 'lain'">Komite</option>

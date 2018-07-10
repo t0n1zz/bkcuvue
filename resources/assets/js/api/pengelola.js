@@ -10,12 +10,24 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/pengelola/indexCu/' + id, {params: p});
   },
 
+  indexPekerjaan: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexPekerjaan/' + id);
+  },
+
+  indexPendidikan: function( id ){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexPendidikan/' + id);
+  },
+
   create: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/create');
   },
 
   createPekerjaan: function(){
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createPekerjaan');
+  },
+
+  createPendidikan: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/createPendidikan');
   },
 
   store: function ( form ){
@@ -26,10 +38,10 @@ export default {
     return axios.post(BKCU_CONFIG.API_URL + '/pengelola/savePekerjaan/' + id, form);
   },
 
-  indexPekerjaan: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/pengelola/indexPekerjaan/' + id);
+  savePendidikan: function ( id, form ){
+    return axios.post(BKCU_CONFIG.API_URL + '/pengelola/savePendidikan/' + id, form);
   },
-
+  
   editIdentitas: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/pengelola/editIdentitas/' + id);
   },
@@ -44,5 +56,9 @@ export default {
 
   destroyPekerjaan: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/pekerjaan/' + id);
+  },
+
+  destroyPendidikan: function( id ){
+    return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/pendidikan/' + id);
   }
 }

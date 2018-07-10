@@ -25,7 +25,7 @@
 				</tbody>
 
 				<!-- success -->
-				<tbody v-else-if="itemDataStat === 'success'">
+				<tbody v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open"> 
 					<slot name="item-desktop" v-for="(item,index) in items" :item="item" :index="index"></slot>
 				</tbody>
 

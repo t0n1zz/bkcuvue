@@ -73,6 +73,21 @@ export const pengelola = {
         });
     },
 
+    // load by pendidikan
+    indexPendidikan( {commit}, id ){
+      commit('setDataStatS', 'loading');
+      
+      pengelolaAPI.indexPendidikan( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     create( {commit} ){
       commit('setDataStat', 'loading');
       
@@ -95,6 +110,24 @@ export const pengelola = {
       commit('setDataStat', 'loading');
       
       pengelolaAPI.createPekerjaan()
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
+    createPendidikan( {commit} ){
+      commit('setDataStat', 'loading');
+      
+      pengelolaAPI.createPendidikan()
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -146,6 +179,23 @@ export const pengelola = {
         });
     },
 
+    savePendidikan( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.savePendidikan( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
 
     // edit page
@@ -205,10 +255,10 @@ export const pengelola = {
         });
     },
 
-    destroy( {commit, state, dispatch}, id ){
+    destroyPekerjaan( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      pengelolaAPI.destroy( id )
+      pengelolaAPI.destroyPekerjaan( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -223,10 +273,10 @@ export const pengelola = {
         });
     },
 
-    destroyPekerjaan( {commit, state, dispatch}, id ){
+    destroyPendidikan( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      pengelolaAPI.destroyPekerjaan( id )
+      pengelolaAPI.destroyPendidikan( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
