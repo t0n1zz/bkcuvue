@@ -490,4 +490,15 @@ class PengelolaController extends Controller{
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
+
+	public function destroyPekerjaan($id)
+	{
+		PengelolaPekerjaan::where('id',$id)->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Riwayat pekerjaan berhasil dihapus'
+			]);
+	}
 }

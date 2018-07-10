@@ -40,5 +40,9 @@ export default {
 
   destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/' + id);
+  },
+
+  destroyPekerjaan: function( id ){
+    return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/pekerjaan/' + id);
   }
 }

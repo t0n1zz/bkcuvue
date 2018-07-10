@@ -28,7 +28,7 @@ class PengelolaPekerjaan extends Model {
     public static function initialize()
     {
         return [
-            'id_tempat' => 0,'tipe' => 0,'lembaga_lain' => '','name' => '','tingkat' => '','mulai' => '','selesai' => ''
+            'id_tempat' => '','tipe' => '','lembaga_lain' => '','name' => '','tingkat' => '','mulai' => '','selesai' => ''
         ];
     }
 

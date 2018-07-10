@@ -205,6 +205,42 @@ export const pengelola = {
         });
     },
 
+    destroy( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyPekerjaan( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      pengelolaAPI.destroyPekerjaan( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');

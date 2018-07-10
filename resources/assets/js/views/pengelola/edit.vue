@@ -22,7 +22,6 @@
 									<li :class="{'active' : tabName == 'riwayatPekerjaan'}"><a @click.prevent="changeTab('riwayatPekerjaan')"><i class="icon-pencil5 position-left"></i> Riwayat Pekerjaan</a></li>
 									<li :class="{'active' : tabName == 'riwayatPendidikan'}"><a @click.prevent="changeTab('riwayatPendidikan')"><i class="icon-pencil5 position-left"></i> Riwayat Pendidikan</a></li>
 									<li :class="{'active' : tabName == 'riwayatBerorganisasi'}"><a @click.prevent="changeTab('riwayatBerorganisasi')"><i class="icon-pencil5 position-left"></i> Riwayat Berorganisasi</a></li>
-									<li :class="{'active' : tabName == 'kegiatan'}"><a @click.prevent="changeTab('kegiatan')"><i class="icon-pencil5 position-left"></i> Kegiatan</a></li>
 									<li :class="{'active' : tabName == 'keluarga'}"><a @click.prevent="changeTab('keluarga')"><i class="icon-pencil5 position-left"></i> Keluarga</a></li>
 								</ul>
 							</div>
@@ -47,7 +46,6 @@
 
 												<form-identitas :form="form"></form-identitas>
 												
-
 											</div>		
 										</div>
 
@@ -95,14 +93,13 @@
 
 									<!-- desktop -->
 									<div class="panel panel-flat hidden-xs">
-
 										<div class="panel-body pb-5">
 											<div class="row">
 
 												<!-- judul -->
 												<div class="col-md-12">
 													<h6 class="form-wizard-title text-semibold text-primary">
-														Pekerjaan
+														Pekerjaan {{  }}
 														<small class="display-block">Riwayat pekerjaan pengelola</small>
 													</h6>
 												</div>
@@ -110,18 +107,19 @@
 												<div class="col-md-12">
 													<div class="btn-toolbar">
 														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah riwayat pekerjaan baru'" @click.prevent="createPekerjaan()">
+															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah riwayat pekerjaan baru'" @click.prevent="createRiwayat()">
 																<i class="icon-plus22"></i> Tambah
 															</button>
 														</div>
 														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah riwayat pekerjaan baru'" @click.prevent="updatePekerjaan()">
-																<i class="icon-plus22"></i> Ubah
+															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah riwayat pekerjaan baru'" @click.prevent="updateRiwayat()"
+															:disabled="!selectedItemPekerjaan.id">
+																<i class="icon-pencil5"></i> Ubah
 															</button>
 														</div>
 														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus riwayat pekerjaan baru'" @click="destroyPekerjaan()">
-																<i class="icon-plus22"></i> Hapus
+															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus riwayat pekerjaan baru'" @click="destroyRiwayat()" :disabled="!selectedItemPekerjaan.id">
+																<i class="icon-bin2"></i> Hapus
 															</button>
 														</div>
 													</div>
@@ -134,7 +132,7 @@
 												<tr :class="{ 'info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }} 
-														<span class="label label-primary" v-if="props.item.selesai == null">Pekerjaan saat ini</span>
+														<span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
 													</td>
 													<td>{{ props.item.tingkat }}</td>
 													<td>
@@ -149,22 +147,50 @@
 													</td>
 												</tr>
 											</template>	
+
+											<template slot="button-context">
+												<!-- title -->
+												<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItemPekerjaan.name"><b class="text-size-large">{{ this.columnDataPekerjaan[1].title }}</b></li>
+												<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
+												<li><hr class="no-margin-bottom no-margin-top"/></li>
+
+												<!-- selected content -->
+												<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItemPekerjaan.name">
+													<span class="text-size-large">{{columnDataPekerjaan.name}}</span></li>
+												<li><hr class="no-margin-top no-margin-bottom"/></li>
+
+												<!-- update -->
+												<li v-if="profile.can && profile.can['update_' + kelas]">
+													<div class="pl-5 pr-5 pb-5 pt-10">
+														<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItemPekerjaan.id">
+															<i class="icon-pencil5"></i> Ubah
+														</button>
+													</div>
+												</li>
+
+												<!-- destroy -->
+												<li v-if="profile.can && profile.can['destroy_' + kelas]">
+													<div class="pl-5 pr-5 pb-5">
+														<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItemPekerjaan.id">
+															<i class="icon-bin2"></i> Hapus
+														</button>
+													</div>
+												</li>
+											</template>
 										</data-table>
 
 									</div>
 
 									<!-- mobile -->
 									<div class="panel panel-flat panel-body visible-xs">
-										<button class="btn btn-default btn-block" @click.prevent="createPekerjaan()">
+										<button class="btn btn-default btn-block" @click.prevent="createRiwayat()">
 											<i class="icon-plus22"></i> Tambah
 										</button>
 									</div>
 
-									<div class="panel panel-default visible-xs" v-for="(pekerjaan,index) in itemData.pekerjaans">
-										
-
+									<div class="panel panel-default visible-xs" v-for="(pekerjaan,index) in itemData">										
 										<div class="panel-heading">
-											<h6 class="panel-title text-semibold">{{ pekerjaan.name }} <span class="label label-primary" v-if="pekerjaan.selesai == null">Pekerjaan saat ini</span></h6>
+											<h6 class="panel-title text-semibold">{{ pekerjaan.name }} <span class="label label-primary" v-if="pekerjaan.selesai == null || pekerjaan.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span></h6>
 										</div>
 										<div class="panel-body">
 											<ul class="list-unstyled">
@@ -182,10 +208,10 @@
 											</ul>
 
 											<hr>
-											<button class="btn btn-default btn-block" @click.prevent="updatePekerjaan(pekerjaan)">
+											<button class="btn btn-default btn-block" @click.prevent="updateRiwayat(pekerjaan)">
 												<i class="icon-pencil5"></i> Ubah
 											</button>
-											<button class="btn btn-default btn-block" @click.prevent="destroyPekerjaan(pekerjaan.id)">
+											<button class="btn btn-default btn-block" @click.prevent="destroyRiwayat(pekerjaan)">
 												<i class="icon-bin2"></i> Hapus
 											</button>
 										</div>
@@ -202,7 +228,7 @@
 		</div>
 		
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalTutup">
 			 <template slot="modal-title">
 				 {{ modalTitle }}
 			 </template>
@@ -210,7 +236,7 @@
 			 <template slot="modal-body1">
 				 <div v-if="tabName == 'riwayatPekerjaan'">
 					<form @submit.prevent="savePekerjaan" data-vv-scope="form"> 
-						<form-pekerjaan :form="formPekerjaan" :modelCu="modelCu" v-if="formPekerjaan.pekerjaan"></form-pekerjaan>
+						<form-pekerjaan :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.pekerjaan"></form-pekerjaan>
 						<hr>
 						<form-button
 							:cancelTitle="cancelTitle"
@@ -222,15 +248,11 @@
 				 </div>
 			 </template>
 		</app-modal>
-
-		<!-- modal image -->
-		<app-modal-image :show="modalImageShow" :content="modalImageContent" @tutup="modalImageTutup" @backgroundClick="modalImageTutup">
-		</app-modal-image>
-
 	</div>
 </template>
 
 <script>
+	import moment from 'moment';
 	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
 	import bootstrapSelect from '../../assets/plugins/forms/selects/bootstrap_select.min.js';
@@ -238,7 +260,6 @@
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
 	import appModal from '../../components/modal';
-	import appModalImage from '../../components/modalImage';
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import formButton from "../../components/formButton.vue";
@@ -257,7 +278,6 @@
 			message,
 			dataTable,
 			appModal,
-			appModalImage,
 			appImageUpload,
 			formInfo,
 			formButton,
@@ -288,7 +308,7 @@
 				cancelTitle: 'Tutup',
 				cancelIcon: 'icon-cross',
 				cancelState: 'methods',
-				formPekerjaan: {},
+				formRiwayat: {},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -308,7 +328,7 @@
 			this.other();
 		},
 		updated() {
-			// $('.bootstrap-select').selectpicker('refresh');
+			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			modelCuStat(value){
@@ -324,7 +344,7 @@
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
 					}else if(this.tabName == 'riwayatPekerjaan'){
-						this.formPekerjaan.pekerjaan = this.form;
+						this.formRiwayat.pekerjaan = this.form.pekerjaan;
 					}
 				} 
 			},
@@ -372,7 +392,7 @@
 			savePekerjaan(){
 				this.$validator.validateAll('form.pekerjaan').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.$route.params.id, this.formPekerjaan]);
+						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.$route.params.id, this.formRiwayat]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -391,35 +411,53 @@
 			},
 			selectedRowPekerjaan(item){
 				this.selectedItemPekerjaan = item;
-				if(item.tipe == '0'){
-					this.selectedItemPekerjaan.id_tempat = 0;
-				}else if(item.tipe == '2'){
+				if(item.tipe == '2'){
 					this.selectedItemPekerjaan.id_tempat = 'lain';
+				}else if(item.tipe == '3'){
+					this.selectedItemPekerjaan.id_tempat = 0;
 				}
 			},
-			createPekerjaan(){
+			createRiwayat(){
 				this.modalShow = true;
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah riwayat pekerjaan';
 				this.formState = 'create';
-				this.$store.dispatch('cu/getPus',this.profile.id_pus);
-				this.$store.dispatch(this.kelas + '/createPekerjaan');
+
+				if(this.tabName == 'riwayatPekerjaan'){
+					this.modalTitle = 'Tambah riwayat pekerjaan';
+					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch(this.kelas + '/createPekerjaan');
+				}
 			},
-			updatePekerjaan(pekerjaan){
+			updateRiwayat(data){
 				this.modalShow = true;
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Ubah riwayat pekerjaan';
 				this.formState = 'edit';
-				this.$store.dispatch('cu/getPus',this.profile.id_pus);
-				this.formPekerjaan.pekerjaan = this.selectedItemPekerjaan;
+
+				if(this.tabName == 'riwayatPekerjaan'){
+					this.modalTitle = 'Ubah riwayat pekerjaan';
+					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					if(data){
+						this.formRiwayat.pekerjaan = data;
+					}else{
+						this.formRiwayat.pekerjaan = this.selectedItemPekerjaan;
+					}
+				}
 			},		
-			destroyPekerjaan(id){
-			},
-			modalImageBuka(content){
-				this.modalImageShow = true;
-				this.modalImageContent = content;
+			destroyRiwayat(data){
+				this.modalShow = true;
+				this.modalState = 'confirm-tutup';
+				this.modalColor = '';
+
+				if(this.tabName == 'riwayatPekerjaan'){
+					if(data){
+						this.formRiwayat.pekerjaan = data;
+					}else{
+						this.formRiwayat.pekerjaan = this.selectedItemPekerjaan;
+					}
+					this.modalTitle = this.modalTitle = 'Hapus riwayat pekerjaan ' + this.formRiwayat.pekerjaan.name + ' ?';
+				}
 			},
 			modalTutup() {
 				this.modalShow = false;
@@ -430,8 +468,10 @@
 					this.changeTab('riwayatPekerjaan');
 				}
 			},
-			modalImageTutup() {
-				this.modalImageShow = false;
+			modalConfirmOk() {
+				if (this.tabName == 'riwayatPekerjaan') {
+					this.$store.dispatch(this.kelas + '/destroyPekerjaan', this.selectedItemPekerjaan.id);
+				}
 			},
 			cancelClick(){
 				this.modalShow = false;
@@ -440,6 +480,9 @@
 				this.itemDataPassword.password_old = '';
 				this.itemDataPassword.password = '';
 				this.itemDataPassword.password_confirm = '';
+			},
+			moment: function () {
+				return moment();
 			},
 			other() {
 				// bootstrap select

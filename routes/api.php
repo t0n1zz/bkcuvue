@@ -152,6 +152,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     });
     Route::group(['middleware' => ['permission:destroy_pengelola']], function () {
         Route::delete('/pengelola/{id}', 'PengelolaController@destroy');
+        Route::delete('/pengelola/pekerjaan/{id}', 'PengelolaController@destroyPekerjaan');
     });
 
     //laporan cu
