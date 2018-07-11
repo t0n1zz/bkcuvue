@@ -166,7 +166,7 @@ class PengelolaController extends Controller{
 
 	public function createAnggotaCu()
 	{
-		$form['anggotaCu'] = PengelolaAnggotaCu::initialize();
+		$form['anggota_cu'] = PengelolaAnggotaCu::initialize();
 
 		return response()
 			->json([
@@ -472,20 +472,14 @@ class PengelolaController extends Controller{
 		}else{
 				$kelas = new PengelolaAnggotaCu();
 		}
-
-		$name = $request->anggota_cu['name'];
-
+		
 		if(!empty($id)){
 			$kelas->id_pengelola = $id;
 		}else{
 			$kelas->id_pengelola = $request->id_pengelola;
 		}
 
-		if($name == 'lain'){
-			$kelas->name = $request->anggota_cu['cu_name'];
-		}else{
-			$kelas->name = $name;
-		}
+		$kelas->name = $request->anggota_cu['name'];
 		$kelas->no_ba = $request->anggota_cu['no_ba'];
 
 		$kelas->save();

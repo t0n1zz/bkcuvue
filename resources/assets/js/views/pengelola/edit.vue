@@ -514,7 +514,7 @@
 
 										<data-table :items="itemData" :columnData="columnDataKeluarga" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
+												<tr :class="{ 'info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.tipe }}</td>
@@ -625,7 +625,7 @@
 
 										<data-table :items="itemData" :columnData="columnDataAnggotaCu" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
+												<tr :class="{ 'info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.no_ba }}</td>
@@ -753,6 +753,26 @@
 					<form @submit.prevent="saveOrganisasi" data-vv-scope="form"> 
 						<div class="row">
 							<form-organisasi :form="formRiwayat" :isAktif="false" :modelCu="modelCu" v-if="formRiwayat.organisasi"></form-organisasi>
+
+							<div class="col-sm-12">
+								<hr>
+								<form-button
+									:cancelTitle="cancelTitle"
+									:cancelIcon="cancelIcon"
+									:cancelState="cancelState"
+									:formValidation="'form'"
+									@cancelClick="cancelClick"></form-button>
+							</div>
+						</div>
+						
+					</form>
+				 </div>
+
+				  <!-- anggotacu -->
+				 <div v-if="tabName == 'anggotaCu'">
+					<form @submit.prevent="saveAnggotaCu" data-vv-scope="form"> 
+						<div class="row">
+							<form-anggota-cu :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.anggota_cu"></form-anggota-cu>
 
 							<div class="col-sm-12">
 								<hr>
@@ -905,7 +925,7 @@
 					}else if(this.tabName == 'keluarga'){
 						this.formRiwayat.keluarga = this.form.keluarga;
 					}else if(this.tabName == 'anggotaCu'){
-						this.formRiwayat.anggotaCu = this.form.anggotaCu;
+						this.formRiwayat.anggota_cu = this.form.anggota_cu;
 					}
 				} 
 			},
@@ -1004,7 +1024,7 @@
 				});
 			},
 			saveAnggotaCu(){
-				this.$validator.validateAll('form.anggotaCu').then((result) => {
+				this.$validator.validateAll('form.anggota_cu').then((result) => {
 					if (result) {
 						this.$store.dispatch(this.kelas + '/saveAnggotaCu', [this.$route.params.id, this.formRiwayat]);
 						this.submited = false;
@@ -1036,6 +1056,12 @@
 			},
 			selectedRowOrganisasi(item){
 				this.selectedItemOrganisasi = item;
+			},
+			selectedRowAnggotaCu(item){
+				this.selectedItemAnggotaCu = item;
+			},
+			selectedRowKeluarga(item){
+				this.selectedItemKeluarga = item;
 			},
 			createRiwayat(){
 				this.modalShow = true;
@@ -1109,9 +1135,9 @@
 					this.modalTitle = 'Ubah data anggota CU';
 					this.$store.dispatch('cu/getPus',this.profile.id_pus);
 					if(data){
-						this.formRiwayat.anggotaCu = data;
+						this.formRiwayat.anggota_cu = data;
 					}else{
-						this.formRiwayat.anggotaCu = this.selectedItemAnggotaCu;
+						this.formRiwayat.anggota_cu = this.selectedItemAnggotaCu;
 					}
 				}
 			},		
@@ -1141,14 +1167,14 @@
 						this.formRiwayat.organisasi = this.selectedItemOrganisasi;
 					}
 					this.modalTitle = this.modalTitle = 'Hapus riwayat berorganisasi sebagai ' + this.formRiwayat.organisasi.name + ' di ' + this.formRiwayat.organisasi.tempat + ' ?';
-				}else if(this.tabName == 'riwayatKeluarga'){
+				}else if(this.tabName == 'keluarga'){
 					if(data){
 						this.formRiwayat.keluarga = data;
 					}else{
 						this.formRiwayat.keluarga = this.selectedItemKeluarga;
 					}
 					this.modalTitle = this.modalTitle = 'Hapus data keluarga bernama ' + this.formRiwayat.keluarga.name + ' ?';
-				}else if(this.tabName == 'riwayatAnggotaCu'){
+				}else if(this.tabName == 'anggotaCu'){
 					if(data){
 						this.formRiwayat.anggotaCu = data;
 					}else{

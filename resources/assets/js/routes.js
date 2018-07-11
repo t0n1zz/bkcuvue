@@ -21,7 +21,6 @@ import pengelola_edit from './views/pengelola/edit.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import profile from './views/user/profile.vue';
-import role from './views/role/index.vue';
 
 const routes = [
 
@@ -35,9 +34,6 @@ const routes = [
 	{ path: '/user/create',name: 'userCreate', components: { default: user_form, 'header': header} },
 	{ path: '/user/edit/:id',name: 'userEdit', components: { default: user_form, 'header': header}, meta: { mode:'edit' } },
 	{ path: '/profile/:id',name: 'profile', components: { default: profile, 'header': header}},
-
-	// role
-	{ path: '/role',name: 'role', components: { default: role, 'header': header }},
 
 	// dashboard
 	{ path: '/',name: 'dashboard', components: { default: dashboard,'header': header } },

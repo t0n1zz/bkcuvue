@@ -364,15 +364,6 @@
 					}
 				}
 			},
-			formStat(value){
-				if(value === "success"){
-					if(this.$route.meta.mode === 'editIdentitas'){
-						this.changeProvinces(this.form.id_provinces);
-						this.changeRegencies(this.form.id_regencies);
-						this.changeDistricts(this.form.id_districts);
-					}
-				} 
-			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -388,18 +379,10 @@
     },
 		methods: {
 			fetch(){
-				if(this.$route.meta.mode === 'editIdentitas'){
-					this.$store.dispatch(this.kelas + '/editIdentitas',this.$route.params.id);	
-					this.title = 'Ubah Identitas' + this.level2Title;
-					this.titleDesc = 'Mengubah Identitas' + this.level2Title;
-					this.titleIcon = 'icon-pencil5';
-				} else {
-					this.title = 'Tambah ' + this.level2Title;
-					this.titleDesc = 'Menambah ' + this.level2Title;
-					this.titleIcon = 'icon-plus3';
-					this.$store.dispatch(this.kelas + '/create');
-				}
-
+				this.title = 'Tambah ' + this.level2Title;
+				this.titleDesc = 'Menambah ' + this.level2Title;
+				this.titleIcon = 'icon-plus3';
+				this.$store.dispatch(this.kelas + '/create');
 				this.$store.dispatch('provinces/get');
 			},
 			save() {
@@ -419,11 +402,7 @@
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'editIdentitas'){
-							this.$store.dispatch(this.kelas + '/updateIdentitas', [this.$route.params.id, formData]);
-						}else{
-							this.$store.dispatch(this.kelas + '/store', formData);
-					}
+						this.$store.dispatch(this.kelas + '/store', formData);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
