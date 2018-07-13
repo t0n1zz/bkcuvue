@@ -18,6 +18,8 @@ import tp_form from './views/tp/form.vue';
 import pengelola from './views/pengelola/index.vue';
 import pengelola_form from './views/pengelola/form.vue';
 import pengelola_edit from './views/pengelola/edit.vue';
+import produkCu from './views/produkCu/index.vue';
+import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import profile from './views/user/profile.vue';
@@ -98,6 +100,15 @@ const routes = [
 		components: { default: tp_form, 'header': header} },
 	{ path: '/tp/edit/:id',name: 'tpEdit', 
 		components: { default: tp_form, 'header': header}, meta: { mode:'edit' } },
+
+	// produk cu	
+	{ path: '/produkCu/cu/:cu',name: 'produkCuCu', 
+		components: { default: produkCu, 'header': header }, 
+		meta: { mode:'cu' }},
+	{ path: '/produkCu/create',name: 'produkCuCreate', 
+		components: { default: produkCu_form, 'header': header} },
+	{ path: '/produkCu/edit/:id',name: 'produkCuEdit', 
+		components: { default: produkCu_form, 'header': header}, meta: { mode:'edit' } },
 
 	// pengelola cu
 	{ path: '/pengelola/cu/:cu',name: 'pengelolaCu', 

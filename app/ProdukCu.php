@@ -10,9 +10,9 @@ class ProdukCu extends Model {
     
     use FilterPaginateOrder, LogsActivity, SoftDeletes;
 
-    protected $table = 'tp';
-		protected static $logFillable = true;
-		protected $dates = ['deleted_at'];
+    protected $table = 'produk_cu';
+    protected static $logFillable = true;
+    protected $dates = ['deleted_at'];
     
     public static $rules = [
         'id_cu' => 'required',
@@ -20,7 +20,7 @@ class ProdukCu extends Model {
     ];
     
     protected $fillable = [
-      'id_cu','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+      'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
     ];
 
     protected $filter = [
@@ -33,7 +33,7 @@ class ProdukCu extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '0', 'name' => '', 'gambar' => '', 'aturan_setor' => '', 'aturan_tarik' => '', 'aturan_balas_jasa' => '', 'aturan_lain' => '', 'keterangan' => ''
+            'id_cu' => '0','kode_produk' => '', 'name' => '', 'gambar' => '', 'aturan_setor' => '', 'aturan_tarik' => '', 'aturan_balas_jasa' => '', 'aturan_lain' => '', 'keterangan' => ''
         ];
     }
         

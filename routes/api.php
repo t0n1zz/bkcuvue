@@ -127,6 +127,25 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/tp/{id}', 'TpController@destroy');
     });
 
+    // produk
+    Route::group(['middleware' => ['permission:index_produk_cu']], function () {
+        Route::get('/produkcu', 'ProdukCuController@index');
+        Route::get('/produkcu/get', 'ProdukCuController@get');
+        Route::get('/produkcu/indexCu/{id}', 'ProdukCuController@indexCu'); 
+        Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
+    });
+    Route::group(['middleware' => ['permission:create_produk_cu']], function () {
+        Route::get('/produkcu/create', 'ProdukCuController@create');
+        Route::post('/produkcu/store', 'ProdukCuController@store');
+    });
+    Route::group(['middleware' => ['permission:update_produk_cu']], function () {
+        Route::get('/produkcu/edit/{id}', 'ProdukCuController@edit');
+        Route::post('/produkcu/update/{id}', 'ProdukCuController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_produk_cu']], function () {
+        Route::delete('/produkcu/{id}', 'ProdukCuController@destroy');
+    });
+
     // pengelola
     Route::group(['middleware' => ['permission:index_pengelola']], function () {
         Route::get('/pengelola', 'PengelolaController@index');

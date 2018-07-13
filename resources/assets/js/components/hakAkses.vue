@@ -233,6 +233,41 @@
 						]
 					},
 					{
+						name: 'Produk dan Pelayanan',
+						icon: 'icon-list3',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_produk_cu',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Tambah',
+								key: 'create_produk_cu',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Ubah',
+								key: 'update_produk_cu',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_produk_cu',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							}
+						]
+					},
+					{
 						name: 'Pengelola',
 						icon: 'icon-user-tie',
 						secondRow: true,

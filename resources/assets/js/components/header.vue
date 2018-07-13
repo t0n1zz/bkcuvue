@@ -259,7 +259,7 @@
 							</router-link>
 
 							<!-- tambah pengelola -->
-							<router-link :to="{ name:'pengelolaCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
+							<router-link :to="{ name:'produkCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
 								<a><i class="icon-plus22"></i> Tambah Produk & Pelayanan</a>
 							</router-link>
 
@@ -285,8 +285,11 @@
 							<router-link :to="{ name: 'tpCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
 								<a><i class="icon-home9"></i> TP/KP</a>
 							</router-link>
-							<!-- pengelola -->
-							<router-link :to="{ name: 'pengelolaCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola']">
+							<!-- produkcu -->
+							<router-link :to="{ name: 'produkCuCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu == 0">
+								<a><i class="icon-list3"></i> Produk & Pelayanan</a>
+							</router-link>
+							<router-link :to="{ name: 'produkCuCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu != 0">
 								<a><i class="icon-list3"></i> Produk & Pelayanan</a>
 							</router-link>
 							<!-- pengelola -->

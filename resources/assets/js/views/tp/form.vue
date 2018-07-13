@@ -524,7 +524,9 @@
 					if(this.profile.id_cu === 0){
 						this.$store.dispatch('cu/getPus',this.profile.id_pus);
 					}
-					this.form.id_cu = this.profile.id_cu;
+					if(this.$route.meta.mode !== 'edit' && this.form.id_cu == undefined){
+						this.form.id_cu = this.profile.id_cu;
+					}
 
 					// check permission
 					if(this.$route.meta.mode === 'edit'){
@@ -544,6 +546,8 @@
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
+					}else{
+						this.form.id_cu = this.profile.id_cu;
 					}
 				} 
 			},

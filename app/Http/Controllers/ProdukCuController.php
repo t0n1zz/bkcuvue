@@ -18,7 +18,7 @@ class ProdukCuController extends Controller{
 	public function index()
 	{
 		$table_data = ProdukCu::with('Cu')->select(
-			DB::raw('*,(SELECT name FROM cu WHERE tp.id_cu = cu.id) as cu_name')
+			DB::raw('*,(SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
 		)->filterPaginateOrder();
 
 		return response()
@@ -30,7 +30,7 @@ class ProdukCuController extends Controller{
 	public function indexCu($id)
 	{
 		$table_data = ProdukCu::with('Cu')->where('id_cu',$id)->select(
-			DB::raw('*, (SELECT name FROM cu WHERE tp.id_cu = cu.id) as cu_name')
+			DB::raw('*, (SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
 		)->filterPaginateOrder();
 
 		return response()
