@@ -56,7 +56,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('Cu','pus','roles_custom')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('Cu','pus')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -66,7 +66,7 @@ class UserController extends Controller
 
 	public function indexCu($id)
 	{
-			$table_data = User::with('Cu','pus','roles_custom')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
+			$table_data = User::with('Cu','pus')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->filterPaginateOrder();
 			
     	return response()
 			->json([
@@ -365,6 +365,10 @@ class UserController extends Controller
 		$this->hakAkses($request->create_artikel_kategori,'create_artikel_kategori',$user);
 		$this->hakAkses($request->update_artikel_kategori,'update_artikel_kategori',$user);
 		$this->hakAkses($request->destroy_artikel_kategori,'destroy_artikel_kategori',$user);
+		$this->hakAkses($request->index_diklat_pus,'index_diklat_pus',$user);
+		$this->hakAkses($request->create_diklat_pus,'create_diklat_pus',$user);
+		$this->hakAkses($request->update_diklat_pus,'update_diklat_pus',$user);
+		$this->hakAkses($request->destroy_diklat_pus,'destroy_diklat_pus',$user);
 		$this->hakAkses($request->index_cu,'index_cu',$user);
 		$this->hakAkses($request->create_cu,'create_cu',$user);
 		$this->hakAkses($request->update_cu,'update_cu',$user);

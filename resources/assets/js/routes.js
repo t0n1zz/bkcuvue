@@ -11,6 +11,8 @@ import artikelKategori_form from './views/artikelKategori/form.vue';
 import laporanCu from './views/laporanCu/index.vue';
 import laporanCu_form from './views/laporanCu/form.vue';
 import laporanCu_detail from './views/laporanCu/detail.vue';
+import diklatPus from './views/diklatPus/index.vue';
+import diklatPus_form from './views/diklatPus/form.vue';
 import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
 import tp from './views/tp/index.vue';
@@ -81,6 +83,14 @@ const routes = [
 	{ path: '/artikelPenulis/edit/:id',name: 'artikelPenulisEdit', 
 		components: { default: artikelPenulis_form, 'header': header}, 
 		meta: { mode:'edit' } },
+	
+		// cu
+	{ path: '/diklatPus',name: 'diklatPus', 
+	components: { default: diklatPus, 'header': header }},
+	{ path: '/diklatPus/create',name: 'diklatPusCreate', 
+		components: { default: diklatPus_form, 'header': header} },
+	{ path: '/diklatPus/edit/:id',name: 'diklatPusEdit', 
+		components: { default: diklatPus_form, 'header': header}, meta: { mode:'edit' } },
 
 	// cu
 	{ path: '/cu',name: 'cu', 

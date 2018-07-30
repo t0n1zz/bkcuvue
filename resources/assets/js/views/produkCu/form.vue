@@ -338,10 +338,14 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+				if(this.$route.meta.mode == 'edit' && this.profile.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+					if(this.profile.id_cu == 0){
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+					}else{
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+					}		
 				}
 			},
 			modalTutup() {

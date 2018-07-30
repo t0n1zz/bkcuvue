@@ -163,6 +163,41 @@
 						]
 					},
 					{
+						name: 'Diklat BKCU',
+						icon: 'icon-graduation2',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_diklat_pus',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Tambah',
+								key: 'create_diklat_pus',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Ubah',
+								key: 'update_diklat_pus',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_diklat_pus',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							}
+						]
+					},
+					{
 						name: 'CU',
 						icon: 'icon-office',
 						secondRow: true,

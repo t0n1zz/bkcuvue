@@ -34,9 +34,8 @@
 
 					<div class="tabbable">
 						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> Tabel {{ title }}</a></li>
-							<li :class="{'active' : tabName == 'tablePearls'}"><a @click.prevent="changeTab('tablePearls')"><i class="icon-list2 position-left"></i> Tabel {{ titlePearls }}</a></li>
-							<li :class="{'active' : tabName == 'infografis'}"><a @click.prevent="changeTab('infografis')"><i class="icon-graph position-left"></i> Infografis {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'tablePearls'}"><a @click.prevent="changeTab('tablePearls')"><i class="icon-list2 position-left"></i> {{ titlePearls }}</a></li>
 						</ul>
 					</div>
 
@@ -44,6 +43,11 @@
 					<!-- table data -->
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'table'">
+							<infografis-data
+								:title="title"
+								:kelas="kelas"
+								:columnData="columnData"></infografis-data>
+
 							<table-data 
 								:title="title" 
 								:kelas="kelas"></table-data>
@@ -53,22 +57,14 @@
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
-							<table-pearls 
-								:title="titlePearls" 
-								:kelas="kelas"></table-pearls>
-						</div>
-					</transition>
-
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName =='infografis'" v-if="isInfografis">
-							<infografis-data
-								:title="title"
-								:kelas="kelas"
-								:columnData="columnData"></infografis-data>
 							<infografis-pearls-data
 								:title="titlePearls"
 								:kelas="kelas"
 								:columnData="columnDataPearls"></infografis-pearls-data>
+
+							<table-pearls 
+								:title="titlePearls" 
+								:kelas="kelas"></table-pearls>
 						</div>
 					</transition>
 					

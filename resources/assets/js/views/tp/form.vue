@@ -272,7 +272,8 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.alamat')}">
 												<i class="icon-cross2" v-if="errors.has('form.alamat')"></i>
-												Alamat:</h5>
+												Alamat:
+											</h5>
 
 											<!-- text -->
 											<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat">

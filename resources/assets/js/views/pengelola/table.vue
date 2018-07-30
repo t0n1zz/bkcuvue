@@ -84,20 +84,24 @@
 						<check-value :value="props.item.nik"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
-						<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif"></check-value>
+						<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
 						<span v-else>{{columnData[5].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.pekerjaan_aktif.tingkat"></check-value>
+						<check-value :value="props.item.pekerjaan_aktif.tingkat" v-if="props.item.pekerjaan_aktif"></check-value>
+						<span v-else>{{columnData[6].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.pekerjaan_aktif.name"></check-value>
+						<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
+						<span v-else>{{columnData[7].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.pendidikan_tertinggi.tingkat"></check-value>
+						<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
+						<span v-else>{{columnData[8].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.pendidikan_tertinggi.name"></check-value>
+						<check-value :value="props.item.pendidikan_tertinggi.name" v-if="props.item.pendidikan_tertinggi"></check-value>
+						<span v-else>{{columnData[9].groupNoKey}}</span>
 					</td>
 					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.email"></check-value>
@@ -193,7 +197,7 @@
 							<tr v-if="!columnData[5].hide">
 								<td><b>{{columnData[5].title}}</b></td>
 								<td>
-									<check-value :value="props.item.pekerjaan_aktif.cu.name" :isTrim="false" :frontText="': '" v-if="props.item.pekerjaan_aktif"></check-value>
+									<check-value :value="props.item.pekerjaan_aktif.cu.name" :isTrim="false" :frontText="': '" v-if="props.item.pekerjaan_aktif.cu"></check-value>
 									<span v-else>: {{columnData[5].groupNoKey}}</span>	
 								</td>
 							</tr>

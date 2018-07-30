@@ -45,10 +45,10 @@ Route::get('/testroute', function () {
     // $userdata = $user->combine($roles);
 
     // create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_produk_cu']);
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_produk_cu']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_produk_cu']);
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_produk_cu']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_diklat_pus']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_diklat_pus']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_diklat_pus']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_diklat_pus']);
 
     // give permission to role
     // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');

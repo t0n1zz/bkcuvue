@@ -161,81 +161,17 @@
 						</a>
 						<ul class="dropdown-menu">
 
-							<!-- tambah artikel -->
-							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel']">
+							<!-- tambah cu -->
+							<router-link :to="{ name:'diklatPusCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_pus']">
 								<a><i class="icon-plus22"></i> Tambah Diklat BKCU</a>
-							</router-link>
-
-							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_kategori']">
-								<a><i class="icon-plus22"></i> Tambah Diklat CU</a>
-							</router-link>
-
-							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_penulis']">
-								<a><i class="icon-plus22"></i> Tambah Pertemuan</a>
-							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
-
-							<!-- artikel -->
-							<router-link :to="{ name: 'artikelCu', params:{cu: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
-								<a><i class="icon-graduation2"></i> Diklat BKCU</a>
-							</router-link>
-
-							<!-- kategori artikel -->
-							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" tag="li" active-class="active" exact>
-								<a><i class="icon-graduation2"></i> Diklat CU</a>
-							</router-link>
-
-							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
-								<a><i class="icon-briefcase"></i> Pertemuan BKCU</a>
-							</router-link>
-
-							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
-								<a><i class="icon-briefcase"></i> Pertemuan CU</a>
-							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
-							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
-								<a><i class="icon-calendar2"></i> Kalender</a>
-							</router-link>
-						</ul>
-					</li>
-
-					<!-- organisasi -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-users position-left"></i> Anggota CU
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-
-							<!-- tambah tpcu -->
-							<router-link :to="{ name:'tpCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_tp']">
-								<a><i class="icon-plus22"></i> Tambah Identitas</a>
-							</router-link>
-
-							<!-- tambah pengelola -->
-							<router-link :to="{ name:'pengelolaCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
-								<a><i class="icon-plus22"></i> Tambah Kelompok</a>
 							</router-link>
 
 							<!-- separator -->
 							<li class="divider"></li>
 
 							<!-- cu -->
-							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
-								<a><i class="icon-address-book"></i> Identitas</a>
-							</router-link>
-							<!-- tp -->
-							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
-								<a><i class="icon-lan2"></i> Kelompok</a>
+							<router-link :to="{ name: 'diklatPus' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
+								<a><i class="icon-graduation2"></i> Diklat BKCU</a>
 							</router-link>
 						</ul>
 					</li>
@@ -302,19 +238,19 @@
 					<!-- keuangan -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-calculator3 position-left"></i> Keuangan
+							<i class="icon-calculator3 position-left"></i> Laporan
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 
 							<!-- tambah laporan -->
 							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
-								<a><i class="icon-plus22"></i> Tambah Laporan BKCU</a>
+								<a><i class="icon-plus22"></i> Tambah Lap. BKCU</a>
 							</router-link>
 
 							<!-- tambah laporan -->
 							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
-								<a><i class="icon-plus22"></i> Tambah Laporan CU</a>
+								<a><i class="icon-plus22"></i> Tambah Lap. CU</a>
 							</router-link>
 
 							<!-- separator -->
@@ -322,25 +258,25 @@
 
 							<!-- laporan bkcu -->
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Laporan Gerakan</a>
+								<a><i class="icon-stats-growth"></i> Lap. Gerakan</a>
 							</router-link>
 
 							<!-- laporan bkcu -->
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Laporan BKCU</a>
+								<a><i class="icon-stats-growth"></i> Lap. BKCU</a>
 							</router-link>
 
 							<!-- laporancu -->
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Laporan CU</a>
+								<a><i class="icon-stats-growth"></i> Lap. CU</a>
 							</router-link>
 							<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
-								<a><i class="icon-stats-growth"></i> Laporan CU</a>
+								<a><i class="icon-stats-growth"></i> Lap. CU</a>
 							</router-link>
 							<li class="dropdown-submenu" v-if="modelTp.length > 0">
-								<a href="#"><i class="icon-stats-growth"></i> Laporan TP/KP</a>
+								<a href="#"><i class="icon-stats-growth"></i> Lap. TP/KP</a>
 								<ul class="dropdown-menu width-100">
-									<li class="dropdown-header highlight">Laporan TP/KP</li>
+									<li class="dropdown-header highlight"> Lap. TP/KP</li>
 									<li v-for="tp in modelTp">
 										<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:tp.id } }">{{ tp.name }}
 										</router-link>

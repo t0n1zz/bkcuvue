@@ -237,12 +237,12 @@
 
               <!-- excel download -->
               <div class="btn-group pb-5">
-                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Download Entri Sebagai Excel'" :disabled="itemDataStat === 'loading'">
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Excel'" :disabled="itemDataStat === 'loading'">
                   <i class="icon-file-excel"></i>&nbsp;
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-header">Download data ke excel</li>
+                  <li class="dropdown-header">Excel Data</li>
                   <li class="divider"></li>
                   <li>
                     <a><json-excel 
@@ -251,10 +251,13 @@
                     :meta="excel.meta"
                     :title="['Data ' + title]" 
                     :name="title + '.xls'"
-                    >Data di tabel</json-excel></a>
+                    >Download Data di tabel</json-excel></a>
                   </li>
                   <li>
-                    <a @click.prevent="modalExcelOpen">Semua Data</a>
+                    <a @click.prevent="modalExcelOpen">Download Semua Data</a>
+                  </li>
+                  <li v-if="isUploadExcel">
+                    <a @click.prevent="modalExcelUploadOpen">Upload Data</a>
                   </li>
                 </ul>
               </div>
@@ -552,7 +555,7 @@
 
           <div class="pb-15">
             <button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('excel')">
-              <i class="icon-file-excel"></i> Download excel 
+              <i class="icon-file-excel"></i> Excel 
             </button>
           </div>
 
@@ -748,9 +751,11 @@
             :meta="excel.meta"
             :title="'Data ' + title" 
             :name="title + '.xls'"
-            >Data di tabel</json-excel>
-          <a class="btn btn-default btn-block" @click.prevent="modalExcelOpen">Semua data</a>
+            >Download data di tabel</json-excel>
+          <a class="btn btn-default btn-block" @click.prevent="modalExcelOpen">Download semua data</a>
           <hr/>
+          <a class="btn btn-default btn-block" v-if="isUploadExcel" @click.prevent="modalExcelUploadOpen">Upload data</a>
+          <hr  v-if="isUploadExcel" />
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
       </div>
@@ -766,7 +771,7 @@
   import Cleave from 'vue-cleave-component';
 
   export default {
-    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','tableClass','extSearchQuery1','extSearchQuery2'],
+    props: ['title','source', 'columnData','itemData','itemDataStat', 'toolbarButton','params','tableClass','extSearchQuery1','extSearchQuery2','isUploadExcel'],
     components: {
       jsonExcel,
       appModal,

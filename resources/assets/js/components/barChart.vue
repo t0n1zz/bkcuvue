@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class="panel panel-white border-top-xlg border-top-info">
+	<div class="panel panel-white">
 
 		<!-- heading -->
 		<div class="panel-heading hidden-print">
