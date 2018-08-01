@@ -39,10 +39,6 @@ class LaporanCu extends Model {
         'cu.name','provinces.name','cu_name','provinces_name','laporan_cu.no_ba','tp'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [

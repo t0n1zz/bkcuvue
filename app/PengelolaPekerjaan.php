@@ -21,10 +21,6 @@ class PengelolaPekerjaan extends Model {
         'id_tempat','tipe','name','tingkat','mulai','selesai','created_at','updated_at'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [

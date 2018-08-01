@@ -23,11 +23,6 @@ class Regencies extends Model {
         'id','name'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
-
     public static function initialize(){
         return [
            'name' => ''

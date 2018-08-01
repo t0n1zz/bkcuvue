@@ -18,10 +18,6 @@ class Pus extends Model {
       'telp','hp','website','email','app','deskripsi','ultah','created_at','updated_at','deleted_at'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize(){
         return [
             'id_vilages' => '0', 'id_district' => '0', 'id_regency' => '0', 'id_province' => '0', 'no_ba' => '0', 'name' => '', 'gambar' => '',

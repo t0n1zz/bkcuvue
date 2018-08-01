@@ -28,10 +28,6 @@ class Artikel extends Model {
         'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','artikelKategori.name','artikelPenulis.name','cu.name'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [

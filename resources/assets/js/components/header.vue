@@ -238,45 +238,30 @@
 					<!-- keuangan -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-calculator3 position-left"></i> Laporan
+							<i class="icon-calculator3 position-left"></i> Keuangan
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 
 							<!-- tambah laporan -->
 							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
-								<a><i class="icon-plus22"></i> Tambah Lap. BKCU</a>
-							</router-link>
-
-							<!-- tambah laporan -->
-							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
-								<a><i class="icon-plus22"></i> Tambah Lap. CU</a>
+								<a><i class="icon-plus22"></i> Tambah Laporan CU</a>
 							</router-link>
 
 							<!-- separator -->
 							<li class="divider"></li>
 
-							<!-- laporan bkcu -->
-							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Lap. Gerakan</a>
-							</router-link>
-
-							<!-- laporan bkcu -->
-							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Lap. BKCU</a>
-							</router-link>
-
 							<!-- laporancu -->
 							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Lap. CU</a>
+								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
 							<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
-								<a><i class="icon-stats-growth"></i> Lap. CU</a>
+								<a><i class="icon-stats-growth"></i> Laporan CU</a>
 							</router-link>
 							<li class="dropdown-submenu" v-if="modelTp.length > 0">
-								<a href="#"><i class="icon-stats-growth"></i> Lap. TP/KP</a>
+								<a href="#"><i class="icon-stats-growth"></i> Laporan TP/KP</a>
 								<ul class="dropdown-menu width-100">
-									<li class="dropdown-header highlight"> Lap. TP/KP</li>
+									<li class="dropdown-header highlight"> Laporan TP/KP</li>
 									<li v-for="tp in modelTp">
 										<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:tp.id } }">{{ tp.name }}
 										</router-link>

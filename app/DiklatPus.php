@@ -20,11 +20,11 @@ class DiklatPus extends Model {
     ];
     
     protected $fillable = [
-      'id_tempat','kode_diklat','name','kota','tipe','periode','tanggal','tanggal2','tujuan','ruang','informasi','deskripsi','peserta','keterangan','status','max','min','created_at','updated_at','deleted_at'
+      'id_tempat','kode_diklat','name','kota','periode','mulai','selesai','keterangan','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
     ];
 
     protected $filter = [
-        'id','id_tempat','kode_diklat','name','kota','tipe','periode','tanggal','tanggal2','tujuan','ruang','informasi','deskripsi','peserta','keterangan','status','max','min','created_at','updated_at','deleted_at'
+        'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','keterangan','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
     ];
 
     public function getNameAttribute($value){
@@ -33,23 +33,23 @@ class DiklatPus extends Model {
 
     public static function initialize(){
         return [
-            'id_tempat' => '0', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'tanggal' => '', 'tanggal2' => '', 'tujuan' => '', 'ruang' => '', 'informasi' => '', 'deskripsi' => '', 'peserta' => '', 'keterangan' => '', 'status' => '', 'max' => '0', 'min' => '0'
+            'id_tempat' => '0', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','keterangan' => '', 'status' => '', 'peserta_max' => '0', 'peserta_min' => '0'
         ];
     }
         
     public function tempat(){
-        return $this->belongsTo('App\KegiatanTempat','id_tempat','id');
+        return $this->belongsTo('App\DiklatPusTempat','id_tempat','id');
     }
 
-    public function sasaranhub(){
-        return $this->hasmany('App\KegiatanSasaranHub','id_kegiatan','id');
+    public function sasaran_hub(){
+        return $this->hasmany('App\DiklatPusSasaranHub','id_kegiatan','id');
     }
 
     public function prasyarat(){
-        return $this->hasMany('App\KegiatanPrasyarat','id_prasyarat','id');
+        return $this->hasMany('App\DiklatPusPrasyarat','id_prasyarat','id');
     }
 
     public function total_peserta(){
-        return $this->hasmany('App\KegiatanPeserta','id_kegiatan','id');
+        return $this->hasmany('App\DiklatPusPeserta','id_kegiatan','id');
     }
 }

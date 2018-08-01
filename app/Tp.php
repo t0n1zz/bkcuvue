@@ -28,10 +28,6 @@ class Tp extends Model {
         'id','id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at', 'villages.name', 'districts.name', 'regencies.name', 'provinces.name', 'villages_name', 'districts_name', 'regencies_name', 'provinces_name', 'cu.name', 'cu_name'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize(){
         return [
             'id_cu' => '0', 'id_villages' => '0', 'id_districts' => '0', 'id_regencies' => '0', 'id_provinces' => '0', 'no_tp' => '', 'name' => '', 'gambar' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'email' => '', 'deskripsi' => '', 'ultah' => '',

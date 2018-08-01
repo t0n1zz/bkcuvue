@@ -11,21 +11,21 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['create_' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['create_diklat_pus']">
 					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
 						<i class="icon-plus3"></i> Tambah 
 					</router-link>
 				</div>
 
 				<!-- ubah-->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_diklat_pus']">
 					<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 				</div>
 
 				<!-- hapus -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_' + kelas]">
+				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_diklat_pus']">
 					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
 					</button>
@@ -46,7 +46,7 @@
 				<li><hr class="no-margin-top no-margin-bottom"/></li>
 
 				<!-- update -->
-				<li v-if="profile.can && profile.can['update_' + kelas]">
+				<li v-if="profile.can && profile.can['update_diklat_pus']">
 					<div class="pl-5 pr-5 pb-5 pt-10">
 						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
 							<i class="icon-pencil5"></i> Ubah
@@ -55,7 +55,7 @@
 				</li>
 
 				<!-- destroy -->
-				<li v-if="profile.can && profile.can['destroy_' + kelas]">
+				<li v-if="profile.can && profile.can['destroy_diklat_pus']">
 					<div class="pl-5 pr-5 pb-5">
 						<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
 							<i class="icon-bin2"></i> Hapus
@@ -63,14 +63,6 @@
 					</div>
 				</li>
 
-				<!-- lihat tpcu -->
-				<li v-if="profile.can && profile.can['index_tp_cu']">
-					<div class="pl-5 pr-5 pb-5">
-						<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Lihat TP/KP'" :disabled="selectedItem.has_tp_cu_count === 0">
-							<i class="icon-file-eye"></i> Lihat TP/KP 
-						</button>
-					</div>
-				</li>
 			</template>
 
 			<!-- item desktop -->
@@ -80,62 +72,44 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
-						<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive img-sm" v-else>
+						<check-value :value="props.item.status"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.name"></check-value>
+						<check-value :value="props.item.kode_diklat"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.no_ba"></check-value>
+						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.has_tp_count"></check-value>
+					<td v-if="!columnData[4].hide && !columnData[4].disable">
+						<check-value :value="props.item.tempat.name" v-if="props.item.tempat"></check-value>
+						<span v-else> {{columnData[4].groupNoKey}}</span>	
 					</td>
 					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.badan_hukum"></check-value>
+						<check-value :value="props.item.kota"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide && !columnData[6].disable">
-						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
-						<span v-else>: {{columnData[6].groupNoKey}}</span>	
+					<td v-if="!columnData[6].hide">
+						<check-value :value="props.item.periode"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide && !columnData[7].disable">
-						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
-						<span v-else>: {{columnData[7].groupNoKey}}</span>	
-					</td>
-					<td v-if="!columnData[8].hide && !columnData[8].disable">
-						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
-						<span v-else>: {{columnData[8].groupNoKey}}</span>	
-					</td>
-					<td v-if="!columnData[9].hide && !columnData[9].disable">
-						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
-						<span v-else>: {{columnData[9].groupNoKey}}</span>	
+					<td v-if="!columnData[7].hide" v-html="$options.filters.date(props.item.mulai)"></td>
+					<td v-if="!columnData[8].hide" v-html="$options.filters.date(props.item.selesai)"></td>
+					<td v-if="!columnData[9].hide">
+						<check-value :value="props.item.peserta_max"></check-value>
 					</td>
 					<td v-if="!columnData[10].hide">
-						<check-value :value="props.item.alamat"></check-value>
+						<check-value :value="props.item.peserta_min"></check-value>
 					</td>
 					<td v-if="!columnData[11].hide">
-						<check-value :value="props.item.app"></check-value>
+						<span v-if="props.item.sasaran_hub">
+							<label v-for="sasaran_hub in props.item.sasaran_hub" class="label label-primary ml-5">
+								{{ sasaran_hub.sasaran.name }}
+							</label>
+						</span>
 					</td>
-					<td v-if="!columnData[12].hide" v-html="$options.filters.date(props.item.ultah)"></td>
-					<td v-if="!columnData[13].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
+					<td v-if="!columnData[12].hide">
+						<check-value :value="props.item.keterangan"></check-value>
+					</td>
+					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
 					<td v-if="!columnData[14].hide">
-						<check-value :value="props.item.website"></check-value>
-					</td>
-					<td v-if="!columnData[15].hide">
-						<check-value :value="props.item.email"></check-value>
-					</td>
-					<td v-if="!columnData[16].hide">
-						<check-value :value="props.item.telp"></check-value>
-					</td>
-					<td v-if="!columnData[17].hide">
-						<check-value :value="props.item.hp"></check-value>
-					</td>
-					<td v-if="!columnData[18].hide">
-						<check-value :value="props.item.pos"></check-value>
-					</td>
-					<td v-if="!columnData[19].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
-					<td v-if="!columnData[20].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -160,105 +134,74 @@
 								<td colspan="2" class="text-center bg-primary-300"><b>{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</b></td>
 							</tr>
 							<tr v-if="!columnData[1].hide">
-								<td colspan="2">
-									<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-									<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive center-block" v-else>
-								</td>
+								<td><b>{{columnData[1].title}}</b></td>
+								<td><check-value :value="props.item.status" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[2].hide">
 								<td><b>{{columnData[2].title}}</b></td>
-								<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
+								<td><check-value :value="props.item.kode_diklat" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[3].hide">
 								<td><b>{{columnData[3].title}}</b></td>
-								<td><check-value :value="props.item.no_ba" :isTrim="false" :frontText="': '"></check-value></td>
+								<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[4].hide">
 								<td><b>{{columnData[4].title}}</b></td>
-								<td><check-value :value="props.item.has_tp_cu_count" :isTrim="false" :frontText="': '"></check-value></td>
+								<td>
+									<check-value :value="props.item.tempat.name" :isTrim="false" :frontText="': '" v-if="props.item.tempat"></check-value>
+									<span v-else>: {{columnData[3].groupNoKey}}</span>	
+								</td>
 							</tr>
 							<tr v-if="!columnData[5].hide">
 								<td><b>{{columnData[5].title}}</b></td>
-								<td><check-value :value="props.item.badan_hukum" :isTrim="false" :frontText="': '"></check-value></td>
+								<td><check-value :value="props.item.kota" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[6].hide">
 								<td><b>{{columnData[6].title}}</b></td>
-								<td>
-									<check-value :value="props.item.provinces.name" :isTrim="false" :frontText="': '" v-if="props.item.provinces"></check-value>
-									<span v-else>: {{columnData[6].groupNoKey}}</span>	
-								</td>
+								<td><check-value :value="props.item.periode" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[7].hide" class="collapse" :class="'collap'+props.item.id">
+							<tr v-if="!columnData[7].hide">
 								<td><b>{{columnData[7].title}}</b></td>
 								<td>
-									<check-value :value="props.item.regencies.name" :isTrim="false" :frontText="': '" v-if="props.item.regencies"></check-value>
-									<span v-else>: {{columnData[7].groupNoKey}}</span>	
+									: <span v-html="$options.filters.date(props.item.mulai)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[8].hide" class="collapse" :class="'collap'+props.item.id">
+							<tr v-if="!columnData[8].hide">
 								<td><b>{{columnData[8].title}}</b></td>
 								<td>
-									<check-value :value="props.item.districts.name" :isTrim="false" :frontText="': '" v-if="props.item.districts"></check-value>	
-									<span v-else>: {{columnData[8].groupNoKey}}</span>	
+									: <span v-html="$options.filters.date(props.item.selesai)"></span>
 								</td>
 							</tr>
-							<tr v-if="!columnData[9].hide" class="collapse" :class="'collap'+props.item.id">
+							<tr v-if="!columnData[9].hide">
 								<td><b>{{columnData[9].title}}</b></td>
-								<td>
-									<check-value :value="props.item.villages.name" :isTrim="false" :frontText="': '" v-if="props.item.villages"></check-value>
-									<span v-else>: {{columnData[9].groupNoKey}}</span>	
-								</td>
+								<td><check-value :value="props.item.peserta_max" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2"><b>{{columnData[10].title}}</b></td>
+							<tr v-if="!columnData[10].hide">
+								<td><b>{{columnData[10].title}}</b></td>
+								<td><check-value :value="props.item.peserta_min" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[10].hide" class="collapse" :class="'collap'+props.item.id">
-								<td colspan="2" style="word-wrap: break-word;"><check-value :value="props.item.alamat" :isTrim="false"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[11].hide" class="collapse" :class="'collap'+props.item.id">
+							<tr v-if="!columnData[11].hide">
 								<td><b>{{columnData[11].title}}</b></td>
-								<td><check-value :value="props.item.app" :isTrim="false" :frontText="': '"></check-value></td>
+								<td>
+									<span v-if="props.item.sasaran_hub">
+										<label v-for="sasaran_hub in props.item.sasaran_hub" class="label label-primary ml-5">
+											{{ sasaran_hub.sasaran.name }}
+										</label>
+									</span>
+								</td>
 							</tr>
 							<tr v-if="!columnData[12].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[12].title}}</b></td>
-								<td>
-									: <span v-html="$options.filters.date(props.item.ultah)"></span>
-								</td>
+								<td><check-value :value="props.item.keterangan" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
 							<tr v-if="!columnData[13].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[13].title}}</b></td>
 								<td>
-									: <span v-html="$options.filters.date(props.item.bergabung)"></span>
+									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
 								</td>
 							</tr>
 							<tr v-if="!columnData[14].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[14].title}}</b></td>
-								<td><check-value :value="props.item.website" :isTrim="false" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[15].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[15].title}}</b></td>
-								<td><check-value :value="props.item.email" :isTrim="false" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[16].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[16].title}}</b></td>
-								<td><check-value :value="props.item.telp" :isTrim="false" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[17].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[17].title}}</b></td>
-								<td><check-value :value="props.item.hp" :isTrim="false" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[18].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[18].title}}</b></td>
-								<td><check-value :value="props.item.pos" :isTrim="false" :frontText="': '"></check-value></td>
-							</tr>
-							<tr v-if="!columnData[19].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[19].title}}</b></td>
-								<td>
-									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
-								</td>
-							</tr>
-							<tr v-if="!columnData[20].hide" class="collapse" :class="'collap'+props.item.id">
-								<td><b>{{columnData[20].title}}</b></td>
 								<td>
 									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 									<span v-else>-</span> 
@@ -275,23 +218,16 @@
 						<div class="text-center button-toolbar">
 							
 							<!-- update -->
-							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_' + kelas]">
+							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_diklat_pus']">
 								<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-pencil5"></i> Ubah
 								</button>
 							</div>
 							
 							<!-- destroy -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_' + kelas]">
+							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_diklat_pus']">
 								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
 									<i class="icon-bin2"></i> <span>Hapus</span>
-								</button>
-							</div>
-
-							<!-- lihat tpcu -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['index_tp_cu']">
-								<button @click.prevent="lihatTpCu(props.item.id)" class="btn btn-default btn-icon btn-block" :disabled="selectedItem.has_tp_cu_count === 0">
-									<i class="icon-file-eye"></i> Lihat TP/KP 
 								</button>
 							</div>
 
@@ -350,12 +286,24 @@
 						disable: false
 					},
 					{
-						title: 'Foto',
-						key: 'gambar',
+						title: 'Status',
+						key: 'status',
 						excelType: 'string',
 						sort: false,
 						hide: false,
-						disable: false
+						disable: false,
+						filter: true,
+						filterType: 'string'
+					},
+					{
+						title: 'Kode Diklat',
+						key: 'kode_diklat',
+						excelType: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterType: 'string'
 					},
 					{
 						title: 'Nama',
@@ -368,9 +316,62 @@
 						filterType: 'string'
 					},
 					{
-						title: 'No. BA',
-						key: 'no_ba',
+						title: 'Tempat',
+						key: 'tempat_name',
+						groupKey: 'tempat.name',
+						groupNoKey: '-',
 						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterKey: 'tempat.name',
+						filterType: 'string'
+					},
+					{
+						title: 'Kota',
+						key: 'kota',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterType: 'string'
+					},
+					{
+						title: 'Periode',
+						key: 'periode',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterType: 'string'
+					},
+					{
+						title: 'Tgl. Mulai',
+						key: 'mulai',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterType: 'date'
+					},
+					{
+						title: 'Tgl. Selesai',
+						key: 'selesai',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterType: 'date'
+					},
+					{
+						title: 'Peserta Max',
+						key: 'peserta_max',
+						excelType: 'number',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -378,158 +379,28 @@
 						filterType: 'number'
 					},
 					{
-						title: 'TP/KP',
-						key: 'has_tp_cu_count',
-						groupKey: 'has_tp_cu_count',
-						groupNoKey: '0',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Badan Hukum',
-						key: 'badan_hukum',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Provinsi',
-						key: 'provinces_name',
-						groupKey: 'provinces.name',
-						groupNoKey: '-',
-						excelType: 'string',
+						title: 'Peserta Min',
+						key: 'peserta_min',
+						excelType: 'number',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterKey: 'provinces.name',
-						filterType: 'string'
+						filterType: 'number'
 					},
 					{
-						title: 'Kabupaten',
-						key: 'regencies_name',
-						groupKey: 'regencies.name',
-						groupNoKey: '-',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterKey: 'regencies.name',
-						filterType: 'string'
-					},
-					{
-						title: 'Kecamatan',
-						key: 'districts_name',
-						groupKey: 'districts.name',
-						groupNoKey: '-',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterKey: 'districts.name',
-						filterType: 'string'
-					},
-					{
-						title: 'Kelurahan',
-						key: 'villages_name',
-						groupKey: 'villages.name',
-						groupNoKey: '-',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterKey: 'villages.name',
-						filterType: 'string'
-					},
-					{
-						title: 'Alamat',
-						key: 'alamat',
+						title: 'Sasaran',
+						key: 'sasaran_hub.sasaran.name',
 						excelType: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'string'
+						filterType: 'number'
 					},
 					{
-						title: 'Aplikasi',
-						key: 'app',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
-					},
-					{
-						title: 'Tgl. Berdiri',
-						key: 'ultah',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'date'
-					},
-					{
-						title: 'Tgl. Bergabung',
-						key: 'bergabung',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'date'
-					},
-					{
-						title: 'Website',
-						key: 'website',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
-					},
-					{
-						title: 'E-mail',
-						key: 'email',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
-					},
-					{
-						title: 'No. Telp',
-						key: 'telp',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
-					},
-					{
-						title: 'No. Hp',
-						key: 'hp',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
-					},
-					{
-						title: 'Kode Pos',
-						key: 'pos',
+						title: 'Keterangan',
+						key: 'keterangan',
 						excelType: 'string',
 						sort: false,
 						hide: false,
@@ -592,9 +463,6 @@
 			ubahData(id) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
-			lihatTpCu(id_cu){
-				this.$router.push({name: 'tpCu', params: { cu: id_cu }});
-			},
 			modalConfirmOpen(source, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
@@ -620,7 +488,7 @@
 			}
 		},
 		computed: {
-			...mapGetters('cu',{
+			...mapGetters('diklatPus',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				updateMessage: 'update',

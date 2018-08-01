@@ -146,6 +146,24 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/produkcu/{id}', 'ProdukCuController@destroy');
     });
 
+     // diklatPus
+     Route::group(['middleware' => ['permission:index_diklat_pus']], function () {
+        Route::get('/diklatPus', 'DiklatPusController@index');
+        Route::get('/diklatPus/get', 'DiklatPusController@get');       
+        Route::get('/diklatPus/getPus/{id}', 'DiklatPusController@getPus');
+    });
+    Route::group(['middleware' => ['permission:create_diklat_pus']], function () {
+        Route::get('/diklatPus/create', 'DiklatPusController@create');
+        Route::post('/diklatPus/store', 'DiklatPusController@store');
+    });
+    Route::group(['middleware' => ['permission:update_diklat_pus']], function () {
+        Route::get('/diklatPus/edit/{id}', 'DiklatPusController@edit');
+        Route::post('/diklatPus/update/{id}', 'DiklatPusController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_diklat_pus']], function () {
+        Route::delete('/diklatPus/{id}', 'DiklatPusController@destroy');
+    });
+
     // pengelola
     Route::group(['middleware' => ['permission:index_pengelola']], function () {
         Route::get('/pengelola', 'PengelolaController@index');

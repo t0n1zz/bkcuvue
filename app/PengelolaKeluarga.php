@@ -21,10 +21,6 @@ class PengelolaKeluarga extends Model {
         'name','tipe','created_at','updated_at'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [

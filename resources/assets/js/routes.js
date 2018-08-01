@@ -84,7 +84,7 @@ const routes = [
 		components: { default: artikelPenulis_form, 'header': header}, 
 		meta: { mode:'edit' } },
 	
-		// cu
+	// diklatpus
 	{ path: '/diklatPus',name: 'diklatPus', 
 	components: { default: diklatPus, 'header': header }},
 	{ path: '/diklatPus/create',name: 'diklatPusCreate', 

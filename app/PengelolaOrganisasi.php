@@ -21,10 +21,6 @@ class PengelolaOrganisasi extends Model {
         'name','jabatan','tempat','mulai','selesai','created_at','updated_at'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return ['aktif' => '', 'name' => '','jabatan' => '','tempat' => '','mulai' => '','selesai' => ''

@@ -20,25 +20,32 @@
 							<div class="panel-body">	
 								<div class="row">
 
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">1</span> Informasi Umum
-											<small class="display-block">Gambaran awal Credit Union anda</small>
-										</h6>
-									</div>
-									
-									<!-- foto -->
-									<div class="col-md-12">
-										<div class="form-group">
+									<!-- kode -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.kode_diklat')}">
 
 											<!-- title -->
-											<h5>Foto Kantor Pusat:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.kode_diklat')}">
+												<i class="icon-cross2" v-if="errors.has('form.kode_diklat')"></i>
+												Kode Diklat:</h5>
 
-											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/cu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<!-- text -->
+											<cleave 
+												name="kode_diklat"
+												v-model="form.kode_diklat" 
+												class="form-control" 
+												:options="cleaveOption.number3"
+												placeholder="Silahkan masukkan kode diklat"
+												v-validate="'required'" data-vv-as="Kode diklat"></cleave>
+											
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.kode_diklat')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kode_diklat') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
-									</div>  
+									</div>
 
 									<!-- name -->
 									<div class="col-md-4">
@@ -50,7 +57,7 @@
 												Nama:</h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
@@ -60,490 +67,190 @@
 										</div>
 									</div>
 
-									<!-- no_ba -->
+									<!-- kota -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.kota')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.no_ba')}">
-												<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
-												No. BA:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.kota')}">
+												<i class="icon-cross2" v-if="errors.has('form.kota')"></i>
+												Kota:</h5>
 
 											<!-- text -->
-											<cleave 
-												name="no_ba"
-												v-model="form.no_ba" 
-												class="form-control" 
-												:options="cleaveOption.number3"
-												placeholder="Silahkan masukkan no ba."
-												v-validate="'required'" data-vv-as="No. BA"></cleave>
-											
+											<input type="text" name="kota" class="form-control" placeholder="Silahkan masukkan kota" v-validate="'required|min:5'" data-vv-as="Kota" v-model="form.kota">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.kota')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kota') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
-									<!-- badan hukum -->
+									<!-- periode -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.badan_hukum')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.badan_hukum')}">
-												<i class="icon-cross2" v-if="errors.has('form.badan_hukum')"></i>
-												Badan Hukum:</h5>
-
-											<!-- text -->
-											<input type="text" name="badan_hukum" class="form-control" placeholder="Silahkan masukkan nama CU"  v-model="form.badan_hukum">
-
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aplikasi -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.app')}">
-												<i class="icon-cross2" v-if="errors.has('form.app')"></i>
-												Aplikasi Keuangan Utama:</h5>
-
-											<!-- text -->
-											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.app')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.app') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- ultah -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.ultah')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
-												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
+												<i class="icon-cross2" v-if="errors.has('form.periode')"></i>
+												Periode:</h5>
 
 											<!-- input -->
 											<cleave 
-												name="ultah"
-												v-model="form.ultah" 
+												name="periode"
+												v-model="form.periode" 
 												class="form-control" 
 												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. berdiri"
-												v-validate="'required'" data-vv-as="Tgl. berdiri"></cleave>
+												:options="cleaveOption.year" 
+												placeholder="Silahkan masukkan periode"
+												v-validate="'required'" data-vv-as="Periode"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.ultah') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.periode')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
-									<!-- bergabung -->
+									<!-- mulai -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.bergabung')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.mulai')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
-												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
-												Tgl. Bergabung:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.mulai')}">
+												<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
+												Tgl. Mulai:</h5>
+
+											<!-- input -->
+											<cleave 
+												name="mulai"
+												v-model="form.mulai" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
+												placeholder="Silahkan masukkan tgl. mulai"
+												v-validate="'required'" data-vv-as="Tgl. mulai"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.mulai') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- selesai -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.selesai')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.selesai')}">
+												<i class="icon-cross2" v-if="errors.has('form.selesai')"></i>
+												Tgl. Selesai:</h5>
 
 											<!-- input  -->
 											<cleave 
-												name="bergabung"
-												v-model="form.bergabung" 
+												name="selesai"
+												v-model="form.selesai" 
 												class="form-control" 
 												:raw="false" 
 												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. bergabung"
-												v-validate="'required'" data-vv-as="Tgl. bergabung"></cleave>
+												placeholder="Silahkan masukkan tgl. selesai"
+												v-validate="'required'" data-vv-as="Tgl. selesai"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.bergabung') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.selesai')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.selesai') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- peserta max -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.peserta_max')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.peserta_max')}">
+												<i class="icon-cross2" v-if="errors.has('form.peserta_max')"></i>
+												Peserta Max:</h5>
+
+											<!-- input -->
+											<cleave 
+												name="peserta_max"
+												v-model="form.peserta_max" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan peserta max"
+												v-validate="'required'" data-vv-as="Peserta max"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.peserta_max')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.peserta_max') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- peserta min -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.peserta_min')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.peserta_min')}">
+												<i class="icon-cross2" v-if="errors.has('form.peserta_min')"></i>
+												Peserta Min:</h5>
+
+											<!-- input -->
+											<cleave 
+												name="peserta_min"
+												v-model="form.peserta_min" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan peserta min"
+												v-validate="'required'" data-vv-as="Peserta min"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.peserta_min')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.peserta_min') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- peserta -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Peserta:</h5>
+
+											<label class="checkbox-inline"><input type="checkbox">Staf</label>
+											<label class="checkbox-inline"><input type="checkbox">Supervisor</label>
+											<label class="checkbox-inline"><input type="checkbox">Manajer</label>
+											<label class="checkbox-inline"><input type="checkbox">Senior Manajer</label>
+											<label class="checkbox-inline"><input type="checkbox">Komite</label>
+											<label class="checkbox-inline"><input type="checkbox">Pengawas</label>
+											<label class="checkbox-inline"><input type="checkbox">Pengurus</label>
+										</div>
+									</div>
+
+									<!-- isi artikel -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Keterangan:</h5>
+
+											<!-- summernote -->
+											<app-summernote name="editor" :model="form.keterangan" :config="summernoteconfig" :formStat="formStat" @change="value => { form.content = value }"></app-summernote>
 										</div>
 									</div>
 									
-								</div>
-							</div>
-						</div>
-
-						<!-- lokasi -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">2</span> Lokasi
-											<small class="display-block">Letak kantor pusat Credit Union anda</small>
-										</h6>
-									</div>
-									
-									<!-- Provinsi -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_provinces')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i>
-												Provinsi:
-											</h5>
-
-											<!-- select -->
-											<select class="bootstrap-select" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
-												<option disabled value="">Silahkan pilih Provinsi</option>
-												<option data-divider="true"></option>
-												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_provinces')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_provinces') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- kabupaten -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
-												Kabupaten:
-											</h5>
-
-											<!-- select -->
-											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
-												<option disabled value="">
-													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
-													<span v-else>Silahkan pilih kabupaten</span>
-												</option>
-												<option data-divider="true"></option>
-												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regencies') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- kecamatan -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_districts')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_districts')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_districts')"></i>
-												Kecamatan:
-											</h5>
-
-											<!-- select -->
-											<select class="bootstrap-select"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
-												<option disabled value="">
-													<span v-if="modelDistrictsStat === 'loading'"><i class="icon-spinner spinner"></i></span>
-													<span v-else>Silahkan pilih kecamatan</span>
-												</option>
-												<option data-divider="true"></option>
-												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_regency')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regency') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- kelurahan -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_villages')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_villages')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_villages')"></i>
-												Kelurahan:
-											</h5>
-
-											<!-- select -->
-											<select class="bootstrap-select"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
-												<option disabled value="">
-													<span v-if="modelVillagesStat === 'loading'"><i class="icon-spinner spinner"></i> mohon tunggu</span>
-													<span v-else>Silahkan pilih kelurahan</span>
-												</option>
-												<option data-divider="true"></option>
-												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_villages')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_villages') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- alamat -->
-									<div class="col-md-8">
-										<div class="form-group" :class="{'has-error' : errors.has('form.alamat')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.alamat')}">
-												<i class="icon-cross2" v-if="errors.has('form.alamat')"></i>
-												Alamat:</h5>
-
-											<!-- text -->
-											<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.alamat')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.alamat') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<!-- informasi kontak -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">3</span> Kontak
-											<small class="display-block">Menghubungi Credit Union anda</small>
-										</h6>
-									</div>
-
-									<!-- no telp -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.telp')}">
-												<i class="icon-cross2" v-if="errors.has('form.telp')"></i>
-												No. Telp:</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.telp" 
-												class="form-control" 
-												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no telp"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- no hp -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.hp')}">
-												<i class="icon-cross2" v-if="errors.has('form.hp')"></i>
-												No. Hp:</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.hp" 
-												class="form-control" 
-												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no hp"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- kode pos -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.pos')}">
-												<i class="icon-cross2" v-if="errors.has('form.pos')"></i>
-												Kode Pos:</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.pos" 
-												class="form-control" 
-												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan kode pos"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- email -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.email')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.email')}">
-												<i class="icon-cross2" v-if="errors.has('form.email')"></i>
-												E-mail:</h5>
-
-											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.email')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.email') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- website -->
-									<div class="col-md-8">
-										<div class="form-group" :class="{'has-error' : errors.has('form.website')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.website')}">
-												<i class="icon-cross2" v-if="errors.has('form.website')"></i>
-												Website:</h5>
-
-											<!-- text -->
-											<input type="text" name="website" class="form-control" placeholder="Silahkan masukkan alamat website" v-model="form.website" v-validate="'url'" data-vv-as="Website">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.website')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.website') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-								</div>	
-							</div>
-						</div>
-
-						<!-- informasi profil -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">4</span> Profil
-											<small class="display-block">Mengenai Credit Union anda</small>
-										</h6>
-									</div>
-								
-									<!-- misi -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Misi:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="misi" class="form-control" v-model="form.misi" placeholder="Silahkan masukkan misi"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- visi -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Visi:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="visi" class="form-control" v-model="form.visi" placeholder="Silahkan masukkan visi"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- nilai -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Nilai-nilai Inti:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="nilai" class="form-control" v-model="form.nilai" placeholder="Silahkan masukkan nilai-nilai inti"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- slogan -->
-									<div class="col-md-6">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Slogan:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="slogan" class="form-control" v-model="form.slogan" placeholder="Silahkan masukkan slogan"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- sejarah -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Sejarah:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="sejarah" class="form-control" v-model="form.sejarah" placeholder="Silahkan masukkan sejarah"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- deskripsi -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Deskripsi:</h5>
-
-											<!-- textarea -->
-											<textarea rows="5" type="text" name="deskripsi" class="form-control" v-model="form.deskripsi" placeholder="Silahkan masukkan deskripsi"></textarea>
-
-											<small class="text-muted">&nbsp;</small>
-										</div>
-									</div>
-
 								</div>
 							</div>
 						</div>
@@ -578,10 +285,8 @@
 	import { mapGetters } from 'vuex'
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
-	import {
-		toMulipartedForm
-	} from '../../helpers/form';
-	import appImageUpload from '../../components/ImageUpload.vue';
+	import { toMulipartedForm } from '../../helpers/form';
+	import appSummernote from '../../helpers/summernote.js';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
@@ -592,7 +297,7 @@
 		components: {
 			pageHeader,
 			appModal,
-			appImageUpload,
+			appSummernote,
 			message,
 			formButton,
 			formInfo,
@@ -600,18 +305,22 @@
 		},
 		data() {
 			return {
-				title: 'Tambah CU',
-				titleDesc: 'Menambah CU baru',
+				title: 'Tambah Diklat BKCU',
+				titleDesc: 'Menambah Diklat BKCU baru',
 				titleIcon: 'icon-plus3',
 				level: 2,
-				level2Title: 'CU',
-				kelas: 'cu',
+				level2Title: 'Diklat BKCU',
+				kelas: 'diklatPus',
 				redirect: '/cu/',
 				cleaveOption: {
           date:{
             date: true,
             datePattern: ['Y','m','d'],
             delimiter: '-'
+					},
+					year:{
+            date: true,
+            datePattern: ['Y'],
           },
           number12: {
             numeral: true,
@@ -633,6 +342,31 @@
             numeralDecimalMark: ',',
             delimiter: '.'
           }
+				},
+				summernoteconfig: {
+					height: 400,
+					popover: {
+						image: [
+							['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+							/* ['float', ['floatLeft', 'floatRight', 'floatNone']], */
+							/* Those are the old regular float buttons */
+							['floatBS', ['floatBSLeft', 'floatBSNone', 'floatBSRight']],
+							/* Those come from the BS plugin, in any order, you can even keep both! */
+							['custom', ['imageAttributes', 'imageShape']],
+							['remove', ['removeMedia']],
+						],
+					},
+					toolbar: [
+						['style', ['addclass', 'bold', 'italic', 'underline', 'hr']],
+						['font', ['strikethrough', 'superscript', 'subscript', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol']],
+						['paragraph', ['paragraph']],
+						['table', ['table']],
+						['insert', ['link', 'picture', 'video']],
+						['misc', ['fullscreen']],
+						['misc2', ['undo', 'redo']]
+					]
 				},
 				cancelState: 'methods',
 				modalShow: false,

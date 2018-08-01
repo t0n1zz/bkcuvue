@@ -21,10 +21,6 @@ class PengelolaAnggotaCu extends Model {
         'name','no_ba','created_at','updated_at'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [

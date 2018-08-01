@@ -25,10 +25,6 @@ class ArtikelKategori extends Model {
         'id','id_cu','name','deskripsi','created_at','updated_at','has_artikel_count'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public function artikel(){
         return $this->hasMany('App\Artikel','id_artikel_kategori','id')
             ->where('status','=','1')

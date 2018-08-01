@@ -39,10 +39,6 @@ class User extends Authenticatable
         'id','id_cu','id_pus','name','email','username','gambar','status','created_at'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [

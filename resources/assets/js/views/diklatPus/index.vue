@@ -54,10 +54,10 @@
 		},
 		data() {
 			return {
-				title: 'Diklat',
-				kelas: 'diklat',
-				titleDesc: 'Mengelola data diklat',
-				titleIcon: 'icon-office',
+				title: 'Diklat BKCU',
+				kelas: 'diklatPus',
+				titleDesc: 'Mengelola data diklat BKCU',
+				titleIcon: 'icon-graduation2',
 				btn1Header: {
 					route: 'artikel',
 					icon: 'icon-home9',

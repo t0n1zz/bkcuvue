@@ -43,10 +43,6 @@ class LaporanTp extends Model {
         'tp.name','provinces.name','provinces_name','laporan_tp.no_tp','p1','p2'
     ];
 
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
     public static function initialize()
     {
         return [
