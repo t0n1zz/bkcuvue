@@ -67,6 +67,7 @@ export default {
 			axisLabelKey:'cu_name',
 			isFirstLoad: true,
 			cuName:'',
+			periode:'',
 			params: {
 				column: 'periode',
 				direction: 'asc',
@@ -107,7 +108,8 @@ export default {
 				}else if(this.$route.meta.mode == 'detailTp'){
 					this.titleText = 'Grafik Laporan ' + this.itemData.data[0].tp.name;
 				}else{
-					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
+					this.periode = _.orderBy(this.itemData.data,['periode'],['desc']);
+					this.titleText = 'Grafik Laporan Semua CU Periode ' + this.formatPeriode(this.periode[0].periode);
 				}
 			}
 		}
@@ -146,7 +148,10 @@ export default {
 				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
-				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);
+				if(this.itemDataStat == 'success'){
+					this.periode = _.orderBy(this.itemData.data,['periode'],['desc']);
+					this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.periode[0].periode);
+				}
 			}
 		},
 		resetParams(search_column){
@@ -174,8 +179,8 @@ export default {
 			detailData:'data',
 			detailDataStat: 'dataStat',
 			itemData: 'grafik',
-			itemDataStat: 'grafikStat'
-		}),
+			itemDataStat: 'grafikStat',
+		})
 	}
 }
 </script>
