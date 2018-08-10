@@ -16,43 +16,6 @@ use Illuminate\Notifications\DatabaseNotification;
 class UserController extends Controller
 {
   protected $imagepath = 'images/user/';
-    
-	public function userId()
-	{
-			$id = Auth::user()->getId();
-
-			return response()
-			->json([
-					$id
-			]);
-	}
-
-	public function profile()
-	{
-		$id = Auth::user()->getId();
-
-		$kelas = User::with('pus','cu')->findOrFail($id);
-		$notification = collect();
-		$unreadNotification = count($kelas->unreadNotifications);
-
-		$i = 0;
-		foreach ($kelas->notifications as $notif) {
-			$username = User::where('id',$notif->data['user'])->select('name')->first();
-			
-			$n = collect($notif);
-			$n->put('user',$username);
-			$notification->push($n);
-
-			if (++$i == 15) break;
-		}
-
-		return response()
-				->json([
-						'model' => $kelas,
-						'notification' => $notification,
-						'unreadNotification' => $unreadNotification
-				]);
-	}
 
 	public function index()
 	{

@@ -29,18 +29,34 @@ import profile from './views/user/profile.vue';
 const routes = [
 
 	// login
-	{ path: '/login',name: 'login', components: { default: login } },
+	{ path: '/login',
+		name: 'login', 
+		components: { default: login },
+		meta: { notLoggedIn: true }},
 	
 	// user
-	{ path: '/user/cu/:cu',name: 'userCu', 
+	{ path: '/user/cu/:cu',
+		name: 'userCu', 
 		components: { default: user, 'header': header }, 
-		meta: { mode:'cu' }},
-	{ path: '/user/create',name: 'userCreate', components: { default: user_form, 'header': header} },
-	{ path: '/user/edit/:id',name: 'userEdit', components: { default: user_form, 'header': header}, meta: { mode:'edit' } },
-	{ path: '/profile/:id',name: 'profile', components: { default: profile, 'header': header}},
+		meta: { loggedIn: true, mode:'cu' }},
+	{ path: '/user/create',
+		name: 'userCreate', 
+		components: { default: user_form, 'header': header},
+		meta: { loggedIn: true }},
+	{ path: '/user/edit/:id',
+		name: 'userEdit', 
+		components: { default: user_form, 'header': header}, 
+		meta: { loggedIn: true, mode:'edit' }},
+	{ path: '/profile/:id',
+		name: 'profile', 
+		components: { default: profile, 'header': header},
+		meta: { loggedIn: true }},
 
 	// dashboard
-	{ path: '/',name: 'dashboard', components: { default: dashboard,'header': header } },
+	{ path: '/',
+		name: 'dashboard', 
+		components: { default: dashboard,'header': header },
+		meta: { loggedIn: true }},
 
 	// not found
 	{ path: '/notFound',name: 'notFound', components: { default: notFound,'header': header } },

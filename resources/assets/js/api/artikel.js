@@ -3,19 +3,19 @@ import { BKCU_CONFIG } from '../config.js';
 export default {
   
   index: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikel' ,{params: p});
+    return api.call('get', BKCU_CONFIG.API_URL + '/artikel' ,{params: p});
   },
 
   indexCu: function( p, id ){
-    return axios.get( BKCU_CONFIG.API_URL + '/artikel/indexCu/' + id, {params: p});
+    return api.call('get', BKCU_CONFIG.API_URL + '/artikel/indexCu/' + id, {params: p});
   },
 
   create: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikel/create');
+    return api.call('get', BKCU_CONFIG.API_URL + '/artikel/create');
   },
 
   store: function ( form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/artikel/store', form);
+    return api.call('get', BKCU_CONFIG.API_URL + '/artikel/store', form);
   },
 
   edit: function( id ){

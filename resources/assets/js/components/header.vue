@@ -347,11 +347,8 @@
 				this.$store.dispatch('user/markAllNotifRead');
 			},
 			logout() {
-				axios.post('/logout').then(response => {
-					location.reload();
-				}).catch(error => {
-					location.reload();
-				});
+				auth.logout();
+      	this.$router.push('/login');
 			}
 		},
 		computed: {

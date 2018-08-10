@@ -4,7 +4,7 @@ export default {
   
   // get user profil
   profile: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/profile');
+    return api.call('get',BKCU_CONFIG.API_URL + '/profile');
   },
 
   index: function( p ){

@@ -54,6 +54,10 @@ class User extends Authenticatable
     //     'status' => 'boolean',
     // ];
 
+    public function findForPassport($username) {
+        return $this->where('username', $username)->first();
+    }
+    
     public function getId(){
         return $this->id;
     }

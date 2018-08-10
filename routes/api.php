@@ -2,12 +2,20 @@
 
 use Illuminate\Http\Request;
 
+// auth
+Route::post('/login', 'AuthController@login');
+Route::middleware('auth:api')->group(function () {
+    Route::post('/logout', 'AuthController@logout');
+});
+
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 // Route::group(['prefix'=>'v1'],function(){
     
+    // auth
+    Route::get('/userId', 'AuthController@userId');
+    Route::get('/profile', 'AuthController@profile');
+
     // user
-    Route::get('/userId', 'UserController@userId');
-    Route::get('/profile', 'UserController@profile');
     Route::get('/markNotifRead/{id}', 'UserController@markNotifRead');
     Route::get('/markAllNotifRead', 'UserController@markAllNotifRead');
 

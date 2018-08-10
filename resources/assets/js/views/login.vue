@@ -95,15 +95,16 @@
 					if(result){
 						this.message.show = false;
 						this.loading = true;
-						axios.post('/login', {
+						axios.post('/api/login', {
 								username: this.username,
 								password: this.password
 							})
-							.then(response => {
+							.then(({data}) => {
+								auth.login(data.token);
 								this.$router.push('/');
-							}).catch(error => {
+							}).catch(({response}) => {
 								this.message.show = true;
-								this.message.content = error.response;
+								this.message.content = response;
 								this.loading = false;
 							});
 							this.submited = false;

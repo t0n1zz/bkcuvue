@@ -72,7 +72,7 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.status"></check-value>
+						<span v-html="$options.filters.statusDiklat(props.item.status)"></span>
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.kode_diklat"></check-value>
@@ -98,7 +98,7 @@
 					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.peserta_min"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
+					<td v-if="!columnData[11].hide" class="text-warp">
 						<span v-if="props.item.sasaran_hub">
 							<label v-for="sasaran_hub in props.item.sasaran_hub" class="label label-primary ml-5">
 								{{ sasaran_hub.sasaran.name }}
@@ -108,7 +108,7 @@
 					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
+					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[14].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
@@ -498,6 +498,23 @@
 				profile: 'profile',
 				profileStat: 'profileStat'
 			})
+		},
+		filters: {
+			statusDiklat:function(value){
+				if(value == 1){
+					return '<span class="bg-info text-highlight">Menunggu</span>';
+				}else if(value == 2){
+					return '<span class="bg-warning text-highlight">Pendaftara Buka</span>';
+				}else if(value == 3){
+					return '<span class="bg-warning-300 text-highlight">Pendaftaran Tutup</span>';
+				}else if(value == 4){
+					return '<span class="bg-primary-300 text-highlight"> Berjalan</span>';
+				}else if(value == 5){
+					return '<span class="bg-primary text-highlight"> Terlaksana</span>';
+				}else if(value == 6){
+					return '<span class="bg-danger text-highlight"> Batal</span>';
+				}
+			}
 		}
 	}
 </script>
