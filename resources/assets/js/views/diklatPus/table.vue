@@ -504,7 +504,7 @@
 				if(value == 1){
 					return '<span class="bg-info text-highlight">Menunggu</span>';
 				}else if(value == 2){
-					return '<span class="bg-warning text-highlight">Pendaftara Buka</span>';
+					return '<span class="bg-warning text-highlight">Pendaftaran Buka</span>';
 				}else if(value == 3){
 					return '<span class="bg-warning-300 text-highlight">Pendaftaran Tutup</span>';
 				}else if(value == 4){

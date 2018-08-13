@@ -69,19 +69,50 @@
 
 									<!-- kota -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.kota')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.kota')}">
-												<i class="icon-cross2" v-if="errors.has('form.kota')"></i>
-												Kota:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
+												Kabupaten/Kota:</h5>
 
 											<!-- text -->
-											<input type="text" name="kota" class="form-control" placeholder="Silahkan masukkan kota" v-validate="'required|min:5'" data-vv-as="Kota" v-model="form.kota">
+											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-live-search="true" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeTempat($event.target.value)" :disabled="modelRegencies.length === 0">
+												<option disabled value="">
+													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-else>Silahkan pilih kabupaten/kota</span>
+												</option>
+												<option data-divider="true"></option>
+												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+											</select>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.kota')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kota') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regencies') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- tempat -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_tempat')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_tempat')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i>
+												Tempat:
+											</h5>
+
+											<!-- select -->
+											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="modelTempat.length === 0">
+												<option disabled value="">Silahkan pilih tempat</option>
+												<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tempat') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -94,7 +125,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
 												<i class="icon-cross2" v-if="errors.has('form.periode')"></i>
-												Periode:</h5>
+												Periode: <small>(YYYY)</small></h5>
 
 											<!-- input -->
 											<cleave 
@@ -121,7 +152,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.mulai')}">
 												<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
-												Tgl. Mulai:</h5>
+												Tgl. Mulai: <small>(YYYY-MM-DD)</small></h5>
 
 											<!-- input -->
 											<cleave 
@@ -148,7 +179,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.selesai')}">
 												<i class="icon-cross2" v-if="errors.has('form.selesai')"></i>
-												Tgl. Selesai:</h5>
+												Tgl. Selesai: <small>(YYYY-MM-DD)</small></h5>
 
 											<!-- input  -->
 											<cleave 
@@ -229,13 +260,13 @@
 											<!-- title -->
 											<h5>Peserta:</h5>
 
-											<label class="checkbox-inline"><input type="checkbox">Staf</label>
-											<label class="checkbox-inline"><input type="checkbox">Supervisor</label>
-											<label class="checkbox-inline"><input type="checkbox">Manajer</label>
-											<label class="checkbox-inline"><input type="checkbox">Senior Manajer</label>
-											<label class="checkbox-inline"><input type="checkbox">Komite</label>
-											<label class="checkbox-inline"><input type="checkbox">Pengawas</label>
-											<label class="checkbox-inline"><input type="checkbox">Pengurus</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Staf" v-model="peserta">Staf</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Supervisor" v-model="peserta">Supervisor</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Manajer" v-model="peserta">Manajer</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Senior Manajer" v-model="peserta">Senior Manajer</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Komite" v-model="peserta">Komite</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Pengawas" v-model="peserta">Pengawas</label>
+											<label class="checkbox-inline"><input type="checkbox" value="Pengurus" v-model="peserta">Pengurus</label>
 										</div>
 									</div>
 
@@ -312,6 +343,7 @@
 				level2Title: 'Diklat BKCU',
 				kelas: 'diklatPus',
 				redirect: '/cu/',
+				peserta: [],
 				cleaveOption: {
           date:{
             date: true,
@@ -391,12 +423,7 @@
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode == 'edit'|| this.$route.meta.mode == 'profile' ){
-						if(this.profile.id_cu !== 0 && this.profile.id_cu !== this.form.id){
-							this.$router.push({name: 'notFound'});
-						}
-						this.changeProvinces(this. form.id_provinces);
-						this.changeRegencies(this.form.id_regencies);
-						this.changeDistricts(this.form.id_districts);
+
 					}
 				}
 			},
@@ -435,9 +462,13 @@
 					this.titleIcon = 'icon-plus3';
 				}
 
-				this.$store.dispatch('provinces/get');
+				this.$store.dispatch('regencies/get');
+			},
+			changeTempat(id){
+				this.$store.dispatch('diklatTempat/getId', id);
 			},
 			save() {
+				this.form.peserta = peserta;
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
@@ -455,15 +486,6 @@
 			},
 			back(){
 				this.$router.push({name: this.kelas});
-			},
-			changeProvinces(id){
-				this.$store.dispatch('regencies/getProvinces', id);
-			},
-			changeRegencies(id){
-				this.$store.dispatch('districts/getRegencies', id);
-			},
-			changeDistricts(id){
-				this.$store.dispatch('villages/getDistricts', id);
 			},
 			modalTutup() {
  				if(this.updateStat === 'success' && this.$route.meta.mode == 'edit'){
@@ -485,7 +507,6 @@
 			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
-				console.log(event.target.files[0].name);
 			},
 			other() {
 				// bootstrap select
@@ -493,7 +514,7 @@
 			}
 		},
 		computed: {
-			...mapGetters('cu',{
+			...mapGetters('diklatPus',{
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',
@@ -501,26 +522,18 @@
 				updateResponse: 'update',
 				updateStat: 'updateStat'
 			}),
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
-			...mapGetters('provinces',{
-				modelProvinces: 'dataS',
-				modelProvincesStat: 'dataStatS'
-			}),
 			...mapGetters('regencies',{
 				modelRegencies: 'dataS',
 				modelRegenciesStat: 'dataStatS'
 			}),
-			...mapGetters('districts',{
-				modelDistricts: 'dataS',
-				modelDistrictsStat: 'dataStatS'
+			...mapGetters('diklatTempat',{
+				modelTempat: 'dataS',
+				modelTempatStat: 'dataStatS',
 			}),
-			...mapGetters('villages',{
-				modelVillages: 'dataS',
-				modelVillagesStat: 'dataStatS'
-			})
+			...mapGetters('user',{
+				profile: 'profile',
+				profileStat: 'profileStat'
+			}),
 		}
 	}
 </script>

@@ -415,7 +415,7 @@
 						filterType: 'string'
 					},
 					{
-						title: 'Kabupaten',
+						title: 'Kabupaten/Kota',
 						key: 'regencies_name',
 						groupKey: 'regencies.name',
 						groupNoKey: '-',

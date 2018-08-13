@@ -161,17 +161,30 @@
 						</a>
 						<ul class="dropdown-menu">
 
-							<!-- tambah cu -->
+							<!-- tambah diklat pus -->
 							<router-link :to="{ name:'diklatPusCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_pus']">
 								<a><i class="icon-plus22"></i> Tambah Diklat BKCU</a>
+							</router-link>
+
+							<!-- tambah diklat tempat -->
+							<router-link :to="{ name:'diklatTempatCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_tempat']">
+								<a><i class="icon-plus22"></i> Tambah Tempat</a>
 							</router-link>
 
 							<!-- separator -->
 							<li class="divider"></li>
 
-							<!-- cu -->
+							<!-- diklat pus -->
 							<router-link :to="{ name: 'diklatPus' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
 								<a><i class="icon-graduation2"></i> Diklat BKCU</a>
+							</router-link>
+
+							<!-- separator -->
+							<li class="divider"></li>
+
+							<!-- diklat tempat -->
+							<router-link :to="{ name: 'diklatTempat' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_diklat_tempat']">
+								<a><i class="icon-location4"></i> Tempat</a>
 							</router-link>
 						</ul>
 					</li>

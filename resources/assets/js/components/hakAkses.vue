@@ -198,6 +198,41 @@
 						]
 					},
 					{
+						name: 'Tempat Kegiatan',
+						icon: 'icon-location4',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_diklat_tempat',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Tambah',
+								key: 'create_diklat_tempat',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Ubah',
+								key: 'update_diklat_tempat',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_diklat_tempat',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							}
+						]
+					},
+					{
 						name: 'CU',
 						icon: 'icon-office',
 						secondRow: true,

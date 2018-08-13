@@ -38,7 +38,7 @@ class DiklatPus extends Model {
     }
         
     public function tempat(){
-        return $this->belongsTo('App\DiklatPusTempat','id_tempat','id');
+        return $this->belongsTo('App\DiklatTempat','id_tempat','id');
     }
 
     public function sasaran_hub(){
