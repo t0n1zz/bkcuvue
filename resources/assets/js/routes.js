@@ -13,8 +13,8 @@ import laporanCu_form from './views/laporanCu/form.vue';
 import laporanCu_detail from './views/laporanCu/detail.vue';
 import diklatPus from './views/diklatPus/index.vue';
 import diklatPus_form from './views/diklatPus/form.vue';
-import diklatTempat from './views/diklatTempat/index.vue';
-import diklatTempat_form from './views/diklatTempat/form.vue';
+import tempat from './views/tempat/index.vue';
+import tempat_form from './views/tempat/form.vue';
 import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
 import tp from './views/tp/index.vue';
@@ -129,15 +129,15 @@ const routes = [
 		meta: { loggedIn: true, mode:'edit' } },
 
 	// diklat tempat
-	{ path: '/diklatTempat',
-		name: 'diklatTempat', 
-		components: { default: diklatTempat, 'header': header }},
-	{ path: '/diklatTempat/create',
-		name: 'diklatTempatCreate', 
-		components: { default: diklatTempat_form, 'header': header} },
-	{ path: '/diklatTempat/edit/:id',
-		name: 'diklatTempatEdit', 
-		components: { default: diklatTempat_form, 'header': header}, 
+	{ path: '/tempat',
+		name: 'tempat', 
+		components: { default: tempat, 'header': header }},
+	{ path: '/tempat/create',
+		name: 'tempatCreate', 
+		components: { default: tempat_form, 'header': header} },
+	{ path: '/tempat/edit/:id',
+		name: 'tempatEdit', 
+		components: { default: tempat_form, 'header': header}, 
 		meta: { loggedIn: true, mode:'edit' } },	
 
 	// cu

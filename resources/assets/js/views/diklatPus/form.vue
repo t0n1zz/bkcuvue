@@ -20,8 +20,16 @@
 							<div class="panel-body">	
 								<div class="row">
 
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold text-primary">
+											<span class="form-wizard-count">1</span> Informasi Umum
+											<small class="display-block">Informasi umum diklat</small>
+										</h6>
+									</div>
+
 									<!-- kode -->
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_diklat')}">
 
 											<!-- title -->
@@ -48,7 +56,7 @@
 									</div>
 
 									<!-- name -->
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -62,57 +70,6 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- kota -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
-												Kabupaten/Kota:</h5>
-
-											<!-- text -->
-											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-live-search="true" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeTempat($event.target.value)" :disabled="modelRegencies.length === 0">
-												<option disabled value="">
-													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
-													<span v-else>Silahkan pilih kabupaten/kota</span>
-												</option>
-												<option data-divider="true"></option>
-												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regencies') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- tempat -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_tempat')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_tempat')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i>
-												Tempat:
-											</h5>
-
-											<!-- select -->
-											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="modelTempat.length === 0">
-												<option disabled value="">Silahkan pilih tempat</option>
-												<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tempat') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -268,6 +225,94 @@
 											<label class="checkbox-inline"><input type="checkbox" value="Pengawas" v-model="peserta">Pengawas</label>
 											<label class="checkbox-inline"><input type="checkbox" value="Pengurus" v-model="peserta">Pengurus</label>
 										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<!-- tempat -->
+						<div class="panel panel-flat">
+							<div class="panel-body">	
+								<div class="row">
+
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold text-primary">
+											<span class="form-wizard-count">2</span> Tempat
+											<small class="display-block">Informasi tempat pelaksanaan diklat</small>
+										</h6>
+									</div>
+
+									<!-- kota -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
+												Kabupaten/Kota:</h5>
+
+											<!-- text -->
+											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-live-search="true" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeTempat($event.target.value)" :disabled="modelRegencies.length === 0">
+												<option disabled value="">
+													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-else>Silahkan pilih kabupaten/kota</span>
+												</option>
+												<option data-divider="true"></option>
+												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regencies') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- tempat -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_tempat')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_tempat')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i>
+												Tempat:
+											</h5>
+
+											<!-- select -->
+											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="modelTempat.length === 0">
+												<option disabled value="">Silahkan pilih tempat</option>
+												<option data-divider="true"></option>
+												<option value="0">Belum ditentukan tempat</option>
+												<option data-divider="true"></option>
+												<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tempat') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						
+						<!-- keterangan -->
+						<div class="panel panel-flat">
+							<div class="panel-body">	
+								<div class="row">
+
+									<!-- judul -->
+									<div class="col-md-12">
+										<h6 class="form-wizard-title text-semibold text-primary">
+											<span class="form-wizard-count">3</span> Keterangan
+											<small class="display-block">Keterangan diklat</small>
+										</h6>
 									</div>
 
 									<!-- isi artikel -->
@@ -465,7 +510,7 @@
 				this.$store.dispatch('regencies/get');
 			},
 			changeTempat(id){
-				this.$store.dispatch('diklatTempat/getId', id);
+				this.$store.dispatch('tempat/get', id);
 			},
 			save() {
 				this.form.peserta = peserta;
@@ -526,9 +571,9 @@
 				modelRegencies: 'dataS',
 				modelRegenciesStat: 'dataStatS'
 			}),
-			...mapGetters('diklatTempat',{
-				modelTempat: 'dataS',
-				modelTempatStat: 'dataStatS',
+			...mapGetters('tempat',{
+				modelTempat: 'dataSForm',
+				modelTempatStat: 'dataStatSForm',
 			}),
 			...mapGetters('user',{
 				profile: 'profile',

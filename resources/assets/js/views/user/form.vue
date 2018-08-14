@@ -367,11 +367,11 @@
 				}
 			},
 			modalTutup() {
- 				if(this.updateStat === 'success'){
+				this.modalShow = false;
+
+				if(this.updateStat == 'success'){
 					this.back();
 				}
-
-				this.modalShow = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){

@@ -166,8 +166,8 @@
 								<a><i class="icon-plus22"></i> Tambah Diklat BKCU</a>
 							</router-link>
 
-							<!-- tambah diklat tempat -->
-							<router-link :to="{ name:'diklatTempatCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_tempat']">
+							<!-- tambah tempat -->
+							<router-link :to="{ name:'tempatCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_tempat']">
 								<a><i class="icon-plus22"></i> Tambah Tempat</a>
 							</router-link>
 
@@ -182,8 +182,8 @@
 							<!-- separator -->
 							<li class="divider"></li>
 
-							<!-- diklat tempat -->
-							<router-link :to="{ name: 'diklatTempat' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_diklat_tempat']">
+							<!-- tempat -->
+							<router-link :to="{ name: 'tempat' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tempat']">
 								<a><i class="icon-location4"></i> Tempat</a>
 							</router-link>
 						</ul>

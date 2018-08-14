@@ -100,7 +100,7 @@
 												<!-- judul -->
 												<div class="col-md-12">
 													<h6 class="form-wizard-title text-semibold text-primary">
-														Pekerjaan
+														<span class="form-wizard-count">3</span> Pekerjaan
 														<small class="display-block">Riwayat pekerjaan pengelola</small>
 													</h6>
 												</div>
@@ -233,7 +233,7 @@
 												<!-- judul -->
 												<div class="col-md-12">
 													<h6 class="form-wizard-title text-semibold text-primary">
-														Pendidikan
+														<span class="form-wizard-count">4</span> Pendidikan
 														<small class="display-block">Riwayat pendidikan pengelola</small>
 													</h6>
 												</div>
@@ -361,7 +361,7 @@
 												<!-- judul -->
 												<div class="col-md-12">
 													<h6 class="form-wizard-title text-semibold text-primary">
-														Organisasi
+														<span class="form-wizard-count">5</span> Organisasi
 														<small class="display-block">Riwayat berorganisasi pengelola</small>
 													</h6>
 												</div>
@@ -484,7 +484,7 @@
 												<!-- judul -->
 												<div class="col-md-12">
 													<h6 class="form-wizard-title text-semibold text-primary">
-														Keluarga
+														<span class="form-wizard-count">6</span> Keluarga
 														<small class="display-block">Data keluarga pengelola</small>
 													</h6>
 												</div>
@@ -595,7 +595,7 @@
 												<!-- judul -->
 												<div class="col-md-12">
 													<h6 class="form-wizard-title text-semibold text-primary">
-														Anggota CU
+														<span class="form-wizard-count">7</span> Anggota CU
 														<small class="display-block">Data keanggotaan CU</small>
 													</h6>
 												</div>
@@ -713,7 +713,7 @@
 				 <div v-if="tabName == 'riwayatPekerjaan'">
 					<form @submit.prevent="savePekerjaan" data-vv-scope="form"> 
 						<div class="row">
-							<form-pekerjaan :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.pekerjaan"></form-pekerjaan>
+							<form-pekerjaan :form="formRiwayat" :modelCu="modelCu" :modelTp="modelTp" v-if="formRiwayat.pekerjaan"></form-pekerjaan>
 
 							<div class="col-sm-12">
 								<hr>
@@ -1243,6 +1243,10 @@
 			...mapGetters('cu',{
 				modelCu: 'dataS',
 				modelCuStat: 'dataStatS',
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 			...mapGetters('user',{
 				profile: 'profile',

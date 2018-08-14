@@ -279,15 +279,14 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::get('/pus_all', 'PusController@indexAll');
     Route::post('/pus/store', 'PusController@store');
 
-    // diklat tempat
-    Route::get('/diklatTempat', 'DiklatTempatController@index');
-    Route::get('/diklatTempat/get', 'DiklatTempatController@get');
-    Route::get('/diklatTempat/getId/{id}', 'DiklatTempatController@getId');
-    Route::get('/diklatTempat/create', 'DiklatTempatController@create');
-    Route::get('/diklatTempat/edit/{id}', 'DiklatTempatController@edit');
-    Route::post('/diklatTempat/store', 'DiklatTempatController@store');
-    Route::post('/diklatTempat/update/{id}', 'DiklatTempatController@update');
-    Route::delete('/diklatTempat/{id}', 'DiklatTempatController@destroy');
+    // tempat 
+    Route::get('/tempat', 'TempatController@index');
+    Route::get('/tempat/get/{id}', 'TempatController@get');
+    Route::get('/tempat/create', 'TempatController@create');
+    Route::get('/tempat/edit/{id}', 'TempatController@edit');
+    Route::post('/tempat/store', 'TempatController@store');
+    Route::post('/tempat/update/{id}', 'TempatController@update');
+    Route::delete('/tempat/{id}', 'TempatController@destroy');
 
     //provinces
     Route::get('/provinces', 'ProvincesController@index');

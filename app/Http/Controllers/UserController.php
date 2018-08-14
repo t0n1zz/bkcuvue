@@ -332,10 +332,10 @@ class UserController extends Controller
 		$this->hakAkses($request->create_diklat_pus,'create_diklat_pus',$user);
 		$this->hakAkses($request->update_diklat_pus,'update_diklat_pus',$user);
 		$this->hakAkses($request->destroy_diklat_pus,'destroy_diklat_pus',$user);
-		$this->hakAkses($request->index_diklat_tempat,'index_diklat_tempat',$user);
-		$this->hakAkses($request->create_diklat_tempat,'create_diklat_tempat',$user);
-		$this->hakAkses($request->update_diklat_tempat,'update_diklat_tempat',$user);
-		$this->hakAkses($request->destroy_diklat_tempat,'destroy_diklat_tempat',$user);
+		$this->hakAkses($request->index_tempat,'index_tempat',$user);
+		$this->hakAkses($request->create_tempat,'create_tempat',$user);
+		$this->hakAkses($request->update_tempat,'update_tempat',$user);
+		$this->hakAkses($request->destroy_tempat,'destroy_tempat',$user);
 		$this->hakAkses($request->index_cu,'index_cu',$user);
 		$this->hakAkses($request->create_cu,'create_cu',$user);
 		$this->hakAkses($request->update_cu,'update_cu',$user);

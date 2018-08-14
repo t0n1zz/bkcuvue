@@ -237,6 +237,7 @@
 				this.$emit('confirmOk');
 			},
 			successOk() {
+				this.afterLeave();
 				this.$emit('successOk');
 			},
 			failOk() {

@@ -190,7 +190,7 @@
 										</h6>
 									</div>
 
-									<form-pekerjaan :form="form" :modelCu="modelCu"></form-pekerjaan>
+									<form-pekerjaan :form="form" :modelCu="modelCu" :modelTp="modelTp"></form-pekerjaan>
 
 								</div>
 							</div>
@@ -471,6 +471,10 @@
 			...mapGetters('cu',{
 				modelCu: 'dataS',
 				modelCuStat: 'dataStatS',
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 			modelPus() {
 				return this.$store.getters.getPusS;

@@ -66,6 +66,7 @@
 					<option value="Manajer">Manajer</option>
 					<option value="Supervisor">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
 					<option value="Staf">Staf</option>
+					<option value="Kontrak">Kontrak</option>
 				</select>
 
 				<!-- error message -->
@@ -77,7 +78,7 @@
 		</div>
 
 		<!-- jabatan -->
-		<div class="col-sm-12" v-if="form.pekerjaan.tingkat != ''">
+		<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
 			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
 
 				<!-- title -->
@@ -91,6 +92,31 @@
 				<!-- error message -->
 				<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
 					<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
+				</small>
+				<small class="text-muted" v-else>&nbsp;</small>
+			</div>
+		</div>
+
+		<!-- tp -->
+		<div class="col-sm-6" v-if="form.pekerjaan.tipe == 1 && form.pekerjaan.tingkat != 'Komite' && form.pekerjaan.tingkat != 'Pengawas' && form.pekerjaan.tingkat != 'Pengurus' && form.pekerjaan.tingkat != ''">
+			<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
+
+				<!-- title -->
+				<h5 :class="{ 'text-danger' : errors.has('form.id_tp')}">
+					<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
+					TP:
+				</h5>
+
+				<!-- select -->
+				<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU">
+					<option disabled value="">Silahkan pilih TP</option>
+					<option value="0">Kantor Pusat</option>
+					<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
+				</select>
+
+				<!-- error message -->
+				<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
+					<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tp') }}
 				</small>
 				<small class="text-muted" v-else>&nbsp;</small>
 			</div>
@@ -150,7 +176,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['form','modelCu'],
+		props:['form','modelCu','modelTp'],
 		components: {
 			Cleave
 		},
@@ -193,6 +219,7 @@
 					this.form.pekerjaan.tipe = 2;
 				}else{
 					this.form.pekerjaan.tipe = 1;
+					this.$store.dispatch('tp/getCu',value);
 				}
 			}
 		},

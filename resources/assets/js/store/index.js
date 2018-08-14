@@ -20,7 +20,7 @@ import { laporanTp } from './modules/laporanTp';
 import { pengelola } from './modules/pengelola';
 import { produkCu } from './modules/produkCu';
 import { diklatPus } from './modules/diklatPus';
-import { diklatTempat } from './modules/diklatTempat';
+import { tempat } from './modules/tempat';
 
 Vue.use(Vuex);
 
@@ -45,6 +45,6 @@ export default new Vuex.Store({
 		 pengelola,
 		 produkCu,
 		 diklatPus,
-		 diklatTempat
+		 tempat
 	 }
 });

@@ -33,12 +33,12 @@ class DiklatPus extends Model {
 
     public static function initialize(){
         return [
-            'id_tempat' => '0', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','keterangan' => '', 'status' => '', 'peserta_max' => '0', 'peserta_min' => '0'
+            'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','keterangan' => '', 'status' => '', 'peserta_max' => '0', 'peserta_min' => '0'
         ];
     }
         
     public function tempat(){
-        return $this->belongsTo('App\DiklatTempat','id_tempat','id');
+        return $this->belongsTo('App\Tempat','id_tempat','id');
     }
 
     public function sasaran_hub(){
