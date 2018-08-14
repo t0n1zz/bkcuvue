@@ -372,7 +372,7 @@
 						filterType: 'string'
 					},
 					{
-						title: 'E-mail',
+						title: 'Email',
 						key: 'email',
 						excelType: 'string',
 						sort: false,

@@ -48,7 +48,7 @@
 								<h5 class="form-wizard-title text-semibold text-primary">
 
 									<!-- index -->
-									<span class="form-wizard-count">{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</span> 
+								<span class="form-wizard-count">{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</span> 
 
 									<!-- name -->
 									{{ props.item.name }}

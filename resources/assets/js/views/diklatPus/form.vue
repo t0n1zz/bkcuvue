@@ -254,7 +254,7 @@
 												Kabupaten/Kota:</h5>
 
 											<!-- text -->
-											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-live-search="true" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeTempat($event.target.value)" :disabled="modelRegencies.length === 0">
+											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-live-search="true" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
 													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 													<span v-else>Silahkan pilih kabupaten/kota</span>
@@ -282,7 +282,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="modelTempat.length === 0">
+											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="modelTempat.length === 0" @change="changeTempat($event.target.value)">
 												<option disabled value="">Silahkan pilih tempat</option>
 												<option data-divider="true"></option>
 												<option value="0">Belum ditentukan tempat</option>
@@ -298,6 +298,71 @@
 										</div>
 									</div>
 
+									<!-- tempat data -->
+									<div class="col-md-12" v-if="tempatData != ''">
+										<div class="well well-sm">
+											<div class="row">
+												<div class="col-md-4">
+													<img :src="'/images/tempat/' + tempatData.gambar + 'n.jpg'" class="img-rounded img-responsive" v-if="tempatData.gambar">
+													<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive" v-else>
+												</div>
+												<div class="col-md-8">
+													<h5><b>{{ tempatData.name }}</b></h5>
+													<div class="row">
+														<div class="col-md-6">
+															<ul>
+																<li><b>Provinsi:</b> 
+																	<span v-if="tempatData.provinces">{{ tempatData.provinces.name }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>Kabupaten/Kota:</b>
+																	<span v-if="tempatData.regencies">{{ tempatData.regencies.name }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>Kecamatan:</b> 
+																	<span v-if="tempatData.districts">{{ tempatData.districts.name }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>Kelurahan:</b> 
+																	<span v-if="tempatData.villages">{{ tempatData.villages.name }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>Alamat:</b> 
+																	<span v-if="tempatData.alamat">{{ tempatData.alamat }}</span>
+																	<span v-else>-</span>
+																</li>
+															</ul>
+														</div>
+														<div class="col-md-6">
+															<ul>
+																<li><b>Website:</b>
+																	<span v-if="tempatData.website">{{ tempatData.website }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>Email:</b>
+																	<span v-if="tempatData.email">{{ tempatData.email }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>No. Telp:</b>
+																	<span v-if="tempatData.telp">{{ tempatData.telp }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>No. Hp:</b>
+																	<span v-if="tempatData.hp">{{ tempatData.hp }}</span>
+																	<span v-else>-</span>
+																</li>
+																<li><b>Kode Pos:</b>
+																	<span v-if="tempatData.pos">{{ tempatData.pos }}</span>
+																	<span v-else>-</span>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>
@@ -310,12 +375,12 @@
 									<!-- judul -->
 									<div class="col-md-12">
 										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">3</span> Keterangan
-											<small class="display-block">Keterangan diklat</small>
+											<span class="form-wizard-count">3</span> Informasi Tambahan
+											<small class="display-block">Informasi tambahan diklat</small>
 										</h6>
 									</div>
 
-									<!-- isi artikel -->
+									<!-- keterangan -->
 									<div class="col-md-12">
 										<div class="form-group">
 
@@ -357,6 +422,7 @@
 
 <script>
 	import Vue from 'vue';
+	import _ from 'lodash';
 	import axios from 'axios';
 	import { mapGetters } from 'vuex'
 	import corefunc from '../../assets/core/app.js';
@@ -389,6 +455,7 @@
 				kelas: 'diklatPus',
 				redirect: '/cu/',
 				peserta: [],
+				tempatData: '',
 				cleaveOption: {
           date:{
             date: true,
@@ -509,8 +576,14 @@
 
 				this.$store.dispatch('regencies/get');
 			},
-			changeTempat(id){
+			changeRegencies(id){
 				this.$store.dispatch('tempat/get', id);
+				this.tempatData = "";
+			},
+			changeTempat(id){
+				this.tempatData = _.find(this.modelTempat, function(o){
+					return o.id == id;
+				});
 			},
 			save() {
 				this.form.peserta = peserta;

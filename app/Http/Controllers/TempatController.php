@@ -27,7 +27,7 @@ class TempatController extends Controller{
 	
 	public function get($id)
 	{
-		$table_data = Tempat::where('id_regencies',$id)->select('id','name')->orderby('name','asc')->get();
+		$table_data = Tempat::with('Villages','Districts','Regencies','Provinces')->where('id_regencies',$id)->orderby('name','asc')->get();
 
 		return response()
 			->json([
