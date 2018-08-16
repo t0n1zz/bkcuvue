@@ -20,11 +20,11 @@ class DiklatPus extends Model {
     ];
     
     protected $fillable = [
-      'id_tempat','kode_diklat','name','kota','periode','mulai','selesai','keterangan','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
+      'id_regencies','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','jadwal','keterangan','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
     ];
 
     protected $filter = [
-        'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','keterangan','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
+        'id','id_regencies','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
     ];
 
     public function getNameAttribute($value){
@@ -33,8 +33,13 @@ class DiklatPus extends Model {
 
     public static function initialize(){
         return [
-            'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','keterangan' => '', 'status' => '', 'peserta_max' => '0', 'peserta_min' => '0'
+            'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '0', 'peserta_min' => '0'
         ];
+    }
+        
+    public function Regencies()
+    {
+        return $this->belongsTo('App\Region\Regencies','id_regencies','id')->select('id','name');
     }
         
     public function tempat(){

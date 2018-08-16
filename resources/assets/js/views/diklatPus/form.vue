@@ -215,15 +215,15 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Peserta:</h5>
+											<h5>Sasaran Peserta:</h5>
 
-											<label class="checkbox-inline"><input type="checkbox" value="Staf" v-model="peserta">Staf</label>
-											<label class="checkbox-inline"><input type="checkbox" value="Supervisor" v-model="peserta">Supervisor</label>
-											<label class="checkbox-inline"><input type="checkbox" value="Manajer" v-model="peserta">Manajer</label>
-											<label class="checkbox-inline"><input type="checkbox" value="Senior Manajer" v-model="peserta">Senior Manajer</label>
-											<label class="checkbox-inline"><input type="checkbox" value="Komite" v-model="peserta">Komite</label>
-											<label class="checkbox-inline"><input type="checkbox" value="Pengawas" v-model="peserta">Pengawas</label>
-											<label class="checkbox-inline"><input type="checkbox" value="Pengurus" v-model="peserta">Pengurus</label>
+											<label class="checkbox-inline"><input type="checkbox" value="1" v-model="sasaran">Staf</label>
+											<label class="checkbox-inline"><input type="checkbox" value="2" v-model="sasaran">Supervisor</label>
+											<label class="checkbox-inline"><input type="checkbox" value="3" v-model="sasaran">Manajer</label>
+											<label class="checkbox-inline"><input type="checkbox" value="4" v-model="sasaran">Senior Manajer</label>
+											<label class="checkbox-inline"><input type="checkbox" value="5" v-model="sasaran">Komite</label>
+											<label class="checkbox-inline"><input type="checkbox" value="6" v-model="sasaran">Pengawas</label>
+											<label class="checkbox-inline"><input type="checkbox" value="7" v-model="sasaran">Pengurus</label>
 										</div>
 									</div>
 									
@@ -282,11 +282,11 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="modelTempat.length === 0" @change="changeTempat($event.target.value)">
+											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
 												<option disabled value="">Silahkan pilih tempat</option>
 												<option data-divider="true"></option>
 												<option value="0">Belum ditentukan tempat</option>
-												<option data-divider="true"></option>
+												<option data-divider="true" v-if="modelTempat.length != 0"></option>
 												<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
 											</select>
 
@@ -385,10 +385,22 @@
 										<div class="form-group">
 
 											<!-- title -->
+											<h5>Jadwal:</h5>
+
+											<!-- summernote -->
+											<app-summernote name="jadwal" :model="form.jadwal" :config="summernoteconfig" :formStat="formStat" @change="value => { form.jadwal = value }"></app-summernote>
+										</div>
+									</div>
+
+									<!-- keterangan -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
 											<h5>Keterangan:</h5>
 
 											<!-- summernote -->
-											<app-summernote name="editor" :model="form.keterangan" :config="summernoteconfig" :formStat="formStat" @change="value => { form.content = value }"></app-summernote>
+											<app-summernote name="keterangan" :model="form.keterangan" :config="summernoteconfig" :formStat="formStat" @change="value => { form.keterangan = value }"></app-summernote>
 										</div>
 									</div>
 									
@@ -453,8 +465,7 @@
 				level: 2,
 				level2Title: 'Diklat BKCU',
 				kelas: 'diklatPus',
-				redirect: '/cu/',
-				peserta: [],
+				sasaran: [],
 				tempatData: '',
 				cleaveOption: {
           date:{
@@ -489,17 +500,6 @@
 				},
 				summernoteconfig: {
 					height: 400,
-					popover: {
-						image: [
-							['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
-							/* ['float', ['floatLeft', 'floatRight', 'floatNone']], */
-							/* Those are the old regular float buttons */
-							['floatBS', ['floatBSLeft', 'floatBSNone', 'floatBSRight']],
-							/* Those come from the BS plugin, in any order, you can even keep both! */
-							['custom', ['imageAttributes', 'imageShape']],
-							['remove', ['removeMedia']],
-						],
-					},
 					toolbar: [
 						['style', ['addclass', 'bold', 'italic', 'underline', 'hr']],
 						['font', ['strikethrough', 'superscript', 'subscript', 'clear']],
@@ -507,7 +507,7 @@
 						['para', ['ul', 'ol']],
 						['paragraph', ['paragraph']],
 						['table', ['table']],
-						['insert', ['link', 'picture', 'video']],
+						['insert', ['link']],
 						['misc', ['fullscreen']],
 						['misc2', ['undo', 'redo']]
 					]
@@ -534,9 +534,18 @@
 		watch: {
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode == 'edit'|| this.$route.meta.mode == 'profile' ){
-
+					if(this.$route.meta.mode == 'edit'){
+						var i;
+						for(i = 0; i < this.form.sasaran_hub.length; i++){
+							this.sasaran.push(this.form.sasaran_hub[i].id_sasaran);
+						}
+						this.changeRegencies(this.form.id_regencies);
 					}
+				}
+			},
+			modelTempatStat(value){
+				if(value === "success"){
+					this.changeTempat(this.form.id_tempat);
 				}
 			},
 			updateStat(value){
@@ -559,14 +568,6 @@
 					this.title = 'Ubah ' + this.level2Title;
 					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
-				} else if(this.$route.meta.mode == 'profile'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Profile ' + this.level2Title;
-					this.titleDesc = 'Mengubah profile ' + this.level2Title;
-					this.titleIcon = 'icon-office';
-					this.level = 1;
-					this.level2Title = '';
-					this.cancelState = '';
 				} else {
 					this.$store.dispatch(this.kelas + '/create');
 					this.title = 'Tambah ' + this.level2Title;
@@ -581,16 +582,18 @@
 				this.tempatData = "";
 			},
 			changeTempat(id){
-				this.tempatData = _.find(this.modelTempat, function(o){
-					return o.id == id;
-				});
+				if(id != 0){
+					this.tempatData = _.find(this.modelTempat, function(o){
+						return o.id == id;
+					});
+				}
 			},
 			save() {
-				this.form.peserta = peserta;
+				this.form.sasaran = this.sasaran;
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode == 'edit' || this.$route.meta.mode == 'profile'){
+						if(this.$route.meta.mode == 'edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
 						this.$store.dispatch(this.kelas + '/store', formData);
@@ -606,13 +609,11 @@
 				this.$router.push({name: this.kelas});
 			},
 			modalTutup() {
- 				if(this.updateStat === 'success' && this.$route.meta.mode == 'edit'){
-					this.$router.push(this.redirect);
+ 				if(this.updateStat === 'success'){
+					this.back();
 				}
 
 				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){

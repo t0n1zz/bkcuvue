@@ -81,11 +81,12 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.tempat.name" v-if="props.item.tempat"></check-value>
-						<span v-else> {{columnData[4].groupNoKey}}</span>	
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>: {{columnData[4].groupNoKey}}</span>	
 					</td>
-					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.kota"></check-value>
+					<td v-if="!columnData[5].hide && !columnData[5].disable">
+						<check-value :value="props.item.tempat.name" v-if="props.item.tempat"></check-value>
+						<span v-else> {{columnData[5].groupNoKey}}</span>	
 					</td>
 					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.periode"></check-value>
@@ -145,11 +146,18 @@
 								<td><b>{{columnData[3].title}}</b></td>
 								<td><check-value :value="props.item.name" :isTrim="false" :frontText="': '"></check-value></td>
 							</tr>
-							<tr v-if="!columnData[4].hide">
+							<tr v-if="!columnData[4].hide" class="collapse" :class="'collap'+props.item.id">
 								<td><b>{{columnData[4].title}}</b></td>
 								<td>
+									<check-value :value="props.item.regencies.name" :isTrim="false" :frontText="': '" v-if="props.item.regencies"></check-value>
+									<span v-else>: {{columnData[4].groupNoKey}}</span>	
+								</td>
+							</tr>
+							<tr v-if="!columnData[5].hide">
+								<td><b>{{columnData[5].title}}</b></td>
+								<td>
 									<check-value :value="props.item.tempat.name" :isTrim="false" :frontText="': '" v-if="props.item.tempat"></check-value>
-									<span v-else>: {{columnData[3].groupNoKey}}</span>	
+									<span v-else>: {{columnData[5].groupNoKey}}</span>	
 								</td>
 							</tr>
 							<tr v-if="!columnData[5].hide">
@@ -316,6 +324,19 @@
 						filterType: 'string'
 					},
 					{
+						title: 'Kabupaten/Kota',
+						key: 'regencies_name',
+						groupKey: 'regencies.name',
+						groupNoKey: '-',
+						excelType: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterKey: 'regencies.name',
+						filterType: 'string'
+					},
+					{
 						title: 'Tempat',
 						key: 'tempat_name',
 						groupKey: 'tempat.name',
@@ -326,16 +347,6 @@
 						disable: false,
 						filter: true,
 						filterKey: 'tempat.name',
-						filterType: 'string'
-					},
-					{
-						title: 'Kota',
-						key: 'kota',
-						excelType: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
 						filterType: 'string'
 					},
 					{

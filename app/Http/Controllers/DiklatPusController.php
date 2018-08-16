@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\DiklatPus;
+use App\DiklatPusSasaranHub;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
@@ -16,7 +17,7 @@ class DiklatPusController extends Controller{
 
 	public function index()
 	{
-		$table_data = DiklatPus::with('tempat','sasaran_hub.sasaran')->filterPaginateOrder();
+		$table_data = DiklatPus::with('tempat','sasaran_hub.sasaran','Regencies')->filterPaginateOrder();
 
 		return response()
 		->json([
@@ -50,9 +51,10 @@ class DiklatPusController extends Controller{
 
 		$name = $request->name;
 
+		$kelas = DiklatPus::create($request->all());
 
-		$kelas = DiklatPus::create();
-		
+		$this->input_sasaran($kelas->id,$request);
+ 
 		return response()
 			->json([
 				'saved' => true,
@@ -63,7 +65,7 @@ class DiklatPusController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = DiklatPus::findOrFail($id);
+		$kelas = DiklatPus::with('tempat','sasaran_hub')->findOrFail($id);
 
 		return response()
 				->json([
@@ -80,13 +82,33 @@ class DiklatPusController extends Controller{
 
 		$kelas = DiklatPus::findOrFail($id);
 
-		$kelas->update();	
+		$kelas->update($request->all());
+		
+		$this->input_sasaran($id,$request);
 
 		return response()
 			->json([
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil diubah'
 			]);
+	}
+
+	public function input_sasaran($id_kegiatan,$request)
+	{
+			$sasarans = $request->sasaran;
+
+			if(!empty($sasarans) && !empty($id_kegiatan)){
+					DiklatPusSasaranHub::where('id_kegiatan',$id_kegiatan)->delete();
+
+					foreach($sasarans as $sasaran){
+						foreach($sasaran as $s){
+							$kelasSasaran = new DiklatPusSasaranHub();
+							$kelasSasaran->id_kegiatan = $id_kegiatan;
+							$kelasSasaran->id_sasaran = $s;
+							$kelasSasaran->save();
+						}
+					}
+			}
 	}
 
 	public function destroy($id)
