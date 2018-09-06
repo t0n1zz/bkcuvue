@@ -174,53 +174,49 @@
       </context-menu>
 
       <!-- footer info -->
-      <div class="panel-footer hidden-print">
-        <div class="heading-elements">
+      <div class="card-footer bg-light d-sm-flex justify-content-sm-between align-items-sm-center text-center text-sm-left py-sm-2 hidden-print">
+        <!-- total entri note success-->
+        <div v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} -
+          {{itemData.to}} entri dari {{itemData.total}} entri</div>
 
-          <!-- total entri note success-->
-          <span class="heading-text text-semibold" v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} -
-            {{itemData.to}} entri dari {{itemData.total}} entri</span>
+        <!-- total entri note loading -->
+        <div v-else-if="itemDataStat === 'loading'">Menampilkan
+          <i class="icon-spinner2 spinner"></i> -
+          <i class="icon-spinner2 spinner"></i> entri dari
+          <i class="icon-spinner2 spinner"></i> entri</div>
 
-          <!-- total entri note loading -->
-          <span class="heading-text text-semibold" v-else-if="itemDataStat === 'loading'">Menampilkan
-            <i class="icon-spinner2 spinner"></i> -
-            <i class="icon-spinner2 spinner"></i> entri dari
-            <i class="icon-spinner2 spinner"></i> entri</span>
+        <!-- pagination success-->
+        <ul class="pagination pagination-sm pagination-pager pagination-pager-linked justify-content-between mt-2 mt-sm-0" v-if="itemDataStat === 'success'">
+          <li class="page-item" :class="{'disabled' : !itemData.prev_page_url}">
+            <a href="#" class="page-link" @click.prevent="prevPage">
+              <i class="icon-arrow-left12"></i> sebelumnya
+            </a>
+          </li>
+          <li class="page-item" :class="{'disabled' : !itemData.next_page_url}">
+            <a href="#" class="page-link" @click.prevent="nextPage">
+              selanjutnya <i class="icon-arrow-right13"></i>
+            </a>
+          </li>
+        </ul>
 
-          <!-- pagination success-->
-          <ul class="pagination pagination-flat pagination-xs pull-right" v-if="itemDataStat === 'success'">
-            <li :class="{'disabled' : !itemData.prev_page_url}">
-              <a @click.prevent="prevPage">
-                <i class="icon-arrow-left12"></i>
-              </a>
-            </li>
-            <li :class="{'disabled' : !itemData.next_page_url}">
-              <a @click.prevent="nextPage">
-                <i class="icon-arrow-right13"></i>
-              </a>
-            </li>
-          </ul>
-
-          <!-- pagination loading -->
-          <ul class="pagination pagination-flat pagination-xs pull-right" v-else-if="itemDataStat === 'loading'">
-            <li class="disabled">
-              <a>
-                <i class="icon-arrow-left12"></i>
-              </a>
-            </li>
-            <li class="active">
-              <a>
-                <i class="icon-spinner2 spinner"></i>
-              </a>
-            </li>
-            <li class="disabled">
-              <a>
-                <i class="icon-arrow-right13"></i>
-              </a>
-            </li>
-          </ul>
-
-        </div>
+        <!-- pagination loading -->
+        <ul class="pagination pagination-sm pagination-pager pagination-pager-linked justify-content-between mt-2 mt-sm-0" v-else-if="itemDataStat === 'loading'">
+          <li class="disabled">
+            <a>
+              <i class="icon-arrow-left12"></i>
+            </a>
+          </li>
+          <li class="active">
+            <a>
+              <i class="icon-spinner2 spinner"></i>
+            </a>
+          </li>
+          <li class="disabled">
+            <a>
+              <i class="icon-arrow-right13"></i>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 
