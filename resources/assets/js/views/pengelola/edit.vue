@@ -797,7 +797,7 @@
 	import moment from 'moment';
 	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
-	import bootstrapSelect from '../../assets/plugins/forms/selects/bootstrap_select.min.js';
+	import bootstrapSelect from '../../assets/plugins/forms/selects/bootstrap_multiselect.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
@@ -895,7 +895,7 @@
 			next(vm => vm.fetch());
 		},
 		mounted() {
-			corefunc.core_function();
+			// corefunc.core_function();
 			// bootstrapSelect.init();
 			this.other();
 		},

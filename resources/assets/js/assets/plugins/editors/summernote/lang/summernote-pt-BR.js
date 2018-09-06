@@ -5,23 +5,31 @@
         bold: 'Negrito',
         italic: 'Itálico',
         underline: 'Sublinhado',
-        strikethrough: 'Riscado',
         clear: 'Remover estilo da fonte',
         height: 'Altura da linha',
+        name: 'Fonte',
+        strikethrough: 'Riscado',
         size: 'Tamanho da fonte'
       },
       image: {
         image: 'Imagem',
         insert: 'Inserir imagem',
-        resizeFull: 'Resize Full',
-        resizeHalf: 'Resize Half',
-        resizeQuarter: 'Resize Quarter',
-        floatLeft: 'Float Left',
-        floatRight: 'Float Right',
-        floatNone: 'Float None',
+        resizeFull: 'Redimensionar Completamente',
+        resizeHalf: 'Redimensionar pela Metade',
+        resizeQuarter: 'Redimensionar um Quarto',
+        floatLeft: 'Flutuar para Esquerda',
+        floatRight: 'Flutuar para Direira',
+        floatNone: 'Não Flutuar',
         dragImageHere: 'Arraste uma imagem para cá',
         selectFromFiles: 'Selecione a partir dos arquivos',
-        url: 'URL da image'
+        url: 'URL da imagem'
+      },
+      video: {
+        video: 'Vídeo',
+        videoLink: 'Link para vídeo',
+        insert: 'Inserir vídeo',
+        url: 'URL do vídeo?',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion ou Youku)'
       },
       link: {
         link: 'Link',
@@ -29,17 +37,17 @@
         unlink: 'Remover link',
         edit: 'Editar',
         textToDisplay: 'Texto para exibir',
-        url: 'Para qual URL esse link leva?'
-      },
-      video: {
-        video: 'Vídeo',
-        videoLink: 'Link para vídeo',
-        insert: 'Inserir vídeo',
-        url: 'URL do vídeo?',
-        providers: '(YouTube, Vimeo, Vine, Instagram, ou DailyMotion)'
+        url: 'Para qual URL esse link leva?',
+        openInNewWindow: 'Abrir em uma nova janela'
       },
       table: {
-        table: 'Tabela'
+        table: 'Tabela',
+        addRowAbove: 'Adicionar linha acima',
+        addRowBelow: 'Adicionar linha abaixo',
+        addColLeft: 'Adicionar coluna a esquerda',
+        addColRight: 'Adicionar coluna a direita',
+        delRow: 'Excluir linha',
+        delCol: 'Excluir coluna'
       },
       hr: {
         insert: 'Inserir linha horizontal'
@@ -95,6 +103,35 @@
       history: {
         undo: 'Desfazer',
         redo: 'Refazer'
+      },
+      help: {
+        'insertParagraph': 'Inserir Parágrafo',
+        'undo': 'Desfazer o último comando',
+        'redo': 'Refazer o último comando',
+        'tab': 'Tab',
+        'untab': 'Desfazer tab',
+        'bold': 'Colocar em negrito',
+        'italic': 'Colocar em itálico',
+        'underline': 'Sublinhado',
+        'strikethrough': 'Tachado',
+        'removeFormat': 'Remover estilo',
+        'justifyLeft': 'Alinhar à esquerda',
+        'justifyCenter': 'Centralizar',
+        'justifyRight': 'Alinhar à esquerda',
+        'justifyFull': 'Justificar',
+        'insertUnorderedList': 'Lista não ordenada',
+        'insertOrderedList': 'Lista ordenada',
+        'outdent': 'Recuar parágrafo atual',
+        'indent': 'Avançar parágrafo atual',
+        'formatPara': 'Alterar formato do bloco para parágrafo(tag P)',
+        'formatH1': 'Alterar formato do bloco para H1',
+        'formatH2': 'Alterar formato do bloco para H2',
+        'formatH3': 'Alterar formato do bloco para H3',
+        'formatH4': 'Alterar formato do bloco para H4',
+        'formatH5': 'Alterar formato do bloco para H5',
+        'formatH6': 'Alterar formato do bloco para H6',
+        'insertHorizontalRule': 'Inserir régua horizontal',
+        'linkDialog.show': 'Inserir um Hiperlink'
       }
     }
   });

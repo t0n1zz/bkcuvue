@@ -2,13 +2,13 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cu extends Model {
     
-    use FilterPaginateOrder, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'cu';
 		protected static $logFillable = true;
@@ -25,8 +25,16 @@ class Cu extends Model {
       'bergabung','created_at','updated_at','deleted_at'
     ];
 
-    protected $filter = [
-        'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','deleted_at', 'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name','has_tp_cu_count'
+    protected $allowedFilters = [
+        'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+        
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name','has_tp_cu_count'
+    ];
+
+    protected $orderable = [
+        'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+        
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name','has_tp_cu_count'
     ];
 
     public static function initialize(){

@@ -1,329 +1,318 @@
 <template>
 	<div>
-		<div class="navbar navbar-inverse bg-primary">
-			<div class="navbar-header">
-				<router-link :to="{ name: 'dashboard' }" class="navbar-brand">
-					<strong>SIMO</strong>
+		<!-- first navbar -->
+		<div class="navbar navbar-expand-md navbar-dark bg-indigo">
+
+			<div class="navbar-brand wmin-0 mr-5">
+				<router-link :to="{ name: 'dashboard' }">
+					SIMO
 				</router-link>
-				<ul class="nav navbar-nav pull-right visible-xs-block">
-					<li>
-						<a data-toggle="collapse" data-target="#navbar-mobile">
-							<i class="icon-tree5"></i>
-						</a>
-					</li>
-				</ul>
-				<p class="navbar-text">
-					<span class="label bg-success-400">
+			</div>
+
+			<div class="d-md-none">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+					<i class="icon-tree5"></i>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbar-mobile">
+				<span class="navbar-text ml-md-3 mr-md-auto">
+					<span class="badge bg-success-400 badge-pill">
 						<span v-if="profile.pus">{{profile.pus.name}}</span>
 						<span v-if="profile.cu">- CU {{profile.cu.name}}</span>
 					</span>
-				</p>
-			</div>
-			<div class="navbar-collapse collapse" id="navbar-mobile">
-				<ul class="nav navbar-nav navbar-right">
+				</span>
+
+				<ul class="navbar-nav">
 
 					<!-- notification -->
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+					<li class="nav-item dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
 							<i class="icon-bell2"></i>
-							<span class="visible-xs-inline-block position-right">Pemberitahuan</span>
-							<span class="badge bg-warning-400" v-if="unreadNotification > 0">{{unreadNotification}}</span>
-						</a>
-						
-						<div class="dropdown-menu dropdown-content width-350">
-							<div class="dropdown-content-heading bg-primary-300" v-if="unreadNotification > 0">
-								Terdapat {{unreadNotification}} pemberitahuan
+							<span class="d-md-none ml-2">Pemberitahuan</span>
+							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotification > 0">{{unreadNotification}}</span>
+						</a>			
 
-								<ul class="icons-list">
-									<li><a @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a></li>
+						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+							<div class="dropdown-content-header" v-if="unreadNotification > 0">
+								<span class="font-weight-semibold">Terdapat {{unreadNotification}} pemberitahuan</span>
+								<a class="text-default" @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a>
+							</div>
+							<div class="dropdown-content-header" v-else>
+								<span class="font-weight-semibold">Tidak ada pemberitahuan <span v-if="notification.length > 0">baru</span></span>
+							</div>
+
+							<div class="dropdown-content-body dropdown-scrollable">
+								<ul class="media-list" v-if="notification.length > 0">
+									<li class="media" v-for="notif in notification">
+										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
+												<span class="font-weight-semibold">
+												{{notif.user.name}} [ {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span>]
+												</span>
+												<span class="text-muted float-right font-size-sm">{{notif.created_at | relativeHour}}</span>
+											</div>
+											<hr class="mt-5 mb-5">
+											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+										</div>
+									</li>
 								</ul>
 							</div>
-							<div class="dropdown-content-heading text-center bg-primary-300" v-else>
-								Tidak terdapat pemberitahuan 
-								<span v-if="notification.length > 0">baru</span>
-							</div>	
 
-							<ul class="media-list dropdown-content-body mt-15" v-if="notification.length > 0">
-
-								<li class="media" v-for="notif in notification">
-									<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
-										<a class="media-heading" :class="{'text-muted' : notif.read_at != null}">
-											<b>{{notif.user.name}} 
-												[
-													{{notif.data.cu}}
-													<span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span>
-												]
-											</b>
-											<span class="media-annotation pull-right">{{notif.created_at | relativeHour}}</span>
-										</a>
-										<hr class="mt-5 mb-5">
-										<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="dropdown-content-footer" v-if="notification.length > 0">
+							<div class="dropdown-content-footer justify-content-center p-0"  v-if="notification.length > 0">
 								<a @click.prevent="goToNotifCenter()">LIHAT SEMUA PEMBERITAHUAN</a>
 							</div>
-						</div>
+						</div>		
 					</li>
 
-
-					<!-- account -->
-					<li class="dropdown dropdown-user">
-						<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<img :src="'/images/user/' + profile.gambar + 'n.jpg'" alt="user image" v-if="profile.gambar">
-							<img src="/images/no_image_man.jpg" alt="user image" v-else>
+					<!-- user -->
+					<li class="nav-item dropdown dropdown-user">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<img :src="'/images/user/' + profile.gambar + 'n.jpg'" alt="user image" class="rounded-circle" v-if="profile.gambar">
+							<img src="/images/no_image_man.jpg" alt="user image" class="rounded-circle" v-else>
 							<span>{{profile.name}}</span>
-							<i class="caret"></i>
 						</a>
 
-						<ul class="dropdown-menu dropdown-menu-right">
-							<router-link :to="{ name: 'profile', params:{id: profile.id} }" tag="li" active-class="active" exact v-if="profile.can">
-								<a><i class="icon-user-plus"></i> Profile</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<router-link :to="{ name: 'profile', params:{id: profile.id} }" class="dropdown-item" exact v-if="profile.can">
+								<i class="icon-user-plus"></i> Profile
 							</router-link>
-							<li class="divider"></li>
-							<li>
-								<a href="#" @click.prevent="logout">
-									<i class="icon-switch2"></i> Logout</a>
-							</li>
-						</ul>
+							<a href="#" class="dropdown-item" @click.prevent="logout"><i class="icon-switch2"></i> Logout</a>
+						</div>
 					</li>
 				</ul>
 			</div>
-		</div>
-		<!-- second navbar -->
-		<div class="navbar navbar-default" id="navbar-second">
-			<ul class="nav navbar-nav no-border visible-xs-block">
-				<li>
-					<a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle">
-						<i class="icon-menu7"></i>
-					</a>
-				</li>
-			</ul>
 
-			<div class="navbar-collapse collapse" id="navbar-second-toggle">
-				<ul class="nav navbar-nav">
+		</div>
+
+		<!-- second navbar -->
+		<div class="navbar navbar-expand-md navbar-light">
+			<div class="text-center d-md-none w-100">
+				<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-navigation">
+					<i class="icon-unfold mr-2"></i>
+					Navigation
+				</button>
+			</div>
+
+			<div class="navbar-collapse collapse" id="navbar-navigation">
+				<ul class="navbar-nav navbar-nav-highlight">
 
 					<!-- dashboard -->
-					<router-link :to="{ name: 'dashboard' }" tag="li" active-class="active" exact>
-						<a><i class="icon-display4 position-left"></i> Dashboard</a>
-					</router-link>
+					<li class="nav-item">
+						<router-link :to="{ name: 'dashboard' }" class="navbar-nav-link" active-class="active" exact>
+							<i class="icon-home4 mr-2"></i> Dashboard
+						</router-link>
+					</li>
 
 					<!-- publikasi -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-newspaper position-left"></i> Publikasi
-							<span class="caret"></span>
+					<li class="nav-item dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-newspaper mr-2"></i>
+							Publikasi
 						</a>
-						<ul class="dropdown-menu">
+
+						<div class="dropdown-menu">
 
 							<!-- tambah artikel -->
-							<router-link :to="{ name:'artikelCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel']">
-								<a><i class="icon-plus22"></i> Tambah Artikel</a>
+							<router-link :to="{ name:'artikelCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_artikel']">
+            		<i class="icon-plus22"></i> Tambah Artikel
+         		  </router-link>
+
+							 <!-- tambah penulis -->
+							<router-link :to="{ name:'artikelKategoriCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_artikel_kategori']">
+								<i class="icon-plus22"></i> Tambah Kategori
 							</router-link>
 
 							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelKategoriCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_kategori']">
-								<a><i class="icon-plus22"></i> Tambah Kategori</a>
+							<router-link :to="{ name:'artikelPenulisCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_artikel_penulis']">
+								<i class="icon-plus22"></i> Tambah Penulis
 							</router-link>
-
-							<!-- tambah penulis -->
-							<router-link :to="{ name:'artikelPenulisCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_artikel_penulis']">
-								<a><i class="icon-plus22"></i> Tambah Penulis</a>
-							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'artikelCu', params:{cu: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
-								<a><i class="icon-magazine"></i> Artikel</a>
+							<router-link :to="{ name: 'artikelCu', params:{cu: profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
+								<i class="icon-magazine"></i> Artikel
 							</router-link>
 
 							<!-- kategori artikel -->
-							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" tag="li" active-class="active" exact>
-								<a><i class="icon-grid6"></i> Kategori Artikel</a>
+							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact>
+								<i class="icon-grid6"></i> Kategori Artikel
 							</router-link>
 
 							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
-								<a><i class="icon-pencil6"></i> Penulis Artikel</a>
+							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
+								<i class="icon-pencil6"></i> Penulis Artikel
 							</router-link>
-						</ul>
+
+						</div>
 					</li>
 
 					<!-- kegiatan -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-calendar3 position-left"></i> Kegiatan
-							<span class="caret"></span>
+					<li class="nav-item dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-calendar3 mr-2"></i>
+							Kegiatan
 						</a>
-						<ul class="dropdown-menu">
+
+						<div class="dropdown-menu">
 
 							<!-- tambah diklat pus -->
-							<router-link :to="{ name:'diklatPusCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_pus']">
-								<a><i class="icon-plus22"></i> Tambah Diklat BKCU</a>
+							<router-link :to="{ name:'diklatPusCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_pus']">
+								<i class="icon-plus22"></i> Tambah Diklat BKCU
 							</router-link>
 
 							<!-- tambah tempat -->
-							<router-link :to="{ name:'tempatCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_tempat']">
-								<a><i class="icon-plus22"></i> Tambah Tempat</a>
+							<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_tempat']">
+								<i class="icon-plus22"></i> Tambah Tempat
 							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
 
 							<!-- diklat pus -->
-							<router-link :to="{ name: 'diklatPus' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
-								<a><i class="icon-graduation2"></i> Diklat BKCU</a>
+							<router-link :to="{ name: 'diklatPus' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
+								<i class="icon-graduation2"></i> Diklat BKCU
 							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
 
 							<!-- tempat -->
-							<router-link :to="{ name: 'tempat' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tempat']">
-								<a><i class="icon-location4"></i> Tempat</a>
+							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_tempat']">
+								<i class="icon-location4"></i> Tempat
 							</router-link>
-						</ul>
+
+						</div>
 					</li>
 
 					<!-- organisasi -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-library2 position-left"></i> Organisasi
-							<span class="caret"></span>
+					<li class="nav-item dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-library2 mr-2"></i>
+							Organisasi
 						</a>
-						<ul class="dropdown-menu">
+
+						<div class="dropdown-menu">
 
 							<!-- tambah cu -->
-							<router-link :to="{ name:'cuCreate' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_cu']">
-								<a><i class="icon-plus22"></i> Tambah CU</a>
+							<router-link :to="{ name:'cuCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_cu']">
+								<i class="icon-plus22"></i> Tambah CU
 							</router-link>
 
 							<!-- tambah tpcu -->
-							<router-link :to="{ name:'tpCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_tp']">
-								<a><i class="icon-plus22"></i> Tambah TP/KP</a>
+							<router-link :to="{ name:'tpCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_tp']">
+								<i class="icon-plus22"></i> Tambah TP/KP
 							</router-link>
 
 							<!-- tambah pengelola -->
-							<router-link :to="{ name:'produkCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
-								<a><i class="icon-plus22"></i> Tambah Produk & Pelayanan</a>
+							<router-link :to="{ name:'produkCuCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
+								<i class="icon-plus22"></i> Tambah Produk & Pelayanan
 							</router-link>
 
 							<!-- tambah pengelola -->
-							<router-link :to="{ name:'pengelolaCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
-								<a><i class="icon-plus22"></i> Tambah Pengelola</a>
+							<router-link :to="{ name:'pengelolaCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
+								<i class="icon-plus22"></i> Tambah Pengelola
 							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
 
 							<!-- cu -->
-							<router-link :to="{ name: 'cu' }" tag="li" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
-								<a><i class="icon-office"></i> CU</a>
+							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
+								<i class="icon-office"></i> CU
 							</router-link>
-							<router-link :to="{ name: 'cuProfile', params:{id: profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.id_cu != 0 && profile.can && profile.can['update_cu']">
-								<a><i class="icon-office"></i> Profile CU</a>
+							<router-link :to="{ name: 'cuProfile', params:{id: profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu != 0 && profile.can && profile.can['update_cu']">
+								<i class="icon-office"></i> Profile CU
 							</router-link>
+
 							<!-- tp -->
-							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
-								<a><i class="icon-home9"></i> TP/KP</a>
+							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
+								<i class="icon-home9"></i> TP/KP
 							</router-link>
-							<router-link :to="{ name: 'tpCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
-								<a><i class="icon-home9"></i> TP/KP</a>
+							<router-link :to="{ name: 'tpCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
+								<i class="icon-home9"></i> TP/KP
 							</router-link>
+
 							<!-- produkcu -->
-							<router-link :to="{ name: 'produkCuCu', params:{cu:'semua'} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu == 0">
-								<a><i class="icon-list3"></i> Produk & Pelayanan</a>
+							<router-link :to="{ name: 'produkCuCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu == 0">
+								<i class="icon-list3"></i> Produk & Pelayanan
 							</router-link>
-							<router-link :to="{ name: 'produkCuCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu != 0">
-								<a><i class="icon-list3"></i> Produk & Pelayanan</a>
+							<router-link :to="{ name: 'produkCuCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu != 0">
+								<i class="icon-list3"></i> Produk & Pelayanan
 							</router-link>
+
 							<!-- pengelola -->
-							<router-link :to="{ name: 'pengelolaCu', params:{cu: idCu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_pengelola']">
-								<a><i class="icon-user-tie"></i> Pengelola</a>
+							<router-link :to="{ name: 'pengelolaCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_pengelola']">
+								<i class="icon-user-tie"></i> Pengelola
 							</router-link>
-						</ul>
+
+						</div>
 					</li>
 
 					<!-- keuangan -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-calculator3 position-left"></i> Keuangan
-							<span class="caret"></span>
+					<li class="nav-item dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-calculator3 mr-2"></i>
+							Keuangan
 						</a>
-						<ul class="dropdown-menu">
+
+						<div class="dropdown-menu">
 
 							<!-- tambah laporan -->
-							<router-link :to="{ name:'laporanCuCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
-								<a><i class="icon-plus22"></i> Tambah Laporan CU</a>
+							<router-link :to="{ name:'laporanCuCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_laporan_cu']">
+								<i class="icon-plus22"></i> Tambah Laporan Statistik CU
 							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
 
 							<!-- laporancu -->
-							<router-link :to="{ name: 'laporanCu' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<a><i class="icon-stats-growth"></i> Laporan CU</a>
+							<router-link :to="{ name: 'laporanCu' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
+								<i class="icon-stats-growth"></i> Laporan Statistik CU
 							</router-link>
-							<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" tag="li" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
-								<a><i class="icon-stats-growth"></i> Laporan CU</a>
+
+							<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
+								<i class="icon-stats-growth"></i> Laporan Statistik CU
 							</router-link>
-							<li class="dropdown-submenu" v-if="modelTp.length > 0">
-								<a href="#"><i class="icon-stats-growth"></i> Laporan TP/KP</a>
-								<ul class="dropdown-menu width-100">
-									<li class="dropdown-header highlight"> Laporan TP/KP</li>
-									<li v-for="tp in modelTp">
-										<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:tp.id } }">{{ tp.name }}
+
+							<div class="dropdown-submenu" v-if="modelTp.length > 0">
+								<a href="#" class="dropdown-item dropdown-item-open dropdown-toggle"><i class="icon-stats-growth"></i> Laporan Statistik TP/KP</a>
+								<div class="dropdown-menu">
+									<template v-for="tp in modelTp">
+										<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:tp.id } }" class="dropdown-item">{{ tp.name }}
 										</router-link>
-									</li>		
-								</ul>
-							</li>
-						</ul>
+									</template>		
+								</div>
+							</div>
+
+						</div>
 					</li>
 
 					<!-- pengaturan -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="icon-gear position-left"></i> Pengaturan
-							<span class="caret"></span>
+					<li class="nav-item dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-gear mr-2"></i>
+							Pengaturan
 						</a>
-						<ul class="dropdown-menu">
+
+						<div class="dropdown-menu">
 
 							<!-- tambah user -->
-							<router-link :to="{ name:'userCreate' }" tag="li" active-class="active" exact v-if="profile.can && profile.can['create_user']">
-								<a><i class="icon-plus22"></i> Tambah User</a>
+							<router-link :to="{ name:'userCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_user']">
+								<i class="icon-plus22"></i> Tambah User
 							</router-link>
-
-							<!-- separator -->
-							<li class="divider"></li>
 
 							<!-- user -->
-							<router-link :to="{ name: 'userCu', params:{cu: this.profile.id_cu} }" tag="li" active-class="active" exact v-if="profile.can && profile.can['index_user']">
-								<a><i class="icon-users4"></i> User</a>
+							<router-link :to="{ name: 'userCu', params:{cu: this.profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_user']">
+								<i class="icon-users4"></i> User
 							</router-link>
-						</ul>
+
+						</div>
 					</li>
+
 				</ul>
+
 			</div>
 		</div>
+
 	</div>
 </template>
 
 <script type="text/javascript">
 	import { mapGetters } from 'vuex';
-	import corefunc from '../assets/plugins/buttons/hover_dropdown.min.js';
 
 	export default {
 		data(){
 			return {
 				idCu: 0
 			}
-		},
-		mounted() {
-			corefunc.hover_function();
 		},
 		beforeRouteEnter(to, from, next){
 			next(vm => vm.$store.dispatch('user/profile'));
@@ -379,9 +368,3 @@
 		}
 	}
 </script>
-
-<style>
-.ctx-menu {
-	padding-top: 0;
-}
-</style>

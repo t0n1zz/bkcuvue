@@ -5,10 +5,10 @@
         bold: 'Fet',
         italic: 'Kursiv',
         underline: 'Understrek',
-        strikethrough: 'Gjennomstrek',
         clear: 'Fjern formatering',
         height: 'Linjehøyde',
         name: 'Skrifttype',
+        strikethrough: 'Gjennomstrek',
         size: 'Skriftstørrelse'
       },
       image: {
@@ -25,6 +25,13 @@
         url: 'Bilde-URL',
         remove: 'Fjern bilde'
       },
+      video: {
+        video: 'Video',
+        videoLink: 'Videolenke',
+        insert: 'Sett inn video',
+        url: 'Video-URL',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion eller Youku)'
+      },
       link: {
         link: 'Lenke',
         insert: 'Sett inn lenke',
@@ -34,13 +41,6 @@
         url: 'Til hvilken URL skal denne lenken peke?',
         openInNewWindow: 'Åpne i nytt vindu'
       },
-      video: {
-        video: 'Video',
-        videoLink: 'Videolenke',
-        insert: 'Sett inn video',
-        url: 'Video-URL',
-        providers: '(YouTube, Vimeo, Vine, Instagram eller DailyMotion)'
-      },
       table: {
         table: 'Tabell'
       },
@@ -49,7 +49,7 @@
       },
       style: {
         style: 'Stil',
-        normal: 'Normal',
+        p: 'p',
         blockquote: 'Sitat',
         pre: 'Kode',
         h1: 'Overskrift 1',

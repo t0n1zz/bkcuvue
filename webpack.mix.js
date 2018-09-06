@@ -15,16 +15,18 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.styles([
-  'resources/assets/bootstrap3/css/bootstrap.css',
-  'resources/assets/css/admins/font-awesome/css/font-awesome.css',
-  'resources/assets/css/admins/Ionicons/css/ionicons.css',
-  'resources/assets/css/admins/AdminLTE.css',
-  'resources/assets/css/admins/skins/skin-blue.css',  
-], 'public/admins/css/libs.css');
+  'resources/assets/css/bootstrap.min.css', 
+  'resources/assets/css/bootstrap_limitless.min.css', 
+  'resources/assets/css/layout.min.css',
+  'resources/assets/css/components.min.css',
+  'resources/assets/css/colors.css',
+], 'public/css/admin/libs.css');
 
 mix.scripts([
-  'resources/assets/js/admins/jquery/jquery.js',
-  'resources/assets/js/admins/jquery-ui/jquery-ui.js',
-  'resources/assets/bootstrap3/js/bootstrap.js',
-  'resources/assets/js/admins/adminlte.js',
-], 'public/admins/js/libs.js')
+  'resources/assets/js/assets/main/jquery.min.js',
+  'resources/assets/js/assets/main/bootstrap.bundle.min.js',
+  'resources/assets/js/assets/plugins/loaders/blockui.min.js',
+  'resources/assets/js/assets/plugins/ui/slinky.min.js',
+  'resources/assets/js/assets/app.js',
+  'resources/assets/js/assets/plugins/forms/styling/uniform.min.js',
+], 'public/js/admin/libs.js')

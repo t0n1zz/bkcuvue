@@ -52,15 +52,16 @@
 			$menu.trigger(evt = $.Event('show.bs.context', relatedTarget));
 
 			tp = this.getPosition(e, $menu);
-			items = 'li:not(.divider)';
+			items = '.dropdown-item';
 			$menu.attr('style', '')
 				.css(tp)
-				.addClass('open')
+				.addClass('show')
 				.on('click.context.data-api', items, $.proxy(this.onItem, this, $(e.currentTarget)))
 				.trigger('shown.bs.context', relatedTarget);
+			$menu.children('.dropdown-menu').addClass('show');
 
-			// Delegating the `closemenu` only on the currently opened menu.
-			// This prevents other opened menus from closing.
+			// Delegating the `closemenu` only on the currently showed menu.
+			// This prevents other showed menus from closing.
 			$('html')
 				.on('click.context.data-api', $menu.selector, $.proxy(this.closemenu, this));
 
@@ -75,20 +76,21 @@
 
 			$menu = this.getMenu();
 
-			if(!$menu.hasClass('open')) return;
+			if(!$menu.hasClass('show')) return;
 
 			relatedTarget = { relatedTarget: this };
 			$menu.trigger(evt = $.Event('hide.bs.context', relatedTarget));
 
-			items = 'li:not(.divider)';
-			$menu.removeClass('open')
+			items = '.dropdown-item';
+			$menu.removeClass('show')
 				.off('click.context.data-api', items)
 				.trigger('hidden.bs.context', relatedTarget);
+			$menu.children('.dropdown-menu').removeClass('show');
 
 			$('html')
 				.off('click.context.data-api', $menu.selector);
 			// Don't propagate click event so other currently
-			// opened menus won't close.
+			// showed menus won't close.
 			return false;
 		}
 

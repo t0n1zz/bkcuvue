@@ -25,33 +25,18 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin/icons/icomoon/styles.css')}}" >
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/bootstrap.css')}}" >
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/core.css')}}" >
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/components.css')}}" >
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/colors.css')}}" >
-    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/extras/animate.min.css')}}" >
+    <link rel="stylesheet" type="text/css" href="{{mix('css/admin/libs.css')}}" >
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/loaders/pace.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/core/libraries/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/core/libraries/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/loaders/blockui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/nicescroll.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/drilldown.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/libs.js') }}"></script>
     <!-- /core JS files -->
-
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/editors/summernote/summernote.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/forms/selects/bootstrap_select.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/admin/plugins/ui/prism.min.js') }}"></script>
-    <!-- /Theme JS files -->
 
     <!-- Html5 Shim and Respond.js IE8 support of Html5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/Html5shiv/3.7.0/Html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script  src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 

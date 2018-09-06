@@ -1,44 +1,32 @@
 <template>
-    <div>
-        <div class="page-header">
-			<div class="page-header-content">
-				<div class="page-title">
+	<div>
+    <div class="page-header">
+			<div class="page-header-content header-elements-md-inline">
+				<div class="page-title d-flex">
 					<h4>
-						<i class="position-left" :class="titleIcon"></i>
-						<span class="text-semibold">{{ title }}</span> - {{ titleDesc }}</h4>
-					<ul class="breadcrumb breadcrumb-caret position-right hidden-print" v-if="level === 1">
-						<router-link :to="{ name:'dashboard' }" tag="li">
-							<a>Dashboard</a>
-						</router-link>
-						<li class="active">{{ title }}</li>
-					</ul>
-					<ul class="breadcrumb breadcrumb-caret position-right" v-else-if="level === 2">
-							<router-link :to="{ name:'dashboard' }" tag="li">
-									<a>Dashboard</a>
-							</router-link>
-							<li @click.prevent="level2Back()">
-									<a>{{ level2Title }}</a>
-							</li>
-							<li class="active">{{ title }}</li>
-					</ul>
+						<i class="position-left mr-2" :class="titleIcon"></i>
+						<span class="font-weight-semibold">{{ title }}</span> - {{ titleDesc }}
+					</h4>
 				</div>
-				<div class="heading-elements hidden-print">
-					<div class="heading-btn-group">
-						<button class="btn btn-link btn-icon btn-float has-text"
-						@click.prevent="route1()" v-if="btn1Route && profile.can && profile.can[btn1Can]">
-							<i class="text-primary" :class="btn1Icon"></i> <span>{{btn1Title}}</span>
-						</button>
-						<button class="btn btn-link btn-icon btn-float has-text" @click.prevent="route2()" v-if="btn2Route && profile.can && profile.can[btn2Can]">
-							<i class="text-primary" :class="btn2Icon"></i> <span>{{btn2Title}}</span>
-						</button>
-						<button class="btn btn-link btn-icon btn-float has-text" @click.prevent="route3()" v-if="btn3Route && profile.can && profile.can[btn3Can]">
-							<i class="text-primary" :class="btn3Icon"></i> <span>{{btn3Title}}</span>
-						</button>
+
+				<div class="header-elements d-none py-0 mb-3 mb-md-0">
+
+					<!-- level 1  -->
+					<div class="breadcrumb" v-if="level === 1">
+						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4 mr-2"></i>  Dashboard </router-link>
+						<span class="breadcrumb-item active">{{ title }}</span>
+					</div>
+
+					<!-- level 2 -->
+					<div class="breadcrumb" v-if="level === 2">
+						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4 mr-2"></i> Dashboard </router-link>
+						<a class="breadcrumb-item" @click.prevent="level2Back()">{{ level2Title }}</a>
+						<span class="breadcrumb-item active">{{ title }}</span>
 					</div>
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </template>
 
 <script type="text/javascript">
@@ -61,51 +49,6 @@ export default {
 					default: ''
 			},
 			level2Route: {
-					default: ''
-			},
-			btn1Route: {
-					default: ''
-			},
-			btn1RouteParams:{
-					default: ''
-			},
-			btn1Icon: {
-					default: ''
-			},
-			btn1Title: {
-					default: ''
-			},
-			btn1Can: {
-					default: ''
-			},
-			btn2Route: {
-					default: ''
-			},
-			btn2RouteParams:{
-					default: ''
-			},
-			btn2Icon: {
-					default: ''
-			},
-			btn2Title: {
-					default: ''
-			},
-			btn2Can: {
-					default: ''
-			},
-			btn3Route: {
-					default: ''
-			},
-			btn3RouteParams:{
-					default: ''
-			},
-			btn3Icon: {
-					default: ''
-			},
-			btn3Title: {
-					default: ''
-			},
-			btn3Can: {
 					default: ''
 			},
 	},

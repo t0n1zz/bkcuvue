@@ -5,25 +5,39 @@
         bold: '굵게',
         italic: '기울임꼴',
         underline: '밑줄',
-        strikethrough: '취소선',
         clear: '글자 효과 없애기',
         height: '줄간격',
         name: '글꼴',
+        superscript: '위 첨자',
+        subscript: '아래 첨자',
+        strikethrough: '취소선',
         size: '글자 크기'
       },
       image: {
         image: '사진',
         insert: '사진 추가',
-        resizeFull: '원본 크기로 변경',
+        resizeFull: '100% 크기로 변경',
         resizeHalf: '50% 크기로 변경',
         resizeQuarter: '25% 크기로 변경',
         floatLeft: '왼쪽 정렬',
         floatRight: '오른쪽 정렬',
         floatNone: '정렬하지 않음',
-        dragImageHere: '사진을 이곳으로 끌어오세요',
+        shapeRounded: '스타일: 둥근 모서리',
+        shapeCircle: '스타일: 원형',
+        shapeThumbnail: '스타일: 액자',
+        shapeNone: '스타일: 없음',
+        dragImageHere: '텍스트 혹은 사진을 이곳으로 끌어오세요',
+        dropImage: '텍스트 혹은 사진을 내려놓으세요',
         selectFromFiles: '파일 선택',
         url: '사진 URL',
         remove: '사진 삭제'
+      },
+      video: {
+        video: '동영상',
+        videoLink: '동영상 링크',
+        insert: '동영상 추가',
+        url: '동영상 URL',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion, Youku 사용 가능)'
       },
       link: {
         link: '링크',
@@ -34,13 +48,6 @@
         url: '이동할 URL',
         openInNewWindow: '새창으로 열기'
       },
-      video: {
-        video: '동영상',
-        videoLink: '동영상 링크',
-        insert: '동영상 추가',
-        url: '동영상 URL',
-        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion 사용 가능)'
-      },
       table: {
         table: '테이블'
       },
@@ -49,7 +56,7 @@
       },
       style: {
         style: '스타일',
-        normal: '본문',
+        p: '본문',
         blockquote: '인용구',
         pre: '코드',
         h1: '제목 1',
@@ -98,6 +105,10 @@
       history: {
         undo: '실행 취소',
         redo: '다시 실행'
+      },
+      specialChar: {
+        specialChar: '특수문자',
+        select: '특수문자를 선택하세요'
       }
     }
   });

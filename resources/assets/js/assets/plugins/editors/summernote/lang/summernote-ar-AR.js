@@ -5,10 +5,10 @@
         bold: 'عريض',
         italic: 'مائل',
         underline: 'تحته خط',
-        strikethrough: 'فى وسطه خط',
         clear: 'مسح التنسيق',
         height: 'إرتفاع السطر',
         name: 'الخط',
+        strikethrough: 'فى وسطه خط',
         size: 'الحجم'
       },
       image: {
@@ -25,6 +25,13 @@
         url: 'رابط الصورة',
         remove: 'حذف الصورة'
       },
+      video: {
+        video: 'فيديو',
+        videoLink: 'رابط الفيديو',
+        insert: 'إدراج الفيديو',
+        url: 'رابط الفيديو',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion ou Youku)'
+      },
       link: {
         link: 'رابط رابط',
         insert: 'إدراج',
@@ -34,13 +41,6 @@
         url: 'مسار الرابط',
         openInNewWindow: 'فتح في نافذة جديدة'
       },
-      video: {
-        video: 'فيديو',
-        videoLink: 'رابط الفيديو',
-        insert: 'إدراج الفيديو',
-        url: 'رابط الفيديو',
-        providers: '(YouTube, Vimeo, Vine, Instagram ou DailyMotion)'
-      },
       table: {
         table: 'جدول'
       },
@@ -49,7 +49,7 @@
       },
       style: {
         style: 'تنسيق',
-        normal: 'عادي',
+        p: 'عادي',
         blockquote: 'إقتباس',
         pre: 'شفيرة',
         h1: 'عنوان رئيسي 1',
@@ -96,10 +96,9 @@
         documentStyle: 'تنسيق المستند'
       },
       history: {
-        undo: 'Undo',
-        redo: 'Redo'
+        undo: 'تراجع',
+        redo: 'إعادة'
       }
-
     }
   });
 })(jQuery);

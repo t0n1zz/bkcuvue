@@ -5,10 +5,10 @@
         bold: 'Fet',
         italic: 'Kursiv',
         underline: 'Understruken',
-        strikethrough: 'Genomstruken',
         clear: 'Radera formatering',
         height: 'Radavstånd',
         name: 'Teckensnitt',
+        strikethrough: 'Genomstruken',
         size: 'Teckenstorlek'
       },
       image: {
@@ -25,6 +25,13 @@
         url: 'Länk till bild',
         remove: 'Ta bort bild'
       },
+      video: {
+        video: 'Filmklipp',
+        videoLink: 'Länk till filmklipp',
+        insert: 'Infoga filmklipp',
+        url: 'Länk till filmklipp',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion eller Youku)'
+      },
       link: {
         link: 'Länk',
         insert: 'Infoga länk',
@@ -34,13 +41,6 @@
         url: 'Till vilken URL ska denna länk peka?',
         openInNewWindow: 'Öppna i ett nytt fönster'
       },
-      video: {
-        video: 'Filmklipp',
-        videoLink: 'Länk till filmklipp',
-        insert: 'Infoga filmklipp',
-        url: 'Länk till filmklipp',
-        providers: '(YouTube, Vimeo, Vine, Instagram eller DailyMotion)'
-      },
       table: {
         table: 'Tabell'
       },
@@ -49,7 +49,7 @@
       },
       style: {
         style: 'Stil',
-        normal: 'Normal',
+        p: 'p',
         blockquote: 'Citat',
         pre: 'Kod',
         h1: 'Rubrik 1',

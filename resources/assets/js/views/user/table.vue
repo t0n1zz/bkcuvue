@@ -1,8 +1,7 @@
 <template>
   <div>
     <!-- main panel -->
-    <data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :params="params"
-		@fetch="fetch">
+    <data-viewer v-bind="dataviewer">
 
       <!-- desktop -->
       <!-- button desktop -->
@@ -142,113 +141,6 @@
         </tr>
       </template>
 
-      <!-- mobile -->
-      <!-- button mobile -->
-      <template slot="button-mobile" class="hidden-print">
-        <!-- tambah -->
-        <router-link :to="{ name:kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
-          <i class="icon-plus3"></i> Tambah
-        </router-link>
-      </template>
-  
-      <!-- item mobile -->
-      <template slot="item-mobile" slot-scope="props">
-        <div class="panel panel-flat visible-xs">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <tbody>
-                <tr v-if="!columnData[0].hide">
-                  <td colspan="2">
-                    <img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-                    <img :src="'/images/no_image_man.jpg'" class="img-rounded img-responsive center-block" v-else>
-                  </td>
-                </tr>
-                <tr v-if="!columnData[1].hide">
-                  <td><b>{{columnData[1].title}}</b></td>
-                  <td>: {{props.item.username}}</td>
-                </tr>
-                <tr v-if="!columnData[2].hide">
-                  <td><b>{{columnData[2].title}}</b></td>
-                  <td>: {{props.item.name}}</td>
-                </tr>
-                <tr v-if="!columnData[3].hide">
-                  <td><b>{{columnData[3].title}}</b></td>
-                  <td>: {{props.item.email}}</td>
-                </tr>
-                <tr v-if="!columnData[4].hide">
-                  <td><b>{{columnData[4].title}}</b></td>
-                  <td>
-                    <span v-if="props.item.cu">
-                      : {{props.item.cu.name}}
-                    </span>
-                    <span v-else>: Puskopdit BKCU Kalimantan</span>	
-                  </td>
-                </tr>
-                <tr v-if="!columnData[5].hide">
-                  <td><b>{{columnData[5].title}}</b></td>
-                  <td>
-                    : <span v-html="$options.filters.checkStatus(props.item.status)"></span>
-                  </td>
-                </tr>
-                <tr v-if="!columnData[6].hide">
-                  <td><b>{{columnData[6].title}}</b></td>
-                  <td>
-                    : <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
-                  </td>
-                </tr>
-                <tr v-if="!columnData[7].hide">
-                  <td><b>{{columnData[7].title}}</b></td>
-                  <td>
-                    : <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="panel-footer hidden-print">
-            <div class="text-center button-toolbar">
-
-              <!-- ubah mobile-->
-              <div class="pt-10 pb-10 pl-15 pr-15">
-                <button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
-                  <i class="icon-pencil5"></i> Ubah
-                </button>
-              </div>
-              
-              <!-- hapus mobile-->
-              <div class="pb-10 pl-15 pr-15">
-                <button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
-                  <i class="icon-bin2"></i> <span>Hapus</span>
-                </button>
-              </div>
-
-              <!-- reset password mobile-->
-              <div class="pb-10 pl-15 pr-15">
-                <button @click.prevent="modalConfirmOpen('resetPassword',true,props.item)" class="btn btn-default btn-icon btn-block">
-                  <i class="icon-history"></i> <span>Reset Password</span>
-                </button>
-              </div>
-              
-              <!-- status mobile -->
-              <div class="pb-10 pl-15 pr-15">
-                <button @click.prevent="modalConfirmOpen('updateStatus',true,props.item)" class="btn btn-default btn-icon btn-block">
-                  <i class="icon-user-check"></i> <span v-if="props.item.status === 1">Tidak Aktifkan</span>
-                  <span v-else>Aktifkan</span> 
-                </button>
-              </div>
-
-              <!-- hak akses mobile -->
-              <div class="pb-10 pl-15 pr-15">
-                <button @click.prevent="modalHakAksesOpen(true,props.item)" class="btn btn-default btn-icon btn-block">
-                  <i class="icon-key"></i> Hak Akses
-                </button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </template>
-
     </data-viewer>
 
     <!-- modal -->
@@ -283,7 +175,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import DataViewer from '../../components/dataviewer.vue';
+import DataViewer from '../../components/dataviewer2.vue';
 import appModal from '../../components/modal';
 import hakAkses from "../../components/hakAkses.vue";
   
@@ -296,6 +188,9 @@ export default {
   props:['title','kelas'],
   data(){
     return {
+      dataviewer: {
+        
+      },
       source: '',
       extSearchQuery1: '',
       extSearchColumn: '',

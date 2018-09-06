@@ -34,7 +34,7 @@
 
 					<div class="tabbable">
 						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> {{ title }}</a></li>
+							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> Statistik</a></li>
 							<li :class="{'active' : tabName == 'tablePearls'}"><a @click.prevent="changeTab('tablePearls')"><i class="icon-list2 position-left"></i> {{ titlePearls }}</a></li>
 						</ul>
 					</div>
