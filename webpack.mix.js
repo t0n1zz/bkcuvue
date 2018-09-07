@@ -20,6 +20,7 @@ mix.styles([
   'resources/assets/css/layout.min.css',
   'resources/assets/css/components.min.css',
   'resources/assets/css/colors.css',
+  'resources/assets/css/extras/animate.min.css',
 ], 'public/css/admin/libs.css');
 
 mix.scripts([

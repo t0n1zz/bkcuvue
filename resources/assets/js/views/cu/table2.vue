@@ -10,7 +10,7 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon" v-if="profile.can && profile.can['create_' + kelas]" v-tooltip:top="'Tambah ' +  title">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+						<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
@@ -30,50 +30,10 @@
 					</button>
 				</div>
 			</template>
-
-			<!-- button context -->
-			<template slot="button-context">
-				<!-- title -->
-				<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItem.name"><b class="text-size-large">{{ this.columnData[1].title }}</b></li>
-				<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-				<li><hr class="no-margin-bottom no-margin-top"/></li>
-
-				<!-- selected content -->
-				<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItem.name">
-					<span class="text-size-large">{{selectedItem.name}}</span></li>
-				<li><hr class="no-margin-top no-margin-bottom"/></li>
-
-				<!-- update -->
-				<li v-if="profile.can && profile.can['update_' + kelas]">
-					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-							<i class="icon-pencil5"></i> Ubah
-						</button>
-					</div>
-				</li>
-
-				<!-- destroy -->
-				<li v-if="profile.can && profile.can['destroy_' + kelas]">
-					<div class="pl-5 pr-5 pb-5">
-						<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
-							<i class="icon-bin2"></i> Hapus
-						</button>
-					</div>
-				</li>
-
-				<!-- lihat tpcu -->
-				<li v-if="profile.can && profile.can['index_tp_cu']">
-					<div class="pl-5 pr-5 pb-5">
-						<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Lihat TP/KP'" :disabled="selectedItem.has_tp_cu_count === 0">
-							<i class="icon-file-eye"></i> Lihat TP/KP 
-						</button>
-					</div>
-				</li>
-			</template>
-
+			
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
-				<tr :class="{ 'info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
+				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
 					<td>
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
@@ -172,6 +132,7 @@
 					title: this.title,
 					itemData: this.itemData,
 					itemDataStat: this.itemDataStat,
+					isUploadExcel: true,
 					columnData: [
 						{
 							title: 'No.',

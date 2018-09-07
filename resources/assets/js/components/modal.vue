@@ -8,7 +8,6 @@
 						<div class="modal-content">
 							<div class="modal-header" :class="color" v-if="state === 'normal1' || state === 'normal2'">
 								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
-								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
 								<h6 class="modal-title">
 									<slot name="modal-title"></slot>
 								</h6>
@@ -215,9 +214,6 @@
 					this.tutup();
 				}
 			});
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		methods: {
 			backgroundClick() {

@@ -4,7 +4,7 @@
     <!-- pencarian -->
     <div class="card">
       <div class="card-header header-elements-inline bg-white">
-        <h5 class="card-title">Pencarian data</h5>
+        <h5 class="card-title">Pencarian data {{ title }}</h5>
         <div class="header-elements">
           <div class="list-icons">
             <a class="list-icons-item" data-action="collapse"></a>
@@ -191,33 +191,21 @@
       <div class="card-header">
         <div class="row">
           <!-- slot button -->
-          <div class="col-md-8">
+          <div class="col-md-10 pb-2">
             <slot name="button-desktop"></slot>
           </div>
 
-          <div class="col-md-4 text-right">
+          <div class="col-md-2 text-right">
             <div class="row">
-              <div class="col-md-8">
-                <div class="btn-group">
-                  <slot name="button-kolom"></slot>
-                  <button type="button" class="btn btn-light btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kolom Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
-                    <i class="icon-table2"></i> Kolom
-                    <span class="caret"></span>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item disabled">Kolom yang ditampilkan</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" @click.prevent="showAllColumn">Semua Kolom</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)">{{column.title}}</a>
-                  </div>
-                </div>
+              <div class="col-md-6 pb-2">
+                <button type="button" class="btn bg-blue-300 btn-icon btn-block" v-tooltip:top="'Atur Kolom Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
+                  <i class="icon-table2"></i> Kolom
+                </button>
               </div>
-              <div class="col-md-2">
-
-              </div>
-              <div class="col-md-2">
-
+              <div class="col-md-6 pb-2">
+                <button type="button" class="btn bg-green-300 btn-icon btn-block" v-tooltip:top="'Excel'" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+                  <i class="icon-file-excel"></i> Excel
+                </button>
               </div>
             </div>
           </div>
@@ -252,7 +240,7 @@
           </tbody>
 
           <!-- data body -->
-          <tbody v-else-if="itemDataStat === 'success'" @contextmenu.prevent="$refs.menu.open">
+          <tbody v-else-if="itemDataStat === 'success'">
 
             <slot name="item-desktop" v-for="(item,index) in itemData.data" :item="item" :index="index"></slot>
           </tbody>
@@ -268,58 +256,106 @@
         </table>
       </div>
 
-      <!-- table context menu -->
-      <context-menu ref="menu">
-        <!-- slot button -->
-        <slot name="button-context"></slot>
-      </context-menu>
-
       <!-- footer info -->
-      <div class="card-footer bg-light d-sm-flex justify-content-sm-between align-items-sm-center text-center text-sm-left py-sm-2 hidden-print">
-        <!-- total entri note success-->
-        <div v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} -
-          {{itemData.to}} entri dari {{itemData.total}} entri</div>
+      <div class="card-footer bg-white hidden-print">
+        <div class="row">
 
-        <!-- total entri note loading -->
-        <div v-else-if="itemDataStat === 'loading'">Menampilkan
-          <i class="icon-spinner2 spinner"></i> -
-          <i class="icon-spinner2 spinner"></i> entri dari
-          <i class="icon-spinner2 spinner"></i> entri</div>
+          <div class="col-sm-6 pt-2">
+            <!-- total entri note success-->
+            <div v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} -
+              {{itemData.to}} entri dari {{itemData.total}} entri
+            </div>
 
-        <!-- pagination success-->
-        <ul class="pagination pagination-sm pagination-pager pagination-pager-linked justify-content-between mt-2 mt-sm-0" v-if="itemDataStat === 'success'">
-          <li class="page-item" :class="{'disabled' : !itemData.prev_page_url}">
-            <a href="#" class="page-link" @click.prevent="prevPage">
-              <i class="icon-arrow-left12"></i> sebelumnya
-            </a>
-          </li>
-          <li class="page-item" :class="{'disabled' : !itemData.next_page_url}">
-            <a href="#" class="page-link" @click.prevent="nextPage">
-              selanjutnya <i class="icon-arrow-right13"></i>
-            </a>
-          </li>
-        </ul>
+            <!-- total entri note loading -->
+            <div v-else>Menampilkan
+              <i class="icon-spinner2 spinner"></i> -
+              <i class="icon-spinner2 spinner"></i> entri dari
+              <i class="icon-spinner2 spinner"></i> entri
+            </div>
 
-        <!-- pagination loading -->
-        <ul class="pagination pagination-sm pagination-pager pagination-pager-linked justify-content-between mt-2 mt-sm-0" v-else-if="itemDataStat === 'loading'">
-          <li class="disabled">
-            <a>
-              <i class="icon-arrow-left12"></i>
-            </a>
-          </li>
-          <li class="active">
-            <a>
-              <i class="icon-spinner2 spinner"></i>
-            </a>
-          </li>
-          <li class="disabled">
-            <a>
-              <i class="icon-arrow-right13"></i>
-            </a>
-          </li>
-        </ul>
+          </div>
+          <div class="col-sm-6 pt-2 text-right">
+            <!-- pagination success-->
+            <div class="btn-group" v-if="itemDataStat === 'success'">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+                  <i class="icon-backward2"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+                  <i class="icon-arrow-left5"></i>
+              </button>
+              <button href="#" class="btn d-none d-sm-block" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+                  {{n}}
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+                  <i class="icon-arrow-right5"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+                  <i class="icon-forward3"></i>
+              </button>
+            </div>
+            
+
+            <!-- pagination loading-->
+            <div class="btn-group" v-else>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-backward2"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-arrow-left5"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-spinner2 spinner"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-arrow-right5"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-forward3"></i>
+              </button>
+              
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <!-- modal -->
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
+
+      <div slot="modal-body1">
+        <!-- column -->
+        <div v-if="modalOptionState === 'column'">
+          <h2 class="text-center">Kolom yang ditampilkan</h2>
+          <hr/>
+          <button class="btn btn-light btn-block" @click.prevent="showAllColumn" >Semua kolom</button>
+          <slot name="button-kolom"></slot>
+          <hr/>
+          <button class="btn btn-block" v-for="(column,index) in columnData" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)" >{{column.title}}</button>
+          <hr/>
+          <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
+        </div>
+        <!-- excel -->
+        <div v-else-if="modalOptionState === 'excel'">
+          <h2 class="text-center">Download data ke excel</h2>
+          <hr/>
+          <json-excel 
+            class="btn btn-light btn-block"
+            :data="excel.data" 
+            :fields="excel.fields" 
+            :meta="excel.meta"
+            :title="'Data ' + title" 
+            :name="title + '.xls'"
+            >Download data di tabel</json-excel>
+          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen">Download semua data</button>
+          <hr/>
+          <button class="btn btn-light btn-block" v-if="isUploadExcel" @click.prevent="modalExcelUploadOpen">Upload data</button>
+          <hr  v-if="isUploadExcel" />
+          <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
+        </div>
+      </div>
+    </app-modal>
 
   </div>
 </template>
@@ -328,8 +364,6 @@
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
-  import contextMenu from 'vue-context-menu';
-  import Cleave from 'vue-cleave-component';
 
   export default {
     props: {
@@ -337,18 +371,17 @@
       columnData: Array,
       itemData: Object,
       itemDataStat: String,
+      isUploadExcel: Boolean
     },
     components: {
       jsonExcel,
       appModal,
-      contextMenu,
-      Cleave
     },
     data() {
       return {
-        loading: true,
         appliedFilters: [],
         filterCandidates: [],
+        pages: [],
         query: {
           order_column: 'created_at',
           order_direction: 'desc',
@@ -356,13 +389,26 @@
           limit: 10,
           page: 1
         },
-        collection: {
-          data: []
+        excel: {
+          fields: {},
+          data: [],
+          meta: [
+            [{
+              "key": "charset",
+              "value": "utf-8"
+            }]
+          ],
+          title: '',
+          filename: ''
         },
+        modalShow: false,
+        modalState: '',
+        modalTitle: '',
+        modalButton: '',
+        modalOptionState: ''
       }
     },
     mounted() {
-      // $('.bootstrap-select').selectpicker();
     },
     created() {
       this.addFilter();
@@ -371,6 +417,8 @@
       itemDataStat(value) {
         if (value == 'success') {
           this.query.page = this.itemData.current_page;
+          this.field_excel();
+          this.calculatePagination();
         }
       },
     },
@@ -500,10 +548,33 @@
         this.query.page = 1
         this.applyChange()
       },
+      calculatePagination() {
+        var i = 0;
+        var startPage = 0;
+        var endPage = 0;
+        var diffPage = 0;
+
+        startPage = this.query.page < 3 ? 1 : this.query.page - 1;
+        endPage = 4 + startPage;
+        endPage = this.itemData.last_page < endPage ? this.itemData.last_page : endPage;
+        diffPage = startPage - endPage + 4;
+        startPage -= startPage - diffPage > 0 ? diffPage : 0;
+        this.pages.length = 0;
+
+        for (i = startPage; i <= endPage; i++) {
+          this.pages.push(i);
+        }
+      },
       prevPage() {
         if (this.itemData.prev_page_url) {
           this.query.page = Number(this.query.page) - 1
           this.applyChange()
+        }
+      },
+      goToPage(value) {
+        if (this.query.page != value) {
+          this.query.page = value;
+          this.applyChange();
         }
       },
       nextPage() {
@@ -533,6 +604,54 @@
         }
 
         this.$emit('fetch', params)
+      },
+      // excel data
+      field_excel() {
+        var vm = this;
+        vm.excel.fields = {};
+        vm.columnData.forEach(function (column) {
+          if (!column.hide && !column.disable) {
+            vm.excel.fields[column.title] = column.name;
+          }
+        });
+        vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
+          var object = {};
+          vm.columnData.forEach(function (key) {
+            if (!key.hide && !key.disable) {
+              if (key.groupKey) {
+                const value = _.get(item, key.groupKey, '-');
+                object[key.groupKey] = value === '' || value === null ? '-' : value;
+              } else {
+                const value = _.get(item, key.name, '-');
+                object[key.name] = value === '' || value === null ? '-' : value;
+              }
+            }
+          })
+          return object;
+        }).value();
+      },
+
+      // modal
+      modalExcelOpen() {
+        this.modalShow = true;
+        this.modalState = "normal1";
+        this.excelLoadStat = '';
+      },
+      modalExcelOk() {
+        this.isExcelAll = true;
+        if(this.params.per_page != this.itemData.total){
+          this.entriPage(this.itemData.total);
+        }else{
+          this.fetch();
+        } 
+      },
+      modalOptionOpen(state){
+        this.modalShow = true;
+        this.modalState = "normal1";
+        this.modalOptionState = state;
+      },
+      modalTutup() {
+        this.modalShow = false;
       },
       availableOperators() {
         return [{
