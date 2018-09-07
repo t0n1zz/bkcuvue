@@ -30,8 +30,32 @@
 					</button>
 				</div>
 			</template>
-			
-			<!-- item desktop -->
+
+			<!-- button mobile -->
+			<template slot="button-mobile">
+
+				<!-- tambah -->
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="profile.can && profile.can['create_' + kelas]">
+						<i class="icon-plus3"></i> Tambah {{ title }}
+				</router-link>
+
+				<!-- ubah-->
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
+
+				<!-- hapus -->
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
+
+				<!-- lihat tpcu -->
+				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0" v-if="profile.can && profile.can['index_tpCu']">
+					<i class="icon-file-eye"></i> Lihat TP/KP 
+				</button>
+			</template>
+
+			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
 					<td>
@@ -137,18 +161,10 @@
 						{
 							title: 'No.',
 							name: 'No.',
-							tipe: 'string',
-							sort: false,
-							hide: false,
-							disable: false
 						},
 						{
 							title: 'Foto',
 							name: 'gambar',
-							tipe: 'string',
-							sort: false,
-							hide: false,
-							disable: false
 						},
 						{
 							title: 'Nama',
@@ -171,72 +187,56 @@
 						{
 							title: 'TP/KP',
 							name: 'has_tp_cu_count',
-							groupKey: 'has_tp_cu_count',
-							groupNoKey: '0',
 							tipe: 'numeric',
 							sort: true,
 							hide: false,
-							disable: false
+							disable: false,
+							filter: true,
 						},
 						{
 							title: 'Badan Hukum',
 							name: 'badan_hukum',
 							tipe: 'string',
-							sort: false,
+							sort: true,
 							hide: false,
-							disable: false
+							disable: false,
+							filter: true,
 						},
 						{
 							title: 'Provinsi',
 							name: 'provinces.name',
-							groupKey: 'provinces.name',
-							groupNoKey: '-',
 							tipe: 'string',
-							sort: true,
+							sort: false,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterKey: 'provinces.name',
-							filterType: 'string'
 						},
 						{
 							title: 'Kabupaten/Kota',
-							name: 'regencies_name',
-							groupKey: 'regencies.name',
-							groupNoKey: '-',
+							name: 'regencies.name',
 							tipe: 'string',
-							sort: true,
+							sort: false,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterKey: 'regencies.name',
-							filterType: 'string'
 						},
 						{
 							title: 'Kecamatan',
-							name: 'districts_name',
-							groupKey: 'districts.name',
-							groupNoKey: '-',
+							name: 'districts.name',
 							tipe: 'string',
-							sort: true,
+							sort: false,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterKey: 'districts.name',
-							filterType: 'string'
 						},
 						{
 							title: 'Kelurahan',
-							name: 'villages_name',
-							groupKey: 'villages.name',
-							groupNoKey: '-',
+							name: 'villages.name',
 							tipe: 'string',
-							sort: true,
+							sort: false,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterKey: 'villages.name',
-							filterType: 'string'
 						},
 						{
 							title: 'Alamat',
@@ -246,7 +246,6 @@
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'Aplikasi',
@@ -256,7 +255,6 @@
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'Tgl. Berdiri',
@@ -266,7 +264,6 @@
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'date'
 						},
 						{
 							title: 'Tgl. Bergabung',
@@ -276,57 +273,51 @@
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'date'
 						},
 						{
 							title: 'Website',
 							name: 'website',
 							tipe: 'string',
-							sort: false,
+							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'E-mail',
 							name: 'email',
 							tipe: 'string',
-							sort: false,
+							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'No. Telp',
 							name: 'telp',
 							tipe: 'string',
-							sort: false,
+							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'No. Hp',
 							name: 'hp',
 							tipe: 'string',
-							sort: false,
+							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'Kode Pos',
 							name: 'pos',
 							tipe: 'string',
-							sort: false,
+							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'string'
 						},
 						{
 							title: 'Tgl. / Waktu Buat',
@@ -346,9 +337,7 @@
 							disable: false,
 							filter: true,
 						}
-
-					],
-					
+					]
 				},
 				selectedItem: [],
 				modalShow: false,

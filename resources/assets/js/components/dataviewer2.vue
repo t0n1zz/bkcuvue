@@ -2,7 +2,7 @@
   <div>
 
     <!-- pencarian -->
-    <div class="card">
+    <div class="card d-print-none">
       <div class="card-header header-elements-inline bg-white">
         <h5 class="card-title">Pencarian data {{ title }}</h5>
         <div class="header-elements">
@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="card-body hidden-print">
+      <div class="card-body">
         <!-- search row -->
         <div class="row">
           <div class="col-md-12" v-for="(f, i) in filterCandidates">
@@ -125,18 +125,27 @@
           </div>
         </div>
 
+        <!-- divider -->
         <div class="row"><div class="col-sm-12"><hr class="mt-1"></div></div>
 
         <!-- button row -->
         <div class="row">
-          <div class="col-md-8 pb-2">
-            <button class="btn bg-teal" @click="addFilter"><i class="icon-plus22"></i> Tambah Pencarian</button>
-            <button class="btn btn-warning" @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
-            <button class="btn btn-primary" @click="applyFilter"><i class="icon-search4"></i> Lakukan Pencarian</button>
+          <!-- filter -->
+          <!-- desktop -->
+          <div class="col-md-6 col-lg-8 pb-2 d-none d-md-block">
+            <button class="btn bg-teal" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
+            <button class="btn btn-warning"  @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
+            <button class="btn btn-primary" @click="applyFilter"><i class="icon-search4"></i> Cari</button>
+          </div>
+          <!-- mobile -->
+          <div class="col-md-8 pb-2 d-block d-md-none">
+            <button class="btn bg-teal btn-block" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
+            <button class="btn btn-warning btn-block" @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
+            <button class="btn btn-primary btn-block" @click="applyFilter"><i class="icon-search4"></i> Lakukan Pencarian</button>
           </div>
 
-          
-          <div class="col-md-4 text-right">
+          <!-- entri & order -->
+          <div class="col-md-6 col-lg-4 text-right">
             <div class="row">
 
               <!-- entri -->
@@ -154,7 +163,7 @@
                 </div> 
               </div>
 
-              <!-- pengurutan -->
+              <!-- order -->
               <div class="col-md-6 pb-2">
                 <div class="input-group">
                   <span class="input-group-prepend">
@@ -169,9 +178,9 @@
                 </div>  
               </div>
 
-              <!-- arah pengurutan -->
+              <!-- order direction -->
               <div class="col-md-2">
-                <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection">
+                <button class="btn bg-orange-300 btn-block" v-tooltip:top="'Ubah arah pengurutan'" @click="updateOrderDirection">
                   <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
                   <i class="icon-arrow-down7" v-else></i>
                 </button>
@@ -187,15 +196,20 @@
 
     <!-- tabel -->
     <div class="card">
-
-      <div class="card-header">
+      <!-- button -->
+      <div class="card-header d-print-none">
         <div class="row">
           <!-- slot button -->
-          <div class="col-md-10 pb-2">
+          <!-- button desktop -->
+          <div class="col-md-8 col-lg-10 pb-2 d-none d-md-block">
             <slot name="button-desktop"></slot>
           </div>
+          <!-- button mobile -->
+          <div class="col-md-12 pb-2 d-block d-md-none">
+            <slot name="button-mobile"></slot>
+          </div>
 
-          <div class="col-md-2 text-right">
+          <div class="col-md-4 col-lg-2 text-right">
             <div class="row">
               <div class="col-md-6 pb-2">
                 <button type="button" class="btn bg-blue-300 btn-icon btn-block" v-tooltip:top="'Atur Kolom Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
@@ -256,13 +270,18 @@
         </table>
       </div>
 
-      <!-- footer info -->
-      <div class="card-footer bg-white hidden-print">
+      <!-- footer  -->
+      <div class="card-footer bg-white d-print-none">
         <div class="row">
-
-          <div class="col-sm-6 pt-2">
+          <!-- entri info -->
+          <div class="col-md-4 pt-2">
             <!-- total entri note success-->
-            <div v-if="itemDataStat === 'success'">Menampilkan {{itemData.from}} -
+            <!-- desktop -->
+            <div v-if="itemDataStat === 'success'" class="d-none d-md-block">Menampilkan {{itemData.from}} -
+              {{itemData.to}} entri dari {{itemData.total}} entri
+            </div>
+            <!-- mobile -->
+            <div v-if="itemDataStat === 'success'" class="d-block d-md-none text-center">Menampilkan {{itemData.from}} -
               {{itemData.to}} entri dari {{itemData.total}} entri
             </div>
 
@@ -274,7 +293,10 @@
             </div>
 
           </div>
-          <div class="col-sm-6 pt-2 text-right">
+
+          <!-- pagination -->
+          <!-- desktop -->
+          <div class="col-md-8 pt-2 text-right d-none d-md-block">
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
@@ -283,7 +305,7 @@
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn d-none d-sm-block" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
                   {{n}}
               </button>
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
@@ -294,7 +316,90 @@
               </button>
             </div>
             
-
+            <!-- pagination loading-->
+            <div class="btn-group" v-else>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-backward2"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-arrow-left5"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-spinner2 spinner"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-arrow-right5"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-forward3"></i>
+              </button>
+              
+            </div>
+          </div>
+          <!-- middle -->
+          <div class="col-md-8 pt-2 text-center d-block d-md-none">
+            <!-- pagination success-->
+            <div class="btn-group" v-if="itemDataStat === 'success'">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+                  <i class="icon-backward2"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+                  <i class="icon-arrow-left5"></i>
+              </button>
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+                  {{n}}
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+                  <i class="icon-arrow-right5"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+                  <i class="icon-forward3"></i>
+              </button>
+            </div>
+            
+            <!-- pagination loading-->
+            <div class="btn-group" v-else>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-backward2"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-arrow-left5"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-spinner2 spinner"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-arrow-right5"></i>
+              </button>
+              <button href="#" class="btn btn-light disabled">
+                  <i class="icon-forward3"></i>
+              </button>
+              
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="col-md-8 pt-2 text-center d-block d-sm-none">
+            <!-- pagination success-->
+            <div class="btn-group" v-if="itemDataStat === 'success'">
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+                  {{n}}
+              </button>
+            </div>
+            <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+                  <i class="icon-backward2"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+                  <i class="icon-arrow-left5"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+                  <i class="icon-arrow-right5"></i>
+              </button>
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+                  <i class="icon-forward3"></i>
+              </button>
+            </div>
+            
             <!-- pagination loading-->
             <div class="btn-group" v-else>
               <button href="#" class="btn btn-light disabled">
