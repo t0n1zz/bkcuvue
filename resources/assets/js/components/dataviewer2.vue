@@ -132,20 +132,20 @@
         <div class="row">
           <!-- filter -->
           <!-- desktop -->
-          <div class="col-md-6 col-lg-8 pb-2 d-none d-md-block">
+          <div class="col-md-6 col-lg-7 pb-2 d-none d-md-block">
             <button class="btn bg-teal" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
             <button class="btn btn-warning"  @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
             <button class="btn btn-primary" @click="applyFilter"><i class="icon-search4"></i> Cari</button>
           </div>
           <!-- mobile -->
-          <div class="col-md-8 pb-2 d-block d-md-none">
+          <div class="col-md-12 pb-2 d-block d-md-none">
             <button class="btn bg-teal btn-block" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
             <button class="btn btn-warning btn-block" @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
             <button class="btn btn-primary btn-block" @click="applyFilter"><i class="icon-search4"></i> Lakukan Pencarian</button>
           </div>
 
           <!-- entri & order -->
-          <div class="col-md-6 col-lg-4 text-right">
+          <div class="col-md-6 col-lg-5 text-right">
             <div class="row">
 
               <!-- entri -->
@@ -378,7 +378,7 @@
             </div>
           </div>
           <!-- mobile -->
-          <div class="col-md-8 pt-2 text-center d-block d-sm-none">
+          <div class="col-md-12 pt-2 text-center d-block d-sm-none">
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
               <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">

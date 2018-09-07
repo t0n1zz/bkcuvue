@@ -6,7 +6,6 @@
 		:titleDesc="titleDesc" 
 		:titleIcon="titleIcon"></page-header>
 
-		
 		<!-- page container -->
 		<div class="page-content pt-0">
 			<div class="content-wrapper">
@@ -20,6 +19,7 @@
 					<table-data 
 						:title="title" 
 						:kelas="kelas"></table-data>
+						
 				</div>
 			</div>
 		</div>
@@ -46,28 +46,7 @@
 				kelas: 'cu',
 				titleDesc: 'Mengelola data CU',
 				titleIcon: 'icon-office',
-				btn1Header: {
-					route: 'artikel',
-					icon: 'icon-home9',
-					title: 'KP/TP'
-				},
-				btn2Header: {
-					route: 'artikel',
-					icon: 'icon-user-tie',
-					title: 'Staf/Aktivis'
-				},
-				btn3Header: {
-					route: 'artikel',
-					icon: 'icon-store2',
-					title: 'Kelompok'
-				},
 			}
-		},
-		mounted() {
-			// corefunc.core_function();
-		},
-		updated() {
-			// $('.bootstrap-select').selectpicker('refresh');
 		},
 		computed: {
 			...mapGetters('cu',{

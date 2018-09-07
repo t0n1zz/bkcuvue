@@ -79,19 +79,19 @@
 					</td>
 					<td v-if="!dataviewer.columnData[6].hide && !dataviewer.columnData[6].disable">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
-						<span v-else>: {{dataviewer.columnData[6].groupNoKey}}</span>	
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!dataviewer.columnData[7].hide && !dataviewer.columnData[7].disable">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
-						<span v-else>: {{dataviewer.columnData[7].groupNoKey}}</span>	
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!dataviewer.columnData[8].hide && !dataviewer.columnData[8].disable">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
-						<span v-else>: {{dataviewer.columnData[8].groupNoKey}}</span>	
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!dataviewer.columnData[9].hide && !dataviewer.columnData[9].disable">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
-						<span v-else>: {{dataviewer.columnData[9].groupNoKey}}</span>	
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!dataviewer.columnData[10].hide">
 						<check-value :value="props.item.alamat"></check-value>
