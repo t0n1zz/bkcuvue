@@ -128,6 +128,9 @@
 								<i class="icon-plus22"></i> Tambah Penulis
 							</router-link>
 
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
 							<!-- artikel -->
 							<router-link :to="{ name: 'artikelCu', params:{cu: profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
 								<i class="icon-magazine"></i> Artikel
@@ -165,10 +168,16 @@
 								<i class="icon-plus22"></i> Tambah Tempat
 							</router-link>
 
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
 							<!-- diklat pus -->
 							<router-link :to="{ name: 'diklatPus' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
 								<i class="icon-graduation2"></i> Diklat BKCU
 							</router-link>
+
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
 
 							<!-- tempat -->
 							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_tempat']">
@@ -206,6 +215,9 @@
 							<router-link :to="{ name:'pengelolaCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_pengelola']">
 								<i class="icon-plus22"></i> Tambah Pengelola
 							</router-link>
+
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
 
 							<!-- cu -->
 							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
@@ -253,6 +265,9 @@
 								<i class="icon-plus22"></i> Tambah Laporan Statistik CU
 							</router-link>
 
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
 							<!-- laporancu -->
 							<router-link :to="{ name: 'laporanCu' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
 								<i class="icon-stats-growth"></i> Laporan Statistik CU
@@ -288,6 +303,9 @@
 							<router-link :to="{ name:'userCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['create_user']">
 								<i class="icon-plus22"></i> Tambah User
 							</router-link>
+
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
 
 							<!-- user -->
 							<router-link :to="{ name: 'userCu', params:{cu: this.profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_user']">

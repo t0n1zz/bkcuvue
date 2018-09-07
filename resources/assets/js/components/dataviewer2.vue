@@ -1,112 +1,182 @@
 <template>
   <div>
 
-    <!-- desktop  view-->
+    <!-- pencarian -->
     <div class="card">
-      <div class="card-header bg-white">
+      <div class="card-header header-elements-inline bg-white">
+        <h5 class="card-title">Pencarian data</h5>
+        <div class="header-elements">
+          <div class="list-icons">
+            <a class="list-icons-item" data-action="collapse"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body hidden-print">
         <!-- search row -->
         <div class="row">
           <div class="col-md-12" v-for="(f, i) in filterCandidates">
-            <div class="row no-gutters">
-              <div class="col-md-4 pb-2 pr-1">
-                <select class="form-control" @input="selectColumn(f, i, $event)">
-                  <option value="">Silahkan masukkan kolom pencarian</option>
-                  <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
-                    v-if="x.filter">
-                    {{x.title}}
-                  </option>
-                </select>
+            <div class="row">
+              <div class="col-md-4 pb-2">
+                <div class="input-group">
+                  <span class="input-group-prepend">
+                    <span class="input-group-text">Kolom</span>
+                  </span>
+                  <select class="form-control" @input="selectColumn(f, i, $event)">
+                    <option value="">Silahkan masukkan kolom pencarian</option>
+                    <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
+                      v-if="x.filter">
+                      {{x.title}}
+                    </option>
+                  </select>
+                </div>
               </div>
 
-              <div class="col-md-3 pb-2 pr-1" v-if="f.column">
-                <select class="form-control" @input="selectOperator(f, i, $event)">
-                  <option v-for="y in fetchOperators(f)" :value="JSON.stringify(y)" :selected="f.operator && y.name === f.operator.name">
-                    {{y.title}}
-                  </option>
-                </select>
+              <div class="col-md-3 pb-2" v-if="f.column">
+                <div class="input-group">
+                  <span class="input-group-prepend">
+                    <span class="input-group-text">Operator</span>
+                  </span>
+                  <select class="form-control" @input="selectOperator(f, i, $event)">
+                    <option v-for="y in fetchOperators(f)" :value="JSON.stringify(y)" :selected="f.operator && y.name === f.operator.name">
+                      {{y.title}}
+                    </option>
+                  </select>
+                </div>
               </div>
 
               <template v-if="f.column && f.operator">
-                <div class="col-md-4 pb-2 pr-1" v-if="f.operator.component === 'single'">
-                  <input type="text" class="form-control" v-model="f.query_1">
-                </div>
-                <template v-if="f.operator.component === 'double'">
-                  <div class="col-md-2 pb-2 pr-1">
+                <div class="col-md-4 pb-2" v-if="f.operator.component === 'single'">
+                  <div class="input-group">
+                    <span class="input-group-prepend">
+                      <span class="input-group-text">Kata kunci</span>
+                    </span>
                     <input type="text" class="form-control" v-model="f.query_1">
                   </div>
-                  <div class="col-md-2 pb-2 pr-1">
-                    <input type="text" class="form-control" v-model="f.query_2">
+                </div>
+                <template v-if="f.operator.component === 'double'">
+                  <div class="col-md-2 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Kata kunci 1</span>
+                      </span>
+                      <input type="text" class="form-control" v-model="f.query_1">
+                    </div>
+                  </div>
+                  <div class="col-md-2 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Kata kunci 2</span>
+                      </span>
+                      <input type="text" class="form-control" v-model="f.query_2">
+                    </div>
                   </div>
                 </template>
                 <template v-if="f.operator.component === 'datetime_1'">
-                  <div class="col-md-2 pb-2 pr-1">
-                    <input type="text" class="form-control" v-model="f.query_1">
+                  <div class="col-md-2 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Kata kunci 1</span>
+                      </span>
+                      <input type="text" class="form-control" v-model="f.query_1">
+                    </div>
                   </div>
-                  <div class="col-md-2 pb-2 pr-1">
-                    <select class="form-control" v-model="f.query_2">
-                      <option>jam</option>
-                      <option>hari</option>
-                      <option>bulan</option>
-                      <option>tahun</option>
-                    </select>
+                  <div class="col-md-2 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Kata kunci 2</span>
+                      </span>
+                      <select class="form-control" v-model="f.query_2">
+                        <option value="hours">jam</option>
+                        <option value="days">hari</option>
+                        <option value="months">bulan</option>
+                        <option value="years">tahun</option>
+                      </select>
+                    </div>
                   </div>
                 </template>
                 <template v-if="f.operator.component === 'datetime_2'">
-                  <div class="col-md-4 pb-2 pr-1">
-                    <select class="form-control" v-model="f.query_1">
-                      <option value="yesterday">kemarin</option>
-                      <option value="today">hari ini</option>
-                      <option value="tomorrow">besok</option>
-                      <option value="last_month">bulan lalu</option>
-                      <option value="this_month">bulan ini</option>
-                      <option value="next_month">bulan depan</option>
-                      <option value="last_year">tahun lalu</option>
-                      <option value="this_year">tahun ini</option>
-                      <option value="next_year">tahun depan</option>
-                    </select>
+                  <div class="col-md-4 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Kata kunci</span>
+                      </span>
+                      <select class="form-control" v-model="f.query_1">
+                        <option value="yesterday">kemarin</option>
+                        <option value="today">hari ini</option>
+                        <option value="tomorrow">besok</option>
+                        <option value="last_month">bulan lalu</option>
+                        <option value="this_month">bulan ini</option>
+                        <option value="next_month">bulan depan</option>
+                        <option value="last_year">tahun lalu</option>
+                        <option value="this_year">tahun ini</option>
+                        <option value="next_year">tahun depan</option>
+                      </select>
+                    </div>
                   </div>
                 </template>
 
               </template>
 
               <div class="col-md-1 pb-2">
-                <button class="btn btn-light btn-block" @click="removeFilter(f,i)"><i class="icon-cross3"></i></button>
+                <button class="btn bg-slate-300 btn-block" @click="removeFilter(f,i)"><i class="icon-cross3"></i></button>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card-body hidden-print">
+        <div class="row"><div class="col-sm-12"><hr class="mt-1"></div></div>
+
         <!-- button row -->
         <div class="row">
-          <div class="col-md-8">
-            <button class="btn btn-light" @click="addFilter"><i class="icon-plus22"></i> Tambah Pencarian</button>
-            <button class="btn btn-warning" @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset</button>
+          <div class="col-md-8 pb-2">
+            <button class="btn bg-teal" @click="addFilter"><i class="icon-plus22"></i> Tambah Pencarian</button>
+            <button class="btn btn-warning" @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
             <button class="btn btn-primary" @click="applyFilter"><i class="icon-search4"></i> Lakukan Pencarian</button>
           </div>
 
-
-          <!-- pengurutan -->
+          
           <div class="col-md-4 text-right">
-            <div class="row no-gutters">
-              <div class="col-md-4 align-self-center pr-1">
-                <span>Urutkan berdasarkan</span>
+            <div class="row">
+
+              <!-- entri -->
+              <div class="col-md-4 pb-2">
+                <div class="input-group">
+                  <span class="input-group-prepend">
+                    <span class="input-group-text">Entri</span>
+                  </span>
+                  <select class="form-control"  v-model="query.limit" @change="updateLimit">
+                    <option>10</option>
+                    <option>15</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                </div> 
               </div>
-              <div class="col-md-7 pr-1">
-                <select class="form-control" @input="updateOrderColumn">
-                  <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
-                    v-if="column.sort">
-                    {{column.title}}
-                  </option>
-                </select>
+
+              <!-- pengurutan -->
+              <div class="col-md-6 pb-2">
+                <div class="input-group">
+                  <span class="input-group-prepend">
+                    <span class="input-group-text">Urutkan</span>
+                  </span>
+                  <select class="form-control" @input="updateOrderColumn">
+                    <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
+                      v-if="column.sort">
+                      {{column.title}}
+                    </option>
+                  </select>
+                </div>  
               </div>
-              <div class="col-md-1">
-                <button class="btn btn-light btn-block" @click="updateOrderDirection">
+
+              <!-- arah pengurutan -->
+              <div class="col-md-2">
+                <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection">
                   <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
                   <i class="icon-arrow-down7" v-else></i>
                 </button>
               </div>
+
             </div>
           </div>
 
@@ -115,13 +185,44 @@
       </div>
     </div>
 
+    <!-- tabel -->
     <div class="card">
 
       <div class="card-header">
-        <div class="btn-toolbar">
+        <div class="row">
           <!-- slot button -->
-          <slot name="button-desktop"></slot>
+          <div class="col-md-8">
+            <slot name="button-desktop"></slot>
+          </div>
+
+          <div class="col-md-4 text-right">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="btn-group">
+                  <slot name="button-kolom"></slot>
+                  <button type="button" class="btn btn-light btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Kolom Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
+                    <i class="icon-table2"></i> Kolom
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item disabled">Kolom yang ditampilkan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" @click.prevent="showAllColumn">Semua Kolom</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)">{{column.title}}</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+
+              </div>
+              <div class="col-md-2">
+
+              </div>
+            </div>
+          </div>
         </div>
+        
       </div>
 
       <!-- table-->
@@ -274,6 +375,21 @@
       },
     },
     methods: {
+      // show column
+      hideColumn(index) {
+        if (this.columnData[index].hide === false)
+          this.columnData[index].hide = true;
+        else
+          this.columnData[index].hide = false;
+        this.field_excel(this);
+      },
+      showAllColumn(index) {
+        for (var t in this.columnData) {
+          if (t != index)
+            this.columnData[t].hide = false;
+        }
+        this.field_excel(this);
+      },
       updateOrderDirection() {
         if (this.query.order_direction === 'desc') {
           this.query.order_direction = 'asc'
@@ -420,101 +536,101 @@
       },
       availableOperators() {
         return [{
-            title: 'equal to',
+            title: 'sama dengan',
             name: 'equal_to',
             parent: ['numeric', 'string'],
             component: 'single'
           },
           {
-            title: 'not equal to',
+            title: 'tidak sama dengan',
             name: 'not_equal_to',
             parent: ['numeric', 'string'],
             component: 'single'
           },
           {
-            title: 'less than',
+            title: 'kurang dari',
             name: 'less_than',
             parent: ['numeric'],
             component: 'single'
           },
           {
-            title: 'greater than',
+            title: 'lebih dari',
             name: 'greater_than',
             parent: ['numeric'],
             component: 'single'
           },
 
           {
-            title: 'between',
+            title: 'antara',
             name: 'between',
             parent: ['numeric'],
             component: 'double'
           },
           {
-            title: 'not between',
+            title: 'tidak antara',
             name: 'not_between',
             parent: ['numeric'],
             component: 'double'
           },
 
           {
-            title: 'contains',
+            title: 'mengandung kata',
             name: 'contains',
             parent: ['string'],
             component: 'single'
           },
           {
-            title: 'starts with',
+            title: 'dimulai dari',
             name: 'starts_with',
             parent: ['string'],
             component: 'single'
           },
           {
-            title: 'ends with',
+            title: 'diakhiri dengan',
             name: 'ends_with',
             parent: ['string'],
             component: 'single'
           },
 
           {
-            title: 'in the past',
+            title: 'pada masa lalu',
             name: 'in_the_past',
             parent: ['datetime'],
             component: 'datetime_1'
           },
           {
-            title: 'in the next',
+            title: 'pada masa depan',
             name: 'in_the_next',
             parent: ['datetime'],
             component: 'datetime_1'
           },
           {
-            title: 'in the peroid',
+            title: 'pada periode',
             name: 'in_the_peroid',
             parent: ['datetime'],
             component: 'datetime_2'
           },
 
           {
-            title: 'equal to',
+            title: 'sama dengan',
             name: 'equal_to_count',
             parent: ['counter'],
             component: 'single'
           },
           {
-            title: 'not equal to',
+            title: 'tidak sama dengan',
             name: 'not_equal_to_count',
             parent: ['counter'],
             component: 'single'
           },
           {
-            title: 'less than',
+            title: 'kurang dari',
             name: 'less_than_count',
             parent: ['counter'],
             component: 'single'
           },
           {
-            title: 'greater than',
+            title: 'lebih dari',
             name: 'greater_than_count',
             parent: ['counter'],
             component: 'single'

@@ -9,25 +9,19 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-1 pr-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon" v-tooltip:top="'Tambah ' +  title">
-						<i class="icon-plus3"></i> Tambah 
-					</router-link>
-				</div>
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon" v-if="profile.can && profile.can['create_' + kelas]" v-tooltip:top="'Tambah ' +  title">
+					<i class="icon-plus3"></i> Tambah {{ title }}
+				</router-link>
 
 				<!-- ubah-->
-				<div class="btn-group pb-1 pr-1 " v-if="profile.can && profile.can['update_' + kelas]">
-					<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-						<i class="icon-pencil5"></i> Ubah
-					</button>
-				</div>
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon" v-tooltip:top="'Ubah ' + title" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
 
 				<!-- hapus -->
-				<div class="btn-group pb-1 pr-1" v-if="profile.can && profile.can['destroy_' + kelas]">
-					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
-						<i class="icon-bin2"></i> Hapus
-					</button>
-				</div>
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon" v-tooltip:top="'Hapus ' + title" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
 
 				<!-- lihat tpcu -->
 				<div class="btn-group pb-1" v-if="profile.can && profile.can['index_tpCu']">
@@ -207,7 +201,7 @@
 						{
 							title: 'No. BA',
 							name: 'no_ba',
-							tipe: 'string',
+							tipe: 'numeric',
 							sort: true,
 							hide: false,
 							disable: false,
@@ -218,7 +212,7 @@
 							name: 'has_tp_cu_count',
 							groupKey: 'has_tp_cu_count',
 							groupNoKey: '0',
-							tipe: 'string',
+							tipe: 'numeric',
 							sort: true,
 							hide: false,
 							disable: false
@@ -306,7 +300,7 @@
 						{
 							title: 'Tgl. Berdiri',
 							name: 'ultah',
-							tipe: 'string',
+							tipe: 'datetime',
 							sort: true,
 							hide: false,
 							disable: false,
@@ -316,7 +310,7 @@
 						{
 							title: 'Tgl. Bergabung',
 							name: 'bergabung',
-							tipe: 'string',
+							tipe: 'datetime',
 							sort: true,
 							hide: false,
 							disable: false,
@@ -376,20 +370,20 @@
 						{
 							title: 'Tgl. / Waktu Buat',
 							name: 'created_at',
+							tipe: 'datetime',
 							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'datetime'
 						},
 						{
 							title: 'Tgl. / Waktu Ubah',
 							name: 'updated_at',
+							tipe: 'datetime',
 							sort: true,
 							hide: false,
 							disable: false,
 							filter: true,
-							filterType: 'datetime'
 						}
 
 					],
