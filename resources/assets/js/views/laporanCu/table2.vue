@@ -310,7 +310,7 @@
 						},
 						{
 							title: 'No. BA',
-							name: 'no_ba',
+							name: 'laporan_cu.no_ba',
 							tipe: 'string',
 							sort: true,
 							hide: false,
