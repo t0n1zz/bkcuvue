@@ -1,21 +1,19 @@
 <template>
 <div>
-	<div class="panel panel-white">
+	<div class="card">
 
 		<!-- heading -->
-		<div class="panel-heading hidden-print">
-			<h5 class="panel-title text-semibold"><i class="icon-graph position-left"></i> Grafik {{ title }}</h5>
-			<div class="heading-elements">
-				<ul class="icons-list">
-					<li>
-						<a v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
-					</li>
-				</ul>
+		<div class="card-header header-elements-inline d-print-none">
+			<h5 class="card-title "><i class="icon-graph position-left"></i> Grafik {{ title }}</h5>
+			<div class="header-elements">
+				<div class="icons-list">
+					<a class="list-icons-item" v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
+				</div>
 			</div>
 		</div>
 
 		<!-- body -->
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="echart-container">
 				<echarts
 					class="echarts"
@@ -23,7 +21,7 @@
 					auto-resize></echarts>	
 			</div>
 			<hr>
-			<div class="row hidden-print">
+			<div class="row d-print-none">
 
 				<!-- desktop button -->
 				<div class="col-md-12 hidden-xs">
@@ -32,7 +30,7 @@
 
 						<!-- entri view -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Jumlah Entri Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
+							<button type="button" class="btn btn-light btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Jumlah Entri Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
 								<i class="icon-menu7"></i>&nbsp; {{params.per_page}} &nbsp;
 								<span class="caret"></span>
 							</button>

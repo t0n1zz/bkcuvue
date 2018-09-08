@@ -235,7 +235,7 @@
           <thead class="bg-primary">
             <tr class="text-nowrap">
               <th v-for="item in columnData" v-if="!item.hide && !item.disable">
-                <span v-html="item.title"></span>
+                <span v-html="item.title"></span> <i class="icon-menu-open" v-if="item.name == query.order_column"></i>
               </th>
             </tr>
           </thead>

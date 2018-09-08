@@ -27,7 +27,7 @@ class LaporanCuController extends Controller{
 				(IFNULL(laporan_cu.piutang_beredar,0)/IFNULL(laporan_cu.aset,0)) as rasio_beredar,
 				((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0)) as rasio_lalai,
 				(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih'
-			)])->FilterPaginateOrder();
+			)])->advancedFilter();
 
 		return response()
 		->json([

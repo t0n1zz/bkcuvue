@@ -1,23 +1,12 @@
 <template>
 	<div>
 		<!-- Page header -->
-		<page-header 
-		:title="title" 
-		:titleDesc="titleDesc" 
-		:titleIcon="titleIcon" 
-		:btn1Route="btn1Header.route" 
-		:btn1Title="btn1Header.title" 
-		:btn1Icon="btn1Header.icon" 
-		:btn1Can="btn1Header.can" 
-		:btn2Route="btn2Header.route" 
-		:btn2Title="btn2Header.title" 
-		:btn2Icon="btn2Header.icon"
-		:btn2Can="btn2Header.can"></page-header>
-		
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon"></page-header>
+
 		<!-- page container -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
@@ -27,15 +16,22 @@
 					</message>
 
 					<!-- select data -->
-					<select-data 
-						:kelas="kelas"
-						:isPus="false"
-						:isNo_ba="true"></select-data>
+					<select-data :kelas="kelas" :isPus="false" :isNo_ba="true"></select-data>
 
-					<div class="tabbable">
-						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-							<li :class="{'active' : tabName == 'table'}"><a @click.prevent="changeTab('table')"><i class="icon-list2 position-left"></i> Statistik</a></li>
-							<li :class="{'active' : tabName == 'tablePearls'}"><a @click.prevent="changeTab('tablePearls')"><i class="icon-list2 position-left"></i> {{ titlePearls }}</a></li>
+					<div class="nav-tabs-responsive mb-3">
+						<ul class="nav nav-tabs nav-tabs-bottom flex-nowarp mb-0">
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'table'}" @click.prevent="changeTab('table')"><i class="icon-table2 mr-2"></i> Tabel Statistik</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'tablePearls'}" @click.prevent="changeTab('tablePearls')"><i class="icon-table2 mr-2"></i> Tabel P.E.A.R.L.S</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'infografis'}" @click.prevent="changeTab('infografis')"><i class="icon-graph mr-2"></i> Infografis Statistik</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'infografisPearls'}" @click.prevent="changeTab('infografisPearls')"><i class="icon-graph mr-2"></i> Infografis P.E.A.R.L.S</a>
+							</li>
 						</ul>
 					</div>
 
@@ -43,31 +39,36 @@
 					<!-- table data -->
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'table'">
-							<infografis-data
-								:title="title"
-								:kelas="kelas"
-								:columnData="columnData"></infografis-data>
-
-							<table-data 
-								:title="title" 
-								:kelas="kelas"></table-data>
+							<table-data :title="title" :kelas="kelas"></table-data>
 						</div>
 					</transition>
 
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
+							<table-pearls :title="titlePearls" :kelas="kelas"></table-pearls>
+						</div>
+					</transition>
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'infografis'" v-if="isInfografis">
+							<infografis-data
+								:title="title"
+								:kelas="kelas"
+								:columnData="columnData"></infografis-data>
+						</div>
+					</transition>
+
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'infografisPearls'" v-if="isInfografisPearls">
 							<infografis-pearls-data
 								:title="titlePearls"
 								:kelas="kelas"
 								:columnData="columnDataPearls"></infografis-pearls-data>
-
-							<table-pearls 
-								:title="titlePearls" 
-								:kelas="kelas"></table-pearls>
 						</div>
 					</transition>
-					
+
 
 				</div>
 			</div>
@@ -77,12 +78,13 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
+	import {
+		mapGetters
+	} from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectData from "./select.vue";
-	import tableData from "./table.vue";
+	import selectData from "./select2.vue";
+	import tableData from "./table2.vue";
 	import tablePearls from "./tablePearls.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
@@ -119,26 +121,27 @@
 					title: 'Penulis Artikel',
 					can: 'index artikelPenulis'
 				},
+				isTablePearls: false,
 				isInfografis: false,
-				isTablePearls: false
+				isInfografisPearls: false
 			}
 		},
-		mounted() {
-			corefunc.core_function();
-		},
-		methods:{
-			changeTab(value){
+		methods: {
+			changeTab(value) {
 				this.tabName = value;
-				if(value == 'infografis' && !this.isInfografis){
-					this.isInfografis = true;
+				if (value == 'tablePearls' && !this.isTablePearls) {
+					this.isTablePearls = true
 				}
-				if(value == 'tablePearls' && !this.isTablePearls){
-					this.isTablePearls = true;
+				if (value == 'infografis' && !this.isInfografis) {
+					this.isInfografis = true
 				}
-			} 
+				if (value == 'infografisPearls' && !this.isInfografisPearls) {
+					this.isInfografisPearls = true
+				}
+			}
 		},
 		computed: {
-			...mapGetters('laporanCu',{
+			...mapGetters('laporanCu', {
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				itemPearls: 'pearls',
@@ -149,6 +152,7 @@
 		}
 	}
 </script>
+
 <style>
 	@import "../../../../../node_modules/katex/dist/katex.min.css"
 </style>
