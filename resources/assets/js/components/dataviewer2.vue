@@ -471,13 +471,7 @@
   import appModal from '../components/modal';
 
   export default {
-    props: {
-      title: String,
-      columnData: Array,
-      itemData: Object,
-      itemDataStat: String,
-      isUploadExcel: Boolean
-    },
+    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query'],
     components: {
       jsonExcel,
       appModal,
@@ -487,13 +481,6 @@
         appliedFilters: [],
         filterCandidates: [],
         pages: [],
-        query: {
-          order_column: 'created_at',
-          order_direction: 'desc',
-          filter_match: 'and',
-          limit: 10,
-          page: 1
-        },
         excel: {
           fields: {},
           data: [],
@@ -556,9 +543,6 @@
         Vue.set(this.query, 'order_column', value)
         this.applyChange()
       },
-      exportToCSV() {
-        // next video
-      },
       resetFilter() {
         this.appliedFilters.splice(0)
         this.filterCandidates.splice(0)
@@ -590,8 +574,6 @@
         this.filterCandidates[i].query_1 = null
         this.filterCandidates[i].query_2 = null
 
-        // set default query
-
         switch (obj.name) {
           case 'in_the_past':
           case 'in_the_next':
@@ -614,7 +596,6 @@
 
         Vue.set(this.filterCandidates[i], 'column', obj)
 
-        // set default operator: todo
         switch (obj.tipe) {
           case 'numeric':
             this.filterCandidates[i].operator = this.availableOperators()[4]
@@ -707,7 +688,6 @@
           ...filters,
           ...this.query
         }
-
         this.$emit('fetch', params)
       },
       // excel data

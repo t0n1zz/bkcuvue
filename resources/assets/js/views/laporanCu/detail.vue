@@ -4,20 +4,12 @@
 		<page-header 
 		:title="title" 
 		:titleDesc="titleDesc" 
-		:titleIcon="titleIcon" 
-		:btn1Route="btn1Header.route" 
-		:btn1Title="btn1Header.title" 
-		:btn1Icon="btn1Header.icon" 
-		:btn1Can="btn1Header.can" 
-		:btn2Route="btn2Header.route" 
-		:btn2Title="btn2Header.title" 
-		:btn2Icon="btn2Header.icon"
-		:btn2Can="btn2Header.can"></page-header>
+		:titleIcon="titleIcon"></page-header>
 		
 		<!-- page container -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
@@ -32,12 +24,12 @@
 						:isPus="false"
 						:isNo_ba="true"></select-data>
 
-					<div class="tabbable">
-						<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-							<li :class="{'active' : tabName == 'analisisLaporanCu'}"><a @click.prevent="changeTab('analisisLaporanCu')"><i class="icon-dots position-left"></i> Laporan CU</a></li>
-							<li :class="{'active' : tabName == 'analisisPearls'}"><a @click.prevent="changeTab('analisisPearls')"><i class="icon-dots position-left"></i> P.E.A.R.L.S.</a></li>
-							<li :class="{'active' : tabName == 'diskusi'}"><a @click.prevent="changeTab('diskusi')"><i class="icon-bubble2 position-left"></i> Diskusi</a></li>
-							<li :class="{'active' : tabName == 'revisi'}"><a @click.prevent="changeTab('revisi')"><i class="icon-stack2 position-left"></i> Revisi</a></li>
+					<div class="nav-tabs-responsive mb-3">
+						<ul class="nav nav-tabs nav-tabs-bottom flex-nowarp mb-0">
+							<li class="nav-item"><a href="#" class="nav-link" :class="{'active' : tabName == 'analisisLaporanCu'}" @click.prevent="changeTab('analisisLaporanCu')"><i class="icon-dots mr-2"></i> Laporan CU</a></li>
+							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'analisisPearls'}" @click.prevent="changeTab('analisisPearls')"><i class="icon-dots mr-2"></i> P.E.A.R.L.S.</a></li>
+							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'diskusi'}" @click.prevent="changeTab('diskusi')"><i class="icon-bubble2 mr-2"></i> Diskusi</a></li>
+							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'revisi'}" @click.prevent="changeTab('revisi')"><i class="icon-stack2 mr-2"></i> Revisi</a></li>
 						</ul>
 					</div>
 
@@ -93,7 +85,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import selectData from "./selectDetail.vue";
@@ -142,9 +133,6 @@
 				isDiskusi: false,
 				isRevisi: false
 			}
-		},
-		mounted() {
-			corefunc.core_function();
 		},
 		methods:{
 			changeTab(value){

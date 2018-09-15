@@ -865,10 +865,14 @@
 
 			<template slot="modal-body1">
 				<form @submit.prevent="save" data-vv-scope="form">
-				<div class="tabbable">
-					<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
-						<li :class="{'active' : modalDetail.tab == 'analisis'}"><a @click.prevent="modalDetail.tab = 'analisis'"><i class="icon-wave2 position-left"></i> Analisis</a></li>
-						<li :class="{'active' :  modalDetail.tab == 'tabel'}"><a @click.prevent="modalDetail.tab = 'tabel'"><i class="icon-list2 position-left"></i> Tabel</a></li>
+				<div class="nav-tabs-responsive mb-3">
+					<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+						<li class="nav-item">
+							<a href="#" class="nav-link" :class="{'active' : modalDetail.tab == 'analisis'}" @click.prevent="modalDetail.tab = 'analisis'"><i class="icon-wave2 mr-2"></i> Analisis</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link" :class="{'active' :  modalDetail.tab == 'tabel'}" @click.prevent="modalDetail.tab = 'tabel'"><i class="icon-list2 mr-2"></i> Tabel</a>
+						</li>
 					</ul>
 				</div>
 
@@ -882,7 +886,7 @@
 						:isOpposite="modalDetail.isOpposite"
 						></widget-data>	
 
-					<div class="well well-sm border-top-lg border-top-blue">
+					<div class="card card-body border-top-blue">
 						<h6 v-html="modalDetail.analisis1"></h6>
 					</div>
 				</div>
@@ -934,8 +938,8 @@
 
 					<hr>
 
-					<div class="alert bg-info alert-styled-left mt-10 pt-5 pb-5">
-						<span class="mb-5 text-semibold"><u>Bagaimana membaca tabel ini?</u></span>
+					<div class="alert bg-info alert-styled-left mt-2 pt-1 pb-1">
+						<span class="mb-2 text-semibold"><u>Bagaimana membaca tabel ini?</u></span>
 						<p>Kolom pertumbuhan adalah perbandingan nilai pada laporan periode ini dibandingan dengan periode lainnya sesuai pada tabel</p>
 					</div>
 				</div>
@@ -1066,12 +1070,6 @@
 		},
 		created(){
 			this.fetch();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
-		},
-		mounted(){
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			'$route' (to, from){

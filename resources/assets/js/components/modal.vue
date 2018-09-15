@@ -7,10 +7,10 @@
 					<div class="modal-dialog" :class="size" @click.stop>
 						<div class="modal-content">
 							<div class="modal-header" :class="color" v-if="state === 'normal1' || state === 'normal2'">
-								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
 								<h6 class="modal-title">
 									<slot name="modal-title"></slot>
 								</h6>
+								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
 							</div>
 							<div class="modal-body">
 								<transition name="modal-effect" enter-active-class="animated flipInX" mode="out-in">

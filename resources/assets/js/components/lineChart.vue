@@ -205,41 +205,41 @@
 	</div>
 
 	<!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
-      <div slot="modal-body1">
-        <!-- entri -->
-        <div v-if="modalMobileOptionState === 'entri'">
-          <h2 class="text-center">Entri yang ditampilkan</h2>
-          <hr/>
-          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 10, 'btn-default': params.per_page !== 10}" @click.prevent="entriPage(10,'mobile')" >10 Entri</a>
-          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 25, 'btn-default': params.per_page !== 25}" @click.prevent="entriPage(25,'mobile')" v-if="itemData.total > 10">25 Entri</a>
-          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 50, 'btn-default': params.per_page !== 50}" @click.prevent="entriPage(50,'mobile')" v-if="itemData.total > 25">50 Entri</a>
-          <slot name="button-entri-mobile"></slot>
-          <hr/>
-          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
-        </div>
+	<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
+		<div slot="modal-body1">
+			<!-- entri -->
+			<div v-if="modalMobileOptionState === 'entri'">
+				<h2 class="text-center">Entri yang ditampilkan</h2>
+				<hr/>
+				<a class="btn btn-block" :class="{'btn-primary' : params.per_page === 10, 'btn-default': params.per_page !== 10}" @click.prevent="entriPage(10,'mobile')" >10 Entri</a>
+				<a class="btn btn-block" :class="{'btn-primary' : params.per_page === 25, 'btn-default': params.per_page !== 25}" @click.prevent="entriPage(25,'mobile')" v-if="itemData.total > 10">25 Entri</a>
+				<a class="btn btn-block" :class="{'btn-primary' : params.per_page === 50, 'btn-default': params.per_page !== 50}" @click.prevent="entriPage(50,'mobile')" v-if="itemData.total > 25">50 Entri</a>
+				<slot name="button-entri-mobile"></slot>
+				<hr/>
+				<a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+			</div>
 
-        <div v-if="modalMobileOptionState === 'sortAsc'">
-          <h2 class="text-center">Mengurutkan data dari yang terkecil ke terbesar</h2>
-          <hr/>
-          <a class="btn btn-block" :class="{'btn-primary' : data.title === sortAscTitle, 'btn-default': data.title !== sortAscTitle}" v-for="data in dataShown" @click.prevent="sortAscData(data.key,data.title,'mobile')">
-						{{ data.title }}
-          </a>
-          <hr/>
-          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
-        </div>
+			<div v-if="modalMobileOptionState === 'sortAsc'">
+				<h2 class="text-center">Mengurutkan data dari yang terkecil ke terbesar</h2>
+				<hr/>
+				<a class="btn btn-block" :class="{'btn-primary' : data.title === sortAscTitle, 'btn-default': data.title !== sortAscTitle}" v-for="data in dataShown" @click.prevent="sortAscData(data.key,data.title,'mobile')">
+					{{ data.title }}
+				</a>
+				<hr/>
+				<a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+			</div>
 
-				<div v-if="modalMobileOptionState === 'sortDesc'">
-          <h2 class="text-center">Mengurutkan data dari yang terbesar ke terkecil</h2>
-          <hr/>
-          <a class="btn btn-block" :class="{'btn-primary' : data.title === sortDescTitle, 'btn-default': data.title !== sortDescTitle}" v-for="data in dataShown" @click.prevent="sortDescData(data.key,data.title,'mobile')">
-						{{ data.title }}
-          </a>
-          <hr/>
-          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
-        </div>
-      </div>
-    </app-modal>
+			<div v-if="modalMobileOptionState === 'sortDesc'">
+				<h2 class="text-center">Mengurutkan data dari yang terbesar ke terkecil</h2>
+				<hr/>
+				<a class="btn btn-block" :class="{'btn-primary' : data.title === sortDescTitle, 'btn-default': data.title !== sortDescTitle}" v-for="data in dataShown" @click.prevent="sortDescData(data.key,data.title,'mobile')">
+					{{ data.title }}
+				</a>
+				<hr/>
+				<a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
+			</div>
+		</div>
+	</app-modal>
 
 </div>
 </template>
@@ -326,9 +326,6 @@ export default {
 		// default series
 		this.addSeries();
 
-	},
-	updated() {
-		$('.bootstrap-select').selectpicker('refresh');
 	},
 	watch: {
 		itemDataStat(value){

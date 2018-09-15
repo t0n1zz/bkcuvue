@@ -321,9 +321,6 @@ export default {
 		this.addSeries();
 
 	},
-	updated() {
-		$('.bootstrap-select').selectpicker('refresh');
-	},
 	watch: {
 		itemDataStat(value){
 			if(value == 'success'){

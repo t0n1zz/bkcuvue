@@ -83,9 +83,6 @@ export default {
 	created() {
 		this.fetch();
 	},
-	updated() {
-		$('.bootstrap-select').selectpicker('refresh');
-	},
 	watch: {
 		// check route changes
 		'$route' (to, from){

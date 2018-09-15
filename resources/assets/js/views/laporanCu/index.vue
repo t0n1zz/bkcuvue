@@ -35,7 +35,6 @@
 						</ul>
 					</div>
 
-
 					<!-- table data -->
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'table'">
@@ -85,7 +84,7 @@
 	import message from "../../components/message.vue";
 	import selectData from "./select2.vue";
 	import tableData from "./table2.vue";
-	import tablePearls from "./tablePearls.vue";
+	import tablePearls from "./tablePearls2.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 

@@ -69,9 +69,6 @@
 				idCu: ''
 			}
 		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
-		},
 		created(){
 			if(this.profile.id_pus !== undefined){
 				this.fetchCU();

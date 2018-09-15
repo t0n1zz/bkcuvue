@@ -5,13 +5,15 @@
 		<!-- katex1 -->
 		<div v-for="katex in modalKatex.katex1" v-if="katex.content">
 			<p v-if="katex.title"><b>Keterangan:</b> {{katex.title}}</p>
-			<div class="well mb-20 pre-scrollable text-center">
-				<div v-katex="katex.content"></div>
+			<div class="card ">
+				<div class="card-body text-center pre-scrollable">
+					<div v-katex="katex.content"></div>
+				</div>
 			</div>
 		</div>
  
 		<!-- indikator -->
-		<div class="alert bg-info alert-styled-left mt-10 pt-5 pb-5">
+		<div class="alert bg-info alert-styled-left mt-2 pt-1 pb-1">
 			<span class="mb-5 text-semibold"><u>Indikator:</u></span>
 			<p v-html="modalKatex.indikator"></p>
 		</div>
@@ -24,7 +26,7 @@
 		<!-- katex2 -->
 		<div v-for="katex in modalKatex.katex2" v-if="katex.content">
 			<p v-if="katex.title"><b>Keterangan:</b> {{katex.title}}</p>
-			<div class="well mb-20 pre-scrollable text-center">
+			<div class="well mb-2 pre-scrollable text-center">
 				<div v-katex="katex.content"></div>
 			</div>
 		</div>

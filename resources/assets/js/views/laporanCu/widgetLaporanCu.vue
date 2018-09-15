@@ -1,46 +1,48 @@
 <template>
 <div>
-	<div class="panel panel-body" :class="checkClass()"> 
-		<div class="media no-margin-top content-group">
+	<div class="card card-body" :class="checkClass()"> 
+		<div class="media mb-3">
 			<div class="media-body">
 				<!-- current value -->
-				<h6 class="no-margin text-semibold" v-if="isPercent">{{ itemData | percentage(2) }}</h6>
-				<h6 class="no-margin text-semibold" v-else>{{ itemData | currency('',0,{ thousandsSeparator: '.'}) }}</h6>
+				<h6 class="font-weight-semibold mb-8" v-if="isPercent">{{ itemData | percentage(2) }}</h6>
+				<h6 class="font-weight-semibold mb-8" v-else>{{ itemData | currency('',0,{ thousandsSeparator: '.'}) }}</h6>
 
 				<!-- value changes -->
-				<span class="text-muted" v-if="isPercent">
+				<span class="opacity-75" v-if="isPercent">
 					<i :class="{'icon-chevron-up': totalData > 0,
 					'icon-chevron-down': totalData < 0}"></i> {{ Math.abs(totalData) | percentage(2) }}				
 				</span>
-				<span class="text-muted" v-else>
+				<span class="opacity-75" v-else>
 					<i :class="{'icon-chevron-up': totalData > 0,
 					'icon-chevron-down': totalData < 0}"></i> {{ Math.abs(totalData) | currency('',0,{ thousandsSeparator: '.'}) }}				
 				</span>
-
 			</div>
 
 			<!-- icon -->
-			<div class="media-right media-middle">
+			<div class="ml-3 align-self-center">
 				<i class="icon-2x opacity-75" :class="{'icon-arrow-up16': totalData > 0,'icon-arrow-down16': totalData < 0}"></i>
 			</div>
 		</div>
 
 		<!-- separator -->
-		<div class="progress progress-micro bg-blue mb-10">
+		<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 			<div class="progress-bar bg-white" style="width: 100%">
 				<span class="sr-only">100% Complete</span>
 			</div>
 		</div>
 
 		<!-- percentage -->
-		<span class="pull-right" v-if="!isPercent">
-			<span v-if="percentageData > 0">+</span>
-			<span v-else-if="percentageData < 0">-</span>
-			{{ Math.abs(percentageData) | percentage(2) }}
-		</span>
+		<div>
+			<span class="float-right" v-if="!isPercent">
+				<span v-if="percentageData > 0">+</span>
+				<span v-else-if="percentageData < 0">-</span>
+				{{ Math.abs(percentageData) | percentage(2) }}
+			</span>
 
-		<!-- title -->
-		<b>{{ title.toUpperCase() }}</b>
+			<!-- title -->
+			<b>{{ title.toUpperCase() }}</b>
+		</div>
+		
 	</div>
 
 	<app-modal :show="modalShow" :color="modalColor" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
@@ -100,12 +102,16 @@
 						className = 'bg-danger';
 					}else if(this.totalData < 0){
 						className = 'bg-primary'
+					}else{
+						className = 'bg-orange-300'
 					}
 				}else{
 					if(this.totalData > 0){
 						className = 'bg-primary';
 					}else if(this.totalData < 0){
 						className = 'bg-danger'
+					}else{
+						className = 'bg-orange-300'
 					}
 				}
 				return className;

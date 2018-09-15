@@ -504,12 +504,6 @@
 		created(){
 			this.fetch();
 		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
-		},
-		mounted(){
-			$('.bootstrap-select').selectpicker('refresh');
-		},
 		watch: {
 			'$route' (to, from){
 				// check current page meta

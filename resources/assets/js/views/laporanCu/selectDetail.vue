@@ -2,27 +2,27 @@
 	<div>
 
 		<!-- cu desktop --> 
-		<div class="panel panel-flat hidden-print " >
-			<div class="panel-body">  
+		<div class="card d-print-none" >
+			<div class="card-body">  
 				<div class="row">
 					
 					<!-- cu -->
 					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
 						<div class="input-group">
-							<div class="input-group-addon">
-								Pilih Data 
+							<div class="input-group-prepend">
+								 <span class="input-group-text">Pilih Data</span>
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)"  :disabled="modelCUStat === 'loading'">
+							<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)"  :disabled="modelCUStat === 'loading'">
 								<option disabled value="">Silahkan pilih data</option>
 								<slot></slot>
 								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>
 
 							<!-- reload -->
-							<div class="input-group-btn">
-								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCUStat === 'loading'">
+							<div class="input-group-append">
+								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCUStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
 								</button>
 							</div>
@@ -32,12 +32,12 @@
 					<!-- periode -->
 					<div class="col-sm-5">
 						<div class="input-group">
-							<div class="input-group-addon">
-								Pilih Periode
+							<div class="input-group-prepend">
+								<span class="input-group-text">Pilih Periode</span>
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="periode" v-model="periode" data-width="100%" @change="changePeriode($event.target.value)"
+							<select class="form-control" name="periode" v-model="periode" data-width="100%" @change="changePeriode($event.target.value)"
 							:disabled="modelPeriodeStat === 'loading'">
 								<option disabled value="">Silahkan pilih periode laporan</option>
 								<slot></slot>
@@ -45,8 +45,8 @@
 							</select>
 
 							<!-- reload -->
-							<div class="input-group-btn">
-								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
+							<div class="input-group-append">
+								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelPeriodeStat === 'loading'}"></i>
 								</button>
 							</div>
@@ -54,14 +54,14 @@
 					</div>
 
 					<!-- tp  -->
-					<div :class="{'col-sm-5': this.profile.id_cu != 0, 'col-sm-10 pt-10' : this.profile.id_cu == 0}">
+					<div :class="{'col-sm-5': this.profile.id_cu != 0, 'col-sm-10 pt-2' : this.profile.id_cu == 0}">
 						<div class="input-group">
-							<div class="input-group-addon">
-								Pilih TP/KP
+							<div class="input-group-prepend">
+								<span class="input-group-text">Pilih TP/KP</span>
 							</div>
 
 							<!-- select -->
-							<select class="bootstrap-select" name="idTp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'">
+							<select class="form-control" name="idTp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'">
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="konsolidasi">Konsolidasi</option>
 								<option data-divider="true" v-if="modelTp.length != 0"></option>
@@ -69,8 +69,8 @@
 							</select>
 
 							<!-- reload -->
-							<div class="input-group-btn">
-								<button class="btn btn-default" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
+							<div class="input-group-append">
+								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
 								</button>
 							</div>
@@ -78,11 +78,11 @@
 					</div>
 
 					<!-- find data button -->
-					<div class="col-sm-2" :class="{'pt-10': this.profile.id_cu == 0}">
-						<button type="button" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Tampilkan data sesuai pilihan'" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
+					<div class="col-sm-2" :class="{'pt-2': this.profile.id_cu == 0}">
+						<button type="button" class="btn btn-light btn-icon btn-block" v-tooltip:top="'Tampilkan data sesuai pilihan'" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
-						<button type="button" class="btn btn-default btn-icon btn-block" v-else>
+						<button type="button" class="btn btn-light btn-icon btn-block" v-else>
 							<i class="icon-sync spinner"></i>
 						</button>
 					</div>
@@ -111,12 +111,6 @@
 			if(this.profileStat === 'success'){
 				this.checkProfileIdCU();
 			}
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
-		},
-		mounted(){
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			'$route' (to, from){

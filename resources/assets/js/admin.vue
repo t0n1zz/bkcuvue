@@ -7,6 +7,7 @@
 	>
 		<router-view name="header"></router-view>
 	</transition>
+	
 	<transition 
 		enter-active-class="animated fadeIn"
 		leave-active-class=""
