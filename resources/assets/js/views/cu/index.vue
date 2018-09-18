@@ -31,7 +31,7 @@
 	import { mapGetters } from 'vuex';
 	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
-	import tableData from "./table2.vue";
+	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
 	
 	export default {

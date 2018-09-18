@@ -3,26 +3,26 @@
 		<!-- header -->
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" @level2Back="back()"></page-header>
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-warpper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
-					<div class="panel panel-flat hidden-xs hidden-print " v-if="$route.meta.mode == 'editTp'">
-						<div class="panel-body"> 
+					<div class="card d-print-none" v-if="$route.meta.mode == 'editTp'">
+						<div class="card-body"> 
 							<div class="alert bg-info alert-styled-left">
 								<p>Laporan ini merupakan bagian dari laporan konsolidasi, maka anda dapat melihat/mengubah laporan TP lain yang juga termasuk dalam laporan konsolidasi pada CU ini sesuai periode laporannya.</p>
 							</div> 
 							<div class="input-group">
-								<div class="input-group-addon">
-									Pilih Laporan
+								<div class="input-group-prepend">
+									<span class="input-group-text">Pilih Laporan</span>
 								</div>
 
 								<!-- select -->
-								<select class="bootstrap-select" name="idLaporanTp" v-model="idLaporanTp" data-width="100%" @change="changeLaporanTp($event.target.value)" :disabled="listLaporanTpDataStat === 'loading'">
+								<select class="form-control" name="idLaporanTp" v-model="idLaporanTp" data-width="100%" @change="changeLaporanTp($event.target.value)" :disabled="listLaporanTpDataStat === 'loading'">
 									<option disabled value="">Silahkan pilih laporan tp</option>
 									<option v-for="tp in listLaporanTpData" :value="tp.id" v-if="tp">{{tp.tp.name}}</option>
 								</select>
@@ -34,8 +34,8 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
 						<!-- main form -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-body">
 								<div class="row">
 
 									<!-- CU -->
@@ -49,9 +49,8 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
-												<option disabled value="">Silahkan pilih CU</option>
-												<option data-divider="true"></option>
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+												<option disabled value="0">Silahkan pilih CU</option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
@@ -74,10 +73,10 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="!isModelTp">
+											<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="!isModelTp">
 												<option disabled value="">Silahkan pilih TP</option>
-												<option value="0" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
-												<option data-divider="true" v-if="modelTp.length != 0"></option>
+												<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
+													<option disabled value="">----------------</option>
 												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
 											</select>
 
@@ -120,8 +119,8 @@
 							</div>
 						</div>
 
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-body">
 								<div class="row">
 
 									<!-- l_biasa -->
@@ -815,7 +814,7 @@
 						<form-info></form-info>	
 
 						<!-- form button -->
-						<div class="panel panel-flat panel-body">
+						<div class="card card-body">
 							<form-button
 								:cancelState="'methods'"
 								:formValidation="'form'"
@@ -838,7 +837,6 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import _ from 'lodash';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -891,13 +889,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		created(){
 			if(this.profile.id_cu != undefined){
@@ -1079,10 +1070,6 @@
 					this.modalShow = false
 				}
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('user',{

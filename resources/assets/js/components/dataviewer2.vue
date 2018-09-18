@@ -131,17 +131,18 @@
         <!-- button row -->
         <div class="row">
           <!-- filter -->
-          <!-- desktop -->
-          <div class="col-md-6 col-lg-7 pb-2 d-none d-md-block">
-            <button class="btn bg-teal" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
-            <button class="btn btn-warning"  @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
-            <button class="btn btn-primary" @click="applyFilter"><i class="icon-search4"></i> Cari</button>
-          </div>
-          <!-- mobile -->
-          <div class="col-md-12 pb-2 d-block d-md-none">
-            <button class="btn bg-teal btn-block" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
-            <button class="btn btn-warning btn-block" @click="resetFilter" v-if="this.appliedFilters.length > 0"><i class="icon-reset"></i> Reset pencarian</button>
-            <button class="btn btn-primary btn-block" @click="applyFilter"><i class="icon-search4"></i> Lakukan Pencarian</button>
+          <div class="col-md-6 col-lg-7 pb-2">
+            <div class="row">
+              <div class="col-md-4 pb-2">
+                <button class="btn bg-teal btn-block" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
+              </div>
+              <div class="col-md-3 pb-2">
+                 <button class="btn btn-primary btn-block" @click="applyFilter"><i class="icon-search4"></i> Cari</button>
+              </div>
+              <div class="col-md-5 pb-2" v-if="this.appliedFilters.length > 0">
+                <button class="btn btn-warning btn-block"  @click="resetFilter"><i class="icon-reset"></i> Reset pencarian</button>
+              </div>
+            </div>
           </div>
 
           <!-- entri & order -->
@@ -209,20 +210,24 @@
             <slot name="button-mobile"></slot>
           </div>
 
-          <div class="col-md-4 col-lg-2 text-right">
-            <div class="row">
-              <div class="col-md-6 pb-2">
-                <button type="button" class="btn bg-blue-300 btn-icon btn-block":disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
-                  <i class="icon-table2"></i> Kolom
-                </button>
-              </div>
-              <div class="col-md-6 pb-2">
-                <button type="button" class="btn bg-green-300 btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
-                  <i class="icon-file-excel"></i> Excel
-                </button>
-              </div>
-            </div>
+          <div class="col-md-4 col-lg-2 text-right d-none d-md-block">
+            <button type="button" class="btn bg-blue-300 btn-icon pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
+              <i class="icon-table2"></i> Kolom
+            </button>
+            <button type="button" class="btn bg-green-300 btn-icon pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+              <i class="icon-file-excel"></i> Excel
+            </button>
           </div>
+
+          <div class="col-md-4 col-lg-2 d-block d-md-none">
+            <button type="button" class="btn bg-blue-300 btn-icon btn-block pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
+              <i class="icon-table2"></i> Kolom
+            </button>
+            <button type="button" class="btn bg-green-300 btn-icon btn-block pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+              <i class="icon-file-excel"></i> Excel
+            </button>
+          </div>
+
         </div>
         
       </div>

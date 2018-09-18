@@ -82,9 +82,9 @@
 	} from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectData from "./select2.vue";
-	import tableData from "./table2.vue";
-	import tablePearls from "./tablePearls2.vue";
+	import selectData from "./select.vue";
+	import tableData from "./table.vue";
+	import tablePearls from "./tablePearls.vue";
 	import infografisData from "./infografis.vue";
 	import infografisPearlsData from "./infografisPearls.vue";
 
