@@ -10,7 +10,7 @@
         </div> 
     </transition>
 </template>
-
+ 
 <script type="text/javascript">
 export default {
     props: {

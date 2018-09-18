@@ -7,19 +7,19 @@
 			<!-- desktop -->
 			<!-- button desktop -->
 			<template slot="button-kolom">
-				<button type="button" class="btn btn-light btn-block btn-icon" :disabled="itemDataStat === 'loading'"
+				<button type="button" class="btn btn-light btn-block btn-icon mb-1" :disabled="itemDataStat === 'loading'"
 				  @click.prevent="columnGroup('anggota')">
 					Anggota
 				</button>
-				<button type="button" class="btn btn-light btn-block btn-icon" :disabled="itemDataStat === 'loading'"
+				<button type="button" class="btn btn-light btn-block btn-icon mb-1" :disabled="itemDataStat === 'loading'"
 				  @click.prevent="columnGroup('aset')">
 					Aset
 				</button>
-				<button type="button" class="btn btn-light btn-block btn-icon" :disabled="itemDataStat === 'loading'"
+				<button type="button" class="btn btn-light btn-block btn-icon mb-1" :disabled="itemDataStat === 'loading'"
 				  @click.prevent="columnGroup('shu')">
 					SHU
 				</button>
-				<button type="button" class="btn btn-light btn-block btn-icon" v-tooltip:top="'Kolom Piutang'" :disabled="itemDataStat === 'loading'"
+				<button type="button" class="btn btn-light btn-block btn-icon mb-1" v-tooltip:top="'Kolom Piutang'" :disabled="itemDataStat === 'loading'"
 				  @click.prevent="columnGroup('piutang')">
 					Piutang
 				</button>
@@ -28,22 +28,22 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['create_laporan_cu']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_laporan_cu']">
 					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
 				<!-- detail-->
-				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
+				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
 					<i class="icon-file-stats"></i> Detail {{ title }}
 				</button>
 

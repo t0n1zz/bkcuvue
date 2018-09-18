@@ -4,27 +4,26 @@
 		<!-- main panel -->
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
 
-			<!-- desktop -->
 			<!-- button desktop -->
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['create_' + kelas]">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_' + kelas]">
 						<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon pb-1"  v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1"  v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
 				<!-- lihat tpcu -->
-				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon pb-1" v-if="profile.can && profile.can['index_tpCu']" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0">
+				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['index_tpCu']" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0">
 					<i class="icon-file-eye"></i> Lihat TP/KP 
 				</button>
 			</template>

@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<div class="panel panel-flat">
+		<div class="card">
 		
 			<!-- image preview -->
-			<div class="panel-body text-center">
+			<div class="card-body text-center">
 				<img :src="'/images/no_image.jpg'" style="width:15em;" v-if="image === '' && image_temp === ''">
 				<img :src="image_loc + image_temp + image_type" style="width:15em;" v-else-if="image === '' && image_temp !== ''">
 				<img :src="image" style="width:15em;" v-else> 
@@ -16,7 +16,7 @@
 				<input type="file" class="form-control" accept="image/*" @change="upload" ref="fileInput">
 			</div>
 			<div class="col-md-2">
-				<button type="button" class="btn btn-default btn-block" @click.prevent="close()" :disabled="image_temp === ''"><i class="icon-cross"></i> Batal</button>
+				<button type="button" class="btn btn-light btn-block" @click.prevent="close()" :disabled="image_temp === ''"><i class="icon-cross"></i> Batal</button>
 			</div>
 			
 		</div>

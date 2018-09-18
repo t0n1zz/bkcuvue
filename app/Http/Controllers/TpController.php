@@ -17,15 +17,7 @@ class TpController extends Controller{
 
 	public function index()
 	{
-		$table_data = Tp::with('Cu','Villages','Districts','Regencies','Provinces')->select(
-			DB::raw(
-				'*, (SELECT name FROM cu WHERE tp.id_cu = cu.id) as cu_name,
-				(SELECT name FROM villages WHERE tp.id_villages = villages.id) as villages_name,
-				(SELECT name FROM districts WHERE tp.id_districts = districts.id) as districts_name,
-				(SELECT name FROM regencies WHERE tp.id_regencies = regencies.id) as regencies_name,
-				(SELECT name FROM provinces WHERE tp.id_provinces = provinces.id) as provinces_name'
-			)
-		)->filterPaginateOrder();
+		$table_data = Tp::with('Cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([
@@ -35,15 +27,7 @@ class TpController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = Tp::with('Cu','Villages','Districts','Regencies','Provinces')->where('id_cu',$id)->select(
-			DB::raw(
-				'*, (SELECT name FROM cu WHERE tp.id_cu = cu.id) as cu_name,
-				(SELECT name FROM villages WHERE tp.id_villages = villages.id) as villages_name,
-				(SELECT name FROM districts WHERE tp.id_districts = districts.id) as districts_name,
-				(SELECT name FROM regencies WHERE tp.id_regencies = regencies.id) as regencies_name,
-				(SELECT name FROM provinces WHERE tp.id_provinces = provinces.id) as provinces_name'
-			)
-		)->filterPaginateOrder();
+		$table_data = Tp::with('Cu','Villages','Districts','Regencies','Provinces')->where('id_cu',$id)->advancedFilter();
 
 		return response()
 			->json([

@@ -33,6 +33,8 @@ class Cu extends Model {
 
     protected $orderable = [
         'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name','villages_name', 'districts_name', 'regencies_name', 'provinces_name','has_tp_cu_count'
     ];
 
     public static function initialize(){

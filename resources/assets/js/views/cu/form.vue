@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<!-- page-header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="level" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon"></page-header>
 
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-warpper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
@@ -16,17 +16,12 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 					
 						<!-- informasi umum -->
-						<div class="panel panel-flat">
-							<div class="panel-body">	
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">1. Informasi Umum</h5>
+							</div>
+							<div class="card-body">	
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">1</span> Informasi Umum
-											<small class="display-block">Gambaran awal Credit Union anda</small>
-										</h6>
-									</div>
 									
 									<!-- foto -->
 									<div class="col-md-12">
@@ -182,17 +177,12 @@
 						</div>
 
 						<!-- lokasi -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">2. Lokasi</h5>
+							</div>
+							<div class="card-body">
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">2</span> Lokasi
-											<small class="display-block">Letak kantor pusat Credit Union anda</small>
-										</h6>
-									</div>
 									
 									<!-- Provinsi -->
 									<div class="col-md-4">
@@ -205,9 +195,8 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
-												<option disabled value="">Silahkan pilih Provinsi</option>
-												<option data-divider="true"></option>
+											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
+												<option disabled value="0">Silahkan pilih Provinsi</option>
 												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
 											</select>
 
@@ -230,12 +219,11 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
-												<option disabled value="">
+											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+												<option disabled value="0">
 													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
-												<option data-divider="true"></option>
 												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
 											</select>
 
@@ -258,12 +246,11 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
-												<option disabled value="">
+											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+												<option disabled value="0">
 													<span v-if="modelDistrictsStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 													<span v-else>Silahkan pilih kecamatan</span>
 												</option>
-												<option data-divider="true"></option>
 												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
 											</select>
 
@@ -286,12 +273,11 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
-												<option disabled value="">
+											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
+												<option disabled value="0">
 													<span v-if="modelVillagesStat === 'loading'"><i class="icon-spinner spinner"></i> mohon tunggu</span>
 													<span v-else>Silahkan pilih kelurahan</span>
 												</option>
-												<option data-divider="true"></option>
 												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
 											</select>
 
@@ -328,17 +314,12 @@
 						</div>
 
 						<!-- informasi kontak -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">3. Kontak</h5>
+							</div>
+							<div class="card-body">
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">3</span> Kontak
-											<small class="display-block">Menghubungi Credit Union anda</small>
-										</h6>
-									</div>
 
 									<!-- no telp -->
 									<div class="col-md-4">
@@ -448,17 +429,12 @@
 						</div>
 
 						<!-- informasi profil -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">4. Profil</h5>
+							</div>
+							<div class="card-body">
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">4</span> Profil
-											<small class="display-block">Mengenai Credit Union anda</small>
-										</h6>
-									</div>
 								
 									<!-- misi -->
 									<div class="col-md-6">
@@ -553,7 +529,7 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat panel-body">
+						<div class="card card-body">
 							<form-button
 								:cancelState="cancelState"
 								:formValidation="'form'"
@@ -576,7 +552,6 @@
 	import Vue from 'vue';
 	import axios from 'axios';
 	import { mapGetters } from 'vuex'
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import {
 		toMulipartedForm
@@ -645,13 +620,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			formStat(value){
@@ -753,10 +721,6 @@
 				this.form.gambar = event.target.files[0]
 				console.log(event.target.files[0].name);
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('cu',{

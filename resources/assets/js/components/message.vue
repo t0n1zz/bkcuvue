@@ -40,10 +40,11 @@
 						<!-- debug -->
 						<div v-if="showDebug">
 							<hr/>
-							<pre class="pre-scrollable language-markup content-group text-left" v-if="showDetail"><code>{{ errorData.data }}</code></pre>
+							<pre class="pre-scrollable language-markup content-group text-left pb-2" v-if="showDetail"><code>{{ errorData.data }}</code></pre>
+							<hr v-if="showDetail" />
 
 							<!-- debug button -->
-							<button class="btn btn-default btn-block text-left" @click="detail">
+							<button class="btn btn-light btn-block text-left" @click="detail">
 								<span v-if="showDetail">TUTUP DETAIL ERROR</span>
 								<span v-else>BUKA DETAIL ERROR</span>
 							</button>

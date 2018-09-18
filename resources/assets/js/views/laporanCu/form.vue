@@ -76,7 +76,7 @@
 											<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="!isModelTp">
 												<option disabled value="">Silahkan pilih TP</option>
 												<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
-													<option disabled value="">----------------</option>
+												<option disabled value="">----------------</option>
 												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
 											</select>
 

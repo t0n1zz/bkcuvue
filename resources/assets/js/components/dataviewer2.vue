@@ -25,7 +25,7 @@
                   <select class="form-control" @input="selectColumn(f, i, $event)">
                     <option value="">Silahkan masukkan kolom pencarian</option>
                     <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
-                      v-if="x.filter">
+                      v-if="x.filter && !x.disable">
                       {{x.title}}
                     </option>
                   </select>
@@ -172,7 +172,7 @@
                   </span>
                   <select class="form-control" @input="updateOrderColumn">
                     <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
-                      v-if="column.sort">
+                      v-if="column.sort && !column.disable">
                       {{column.title}}
                     </option>
                   </select>
@@ -211,19 +211,19 @@
           </div>
 
           <div class="col-md-4 col-lg-2 text-right d-none d-md-block">
-            <button type="button" class="btn bg-blue-300 btn-icon pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
+            <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
               <i class="icon-table2"></i> Kolom
             </button>
-            <button type="button" class="btn bg-green-300 btn-icon pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+            <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
               <i class="icon-file-excel"></i> Excel
             </button>
           </div>
 
           <div class="col-md-4 col-lg-2 d-block d-md-none">
-            <button type="button" class="btn bg-blue-300 btn-icon btn-block pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
+            <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
               <i class="icon-table2"></i> Kolom
             </button>
-            <button type="button" class="btn bg-green-300 btn-icon btn-block pb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
               <i class="icon-file-excel"></i> Excel
             </button>
           </div>
