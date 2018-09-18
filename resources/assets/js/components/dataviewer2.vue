@@ -180,7 +180,7 @@
 
               <!-- order direction -->
               <div class="col-md-2">
-                <button class="btn bg-orange-300 btn-block" v-tooltip:top="'Ubah arah pengurutan'" @click="updateOrderDirection">
+                <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection">
                   <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
                   <i class="icon-arrow-down7" v-else></i>
                 </button>
@@ -212,12 +212,12 @@
           <div class="col-md-4 col-lg-2 text-right">
             <div class="row">
               <div class="col-md-6 pb-2">
-                <button type="button" class="btn bg-blue-300 btn-icon btn-block" v-tooltip:top="'Atur Kolom Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
+                <button type="button" class="btn bg-blue-300 btn-icon btn-block":disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
                   <i class="icon-table2"></i> Kolom
                 </button>
               </div>
               <div class="col-md-6 pb-2">
-                <button type="button" class="btn bg-green-300 btn-icon btn-block" v-tooltip:top="'Excel'" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+                <button type="button" class="btn bg-green-300 btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
                   <i class="icon-file-excel"></i> Excel
                 </button>
               </div>
@@ -336,47 +336,6 @@
               
             </div>
           </div>
-          <!-- middle -->
-          <div class="col-md-8 pt-2 text-center d-block d-md-none">
-            <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
-                  {{n}}
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
-                  <i class="icon-forward3"></i>
-              </button>
-            </div>
-            
-            <!-- pagination loading-->
-            <div class="btn-group" v-else>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-spinner2 spinner"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-forward3"></i>
-              </button>
-              
-            </div>
-          </div>
           <!-- mobile -->
           <div class="col-md-12 pt-2 text-center d-block d-sm-none">
             <!-- pagination success-->
@@ -385,6 +344,7 @@
                   {{n}}
               </button>
             </div>
+            <br/>
             <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>

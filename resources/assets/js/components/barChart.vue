@@ -23,217 +23,159 @@
 			<hr>
 			<div class="row d-print-none">
 
-				<!-- desktop button -->
-				<div class="col-md-12 hidden-xs">
-
-					<div class="btn-toolbar pb-5">
-
-						<!-- entri view -->
-						<div class="btn-group">
-							<button type="button" class="btn btn-light btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Atur Jumlah Entri Yang Ingin Ditampilkan'" :disabled="itemDataStat === 'loading'">
-								<i class="icon-menu7"></i>&nbsp; {{params.per_page}} &nbsp;
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Entri yang ditampilkan</li>
-								<li class="divider"></li>
-								<li :class="{'active' : params.per_page === 10}">
-									<a @click.prevent="entriPage(10)">10 Entri</a>
-								</li>
-								<li :class="{'active' : params.per_page === 25}" v-if="itemData.total > 10">
-									<a @click.prevent="entriPage(25)">25 Entri</a>
-								</li>
-								<li :class="{'active' : params.per_page === 50}" v-if="itemData.total > 25">
-									<a @click.prevent="entriPage(50)">50 Entri</a>
-								</li>
-							</ul>
-						</div>
-
-						<!-- pagination success -->
-						<div class="btn-group" v-if="itemDataStat === 'success'">
-							<button class="btn btn-default btn-icon" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prev">
-								<i class="icon-arrow-left12"></i>
-							</button>
-							<button class="btn btn-default btn-icon" v-for="n in pages" :class="{'active' : params.page == n}" @click.prevent="goToPage(n)">
-								{{n}}
-							</button>
-							<button class="btn btn-default btn-icon" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="next">
-								<i class="icon-arrow-right13"></i>
-							</button>
-						</div>
-
-						<!-- pagination loading -->
-						<div class="btn-group" v-else-if="itemDataStat === 'loading'">
-							<button class="btn btn-default btn-icon disabled">
-								<i class="icon-arrow-left12"></i>
-							</button>
-							<button class="btn btn-default btn-icon disabled">
-								<i class="icon-spinner2 spinner"></i>
-							</button>
-							<button class="btn btn-default btn-icon disabled">
-								<i class="icon-arrow-right13"></i>
-							</button>
-						</div>
-
-						<!-- sorting -->
-						<div class="btn-group">
-							<!-- asc -->
-							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Mengurutkan data dari yang terkecil ke terbesar'" :disabled="itemDataStat === 'loading'">
-								<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscTitle }} &nbsp;
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Data yang diurutkan</li>
-								<li class="divider"></li>
-								<li :class="{'active' : data.title === sortAscTitle}" v-for="data in dataShown">
-									<a @click.prevent="sortAscData(data.key,data.title)">{{ data.title }}</a>
-								</li>
-							</ul>
-
-							<!-- desc -->
-							<button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown" v-tooltip:top="'Mengurutkan data dari yang terbesar ke terkecil'" :disabled="itemDataStat === 'loading'">
-								<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescTitle }} &nbsp;
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Data yang diurutkan</li>
-								<li class="divider"></li>
-								<li :class="{'active' : data.title === sortDescTitle}" v-for="data in dataShown">
-									<a @click.prevent="sortDescData(data.key,data.title)">{{ data.title }}</a>
-								</li>
-							</ul>
-						</div>
-
-						<!-- entri view -->
-						<div class="btn-group">
-							<button type="button" class="btn btn-default btn-icon" v-tooltip:top="'Menambah data yang ingin ditampilkan di grafik'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
-								<i class="icon-database-add"></i> Tambah Data
-							</button>
-						</div>
-
-					</div>
-				</div>
-				
-				<!-- mobile -->
-				<div class="col-sm-12 visible-xs">
-
-					<!-- entri page -->
-					<div class="pb-5">
-						<button type="button" class="btn btn-default btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="modalMobileOptionOpen('entri')">
-							<i class="icon-menu7"></i> {{params.per_page}} Entri yang ditampilkan
-						</button>
-					</div>
-					
-
-					<!-- pagination success -->
-					<div class="btn-group special pb-5" v-if="itemDataStat === 'success'">
-						<button class="btn btn-default btn-icon" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prev">
-							<i class="icon-arrow-left12"></i>
-						</button>
-						<button class="btn btn-default btn-icon" v-for="n in pages" :class="{'active' : params.page == n}" @click.prevent="goToPage(n)">
-							{{n}}
-						</button>
-						<button class="btn btn-default btn-icon" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="next">
-							<i class="icon-arrow-right13"></i>
-						</button>
-					</div>
-
-					<!-- pagination loading -->
-					<div class="btn-group special pb-5" v-else-if="itemDataStat === 'loading'">
-						<button class="btn btn-default btn-icon disabled">
-							<i class="icon-arrow-left12"></i>
-						</button>
-						<button class="btn btn-default btn-icon disabled">
-							<i class="icon-spinner2 spinner"></i>
-						</button>
-						<button class="btn btn-default btn-icon disabled">
-							<i class="icon-arrow-right13"></i>
-						</button>
-					</div>
-
-					<!-- sorting -->
-					<div class="btn-group special pb-5">
-						<!-- asc -->
-						<button type="button" class="btn btn-default btn-icon" :disabled="itemDataStat === 'loading'"  @click.prevent="modalMobileOptionOpen('sortAsc')">
-							<i class="icon-sort-amount-asc"></i>&nbsp; {{ sortAscTitle }} &nbsp;
-							<span class="caret"></span>
-						</button>
-
-						<!-- desc -->
-						<button type="button" class="btn btn-default btn-icon" :disabled="itemDataStat === 'loading'"  @click.prevent="modalMobileOptionOpen('sortDesc')">
-							<i class="icon-sort-amount-desc"></i>&nbsp; {{ sortDescTitle }} &nbsp;
-							<span class="caret"></span>
-						</button>
-					</div>
-
-					<!-- tambah data -->
-					<div class="pb-5">
-						<button type="button" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Menambah data yang ingin ditampilkan di grafik'" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
-							<i class="icon-database-add"></i> Tambah Data
-						</button>
-					</div>
-					
-				</div>
-				
-				<div class="pb-5" :class="checkClass()" v-for="(data,index) in dataShown">
+				<!-- entri -->
+				<div class="col-md-4 pb-2">
 					<div class="input-group">
-						<div class="input-group-addon">
-							Pilih Data	
+						<span class="input-group-prepend">
+							<span class="input-group-text">Entri</span>
+						</span>
+						<select class="form-control"  v-model="query.limit" @change="updateLimit">
+							<option>10</option>
+							<option>15</option>
+							<option>25</option>
+							<option>50</option>
+						</select>
+					</div> 
+				</div>
+
+				<!-- order -->
+				<div class="col-md-4 pb-2">
+					<div class="input-group">
+						<span class="input-group-prepend">
+							<span class="input-group-text">Urutkan</span>
+						</span>
+						<select class="form-control" @input="updateOrderColumn">
+							<option v-for="data in dataShown" :value="data.name" :selected="data && data.name == query.order_column" v-html="data.title">
+							</option>
+						</select>
+					</div>  
+				</div>
+
+				<!-- order direction -->
+				<div class="col-md-2 pb-2">
+					<button class="btn bg-orange-300 btn-block" @click="updateOrderDirection">
+						<i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
+						<i class="icon-arrow-down7" v-else></i>
+					</button>
+				</div>
+
+				<div class="col-md-2 pb-2">
+					<button type="button" class="btn btn-light btn-icon btn-block" :disabled="itemDataStat === 'loading'" @click.prevent="addColumn()">
+						<i class="icon-database-add"></i> Tambah Data
+					</button>
+				</div>
+				
+				<!-- data selection -->
+				<div class="col-md-6 pb-2" :class="checkClass()" v-for="(data,index) in dataShown">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Pilih Data</span>
 						</div>
-						<select class="bootstrap-select" data-width="100%" v-model="dataShown[index].key" @change="changeColumn($event.target.value,index)" :disabled="itemDataStat === 'loading'">
+						<select class="form-control" data-width="100%" v-model="dataShown[index].name" @change="changeColumn($event.target.value,index)" :disabled="itemDataStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
-							<option v-for="column in columnData" :value="column.key" v-if="column.isChart">{{column.title}}</option>
+							<option v-for="column in columnData" :value="column.name" v-if="column.isChart" v-html="column.title"></option>
 						</select>
-						<div class="input-group-btn" v-if="dataShown.length > 1">
-							<button class="btn btn-default" v-tooltip:top="'Hapus data '" @click="removeColumn(index)" :disabled="itemDataStat === 'loading'">
+						<div class="input-group-append" v-if="dataShown.length > 1">
+							<button class="btn btn-light" @click="removeColumn(index)" :disabled="itemDataStat === 'loading'">
 								<i class="icon-database-remove"></i>
 							</button>
 						</div>
 					</div>
+				</div>
+
+				<!-- pagination -->
+				<!-- desktop -->
+				<div class="col-md-12 pb-2 text-left d-none d-md-block">
+					<!-- pagination success-->
+					<div class="btn-group" v-if="itemDataStat === 'success'">
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+								<i class="icon-backward2"></i>
+						</button>
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+								<i class="icon-arrow-left5"></i>
+						</button>
+						<button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+								{{n}}
+						</button>
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+								<i class="icon-arrow-right5"></i>
+						</button>
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+								<i class="icon-forward3"></i>
+						</button>
+					</div>
+					
+					<!-- pagination loading-->
+					<div class="btn-group" v-else>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-backward2"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-arrow-left5"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-spinner2 spinner"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-arrow-right5"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-forward3"></i>
+						</button>
+						
+					</div>
+				</div>
+				<!-- mobile -->
+				<div class="col-md-12 pb-2 text-center d-block d-sm-none">
+					<!-- pagination success-->
+					<div class="btn-group" v-if="itemDataStat === 'success'">
+						<button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+								{{n}}
+						</button>
+					</div>
+					<br/>
+					<div class="btn-group pt-2" v-if="itemDataStat === 'success'">
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+								<i class="icon-backward2"></i>
+						</button>
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+								<i class="icon-arrow-left5"></i>
+						</button>
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+								<i class="icon-arrow-right5"></i>
+						</button>
+						<button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+								<i class="icon-forward3"></i>
+						</button>
+					</div>
+					
+					<!-- pagination loading-->
+					<div class="btn-group" v-else>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-backward2"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-arrow-left5"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-spinner2 spinner"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-arrow-right5"></i>
+						</button>
+						<button href="#" class="btn btn-light disabled">
+								<i class="icon-forward3"></i>
+						</button>
+						
+					</div>
+
 				</div>
 				
 			</div>
 		</div>
 
 	</div>
-
-	<!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
-      <div slot="modal-body1">
-        <!-- entri -->
-        <div v-if="modalMobileOptionState === 'entri'">
-          <h2 class="text-center">Entri yang ditampilkan</h2>
-          <hr/>
-          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 10, 'btn-default': params.per_page !== 10}" @click.prevent="entriPage(10,'mobile')" >10 Entri</a>
-          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 25, 'btn-default': params.per_page !== 25}" @click.prevent="entriPage(25,'mobile')" v-if="itemData.total > 10">25 Entri</a>
-          <a class="btn btn-block" :class="{'btn-primary' : params.per_page === 50, 'btn-default': params.per_page !== 50}" @click.prevent="entriPage(50,'mobile')" v-if="itemData.total > 25">50 Entri</a>
-          <slot name="button-entri-mobile"></slot>
-          <hr/>
-          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
-        </div>
-
-        <div v-if="modalMobileOptionState === 'sortAsc'">
-          <h2 class="text-center">Mengurutkan data dari yang terkecil ke terbesar</h2>
-          <hr/>
-          <a class="btn btn-block" :class="{'btn-primary' : data.title === sortAscTitle, 'btn-default': data.title !== sortAscTitle}" v-for="data in dataShown" @click.prevent="sortAscData(data.key,data.title,'mobile')">
-						{{ data.title }}
-          </a>
-          <hr/>
-          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
-        </div>
-
-				<div v-if="modalMobileOptionState === 'sortDesc'">
-          <h2 class="text-center">Mengurutkan data dari yang terbesar ke terkecil</h2>
-          <hr/>
-          <a class="btn btn-block" :class="{'btn-primary' : data.title === sortDescTitle, 'btn-default': data.title !== sortDescTitle}" v-for="data in dataShown" @click.prevent="sortDescData(data.key,data.title,'mobile')">
-						{{ data.title }}
-          </a>
-          <hr/>
-          <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
-        </div>
-      </div>
-    </app-modal>
 
 </div>
 </template>
@@ -270,7 +212,7 @@ export default {
 		echarts: ECharts,
 		appModal,
 	},
-	props:['titleText','title','kelas','params','dataShownTitle1','dataShownKey1','axisLabelKey','itemData','itemDataStat','columnData'],
+	props:['titleText','title','kelas','query','dataShownTitle1','dataShownName1','axisLabelKey','itemData','itemDataStat','columnData'],
   data(){
     return {
 			pages: [],
@@ -315,7 +257,7 @@ export default {
 	},
 	created() {
 		// default select data
-		this.dataShown.push({title: this.dataShownTitle1, key: this.dataShownKey1});
+		this.dataShown.push({title: this.dataShownTitle1, name: this.dataShownName1});
 
 		// default series
 		this.addSeries();
@@ -329,15 +271,11 @@ export default {
 				this.calculatePagination();
 
 				// default entri data
-				this.checkEntriPage(this.params.per_page);	
+				this.checkEntriPage(this.query.limit);	
 			}
 		},
 	},
 	methods: {
-		// fetching data from database
-		fetch(){
-			this.$emit('fetch');
-		},
 
 		// only when fetching data from database
 		setGraph(){
@@ -350,7 +288,7 @@ export default {
 
 			// series
 			for (let i = 0, len = this.dataShown.length ; i < len; i++){
-				this.bar.series[i].data = _.map(this.itemData.data, this.dataShown[i].key);
+				this.bar.series[i].data = _.map(this.itemData.data, this.dataShown[i].name);
 			}
 		},
 		emptyGraph(){
@@ -366,13 +304,13 @@ export default {
 
 		// to configure which data to be shown
 		addColumn(){
-			this.dataShown.push({title:this.dataShown[0].title, key:this.dataShown[0].key});
+			this.dataShown.push({title:this.dataShown[0].title, name:this.dataShown[0].name});
 			this.addSeries();
 			let length = this.dataShown.length;
-			this.bar.series[length-1].data = _.map(this.itemData.data, this.dataShown[0].key);
+			this.bar.series[length-1].data = _.map(this.itemData.data, this.dataShown[0].name);
 		},
 		addSeries(){
-			let data = _.find(this.columnData,{'key':this.dataShown[0].key});
+			let data = _.find(this.columnData,{'name':this.dataShown[0].name});
 			let series = { name:data.title, data:[], type:'bar'};
 			this.bar.series.push(series);
 		},
@@ -381,13 +319,16 @@ export default {
 			this.bar.series.splice(index,1);
 		},
 		changeColumn(value,index){
-			let data = _.find(this.columnData,{'key':value});
+			let data = _.find(this.columnData,{'name':value});
 			
 			this.bar.series[index].name = data.title;
 			this.bar.series[index].data = _.map(this.itemData.data, value);
 
 			this.dataShown[index].title = data.title;
-			this.dataShown[index].key = value;
+			this.dataShown[index].name = value;
+
+			this.query.order_column = value;
+			this.applyChange();
 		},
 		checkClass(){
 			return {
@@ -398,19 +339,12 @@ export default {
 		},
 
 		// entri data
-		entriPage(value, type) {
-			if (this.params.per_page != value) {
-				this.params.per_page = value;
-				this.params.page = 1;
-				this.fetch();
-			}
-
-			this.checkEntriPage(value);	
-
-			if(type == 'mobile'){
-				this.modalTutup();
-			}
+		updateLimit() {
+			this.query.page = 1
+			this.applyChange()
+			this.checkEntriPage(this.query.limit);	
 		},
+
 		checkEntriPage(value){
 			if(value >= 11 && value <= 25){
 				this.bar.xAxis.axisLabel.rotate = 30;
@@ -421,28 +355,26 @@ export default {
 			}
 		},
 
-		//sort data
-		sortAscData(key, title, type){
-			this.params.direction = 'asc';
-			this.params.column = key;
-			this.sortDescTitle = '';
-			this.sortAscTitle = title;
-			this.fetch();
-
-			if(type == 'mobile'){
-				this.modalTutup();
-			}
+		applyChange() {
+			this.fetch()
 		},
-		sortDescData(key, title, type){
-			this.params.direction = 'desc';
-			this.params.column = key;
-			this.sortAscTitle = '';
-			this.sortDescTitle = title;
-			this.fetch();
+		fetch(){
+			this.$emit('fetch');
+		},
 
-			if(type == 'mobile'){
-				this.modalTutup();
+		//sort data
+		updateOrderDirection() {
+			if (this.query.order_direction === 'desc') {
+				this.query.order_direction = 'asc'
+			} else {
+				this.query.order_direction = 'desc'
 			}
+			this.applyChange()
+		},
+		updateOrderColumn(e) {
+			const value = e.target.value
+			this.query.order_column = value
+			this.applyChange()
 		},
 
 		// pagination from database
@@ -452,7 +384,7 @@ export default {
 			var endPage = 0;
 			var diffPage = 0;
 
-			startPage = this.params.page < 3 ? 1 : this.params.page - 1;
+			startPage = this.query.page < 3 ? 1 : this.query.page - 1;
 			endPage = 4 + startPage;
 			endPage = this.itemData.last_page < endPage ? this.itemData.last_page : endPage;
 			diffPage = startPage - endPage + 4;
@@ -463,34 +395,25 @@ export default {
 				this.pages.push(i);
 			}
 		},
-		next() {
-			if (this.itemData.next_page_url) {
-				this.params.page++;
-				this.fetch();
-			}
-		},
-		prev() {
+		prevPage() {
 			if (this.itemData.prev_page_url) {
-				this.params.page--;
-				this.fetch();
+				this.query.page = Number(this.query.page) - 1
+				this.applyChange()
 			}
 		},
 		goToPage(value) {
-			if (this.params.page != value) {
-				this.params.page = value;
-				this.fetch();
+			if (this.query.page != value) {
+				this.query.page = value;
+				this.applyChange();
+			}
+		},
+		nextPage() {
+			if (this.itemData.next_page_url) {
+				this.query.page = Number(this.query.page) + 1
+				this.applyChange()
 			}
 		},
 
-		// modal
-		modalMobileOptionOpen(state){
-			this.modalShow = true;
-			this.modalState = "normal1";
-			this.modalMobileOptionState = state;
-		},
-		modalTutup() {
-			this.modalShow = false;
-		},
 	}
 }
 </script>

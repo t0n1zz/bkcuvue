@@ -38,14 +38,14 @@
 					<!-- table data -->
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'table'">
-							<table-data :title="title" :kelas="kelas"></table-data>
+							<table-data :title="title" :kelas="kelas" :columnData="columnData"></table-data>
 						</div>
 					</transition>
 
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'tablePearls'" v-if="isTablePearls">
-							<table-pearls :title="titlePearls" :kelas="kelas"></table-pearls>
+							<table-pearls :title="titlePearls" :kelas="kelas" :columnData="columnDataPearls"></table-pearls>
 						</div>
 					</transition>
 

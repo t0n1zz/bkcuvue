@@ -2,18 +2,18 @@
 	<div>
 		<!-- itemdata -->
 		<div v-if="itemData.length > 0">
-			<div class="panel panel-white border-top-xlg border-top-info" v-for="(revisi,index) in history" >
-				<div class="panel-heading">
-					<h6 class="panel-title">
+			<div class="card card-body border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
+				<div class="card-header bg-white">
+					<h6 class="card-title">
 						Revisi tanggal <span v-html="$options.filters.date(index)"></span>, jam <span v-html="$options.filters.time(index)"></span>
 					</h6>
 				</div>
 
-				<div class="media panel-body no-margin">
+				<div class="media card-body no-margin">
 					<div v-for="(rev, index) in revisi"> 
-						<div class="media-left">
-							<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" style="width: 40px; height: 40px;" class="img-circle"  alt="user image" v-if="rev.user.gambar">
-							<img src="/images/no_image_man.jpg" style="width: 40px; height: 40px;" class="img-circle" alt="user image" v-else>
+						<div class="mr-3">
+							<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
+							<img src="/images/no_image_man.jpg" width="42" height="42" class="rounded-circle" alt="user image" v-else>
 						</div>
 
 						<div class="media-body">
@@ -31,8 +31,8 @@
 
 		<!-- no itemdata -->
 		<div v-else>
-			<div class="panel panel-white">
-				<div class="panel-body">
+			<div class="card">
+				<div class="card-body">
 					<h3>Belum terdapat revisi apapun...</h3>
 				</div>
 			</div>

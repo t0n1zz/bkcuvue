@@ -5,9 +5,9 @@
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
-		:params="params"
+		:query="query"
 		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
+		:dataShownName1="dataShownName1"
 		:axisLabelKey="axisLabelKey"
 		:itemData="itemData"
 		:itemDataStat="itemDataStat"
@@ -19,9 +19,9 @@
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
-		:params="params"
+		:query="query"
 		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
+		:dataShownName1="dataShownName1"
 		:axisLabelKey="axisLabelKey"
 		:itemData="itemData"
 		:itemDataStat="itemDataStat"
@@ -33,9 +33,9 @@
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
-		:params="params"
+		:query="query"
 		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
+		:dataShownName1="dataShownName1"
 		:axisLabelKey="axisLabelKey"
 		:itemData="itemData"
 		:itemDataStat="itemDataStat"
@@ -63,21 +63,18 @@ export default {
 			pages: [],
 			titleText:'',
 			dataShownTitle1:'Aset',
-			dataShownKey1:'aset',
+			dataShownName1:'aset',
 			axisLabelKey:'cu_name',
 			isFirstLoad: true,
 			cuName:'',
 			periode:'',
-			params: {
-				column: 'periode',
-				direction: 'asc',
-				per_page: 50,
-				page: 1,
-				search_column: 'cu.name',
-				search_operator: 'like',
-				search_query_1: '',
-				search_query_2: ''
-			},
+			query: {
+        order_column: "aset",
+        order_direction: "desc",
+        filter_match: "and",
+        limit: 50,
+        page: 1
+      },
     }
 	},
 	created() {
@@ -115,34 +112,34 @@ export default {
 		// fetching data from database
 		fetch(){
 			 if(this.$route.meta.mode == 'periode'){
-				this.resetParams('cu.name');
-				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.query,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
 				this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.selectData);	
 			}else if(this.$route.meta.mode == 'cu'){
-				this.resetParams('id');
 				if(this.$route.params.tp == 'konsolidasi'){		
-					this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.$route.params.cu]);
+					this.$store.dispatch(this.kelas + '/grafikCu', [this.query,this.$route.params.cu]);
+					this.query.order_column = 'periode';
+					this.query.order_direction = 'asc';
 				}else{
-					this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.$route.params.tp]);	
+					this.$store.dispatch(this.kelas + '/grafikTp', [this.query,this.$route.params.tp]);	
 				}
 				this.axisLabelKey = 'periode';	
 			}else if(this.$route.meta.mode == 'cuPeriode'){
-				this.resetParams('tp.name');
-				this.$store.dispatch(this.kelas + '/grafikTpPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikTpPeriode', [this.query,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
 			}else if(this.$route.meta.mode == 'detail'){
-				this.resetParams('id');
-				this.$store.dispatch(this.kelas + '/grafikCu', [this.params,this.detailData.id_cu]);
+				this.$store.dispatch(this.kelas + '/grafikCu', [this.query,this.detailData.id_cu]);
 				this.axisLabelKey = 'periode';
+				this.query.order_column = 'periode';
+				this.query.order_direction = 'asc';
 			}else if(this.$route.meta.mode == 'detailTp'){
-				this.resetParams('id');
-				this.$store.dispatch(this.kelas + '/grafikTp', [this.params,this.detailData.id_tp]);
+				this.$store.dispatch(this.kelas + '/grafikTp', [this.query,this.detailData.id_tp]);
 				this.axisLabelKey = 'periode';
+				this.query.order_column = 'periode';
+				this.query.order_direction = 'asc';
 			}else{
-				this.resetParams('cu.name');
-				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.params,this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikPeriode', [this.query,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
 				if(this.itemDataStat == 'success'){
@@ -151,19 +148,13 @@ export default {
 				}
 			}
 		},
-		resetParams(search_column){
-			this.params.search_column = search_column;
-			this.params.search_operator = 'like';
-			this.params.search_query_1 = '';
-			this.params.search_query_2 = '';
-		},
 		checkPage(){
 			if(this.itemData.total >= 11 && this.itemData.total <= 25){
-				this.params.per_page = 25;
+				this.query.limit = 25;
 			}else if(this.itemData.total > 25){
-				this.params.per_page = 50;
+				this.query.limit = 50;
 			}else{
-				this.params.per_page = 10;
+				this.query.limit = 10;
 			}
 		},
 		// helper

@@ -5,9 +5,9 @@
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
-		:params="params"
+		:query="query"
 		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
+		:dataShownName1="dataShownName1"
 		:axisLabelKey="axisLabelKey"
 		:itemData="itemData"
 		:itemDataStat="itemDataStat"
@@ -19,9 +19,9 @@
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
-		:params="params"
+		:query="query"
 		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
+		:dataShownName1="dataShownName1"
 		:axisLabelKey="axisLabelKey"
 		:itemData="itemData"
 		:itemDataStat="itemDataStat"
@@ -33,9 +33,9 @@
 		:titleText="titleText"
 		:title="title"
 		:kelas="kelas"
-		:params="params"
+		:query="query"
 		:dataShownTitle1="dataShownTitle1"
-		:dataShownKey1="dataShownKey1"
+		:dataShownName1="dataShownName1"
 		:axisLabelKey="axisLabelKey"
 		:itemData="itemData"
 		:itemDataStat="itemDataStat"
@@ -65,27 +65,21 @@ export default {
 			pages: [],
 			titleText:'',
 			dataShownTitle1:'P1',
-			dataShownKey1:'p1',
+			dataShownName1:'p1',
 			axisLabelKey:'cu_name',
 			isFirstLoad: true,
 			cuName:'',
-			params: {
-				column: 'periode',
-				direction: 'asc',
-				per_page: 50,
-				page: 1,
-				search_column: 'cu.name',
-				search_operator: 'like',
-				search_query_1: '',
-				search_query_2: ''
-			},
+			query: {
+        order_column: "p1",
+        order_direction: "desc",
+        filter_match: "and",
+        limit: 50,
+        page: 1
+      },
     }
 	},
 	created() {
 		this.fetch();
-	},
-	updated() {
-		$('.bootstrap-select').selectpicker('refresh');
 	},
 	watch: {
 		// check route changes
@@ -111,7 +105,6 @@ export default {
 				}else if(this.$route.meta.mode == 'detail'){
 					this.titleText = 'Grafik Laporan Pearls CU ' + this.itemData.data[0].cu.name;
 				}else if(this.$route.meta.mode == 'detailTp'){
-					console.log(this.itemData);
 					this.titleText = 'Grafik Laporan Pearls ' + this.itemData.data[0].tp.name;
 				}else{
 					this.titleText = 'Grafik Laporan Pearls Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
@@ -123,55 +116,46 @@ export default {
 		// fetching data from database
 		fetch(){
 			 if(this.$route.meta.mode == 'periode'){
-				this.resetParams('cu.name');
-				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.params,this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.query,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
 				this.titleText = 'Grafik Pearls ' + this.title + ' periode ' + this.formatPeriode(this.selectData);	
 			}else if(this.$route.meta.mode == 'cu'){
 				if(this.$route.params.tp == 'konsolidasi'){
-					this.resetParams('id');
-					this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.params,this.$route.params.cu]);
+					this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.query,this.$route.params.cu]);
 					this.axisLabelKey = 'periode';	
 
 				}else{
-					this.resetParams('id');
-					this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.params,this.$route.params.tp]);
+					this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.query,this.$route.params.tp]);
 					this.axisLabelKey = 'periode';	
 				}
 			}else if(this.$route.meta.mode == 'cuPeriode'){
-				this.resetParams('tp.name');
-				this.$store.dispatch(this.kelas + '/grafikPearlsTpPeriode', [this.params,this.$route.params.cu, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikPearlsTpPeriode', [this.query,this.$route.params.cu, this.$route.params.periode]);
 				this.axisLabelKey = 'tp_name';	
 			}else if(this.$route.meta.mode == 'detail'){
-				this.resetParams('id');
-				this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.params,this.detailData.id_cu]);
+				this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.query,this.detailData.id_cu]);
 				this.axisLabelKey = 'periode';
+				this.query.order_column = 'periode';
+				this.query.order_direction = 'asc';
 			}else if(this.$route.meta.mode == 'detailTp'){
-				this.resetParams('id');
-				this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.params,this.detailData.id_tp]);
-				this.axisLabelKey = 'periode';	
+				this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.query,this.detailData.id_tp]);
+				this.axisLabelKey = 'periode';
+				this.query.order_column = 'periode';
+				this.query.order_direction = 'asc';	
 			}else{
-				this.resetParams('cu.name');
-				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.params,this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.query,this.$route.params.periode]);
 
 				this.axisLabelKey = 'cu_name';
 				this.titleText = 'Grafik Pearls' + this.title + ' periode ' + this.formatPeriode(this.selectData);
 			}
 		},
-		resetParams(search_column){
-			this.params.search_column = search_column;
-			this.params.search_operator = 'like';
-			this.params.search_query_1 = '';
-			this.params.search_query_2 = '';
-		},
 		checkPage(){
 			if(this.itemData.total >= 11 && this.itemData.total <= 25){
-				this.params.per_page = 25;
+				this.query.limit = 25;
 			}else if(this.itemData.total > 25){
-				this.params.per_page = 50;
+				this.query.limit = 50;
 			}else{
-				this.params.per_page = 10;
+				this.query.limit = 10;
 			}
 		},
 

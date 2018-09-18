@@ -2,29 +2,28 @@
 	<div>
 		<!-- itemdata -->
 		<div v-if="itemData.length > 0">
-			<div class="panel panel-white border-top-xlg border-top-info" v-for="(diskusi,index) in itemData" >
-				<div class="panel-heading">
-					<h6 class="panel-title">
+			<div class="card card-body border-left-primary rounded-left-0" v-for="(diskusi,index) in itemData" >
+				<div class="card-header bg-white header-elements-inline">
+					<h6 class="card-title">
 						<b>{{diskusi.user.name}}</b> 
 						<span class="text-muted">
 							<i class="icon-primitive-dot"></i>
 							<small v-html="$options.filters.dateTime(diskusi.created_at)"></small>	
 						</span>
-						<a class="heading-elements-toggle"><i class="icon-more"></i></a>
 					</h6>
 
-					<div class="heading-elements">
-						<ul class="icons-list icons-list-extended heading-text">
-							<li><a data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-pencil5"></i></a></li>
-							<li><a data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-bin2"></i></a></li>
-						</ul>
+					<div class="header-elements">
+						<div class="list-icons">
+							<a class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-pencil5"></i></a>
+							<a class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-bin2"></i></a>
+						</div>
 					</div>
 				</div>
 
-				<div class="media panel-body no-margin">
-					<div class="media-left">
-						<img :src="'/images/user/' + diskusi.user.gambar + 'n.jpg'" style="width: 40px; height: 40px;" class="img-circle"  alt="user image" v-if="diskusi.user.gambar">
-						<img src="/images/no_image_man.jpg" style="width: 40px; height: 40px;" class="img-circle" alt="user image" v-else>
+				<div class="media card-body no-margin">
+					<div class="mr-3">
+						<img :src="'/images/user/' + diskusi.user.gambar + 'n.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="diskusi.user.gambar">
+						<img src="/images/no_image_man.jpg" width="42" height="42" class="rounded-circle" alt="user image" v-else>
 					</div>
 
 					<div class="media-body">
@@ -44,8 +43,8 @@
 			</div>
 		</div>
 
-		<div class="panel panel-white border-top-xlg border-top-info">
-			<div class="panel-body">
+		<div class="card">
+			<div class="card-body">
 				<h5 class="text-semibold">Silahkan masukkan komentar anda terhadap laporan keuangan ini</h5>
 				<app-summernote name="editor" :model="form.content" :config="summernoteconfig" :formStat="updateStat" @change="value => { form.content = value }"></app-summernote>
 

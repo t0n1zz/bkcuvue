@@ -3,11 +3,11 @@
 		<div class="row">
 			<!-- p1 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.p1 >= 1, 'bg-danger': itemData.p1 < 1}" @click.prevent="modalBuka(itemData,'p1')" style="cursor:pointer;">
-					<div class="media no-margin-top content-group">
+				<div class="card card-body" :class="{'bg-primary': itemData.p1 >= 1, 'bg-danger': itemData.p1 < 1}" @click.prevent="modalBuka(itemData,'p1')" style="cursor:pointer;">
+					<div class="media mb-3">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.p1 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.p1 >= 1">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.p1 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.p1 >= 1">
 								IDEAL
 							</span>
 							<span v-else>
@@ -15,15 +15,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>P1</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -35,11 +35,11 @@
 			</div>
 			<!-- p2 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.p2 > 0.35, 'bg-danger': itemData.p2 <= 0.35}" @click.prevent="modalBuka(itemData,'p2')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.p2 > 0.35, 'bg-danger': itemData.p2 <= 0.35}" @click.prevent="modalBuka(itemData,'p2')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.p2 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.p2 > 0.35">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.p2 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.p2 > 0.35">
 								IDEAL
 							</span>
 							<span v-else>
@@ -47,15 +47,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>P2</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -67,11 +67,11 @@
 			</div>
 			<!-- e1 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.e1 >= 0.7 && itemData.e1 <= 0.8, 'bg-danger': itemData.e1 < 0.7 || itemData.e1 > 0.8}" @click.prevent="modalBuka(itemData,'e1')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.e1 >= 0.7 && itemData.e1 <= 0.8, 'bg-danger': itemData.e1 < 0.7 || itemData.e1 > 0.8}" @click.prevent="modalBuka(itemData,'e1')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.e1 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.e1 >= 0.7 && itemData.e1 <= 0.8">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.e1 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.e1 >= 0.7 && itemData.e1 <= 0.8">
 								IDEAL
 							</span>
 							<span v-else>
@@ -79,15 +79,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>E1</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -99,11 +99,11 @@
 			</div>
 			<!-- e5 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.e5 >= 0.7 && itemData.e5 <= 0.8, 'bg-danger': itemData.e5 < 0.7 || itemData.e5 > 0.8}" @click.prevent="modalBuka(itemData,'e5')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.e5 >= 0.7 && itemData.e5 <= 0.8, 'bg-danger': itemData.e5 < 0.7 || itemData.e5 > 0.8}" @click.prevent="modalBuka(itemData,'e5')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.e5 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.e5 >= 0.7 && itemData.e5 <= 0.8">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.e5 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.e5 >= 0.7 && itemData.e5 <= 0.8">
 								IDEAL
 							</span>
 							<span v-else>
@@ -111,15 +111,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>E5</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -134,11 +134,11 @@
 		<div class="row">
 			<!-- e6 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.e6 <= 0.05, 'bg-danger': itemData.e6 > 0.05}" @click.prevent="modalBuka(itemData,'e6')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.e6 <= 0.05, 'bg-danger': itemData.e6 > 0.05}" @click.prevent="modalBuka(itemData,'e6')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.e6 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.e6 <= 0.05">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.e6 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.e6 <= 0.05">
 								IDEAL
 							</span>
 							<span v-else>
@@ -146,15 +146,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>E6</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -166,11 +166,11 @@
 			</div>
 			<!-- e9 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.e9 >= 0.1, 'bg-danger': itemData.e9 < 0.1}" @click.prevent="modalBuka(itemData,'e9')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.e9 >= 0.1, 'bg-danger': itemData.e9 < 0.1}" @click.prevent="modalBuka(itemData,'e9')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.e9 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.e9 >= 0.1">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.e9 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.e9 >= 0.1">
 								IDEAL
 							</span>
 							<span v-else>
@@ -178,15 +178,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>E9</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -198,11 +198,11 @@
 			</div>
 			<!-- a1 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.a1 <= 0.05, 'bg-danger': itemData.a1 > 0.05}" @click.prevent="modalBuka(itemData,'a1')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.a1 <= 0.05, 'bg-danger': itemData.a1 > 0.05}" @click.prevent="modalBuka(itemData,'a1')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.a1 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.a1 <= 0.05">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.a1 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.a1 <= 0.05">
 								IDEAL
 							</span>
 							<span v-else>
@@ -210,15 +210,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>A1</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -230,11 +230,11 @@
 			</div>
 			<!-- a2 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.a2 < 0.05, 'bg-danger': itemData.a2 >= 0.05}" @click.prevent="modalBuka(itemData,'a2')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.a2 < 0.05, 'bg-danger': itemData.a2 >= 0.05}" @click.prevent="modalBuka(itemData,'a2')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.a2 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.a2 < 0.05">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.a2 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.a2 < 0.05">
 								IDEAL
 							</span>
 							<span v-else>
@@ -242,15 +242,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>A2</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -265,17 +265,17 @@
 		<div class="row">
 			<!-- r7 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.r7_1 == itemData.harga_pasar, 'bg-danger': itemData.r7_1 != itemData.harga_pasar}" @click.prevent="modalBuka(itemData,'r7')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.r7_1 == itemData.harga_pasar, 'bg-danger': itemData.r7_1 != itemData.harga_pasar}" @click.prevent="modalBuka(itemData,'r7')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.r7_1 | percentage(2) }} / {{ itemData.r7_2 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.r7_1 == itemData.harga_pasar">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.r7_1 | percentage(2) }} / {{ itemData.r7_2 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.r7_1 == itemData.harga_pasar">
 								IDEAL / 
 							</span>
 							<span v-else>
 								TIDAK IDEAL / 
 							</span>
-							<span class="text-muted" v-if="itemData.r7_2 == itemData.harga_pasar">
+							<span class="opacity-75" v-if="itemData.r7_2 == itemData.harga_pasar">
 								IDEAL  
 							</span>
 							<span v-else>
@@ -283,15 +283,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>R7</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -303,11 +303,11 @@
 			</div>
 			<!-- r9 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.r9 == 0.05, 'bg-danger': itemData.r9 < 0.05, 'bg-danger': itemData.r9 > 0.05}" @click.prevent="modalBuka(itemData,'r9')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.r9 == 0.05, 'bg-danger': itemData.r9 < 0.05, 'bg-danger': itemData.r9 > 0.05}" @click.prevent="modalBuka(itemData,'r9')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.r9 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.r9 == 0.05">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.r9 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.r9 == 0.05">
 								IDEAL
 							</span>
 							<span v-else>
@@ -315,15 +315,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>R9</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -335,11 +335,11 @@
 			</div>
 			<!-- l1 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.l1 >= 0.15 && itemData.l1 <= 0.2, 'bg-danger': itemData.l1 < 0.15 || itemData.l1 > 0.2}" @click.prevent="modalBuka(itemData,'l1')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.l1 >= 0.15 && itemData.l1 <= 0.2, 'bg-danger': itemData.l1 < 0.15 || itemData.l1 > 0.2}" @click.prevent="modalBuka(itemData,'l1')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.l1 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.l1 >= 0.15 && itemData.l1 <= 0.2">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.l1 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.l1 >= 0.15 && itemData.l1 <= 0.2">
 								IDEAL
 							</span>
 							<span v-else>
@@ -347,15 +347,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>L1</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -367,11 +367,11 @@
 			</div>
 			<!-- s10 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'bg-primary': itemData.s10 > 0.12, 'bg-danger': itemData.s10 <= 0.12}" @click.prevent="modalBuka(itemData,'s10')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.s10 > 0.12, 'bg-danger': itemData.s10 <= 0.12}" @click.prevent="modalBuka(itemData,'s10')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.s10 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.s10 >= 0.12">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.s10 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.s10 >= 0.12">
 								IDEAL
 							</span>
 							<span v-else>
@@ -379,15 +379,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>S10</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
@@ -402,11 +402,11 @@
 		<div class="row">
 			<!-- s11 -->
 			<div class="col-sm-3">
-				<div class="panel panel-body bg-primary" :class="{'btn-primary': itemData.s11 > (0.1 + itemData.laju_inflasi), 'btn-danger': itemData.s11 <= (0.1 + itemData.laju_inflasi)}" @click.prevent="modalBuka(itemData,'s11')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.s11 > (0.1 + itemData.laju_inflasi), 'bg-danger': itemData.s11 <= (0.1 + itemData.laju_inflasi)}" @click.prevent="modalBuka(itemData,'s11')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
-							<h3 class="no-margin text-semibold">{{ itemData.s11 | percentage(2) }}</h3>
-							<span class="text-muted" v-if="itemData.s11 > (0.1 + itemData.laju_inflasi)">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.s11 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.s11 > (0.1 + itemData.laju_inflasi)">
 								IDEAL
 							</span>
 							<span v-else>
@@ -414,15 +414,15 @@
 							</span>
 						</div>
 
-						<div class="media-right">
-							<button type="button" class="btn btn-default btn-icon btn-rounded">
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>S11</b>
 							</button>	
 						</div>
 					</div>
 
 					<!-- separator -->
-					<div class="progress progress-micro bg-blue mb-10">
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
 						<div class="progress-bar bg-white" style="width: 100%">
 							<span class="sr-only">100% Complete</span>
 						</div>
