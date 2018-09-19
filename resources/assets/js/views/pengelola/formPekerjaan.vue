@@ -1,173 +1,177 @@
 <template>
 	<div>
-		<!-- CU -->
-		<div class="col-sm-12" v-if="profile.id_cu == 0">
-			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.id_tempat')}">
+		<div class="row">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.pekerjaan.id_tempat')}">
-					<i class="icon-cross2" v-if="errors.has('form.pekerjaan.id_tempat')"></i>
-					Tempat:
-				</h5>
+			<!-- CU -->
+			<div class="col-sm-12" v-if="profile.id_cu == 0">
+				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.id_tempat')}">
 
-				<!-- select -->
-				<select class="form-control" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
-					<option disabled>Silahkan pilih tempat bekerja</option>
-					<option value="0">Puskopdit BKCU Kalimantan</option>
-					<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
-					<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
-				</select>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.id_tempat')}">
+						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.id_tempat')"></i>
+						Tempat:
+					</h6>
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.id_tempat')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.id_tempat') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- select -->
+					<select class="form-control" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
+						<option disabled value="">Silahkan pilih tempat bekerja</option>
+						<option value="0">Puskopdit BKCU Kalimantan</option>
+						<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
+						<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
+					</select>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.id_tempat')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.id_tempat') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- tempat -->
-		<div class="col-sm-12" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
-			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.lembaga_lain')}">
+			<!-- tempat -->
+			<div class="col-sm-12" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
+				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.lembaga_lain')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.pekerjaan.lembaga_lain')}">
-					<i class="icon-cross2" v-if="errors.has('form.pekerjaan.lembaga_lain')"></i>
-					Lembaga:</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.lembaga_lain')}">
+						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.lembaga_lain')"></i>
+						Lembaga:</h6>
 
-				<!-- text -->
-				<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga" v-validate="'required|min:5'" data-vv-as="Lembaga" v-model="form.pekerjaan.lembaga_lain">
+					<!-- text -->
+					<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga" v-validate="'required|min:5'" data-vv-as="Lembaga" v-model="form.pekerjaan.lembaga_lain">
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- tingkat -->
-		<div class="col-sm-12">
-			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.tingkat')}">
+			<!-- tingkat -->
+			<div class="col-sm-12">
+				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.tingkat')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.pekerjaan.tingkat')}">
-					<i class="icon-cross2" v-if="errors.has('form.pekerjaan.tingkat')"></i>
-					Tingkat:
-				</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.tingkat')}">
+						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.tingkat')"></i>
+						Tingkat:
+					</h6>
 
-				<!-- select -->
-				<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
-					<option disabled>Silahkan pilih tingkat pekerjaan</option>
-					<option value="Pengurus" v-if="form.pekerjaan.id_tempat != 'lain'">Pengurus</option>
-					<option value="Pengawas" v-if="form.pekerjaan.id_tempat != 'lain'">Pengawas</option>
-					<option value="Komite" v-if="form.pekerjaan.id_tempat != 'lain'">Komite</option>
-					<option value="Senior Manajer">Senior Manajer (General Manager, CEO, Deputy)</option>
-					<option value="Manajer">Manajer</option>
-					<option value="Supervisor">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
-					<option value="Staf">Staf</option>
-					<option value="Kontrak">Kontrak</option>
-				</select>
+					<!-- select -->
+					<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
+						<option disabled value="">Silahkan pilih tingkat pekerjaan</option>
+						<option value="Pengurus" v-if="form.pekerjaan.id_tempat != 'lain'">Pengurus</option>
+						<option value="Pengawas" v-if="form.pekerjaan.id_tempat != 'lain'">Pengawas</option>
+						<option value="Komite" v-if="form.pekerjaan.id_tempat != 'lain'">Komite</option>
+						<option value="Senior Manajer">Senior Manajer (General Manager, CEO, Deputy)</option>
+						<option value="Manajer">Manajer</option>
+						<option value="Supervisor">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
+						<option value="Staf">Staf</option>
+						<option value="Kontrak">Kontrak</option>
+					</select>
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.tingkat')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.tingkat') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.tingkat')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.tingkat') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- jabatan -->
-		<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
-			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
+			<!-- jabatan -->
+			<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.pekerjaan.name')}">
-					<i class="icon-cross2" v-if="errors.has('form.pekerjaan.name')"></i>
-					Jabatan:</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.name')}">
+						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.name')"></i>
+						Jabatan:</h6>
 
-				<!-- text -->
-				<input type="text" name="jabatan" class="form-control" placeholder="Silahkan masukkan nama jabatan" v-validate="'required|min:5'" data-vv-as="Jabatan pekerjaan" v-model="form.pekerjaan.name">
+					<!-- text -->
+					<input type="text" name="jabatan" class="form-control" placeholder="Silahkan masukkan nama jabatan" v-validate="'required|min:5'" data-vv-as="Jabatan pekerjaan" v-model="form.pekerjaan.name">
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- tp -->
-		<div class="col-sm-6" v-if="form.pekerjaan.tipe == 1 && form.pekerjaan.tingkat != 'Komite' && form.pekerjaan.tingkat != 'Pengawas' && form.pekerjaan.tingkat != 'Pengurus' && form.pekerjaan.tingkat != ''">
-			<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
+			<!-- tp -->
+			<div class="col-sm-6" v-if="form.pekerjaan.tipe == 1 && form.pekerjaan.tingkat != 'Komite' && form.pekerjaan.tingkat != 'Pengawas' && form.pekerjaan.tingkat != 'Pengurus' && form.pekerjaan.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.id_tp')}">
-					<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
-					TP:
-				</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.id_tp')}">
+						<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
+						TP:
+					</h6>
 
-				<!-- select -->
-				<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU">
-					<option disabled value="">Silahkan pilih TP</option>
-					<option value="0">Kantor Pusat</option>
-					<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
-				</select>
+					<!-- select -->
+					<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU">
+						<option disabled value="">Silahkan pilih TP</option>
+						<option value="0">Kantor Pusat</option>
+						<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
+					</select>
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tp') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tp') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- tanggal mulai -->
-		<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
-			<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.mulai')}">
+			<!-- tanggal mulai -->
+			<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.mulai')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.pekerjaan.mulai')}">
-					<i class="icon-cross2" v-if="errors.has('form.pekerjaan.mulai')"></i>
-					Tgl. Mulai:</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.mulai')}">
+						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.mulai')"></i>
+						Tgl. Mulai:</h6>
 
-				<!-- input -->
-				<cleave 
-					name="pekerjaan_mulai"
-					v-model="form.pekerjaan.mulai" 
-					class="form-control" 
-					:raw="false" 
-					:options="cleaveOption.date" 
-					placeholder="Silahkan masukkan tgl. mulai"
-					v-validate="'required'" data-vv-as="Tgl. mulai pekerjaan"></cleave>
+					<!-- input -->
+					<cleave 
+						name="pekerjaan_mulai"
+						v-model="form.pekerjaan.mulai" 
+						class="form-control" 
+						:raw="false" 
+						:options="cleaveOption.date" 
+						placeholder="Silahkan masukkan tgl. mulai"
+						v-validate="'required'" data-vv-as="Tgl. mulai pekerjaan"></cleave>
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.mulai')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.mulai') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.mulai')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.mulai') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- tanggal selesai -->
-		<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
-			<div class="form-group">
+			<!-- tanggal selesai -->
+			<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
+				<div class="form-group">
 
-				<!-- title -->
-				<h5>Tgl. Selesai</h5>
+					<!-- title -->
+					<h6>Tgl. Selesai</h6>
 
-				<!-- input -->
-				<cleave 
-					name="pekerjaan_selesai"
-					v-model="form.pekerjaan.selesai" 
-					class="form-control" 
-					:raw="false" 
-					:options="cleaveOption.date" 
-					placeholder="Silahkan masukkan tgl. selesai"></cleave>
+					<!-- input -->
+					<cleave 
+						name="pekerjaan_selesai"
+						v-model="form.pekerjaan.selesai" 
+						class="form-control" 
+						:raw="false" 
+						:options="cleaveOption.date" 
+						placeholder="Silahkan masukkan tgl. selesai"></cleave>
 
-				<small class="text-muted">Kosongkan apabila masih bekerja / tidak memiliki periode selesai</small>
+					<small class="text-muted">Kosongkan apabila masih bekerja / tidak memiliki periode selesai</small>
+				</div>
 			</div>
-		</div>
+
+		</div>	
 	</div>
 </template>
 

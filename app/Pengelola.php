@@ -2,12 +2,12 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Pengelola extends Model {
 
-    use FilterPaginateOrder, LogsActivity;
+    use Dataviewer, LogsActivity;
 
     protected $table = 'pengelola';
 
@@ -23,8 +23,16 @@ class Pengelola extends Model {
         'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','berat','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces'
     ];
 
-    protected $filter = [
-        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','berat','kontak','created_at','updated_at','pengelola_pekerjaan.tingkat', 'pekerjaan_aktif.tingkat'
+    protected $allowedFilters = [
+        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','berat','kontak','created_at','updated_at',
+        
+        'pekerjaan_aktif.tingkat','pekerjaan_aktif.cu.name','pekerjaan_aktif.name','pendidikan_tertinggi.tingkat','pendidikan_tertinggi.name','villages.name', 'districts.name', 'regencies.name', 'provinces.name'
+    ];
+
+    protected $orderable = [
+        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','berat','kontak','created_at','updated_at',
+        
+        'pengelola_pekerjaan.tingkat', 'pekerjaan_aktif.tingkat'
     ];
 
     public static function initialize()

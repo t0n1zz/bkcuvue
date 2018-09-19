@@ -4,7 +4,7 @@
 		<page-header 
 		:title="title" 
 		:titleDesc="titleDesc" 
-		:titleIcon="titleIcon"></page-header>
+		:titleIcon="titleIcon" :level="2" :level2Title="level2Title" @level2Back="back()"></page-header>
 		
 		<!-- page container -->
 		<div class="page-content pt-0">
@@ -114,21 +114,10 @@
 				kelas: 'laporanCu',
 				titleDesc: 'Mengelola data perkembangan CU',
 				titleIcon: 'icon-stats-growth',
+				level2Title: 'Laporan CU',
 				selectCUPath: 'laporanCuCU',
 				tabName: 'analisisLaporanCu',
 				katax: '\\frac{1.7888}{1,6777}',
-				btn1Header: {
-					route: 'artikel',
-					icon: 'icon-magazine',
-					title: 'Artikel',
-					can: 'index artikel'
-				},
-				btn2Header: {
-					route: 'artikelPenulis',
-					icon: 'icon-pencil6',
-					title: 'Penulis Artikel',
-					can: 'index artikelPenulis'
-				},
 				isPearls: false,
 				isDiskusi: false,
 				isRevisi: false
@@ -146,6 +135,9 @@
 				if(value == 'revisi' && !this.isRevisi){
 					this.isRevisi = true;
 				}
+			},
+			back(){
+				// TODO back route
 			} 
 		},
 		computed: {

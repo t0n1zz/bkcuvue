@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- page-header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
 		<div class="page-content pt-0">

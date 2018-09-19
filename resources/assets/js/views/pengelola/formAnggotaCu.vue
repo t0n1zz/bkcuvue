@@ -1,43 +1,47 @@
 <template>
 	<div>
-		<!-- name -->
-		<div class="col-sm-12">
-			<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.cu_name')}">
+		<div class="row">
+		
+			<!-- name -->
+			<div class="col-sm-12">
+				<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.cu_name')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.anggota_cu.cu_name')}">
-					<i class="icon-cross2" v-if="errors.has('form.anggota_cu.cu_name')"></i>
-					Nama CU</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu.cu_name')}">
+						<i class="icon-cross2" v-if="errors.has('form.anggota_cu.cu_name')"></i>
+						Nama CU</h6>
 
-				<!-- text -->
-				<input type="text" name="anggota_cu_name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama CU" v-model="form.anggota_cu.name">
+					<!-- text -->
+					<input type="text" name="anggota_cu_name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama CU" v-model="form.anggota_cu.name">
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.cu_name')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.cu_name') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.cu_name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.cu_name') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
-		</div>
 
-		<!-- no_ba -->
-		<div class="col-sm-12">
-			<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.no_ba')}">
+			<!-- no_ba -->
+			<div class="col-sm-12">
+				<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.no_ba')}">
 
-				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.anggota_cu.no_ba')}">
-					<i class="icon-cross2" v-if="errors.has('form.anggota_cu.no_ba')"></i>
-					No. BA:</h5>
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu.no_ba')}">
+						<i class="icon-cross2" v-if="errors.has('form.anggota_cu.no_ba')"></i>
+						No. BA:</h6>
 
-				<!-- text -->
-				<input type="text" name="anggota_no_ba" class="form-control" placeholder="Silahkan masukkan no. BA anggota CU" v-validate="'required|min:5'" data-vv-as="No. BA Anggota CU" v-model="form.anggota_cu.no_ba">
+					<!-- text -->
+					<input type="text" name="anggota_no_ba" class="form-control" placeholder="Silahkan masukkan no. BA anggota CU" v-validate="'required|min:5'" data-vv-as="No. BA Anggota CU" v-model="form.anggota_cu.no_ba">
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.no_ba')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.no_ba') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;</small>
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.no_ba')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.no_ba') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
 			</div>
+
 		</div>
 
 	</div>

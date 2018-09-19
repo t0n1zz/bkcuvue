@@ -4,7 +4,7 @@
 			<div class="page-header-content header-elements-md-inline">
 				<div class="page-title d-flex">
 					<h4>
-						<i class="position-left mr-2" :class="titleIcon"></i>
+						<i class="position-left" :class="titleIcon"></i>
 						<span class="font-weight-semibold">{{ title }}</span> - {{ titleDesc }}
 					</h4>
 				</div>
@@ -13,13 +13,13 @@
 
 					<!-- level 1  -->
 					<div class="breadcrumb" v-if="level === 1">
-						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4 mr-2"></i>  Dashboard </router-link>
+						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4"></i>  Dashboard </router-link>
 						<span class="breadcrumb-item active">{{ title }}</span>
 					</div>
 
 					<!-- level 2 -->
 					<div class="breadcrumb" v-if="level === 2">
-						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4 mr-2"></i> Dashboard </router-link>
+						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4"></i> Dashboard </router-link>
 						<a href="#" class="breadcrumb-item" @click.prevent="level2Back()">{{ level2Title }}</a>
 						<span class="breadcrumb-item active">{{ title }}</span>
 					</div>

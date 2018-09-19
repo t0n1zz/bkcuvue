@@ -468,12 +468,14 @@
     mounted() {
       document.addEventListener("keydown", (e) => {
         if (e.keyCode == 13) {
-          this.applyFilter();
+          if(this.filterCandidates.length > 0)
+            this.applyFilter();
         }
       });
     },
     created() {
       this.addFilter();
+      this.defaultFilter();
     },
     watch: {
       itemDataStat(value) {
@@ -597,7 +599,8 @@
           query_1: null,
           query_2: null
         })
-
+      },
+      defaultFilter(){
         // set default filter
         let data = _.find(this.columnData,{'filterDefault':true})
         Vue.set(this.filterCandidates[0], 'column', data)

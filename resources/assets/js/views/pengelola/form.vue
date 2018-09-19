@@ -4,9 +4,9 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
@@ -16,63 +16,45 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
 						<!-- identitas -->
-						<div class="panel panel-flat border-top-xlg border-top-info">
-							<div class="panel-body">
-								<div class="row">
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">1. Identitas</h5>
+							</div>
+							<div class="card-body">
+									
+								<form-identitas :form="form"></form-identitas>
 
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">1</span> Identitas
-											<small class="display-block">Identitas pengelola</small>
-										</h6>
-									</div>
-
-									<form-identitas :form="form"></form-identitas>
-								</div>
 							</div>
 						</div>
 
 						<!-- lokasi -->
-						<div class="panel panel-flat border-top-xlg border-top-info">
-							<div class="panel-body">
-								<div class="row">
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">2. Alamat & Kontak</h5>
+							</div>
+							<div class="card-body">
 
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">2</span> Alamat & Kontak
-											<small class="display-block">Domisili dan kontak pengelola</small>
-										</h6>
-									</div>
+								<form-lokasi :form="form"></form-lokasi>
 
-									<form-lokasi :form="form"></form-lokasi>
-
-								</div>
 							</div>
 						</div>
 
 						<!-- keluarga -->
-						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.keluarga">
-							<div class="panel-body">
+						<div class="card" v-if="$route.meta.mode == 'create' && form.keluarga">
+							<div class="card-header bg-white">
+								<h5 class="card-title">3. Keluarga</h5>
+							</div>
+							<div class="card-body">
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">3</span> Keluarga
-											<small class="display-block">keluarga pengelola</small>
-										</h6>
-									</div>
 
 									<!-- ayah -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.ayah')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.keluarga.ayah')}">
+											<h6 :class="{ 'text-danger' : errors.has('form.keluarga.ayah')}">
 												<i class="icon-cross2" v-if="errors.has('form.keluarga.ayah')"></i>
-												Ayah:</h5>
+												Ayah:</h6>
 
 											<!-- text -->
 											<input type="text" name="ayah" class="form-control" placeholder="Silahkan masukkan nama ayah" v-validate="'required'" data-vv-as="Ayah" v-model="form.keluarga.ayah">
@@ -90,9 +72,9 @@
 										<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.ibu')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.keluarga.ibu')}">
+											<h6 :class="{ 'text-danger' : errors.has('form.keluarga.ibu')}">
 												<i class="icon-cross2" v-if="errors.has('form.keluarga.ibu')"></i>
-												Ibu:</h5>
+												Ibu:</h6>
 
 											<!-- text -->
 											<input type="text" name="ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-validate="'required'" data-vv-as="Ibu" v-model="form.keluarga.ibu">
@@ -110,9 +92,9 @@
 										<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.pasangan')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.keluarga.pasangan')}">
+											<h6 :class="{ 'text-danger' : errors.has('form.keluarga.pasangan')}">
 												<i class="icon-cross2" v-if="errors.has('form.keluarga.pasangan')"></i>
-												Pasangan:</h5>
+												Pasangan:</h6>
 
 											<!-- text -->
 											<input type="text" name="pasangan" class="form-control" placeholder="Silahkan masukkan nama pasangan" v-validate="'required'" data-vv-as="Pasangan" v-model="form.keluarga.pasangan">
@@ -130,7 +112,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Anak {{ index + 1}}:</h5>
+											<h6>Anak {{ index + 1}}:</h6>
 
 											<div class="input-group">
 												<!-- text -->
@@ -159,78 +141,51 @@
 						</div>
 						
 						<!-- anggota cu -->
-						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.anggota_cu">
-							<div class="panel-body">
-								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">4</span> Anggota CU
-											<small class="display-block">Keanggotaan CU pengelola</small>
-										</h6>
-									</div>
+						<div class="card" v-if="$route.meta.mode == 'create' && form.anggota_cu">
+							<div class="card-header bg-white">
+								<h5 class="card-title">4. Anggota CU</h5>
+							</div>
+							<div class="card-body">
 
 									<form-anggota-cu :form="form" :modelCu="modelCu"></form-anggota-cu>
 
-								</div>	
 							</div>
 						</div>
 
-						<!-- pekerjaan -->
-						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.pekerjaan">
-							<div class="panel-body">
-								<div class="row">
 
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">5</span> Jabatan
-											<small class="display-block">Jabatan pengelola saat ini</small>
-										</h6>
-									</div>
+						<!-- pekerjaan -->
+						<div class="card" v-if="$route.meta.mode == 'create' && form.pekerjaan">
+							<div class="card-header bg-white">
+								<h5 class="card-title">5. Jabatan </h5>
+							</div>
+							<div class="card-body">
 
 									<form-pekerjaan :form="form" :modelCu="modelCu" :modelTp="modelTp"></form-pekerjaan>
 
-								</div>
 							</div>
 						</div>
 
 						<!-- pendidikan -->
-						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.pendidikan">
-							<div class="panel-body">
-								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">6</span> Pendidikan
-											<small class="display-block">Pendidikan tertinggi pengelola</small>
-										</h6>
-									</div>
+						<div class="card" v-if="$route.meta.mode == 'create' && form.pendidikan">
+							<div class="card-header bg-white">
+								<h5 class="card-title">6. Pendidikan</h5>
+							</div>
+							<div class="card-body">
 
 									<form-pendidikan :form="form"></form-pendidikan>
 
-								</div>
 							</div>
 						</div>
 
 						<!-- organisasi -->
-						<div class="panel panel-flat border-top-xlg border-top-info" v-if="$route.meta.mode == 'create' && form.organisasi">
-							<div class="panel-body">
-								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">7</span> Organisasi
-											<small class="display-block">Keaktifan pengelola dalam organisasi</small>
-										</h6>
-									</div>
+						<div class="card" v-if="$route.meta.mode == 'create' && form.organisasi">
+							<div class="card-header bg-white">
+								<h5 class="card-title">7. Organisasi</h5>
+							</div>
+							<div class="card-body">
 
 									<form-organisasi :form="form" :isAktif="true"></form-organisasi>
 
-								</div>
 							</div>
 						</div>
 
@@ -239,7 +194,7 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat panel-body">
+						<div class="card card-body">
 							<form-button
 								:cancelState="'methods'"
 								:formValidation="'form'"
@@ -260,7 +215,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appModal from '../../components/modal';
@@ -336,13 +290,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			profileStat(value){ //jika refresh halaman maka reload profile
@@ -450,10 +397,6 @@
 					this.modalShow = false
 				}
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('user',{

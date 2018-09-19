@@ -4,9 +4,9 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 		
 		<!-- page container -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<div class="row">
 
@@ -16,74 +16,69 @@
 							<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 							</message>
 
-							<div class="tabbable">
-								<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-									<li :class="{'active' : tabName == 'identitas'}"><a @click.prevent="changeTab('identitas')"><i class="icon-pencil5 position-left"></i> Ubah Identitas</a></li>
-									<li :class="{'active' : tabName == 'riwayatPekerjaan'}"><a @click.prevent="changeTab('riwayatPekerjaan')"><i class="icon-list2 position-left"></i> Riwayat Pekerjaan</a></li>
-									<li :class="{'active' : tabName == 'riwayatPendidikan'}"><a @click.prevent="changeTab('riwayatPendidikan')"><i class="icon-list2 position-left"></i> Riwayat Pendidikan</a></li>
-									<li :class="{'active' : tabName == 'riwayatOrganisasi'}"><a @click.prevent="changeTab('riwayatOrganisasi')"><i class="icon-list2 position-left"></i> Riwayat Organisasi</a></li>
-									<li :class="{'active' : tabName == 'keluarga'}"><a @click.prevent="changeTab('keluarga')"><i class="icon-list2 position-left"></i> Keluarga</a></li>
-									<li :class="{'active' : tabName == 'anggotaCu'}"><a @click.prevent="changeTab('anggotaCu')"><i class="icon-list2 position-left"></i> Anggota CU</a></li>
+							<div class="nav-tabs-responsive">
+								<ul class="nav nav-tabs nav-tabs-bottom flex-nowarp mb-0">
+									<li class="nav-item">
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-pencil5 position-left mr-2"></i> Ubah Identitas</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPekerjaan'}" @click.prevent="changeTab('riwayatPekerjaan')"><i class="icon-list2 position-left mr-2"></i> Riwayat Pekerjaan</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPendidikan'}" @click.prevent="changeTab('riwayatPendidikan')"><i class="icon-list2 position-left mr-2 "></i> Riwayat Pendidikan</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatOrganisasi'}" @click.prevent="changeTab('riwayatOrganisasi')"><i class="icon-list2 position-left mr-2"></i> Riwayat Organisasi</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'keluarga'}" @click.prevent="changeTab('keluarga')"><i class="icon-list2 position-left mr-2"></i> Keluarga</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'anggotaCu'}" @click.prevent="changeTab('anggotaCu')"><i class="icon-list2 position-left mr-2"></i> Anggota CU</a>
+									</li>
 								</ul>
 							</div>
+
+							<br/>
 
 							<!-- identitas -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-show="tabName == 'identitas'">
 									<form @submit.prevent="saveIdentitas" enctype="multipart/form-data" data-vv-scope="form">
-									<!-- desktop -->
-									<div class="panel panel-flat">
 
-										<div class="panel-body pb-5">
-											<div class="row">
-
-												<!-- judul -->
-												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">1</span> Identitas
-														<small class="display-block">Identitas pengelola</small>
-													</h6>
-												</div>
-
+										<!-- desktop -->
+										<div class="card">
+											<div class="card-header bg-white">
+												<h5 class="card-title">1. Identitas</h5>
+											</div>
+											<div class="card-body pb-2">
+													
 												<form-identitas :form="form"></form-identitas>
-												
-											</div>		
+														
+											</div>
 										</div>
 
-									</div>
-
-									<div class="panel panel-flat">
-
-										<div class="panel-body pb-5">
-											<div class="row">
-
-												<!-- judul -->
-												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">2</span> Alamat & Kontak
-														<small class="display-block">Domisili dan kontak pengelola</small>
-													</h6>
-												</div>
+										<div class="card">
+											<div class="card-header bg-white">
+												<h5 class="card-title">2. Alamat</h5>
+											</div>
+											<div class="card-body pb-2">
 
 												<form-lokasi :form="form"></form-lokasi>
-
-											</div>		
+		
+											</div>
 										</div>
 
-									</div>
+										<!-- form info -->
+										<form-info></form-info>	
 
-									<!-- form info -->
-									<form-info></form-info>	
-									<br/>
-
-									<!-- form button -->
-									<div class="panel panel-flat panel-body">
-										<form-button
-											:cancelState="'methods'"
-											:formValidation="'form'"
-											@cancelClick="back"></form-button>
-									</div>
-
+										<!-- form button -->
+										<div class="card card-body">
+											<form-button
+												:cancelState="'methods'"
+												:formValidation="'form'"
+												@cancelClick="back"></form-button>
+										</div>
 									</form>
 								</div>
 							</transition>	
@@ -93,44 +88,36 @@
 								<div v-show="tabName == 'riwayatPekerjaan'">
 
 									<!-- desktop -->
-									<div class="panel panel-flat hidden-xs">
-										<div class="panel-body pb-5">
+									<div class="card">
+										<div class="card-header bg-white">
+											<h5 class="card-title">3. Pekerjaan</h5>
+										</div>
+										<div class="card-body pb-2">
 											<div class="row">
 
-												<!-- judul -->
 												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">3</span> Pekerjaan
-														<small class="display-block">Riwayat pekerjaan pengelola</small>
-													</h6>
+
+													<button class="btn btn-light mb-1" @click.prevent="createRiwayat()">
+														<i class="icon-plus22"></i> Tambah
+													</button>
+
+													<button class="btn btn-light mb-1" @click.prevent="updateRiwayat()"
+													:disabled="!selectedItemPekerjaan.id">
+														<i class="icon-pencil5"></i> Ubah
+													</button>
+
+													<button class="btn btn-light mb-1" @click="destroyRiwayat()" :disabled="!selectedItemPekerjaan.id">
+														<i class="icon-bin2"></i> Hapus
+													</button>
+
 												</div>
 
-												<div class="col-md-12">
-													<div class="btn-toolbar">
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah riwayat pekerjaan baru'" @click.prevent="createRiwayat()">
-																<i class="icon-plus22"></i> Tambah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah riwayat pekerjaan'" @click.prevent="updateRiwayat()"
-															:disabled="!selectedItemPekerjaan.id">
-																<i class="icon-pencil5"></i> Ubah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus riwayat pekerjaan'" @click="destroyRiwayat()" :disabled="!selectedItemPekerjaan.id">
-																<i class="icon-bin2"></i> Hapus
-															</button>
-														</div>
-													</div>
-												</div>
 											</div>		
 										</div>
 
 										<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-bg-info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }} 
 														<span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
@@ -163,7 +150,7 @@
 												<!-- update -->
 												<li>
 													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah riwayat pekerjaan'" :disabled="!selectedItemPekerjaan.id">
+														<button @click.prevent="updateRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Ubah riwayat pekerjaan'" :disabled="!selectedItemPekerjaan.id">
 															<i class="icon-pencil5"></i> Ubah
 														</button>
 													</div>
@@ -172,7 +159,7 @@
 												<!-- destroy -->
 												<li>
 													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus riwayat pekerjaan'"  :disabled="!selectedItemPekerjaan.id">
+														<button @click.prevent="destroyRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Hapus riwayat pekerjaan'"  :disabled="!selectedItemPekerjaan.id">
 															<i class="icon-bin2"></i> Hapus
 														</button>
 													</div>
@@ -180,42 +167,6 @@
 											</template>
 										</data-table>
 
-									</div>
-
-									<!-- mobile -->
-									<div class="panel panel-flat panel-body visible-xs">
-										<button class="btn btn-default btn-block" @click.prevent="createRiwayat()">
-											<i class="icon-plus22"></i> Tambah
-										</button>
-									</div>
-
-									<div class="panel panel-default visible-xs" v-for="(data,index) in itemData" v-if="data">										
-										<div class="panel-heading">
-											<h6 class="panel-title text-semibold">{{ data.name }} a <span class="label label-primary" v-if="data.selesai == null || data.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span></h6>
-										</div>
-										<div class="panel-body">
-											<ul class="list-unstyled">
-												<li><b>Tingkat:</b> {{ data.tingkat }}</li>
-												<li><b>Tempat:</b> 
-													<span v-if="data.tipe == 1">{{ data.cu.name }}</span>
-													<span v-else-if="data.tipe == 2">{{ data.lembaga_lain }}</span>
-													<span v-else>Puskopdit BKCU Kalimantan</span>
-												</li>
-												<li><b>Mulai:</b> {{ data.mulai }}</li>
-												<li><b>Selesai:</b> 
-													<span v-if="data.selesai">{{ data.selesai }}</span>
-													<span v-else>-</span>
-												</li>
-											</ul>
-
-											<hr>
-											<button class="btn btn-default btn-block" @click.prevent="updateRiwayat(data)">
-												<i class="icon-pencil5"></i> Ubah
-											</button>
-											<button class="btn btn-default btn-block" @click.prevent="destroyRiwayat(data)">
-												<i class="icon-bin2"></i> Hapus
-											</button>
-										</div>
 									</div>
 
 								</div>
@@ -226,44 +177,36 @@
 								<div v-show="tabName == 'riwayatPendidikan'">
 
 									<!-- desktop -->
-									<div class="panel panel-flat hidden-xs">
-										<div class="panel-body pb-5">
+									<div class="card">
+										<div class="card-header bg-white">
+											<h5 class="card-title">4. Pendidikan</h5>
+										</div>
+										<div class="card-body pb-2">
 											<div class="row">
 
-												<!-- judul -->
 												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">4</span> Pendidikan
-														<small class="display-block">Riwayat pendidikan pengelola</small>
-													</h6>
+
+													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah riwayat pendidikan baru'" @click.prevent="createRiwayat()">
+														<i class="icon-plus22"></i> Tambah
+													</button>
+
+													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah riwayat pendidikan'" @click.prevent="updateRiwayat()"
+													:disabled="!selectedItemPendidikan.id">
+														<i class="icon-pencil5"></i> Ubah
+													</button>
+
+													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus riwayat pendidikan'" @click="destroyRiwayat()" :disabled="!selectedItemPendidikan.id">
+														<i class="icon-bin2"></i> Hapus
+													</button>
+
 												</div>
 
-												<div class="col-md-12">
-													<div class="btn-toolbar">
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah riwayat pendidikan baru'" @click.prevent="createRiwayat()">
-																<i class="icon-plus22"></i> Tambah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah riwayat pendidikan'" @click.prevent="updateRiwayat()"
-															:disabled="!selectedItemPendidikan.id">
-																<i class="icon-pencil5"></i> Ubah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus riwayat pendidikan'" @click="destroyRiwayat()" :disabled="!selectedItemPendidikan.id">
-																<i class="icon-bin2"></i> Hapus
-															</button>
-														</div>
-													</div>
-												</div>
 											</div>		
 										</div>
 
 										<data-table :items="itemData" :columnData="columnDataPendidikan" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-bg-info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.tingkat }}</td>
@@ -295,7 +238,7 @@
 												<!-- update -->
 												<li>
 													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah riwayat pendidikan baru'" :disabled="!selectedItemPendidikan.id">
+														<button @click.prevent="updateRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Ubah riwayat pendidikan baru'" :disabled="!selectedItemPendidikan.id">
 															<i class="icon-pencil5"></i> Ubah
 														</button>
 													</div>
@@ -304,7 +247,7 @@
 												<!-- destroy -->
 												<li>
 													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus riwayat pendidikan baru'"  :disabled="!selectedItemPendidikan.id">
+														<button @click.prevent="destroyRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Hapus riwayat pendidikan baru'"  :disabled="!selectedItemPendidikan.id">
 															<i class="icon-bin2"></i> Hapus
 														</button>
 													</div>
@@ -312,38 +255,6 @@
 											</template>
 										</data-table>
 
-									</div>
-
-									<!-- mobile -->
-									<div class="panel panel-flat panel-body visible-xs">
-										<button class="btn btn-default btn-block" @click.prevent="createRiwayat()">
-											<i class="icon-plus22"></i> Tambah
-										</button>
-									</div>
-
-									<div class="panel panel-default visible-xs" v-for="(data,index) in itemData" v-if="data">										
-										<div class="panel-heading">
-											<h6 class="panel-title text-semibold">{{ data.name }}</h6>
-										</div>
-										<div class="panel-body">
-											<ul class="list-unstyled">
-												<li><b>Tingkat:</b> {{ data.tingkat }}</li>
-												<li><b>Tempat:</b> {{ data.tempat }}</li>
-												<li><b>Mulai:</b> {{ data.mulai }}</li>
-												<li><b>Selesai:</b> 
-													<span v-if="data.selesai">{{ data.selesai }}</span>
-													<span v-else>-</span>
-												</li>
-											</ul>
-
-											<hr>
-											<button class="btn btn-default btn-block" @click.prevent="updateRiwayat(data)">
-												<i class="icon-pencil5"></i> Ubah
-											</button>
-											<button class="btn btn-default btn-block" @click.prevent="destroyRiwayat(data)">
-												<i class="icon-bin2"></i> Hapus
-											</button>
-										</div>
 									</div>
 
 								</div>
@@ -354,44 +265,33 @@
 								<div v-show="tabName == 'riwayatOrganisasi'">
 
 									<!-- desktop -->
-									<div class="panel panel-flat hidden-xs">
-										<div class="panel-body pb-5">
+									<div class="card">
+										<div class="card-header bg-white">
+											<h5 class="card-title">5. Organisasi</h5>
+										</div>
+										<div class="card-body pb-2">
 											<div class="row">
 
-												<!-- judul -->
 												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">5</span> Organisasi
-														<small class="display-block">Riwayat berorganisasi pengelola</small>
-													</h6>
-												</div>
+													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah riwayat berorganisasi baru'" @click.prevent="createRiwayat()">
+														<i class="icon-plus22"></i> Tambah
+													</button>
 
-												<div class="col-md-12">
-													<div class="btn-toolbar">
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah riwayat berorganisasi baru'" @click.prevent="createRiwayat()">
-																<i class="icon-plus22"></i> Tambah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah riwayat berorganisasi'" @click.prevent="updateRiwayat()"
-															:disabled="!selectedItemOrganisasi.id">
-																<i class="icon-pencil5"></i> Ubah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus riwayat berorganisasi'" @click="destroyRiwayat()" :disabled="!selectedItemOrganisasi.id">
-																<i class="icon-bin2"></i> Hapus
-															</button>
-														</div>
-													</div>
+													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah riwayat berorganisasi'" @click.prevent="updateRiwayat()"
+													:disabled="!selectedItemOrganisasi.id">
+														<i class="icon-pencil5"></i> Ubah
+													</button>
+
+													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus riwayat berorganisasi'" @click="destroyRiwayat()" :disabled="!selectedItemOrganisasi.id">
+														<i class="icon-bin2"></i> Hapus
+													</button>
 												</div>
 											</div>		
 										</div>
 
 										<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemOrganisasi.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-info': selectedItemOrganisasi.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }} <span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Masih aktif</span></td>
 													<td>{{ props.item.jabatan }}</td>
@@ -404,69 +304,8 @@
 												</tr>
 											</template>	
 
-											<template slot="button-context">
-												<!-- title -->
-												<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItemOrganisasi.name"><b class="text-size-large">{{ this.columnDataPekerjaan[1].title }}</b></li>
-												<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-												<li><hr class="no-margin-bottom no-margin-top"/></li>
-
-												<!-- selected content -->
-												<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItemOrganisasi.name">
-													<span class="text-size-large">{{selectedItemOrganisasi.name}}</span></li>
-												<li><hr class="no-margin-top no-margin-bottom"/></li>
-
-												<!-- update -->
-												<li>
-													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah riwayat berorganisasi'" :disabled="!selectedItemOrganisasi.id">
-															<i class="icon-pencil5"></i> Ubah
-														</button>
-													</div>
-												</li>
-
-												<!-- destroy -->
-												<li>
-													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus riwayat berorganisasi'"  :disabled="!selectedItemOrganisasi.id">
-															<i class="icon-bin2"></i> Hapus
-														</button>
-													</div>
-												</li>
-											</template>
 										</data-table>
 
-									</div>
-
-									<!-- mobile -->
-									<div class="panel panel-flat panel-body visible-xs">
-										<button class="btn btn-default btn-block" @click.prevent="createRiwayat()">
-											<i class="icon-plus22"></i> Tambah
-										</button>
-									</div>
-
-									<div class="panel panel-default visible-xs" v-for="(data,index) in itemData" v-if="data">										
-										<div class="panel-heading">
-											<h6 class="panel-title text-semibold">{{ data.name }} <span class="label label-primary" v-if="data.selesai == null || data.selesai > moment().format('YYYY-MM-DD')">Masih aktif</span></h6>
-										</div>
-										<div class="panel-body">
-											<ul class="list-unstyled">
-												<li><b>Jabatan:</b> {{ data.jabatan }}</li>
-												<li><b>Tempat:</b> {{ data.tempat }}</li>
-												<li><b>Mulai:</b> {{ data.mulai }}</li>
-												<li><b>Selesai:</b> 
-													<span v-if="data.selesai">{{ data.selesai }}</span>
-													<span v-else>-</span>
-												</li>
-											</ul>
-
-											<hr>
-											<button class="btn btn-default btn-block" @click.prevent="updateRiwayat(data)">
-												<i class="icon-pencil5"></i> Ubah
-											</button>
-											<button class="btn btn-default btn-block" @click.prevent="destroyRiwayat(data)">
-												<i class="icon-bin2"></i> Hapus
-											</button>
-										</div>
 									</div>
 
 								</div>
@@ -477,107 +316,40 @@
 								<div v-show="tabName == 'keluarga'">
 
 									<!-- desktop -->
-									<div class="panel panel-flat hidden-xs">
-										<div class="panel-body pb-5">
+									<div class="card">
+										<div class="card-header bg-white">
+											<h5 class="card-title">6. Keluarga</h5>
+										</div>
+										<div class="card-body pb-2">
 											<div class="row">
 
-												<!-- judul -->
 												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">6</span> Keluarga
-														<small class="display-block">Data keluarga pengelola</small>
-													</h6>
-												</div>
+													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah data keluarga baru'" @click.prevent="createRiwayat()">
+														<i class="icon-plus22"></i> Tambah
+													</button>
 
-												<div class="col-md-12">
-													<div class="btn-toolbar">
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah data keluarga baru'" @click.prevent="createRiwayat()">
-																<i class="icon-plus22"></i> Tambah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah data keluarga'" @click.prevent="updateRiwayat()"
-															:disabled="!selectedItemKeluarga.id">
-																<i class="icon-pencil5"></i> Ubah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus data keluarga'" @click="destroyRiwayat()" :disabled="!selectedItemKeluarga.id">
-																<i class="icon-bin2"></i> Hapus
-															</button>
-														</div>
-													</div>
+													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah data keluarga'" @click.prevent="updateRiwayat()"
+													:disabled="!selectedItemKeluarga.id">
+														<i class="icon-pencil5"></i> Ubah
+													</button>
+
+													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus data keluarga'" @click="destroyRiwayat()" :disabled="!selectedItemKeluarga.id">
+														<i class="icon-bin2"></i> Hapus
+													</button>
 												</div>
 											</div>		
 										</div>
 
 										<data-table :items="itemData" :columnData="columnDataKeluarga" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-bg-info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.tipe }}</td>
 												</tr>
 											</template>	
-
-											<template slot="button-context">
-												<!-- title -->
-												<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItemKeluarga.name"><b class="text-size-large">{{ this.columnDataKeluarga[1].title }}</b></li>
-												<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-												<li><hr class="no-margin-bottom no-margin-top"/></li>
-
-												<!-- selected content -->
-												<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItemKeluarga.name">
-													<span class="text-size-large">{{selectedItemKeluarga.name}}</span></li>
-												<li><hr class="no-margin-top no-margin-bottom"/></li>
-
-												<!-- update -->
-												<li>
-													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah data keluarga'" :disabled="!selectedItemKeluarga.id">
-															<i class="icon-pencil5"></i> Ubah
-														</button>
-													</div>
-												</li>
-
-												<!-- destroy -->
-												<li>
-													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus data keluarga'"  :disabled="!selectedItemKeluarga.id">
-															<i class="icon-bin2"></i> Hapus
-														</button>
-													</div>
-												</li>
-											</template>
 										</data-table>
 
-									</div>
-
-									<!-- mobile -->
-									<div class="panel panel-flat panel-body visible-xs">
-										<button class="btn btn-default btn-block" @click.prevent="createRiwayat()">
-											<i class="icon-plus22"></i> Tambah
-										</button>
-									</div>
-
-									<div class="panel panel-default visible-xs" v-for="(data,index) in itemData" v-if="data">										
-										<div class="panel-heading">
-											<h6 class="panel-title text-semibold">{{ data.name }}</h6>
-										</div>
-										<div class="panel-body">
-											<ul class="list-unstyled">
-												<li><b>Sebagai:</b> {{ data.tipe }}</li>
-											</ul>
-
-											<hr>
-											<button class="btn btn-default btn-block" @click.prevent="updateRiwayat(data)">
-												<i class="icon-pencil5"></i> Ubah
-											</button>
-											<button class="btn btn-default btn-block" @click.prevent="destroyRiwayat(data)">
-												<i class="icon-bin2"></i> Hapus
-											</button>
-										</div>
 									</div>
 
 								</div>
@@ -588,107 +360,40 @@
 								<div v-show="tabName == 'anggotaCu'">
 
 									<!-- desktop -->
-									<div class="panel panel-flat hidden-xs">
-										<div class="panel-body pb-5">
+									<div class="card">
+										<div class="card-header bg-white">
+											<h5 class="card-title">7. Anggota CU</h5>
+										</div>
+										<div class="card-body pb-2">
 											<div class="row">
 
-												<!-- judul -->
 												<div class="col-md-12">
-													<h6 class="form-wizard-title text-semibold text-primary">
-														<span class="form-wizard-count">7</span> Anggota CU
-														<small class="display-block">Data keanggotaan CU</small>
-													</h6>
-												</div>
+													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah data keanggotaan CU baru'" @click.prevent="createRiwayat()">
+														<i class="icon-plus22"></i> Tambah
+													</button>
 
-												<div class="col-md-12">
-													<div class="btn-toolbar">
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Tambah data keanggotaan CU baru'" @click.prevent="createRiwayat()">
-																<i class="icon-plus22"></i> Tambah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Ubah data keanggotaan CU'" @click.prevent="updateRiwayat()"
-															:disabled="!selectedItemAnggotaCu.id">
-																<i class="icon-pencil5"></i> Ubah
-															</button>
-														</div>
-														<div class="btn-group pb-5">
-															<button class="btn btn-default mb-15" v-tooltip:top="'Hapus data keanggotaan CU'" @click="destroyRiwayat()" :disabled="!selectedItemAnggotaCu.id">
-																<i class="icon-bin2"></i> Hapus
-															</button>
-														</div>
-													</div>
+													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah data keanggotaan CU'" @click.prevent="updateRiwayat()"
+													:disabled="!selectedItemAnggotaCu.id">
+														<i class="icon-pencil5"></i> Ubah
+													</button>
+
+													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus data keanggotaan CU'" @click="destroyRiwayat()" :disabled="!selectedItemAnggotaCu.id">
+														<i class="icon-bin2"></i> Hapus
+													</button>
 												</div>
 											</div>		
 										</div>
 
 										<data-table :items="itemData" :columnData="columnDataAnggotaCu" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-bg-info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.no_ba }}</td>
 												</tr>
 											</template>	
-
-											<template slot="button-context">
-												<!-- title -->
-												<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItemAnggotaCu.name"><b class="text-size-large">{{ this.columnDataAnggotaCu[1].title }}</b></li>
-												<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-												<li><hr class="no-margin-bottom no-margin-top"/></li>
-
-												<!-- selected content -->
-												<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItemAnggotaCu.name">
-													<span class="text-size-large">{{selectedItemAnggotaCu.name}}</span></li>
-												<li><hr class="no-margin-top no-margin-bottom"/></li>
-
-												<!-- update -->
-												<li>
-													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah data anggota CU'" :disabled="!selectedItemAnggotaCu.id">
-															<i class="icon-pencil5"></i> Ubah
-														</button>
-													</div>
-												</li>
-
-												<!-- destroy -->
-												<li>
-													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus data anggota CU'"  :disabled="!selectedItemAnggotaCu.id">
-															<i class="icon-bin2"></i> Hapus
-														</button>
-													</div>
-												</li>
-											</template>
 										</data-table>
 
-									</div>
-
-									<!-- mobile -->
-									<div class="panel panel-flat panel-body visible-xs">
-										<button class="btn btn-default btn-block" @click.prevent="createRiwayat()">
-											<i class="icon-plus22"></i> Tambah
-										</button>
-									</div>
-
-									<div class="panel panel-default visible-xs" v-for="(data,index) in itemData" v-if="data">										
-										<div class="panel-heading">
-											<h6 class="panel-title text-semibold">{{ data.name }}</h6>
-										</div>
-										<div class="panel-body">
-											<ul class="list-unstyled">
-												<li><b>No. BA:</b> {{ data.no_ba }}</li>
-											</ul>
-
-											<hr>
-											<button class="btn btn-default btn-block" @click.prevent="updateRiwayat(data)">
-												<i class="icon-pencil5"></i> Ubah
-											</button>
-											<button class="btn btn-default btn-block" @click.prevent="destroyRiwayat(data)">
-												<i class="icon-bin2"></i> Hapus
-											</button>
-										</div>
 									</div>
 
 								</div>
@@ -712,9 +417,10 @@
 				 <!-- pekerjaan -->
 				 <div v-if="tabName == 'riwayatPekerjaan'">
 					<form @submit.prevent="savePekerjaan" data-vv-scope="form"> 
-						<div class="row">
-							<form-pekerjaan :form="formRiwayat" :modelCu="modelCu" :modelTp="modelTp" v-if="formRiwayat.pekerjaan"></form-pekerjaan>
+						
+						<form-pekerjaan :form="formRiwayat" :modelCu="modelCu" :modelTp="modelTp" v-if="formRiwayat.pekerjaan"></form-pekerjaan>
 
+						<div class="row">
 							<div class="col-sm-12">
 								<hr>
 								<form-button
@@ -724,16 +430,18 @@
 									:formValidation="'form'"
 								@cancelClick="cancelClick"></form-button>
 							</div>	
-						</div>	
+						</div>
+							
 					</form>
 				 </div>
 
 				 <!-- pendidikan -->
 				 <div v-if="tabName == 'riwayatPendidikan'">
 					<form @submit.prevent="savePendidikan" data-vv-scope="form"> 
-						<div class="row">
-							<form-pendidikan :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.pendidikan"></form-pendidikan>
+						
+						<form-pendidikan :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.pendidikan"></form-pendidikan>
 
+						<div class="row">
 							<div class="col-sm-12">
 								<hr>
 								<form-button
@@ -751,9 +459,10 @@
 				 <!-- organisasi -->
 				 <div v-if="tabName == 'riwayatOrganisasi'">
 					<form @submit.prevent="saveOrganisasi" data-vv-scope="form"> 
-						<div class="row">
-							<form-organisasi :form="formRiwayat" :isAktif="false" :modelCu="modelCu" v-if="formRiwayat.organisasi"></form-organisasi>
+						
+						<form-organisasi :form="formRiwayat" :isAktif="false" :modelCu="modelCu" v-if="formRiwayat.organisasi"></form-organisasi>
 
+						<div class="row">
 							<div class="col-sm-12">
 								<hr>
 								<form-button
@@ -771,9 +480,10 @@
 				  <!-- anggotacu -->
 				 <div v-if="tabName == 'anggotaCu'">
 					<form @submit.prevent="saveAnggotaCu" data-vv-scope="form"> 
-						<div class="row">
-							<form-anggota-cu :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.anggota_cu"></form-anggota-cu>
+						
+						<form-anggota-cu :form="formRiwayat" :modelCu="modelCu" v-if="formRiwayat.anggota_cu"></form-anggota-cu>
 
+						<div class="row">
 							<div class="col-sm-12">
 								<hr>
 								<form-button
@@ -796,7 +506,6 @@
 <script>
 	import moment from 'moment';
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import bootstrapSelect from '../../assets/plugins/forms/selects/bootstrap_multiselect.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
@@ -893,14 +602,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			// corefunc.core_function();
-			// bootstrapSelect.init();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			modelCuStat(value){
@@ -1224,10 +925,6 @@
 			moment: function () {
 				return moment();
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed:{
 			...mapGetters('pengelola',{

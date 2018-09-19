@@ -24,7 +24,7 @@ class PengelolaController extends Controller{
 	{
 		$table_data = Pengelola::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
 			$query->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
-		})->filterPaginateOrder();
+		})->advancedFilter();
 
 		return response()
 		->json([
@@ -47,7 +47,7 @@ class PengelolaController extends Controller{
 			->where(function($q){
 				$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
 			});
-		})->filterPaginateOrder();
+		})->advancedFilter();
 
 
 		return response()

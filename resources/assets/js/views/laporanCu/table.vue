@@ -49,6 +49,30 @@
 
 			</template>
 
+      <template slot="button-mobile">
+
+				<!-- tambah -->
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['create_laporan_cu']">
+					<i class="icon-plus3"></i> Tambah {{ title }}
+				</router-link>
+
+				<!-- ubah-->
+				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
+
+				<!-- hapus -->
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
+
+				<!-- detail-->
+				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-file-stats"></i> Detail {{ title }}
+				</button>
+
+			</template>
+
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 
@@ -325,6 +349,7 @@ export default {
         this.disableColumnCU(false);
         this.disableColumnTp(false);
         this.disableColumnTpName(true);
+        this.filterCU();
 
         this.$store.dispatch(this.kelas + "/indexPeriode", [
           params,
@@ -336,14 +361,16 @@ export default {
         if (this.$route.params.tp == "konsolidasi") {
           this.disableColumnTp(false);
           this.disableColumnTpName(true);
+          this.filterPeriode();
 
           this.$store.dispatch(this.kelas + "/indexCu", [
             params,
             this.$route.params.cu
-          ]);
+          ]); 
         } else {
           this.disableColumnTp(true);
           this.disableColumnTpName(true);
+          this.filterPeriode();
 
           this.$store.dispatch(this.kelas + "/indexTp", [
             params,
@@ -354,6 +381,7 @@ export default {
         this.disableColumnCU(true);
         this.disableColumnTp(true);
         this.disableColumnTpName(false);
+        this.filterTPName();
 
         this.$store.dispatch(this.kelas + "/indexTpPeriode", [
           params,
@@ -364,6 +392,7 @@ export default {
         this.disableColumnCU(false);
         this.disableColumnTp(false);
         this.disableColumnTpName(true);
+        this.filterCU();
 
         this.$store.dispatch(this.kelas + "/index", params);
       }
@@ -378,6 +407,21 @@ export default {
     },
     disableColumnTpName(status) {
       this.columnData[2].disable = status;
+    },
+    filterCU(){
+      this.columnData[1].filterDefault = true;
+      this.columnData[2].filterDefault = false;
+      this.columnData[5].filterDefault = false;
+    },
+    filterTPName(){
+      this.columnData[1].filterDefault = false;
+      this.columnData[2].filterDefault = true;
+      this.columnData[5].filterDefault = false;
+    },
+    filterPeriode(){
+      this.columnData[1].filterDefault = false;
+      this.columnData[2].filterDefault = false;
+      this.columnData[5].filterDefault = true;
     },
     checkProfile() {
       if (this.profile.id_cu != 0) {
