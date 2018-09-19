@@ -5,7 +5,7 @@
 
 		<!-- content -->
 		<div class="page-content pt-0">
-			<div class="content-warpper">
+			<div class="content-wrapper">
 				<div class="content">
 
 					<!-- message -->

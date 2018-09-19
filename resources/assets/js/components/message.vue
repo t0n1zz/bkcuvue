@@ -40,7 +40,7 @@
 						<!-- debug -->
 						<div v-if="showDebug">
 							<hr/>
-							<pre class="pre-scrollable language-markup content-group text-left pb-2" v-if="showDetail"><code>{{ errorData.data }}</code></pre>
+							<pre class="pre-scrollable language-markup content-group text-left pb-2" v-if="showDetail"><code v-html="errorData.data"></code></pre>
 							<hr v-if="showDetail" />
 
 							<!-- debug button -->

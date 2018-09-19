@@ -4,14 +4,14 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" @level2Back="back()"></page-header>
 		<!-- content -->
 		<div class="page-content pt-0">
-			<div class="content-warpper">
+			<div class="content-wrapper">
 				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
-					<div class="card d-print-none" v-if="$route.meta.mode == 'editTp'">
+					<div class="card" v-if="$route.meta.mode == 'editTp'">
 						<div class="card-body"> 
 							<div class="alert bg-info alert-styled-left">
 								<p>Laporan ini merupakan bagian dari laporan konsolidasi, maka anda dapat melihat/mengubah laporan TP lain yang juga termasuk dalam laporan konsolidasi pada CU ini sesuai periode laporannya.</p>

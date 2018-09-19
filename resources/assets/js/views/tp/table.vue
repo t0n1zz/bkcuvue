@@ -157,7 +157,8 @@
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'string'
+						filterType: 'string',
+						filterDefault: true
 					},
 					{
 						title: 'No. Tp/Kp',

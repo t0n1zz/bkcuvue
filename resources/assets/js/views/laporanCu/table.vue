@@ -332,6 +332,7 @@ export default {
         ]);
       } else if (this.$route.meta.mode == "cu") {
         this.disableColumnCU(true);
+
         if (this.$route.params.tp == "konsolidasi") {
           this.disableColumnTp(false);
           this.disableColumnTpName(true);

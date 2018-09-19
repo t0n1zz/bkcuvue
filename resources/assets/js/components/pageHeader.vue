@@ -20,7 +20,7 @@
 					<!-- level 2 -->
 					<div class="breadcrumb" v-if="level === 2">
 						<router-link :to="{ name:'dashboard' }" class="breadcrumb-item"><i class="icon-home4 mr-2"></i> Dashboard </router-link>
-						<a class="breadcrumb-item" @click.prevent="level2Back()">{{ level2Title }}</a>
+						<a href="#" class="breadcrumb-item" @click.prevent="level2Back()">{{ level2Title }}</a>
 						<span class="breadcrumb-item active">{{ title }}</span>
 					</div>
 				</div>

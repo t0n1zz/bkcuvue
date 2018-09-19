@@ -110,11 +110,11 @@
 					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="columnData[18].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.pos"></check-value>
 					</td>
-					<td v-if="columnData[19].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
-					<td v-if="columnData[20].hide">
+					<td v-if="!columnData[19].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
+					<td v-if="!columnData[20].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -166,7 +166,8 @@ export default {
           sort: true,
           hide: false,
           disable: false,
-          filter: true
+          filter: true,
+          filterDefault: true
         },
         {
           title: "No. BA",

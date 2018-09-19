@@ -28,7 +28,7 @@ class LaporanTpController extends Controller{
 				(IFNULL(Laporan_tp.piutang_beredar,0) - (IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))) as piutang_bersih'
 			)])->whereHas('Tp', function($query) use ($id){
 				$query->where('id_cu',$id);
-			})->FilterPaginateOrder();
+			})->advancedFilter();
 
 		return response()
 		->json([
@@ -43,7 +43,7 @@ class LaporanTpController extends Controller{
 			(IFNULL(Laporan_tp.piutang_beredar,0)/IFNULL(Laporan_tp.aset,0)) as rasio_beredar,
 			((IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))/IFNULL(Laporan_tp.piutang_beredar,0)) as rasio_lalai,
 			(IFNULL(Laporan_tp.piutang_beredar,0) - (IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))) as piutang_bersih'
-		)])->filterPaginateOrder();
+		)])->advancedFilter();
 
 		return response()
 		->json([
@@ -68,7 +68,7 @@ class LaporanTpController extends Controller{
 			(IFNULL(Laporan_tp.piutang_beredar,0)/IFNULL(Laporan_tp.aset,0)) as rasio_beredar,
 			((IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))/IFNULL(Laporan_tp.piutang_beredar,0)) as rasio_lalai,
 			(IFNULL(Laporan_tp.piutang_beredar,0) - (IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0))) as piutang_bersih'
-		)])->FilterPaginateOrder();
+		)])->advancedFilter();
 
 		return response()
 		->json([
@@ -137,7 +137,7 @@ class LaporanTpController extends Controller{
 				@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
 
 				'
-			)])->FilterPaginateOrder();
+			)])->advancedFilter();
 
 		return response()
 		->json([
@@ -197,7 +197,7 @@ class LaporanTpController extends Controller{
 			@ideal := 0 as ideal,
 			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
 			'
-		)])->FilterPaginateOrder();
+		)])->advancedFilter();
 
 		return response()
 		->json([
@@ -267,7 +267,7 @@ class LaporanTpController extends Controller{
 			@ideal := 0 as ideal,
 			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
 			'
-		)])->FilterPaginateOrder();
+		)])->advancedFilter();
 
 		return response()
 		->json([

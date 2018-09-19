@@ -26,7 +26,8 @@ export const laporanCu = {
         hide: false,
         disable: false,
         isChart: false,
-        filter: true
+        filter: true,
+        filterDefault: true
       },
       {
         title: "TP",
@@ -36,7 +37,8 @@ export const laporanCu = {
         hide: false,
         disable: false,
         isChart: false,
-        filter: true
+        filter: true,
+        filterDefault: false
       },
       {
         title: "No. BA",
@@ -66,10 +68,11 @@ export const laporanCu = {
         hide: false,
         disable: false,
         isChart: false,
-        filter: true
+        filter: true,
+        filterDefault: false
       },
       {
-        title: "Tp",
+        title: "Jmlh. Tp",
         name: "tp",
         tipe: "numeric",
         sort: true,
@@ -540,23 +543,25 @@ export const laporanCu = {
       },
       {
         title: "CU",
-        name: "cu_name",
+        name: "cu.name",
         tipe: "string",
         sort: true,
         hide: false,
         disable: false,
         isChart: false,
         filter: true,
+        filterDefault: true
       },
       {
         title: "TP",
-        name: "tp_name",
+        name: "tp.name",
         tipe: "string",
         sort: true,
         hide: false,
         disable: false,
         isChart: false,
         filter: true,
+        filterDefault: false
       },
       {
         title: "No. BA",
@@ -586,6 +591,7 @@ export const laporanCu = {
         disable: false,
         isChart: false,
         filter: true,
+        filterDefault: false
       },
       {
         title: "Tp",

@@ -15,7 +15,7 @@
       <div class="card-body">
         <!-- search row -->
         <div class="row">
-          <div class="col-md-12" v-for="(f, i) in filterCandidates">
+          <div class="col-md-12" v-for="(f, i, index) in filterCandidates">
             <div class="row">
               <div class="col-md-4 pb-2">
                 <div class="input-group">
@@ -466,6 +466,11 @@
       }
     },
     mounted() {
+      document.addEventListener("keydown", (e) => {
+        if (e.keyCode == 13) {
+          this.applyFilter();
+        }
+      });
     },
     created() {
       this.addFilter();
@@ -527,6 +532,7 @@
       },
       selectOperator(f, i, e) {
         let value = e.target.value
+      
         if (value.length === 0) {
           Vue.set(this.filterCandidates[i], 'operator', value)
           return
@@ -591,6 +597,33 @@
           query_1: null,
           query_2: null
         })
+
+        // set default filter
+        let data = _.find(this.columnData,{'filterDefault':true})
+        Vue.set(this.filterCandidates[0], 'column', data)
+        
+        switch (data.tipe) {
+          case 'numeric':
+            this.filterCandidates[0].operator = this.availableOperators()[4]
+            this.filterCandidates[0].query_1 = null
+            this.filterCandidates[0].query_2 = null
+            break;
+          case 'string':
+            this.filterCandidates[0].operator = this.availableOperators()[6]
+            this.filterCandidates[0].query_1 = null
+            this.filterCandidates[0].query_2 = null
+            break;
+          case 'datetime':
+            this.filterCandidates[0].operator = this.availableOperators()[9]
+            this.filterCandidates[0].query_1 = 28
+            this.filterCandidates[0].query_2 = 'days'
+            break;
+          case 'counter':
+            this.filterCandidates[0].operator = this.availableOperators()[14]
+            this.filterCandidates[0].query_1 = null
+            this.filterCandidates[0].query_2 = null
+            break;
+        }
       },
       applyChange() {
         this.fetch()

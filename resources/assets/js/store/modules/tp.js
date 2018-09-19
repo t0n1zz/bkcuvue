@@ -38,8 +38,13 @@ export const tp = {
       
       TpAPI.index( p )
         .then( function( response ){
-          commit('setDataS', response.data.model );
-          commit('setDataStatS', 'success');
+          if(response.data.model){
+            commit('setDataS', response.data.model );
+            commit('setDataStatS', 'success');
+          }else{
+            commit('setDataS', response );
+            commit('setDataStatS', 'fail');
+          }
         })
         .catch( error => {
           commit('setDataS', error.response);
@@ -52,8 +57,13 @@ export const tp = {
       
       TpAPI.indexCu( p, id )
         .then( function( response ){
-          commit('setDataS', response.data.model);
-          commit('setDataStatS', 'success');
+          if(response.data.model){
+            commit('setDataS', response.data.model );
+            commit('setDataStatS', 'success');
+          }else{
+            commit('setDataS', response );
+            commit('setDataStatS', 'fail');
+          }
         })
         .catch( error => {
           commit('setDataS', error.response);
@@ -67,8 +77,13 @@ export const tp = {
       
       TpAPI.get()
         .then( function( response ){
-          commit('setDataS', response.data.model );
-          commit('setDataStatS', 'success');
+          if(response.data.model){
+            commit('setDataS', response.data.model );
+            commit('setDataStatS', 'success');
+          }else{
+            commit('setDataS', response );
+            commit('setDataStatS', 'fail');
+          }
         })
         .catch( error => {
           commit('setDataS', error.response);
@@ -81,8 +96,13 @@ export const tp = {
       
       TpAPI.getCu( id )
         .then( function( response ){
-          commit('setDataS', response.data.model);
-          commit('setDataStatS', 'success');
+          if(response.data.model){
+            commit('setDataS', response.data.model );
+            commit('setDataStatS', 'success');
+          }else{
+            commit('setDataS', response );
+            commit('setDataStatS', 'fail');
+          }
         })
         .catch( error => {
           commit('setDataS', error.response);
