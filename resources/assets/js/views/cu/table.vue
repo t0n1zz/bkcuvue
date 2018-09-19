@@ -149,6 +149,14 @@ export default {
   props: ["title", "kelas"],
   data() {
     return {
+      selectedItem: [],
+      query: {
+        order_column: "no_ba",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
+      },
       columnData: [
         {
           title: "No.",
@@ -332,14 +340,6 @@ export default {
           filter: true
         }
       ],
-      query: {
-        order_column: "no_ba",
-        order_direction: "asc",
-        filter_match: "and",
-        limit: 10,
-        page: 1
-      },
-      selectedItem: [],
       modalShow: false,
       modalState: "",
       modalTitle: "",

@@ -2,9 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-panel :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" 
-		:params="params"
-		@fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -115,7 +113,7 @@
 				</div>
 			</template>
 
-		</data-panel>
+		</data-viewer>
 					
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
@@ -126,7 +124,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import DataPanel from '../../components/datapanel.vue';
 	import appModal from '../../components/modal';
 	import collapseButton from '../../components/collapseButton.vue';
@@ -142,18 +139,14 @@
 		props:['title','kelas'],
 		data() {
 			return {
-				source: '',
 				selectedItem: [],
-				params: {
-          column: 'id',
-          direction: 'desc',
-          per_page: 10,
-          page: 1,
-          search_column: 'name',
-          search_operator: 'like',
-          search_query_1: '',
-          search_query_2: ''
-        },
+				query: {
+					order_column: "no_ba",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 10,
+					page: 1
+				},
 				columnData: [
 					{
 						title: 'No.',

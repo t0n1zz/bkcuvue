@@ -23,7 +23,7 @@
                     <span class="input-group-text">Kolom</span>
                   </span>
                   <select class="form-control" @input="selectColumn(f, i, $event)">
-                    <option value="">Silahkan masukkan kolom pencarian</option>
+                    <option disabled value="">Silahkan masukkan kolom pencarian</option>
                     <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
                       v-if="x.filter && !x.disable">
                       {{x.title}}
@@ -519,6 +519,7 @@
         this.appliedFilters.splice(0)
         this.filterCandidates.splice(0)
         this.addFilter()
+        this.defaultFilter()
         this.query.page = 1
         this.applyChange()
       },

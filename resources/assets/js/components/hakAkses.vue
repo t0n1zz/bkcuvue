@@ -4,12 +4,12 @@
 		<!-- hak akses -->
 		<div class="col-md-3" v-for="akses in groupHakAkses">
 			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h6 class="panel-title"><i :class="akses.icon"></i> {{ akses.name }}
+			<div class="card">
+				<div class="card-header">
+					<h6 class="card-title"><i :class="akses.icon"></i> {{ akses.name }}
 					</h6>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 
 					<div class="checkbox checkbox-right" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='all'">
 						<label>
@@ -515,9 +515,6 @@
 					
 				]
 			}
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		created() {},
 		watch: {

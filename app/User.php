@@ -5,14 +5,14 @@ namespace App;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use App\Support\ExposePermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasRoles, HasApiTokens, Notifiable, FilterPaginateOrder, ExposePermissions, LogsActivity;
+    use HasRoles, HasApiTokens, Notifiable, Dataviewer, ExposePermissions, LogsActivity;
 
     protected $table = 'users';
     protected $guard_name = 'api';
@@ -35,8 +35,12 @@ class User extends Authenticatable
         'id_pus','id_cu','name','email','username', 'password','gambar','status'
     ];
 
-    protected $filter = [
-        'id','id_cu','id_pus','name','email','username','gambar','status','created_at'
+    protected $allowedFilters = [
+        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at'
+    ];
+
+    protected $orderable = [
+        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at'
     ];
 
     public static function initialize()

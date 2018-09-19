@@ -2,13 +2,13 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProdukCu extends Model {
     
-    use FilterPaginateOrder, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'produk_cu';
     protected static $logFillable = true;
@@ -20,7 +20,15 @@ class ProdukCu extends Model {
     ];
     
     protected $fillable = [
-      'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+        'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+    ];
+
+    protected $allowedFilters = [
+        'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+    ];
+
+    protected $orderable = [
+        'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
     ];
 
     protected $filter = [

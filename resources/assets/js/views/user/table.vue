@@ -1,140 +1,103 @@
 <template>
   <div>
     <!-- main panel -->
-    <data-viewer v-bind="dataviewer">
+    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
 
       <!-- desktop -->
       <!-- button desktop -->
       <template slot="button-desktop">
 
         <!-- tambah -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['create_' + kelas]">
-          <router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' + title">
-            <i class="icon-plus3"></i> Tambah
-          </router-link>
-        </div>
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+          <i class="icon-plus3"></i> Tambah
+        </router-link>
 
         <!-- ubah-->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
-          <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-            <i class="icon-pencil5"></i> Ubah
-          </button>
-        </div>
+        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah
+        </button>
 
         <!-- hapus -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_' + kelas]">
-          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
-            <i class="icon-bin2"></i> Hapus
-          </button>
-        </div>
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-bin2"></i> Hapus
+        </button>
 
         <!-- reset password -->
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['reset_password']">
-          <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-default btn-icon" v-tooltip:top="'Reset password ' + title"  :disabled="!selectedItem.id">
-            <i class="icon-history"></i> Reset Password
-          </button>
-        </div>
+        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light mb-1"  v-if="profile.can && profile.can['reset_password']"  :disabled="!selectedItem.id">
+          <i class="icon-history"></i> Reset Password
+        </button>
 
-        <!-- aktifkan -->                                           
-        <div class="btn-group pb-5" v-if="profile.can && profile.can['status_' + kelas]">
-          <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
-            <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
-            <span v-else-if="selectedItem.status == 0">Aktifkan</span>
-            <span v-else>Status</span>
-          </button> 
-        </div>
+        <!-- aktifkan -->             
+        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['status_' + kelas]"  :disabled="!selectedItem.id">
+          <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
+          <span v-else-if="selectedItem.status == 0">Aktifkan</span>
+          <span v-else>Status</span>
+        </button> 
 
         <!-- hak akses -->
-        <div class="btn-group pb-5">
-          <button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Hak Akses User'"  :disabled="!selectedItem.id">
-            <i class="icon-key"></i> Hak Akses
-          </button>
-        </div>
+        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light mb-1"  v-if="profile.can && profile.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-key"></i> Hak Akses
+        </button>
 
       </template>
 
-      <!-- button context -->
-      <template slot="button-context">
-        <!-- title -->
-        <li class="text-center pb-5 pt-5 bg-primary">
-          <b class="text-size-large">Nama | Username</b>
-        </li>
+       <!-- button mobile -->
+      <template slot="button-mobile">
 
-        <!-- separator -->
-        <li><hr class="no-margin-bottom zz   o-margin-top"/></li>
+        <!-- tambah -->
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+          <i class="icon-plus3"></i> Tambah
+        </router-link>
 
-        <!-- content -->
-        <li class="text-center pb-10 pt-10 pl-5 pr-5">
-          <span class="text-size-large">{{selectedItem.name}} | {{selectedItem.username}}</span>
-        </li>
+        <!-- ubah-->
+        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah
+        </button>
 
-        <!-- separator -->
-        <li><hr class="no-margin-top no-margin-bottom"/></li>
-
-        <!-- update -->
-        <li v-if="profile.can && profile.can['update_' + kelas]">
-          <div class="pl-5 pr-5 pb-5 pt-10">
-            <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah' + title" :disabled="!selectedItem.id">
-              <i class="icon-pencil5"></i> Ubah
-            </button>
-          </div>
-        </li>
-
-        <!-- destroy -->
-        <li v-if="profile.can && profile.can['destroy_' + kelas]">
-          <div class="pl-5 pr-5 pb-5">
-            <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
-              <i class="icon-bin2"></i> Hapus
-            </button>
-          </div>
-        </li>
+        <!-- hapus -->
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-bin2"></i> Hapus
+        </button>
 
         <!-- reset password -->
-        <li v-if="profile.can && profile.can['reset_password']">
-          <div class="pl-5 pr-5 pb-5">
-            <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Reset password ' + title"  :disabled="!selectedItem.id">
-              <i class="icon-history"></i> Reset Password
-            </button>
-          </div>
-        </li>
+        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light btn-block mb-1"  v-if="profile.can && profile.can['reset_password']"  :disabled="!selectedItem.id">
+          <i class="icon-history"></i> Reset Password
+        </button>
 
-        <!-- status -->
-        <li v-if="profile.can && profile.can['status_' + kelas]">
-          <div class="pl-5 pr-5 pb-5">
-            <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status User'"  :disabled="!selectedItem.id">
-              <i class="icon-user-check"></i> <span v-if="selectedItem.status === 1">Tidak Aktifkan</span>
-              <span v-else>Aktifkan</span>
-            </button>
-          </div>
-        </li>
+        <!-- aktifkan -->             
+        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['status_' + kelas]"  :disabled="!selectedItem.id">
+          <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
+          <span v-else-if="selectedItem.status == 0">Aktifkan</span>
+          <span v-else>Status</span>
+        </button> 
 
         <!-- hak akses -->
-        <li>
-          <div class="pl-5 pr-5 pb-5">
-            <button @click.prevent="modalHakAksesOpen()" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Hak Akses User'"  :disabled="!selectedItem.id">
-              <i class="icon-key"></i> Hak Akses
-            </button>
-          </div>
-        </li>
+        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-key"></i> Hak Akses
+        </button>
+
       </template>
 
       <!-- item desktop -->
       <template slot="item-desktop" slot-scope="props">
-        <tr :class="{ 'info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
-          <td v-if="!columnData[0].hide">
-            <img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
-            <img :src="'/images/no_image_man.jpg'" class="img-rounded img-responsive img-sm" v-else>
+        <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" @click="selectedRow(props.item)">
+          <td>
+						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
+					</td>
+          <td v-if="!columnData[1].hide">
+            <img :src="'/images/user/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" width="40" v-if="props.item.gambar">
+            <img :src="'/images/no_image_man.jpg'" class="img-rounded img-fluid wmin-sm" width="40" v-else>
           </td>
-          <td v-if="!columnData[1].hide" class="warptext">{{props.item.username}}</td>
-          <td v-if="!columnData[2].hide" class="warptext">{{props.item.name}}</td>
-          <td v-if="!columnData[3].hide" class="warptext">{{props.item.email}}</td>
-          <td v-if="!columnData[4].hide && !columnData[4].disable">
+          <td v-if="!columnData[2].hide" class="warptext">{{props.item.username}}</td>
+          <td v-if="!columnData[3].hide" class="warptext">{{props.item.name}}</td>
+          <td v-if="!columnData[4].hide" class="warptext">{{props.item.email}}</td>
+          <td v-if="!columnData[5].hide && !columnData[5].disable">
             <span v-if="props.item.cu">{{props.item.cu.name}}</span>
             <span v-else>Puskopdit BKCU Kalimantan</span>
           </td>
-          <td v-if="!columnData[5].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
-          <td v-if="!columnData[6].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-          <td v-if="!columnData[7].hide">
+          <td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
+          <td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+          <td v-if="!columnData[8].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -161,7 +124,7 @@
 			<template slot="modal-footer1">
 
 				<!-- button -->
-				<button class="btn btn-default" @click="modalTutup">
+				<button class="btn btn-light" @click="modalTutup">
 					<i class="icon-cross"></i> Tutup</button>
 				<button type="submit" class="btn btn-primary" @click="modalHakAksesSave">
 					<i class="icon-floppy-disk"></i> Simpan</button>
@@ -188,94 +151,85 @@ export default {
   props:['title','kelas'],
   data(){
     return {
-      dataviewer: {
-        
-      },
-      source: '',
-      extSearchQuery1: '',
-      extSearchColumn: '',
       selectedItem: [],
-      params: {
-        column: 'id',
-        direction: 'desc',
-        per_page: 10,
-        page: 1,
-        search_column: 'name',
-        search_operator: 'like',
-        search_query_1: '',
-        search_query_2: ''
+      query: {
+        order_column: "username",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
       },
       columnData: [
         {
+          title: "No.",
+          name: "No."
+        },
+        {
           title: 'Foto',
-          key: 'gambar',
-          sort: false,
+          name: 'gambar',
           hide: false,
-          disable: false
         },
         {
           title: 'Username',
-          key: 'username',
+          name: 'username',
+          tipe: 'string',
           sort: true,
           hide: false,
           disable: false,
           filter: true,
-          filterType: 'string'
+          filterDefault: true
         },
         {
           title: 'Nama',
-          key: 'name',
+          name: 'name',
+          tipe: 'string',
           sort: true,
           hide: false,
           disable: false,
           filter: true,
-          filterType: 'string'
         },
         {
           title: 'E-mail',
-          key: 'email',
+          name: 'email',
+          tipe: 'string',
           sort: true,
           hide: false,
           disable: false,
           filter: true,
-          filterType: 'string'
         },
         {
           title: 'CU',
-          key: 'id_cu',
-          groupKey: 'c_u.name',
-          groupNoKey: 'Puskopdit BKCU Kalimantan',
+          name: 'c_u.name',
+          tipe: 'string',
           sort: true,
           hide: false,
           disable: false,
           filter: true,
-          filterKey: 'c_u.name',
-          filterType: 'string'
         },
         {
           title: 'Status',
-          key: 'status',
+          name: 'status',
           sort: true,
           hide: false,
           disable: false
         },
         {
           title: 'Tgl. Buat',
-          key: 'created_at',
+          name: 'created_at',
+          tipe: 'string',
           sort: true,
           hide: false,
           disable: false,
           filter: true,
-					filterType: 'datetime'
         },
         {
           title: 'Tgl. Ubah',
-          key: 'updated_at',
+          name: 'updated_at',
+          tipe: 'string',
           sort: true,
           hide: false,
           disable: false,
           filter: true,
-          filterType: 'datetime'
         }
       ],
       modalShow: false,
@@ -288,17 +242,12 @@ export default {
     }
   },
   created(){
-    this.fetch();
+    this.fetch(this.query);
   },
   watch: {
     // check route changes
     '$route' (to, from){
-      this.fetch();
-    },
-
-    profileStat(value){
-      if(value == 'success'){
-      }
+      this.fetch(this.query);
     },
 
     // when updating data
@@ -318,17 +267,17 @@ export default {
     }
   },
   methods: {
-    fetch(){
+    fetch(params){
       if(this.$route.params.cu == 'semua'){
         this.disableColumnCu(false);
-        this.$store.dispatch(this.kelas + '/index', this.params);
+        this.$store.dispatch(this.kelas + '/index', params);
       }else{
         this.disableColumnCu(true);
-        this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
+        this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
       }
     },
     disableColumnCu(status){
-      this.columnData[4].disable = status;
+      this.columnData[5].disable = status;
     },
     selectedRow(item){
       this.selectedItem = item;
@@ -372,7 +321,6 @@ export default {
         this.selectedItem = itemMobile;
       }
       this.$store.dispatch(this.kelas + '/editHakAkses', this.selectedItem.id);
-      $('.bootstrap-select').selectpicker('render');
     },
     modalHakAksesSave(){
       this.$store.dispatch(this.kelas + '/updateHakAkses', [this.selectedItem.id, this.modalForm]);
@@ -394,10 +342,6 @@ export default {
       } else if (vm.source == "updateStatus"){
         this.$store.dispatch(this.kelas + '/updateStatus', this.selectedItem.id);
       }
-    },
-    reload(){
-      $('.bootstrap-select').selectpicker('refresh');
-      $('.bootstrap-select').selectpicker('render');
     }
   },
   computed:{

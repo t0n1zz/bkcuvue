@@ -4,9 +4,9 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" @level2Back="back()"></page-header>
 
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
@@ -14,8 +14,8 @@
 
 					<!-- main panel -->
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
-						<div class="panel panel-flat border-top-xlg border-top-info">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-body">
 								
 								<div class="row">
 
@@ -152,14 +152,13 @@
 											</h5>
 
 											<!-- select -->
-											<select name="CU" data-width="100%" class="bootstrap-select" v-model="roleTipe">
+											<select name="CU" data-width="100%" class="form-control" v-model="roleTipe">
 												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="bkcu">User BKCU</option>
 												<option value="cu">User CU</option>
 											</select>
 
 											<!-- error message -->
-											<br/>
 											<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
 											</small>
@@ -177,8 +176,8 @@
 											<h5>CU:</h5>
 
 											<!-- select -->
-											<select name="cu" data-width="100%" class="bootstrap-select" v-model="form.id_cu">
-												<option disabled value="">Silahkan pilih CU</option>
+											<select name="cu" data-width="100%" class="form-control" v-model="form.id_cu">
+												<option disabled value="0">Silahkan pilih CU</option>
 												<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
 											</select>
 
@@ -187,6 +186,7 @@
 
 									<!-- hak-akses -->
 									<div class="col-md-12" v-if="this.$route.meta.mode !== 'edit' && roleTipe == 'bkcu' || this.$route.meta.mode !== 'edit' && roleTipe == 'cu'">
+										<br/>
 										<!-- title -->
 										<h5>Hak Akses:</h5>
 
@@ -201,7 +201,7 @@
 						<form-info></form-info>	
 
 						<!-- form button -->
-						<div class="panel panel-flat panel-body">
+						<div class="card card-body">
 							<form-button
 								:cancelState="'methods'"
 								:formValidation="'form'"
@@ -224,7 +224,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -262,13 +261,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			profileStat(value){
@@ -394,10 +386,6 @@
 			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
-			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
 			}
 		},
 		computed: {

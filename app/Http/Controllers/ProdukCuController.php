@@ -19,7 +19,7 @@ class ProdukCuController extends Controller{
 	{
 		$table_data = ProdukCu::with('Cu')->select(
 			DB::raw('*,(SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
-		)->filterPaginateOrder();
+		)->advancedFilter();
 
 		return response()
 		->json([
@@ -31,7 +31,7 @@ class ProdukCuController extends Controller{
 	{
 		$table_data = ProdukCu::with('Cu')->where('id_cu',$id)->select(
 			DB::raw('*, (SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
-		)->filterPaginateOrder();
+		)->advancedFilter();
 
 		return response()
 			->json([
