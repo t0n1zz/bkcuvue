@@ -52,7 +52,7 @@
 												</span>
 												<span class="text-muted float-right font-size-sm">{{notif.created_at | relativeHour}}</span>
 											</div>
-											<hr class="mt-5 mb-5">
+											<hr class="mt-1 mb-1">
 											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
 										</div>
 									</li>
@@ -60,7 +60,7 @@
 							</div>
 
 							<div class="dropdown-content-footer justify-content-center p-0"  v-if="notification.length > 0">
-								<a @click.prevent="goToNotifCenter()">LIHAT SEMUA PEMBERITAHUAN</a>
+								<a href="#" @click.prevent="goToNotifCenter()">LIHAT SEMUA PEMBERITAHUAN</a>
 							</div>
 						</div>		
 					</li>

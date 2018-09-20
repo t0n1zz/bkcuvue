@@ -17,7 +17,7 @@ class TempatController extends Controller{
 
 	public function index()
 	{
-		$table_data = Tempat::with('Villages','Districts','Regencies','Provinces')->filterPaginateOrder();
+		$table_data = Tempat::with('Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([

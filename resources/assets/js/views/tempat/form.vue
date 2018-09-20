@@ -4,9 +4,9 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
@@ -16,8 +16,8 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
 						<!-- main form -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-body">
 									<div class="row">
 
 										<!-- gambar utama -->
@@ -63,9 +63,8 @@
 												</h5>
 
 												<!-- select -->
-												<select class="bootstrap-select" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
+												<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
 													<option disabled value="">Silahkan pilih Provinsi</option>
-													<option data-divider="true"></option>
 													<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
 												</select>
 
@@ -88,12 +87,11 @@
 												</h5>
 
 												<!-- select -->
-												<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+												<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 													<option disabled value="">
 														<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 														<span v-else>Silahkan pilih kabupaten</span>
 													</option>
-													<option data-divider="true"></option>
 													<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
 												</select>
 
@@ -116,12 +114,11 @@
 												</h5>
 
 												<!-- select -->
-												<select class="bootstrap-select"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+												<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
 													<option disabled value="">
 														<span v-if="modelDistrictsStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 														<span v-else>Silahkan pilih kecamatan</span>
 													</option>
-													<option data-divider="true"></option>
 													<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
 												</select>
 
@@ -144,12 +141,11 @@
 												</h5>
 
 												<!-- select -->
-												<select class="bootstrap-select"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
+												<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
 													<option disabled value="">
 														<span v-if="modelVillagesStat === 'loading'"><i class="icon-spinner spinner"></i> mohon tunggu</span>
 														<span v-else>Silahkan pilih kelurahan</span>
 													</option>
-													<option data-divider="true"></option>
 													<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
 												</select>
 
@@ -293,7 +289,7 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat panel-body">
+						<div class="card card-body">
 							<form-button
 								:cancelState="'methods'"
 								:formValidation="'form'"
@@ -315,7 +311,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -376,13 +371,6 @@
 				modalContent: '',
 				submited: false,
 			}
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		created(){
 			this.fetch();
@@ -480,10 +468,6 @@
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('user',{

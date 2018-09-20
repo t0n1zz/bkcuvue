@@ -3,7 +3,7 @@
 <div class="page-header">
 	<div class="page-header-content">
 		<div class="page-title">
-			<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Dashboard</span>
+			<h4><i class="icon-home4 position-left"></i> <span class="text-semibold">Dashboard</span>
 				<small class="display-block">Selamat datang!</small>
 			</h4>
 		</div>

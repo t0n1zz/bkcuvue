@@ -2,13 +2,13 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tempat extends Model {
     
-    use FilterPaginateOrder, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'diklat_tempat';
     protected static $logFillable = true;
@@ -22,13 +22,21 @@ class Tempat extends Model {
         'id_villages','id_districts','id_regencies','id_provinces','name','alamat','pos','telp','hp','website','email','gambar','created_at','updated_at','deleted_at'
     ];
 
-    protected $filter = [
-        'id','id_villages','id_districts','id_regencies','id_provinces','name','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at'
+    protected $allowedFilters = [
+        'id','name','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at',
+
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
+    ];
+
+    protected $orderable = [
+        'id','name','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at',
+
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
 
     public static function initialize(){
         return [
-            'id_tempat' => '0', 'id_villages' => '0', 'id_districts' => '0', 'id_regencies' => '0', 'id_provinces' => '0', 'name' => '', 'alamat' => '', 'gambar' => '','pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => ''
+            'id_tempat' => '', 'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'name' => '', 'alamat' => '', 'gambar' => '','pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => ''
         ];
     }
         
