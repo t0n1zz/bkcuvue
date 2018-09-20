@@ -4,113 +4,87 @@
 		<!-- main panel -->
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
 
-			<!-- desktop -->
 			<!-- button desktop -->
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['create_produk_cu']">
-					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah ' +  title">
-						<i class="icon-plus3"></i> Tambah 
-					</router-link>
-				</div>
-			</template>
-
-			<!-- mobile -->
-			<!-- button mobile -->
-			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create_produk_cu']">
-				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
-					<i class="icon-plus3"></i> Tambah
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
+
+				<!-- ubah-->
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
+
+				<!-- hapus -->
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
+
 			</template>
-	
-			<!-- item mobile -->
-			<template slot="item-mobile" slot-scope="props">
-				<div class="panel panel-white">
-					<div class="panel-heading">
-						<h6 class="panel-title">
-							<b>Kode:</b> [ {{ props.item.kode_produk }} ]
 
-							<!-- cu -->
-							<span v-if="!columnData[4].disable">
-								<span class="label label-info pull-right" v-if="props.item.cu">CU {{ props.item.cu.name }}</span>
-								<span class="label label-info pull-right" v-else>-</span>
-							</span>
-							
-						</h6>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-sm-12">
-								<h5 class="form-wizard-title text-semibold text-primary">
+			<!-- button mobile -->
+			<template slot="button-mobile">
 
-									<!-- index -->
-								<span class="form-wizard-count">{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</span> 
+				<!-- tambah -->
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+					<i class="icon-plus3"></i> Tambah {{ title }}
+				</router-link>
 
-									<!-- name -->
-									{{ props.item.name }}
+				<!-- ubah-->
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
 
-									<!-- keterangan -->
-									<small class="display-block" v-html="props.item.keterangan"></small>
-								</h5>
-							</div>
-							<div class="col-md-4">
-								<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive" v-if="props.item.gambar">
-								<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive" v-else>
-								<br/>
-							</div>
-							<div class="col-md-4">
-								<h5><b>1. Aturan Tarik:</b></h5>
-								<p v-html="props.item.aturan_tarik"></p>
-								<h5><b>2. Aturan Setor:</b></h5>
-								<p v-html="props.item.aturan_setor"></p>
-							</div>
-							<div class="col-md-4">
-								<h5><b>3. Aturan Balas Jasa:</b></h5>
-								<p v-html="props.item.aturan_balas_jasa"></p>
-								<h5><b>4. Aturan Lain-lain:</b></h5>
-								<p v-html="props.item.aturan_lain"></p>
-							</div>
+				<!-- hapus -->
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
 
-							<div class="col-sm-12">
-								<hr>
-								<!-- mobile -->
-								<div class="text-right button-toolbar hidden-xs">
-							
-									<!-- update -->
-									<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon" v-if="profile.can && profile.can['update_produk_cu']">
-										<i class="icon-pencil5"></i> Ubah
-									</button>
-									
-									<!-- destroy -->
-									<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon" v-if="profile.can && profile.can['destroy_produk_cu']">
-										<i class="icon-bin2"></i> <span>Hapus</span>
-									</button>
-								</div>
+			</template>
 
-								<!-- mobile -->
-								<div class="text-center button-toolbar visible-xs">
-							
-									<!-- update -->
-									<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_produk_cu']">
-										<button @click.prevent="ubahData(props.item.id)" class="btn btn-default btn-icon btn-block">
-											<i class="icon-pencil5"></i> Ubah
-										</button>
-									</div>
-									
-									<!-- destroy -->
-									<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_produk_cu']">
-										<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
-											<i class="icon-bin2"></i> <span>Hapus</span>
-										</button>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
+			<!-- item desktop -->
+			<template slot="item-desktop" slot-scope="props">
+				<tr :class="{ 'bg-info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
+					<td v-if="!columnData[0].hide">
+						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
+					</td>
+					<td v-if="!columnData[1].hide">
+						<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
+					</td>
+					<td v-if="!columnData[2].hide">
+						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td v-if="!columnData[3].hide">
+						<check-value :value="props.item.kode_produk"></check-value>
+					</td>
+					<td v-if="!columnData[4].hide && !columnData[4].disable">
+						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+						<span v-else>Puskopdit BKCU Kalimantan</span>
+					</td>
+					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.kode_produk"></check-value>
+					</td>
+					<td v-if="!columnData[6].hide">
+						<check-value :value="props.item.kode_produk"></check-value>
+					</td>
+					<td v-if="!columnData[7].hide">
+						<check-value :value="props.item.kode_produk"></check-value>
+					</td>
+					<td v-if="!columnData[8].hide">
+						<check-value :value="props.item.kode_produk"></check-value>
+					</td>
+					<td v-if="!columnData[9].hide">
+						<check-value :value="props.item.kode_produk"></check-value>
+					</td>
+					<td v-if="!columnData[10].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[11].hide">
+						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+						<span v-else>-</span>
+					</td>
+				</tr>
 			</template>
 
 		</data-viewer>
@@ -124,14 +98,14 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import DataPanel from '../../components/datapanel.vue';
+	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import collapseButton from '../../components/collapseButton.vue';
 	import checkValue from '../../components/checkValue.vue';
 
 	export default {
 		components: {
-			DataPanel,
+			DataViewer,
 			appModal,
 			collapseButton,
 			checkValue
@@ -141,7 +115,7 @@
 			return {
 				selectedItem: [],
 				query: {
-					order_column: "no_ba",
+					order_column: "name",
 					order_direction: "asc",
 					filter_match: "and",
 					limit: 10,
@@ -150,120 +124,78 @@
 				columnData: [
 					{
 						title: 'No.',
-						key: 'No.',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false
+						name: 'No.',
 					},
 					{
 						title: 'Foto',
-						key: 'gambar',
-						excelType: 'string',
-						sort: false,
+						name: 'gambar',
 						hide: false,
-						disable: false
 					},
 					{
 						title: 'Nama',
-						key: 'name',
-						excelType: 'string',
+						name: 'name',
+						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'string'
+						filterDefault: true
 					},
 					{
 						title: 'Kode Produk dan Pelayanan',
-						key: 'kode_produk',
-						excelType: 'string',
+						name: 'kode_produk',
+						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'string'
 					},
 					{
 						title: 'CU',
-						key: 'cu_name',
-						groupKey: 'cu.name',
-						groupNoKey: '-',
-						excelType: 'string',
-						sort: true,
+						name: 'cu.name',
+						tipe: 'string',
+						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterKey: 'cu.name',
-						filterType: 'string'
 					},
 					{
 						title: 'Keterangan',
-						key: 'keterangan',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
+						name: 'keterangan',
 					},
 					{
 						title: 'Aturan Setor',
-						key: 'aturan_setor',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
+						name: 'aturan_setor',
 					},
 					{
 						title: 'Aturan Tarik',
-						key: 'aturan_tarik',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
+						name: 'aturan_tarik',
 					},
 					{
 						title: 'Aturan Balas Jasa',
-						key: 'aturan_balas_jasa',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
+						name: 'aturan_balas_jasa',
 					},
 					{
 						title: 'Aturan Lain',
-						key: 'aturan_lain',
-						excelType: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterType: 'string'
+						name: 'aturan_lain',
 					},
 					{
 						title: 'Tgl. / Waktu Buat',
-						key: 'created_at',
+						name: 'created_at',
+						tipe: 'datetime',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. / Waktu Ubah',
-						key: 'updated_at',
+						name: 'updated_at',
+						tipe: 'datetime',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -274,12 +206,12 @@
 			}
 		},
 		created(){
-			this.fetch();
+			this.fetch(this.query);
 		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
-				this.fetch();
+				this.fetch(this.query);
 			},
 
       updateStat(value) {
@@ -298,13 +230,13 @@
       }
     },
 		methods: {
-			fetch(){
+			fetch(params){
 				if(this.$route.params.cu == 'semua'){
 					this.disableColumnCu(false);
-					this.$store.dispatch(this.kelas + '/index', this.params);
+					this.$store.dispatch(this.kelas + '/index', params);
 				}else{
 					this.disableColumnCu(true);
-					this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
+					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
 				}
 			},
 			disableColumnCu(status){

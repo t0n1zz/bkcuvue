@@ -12,7 +12,7 @@ class ArtikelKategoriController extends Controller{
 	{
 			DB::statement(DB::raw('set @cnt:=0'));
 
-    	$table_data = ArtikelKategori::with('Cu')->withCount('hasArtikel')->filterPaginateOrder();
+    	$table_data = ArtikelKategori::with('Cu')->withCount('hasArtikel')->advancedFilter();
 
     	return response()
 			->json([
@@ -32,7 +32,7 @@ class ArtikelKategoriController extends Controller{
   
   public function indexCu($id)
 	{
-		$table_data = ArtikelKategori::with('Cu')->withCount('hasArtikel')->where('id_cu',$id)->filterPaginateOrder();
+		$table_data = ArtikelKategori::with('Cu')->withCount('hasArtikel')->where('id_cu',$id)->advancedFilter();
 
 		return response()
 			->json([

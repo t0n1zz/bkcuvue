@@ -2,12 +2,12 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Artikel extends Model {
 
-    use FilterPaginateOrder, LogsActivity;
+    use Dataviewer, LogsActivity;
 
     protected $table = 'artikel';
 
@@ -24,14 +24,22 @@ class Artikel extends Model {
         'id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','gambar_thumb','utamakan'
     ];
 
-    protected $filter = [
-        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','artikelKategori.name','artikelPenulis.name','cu.name'
+    protected $allowedFilters = [
+        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at',
+        
+        'artikelKategori.name','artikelPenulis.name','cu.name'
+    ];
+
+    protected $orderable = [
+        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at',
+        
+        'artikelKategori.name','artikelPenulis.name','cu.name'
     ];
 
     public static function initialize()
     {
         return [
-            'id_cu' => '0' , 'id_artikel_kategori' => '0','id_artikel_penulis' => '0', 'name' => '', 'content' => '', 'terbitkan' => '0', 'utamakan' => '0', 'gambar' => ''
+            'id_cu' => '' , 'id_artikel_kategori' => '','id_artikel_penulis' => '', 'name' => '', 'content' => '', 'terbitkan' => '', 'utamakan' => '', 'gambar' => ''
         ];
     }
 

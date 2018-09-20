@@ -2,10 +2,11 @@
 	<div>
 		<!-- header -->
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
+
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
@@ -15,8 +16,8 @@
 					<form @submit.prevent="save" data-vv-scope="form">
 
 						<!-- main form -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-body">
 								<div class="row">
 
 									<!-- name -->
@@ -50,7 +51,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option value="0"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
 												<option data-divider="true"></option>
@@ -116,7 +117,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -151,13 +151,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			profileStat(value){ //jika refresh halaman maka reload profile
@@ -250,10 +243,6 @@
 					this.modalShow = false
 				}
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('user',{

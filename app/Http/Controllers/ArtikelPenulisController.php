@@ -11,7 +11,7 @@ class ArtikelPenulisController extends Controller{
 
 	public function index()
 	{
-    	$table_data = ArtikelPenulis::with('Cu')->withCount('hasArtikel')->filterPaginateOrder();
+    	$table_data = ArtikelPenulis::with('Cu')->withCount('hasArtikel')->advancedFilter();
 
     	return response()
 			->json([
@@ -31,7 +31,7 @@ class ArtikelPenulisController extends Controller{
   
   public function indexCu($id)
 	{
-		$table_data = ArtikelPenulis::with('Cu')->withCount('hasArtikel')->where('id_cu',$id)->filterPaginateOrder();
+		$table_data = ArtikelPenulis::with('Cu')->withCount('hasArtikel')->where('id_cu',$id)->advancedFilter();
 
 		return response()
 			->json([

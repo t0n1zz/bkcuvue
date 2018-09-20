@@ -59,8 +59,8 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded  img-fluid wmin-sm" v-if="props.item.gambar">
-						<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>

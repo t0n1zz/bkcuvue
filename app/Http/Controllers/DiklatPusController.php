@@ -17,7 +17,7 @@ class DiklatPusController extends Controller{
 
 	public function index()
 	{
-		$table_data = DiklatPus::with('tempat','sasaran_hub.sasaran','Regencies')->filterPaginateOrder();
+		$table_data = DiklatPus::with('tempat','sasaran_hub.sasaran','Regencies')->advancedFilter();
 
 		return response()
 		->json([
@@ -27,7 +27,7 @@ class DiklatPusController extends Controller{
 
 	public function indexPeriode($periode)
 	{
-		$table_data = DiklatPus::with('tempat')->where('periode',$periode)->filterPaginateOrder();
+		$table_data = DiklatPus::with('tempat')->where('periode',$periode)->advancedFilter();
 
 		return response()
 		->json([

@@ -4,9 +4,9 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
@@ -16,8 +16,8 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
 						<!-- main form -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
+						<div class="card">
+							<div class="card-body">
 								
 								<div class="row">
 
@@ -52,10 +52,9 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option value="0"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
-												<option data-divider="true"></option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
@@ -87,7 +86,7 @@
 												<div class="input-group">
 
 													<!-- select -->
-													<select class="bootstrap-select"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPenulis.length === 0">
+													<select class="form-control"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPenulis.length === 0">
 														<option disabled value="">
 															<span v-if="form.id_cu != 0 && modelPenulis.length == 0">Silahkan tambah penulis baru</span>
 															<span v-else-if="form.id_cu == '' && modelPenulis.length == 0">Silahkan pilih CU terlebih dahulu</span>
@@ -95,13 +94,12 @@
 																Silahkan pilih penulis
 															</span>
 														</option>
-														<option data-divider="true"></option>
 														<option v-for="penulis in modelPenulis" v-if="penulis" :value="penulis.id">{{penulis.name}}</option>
 													</select>
 
 													<!-- button -->
-													<div class="input-group-btn">
-														<button type="button" class="btn btn-default" v-tooltip:top="'Tambah Penulis'" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
+													<div class="input-group-append">
+														<button type="button" class="btn btn-light" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
 															<i class="icon-plus22"></i>
 														</button>
 													</div>
@@ -136,18 +134,17 @@
 												<div class="input-group">
 
 													<!-- select -->
-													<select class="bootstrap-select" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
+													<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
 														<option disabled value="">
 															<span v-if="form.id_cu != 0 && modelKategori.length == 0">Silahkan tambah kategori baru</span>
 															<span v-else>Silahkan pilih kategori</span>
 														</option>
-														<option data-divider="true"></option>
 														<option v-for="kategori in modelKategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
 													</select>
 
 													<!-- button -->
-													<div class="input-group-btn">
-														<button type="button" class="btn btn-default" v-tooltip:top="'Tambah Kategori'" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
+													<div class="input-group-append">
+														<button type="button" class="btn btn-light" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
 															<i class="icon-plus22"></i>
 														</button>
 													</div>
@@ -260,15 +257,11 @@
 						<form-info></form-info>	
 
 						<!-- form button -->
-						<div class="panel panel-flat">
-							<div class="panel-body">
-								<div class="row">
-									<form-button
-										:cancelState="'methods'"
-										:formValidation="'form'"
-										@cancelClick="back"></form-button>
-								</div>
-							</div>
+						<div class="card card-body">
+							<form-button
+								:cancelState="'methods'"
+								:formValidation="'form'"
+								@cancelClick="back"></form-button>
 						</div>
 						
 					</form>
@@ -306,7 +299,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appSummernote from '../../helpers/summernote.js';
@@ -376,13 +368,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			profileStat(value){ //jika refresh halaman maka reload profile
@@ -527,10 +512,6 @@
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('user',{

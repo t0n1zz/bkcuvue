@@ -39,7 +39,7 @@ class Cu extends Model {
 
     public static function initialize(){
         return [
-            'id_villages' => '0', 'id_districts' => '0', 'id_regencies' => '0', 'id_provinces' => '0', 'no_ba' => '', 'name' => '', 'gambar' => '',
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'no_ba' => '', 'name' => '', 'gambar' => '',
             'badan_hukum' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => '', 'app' => '', 'ultah' => '', 'bergabung' => ''
         ];
     }

@@ -2,12 +2,12 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class ArtikelPenulis extends Model {
 
-    use FilterPaginateOrder, LogsActivity;
+    use Dataviewer, LogsActivity;
     
     protected $table = 'artikel_penulis';
 
@@ -21,7 +21,11 @@ class ArtikelPenulis extends Model {
     
     protected $fillable = ['id_cu','id_staf','name','deskripsi','gambar'];
 
-    protected $filter = [
+    protected $allowedFilters = [
+        'id','id_cu','name','deskripsi','gambar','utamakan','created_at','updated_at','has_artikel_count'
+    ];
+
+    protected $orderable = [
         'id','id_cu','name','deskripsi','gambar','utamakan','created_at','updated_at','has_artikel_count'
     ];
 
@@ -35,7 +39,7 @@ class ArtikelPenulis extends Model {
     public static function initialize()
     {
         return [
-            'id_cu' => '0','id_staf' => '0', 'name' => '', 'deskripsi' => '','gambar' => '',
+            'id_cu' => '','id_staf' => '', 'name' => '', 'deskripsi' => '','gambar' => '',
         ];
     }
 

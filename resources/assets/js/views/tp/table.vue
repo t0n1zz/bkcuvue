@@ -9,17 +9,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah 
+					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
+					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_' + kelas]"  :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus
+					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
 			</template>
@@ -29,17 +29,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah 
+					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
+					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]"  :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus
+					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 				
 			</template>
@@ -51,8 +51,8 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-						<img :src="'/images/no_image.jpg'" class="img-rounded  img-fluid wmin-sm" v-else>
+						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded  img-fluid wmin-sm" v-else>
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>

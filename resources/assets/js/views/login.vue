@@ -1,32 +1,36 @@
 <template>
-	<div class="login-container">
-		<!-- Page container -->
-		<div class="page-container">
-			<!-- Page content -->
-			<div class="page-content">
-				<!-- Main content -->
-				<div class="content-wrapper">
+	<div class="page-content">
+		<!-- Page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<div class="content d-flex justify-content-center align-items-center">
 
-					<!-- login form -->
-					<div class="panel panel-body login-form">
-						<div class="text-center">
-							<h5 class="content-group">SIMO
-								<small class="display-block">Sistem Informasi Manajemen Organisasi</small>
-							</h5>
+				
+
+				<!-- login form -->
+				<div class="login-form">
+
+					<message v-if="message.show" :errorData="message.content" :showDebug="false">
+					</message>
+
+					<message v-if="errors.any() && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.item" :showDebug="false">
+					</message>
+				
+					<div class="card card-body mb-0">
+						<div class="text-center mb-3">
+							<h5 class="mb-0">SIMO</h5>
+							<span class="d-block text-muted">Sistem Informasi Manajemen Organisasi</span>
 						</div>
-
-						<message v-if="message.show" :errorData="message.content" :showDebug="false">
-						</message>
-
-						<message v-if="errors.any() && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.item" :showDebug="false">
-						</message>
 
 						<div class="form-group has-feedback has-feedback-right" :class="{'has-error' : errors.has('Username')}">
 							<div class="input-group">
-									<div class="input-group-addon">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
 										<i class="icon-user text-muted"></i>
 									</div>
-									<input type="text" class="form-control" placeholder="Username" v-model="username" name="Username" v-validate="'required|min:5'" @keyup.enter="login" autofocus>
+								</div>
+								
+								<input type="text" class="form-control" placeholder="Username" v-model="username" name="Username" v-validate="'required|min:5'" @keyup.enter="login" autofocus>
 							</div>
 							
 							<div class="form-control-feedback" v-if="errors.has('Username')">
@@ -36,11 +40,13 @@
 
 						<div class="form-group has-feedback has-feedback-right" :class="{'has-error' : errors.has('Password')}">
 							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="icon-lock2 text-muted"></i>
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="icon-lock2 text-muted"></i>
+									</div>
 								</div>
 								<input type="password" class="form-control" placeholder="Password" v-model="password" name="Password" v-validate="'required'"
-							  @keyup.enter="login">
+								@keyup.enter="login">
 							</div>
 							
 							<div class="form-control-feedback" v-if="errors.has('Password')">
@@ -57,19 +63,19 @@
 							</button>
 						</div>
 					</div>
-					<!-- /simple login form -->
 				</div>
-				<!-- /main content -->
+				
+				
+				<!-- /simple login form -->
 			</div>
-			<!-- /page content -->
+			<!-- /main content -->
 		</div>
-		<!-- /page container -->
+		<!-- /page content -->
 	</div>
 </template>
 
 <script type="text/javascript">
 	import Message from "../components/message.vue";
-	import Progress from '../assets/plugins/loaders/progressbar.min.js'
 	export default {
 		components: {
 			Message
@@ -85,9 +91,6 @@
 					content: ''
 				}
 			}
-		},
-		mounted() {
-			Progress.progressbar();
 		},
 		methods: {
 			login() {

@@ -10,17 +10,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah 
+					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
+					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus
+					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
 			</template>
@@ -30,17 +30,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah 
+					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
+					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus
+					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
 			</template>

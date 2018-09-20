@@ -108,18 +108,6 @@
 				selectCUPath: 'laporanCuCU',
 				tabName: 'table',
 				katax: '\\frac{1.7888}{1,6777}',
-				btn1Header: {
-					route: 'artikel',
-					icon: 'icon-magazine',
-					title: 'Artikel',
-					can: 'index artikel'
-				},
-				btn2Header: {
-					route: 'artikelPenulis',
-					icon: 'icon-pencil6',
-					title: 'Penulis Artikel',
-					can: 'index artikelPenulis'
-				},
 				isTablePearls: false,
 				isInfografis: false,
 				isInfografisPearls: false

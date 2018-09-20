@@ -333,6 +333,7 @@
 					<b>Biaya operasional terhadap rata-rata aset</b>
 				</div>
 			</div>
+			
 			<!-- l1 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.l1 >= 0.15 && itemData.l1 <= 0.2, 'bg-danger': itemData.l1 < 0.15 || itemData.l1 > 0.2}" @click.prevent="modalBuka(itemData,'l1')" style="cursor:pointer;">

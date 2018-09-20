@@ -2,126 +2,96 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :source="source" :columnData="columnData" :toolbarButton="4" :itemData="itemData" :itemDataStat="itemDataStat" :extSearchQuery1="extSearchQuery1" :params="params"
-		@fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
 
-			<!-- desktop -->
 			<!-- button desktop -->
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['create_' + kelas]">
-					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon" v-tooltip:top="'Tambah_' +  title">
-						<i class="icon-plus3"></i> Tambah 
-					</router-link>
-				</div>
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+					<i class="icon-plus3"></i> Tambah {{ title }}
+				</router-link>
 
 				<!-- ubah-->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['update_' + kelas]">
-					<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-						<i class="icon-pencil5"></i> Ubah
-					</button>
-				</div>
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
 
 				<!-- hapus -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['destroy_' + kelas]">
-					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
-						<i class="icon-bin2"></i> Hapus
-					</button>
-				</div>
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
 
 				<!-- terbitkan -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['terbitkan_' + kelas]">
-					<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
-						<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
-						<span v-else>Terbitkan</span>
-					</button>
-				</div>
+				<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-light mb-1" v-if="profile.can && profile.can['terbitkan_' + kelas]"  :disabled="!selectedItem.id">
+					<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
+					<span v-else>Terbitkan</span> {{ title }}
+				</button>
 
 				<!-- utamakan -->
-				<div class="btn-group pb-5" v-if="profile.can && profile.can['utamakan_' + kelas]">
-					<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
-						<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
-						<span v-else>Utamakan</span>
-					</button>
-				</div>
+				<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-light mb-1" v-if="profile.can && profile.can['utamakan_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
+					<span v-else>Utamakan</span> {{ title }}
+				</button>
+
 			</template>
 
-			<!-- button context -->
-			<template slot="button-context">
-				<!-- title -->
-				<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItem.name"><b class="text-size-large">{{ this.columnData[1].title }}</b></li>
-				<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-				<li><hr class="no-margin-bottom no-margin-top"/></li>
+			<!-- button mobile -->
+			<template slot="button-mobile">
 
-				<!-- selected content -->
-				<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItem.name">
-					<span class="text-size-large">{{selectedItem.name}}</span></li>
-				<li><hr class="no-margin-top no-margin-bottom"/></li>
+				<!-- tambah -->
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+					<i class="icon-plus3"></i> Tambah {{ title }}
+				</router-link>
 
-				<!-- update -->
-				<li v-if="profile.can && profile.can['update_' + kelas]">
-					<div class="pl-5 pr-5 pb-5 pt-10">
-						<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah ' + title" :disabled="!selectedItem.id">
-							<i class="icon-pencil5"></i> Ubah
-						</button>
-					</div>
-				</li>
+				<!-- ubah-->
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah {{ title }}
+				</button>
 
-				<!-- destroy -->
-				<li v-if="profile.can && profile.can['destroy_' + kelas]">
-					<div class="pl-5 pr-5 pb-5">
-						<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Hapus ' + title"  :disabled="!selectedItem.id">
-							<i class="icon-bin2"></i> Hapus
-						</button>
-					</div>
-				</li>
+				<!-- hapus -->
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus {{ title }}
+				</button>
 
 				<!-- terbitkan -->
-				<li v-if="profile.can && profile.can['terbitkan_' + kelas]">
-					<div class="pl-5 pr-5 pb-5">
-						<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-default btn-icon btn-block"  v-tooltip:top="'Ubah Status Penerbitan Artikel'"  :disabled="!selectedItem.id">
-							<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
-							<span v-else>Terbitkan</span>
-						</button>
-					</div>
-				</li>
+				<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['terbitkan_' + kelas]"  :disabled="!selectedItem.id">
+					<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
+					<span v-else>Terbitkan</span> {{ title }}
+				</button>
 
 				<!-- utamakan -->
-				<li v-if="profile.can && profile.can['utamakan_' + kelas]">
-					<div class="pl-5 pr-5">
-						<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-default btn-icon btn-block" v-tooltip:top="'Ubah Status Pengutamaan Artikel'"  :disabled="!selectedItem.id">
-							<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
-							<span v-else>Utamakan</span>
-						</button>
-					</div>
-				</li>
+				<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['utamakan_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
+					<span v-else>Utamakan</span> {{ title }}
+				</button>
+
 			</template>
 
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
-				<tr :class="{ 'info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
+				<tr :class="{ 'bg-info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive img-sm" v-if="props.item.gambar">
-						<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive img-sm" v-else>
+						<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
 						<check-value :value="props.item.artikel_kategori.name" v-if="props.item.artikel_kategori"></check-value>
-						<span v-else>{{columnData[3].groupNoKey}}</span>
+						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
 						<check-value :value="props.item.artikel_penulis.name" v-if="props.item.artikel_penulis"></check-value>
-						<span v-else>{{columnData[4].groupNoKey}}</span>
+						<span v-else>-</span>
 					</td> 
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
-						<span v-else>{{columnData[5].groupNoKey}}</span>
+						<span v-else>Puskopdit BKCU Kalimantan</span>
 					</td>
 					<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
 					<td v-if="!columnData[7].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
@@ -131,123 +101,6 @@
 						<span v-else>-</span>
 					</td>
 				</tr>
-			</template>
-
-			<!-- mobile -->
-			<!-- button mobile -->
-			<template slot="button-mobile" class="hidden-print" v-if="profile.can && profile.can['create_' + kelas]">
-				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-default btn-icon btn-block">
-					<i class="icon-plus3"></i> Tambah
-				</router-link>
-			</template>
-	
-			<!-- item mobile -->
-			<template slot="item-mobile" slot-scope="props">
-				<div class="panel panel-flat visible-xs">
-					<table class="table table-striped">
-						<tbody>
-							<tr v-if="!columnData[0].hide">
-								<td colspan="2" class="text-center bg-primary-300"><b>{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page}}</b></td>
-							</tr>
-							<tr v-if="!columnData[1].hide">
-								<td colspan="2">
-									<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" class="img-rounded img-responsive center-block" v-if="props.item.gambar">
-									<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive center-block" v-else>
-								</td>
-							</tr>
-							<tr v-if="!columnData[2].hide">
-								<td colspan="2"><b>{{columnData[2].title}}</b></td>
-							</tr>
-							<tr v-if="!columnData[2].hide">
-								<td colspan="2" style="word-wrap: break-word;">
-									<check-value :value="props.item.name" :isTrim="false"></check-value>
-									</td>
-							</tr>
-							<tr v-if="!columnData[3].hide">
-								<td><b>{{columnData[3].title}}</b></td>
-								<td>
-									<check-value :value="props.item.artikel_kategori.name" :isTrim="false" :frontText="': '" v-if="props.item.artikel_kategori"></check-value>
-									<span v-else>: {{columnData[3].groupNoKey}}</span>	
-								</td>
-							</tr>
-							<tr v-if="!columnData[4].hide">
-								<td><b>{{columnData[4].title}}</b></td>
-								<td>
-									<check-value :value="props.item.artikel_penulis.name" :isTrim="false" :frontText="': '" v-if="props.item.artikel_penulis"></check-value>
-									<span v-else>: {{columnData[4].groupNoKey}}</span>	
-								</td>
-							</tr>
-							<tr v-if="!columnData[5].hide && !columnData[5].disable">
-								<td><b>{{columnData[5].title}}</b></td>
-								<td>
-									<check-value :value="props.item.cu.name" :isTrim="false" :frontText="': '" v-if="props.item.cu"></check-value>
-									<span v-else>: {{columnData[5].groupNoKey}}</span>	
-								</td>
-							</tr>
-							<tr v-if="!columnData[6].hide">
-								<td><b>{{columnData[6].title}}</b></td>
-								<td>
-									: <span v-html="$options.filters.checkStatus(props.item.terbitkan)"></span>
-								</td>
-							</tr>
-							<tr v-if="!columnData[7].hide">
-								<td><b>{{columnData[7].title}}</b></td>
-								<td>
-									: <span v-html="$options.filters.checkStatus(props.item.utamakan)"></span>
-								</td>
-							</tr>
-							<tr v-if="!columnData[8].hide">
-								<td><b>{{columnData[8].title}}</b></td>
-								<td>
-									: <span v-html="$options.filters.dateTime(props.item.created_at)"></span>
-								</td>
-							</tr>
-							<tr v-if="!columnData[9].hide">
-								<td><b>{{columnData[9].title}}</b></td>
-								<td>
-									: <span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
-									<span v-else>-</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="panel-footer hidden-print">
-						<div class="text-center button-toolbar">
-
-							<!-- update -->
-							<div class="pt-10 pb-10 pl-15 pr-15" v-if="profile.can && profile.can['update_' + kelas]">
-								<button @click.prevent="ubahData(props.item.id,props.item.id_cu)" class="btn btn-default btn-icon btn-block">
-									<i class="icon-pencil5"></i> Ubah
-								</button>
-							</div>
-							
-							<!-- destroy -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['destroy_' + kelas]">
-								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-default btn-icon btn-block">
-									<i class="icon-bin2"></i> <span>Hapus</span>
-								</button>
-							</div>
-							
-							<!-- terbitkan -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['terbitkan_' + kelas]">
-								<button @click.prevent="modalConfirmOpen('updateTerbitkan',true,props.item)" class="btn btn-default btn-icon btn-block">
-									<i class="icon-file-upload"></i> <span v-if="props.item.terbitkan == 1">Tidak Terbitkan</span>
-									<span v-else>Terbitkan</span> 
-								</button>
-							</div>
-
-							<!-- utamakan -->
-							<div class="pb-10 pl-15 pr-15" v-if="profile.can && profile.can['utamakan_' + kelas]">
-								<button @click.prevent="modalConfirmOpen('updateUtamakan',true,props.item)" class="btn btn-default btn-icon btn-block">
-									<i class="icon-pushpin"></i> <span v-if="props.item.utamakan == 1">Tidak Utamakan</span>
-									<span v-else>Utamakan</span>
-								</button>
-							</div>
-
-						</div>
-					</div>
-				</div>
 			</template>
 
 		</data-viewer>
@@ -261,7 +114,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import DataViewer from '../../components/dataviewer.vue';
+	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
 
@@ -274,115 +127,97 @@
 		props:['title','kelas'],
 		data() {
 			return {
-				source: '',
-				extSearchQuery1: '',
-				extSearchColumn: '',
 				selectedItem: [],
-				params: {
-          column: 'id',
-          direction: 'desc',
-          per_page: 10,
-          page: 1,
-          search_column: 'name',
-          search_operator: 'like',
-          search_query_1: '',
-          search_query_2: ''
-        },
+				query: {
+					order_column: "name",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 10,
+					page: 1
+				},
 				columnData: [
 					{
 						title: 'No.',
-						key: 'No.',
-						excelType: 'string',
+						name: 'No.',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false
 					},
 					{
 						title: 'Foto',
-						key: 'gambar',
-						excelType: 'string',
+						name: 'gambar',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false
 					},
 					{
 						title: 'Judul',
-						key: 'name',
-						excelType: 'string',
+						name: 'name',
+						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'string'
+						filterDefault: true
 					},
 					{
 						title: 'Kategori',
-						key: 'kategori_name',
-						groupKey: 'kategori_name',
-						groupNoKey: '-',
-						excelType: 'string',
-						sort: true,
+						name: 'artikelKategori.name',
+						tipe: 'string',
+						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterKey: 'artikelKategori.name',
-						filterType: 'string'
 					},
 					{
 						title: 'Penulis',
-						key: 'penulis_name',
-						groupKey: 'penulis_name',
-						groupNoKey: '-',
-						sort: true,
+						name: 'artikelPenulis.name',
+						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterKey: 'artikelPenulis.name',
-						filterType: 'string'
 					},
 					{
 						title: 'CU',
-						key: 'cu_name',
-						groupKey: 'cu.name',
-						groupNoKey: 'Puskopdit BKCU Kalimantan',
-						sort: true,
+						name: 'cu.name',
+						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterKey: 'cu.name',
-						filterType: 'string'
 					},
 					{
 						title: 'Terbitkan',
-						key: 'terbitkan',
+						name: 'terbitkan',
 						sort: true,
 						hide: false,
 						disable: false
 					},
 					{
 						title: 'Utamakan',
-						key: 'utamakan',
+						name: 'utamakan',
 						sort: true,
 						hide: false,
 						disable: false
 					},
 					{
 						title: 'Tgl. Tulis',
-						key: 'created_at',
+						name: 'created_at',
+						tipe: 'datetime',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'datetime'
 					},
 					{
 						title: 'Tgl. Ubah',
-						key: 'updated_at',
+						name: 'updated_at',
+						tipe: 'datetime',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-						filterType: 'datetime'
 					}
 				],
 				modalShow: false,
@@ -393,53 +228,18 @@
 			}
 		},
 		created(){
-			this.fetch();
+			this.fetch(this.query);
 		},
 		watch: {
 			// check route changes
 			'$route' (to, from){
-				this.resetParams();
-				this.fetch();
+				this.fetch(this.query);
 			},
 
 			profileStat(value){
 				if(value == 'success'){
 					if(this.modelKategoriStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
 						this.$router.push({name: 'notFound'});
-					}
-				}
-			},
-
-			// check kategori data from kategori route
-			modelKategoriStat(value){
-				if(value == 'success'){
-					if(this.profileStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
-						this.$router.push({name: 'notFound'});
-					}else{
-						this.params.search_column = 'artikelKategori.name';
-						this.params.search_query_1 = this.modelKategori.name;
-
-						this.extSearchColumn = 'Kategori';
-						this.extSearchQuery1 = this.modelKategori.name;
-
-						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
-					}
-				}
-			},
-
-			// check penulis data from penulis route
-			modelPenulisStat(value){
-				if(value == 'success'){
-					if(this.profileStat == 'success' && this.profile.id_cu != this.modelPenulis.id_cu && this.profile.id_cu != 0){
-						this.$router.push({name: 'notFound'});
-					}else{
-						this.params.search_column = 'artikelPenulis.name';
-						this.params.search_query_1 = this.modelPenulis.name;
-
-						this.extSearchColumn = 'Penulis';
-						this.extSearchQuery1 = this.modelPenulis.name;
-
-						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
 					}
 				}
 			},
@@ -461,7 +261,7 @@
       }
 		},
 		methods: {
-			fetch(){
+			fetch(params){
 				if(this.$route.params.kategori){
 					this.$store.dispatch('artikelKategori/edit',this.$route.params.kategori);
 				}else if(this.$route.params.penulis){
@@ -469,21 +269,15 @@
 				}else{
 					if(this.$route.params.cu == 'semua'){
 						this.disableColumnCu(false);
-						this.$store.dispatch(this.kelas + '/index', this.params);
+						this.$store.dispatch(this.kelas + '/index', params);
 					}else{
 						this.disableColumnCu(true);
-						this.$store.dispatch(this.kelas + '/indexCu', [this.params,this.$route.params.cu]);
+						this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
 					}
 				}
 			},
 			disableColumnCu(status){
 				this.columnData[5].disable = status;
-			},
-			resetParams(){
-				this.params.search_column = 'name';
-				this.params.search_query_1 = '';
-				this.extSearchColumn = 'name';
-				this.extSearchQuery1 = '';
 			},
 			selectedRow(item){
 				this.selectedItem = item;

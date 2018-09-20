@@ -22,7 +22,7 @@ class ArtikelController extends Controller{
 				'(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name,
 				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
 				(SELECT name FROM artikel_penulis WHERE artikel.id_artikel_penulis = artikel_penulis.id) as penulis_name'
-			))->filterPaginateOrder();
+			))->advancedFilter();
 
     	return response()
 			->json([
@@ -38,7 +38,7 @@ class ArtikelController extends Controller{
 				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
 				(SELECT name FROM artikel_penulis WHERE artikel.id_artikel_penulis = artikel_penulis.id) as penulis_name,
 				(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name'
-			))->filterPaginateOrder();
+			))->advancedFilter();
 
     	return response()
 			->json([

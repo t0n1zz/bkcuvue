@@ -2,13 +2,13 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DiklatPus extends Model {
     
-    use FilterPaginateOrder, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'diklat_pus';
     protected static $logFillable = true;
@@ -23,8 +23,16 @@ class DiklatPus extends Model {
       'id_regencies','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','jadwal','keterangan','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
     ];
 
-    protected $filter = [
-        'id','id_regencies','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at'
+    protected $allowedFilters = [
+        'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at',
+
+        'regencies.name','tempat.name'
+    ];
+
+    protected $orderable = [
+        'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at',
+
+        'regencies.name','tempat.name'
     ];
 
     public function getNameAttribute($value){

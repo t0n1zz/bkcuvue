@@ -3,9 +3,9 @@
 		<!-- first navbar -->
 		<div class="navbar navbar-expand-md navbar-dark bg-indigo">
 
-			<div class="navbar-brand wmin-0 mr-5">
-				<router-link :to="{ name: 'dashboard' }">
-					SIMO
+			<div class="navbar-brand wmin-0 mr-0">
+				<router-link :to="{ name: 'dashboard' }" class="d-inline-block">
+					<img src="/images/simo.png">
 				</router-link>
 			</div>
 
