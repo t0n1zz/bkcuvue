@@ -25,7 +25,6 @@ window.axios = Axios; // handling http post
 window.api = new Api(); // handling axios api
 window.auth = new Auth(); // handling authentication
 
-
 const router = new VueRouter({
 	base: '/admins',
     mode: 'history',
@@ -132,14 +131,6 @@ Vue.filter('round', function(value, decimals) {
 	return value;
 });
 
-
-Vue.directive('tooltip', function(el, binding){
-	$(el).tooltip({
-		title: binding.value,
-		placement: binding.arg,
-		trigger: 'hover'             
-	})
-});
 
 export const bus = new Vue();
 

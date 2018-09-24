@@ -4,9 +4,9 @@
 		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="level" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 
 		<!-- content -->
-		<div class="page-container">
-			<div class="page-content">
-				<div class="content-wrapper">
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
@@ -16,8 +16,8 @@
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 					
 						<!-- informasi umum -->
-						<div class="panel panel-flat">
-							<div class="panel-body">	
+						<div class="card">
+							<div class="card-body">	
 								<div class="row">
 
 									<!-- judul -->
@@ -282,7 +282,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="bootstrap-select" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
+											<select class="form-control" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
 												<option disabled value="">Silahkan pilih tempat</option>
 												<option data-divider="true"></option>
 												<option value="0">Belum ditentukan tempat</option>

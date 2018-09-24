@@ -15,7 +15,7 @@ export default {
   },
 
   store: function ( form ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/artikel/store', form);
+    return api.call('post', BKCU_CONFIG.API_URL + '/artikel/store', form);
   },
 
   edit: function( id ){

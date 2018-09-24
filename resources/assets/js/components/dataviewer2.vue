@@ -202,15 +202,15 @@
         <div class="row">
           <!-- slot button -->
           <!-- button desktop -->
-          <div class="col-md-8 col-lg-10 pb-2 d-none d-md-block">
+          <div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
             <slot name="button-desktop"></slot>
           </div>
           <!-- button mobile -->
-          <div class="col-md-12 pb-2 d-block d-md-none">
+          <div class="col-md-12 pb-2 d-block d-sm-none">
             <slot name="button-mobile"></slot>
           </div>
 
-          <div class="col-md-4 col-lg-2 text-right d-none d-md-block">
+          <div class="col-md-4 col-lg-2 text-right d-none d-sm-block">
             <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
               <i class="icon-table2"></i> Kolom
             </button>
@@ -219,7 +219,7 @@
             </button>
           </div>
 
-          <div class="col-md-4 col-lg-2 d-block d-md-none">
+          <div class="col-md-4 col-lg-2 d-block d-sm-none">
             <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')">
               <i class="icon-table2"></i> Kolom
             </button>
@@ -282,11 +282,11 @@
           <div class="col-md-4 pt-2">
             <!-- total entri note success-->
             <!-- desktop -->
-            <div v-if="itemDataStat === 'success'" class="d-none d-md-block">Menampilkan {{itemData.from}} -
+            <div v-if="itemDataStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemData.from}} -
               {{itemData.to}} entri dari {{itemData.total}} entri
             </div>
             <!-- mobile -->
-            <div v-if="itemDataStat === 'success'" class="d-block d-md-none text-center">Menampilkan {{itemData.from}} -
+            <div v-if="itemDataStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemData.from}} -
               {{itemData.to}} entri dari {{itemData.total}} entri
             </div>
 
@@ -301,7 +301,7 @@
 
           <!-- pagination -->
           <!-- desktop -->
-          <div class="col-md-8 pt-2 text-right d-none d-md-block">
+          <div class="col-md-8 pt-2 text-right d-none d-sm-block">
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">

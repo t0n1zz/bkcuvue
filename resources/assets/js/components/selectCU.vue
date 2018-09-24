@@ -22,7 +22,7 @@
 
 						<!-- reload cu -->
 						<div class="input-group-append">
-							<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCUStat === 'loading'">
+							<button class="btn btn-light" @click="fetchCU" :disabled="modelCUStat === 'loading'">
 								<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
 							</button>
 						</div>
@@ -50,7 +50,7 @@
 
 				<!-- reload cu -->
 				<div class="pt-2">
-					<button class="btn btn-light btn-lg btn-block" v-tooltip:top="'Reload'" @click="fetchCU" :disabled="modelCUStat === 'loading'">
+					<button class="btn btn-light btn-lg btn-block" @click="fetchCU" :disabled="modelCUStat === 'loading'">
 						<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i> Reload
 					</button>
 				</div> 

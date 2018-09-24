@@ -69,13 +69,13 @@ class ArtikelController extends Controller{
 			$fileName = '';
 
 		// processing summernote content	
-		if(!empty($request->content))	
-			$content = Helper::dom_processing($request,public_path($this->imagepath));
-		else
-			$content = '';		
+		// if(!empty($request->content))	
+		// 	$content = Helper::dom_processing($request,public_path($this->imagepath));
+		// else
+		// 	$content = '';		
 		
-		$kelas = Artikel::create($request->except('gambar','content') + [
-			'gambar' => $fileName, 'content' => $content
+		$kelas = Artikel::create($request->except('gambar') + [
+			'gambar' => $fileName
 		]);
 
 		return response()
@@ -196,5 +196,15 @@ class ArtikelController extends Controller{
 				'deleted' => true,
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
+	}
+
+	public function upload(Request $request)
+	{
+		if(!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+		else
+			$fileName = '';
+
+		return response()->json('/' . $this->imagepath . $fileName . '.jpg');
 	}
 }

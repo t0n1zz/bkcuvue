@@ -159,9 +159,6 @@
 										</div>
 									</div>
 
-									<!-- separator -->
-									<div class="col-md-12"><br/></div>
-
 									<!-- terbitkan -->
 									<div class="col-md-4" v-if="profile.can && profile.can['terbitkan_' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.terbitkan')}">
@@ -172,14 +169,12 @@
 												Status Penerbitan:
 											</h5>
 
-											<!-- radio -->
-											<label class="radio-inline">
-												<input type="radio" name="terbitkan" value="1" v-validate="'required|in:1,0'" data-vv-as="Status Penerbitan"
-												v-model="form.terbitkan"> Ya
-											</label>
-											<label class="radio-inline">
-												<input type="radio" name="terbitkan" value="0" v-model="form.terbitkan"> Tidak
-											</label>
+											<!-- select -->
+											<select name="terbitkan" data-width="100%" class="form-control" v-model="form.terbitkan">
+												<option disabled value="">Silahkan pilih CU</option>
+												<option value="1">Terbitkan artikel</option>
+												<option value="0">Tidak Terbitkan artikel</option>
+											</select>
 
 											<!-- error message -->
 											<br/>
@@ -201,13 +196,13 @@
 												Utamakan:
 											</h5>
 
-											<!-- radio -->
-											<label class="radio-inline">
-												<input type="radio" name="utamakan" :value="1" v-validate="'required|in:1,0'" data-vv-as="Utamakan" v-model="form.utamakan"> Ya
-											</label>
-											<label class="radio-inline">
-												<input type="radio" name="utamakan" :value="0" v-model="form.utamakan"> Tidak
-											</label>
+											<!-- select -->
+											<select name="utamakan" data-width="100%" class="form-control" v-model="form.utamakan">
+												<option disabled value="">Silahkan pilih CU</option>
+												<option value="1">Jadikan artikel utama</option>
+												<option value="0">Tidak jadikan artikel utama</option>
+											</select>
+
 
 											<!-- error message -->
 											<br/>
@@ -218,9 +213,6 @@
 											</small>
 										</div>
 									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><br/></div>
 
 									<!-- gambar utama -->
 									<div class="col-md-12">
@@ -244,10 +236,13 @@
 											<!-- title -->
 											<h5>Isi Artikel:</h5>
 
-											<!-- summernote -->
-											<app-summernote name="editor" :model="form.content" :config="summernoteconfig" :formStat="formStat" @change="value => { form.content = value }"></app-summernote>
+											<!-- editor -->
+											
+											<vue-ckeditor type="classic" v-model="form.content" :upload-adapter="UploadAdapter" :editors="editors"></vue-ckeditor>
+
 										</div>
 									</div>
+
 								</div>
 								
 							</div>
@@ -301,7 +296,6 @@
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
-	import appSummernote from '../../helpers/summernote.js';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
@@ -309,12 +303,14 @@
 	import formInfo from "../../components/formInfo.vue";
 	import formKategori from "./formKategori.vue";
 	import formPenulis from "./formPenulis.vue";
+	import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+	import VueCkeditor from 'vue-ckeditor5';
 
 	export default {
 		components: {
 			pageHeader,
 			appModal,
-			appSummernote,
+			'vue-ckeditor': VueCkeditor.component,
 			appImageUpload,
 			message,
 			formButton,
@@ -331,31 +327,36 @@
 				kelas: 'artikel',
 				id_cu: '',
 				utama: '',
-				summernoteconfig: {
-					height: 400,
-					popover: {
-						image: [
-							['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
-							/* ['float', ['floatLeft', 'floatRight', 'floatNone']], */
-							/* Those are the old regular float buttons */
-							['floatBS', ['floatBSLeft', 'floatBSNone', 'floatBSRight']],
-							/* Those come from the BS plugin, in any order, you can even keep both! */
-							['custom', ['imageAttributes', 'imageShape']],
-							['remove', ['removeMedia']],
-						],
-					},
-					toolbar: [
-						['style', ['addclass', 'bold', 'italic', 'underline', 'hr']],
-						['font', ['strikethrough', 'superscript', 'subscript', 'clear']],
-						['color', ['color']],
-						['para', ['ul', 'ol']],
-						['paragraph', ['paragraph']],
-						['table', ['table']],
-						['insert', ['link', 'picture', 'video']],
-						['misc', ['fullscreen']],
-						['misc2', ['undo', 'redo']]
-					]
+				editors: {
+					classic: ClassicEditor
 				},
+				UploadAdapter: function (loader) {
+          this.loader = loader
+          this.upload = () => {
+            const body = new FormData();
+						body.append('gambar', this.loader.file);
+
+						let token = window.localStorage.getItem('token');
+						
+            return fetch('https://bkcuvue.test/api/v1/artikel/upload', {
+							headers: {"Authorization": 'Bearer ' + token},
+              body: body,
+              method: 'POST'
+            })
+              .then(response => response.json())
+              .then(downloadUrl => {
+                return {
+									default: downloadUrl
+                }
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          }
+          this.abort = () => {
+            console.log('Abort upload.')
+          }
+        },
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',

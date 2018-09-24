@@ -45,6 +45,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::group(['middleware' => ['permission:index_artikel']], function () {
         Route::get('/artikel', 'ArtikelController@index');
         Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
+        Route::post('/artikel/upload', 'ArtikelController@upload');
     });
     Route::group(['middleware' => ['permission:create_artikel']], function () {
         Route::get('/artikel/create', 'ArtikelController@create');
