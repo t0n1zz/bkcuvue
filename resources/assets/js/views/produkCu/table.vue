@@ -62,7 +62,7 @@
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
-						<span v-else>Puskopdit BKCU Kalimantan</span>
+						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.kode_produk"></check-value>

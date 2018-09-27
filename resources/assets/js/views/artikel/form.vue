@@ -237,8 +237,16 @@
 											<h5>Isi Artikel:</h5>
 
 											<!-- editor -->
-											
-											<vue-ckeditor type="classic" v-model="form.content" :upload-adapter="UploadAdapter" :editors="editors"></vue-ckeditor>
+											<!-- <vue-ckeditor type="classic" :editors="editors"></vue-ckeditor> -->
+
+											<div class="document-editor">
+												<div id="toolbar" class="document-editor__toolbar"></div>
+												<div class="document-editor__editable-container">
+													<div class="document-editor__editable">
+														<vue-ckeditor toolbar-container="#toolbar" type="document" v-model="form.content" :upload-adapter="UploadAdapter" :editors="editors"></vue-ckeditor>
+													</div>
+												</div>
+											</div>
 
 										</div>
 									</div>
@@ -303,7 +311,7 @@
 	import formInfo from "../../components/formInfo.vue";
 	import formKategori from "./formKategori.vue";
 	import formPenulis from "./formPenulis.vue";
-	import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+	import documentEditor from '@ckeditor/ckeditor5-build-decoupled-document'
 	import VueCkeditor from 'vue-ckeditor5';
 
 	export default {
@@ -328,7 +336,7 @@
 				id_cu: '',
 				utama: '',
 				editors: {
-					classic: ClassicEditor
+					document: documentEditor
 				},
 				UploadAdapter: function (loader) {
           this.loader = loader

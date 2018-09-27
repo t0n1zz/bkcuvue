@@ -37,7 +37,7 @@ class ProdukCu extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '0','kode_produk' => '', 'name' => '', 'gambar' => '', 'aturan_setor' => '', 'aturan_tarik' => '', 'aturan_balas_jasa' => '', 'aturan_lain' => '', 'keterangan' => ''
+            'id_cu' => '','kode_produk' => '', 'name' => '', 'gambar' => '', 'aturan_setor' => '', 'aturan_tarik' => '', 'aturan_balas_jasa' => '', 'aturan_lain' => '', 'keterangan' => ''
         ];
     }
         

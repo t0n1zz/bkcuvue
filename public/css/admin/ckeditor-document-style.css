@@ -38,8 +38,8 @@
 
 .document-editor__editable-container .ck-editor__editable {
   /* Set the dimensions of the "page". */
-  width: 15.8cm;
-  min-height: 21cm;
+  width: 98%;
+  /* min-height: 21cm; */
 
   /* Keep the "page" off the boundaries of the container. */
   padding: 1cm 2cm 2cm;
