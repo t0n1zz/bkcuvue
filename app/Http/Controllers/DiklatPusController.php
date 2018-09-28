@@ -17,7 +17,7 @@ class DiklatPusController extends Controller{
 
 	public function index()
 	{
-		$table_data = DiklatPus::with('tempat','sasaran_hub.sasaran','Regencies')->advancedFilter();
+		$table_data = DiklatPus::with('tempat','sasaran','Regencies')->advancedFilter();
 
 		return response()
 		->json([
@@ -51,9 +51,13 @@ class DiklatPusController extends Controller{
 
 		$name = $request->name;
 
+		// dd(array_flatten($request->sasaran));
+
 		$kelas = DiklatPus::create($request->all());
 
-		$this->input_sasaran($kelas->id,$request);
+		$kelas->sasaran()->sync(array_flatten($request->sasaran));
+
+		// $this->input_sasaran($kelas->id,$request);
  
 		return response()
 			->json([
@@ -65,7 +69,7 @@ class DiklatPusController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = DiklatPus::with('tempat','sasaran_hub')->findOrFail($id);
+		$kelas = DiklatPus::with('tempat','sasaran')->findOrFail($id);
 
 		return response()
 				->json([

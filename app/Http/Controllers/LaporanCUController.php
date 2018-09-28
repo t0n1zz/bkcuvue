@@ -73,6 +73,17 @@ class LaporanCuController extends Controller{
 		]);
 	}
 
+	public function indexKonsolidasi($periode)
+	{
+		$table_data = LaporanCu::with('cu')->addSelect(DB::raw(
+			'max(id) as id, id_cu, max(created_at) as created_at, max(periode) as periode, sum(aset) as aset'))->groupBy('id_cu')->where('periode','<=',$periode)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	public function indexPearls()
 	{
 		$table_data = LaporanCu::select('laporan_cu.*',

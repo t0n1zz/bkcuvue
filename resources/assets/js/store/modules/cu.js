@@ -7,8 +7,10 @@ export const cu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    headerDataS: [],
     dataStat: '',
     dataStatS: '',
+    headerDataStatS: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -19,8 +21,10 @@ export const cu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    headerDataStatS: state => state.headerDataStatS,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -55,6 +59,20 @@ export const cu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    getHeader( { commit } ){
+      commit('setHeaderDataStatS', 'loading');
+      
+      CUAPI.getHeader()
+        .then( function( response ){
+          commit('setHeaderDataS', response.data.model );
+          commit('setHeaderDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setHeaderDataS', error.response);
+          commit('setHeaderDataStatS', 'fail');
         });
     },
 
@@ -182,11 +200,17 @@ export const cu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setHeaderDataS ( state, data ){
+      state.headerDataS = data;
+    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setHeaderDataStatS( state, status ){
+      state.headerDataStatS = status;
     },
     setUpdate ( state, data ){
       state.update = data;

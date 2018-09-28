@@ -437,7 +437,7 @@
 								<div class="row">
 								
 									<!-- misi -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group">
 
 											<!-- title -->
@@ -451,7 +451,7 @@
 									</div>
 
 									<!-- visi -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group">
 
 											<!-- title -->
@@ -465,7 +465,7 @@
 									</div>
 
 									<!-- nilai -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group">
 
 											<!-- title -->
@@ -479,7 +479,7 @@
 									</div>
 
 									<!-- slogan -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group">
 
 											<!-- title -->
@@ -537,6 +537,7 @@
 						</div>	
 
 					</form>
+
 				</div>
 			</div>
 		</div>
@@ -553,9 +554,7 @@
 	import axios from 'axios';
 	import { mapGetters } from 'vuex'
 	import pageHeader from "../../components/pageHeader.vue";
-	import {
-		toMulipartedForm
-	} from '../../helpers/form';
+	import { toMulipartedFor } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
@@ -571,7 +570,7 @@
 			message,
 			formButton,
 			formInfo,
-			Cleave
+			Cleave,
 		},
 		data() {
 			return {

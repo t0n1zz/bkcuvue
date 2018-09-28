@@ -557,3 +557,5 @@
 		}
 	}
 </script>
+
+<style lang="css" src="../../../../../public/css/admin/ckeditor-document-style.css" scoped>

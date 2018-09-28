@@ -51,7 +51,7 @@ class Cu extends Model {
 
     public function hasTp()
     {
-        return $this->hasMany('App\Tp','id_cu','id');
+        return $this->hasMany('App\Tp','id_cu','id')->select('id','id_cu','name');
     }
 
     public function Provinces()

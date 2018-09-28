@@ -10,6 +10,10 @@ export default {
     return axios.get(BKCU_CONFIG.API_URL + '/cu/get');
   },
 
+  getHeader: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/cu/getHeader');
+  },
+
   getPus: function( id ){
     return axios.get(BKCU_CONFIG.API_URL + '/cu/getPus/' + id);
   },

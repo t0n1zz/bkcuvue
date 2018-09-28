@@ -33,7 +33,18 @@ class CuController extends Controller{
 			->json([
 				'model' => $table_data
 			]);
-  }
+	}
+
+	public function getHeader()
+	{
+		$table_data = Cu::with('hasTp')->where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+  
   
   public function getPus($id)
 	{

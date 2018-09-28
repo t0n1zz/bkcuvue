@@ -8,9 +8,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', 'AuthController@logout');
 });
 
+Route::get('/laporanCu/indexKonsolidasi/{periode}', 'laporanCuController@indexKonsolidasi');
+
+
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
 // Route::group(['prefix'=>'v1'],function(){
-    
+
     // auth
     Route::get('/userId', 'AuthController@userId');
     Route::get('/profile', 'AuthController@profile');
@@ -102,7 +105,8 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     // cu
     Route::group(['middleware' => ['permission:index_cu']], function () {
         Route::get('/cu', 'CuController@index');
-        Route::get('/cu/get', 'CuController@get');       
+        Route::get('/cu/get', 'CuController@get');  
+        Route::get('/cu/getHeader', 'CuController@getHeader');       
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
     });
     Route::group(['middleware' => ['permission:create_cu']], function () {

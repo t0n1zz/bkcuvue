@@ -74,8 +74,8 @@
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
-							<router-link :to="{ name: 'profile', params:{id: profile.id} }" class="dropdown-item" exact v-if="profile.can">
-								<i class="icon-user-plus"></i> Profile
+							<router-link :to="{ name: 'profile', params:{id: profile.id} }" class="dropdown-item" active-class="active" exact v-if="profile.can">
+								<i class="icon-user"></i> Profile
 							</router-link>
 							<a href="#" class="dropdown-item" @click.prevent="logout"><i class="icon-switch2"></i> Logout</a>
 						</div>
@@ -132,17 +132,98 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- artikel -->
-							<router-link :to="{ name: 'artikelCu', params:{cu: profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel']">
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_artikel'] && profile.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-magazine"></i> Artikel
+								</a>
+								<div class="dropdown-menu">
+
+									<router-link :to="{ name: 'artikelCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+									<router-link :to="{ name: 'artikelCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact>
+										Puskopdit BKCU Kalimantan
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'artikelCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact>
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'artikelCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel'] && profile.id_cu != 0">
 								<i class="icon-magazine"></i> Artikel
 							</router-link>
 
 							<!-- kategori artikel -->
-							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact>
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_artikel_kategori'] && profile.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-grid6"></i> Kategori Artikel
+								</a>
+								<div class="dropdown-menu">
+
+									<router-link :to="{ name: 'artikelKategoriCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+									<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact>
+										Puskopdit BKCU Kalimantan
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'artikelKategoriCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact>
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel_kategori'] && profile.id_cu != 0">
 								<i class="icon-grid6"></i> Kategori Artikel
 							</router-link>
 
 							<!-- penulis artikel -->
-							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis']">
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_artikel_penulis'] && profile.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-pencil6"></i> Penulis Artikel
+								</a>
+								<div class="dropdown-menu">
+
+									<router-link :to="{ name: 'artikelPenulisCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+									<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact>
+										Puskopdit BKCU Kalimantan
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'artikelPenulisCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact>
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: idCu}  }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_artikel_penulis'] && profile.id_cu != 0">
 								<i class="icon-pencil6"></i> Penulis Artikel
 							</router-link>
 
@@ -228,19 +309,61 @@
 							</router-link>
 
 							<!-- tp -->
-							<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
-								<i class="icon-home9"></i> TP/KP
-							</router-link>
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_tp'] && profile.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-home9"></i> TP/KP
+								</a>
+								<div class="dropdown-menu">
+
+									<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'tpCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact>
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
 							<router-link :to="{ name: 'tpCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_tp'] && profile.id_cu != 0">
 								<i class="icon-home9"></i> TP/KP
 							</router-link>
 
 							<!-- produkcu -->
-							<router-link :to="{ name: 'produkCuCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu == 0">
-								<i class="icon-list3"></i> Produk & Pelayanan
-							</router-link>
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_produk_cu'] && profile.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-list3"></i> Produk & Pelayanan
+								</a>
+								<div class="dropdown-menu">
+
+									<router-link :to="{ name: 'produkCuCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'produkCuCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact>
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
 							<router-link :to="{ name: 'produkCuCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_produk_cu'] && profile.id_cu != 0">
-								<i class="icon-list3"></i> Produk & Pelayanan
+								<i class="icon-list3"></i> Produk & Pelayanan CU
 							</router-link>
 
 							<!-- pengelola -->
@@ -268,23 +391,49 @@
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
 
-							<!-- laporancu -->
-							<router-link :to="{ name: 'laporanCu' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
-								<i class="icon-stats-growth"></i> Laporan Statistik CU
-							</router-link>
-
-							<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-else-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
-								<i class="icon-stats-growth"></i> Laporan Statistik CU
-							</router-link>
-
-							<div class="dropdown-submenu" v-if="modelTp.length > 0">
-								<a href="#" class="dropdown-item dropdown-item-open dropdown-toggle"><i class="icon-stats-growth"></i> Laporan Statistik TP/KP</a>
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-stats-growth"></i> Laporan Statistik CU
+								</a>
 								<div class="dropdown-menu">
-									<template v-for="tp in modelTp">
+
+									<router-link :to="{ name: 'laporanCu' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
+										 Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'laporanCuCu',params: { cu: cu.id, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_laporan_cu'] && profile.id_cu != '0'">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-stats-growth"></i> Laporan Perkembangan CU
+								</a>
+
+								<div class="dropdown-menu">
+									<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact >
+										Konsolidasi
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="tp in modelTp" v-if="modelTp.length > 0">
 										<router-link :to="{ name: 'laporanCuCu',params: { cu: idCu, tp:tp.id } }" class="dropdown-item">{{ tp.name }}
 										</router-link>
 									</template>		
 								</div>
+
 							</div>
 
 						</div>
@@ -308,8 +457,40 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- user -->
-							<router-link :to="{ name: 'userCu', params:{cu: this.profile.id_cu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_user']">
-								<i class="icon-users4"></i> User
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_user'] && profile.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle">
+									<i class="icon-users"></i> User
+								</a>
+								<div class="dropdown-menu">
+
+									<router-link :to="{ name: 'userCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+									<router-link :to="{ name: 'userCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact>
+										Puskopdit BKCU Kalimantan
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'userCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact>
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'userCu', params:{cu: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_user'] && profile.id_cu != 0">
+								<i class="icon-users"></i> User
+							</router-link>
+
+							<!-- profile -->
+							<router-link :to="{ name: 'profile', params:{id: idCu} }" class="dropdown-item" active-class="active" exact v-if="profile.can">
+								<i class="icon-user"></i> Profile
 							</router-link>
 
 						</div>
@@ -340,6 +521,7 @@
 				if(value === "success"){
 					this.idCu = this.profile.id_cu;
 					this.fetchTp();
+					this.fetchCu();
 				}
 			},
 			markNotifStat(value){
@@ -363,6 +545,9 @@
 			fetchTp(){
 				this.$store.dispatch('tp/getCuHeader',this.idCu);
 			},
+			fetchCu(){
+				this.$store.dispatch('cu/getHeader');
+			},
 			markAllNotifRead(){
 				this.$store.dispatch('user/markAllNotifRead');
 			},
@@ -382,6 +567,10 @@
 			...mapGetters('tp',{
 				modelTp: 'headerDataS',
 				modelTpStat: 'headerDataStatS',
+			}),
+			...mapGetters('cu',{
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 		}
 	}

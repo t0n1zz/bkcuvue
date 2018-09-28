@@ -204,7 +204,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Total Anggota Tahun Lalu <i class="icon-info22" v-tooltip:top="'Anggota tahun lalu dari bulan yang sama dengan periode laporan ini.'"></i></h5>
+											<h5>Total Anggota Tahun Lalu <i class="icon-info22" v-tooltip="'Anggota tahun lalu dari bulan yang sama dengan periode laporan ini.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -245,7 +245,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Aset Tahun Lalu <i class="icon-info22" v-tooltip:top="'Aset tahun lalu dari periode laporan ini.'"></i></h5>
+											<h5>Aset Tahun Lalu <i class="icon-info22" v-tooltip="'Aset tahun lalu dari periode laporan ini.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -264,7 +264,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Aset Masalah <i class="icon-info22" v-tooltip:top="'Aset tahun lalu dari periode laporan ini.'"></i></h5>
+											<h5>Aset Masalah <i class="icon-info22" v-tooltip="'Aset tahun lalu dari periode laporan ini.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -400,7 +400,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Non Saham (Harian & Deposito) <i class="icon-info22" v-tooltip:top="'Seluruh simpanan non-saham (Harian & Deposito) kecuali simpanan unggulan.'"></i></h5>
+											<h5>Simp. Non Saham (Harian & Deposito) <i class="icon-info22" v-tooltip="'Seluruh simpanan non-saham (Harian & Deposito) kecuali simpanan unggulan.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -419,7 +419,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu <i class="icon-info22" v-tooltip:top="'Simpanan saham tahun lalu dari bulan yang sama/bulan ini.'"></i></h5>
+											<h5>Simp. Saham Tahun Lalu <i class="icon-info22" v-tooltip="'Simpanan saham tahun lalu dari bulan yang sama/bulan ini.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -438,7 +438,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu Bulan Des <i class="icon-info22" v-tooltip:top="'Simpanan saham bulan desember tahun lalu.'"></i></h5>
+											<h5>Simp. Saham Tahun Lalu Bulan Des <i class="icon-info22" v-tooltip="'Simpanan saham bulan desember tahun lalu.'"></i></h5>
 
 											<!-- text -->
 											<cleave 
@@ -479,7 +479,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Total Hutang Pihak Ke-3 <i class="icon-info22" v-tooltip:top="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></i></h5>
+											<h5>Total Hutang Pihak Ke-3 <i class="icon-info22" v-tooltip="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></i></h5>
 
 											<!-- text -->
 											<cleave 

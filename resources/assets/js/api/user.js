@@ -7,6 +7,10 @@ export default {
     return api.call('get',BKCU_CONFIG.API_URL + '/profile');
   },
 
+  profileActivity: function(){
+    return api.call('get',BKCU_CONFIG.API_URL + '/profileActivity');
+  },
+
   index: function( p ){
     return axios.get( BKCU_CONFIG.API_URL + '/user', {params: p});
   },

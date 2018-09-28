@@ -17,16 +17,11 @@
 					
 						<!-- informasi umum -->
 						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">1. Informasi Umum</h5>
+							</div>
 							<div class="card-body">	
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">1</span> Informasi Umum
-											<small class="display-block">Informasi umum diklat</small>
-										</h6>
-									</div>
 
 									<!-- kode -->
 									<div class="col-md-6">
@@ -217,13 +212,49 @@
 											<!-- title -->
 											<h5>Sasaran Peserta:</h5>
 
-											<label class="checkbox-inline"><input type="checkbox" value="1" v-model="sasaran">Staf</label>
-											<label class="checkbox-inline"><input type="checkbox" value="2" v-model="sasaran">Supervisor</label>
-											<label class="checkbox-inline"><input type="checkbox" value="3" v-model="sasaran">Manajer</label>
-											<label class="checkbox-inline"><input type="checkbox" value="4" v-model="sasaran">Senior Manajer</label>
-											<label class="checkbox-inline"><input type="checkbox" value="5" v-model="sasaran">Komite</label>
-											<label class="checkbox-inline"><input type="checkbox" value="6" v-model="sasaran">Pengawas</label>
-											<label class="checkbox-inline"><input type="checkbox" value="7" v-model="sasaran">Pengurus</label>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="1" v-model="sasaran">
+													Staf
+												</label>
+											</div>	
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="2" v-model="sasaran">
+													Supervisor
+												</label>
+											</div>	
+											<div class="form-check form-check-inline">	
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="3" v-model="sasaran">
+													Manajer
+												</label>
+											</div>	
+											<div class="form-check form-check-inline">	
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="4" v-model="sasaran">
+													Senior Manajer
+												</label>
+											</div>	
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="5" v-model="sasaran">
+													Komite
+												</label>
+											</div>	
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="6" v-model="sasaran">
+													Pengawas
+												</label>
+											</div>	
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="7" v-model="sasaran">
+													Pengurus
+												</label>
+											</div>
+
 										</div>
 									</div>
 									
@@ -232,17 +263,12 @@
 						</div>
 
 						<!-- tempat -->
-						<div class="panel panel-flat">
-							<div class="panel-body">	
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">2. Tempat</h5>
+							</div>
+							<div class="card-body">	
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">2</span> Tempat
-											<small class="display-block">Informasi tempat pelaksanaan diklat</small>
-										</h6>
-									</div>
 
 									<!-- kota -->
 									<div class="col-md-6">
@@ -254,12 +280,11 @@
 												Kabupaten/Kota:</h5>
 
 											<!-- text -->
-											<select class="bootstrap-select"  name="id_regencies" v-model="form.id_regencies" data-live-search="true" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
 													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 													<span v-else>Silahkan pilih kabupaten/kota</span>
 												</option>
-												<option data-divider="true"></option>
 												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
 											</select>
 
@@ -282,9 +307,8 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
+											<select class="form-control" name="id_tempat" v-model="form.id_tempat" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
 												<option disabled value="">Silahkan pilih tempat</option>
-												<option data-divider="true"></option>
 												<option value="0">Belum ditentukan tempat</option>
 												<option data-divider="true" v-if="modelTempat.length != 0"></option>
 												<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
@@ -368,17 +392,12 @@
 						</div>
 						
 						<!-- keterangan -->
-						<div class="panel panel-flat">
-							<div class="panel-body">	
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">3. Informasi Tambah</h5>
+							</div>
+							<div class="card-body">	
 								<div class="row">
-
-									<!-- judul -->
-									<div class="col-md-12">
-										<h6 class="form-wizard-title text-semibold text-primary">
-											<span class="form-wizard-count">3</span> Informasi Tambahan
-											<small class="display-block">Informasi tambahan diklat</small>
-										</h6>
-									</div>
 
 									<!-- keterangan -->
 									<div class="col-md-12">
@@ -388,7 +407,7 @@
 											<h5>Jadwal:</h5>
 
 											<!-- summernote -->
-											<app-summernote name="jadwal" :model="form.jadwal" :config="summernoteconfig" :formStat="formStat" @change="value => { form.jadwal = value }"></app-summernote>
+											<textarea rows="5" type="text" name="jadwal" class="form-control" v-model="form.jadwal" placeholder="Silahkan masukkan jadwal"></textarea>
 										</div>
 									</div>
 
@@ -400,7 +419,7 @@
 											<h5>Keterangan:</h5>
 
 											<!-- summernote -->
-											<app-summernote name="keterangan" :model="form.keterangan" :config="summernoteconfig" :formStat="formStat" @change="value => { form.keterangan = value }"></app-summernote>
+											<textarea rows="5" type="text" name="keterangan" class="form-control" v-model="form.keterangan" placeholder="Silahkan masukkan keterangan"></textarea>
 										</div>
 									</div>
 									
@@ -413,7 +432,7 @@
 						<br/>
 
 						<!-- form button -->
-						<div class="panel panel-flat panel-body">
+						<div class="card card-body">
 							<form-button
 								:cancelState="cancelState"
 								:formValidation="'form'"
@@ -437,10 +456,8 @@
 	import _ from 'lodash';
 	import axios from 'axios';
 	import { mapGetters } from 'vuex'
-	import corefunc from '../../assets/core/app.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
-	import appSummernote from '../../helpers/summernote.js';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
@@ -451,7 +468,6 @@
 		components: {
 			pageHeader,
 			appModal,
-			appSummernote,
 			message,
 			formButton,
 			formInfo,
@@ -498,20 +514,6 @@
             delimiter: '.'
           }
 				},
-				summernoteconfig: {
-					height: 400,
-					toolbar: [
-						['style', ['addclass', 'bold', 'italic', 'underline', 'hr']],
-						['font', ['strikethrough', 'superscript', 'subscript', 'clear']],
-						['color', ['color']],
-						['para', ['ul', 'ol']],
-						['paragraph', ['paragraph']],
-						['table', ['table']],
-						['insert', ['link']],
-						['misc', ['fullscreen']],
-						['misc2', ['undo', 'redo']]
-					]
-				},
 				cancelState: 'methods',
 				modalShow: false,
 				modalState: '',
@@ -523,13 +525,6 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		mounted() {
-			corefunc.core_function();
-			this.other();
-		},
-		updated() {
-			$('.bootstrap-select').selectpicker('refresh');
 		},
 		watch: {
 			formStat(value){
@@ -627,10 +622,6 @@
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			},
-			other() {
-				// bootstrap select
-				$('.bootstrap-select').selectpicker();
-			}
 		},
 		computed: {
 			...mapGetters('diklatPus',{

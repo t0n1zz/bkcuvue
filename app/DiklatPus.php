@@ -41,7 +41,7 @@ class DiklatPus extends Model {
 
     public static function initialize(){
         return [
-            'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '0', 'peserta_min' => '0'
+            'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => ''
         ];
     }
         
@@ -54,8 +54,8 @@ class DiklatPus extends Model {
         return $this->belongsTo('App\Tempat','id_tempat','id');
     }
 
-    public function sasaran_hub(){
-        return $this->hasmany('App\DiklatPusSasaranHub','id_kegiatan','id');
+    public function sasaran(){
+        return $this->belongsToMany('App\DiklatPusSasaran','diklat_pus_sasaran_hub')->withTimestamps();
     }
 
     public function prasyarat(){

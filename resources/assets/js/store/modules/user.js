@@ -56,6 +56,20 @@ export const user = {
         });
     },
 
+    profileActivity( { commit }, p ){
+      commit('setDataStatS', 'loading');
+      
+      UserAPI.profileActivity( p )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     //load collection with params
     index( { commit }, p ){
       commit('setDataStatS', 'loading');

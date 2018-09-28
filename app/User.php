@@ -9,10 +9,11 @@ use App\Support\Dataviewer;
 use App\Support\ExposePermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Yadahan\AuthenticationLog\AuthenticationLogable;
 
 class User extends Authenticatable
 {
-    use HasRoles, HasApiTokens, Notifiable, Dataviewer, ExposePermissions, LogsActivity;
+    use HasRoles, HasApiTokens, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable;
 
     protected $table = 'users';
     protected $guard_name = 'api';

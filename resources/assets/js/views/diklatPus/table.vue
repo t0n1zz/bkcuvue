@@ -79,9 +79,9 @@
 						<check-value :value="props.item.peserta_min"></check-value>
 					</td>
 					<td v-if="!columnData[11].hide" class="text-warp">
-						<span v-if="props.item.sasaran_hub">
-							<label v-for="sasaran_hub in props.item.sasaran_hub" class="badge badge-primary ml-1">
-								{{ sasaran_hub.sasaran.name }}
+						<span v-if="props.item.sasaran">
+							<label v-for="sasaran in props.item.sasaran" class="badge badge-primary ml-1">
+								{{ sasaran.name }}
 							</label>
 						</span>
 					</td>
@@ -228,7 +228,7 @@
 					},
 					{
 						title: 'Sasaran',
-						name: 'sasaran_hub.sasaran.name',
+						name: 'sasaran.sasaran.name',
 						tipe: 'string',
 						sort: false,
 						hide: false,

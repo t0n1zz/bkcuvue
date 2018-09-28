@@ -12,12 +12,14 @@ import Api from './api.js';
 import moment from 'moment';
 import Vue2Filters from 'vue2-filters';
 import VueKatex from 'vue-katex';
+import VTooltip from 'v-tooltip';
 
 Validator.localize('id',id); //localization
 Vue.use(VueRouter);
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
 Vue.use(Vue2Filters);
 Vue.use(VueKatex);
+Vue.use(VTooltip);
 
 window.moment = moment; // handling date formating
 window.moment.locale('id'); // handling date formating locale
@@ -130,7 +132,6 @@ Vue.filter('round', function(value, decimals) {
 	value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 	return value;
 });
-
 
 export const bus = new Vue();
 

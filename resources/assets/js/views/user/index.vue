@@ -56,7 +56,7 @@
 				title: 'User',
 				kelas: 'user',
 				titleDesc: 'Mengelola data user',
-				titleIcon: 'icon-users4',
+				titleIcon: 'icon-users',
 				selectCuPath: 'userCu',
 			}
 		},

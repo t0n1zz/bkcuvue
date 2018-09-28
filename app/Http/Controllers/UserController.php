@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use App\Support\Helper;
 use Illuminate\Notifications\DatabaseNotification;
+use Spatie\Activitylog\Models\Activity;
 
 class UserController extends Controller
 {
@@ -32,6 +33,27 @@ class UserController extends Controller
 			$table_data = User::with('Cu','pus')->where('id_cu',$id)->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->advancedFilter();
 			
     	return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function profileActivity()
+	{
+		$user = User::find(Auth::user()->id);
+		$table_data = Activity::causedBy($form)->orderBy('created_at','desc')->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexActivity()
+	{
+		$table_data = Activity::orderBy('created_at','desc')->advancedFilter();
+
+		return response()
 			->json([
 				'model' => $table_data
 			]);
