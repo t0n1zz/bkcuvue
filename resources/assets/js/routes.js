@@ -11,8 +11,9 @@ import artikelKategori_form from './views/artikelKategori/form.vue';
 import laporanCu from './views/laporanCu/index.vue';
 import laporanCu_form from './views/laporanCu/form.vue';
 import laporanCu_detail from './views/laporanCu/detail.vue';
-import diklatPus from './views/diklatPus/index.vue';
-import diklatPus_form from './views/diklatPus/form.vue';
+import laporanGerakan from './views/laporanGerakan/index.vue';
+import diklatBKCU from './views/diklatBKCU/index.vue';
+import diklatBKCU_form from './views/diklatBKCU/form.vue';
 import tempat from './views/tempat/index.vue';
 import tempat_form from './views/tempat/form.vue';
 import cu from './views/cu/index.vue';
@@ -100,7 +101,7 @@ const routes = [
 	{ path: '/artikelKategori/edit/:id',
 		name: 'artikelKategoriEdit', 
 		components: { default: artikelKategori_form, 'header': header},
-		meta: { loggedIn: true, mode:'edit' } },
+		meta: { loggedIn: true, mode:'edit' }},
 
 	// artikel penulis
 	{ path: '/artikelPenulis/cu/:cu',
@@ -117,15 +118,15 @@ const routes = [
 		meta: { loggedIn: true, mode:'edit' } },
 	
 	// diklat pus
-	{ path: '/diklatPus',
-		name: 'diklatPus', 
-		components: { default: diklatPus, 'header': header }},
-	{ path: '/diklatPus/create',
-		name: 'diklatPusCreate', 
-		components: { default: diklatPus_form, 'header': header} },
-	{ path: '/diklatPus/edit/:id',
-		name: 'diklatPusEdit', 
-		components: { default: diklatPus_form, 'header': header}, 
+	{ path: '/diklatBKCU',
+		name: 'diklatBKCU', 
+		components: { default: diklatBKCU, 'header': header }},
+	{ path: '/diklatBKCU/create',
+		name: 'diklatBKCUCreate', 
+		components: { default: diklatBKCU_form, 'header': header} },
+	{ path: '/diklatBKCU/edit/:id',
+		name: 'diklatBKCUEdit', 
+		components: { default: diklatBKCU_form, 'header': header}, 
 		meta: { loggedIn: true, mode:'edit' } },
 
 	// diklat tempat
@@ -254,6 +255,12 @@ const routes = [
 		name: 'laporanTpEdit', 
 		components: { default: laporanCu_form, 'header': header}, 
 		meta: { loggedIn: true, mode:'editTp' } },	
+
+	// laporan gerakan
+	{ path: '/laporangerakan',
+		name: 'laporanGerakan', 
+		components: { default: laporanGerakan, 'header': header },
+		meta: { loggedIn: true  }},	
 ]
 
 export default routes

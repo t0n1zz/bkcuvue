@@ -8,7 +8,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', 'AuthController@logout');
 });
 
-Route::get('/laporanCu/indexKonsolidasi/{periode}', 'laporanCuController@indexKonsolidasi');
+Route::get('/laporanCu/indexKonsolidasi', 'laporanCuController@indexKonsolidasi');
+
 
 
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
@@ -159,22 +160,22 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::delete('/produkcu/{id}', 'ProdukCuController@destroy');
     });
 
-     // diklatPus
+     // diklatBKCU
     Route::group(['middleware' => ['permission:index_diklat_pus']], function () {
-        Route::get('/diklatPus', 'DiklatPusController@index');
-        Route::get('/diklatPus/get', 'DiklatPusController@get');       
-        Route::get('/diklatPus/getPus/{id}', 'DiklatPusController@getPus');
+        Route::get('/diklatBKCU', 'DiklatBKCUController@index');
+        Route::get('/diklatBKCU/get', 'DiklatBKCUController@get');       
+        Route::get('/diklatBKCU/getPus/{id}', 'DiklatBKCUController@getPus');
     });
     Route::group(['middleware' => ['permission:create_diklat_pus']], function () {
-        Route::get('/diklatPus/create', 'DiklatPusController@create');
-        Route::post('/diklatPus/store', 'DiklatPusController@store');
+        Route::get('/diklatBKCU/create', 'DiklatBKCUController@create');
+        Route::post('/diklatBKCU/store', 'DiklatBKCUController@store');
     });
     Route::group(['middleware' => ['permission:update_diklat_pus']], function () {
-        Route::get('/diklatPus/edit/{id}', 'DiklatPusController@edit');
-        Route::post('/diklatPus/update/{id}', 'DiklatPusController@update');
+        Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
+        Route::post('/diklatBKCU/update/{id}', 'DiklatBKCUController@update');
     });
     Route::group(['middleware' => ['permission:destroy_diklat_pus']], function () {
-        Route::delete('/diklatPus/{id}', 'DiklatPusController@destroy');
+        Route::delete('/diklatBKCU/{id}', 'DiklatBKCUController@destroy');
     });
 
     // pengelola
@@ -219,6 +220,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     //laporan cu
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::get('/laporanCu', 'laporanCuController@index');
+        Route::get('/laporanCu/indexGerakan', 'laporanCuController@indexGerakan');
         Route::get('/laporanCu/indexCu/{id}', 'laporanCuController@indexCu');
         Route::get('/laporanCu/indexPeriode/{periode}', 'laporanCuController@indexPeriode');
         Route::get('/laporanCu/indexPearls', 'laporanCuController@indexPearls');

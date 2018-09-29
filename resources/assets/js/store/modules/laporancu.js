@@ -27,7 +27,6 @@ export const laporanCu = {
         disable: false,
         isChart: false,
         filter: true,
-        filterDefault: true
       },
       {
         title: "TP",
@@ -38,7 +37,6 @@ export const laporanCu = {
         disable: false,
         isChart: false,
         filter: true,
-        filterDefault: false
       },
       {
         title: "No. BA",
@@ -69,7 +67,6 @@ export const laporanCu = {
         disable: false,
         isChart: false,
         filter: true,
-        filterDefault: false
       },
       {
         title: "Jmlh. Tp",
@@ -99,7 +96,7 @@ export const laporanCu = {
         sort: true,
         hide: false,
         disable: false,
-        isChart: true,
+        isChart: true, 
         isChartSelect: false,
         filter: true
       },
@@ -155,7 +152,8 @@ export const laporanCu = {
         disable: false,
         isChart: true,
         isChartSelect: false,
-        filter: true
+        filter: true,
+        filterDefault: true
       },
       {
         title: "Aset Lalu",
@@ -534,7 +532,7 @@ export const laporanCu = {
         disable: false,
         isChart: false,
         filter: true
-      }
+      },
     ],
     columnDataPearls: [
       {
@@ -824,6 +822,21 @@ export const laporanCu = {
         });
     },
 
+    //gerakan
+    indexGerakan( { commit }, p ){
+      commit('setDataStatS', 'loading');
+      
+      laporanCuAPI.indexGerakan( p )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // load by cu
     indexCu( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
@@ -987,6 +1000,21 @@ export const laporanCu = {
         });
     },
 
+
+    // load by periode
+    grafikGerakan( { commit }, p ){
+      commit('setGrafikStat', 'loading');
+      
+      laporanCuAPI.indexGerakan( p )
+        .then( function( response ){
+          commit('setGrafik', response.data.model);
+          commit('setGrafikStat', 'success');
+        })
+        .catch( error => {
+          commit('setGrafik', error.response);
+          commit('setGrafikStat', 'fail');
+        });
+    },
 
     // load by periode
     grafikPeriode( { commit }, [p, periode] ){

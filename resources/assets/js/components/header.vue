@@ -240,7 +240,7 @@
 						<div class="dropdown-menu">
 
 							<!-- tambah diklat pus -->
-							<router-link :to="{ name:'diklatPusCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_pus']">
+							<router-link :to="{ name:'diklatBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['create_diklat_pus']">
 								<i class="icon-plus22"></i> Tambah Diklat BKCU
 							</router-link>
 
@@ -253,7 +253,7 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- diklat pus -->
-							<router-link :to="{ name: 'diklatPus' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
+							<router-link :to="{ name: 'diklatBKCU' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_diklat_pus']">
 								<i class="icon-graduation2"></i> Diklat BKCU
 							</router-link>
 
@@ -390,6 +390,11 @@
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
+
+							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu']">
+								<i class="icon-stats-bars2"></i> Laporan Statistik Gerakan
+							</router-link>
+
 
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">

@@ -10,7 +10,7 @@ class Tempat extends Model {
     
     use Dataviewer, LogsActivity, SoftDeletes;
 
-    protected $table = 'diklat_tempat';
+    protected $table = 'kegiatan_tempat';
     protected static $logFillable = true;
     protected $dates = ['deleted_at'];
     

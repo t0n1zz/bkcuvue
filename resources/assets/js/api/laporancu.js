@@ -6,6 +6,10 @@ export default {
     return axios.get( BKCU_CONFIG.API_URL + '/laporanCu' ,{params: p});
   },
 
+  indexGerakan: function( p ){
+    return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexGerakan' ,{params: p});
+  },
+
   indexCu: function( p, id ){
     return axios.get( BKCU_CONFIG.API_URL + '/laporanCu/indexCu/' + id, {params: p});
   },
