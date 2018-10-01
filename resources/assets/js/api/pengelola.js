@@ -104,5 +104,9 @@ export default {
 
   destroyAnggotaCu: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/pengelola/anggotaCu/' + id);
-  }
+  },
+
+  count: function(){
+    return axios.get( BKCU_CONFIG.API_URL + '/pengelola/count');
+  },
 }

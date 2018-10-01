@@ -28,5 +28,9 @@ export default {
 
   destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/produkcu/' + id);
-  }
+  },
+
+  count: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/produkcu/count');
+  },
 }

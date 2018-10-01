@@ -1,5 +1,6 @@
 <template>
 <div>
+	
 	<!-- laporancu -->
 	<line-chart
 		:titleText="titleText"
@@ -13,8 +14,10 @@
 		:itemDataStat="itemDataStat"
 		:columnData="columnData"
 		@fetch="fetch()"
-		v-if="this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'detail' || this.$route.meta.mode == 'detailTp'"
+		v-if="this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'detail' || this.$route.meta.mode == 'detailTp'  ||
+		this.$route.name == 'dashboard'"
 		></line-chart>
+
 	<bar-chart
 		:titleText="titleText"
 		:title="title"
@@ -29,6 +32,7 @@
 		@fetch="fetch()"
 		v-else-if="this.$route.meta.mode == 'cuPeriode'"
 		></bar-chart>
+
 	<bar-chart
 		:titleText="titleText"
 		:title="title"
@@ -43,6 +47,7 @@
 		@fetch="fetch()"
 		v-else
 		></bar-chart>
+
 </div>
 </template>
 
@@ -106,6 +111,8 @@ export default {
 					this.titleText = 'Grafik Laporan Pearls CU ' + this.itemData.data[0].cu.name;
 				}else if(this.$route.meta.mode == 'detailTp'){
 					this.titleText = 'Grafik Laporan Pearls ' + this.itemData.data[0].tp.name;
+				}else if(this.$route.name == 'dashboard'){
+					this.titleText = 'Grafik Laporan Perkembangan CU';
 				}else{
 					this.titleText = 'Grafik Laporan Pearls Semua CU Periode ' + this.formatPeriode(this.$route.params.periode);
 				}
@@ -124,7 +131,6 @@ export default {
 				if(this.$route.params.tp == 'konsolidasi'){
 					this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.query,this.$route.params.cu]);
 					this.axisLabelKey = 'periode';	
-
 				}else{
 					this.$store.dispatch(this.kelas + '/grafikPearlsTp', [this.query,this.$route.params.tp]);
 					this.axisLabelKey = 'periode';	
@@ -142,6 +148,9 @@ export default {
 				this.axisLabelKey = 'periode';
 				this.query.order_column = 'periode';
 				this.query.order_direction = 'asc';	
+			}else if(this.$route.name == 'dashboard'){
+					this.$store.dispatch(this.kelas + '/grafikPearlsCu', [this.query,this.profile.id_cu]);
+					this.axisLabelKey = 'periode';	
 			}else{
 				this.$store.dispatch(this.kelas + '/grafikPearlsPeriode', [this.query,this.$route.params.periode]);
 
@@ -165,6 +174,10 @@ export default {
 		}
 	},
 	computed: {
+		...mapGetters('user',{
+			profile: 'profile',
+			profileStat: 'profileStat'
+		}),
 		...mapGetters('laporanCu',{
 			detailData:'pearls',
 			detailDataStat: 'pearlsStat',

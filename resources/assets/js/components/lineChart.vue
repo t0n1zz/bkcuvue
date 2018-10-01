@@ -4,7 +4,7 @@
 
 		<!-- heading -->
 		<div class="card-header header-elements-inline d-print-none">
-			<h5 class="card-title"><i class="icon-stats-growth position-left"></i> Grafik {{ title }}</h5>
+			<h5 class="card-title ">&nbsp;</h5>
 			<div class="header-elements">
 				<div class="icons-list">
 					<a class="list-icons-item"  v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>

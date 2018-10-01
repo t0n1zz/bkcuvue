@@ -579,4 +579,23 @@ class PengelolaController extends Controller{
 				'message' => 'Anggota CU berhasil dihapus'
 			]);
 	}
+
+	public function count()
+    {
+        $id = \Auth::user()->id_cu;
+
+        if($id == 0){
+            $table_data = Pengelola::count();
+        }else{
+            $table_data = Pengelola::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
+                $query->where('id_tempat',$id);
+            })->count();
+        }
+        
+        return response()
+        ->json([
+            'model' => $table_data
+        ]);
+    }
+
 }

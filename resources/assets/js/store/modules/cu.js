@@ -7,9 +7,11 @@ export const cu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    count: {},
     headerDataS: [],
     dataStat: '',
     dataStatS: '',
+    countStat: '',
     headerDataStatS: '',
     update: [], //update data
     updateStat: '',
@@ -21,9 +23,11 @@ export const cu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
     update: state => state.update,
     updateStat: state => state.updateStat,
@@ -186,6 +190,20 @@ export const cu = {
         });
     },
 
+    count( { commit } ){
+      commit('setCountStat', 'loading');
+      
+      CUAPI.count()
+        .then( function( response ){
+          commit('setCount', response.data.model );
+          commit('setCountStat', 'success');
+        })
+        .catch( error => {
+          commit('setCount', error.response);
+          commit('setCountStat', 'fail');
+        });
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -200,6 +218,9 @@ export const cu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setCount ( state, data ){
+      state.count = data;
+    },
     setHeaderDataS ( state, data ){
       state.headerDataS = data;
     },
@@ -211,6 +232,9 @@ export const cu = {
     },
     setHeaderDataStatS( state, status ){
       state.headerDataStatS = status;
+    },
+    setCountStat( state, status ){
+      state.countStat = status;
     },
     setUpdate ( state, data ){
       state.update = data;

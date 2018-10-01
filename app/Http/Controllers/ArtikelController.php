@@ -207,4 +207,20 @@ class ArtikelController extends Controller{
 
 		return response()->json('/' . $this->imagepath . $fileName . '.jpg');
 	}
+
+	public function count()
+	{
+			$id = \Auth::user()->id_cu;
+
+			if($id == 0){
+					$table_data = Artikel::count();
+			}else{
+					$table_data = Artikel::where('id_cu',$id)->count();
+			}
+			
+			return response()
+			->json([
+					'model' => $table_data
+			]);
+	}
 }

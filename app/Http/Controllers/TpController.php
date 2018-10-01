@@ -143,4 +143,20 @@ class TpController extends Controller{
 				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
+
+	public function count()
+    {
+        $id = \Auth::user()->id_cu;
+
+        if($id == 'semua'){
+            $table_data = TP::count();
+        }else{
+            $table_data = TP::where('id_cu',$id)->count();
+        }
+        
+        return response()
+        ->json([
+            'model' => $table_data
+        ]);
+    }
 }

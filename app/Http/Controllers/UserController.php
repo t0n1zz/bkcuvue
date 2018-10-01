@@ -416,4 +416,20 @@ class UserController extends Controller
 						'marked' => true
 				]);
 	}
+
+	public function count()
+	{
+			$id = \Auth::user()->id_cu;
+
+			if($id == 0){
+					$table_data = User::count();
+			}else{
+					$table_data = User::where('id_cu',$id)->count();
+			}
+			
+			return response()
+			->json([
+					'model' => $table_data
+			]);
+	}
 }

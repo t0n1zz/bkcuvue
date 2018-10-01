@@ -299,7 +299,7 @@
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
-
+ 
 							<!-- cu -->
 							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="profile.id_cu == 0 && profile.can && profile.can['index_cu']">
 								<i class="icon-office"></i> CU
@@ -392,14 +392,14 @@
 							<div class="dropdown-divider"></div> 
 
 							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu']">
-								<i class="icon-stats-bars2"></i> Laporan Statistik Gerakan
+								<i class="icon-stats-dots"></i> Laporan Statistik Gerakan
 							</router-link>
 
 
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-show="profile.can && profile.can['index_laporan_cu'] && profile.id_cu == '0'">
 								<a href="#" class="dropdown-item dropdown-toggle">
-									<i class="icon-stats-growth"></i> Laporan Statistik CU
+									<i class="icon-stats-bars2"></i> Laporan Statistik CU
 								</a>
 								<div class="dropdown-menu">
 

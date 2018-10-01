@@ -70,4 +70,8 @@ export default {
   markNotifRead: function(id){
     return axios.get(BKCU_CONFIG.API_URL + '/markNotifRead/' + id);
   },
+
+  count: function(){
+    return axios.get(BKCU_CONFIG.API_URL + '/user/count');
+  },
 }

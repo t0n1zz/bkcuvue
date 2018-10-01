@@ -144,4 +144,14 @@ class CuController extends Controller{
 				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
+
+	public function count()
+	{
+			$table_data = Cu::count();
+
+			return response()
+			->json([
+					'model' => $table_data
+			]);
+	}
 }

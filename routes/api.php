@@ -8,8 +8,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', 'AuthController@logout');
 });
 
-Route::get('/laporanCu/indexKonsolidasi', 'laporanCuController@indexKonsolidasi');
-
+Route::get('/laporanCu/indexGerakan', 'laporanCuController@indexGerakan');
+Route::get('/system/pengelolaWidget', 'SystemController@pengelolaWidget');
 
 
 Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
@@ -26,6 +26,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::group(['middleware' => ['permission:index_user']], function () {
         Route::get('/user', 'UserController@index');
         Route::get('/user/indexCu/{id}', 'UserController@indexCu');
+        Route::get('/user/count', 'UserController@count');
     });
     Route::group(['middleware' => ['permission:create_user']], function () {
         Route::get('/user/create', 'UserController@create');
@@ -50,6 +51,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/artikel', 'ArtikelController@index');
         Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
         Route::post('/artikel/upload', 'ArtikelController@upload');
+        Route::get('/artikel/count', 'ArtikelController@count');
     });
     Route::group(['middleware' => ['permission:create_artikel']], function () {
         Route::get('/artikel/create', 'ArtikelController@create');
@@ -109,6 +111,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/cu/get', 'CuController@get');  
         Route::get('/cu/getHeader', 'CuController@getHeader');       
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
+        Route::get('/cu/count', 'CuController@count');
     });
     Route::group(['middleware' => ['permission:create_cu']], function () {
         Route::get('/cu/create', 'CuController@create');
@@ -128,6 +131,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/tp/get', 'TpController@get');
         Route::get('/tp/indexCu/{id}', 'TpController@indexCu'); 
         Route::get('/tp/getCu/{id}', 'TpController@getCu');
+        Route::get('/tp/count', 'TpController@count');
     });
     Route::group(['middleware' => ['permission:create_tp']], function () {
         Route::get('/tp/create', 'TpController@create');
@@ -147,6 +151,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/produkcu/get', 'ProdukCuController@get');
         Route::get('/produkcu/indexCu/{id}', 'ProdukCuController@indexCu'); 
         Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
+        Route::get('/produkcu/count', 'ProdukCuController@count');
     });
     Route::group(['middleware' => ['permission:create_produk_cu']], function () {
         Route::get('/produkcu/create', 'ProdukCuController@create');
@@ -184,6 +189,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
         Route::get('/pengelola/get', 'PengelolaController@get');
         Route::get('/pengelola/indexCu/{id}', 'PengelolaController@indexCu');         
         Route::get('/pengelola/getCu/{id}', 'PengelolaController@getCu');
+        Route::get('/pengelola/count', 'PengelolaController@count');
     });
     Route::group(['middleware' => ['permission:create_pengelola']], function () {
         Route::get('/pengelola/create', 'PengelolaController@create');

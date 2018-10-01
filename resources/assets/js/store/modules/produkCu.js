@@ -8,9 +8,11 @@ export const produkCu = {
     data: {}, //single data
     dataS: [], //collection
     headerDataS: [], //collection
+    count: {},
     dataStat: '',
     dataStatS: '',
     headerDataStatS:'',
+    countStat: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -21,10 +23,12 @@ export const produkCu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
     headerDataStatS: state => state.headerDataStatS,
+    countStat: state => state.countStat,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -157,6 +161,20 @@ export const produkCu = {
         });
     },
 
+    count( { commit } ){
+      commit('setCountStat', 'loading');
+      
+      ProdukCuAPI.count()
+        .then( function( response ){
+          commit('setCount', response.data.model);
+          commit('setCountStat', 'success');
+        })
+        .catch( error => {
+          commit('setCount', error.response);
+          commit('setCountStat', 'fail');
+        });
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -174,6 +192,9 @@ export const produkCu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setCount ( state, data ){
+      state.count = data;
+    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
@@ -182,6 +203,9 @@ export const produkCu = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setCountStat( state, status ){
+      state.countStat = status;
     },
     setUpdate ( state, data ){
       state.update = data;

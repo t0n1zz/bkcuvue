@@ -36,5 +36,9 @@ export default {
 
   destroy: function( id ){
     return axios.delete(BKCU_CONFIG.API_URL + '/tp/' + id);
-  }
+  },
+
+  count: function( p ){
+    return axios.get(BKCU_CONFIG.API_URL +  '/tp/count');
+  },
 }

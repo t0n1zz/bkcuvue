@@ -7,10 +7,12 @@ export const tp = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    count: {},
     headerDataS: [], //collection
     dataStat: '',
     dataStatS: '',
     headerDataStatS:'',
+    countStat: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -21,10 +23,12 @@ export const tp = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
     headerDataStatS: state => state.headerDataStatS,
+    countStat: state => state.countStat,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -220,6 +224,25 @@ export const tp = {
         });
     },
 
+    count( { commit } ){
+      commit('setCountStat', 'loading');
+      
+      TpAPI.count()
+        .then( function( response ){
+          if(response.data.model){
+            commit('setCount', response.data.model );
+            commit('setCountStat', 'success');
+          }else{
+            commit('setCount', response );
+            commit('setCountStat', 'fail');
+          }
+        })
+        .catch( error => {
+          commit('setCount', error.response);
+          commit('setCountStat', 'fail');
+        });
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -237,6 +260,9 @@ export const tp = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setCount ( state, data ){
+      state.count = data;
+    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
@@ -245,6 +271,9 @@ export const tp = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setCountStat( state, status ){
+      state.countStat = status;
     },
     setUpdate ( state, data ){
       state.update = data;

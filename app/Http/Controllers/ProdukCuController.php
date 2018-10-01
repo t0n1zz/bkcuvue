@@ -127,4 +127,20 @@ class ProdukCuController extends Controller{
 				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
+
+	public function count()
+	{
+			$id = \Auth::user()->id_cu;
+
+			if($id == 0){
+					$table_data = ProdukCu::count();
+			}else{
+					$table_data = ProdukCu::where('id_cu',$id)->count();
+			}
+			
+			return response()
+			->json([
+					'model' => $table_data
+			]);
+	}
 }

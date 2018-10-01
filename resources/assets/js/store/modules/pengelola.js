@@ -7,8 +7,10 @@ export const pengelola = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    count: {},
     dataStat: '',
     dataStatS: '',
+    countStat: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -19,8 +21,10 @@ export const pengelola = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    count: state => state.count,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    countStat: state => state.countStat,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -498,6 +502,20 @@ export const pengelola = {
         });
     },
 
+    count( { commit } ){
+      commit('setCountStat', 'loading');
+      
+      pengelolaAPI.count()
+        .then( function( response ){
+          commit('setCount', response.data.model );
+          commit('setCountStat', 'success');
+        })
+        .catch( error => {
+          commit('setCount', error.response);
+          commit('setCountStat', 'fail');
+        });
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -521,11 +539,17 @@ export const pengelola = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setCount ( state, data ){
+      state.count = data;
+    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setCountStat( state, status ){
+      state.countStat = status;
     },
     setUpdate ( state, data ){
       state.update = data;
