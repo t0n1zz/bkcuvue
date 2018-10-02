@@ -425,18 +425,68 @@
           <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
         </div>
       </div>
+
+      <!-- excel download all data -->
+      <div slot="modal-body2" class="text-center">
+        <div v-if="excelAllDataStat === ''">
+          <span class="text-warning">
+            <i class="icon-exclamation" style="font-size: 5em"></i>
+          </span>
+          <h2>Yakin akan mendownload semua data ke excel?</h2>
+          <pre class="pre-scrollable" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
+          <br>
+          <ul class="list-inline">
+            <li>
+              <button type="button" class="btn btn-default" @click="modalTutup">
+                <i class="icon-cross"></i> Tutup</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-warning" @click="modalExcelOk">
+                <i class="icon-checkmark5"></i> Ya, download semua</button>
+            </li>
+          </ul>
+        </div>
+        <div v-else-if="excelAllDataStat === 'loading'">
+          <i class="icon-spinner spinner" style="font-size: 5em"></i>
+          <h2>Mohon tunggu sebentar...</h2>
+        </div>
+        <div v-else-if="excelAllDataStat === 'success'">
+          <span class="text-primary">
+            <i class="icon-checkmark-circle2" style="font-size: 5em"></i>
+          </span>
+          <h2>Silahkan tekan tombol download</h2>
+          <ul class="list-inline">
+            <li>
+              <button type="button" class="btn btn-default" @click="modalTutup">
+                <i class="icon-cross"></i> Tutup</button>
+            </li>
+            <li>
+              <json-excel 
+                :data="excelAll.data"
+                :fields="excelAll.fields" 
+                :meta="excelAll.meta" 
+                :title="title"
+                :name="title + '.xls'"
+                class="btn btn-default">
+                <i class="icon-download10"></i> Download Excel</json-excel>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </app-modal>
 
   </div>
 </template>
 <script>
-  import Vue from 'vue'
+  import Vue from 'vue';
+  import { BKCU_CONFIG } from '../config.js';
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
 
   export default {
-    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query'],
+    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelUrl'],
     components: {
       jsonExcel,
       appModal,
@@ -454,10 +504,21 @@
               "key": "charset",
               "value": "utf-8"
             }]
-          ],
-          title: '',
-          filename: ''
+          ]
         },
+        excelAllData: {},
+        excelAllDataStat: '',
+        excelAll: {
+          fields: {},
+          data: [],
+          meta: [
+            [{
+              "key": "charset",
+              "value": "utf-8"
+            }]
+          ]
+        },
+        isExcelAll: false,
         modalShow: false,
         modalState: '',
         modalTitle: '',
@@ -481,8 +542,13 @@
       itemDataStat(value) {
         if (value == 'success') {
           this.query.page = this.itemData.current_page;
-          this.field_excel();
+          this.fieldExcel();
           this.calculatePagination();
+        }
+      },
+      excelAllDataStat(value) {
+        if (value == 'success') {
+          this.fieldExcelAll();
         }
       },
     },
@@ -493,14 +559,14 @@
           this.columnData[index].hide = true;
         else
           this.columnData[index].hide = false;
-        this.field_excel(this);
+        this.fieldExcel(this);
       },
       showAllColumn(index) {
         for (var t in this.columnData) {
           if (t != index)
             this.columnData[t].hide = false;
         }
-        this.field_excel(this);
+        this.fieldExcel(this);
       },
       updateOrderDirection() {
         if (this.query.order_direction === 'desc') {
@@ -684,16 +750,39 @@
         return f
       },
       fetch() {
-        const filters = this.getFilters()
+        const filters = this.getFilters();
 
         const params = {
           ...filters,
           ...this.query
+        };
+
+        this.$emit('fetch', params);
+      },
+      fetchExcelAll() {
+        this.excelAllDataStat = 'loading';
+        
+        const params = {
+          ...this.query
+        };
+
+        if(this.query.limit >= this.itemData.total){
+          this.excelAllData = this.itemData;
+          this.excelAllDataStat = 'success';
+        }else{
+          this.query.limit = this.itemData.total;
+          api.call('get',BKCU_CONFIG.API_URL + '/' + this.kelas, {params})
+          .then( ({data}) => {
+            this.excelAllData = data.model;
+            this.excelAllDataStat = 'success';
+          }).catch( ({error}) => {
+            console.log(error);
+            this.excelAllDataStat = 'fail';
+          });
         }
-        this.$emit('fetch', params)
       },
       // excel data
-      field_excel() {
+      fieldExcel(itemData) {
         var vm = this;
         vm.excel.fields = {};
         vm.columnData.forEach(function (column) {
@@ -705,13 +794,27 @@
           var object = {};
           vm.columnData.forEach(function (key) {
             if (!key.hide && !key.disable) {
-              if (key.groupKey) {
-                const value = _.get(item, key.groupKey, '-');
-                object[key.groupKey] = value === '' || value === null ? '-' : value;
-              } else {
-                const value = _.get(item, key.name, '-');
-                object[key.name] = value === '' || value === null ? '-' : value;
-              }
+              const value = _.get(item, key.name, '-');
+              object[key.name] = value === '' || value === null ? '-' : value;
+            }
+          })
+          return object;
+        }).value();
+      },
+      fieldExcelAll() {
+        var vm = this;
+        vm.excelAll.fields = {};
+        vm.columnData.forEach(function (column) {
+          if (!column.disable) {
+            vm.excelAll.fields[column.title] = column.name;
+          }
+        });
+        vm.excelAll.data = _.chain(vm.excelAllData.data).map(function (item) {
+          var object = {};
+          vm.columnData.forEach(function (key) {
+            if (!key.disable) {
+              const value = _.get(item, key.name, '-');
+              object[key.name] = value === '' || value === null ? '-' : value;
             }
           })
           return object;
@@ -721,16 +824,12 @@
       // modal
       modalExcelOpen() {
         this.modalShow = true;
-        this.modalState = "normal1";
-        this.excelLoadStat = '';
+        this.modalState = "normal2";
+        this.excelAllDataStat = '';
       },
       modalExcelOk() {
         this.isExcelAll = true;
-        if(this.params.per_page != this.itemData.total){
-          this.entriPage(this.itemData.total);
-        }else{
-          this.fetch();
-        } 
+        this.fetchExcelAll(); 
       },
       modalOptionOpen(state){
         this.modalShow = true;

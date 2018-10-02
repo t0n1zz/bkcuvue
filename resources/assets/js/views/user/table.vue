@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- main panel -->
-    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+    <data-viewer :title="title" :kelas="kelas" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
 
       <!-- desktop -->
       <!-- button desktop -->
@@ -350,6 +350,8 @@ export default {
       profileStat: 'profileStat',
       itemData: 'dataS',
       itemDataStat: 'dataStatS',
+      excelAll: 'excelAll',
+      excelAllStat: 'excelAllStat',
       hakAkses: 'data',
       hakAksesStat: 'dataStat',
       updateMessage: 'update',

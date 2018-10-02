@@ -392,7 +392,7 @@
 							<div class="dropdown-divider"></div> 
 
 							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="profile.can && profile.can['index_laporan_cu']">
-								<i class="icon-stats-dots"></i> Laporan Statistik Gerakan
+								<i class="icon-stats-bars"></i> Laporan Statistik Gerakan
 							</router-link>
 
 
@@ -448,7 +448,7 @@
 					<li class="nav-item dropdown">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-gear mr-2"></i>
-							Pengaturan
+							Sistem
 						</a>
 
 						<div class="dropdown-menu">

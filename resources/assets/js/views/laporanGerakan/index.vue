@@ -69,7 +69,7 @@
 				title: 'Laporan Perkembangan Gerakan',
 				kelas: 'laporanCu',
 				titleDesc: 'Mengelola data perkembangan gerakan',
-				titleIcon: 'icon-stats-dots',
+				titleIcon: 'icon-stats-bars',
 				selectCUPath: 'laporanCuCU',
 				tabName: 'table',
 				isTablePearls: false,
