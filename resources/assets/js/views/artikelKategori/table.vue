@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -102,6 +102,7 @@
 					limit: 10,
 					page: 1
 				},
+				excelUrl: '',
 				columnData: [
 					{
 						title: 'No.',
@@ -202,9 +203,11 @@
 				if(this.$route.params.cu == 'semua'){
 					this.disableColumnCu(false);
 					this.$store.dispatch(this.kelas + '/index', params);
+					this.excelUrl = this.kelas;
 				}else{
 					this.disableColumnCu(true);
 					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
+					this.excelUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
 				}
 			},
 			disableColumnCu(status){

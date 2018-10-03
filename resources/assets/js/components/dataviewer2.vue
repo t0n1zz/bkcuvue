@@ -408,7 +408,7 @@
         </div>
         <!-- excel -->
         <div v-else-if="modalOptionState === 'excel'">
-          <h2 class="text-center">Download data ke excel</h2>
+          <h2 class="text-center">Excel</h2>
           <hr/>
           <json-excel 
             class="btn btn-light btn-block"
@@ -417,61 +417,52 @@
             :meta="excel.meta"
             :title="'Data ' + title" 
             :name="title + '.xls'"
-            >Download data di tabel</json-excel>
-          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen">Download semua data</button>
+            ><i class="icon-file-download"></i> Download data di tabel</json-excel>
+          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen"><i class="icon-folder-download2"></i> Download semua data</button>
           <hr/>
-          <button class="btn btn-light btn-block" v-if="isUploadExcel" @click.prevent="modalExcelUploadOpen">Upload data</button>
-          <hr  v-if="isUploadExcel" />
+          <button class="btn btn-light btn-block" v-if="isUploadExcel" @click.prevent="modalExcelUploadOpen"><i class="icon-file-upload"></i> Upload data excel</button>
+          <p class="text-center mt-2" v-if="isUploadExcel">Silahkan menggunakan format ini untuk upload data: <a href="#">format excel</a></p>
+          <hr v-if="isUploadExcel"/>
           <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
         </div>
       </div>
 
       <!-- excel download all data -->
       <div slot="modal-body2" class="text-center">
+
+        <!-- default -->
         <div v-if="excelAllDataStat === ''">
           <span class="text-warning">
             <i class="icon-exclamation" style="font-size: 5em"></i>
           </span>
           <h2>Yakin akan mendownload semua data ke excel?</h2>
-          <pre class="pre-scrollable" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
+          <pre class="pre-scrollable text-center" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
           <br>
-          <ul class="list-inline">
-            <li>
-              <button type="button" class="btn btn-default" @click="modalTutup">
-                <i class="icon-cross"></i> Tutup</button>
-            </li>
-            <li>
-              <button type="button" class="btn btn-warning" @click="modalExcelOk">
+          <button type="button" class="btn btn-light" @click="modalTutup">
+                <i class="icon-cross"></i> Tutup</button>  
+          <button type="button" class="btn btn-warning" @click="modalExcelOk">
                 <i class="icon-checkmark5"></i> Ya, download semua</button>
-            </li>
-          </ul>
         </div>
-        <div v-else-if="excelAllDataStat === 'loading'">
-          <i class="icon-spinner spinner" style="font-size: 5em"></i>
-          <h2>Mohon tunggu sebentar...</h2>
-        </div>
+
+        <!-- success -->
         <div v-else-if="excelAllDataStat === 'success'">
           <span class="text-primary">
             <i class="icon-checkmark-circle2" style="font-size: 5em"></i>
           </span>
           <h2>Silahkan tekan tombol download</h2>
-          <ul class="list-inline">
-            <li>
-              <button type="button" class="btn btn-default" @click="modalTutup">
-                <i class="icon-cross"></i> Tutup</button>
-            </li>
-            <li>
-              <json-excel 
-                :data="excelAll.data"
-                :fields="excelAll.fields" 
-                :meta="excelAll.meta" 
-                :title="title"
-                :name="title + '.xls'"
-                class="btn btn-default">
-                <i class="icon-download10"></i> Download Excel</json-excel>
-            </li>
-          </ul>
+          <button type="button" class="btn btn-light" @click="modalTutup">
+              <i class="icon-cross"></i> Tutup
+          </button>  
+          <json-excel 
+            :data="excelAll.data"
+            :fields="excelAll.fields" 
+            :meta="excelAll.meta" 
+            :title="title"
+            :name="title + '.xls'"
+            class="btn btn-light">
+            <i class="icon-folder-download2"></i> Download Excel</json-excel>   
         </div>
+
       </div>
 
     </app-modal>
@@ -522,6 +513,7 @@
         modalShow: false,
         modalState: '',
         modalTitle: '',
+        modalContent: '',
         modalButton: '',
         modalOptionState: ''
       }
@@ -760,24 +752,33 @@
         this.$emit('fetch', params);
       },
       fetchExcelAll() {
-        this.excelAllDataStat = 'loading';
-        
-        const params = {
-          ...this.query
-        };
-
+        this.modalState = 'loading';
+      
         if(this.query.limit >= this.itemData.total){
           this.excelAllData = this.itemData;
           this.excelAllDataStat = 'success';
+          this.modalState = 'normal2';
         }else{
-          this.query.limit = this.itemData.total;
-          api.call('get',BKCU_CONFIG.API_URL + '/' + this.kelas, {params})
+          let query = {
+            order_column: this.query.order_column,
+            order_direction: this.query.order_direction,
+            filter_match: "and",
+            limit: this.itemData.total,
+            page: 1
+          };
+
+          const params = {
+            ...query
+          };
+
+          api.call('get',BKCU_CONFIG.API_URL + '/' + this.excelUrl, {params})
           .then( ({data}) => {
             this.excelAllData = data.model;
+            this.modalState = 'normal2';
             this.excelAllDataStat = 'success';
           }).catch( ({error}) => {
-            console.log(error);
-            this.excelAllDataStat = 'fail';
+            this.modalState = 'fail';
+            this.modalContent = error;
           });
         }
       },
@@ -786,14 +787,14 @@
         var vm = this;
         vm.excel.fields = {};
         vm.columnData.forEach(function (column) {
-          if (!column.hide && !column.disable) {
+          if (!column.hide && !column.disable && column.tipe) {
             vm.excel.fields[column.title] = column.name;
           }
         });
         vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
           var object = {};
           vm.columnData.forEach(function (key) {
-            if (!key.hide && !key.disable) {
+            if (!key.hide && !key.disable && key.tipe) {
               const value = _.get(item, key.name, '-');
               object[key.name] = value === '' || value === null ? '-' : value;
             }
@@ -805,14 +806,14 @@
         var vm = this;
         vm.excelAll.fields = {};
         vm.columnData.forEach(function (column) {
-          if (!column.disable) {
+          if (!column.disable && !column.notExcel) {
             vm.excelAll.fields[column.title] = column.name;
           }
         });
         vm.excelAll.data = _.chain(vm.excelAllData.data).map(function (item) {
           var object = {};
           vm.columnData.forEach(function (key) {
-            if (!key.disable) {
+            if (!key.disable && !key.notExcel) {
               const value = _.get(item, key.name, '-');
               object[key.name] = value === '' || value === null ? '-' : value;
             }

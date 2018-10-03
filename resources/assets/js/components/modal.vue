@@ -10,7 +10,7 @@
 								<h6 class="modal-title">
 									<slot name="modal-title"></slot>
 								</h6>
-								<button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button>
+								<!-- <button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button> -->
 							</div>
 							<div class="modal-body">
 								<transition name="modal-effect" enter-active-class="animated flipInX" mode="out-in">
@@ -23,16 +23,12 @@
 										<h2>{{ title }}</h2>
 										<div class="card card-body" v-if="content">{{ content }}</div>
 										<br>
-										<ul class="list-inline d-none d-sm-block">
-											<li>
-												<button type="button" class="btn btn-light" @click="batal">
-													<i class="icon-arrow-left13"></i> Batal</button>
-											</li>
-											<li>
-												<button type="button" class="btn btn-warning" @click="confirmOk">
-													<i class="icon-checkmark5"></i> {{ button }}</button>
-											</li>
-										</ul>
+										<div class=" d-none d-sm-block">
+											<button type="button" class="btn btn-light" @click="batal">
+												<i class="icon-arrow-left13"></i> Batal</button>
+											<button type="button" class="btn btn-warning" @click="confirmOk">
+												<i class="icon-checkmark5"></i> {{ button }}</button>
+										</div>
 										<div class="d-block d-sm-none">
 											<button type="button" class="btn btn-warning btn-block pb-2" @click="confirmOk">
 													<i class="icon-checkmark5"></i> {{ button }}</button>
@@ -49,16 +45,12 @@
 										<h2>{{ title }}</h2>
 										<pre class="pre-scrollable" id="stack" v-if="content">{{ content }}</pre>
 										<br>
-										<ul class="list-inline d-none d-sm-block">
-											<li>
-												<button type="button" class="btn btn-light" @click="tutup">
-													<i class="icon-cross"></i> Tutup</button>
-											</li>
-											<li>
-												<button type="button" class="btn btn-warning" @click="confirmOk">
-													<i class="icon-checkmark5"></i> {{ button }}</button>
-											</li>
-										</ul>
+										<div class=" d-none d-sm-block">
+											<button type="button" class="btn btn-light" @click="tutup">
+												<i class="icon-cross"></i> Tutup</button>
+											<button type="button" class="btn btn-warning" @click="confirmOk">
+												<i class="icon-checkmark5"></i> {{ button }}</button>
+										</div>
 										<div class="d-block d-sm-none">
 											<button type="button" class="btn btn-warning btn-block" @click="confirmOk">
 													<i class="icon-checkmark5"></i> {{ button }}</button>
@@ -73,11 +65,9 @@
 											<i class="icon-checkmark-circle2" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<ul class="list-inline d-none d-sm-block">
-											<li>
+										<div class="d-none d-sm-block">
 												<button type="button" class="btn btn-light" @click="successOk">{{ button }}</button>
-											</li>
-										</ul>
+										</div>
 										<div class="d-block d-sm-none">
 											<button type="button" class="btn btn-light btn-block" @click="successOk">{{ button }}</button>
 										</div>
@@ -121,11 +111,9 @@
 
 										<hr>
 
-										<ul class="list-inline d-none d-sm-block">
-											<li>
-												<button type="button" class="btn btn-danger" @click="failOk">{{ button }}</button>
-											</li>
-										</ul>
+										<div class=" d-none d-sm-block">
+											<button type="button" class="btn btn-danger" @click="failOk">{{ button }}</button>
+										</div>
 										<div class="d-block d-sm-none">
 											<button type="button" class="btn btn-danger btn-block" @click="failOk">{{ button }}</button>
 										</div>

@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -135,22 +135,16 @@
 					limit: 10,
 					page: 1
 				},
+				excelUrl: '',
 				columnData: [
 					{
 						title: 'No.',
 						name: 'No.',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false
 					},
 					{
 						title: 'Foto',
 						name: 'gambar',
-						tipe: 'string',
-						sort: false,
 						hide: false,
-						disable: false
 					},
 					{
 						title: 'Judul',
@@ -164,7 +158,7 @@
 					},
 					{
 						title: 'Kategori',
-						name: 'artikelKategori.name',
+						name: 'artikel_kategori.name',
 						tipe: 'string',
 						sort: false,
 						hide: false,
@@ -173,7 +167,7 @@
 					},
 					{
 						title: 'Penulis',
-						name: 'artikelPenulis.name',
+						name: 'artikel_penulis.name',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -262,18 +256,14 @@
 		},
 		methods: {
 			fetch(params){
-				if(this.$route.params.kategori){
-					this.$store.dispatch('artikelKategori/edit',this.$route.params.kategori);
-				}else if(this.$route.params.penulis){
-					this.$store.dispatch('artikelPenulis/edit',this.$route.params.penulis);
+				if(this.$route.params.cu == 'semua'){
+					this.disableColumnCu(false);
+					this.$store.dispatch(this.kelas + '/index', params);
+					this.excelUrl = this.kelas;
 				}else{
-					if(this.$route.params.cu == 'semua'){
-						this.disableColumnCu(false);
-						this.$store.dispatch(this.kelas + '/index', params);
-					}else{
-						this.disableColumnCu(true);
-						this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
-					}
+					this.disableColumnCu(true);
+					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
+					this.excelUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
 				}
 			},
 			disableColumnCu(status){
@@ -355,11 +345,6 @@
 				modelPenulis: 'data',
 				modelPenulisStat: 'dataStat',
 			}),
-		},
-		filters: {
-			checkImages: function (value) {
-				return '/images/' + this.kelas + '/' + value + 'n.jpg';
-			}
 		}
 	}
 </script>

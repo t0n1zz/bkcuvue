@@ -3,22 +3,22 @@ import { BKCU_CONFIG } from '../config.js';
 export default {
   
   index: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanTpDiskusi' ,{params: p});
+    return api.call('get', BKCU_CONFIG.API_URL + '/laporanTpDiskusi' ,{params: p});
   },
 
   get: function(id){
-    return axios.get( BKCU_CONFIG.API_URL + '/laporanTpDiskusi/get/' + id);
+    return api.call('get', BKCU_CONFIG.API_URL + '/laporanTpDiskusi/get/' + id);
   },
 
   store: function ( form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/laporanTpDiskusi/store', form);
+    return api.call('post', BKCU_CONFIG.API_URL + '/laporanTpDiskusi/store', form);
   },
 
   update: function ( id, form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/laporanTpDiskusi/update/' + id, form);
+    return api.call('post', BKCU_CONFIG.API_URL + '/laporanTpDiskusi/update/' + id, form);
   },
 
   destroy: function( id ){
-    return axios.delete(BKCU_CONFIG.API_URL + '/laporanTpDiskusi/' + id);
+    return api.call('delete', BKCU_CONFIG.API_URL + '/laporanTpDiskusi/' + id);
   }
 }

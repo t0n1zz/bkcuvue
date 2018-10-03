@@ -3,38 +3,38 @@ import { BKCU_CONFIG } from '../config.js';
 export default {
   
   index: function( p ){
-    return axios.get( BKCU_CONFIG.API_URL + '/regencies' , {params: p});
+    return api.call('get', BKCU_CONFIG.API_URL + '/regencies' , {params: p});
   },
 
   get: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/get');
+    return api.call('get', BKCU_CONFIG.API_URL + '/regencies/get');
   },
   
   indexProvinces: function( p, id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/indexProvinces/' + id, {params: p});
+    return api.call('get', BKCU_CONFIG.API_URL + '/regencies/indexProvinces/' + id, {params: p});
   },
 
   getProvinces: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/getProvinces/' + id);
+    return api.call('get', BKCU_CONFIG.API_URL + '/regencies/getProvinces/' + id);
   },
 
   create: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/create');
+    return api.call('get', BKCU_CONFIG.API_URL + '/regencies/create');
   },
 
   store: function ( form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/regencies/store', form);
+    return api.call('post', BKCU_CONFIG.API_URL + '/regencies/store', form);
   },
 
   edit: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/regencies/edit/' + id);
+    return api.call('get', BKCU_CONFIG.API_URL + '/regencies/edit/' + id);
   },
 
   update: function ( id, form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/regencies/update/' + id, form);
+    return api.call('post', BKCU_CONFIG.API_URL + '/regencies/update/' + id, form);
   },
 
   destroy: function( id ){
-    return axios.delete(BKCU_CONFIG.API_URL + '/regencies/' + id);
+    return api.call('delete', BKCU_CONFIG.API_URL + '/regencies/' + id);
   }
 }

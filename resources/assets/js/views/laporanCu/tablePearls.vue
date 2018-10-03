@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- item -->
 			<template slot="item-desktop" slot-scope="props">
@@ -171,6 +171,7 @@ export default {
         limit: 50,
         page: 1
       },
+      excelUrl: '',
       selectedItem: [],
       modalShow: false,
       modalState: "",

@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -294,6 +294,7 @@ export default {
         limit: 50,
         page: 1
       },
+      excelUrl:'',
       selectedItem: [],
       modalShow: false,
       modalState: "",
@@ -355,6 +356,7 @@ export default {
           params,
           this.$route.params.periode
         ]);
+        this.excelUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
       } else if (this.$route.meta.mode == "cu") {
         this.disableColumnCU(true);
 
@@ -367,6 +369,7 @@ export default {
             params,
             this.$route.params.cu
           ]); 
+          this.excelUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
         } else {
           this.disableColumnTp(true);
           this.disableColumnTpName(true);
@@ -376,6 +379,7 @@ export default {
             params,
             this.$route.params.tp
           ]);
+          this.excelUrl = 'laporanTp' + '/indexTp/' + this.$route.params.tp;
         }
       } else if (this.$route.meta.mode == "cuPeriode") {
         this.disableColumnCU(true);
@@ -388,6 +392,7 @@ export default {
           this.$route.params.cu,
           this.$route.params.periode
         ]);
+        this.excelUrl = 'laporanTp' + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.periode;
       } else {
         this.disableColumnCU(false);
         this.disableColumnTp(false);
@@ -395,6 +400,7 @@ export default {
         this.filterCU();
 
         this.$store.dispatch(this.kelas + "/index", params);
+        this.excelUrl = this.kelas;
       }
     },
     disableColumnCU(status) {

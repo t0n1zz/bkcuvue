@@ -27,13 +27,13 @@ class Artikel extends Model {
     protected $allowedFilters = [
         'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at',
         
-        'artikelKategori.name','artikelPenulis.name','cu.name'
+        'artikel_kategori.name','artikel_penulis.name','cu.name'
     ];
 
     protected $orderable = [
         'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at',
         
-        'artikelKategori.name','artikelPenulis.name','cu.name'
+        'artikel_kategori.name','artikel_penulis.name','cu.name'
     ];
 
     public static function initialize()

@@ -19,26 +19,26 @@ export default {
   },
 
   edit: function( id ){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikel/edit/' + id);
+    return api.call('get',BKCU_CONFIG.API_URL + '/artikel/edit/' + id);
   },
 
   update: function ( id, form ){
-    return axios.post(BKCU_CONFIG.API_URL + '/artikel/update/' + id, form);
+    return api.call('post',BKCU_CONFIG.API_URL + '/artikel/update/' + id, form);
   },
 
   updateTerbitkan: function( id ){
-    return axios.post(BKCU_CONFIG.API_URL + '/artikel/updateTerbitkan/' + id);
+    return api.call('post',BKCU_CONFIG.API_URL + '/artikel/updateTerbitkan/' + id);
   },
 
   updateUtamakan: function( id ){
-    return axios.post(BKCU_CONFIG.API_URL + '/artikel/updateUtamakan/' + id);
+    return api.call('post',BKCU_CONFIG.API_URL + '/artikel/updateUtamakan/' + id);
   },
 
   destroy: function( id ){
-    return axios.delete(BKCU_CONFIG.API_URL + '/artikel/' + id);
+    return api.call('delete',BKCU_CONFIG.API_URL + '/artikel/' + id);
   },
 
   count: function(){
-    return axios.get(BKCU_CONFIG.API_URL + '/artikel/count');
+    return api.call('get',BKCU_CONFIG.API_URL + '/artikel/count');
   },
 }
