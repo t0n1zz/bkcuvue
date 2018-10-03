@@ -518,6 +518,7 @@ export const laporanCu = {
       {
         title: "Tgl. Buat",
         name: "created_at",
+        tipe: "datetime",
         sort: true,
         hide: false,
         disable: false,
@@ -527,6 +528,7 @@ export const laporanCu = {
       {
         title: "Tgl. Ubah",
         name: "updated_at",
+        tipe: "datetime",
         sort: true,
         hide: false,
         disable: false,

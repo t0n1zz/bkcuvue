@@ -24,5 +24,9 @@ export default {
 
   destroy: function( id ){
     return api.call('delete', BKCU_CONFIG.API_URL + '/diklatBKCU/' + id);
-  }
+  },
+
+  count: function(){
+    return api.call('get',BKCU_CONFIG.API_URL + '/diklatBKCU/count');
+  },
 }
