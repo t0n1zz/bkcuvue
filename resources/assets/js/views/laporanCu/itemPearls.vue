@@ -238,14 +238,14 @@
 
 		<!-- s10 -->
 		<div v-else-if="type == 's10'" class="media">
-			<div class="mr-2">
+			<div class="mr-2" v-if="props && props.s10">
 				<button type="button" class="btn rounded-round btn-icon btn-xs" :class="{'btn-primary': props.s10 > 0.12, 'btn-danger': props.s10 <= 0.12}">
 					<span class="letter-icon">S10</span>
 				</button>
 			</div>
-			<div class="media-body">
+			<div class="media-body" v-if="props && props.s10">
 				<h6 class="media-title">
-					<check-value :value="props.s10" valueType="percentage"></check-value>
+					<check-value :value="props.s10" valueType="percentage" ></check-value>
 				</h6>
 				<div class="font-size-sm">
 					<span v-if="props.s10 > 0.12">IDEAL</span>
@@ -256,12 +256,12 @@
 
 		<!-- s11 -->
 		<div v-else-if="type == 's11'" class="media">
-			<div class="mr-2">
+			<div class="mr-2" v-if="props && props.s11">
 				<button type="button" class="btn rounded-round btn-icon btn-xs" :class="{'btn-primary': props.s11 > (0.1 + props.laju_inflasi), 'btn-danger': props.s11 <= (0.1 + props.laju_inflasi)}">
 					<span class="letter-icon">S11</span>
 				</button>
 			</div>
-			<div class="media-body">
+			<div class="media-body" v-if="props && props.s11">
 				<h6 class="media-title">
 					<check-value :value="props.s11" valueType="percentage"></check-value>
 				</h6>

@@ -15,7 +15,7 @@
 
         <!-- grafik perkembangan -->
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikGerakan'}" @click.prevent="changeGrafikTab('grafikGerakan')"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan Gerakan</a>
+          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikGerakan'}" @click.prevent="changeGrafikTab('grafikGerakan')" v-if="profile.id_cu == 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan Gerakan</a>
         </li>
 
       </ul>
@@ -43,7 +43,7 @@
 
     <!-- grafik gerakan -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
-      <div v-show="tabGrafikName == 'grafikGerakan'" v-if="isGrafikGerakan">
+      <div v-show="tabGrafikName == 'grafikGerakan'" v-if="isGrafikGerakan && profile.id_cu == 0">
         <infografis-gerakan
           :title="'Laporan Perkembangan Gerakan'"
           :kelas="'laporanCu'"

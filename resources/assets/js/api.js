@@ -8,7 +8,7 @@ class Api {
 						resolve(response);
           })
           .catch(({response}) => {
-						if (response.status === 401) {
+						if (response.status == 401) {
 								auth.logout();
 								this.$router.push('/login');
 						}

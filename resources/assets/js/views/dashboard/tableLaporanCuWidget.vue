@@ -2,14 +2,12 @@
   <div class="card">
     <div class="card-header header-elements-inline">
       <h6 class="card-title"><i></i><i class="icon-table2 mr-2"></i> Tabel Perkembangan</h6>
+      <div class="header-elements">
+        <span v-if="itemDataStat == 'success'"><i class="badge badge-mark border-warning"></i> {{ itemData.data[itemData.total-1]['periode'] | dateMonth }}</span>
+      </div>
     </div>
 
     <ul class="nav nav-tabs nav-tabs-solid nav-justified bg-indigo-400 border-x-0 border-bottom-0 border-top-indigo-300 mb-0">
-
-      <!-- tabel gerakan -->
-      <li class="nav-item">
-        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelGerakan'}" @click.prevent="changeTabelTab('tabelGerakan')" v-if="profile.id_cu == 0">Gerakan</a>
-      </li>
 
       <!-- tabel cu -->
       <li class="nav-item">
@@ -23,24 +21,48 @@
 
       <!-- tabel gerakan -->
       <li class="nav-item">
-        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelGerakan'}" @click.prevent="changeTabelTab('tabelGerakan')" v-if="profile.id_cu != 0">Gerakan</a>
+        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelCu'}" @click.prevent="changeTabelTab('tabelCu')" v-if="profile.id_cu == 0">Gerakan</a>
       </li>
 
     </ul>
 
     <transition enter-active-class="animated fadeIn" mode="out-in">
-      <div class="table-responsive table-scrollable" v-show="tabTabelName == 'tabelGerakan'" v-if="isTabelGerakan">
+      <div class="table-responsive table-scrollable" v-show="tabTabelName == 'tabelCu'">
         <table class="table text-nowrap">
           <thead>
             <tr>
-              <th class="w-100">Nama Akun</th>
+              <th>Nama Akun</th>
               <th>Nilai</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="column in columnData" v-if="column.tipe && !column.disable">
               <td>{{column.title}}</td>
-              <td></td>
+              <td v-if="itemDataStat == 'success'">
+                <check-value :value="itemData.data[itemData.total-1][column.name]" valueType="currency"></check-value>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </transition>
+
+    <transition enter-active-class="animated fadeIn" mode="out-in">
+      <div class="table-responsive table-scrollable" v-show="tabTabelName == 'tabelPearls'">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th>Indikator</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="column in columnDataPearls" v-if="column.tipe && !column.disable">
+              <td v-if="itemPearlsDataStat == 'success'">
+                <item-pearls
+                  :type="column.name"
+                  :props="itemPearlsData.data[itemPearlsData.total-1]"
+                ></item-pearls>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -51,8 +73,15 @@
 </template>
 
 <script type="text/javascript">
+  import { mapGetters } from 'vuex';
+  import checkValue from "../../components/checkValue.vue";
+  import itemPearls from "../laporanCu/itemPearls.vue";
 
   export default {
+    components: {
+      checkValue,
+      itemPearls
+    },
     props: ['profile','profileStat','columnData','columnDataPearls'],
     data(){
       return {
@@ -62,29 +91,63 @@
       }
     },
     created(){
-      if(this.profileStat == 'success' && this.profile.id_cu == 0){
-          this.changeTabelTab('tabelGerakan');
-        }
+      this.removeColumn();
 		},
 		watch: {
 			profileStat(value){
 				if(value == 'success'){
-					if(this.profile.id_cu == 0){
-            this.changeTabelTab('tabelGerakan');
-					}
 				}
 			}
 		},
 		methods:{
+      removeColumn(){
+        this.columnData[1].disable = true;
+        this.columnData[2].disable = true;
+        this.columnData[3].disable = true;
+        this.columnData[4].disable = true;
+        this.columnData[5].disable = true;
+        this.columnData[6].disable = true;
+        this.columnData[47].disable = true;
+        this.columnData[48].disable = true;
+
+        this.columnDataPearls[1].disable = true;
+        this.columnDataPearls[2].disable = true;
+        this.columnDataPearls[3].disable = true;
+        this.columnDataPearls[4].disable = true;
+        this.columnDataPearls[5].disable = true;
+        this.columnDataPearls[6].disable = true;
+        this.columnDataPearls[20].disable = true;
+        this.columnDataPearls[21].disable = true;
+        this.columnDataPearls[22].disable = true;
+        this.columnDataPearls[23].disable = true;
+      },
 			changeTabelTab(value) {
 				this.tabTabelName = value;
-				if (value == 'tabelGerakan' && !this.isTabelGerakan) {
-					this.isTabelGerakan = true
-				}
 				if (value == 'tabelPearls' && !this.isTabelPearls) {
-					this.isTabelPearls = true
+          this.isTabelPearls = true
+
+          if(this.itemPearlsDataStat != 'success')
+          {
+            let query = {
+              order_column: "p1",
+              order_direction: "desc",
+              filter_match: "and",
+              limit: 50,
+              page: 1
+            };
+
+            this.$store.dispatch('laporanCu/grafikPearlsCu', [query,this.profile.id_cu]);
+          }
 				}
 			},
-		},
+    },
+    computed: {
+      ...mapGetters('laporanCu',{
+        itemData: 'grafik',
+        itemDataStat: 'grafikStat',
+        itemPearlsData: "grafikPearls",
+        itemPearlsDataStat: "grafikPearlsStat",
+      })
+    }
   }
 </script>
