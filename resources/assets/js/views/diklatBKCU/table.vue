@@ -60,36 +60,40 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td v-if="!columnData[6].hide && !columnData[6].disable">
 						<check-value :value="props.item.tempat.name" v-if="props.item.tempat"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.periode"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide" v-html="$options.filters.date(props.item.mulai)"></td>
-					<td v-if="!columnData[8].hide" v-html="$options.filters.date(props.item.selesai)"></td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[8].hide" v-html="$options.filters.date(props.item.mulai)"></td>
+					<td v-if="!columnData[9].hide" v-html="$options.filters.date(props.item.selesai)"></td>
+					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.peserta_max"></check-value>
 					</td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.peserta_min"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide" class="text-warp">
+					<td v-if="!columnData[12].hide" class="text-warp">
 						<span v-if="props.item.sasaran">
 							<label v-for="sasaran in props.item.sasaran" class="badge badge-primary ml-1">
 								{{ sasaran.name }}
 							</label>
 						</span>
 					</td>
-					<td v-if="!columnData[12].hide">
+					<td v-if="!columnData[13].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[14].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[15].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -162,6 +166,15 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
+					},
+					{
+						title: 'Provinsi',
+						name: 'provinces.name',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Kabupaten/Kota',

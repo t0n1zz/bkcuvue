@@ -140,6 +140,21 @@
 											<slot name="modal-footer2"></slot>
 										</div>
 									</div>
+
+									<!-- image -->
+									<div v-else-if="state === 'image'" key="image" class="text-center">
+										<img :src="content" class="img-fluid">
+										<br><br>
+										<div class=" d-none d-sm-block">
+											<button type="button" class="btn btn-light" @click="tutup">
+												<i class="icon-cross"></i> Tutup</button>
+										</div>
+										<div class="d-block d-sm-none">
+											<button type="button" class="btn btn-light btn-block" @click="tutup">
+													<i class="icon-cross"></i> Tutup</button>
+										</div>
+									</div>
+
 								</transition>
 							</div>
 						</div>

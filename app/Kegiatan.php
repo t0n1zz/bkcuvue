@@ -20,34 +20,45 @@ class Kegiatan extends Model {
     ];
     
     protected $fillable = [
-      'id_regencies','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','jadwal','keterangan','status','tipe','peserta_max','peserta_min','created_at','updated_at','deleted_at'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','jadwal','keterangan','status','tipe','peserta_max','peserta_min','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
         'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at',
 
-        'regencies.name','tempat.name'
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name','tempat.name'
     ];
 
     protected $orderable = [
         'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at',
 
-        'regencies.name','tempat.name'
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name','tempat.name'
     ];
-
-    public function getNameAttribute($value){
-        return !empty($value) ? $value : '-';
-    }
-
+    
     public static function initialize(){
         return [
-            'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => ''
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => ''
         ];
     }
         
+    public function Provinces()
+    {
+        return $this->belongsTo('App\Region\Provinces','id_provinces','id')->select('id','name');
+    }
+		
     public function Regencies()
     {
         return $this->belongsTo('App\Region\Regencies','id_regencies','id')->select('id','name');
+    }
+		
+    public function Districts()
+    {
+        return $this->belongsTo('App\Region\Districts','id_districts','id')->select('id','name');
+    }
+		
+    public function Villages()
+    {
+        return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
         
     public function tempat(){

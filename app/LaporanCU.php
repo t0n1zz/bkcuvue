@@ -39,7 +39,7 @@ class LaporanCu extends Model {
 
         'cu.name','provinces.name','laporan_cu.no_ba',
 
-        'p1','p2','e1','e5','e6','e9','a1','a2','r7_1','r7_2','r9','l1','s10','s11'
+        'p1','p2','e1','e5','e6','e9','a1','a2','r7_1','r7_2','r9','l1','s10','s11','tot_ideal'
     ];
 
     protected $orderable = [
@@ -47,7 +47,7 @@ class LaporanCu extends Model {
 
         'cu.name','provinces.name','laporan_cu.no_ba',
 
-        'p1','p2','e1','e5','e6','e9','a1','a2','r7_1','r7_2','r9','l1','s10','s11'
+        'p1','p2','e1','e5','e6','e9','a1','a2','r7_1','r7_2','r9','l1','s10','s11','tot_ideal'
     ];
 
     public static function initialize()

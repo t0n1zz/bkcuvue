@@ -32,92 +32,95 @@
 					<td v-if="!columnData[6].hide && !columnData[6].disable">
 						<check-value :value="props.item.tp"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide" @click.prevent="modelKatexOpen(props.item,'p1')" style="cursor:pointer;">
+          <td v-if="!columnData[7].hide && !columnData[7].disable">
+						<check-value :value="props.item.tot_ideal"></check-value>
+					</td>
+					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'p1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'p1'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[8].hide" @click.prevent="modelKatexOpen(props.item,'p2')" style="cursor:pointer;">
+					<td v-if="!columnData[9].hide" @click.prevent="modelKatexOpen(props.item,'p2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'p2'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[9].hide" @click.prevent="modelKatexOpen(props.item,'e1')" style="cursor:pointer;">
+					<td v-if="!columnData[10].hide" @click.prevent="modelKatexOpen(props.item,'e1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e1'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[10].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
+					<td v-if="!columnData[11].hide" @click.prevent="modelKatexOpen(props.item,'e5')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e5'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[11].hide" @click.prevent="modelKatexOpen(props.item,'e6')" style="cursor:pointer;">
+					<td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'e6')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e6'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
+					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e9'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
+					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a1'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
+					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a2'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
+					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'r8')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r7'"
 							:props="props.item"
 						></item-pearls>	
 					</td>
-					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'r9')" style="cursor:pointer;">
+					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'r9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r9'"
 							:props="props.item"
 						></item-pearls>	
 					</td>
-					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
+					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'l1'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
+					<td v-if="!columnData[19].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s10'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
+					<td v-if="!columnData[20].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s11'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[24].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -222,9 +225,13 @@ export default {
   methods: {
     fetch(params) {
       if (this.$route.meta.mode == "periode") {
-        this.disableColumnCU(false);
-        this.disableColumnTp(false);
-        this.disableColumnTpName(true);
+
+        this.columnData[1].disable = false;
+        this.columnData[3].disable = false;
+        this.columnData[4].disable = false;
+        this.columnData[5].disable = false;
+        this.columnData[6].disable = false;
+        this.columnData[2].disable = true;
 
         this.$store.dispatch(this.kelas + "/indexPearlsPeriode", [
           params,
@@ -233,9 +240,22 @@ export default {
 
         // default route
       } else if (this.$route.meta.mode == "cu") {
-        this.disableColumnCU(true);
+
+        this.columnData[1].disable = true;
+        this.columnData[3].disable = true;
+        this.columnData[4].disable = true;  
+
         if (this.$route.params.tp == "konsolidasi") {
-          this.disableColumnTp(false);
+         
+          this.columnData[2].disable = false;
+          this.columnData[5].disable = false;
+          this.columnData[7].disable = false;
+
+          this.columnData[1].disable = true;
+          this.columnData[3].disable = true;
+          this.columnData[4].disable = true;
+          this.columnData[6].disable = true;
+
           this.disableColumnTpName(true);
 
           this.$store.dispatch(this.kelas + "/indexPearlsCu", [
@@ -243,8 +263,15 @@ export default {
             this.$route.params.cu
           ]);
         } else {
-          this.disableColumnTp(true);
-          this.disableColumnTpName(true);
+          
+          this.columnData[5].disable = false;
+          this.columnData[7].disable = false;
+
+          this.columnData[1].disable = true;
+          this.columnData[2].disable = true;
+          this.columnData[3].disable = true;
+          this.columnData[4].disable = true;
+          this.columnData[6].disable = true;
 
           this.$store.dispatch(this.kelas + "/indexPearlsTp", [
             params,
@@ -252,9 +279,16 @@ export default {
           ]);
         }
       } else if (this.$route.meta.mode == "cuPeriode") {
-        this.disableColumnCU(true);
-        this.disableColumnTp(true);
-        this.disableColumnTpName(false);
+        
+        this.columnData[2].disable = false;
+        this.columnData[5].disable = false;
+        this.columnData[7].disable = false;
+
+        this.columnData[1].disable = true;
+        this.columnData[3].disable = true;
+        this.columnData[4].disable = true;
+        this.columnData[6].disable = true;
+
 
         this.$store.dispatch(this.kelas + "/indexPearlsTpPeriode", [
           params,
@@ -262,9 +296,13 @@ export default {
           this.$route.params.periode
         ]);
       } else {
-        this.disableColumnCU(false);
-        this.disableColumnTp(false);
-        this.disableColumnTpName(true);
+
+        this.columnData[1].disable = false;
+        this.columnData[3].disable = false;
+        this.columnData[4].disable = false;
+        this.columnData[5].disable = false;
+        this.columnData[6].disable = false;
+        this.columnData[2].disable = true;
 
         this.$store.dispatch(this.kelas + "/indexPearls", params);
       }

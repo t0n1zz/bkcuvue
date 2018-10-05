@@ -264,25 +264,48 @@
 							<div class="card-body">	
 								<div class="row">
 
-									<!-- kota -->
-									<div class="col-md-6">
+									<!-- Provinsi -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_provinces')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i>
+												Provinsi:
+											</h5>
+
+											<!-- select -->
+											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
+												<option disabled value="">Silahkan pilih Provinsi</option>
+												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_provinces')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_provinces') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- kabupaten -->
+									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
-												Kabupaten/Kota:</h5>
+												Kabupaten:
+											</h5>
 
-											<!-- text -->
-											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+											<!-- select -->
+											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
 													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
-													<span v-else>Silahkan pilih kabupaten/kota</span>
+													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
 												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
 											</select>
-
-											<!-- <v-select label="name" :options="modelRegencies" v-model="form.id_regencies"></v-select> -->
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
@@ -293,7 +316,7 @@
 									</div>
 
 									<!-- tempat -->
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_tempat')}">
 
 											<!-- title -->
@@ -321,67 +344,79 @@
 
 									<!-- tempat data -->
 									<div class="col-md-12" v-if="tempatData != ''">
-										<div class="card">
-											<div class="row">
-												<div class="col-md-4">
-													<img :src="'/images/tempat/' + tempatData.gambar + 'n.jpg'" class="img-rounded img-responsive" v-if="tempatData.gambar">
-													<img :src="'/images/no_image.jpg'" class="img-rounded img-responsive" v-else>
-												</div>
-												<div class="col-md-8">
-													<h5><b>{{ tempatData.name }}</b></h5>
-													<div class="row">
-														<div class="col-md-6">
-															<ul>
-																<li><b>Provinsi:</b> 
-																	<span v-if="tempatData.provinces">{{ tempatData.provinces.name }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>Kabupaten/Kota:</b>
-																	<span v-if="tempatData.regencies">{{ tempatData.regencies.name }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>Kecamatan:</b> 
-																	<span v-if="tempatData.districts">{{ tempatData.districts.name }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>Kelurahan:</b> 
-																	<span v-if="tempatData.villages">{{ tempatData.villages.name }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>Alamat:</b> 
-																	<span v-if="tempatData.alamat">{{ tempatData.alamat }}</span>
-																	<span v-else>-</span>
-																</li>
-															</ul>
-														</div>
-														<div class="col-md-6">
-															<ul>
-																<li><b>Website:</b>
-																	<span v-if="tempatData.website">{{ tempatData.website }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>Email:</b>
-																	<span v-if="tempatData.email">{{ tempatData.email }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>No. Telp:</b>
-																	<span v-if="tempatData.telp">{{ tempatData.telp }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>No. Hp:</b>
-																	<span v-if="tempatData.hp">{{ tempatData.hp }}</span>
-																	<span v-else>-</span>
-																</li>
-																<li><b>Kode Pos:</b>
-																	<span v-if="tempatData.pos">{{ tempatData.pos }}</span>
-																	<span v-else>-</span>
-																</li>
-															</ul>
-														</div>
+
+										<div class="card card-body">
+											<div class="media flex-column flex-sm-row mt-0 mb-3">
+												<div class="mr-sm-3 mb-2 mb-sm-0">
+													<div class="card-img-actions">
+														<a href="#" @click.prevent="modalImageShow('/images/tempat/' + tempatData.gambar + '.jpg')" v-if="tempatData.gambar">
+															<img :src="'/images/tempat/' + tempatData.gambar + 'n.jpg'" class="img-fluid img-preview rounded" >
+															<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
+														</a>
+														<a href="#" @click.prevent="modalImageShow('/images/no_image.jpg')" v-else>
+															<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" >
+															<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
+														</a>
 													</div>
+												</div>
+
+												<div class="media-body">
+													<h4 class="media-title">{{ tempatData.name }}</h4>
+													<hr>
+													<div class="row">
+															<div class="col-md-6">
+																<ul class="list list-unstyled mb-0">
+																	<li><b>Provinsi:</b> 
+																		<span v-if="tempatData.provinces">{{ tempatData.provinces.name }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>Kabupaten/Kota:</b>
+																		<span v-if="tempatData.regencies">{{ tempatData.regencies.name }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>Kecamatan:</b> 
+																		<span v-if="tempatData.districts">{{ tempatData.districts.name }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>Kelurahan:</b> 
+																		<span v-if="tempatData.villages">{{ tempatData.villages.name }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>Alamat:</b> 
+																		<span v-if="tempatData.alamat">{{ tempatData.alamat }}</span>
+																		<span v-else>-</span>
+																	</li>
+																</ul>
+															</div>
+															<div class="col-md-6">
+																<ul class="list list-unstyled mb-0">
+																	<li><b>Website:</b>
+																		<span v-if="tempatData.website">{{ tempatData.website }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>Email:</b>
+																		<span v-if="tempatData.email">{{ tempatData.email }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>No. Telp:</b>
+																		<span v-if="tempatData.telp">{{ tempatData.telp }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>No. Hp:</b>
+																		<span v-if="tempatData.hp">{{ tempatData.hp }}</span>
+																		<span v-else>-</span>
+																	</li>
+																	<li><b>Kode Pos:</b>
+																		<span v-if="tempatData.pos">{{ tempatData.pos }}</span>
+																		<span v-else>-</span>
+																	</li>
+																</ul>
+															</div>
+														</div>
 												</div>
 											</div>
 										</div>
+										
 									</div>
 
 								</div>
@@ -403,8 +438,7 @@
 											<!-- title -->
 											<h5>Jadwal:</h5>
 
-											<!-- summernote -->
-											<textarea rows="5" type="text" name="jadwal" class="form-control" v-model="form.jadwal" placeholder="Silahkan masukkan jadwal"></textarea>
+											<ckeditor type="classic" v-model="form.jadwal"></ckeditor>
 										</div>
 									</div>
 
@@ -415,8 +449,8 @@
 											<!-- title -->
 											<h5>Keterangan:</h5>
 
-											<!-- summernote -->
-											<textarea rows="5" type="text" name="keterangan" class="form-control" v-model="form.keterangan" placeholder="Silahkan masukkan keterangan"></textarea>
+											<ckeditor type="classic" v-model="form.keterangan"></ckeditor>
+
 										</div>
 									</div>
 									
@@ -449,9 +483,6 @@
 </template>
 
 <script>
-	import Vue from 'vue';
-	import _ from 'lodash';
-	import axios from 'axios';
 	import { mapGetters } from 'vuex'
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
@@ -530,9 +561,10 @@
 				if(value === "success"){
 					if(this.$route.meta.mode == 'edit'){
 						var i;
-						for(i = 0; i < this.form.sasaran_hub.length; i++){
-							this.sasaran.push(this.form.sasaran_hub[i].id_sasaran);
+						for(i = 0; i < this.form.sasaran.length; i++){
+							this.sasaran.push(this.form.sasaran[i].id);
 						}
+						this.changeProvinces(this. form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 					}
 				}
@@ -569,7 +601,10 @@
 					this.titleIcon = 'icon-plus3';
 				}
 
-				this.$store.dispatch('regencies/get');
+				this.$store.dispatch('provinces/get');
+			},
+			changeProvinces(id){
+				this.$store.dispatch('regencies/getProvinces', id);
 			},
 			changeRegencies(id){
 				this.$store.dispatch('tempat/get', id);
@@ -609,6 +644,11 @@
 
 				this.modalShow = false;
 			},
+			modalImageShow(content){
+				this.modalShow = true;
+				this.modalState = 'image';
+				this.modalContent = content;
+			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
 					this.modalTutup;
@@ -630,6 +670,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('provinces',{
+				modelProvinces: 'dataS',
+				modelProvincesStat: 'dataStatS'
 			}),
 			...mapGetters('regencies',{
 				modelRegencies: 'dataS',

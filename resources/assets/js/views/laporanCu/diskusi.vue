@@ -14,8 +14,8 @@
 
 					<div class="header-elements">
 						<div class="list-icons">
-							<a class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-pencil5"></i></a>
-							<a class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-bin2"></i></a>
+							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-pencil5"></i></a>
+							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-bin2"></i></a>
 						</div>
 					</div>
 				</div>
@@ -46,7 +46,8 @@
 		<div class="card">
 			<div class="card-body">
 				<h5 class="text-semibold">Silahkan masukkan komentar anda terhadap laporan keuangan ini</h5>
-				<app-summernote name="editor" :model="form.content" :config="summernoteconfig" :formStat="updateStat" @change="value => { form.content = value }"></app-summernote>
+
+				<ckeditor type="classic" v-model="form.content"></ckeditor>
 
 				<hr>
 
@@ -63,29 +64,28 @@
 			<template slot="modal-body1">
 				<h5 class="text-semibold">Komentar terhadap laporan keuangan ini</h5>
 
-				<app-summernote name="editor" :model="formEdit.content" :config="summernoteconfig" @change="value => { formEdit.content = value }"></app-summernote>
+				<ckeditor type="classic" v-model="formEdit.content"></ckeditor>
 
-				<hr>
-				<div class="text-center hidden-xs">
-					<button type="button" @click.prevent="modalTutup" class="btn btn-default" v-tooltip:top="'Tutup'">
+				<br>
+
+				<div class="d-none d-sm-block text-center">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-light">
 						<i class="icon-cross"></i> Tutup
 					</button>
-					<button type="submit" class="btn btn-primary" v-tooltip:top="'Kirim komentar'" @click.prevent="save('edit')">
+					<button type="button" class="btn btn-primary" @click.prevent="save('edit')">
 						<i class="icon-paperplane"></i> Kirim
 					</button>
 				</div>
 
-				<div class="visible-xs">
-
-					<button type="submit" class="btn btn-primary btn-block" @click.prevent="save('edit')">
+				<div class="d-block d-sm-none">
+					<button type="button" class="btn btn-primary btn-block" @click.prevent="save('edit')">
 						<i class="icon-paperplane"></i> Kirim
 					</button>
-
-					<button type="button" @click.prevent="modalTutup" class="btn btn-default btn-block">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-light btn-block">
 						<i class="icon-cross"></i> Tutup
 					</button>
-					
 				</div>
+
 			</template>
 
 		</app-modal>
@@ -98,14 +98,12 @@
   import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import { toMulipartedForm } from '../../helpers/form';
-	import appSummernote from '../../helpers/summernote.js';
 	import appModal from '../../components/modal';
 	import Cleave from 'vue-cleave-component';
 
 	export default {
 		components:{
 			appModal,
-			appSummernote,
 			Cleave
 		},
 		data(){
@@ -115,20 +113,6 @@
 				idTp: '',
 				periode: '',
 				periodeTp: '',
-				summernoteconfig: {
-					height: 200,
-					toolbar: [
-						['style', ['addclass', 'bold', 'italic', 'underline', 'hr']],
-						['font', ['strikethrough', 'superscript', 'subscript', 'clear']],
-						['color', ['color']],
-						['para', ['ul', 'ol']],
-						['paragraph', ['paragraph']],
-						['table', ['table']],
-						['insert', ['link']],
-						['misc', ['fullscreen']],
-						['misc2', ['undo', 'redo']]
-					]
-				},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',

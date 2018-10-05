@@ -594,7 +594,7 @@ export const laporanCu = {
         filterDefault: false
       },
       {
-        title: "Tp",
+        title: "Jmlh Tp",
         name: "tp",
         tipe: "string",
         sort: true,
@@ -602,6 +602,17 @@ export const laporanCu = {
         disable: false,
         isChart: false,
         filter: true,
+      },
+      {
+        title: "Ideal",
+        name: "tot_ideal",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        isChart: false,
+        filter: false,
+        filterDefault: false
       },
       {
         title: "P1 (= 100%)",

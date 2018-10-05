@@ -211,40 +211,53 @@ class LaporanCuController extends Controller{
 
 			@p2_1 := (IFNULL(laporan_cu.dcr,0) - IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_lalai_1bulan,0) as p2_1,
 
-			if(@p1 >= 1, @p2_1, 0) as p2,
+			@p2 := if(@p1 >= 1, @p2_1, 0) as p2,
 
 			@e1_1 := (IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)))) / IFNULL(laporan_cu.aset,0) as e1_1,
 
 			@e1_2 := (IFNULL(laporan_cu.piutang_beredar,0) - IFNULL(laporan_cu.dcr,0)) / IFNULL(laporan_cu.aset,0) as e1_2,
 
-			IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
+			@e1 := IF(@p1 >= 1 && @p2 > 0.35, @e1_1, @e1_2) as e1,
 
-			(IFNULL(laporan_cu.nonsaham_unggulan,0) + IFNULL(laporan_cu.nonsaham_harian,0)) / IFNULL(laporan_cu.aset,0) as e5,
+			@e5 := (IFNULL(laporan_cu.nonsaham_unggulan,0) + IFNULL(laporan_cu.nonsaham_harian,0)) / IFNULL(laporan_cu.aset,0) as e5,
 
-			IFNULL(laporan_cu.total_hutang_pihak3,0) / IFNULL(laporan_cu.aset,0) as e6,
+			@e6 := IFNULL(laporan_cu.total_hutang_pihak3,0) / IFNULL(laporan_cu.aset,0) as e6,
 
-			(@piutang_bersih - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + IFNULL(laporan_cu.aset_masalah,0))) / IFNULL(laporan_cu.aset,0) as e9,
+			@e9 := (@piutang_bersih - (IFNULL(laporan_cu.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + IFNULL(laporan_cu.aset_masalah,0))) / IFNULL(laporan_cu.aset,0) as e9,
 
-			(IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0)) / IFNULL(laporan_cu.piutang_beredar,0) as a1,
+			@a1 := (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0)) / IFNULL(laporan_cu.piutang_beredar,0) as a1,
 
-			IFNULL(laporan_cu.aset_tidak_menghasilkan,0) / IFNULL(laporan_cu.aset,0) as a2,
+			@a2 := IFNULL(laporan_cu.aset_tidak_menghasilkan,0) / IFNULL(laporan_cu.aset,0) as a2,
 			
 			@r7_1 := IFNULL(laporan_cu.bjs_saham,0) / @rata_saham as r7_1,
 
 			@r7_2 := IFNULL(laporan_cu.bjs_saham,0) / ((IFNULL(laporan_cu.simpanan_saham_lalu,0) + IFNULL(laporan_cu.simpanan_saham,0)) / 2) as r7_2,
 
-			IF(IFNULL(laporan_cu.simpanan_saham_des,0) = 0 && IFNULL(laporan_cu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
+			@r7_1 := IF(IFNULL(laporan_cu.simpanan_saham_des,0) = 0 && IFNULL(laporan_cu.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
 
-			(IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
+			@r9 := (IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
-			(IFNULL(laporan_cu.investasi_likuid,0) + IFNULL(laporan_cu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporan_cu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
+			@l1 := (IFNULL(laporan_cu.investasi_likuid,0) + IFNULL(laporan_cu.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporan_cu.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
 
-			(@total_anggota - IFNULL(laporan_cu.total_anggota_lalu,0)) / IFNULL(laporan_cu.total_anggota_lalu,0) as s10,
+			@s10 := (@total_anggota - IFNULL(laporan_cu.total_anggota_lalu,0)) / IFNULL(laporan_cu.total_anggota_lalu,0) as s10,
 
-			(IFNULL(laporan_cu.aset,0) - IFNULL(laporan_cu.aset_lalu,0)) / IFNULL(laporan_cu.aset_lalu,0) as s11,
+			@s11 := (IFNULL(laporan_cu.aset,0) - IFNULL(laporan_cu.aset_lalu,0)) / IFNULL(laporan_cu.aset_lalu,0) as s11,
 			
 			@ideal := 0 as ideal,
-			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
+			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@p2 > 0.35 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e1 > 0.7 && @e1 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e5 > 0.7 && @e5 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e6 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e9 >= 0.1 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@a1 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@a2 < 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@r7_1 = harga_pasar , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@r9 = 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@l1 >= 0.15 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@s10 > 0.12 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@s11 > (0.1 + laju_inflasi) , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@tot_ideal := @ideal as tot_ideal
 			'
 		)])->advancedFilter();
 
@@ -312,7 +325,20 @@ class LaporanCuController extends Controller{
 			(IFNULL(laporan_cu.aset,0) - IFNULL(laporan_cu.aset_lalu,0)) / IFNULL(laporan_cu.aset_lalu,0) as s11,
 			
 			@ideal := 0 as ideal,
-			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
+			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@p2 > 0.35 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e1 > 0.7 && @e1 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e5 > 0.7 && @e5 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e6 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e9 >= 0.1 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@a1 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@a2 < 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@r7_1 = harga_pasar , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@r9 = 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@l1 >= 0.15 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@s10 > 0.12 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@s11 > (0.1 + laju_inflasi) , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@tot_ideal := @ideal as tot_ideal
 			'
 		)])->whereNull('cu.deleted_at')->advancedFilter();
 

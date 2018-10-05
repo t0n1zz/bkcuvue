@@ -13,6 +13,9 @@ import moment from 'moment';
 import Vue2Filters from 'vue2-filters';
 import VueKatex from 'vue-katex';
 import VTooltip from 'v-tooltip';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import documentEditor from '@ckeditor/ckeditor5-build-decoupled-document'
+import VueCkeditor from 'vue-ckeditor5'
 
 Validator.localize('id',id); //localization
 Vue.use(VueRouter);
@@ -20,6 +23,16 @@ Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
 Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 Vue.use(VTooltip);
+
+const options = {
+  editors: {
+    classic: ClassicEditor,
+    document: documentEditor
+  },
+  name: 'ckeditor'
+}
+
+Vue.use(VueCkeditor.plugin, options);
 
 window.moment = moment; // handling date formating
 window.moment.locale('id'); // handling date formating locale

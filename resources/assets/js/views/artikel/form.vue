@@ -243,7 +243,10 @@
 												<div id="toolbar" class="document-editor__toolbar"></div>
 												<div class="document-editor__editable-container">
 													<div class="document-editor__editable">
-														<vue-ckeditor toolbar-container="#toolbar" type="document" v-model="form.content" :upload-adapter="UploadAdapter" :editors="editors"></vue-ckeditor>
+														<ckeditor type="document" 
+														toolbar-container="#toolbar"
+														v-model="form.content"
+														:upload-adapter="UploadAdapter" ></ckeditor>
 													</div>
 												</div>
 											</div>
@@ -311,14 +314,11 @@
 	import formInfo from "../../components/formInfo.vue";
 	import formKategori from "./formKategori.vue";
 	import formPenulis from "./formPenulis.vue";
-	import documentEditor from '@ckeditor/ckeditor5-build-decoupled-document'
-	import VueCkeditor from 'vue-ckeditor5';
 
 	export default {
 		components: {
 			pageHeader,
 			appModal,
-			'vue-ckeditor': VueCkeditor.component,
 			appImageUpload,
 			message,
 			formButton,
@@ -335,9 +335,6 @@
 				kelas: 'artikel',
 				id_cu: '',
 				utama: '',
-				editors: {
-					document: documentEditor
-				},
 				UploadAdapter: function (loader) {
           this.loader = loader
           this.upload = () => {

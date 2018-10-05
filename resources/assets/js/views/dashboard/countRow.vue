@@ -48,6 +48,10 @@
 			}
 		},
 		created(){
+			if(this.profileStat == 'success'){
+				this.countWidget();
+				this.countWidgetRoute();
+			}
 		},
 		watch: {
 			profileStat(value){

@@ -11,17 +11,12 @@
 
       <!-- tabel cu -->
       <li class="nav-item">
-        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelCu'}" @click.prevent="changeTabelTab('tabelCu')" v-if="profile.id_cu != 0">CU</a>
+        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelCu'}" @click.prevent="changeTabelTab('tabelCu')">{{ tabTitle}}</a>
       </li>
 
       <!-- tabel pearls -->
       <li class="nav-item">
         <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelPearls'}" @click.prevent="changeTabelTab('tabelPearls')" v-if="profile.id_cu != 0">P.E.A.R.L.S. CU</a>
-      </li>
-
-      <!-- tabel gerakan -->
-      <li class="nav-item">
-        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelCu'}" @click.prevent="changeTabelTab('tabelCu')" v-if="profile.id_cu == 0">Gerakan</a>
       </li>
 
     </ul>
@@ -85,6 +80,7 @@
     props: ['profile','profileStat','columnData','columnDataPearls'],
     data(){
       return {
+        tabTitle: 'CU',
         tabTabelName: 'tabelCu',
         isTabelPearls: false,
 				isTabelGerakan: false,
@@ -92,10 +88,16 @@
     },
     created(){
       this.removeColumn();
+      if(this.profileStat == 'success' && this.profile.id_cu == 0){
+        this.tabTitle = 'Gerakan';
+      }
 		},
 		watch: {
 			profileStat(value){
 				if(value == 'success'){
+          if(this.profile.id_cu == 0){
+            this.tabTitle = 'Gerakan';
+          }
 				}
 			}
 		},
@@ -107,6 +109,8 @@
         this.columnData[4].disable = true;
         this.columnData[5].disable = true;
         this.columnData[6].disable = true;
+        this.columnData[45].disable = true;
+        this.columnData[46].disable = true;
         this.columnData[47].disable = true;
         this.columnData[48].disable = true;
 

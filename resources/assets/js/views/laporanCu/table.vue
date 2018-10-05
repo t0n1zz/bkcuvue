@@ -346,46 +346,58 @@ export default {
     fetch(params) {
 			this.checkProfile();
 			
-      if (this.$route.meta.mode == "periode") {
-        this.disableColumnCU(false);
-        this.disableColumnTp(false);
-        this.disableColumnTpName(true);
-        this.filterCU();
+      if (this.$route.meta.mode == "periode") { // laporan cu with periode
+
+        this.columnData[1].disable = false;
+        this.columnData[3].disable = false;
+        this.columnData[4].disable = false;
+        this.columnData[5].disable = false;
+        this.columnData[6].disable = false;
+        this.columnData[2].disable = true;
 
         this.$store.dispatch(this.kelas + "/indexPeriode", [
           params,
           this.$route.params.periode
         ]);
         this.excelUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
-      } else if (this.$route.meta.mode == "cu") {
-        this.disableColumnCU(true);
 
-        if (this.$route.params.tp == "konsolidasi") {
-          this.disableColumnTp(false);
-          this.disableColumnTpName(true);
-          this.filterPeriode();
+      } else if (this.$route.meta.mode == "cu") {
+        
+        this.columnData[5].disable = false;
+        this.columnData[1].disable = true;
+        this.columnData[2].disable = true;
+        this.columnData[3].disable = true;
+        this.columnData[4].disable = true;
+        
+        if (this.$route.params.tp == "konsolidasi") { //laporan cu konsolidasi per cu
+          
+          this.columnData[6].disable = false;
 
           this.$store.dispatch(this.kelas + "/indexCu", [
             params,
             this.$route.params.cu
           ]); 
           this.excelUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
-        } else {
-          this.disableColumnTp(true);
-          this.disableColumnTpName(true);
-          this.filterPeriode();
+
+        } else { // laporan tp/kp per tp
+          
+          this.columnData[6].disable = true;
 
           this.$store.dispatch(this.kelas + "/indexTp", [
             params,
             this.$route.params.tp
           ]);
           this.excelUrl = 'laporanTp' + '/indexTp/' + this.$route.params.tp;
+
         }
-      } else if (this.$route.meta.mode == "cuPeriode") {
-        this.disableColumnCU(true);
-        this.disableColumnTp(true);
-        this.disableColumnTpName(false);
-        this.filterTPName();
+      } else if (this.$route.meta.mode == "cuPeriode") { // laporan tp/kp semua tp
+
+        this.columnData[5].disable = false;
+        this.columnData[1].disable = true;
+        this.columnData[2].disable = true;
+        this.columnData[3].disable = true;
+        this.columnData[4].disable = true;
+        this.columnData[6].disable = true;
 
         this.$store.dispatch(this.kelas + "/indexTpPeriode", [
           params,
@@ -393,41 +405,20 @@ export default {
           this.$route.params.periode
         ]);
         this.excelUrl = 'laporanTp' + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.periode;
-      } else {
-        this.disableColumnCU(false);
-        this.disableColumnTp(false);
-        this.disableColumnTpName(true);
-        this.filterCU();
+
+      } else { // laporan cu default
+
+        this.columnData[1].disable = false;
+        this.columnData[3].disable = false;
+        this.columnData[4].disable = false;
+        this.columnData[5].disable = false;
+        this.columnData[6].disable = false;
+        this.columnData[2].disable = true;
 
         this.$store.dispatch(this.kelas + "/index", params);
         this.excelUrl = this.kelas;
+
       }
-    },
-    disableColumnCU(status) {
-      this.columnData[1].disable = status;
-      this.columnData[3].disable = status;
-      this.columnData[4].disable = status;
-    },
-    disableColumnTp(status) {
-      this.columnData[6].disable = status;
-    },
-    disableColumnTpName(status) {
-      this.columnData[2].disable = status;
-    },
-    filterCU(){
-      this.columnData[1].filterDefault = true;
-      this.columnData[2].filterDefault = false;
-      this.columnData[5].filterDefault = false;
-    },
-    filterTPName(){
-      this.columnData[1].filterDefault = false;
-      this.columnData[2].filterDefault = true;
-      this.columnData[5].filterDefault = false;
-    },
-    filterPeriode(){
-      this.columnData[1].filterDefault = false;
-      this.columnData[2].filterDefault = false;
-      this.columnData[5].filterDefault = true;
     },
     checkProfile() {
       if (this.profile.id_cu != 0) {

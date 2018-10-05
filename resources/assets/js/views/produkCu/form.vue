@@ -44,7 +44,7 @@
 
 											<!-- select -->
 											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
-												<option disabled value="">Silahkan pilih CU</option>
+												<option disabled value="0">Silahkan pilih CU</option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
@@ -104,7 +104,7 @@
 											<h5>Keterangan:</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="keterangan" class="form-control" v-model="form.keterangan" placeholder="Silahkan masukkan keterangan"></textarea>
+											<ckeditor type="classic" v-model="form.keterangan"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -117,7 +117,7 @@
 											<h5>Aturan Setor:</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="aturan_setor" class="form-control" v-model="form.aturan_setor" placeholder="Silahkan masukkan aturan setor"></textarea>
+											<ckeditor type="classic" v-model="form.aturan_setor"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -130,7 +130,7 @@
 											<h5>Aturan Tarik:</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="aturan_tarik" class="form-control" v-model="form.aturan_tarik" placeholder="Silahkan masukkan aturan tarik"></textarea>
+											<ckeditor type="classic" v-model="form.aturan_tarik"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -143,7 +143,7 @@
 											<h5>Aturan Balas Jasa:</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="aturan_balas_jasa" class="form-control" v-model="form.aturan_balas_jasa" placeholder="Silahkan masukkan aturan balas jasa"></textarea>
+											<ckeditor type="classic" v-model="form.aturan_balas_jasa"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -156,7 +156,7 @@
 											<h5>Aturan Lain:</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="aturan_lain" class="form-control" v-model="form.aturan_lain" placeholder="Silahkan masukkan aturan lain"></textarea>
+											<ckeditor type="classic" v-model="form.aturan_lain"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>

@@ -403,8 +403,7 @@
 											<!-- title -->
 											<h5>Jadwal:</h5>
 
-											<!-- summernote -->
-											<textarea rows="5" type="text" name="jadwal" class="form-control" v-model="form.jadwal" placeholder="Silahkan masukkan jadwal"></textarea>
+											<ckeditor type="classic" v-model="form.jadwal"></ckeditor>
 										</div>
 									</div>
 
@@ -415,8 +414,7 @@
 											<!-- title -->
 											<h5>Keterangan:</h5>
 
-											<!-- summernote -->
-											<textarea rows="5" type="text" name="keterangan" class="form-control" v-model="form.keterangan" placeholder="Silahkan masukkan keterangan"></textarea>
+											<ckeditor type="classic" v-model="form.keterangan"></ckeditor>
 										</div>
 									</div>
 									
@@ -449,9 +447,7 @@
 </template>
 
 <script>
-	import Vue from 'vue';
 	import _ from 'lodash';
-	import axios from 'axios';
 	import { mapGetters } from 'vuex'
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';

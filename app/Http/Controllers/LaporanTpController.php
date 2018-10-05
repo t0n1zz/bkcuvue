@@ -134,8 +134,20 @@ class LaporanTpController extends Controller{
 				@s1 := (IFNULL(Laporan_tp.aset,0) - IFNULL(Laporan_tp.aset_lalu,0)) / IFNULL(Laporan_tp.aset_lalu,0) as s11,
 				
 				@ideal := 0 as ideal,
-				@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
-
+				@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@p2 > 0.35 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@e1 > 0.7 && @e1 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@e5 > 0.7 && @e5 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@e6 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@e9 >= 0.1 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@a1 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@a2 < 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@r7_1 = harga_pasar , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@r9 = 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@l1 >= 0.15 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@s10 > 0.12 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@ideal := IF(@s11 > (0.1 + laju_inflasi) , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+				@tot_ideal := @ideal as tot_ideal
 				'
 			)])->advancedFilter();
 
@@ -195,7 +207,20 @@ class LaporanTpController extends Controller{
 			(IFNULL(Laporan_tp.aset,0) - IFNULL(Laporan_tp.aset_lalu,0)) / IFNULL(Laporan_tp.aset_lalu,0) as s11,
 			
 			@ideal := 0 as ideal,
-			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal
+			@ideal := IF(@p1 >= 1, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@p2 > 0.35 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e1 > 0.7 && @e1 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e5 > 0.7 && @e5 < 0.8, IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e6 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@e9 >= 0.1 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@a1 <= 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@a2 < 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@r7_1 = harga_pasar , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@r9 = 0.05 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@l1 >= 0.15 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@s10 > 0.12 , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@ideal := IF(@s11 > (0.1 + laju_inflasi) , IFNULL(@ideal,0) + 1, IFNULL(@ideal,0)) as ideal,
+			@tot_ideal := @ideal as tot_ideal
 			'
 		)])->advancedFilter();
 
