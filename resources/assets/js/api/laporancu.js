@@ -64,5 +64,9 @@ export default {
 
   destroy: function( id ){
     return api.call('delete', BKCU_CONFIG.API_URL + '/laporanCu/' + id);
-  }
+  },
+
+  upload_excel: function ( form ){
+    return api.call('post', BKCU_CONFIG.API_URL + '/laporanCu/upload_excel', form);
+  },
 }

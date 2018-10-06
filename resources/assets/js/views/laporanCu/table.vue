@@ -29,22 +29,22 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_laporan_cu']">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah Laporan
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah Laporan
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus Laporan
 				</button>
 
 				<!-- detail-->
 				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-file-stats"></i> Detail {{ title }}
+					<i class="icon-file-stats"></i> Detail Laporan
 				</button>
 
 			</template>
@@ -53,22 +53,22 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['create_laporan_cu']">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah Laporan
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah Laporan
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus Laporan
 				</button>
 
 				<!-- detail-->
 				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-file-stats"></i> Detail {{ title }}
+					<i class="icon-file-stats"></i> Detail Laporan
 				</button>
 
 			</template>

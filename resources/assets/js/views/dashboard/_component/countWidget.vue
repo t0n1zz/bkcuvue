@@ -3,7 +3,7 @@
     <div class="media">
 
       <div class="media-body">
-        <h3 class="mb-0"><check-value :value="count"></check-value></h3>
+        <h3 class="mb-0" v-if="count"><check-value :value="count"></check-value></h3>
         <span class="text-uppercase font-size-xs">{{ title }}</span>
       </div>
 

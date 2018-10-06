@@ -510,6 +510,7 @@
 </template>
 
 <script type="text/javascript">
+	import { BKCU_CONFIG } from '../config.js';
 	import { mapGetters } from 'vuex';
 
 	export default {
@@ -554,9 +555,10 @@
 				this.$store.dispatch('cu/getHeader');
 			},
 			markAllNotifRead(){
-				this.$store.dispatch('user/markAllNotifRead');
+				this.$store.dispatch('user/marchkAllNotifRead');
 			},
 			logout() {
+				api.call('post',BKCU_CONFIG.API_URL + '/logout');
 				auth.logout();
       	this.$router.push('/login');
 			}

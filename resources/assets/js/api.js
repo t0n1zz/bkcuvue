@@ -8,9 +8,10 @@ class Api {
 						resolve(response);
           })
           .catch(({response}) => {
-						if (response.status == 401) {
+            console.log(response.status);
+						if (response.status == '401') {
 								auth.logout();
-								this.$router.push('/login');
+								Vue.$router.push({ name: 'login' })
 						}
 						reject(response);
           });

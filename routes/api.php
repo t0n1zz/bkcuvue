@@ -240,6 +240,7 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
     Route::group(['middleware' => ['permission:create_laporan_cu']], function () {
         Route::get('/laporanCu/create', 'laporanCuController@create');
         Route::post('/laporanCu/store', 'laporanCuController@store');
+        Route::post('/laporanCu/upload_excel', 'laporanCuController@upload_excel');
     });
     Route::group(['middleware' => ['permission:update_laporan_cu']], function () {
         Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');

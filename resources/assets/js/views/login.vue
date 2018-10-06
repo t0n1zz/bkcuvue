@@ -75,6 +75,7 @@
 </template>
 
 <script type="text/javascript">
+	import { BKCU_CONFIG } from '../config.js';
 	import Message from "../components/message.vue";
 	export default {
 		components: {
@@ -98,7 +99,7 @@
 					if(result){
 						this.message.show = false;
 						this.loading = true;
-						axios.post('/api/login', {
+						api.call('post', BKCU_CONFIG.API_URL + '/api/login', {
 								username: this.username,
 								password: this.password
 							})

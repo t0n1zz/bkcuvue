@@ -421,7 +421,6 @@
           <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen"><i class="icon-folder-download2"></i> Download semua data</button>
           <hr/>
           <button class="btn btn-light btn-block" v-if="isUploadExcel" @click.prevent="modalExcelUploadOpen"><i class="icon-file-upload"></i> Upload data excel</button>
-          <p class="text-center mt-2" v-if="isUploadExcel">Silahkan menggunakan format ini untuk upload data: <a href="#">format excel</a></p>
           <hr v-if="isUploadExcel"/>
           <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
         </div>
@@ -463,6 +462,18 @@
             <i class="icon-folder-download2"></i> Download Excel</json-excel>   
         </div>
 
+        <div v-else-if="excelAllDataStat === 'upload'">
+          <h2>Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload</h2>
+          <input type="file" class="form-control" @change="changeUpload($event.target.files)" ref="fileInput">
+          <p class="text-center mt-2" v-if="isUploadExcel">Silahkan menggunakan format ini untuk upload data: <a href="#">format excel</a></p>
+          <button type="button" class="btn btn-light" @click="modalTutup">
+              <i class="icon-cross"></i> Tutup
+          </button> 
+           <button type="button" class="btn btn-light" @click="uploadExcel()">
+              <i class="icon-upload"></i> Upload
+          </button>  
+        </div>
+
       </div>
 
     </app-modal>
@@ -471,6 +482,7 @@
 </template>
 <script>
   import Vue from 'vue';
+  import { toMulipartedForm } from '../helpers/form';
   import { BKCU_CONFIG } from '../config.js';
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
@@ -510,6 +522,7 @@
           ]
         },
         isExcelAll: false,
+        files: new FormData(),
         modalShow: false,
         modalState: '',
         modalTitle: '',
@@ -782,7 +795,8 @@
           });
         }
       },
-      // excel data
+
+      // download excel
       fieldExcel(itemData) {
         var vm = this;
         vm.excel.fields = {};
@@ -822,6 +836,14 @@
         }).value();
       },
 
+      // upload excel
+      changeUpload(event){
+        this.files.append("file", event[0], event[0].name);
+      },
+      uploadExcel(){
+        this.$store.dispatch('laporanCu/upload_excel', this.files);
+      },
+
       // modal
       modalExcelOpen() {
         this.modalShow = true;
@@ -831,6 +853,10 @@
       modalExcelOk() {
         this.isExcelAll = true;
         this.fetchExcelAll(); 
+      },
+      modalExcelUploadOpen() {
+        this.modalState = "normal2";
+        this.excelAllDataStat = 'upload';
       },
       modalOptionOpen(state){
         this.modalShow = true;

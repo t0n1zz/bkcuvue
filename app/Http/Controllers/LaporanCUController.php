@@ -6,6 +6,9 @@ use App\Tp;
 use App\LaporanCu;
 use App\LaporanTp;
 use App\Support\ImageProcessing;
+use App\Imports\LaporanCuDraftImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Http\Request;
 
 class LaporanCuController extends Controller{
@@ -533,6 +536,20 @@ class LaporanCuController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function upload_excel(Request $request)
+	{
+		// dd($request->all());
+		// $headings = (new HeadingRowImport)->toArray(request()->file('file'));
+		// dd($headings);
+		Excel::import(new LaporanCuDraftImport, request()->file('file'));
+
+		return response()
+			->json([
+				'uploaded' => true,
+				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
 			]);
 	}
 
