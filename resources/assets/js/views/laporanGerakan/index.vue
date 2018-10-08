@@ -86,10 +86,6 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
 			...mapGetters('laporanCu', {
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',

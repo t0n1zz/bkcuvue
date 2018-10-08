@@ -1,44 +1,42 @@
-import { BKCU_CONFIG } from '../config.js';
-
 export default {
   
   index: function( p ){
-    return api.call('get', BKCU_CONFIG.API_URL +  '/cu' , {params: p});
+    return api.call('get', '/api/cu' , {params: p});
   },
 
   get: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/cu/get');
+    return api.call('get', '/api/cu/get');
   },
 
   getHeader: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/cu/getHeader');
+    return api.call('get', '/api/cu/getHeader');
   },
 
   getPus: function( id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/cu/getPus/' + id);
+    return api.call('get', '/api/cu/getPus/' + id);
   },
 
   create: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/cu/create');
+    return api.call('get', '/api/cu/create');
   },
 
   store: function ( form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/cu/store', form);
+    return api.call('post', '/api/cu/store', form);
   },
 
   edit: function( id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/cu/edit/' + id);
+    return api.call('get', '/api/cu/edit/' + id);
   },
 
   update: function ( id, form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/cu/update/' + id, form);
+    return api.call('post', '/api/cu/update/' + id, form);
   },
 
   destroy: function( id ){
-    return api.call('delete', BKCU_CONFIG.API_URL + '/cu/' + id);
+    return api.call('delete', '/api/cu/' + id);
   },
 
   count: function(){
-    return api.call('get', BKCU_CONFIG.API_URL +  '/cu/count');
+    return api.call('get', '/api/cu/count');
   },
 }

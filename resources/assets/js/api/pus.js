@@ -1,28 +1,26 @@
-import { BKCU_CONFIG } from '../config.js';
-
 export default {
   
   getPusS: function( p ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/pus', {params: p});
+    return api.call('get', '/api/pus', {params: p});
   },
 
   getPusAll: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/pus_all');
+    return api.call('get', '/api/pus_all');
   },
 
   getPus: function( id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/pus/' + id);
+    return api.call('get', '/api/pus/' + id);
   },
 
   storePus: function ( form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/pus/store', form);
+    return api.call('post', '/api/pus/store', form);
   },
 
   updatePus: function ( id, form ){
-    return api.call('put', BKCU_CONFIG.API_URL + '/pus/update/' + id, form);
+    return api.call('put', '/api/pus/update/' + id, form);
   },
 
   deletePus: function( id ){
-    return api.call('delete', BKCU_CONFIG.API_URL + '/pus/' + id);
+    return api.call('delete', '/api/pus/' + id);
   }
 }

@@ -5,15 +5,13 @@
 			<!-- Main content -->
 			<div class="content d-flex justify-content-center align-items-center">
 
-				
-
 				<!-- login form -->
 				<div class="login-form">
 
-					<message v-if="message.show" :errorData="message.content" :showDebug="false">
+					<message v-if="message.show" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
 					</message>
 
-					<message v-if="errors.any() && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.item" :showDebug="false">
+					<message v-if="errors.any() && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 				
 					<div class="card card-body mb-0">
@@ -22,46 +20,52 @@
 							<span class="d-block text-muted">Sistem Informasi Manajemen Organisasi</span>
 						</div>
 
-						<div class="form-group has-feedback has-feedback-right" :class="{'has-error' : errors.has('Username')}">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="icon-user text-muted"></i>
+						<form @submit.prevent="login" enctype="multipart/form-data">
+
+							<div class="form-group form-group-feedback form-group-feedback-right" >
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text" :class="{'alpha-danger border-danger text-danger' : errors.has('Username')}">
+											<i class="icon-user"></i>
+										</div>
 									</div>
+									
+									<input type="text" class="form-control" name="Username" placeholder="Username" v-model="form.username" :class="{'border-danger' : errors.has('Username')}"  v-validate="'required|min:5'" @keyup.enter="login" autofocus>
 								</div>
 								
-								<input type="text" class="form-control" placeholder="Username" v-model="username" name="Username" v-validate="'required|min:5'" @keyup.enter="login" autofocus>
-							</div>
-							
-							<div class="form-control-feedback" v-if="errors.has('Username')">
-								<i class="icon-cancel-circle2"></i>
-							</div>
-						</div>
-
-						<div class="form-group has-feedback has-feedback-right" :class="{'has-error' : errors.has('Password')}">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="icon-lock2 text-muted"></i>
-									</div>
+								<div class="form-control-feedback text-danger" v-if="errors.has('Username')">
+									<i class="icon-cancel-circle2"></i>
 								</div>
-								<input type="password" class="form-control" placeholder="Password" v-model="password" name="Password" v-validate="'required'"
-								@keyup.enter="login">
 							</div>
-							
-							<div class="form-control-feedback" v-if="errors.has('Password')">
-								<i class="icon-cancel-circle2"></i>
-							</div>
-						</div>
 
-						<div class="form-group">
-							<button type="button" class="btn btn-primary btn-block" disabled v-if="loading">
-								<i class="icon-spinner2 spinner"></i>
-							</button>
-							<button type="button" class="btn btn-primary btn-block" @click.prevent="login"  v-else>Login
-								<i class="icon-circle-right2 position-right"></i>
-							</button>
-						</div>
+							<div class="form-group form-group-feedback form-group-feedback-right">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text" :class="{'alpha-danger border-danger text-danger' : errors.has('Password')}">
+											<i class="icon-lock2"></i>
+										</div>
+									</div>
+									<input type="password" class="form-control" name="Password" placeholder="Password" v-model="form.password" :class="{'border-danger' : errors.has('Password')}"  v-validate="'required'"
+									@keyup.enter="login">
+								</div>
+								
+								<div class="form-control-feedback text-danger" v-if="errors.has('Password')">
+									<i class="icon-cancel-circle2"></i>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<button type="button" class="btn btn-primary btn-block" disabled v-if="loading">
+									<i class="icon-spinner2 spinner"></i>
+								</button>
+								<button type="submit" class="btn btn-primary btn-block" v-else>Login
+									<i class="icon-circle-right2 position-right"></i>
+								</button>
+							</div>
+
+						
+						</form>
+
 					</div>
 				</div>
 				
@@ -75,7 +79,7 @@
 </template>
 
 <script type="text/javascript">
-	import { BKCU_CONFIG } from '../config.js';
+	import { login } from "../helpers/auth.js";
 	import Message from "../components/message.vue";
 	export default {
 		components: {
@@ -83,8 +87,10 @@
 		},
 		data() {
 			return {
-				username: "",
-				password: "",
+				form: {
+					username: "",
+					password: "",
+				},
 				loading: false,
 				submited: '',
 				message: {
@@ -95,23 +101,26 @@
 		},
 		methods: {
 			login() {
+				this.message.show = false;
 				this.$validator.validateAll().then((result) => {
 					if(result){
-						this.message.show = false;
 						this.loading = true;
-						api.call('post', BKCU_CONFIG.API_URL + '/api/login', {
-								username: this.username,
-								password: this.password
-							})
-							.then(({data}) => {
-								auth.login(data.token);
+
+						this.$store.dispatch('auth/login');
+
+						login(this.form)
+							.then((res) => {
+								this.loading = false;
+								this.$store.dispatch('auth/loginSuccess', res);
 								this.$router.push('/');
-							}).catch(({response}) => {
+							})
+							.catch((error) => {
 								this.message.show = true;
-								this.message.content = response;
+								this.message.content = error;
 								this.loading = false;
 							});
-							this.submited = false;
+
+						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
 						this.submited = true;

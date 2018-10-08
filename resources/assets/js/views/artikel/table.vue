@@ -8,30 +8,30 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 				<!-- terbitkan -->
-				<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-light mb-1" v-if="profile.can && profile.can['terbitkan_' + kelas]"  :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['terbitkan_' + kelas]"  :disabled="!selectedItem.id">
 					<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
-					<span v-else>Terbitkan</span> {{ title }}
+					<span v-else>Terbitkan</span>
 				</button>
 
 				<!-- utamakan -->
-				<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-light mb-1" v-if="profile.can && profile.can['utamakan_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['utamakan_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
-					<span v-else>Utamakan</span> {{ title }}
+					<span v-else>Utamakan</span>
 				</button>
 
 			</template>
@@ -40,30 +40,30 @@
 			<template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 				<!-- terbitkan -->
-				<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['terbitkan_' + kelas]"  :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('updateTerbitkan')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['terbitkan_' + kelas]"  :disabled="!selectedItem.id">
 					<i class="icon-file-upload"></i> <span v-if="selectedItem.terbitkan == 1">Tidak Terbitkan</span>
-					<span v-else>Terbitkan</span> {{ title }}
+					<span v-else>Terbitkan</span>
 				</button>
 
 				<!-- utamakan -->
-				<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['utamakan_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('updateUtamakan')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['utamakan_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
-					<span v-else>Utamakan</span> {{ title }}
+					<span v-else>Utamakan</span>
 				</button>
 
 			</template>
@@ -230,14 +230,6 @@
 				this.fetch(this.query);
 			},
 
-			profileStat(value){
-				if(value == 'success'){
-					if(this.modelKategoriStat == 'success' && this.profile.id_cu != this.modelKategori.id_cu && this.profile.id_cu != 0){
-						this.$router.push({name: 'notFound'});
-					}
-				}
-			},
-
 			// when updating data
       updateStat(value) {
 				this.modalState = value;
@@ -320,9 +312,8 @@
 			}
 		},
 		computed:{
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('global',{
 				idCu: 'idCu'

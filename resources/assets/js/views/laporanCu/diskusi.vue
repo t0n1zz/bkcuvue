@@ -14,8 +14,8 @@
 
 					<div class="header-elements">
 						<div class="list-icons">
-							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-pencil5"></i></a>
-							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == profile.id"><i class="icon-bin2"></i></a>
+							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == currentUser.id"><i class="icon-pencil5"></i></a>
+							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == currentUser.id"><i class="icon-bin2"></i></a>
 						</div>
 					</div>
 				</div>
@@ -151,16 +151,12 @@
 		},
 		created(){
 			this.fetch();
+			this.form.id_user = this.currentUser.id;
 		},
 		watch: {
 			'$route' (to, from){
 				// check current page meta
 				this.fetch();
-			},
-			profileStat(value){
-				if(value == 'success'){
-					this.form.id_user = this.profile.id;
-				}
 			},
 			itemDataStat(value){
 				if(value == 'success'){
@@ -195,7 +191,7 @@
 				if(type == 'create'){
 					this.form.id = '';
 					this.form.id_laporan = this.$route.params.id;
-					this.form.id_user = this.profile.id;
+					this.form.id_user = this.currentUser.id;
 					this.form.periode = this.modelLaporan.periode;
 
 					if(this.$route.meta.mode == 'detail'){
@@ -289,9 +285,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser',
 			}),
 			...mapGetters('laporanCuDiskusi',{
 				itemData: 'dataS',

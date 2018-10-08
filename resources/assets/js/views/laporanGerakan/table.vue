@@ -200,27 +200,14 @@ export default {
     };
   },
   created() {
-    if (this.profileStat == "success") {
-      this.fetch(this.query);
-    }
+    this.fetch(this.query);
   },
   watch: {
     // check route changes
     $route(to, from) {
       this.isFirstLoad = true;
-      if (this.profileStat == "success") {
-        this.fetch(this.query);
-      }
-    },
-
-    profileStat(value) {
-      if (value == "success") {
-        if (this.itemDataStat != "success") {
-          this.fetch(this.query);
-        }
-      }
-    },
-
+      this.fetch(this.query);
+    }
   },
   methods: {
     fetch(params) {
@@ -244,10 +231,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("user", {
-      profile: "profile",
-      profileStat: "profileStat"
-    }),
     ...mapGetters("laporanCu", {
       itemData: "dataS",
       itemDataStat: "dataStatS",

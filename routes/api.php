@@ -3,21 +3,29 @@
 use Illuminate\Http\Request;
 
 // auth
-Route::post('/login', 'AuthController@login');
-Route::middleware('auth:api')->group(function () {
-    Route::post('/logout', 'AuthController@logout');
+// Route::post('/login', 'AuthController@login');
+// Route::middleware('auth:api')->group(function () {
+//     Route::post('/logout', 'AuthController@logout');
+// });
+
+Route::group(['prefix' => 'auth'],function($router){
+    Route::post('/login', 'AuthController@login');
+    Route::post('/logout', 'AuthController@login');
+    Route::post('/refresh', 'AuthController@refresh');
+    Route::get('/profile', 'AuthController@profile');
 });
+
 
 Route::get('/laporanCu/indexGerakan', 'laporanCuController@indexGerakan');
 Route::get('/system/pengelolaWidget', 'SystemController@pengelolaWidget');
 
 
-Route::group(['prefix'=>'v1','middleware'=>'auth:api'],function(){
+Route::group(['middleware'=>'jwt.auth'],function(){
 // Route::group(['prefix'=>'v1'],function(){
 
     // auth
-    Route::get('/userId', 'AuthController@userId');
-    Route::get('/profile', 'AuthController@profile');
+    // Route::get('/userId', 'AuthController@userId');
+    // Route::get('/profile', 'AuthController@profile');
 
     // user
     Route::get('/markNotifRead/{id}', 'UserController@markNotifRead');

@@ -1,40 +1,38 @@
-import { BKCU_CONFIG } from '../config.js';
-
 export default {
   
   index: function( p ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/districts' , {params: p});
+    return api.call('get', '/api/districts' , {params: p});
   },
 
   get: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/districts/get');
+    return api.call('get', '/api/districts/get');
   },
 
   indexRegencies: function( p, id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/regencies/indexRegencies/' + id, {params: p});
+    return api.call('get', '/api/regencies/indexRegencies/' + id, {params: p});
   },
   
   getRegencies: function( id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/districts/getRegencies/' + id);
+    return api.call('get', '/api/districts/getRegencies/' + id);
   },
 
   create: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/districts/create');
+    return api.call('get', '/api/districts/create');
   },
 
   store: function ( form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/districts/store', form);
+    return api.call('post', '/api/districts/store', form);
   },
 
   edit: function( id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/districts/edit/' + id);
+    return api.call('get', '/api/districts/edit/' + id);
   },
 
   update: function ( id, form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/districts/update/' + id, form);
+    return api.call('post', '/api/districts/update/' + id, form);
   },
 
   destroy: function( id ){
-    return api.call('delete', BKCU_CONFIG.API_URL + '/districts/' + id);
+    return api.call('delete', '/api/districts/' + id);
   }
 }

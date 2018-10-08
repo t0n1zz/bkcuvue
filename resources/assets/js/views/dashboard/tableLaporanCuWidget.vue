@@ -16,7 +16,7 @@
 
       <!-- tabel pearls -->
       <li class="nav-item">
-        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelPearls'}" @click.prevent="changeTabelTab('tabelPearls')" v-if="profile.id_cu != 0">P.E.A.R.L.S. CU</a>
+        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelPearls'}" @click.prevent="changeTabelTab('tabelPearls')" v-if="currentUser.id_cu != 0">P.E.A.R.L.S. CU</a>
       </li>
 
     </ul>
@@ -77,7 +77,7 @@
       checkValue,
       itemPearls
     },
-    props: ['profile','profileStat','columnData','columnDataPearls'],
+    props: ['currentUser','columnData','columnDataPearls'],
     data(){
       return {
         tabTitle: 'CU',
@@ -88,18 +88,9 @@
     },
     created(){
       this.removeColumn();
-      if(this.profileStat == 'success' && this.profile.id_cu == 0){
+      if(this.currentUser.id_cu == 0){
         this.tabTitle = 'Gerakan';
       }
-		},
-		watch: {
-			profileStat(value){
-				if(value == 'success'){
-          if(this.profile.id_cu == 0){
-            this.tabTitle = 'Gerakan';
-          }
-				}
-			}
 		},
 		methods:{
       removeColumn(){
@@ -140,7 +131,7 @@
               page: 1
             };
 
-            this.$store.dispatch('laporanCu/grafikPearlsCu', [query,this.profile.id_cu]);
+            this.$store.dispatch('laporanCu/grafikPearlsCu', [query,this.currentUser.id_cu]);
           }
 				}
 			},

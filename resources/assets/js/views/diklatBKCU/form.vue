@@ -682,11 +682,7 @@
 			...mapGetters('tempat',{
 				modelTempat: 'dataSForm',
 				modelTempatStat: 'dataStatSForm',
-			}),
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
+			})
 		}
 	}
 </script>

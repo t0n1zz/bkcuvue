@@ -10,10 +10,11 @@ use App\Support\ExposePermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Yadahan\AuthenticationLog\AuthenticationLogable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasRoles, HasApiTokens, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable;
+    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable;
 
     protected $table = 'users';
     protected $guard_name = 'api';
@@ -55,13 +56,28 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // protected $casts = [
-    //     'status' => 'boolean',
-    // ];
+     // Rest omitted for brevity
 
-    public function findForPassport($username) {
-        return $this->where('username', $username)->first();
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
     }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     
     public function getId(){
         return $this->id;

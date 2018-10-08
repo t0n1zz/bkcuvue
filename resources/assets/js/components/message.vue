@@ -36,6 +36,9 @@
 						<span v-else-if="errorData.status === 500">
 							<b v-if="showDebug">ERROR 500:</b> {{ errorData.data.message }}
 						</span>
+						<span v-else>
+						 {{ errorData }}
+						</span>
 
 						<!-- debug -->
 						<div v-if="showDebug">

@@ -483,7 +483,6 @@
 <script>
   import Vue from 'vue';
   import { toMulipartedForm } from '../helpers/form';
-  import { BKCU_CONFIG } from '../config.js';
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
@@ -784,7 +783,7 @@
             ...query
           };
 
-          api.call('get',BKCU_CONFIG.API_URL + '/' + this.excelUrl, {params})
+          api.call('get','/' + this.excelUrl, {params})
           .then( ({data}) => {
             this.excelAllData = data.model;
             this.modalState = 'normal2';

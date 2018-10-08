@@ -6,8 +6,8 @@
 			<div class="card-body">  
 				<div class="row">
 					<!-- cu -->
-					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
-						<div class="input-group" v-if="this.profile.id_cu === 0">
+					<div class="col-sm-5" v-if="this.currentUser.id_cu === 0">
+						<div class="input-group" v-if="this.currentUser.id_cu === 0">
 							<span class="input-group-prepend">
 								 <span class="input-group-text">Pilih Data</span>
 							</span>
@@ -31,7 +31,7 @@
 					</div>
 					<!-- periode cu -->
 					<div class="col-sm-5" v-if="idCu == 'semua'">
-						<div class="input-group" v-if="this.profile.id_cu === 0">
+						<div class="input-group" v-if="this.currentUser.id_cu === 0">
 							<span class="input-group-prepend">
 								<span class="input-group-text">Pilih Periode</span>
 							</span>
@@ -78,8 +78,8 @@
 					</div>
 
 					<!-- periode tp -->
-					<div :class="[{'col-sm-10': profile.id_cu == 0 && idTp == 'semua',
-					'col-sm-6': profile.id_cu != 0 && idTp == 'semua'},{'pt-2': profile.id_cu == 0}]" v-if="idTp == 'semua' && idCu != 'semua'">
+					<div :class="[{'col-sm-10': currentUser.id_cu == 0 && idTp == 'semua',
+					'col-sm-6': currentUser.id_cu != 0 && idTp == 'semua'},{'pt-2': currentUser.id_cu == 0}]" v-if="idTp == 'semua' && idCu != 'semua'">
 						<div class="input-group">
 							<span class="input-group-prepend">
 								<span class="input-group-text">Pilih Periode</span>
@@ -103,7 +103,7 @@
 					</div>
 
 					<!-- find data button -->
-					<div class="col-sm-2" :class="{'pt-2': idCu !='semua' && idTp == 'semua'}" v-if="this.profile.id_cu === 0">
+					<div class="col-sm-2" :class="{'pt-2': idCu !='semua' && idTp == 'semua'}" v-if="this.currentUser.id_cu === 0">
 						<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
@@ -132,7 +132,7 @@
 			}
 		},
 		created(){
-			if(this.profile.id_cu != undefined){
+			if(this.currentUser.id_cu != undefined){
 				this.checkProfileIdCU();
 			}
 		},
@@ -140,11 +140,6 @@
 			'$route' (to, from){
 				// check current page meta
 				this.checkProfileIdCU(); 
-			},
-			profileStat(value){
-				if(value === "success"){
-					this.checkProfileIdCU();
-				}
 			},
 			modelCUStat(value){
 				if(value === "success"){
@@ -191,8 +186,8 @@
     },
 		methods: {
 			checkProfileIdCU(){
-				if(this.profile.id_cu !== 0){
-					this.idCu = this.profile.id_cu;
+				if(this.currentUser.id_cu !== 0){
+					this.idCu = this.currentUser.id_cu;
 					this.fetchTp();
 				}else{
 					this.fetchCU();
@@ -210,7 +205,7 @@
 				}
 			},
 			fetchCU(){
-				this.$store.dispatch('cu/getPus', this.profile.id_pus);
+				this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
 			},
 			fetchPeriode(){
 				this.$store.dispatch('laporanCu/getPeriode');
@@ -230,9 +225,9 @@
 				this.idTp = '';
 			},
 			changeTp(value){
-				if(this.profile.id_cu != 0){
+				if(this.currentUser.id_cu != 0){
 					if(this.idTp != 'semua'){
-						this.$router.push({name: 'laporanCuCu', params:{cu: this.profile.id_cu, tp: value} });
+						this.$router.push({name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp: value} });
 					}else{
 						this.$store.dispatch('laporanTp/getPeriode');
 					}
@@ -243,13 +238,13 @@
 				}
 			},
 			changeTpPeriode(value){
-				if(this.profile.id_cu != 0){
-					this.$router.push({name: 'laporanCuCuPeriode', params:{cu: this.profile.id_cu, periode: value} });
+				if(this.currentUser.id_cu != 0){
+					this.$router.push({name: 'laporanCuCuPeriode', params:{cu: this.currentUser.id_cu, periode: value} });
 				}
 			},
 			classTp(){
 				let className = '';
-				if(this.profile.id_cu == 0){
+				if(this.currentUser.id_cu == 0){
 					className = 'col-sm-5';
 				}else{
 					if(this.idTp == 'semua'){
@@ -262,9 +257,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('laporanCu',{
 				modelPeriode: 'periode',

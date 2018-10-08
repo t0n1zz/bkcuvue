@@ -9,17 +9,17 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
 					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
@@ -29,17 +29,17 @@
 			<template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
 					<i class="icon-plus3"></i> Tambah {{ title }}
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah {{ title }}
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus {{ title }}
 				</button>
 
@@ -484,9 +484,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('global',{
 				idCu: 'idCu'

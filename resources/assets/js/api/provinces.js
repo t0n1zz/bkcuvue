@@ -1,32 +1,30 @@
-import { BKCU_CONFIG } from '../config.js';
-
 export default {
   
   index: function( p ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/provinces' , {params: p});
+    return api.call('get', '/api/provinces' , {params: p});
   },
 
   get: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/provinces/get');
+    return api.call('get', '/api/provinces/get');
   },
 
   create: function(){
-    return api.call('get', BKCU_CONFIG.API_URL + '/provinces/create');
+    return api.call('get', '/api/provinces/create');
   },
 
   store: function ( form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/provinces/store', form);
+    return api.call('post', '/api/provinces/store', form);
   },
 
   edit: function( id ){
-    return api.call('get', BKCU_CONFIG.API_URL + '/provinces/edit/' + id);
+    return api.call('get', '/api/provinces/edit/' + id);
   },
 
   update: function ( id, form ){
-    return api.call('post', BKCU_CONFIG.API_URL + '/provinces/update/' + id, form);
+    return api.call('post', '/api/provinces/update/' + id, form);
   },
 
   destroy: function( id ){
-    return api.call('delete', BKCU_CONFIG.API_URL + '/provinces/' + id);
+    return api.call('delete', '/api/provinces/' + id);
   }
 }

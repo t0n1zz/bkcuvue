@@ -142,7 +142,7 @@ export default {
 				this.query.order_column = 'periode';
 				this.query.order_direction = 'asc';
 			}else if(this.$route.name == 'dashboard'){		
-					this.$store.dispatch(this.kelas + '/grafikCu', [this.query,this.profile.id_cu]);
+					this.$store.dispatch(this.kelas + '/grafikCu', [this.query,this.currentUser.id_cu]);
 					this.query.order_column = 'periode';
 					this.query.order_direction = 'asc';
 					this.axisLabelKey = 'periode';	
@@ -171,9 +171,8 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters('user',{
-			profile: 'profile',
-			profileStat: 'profileStat'
+		...mapGetters('auth',{
+			currentUser: 'currentUser'
 		}),
 		...mapGetters('laporanCu',{
 			detailData:'data',

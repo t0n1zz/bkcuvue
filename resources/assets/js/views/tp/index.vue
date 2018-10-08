@@ -21,7 +21,7 @@
 						:kelas="kelas"
 						:path="selectCuPath"
 						:isPus="false"
-						v-if="profile.id_cu == 0"></select-cu>
+						v-if="currentUser.id_cu == 0"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -58,9 +58,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('tp',{
 				itemData: 'dataS',

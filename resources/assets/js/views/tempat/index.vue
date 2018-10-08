@@ -50,10 +50,6 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
 			...mapGetters('tempat',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',

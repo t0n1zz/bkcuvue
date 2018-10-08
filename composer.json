@@ -17,6 +17,7 @@
         "spatie/laravel-cors": "^1.0",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-permission": "^2.9",
+        "tymon/jwt-auth": "^1.0.0",
         "venturecraft/revisionable": "^1.28",
         "yadahan/laravel-authentication-log": "^1.1"
     },

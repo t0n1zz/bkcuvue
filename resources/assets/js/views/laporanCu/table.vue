@@ -28,23 +28,23 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['create_laporan_cu']">
-					<i class="icon-plus3"></i> Tambah Laporan
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_laporan_cu']">
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah Laporan
+				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus Laporan
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 				<!-- detail-->
-				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-file-stats"></i> Detail Laporan
+				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-file-stats"></i> Detail
 				</button>
 
 			</template>
@@ -52,23 +52,23 @@
       <template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['create_laporan_cu']">
-					<i class="icon-plus3"></i> Tambah Laporan
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_laporan_cu']">
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah Laporan
+				<button @click.prevent="ubahData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus Laporan
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 				<!-- detail-->
-				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="profile.can && profile.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-file-stats"></i> Detail Laporan
+				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
+					<i class="icon-file-stats"></i> Detail
 				</button>
 
 			</template>
@@ -304,26 +304,14 @@ export default {
     };
   },
   created() {
-    if (this.profileStat == "success") {
-      this.fetch(this.query);
-    }
+    this.checkProfile();
+    this.fetch(this.query);
   },
   watch: {
     // check route changes
     $route(to, from) {
       this.isFirstLoad = true;
-      if (this.profileStat == "success") {
-        this.fetch(this.query);
-      }
-    },
-
-    profileStat(value) {
-      if (value == "success") {
-        this.checkProfile();
-        if (this.itemDataStat != "success") {
-          this.fetch(this.query);
-        }
-      }
+      this.fetch(this.query);
     },
 
     // when updating data
@@ -421,12 +409,12 @@ export default {
       }
     },
     checkProfile() {
-      if (this.profile.id_cu != 0) {
+      if (this.currentUser.id_cu != 0) {
         if (
           this.$route.meta.mode == "cu" ||
           this.$route.meta.mode == "cuPeriode"
         ) {
-          if (this.profile.id_cu != this.$route.params.cu) {
+          if (this.currentUser.id_cu != this.$route.params.cu) {
             this.$router.push({
               name: "notFound"
             });
@@ -524,9 +512,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("user", {
-      profile: "profile",
-      profileStat: "profileStat"
+    ...mapGetters("auth", {
+      currentUser: "currentUser"
     }),
     ...mapGetters("global", {
       idCu: "idCu",

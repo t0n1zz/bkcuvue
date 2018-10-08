@@ -207,8 +207,8 @@
 				submited: false,
 			}
 		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => vm.fetch());
+		created(){
+			this.formFoto.gambar = this.currentUser.gambar;
 		},
 		watch: {
 			updateStat(value){
@@ -225,9 +225,6 @@
 			},
     },
 		methods: {
-			fetch(){
-				this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-			},
 			savePassword(){
 				this.$validator.validateAll('formPassword').then((result) => {
 					if (result) {
@@ -246,7 +243,7 @@
 			changeTab(value){
 				this.tabName = value;
 				if(value == 'foto'){
-					this.formFoto.gambar = this.form.gambar;
+					this.formFoto.gambar = this.currentUser.gambar;
 				}
 			},
 			modalImageBuka(content){
@@ -257,7 +254,7 @@
 				this.modalShow = false;
 				
 				if(this.tabName == 'foto' || this.tabName == 'email'){
-					this.$store.dispatch('user/profile');
+					
 				}else if(this.tabName == 'password'){
 					this.formPasswordReset();
 				}
@@ -272,9 +269,10 @@
 			}
 		},
 		computed:{
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat',
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',

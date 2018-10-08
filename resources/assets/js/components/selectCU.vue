@@ -4,7 +4,7 @@
 		<!-- cu desktop --> 
 		<div class="card d-none d-md-block d-print-none">
 			<div class="card-body">  
-					<div class="input-group" v-if="this.profile.id_cu === 0">
+					<div class="input-group" v-if="this.currentUser.id_cu === 0">
 						<div class="input-group-prepend">
 							<span class="input-group-text">Pilih Data</span>
 						</div>
@@ -14,7 +14,7 @@
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
 							<option value="semua">Semua CU</option>
-							<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
+							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 							<option disabled value="">----------------</option>
 							<option v-for="cu in modelCU" :value="cu.id" v-if="!isNo_ba && cu">{{cu.name}}</option>
 							<option v-for="cu in modelCU" :value="cu.no_ba" v-if="isNo_ba && cu">{{cu.name}}</option>
@@ -41,7 +41,7 @@
 					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
 						<option disabled value="">Silahkan pilih data</option>
 						<option value="semua">Semua CU</option>
-						<option value="0" v-if="isPus"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
+						<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 						<option disabled value="">----------------</option>
 						<option v-for="cu in modelCU" :value="cu.id" v-if="!isNo_ba && cu">{{cu.name}}</option>
 						<option v-for="cu in modelCU" :value="cu.no_ba" v-if="isNo_ba && cu">{{cu.name}}</option>
@@ -70,7 +70,7 @@
 			}
 		},
 		created(){
-			if(this.profile.id_pus !== undefined){
+			if(this.currentUser.id_pus !== undefined){
 				this.fetchCU();
 			}	
 		},
@@ -78,11 +78,6 @@
 			'$route' (to, from){
 				// check current page meta
 				this.fetchCU();
-			},
-			profileStat(value){
-				if(value === "success"){
-					this.fetchCU();
-				}
 			},
 			modelCUStat(value){
 				if(value === "success"){
@@ -92,16 +87,15 @@
     },
 		methods: {
 			fetchCU(){
-				this.$store.dispatch('cu/getPus', this.profile.id_pus);
+				this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
 			},
 			changeCU(id){
 				this.$router.push({name: this.path, params:{cu: id} });
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',

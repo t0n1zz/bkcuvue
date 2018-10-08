@@ -8,34 +8,34 @@
       <template slot="button-desktop">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
 
         <!-- reset password -->
-        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light mb-1"  v-if="profile.can && profile.can['reset_password']"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light mb-1"  v-if="currentUser.can && currentUser.can['reset_password']"  :disabled="!selectedItem.id">
           <i class="icon-history"></i> Reset Password
         </button>
 
         <!-- aktifkan -->             
-        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light mb-1" v-if="profile.can && profile.can['status_' + kelas]"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['status_' + kelas]"  :disabled="!selectedItem.id">
           <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
           <span v-else-if="selectedItem.status == 0">Aktifkan</span>
           <span v-else>Status</span>
         </button> 
 
         <!-- hak akses -->
-        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light mb-1"  v-if="profile.can && profile.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light mb-1"  v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-key"></i> Hak Akses
         </button>
 
@@ -45,34 +45,34 @@
       <template slot="button-mobile">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['create_' + kelas]">
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['update_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
 
         <!-- reset password -->
-        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light btn-block mb-1"  v-if="profile.can && profile.can['reset_password']"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light btn-block mb-1"  v-if="currentUser.can && currentUser.can['reset_password']"  :disabled="!selectedItem.id">
           <i class="icon-history"></i> Reset Password
         </button>
 
         <!-- aktifkan -->             
-        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['status_' + kelas]"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['status_' + kelas]"  :disabled="!selectedItem.id">
           <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
           <span v-else-if="selectedItem.status == 0">Aktifkan</span>
           <span v-else>Status</span>
         </button> 
 
         <!-- hak akses -->
-        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light btn-block mb-1" v-if="profile.can && profile.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-key"></i> Hak Akses
         </button>
 
@@ -348,9 +348,10 @@ export default {
     }
   },
   computed:{
+     ...mapGetters('auth',{
+      currentUser: 'currentUser'
+    }),
     ...mapGetters('user',{
-      profile: 'profile',
-      profileStat: 'profileStat',
       itemData: 'dataS',
       itemDataStat: 'dataStatS',
       hakAkses: 'data',

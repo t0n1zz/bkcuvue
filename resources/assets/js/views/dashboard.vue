@@ -20,15 +20,14 @@
 
 			<div class="row">
 
-				<!-- laporan gerakan -->
+				<!-- grafik -->
 				<div class="col-lg-8" >	
-					<grafik-laporan-cu-widget v-if="profile.can && profile.can['index_laporan_cu']" :profile="profile" :profileStat="profileStat" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
+					<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
 				</div>
 
-				<!-- count widget -->
+				<!-- tabel -->
 				<div class="col-lg-4">
-					<table-laporan-cu-widget :profile="profile" :profileStat="profileStat" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
-					
+					<table-laporan-cu-widget :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
 				</div>
 
 			</div>
@@ -61,9 +60,8 @@
 		methods:{
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('laporanCu', {
 				columnData: 'columnData',

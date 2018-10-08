@@ -5,10 +5,8 @@ export const user = {
 
   // state
   state: {
-    profile: {},
     notification: {},
     unreadNotification:'',
-    profileStat: '',
     markNotifStat:'',
     data: {}, //single data
     dataS: [], //collection
@@ -24,10 +22,8 @@ export const user = {
 
   // getters
   getters: {
-    profile: state => state.profile,
     notification: state => state.notification,
     unreadNotification: state => state.unreadNotification,
-    profileStat: state => state.profileStat,
     markNotifStat: state => state.markNotifStat,
     data: state => state.data,
     dataS: state => state.dataS,
@@ -42,37 +38,6 @@ export const user = {
   },
 
   actions: {
-
-    //user profil
-    profile( { commit }){
-      commit('setProfileStat', 'loading');
-      
-      UserAPI.profile()
-        .then( function( response ){
-          commit('setProfile', response.data.model );
-          commit('setNotification', response.data.notification );
-          commit('setUnreadNotification', response.data.unreadNotification );
-          commit('setProfileStat', 'success');
-        })
-        .catch( error => {
-          commit('setProfile', error.response);
-          commit('setProfileStat', 'fail');
-        });
-    },
-
-    profileActivity( { commit }, p ){
-      commit('setDataStatS', 'loading');
-      
-      UserAPI.profileActivity( p )
-        .then( function( response ){
-          commit('setDataS', response.data.model );
-          commit('setDataStatS', 'success');
-        })
-        .catch( error => {
-          commit('setDataS', error.response);
-          commit('setDataStatS', 'fail');
-        });
-    },
 
     //load collection with params
     index( { commit }, p ){
@@ -381,17 +346,11 @@ export const user = {
 
   // mutations
   mutations: {
-    setProfile ( state, profile ){
-      state.profile = profile;
-    },
     setNotification ( state, data ){
       state.notification = data;
     },
     setUnreadNotification ( state, data ){
       state.unreadNotification = data;
-    },
-    setProfileStat( state, status ){
-      state.profileStat = status;
     },
     setMarkNotifStat( state, status ){
       state.markNotifStat = status;

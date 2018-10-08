@@ -42,7 +42,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="profile.id_cu === 0">
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -54,7 +54,7 @@
 											<!-- select -->
 											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
-												<option value="0"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
+												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
 
@@ -160,7 +160,7 @@
 									</div>
 
 									<!-- terbitkan -->
-									<div class="col-md-4" v-if="profile.can && profile.can['terbitkan_' + kelas]">
+									<div class="col-md-4" v-if="currentUser.can && currentUser.can['terbitkan_' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.terbitkan')}">
 
 											<!-- title -->
@@ -187,7 +187,7 @@
 									</div>
 
 									<!-- utamakan -->
-									<div class="col-md-4" v-if="profile.can && profile.can['utamakan_' + kelas]">
+									<div class="col-md-4" v-if="currentUser.can && currentUser.can['utamakan_' + kelas]">
 										<div class="form-group" :class="{'has-error' : errors.has('form.utamakan')}">
 
 											<!-- title -->
@@ -375,22 +375,20 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
+		created(){
+			if(this.currentUser.id_cu === 0){
+				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+			}
+			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
+				this.form.id_cu = this.currentUser.id_cu;
+				this.changeCU(this.currentUser.id_cu);
+			}
+		},
 		watch: {
-			profileStat(value){ //jika refresh halaman maka reload profile
-				if(value === "success"){
-					if(this.profile.id_cu === 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
-					}
-					if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
-						this.form.id_cu = this.profile.id_cu;
-						this.changeCU(this.profile.id_cu);
-					}
-				}
-			},
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
-						this.form.id_cu = this.profile.id_cu;
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 					if(this.form.id_cu !== undefined){
 						this.changeCU(this.form.id_cu);
@@ -438,8 +436,8 @@
     },
 		methods: {
 			fetch(){
-				if(this.profile.id_cu === 0){
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+				if(this.currentUser.id_cu === 0){
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 				}
 
 				if(this.$route.meta.mode === 'edit'){
@@ -475,10 +473,10 @@
 				this.$store.dispatch('artikelKategori/getCu', id);
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode === 'edit' && this.currentUser.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}
 			},
 			modalTutup() {
@@ -520,9 +518,8 @@
 			},
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('artikel',{
 				form: 'data',

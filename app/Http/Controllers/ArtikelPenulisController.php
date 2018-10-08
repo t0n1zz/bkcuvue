@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\ArtikelPenulis;
 use Illuminate\Http\Request;
-use App\Support\ImageProcessing;
+use App\Support\Helper;
 
 class ArtikelPenulisController extends Controller{
 
@@ -67,7 +67,7 @@ class ArtikelPenulisController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,'');
 		else
 			$fileName = '';
 
@@ -104,7 +104,7 @@ class ArtikelPenulisController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,'300','200',$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,$kelas);
 		else
 			$fileName = '';
 

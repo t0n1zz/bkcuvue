@@ -111,20 +111,12 @@
 		},
 		created(){
 			this.fetch();
+			this.form.id_user = this.currentUser.id;
 		},
 		watch: {
 			'$route' (to, from){
 				// check current page meta
 				this.fetch();
-			},
-			profileStat(value){
-				if(value == 'success'){
-					this.form.id_user = this.profile.id;
-				}
-			},
-			itemDataStat(value){
-				if(value == 'success'){
-				}
 			},
 			// when updating data
       updateStat(value) {
@@ -155,7 +147,7 @@
 				if(type == 'create'){
 					this.form.id = '';
 					this.form.id_laporan = this.$route.params.id;
-					this.form.id_user = this.profile.id;
+					this.form.id_user = this.currentUser.id;
 					this.form.periode = this.modelLaporan.periode;
 
 					if(this.$route.meta.mode == 'detail'){
@@ -249,9 +241,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('laporanCu',{
 				itemData: 'history',

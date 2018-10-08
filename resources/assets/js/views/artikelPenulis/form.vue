@@ -33,7 +33,7 @@
 										</div>
 
 										<!-- name -->
-										<div class="col-md-4">
+										<div class="col-md-6">
 											<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 												<!-- title -->
@@ -53,7 +53,7 @@
 										</div>
 
 										<!-- CU -->
-										<div class="col-md-4" v-if="profile.id_cu === 0">
+										<div class="col-md-6" v-if="currentUser.id_cu === 0">
 											<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 												<!-- title -->
@@ -65,7 +65,8 @@
 												<!-- select -->
 												<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 													<option disabled value="">Silahkan pilih CU</option>
-													<option value="0"><span v-if="profile.pus">{{profile.pus.name}}</span> <span v-else>Puskopdit</span></option>
+													<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+													<option disabled value="">----------------</option>
 													<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 												</select>
 
@@ -163,21 +164,17 @@
 		},
 		created(){
 			this.fetch();
+			if(this.currentUser.id_cu == 0){
+				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+			}else{
+				this.form.id_cu = this.currentUser.id_cu;
+			}
 		},
 		watch: {
-			profileStat(value){ //jika refresh halaman maka reload profile
-				if(value === "success"){
-					if(this.profile.id_cu == 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
-					}else{
-						this.form.id_cu = this.profile.id_cu;
-					}
-				}
-			},
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode != 'edit' && this.profile.id_cu != 0){
-						this.form.id_cu = this.profile.id_cu;
+					if(this.$route.meta.mode != 'edit' && this.currentUser.id_cu != 0){
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 			},
@@ -196,8 +193,8 @@
     },
 		methods: {
 			fetch(){
-				if(this.profile.id_cu == 0){
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+				if(this.currentUser.id_cu == 0){
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 				}
 
 				if(this.$route.meta.mode === 'edit'){
@@ -229,17 +226,17 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode == 'edit' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode == 'edit' && this.currentUser.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
-					if(this.profile.id_cu == 0){
+					if(this.currentUser.id_cu == 0){
 						if(this.form.id_cu == 0){
 							this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 						}else{
 							this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 						}
 					}else{
-						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 					}
 				}
 			},
@@ -266,9 +263,8 @@
 			},
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('artikelPenulis',{
 				form: 'data',

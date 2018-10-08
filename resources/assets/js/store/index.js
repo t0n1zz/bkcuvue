@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import { auth } from './modules/auth';
 import { user } from './modules/user';
 import { role } from './modules/role';
 import { global } from './modules/global';
@@ -27,6 +28,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	 modules: {
 		 global,
+		 auth,
 		 user,
 		 role,
 		 artikel,

@@ -5,17 +5,17 @@
 
         <!-- grafik cu -->
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikCu'}" @click.prevent="changeGrafikTab('grafikCu')" v-if="profile.id_cu != 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan CU</a>
+          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikCu'}" @click.prevent="changeGrafikTab('grafikCu')" v-if="currentUser.id_cu != 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan CU</a>
         </li>
 
         <!-- grafik pearls -->
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikPearls'}" @click.prevent="changeGrafikTab('grafikPearls')" v-if="profile.id_cu != 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan P.E.A.R.L.S. CU</a>
+          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikPearls'}" @click.prevent="changeGrafikTab('grafikPearls')" v-if="currentUser.id_cu != 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan P.E.A.R.L.S. CU</a>
         </li>
 
         <!-- grafik perkembangan -->
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikGerakan'}" @click.prevent="changeGrafikTab('grafikGerakan')" v-if="profile.id_cu == 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan Gerakan</a>
+          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikGerakan'}" @click.prevent="changeGrafikTab('grafikGerakan')" v-if="currentUser.id_cu == 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan Gerakan</a>
         </li>
 
       </ul>
@@ -23,7 +23,7 @@
 
     <!-- grafik cu -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
-      <div v-show="tabGrafikName == 'grafikCu'" v-if="profile.id_cu != 0">
+      <div v-show="tabGrafikName == 'grafikCu'" v-if="currentUser.id_cu != 0">
         <infografis-cu
           :title="'Laporan Perkembangan CU'"
           :kelas="'laporanCu'"
@@ -33,7 +33,7 @@
 
     <!-- grafik pearls -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
-      <div v-show="tabGrafikName == 'grafikPearls'" v-if="isGrafikPearls && profile.id_cu != 0">
+      <div v-show="tabGrafikName == 'grafikPearls'" v-if="isGrafikPearls && currentUser.id_cu != 0">
         <infografis-pearls
           :title="'Laporan Perkembangan P.E.A.R.L.S. CU'"
           :kelas="'laporanCu'"
@@ -43,7 +43,7 @@
 
     <!-- grafik gerakan -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
-      <div v-show="tabGrafikName == 'grafikGerakan'" v-if="isGrafikGerakan && profile.id_cu == 0">
+      <div v-show="tabGrafikName == 'grafikGerakan'" v-if="isGrafikGerakan && currentUser.id_cu == 0">
         <infografis-gerakan
           :title="'Laporan Perkembangan Gerakan'"
           :kelas="'laporanCu'"
@@ -59,7 +59,7 @@
 	import infografisGerakan from "../laporanGerakan/infografis.vue";
 
 	export default{
-    props: ['profile','profileStat','columnData','columnDataPearls'],
+    props: ['currentUser','columnData','columnDataPearls'],
 		components: {
 			infografisCu,
 			infografisPearls,
@@ -73,18 +73,9 @@
 			}
 		},
 		created(){
-      if(this.profileStat == 'success' && this.profile.id_cu == 0){
-          this.changeGrafikTab('grafikGerakan');
-        }
-		},
-		watch: {
-			profileStat(value){
-				if(value == 'success'){
-					if(this.profile.id_cu == 0){
-            this.changeGrafikTab('grafikGerakan');
-					}
-				}
-			}
+      if(this.currentUser.id_cu == 0){
+        this.changeGrafikTab('grafikGerakan');
+      }
 		},
 		methods:{
 			changeGrafikTab(value) {
