@@ -55,8 +55,11 @@
 							</div>
 
 							<div class="form-group">
-								<button type="button" class="btn btn-primary btn-block" disabled v-if="loading">
+								<button type="button" class="btn btn-primary btn-block" disabled v-if="loadingState == 'loading'">
 									<i class="icon-spinner2 spinner"></i>
+								</button>
+								<button type="button" class="btn btn-success btn-block" disabled v-else-if="loadingState == 'success'">
+									<i class="icon-checkmark3"></i>
 								</button>
 								<button type="submit" class="btn btn-primary btn-block" v-else>Login
 									<i class="icon-circle-right2 position-right"></i>
@@ -91,7 +94,7 @@
 					username: "",
 					password: "",
 				},
-				loading: false,
+				loadingState: '',
 				submited: '',
 				message: {
 					show: false,
@@ -104,20 +107,23 @@
 				this.message.show = false;
 				this.$validator.validateAll().then((result) => {
 					if(result){
-						this.loading = true;
+						this.loadingState = 'loading';
 
 						this.$store.dispatch('auth/login');
 
 						login(this.form)
 							.then((res) => {
-								this.loading = false;
+								this.loadingState = 'success';
 								this.$store.dispatch('auth/loginSuccess', res);
-								this.$router.push('/');
+								let self = this;
+								setTimeout(function(){
+										self.$router.push('/');
+								}, 300);
 							})
 							.catch((error) => {
 								this.message.show = true;
 								this.message.content = error;
-								this.loading = false;
+								this.loadingState = 'fail';
 							});
 
 						this.submited = false;

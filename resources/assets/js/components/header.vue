@@ -133,12 +133,11 @@
 
 							<!-- artikel -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-show="currentUser.can && currentUser.can['index_artikel'] && currentUser.id_cu == 0">
-								<a href="#" class="dropdown-item dropdown-toggle">
+							<div class="dropdown-submenu" v-if="currentUser.can && currentUser.can['index_artikel'] && currentUser.id_cu == 0">
+								<a href="#" class="dropdown-item dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<i class="icon-magazine"></i> Artikel
 								</a>
-								<div class="dropdown-menu">
-
+								<div class="dropdown-menu" >
 									<router-link :to="{ name: 'artikelCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
@@ -543,11 +542,19 @@ import { logout } from "../helpers/auth.js";
 			fetchCu(){
 				this.$store.dispatch('cu/getHeader');
 			},
-			markApllNotifRead(){
-				this.$store.dispatch('user/marchkAllNotifRead');
+			markAllNotifRead(){
+				this.$store.dispatch('user/markAllNotifRead');
 			},
 			logout() {
 				// TODO: log out on server side
+				axios.post('/api/auth/logout')
+				.then((response) => {
+					console.log('success');
+				})
+				.catch((err) => {
+					console.log(err);
+				})
+			
 				this.$store.dispatch('auth/logout');
 				this.$router.push('/login');
 			}

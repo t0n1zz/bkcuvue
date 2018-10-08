@@ -110,9 +110,9 @@ class Authcontroller extends Controller
         ]);
 		}
 		
-		public function guard()
-		{
-			return Auth::Guard('api');
-		}
+    public function guard()
+    {
+        return Auth::Guard('api');
+    }
 
 }

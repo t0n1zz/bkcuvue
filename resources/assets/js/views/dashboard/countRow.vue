@@ -89,7 +89,6 @@
 			},
 			goTo(route){
 				this.$router.push(route);
-				console.log(route);
     	}	
 		},
 		computed: {
