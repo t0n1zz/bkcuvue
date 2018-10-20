@@ -3,7 +3,7 @@
 		<div class="row">
 
 			<!-- CU -->
-			<div class="col-sm-12" v-if="profile.id_cu == 0">
+			<div class="col-sm-12" v-if="currentUser.id_cu == 0">
 				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.id_tempat')}">
 
 					<!-- title -->
@@ -228,9 +228,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 		}
 	}

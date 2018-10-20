@@ -1,38 +1,42 @@
 export default {
   
   index: function( p ){
-    return api.call('get', '/api/artikelPenulis' , {params: p});
+    return axios.get('/api/artikelPenulis' , {params: p});
   },
 
   get: function(){
-    return api.call('get', '/api/artikelPenulis/get');
+    return axios.get('/api/artikelPenulis/get');
   },
   
   indexCu: function( p, id ){
-    return api.call('get', '/api/artikelPenulis/indexCu/' + id, {params: p});
+    return axios.get('/api/artikelPenulis/indexCu/' + id, {params: p});
   },
 
   getCu: function( id ){
-    return api.call('get', '/api/artikelPenulis/getCu/' + id);
+    return axios.get('/api/artikelPenulis/getCu/' + id);
   },
 
   create: function(){
-    return api.call('get', '/api/artikelPenulis/create');
+    return axios.get('/api/artikelPenulis/create');
   },
 
   store: function ( form ){
-    return api.call('post', '/api/artikelPenulis/store', form);
+    return axios.post('/api/artikelPenulis/store', form);
   },
 
   edit: function( id ){
-    return api.call('get', '/api/artikelPenulis/edit/' + id);
+    return axios.get('/api/artikelPenulis/edit/' + id);
   },
 
   update: function ( id, form ){
-    return api.call('post', '/api/artikelPenulis/update/' + id, form);
+    return axios.post('/api/artikelPenulis/update/' + id, form);
   },
 
   destroy: function( id ){
-    return api.call('delete', '/api/artikelPenulis/' + id);
-  }
+    return axios.delete('/api/artikelPenulis/' + id);
+  },
+
+  count: function(){
+    return axios.get('/api/artikelPenulis/count');
+  },
 }

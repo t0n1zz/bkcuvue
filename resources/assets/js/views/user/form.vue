@@ -142,7 +142,7 @@
 									</div>
 
 									<!-- tipe -->
-									<div class="col-md-12" v-if="profile.id_cu == 0 && $route.meta.mode != 'edit'">
+									<div class="col-md-12" v-if="currentUser.id_cu == 0 && $route.meta.mode != 'edit'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -169,7 +169,7 @@
 									</div>
 
 									<!-- select CU -->
-									<div class="col-md-12" v-if="profile.id_cu == 0 && roleTipe == 'cu'">
+									<div class="col-md-12" v-if="currentUser.id_cu == 0 && roleTipe == 'cu'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -262,18 +262,16 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
-		watch: {
-			profileStat(value){
-				if(value == 'success'){
-					if(this.$route.meta.mode != 'edit'){
-						if(this.profile.id_cu == 0){
-							this.roleTipe = 'bkcu';
-						} else {
-							this.roleTipe = 'cu';
-						}
-					}
+		created(){
+			if(this.$route.meta.mode != 'edit'){
+				if(this.currentUser.id_cu == 0){
+					this.roleTipe = 'bkcu';
+				} else {
+					this.roleTipe = 'cu';
 				}
-			},
+			}
+		},
+		watch: {
 			formStat(value){
 				if(value == 'success'){
 					if(this.$route.meta.mode == 'edit'){
@@ -283,12 +281,10 @@
 							this.roleTipe = 'cu';
 						}
 					}else{
-						if(this.profileStat == 'success'){
-							if(this.profile.id_cu == 0){
-								this.roleTipe = 'bkcu';
-							} else {
-								this.roleTipe = 'cu';
-							}
+						if(this.currentUser.id_cu == 0){
+							this.roleTipe = 'bkcu';
+						} else {
+							this.roleTipe = 'cu';
 						}
 					}
 				}
@@ -308,7 +304,7 @@
 			roleTipe(value){
 				if(value == 'cu'){
 					if(this.modelCuStat != "success"){
-						this.$store.dispatch('cu/getPus', this.profile.id_pus);
+						this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
 					}
 				}else{
 					this.form.id_cu = '0';
@@ -331,8 +327,8 @@
 			},
 			save() {
 				if(this.$route.meta.mode != 'edit'){
-					if(this.profile.id_cu != 0){
-						this.form.id_cu = this.profile.id_cu;
+					if(this.currentUser.id_cu != 0){
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 
@@ -352,10 +348,10 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode === 'edit' && this.currentUser.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}
 			},
 			modalTutup() {
@@ -389,9 +385,10 @@
 			}
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat',
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',

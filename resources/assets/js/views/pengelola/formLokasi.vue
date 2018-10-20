@@ -242,10 +242,6 @@
 			},
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',
 				modelProvincesStat: 'dataStatS'

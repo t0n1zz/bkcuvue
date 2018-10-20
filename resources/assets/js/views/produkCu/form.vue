@@ -33,7 +33,7 @@
 									</div>  
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="profile.id_cu === 0">
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -45,7 +45,7 @@
 											<!-- select -->
 											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 												<option disabled value="0">Silahkan pilih CU</option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+												<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -256,32 +256,30 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
-		watch: {
-			profileStat(value){ //jika refresh halaman maka reload profile
-				if(value === "success"){
-					if(this.profile.id_cu == 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
-					}
-					if(this.$route.meta.mode !== 'edit' && this.form.id_cu == undefined){
-						this.form.id_cu = this.profile.id_cu;
-					}
+		created(){
+			if(this.currentUser.id_cu == 0){
+				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+			}
+			if(this.$route.meta.mode !== 'edit' && this.form.id_cu == undefined){
+				this.form.id_cu = this.currentUser.id_cu;
+			}
 
-					// check permission
-					if(this.$route.meta.mode === 'edit'){
-						if(!this.profile.can || !this.profile.can['update_produk_cu']){
-							this.$router.push({name: 'notFound'});
-						}
-					}else{
-						if(!this.profile.can || !this.profile.can['create_produk_cu']){
-							this.$router.push({name: 'notFound'});
-						}
-					}
+			// check permission
+			if(this.$route.meta.mode === 'edit'){
+				if(!this.currentUser.can || !this.currentUser.can['update_produk_cu']){
+					this.$router.push({name: 'notFound'});
 				}
-			},
+			}else{
+				if(!this.currentUser.can || !this.currentUser.can['create_produk_cu']){
+					this.$router.push({name: 'notFound'});
+				}
+			}
+		},
+		watch: {
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
-						this.form.id_cu = this.profile.id_cu;
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 			},
@@ -329,13 +327,13 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode == 'edit' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode == 'edit' && this.currentUser.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
 				}else{
-					if(this.profile.id_cu == 0){
+					if(this.currentUser.id_cu == 0){
 						this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
 					}else{
-						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 					}		
 				}
 			},
@@ -359,9 +357,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('produkCu',{
 				form: 'data',

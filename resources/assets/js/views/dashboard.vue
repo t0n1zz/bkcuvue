@@ -27,7 +27,7 @@
 
 				<!-- tabel -->
 				<div class="col-lg-4">
-					<table-laporan-cu-widget :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
+					<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
 				</div>
 
 			</div>

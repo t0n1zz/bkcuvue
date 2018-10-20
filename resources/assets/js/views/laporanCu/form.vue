@@ -39,7 +39,7 @@
 								<div class="row">
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="profile.id_cu === 0">
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -779,7 +779,7 @@
 											<cleave 
 												v-model="form.laju_inflasi" 
 												class="form-control" 
-												:options="cleaveOption.numeric"
+												:options="cleaveOption.numeric2"
 												placeholder="Silahkan masukkan jumlah inflasi"></cleave>
 
 											<!-- error message -->
@@ -798,7 +798,7 @@
 											<cleave 
 												v-model="form.harga_pasar" 
 												class="form-control" 
-												:options="cleaveOption.numeric"
+												:options="cleaveOption.numeric2"
 												placeholder="Silahkan masukkan harga pasar"></cleave>
 
 											<!-- error message -->
@@ -883,6 +883,13 @@
             numeralDecimalScale: 2,
             numeralDecimalMark: ',',
             delimiter: '.'
+					},
+					numeric2: {
+            numeral: true,
+            numeralIntegerScale: 2,
+            numeralDecimalScale: 2,
+            numeralDecimalMark: ',',
+            delimiter: '.'
           }
         },
 			}
@@ -891,7 +898,7 @@
 			next(vm => vm.fetch());
 		},
 		created(){
-			if(this.profile.id_cu != undefined){
+			if(this.currentUser.id_cu != undefined){
 				this.checkProfileIdCU();
 			}
 		},
@@ -900,11 +907,6 @@
 			'$route' (to, from){
 				this.fetch();
 			},
-			profileStat(value){ //jika refresh halaman maka reload profile
-				if(value == "success"){
-					this.checkProfileIdCU();
-				}
-			},
 			formStat(value){
 				if(value == "success"){
 					if(this.$route.meta.mode == 'edit' && this.modelCUStat == "success"){
@@ -912,8 +914,8 @@
 					}else if(this.$route.meta.mode == 'editTp' && this.modelCUStat == "success"){
 						this.checkMetaEditTp();
 					}else if(this.$route.meta.mode !== 'edit'){
-						if(this.profile.id_cu == 0){
-							// this.form.id_cu = this.profile.id_cu;
+						if(this.currentUser.id_cu == 0){
+							// this.form.id_cu = this.currentUser.id_cu;
 						}	
 					}
 				}
@@ -957,10 +959,11 @@
     },
 		methods: {
 			checkProfileIdCU(){
-				if(this.profile.id_cu == 0){
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+				if(this.currentUser.id_cu == 0){
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 				}else{
-					this.form.id_cu = this.profile.id_cu;
+					this.form.id_cu = this.currentUser.id_cu;
+					this.$store.dispatch('tp/getCu',this.currentUser.id_cu);
 					this.isModelTp = true;
 				}
 			},
@@ -1008,8 +1011,8 @@
 				this.$router.push({name: 'laporanTpEdit', params: { id: id}});
 			},
 			save() {
-				if(this.profile.id_cu != 0){
-					this.form.id_cu = this.profile.id_cu;
+				if(this.currentUser.id_cu != 0){
+					this.form.id_cu = this.currentUser.id_cu;
 				}
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
@@ -1018,7 +1021,7 @@
 						}else if(this.$route.meta.mode === 'editTp'){
 							this.$store.dispatch(this.kelas + '/updateTp', [this.$route.params.id, this.form]);
 						}else{
-							if(this.form.id_tp == 0){
+							if(this.form.id_tp == 'konsolidasi'){
 								this.$store.dispatch(this.kelas + '/store', this.form);
 							}else{
 								this.$store.dispatch(this.kelas + '/storeTp', this.form);
@@ -1037,7 +1040,7 @@
 				}else if(this.$route.meta.mode === 'editTp'){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
 				}else{
-					if(this.profile.id_cu == 0){
+					if(this.currentUser.id_cu == 0){
 						if(this.form.id_cu == 0){
 							this.$router.push({name: this.kelas});
 						}else{
@@ -1072,9 +1075,8 @@
 			},
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('laporanCu',{
 				form: 'data',

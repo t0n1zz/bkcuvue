@@ -47,7 +47,7 @@
 			<div class="card-body">
 				<h5 class="text-semibold">Silahkan masukkan komentar anda terhadap laporan keuangan ini</h5>
 
-				<ckeditor type="classic" v-model="form.content"></ckeditor>
+				<ckeditor type="classic" :config="ckeditorNoImageConfig"  v-model="form.content"></ckeditor>
 
 				<hr>
 
@@ -64,7 +64,7 @@
 			<template slot="modal-body1">
 				<h5 class="text-semibold">Komentar terhadap laporan keuangan ini</h5>
 
-				<ckeditor type="classic" v-model="formEdit.content"></ckeditor>
+				<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="formEdit.content"></ckeditor>
 
 				<br>
 
@@ -137,6 +137,31 @@
 					id_tp:'',
 					periode:'',
 					content: ''
+				},
+				ckeditorNoImageConfig: {
+					toolbar: {
+						items: [
+							'heading',
+							'|',
+							'bold',
+							'italic',
+							'link',
+							'bulletedList',
+							'numberedList',
+							'blockQuote',
+							'insertTable',
+							'mediaEmbed',
+							'undo',
+							'redo'
+						]
+					},
+					table: {
+						contentToolbar: [
+							'tableColumn',
+							'tableRow',
+							'mergeTableCells'
+						]
+					},
 				},
 				cleaveOption: {
           numeric: {

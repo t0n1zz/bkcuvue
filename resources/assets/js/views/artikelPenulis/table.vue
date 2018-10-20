@@ -169,6 +169,7 @@
 						filter: true
 					}
 				],
+				state: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -232,16 +233,16 @@
 				this.$store.dispatch(this.kelas + '/resetDataStat');
 				this.$router.push({name: 'artikelFilterPenulisCu', params: { cu: id_cu, penulis: id }});
 			},
-			modalConfirmOpen(source, isMobile, itemMobile) {
+			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
-				this.source = source;
+				this.state = state;
 
 				if(isMobile){
 					this.selectedItem = itemMobile;
 				}
 
-				if (source == 'hapus') {
+				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 				}
@@ -251,7 +252,7 @@
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
-				if (this.source == 'hapus') {
+				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
 			}

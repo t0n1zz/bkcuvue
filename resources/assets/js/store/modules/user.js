@@ -7,6 +7,7 @@ export const user = {
   state: {
     notification: {},
     unreadNotification:'',
+    notifStat: '',
     markNotifStat:'',
     data: {}, //single data
     dataS: [], //collection
@@ -24,6 +25,7 @@ export const user = {
   getters: {
     notification: state => state.notification,
     unreadNotification: state => state.unreadNotification,
+    notifStat: state => state.notifStat,
     markNotifStat: state => state.markNotifStat,
     data: state => state.data,
     dataS: state => state.dataS,
@@ -299,6 +301,21 @@ export const user = {
         });
     },
 
+    getNotif( { commit }){
+      commit('setNotifStat', 'loading');
+      
+      UserAPI.getNotif()
+        .then( function( response ){
+          commit('setNotification', response.data.notification );
+          commit('setUnreadNotification', response.data.unreadNotification );
+          commit('setNotifStat', 'success');
+        })
+        .catch( error => {
+          commit('setNotification', error.response);
+          commit('setNotifStat', 'fail');
+        });
+    },
+
     markAllNotifRead( { commit } ){
       commit('setMarkNotifStat', 'loading');
       
@@ -351,6 +368,9 @@ export const user = {
     },
     setUnreadNotification ( state, data ){
       state.unreadNotification = data;
+    },
+    setNotifStat ( state, data ){
+      state.notifStat = data;
     },
     setMarkNotifStat( state, status ){
       state.markNotifStat = status;

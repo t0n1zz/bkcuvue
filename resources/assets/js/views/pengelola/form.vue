@@ -291,26 +291,24 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
-		watch: {
-			profileStat(value){ //jika refresh halaman maka reload profile
-				if(value === "success"){
-					if(this.profile.id_cu === 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
-					}
-					this.form.id_cu = this.profile.id_cu;
+		created(){
+			if(this.currentUser.id_cu === 0){
+				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+			}
+			this.form.id_cu = this.currentUser.id_cu;
 
-					// check permission
-					if(this.$route.meta.mode === 'editIdentitas'){
-						if(!this.profile.can || !this.profile.can['update_' + this.kelas]){
-							this.$router.push({name: 'notFound'});
-						}
-					}else{
-						if(!this.profile.can || !this.profile.can['create_' + this.kelas]){
-							this.$router.push({name: 'notFound'});
-						}
-					}
+			// check permission
+			if(this.$route.meta.mode === 'editIdentitas'){
+				if(!this.currentUser.can || !this.currentUser.can['update_' + this.kelas]){
+					this.$router.push({name: 'notFound'});
 				}
-			},
+			}else{
+				if(!this.currentUser.can || !this.currentUser.can['create_' + this.kelas]){
+					this.$router.push({name: 'notFound'});
+				}
+			}
+		},
+		watch: {
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -336,13 +334,13 @@
 				this.form.anak = this.formAnak;
 
 				if(this.$route.meta.mode == 'create'){
-					if(this.profile.id_cu == 0){
+					if(this.currentUser.id_cu == 0){
 						if(this.form.pekerjaan.tipe == 0){
 							this.form.pekerjaan.tipe = 3;
 						}
 					}else{
 						this.form.pekerjaan.tipe = 1;
-						this.form.pekerjaan.id_tempat = this.profile.id_cu;
+						this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
 					}
 				}
 				
@@ -358,10 +356,10 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'editIdentitas' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode === 'editIdentitas' && this.currentUser.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}
 			},
 			changeProvinces(id){
@@ -399,9 +397,8 @@
 			},
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('pengelola',{
 				form: 'data',

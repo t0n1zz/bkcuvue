@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUpload="excelUpload" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -77,7 +77,7 @@
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 
 					'bg-info': selectedItem.id === props.item.id, 
-					'bg-warning' : props.item.periode < selectData && selectedItem.id !== props.item.id && idCu == 'semua' }"
+					'bg-warning' : props.item.periode < periode && selectedItem.id !== props.item.id }"
 				  class="text-nowrap" @click="selectedRow(props.item)">
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
@@ -95,7 +95,7 @@
 						<check-value :value="props.item.provinces_name"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
-						<span v-if="props.item.periode < selectData && idCu == 'semua'" class="label label-warning" v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(selectData)"><i
+						<span v-if="props.item.periode < periode" class="label label-warning" v-tooltip:top="'Laporan ini bukanlah laporan periode ' + formatPeriode(periode)"><i
 							  class="icon-alert text-size-base"></i></span>
 						&nbsp;
 						{{ props.item.periode | dateMonth }}
@@ -110,7 +110,7 @@
 						<check-value :value="props.item.l_lbiasa" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.p_biasa" valueType="currency"></check-value>
+					<check-value :value="props.item.p_biasa" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.p_lbiasa" valueType="currency"></check-value>
@@ -294,8 +294,15 @@ export default {
         limit: 50,
         page: 1
       },
-      excelUrl:'',
-      selectedItem: [],
+			excelDownloadUrl:'',
+			excelUpload:{
+				url: 'laporanCu/uploadExcel',
+				format_url: 'formatExcel.xlsx',
+				next_page_route: 'laporanCuDraft',
+			},
+			periode: '',
+			selectedItem: [],
+			state: '',
       modalShow: false,
       modalState: "",
       modalTitle: "",
@@ -312,7 +319,17 @@ export default {
     $route(to, from) {
       this.isFirstLoad = true;
       this.fetch(this.query);
-    },
+		},
+		
+		modelPeriodeStat(value){
+			if(value === "success"){
+				if(this.$route.meta.mode == 'periode'){
+					this.periode = this.$route.params.periode;
+				}else{
+					this.periode = this.modelPeriode[0].periode;
+				}
+			}
+		},
 
     // when updating data
     updateStat(value) {
@@ -347,7 +364,8 @@ export default {
           params,
           this.$route.params.periode
         ]);
-        this.excelUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
+				this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
+				this.periode = this.$route.params.periode;
 
       } else if (this.$route.meta.mode == "cu") {
         
@@ -365,7 +383,8 @@ export default {
             params,
             this.$route.params.cu
           ]); 
-          this.excelUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+					this.periode = '';
 
         } else { // laporan tp/kp per tp
           
@@ -375,7 +394,8 @@ export default {
             params,
             this.$route.params.tp
           ]);
-          this.excelUrl = 'laporanTp' + '/indexTp/' + this.$route.params.tp;
+					this.excelDownloadUrl = 'laporanTp' + '/indexTp/' + this.$route.params.tp;
+					this.periode = '';
 
         }
       } else if (this.$route.meta.mode == "cuPeriode") { // laporan tp/kp semua tp
@@ -392,7 +412,8 @@ export default {
           this.$route.params.cu,
           this.$route.params.periode
         ]);
-        this.excelUrl = 'laporanTp' + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.periode;
+				this.excelDownloadUrl = 'laporanTp' + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.periode;
+				this.periode = this.$route.params.periode;
 
       } else { // laporan cu default
 
@@ -404,8 +425,7 @@ export default {
         this.columnData[2].disable = true;
 
         this.$store.dispatch(this.kelas + "/index", params);
-        this.excelUrl = this.kelas;
-
+				this.excelDownloadUrl = this.kelas;
       }
     },
     checkProfile() {
@@ -482,17 +502,17 @@ export default {
         });
       }
     },
-    modalConfirmOpen(source, isMobile, itemMobile) {
+    modalConfirmOpen(state, isMobile, itemMobile) {
       this.modalShow = true;
       this.modalColor = "";
       this.modalState = "confirm-tutup";
-      this.source = source;
+      this.state = state;
 
       if (isMobile) {
         this.selectedItem = itemMobile;
       }
 
-      if (source == "hapus") {
+      if (state == "hapus") {
         this.modalTitle =
           "Hapus " + this.title + " " + this.selectedItem.name + " ?";
         this.modalButton = "Iya, Hapus";
@@ -503,7 +523,7 @@ export default {
       this.$store.dispatch(this.kelas + "/resetUpdateStat");
     },
     modalConfirmOk() {
-      if (this.source == "hapus") {
+      if (this.state == "hapus") {
         this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
       }
     },
@@ -531,8 +551,8 @@ export default {
     ...mapGetters("laporanCu", {
       itemData: "dataS",
       itemDataStat: "dataStatS",
-      periodeData: "periode",
-      periodeStat: "periodeStat",
+      modelPeriode: "periode",
+      modelPeriodeStat: "periodeStat",
       updateMessage: "update",
       updateStat: "updateStat"
     }),

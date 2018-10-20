@@ -10,17 +10,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 			</template>
@@ -30,17 +30,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 			</template>
@@ -409,6 +409,7 @@
 						filter: true,
 					}
 				],
+				state: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -459,16 +460,16 @@
 			ubah(id) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
-			modalConfirmOpen(source, isMobile, itemMobile) {
+			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
-				this.source = source;
+				this.state = state;
 
 				if(isMobile){
 					this.selectedItem = itemMobile;
 				}
 
-				if (source == 'hapus') {
+				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
 					this.modalButton = 'Iya, Hapus';
 				}
@@ -478,7 +479,7 @@
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
-				if (this.source == 'hapus') {
+				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
 			}

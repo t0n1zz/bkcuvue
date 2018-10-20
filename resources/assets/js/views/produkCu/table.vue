@@ -9,17 +9,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]"  :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 			</template>
@@ -29,17 +29,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 			</template>
@@ -65,19 +65,23 @@
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.kode_produk"></check-value>
+						<span style="display:inline">
+							<check-value :value="props.item.keterangan" valueType="modal"></check-value>
+						</span>
 					</td>
 					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.kode_produk"></check-value>
+						<span style="display:inline">
+							<check-value :value="props.item.aturan_setor" valueType="modal"></check-value>
+						</span>
 					</td>
 					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.kode_produk"></check-value>
+						<check-value :value="props.item.aturan_tarik" valueType="modal"></check-value>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.kode_produk"></check-value>
+						<check-value :value="props.item.aturan_balas_jasa" valueType="modal"></check-value>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.kode_produk"></check-value>
+						<check-value :value="props.item.aturan_lain" valueType="modal"></check-value>
 					</td>
 					<td v-if="!columnData[10].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[11].hide">
@@ -98,6 +102,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import truncate from 'vue-truncate-collapsed';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import collapseButton from '../../components/collapseButton.vue';
@@ -106,6 +111,7 @@
 	export default {
 		components: {
 			DataViewer,
+			truncate,
 			appModal,
 			collapseButton,
 			checkValue
@@ -199,6 +205,7 @@
 						filter: true,
 					}
 				],
+				state: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -258,26 +265,32 @@
 			ubahData(id) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
-			modalConfirmOpen(source, isMobile, itemMobile) {
+			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
-				this.source = source;
+				this.state = state;
 
 				if(isMobile){
 					this.selectedItem = itemMobile;
 				}
 
-				if (source == 'hapus') {
+				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
 					this.modalButton = 'Iya, Hapus';
 				}
+			},
+			modalOpen(value){
+				this.modalShow = true;
+				this.modalState = 'content-tutup';
+				this.modalContent = value;
+				this.modalButton = 'Tutup';
 			},
 			modalTutup() {
 				this.modalShow = false;
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
-				if (this.source == 'hapus') {
+				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
 			}

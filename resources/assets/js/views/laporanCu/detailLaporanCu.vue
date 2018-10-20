@@ -975,29 +975,29 @@
 					<button type="button" @click.prevent="modalTutup" class="btn btn-light" v-tooltip:top="'Tutup'">
 						<i class="icon-cross"></i> Tutup
 					</button>
-					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-light" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update_laporan_cu']">
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-light" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 
 					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-light" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah">
 						<i class="icon-arrow-left13"></i> Batal
 					</button>
-					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update_laporan_cu'] && modalDetail.canUbah">
+					<button type="submit" class="btn btn-primary" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && currentUser.can && currentUser.can['update_laporan_cu'] && modalDetail.canUbah">
 						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 				</div>
 
 				<div class="d-block d-sm-none">
 
-					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update_laporan_cu'] && modalDetail.canUbah">
+					<button type="submit" class="btn btn-primary btn-block" v-tooltip:top="'Simpan data perhitungan'" v-if="modalDetail.isUbah && currentUser.can && currentUser.can['update_laporan_cu'] && modalDetail.canUbah">
 						<i class="icon-floppy-disk"></i> Simpan
 					</button>
 
-					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-light btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah && profile.can && profile.can['update_laporan_cu']">
+					<button type="button" @click.prevent="modalDetail.isUbah = false" class="btn btn-light btn-block" v-tooltip:top="'Batal mengubah data perhitungan'" v-if="modalDetail.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 						<i class="icon-arrow-left13"></i> Batal
 					</button>
 
-					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-light btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && profile.can && profile.can['update_laporan_cu']">
+					<button type="button" @click.prevent="modalDetail.isUbah = true" class="btn btn-light btn-block" v-tooltip:top="'Ubah data perhitungan'" v-if="!modalDetail.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 						<i class="icon-pencil5"></i> Ubah
 					</button>
 
@@ -1075,14 +1075,6 @@
 			'$route' (to, from){
 				// check current page meta
 				this.fetch();
-			},
-			profileStat(value){
-				if(value == 'success'){
-				}
-			},
-			itemDataStat(value){
-				if(value == 'success'){
-				}
 			},
 			grafikDataStat(value){
 				if(value == 'success'){
@@ -1221,9 +1213,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('laporanCu',{
 				itemData: 'data',

@@ -83,7 +83,7 @@ class UserController extends Controller
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,'300','200',$request);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,'');
 		else
 			$fileName = '';
 
@@ -392,10 +392,34 @@ class UserController extends Controller
 		$this->hakAkses($request->hak_akses_user,'hak_akses_user',$user);
 		$this->hakAkses($request->status_user,'status_user',$user);
 	}
+
+	public function getNotif()
+	{
+		$id = auth('api')->user()->getId();
+		$kelas = User::findOrFail($id);
+		$notification = collect();
+		$unreadNotification = count($kelas->unreadNotifications);
+
+		$i = 0;
+		foreach ($kelas->notifications as $notif) {
+			$username = User::where('id',$notif->data['user'])->select('name')->first();
+			
+			$n = collect($notif);
+			$n->put('user',$username);
+			$notification->push($n);
+			if (++$i == 15) break;
+		}
+
+		return response()
+			->json([
+				'notification' => $notification,
+				'unreadNotification' => $unreadNotification
+			]);
+	}
 		
 	public function markAllNotifRead()
 	{
-		$id = Auth::user()->getId();
+		$id = Auth::user('api')->getId();
 
 		$kelas = User::findOrFail($id);
 
@@ -409,7 +433,7 @@ class UserController extends Controller
 
 	public function markNotifRead($id)
 	{
-		auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+		auth('api')->user()->unreadNotifications->where('id', $id)->markAsRead();
 
 		return response()
 				->json([
@@ -419,7 +443,7 @@ class UserController extends Controller
 
 	public function count()
 	{
-			$id = \Auth::user()->id_cu;
+			$id = Auth::user('api')->id_cu;
 
 			if($id == 0){
 					$table_data = User::count();

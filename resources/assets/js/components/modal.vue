@@ -37,6 +37,21 @@
 										</div>
 									</div>
 
+									<!-- content tutup -->
+									<div v-if="state === 'content-tutup'" key="content-tutup" class="text-center">
+										<h2>{{ title }}</h2>
+										<div style="color:black;" v-html="content"></div>
+										<hr>
+										<div class=" d-none d-sm-block">
+											<button type="button" class="btn btn-light" @click="tutup">
+												<i class="icon-cross"></i> Tutup</button>
+										</div>
+										<div class="d-block d-sm-none">
+											<button type="button" class="btn btn-light btn-block" @click="tutup">
+													<i class="icon-cross"></i> Tutup</button>
+										</div>
+									</div>
+
 									<!-- confirm tutup -->
 									<div v-if="state === 'confirm-tutup'" key="confirm-tutup" class="text-center">
 										<span class="text-warning pb-3">

@@ -7,7 +7,7 @@ Route::group(['prefix' => 'auth'],function($router){
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh');
-    Route::get('/profile', 'AuthController@profile');
+    Route::get('/me', 'AuthController@me');
 });
 
 
@@ -23,6 +23,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::get('/profile', 'AuthController@profile');
 
     // user
+    Route::get('/getNotif', 'UserController@getNotif');
     Route::get('/markNotifRead/{id}', 'UserController@markNotifRead');
     Route::get('/markAllNotifRead', 'UserController@markAllNotifRead');
 
@@ -95,6 +96,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/artikelPenulis/get', 'ArtikelPenulisController@get');
         Route::get('/artikelPenulis/indexCu/{id}', 'ArtikelPenulisController@indexCu');
         Route::get('/artikelPenulis/getCu/{id}', 'ArtikelPenulisController@getCu');
+        Route::get('/artikelPenulis/count', 'ArtikelPenulisController@count');
     });
     Route::group(['middleware' => ['permission:create_artikel_penulis']], function () {
         Route::get('/artikelPenulis/create', 'ArtikelPenulisController@create');
@@ -109,10 +111,10 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // cu
+    Route::get('/cu/getHeader', 'CuController@getHeader');   
     Route::group(['middleware' => ['permission:index_cu']], function () {
         Route::get('/cu', 'CuController@index');
         Route::get('/cu/get', 'CuController@get');  
-        Route::get('/cu/getHeader', 'CuController@getHeader');       
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
         Route::get('/cu/count', 'CuController@count');
     });
@@ -129,11 +131,11 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // tp
+    Route::get('/tp/getCu/{id}', 'TpController@getCu');
     Route::group(['middleware' => ['permission:index_tp']], function () {
         Route::get('/tp', 'TpController@index');
         Route::get('/tp/get', 'TpController@get');
         Route::get('/tp/indexCu/{id}', 'TpController@indexCu'); 
-        Route::get('/tp/getCu/{id}', 'TpController@getCu');
         Route::get('/tp/count', 'TpController@count');
     });
     Route::group(['middleware' => ['permission:create_tp']], function () {
@@ -243,7 +245,6 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:create_laporan_cu']], function () {
         Route::get('/laporanCu/create', 'laporanCuController@create');
         Route::post('/laporanCu/store', 'laporanCuController@store');
-        Route::post('/laporanCu/upload_excel', 'laporanCuController@upload_excel');
     });
     Route::group(['middleware' => ['permission:update_laporan_cu']], function () {
         Route::get('/laporanCu/edit/{id}', 'laporanCuController@edit');
@@ -257,6 +258,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
         Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
         Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
+    });
+    Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
+        Route::post('/laporanCu/uploadExcel', 'laporanCuController@uploadExcel');
+        Route::get('/laporanCu/indexDraft/{id}', 'laporanCuController@indexDraft');
+        Route::get('/laporanCu/countDraft', 'laporanCuController@countDraft');
+        Route::post('/laporanCu/storeDraftAll', 'laporanCuController@storeDraftAll');
     });
 
     //laporan tp
@@ -346,6 +353,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::post('/villages/store', 'VillagesController@store');
     Route::post('/villages/update/{id}', 'VillagesController@update');
     Route::delete('/villages/{id}', 'VillagesController@destroy');
+
+    // file
+    Route::get('download/{filename}','SystemController@download_file');
 });
 
 

@@ -392,7 +392,7 @@
     </div>
 
     <!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @batal="modalTutup" @tutup="modalTutup" @errorOk="modalTutup" @backgroundClick="modalTutup">
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
       <div slot="modal-body1">
         <!-- column -->
@@ -437,8 +437,8 @@
           <h2>Yakin akan mendownload semua data ke excel?</h2>
           <pre class="pre-scrollable text-center" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
           <br>
-          <button type="button" class="btn btn-light" @click="modalTutup">
-                <i class="icon-cross"></i> Tutup</button>  
+          <button type="button" class="btn btn-light" @click="modalBatal('excel')">
+                <i class="icon-arrow-left13"></i> Batal</button>  
           <button type="button" class="btn btn-warning" @click="modalExcelOk">
                 <i class="icon-checkmark5"></i> Ya, download semua</button>
         </div>
@@ -465,9 +465,9 @@
         <div v-else-if="excelAllDataStat === 'upload'">
           <h2>Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload</h2>
           <input type="file" class="form-control" @change="changeUpload($event.target.files)" ref="fileInput">
-          <p class="text-center mt-2" v-if="isUploadExcel">Silahkan menggunakan format ini untuk upload data: <a href="#">format excel</a></p>
-          <button type="button" class="btn btn-light" @click="modalTutup">
-              <i class="icon-cross"></i> Tutup
+          <p class="text-center mt-2" v-if="isUploadExcel">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent="downloadFormatExcel()">format excel</a></p>
+          <button type="button" class="btn btn-light" @click="modalBatal('excel')">
+              <i class="icon-arrow-left13"></i> Batal
           </button> 
            <button type="button" class="btn btn-light" @click="uploadExcel()">
               <i class="icon-upload"></i> Upload
@@ -486,9 +486,10 @@
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
+  import FileSaver from 'file-saver';
 
   export default {
-    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelUrl'],
+    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUpload'],
     components: {
       jsonExcel,
       appModal,
@@ -522,6 +523,8 @@
         },
         isExcelAll: false,
         files: new FormData(),
+        updateStat: '',
+        updateResponse: '',
         modalShow: false,
         modalState: '',
         modalTitle: '',
@@ -555,6 +558,18 @@
           this.fieldExcelAll();
         }
       },
+      updateStat(value){
+				this.modalShow = true;
+				this.modalState = value;
+				this.modalColor = '';
+
+				if(value === "success"){
+					this.modalTitle = this.updateResponse.message;
+				}else{
+					this.modalTitle = 'Oops terjadi kesalahan :(';
+					this.modalContent = this.updateResponse;
+				}
+			},
     },
     methods: {
       // show column
@@ -783,7 +798,7 @@
             ...query
           };
 
-          api.call('get','/' + this.excelUrl, {params})
+          api.call('get','/' + this.excelDownloadUrl, {params})
           .then( ({data}) => {
             this.excelAllData = data.model;
             this.modalState = 'normal2';
@@ -840,7 +855,28 @@
         this.files.append("file", event[0], event[0].name);
       },
       uploadExcel(){
-        this.$store.dispatch('laporanCu/upload_excel', this.files);
+        this.updateStat = 'loading';
+
+        axios.post('/api/' + this.excelUpload.url, this.files)
+        .then(response => {
+          if(response.data.uploaded){
+            this.updateStat = 'success';
+            this.updateResponse = response.data;
+          }else{
+            this.updateStat = 'fail';
+          }
+        })
+        .catch(error => {
+          this.updateResponse = error.response;
+          this.updateStat = 'fail';
+        });
+      },
+      downloadFormatExcel(){
+        axios.get('/api/download/' + this.excelUpload.format_url, {
+        responseType: 'blob'})
+        .then(response => {
+           FileSaver.saveAs(response.data, this.excelUpload.format_url)
+        });
       },
 
       // modal
@@ -863,7 +899,14 @@
         this.modalOptionState = state;
       },
       modalTutup() {
+        if(this.updateStat === 'success'){
+					this.$router.push({name: this.excelUpload.next_page_route});
+        }
+        
         this.modalShow = false;
+      },
+      modalBatal(value) {
+        this.modalOptionOpen(value);
       },
       availableOperators() {
         return [{

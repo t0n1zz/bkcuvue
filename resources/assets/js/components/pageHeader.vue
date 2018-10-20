@@ -79,9 +79,8 @@ export default {
 		}
 	},
 	computed:{
-		...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+		...mapGetters('auth',{
+				currentUser: 'currentUser'
 		}),
 	}
 }

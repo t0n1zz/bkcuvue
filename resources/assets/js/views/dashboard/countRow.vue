@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-
+		
     <!-- cu -->
     <div class="col-lg-3 col-md-3" v-if="currentUser.can && currentUser.can['index_cu']" @click.prevent="goTo(cuWidgetRoute)" :class="{'pointer': currentUser.id_cu == 0}">
       <count-widget :title="'CU dalam Gerakan'" :color="'bg-green-400'" :icon="'icon-office'" :count="cuCount"  ></count-widget>
@@ -21,11 +21,6 @@
       <count-widget :title="'Pengelola'" :color="'bg-indigo-400'" :icon="'icon-user-tie'" :count="pengelolaCount"></count-widget>
     </div>
 
-    <!-- user -->
-    <div class="col-lg-3 col-md-3 pointer" v-if="currentUser.can && currentUser.can['index_user']" @click.prevent="goTo(userWidgetRoute)">
-      <count-widget :title="'User'" :color="'bg-danger-400'" :icon="'icon-user'" :count="userCount"></count-widget>
-    </div>
-
   </div>
 </template>
 
@@ -39,6 +34,8 @@
 		},
 		data(){
 			return{
+				artikelWidgetRoute: {},
+				artikelPenulisWidgetRoute: {},
 				cuWidgetRoute: {},
 				tpWidgetRoute: {},
 				produkCuWidgetRoute: {},
@@ -53,6 +50,14 @@
 		},
 		methods:{
 			countWidget(){
+				if(this.currentUser.can && this.currentUser.can['index_artikel']){
+					this.$store.dispatch('artikel/count');
+				}
+
+				if(this.currentUser.can && this.currentUser.can['index_artikel_penulis']){
+					this.$store.dispatch('artikelPenulis/count');
+				}
+
 				if(this.currentUser.can && this.currentUser.can['index_cu']){
 					this.$store.dispatch('cu/count');
 				}
@@ -75,15 +80,19 @@
 			},
 			countWidgetRoute(){
 				if(this.currentUser.id_cu != 0){
+					this.artikelWidgetRoute = { name: 'artikelCu', params:{cu: this.currentUser.id_cu} };
+					this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: this.currentUser.id_cu} };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
 					this.pengelolaWidgetRoute = { name: 'pengelolaCu', params:{cu: this.currentUser.id_cu} };
 					this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.cuWidgetRoute = { name: 'cu' };
+					this.artikelWidgetRoute = { name: 'artikelCu', params:{cu: 'semua'} };
+					this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: 'semua'} };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };
-					this.pengelolaWidgetRoute = { name: 'pengelolaCu', params:{cu:'semua'} };
+					this.pengelolaWidgetRoute = { name: 'pengelolaCu', params:{cu: 'semua'} };
 					this.userWidgetRoute = { name: 'userCu', params:{cu:'semua'} };
 				}
 			},
@@ -98,6 +107,10 @@
 			...mapGetters('artikel',{
 				artikelCount: 'count',
 				artikelCountStat: 'countStat'
+			}),
+			...mapGetters('artikelPenulis',{
+				artikelPenulisCount: 'count',
+				artikelPenulisCountStat: 'countStat'
 			}),
 			...mapGetters('cu',{
 				cuCount: 'count',

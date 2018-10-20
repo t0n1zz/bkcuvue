@@ -2,9 +2,9 @@
 	<div>
 		<!-- table desktop -->
 		<div class="table-responsive">
-			<table class="table">
+			<table class="table table-striped">
 				<thead class="bg-primary">
-					<tr class="text-nowarp">
+					<tr class="text-nowrap">
 						<th v-for="item in columnData">
 							<span v-html="item.title"></span>  
 						</th>
@@ -25,7 +25,7 @@
 				</tbody>
 
 				<!-- success -->
-				<tbody v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open"> 
+				<tbody v-else-if="itemDataStat === 'success'"> 
 					<slot name="item-desktop" v-for="(item,index) in items" :item="item" :index="index"></slot>
 					<tr v-if="items.length == 0">
 						<td :colspan="columnData.length">Data tidak ada</td>
@@ -44,37 +44,21 @@
 			</table>
 		</div>
 
-		<!-- table context menu -->
-		<context-menu ref="menu">
-			<!-- slot button -->
-			<slot name="button-context"></slot>
-		</context-menu>
-
-
 	</div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
-	import contextMenu from 'vue-context-menu';
 
 	export default {
 		props:['columnData','itemDataStat','items'],
 		components: {
-			contextMenu
 		},
 		data() {
 			return {
 			}
 		},
 		methods: {
-		},
-		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
 		}
 	}
 </script>

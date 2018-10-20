@@ -11,6 +11,7 @@ import artikelKategori_form from './views/artikelKategori/form.vue';
 import laporanCu from './views/laporanCu/index.vue';
 import laporanCu_form from './views/laporanCu/form.vue';
 import laporanCu_detail from './views/laporanCu/detail.vue';
+import laporanCu_draft from './views/laporanCu/draft.vue';
 import laporanGerakan from './views/laporanGerakan/index.vue';
 import diklatBKCU from './views/diklatBKCU/index.vue';
 import diklatBKCU_form from './views/diklatBKCU/form.vue';
@@ -261,6 +262,12 @@ const routes = [
 		name: 'laporanGerakan', 
 		components: { default: laporanGerakan, 'header': header },
 		meta: { requiresAuth: true  }},	
+
+	// laporan draft
+	{ path: '/laporancu/draft',
+		name: 'laporanCuDraft', 
+		components: { default: laporanCu_draft, 'header': header },
+		meta: { requiresAuth: true }},	
 ]
 
 export default routes

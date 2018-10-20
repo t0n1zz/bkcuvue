@@ -2,11 +2,15 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Cu;
 use App\Tp;
 use App\LaporanCu;
 use App\LaporanTp;
+use App\LaporanCuDraft;
 use App\Support\ImageProcessing;
+use App\Support\NotificationHelper;
 use App\Imports\LaporanCuDraftImport;
+use App\Imports\LaporanCuDraftAllImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Http\Request;
@@ -351,6 +355,20 @@ class LaporanCuController extends Controller{
 		]);
 	}
 
+	public function indexDraft($id)
+	{
+		$table_data = LaporanCuDraft::with('Cu')->where('id_user',$id)->addSelect(['*',DB::raw('
+			(IFNULL(laporan_cu_draft.l_biasa, 0) + IFNULL(laporan_cu_draft.l_lbiasa,0) + IFNULL(laporan_cu_draft.P_biasa,0) + IFNULL(laporan_cu_draft.P_lbiasa,0)) as total_anggota,
+			(IFNULL(laporan_cu_draft.piutang_beredar,0)/IFNULL(laporan_cu_draft.aset,0)) as rasio_beredar,
+			((IFNULL(laporan_cu_draft.piutang_lalai_1bulan,0) + IFNULL(laporan_cu_draft.piutang_lalai_12bulan,0))/IFNULL(laporan_cu_draft.piutang_beredar,0)) as rasio_lalai,
+			(IFNULL(laporan_cu_draft.piutang_beredar,0) - (IFNULL(laporan_cu_draft.piutang_lalai_1bulan,0) + IFNULL(laporan_cu_draft.piutang_lalai_12bulan,0))) as piutang_bersih'
+		)])->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
 
 	public function getPeriode()
 	{
@@ -482,16 +500,46 @@ class LaporanCuController extends Controller{
 			]);
 	}
 
-	public function show($id)
+	public function storeDraftAll()
 	{
-		$kelas = LaporanCu::with('LaporanCuKategori')->findOrFail($id);
+		$id = \Auth::user()->id;
 
+		$kelas = LaporanCuDraft::where('id_user',$id);
+		$laporan = $kelas->get()->toArray();
+		$cu = Cu::select('id','no_ba')->get()->toArray();
+
+		$merged = collect($laporan)->map(function ($value) use ($cu) {
+				foreach($cu as $array){
+						if($value["no_ba"] == $array["no_ba"]){
+							$value["id_cu"] = $array["id"];
+						}
+				}
+				return $value;
+		});
+
+		foreach ($merged as $key => $value) {
+			unset($value['id']);
+			unset($value['id_user']);
+			$merged[$key] = $value;
+
+			if (!isset($value['id_cu'])) {
+				unset($merged[$key]);
+			}
+		};   
+
+		LaporanCu::insert($merged->toArray());
+
+		$kelas->delete();
+
+		// $this->store_notification($request,'Menambah');
+		
 		return response()
 			->json([
-				'model' => $kelas
+				'saved' => true,
+				'message' => $this->message. ' berhasil ditambah'
 			]);
 	}
-
+	
 	public function edit($id)
 	{
 		$kelas = LaporanCu::findOrFail($id);
@@ -522,7 +570,6 @@ class LaporanCuController extends Controller{
 			]);
 	}
 
-
 	public function destroy($id)
 	{
 		$kelas = LaporanCu::findOrFail($id);
@@ -539,17 +586,37 @@ class LaporanCuController extends Controller{
 			]);
 	}
 
-	public function upload_excel(Request $request)
+	public function uploadExcelAll(Request $request)
 	{
-		// dd($request->all());
-		// $headings = (new HeadingRowImport)->toArray(request()->file('file'));
-		// dd($headings);
+		Excel::import(new LaporanCuDraftAllImport, request()->file('file'));
+
+		return response()
+			->json([
+				'uploaded' => true,
+				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+			]);
+	}
+
+	public function uploadExcel(Request $request)
+	{
 		Excel::import(new LaporanCuDraftImport, request()->file('file'));
 
 		return response()
 			->json([
 				'uploaded' => true,
 				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+			]);
+	}
+
+	public function countDraft()
+	{
+			$id = \Auth::user()->id;
+
+			$table_data = LaporanCuDraft::where('id_user',$id)->count();
+			
+			return response()
+			->json([
+					'model' => $table_data
 			]);
 	}
 

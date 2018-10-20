@@ -1,42 +1,42 @@
 export default {
   
   index: function( p ){
-    return api.call('get', '/api/cu' , {params: p});
+    return axios.get('/api/cu' , {params: p});
   },
 
   get: function(){
-    return api.call('get', '/api/cu/get');
+    return axios.get('/api/cu/get');
   },
 
   getHeader: function(){
-    return api.call('get', '/api/cu/getHeader');
+    return axios.get('/api/cu/getHeader');
   },
 
   getPus: function( id ){
-    return api.call('get', '/api/cu/getPus/' + id);
+    return axios.get('/api/cu/getPus/' + id);
   },
 
   create: function(){
-    return api.call('get', '/api/cu/create');
+    return axios.get('/api/cu/create');
   },
 
   store: function ( form ){
-    return api.call('post', '/api/cu/store', form);
+    return axios.post('/api/cu/store', form);
   },
 
   edit: function( id ){
-    return api.call('get', '/api/cu/edit/' + id);
+    return axios.get('/api/cu/edit/' + id);
   },
 
   update: function ( id, form ){
-    return api.call('post', '/api/cu/update/' + id, form);
+    return axios.post('/api/cu/update/' + id, form);
   },
 
   destroy: function( id ){
-    return api.call('delete', '/api/cu/' + id);
+    return axios.delete('/api/cu/' + id);
   },
 
   count: function(){
-    return api.call('get', '/api/cu/count');
+    return axios.get('/api/cu/count');
   },
 }

@@ -7,7 +7,7 @@
 				<div class="row">
 					
 					<!-- cu -->
-					<div class="col-sm-5" v-if="this.profile.id_cu === 0">
+					<div class="col-sm-5" v-if="this.currentUser.id_cu === 0">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								 <span class="input-group-text">Pilih Data</span>
@@ -46,7 +46,7 @@
 
 							<!-- reload -->
 							<div class="input-group-append">
-								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
+								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchPeriode(idCu)" :disabled="modelPeriodeStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelPeriodeStat === 'loading'}"></i>
 								</button>
 							</div>
@@ -54,7 +54,7 @@
 					</div>
 
 					<!-- tp  -->
-					<div :class="{'col-sm-5': this.profile.id_cu != 0, 'col-sm-10 pt-2' : this.profile.id_cu == 0}">
+					<div :class="{'col-sm-5': this.currentUser.id_cu != 0, 'col-sm-10 pt-2' : this.currentUser.id_cu == 0}">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Pilih TP/KP</span>
@@ -64,13 +64,13 @@
 							<select class="form-control" name="idTp" v-model="idTp" data-width="100%" :disabled="modelTpStat === 'loading'">
 								<option disabled value="">Silahkan pilih TP/KP</option>
 								<option value="konsolidasi">Konsolidasi</option>
-								<option data-divider="true" v-if="modelTp.length != 0"></option>
+								<option disabled v-if="modelTp && modelTp.length != 0">----------------</option>
 								<option v-for="tp in modelTp" :value="tp.id" v-if="tp.tp">{{tp.tp.name}}</option>
 							</select>
 
 							<!-- reload -->
 							<div class="input-group-append">
-								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
+								<button class="btn btn-light" v-tooltip:top="'Reload'" @click="fetchTp(idCu,periode)" :disabled="modelPeriodeStat === 'loading'">
 									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
 								</button>
 							</div>
@@ -78,7 +78,7 @@
 					</div>
 
 					<!-- find data button -->
-					<div class="col-sm-2" :class="{'pt-2': this.profile.id_cu == 0}">
+					<div class="col-sm-2" :class="{'pt-2': this.currentUser.id_cu == 0}">
 						<button type="button" class="btn btn-light btn-icon btn-block" v-tooltip:top="'Tampilkan data sesuai pilihan'" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
@@ -108,26 +108,13 @@
 			}
 		},
 		created(){
-			if(this.profileStat === 'success'){
-				this.checkProfileIdCU();
-			}
+			this.checkProfileIdCU();
 		},
 		watch: {
-			'$route' (to, from){
-				// check current page meta
-				this.checkProfileIdCU();
-			},
-			profileStat(value){
-				if(value === "success"){
-					this.checkProfileIdCU();
-				}
-			},
 			itemDataStat(value){
 				if(value === "success"){
-					if(this.profile.id_cu == 0){
-						if(this.profileStat === "success"){
-							this.fetchCU();
-						}
+					if(this.currentUser.id_cu == 0){
+						this.fetchCU();
 					}
 					this.periode = this.itemData.periode;
 					this.changePeriode(this.periode);
@@ -163,8 +150,8 @@
     },
 		methods: {
 			checkProfileIdCU(){
-				if(this.profile.id_cu !== 0){
-					this.idCu = this.profile.id_cu;
+				if(this.currentUser.id_cu !== 0){
+					this.idCu = this.currentUser.id_cu;
 					this.changeCu(this.idCu);
 				}else{
 					this.fetchCU();  
@@ -180,7 +167,7 @@
 				}
 			},
 			fetchCU(){
-				this.$store.dispatch('cu/getPus', this.profile.id_pus);
+				this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
 			},
 			fetchPeriode(id){
 				this.$store.dispatch('laporanCu/getPeriodeCu',id);
@@ -198,9 +185,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('laporanCu',{
 				itemData: 'data',

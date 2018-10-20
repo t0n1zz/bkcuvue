@@ -117,14 +117,14 @@
 
 										<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-bg-info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }} 
 														<span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
 													</td>
 													<td>{{ props.item.tingkat }}</td>
 													<td>
-														<span v-if="props.item.tipe == 1">{{ props.item.cu.name }}</span>
+														<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
 														<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
 														<span v-else>Puskopdit BKCU Kalimantan</span>
 													</td>
@@ -135,36 +135,6 @@
 													</td>
 												</tr>
 											</template>	
-
-											<template slot="button-context">
-												<!-- title -->
-												<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItemPekerjaan.name"><b class="text-size-large">{{ this.columnDataPekerjaan[1].title }}</b></li>
-												<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-												<li><hr class="no-margin-bottom no-margin-top"/></li>
-
-												<!-- selected content -->
-												<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItemPekerjaan.name">
-													<span class="text-size-large">{{selectedItemPekerjaan.name}}</span></li>
-												<li><hr class="no-margin-top no-margin-bottom"/></li>
-
-												<!-- update -->
-												<li>
-													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Ubah riwayat pekerjaan'" :disabled="!selectedItemPekerjaan.id">
-															<i class="icon-pencil5"></i> Ubah
-														</button>
-													</div>
-												</li>
-
-												<!-- destroy -->
-												<li>
-													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Hapus riwayat pekerjaan'"  :disabled="!selectedItemPekerjaan.id">
-															<i class="icon-bin2"></i> Hapus
-														</button>
-													</div>
-												</li>
-											</template>
 										</data-table>
 
 									</div>
@@ -206,7 +176,7 @@
 
 										<data-table :items="itemData" :columnData="columnDataPendidikan" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-bg-info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.tingkat }}</td>
@@ -218,41 +188,6 @@
 													</td>
 												</tr>
 											</template>	
-
-											<template slot="button-context">
-												<!-- title -->
-												<li class="text-center pb-5 pt-5 bg-primary" v-if="selectedItemPendidikan.name">
-													<b class="text-size-large" v-if="selectedItemPendidikan.name == '-'">{{ this.columnDataPendidikan[3].title }}</b>
-													<b class="text-size-large" v-else>{{ this.columnDataPendidikan[1].title }}</b>
-												</li>
-												<li class="text-center pb-5 pt-5 bg-warning" v-else><b class="text-size-large">Tidak ada data yang terpilih</b></li>
-												<li><hr class="no-margin-bottom no-margin-top"/></li>
-
-												<!-- selected content -->
-												<li class="text-center pb-10 pt-10 pl-5 pr-5" v-if="selectedItemPendidikan.name">
-													<span class="text-size-large" v-if="selectedItemPendidikan.name == '-'">{{selectedItemPendidikan.tempat}}</span>
-													<span class="text-size-large" v-else>{{selectedItemPendidikan.name}}</span>
-												</li>
-												<li><hr class="no-margin-top no-margin-bottom"/></li>
-
-												<!-- update -->
-												<li>
-													<div class="pl-5 pr-5 pb-5 pt-10">
-														<button @click.prevent="updateRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Ubah riwayat pendidikan baru'" :disabled="!selectedItemPendidikan.id">
-															<i class="icon-pencil5"></i> Ubah
-														</button>
-													</div>
-												</li>
-
-												<!-- destroy -->
-												<li>
-													<div class="pl-5 pr-5 pb-5">
-														<button @click.prevent="destroyRiwayat()" class="btn btn-light  btn-block" v-tooltip:top="'Hapus riwayat pendidikan baru'"  :disabled="!selectedItemPendidikan.id">
-															<i class="icon-bin2"></i> Hapus
-														</button>
-													</div>
-												</li>
-											</template>
 										</data-table>
 
 									</div>
@@ -342,7 +277,7 @@
 
 										<data-table :items="itemData" :columnData="columnDataKeluarga" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-bg-info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.tipe }}</td>
@@ -386,7 +321,7 @@
 
 										<data-table :items="itemData" :columnData="columnDataAnggotaCu" :itemDataStat="itemDataStat">
 											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-bg-info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
+												<tr :class="{ 'bg-info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }}</td>
 													<td>{{ props.item.no_ba }}</td>
@@ -666,7 +601,7 @@
 				}
 			},
 			back(){
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 			},
 			saveIdentitas() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -773,23 +708,23 @@
 
 				if(this.tabName == 'riwayatPekerjaan'){
 					this.modalTitle = 'Tambah riwayat pekerjaan';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					this.$store.dispatch(this.kelas + '/createPekerjaan');	
 				}else if(this.tabName == 'riwayatPendidikan'){
 					this.modalTitle = 'Tambah riwayat pendidikan';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					this.$store.dispatch(this.kelas + '/createPendidikan');
 				}else if(this.tabName == 'riwayatOrganisasi'){
 					this.modalTitle = 'Tambah riwayat organisasi';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					this.$store.dispatch(this.kelas + '/createOrganisasi');
 				}else if(this.tabName == 'keluarga'){
 					this.modalTitle = 'Tambah data keluarga';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					this.$store.dispatch(this.kelas + '/createKeluarga');
 				}else if(this.tabName == 'anggotaCu'){
 					this.modalTitle = 'Tambah data anggota CU';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					this.$store.dispatch(this.kelas + '/createAnggotaCu');
 				}
 			},
@@ -801,7 +736,7 @@
 
 				if(this.tabName == 'riwayatPekerjaan'){
 					this.modalTitle = 'Ubah riwayat pekerjaan';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					if(data){
 						this.formRiwayat.pekerjaan = data;
 					}else{
@@ -809,7 +744,7 @@
 					}
 				}else if(this.tabName == 'riwayatPendidikan'){
 					this.modalTitle = 'Ubah riwayat pendidikan';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					if(data){
 						this.formRiwayat.pendidikan = data;
 					}else{
@@ -817,7 +752,7 @@
 					}
 				}else if(this.tabName == 'riwayatOrganisasi'){
 					this.modalTitle = 'Ubah riwayat organisasi';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					if(data){
 						this.formRiwayat.organisasi = data;
 					}else{
@@ -826,7 +761,7 @@
 					this.formRiwayat.organisasi.aktif = 'Ya';
 				}else if(this.tabName == 'keluarga'){
 					this.modalTitle = 'Ubah data keluarga';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					if(data){
 						this.formRiwayat.keluarga = data;
 					}else{
@@ -834,7 +769,7 @@
 					}
 				}else if(this.tabName == 'anggotaCu'){
 					this.modalTitle = 'Ubah data anggota CU';
-					this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					if(data){
 						this.formRiwayat.anggota_cu = data;
 					}else{
@@ -927,6 +862,9 @@
 			},
 		},
 		computed:{
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('pengelola',{
 				form: 'data',
 				formStat: 'dataStat',
@@ -944,11 +882,7 @@
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
-			}),
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat',
-			}),
+			})
 		},
 	}
 </script>

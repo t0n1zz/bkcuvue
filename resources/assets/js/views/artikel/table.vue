@@ -214,6 +214,7 @@
 						filter: true,
 					}
 				],
+				state: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -267,19 +268,19 @@
 			ubahData(id, id_cu) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
-			modalConfirmOpen(source, isMobile, itemMobile) {
+			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
-				this.source = source;
+				this.state = state;
 
 				if(isMobile){
 					this.selectedItem = itemMobile;
 				}
 
-				if (source == 'hapus') {
+				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
-				} else if (source == 'updateTerbitkan') {
+				} else if (state == 'updateTerbitkan') {
 					if (this.selectedItem.terbitkan == 0) {
 						this.modalTitle = 'Terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, terbitkan';
@@ -287,7 +288,7 @@
 						this.modalTitle = 'Tidak terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, tidak terbitkan';
 					}
-				} else if (source == 'updateUtamakan') {
+				} else if (state == 'updateUtamakan') {
 					if (this.selectedItem.utamakan == 0) {
 						this.modalTitle = 'Utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
 						this.modalButton = 'Iya, utamakan';
@@ -302,11 +303,11 @@
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
-				if (this.source == 'hapus') {
+				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
-				} else if (this.source == "updateTerbitkan"){
+				} else if (this.state == "updateTerbitkan"){
 					this.$store.dispatch(this.kelas + '/updateTerbitkan', this.selectedItem.id);
-				} else if (this.source == "updateUtamakan") {
+				} else if (this.state == "updateUtamakan") {
 					this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
 				}
 			}

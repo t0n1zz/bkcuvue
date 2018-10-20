@@ -33,7 +33,7 @@ class Authcontroller extends Controller
     {
         $credentials = request(['username', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -45,27 +45,9 @@ class Authcontroller extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function profile()
+    public function me()
     {
-        $id = auth('api')->user()->getId();
-        $kelas = User::with('pus','cu')->findOrFail($id);
-        $notification = collect();
-        $unreadNotification = count($kelas->unreadNotifications);
-        $i = 0;
-        foreach ($kelas->notifications as $notif) {
-            $username = User::where('id',$notif->data['user'])->select('name')->first();
-            
-            $n = collect($notif);
-            $n->put('user',$username);
-            $notification->push($n);
-            if (++$i == 15) break;
-        }
-        return response()
-            ->json([
-                    'model' => $kelas,
-                    'notification' => $notification,
-                    'unreadNotification' => $unreadNotification
-            ]);
+        return response()->json(auth('api')->user());
     }
 
     /**
@@ -75,7 +57,7 @@ class Authcontroller extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -108,7 +90,7 @@ class Authcontroller extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
-		}
+    }
 		
     public function guard()
     {

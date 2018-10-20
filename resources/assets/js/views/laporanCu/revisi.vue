@@ -2,30 +2,43 @@
 	<div>
 		<!-- itemdata -->
 		<div v-if="itemData.length > 0">
-			<div class="card card-body border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
-				<div class="card-header bg-white">
+			<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
+				<div class="card-header bg-white header-elements-sm-inline">
 					<h6 class="card-title">
-						Revisi tanggal <span v-html="$options.filters.date(index)"></span>, jam <span v-html="$options.filters.time(index)"></span>
+						&nbsp;
 					</h6>
-				</div>
-
-				<div class="media card-body no-margin">
-					<div v-for="(rev, index) in revisi"> 
-						<div class="mr-3">
-							<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
-							<img src="/images/no_image_man.jpg" width="42" height="42" class="rounded-circle" alt="user image" v-else>
-						</div>
-
-						<div class="media-body">
-							<b>{{ rev.user.name }}</b>
-							<br/>
-							Telah mengubah nilai pada akun <mark>{{ revisionField[rev.key] }}</mark> dari <mark><check-value :value="rev.old_value" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="rev.new_value" valueType="currency"></check-value></mark>
-						</div>
-
-						<hr v-if="revisi.length > 1 && index < revisi.length - 1">
+					<div class="header-elements">
+						<ul class="list-inline mb-0">
+							<li class="list-inline-item"><i class="icon-calendar2"></i> <span v-html="$options.filters.date(index)"></span></li>
+							<li class="list-inline-item"><i></i><i class="icon-alarm"></i> <span v-html="$options.filters.time(index)"></span></li>
+						</ul>
 					</div>
 				</div>
-				
+
+				<div class="card-body">	
+
+					<div class="card card-body" v-for="(rev, index) in revisi">
+						<div class="media">
+							<div class="mr-3 position-relative">
+								<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
+								<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
+							</div>
+
+							<div class="media-body">
+								<div class="media-title">
+									<a href="#">
+										<span class="font-weight-semibold">{{ rev.user.name }}</span>
+									</a>
+								</div>
+
+								<span>Telah mengubah nilai pada akun <mark>{{ revisionField[rev.key] }}</mark> dari <mark><check-value :value="rev.old_value" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="rev.new_value" valueType="currency"></check-value></mark></span>
+							</div>
+							
+						</div>
+					</div>
+
+				</div>
+
 			</div>
 		</div>
 
@@ -255,7 +268,7 @@
 			revisionField(){
 				let newData = {};
 				this.columnData.forEach(e => {
-					newData[e.key] = e.title
+					newData[e.name] = e.title
 				})
 
 				return newData;

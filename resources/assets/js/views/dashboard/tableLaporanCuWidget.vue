@@ -32,7 +32,7 @@
           </thead>
           <tbody>
             <tr v-for="column in columnData" v-if="column.tipe && !column.disable">
-              <td>{{column.title}}</td>
+              <td class="font-weight-semibold">{{column.title}}</td>
               <td v-if="itemDataStat == 'success'">
                 <check-value :value="itemData.data[itemData.total-1][column.name]" valueType="currency"></check-value>
               </td>
@@ -47,11 +47,13 @@
         <table class="table text-nowrap">
           <thead>
             <tr>
-              <th>Indikator</th>
+              <th>Nama Akun</th>
+              <th>Nilai</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="column in columnDataPearls" v-if="column.tipe && !column.disable">
+              <td class="font-weight-semibold" v-html="column.title"></td>
               <td v-if="itemPearlsDataStat == 'success'">
                 <item-pearls
                   :type="column.name"
@@ -111,10 +113,12 @@
         this.columnDataPearls[4].disable = true;
         this.columnDataPearls[5].disable = true;
         this.columnDataPearls[6].disable = true;
+        this.columnDataPearls[7].disable = true;
         this.columnDataPearls[20].disable = true;
         this.columnDataPearls[21].disable = true;
         this.columnDataPearls[22].disable = true;
         this.columnDataPearls[23].disable = true;
+        this.columnDataPearls[24].disable = true;
       },
 			changeTabelTab(value) {
 				this.tabTabelName = value;

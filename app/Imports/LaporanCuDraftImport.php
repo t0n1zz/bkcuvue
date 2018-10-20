@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use Auth;
 use App\LaporanCuDraft;
+use App\Cu;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -16,9 +17,13 @@ class LaporanCuDraftImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        $id = Auth::user()->getIdCu();
+        $cu = Cu::where('id_cu',$id)->select('id','no_ba')->first();
+
         return new LaporanCuDraft([
             'id_user' => Auth::user()->getId(),
-            'no_ba' => $row['no_ba'],
+            'id_cu' => $cu->id,
+            'no_ba' => $cu->no_ba,
             'l_biasa' => $row['lelaki_biasa'],
             'l_lbiasa' => $row['lelaki_luar_biasa'],
             'p_biasa' => $row['perempuan_biasa'],
@@ -28,6 +33,7 @@ class LaporanCuDraftImport implements ToModel, WithHeadingRow
             'aset_lalu' => $row['aset_lalu'],
             'aset_masalah' => $row['aset_masalah'],
             'aset_tidak_menghasilkan' => $row['aset_tidak_menghasilkan'],
+            'aset_likuid_tidak_menghasilkan' => $row['aset_likuid_tidak_menghasilkan'],
             'aktiva_lancar' => $row['aktiva_lancar'],
             'simpanan_saham' => $row['simpanan_saham'],
             'simpanan_saham_lalu' => $row['simpanan_saham_lalu'],
@@ -55,6 +61,7 @@ class LaporanCuDraftImport implements ToModel, WithHeadingRow
             'rata_aset' => $row['rata_rata_aset'],
             'laju_inflasi' => $row['laju_inflasi'],
             'harga_pasar' => $row['harga_pasar'],
+            'periode' => $row['periode'],
             'created_at' => $row['tgl_buat'],
         ]);
     }

@@ -510,14 +510,6 @@
 				// check current page meta
 				this.fetch();
 			},
-			profileStat(value){
-				if(value == 'success'){
-				}
-			},
-			itemDataStat(value){
-				if(value == 'success'){
-				}
-			},
 			grafikDataStat(value){
 				if(value == 'success'){
 					let periodeNow = this.itemData.periode;
@@ -917,10 +909,6 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
 			...mapGetters('laporanCu',{
 				itemData: 'pearls',
 				itemDataStat: 'pearlsStat',

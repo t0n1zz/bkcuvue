@@ -33,8 +33,8 @@
 
 		<!-- ubah -->
 		<form @submit.prevent="save" data-vv-scope="form">
-		<hr v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
-		<div class="row" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+		<hr v-if="modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
+		<div class="row" v-if="modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 				<div class="col-sm-6" v-if="!form.hideForm && form.title" v-for="form in modalKatex.form">
 					<div class="form-group">
 
@@ -57,11 +57,11 @@
 			<button type="button" @click.prevent="modalTutup" class="btn btn-light">
 				<i class="icon-cross"></i> Tutup
 			</button>
-			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-light" v-if="!modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-light" v-if="!modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 				<i class="icon-pencil5"></i> Ubah
 			</button>
 
-			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-light" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-light" v-if="modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 				<i class="icon-arrow-left13"></i> Batal
 			</button>
 			<button type="submit" class="btn btn-primary" v-if="modalKatex.isUbah">
@@ -71,15 +71,15 @@
 
 		<div class="d-block d-md-none">
 
-			<button type="submit" class="btn btn-primary btn-block" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+			<button type="submit" class="btn btn-primary btn-block" v-if="modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 				<i class="icon-floppy-disk"></i> Simpan
 			</button>
 
-			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-light btn-block" v-if="modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+			<button type="button" @click.prevent="modalKatex.isUbah = false" class="btn btn-light btn-block" v-if="modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 				<i class="icon-arrow-left13"></i> Batal
 			</button>
 
-			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-light btn-block" v-if="!modalKatex.isUbah && profile.can && profile.can['update_laporan_cu']">
+			<button type="button" @click.prevent="modalKatex.isUbah = true" class="btn btn-light btn-block" v-if="!modalKatex.isUbah && currentUser.can && currentUser.can['update_laporan_cu']">
 				<i class="icon-pencil5"></i> Ubah
 			</button>
 
@@ -141,9 +141,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			})
 		}
 	}

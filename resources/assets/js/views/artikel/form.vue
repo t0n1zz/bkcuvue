@@ -198,7 +198,7 @@
 
 											<!-- select -->
 											<select name="utamakan" data-width="100%" class="form-control" v-model="form.utamakan">
-												<option disabled value="">Silahkan pilih CU</option>
+												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="1">Jadikan artikel utama</option>
 												<option value="0">Tidak jadikan artikel utama</option>
 											</select>
@@ -237,19 +237,9 @@
 											<h5>Isi Artikel:</h5>
 
 											<!-- editor -->
-											<!-- <vue-ckeditor type="classic" :editors="editors"></vue-ckeditor> -->
-
-											<div class="document-editor">
-												<div id="toolbar" class="document-editor__toolbar"></div>
-												<div class="document-editor__editable-container">
-													<div class="document-editor__editable">
-														<ckeditor type="document" 
-														toolbar-container="#toolbar"
-														v-model="form.content"
-														:upload-adapter="UploadAdapter" ></ckeditor>
-													</div>
-												</div>
-											</div>
+											<ckeditor type="classic" 
+												v-model="form.content"
+												:upload-adapter="UploadAdapter" ></ckeditor>
 
 										</div>
 									</div>

@@ -8,26 +8,28 @@ import store from './store';
 import Axios from 'axios';
 import id from 'vee-validate/dist/locale/id';
 import VeeValidate, { Validator } from 'vee-validate';
-import {initialize} from './helpers/general';
+import { initialize } from './helpers/general';
 import moment from 'moment';
 import Vue2Filters from 'vue2-filters';
 import VueKatex from 'vue-katex';
 import VTooltip from 'v-tooltip';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import documentEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import VueCkeditor from 'vue-ckeditor5';
+import vSelect from 'vue-select';
 
-Validator.localize('id',id); //localization
+Validator.localize('id', id); //localization
 Vue.use(VueRouter);
-Vue.use(VeeValidate, {fieldsBagName: 'formFields'});
+Vue.use(VeeValidate, {
+  fieldsBagName: 'formFields'
+});
 Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 Vue.use(VTooltip);
+Vue.component('v-select', vSelect);
 
 const options = {
   editors: {
     classic: ClassicEditor,
-    document: documentEditor
   },
   name: 'ckeditor'
 }
@@ -40,9 +42,9 @@ window.axios = Axios; // handling http post
 window.api = new Api(); // handling axios api
 
 const router = new VueRouter({
-	base: '/admins',
-    mode: 'history',
-    routes
+  base: '/admins',
+  mode: 'history',
+  routes
 });
 
 initialize(store, router);
@@ -50,8 +52,7 @@ initialize(store, router);
 export const bus = new Vue();
 
 const app = new Vue({
-    store,
-    router,
-    render: h => h(Admin)
+  store,
+  router,
+  render: h => h(Admin)
 }).$mount('#app');
-

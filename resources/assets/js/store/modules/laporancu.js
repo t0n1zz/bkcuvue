@@ -865,6 +865,22 @@ export const laporanCu = {
         });
     },
 
+    // load cu draft
+    indexCuDraft( { commit }, id ){
+      commit('setDataStatS', 'loading');
+      
+      laporanCuAPI.indexDraft( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+
     // load by tp
     indexTpPeriode( { commit }, [p, id, periode] ){
       commit('setDataStatS', 'loading');

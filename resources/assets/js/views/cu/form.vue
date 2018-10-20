@@ -98,6 +98,86 @@
 										</div>
 									</div>
 
+									<!-- npwp -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.npwp')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.npwp')}">
+												<i class="icon-cross2" v-if="errors.has('form.npwp')"></i>
+												NPWP (nomor pokok wajib pajak):</h5>
+
+											<!-- text -->
+											<input type="text" name="npwp" class="form-control" placeholder="Silahkan masukkan NPWP"  v-model="form.npwp">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
+									<!-- nik -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.nik')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.nik')}">
+												<i class="icon-cross2" v-if="errors.has('form.nik')"></i>
+												NIK (nomor induk koperasi):</h5>
+
+											<!-- text -->
+											<input type="text" name="NIK" class="form-control" placeholder="Silahkan masukkan NIK"  v-model="form.nik">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
+									<!-- SITU -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.situ')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.situ')}">
+												<i class="icon-cross2" v-if="errors.has('form.situ')"></i>
+												SITU (surat izin tempat usaha):</h5>
+
+											<!-- text -->
+											<input type="text" name="SITU" class="form-control" placeholder="Silahkan masukkan SITU"  v-model="form.situ">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
+									<!-- SIUSP -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.siusp')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.siusp')}">
+												<i class="icon-cross2" v-if="errors.has('form.siusp')"></i>
+												SIUSP (surat izin usaha simpan pinjam):</h5>
+
+											<!-- text -->
+											<input type="text" name="SIUSP" class="form-control" placeholder="Silahkan masukkan SIUSP"  v-model="form.siusp">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
+									<!-- izin operasional -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.izinOp')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.izinOp')}">
+												<i class="icon-cross2" v-if="errors.has('form.izinOp')"></i>
+												Izin Operasional:</h5>
+
+											<!-- text -->
+											<input type="text" name="izinOp" class="form-control" placeholder="Silahkan masukkan izin operasional"  v-model="form.izinOp">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
 									<!-- aplikasi -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
@@ -444,7 +524,7 @@
 											<h5>Misi:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" v-model="form.misi"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.misi"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -458,7 +538,7 @@
 											<h5>Visi:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" v-model="form.visi"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.visi"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -472,7 +552,7 @@
 											<h5>Nilai-nilai Inti:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" v-model="form.nilai"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.nilai"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -500,7 +580,7 @@
 											<h5>Sejarah:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" v-model="form.sejarah"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig"  v-model="form.sejarah"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -514,7 +594,7 @@
 											<h5>Deskripsi:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" v-model="form.deskripsi"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.deskripsi"></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -581,6 +661,31 @@
 				level2Title: 'CU',
 				kelas: 'cu',
 				redirect: '/cu/',
+				ckeditorNoImageConfig: {
+					toolbar: {
+						items: [
+							'heading',
+							'|',
+							'bold',
+							'italic',
+							'link',
+							'bulletedList',
+							'numberedList',
+							'blockQuote',
+							'insertTable',
+							'mediaEmbed',
+							'undo',
+							'redo'
+						]
+					},
+					table: {
+						contentToolbar: [
+							'tableColumn',
+							'tableRow',
+							'mergeTableCells'
+						]
+					},
+				},
 				cleaveOption: {
           date:{
             date: true,
