@@ -14,7 +14,7 @@
 
 
 					<div class="nav-tabs-responsive mb-3">
-						<ul class="nav nav-tabs nav-tabs-bottom flex-nowarp mb-0">
+						<ul class="nav nav-tabs nav-tabs-solid bg-light">
 							<li class="nav-item">
 								<a href="#" class="nav-link" :class="{'active' : tabName == 'table'}" @click.prevent="changeTab('table')"><i class="icon-table2 mr-2"></i> Tabel Statistik</a>
 							</li>

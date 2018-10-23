@@ -3,12 +3,12 @@
 		
     <!-- cu -->
     <div class="col-lg-3 col-md-3" v-if="currentUser.can && currentUser.can['index_cu']" @click.prevent="goTo(cuWidgetRoute)" :class="{'pointer': currentUser.id_cu == 0}">
-      <count-widget :title="'CU dalam Gerakan'" :color="'bg-green-400'" :icon="'icon-office'" :count="cuCount"  ></count-widget>
+      <count-widget :title="'CU'" :color="'bg-green-400'" :icon="'icon-office'" :count="cuCount"  ></count-widget>
     </div>
 
     <!-- tp -->
     <div class="col-lg-3 col-md-3 pointer" v-if="currentUser.can && currentUser.can['index_tp']" @click.prevent="goTo(tpWidgetRoute)">
-      <count-widget :title="'TP'" :color="'bg-brown-400'" :icon="'icon-home9'" :count="tpCount" ></count-widget>
+      <count-widget :title="'TP/KP'" :color="'bg-brown-400'" :icon="'icon-home9'" :count="tpCount" ></count-widget>
     </div>
 
     <!-- produkCu -->

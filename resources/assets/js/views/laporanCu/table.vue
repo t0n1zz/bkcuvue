@@ -430,10 +430,7 @@ export default {
     },
     checkProfile() {
       if (this.currentUser.id_cu != 0) {
-        if (
-          this.$route.meta.mode == "cu" ||
-          this.$route.meta.mode == "cuPeriode"
-        ) {
+        if ( this.$route.meta.mode == "cu" || this.$route.meta.mode == "cuPeriode") {
           if (this.currentUser.id_cu != this.$route.params.cu) {
             this.$router.push({
               name: "notFound"
@@ -447,8 +444,14 @@ export default {
           this.$router.push({
             name: "notFound"
           });
-        }
-      }
+				}
+
+				this.excelUpload.url = 'laporanCu/uploadExcel';
+				this.excelUpload.format_url = 'formatExcelCu.xlsx';
+      }else{
+				this.excelUpload.url = 'laporanCu/uploadExcelAll';
+				this.excelUpload.format_url = 'formatExcelCuSemua.xlsx';
+			}
     },
     selectedRow(item) {
       this.selectedItem = item;

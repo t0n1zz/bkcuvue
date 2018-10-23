@@ -4,8 +4,8 @@
 			<div class="page-header-content header-elements-md-inline">
 				<div class="page-title d-flex">
 					<h4>
-						<i class="position-left" :class="titleIcon"></i>
-						<span class="font-weight-semibold">{{ title }}</span> - {{ titleDesc }}
+						<i class="mr-2" :class="titleIcon"></i>
+						<span class="font-weight-semibold">{{ title }}</span> <small class="d-block text-muted">{{ titleDesc }}</small>
 					</h4>
 				</div>
 

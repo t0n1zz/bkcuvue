@@ -2,24 +2,24 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="false" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
-						<i class="icon-plus3"></i> Tambah {{ title }}
+						<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1"  v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 				<!-- lihat tpcu -->
@@ -33,17 +33,17 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
-						<i class="icon-plus3"></i> Tambah {{ title }}
+						<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah {{ title }}
+					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 
 				<!-- lihat tpcu -->

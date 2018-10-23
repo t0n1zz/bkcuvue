@@ -281,10 +281,12 @@
           <!-- entri info -->
           <div class="col-md-4 pt-2">
             <!-- total entri note success-->
+
             <!-- desktop -->
             <div v-if="itemDataStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemData.from}} -
               {{itemData.to}} entri dari {{itemData.total}} entri
             </div>
+
             <!-- mobile -->
             <div v-if="itemDataStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemData.from}} -
               {{itemData.to}} entri dari {{itemData.total}} entri
@@ -343,13 +345,16 @@
           </div>
           <!-- mobile -->
           <div class="col-md-12 pt-2 text-center d-block d-sm-none">
+
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
               <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
                   {{n}}
               </button>
             </div>
+
             <br/>
+
             <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>
@@ -462,10 +467,11 @@
             <i class="icon-folder-download2"></i> Download Excel</json-excel>   
         </div>
 
-        <div v-else-if="excelAllDataStat === 'upload'">
+        <!-- upload excel -->
+        <div v-else-if="excelAllDataStat === 'upload' && isUploadExcel">
           <h2>Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload</h2>
           <input type="file" class="form-control" @change="changeUpload($event.target.files)" ref="fileInput">
-          <p class="text-center mt-2" v-if="isUploadExcel">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent="downloadFormatExcel()">format excel</a></p>
+          <p class="text-center mt-2">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent="downloadFormatExcel()">format excel</a></p>
           <button type="button" class="btn btn-light" @click="modalBatal('excel')">
               <i class="icon-arrow-left13"></i> Batal
           </button> 

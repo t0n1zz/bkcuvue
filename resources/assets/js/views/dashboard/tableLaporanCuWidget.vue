@@ -1,9 +1,33 @@
 <template>
   <div class="card">
-    <div class="card-header header-elements-inline">
+    <div class="card-header bg-light header-elements-inline">
       <h6 class="card-title"><i></i><i class="icon-table2 mr-2"></i> Tabel Perkembangan</h6>
       <div class="header-elements">
         <span v-if="itemDataStat == 'success'"><i class="badge badge-mark border-warning"></i> {{ itemData.data[itemData.total-1]['periode'] | dateMonth }}</span>
+      </div>
+    </div>
+
+    <div class="card-body pb-0">
+      <div class="row text-center">
+
+        <div class="col-6">
+          <div class="mb-3">
+            <h5 class="font-weight-semibold mb-0">
+              <check-value :value="itemData.data[itemData.total-1]['rasio_beredar']" valueType="percentage"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Beredar</span>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="mb-3">
+            <h5 class="font-weight-semibold mb-0">
+              <check-value :value="itemData.data[itemData.total-1]['rasio_lalai']" valueType="percentage"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Lalai</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -34,7 +58,7 @@
             <tr v-for="column in columnData" v-if="column.tipe && !column.disable">
               <td class="font-weight-semibold">{{column.title}}</td>
               <td v-if="itemDataStat == 'success'">
-                <check-value :value="itemData.data[itemData.total-1][column.name]" valueType="currency"></check-value>
+                <check-value :value="itemData.data[itemData.total-1][column.name]" valueType="currency" v-if="column.name != 'rasio_beredar' && column.name != 'rasio_lalai'"></check-value>
               </td>
             </tr>
           </tbody>

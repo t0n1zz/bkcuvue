@@ -17,9 +17,9 @@
 							</message>
 
 							<div class="nav-tabs-responsive">
-								<ul class="nav nav-tabs nav-tabs-bottom flex-nowarp mb-0">
+								<ul class="nav nav-tabs nav-tabs-solid bg-light">
 									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-pencil5 position-left mr-2"></i> Ubah Identitas</a>
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-vcard position-left mr-2"></i> Identitas & Alamat</a>
 									</li>
 									<li class="nav-item">
 										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPekerjaan'}" @click.prevent="changeTab('riwayatPekerjaan')"><i class="icon-list2 position-left mr-2"></i> Riwayat Pekerjaan</a>

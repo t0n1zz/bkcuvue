@@ -1,10 +1,9 @@
 <template><div> 
 <!-- Page header -->
 <div class="page-header">
-	<div class="page-header-content">
-		<div class="page-title">
-			<h4><i class="icon-home4 position-left"></i> <span class="text-semibold">Dashboard</span>
-				<small class="display-block">Selamat datang!</small>
+	<div class="page-header-content header-elements-md-inline">
+		<div class="page-title d-flex">
+			<h4><i class="icon-home4 mr-2"></i> <span class="font-weight-semibold">Dashboard</span> - Selamat Datang {{ currentUser.name }}
 			</h4>
 		</div>
 	</div>

@@ -16,12 +16,12 @@
 					</message>
 
 					<div class="nav-tabs-responsive">
-						<ul class="nav nav-tabs nav-tabs-bottom flex-nowarp mb-0">
+						<ul class="nav nav-tabs nav-tabs-solid bg-light">
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'edit'}" @click.prevent="changeTab('edit')"><i class="icon-pencil5 position-left"></i> Ubah Data</a>
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'edit'}" @click.prevent="changeTab('edit')"><i class="icon-user mr-2"></i> Foto & Password</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktivitas'}" @click.prevent="changeTab('aktivitas')"><i class="icon-pencil5 position-left"></i> Aktivitas</a>
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktivitas'}" @click.prevent="changeTab('aktivitas')"><i class="icon-pencil5 mr-2"></i> Aktivitas</a>
 							</li>
 						</ul>
 					</div>
@@ -190,7 +190,7 @@
 				title: 'Profile',
 				kelas: 'user',
 				titleDesc: 'Mengelola data profile',
-				titleIcon: 'icon-user-plus',
+				titleIcon: 'icon-user',
 				selectCuPath: 'userCu',
 				tabName: 'edit',
 				formPassword: {},
