@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUpload="excelUpload" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUpload="excelUpload" :excelUpload2="excelUpload2" :isUploadExcel="true" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -297,8 +297,15 @@ export default {
 			excelDownloadUrl:'',
 			excelUpload:{
 				url: 'laporanCu/uploadExcel',
-				format_url: 'formatExcel.xlsx',
+				format_url: 'formatExcelCu.xlsx',
 				next_page_route: 'laporanCuDraft',
+				button: 'Upload Laporan Konsolidasi CU'
+			},
+			excelUpload2:{ 
+				url: 'laporanCu/uploadExcelTp',
+				format_url: 'formatExcelTp.xlsx',
+				next_page_route: 'laporanTpDraft',
+				button: 'Upload Laporan Tp'
 			},
 			periode: '',
 			selectedItem: [],
@@ -363,7 +370,8 @@ export default {
         this.$store.dispatch(this.kelas + "/indexPeriode", [
           params,
           this.$route.params.periode
-        ]);
+				]);
+				
 				this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
 				this.periode = this.$route.params.periode;
 
@@ -400,9 +408,9 @@ export default {
         }
       } else if (this.$route.meta.mode == "cuPeriode") { // laporan tp/kp semua tp
 
-        this.columnData[5].disable = false;
+				this.columnData[5].disable = false;
+				this.columnData[2].disable = false;
         this.columnData[1].disable = true;
-        this.columnData[2].disable = true;
         this.columnData[3].disable = true;
         this.columnData[4].disable = true;
         this.columnData[6].disable = true;

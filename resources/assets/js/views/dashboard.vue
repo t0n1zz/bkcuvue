@@ -10,28 +10,26 @@
 </div>
 <!-- /page header -->
 <!-- page container -->
-<div class="page-container">
-	<div class="page-content">
-		<div class="content-wrapper">
+<div class="page-content pt-0">
+	<div class="content-wrapper">
 
-			<!-- count row -->
-			<count-row></count-row>
+		<!-- count row -->
+		<count-row></count-row>
 
-			<div class="row">
+		<div class="row">
 
-				<!-- grafik -->
-				<div class="col-lg-8" >	
-					<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
-				</div>
+			<!-- grafik -->
+			<div class="col-lg-8" >	
+				<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
+			</div>
 
-				<!-- tabel -->
-				<div class="col-lg-4">
-					<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
-				</div>
-
+			<!-- tabel -->
+			<div class="col-lg-4">
+				<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :currentUser="currentUser" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
 			</div>
 
 		</div>
+
 	</div>
 </div>
 <!-- page container -->

@@ -2,18 +2,12 @@
 
 use Illuminate\Http\Request;
 
-
 Route::group(['prefix' => 'auth'],function($router){
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh');
     Route::get('/me', 'AuthController@me');
 });
-
-
-Route::get('/laporanCu/indexGerakan', 'laporanCuController@indexGerakan');
-Route::get('/system/pengelolaWidget', 'SystemController@pengelolaWidget');
-
 
 Route::group(['middleware'=>'jwt.auth'],function(){
 // Route::group(['prefix'=>'v1'],function(){
@@ -23,10 +17,6 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::get('/profile', 'AuthController@profile');
 
     // user
-    Route::get('/getNotif', 'UserController@getNotif');
-    Route::get('/markNotifRead/{id}', 'UserController@markNotifRead');
-    Route::get('/markAllNotifRead', 'UserController@markAllNotifRead');
-
     Route::group(['middleware' => ['permission:index_user']], function () {
         Route::get('/user', 'UserController@index');
         Route::get('/user/indexCu/{id}', 'UserController@indexCu');
@@ -261,6 +251,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::post('/laporanCu/uploadExcel', 'laporanCuController@uploadExcel');
+        Route::post('/laporanCu/uploadExcelAll', 'laporanCuController@uploadExcelAll');
         Route::get('/laporanCu/indexDraft/{id}', 'laporanCuController@indexDraft');
         Route::get('/laporanCu/countDraft', 'laporanCuController@countDraft');
         Route::post('/laporanCu/storeDraftAll', 'laporanCuController@storeDraftAll');
@@ -296,6 +287,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/laporanTpDiskusi/store', 'laporanTpDiskusiController@store');
         Route::post('/laporanTpDiskusi/update/{id}', 'laporanTpDiskusiController@update');
         Route::delete('/laporanTpDiskusi/{id}', 'laporanTpDiskusiController@destroy');
+    });
+    Route::group(['middleware' => ['permission:index_laporan_tp']], function () {
+        Route::post('/laporanTp/uploadExcel', 'laporanTpController@uploadExcel');
+        Route::get('/laporanTp/indexDraft/{id}', 'laporanTpController@indexDraft');
+        Route::get('/laporanTp/countDraft', 'laporanTpController@countDraft');
+        Route::post('/laporanTp/storeDraftAll', 'laporanTpController@storeDraftAll');
     });
 
     // puskopdit
@@ -356,6 +353,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     // file
     Route::get('download/{filename}','SystemController@download_file');
+
+    // notification
+    Route::get('/getNotif', 'SystemController@getNotif');
+    Route::get('/getNotifAll', 'SystemController@getNotifAll');
+    Route::get('/markNotifRead/{id}', 'SystemController@markNotifRead');
+    Route::get('/markAllNotifRead', 'SystemController@markAllNotifRead');
 });
 
 

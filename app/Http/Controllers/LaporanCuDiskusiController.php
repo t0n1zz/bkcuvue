@@ -40,15 +40,7 @@ class LaporanCuDiskusiController extends Controller{
 	{
 		$this->validate($request,LaporanCuDiskusi::$rules);
 		
-
-		if(!empty($request->content))	
-			$content = Helper::dom_processing_no_image($request);
-		else
-			$content = '';	
-
-		$kelas = LaporanCuDiskusi::create($request->except('content') + [
-			'content' => $content
-		]);	
+		$kelas = LaporanCuDiskusi::create($request->all());	
 
 		$this->store_notification($request,'Menulis');
 
@@ -64,14 +56,8 @@ class LaporanCuDiskusiController extends Controller{
 		$this->validate($request,LaporanCuDiskusi::$rules);
 
 		$kelas = LaporanCuDiskusi::findOrFail($id);
-
-		if(!empty($request->content))	
-			$content = Helper::dom_processing_no_image($request);
-		else
-			$content = '';	
 		
-		$kelas->update($request->except('content') + ['content' => $content
-		]);
+		$kelas->update($request->all());
 
 		$this->store_notification($request,'Mengubah');
 
@@ -102,7 +88,6 @@ class LaporanCuDiskusiController extends Controller{
 	private function store_notification($request,$tipe)
 	{
 		$id_cu = \Auth::user()->getIdCu();
-
 		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
 		
 		if($request->content != null){

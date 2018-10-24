@@ -393,54 +393,6 @@ class UserController extends Controller
 		$this->hakAkses($request->status_user,'status_user',$user);
 	}
 
-	public function getNotif()
-	{
-		$id = auth('api')->user()->getId();
-		$kelas = User::findOrFail($id);
-		$notification = collect();
-		$unreadNotification = count($kelas->unreadNotifications);
-
-		$i = 0;
-		foreach ($kelas->notifications as $notif) {
-			$username = User::where('id',$notif->data['user'])->select('name')->first();
-			
-			$n = collect($notif);
-			$n->put('user',$username);
-			$notification->push($n);
-			if (++$i == 15) break;
-		}
-
-		return response()
-			->json([
-				'notification' => $notification,
-				'unreadNotification' => $unreadNotification
-			]);
-	}
-		
-	public function markAllNotifRead()
-	{
-		$id = Auth::user('api')->getId();
-
-		$kelas = User::findOrFail($id);
-
-		$kelas->unreadNotifications->markAsRead();
-
-		return response()
-				->json([
-						'marked' => true
-				]);
-	}
-
-	public function markNotifRead($id)
-	{
-		auth('api')->user()->unreadNotifications->where('id', $id)->markAsRead();
-
-		return response()
-				->json([
-						'marked' => true
-				]);
-	}
-
 	public function count()
 	{
 			$id = Auth::user('api')->id_cu;

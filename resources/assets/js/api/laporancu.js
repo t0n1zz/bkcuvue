@@ -68,7 +68,10 @@ export default {
     return axios.delete('/api/laporanCu/' + id);
   },
 
-  upload_excel: function ( form ){
-    return axios.post('/api/laporanCu/upload_excel', form);
+  uploadExcel: function ( form ){
+    return axios.post('/api/laporanCu/uploadExcel', form);
+  },
+  uploadExcelAll: function ( form ){
+    return axios.post('/api/laporanCu/uploadExcelAll', form);
   },
 }

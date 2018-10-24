@@ -36,7 +36,7 @@
 						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
 							<div class="dropdown-content-header" v-if="unreadNotification > 0">
 								<span class="font-weight-semibold">Terdapat {{unreadNotification}} pemberitahuan</span>
-								<a class="text-default" @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a>
+								<a href="#" class="text-default" @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a>
 							</div>
 							<div class="dropdown-content-header" v-else>
 								<span class="font-weight-semibold">Tidak ada pemberitahuan <span v-if="notification && notification.length > 0">baru</span></span>
@@ -48,7 +48,7 @@
 										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
 											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-weight-semibold">
-												{{notif.user.name}} [ {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span>]
+												{{notif.user.name}} <br/>[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
 												</span>
 												<span class="text-muted float-right font-size-sm">{{notif.created_at | relativeHour}}</span>
 											</div>
@@ -144,7 +144,7 @@
 									<router-link :to="{ name: 'artikelCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
-									<router-link :to="{ name: 'artikelCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact>
+									<router-link :to="{ name: 'artikelCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Puskopdit BKCU Kalimantan
 									</router-link>
 
@@ -161,7 +161,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'artikelCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_artikel'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'artikelCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_artikel'] && currentUser.id_cu != 0">
 								<i class="icon-magazine"></i> Artikel
 							</router-link>
 
@@ -176,7 +176,7 @@
 									<router-link :to="{ name: 'artikelKategoriCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
-									<router-link :to="{ name: 'artikelKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact>
+									<router-link :to="{ name: 'artikelKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Puskopdit BKCU Kalimantan
 									</router-link>
 
@@ -193,7 +193,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_artikel_kategori'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'artikelKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_artikel_kategori'] && currentUser.id_cu != 0">
 								<i class="icon-grid6"></i> Kategori Artikel
 							</router-link>
 
@@ -335,7 +335,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'tpCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_tp'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'tpCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_tp'] && currentUser.id_cu != 0">
 								<i class="icon-home9"></i> TP/KP
 							</router-link>
 
@@ -364,7 +364,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'produkCuCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_produk_cu'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'produkCuCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_produk_cu'] && currentUser.id_cu != 0">
 								<i class="icon-list3"></i> Produk & Pelayanan CU
 							</router-link>
 
@@ -448,7 +448,7 @@
 								</a>
 
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporanTp'}">
-									<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Konsolidasi
 									</router-link>
 
@@ -456,7 +456,7 @@
 									<div class="dropdown-divider"></div> 
 
 									<template v-for="tp in modelTp" v-if="modelTp.length > 0">
-										<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:tp.id } }" class="dropdown-item">{{ tp.name }}
+										<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:tp.id } }" class="dropdown-item" v-if="currentUser">{{ tp.name }}
 										</router-link>
 									</template>		
 								</div>
@@ -465,6 +465,10 @@
 
 							<router-link :to="{ name: 'laporanCuDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu'] && laporanCuDraftCountStat == 'success' && laporanCuDraftCount > 0">
 								<i class="icon-stats-bars2"></i> Laporan Statistik CU [DRAFT]
+							</router-link>
+
+							<router-link :to="{ name: 'laporanTpDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_tp'] && laporanTpDraftCountStat == 'success' && laporanTpDraftCount > 0">
+								<i class="icon-stats-bars2"></i> Laporan Statistik TP/KP [DRAFT]
 							</router-link>
 
 						</div>
@@ -498,7 +502,7 @@
 									<router-link :to="{ name: 'userCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
-									<router-link :to="{ name: 'userCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact>
+									<router-link :to="{ name: 'userCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Puskopdit BKCU Kalimantan
 									</router-link>
 
@@ -515,12 +519,12 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'userCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_user'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'userCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_user'] && currentUser.id_cu != 0">
 								<i class="icon-users"></i> User
 							</router-link>
 
 							<!-- profile -->
-							<router-link :to="{ name: 'profile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can">
+							<router-link :to="{ name: 'profile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can">
 								<i class="icon-user"></i> Profile
 							</router-link>
 
@@ -552,11 +556,13 @@
 			this.fetchCu();
 			this.fetchNotif();
 			this.fetchLaporanCuDraft();
+			this.fetchLaporanTpDraft();
 		},
 		watch: {
 			'$route' (to, from){
 				this.fetchNotif();
 				this.fetchLaporanCuDraft();
+				this.fetchLaporanTpDraft();
 			},
 			markNotifStat(value){
 				if(value === "success"){
@@ -592,6 +598,17 @@
 					.catch(error => {
 						this.laporanCuDraftCount = error.response;
 						this.laporanCuDraftCountStat = 'fail';
+					});
+			},
+			fetchLaporanTpDraft(){
+				axios.get('/api/laporanTp/countDraft')
+					.then(response => {
+						this.laporanTpDraftCount = response.data.model;
+						this.laporanTpDraftCountStat = 'success';
+					})
+					.catch(error => {
+						this.laporanTpDraftCount = error.response;
+						this.laporanTpDraftCountStat = 'fail';
 					});
 			},
 			fetchTp(){

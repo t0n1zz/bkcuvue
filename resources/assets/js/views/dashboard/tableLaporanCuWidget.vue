@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <div class="card-body pb-0">
+    <div class="card-body pb-0" v-if="itemData.data">
       <div class="row text-center">
 
         <div class="col-6">

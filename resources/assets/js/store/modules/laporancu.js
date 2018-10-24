@@ -880,6 +880,20 @@ export const laporanCu = {
         });
     },
 
+    indexTpDraft( { commit }, id ){
+      commit('setDataStatS', 'loading');
+      
+      laporanTpAPI.indexDraft( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
 
     // load by tp
     indexTpPeriode( { commit }, [p, id, periode] ){
@@ -1219,7 +1233,7 @@ export const laporanCu = {
           commit('setHistory', response.data.history);
           commit('setDataStat', 'success');
         })
-        .catch(error => {
+        .catch( error => {
           commit('setData', error.response);
           commit('setHistory', '');
           commit('setDataStat', 'fail');
@@ -1385,10 +1399,46 @@ export const laporanCu = {
         });
     },
 
-    upload_excel( {commit, state, dispatch}, form ){
+    uploadExcel( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.upload_excel( form )
+      laporanCuAPI.uploadExcel( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    uploadExcelAll( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      laporanCuAPI.uploadExcelAll( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    uploadExcelTp( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpAPI.uploadExcel( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

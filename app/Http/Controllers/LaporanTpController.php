@@ -447,6 +447,45 @@ class LaporanTpController extends Controller{
 			]);
 	}
 
+	public function storeDraftAll()
+	{
+		$id = \Auth::user()->id;
+
+		$kelas = LaporanTpDraft::where('id_user',$id);
+		$laporan = $kelas->get()->toArray();
+		$tp = Tp::select('id','no_tp')->get()->toArray();
+
+		$merged = collect($laporan)->map(function ($value) use ($tp) {
+				foreach($tp as $array){
+						if($value["no_tp"] == $array["no_tp"]){
+							$value["id_tp"] = $array["id"];
+						}
+				}
+				return $value;
+		});
+
+		foreach ($merged as $key => $value) {
+			unset($value['id']);
+			unset($value['id_user']);
+			$merged[$key] = $value;
+
+			if (!isset($value['id_tp'])) {
+				unset($merged[$key]);
+			}
+		};   
+
+		LaporanTp::insert($merged->toArray());
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' berhasil ditambah'
+			]);
+	}
+	
+
 	public function show($id)
 	{
 		$kelas = LaporanTp::with('LaporanTpKategori')->findOrFail($id);
@@ -502,6 +541,29 @@ class LaporanTpController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function uploadExcelAll(Request $request)
+	{
+		Excel::import(new LaporanTpDraftAllImport, request()->file('file'));
+
+		return response()
+			->json([
+				'uploaded' => true,
+				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+			]);
+	}
+
+	public function countDraft()
+	{
+			$id = \Auth::user()->id;
+
+			$table_data = LaporanTpDraft::where('id_user',$id)->count();
+			
+			return response()
+			->json([
+					'model' => $table_data
 			]);
 	}
 

@@ -90,7 +90,7 @@
 						</span>
 					</td>
 					<td v-if="!columnData[13].hide">
-						<check-value :value="props.item.keterangan"></check-value>
+						<check-value :value="props.item.keterangan" valueType="modal"></check-value>
 					</td>
 					<td v-if="!columnData[14].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[15].hide">

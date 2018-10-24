@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\User;
 use App\LaporanTp;
+use App\Cu;
+use App\Tp;
 use App\LaporanTpDiskusi;
 use App\Support\Helper;
 use App\Support\NotificationHelper;
@@ -37,15 +39,8 @@ class LaporanTpDiskusiController extends Controller{
 	public function store(Request $request)
 	{
 		$this->validate($request,LaporanTpDiskusi::$rules);
-		
-		if(!empty($request->content))	
-			$content = Helper::dom_processing_no_image($request);
-		else
-			$content = '';	
 
-		$kelas = LaporanTpDiskusi::create($request->except('content') + [
-			'content' => $content
-		]);	
+		$kelas = LaporanTpDiskusi::create($request->all());	
 
 		$this->store_notification($request,'Menulis');
 
@@ -62,13 +57,7 @@ class LaporanTpDiskusiController extends Controller{
 
 		$kelas = LaporanTpDiskusi::findOrFail($id);
 
-		if(!empty($request->content))	
-			$content = Helper::dom_processing_no_image($request);
-		else
-			$content = '';	
-		
-		$kelas->update($request->except('content') + ['content' => $content
-		]);
+		$kelas->update($request->all());
 
 		$this->store_notification($request,'Mengubah');
 

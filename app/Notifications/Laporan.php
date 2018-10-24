@@ -74,15 +74,15 @@ class Laporan extends Notification
         ];
 		}
 		
-		public function toDatabase($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
             'user' => $this->user,
             'url' => $this->url,
-						'cu' => $this->cu,
-						'tp' => $this->tp,
-						'message' => $this->message,
-						'message2' => $this->message2,
+            'cu' => $this->cu,
+            'tp' => $this->tp,
+            'message' => $this->message,
+            'message2' => $this->message2,
             'tipe' => $this->tipe
         ];
     }

@@ -2,11 +2,12 @@
 
 namespace App;
 
-use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use App\Support\Dataviewer;
 use App\Support\ExposePermissions;
+
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Yadahan\AuthenticationLog\AuthenticationLogable;
@@ -19,6 +20,7 @@ class User extends Authenticatable implements JWTSubject
     protected $table = 'users';
     protected $guard_name = 'api';
     protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status'];
+    
     /**
      * The accessors to append to the model's array form.
      *

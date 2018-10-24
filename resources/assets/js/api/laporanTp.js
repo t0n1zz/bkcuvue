@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/laporanTp/indexTp/' + id, {params: p});
   },
 
+  indexDraft: function( id ){
+    return axios.get('/api/laporanTp/indexDraft/' + id);
+  },
+
   indexPeriode: function( p, id, periode ){
     return axios.get('/api/laporanTp/indexPeriode/' + id + '/' + periode, {params: p});
   },
@@ -58,5 +62,9 @@ export default {
 
   destroy: function( id ){
     return axios.delete('/api/laporanTp/' + id);
-  }
+  },
+
+  uploadExcel: function ( form ){
+    return axios.post('/api/laporanTp/uploadExcel', form);
+  },
 }
