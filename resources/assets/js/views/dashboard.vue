@@ -3,7 +3,8 @@
 <div class="page-header">
 	<div class="page-header-content header-elements-md-inline">
 		<div class="page-title d-flex">
-			<h4><i class="icon-home4 mr-2"></i> <span class="font-weight-semibold">Dashboard</span> - Selamat Datang {{ currentUser.name }}
+			<h4><i class="icon-home4 mr-2"></i> <span class="font-weight-semibold">Dashboard</span>
+			<small class="d-block text-muted">Selamat Datang {{ currentUser.name }}</small>
 			</h4>
 		</div>
 	</div>

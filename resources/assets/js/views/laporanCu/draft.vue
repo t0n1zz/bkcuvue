@@ -213,6 +213,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import appModal from "../../components/modal";
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
@@ -221,6 +222,7 @@
 	export default {
 		components: {
 			pageHeader,
+			appModal,
 			message,
 			dataTable,
 			checkValue,

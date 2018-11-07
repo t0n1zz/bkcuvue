@@ -431,12 +431,12 @@
           <hr/>
 
           <!-- uploadexcel -->
-          <button class="btn btn-light btn-block" v-if="isUploadExcel" @click.prevent="modalExcelUploadOpen('upload')"><i class="icon-file-upload"></i> {{ excelUpload.button }}</button>
+          <button class="btn btn-light btn-block" v-if="excelUpload" @click.prevent="modalExcelUploadOpen('upload')"><i class="icon-file-upload"></i> {{ excelUpload.button }}</button>
 
           <!-- uploadexcel2 -->
           <button class="btn btn-light btn-block" v-if="excelUpload2" @click.prevent="modalExcelUploadOpen('upload2')"><i class="icon-file-upload"></i> {{ excelUpload2.button }}</button>
 
-          <hr v-if="isUploadExcel"/>
+          <hr v-if="excelUpload || excelUpload2"/>
 
           <!-- tutup -->
           <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
@@ -480,7 +480,7 @@
         </div>
 
         <!-- upload excel -->
-        <div v-else-if="excelAllDataStat === 'upload' && isUploadExcel">
+        <div v-else-if="excelAllDataStat === 'upload'">
           <h2>Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload</h2>
           <input type="file" class="form-control" @change="changeUpload($event.target.files)" ref="fileInput">
           <p class="text-center mt-2">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent="downloadFormatExcel('upload')">format excel</a></p>
@@ -493,7 +493,7 @@
         </div>
         
         <!-- upload excel 2 -->
-        <div v-else-if="excelAllDataStat === 'upload2' && isUploadExcel">
+        <div v-else-if="excelAllDataStat === 'upload2'">
           <h2>Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload</h2>
           <input type="file" class="form-control" @change="changeUpload($event.target.files)" ref="fileInput">
           <p class="text-center mt-2">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent="downloadFormatExcel('upload2')">format excel</a></p>

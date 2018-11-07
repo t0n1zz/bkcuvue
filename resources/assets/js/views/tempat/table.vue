@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl"  @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -132,7 +132,7 @@
 					limit: 10,
 					page: 1
 				},
-				excelUrl: '',
+				excelDownloadUrl: '',
 				columnData: [
 					{
 						title: 'No.',
@@ -298,7 +298,7 @@
 		methods: {
 			fetch(params){
 				this.$store.dispatch(this.kelas + '/index', params);
-				this.excelUrl = this.kelas;
+				this.excelDownloadUrl = this.kelas;
 			},
 			selectedRow(item){
 				this.selectedItem = item;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\LaporanCu;
 use App\LaporanTp;
+use App\LaporanTpDraft;
 use App\Support\ImageProcessing;
 use Illuminate\Http\Request;
 

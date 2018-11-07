@@ -549,6 +549,8 @@
 				dropdownMenu: '',
 				laporanCuDraftCount: [],
 				laporanCuDraftCountStat: '',
+				laporanTpDraftCount: [],
+				laporanTpDraftCountStat: '',
 			}
 		},
 		created(){

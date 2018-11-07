@@ -13,7 +13,7 @@
 								<!-- <button type="button" v-if="state !== 'loading'" class="close" @click="tutup">&times;</button> -->
 							</div>
 							<div class="modal-body">
-								<transition name="modal-effect" enter-active-class="animated flipInX" mode="out-in">
+								<transition name="modal-effect" enter-active-class="animated fadeIn" mode="out-in">
 									
 									<!-- confirm batal -->
 									<div v-if="state === 'confirm-batal'" key="confirm-batal" class="text-center">
@@ -103,7 +103,7 @@
 											<span v-else-if="content.status === 419">
 												<b>ERROR 419:</b> Kesalahan sesi, silahkan refresh halaman ini
 											</span>
-											<span v-else-if="content.status === 422">
+											<span v-else-if="content.status ===  422">
 												<b>ERROR 422:</b> Username atau password anda salah
 											</span>
 											<span v-else-if="content.status === 500">
@@ -116,6 +116,7 @@
 										<div v-if="content && showDetail">
 											<hr/>
 											<pre class="pre-scrollable language-markup content-group text-left"><code>{{ content.data }}</code></pre>
+											<br/>
 										</div>
 
 										<!-- error detail button -->

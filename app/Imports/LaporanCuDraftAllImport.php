@@ -6,8 +6,10 @@ use Auth;
 use App\LaporanCuDraft;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class LaporanCuDraftAllImport implements ToModel, WithHeadingRow
+class LaporanCuDraftAllImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
     /**
     * @param array $row
@@ -16,6 +18,7 @@ class LaporanCuDraftAllImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+
         return new LaporanCuDraft([
             'id_user' => Auth::user()->getId(),
             'no_ba' => $row['no_ba'],
@@ -56,8 +59,18 @@ class LaporanCuDraftAllImport implements ToModel, WithHeadingRow
             'rata_aset' => $row['rata_rata_aset'],
             'laju_inflasi' => $row['laju_inflasi'],
             'harga_pasar' => $row['harga_pasar'],
-            'periode' => $row['periode'],
-            'created_at' => $row['tgl_buat'],
+            'periode' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['periode']),
+            'created_at' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_buat']),
         ]);
+    }
+
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+    
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }

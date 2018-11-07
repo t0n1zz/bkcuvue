@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -219,7 +219,12 @@ export default {
       this.columnData[2].disable = true;
       this.columnData[3].disable = true;
       this.columnData[4].disable = true;
-      this.columnData[6].disable = true;
+			this.columnData[6].disable = true;
+			
+			this.columnData[45].disable = false;
+			this.columnData[46].disable = false;
+			this.columnData[47].disable = false;
+			this.columnData[48].disable = false;
 
       this.$store.dispatch(this.kelas + "/indexGerakan", params); 
     },

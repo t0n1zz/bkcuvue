@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUpload="excelUpload" :excelUpload2="excelUpload2" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUpload="excelUpload" :excelUpload2="excelUpload2" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -357,6 +357,11 @@ export default {
   methods: {
     fetch(params) {
 			this.checkProfile();
+
+			this.columnData[45].disable = false;
+			this.columnData[46].disable = false;
+			this.columnData[47].disable = false;
+			this.columnData[48].disable = false;
 			
       if (this.$route.meta.mode == "periode") { // laporan cu with periode
 
