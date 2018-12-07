@@ -252,9 +252,15 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::post('/laporanCu/uploadExcel', 'laporanCuController@uploadExcel');
         Route::post('/laporanCu/uploadExcelAll', 'laporanCuController@uploadExcelAll');
-        Route::get('/laporanCu/indexDraft/{id}', 'laporanCuController@indexDraft');
-        Route::get('/laporanCu/countDraft', 'laporanCuController@countDraft');
-        Route::post('/laporanCu/storeDraftAll', 'laporanCuController@storeDraftAll');
+
+        Route::get('/laporanCuDraft', 'laporanCuDraftController@index');
+        Route::post('/laporanCuDraft/store/{id}', 'laporanCuDraftController@store');
+        Route::post('/laporanCuDraft/storeAll', 'laporanCuDraftController@storeAll');
+        Route::get('/laporanCuDraft/edit/{id}', 'laporanCuDraftController@edit');
+        Route::post('/laporanCuDraft/update/{id}', 'laporanCuDraftController@update');
+        Route::delete('/laporanCuDraft/destroy/{id}', 'laporanCuDraftController@destroy');
+        Route::delete('/laporanCuDraft/destroyAll', 'laporanCuDraftController@destroyAll');
+        Route::get('/laporanCuDraft/count', 'laporanCuDraftController@count');
     });
 
     //laporan tp

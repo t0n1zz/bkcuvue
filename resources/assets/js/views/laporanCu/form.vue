@@ -99,7 +99,7 @@
 
 											<!-- input -->
 											<cleave 
-												name="ultah"
+												name="periode"
 												v-model="form.periode" 
 												class="form-control" 
 												:raw="false" 
@@ -478,7 +478,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 
-											<!-- title -->
+								b			<!-- title -->
 											<h5>Total Hutang Pihak Ke-3 <i class="icon-info22" v-tooltip="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></i></h5>
 
 											<!-- text -->
@@ -822,6 +822,7 @@
 						</div>
 
 					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -922,7 +923,7 @@
 			},
 			modelCUStat(value){
 				if(value == "success"){
-					if(this.$route.meta.mode == 'edit'){
+					if(this.$route.meta.mode == 'edit' || this.$route.meta.mode == 'editDraft'){
 						this.changeCu(this.form.id_cu);
 					}else if(this.$route.meta.mode == 'editTp'){
 						this.checkMetaEditTp();
@@ -978,6 +979,18 @@
 					this.title = 'Ubah ' + this.level2Title;
 					this.titleDesc = 'Mengubah ' + this.level2Title;
 					this.titleIcon = 'icon-pencil5';
+				}else if(this.$route.meta.mode === 'editDraft'){
+					this.$store.dispatch(this.kelas + '/editDraft',this.$route.params.id);	
+					this.level2Title = 'Laporan Cu [Draft]';
+					this.title = 'Ubah ' + this.level2Title;
+					this.titleDesc = 'Mengubah ' + this.level2Title;
+					this.titleIcon = 'icon-pencil5';
+				}else if(this.$route.meta.mode === 'editTpDraft'){
+					this.$store.dispatch(this.kelas + '/editTpDraft',this.$route.params.id);
+					this.level2Title = 'Laporan Tp [Draft]';
+					this.title = 'Ubah ' + this.level2Title;
+					this.titleDesc = 'Mengubah ' + this.level2Title;
+					this.titleIcon = 'icon-pencil5';
 				}else {
 					this.title = 'Tambah ' + this.level2Title;
 					this.titleDesc = 'Menambah ' + this.level2Title;
@@ -1020,6 +1033,10 @@
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else if(this.$route.meta.mode === 'editTp'){
 							this.$store.dispatch(this.kelas + '/updateTp', [this.$route.params.id, this.form]);
+						}else if(this.$route.meta.mode === 'editDraft'){
+							this.$store.dispatch(this.kelas + '/updateDraft', [this.$route.params.id, this.form]);
+						}else if(this.$route.meta.mode === 'editTpDraft'){
+							this.$store.dispatch(this.kelas + '/updateTpDraft', [this.$route.params.id, this.form]);
 						}else{
 							if(this.form.id_tp == 'konsolidasi'){
 								this.$store.dispatch(this.kelas + '/store', this.form);
@@ -1039,6 +1056,10 @@
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 'konsolidasi'}});
 				}else if(this.$route.meta.mode === 'editTp'){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
+				}else if(this.$route.meta.mode === 'editDraft'){
+					this.$router.push({name: 'laporanCuDraft'});
+				}else if(this.$route.meta.mode === 'editTpDraft'){
+					this.$router.push({name: 'laporanTpDraft'});
 				}else{
 					if(this.currentUser.id_cu == 0){
 						if(this.form.id_cu == 0){

@@ -301,7 +301,7 @@
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
- 
+
 							<!-- cu -->
 							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_cu']">
 								<i class="icon-office"></i> CU
@@ -372,27 +372,6 @@
 							<router-link :to="{ name: 'pengelolaCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_pengelola']">
 								<i class="icon-user-tie"></i> Pengelola
 							</router-link>
-
-							<!-- divider -->
-							<!-- <div class="dropdown-divider"></div>  -->
-
-							<!-- surat -->
-							<!-- <div class="dropdown-submenu" v-if="currentUser.id_cu == 0" v-show="currentUser.can['index_surat_masuk'] || currentUser.can['index_surat_keluar']" :class="{'show' : dropdownMenu == 'surat'}">
-								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('surat')">
-									<i class="icon-mail5"></i> Surat
-								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'surat'}">
-
-									<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
-										<i class="icon-move-left"></i> Masuk
-									</router-link>
-
-									<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
-										<i class="icon-move-right"></i> Keluar
-									</router-link>
-
-								</div>
-							</div> -->
 
 						</div>
 					</li>
@@ -592,7 +571,7 @@
 				this.$store.dispatch('user/markNotifRead',notif.id);
 			},
 			fetchLaporanCuDraft(){
-				axios.get('/api/laporanCu/countDraft')
+				axios.get('/api/laporanCuDraft/count')
 					.then(response => {
 						this.laporanCuDraftCount = response.data.model;
 						this.laporanCuDraftCountStat = 'success';

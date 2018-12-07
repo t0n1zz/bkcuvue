@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUpload="excelUpload" :excelUpload2="excelUpload2" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUploads="excelUploads" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -295,18 +295,22 @@ export default {
         page: 1
       },
 			excelDownloadUrl:'',
-			excelUpload:{
-				url: 'laporanCu/uploadExcel',
-				format_url: 'formatExcelCu.xlsx',
-				next_page_route: 'laporanCuDraft',
-				button: 'Upload Laporan Konsolidasi CU'
-			},
-			excelUpload2:{ 
-				url: 'laporanCu/uploadExcelTp',
-				format_url: 'formatExcelTp.xlsx',
-				next_page_route: 'laporanTpDraft',
-				button: 'Upload Laporan Tp'
-			},
+			excelUploads:[
+				{
+					enabled: true,
+					url: 'laporanCu/uploadExcel',
+					format_url: 'formatLaporanCu.xlsx',
+					next_page_route: 'laporanCuDraft',
+					button: 'Upload Laporan Konsolidasi CU'
+				},
+				{
+					enabled: true,
+					url: 'laporanCu/uploadExcelTp',
+					format_url: 'formatLaporanTpSemua.xlsx',
+					next_page_route: 'laporanTpDraft',
+					button: 'Upload Laporan Tp'
+				}
+			],
 			periode: '',
 			selectedItem: [],
 			state: '',
@@ -459,11 +463,11 @@ export default {
           });
 				}
 
-				this.excelUpload.url = 'laporanCu/uploadExcel';
-				this.excelUpload.format_url = 'formatExcelCu.xlsx';
+				this.excelUploads[0].url = 'laporanCu/uploadExcel';
+				this.excelUploads[0].format_url = 'formatLaporanCu.xlsx';
       }else{
-				this.excelUpload.url = 'laporanCu/uploadExcelAll';
-				this.excelUpload.format_url = 'formatExcelCuSemua.xlsx';
+				this.excelUploads[0].url = 'laporanCu/uploadExcelAll';
+				this.excelUploads[0].format_url = 'formatLaporanCuSemua.xlsx';
 			}
     },
     selectedRow(item) {

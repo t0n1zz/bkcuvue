@@ -1,4 +1,5 @@
 import laporanCuAPI from '../../api/laporanCu.js';
+import laporanCuDraftAPI from '../../api/laporanCuDraft.js';
 import laporanTpAPI from '../../api/laporanTp.js';
 
 export const laporanCu = {
@@ -869,7 +870,7 @@ export const laporanCu = {
     indexCuDraft( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.indexDraft( id )
+      laporanCuDraftAPI.index( id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -1288,6 +1289,40 @@ export const laporanCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    storeDraft( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      laporanCuDraftAPI.store( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    storeDraftAll( {commit, state, dispatch} ){
+      commit('setUpdateStat', 'loading');
+
+      laporanCuDraftAPI.storeAll()
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
 
     // edit page
@@ -1313,6 +1348,23 @@ export const laporanCu = {
       commit('setDataStat', 'loading');
       
       laporanTpAPI.edit( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+    editDraft( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      laporanCuDraftAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -1362,6 +1414,23 @@ export const laporanCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    updateDraft( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      laporanCuDraftAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
     // destroy data
     destroy( {commit, state, dispatch}, id ){
@@ -1385,6 +1454,40 @@ export const laporanCu = {
       commit('setUpdateStat', 'loading');
 
       laporanTpAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    destroyDraft( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      laporanCuDraftAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    destroyDraftAll( {commit, state, dispatch} ){
+      commit('setUpdateStat', 'loading');
+
+      laporanCuDraftAPI.destroyAll()
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);

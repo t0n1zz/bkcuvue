@@ -256,7 +256,7 @@ const routes = [
 	{ path: '/laporantp/edit/:id',
 		name: 'laporanTpEdit', 
 		components: { default: laporanCu_form, 'header': header}, 
-		meta: { requiresAuth: true, mode:'editTp' } },	
+		meta: { requiresAuth: true, mode:'editTp' } },
 
 	// laporan gerakan
 	{ path: '/laporangerakan',
@@ -272,7 +272,17 @@ const routes = [
 	{ path: '/laporantp/draft',
 		name: 'laporanTpDraft', 
 		components: { default: laporanTp_draft, 'header': header },
-		meta: { requiresAuth: true }},		
+		meta: { requiresAuth: true }},
+	// edit konsolidasi draft	
+	{ path: '/laporancu/draft/edit/:id',
+		name: 'laporanCuEditDraft', 
+		components: { default: laporanCu_form, 'header': header}, 
+		meta: { requiresAuth: true, mode:'editDraft' } },	
+	// edit tp draft	
+	{ path: '/laporantp/draft/edit/:id',
+		name: 'laporanTpEditDraft', 
+		components: { default: laporanCu_form, 'header': header}, 
+		meta: { requiresAuth: true, mode:'editDraftTp' } },		
 ]
 
 export default routes

@@ -20,9 +20,24 @@
 									<!-- button desktop -->
 									<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
 
-										<!-- simpan -->
-										<button @click.prevent="modalConfirmOpen('simpan')"  class="btn btn-light mb-1">
+										<!-- simpan semua -->
+										<button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light mb-1" :disabled="itemData.lenght == 0">
+											<i class="icon-floppy-disk"></i> Simpan Semua ke laporan statistik CU
+										</button>
+
+										<!-- hapus semua -->
+										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="itemData.lenght == 0">
+											<i class="icon-bin2"></i> Hapus Semua
+										</button>
+
+										<!-- simpan-->
+										<button @click.prevent="modalConfirmOpen('simpan')" class="btn btn-light mb-1" :disabled="!selectedItem.id">
 											<i class="icon-floppy-disk"></i> Simpan ke laporan statistik CU
+										</button>
+
+										<!-- ubah-->
+										<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" :disabled="!selectedItem.id">
+											<i class="icon-pencil5"></i> Ubah
 										</button>
 
 										<!-- hapus -->
@@ -30,27 +45,33 @@
 											<i class="icon-bin2"></i> Hapus
 										</button>
 
-										<!-- hapus -->
-										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="!selectedItem.id">
-											<i class="icon-bin2"></i> Hapus Semua
-										</button>
-
 									</div>
 									<!-- button mobile -->
 									<div class="col-md-12 pb-2 d-block d-sm-none">
 
-										<!-- simpan -->
-										<button @click.prevent="modalConfirmOpen('simpan')"  class="btn btn-light btn-block">
+										<!-- simpan semua-->
+										<button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light btn-block" :disabled="itemData.lenght == 0">
 											<i class="icon-floppy-disk"></i>Simpan ke laporan statistik CU
+										</button>
+
+										<!-- hapus semua -->
+										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemData.lenght == 0">
+											<i class="icon-bin2"></i> Hapus Semua
+										</button>
+
+										<!-- simpan-->
+										<button @click.prevent="modalConfirmOpen('simpan')" class="btn btn-light btn-block" :disabled="!selectedItem.id">
+											<i class="icon-floppy-disk"></i> Simpan ke laporan statistik CU
+										</button>
+
+										<!-- ubah-->
+										<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block" :disabled="!selectedItem.id">
+											<i class="icon-pencil5"></i> Ubah
 										</button>
 
 										<!-- hapus -->
 										<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" :disabled="!selectedItem.id">
 											<i class="icon-bin2"></i> Hapus
-										</button>
-
-										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="!selectedItem.id">
-											<i class="icon-bin2"></i> Hapus Semua
 										</button>
 
 									</div>
@@ -229,9 +250,9 @@
 		},
 		data() {
 			return {
-				title: 'Laporan Draft',
+				title: 'Laporan CU [Draft]',
 				kelas: 'laporanCu',
-				titleDesc: 'Mengelola data laporan dari file excel',
+				titleDesc: 'Mengelola data laporan Cu dari file excel',
 				titleIcon: 'icon-stats-bars2',
 				selectedItem: [],
 				columnData: [
@@ -293,13 +314,32 @@
 		created(){
 			this.fetch();
 		},
-		watch: {},
+		watch: {
+			// when updating data
+      updateStat(value) {
+				this.modalState = value;
+				this.modalButton = 'Ok';
+				
+				if(value == "success"){
+					this.modalTitle = this.updateMessage.message;
+					this.modalContent = '';
+					this.fetch();
+				}else if(value == "fail"){
+					this.modalContent = this.updateMessage;
+				}else{
+					this.modalContent = '';
+				}
+      }
+		},
 		methods: {
 			fetch(){
 				this.$store.dispatch(this.kelas + "/indexCuDraft",this.currentUser.id);
 			},
 			selectedRow(item) {
 				this.selectedItem = item;
+			},
+			ubahData(id) {
+				this.$router.push({ name: this.kelas + "EditDraft", params: { id: id } });
 			},
 			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -310,7 +350,11 @@
 					this.selectedItem = itemMobile;
 				}
 
-				if (state == "hapus") {
+				if (state == "simpan") {
+					this.modalTitle =
+						"Simpan " + this.title + " " + this.selectedItem.name + " ini?";
+					this.modalButton = "Iya, Simpan";
+				}else if (state == "hapus") {
 					this.modalTitle =
 						"Hapus " + this.title + " " + this.selectedItem.name + " ini?";
 					this.modalButton = "Iya, Hapus";
@@ -327,9 +371,18 @@
 			modalTutup() {
 				this.modalShow = false;
 				this.$store.dispatch(this.kelas + "/resetUpdateStat");
+				if(!this.itemData.length > 0){
+					if(this.currentUser.id_cu != 0){
+						this.$router.push({ name: 'laporanCuCu', params: { cu: this.currentUser.id_cu, tp:'konsolidasi' } });
+					}else{
+						this.$router.push({ name: 'laporanCu'});
+					}
+				}
 			},
 			modalConfirmOk() {
-				if (this.state == "hapus") {
+				if (this.state == "simpan") {
+					this.$store.dispatch(this.kelas + "/storeDraft", this.selectedItem.id);
+				}else if (this.state == "hapus") {
 					this.$store.dispatch(this.kelas + "/destroyDraft", this.selectedItem.id);
 				}else if (this.state == "hapus_semua") {
 					this.$store.dispatch(this.kelas + "/destroyDraftAll");
@@ -345,6 +398,8 @@
 			...mapGetters('laporanCu', {
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
 			}),
 		}
 	}
