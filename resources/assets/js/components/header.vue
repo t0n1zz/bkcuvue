@@ -48,9 +48,14 @@
 										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
 											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-weight-semibold">
-												{{notif.user.name}} <br/>[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
+												<i class="icon-user"></i> {{notif.user.name}} <br/>
 												</span>
-												<span class="text-muted float-right font-size-sm">{{notif.created_at | relativeHour}}</span>
+												<span class="font-size-xs">
+													[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
+												</span>
+												<span class="text-muted float-right font-size-xs">
+													<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
+												</span>
 											</div>
 											<hr class="mt-1 mb-1">
 											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
@@ -74,9 +79,15 @@
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
+							<!-- profile -->
 							<router-link :to="{ name: 'profile', params:{id: currentUser.id} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can">
 								<i class="icon-user"></i> Profile
 							</router-link>
+
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
+							<!-- logout -->
 							<a href="#" class="dropdown-item" @click.prevent="logout"><i class="icon-switch2"></i> Logout</a>
 						</div>
 					</li>
@@ -97,12 +108,15 @@
 			</div>
 
 			<div class="navbar-collapse collapse" id="navbar-navigation">
+
+				<!-- navbar left -->
 				<ul class="navbar-nav navbar-nav-highlight">
 
 					<!-- dashboard -->
 					<li class="nav-item">
 						<router-link :to="{ name: 'dashboard' }" class="navbar-nav-link" active-class="active" exact>
-							<i class="icon-home4 mr-2"></i> Dashboard
+							<i class="icon-screen3"></i>
+							<span class="d-md-none ml-2"> Dashboard</span>
 						</router-link>
 					</li>
 
@@ -453,14 +467,19 @@
 						</div>
 					</li>
 
+				</ul>
+				
+				<!-- navbar right -->
+				<ul class="navbar-nav ml-md-auto">
+
 					<!-- pengaturan -->
 					<li class="nav-item dropdown" v-if="currentUser.can['create_user'] || currentUser.can['index_user']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-gear mr-2"></i>
-							Sistem
+							<i class="icon-cog3"></i>
+							<span class="d-md-none ml-2">Pengaturan</span>
 						</a>
-
-						<div class="dropdown-menu">
+						
+						<div class="dropdown-menu dropdown-menu-right">
 
 							<!-- tambah user -->
 							<router-link :to="{ name:'userCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_user']">
@@ -472,7 +491,7 @@
 
 							<!-- user -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_user'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'user'}">
+							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser.can['index_user'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'user'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('user')">
 									<i class="icon-users"></i> User
 								</a>
@@ -502,16 +521,10 @@
 								<i class="icon-users"></i> User
 							</router-link>
 
-							<!-- profile -->
-							<router-link :to="{ name: 'profile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can">
-								<i class="icon-user"></i> Profile
-							</router-link>
-
 						</div>
+
 					</li>
-
 				</ul>
-
 			</div>
 		</div>
 

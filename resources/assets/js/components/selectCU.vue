@@ -85,7 +85,11 @@
     },
 		methods: {
 			fetchCU(){
-				this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+				if(this.modelCU.length == 0){
+					this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+				}else{
+					this.idCu = this.$route.params.cu;
+				}
 			},
 			changeCU(id){
 				this.$router.push({name: this.path, params:{cu: id} });
