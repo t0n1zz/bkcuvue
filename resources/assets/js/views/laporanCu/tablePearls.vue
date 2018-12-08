@@ -396,7 +396,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        // p2
+      // p2
       } else if (type == "p2") {
         this.modalTitle = "P2 -  Provisi pinjaman lalai 1 - 12 bulan";
 
@@ -451,7 +451,7 @@ export default {
           });
         }
 
-        // e1
+      // e1
       } else if (type == "e1") {
         this.modalTitle = "E1 - Piutang bersih / total aset";
 
@@ -550,7 +550,7 @@ export default {
           content: katex2Content1
         });
 
-        // e5
+      // e5
       } else if (type == "e5") {
         this.modalTitle = "E5 - Simpanan non saham / total aset";
 
@@ -596,6 +596,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
+      // e6
       } else if (type == "e6") {
         this.modalTitle = "E6 - Pinjaman kepada pihak luar terhadap total aset";
 
@@ -632,7 +633,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
       
-        // e7
+      // e7
       }else if (type == "e7") {
         this.modalTitle = "E7 - Persentase total aset yang didanai dari simpanan saham";
 
@@ -672,7 +673,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        // e9
+      // e9
       } else if (type == "e9") {
         this.modalTitle = "E9 - Modal lembaga bersih";
 
@@ -760,7 +761,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        // a1
+      // a1
       } else if (type == "a1") {
         this.modalTitle = "A1 - Total pinjaman lalai / total pinjaman beredar";
 
@@ -810,7 +811,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        // a2
+      // a2
       } else if (type == "a2") {
         this.modalTitle = "A2 - Aset yang tidak menghasilkan / total aset";
 
@@ -847,7 +848,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        // r7
+      // r7
       } else if (type == "r7") {
         this.modalTitle = "R7 - BJS saham terhadap rata-rata aset";
 
@@ -945,7 +946,7 @@ export default {
           this.modalKatex.katex2.push({ title: "", content: katex2Content2 });
         }
 
-        //r9
+      //r9
       } else if (type == "r9") {
         this.modalTitle = "R9 - Biaya operasional terhadap rata-rata aset";
 
@@ -996,7 +997,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        //l1
+      //l1
       } else if (type == "l1") {
         this.modalTitle =
           "L1 - (investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / simpanan non saham";
@@ -1058,7 +1059,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        //l2
+      //l2
       } else if (type == "l2") {
         this.modalTitle =
           "L2 - Likuiditas untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari";
@@ -1120,7 +1121,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        //s10
+      //s10
       } else if (type == "s10") {
         this.modalTitle = "S10 - Pertumbuhan anggota";
 
@@ -1178,7 +1179,7 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        //s11
+      //s11
       } else if (type == "s11") {
         this.modalTitle = "S11 - Pertumbuhan aset";
 

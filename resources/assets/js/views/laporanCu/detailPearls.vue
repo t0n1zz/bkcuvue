@@ -164,6 +164,38 @@
 					<b>Pinjaman kepada pihak luar terhadap total aset</b>
 				</div>
 			</div>
+			<!-- e7 -->
+			<div class="col-sm-3">
+				<div class="card card-body" :class="{'bg-primary': itemData.e7 >= 0.1 && itemData.e7 <= 0.2, 'bg-danger': itemData.e7 < 0.1 || itemData.e7 > 0.2}" @click.prevent="modalBuka(itemData,'e7')" style="cursor:pointer;">
+					<div class="media no-margin-top content-group">
+						<div class="media-body">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.e7 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.e7 >= 0.1 && itemData.e7 <= 0.2">
+								IDEAL
+							</span>
+							<span v-else>
+								TIDAK IDEAL
+							</span>
+						</div>
+
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
+								<b>E7</b>
+							</button>	
+						</div>
+					</div>
+
+					<!-- separator -->
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
+						<div class="progress-bar bg-white" style="width: 100%">
+							<span class="sr-only">100% Complete</span>
+						</div>
+					</div>
+
+					<!-- title -->
+					<b>Simpanan saham / total aset</b>
+				</div>
+			</div>
 			<!-- e9 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.e9 >= 0.1, 'bg-danger': itemData.e9 < 0.1}" @click.prevent="modalBuka(itemData,'e9')" style="cursor:pointer;">
@@ -228,6 +260,10 @@
 					<b>Total pinjaman lalai / total ipnjaman beredar</b>
 				</div>
 			</div>
+			
+		</div>
+
+		<div class="row">
 			<!-- a2 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.a2 < 0.05, 'bg-danger': itemData.a2 >= 0.05}" @click.prevent="modalBuka(itemData,'a2')" style="cursor:pointer;">
@@ -260,9 +296,6 @@
 					<b>Aset yang tidak menghasilkan / total aset</b>
 				</div>
 			</div>
-		</div>
-
-		<div class="row">
 			<!-- r7 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.r7_1 == itemData.harga_pasar, 'bg-danger': itemData.r7_1 != itemData.harga_pasar}" @click.prevent="modalBuka(itemData,'r7')" style="cursor:pointer;">
@@ -333,7 +366,6 @@
 					<b>Biaya operasional terhadap rata-rata aset</b>
 				</div>
 			</div>
-			
 			<!-- l1 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.l1 >= 0.15 && itemData.l1 <= 0.2, 'bg-danger': itemData.l1 < 0.15 || itemData.l1 > 0.2}" @click.prevent="modalBuka(itemData,'l1')" style="cursor:pointer;">
@@ -364,6 +396,41 @@
 
 					<!-- title -->
 					<b>(investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / simpanan non saham</b>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<!-- l2 -->
+			<div class="col-sm-3">
+				<div class="card card-body" :class="{'bg-primary': itemData.l2 >= 0.15 && itemData.l2 <= 0.2, 'bg-danger': itemData.l2 < 0.15 || itemData.l2 > 0.2}" @click.prevent="modalBuka(itemData,'l2')" style="cursor:pointer;">
+					<div class="media no-margin-top content-group">
+						<div class="media-body">
+							<h6 class="font-weight-semibold mb-8">{{ itemData.l2 | percentage(2) }}</h6>
+							<span class="opacity-75" v-if="itemData.l2 >= 0.15 && itemData.l2 <= 0.2">
+								IDEAL
+							</span>
+							<span v-else>
+								TIDAK IDEAL
+							</span>
+						</div>
+
+						<div class="ml-3 align-self-center">
+							<button type="button" class="btn btn-light btn-icon rounded-round">
+								<b>L2</b>
+							</button>	
+						</div>
+					</div>
+
+					<!-- separator -->
+					<div class="progress bg-blue mb-2" style="height: 0.125rem;">
+						<div class="progress-bar bg-white" style="width: 100%">
+							<span class="sr-only">100% Complete</span>
+						</div>
+					</div>
+
+					<!-- title -->
+					<b>(investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / total aset</b>
 				</div>
 			</div>
 			<!-- s10 -->
@@ -398,9 +465,7 @@
 					<b>Pertumbuhan anggota</b>
 				</div>
 			</div>
-		</div>
 
-		<div class="row">
 			<!-- s11 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.s11 > (0.1 + itemData.laju_inflasi), 'bg-danger': itemData.s11 <= (0.1 + itemData.laju_inflasi)}" @click.prevent="modalBuka(itemData,'s11')" style="cursor:pointer;">
@@ -691,6 +756,47 @@
 					this.modalKatex.katex1.push({title:'',content:katex1Content1});
 					this.modalKatex.katex2.push({title:'',content:katex2Content1});
 
+				
+				// e7
+				}else if (type == "e7") {
+					this.modalTitle = "E7 - Persentase total aset yang didanai dari simpanan saham";
+
+					this.modalKatex.form.push(
+						{ 
+							title: "Simpanan Saham", 
+							key: "simpanan_saham", 
+							value: itemData.simpanan_saham },
+						{
+							title: "Aset",
+							key: "aset",
+							value: itemData.aset
+						}
+					);
+
+					this.modalKatex.indikator =
+						"10-20% total aset yang didanai dari simpanan saham";
+
+					let katex1Content1 =
+						"\\text{E7} = \\dfrac{\\text{" +
+						this.modalKatex.form[0].title +
+						"}}{\\text{" +
+						this.modalKatex.form[1].title +
+						"}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Sampai } \\text{20} \\%(\\text{IDEAL})";
+
+					let katex2Content1 =
+						"\\text{E7} = \\dfrac{" +
+						this.formatCurrency(this.modalKatex.form[0].value) +
+						"}{\\text{" +
+						this.formatCurrency(this.modalKatex.form[1].value) +
+						"}} \\times \\text{100} \\% = " +
+						this.formatPercentage(itemData.e7) +
+						" \\% (\\text{" +
+						(itemData.e7 >= 0.1 && itemData.e7 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") +
+						"})";
+
+					this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
+					this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
+
 				// e9
 				}else if(type == 'e9'){
 					this.modalTitle = 'E9 - Modal lembaga bersih';
@@ -832,6 +938,68 @@
 					
 					this.modalKatex.katex1.push({title:'',content:katex1Content1});
 					this.modalKatex.katex2.push({title:'',content:katex2Content1});
+
+				// l2
+				} else if (type == "l2") {
+					this.modalTitle =
+						"L2 - Likuiditas untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari";
+
+					this.modalKatex.form.push(
+						{
+							title: "Investasi Likuid",
+							key: "investasi_likuid",
+							value: itemData.investasi_likuid
+						},
+						{
+							title: "Aset Likuid Tidak Menghasilkan",
+							key: "aset_likuid_tidak_menghasilkan",
+							value: itemData.aset_likuid_tidak_menghasilkan
+						},
+						{
+							title: "Hutang Tidak Berbiaya < 30 Hari",
+							key: "hutang_tidak_berbiaya_30hari",
+							value: itemData.hutang_tidak_berbiaya_30hari
+						},
+						{
+							title: "Aset",
+							key: "aset",
+							value: itemData.aset
+						}
+					);
+
+					this.modalKatex.indikator =
+						"Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.";
+
+					let katex1Content1 =
+						"\\text{L1} = \\dfrac{(\\text{" +
+						this.modalKatex.form[0].title +
+						"} + \\text{" +
+						this.modalKatex.form[1].title +
+						"}) - \\text{" +
+						this.modalKatex.form[2].title +
+						"}}{\\text{" +
+						this.modalKatex.form[3].title +
+						"}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})";
+
+					let katex2Content1 =
+						"\\text{L1} = \\dfrac{(\\text{" +
+						this.formatCurrency(this.modalKatex.form[0].value) +
+						"} + \\text{" +
+						this.formatCurrency(this.modalKatex.form[1].value) +
+						"}) - \\text{" +
+						this.formatCurrency(this.modalKatex.form[2].value) +
+						"}}{\\text{" +
+						this.formatCurrency(this.modalKatex.form[3].value) +
+						"}} \\times \\text{100} \\% = " +
+						this.formatPercentage(itemData.l1) +
+						" \\% (\\text{" +
+						(itemData.l1 >= 0.15 && itemData.l1 <= 0.2
+							? "IDEAL"
+							: "TIDAK IDEAL") +
+						"})";
+
+					this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
+					this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
 				//s10	
 				}else if(type == 's10'){
