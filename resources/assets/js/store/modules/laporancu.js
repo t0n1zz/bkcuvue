@@ -1,6 +1,7 @@
 import laporanCuAPI from '../../api/laporanCu.js';
 import laporanCuDraftAPI from '../../api/laporanCuDraft.js';
 import laporanTpAPI from '../../api/laporanTp.js';
+import laporanTpDraftAPI from '../../api/laporanTpDraft.js';
 
 export const laporanCu = {
   namespaced: true,
@@ -666,6 +667,16 @@ export const laporanCu = {
         isChart: true,
       },
       {
+        title: "E7 (10% - 20%)",
+        name: "e7",
+        tipe: "numeric",
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true,
+        isChart: true,
+      },
+      {
         title: "E9 (&ge; 10%)",
         name: "e9",
         tipe: "numeric",
@@ -718,6 +729,16 @@ export const laporanCu = {
       {
         title: "L1 (15% - 20%)",
         name: "l1",
+        tipe: "numeric",
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true,
+        isChart: true,
+      },
+      {
+        title: "L2 (15% - 20%)",
+        name: "l2",
         tipe: "numeric",
         sort: true,
         hide: false,
@@ -884,7 +905,7 @@ export const laporanCu = {
     indexTpDraft( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      laporanTpAPI.indexDraft( id )
+      laporanTpDraftAPI.index( id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -1323,6 +1344,40 @@ export const laporanCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    storeTpDraft( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpDraftAPI.store( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    storeTpDraftAll( {commit, state, dispatch} ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpDraftAPI.storeAll()
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
 
     // edit page
@@ -1378,6 +1433,23 @@ export const laporanCu = {
           commit('setDataStat', 'fail');
         });
     },
+    editTpDraft( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      laporanTpDraftAPI.edit( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
 
     // update data
     update( {commit, state, dispatch}, [id, form] ){
@@ -1418,6 +1490,23 @@ export const laporanCu = {
       commit('setUpdateStat', 'loading');
 
       laporanCuDraftAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    updateTpDraft( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpDraftAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1501,6 +1590,40 @@ export const laporanCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    destroyTpDraft( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpDraftAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    destroyTpDraftAll( {commit, state, dispatch} ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpDraftAPI.destroyAll()
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
     uploadExcel( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
@@ -1542,6 +1665,23 @@ export const laporanCu = {
       commit('setUpdateStat', 'loading');
 
       laporanTpAPI.uploadExcel( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    uploadExcelTpAll( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      laporanTpAPI.uploadExcelAll( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

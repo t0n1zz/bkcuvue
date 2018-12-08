@@ -91,6 +91,24 @@
 			</div>
 		</div>
 
+		<!-- e7 -->
+		<div v-else-if="type == 'e7'" class="d-flex align-items-center">
+			<div class="mr-3">
+				<button type="button" class="btn rounded-round btn-icon btn-xs" :class="{'btn-primary': props.e7 >= 0.1 && props.e7 <= 0.2, 'btn-danger': props.e7 < 0.1 || props.e7 > 0.2}">
+					<span class="letter-icon">E7</span>
+				</button>
+			</div>
+			<div >
+				<a class="text-default font-weight-semibold letter-icon-title">
+					<check-value :value="props.e7" valueType="percentage"></check-value>
+				</a>
+				<div class="font-size-sm">
+					<span v-if="props.e7 >= 0.1 && props.e7 <= 0.2">IDEAL</span>
+					<span v-else>TIDAK IDEAL</span>
+				</div>
+			</div>
+		</div>
+
 		<!-- e9 -->
 		<div v-else-if="type == 'e9'" class="d-flex align-items-center">
 			<div class="mr-3">
@@ -231,6 +249,23 @@
 				</a>
 				<div class="font-size-sm">
 					<span v-if="props.l1 >= 0.15 && props.l1 <= 0.2">IDEAL</span>
+					<span v-else>TIDAK IDEAL</span>
+				</div>
+			</div>
+		</div>
+
+		<div v-else-if="type == 'l2'" class="d-flex align-items-center">
+			<div class="mr-3">
+				<button type="button" class="btn rounded-round btn-icon btn-xs" :class="{'btn-primary': props.l2 >= 0.15 && props.l2 <= 0.2, 'btn-danger': props.l2 < 0.15 || props.l2 > 0.2}">
+					<span class="letter-icon">L2</span>
+				</button>
+			</div>
+			<div >
+				<a class="text-default font-weight-semibold letter-icon-title">
+					<check-value :value="props.l2" valueType="percentage"></check-value>
+				</a>
+				<div class="font-size-sm">
+					<span v-if="props.l2 >= 0.15 && props.l2 <= 0.2">IDEAL</span>
 					<span v-else>TIDAK IDEAL</span>
 				</div>
 			</div>

@@ -411,6 +411,13 @@
 								icon: 'icon-bubble7',
 								tipe: 'all',
 								value: false,
+							},
+							{
+								name: 'Upload',
+								key: 'upload_laporan_cu',
+								icon: 'icon-file-upload',
+								tipe: 'all',
+								value: false,
 							}
 						]
 					},
@@ -451,6 +458,13 @@
 								name: 'Diskusi',
 								key: 'diskusi_laporan_tp',
 								icon: 'icon-bubble7',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Upload',
+								key: 'upload_laporan_tp',
+								icon: 'icon-file-upload',
 								tipe: 'all',
 								value: false,
 							}

@@ -379,11 +379,13 @@ class UserController extends Controller
 		$this->hakAkses($request->update_laporan_cu,'update_laporan_cu',$user);
 		$this->hakAkses($request->destroy_laporan_cu,'destroy_laporan_cu',$user);
 		$this->hakAkses($request->diskusi_laporan_cu,'diskusi_laporan_cu',$user);
+		$this->hakAkses($request->upload_laporan_cu,'upload_laporan_cu',$user);
 		$this->hakAkses($request->index_laporan_tp,'index_laporan_tp',$user);
 		$this->hakAkses($request->create_laporan_tp,'create_laporan_tp',$user);
 		$this->hakAkses($request->update_laporan_tp,'update_laporan_tp',$user);
 		$this->hakAkses($request->destroy_laporan_tp,'destroy_laporan_tp',$user);
 		$this->hakAkses($request->diskusi_laporan_tp,'diskusi_laporan_tp',$user);
+		$this->hakAkses($request->upload_laporan_tp,'upload_laporan_tp',$user);
 		$this->hakAkses($request->index_user,'index_user',$user);
 		$this->hakAkses($request->create_user,'create_user',$user);
 		$this->hakAkses($request->update_user,'update_user',$user);

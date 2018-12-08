@@ -527,7 +527,7 @@
           </button> 
 
           <!-- upload button -->
-           <button type="button" class="btn btn-light" @click="uploadExcel(excelUploadIndex)">
+          <button type="button" class="btn btn-light" @click="uploadExcel(excelUploadIndex)">
               <i class="icon-upload"></i> Upload
           </button> 
 

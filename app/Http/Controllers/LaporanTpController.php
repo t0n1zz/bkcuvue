@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 use DB;
 use App\LaporanCu;
 use App\LaporanTp;
-use App\LaporanTpDraft;
-use App\Support\ImageProcessing;
+use App\Imports\LaporanTpDraftImport;
+use App\Imports\LaporanTpDraftAllImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\HeadingRowImport;
+use App\Support\NotificationHelper;
+use App\Support\LaporanTpHelper;
 use Illuminate\Http\Request;
 
 class LaporanTpController extends Controller{
@@ -114,6 +118,8 @@ class LaporanTpController extends Controller{
 
 				@e6 := IFNULL(Laporan_tp.total_hutang_pihak3,0) / IFNULL(Laporan_tp.aset,0) as e6,
 
+				@e7 := IFNULL(Laporan_tp.simpanan_saham,0) / IFNULL(Laporan_tp.aset,0) as e7,
+
 				@e9 := (@piutang_bersih - (IFNULL(Laporan_tp.piutang_lalai_12bulan,0) + ((35/100) * IFNULL(Laporan_tp.piutang_lalai_1bulan,0)) + IFNULL(Laporan_tp.aset_masalah,0))) / IFNULL(Laporan_tp.aset,0) as e9,
 
 				@a1 := (IFNULL(Laporan_tp.piutang_lalai_1bulan,0) + IFNULL(Laporan_tp.piutang_lalai_12bulan,0)) / IFNULL(Laporan_tp.piutang_beredar,0) as a1,
@@ -129,6 +135,8 @@ class LaporanTpController extends Controller{
 				@e9 := (IFNULL(Laporan_tp.total_biaya,0) - IFNULL(Laporan_tp.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
 				@l1 := (IFNULL(Laporan_tp.investasi_likuid,0) + IFNULL(Laporan_tp.aset_likuid_tidak_menghasilkan,0) - IFNULL(Laporan_tp.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
+
+				@l2 := (IFNULL(Laporan_tp.investasi_likuid,0) + IFNULL(Laporan_tp.aset_likuid_tidak_menghasilkan,0) - IFNULL(Laporan_tp.hutang_tidak_berbiaya_30hari,0)) / IFNULL(laporan_cu.aset,0) as l2,
 
 				@s10 := (@total_anggota - IFNULL(Laporan_tp.total_anggota_lalu,0)) / IFNULL(Laporan_tp.total_anggota_lalu,0) as s10,
 
@@ -437,7 +445,8 @@ class LaporanTpController extends Controller{
 
 		$kelas = LaporanTp::create($request->all());
 
-		$this->konsolidasi($request);
+		// $this->konsolidasi($request);
+		LaporanTpHelper::konsolidasi($request);
 
 		$this->store_notification($request,'Menambah');
 
@@ -447,45 +456,6 @@ class LaporanTpController extends Controller{
 				'message' => $this->message. ' ' .$name. ' berhasil ditambah'
 			]);
 	}
-
-	public function storeDraftAll()
-	{
-		$id = \Auth::user()->id;
-
-		$kelas = LaporanTpDraft::where('id_user',$id);
-		$laporan = $kelas->get()->toArray();
-		$tp = Tp::select('id','no_tp')->get()->toArray();
-
-		$merged = collect($laporan)->map(function ($value) use ($tp) {
-				foreach($tp as $array){
-						if($value["no_tp"] == $array["no_tp"]){
-							$value["id_tp"] = $array["id"];
-						}
-				}
-				return $value;
-		});
-
-		foreach ($merged as $key => $value) {
-			unset($value['id']);
-			unset($value['id_user']);
-			$merged[$key] = $value;
-
-			if (!isset($value['id_tp'])) {
-				unset($merged[$key]);
-			}
-		};   
-
-		LaporanTp::insert($merged->toArray());
-
-		$kelas->delete();
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
-			]);
-	}
-	
 
 	public function show($id)
 	{
@@ -518,7 +488,7 @@ class LaporanTpController extends Controller{
 
 		$kelas->update($request->all());
 
-		$this->konsolidasi($request);
+		LaporanTpHelper::konsolidasi($request);
 
 		$this->store_notification($request,'Mengubah');
 
@@ -545,6 +515,17 @@ class LaporanTpController extends Controller{
 			]);
 	}
 
+	public function uploadExcel(Request $request)
+	{
+		Excel::import(new LaporanTpDraftImport, request()->file('file'));
+
+		return response()
+			->json([
+				'uploaded' => true,
+				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+			]);
+	}
+
 	public function uploadExcelAll(Request $request)
 	{
 		Excel::import(new LaporanTpDraftAllImport, request()->file('file'));
@@ -554,53 +535,6 @@ class LaporanTpController extends Controller{
 				'uploaded' => true,
 				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
 			]);
-	}
-
-	public function countDraft()
-	{
-			$id = \Auth::user()->id;
-
-			$table_data = LaporanTpDraft::where('id_user',$id)->count();
-			
-			return response()
-			->json([
-					'model' => $table_data
-			]);
-	}
-
-	public function konsolidasi($request)
-	{
-		$name = $request->name;
-		$id_tp = $request->id_tp;
-		$id_cu = $request->id_cu;
-		$no_ba = $request->no_ba;
-		$periode = $request->periode;
-
-		$laporantp = LaporanTp::whereHas('Tp',function($query) use ($id_cu){
-			$query->where('Tp.id_cu',$id_cu);
-		})->where('periode',$periode)->get();
-
-		$konsolidasi = [];
-
-		foreach(LaporanTp::$summable as $col){
-			$konsolidasi[$col] = $laporantp->sum($col);
-		}
-
-		$konsolidasi['id_cu'] = $id_cu;
-		$konsolidasi['no_ba'] = $no_ba;
-		$konsolidasi['tp'] = $laporantp->count();
-		$konsolidasi['laju_inflasi'] = $request->laju_inflasi;
-		$konsolidasi['harga_pasar'] = $request->harga_pasar;
-		$konsolidasi['periode'] = $periode;
-
-		$kelas2 = LaporanCu::where('id_cu',$id_cu)->where('periode',$periode)->first();
-
-		if(empty($kelas2)){
-			$kelas3 = LaporanCu::create($konsolidasi);
-		}else{
-			$kelas3 = LaporanCu::findOrFail($kelas2->id);
-			$kelas3->update($konsolidasi);
-		}
 	}
 
 	private function store_notification($request,$tipe)

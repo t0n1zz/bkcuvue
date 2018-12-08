@@ -249,7 +249,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
         Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
     });
-    Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
+    Route::group(['middleware' => ['permission:upload_laporan_cu']], function () {
         Route::post('/laporanCu/uploadExcel', 'laporanCuController@uploadExcel');
         Route::post('/laporanCu/uploadExcelAll', 'laporanCuController@uploadExcelAll');
 
@@ -294,11 +294,18 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/laporanTpDiskusi/update/{id}', 'laporanTpDiskusiController@update');
         Route::delete('/laporanTpDiskusi/{id}', 'laporanTpDiskusiController@destroy');
     });
-    Route::group(['middleware' => ['permission:index_laporan_tp']], function () {
+    Route::group(['middleware' => ['permission:upload_laporan_tp']], function () {
         Route::post('/laporanTp/uploadExcel', 'laporanTpController@uploadExcel');
-        Route::get('/laporanTp/indexDraft/{id}', 'laporanTpController@indexDraft');
-        Route::get('/laporanTp/countDraft', 'laporanTpController@countDraft');
-        Route::post('/laporanTp/storeDraftAll', 'laporanTpController@storeDraftAll');
+        Route::post('/laporanTp/uploadExcelAll', 'laporanTpController@uploadExcelAll');
+
+        Route::get('/laporanTpDraft', 'laporanTpDraftController@index');
+        Route::post('/laporanTpDraft/store/{id}', 'laporanTpDraftController@store');
+        Route::post('/laporanTpDraft/storeAll', 'laporanTpDraftController@storeAll');
+        Route::get('/laporanTpDraft/edit/{id}', 'laporanTpDraftController@edit');
+        Route::post('/laporanTpDraft/update/{id}', 'laporanTpDraftController@update');
+        Route::delete('/laporanTpDraft/destroy/{id}', 'laporanTpDraftController@destroy');
+        Route::delete('/laporanTpDraft/destroyAll', 'laporanTpDraftController@destroyAll');
+        Route::get('/laporanTpDraft/count', 'laporanTpDraftController@count');
     });
 
     // puskopdit

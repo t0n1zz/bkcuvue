@@ -465,9 +465,25 @@ export default {
 
 				this.excelUploads[0].url = 'laporanCu/uploadExcel';
 				this.excelUploads[0].format_url = 'formatLaporanCu.xlsx';
+				this.excelUploads[1].url = 'laporanTp/uploadExcel';
+				this.excelUploads[1].format_url = 'formatLaporanTp.xlsx';
       }else{
 				this.excelUploads[0].url = 'laporanCu/uploadExcelAll';
 				this.excelUploads[0].format_url = 'formatLaporanCuSemua.xlsx';
+				this.excelUploads[1].url = 'laporanTp/uploadExcelAll';
+				this.excelUploads[1].format_url = 'formatLaporanTpSemua.xlsx';
+			}
+
+			if(this.currentUser.can['upload_laporan_cu']){
+				this.excelUploads[0].enabled = true;
+			}else{
+				this.excelUploads[0].enabled = false;
+			}
+
+			if(this.currentUser.can['upload_laporan_tp']){
+				this.excelUploads[1].enabled = true;
+			}else{
+				this.excelUploads[1].enabled = false;
 			}
     },
     selectedRow(item) {

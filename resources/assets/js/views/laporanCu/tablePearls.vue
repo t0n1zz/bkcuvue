@@ -65,6 +65,12 @@
 							:props="props.item"
 						></item-pearls>
 					</td>
+          <td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'e7')" style="cursor:pointer;">
+						<item-pearls
+							:type="'e7'"
+							:props="props.item"
+						></item-pearls>
+					</td>
 					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e9'"
@@ -98,6 +104,12 @@
 					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'l1'"
+							:props="props.item"
+						></item-pearls>
+					</td>
+          <td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'l2')" style="cursor:pointer;">
+						<item-pearls
+							:type="'l2'"
 							:props="props.item"
 						></item-pearls>
 					</td>
@@ -584,7 +596,6 @@ export default {
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
         this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 
-        // e6
       } else if (type == "e6") {
         this.modalTitle = "E6 - Pinjaman kepada pihak luar terhadap total aset";
 
@@ -616,6 +627,46 @@ export default {
           this.formatPercentage(itemData.e6) +
           " \\% ( \\text{" +
           (itemData.e6 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") +
+          "})";
+
+        this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
+        this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
+      
+        // e7
+      }else if (type == "e7") {
+        this.modalTitle = "E7 - Persentase total aset yang didanai dari simpanan saham";
+
+        this.modalKatex.form.push(
+          { 
+            title: "Simpanan Saham", 
+            key: "simpanan_saham", 
+            value: itemData.simpanan_saham },
+          {
+            title: "Aset",
+            key: "aset",
+            value: itemData.aset
+          }
+        );
+
+        this.modalKatex.indikator =
+          "10-20% total aset yang didanai dari simpanan saham";
+
+        let katex1Content1 =
+          "\\text{E7} = \\dfrac{\\text{" +
+          this.modalKatex.form[0].title +
+          "}}{\\text{" +
+          this.modalKatex.form[1].title +
+          "}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Sampai } \\text{20} \\%(\\text{IDEAL})";
+
+        let katex2Content1 =
+          "\\text{E7} = \\dfrac{" +
+          this.formatCurrency(this.modalKatex.form[0].value) +
+          "}{\\text{" +
+          this.formatCurrency(this.modalKatex.form[1].value) +
+          "}} \\times \\text{100} \\% = " +
+          this.formatPercentage(itemData.e7) +
+          " \\% (\\text{" +
+          (itemData.e7 >= 0.1 && itemData.e7 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") +
           "})";
 
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
@@ -970,6 +1021,68 @@ export default {
             title: "Total Simpanan Non Saham",
             key: "tot_nonsaham",
             value: itemData.tot_nonsaham
+          }
+        );
+
+        this.modalKatex.indikator =
+          "Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.";
+
+        let katex1Content1 =
+          "\\text{L1} = \\dfrac{(\\text{" +
+          this.modalKatex.form[0].title +
+          "} + \\text{" +
+          this.modalKatex.form[1].title +
+          "}) - \\text{" +
+          this.modalKatex.form[2].title +
+          "}}{\\text{" +
+          this.modalKatex.form[3].title +
+          "}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})";
+
+        let katex2Content1 =
+          "\\text{L1} = \\dfrac{(\\text{" +
+          this.formatCurrency(this.modalKatex.form[0].value) +
+          "} + \\text{" +
+          this.formatCurrency(this.modalKatex.form[1].value) +
+          "}) - \\text{" +
+          this.formatCurrency(this.modalKatex.form[2].value) +
+          "}}{\\text{" +
+          this.formatCurrency(this.modalKatex.form[3].value) +
+          "}} \\times \\text{100} \\% = " +
+          this.formatPercentage(itemData.l1) +
+          " \\% (\\text{" +
+          (itemData.l1 >= 0.15 && itemData.l1 <= 0.2
+            ? "IDEAL"
+            : "TIDAK IDEAL") +
+          "})";
+
+        this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
+        this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
+
+        //l2
+      } else if (type == "l2") {
+        this.modalTitle =
+          "L2 - Likuiditas untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari";
+
+        this.modalKatex.form.push(
+          {
+            title: "Investasi Likuid",
+            key: "investasi_likuid",
+            value: itemData.investasi_likuid
+          },
+          {
+            title: "Aset Likuid Tidak Menghasilkan",
+            key: "aset_likuid_tidak_menghasilkan",
+            value: itemData.aset_likuid_tidak_menghasilkan
+          },
+          {
+            title: "Hutang Tidak Berbiaya < 30 Hari",
+            key: "hutang_tidak_berbiaya_30hari",
+            value: itemData.hutang_tidak_berbiaya_30hari
+          },
+          {
+            title: "Aset",
+            key: "aset",
+            value: itemData.aset
           }
         );
 

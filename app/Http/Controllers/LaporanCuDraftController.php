@@ -6,7 +6,6 @@ use Auth;
 use App\Cu;
 use App\LaporanCu;
 use App\LaporanCuDraft;
-use App\Support\ImageProcessing;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
 
@@ -39,11 +38,11 @@ class LaporanCuDraftController extends Controller{
 		unset($data['id']);
 		unset($data['id_user']);   
 
-		LaporanCu::insert($data);
+		$kelas2 = LaporanCu::insert($data);
 
 		$kelas->delete();
 
-		// $this->store_notification($request,'Menambah');
+		$this->store_notification($kelas2,'Mengupload');
 		
 		return response()
 			->json([
@@ -80,7 +79,7 @@ class LaporanCuDraftController extends Controller{
 			}
 		};   
 
-		LaporanCu::insert($merged->toArray());
+		$kelas2 = LaporanCu::insert($merged->toArray());
 
 		$kelas->delete();
 
@@ -162,5 +161,19 @@ class LaporanCuDraftController extends Controller{
 			->json([
 					'model' => $table_data
 			]);
+	}
+
+	private function store_notification($request,$tipe)
+	{
+		$id_cu = \Auth::user()->getIdCu();
+
+		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+
+		if($id_cu == '0'){
+			NotificationHelper::store_laporan($request->id_cu,$request->id,'BKCU','',$periode,$tipe);
+		}else{
+			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
+			NotificationHelper::store_laporan('0',$request->id,$cu->name,'',$periode,$tipe);
+		}
 	}
 }

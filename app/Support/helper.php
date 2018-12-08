@@ -4,6 +4,8 @@ namespace App\Support;
 use File;
 use Image;
 use Validator;
+use App\LaporanTp;
+use App\LaporanCu;
 use Illuminate\Http\Request;
 
 class Helper{
@@ -127,4 +129,5 @@ class Helper{
 
 		return $dom->saveHTML();
 	}
+
 }

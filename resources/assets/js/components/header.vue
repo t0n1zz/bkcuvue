@@ -442,11 +442,11 @@
 
 							</div>
 
-							<router-link :to="{ name: 'laporanCuDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu'] && laporanCuDraftCountStat == 'success' && laporanCuDraftCount > 0">
+							<router-link :to="{ name: 'laporanCuDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['upload_laporan_cu'] && laporanCuDraftCountStat == 'success' && laporanCuDraftCount > 0">
 								<i class="icon-stats-bars2"></i> Laporan Statistik CU [DRAFT]
 							</router-link>
 
-							<router-link :to="{ name: 'laporanTpDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_tp'] && laporanTpDraftCountStat == 'success' && laporanTpDraftCount > 0">
+							<router-link :to="{ name: 'laporanTpDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['upload_laporan_tp'] && laporanTpDraftCountStat == 'success' && laporanTpDraftCount > 0">
 								<i class="icon-stats-bars2"></i> Laporan Statistik TP/KP [DRAFT]
 							</router-link>
 
@@ -571,26 +571,30 @@
 				this.$store.dispatch('user/markNotifRead',notif.id);
 			},
 			fetchLaporanCuDraft(){
-				axios.get('/api/laporanCuDraft/count')
-					.then(response => {
-						this.laporanCuDraftCount = response.data.model;
-						this.laporanCuDraftCountStat = 'success';
-					})
-					.catch(error => {
-						this.laporanCuDraftCount = error.response;
-						this.laporanCuDraftCountStat = 'fail';
-					});
+				if(this.currentUser.can['upload_laporan_cu']){
+					axios.get('/api/laporanCuDraft/count')
+						.then(response => {
+							this.laporanCuDraftCount = response.data.model;
+							this.laporanCuDraftCountStat = 'success';
+						})
+						.catch(error => {
+							this.laporanCuDraftCount = error.response;
+							this.laporanCuDraftCountStat = 'fail';
+						});
+				}
 			},
 			fetchLaporanTpDraft(){
-				axios.get('/api/laporanTp/countDraft')
-					.then(response => {
-						this.laporanTpDraftCount = response.data.model;
-						this.laporanTpDraftCountStat = 'success';
-					})
-					.catch(error => {
-						this.laporanTpDraftCount = error.response;
-						this.laporanTpDraftCountStat = 'fail';
-					});
+				if(this.currentUser.can['upload_laporan_tp']){
+					axios.get('/api/laporanTpDraft/count')
+						.then(response => {
+							this.laporanTpDraftCount = response.data.model;
+							this.laporanTpDraftCountStat = 'success';
+						})
+						.catch(error => {
+							this.laporanTpDraftCount = error.response;
+							this.laporanTpDraftCountStat = 'fail';
+						});
+				}
 			},
 			fetchTp(){
 				this.$store.dispatch('tp/getCuHeader',this.currentUser.id_cu);
