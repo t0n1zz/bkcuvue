@@ -1,18 +1,62 @@
+import { refreshToken } from "./auth.js";
+import Token from "./token";
+
 export function initialize(store, router) {
   router.beforeEach((to, from, next) => {
       const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
       const currentUser = store.state.auth.currentUser;
   
       if(requiresAuth && !currentUser) {
-          next('/login');
-      } else if(to.path == '/login' && currentUser) {
-          next('/');
-      } else {
-          next();
-      }
+        return next({
+            path:'/login',
+            query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
+        });
+      } 
+      
+      if(to.path == '/login' && currentUser) {
+          return next('/');
+      } 
+
+      next();
   });
   
-  axios.interceptors.response.use(null, (error) => {
+  axios.interceptors.response.use((response) => {
+    if(store.state.auth.isLoggedIn){
+        const currentTime = new Date().getTime() / 1000;
+        const tokenExp = store.state.auth.tokenExp;
+
+        if(currentTime > tokenExp - 1000 && !store.state.auth.isLoading){
+            store.dispatch('auth/login');
+
+            refreshToken()
+            .then((res) => {
+                if(Token.isValid(res.access_token)){
+                    store.dispatch('auth/loginSuccess', res);
+
+                    const token = Token.payload(res.access_token);
+                    store.commit('auth/setTokenExp', token.exp);
+
+                    return response;
+                }else{
+                    store.dispatch('auth/loginFailed');
+                    store.dispatch('auth/logout');
+                    router.push('/login');
+                    return Promise.reject(error);
+                }
+            })
+            .catch((error) => {
+                store.dispatch('auth/loginFailed');
+                store.dispatch('auth/logout');
+                router.push('/login');
+                return Promise.reject(error);
+            });
+        }else{
+            return response;
+        }
+    }else{
+        return response;
+    }  
+  }, (error) => {
       if (error.response.status == 401) {
           store.dispatch('auth/logout');
           router.push('/login');

@@ -1,4 +1,5 @@
 import { getLocalUser } from "../../helpers/auth";
+import Axios from "axios";
 
 const user = getLocalUser();
 
@@ -13,6 +14,7 @@ export const auth = {
     notification: {},
     unreadNotification:'',
     markNotifStat:'',
+    tokenExp: null,
   },
 
   getters: {
@@ -23,6 +25,7 @@ export const auth = {
     notification: state => state.notification,
     unreadNotification: state => state.unreadNotification,
     markNotifStat: state => state.markNotifStat,
+    tokenExp: state => state.tokenExp,
   },
 
   actions: {
@@ -70,6 +73,9 @@ export const auth = {
     },
     setMarkNotifStat( state, status ){
       state.markNotifStat = status;
+    },
+    setTokenExp( state, data ){
+      state.tokenExp = data;
     },
   } 
 }

@@ -20,7 +20,7 @@
 							<span class="d-block text-muted">Sistem Informasi Manajemen Organisasi</span>
 						</div>
 
-						<form @submit.prevent="login" enctype="multipart/form-data">
+						<form @submit.prevent="login">
 
 							<div class="form-group form-group-feedback form-group-feedback-right" >
 								<div class="input-group">
@@ -83,6 +83,7 @@
 
 <script type="text/javascript">
 	import { login } from "../helpers/auth.js";
+	import Token from '../helpers/token.js';
 	import Message from "../components/message.vue";
 	export default {
 		components: {
@@ -108,17 +109,26 @@
 				this.$validator.validateAll().then((result) => {
 					if(result){
 						this.loadingState = 'loading';
-
 						this.$store.dispatch('auth/login');
 
 						login(this.form)
 							.then((res) => {
-								this.loadingState = 'success';
-								this.$store.dispatch('auth/loginSuccess', res);
-								let self = this;
-								setTimeout(function(){
-										self.$router.push('/');
-								}, 300);
+								if(Token.isValid(res.access_token)){
+									this.loadingState = 'success';
+									this.$store.dispatch('auth/loginSuccess', res);
+
+									let self = this;
+									setTimeout(function(){
+											self.$router.push(self.$router.history.current.query.redirect || '/');
+									}, 300);
+
+									const token = Token.payload(res.access_token);
+									this.$store.commit('auth/setTokenExp', token.exp);
+								}else{
+									this.message.show = true;
+									this.message.content = 'Token tidak valid';
+									this.loadingState = 'fail';
+								}
 							})
 							.catch((error) => {
 								this.message.show = true;
@@ -132,7 +142,7 @@
 						this.submited = true;
 					}
 				});
-			}
+			},
 		}
 	}
 </script>

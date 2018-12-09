@@ -13,6 +13,19 @@ export function login(credentials){
   })
 }
 
+export function refreshToken(){
+  return new Promise((res,rej) => {
+    axios.post('/api/auth/refresh')
+      .then((response) => {
+        setAuthorization(response.data.access_token);
+        res(response.data);
+      })
+      .catch((err) => {
+        rej("Username atau password salah");
+      })
+  })
+}
+
 export function getLocalUser(){
   const userStr = localStorage.getItem('user');
 
