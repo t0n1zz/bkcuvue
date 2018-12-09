@@ -18,7 +18,7 @@ class PengelolaController extends Controller{
 	protected $imagepath = 'images/Pengelola/';
 	protected $width = 300;
 	protected $height = 200;
-	protected $message = 'Pengelola';
+	protected $message = 'Aktivis CU';
 
 	public function index()
 	{

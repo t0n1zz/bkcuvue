@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Hash;
+use Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,16 @@ class Authcontroller extends Controller
         if (! $token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        $id = Auth::user()->getId();
+        $admin = User::find($id);
+
+        if($admin->status == 0){
+            return response()->json(['error' => 'Maaf akun anda tidak aktif'], 401);
+        }
+
+        $admin->login = Date::now();
+        $admin->update();
 
         return $this->respondWithToken($token);
     }

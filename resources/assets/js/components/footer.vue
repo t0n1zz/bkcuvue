@@ -3,11 +3,11 @@
 		<div class="text-center d-lg-none w-100">
 			<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
 				<i class="icon-unfold mr-2"></i>
-				Footer
+				SIMO
 			</button>
 		</div>
 
-		<div class="navbar-collapse collapse" id="navbar-footer">
+		<div class="navbar-collapse collapse show" id="navbar-footer">
 			<span class="navbar-text">
 				&copy; 2018 - 2020. <a href="#">SIMO</a> by <a href="#" target="_blank">Puskopdit BKCU Kalimantan</a>
 			</span>

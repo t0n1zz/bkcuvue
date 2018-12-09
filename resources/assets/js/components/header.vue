@@ -103,7 +103,7 @@
 			<div class="text-center d-md-none w-100">
 				<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-navigation">
 					<i class="icon-unfold mr-2"></i>
-					Navigation
+					Menu
 				</button>
 			</div>
 
@@ -384,7 +384,7 @@
 
 							<!-- pengelola -->
 							<router-link :to="{ name: 'pengelolaCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_pengelola']">
-								<i class="icon-user-tie"></i> Pengelola
+								<i class="icon-user-tie"></i> Aktivis
 							</router-link>
 
 						</div>
@@ -546,7 +546,7 @@
 			}
 		},
 		created(){
-			this.fetchTp();
+			// this.fetchTp();
 			this.fetchCu();
 			this.fetchNotif();
 			this.fetchLaporanCuDraft();

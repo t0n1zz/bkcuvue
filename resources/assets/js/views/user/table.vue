@@ -96,8 +96,9 @@
             <span v-else>Puskopdit BKCU Kalimantan</span>
           </td>
           <td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.status)"></td>
-          <td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-          <td v-if="!columnData[8].hide">
+          <td v-if="!columnData[7].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.login)"></td>
+          <td v-if="!columnData[8].hide" class="text-nowrap" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+          <td v-if="!columnData[9].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -215,9 +216,18 @@ export default {
           disable: false
         },
         {
+          title: 'Login',
+          name: 'login',
+          tipe: 'datetime',
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true,
+        },
+        {
           title: 'Tgl. Buat',
           name: 'created_at',
-          tipe: 'string',
+          tipe: 'datetime',
           sort: true,
           hide: false,
           disable: false,
@@ -226,7 +236,7 @@ export default {
         {
           title: 'Tgl. Ubah',
           name: 'updated_at',
-          tipe: 'string',
+          tipe: 'datetime',
           sort: true,
           hide: false,
           disable: false,

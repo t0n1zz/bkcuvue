@@ -251,7 +251,7 @@
 				titleDesc: '',
 				titleIcon: '',
 				kelas: 'pengelola',
-				level2Title: 'Pengelola',
+				level2Title: 'Aktivis CU',
 				cleaveOption: {
           date:{
             date: true,

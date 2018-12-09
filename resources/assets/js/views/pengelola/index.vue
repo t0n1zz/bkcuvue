@@ -50,9 +50,9 @@
 		},
 		data() {
 			return {
-				title: 'Pengelola CU',
+				title: 'Aktivis CU',
 				kelas: 'pengelola',
-				titleDesc: 'Mengelola data Pengelola CU',
+				titleDesc: 'Mengelola data Aktivis CU',
 				titleIcon: 'icon-user-tie',
 				selectCuPath: 'pengelolaCu',
 			}

@@ -291,7 +291,7 @@ export default {
         order_column: "periode",
         order_direction: "desc",
         filter_match: "and",
-        limit: 50,
+        limit: 10,
         page: 1
       },
 			excelDownloadUrl:'',
