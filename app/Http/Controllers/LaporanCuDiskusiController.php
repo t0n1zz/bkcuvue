@@ -42,7 +42,7 @@ class LaporanCuDiskusiController extends Controller{
 		
 		$kelas = LaporanCuDiskusi::create($request->all());	
 
-		$this->store_notification($request,'Menulis');
+		$this->store_notification($request,'Menambah');
 
 		return response()
 			->json([

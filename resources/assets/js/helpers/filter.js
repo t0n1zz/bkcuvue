@@ -33,6 +33,13 @@ Vue.filter('checkStatus', function(value){
 			return '<span class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>';
 	}
 });
+Vue.filter('notificationIcon', function(value){
+	if (value == 'Menambah laporancu' || value == 'Mengubah laporancu' || value == 'Menghapus laporancu') {
+			return '<i class="icon-stats-bars2"></i>';
+	} else if(value == 'Menambah diskusilaporan' || value == 'Menulis diskusilaporan' || value == 'Mengubah laporancu' || value == 'Menghapus laporancu') {
+		return '<i class="icon-bubble2"></i>';
+	}
+});
 Vue.filter('trimString', function(string){
 	return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
 				' [...]';

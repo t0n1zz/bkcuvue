@@ -368,10 +368,10 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('download/{filename}','SystemController@download_file');
 
     // notification
-    Route::get('/getNotif', 'SystemController@getNotif');
-    Route::get('/getNotifAll', 'SystemController@getNotifAll');
-    Route::get('/markNotifRead/{id}', 'SystemController@markNotifRead');
-    Route::get('/markAllNotifRead', 'SystemController@markAllNotifRead');
+    Route::get('/notification/get', 'NotificationController@get');
+    Route::get('/notification/getAll', 'NotificationController@getAll');
+    Route::get('/notification/markRead/{id}', 'NotificationController@markRead');
+    Route::get('/notification/markAllRead', 'NotificationController@markAllRead');
 });
 
 

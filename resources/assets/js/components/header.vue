@@ -48,7 +48,7 @@
 										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
 											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-weight-semibold">
-												<i class="icon-user"></i> {{notif.user.name}} <br/>
+													<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}} <br/>
 												</span>
 												<span class="font-size-xs">
 													[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
@@ -573,7 +573,7 @@
 				}
 			},
 			goToNotifCenter(){
-
+				this.$router.push('/notificationCenter');
 			},
 			goToPage(notif){
 				if(notif.data.tp == ''){
@@ -616,10 +616,10 @@
 				this.$store.dispatch('cu/getHeader');
 			},
 			fetchNotif(){
-				this.$store.dispatch('user/getNotif');
+				this.$store.dispatch('notification/get');
 			},
 			markAllNotifRead(){
-				this.$store.dispatch('user/markAllNotifRead');
+				this.$store.dispatch('notification/markAllNotifRead');
 			},
 			logout() {
 				// TODO: log out on server side
@@ -639,7 +639,7 @@
 			...mapGetters('auth',{
 				currentUser: 'currentUser',
 			}),
-			...mapGetters('user',{
+			...mapGetters('notification',{
 				notification: 'notification',
 				unreadNotification: 'unreadNotification',
 				markNotifStat: 'markNotifStat',

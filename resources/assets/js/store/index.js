@@ -22,6 +22,7 @@ import { pengelola } from './modules/pengelola';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
+import { notification } from './modules/notification';
 
 Vue.use(Vuex);
 
@@ -47,6 +48,7 @@ export default new Vuex.Store({
 		 pengelola,
 		 produkCu,
 		 diklatBKCU,
-		 tempat
+		 tempat,
+		 notification
 	 }
 });
