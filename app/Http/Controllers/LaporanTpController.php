@@ -10,7 +10,6 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use App\Support\NotificationHelper;
 use App\Support\LaporanTpHelper;
-use App\Support\LaporanQueryHelper;
 use Illuminate\Http\Request;
 
 class LaporanTpController extends Controller{
@@ -27,7 +26,7 @@ class LaporanTpController extends Controller{
 			->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp GROUP BY id_tp) latest_report"),function($join){
         $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
         $join->on('Laporan_tp.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(laporanQueryHelper::queryPerkembangan()
+		})->addSelect([DB::raw(LaporanTpHelper::queryPerkembangan()
 			)])->whereHas('Tp', function($query) use ($id){
 				$query->where('id_cu',$id);
 			})->advancedFilter();
@@ -40,7 +39,7 @@ class LaporanTpController extends Controller{
 
 	public function indexTp($id)
 	{
-		$table_data = LaporanTp::with('Tp')->where('id_tp',$id)->addSelect(['*',DB::raw(laporanQueryHelper::queryPerkembangan())])->advancedFilter();
+		$table_data = LaporanTp::with('Tp')->where('id_tp',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPerkembangan())])->advancedFilter();
 
 		return response()
 		->json([
@@ -60,7 +59,7 @@ class LaporanTpController extends Controller{
 		->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp WHERE periode <= '$periode' GROUP BY id_tp) latest_report"),function($join){
         $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
         $join->on('Laporan_tp.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(laporanQueryHelper::queryPerkembangan())])->advancedFilter();
+		})->addSelect([DB::raw(LaporanTpHelper::queryPerkembangan())])->advancedFilter();
 
 		return response()
 		->json([
@@ -78,7 +77,7 @@ class LaporanTpController extends Controller{
 			->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp GROUP BY id_tp) latest_report"),function($join){
         $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
         $join->on('Laporan_tp.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(laporanQueryHelper::queryPEARLS())])->advancedFilter();
+		})->addSelect([DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
 
 		return response()
 		->json([
@@ -88,7 +87,7 @@ class LaporanTpController extends Controller{
 
 	public function indexPearlsTp($id)
 	{
-		$table_data = LaporanTp::with('Tp')->where('id_tp',$id)->addSelect(['*',DB::raw(laporanQueryHelper::queryPEARLS())])->advancedFilter();
+		$table_data = LaporanTp::with('Tp')->where('id_tp',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
 
 		return response()
 		->json([
@@ -108,7 +107,7 @@ class LaporanTpController extends Controller{
 		->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp WHERE periode <= '$periode' GROUP BY id_tp) latest_report"),function($join){
         $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
         $join->on('Laporan_tp.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(laporanQueryHelper::queryPEARLS())])->advancedFilter();
+		})->addSelect([DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
 
 		return response()
 		->json([
@@ -130,7 +129,7 @@ class LaporanTpController extends Controller{
 
 	public function detail($id)
 	{
-		$table_data = LaporanTp::with('Tp.Cu')->where('id',$id)->addSelect(['*',DB::raw(laporanQueryHelper::queryPerkembangan())])->first();
+		$table_data = LaporanTp::with('Tp.Cu')->where('id',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPerkembangan())])->first();
 
 		$h = $table_data->revisionHistory;
 		$history = collect();		
@@ -149,7 +148,7 @@ class LaporanTpController extends Controller{
 
 	public function detailPearls($id)
 	{
-		$table_data = LaporanTp::with('Tp.Cu')->where('id',$id)->addSelect(['*',DB::raw(laporanQueryHelper::queryPEARLS())])->first();
+		$table_data = LaporanTp::with('Tp.Cu')->where('id',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPEARLS())])->first();
 
 		return response()
 		->json([

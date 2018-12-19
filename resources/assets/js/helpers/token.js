@@ -2,6 +2,7 @@ class Token{
 
   isValid(token){
       const payload = this.payload(token);
+      
       if(payload){
           return payload.iss == "https://bkcuvue.test/api/auth/login" || "https://bkcuvue.test/api/auth/refresh"  ? true : false
       }

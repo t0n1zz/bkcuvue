@@ -33,6 +33,29 @@ Vue.filter('checkStatus', function(value){
 			return '<span class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>';
 	}
 });
+Vue.filter('checkTingkatAktivis', function(value){
+	if (value == 1) {
+			return 'Pengurus';
+	} else if(value == 2) {
+			return 'Pengawas';
+	}	else if(value == 3) {
+			return 'Komite';
+	} else if(value == 4) {
+		return 'Penasihat';
+	} else if(value == 5) {
+		return 'Senior Manajer';
+	} else if(value == 6) {
+		return 'Manajer';
+	} else if(value == 7) {
+		return 'Supervisor';
+	} else if(value == 8) {
+		return 'Staf';
+	} else if(value == 9) {
+		return 'Kontrak';
+	} else {
+		return '-';
+	}
+});
 Vue.filter('notificationIcon', function(value){
 	if (value == 'Menambah laporancu' || value == 'Mengubah laporancu' || value == 'Menghapus laporancu') {
 			return '<i class="icon-stats-bars2"></i>';

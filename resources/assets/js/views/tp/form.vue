@@ -35,7 +35,7 @@
 									</div>  
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="profile.id_cu === 0">
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -485,22 +485,22 @@
 			next(vm => vm.fetch());
 		},
 		watch: {
-			profileStat(value){ //jika refresh halaman maka reload profile
+			currentUserStat(value){ //jika refresh halaman maka reload currentUser
 				if(value === "success"){
-					if(this.profile.id_cu === 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					if(this.currentUser.id_cu === 0){
+						this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					}
 					if(this.$route.meta.mode !== 'edit' && this.form.id_cu == undefined){
-						this.form.id_cu = this.profile.id_cu;
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 
 					// check permission
 					if(this.$route.meta.mode === 'edit'){
-						if(!this.profile.can || !this.profile.can['update_' + this.kelas]){
+						if(!this.currentUser.can || !this.currentUser.can['update_' + this.kelas]){
 							this.$router.push({name: 'notFound'});
 						}
 					}else{
-						if(!this.profile.can || !this.profile.can['create_' + this.kelas]){
+						if(!this.currentUser.can || !this.currentUser.can['create_' + this.kelas]){
 							this.$router.push({name: 'notFound'});
 						}
 					}
@@ -513,7 +513,7 @@
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
 					}else{
-						this.form.id_cu = this.profile.id_cu;
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				} 
 			},
@@ -563,13 +563,13 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.profile.id_cu == 0){
+				if(this.$route.meta.mode === 'edit' && this.currentUser.id_cu == 0){
 						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
 				}else{
 					if(this.form.id_cu == '0'){
 						this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
 					}else{
-						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.profile.id_cu}});
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 					}
 				}
 			},
@@ -602,9 +602,8 @@
 			}
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 			...mapGetters('tp',{
 				form: 'data',

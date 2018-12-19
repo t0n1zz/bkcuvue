@@ -40,6 +40,7 @@ export const auth = {
       commit('setCurrentUser', Object.assign({}, payload.user, {token: payload.access_token}));
       
       localStorage.setItem("user", JSON.stringify(state.currentUser));
+
     },
     loginFailed({ commit, state }, payload){
       commit('setIsLoading', false);

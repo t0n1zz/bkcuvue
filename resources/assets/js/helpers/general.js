@@ -1,7 +1,9 @@
 import { refreshToken } from "./auth.js";
 import Token from "./token";
+import { getLocalUser } from "./auth";
 
 export function initialize(store, router) {
+    
   router.beforeEach((to, from, next) => {
       const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
       const currentUser = store.state.auth.currentUser;
@@ -23,9 +25,10 @@ export function initialize(store, router) {
   axios.interceptors.response.use((response) => {
     if(store.state.auth.isLoggedIn){
         const currentTime = new Date().getTime() / 1000;
-        const tokenExp = store.state.auth.tokenExp;
-
-        if(currentTime > tokenExp - 1000 && !store.state.auth.isLoading){
+        const user = getLocalUser();
+        const token = Token.payload(user.token);
+  
+        if(currentTime > token.exp - 1000 && !store.state.auth.isLoading){
             store.dispatch('auth/login');
 
             refreshToken()
@@ -33,8 +36,8 @@ export function initialize(store, router) {
                 if(Token.isValid(res.access_token)){
                     store.dispatch('auth/loginSuccess', res);
 
-                    const token = Token.payload(res.access_token);
-                    store.commit('auth/setTokenExp', token.exp);
+                    // const token = Token.payload(res.access_token);
+                    // store.commit('auth/setTokenExp', token.exp);
 
                     return response;
                 }else{

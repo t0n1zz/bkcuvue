@@ -18,7 +18,7 @@ import { villages } from './modules/villages';
 import { laporanCu } from './modules/laporanCu';
 import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
-import { pengelola } from './modules/pengelola';
+import { aktivis } from './modules/aktivis';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
@@ -45,7 +45,7 @@ export default new Vuex.Store({
 		 laporanCu,
 		 laporanCuDiskusi,
 		 laporanTp,
-		 pengelola,
+		 aktivis,
 		 produkCu,
 		 diklatBKCU,
 		 tempat,

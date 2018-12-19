@@ -237,6 +237,7 @@ export default {
   methods: {
     fetch(params) {
 
+      this.columnData[7].disable = false;
       this.columnData[20].disable = false;
       this.columnData[21].disable = false;
       this.columnData[22].disable = false;

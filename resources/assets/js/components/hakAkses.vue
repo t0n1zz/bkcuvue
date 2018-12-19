@@ -1,22 +1,38 @@
 <template>
 <div>
-	<div class="row" v-for="groupHakAkses in groupedHakAkses">
+	<div class="row">
 		<!-- hak akses -->
-		<div class="col-md-3" v-for="akses in groupHakAkses">
+		<div class="col-md-12 col-lg-6" v-for="akses in hakAkses">
 			
 			<div class="card">
-				<div class="card-header">
-					<h6 class="card-title"><i :class="akses.icon"></i> {{ akses.name }}
+				<div class="card-header bg-white header-elements-inline">
+					<h6 class="card-title">
+						<i :class="akses.icon" class="mr-1"></i> {{ akses.name }}
 					</h6>
+					<!-- <div class="header-elements">
+						<div class="list-icons">
+							<a href="#" class="list-icons-item" @click.prevent="checkGroup(akses.name)">
+								<i class="icon-checkbox-checked2"></i>
+							</a>
+							<a href="#" class="list-icons-item" @click.prevent="unCheckGroup(akses.name)">
+								<i class="icon-checkbox-unchecked2"></i>
+							</a>
+						</div>
+					</div> -->
 				</div>
-				<div class="card-body">
 
-					<div class="checkbox checkbox-right" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='all'">
-						<label>
-							<input type="checkbox" :value="permission.key" v-model="form[permission.key]" v-if="permission.type != 'empty'">
-							<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
-						</label>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='all'">
+							<div class="form-check">
+								<label style="cursor:pointer;">
+									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="form[permission.key]" v-if="permission.type != 'empty'">
+									<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
+								</label>
+							</div>
+						</div>
 					</div>
+					
 
 				</div>
 			</div>
@@ -30,7 +46,6 @@
 	export default {
 		props: {
 			tipeUser: '',
-			isDisabled: false,
 			form: {},
 		},
 		data() {
@@ -178,21 +193,21 @@
 								name: 'Tambah',
 								key: 'create_diklat_bkcu',
 								icon: 'icon-plus3',
-								tipe: 'all',
+								tipe: 'bkcu',
 								value: false,
 							},
 							{
 								name: 'Ubah',
 								key: 'update_diklat_bkcu',
 								icon: 'icon-pencil',
-								tipe: 'all',
+								tipe: 'bkcu',
 								value: false,
 							},
 							{
 								name: 'Hapus',
 								key: 'destroy_diklat_bkcu',
 								icon: 'icon-bin2',
-								tipe: 'all',
+								tipe: 'bkcu',
 								value: false,
 							}
 						]
@@ -201,7 +216,7 @@
 						name: 'Tempat',
 						icon: 'icon-location4',
 						secondRow: true,
-						tipe: 'all',
+						tipe: 'bkcu',
 						permission: [{
 								name: 'Lihat',
 								key: 'index_tempat',
@@ -248,7 +263,7 @@
 								name: 'Tambah',
 								key: 'create_cu',
 								icon: 'icon-plus3',
-								tipe: 'all',
+								tipe: 'bkcu',
 								value: false,
 							},
 							{
@@ -262,7 +277,7 @@
 								name: 'Hapus',
 								key: 'destroy_cu',
 								icon: 'icon-bin2',
-								tipe: 'all',
+								tipe: 'bkcu',
 								value: false,
 							}
 						]
@@ -338,34 +353,34 @@
 						]
 					},
 					{
-						name: 'Pengelola',
+						name: 'Aktivis CU',
 						icon: 'icon-user-tie',
 						secondRow: true,
 						tipe: 'all',
 						permission: [{
 								name: 'Lihat',
-								key: 'index_pengelola',
+								key: 'index_aktivis',
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
 							},
 							{
 								name: 'Tambah',
-								key: 'create_pengelola',
+								key: 'create_aktivis',
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
 							},
 							{
 								name: 'Ubah',
-								key: 'update_pengelola',
+								key: 'update_aktivis',
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
 							},
 							{
 								name: 'Hapus',
-								key: 'destroy_pengelola',
+								key: 'destroy_aktivis',
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
@@ -472,7 +487,7 @@
 					},
 					{
 						name: 'User',
-						icon: 'icon-users4',
+						icon: 'icon-users',
 						secondRow: true,
 						tipe: 'all',
 						permission: [{
@@ -530,13 +545,36 @@
 				]
 			}
 		},
-		created() {},
+		created() {
+
+		},
 		watch: {
 			permissionData(value) {
 				this.hakAksesModel = value;
 			}
 		},
-		methods: {},
+		methods: {
+			checkGroup(value){
+				console.log(value);
+				for(var key in this.hakAkses){
+					for(var key2 in this.hakAkses[key].permission){
+						if(this.hakAkses[key].permission[key2].group == value){
+							this.hakAkses[key].permission[key2].value = true;
+							this.form[this.hakAkses[key].permission[key2].key] = true;
+						}
+					}
+				}
+			},
+			unCheckGroup(value){
+				for(var key in this.hakAkses){
+					for(var key2 in key.permission){
+						if(key2.group == value){
+							key2.value = false;
+						}
+					}
+				}
+			}
+		},
 		computed: {
 			permissionData() {
 				return this.$store.getters.getRoleData;

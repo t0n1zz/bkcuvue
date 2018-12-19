@@ -109,7 +109,7 @@
 											</h5>
 
 											<!-- text -->
-											<input type="password" name="password" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" data-vv-as="Password" v-model="form.password">
+											<input type="password" name="password" ref="password" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" v-model="form.password">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.password')">
@@ -131,7 +131,7 @@
 											</h5>
 
 											<!-- text -->
-											<input type="password" name="passwordConfirm" class="form-control" placeholder="Silahkan masukkan password konfirmasi" v-validate="'required|confirmed:password'" data-vv-as="Konfirmasi Password" v-model="form.passwordConfirm">
+											<input type="password" name="passwordConfirm" class="form-control" placeholder="Silahkan masukkan password konfirmasi" v-validate="'required|confirmed:password'" data-vv-as="password" v-model="form.passwordConfirm">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.passwordConfirm')">

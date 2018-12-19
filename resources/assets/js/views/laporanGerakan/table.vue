@@ -221,6 +221,7 @@ export default {
       this.columnData[4].disable = true;
 			this.columnData[6].disable = true;
 			
+			this.columnData[5].disable = false;
 			this.columnData[45].disable = false;
 			this.columnData[46].disable = false;
 			this.columnData[47].disable = false;

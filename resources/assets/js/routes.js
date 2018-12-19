@@ -24,9 +24,9 @@ import cu from './views/cu/index.vue';
 import cu_form from './views/cu/form.vue';
 import tp from './views/tp/index.vue';
 import tp_form from './views/tp/form.vue';
-import pengelola from './views/pengelola/index.vue';
-import pengelola_form from './views/pengelola/form.vue';
-import pengelola_edit from './views/pengelola/edit.vue';
+import aktivis from './views/aktivis/index.vue';
+import aktivis_form from './views/aktivis/form.vue';
+import aktivis_edit from './views/aktivis/edit.vue';
 import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
@@ -197,18 +197,18 @@ const routes = [
 		components: { default: produkCu_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
 
-	// pengelola cu
-	{ path: '/pengelola/cu/:cu',
-		name: 'pengelolaCu', 
-		components: { default: pengelola, 'header': header, 'footer': footer  }, 
+	// aktivis cu
+	{ path: '/aktivis/cu/:cu/:tingkat',
+		name: 'aktivisCu', 
+		components: { default: aktivis, 'header': header, 'footer': footer  }, 
 		meta: { requiresAuth: true, mode:'cu' }},
-	{ path: '/pengelola/create',
-		name: 'pengelolaCreate', 
-		components: { default: pengelola_form, 'header': header, 'footer': footer },
+	{ path: '/aktivis/create',
+		name: 'aktivisCreate', 
+		components: { default: aktivis_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'create' }},
-	{ path: '/pengelola/edit/:id',
-		name: 'pengelolaEdit', 
-		components: { default: pengelola_edit, 'header': header, 'footer': footer },
+	{ path: '/aktivis/edit/:id',
+		name: 'aktivisEdit', 
+		components: { default: aktivis_edit, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
 
 	// laporan cu

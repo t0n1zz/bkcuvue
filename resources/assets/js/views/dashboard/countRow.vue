@@ -3,22 +3,22 @@
 		
     <!-- cu -->
     <div class="col-lg-3 col-md-3" v-if="currentUser.can && currentUser.can['index_cu']" @click.prevent="goTo(cuWidgetRoute)" :class="{'pointer': currentUser.id_cu == 0}">
-      <count-widget :title="'CU'" :color="'bg-green-400'" :icon="'icon-office'" :count="cuCount"  ></count-widget>
+      <count-widget :title="'CU'" :color="'bg-green-400'" :icon="'icon-office'" :count="cuCount" :stat="cuCountStat"  ></count-widget>
     </div>
 
     <!-- tp -->
     <div class="col-lg-3 col-md-3 pointer" v-if="currentUser.can && currentUser.can['index_tp']" @click.prevent="goTo(tpWidgetRoute)">
-      <count-widget :title="'TP/KP'" :color="'bg-brown-400'" :icon="'icon-home9'" :count="tpCount" ></count-widget>
+      <count-widget :title="'TP/KP'" :color="'bg-brown-400'" :icon="'icon-home9'" :count="tpCount" :stat="tpCountStat"></count-widget>
     </div>
 
     <!-- produkCu -->
     <div class="col-lg-3 col-md-3 pointer" v-if="currentUser.can && currentUser.can['index_produk_cu']" @click.prevent="goTo(produkCuWidgetRoute)">
-      <count-widget :title="'Produk CU'" :color="'bg-warning-400'" :icon="'icon-list3'" :count="produkCuCount"></count-widget>
+      <count-widget :title="'Produk CU'" :color="'bg-warning-400'" :icon="'icon-list3'" :count="produkCuCount" :stat="produkCuCountStat"></count-widget>
     </div>
 
-    <!-- pengelola -->
-    <div class="col-lg-3 col-md-3 pointer" v-if="currentUser.can && currentUser.can['index_pengelola']" @click.prevent="goTo(pengelolaWidgetRoute)">
-      <count-widget :title="'Pengelola'" :color="'bg-indigo-400'" :icon="'icon-user-tie'" :count="pengelolaCount"></count-widget>
+    <!-- aktivis -->
+    <div class="col-lg-3 col-md-3 pointer" v-if="currentUser.can && currentUser.can['index_aktivis']" @click.prevent="goTo(aktivisWidgetRoute)">
+      <count-widget :title="'Aktivis'" :color="'bg-indigo-400'" :icon="'icon-user-tie'" :count="aktivisCount" :stat="aktivisCountStat"></count-widget>
     </div>
 
   </div>
@@ -39,7 +39,7 @@
 				cuWidgetRoute: {},
 				tpWidgetRoute: {},
 				produkCuWidgetRoute: {},
-				pengelolaWidgetRoute: {},
+				aktivisWidgetRoute: {},
 				produkCuWidgetRoute: {},
 				userWidgetRoute: {}
 			}
@@ -66,8 +66,8 @@
 					this.$store.dispatch('tp/count');
 				}
 					
-				if(this.currentUser.can && this.currentUser.can['index_pengelola']){
-					this.$store.dispatch('pengelola/count');
+				if(this.currentUser.can && this.currentUser.can['index_aktivis']){
+					this.$store.dispatch('aktivis/count');
 				}
 
 				if(this.currentUser.can && this.currentUser.can['index_produk_cu']){
@@ -84,7 +84,7 @@
 					this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: this.currentUser.id_cu} };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
-					this.pengelolaWidgetRoute = { name: 'pengelolaCu', params:{cu: this.currentUser.id_cu} };
+					this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu} };
 					this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.cuWidgetRoute = { name: 'cu' };
@@ -92,7 +92,7 @@
 					this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: 'semua'} };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };
-					this.pengelolaWidgetRoute = { name: 'pengelolaCu', params:{cu: 'semua'} };
+					this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: 'semua'} };
 					this.userWidgetRoute = { name: 'userCu', params:{cu:'semua'} };
 				}
 			},
@@ -120,9 +120,9 @@
 				tpCount: 'count',
 				tpCountStat: 'countStat'
 			}),
-			...mapGetters('pengelola',{
-				pengelolaCount: 'count',
-				pengelolaCountStat: 'countStat'
+			...mapGetters('aktivis',{
+				aktivisCount: 'count',
+				aktivisCountStat: 'countStat'
 			}),
 			...mapGetters('produkCu',{
 				produkCuCount: 'count',

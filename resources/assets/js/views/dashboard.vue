@@ -17,6 +17,7 @@
 		<!-- count row -->
 		<count-row></count-row>
 
+		<!-- laporan row -->
 		<div class="row">
 
 			<!-- grafik -->

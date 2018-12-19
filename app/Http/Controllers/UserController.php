@@ -370,10 +370,10 @@ class UserController extends Controller
 		$this->hakAkses($request->create_produk_cu,'create_produk_cu',$user);
 		$this->hakAkses($request->update_produk_cu,'update_produk_cu',$user);
 		$this->hakAkses($request->destroy_produk_cu,'destroy_produk_cu',$user);
-		$this->hakAkses($request->index_pengelola,'index_pengelola',$user);
-		$this->hakAkses($request->create_pengelola,'create_pengelola',$user);
-		$this->hakAkses($request->update_pengelola,'update_pengelola',$user);
-		$this->hakAkses($request->destroy_pengelola,'destroy_pengelola',$user);
+		$this->hakAkses($request->index_aktivis,'index_aktivis',$user);
+		$this->hakAkses($request->create_aktivis,'create_aktivis',$user);
+		$this->hakAkses($request->update_aktivis,'update_aktivis',$user);
+		$this->hakAkses($request->destroy_aktivis,'destroy_aktivis',$user);
 		$this->hakAkses($request->index_laporan_cu,'index_laporan_cu',$user);
 		$this->hakAkses($request->create_laporan_cu,'create_laporan_cu',$user);
 		$this->hakAkses($request->update_laporan_cu,'update_laporan_cu',$user);

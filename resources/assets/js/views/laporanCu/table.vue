@@ -362,6 +362,8 @@ export default {
     fetch(params) {
 			this.checkProfile();
 
+			this.columnData[31].disable = false;
+			this.columnData[32].disable = false;
 			this.columnData[45].disable = false;
 			this.columnData[46].disable = false;
 			this.columnData[47].disable = false;

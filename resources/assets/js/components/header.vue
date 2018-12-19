@@ -261,7 +261,7 @@
 							</router-link>
 
 							<!-- tambah tempat -->
-							<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_tempat']">
+							<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_tempat']">
 								<i class="icon-plus22"></i> Tambah Tempat
 							</router-link>
 
@@ -285,7 +285,7 @@
 					</li>
 
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_pengelola'] || currentUser.can['create_produk_cu'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_pengelola'] || currentUser.can['index_produk_cu']">
+					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -303,14 +303,14 @@
 								<i class="icon-plus22"></i> Tambah TP/KP
 							</router-link>
 
-							<!-- tambah pengelola -->
+							<!-- tambah aktivis -->
 							<router-link :to="{ name:'produkCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_produk_cu']">
 								<i class="icon-plus22"></i> Tambah Produk & Pelayanan
 							</router-link>
 
-							<!-- tambah pengelola -->
-							<router-link :to="{ name:'pengelolaCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_pengelola']">
-								<i class="icon-plus22"></i> Tambah Pengelola
+							<!-- tambah aktivis -->
+							<router-link :to="{ name:'aktivisCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aktivis']">
+								<i class="icon-plus22"></i> Tambah aktivis
 							</router-link>
 
 							<!-- divider -->
@@ -382,10 +382,64 @@
 								<i class="icon-list3"></i> Produk & Pelayanan CU
 							</router-link>
 
-							<!-- pengelola -->
-							<router-link :to="{ name: 'pengelolaCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_pengelola']">
-								<i class="icon-user-tie"></i> Aktivis
-							</router-link>
+							<!-- aktivis -->
+
+							<!-- if cu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_aktivis']" :class="{'show' : dropdownMenu == 'aktivis'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('aktivis')">
+									<i class="icon-user-tie"></i> Aktivis
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'aktivis'}">
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua Tingkat
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'manajemen'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Manajemen
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'pengurus'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Pengurus
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'pengawas'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Pengawas
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'komite'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Komite
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'penasihat'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Penasihat
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'senior_manajer'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Senior Manajer
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'manajer'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Manajer
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'supervisor'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Supervisor
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'staf'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Staf
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'kontrak'} }" class="dropdown-item" active-class="active" exact >
+										Tingkat Kontrak
+									</router-link>
+
+								</div>
+							</div>
 
 						</div>
 					</li>
@@ -539,6 +593,7 @@
 		data(){
 			return{
 				dropdownMenu: '',
+				dropdownMenu2: '',
 				laporanCuDraftCount: [],
 				laporanCuDraftCountStat: '',
 				laporanTpDraftCount: [],
@@ -546,7 +601,7 @@
 			}
 		},
 		created(){
-			// this.fetchTp();
+			this.fetchTp();
 			this.fetchCu();
 			this.fetchNotif();
 			this.fetchLaporanCuDraft();
@@ -554,6 +609,8 @@
 		},
 		watch: {
 			'$route' (to, from){
+				this.fetchTp();
+				this.fetchCu();
 				this.fetchNotif();
 				this.fetchLaporanCuDraft();
 				this.fetchLaporanTpDraft();
@@ -572,8 +629,15 @@
 					this.dropdownMenu = '';
 				}
 			},
+			dropdown2(value){
+				if(this.dropdownMenu2 != value){
+					this.dropdownMenu2 = value;
+				}else{
+					this.dropdownMenu2 = '';
+				}
+			},
 			goToNotifCenter(){
-				this.$router.push('/notificationCenter');
+				this.$router.push('/notification');
 			},
 			goToPage(notif){
 				if(notif.data.tp == ''){
@@ -610,10 +674,18 @@
 				}
 			},
 			fetchTp(){
-				this.$store.dispatch('tp/getCuHeader',this.currentUser.id_cu);
+				if(this.currentUser.id_cu != '0'){
+					if(this.modelTpStat != 'success'){
+						this.$store.dispatch('tp/getCuHeader',this.currentUser.id_cu);
+					}
+				}
 			},
 			fetchCu(){
-				this.$store.dispatch('cu/getHeader');
+				if(this.currentUser.id_cu == '0'){
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
+				}
 			},
 			fetchNotif(){
 				this.$store.dispatch('notification/get');

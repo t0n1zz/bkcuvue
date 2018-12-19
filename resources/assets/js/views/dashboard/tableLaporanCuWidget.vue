@@ -8,21 +8,35 @@
     </div>
 
     <div class="card-body pb-0" v-if="itemData.data">
+
+      <!-- tableCu -->
       <div class="row text-center">
 
         <div class="col-6">
-          <div class="mb-3">
+          <div class="mb-3" v-if="itemDataStat == 'success'">
             <h5 class="font-weight-semibold mb-0">
               <check-value :value="itemData.data[itemData.total-1]['rasio_beredar']" valueType="percentage"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Beredar</span>
+          </div>
+          <div class="mb-3" v-else-if="itemDataStat == 'loading'">
+            <h5 class="font-weight-semibold mb-0">
+              <i class="icon-spinner2 spinner"></i>
             </h5>
             <span class="text-muted font-size-sm">Rasio Piutang Beredar</span>
           </div>
         </div>
 
         <div class="col-6">
-          <div class="mb-3">
+          <div class="mb-3" v-if="itemDataStat == 'success'">
             <h5 class="font-weight-semibold mb-0">
               <check-value :value="itemData.data[itemData.total-1]['rasio_lalai']" valueType="percentage"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Lalai</span>
+          </div>
+          <div class="mb-3" v-else-if="itemDataStat == 'loading'">
+            <h5 class="font-weight-semibold mb-0">
+              <i class="icon-spinner2 spinner"></i>
             </h5>
             <span class="text-muted font-size-sm">Rasio Piutang Lalai</span>
           </div>
@@ -126,6 +140,8 @@
         this.columnData[4].disable = true;
         this.columnData[5].disable = true;
         this.columnData[6].disable = true;
+        this.columnData[31].disable = true;
+        this.columnData[32].disable = true;
         this.columnData[45].disable = true;
         this.columnData[46].disable = true;
         this.columnData[47].disable = true;
@@ -138,11 +154,10 @@
         this.columnDataPearls[5].disable = true;
         this.columnDataPearls[6].disable = true;
         this.columnDataPearls[7].disable = true;
-        this.columnDataPearls[20].disable = true;
-        this.columnDataPearls[21].disable = true;
-        this.columnDataPearls[22].disable = true;
         this.columnDataPearls[23].disable = true;
         this.columnDataPearls[24].disable = true;
+        this.columnDataPearls[25].disable = true;
+        this.columnDataPearls[26].disable = true;
       },
 			changeTabelTab(value) {
 				this.tabTabelName = value;

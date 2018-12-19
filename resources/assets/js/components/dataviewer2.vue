@@ -49,7 +49,7 @@
                 <div class="col-md-4 pb-2" v-if="f.operator.component === 'single'">
                   <div class="input-group">
                     <span class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-key"></i></span>
+                      <span class="input-group-text">Kata Kunci</span>
                     </span>
                     <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian">
                   </div>
@@ -58,7 +58,7 @@
                   <div class="col-md-2 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="icon-key"></i></span>
+                        <span class="input-group-text">Kata Kunci</span>
                       </span>
                       <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1">
                     </div>
@@ -66,7 +66,7 @@
                   <div class="col-md-2 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="icon-key"></i></span>
+                        <span class="input-group-text">Kata Kunci</span>
                       </span>
                       <input type="text" class="form-control" v-model="f.query_2" placeholder="Masukkan kata kunci pencarian 2">
                     </div>
@@ -76,7 +76,7 @@
                   <div class="col-md-2 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="icon-key"></i></span>
+                        <span class="input-group-text">Kata Kunci</span>
                       </span>
                       <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian">
                     </div>
@@ -84,7 +84,7 @@
                   <div class="col-md-2 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="icon-alarm"></i></span>
+                        <span class="input-group-text">Waktu</span>
                       </span>
                       <select class="form-control" v-model="f.query_2">
                         <option value="hours">jam</option>
@@ -99,7 +99,7 @@
                   <div class="col-md-4 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="icon-calendar"></i></span>
+                        <span class="input-group-text">Waktu</span>
                       </span>
                       <select class="form-control" v-model="f.query_1">
                         <option value="yesterday">kemarin</option>

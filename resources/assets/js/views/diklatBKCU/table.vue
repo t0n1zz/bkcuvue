@@ -90,10 +90,13 @@
 						</span>
 					</td>
 					<td v-if="!columnData[13].hide">
+						<check-value :value="props.item.jadwal" valueType="modal"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.keterangan" valueType="modal"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[16].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -249,13 +252,22 @@
 						filter: true,
 					},
 					{
+						title: 'Jadwal',
+						name: 'jadwal',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false,
+					},
+					{
 						title: 'Keterangan',
 						name: 'keterangan',
 						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
-						filter: true,
+						filter: false,
 					},
 					{
 						title: 'Tgl. / Waktu Buat',

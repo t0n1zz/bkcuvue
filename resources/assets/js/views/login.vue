@@ -20,7 +20,7 @@
 							<span class="d-block text-muted">Sistem Informasi Manajemen Organisasi</span>
 						</div>
 
-						<form @submit.prevent="login">
+						<form @submit.prevent="submit">
 
 							<div class="form-group form-group-feedback form-group-feedback-right" >
 								<div class="input-group">
@@ -30,7 +30,7 @@
 										</div>
 									</div>
 									
-									<input type="text" class="form-control" name="Username" placeholder="Username" v-model="form.username" :class="{'border-danger' : errors.has('Username')}"  v-validate="'required|min:5'" @keyup.enter="login" autofocus>
+									<input type="text" class="form-control" name="Username" placeholder="Username" v-model="form.username" :class="{'border-danger' : errors.has('Username')}"  v-validate="'required|min:5'" autofocus>
 								</div>
 								
 								<div class="form-control-feedback text-danger" v-if="errors.has('Username')">
@@ -45,8 +45,7 @@
 											<i class="icon-lock2"></i>
 										</div>
 									</div>
-									<input type="password" class="form-control" name="Password" placeholder="Password" v-model="form.password" :class="{'border-danger' : errors.has('Password')}"  v-validate="'required'"
-									@keyup.enter="login">
+									<input type="password" class="form-control" name="Password" placeholder="Password" v-model="form.password" :class="{'border-danger' : errors.has('Password')}"  v-validate="'required'">
 								</div>
 								
 								<div class="form-control-feedback text-danger" v-if="errors.has('Password')">
@@ -104,7 +103,7 @@
 			}
 		},
 		methods: {
-			login() {
+			submit() {
 				this.message.show = false;
 				this.$validator.validateAll().then((result) => {
 					if(result){
@@ -122,8 +121,8 @@
 											self.$router.push(self.$router.history.current.query.redirect || '/');
 									}, 300);
 
-									const token = Token.payload(res.access_token);
-									this.$store.commit('auth/setTokenExp', token.exp);
+									// const token = Token.payload(res.access_token);
+									// this.$store.commit('auth/setTokenExp', token.exp);
 								}else{
 									this.message.show = true;
 									this.message.content = 'Token tidak valid';

@@ -203,7 +203,7 @@ export default {
           filter: true
         },
         {
-          title: "TP/KP",
+          title: "Jmlh TP/KP",
           name: "has_tp_cu_count",
           tipe: "numeric",
           sort: true,
