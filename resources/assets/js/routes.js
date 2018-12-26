@@ -128,7 +128,7 @@ const routes = [
 		meta: { requiresAuth: true, mode:'edit' } },
 	
 	// diklat pus
-	{ path: '/diklatBKCU',
+	{ path: '/diklatBKCU/:periode',
 		name: 'diklatBKCU', 
 		components: { default: diklatBKCU, 'header': header, 'footer': footer  }},
 	{ path: '/diklatBKCU/create',

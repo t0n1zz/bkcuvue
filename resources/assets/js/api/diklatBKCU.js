@@ -4,6 +4,14 @@ export default {
     return axios.get('/api/diklatBKCU' , {params: p});
   },
 
+  indexPeriode: function( p, periode ){
+    return axios.get('/api/diklatBKCU/periode/' + periode , {params: p});
+  },
+
+  getPeriode: function(){
+    return axios.get('/api/diklatBKCU/getPeriode');
+  },
+
   create: function(){
     return axios.get('/api/diklatBKCU/create');
   },

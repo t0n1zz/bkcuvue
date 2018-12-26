@@ -27,7 +27,17 @@ class DiklatBKCUController extends Controller{
 
 	public function indexPeriode($periode)
 	{
-		$table_data = Kegiatan::with('tempat')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function getPeriode()
+	{
+		$table_data = Kegiatan::distinct('periode')->pluck('periode');
 
 		return response()
 		->json([

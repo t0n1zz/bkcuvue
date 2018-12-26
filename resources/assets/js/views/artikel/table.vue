@@ -82,11 +82,11 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
-						<check-value :value="props.item.artikel_kategori.name" v-if="props.item.artikel_kategori"></check-value>
+						<check-value :value="props.item.kategori.name" v-if="props.item.kategori"></check-value>
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.artikel_penulis.name" v-if="props.item.artikel_penulis"></check-value>
+						<check-value :value="props.item.penulis.name" v-if="props.item.penulis"></check-value>
 						<span v-else>-</span>
 					</td> 
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
@@ -158,7 +158,7 @@
 					},
 					{
 						title: 'Kategori',
-						name: 'artikel_kategori.name',
+						name: 'kategori.name',
 						tipe: 'string',
 						sort: false,
 						hide: false,
@@ -167,7 +167,7 @@
 					},
 					{
 						title: 'Penulis',
-						name: 'artikel_penulis.name',
+						name: 'penulis.name',
 						sort: false,
 						hide: false,
 						disable: false,

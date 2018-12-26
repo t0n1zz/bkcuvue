@@ -9,7 +9,7 @@
 
 		<div class="navbar-collapse collapse show" id="navbar-footer">
 			<span class="navbar-text">
-				&copy; 2018 - 2020. <a href="#">SIMO 3.0.0</a> by <a href="#" target="_blank">Puskopdit BKCU Kalimantan</a>
+				&copy; {{ momentYear() }}. <a href="#">SIMO 3.0.0</a> by <a href="#" target="_blank">Puskopdit BKCU Kalimantan</a>
 			</span>
 
 			<ul class="navbar-nav ml-lg-auto">
@@ -22,7 +22,11 @@
 
 <script>
 export default {
-
+	methods: {
+		momentYear(){
+			return moment().year();
+		}
+	}
 }
 </script>
 

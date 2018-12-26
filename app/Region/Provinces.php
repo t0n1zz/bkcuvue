@@ -32,4 +32,9 @@ class Provinces extends Model {
             'name' => ''
         ];
     }
+
+    public function hasCu()
+    {
+        return $this->hasMany('App\Cu','id_provinces','id')->select('id','id_provinces','name');
+    }
 }

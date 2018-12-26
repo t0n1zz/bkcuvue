@@ -16,6 +16,10 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
+					<!-- select data -->
+					<select-data 
+						:kelas="kelas"></select-data>
+
 					<!-- table data -->
 					<table-data 
 						:title="title" 
@@ -32,12 +36,14 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
+	import selectData from "./select.vue";
 	
 	export default {
 		components: {
 			pageHeader,
 			tableData,
 			message,
+			selectData
 		},
 		data() {
 			return {
@@ -48,7 +54,7 @@
 			}
 		},
 		computed: {
-			...mapGetters('cu',{
+			...mapGetters('diklatBKCU',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS'
 			}),

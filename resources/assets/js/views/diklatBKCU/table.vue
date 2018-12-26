@@ -8,17 +8,17 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_diklat_pus']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_diklat_bkcu']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_diklat_pus']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_diklat_pus']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
@@ -28,17 +28,17 @@
 			<template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_diklat_pus']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_diklat_bkcu']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_diklat_pus']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_diklat_pus']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
@@ -300,6 +300,10 @@
 			this.fetch(this.query);
 		},
 		watch: {
+			'$route' (to, from){
+				// check current page meta
+				this.fetch(this.query);
+			},
       updateStat(value) {
 				this.modalState = value;
 				this.modalButton = 'Ok';
@@ -317,7 +321,11 @@
     },
 		methods: {
 			fetch(params){
-				this.$store.dispatch(this.kelas + '/index', params);
+				if(this.$route.params.periode == 'semua'){
+					this.$store.dispatch(this.kelas + '/index', params);
+				}else{
+					this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.periode]);
+				}
 			},
 			selectedRow(item){
 				this.selectedItem = item;

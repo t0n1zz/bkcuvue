@@ -84,7 +84,7 @@
 					this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: this.currentUser.id_cu} };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
-					this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu} };
+					this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu, tingkat:'semua'} };
 					this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.cuWidgetRoute = { name: 'cu' };

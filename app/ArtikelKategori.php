@@ -35,6 +35,7 @@ class ArtikelKategori extends Model {
             ->orderBy('created_at','desc')
             ->take(3);
     }
+    
 
     public static function initialize(){
         return [

@@ -11,8 +11,8 @@ class Tp extends Model {
     use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'tp';
-		protected static $logFillable = true;
-		protected $dates = ['deleted_at'];
+    protected static $logFillable = true;
+    protected $dates = ['deleted_at'];
     
     public static $rules = [
         'id_provinces' => 'required',

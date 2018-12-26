@@ -4,10 +4,11 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Artikel extends Model {
 
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity, Sluggable;
 
     protected $table = 'artikel';
 
@@ -19,6 +20,16 @@ class Artikel extends Model {
         'id_artikel_penulis' => 'required',
         'name' => 'required|min:5'
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => true
+            ]
+        ];
+    }
     
     protected $fillable = [
         'id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','gambar_thumb','utamakan'
@@ -43,14 +54,14 @@ class Artikel extends Model {
         ];
     }
 
-    public function ArtikelKategori()
+    public function kategori()
     {
-        return $this->belongsTo('App\ArtikelKategori','id_artikel_kategori','id')->select('id','name','created_at');
+        return $this->belongsTo('App\ArtikelKategori','id_artikel_kategori','id')->select('id','name','slug','created_at');
     }
 
-    public function ArtikelPenulis()
+    public function penulis()
     {
-        return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id')->select('id','name');
+        return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id')->select('id','slug','name');
     }
 
     public function Cu()

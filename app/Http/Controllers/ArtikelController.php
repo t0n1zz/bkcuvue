@@ -17,7 +17,7 @@ class ArtikelController extends Controller{
 
 	public function index()
 	{
-			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','Cu')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+			$table_data = Artikel::with('kategori','penulis','Cu')->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
 			DB::raw(
 				'(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name,
 				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
@@ -32,7 +32,7 @@ class ArtikelController extends Controller{
 
 	public function indexCu($id)
 	{
-			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','Cu')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+			$table_data = Artikel::with('kategori','penulis','Cu')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
 			DB::raw(
 				'(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name,
 				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
@@ -87,7 +87,7 @@ class ArtikelController extends Controller{
 
 	public function show($id)
 	{
-		$kelas = Artikel::with('ArtikelKategori')->findOrFail($id);
+		$kelas = Artikel::with('kategori')->findOrFail($id);
 
 		return response()
 			->json([

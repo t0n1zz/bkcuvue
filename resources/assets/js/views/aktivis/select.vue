@@ -75,6 +75,7 @@
 		<!-- cu mobile -->
 		<div class="card d-block d-md-none d-print-none">
 			<div class="card-body">  
+
 				<!-- cu -->
 				<div v-if="this.currentUser.id_cu == 0">
 					<!-- select -->
@@ -97,6 +98,38 @@
 							<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i> Reload
 						</button>
 					</div> 
+				</div>
+
+				<!-- tingkat -->
+				<div class="input-group pt-2">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Pilih Tingkat</span>
+					</div>
+					<select class="form-control" name="tingkat" v-model="tingkat" data-width="100%" @change="changeTingkat($event.target.value)" :disabled="modelCUStat === 'loading'">
+						<option disabled value="">Silahkan pilih tingkat</option>
+						<option value="semua">Semua Tingkat</option>
+						<option value="manajemen"> Manajemen</option>
+						<option disabled value="">----------------</option>
+						<option value="pengurus">Pengurus</option>
+						<option value="pengawas">Pengawas</option>
+						<option value="komite">Komite</option>
+						<option value="penasihat">Penasihat</option>
+						<option value="senior_manajer">Senior Manajer</option>
+						<option value="manajer">Manajer</option>
+						<option value="supervisor">Supervisor</option>
+						<option value="staf">Staf</option>
+						<option value="kontrak">Kontrak</option>
+					</select>
+				</div>
+
+				<!-- find data button -->
+				<div class="pt-2" v-if="this.currentUser.id_cu == 0">
+					<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
+						<i class="icon-folder-open3"></i>  Tampilkan
+					</button>
+					<button type="button" class="btn btn-light btn-icon btn-block" v-else>
+						<i class="icon-sync spinner"></i>
+					</button>
 				</div>
 
 			</div>

@@ -7,8 +7,10 @@ export const diklatBKCU = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    periode: [],
     count: {},
     dataStat: '',
+    periodeStat: '',
     dataStatS: '',
     countStat: '',
     update: [], //update data
@@ -21,8 +23,10 @@ export const diklatBKCU = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    periode: state => state.periode,
     count: state => state.count,
     dataStat: state => state.dataStat,
+    periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     countStat: state => state.countStat,
     update: state => state.update,
@@ -44,6 +48,34 @@ export const diklatBKCU = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexPeriode( { commit }, [p, periode] ){
+      commit('setDataStatS', 'loading');
+      
+      DIKLATBKCUAPI.indexPeriode( p, periode )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    getPeriode( { commit } ){
+      commit('setPeriodeStat', 'loading');
+      
+      DIKLATBKCUAPI.getPeriode()
+        .then( function( response ){
+          commit('setPeriode', response.data.model );
+          commit('setPeriodeStat', 'success');
+        })
+        .catch( error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
         });
     },
 
@@ -168,6 +200,9 @@ export const diklatBKCU = {
     setData ( state, data ){
       state.data = data;
     },
+    setPeriode ( state, data ){
+      state.periode = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
@@ -176,6 +211,9 @@ export const diklatBKCU = {
     },
     setDataStat( state, status ){
       state.dataStat = status;
+    },
+    setPeriodeStat( state, status ){
+      state.periodeStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;

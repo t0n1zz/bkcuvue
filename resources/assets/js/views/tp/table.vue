@@ -115,7 +115,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import corefunc from '../../assets/core/app.js';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import collapseButton from '../../components/collapseButton.vue';

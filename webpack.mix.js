@@ -15,23 +15,42 @@ mix.autoload({
  |
  */
 
+// main vue 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
+// for admin   
 mix.styles([
-  'resources/assets/css/bootstrap.min.css', 
-  'resources/assets/css/bootstrap_limitless.min.css', 
-  'resources/assets/css/layout.min.css',
-  'resources/assets/css/components.min.css',
-  'resources/assets/css/colors.css',
-  'resources/assets/css/extras/animate.min.css',
+  'resources/assets/css/_admin/bootstrap.min.css', 
+  'resources/assets/css/_admin/bootstrap_limitless.min.css', 
+  'resources/assets/css/_admin/layout.min.css',
+  'resources/assets/css/_admin/components.min.css',
+  'resources/assets/css/_admin/colors.css',
+  'resources/assets/css/_admin/extras/animate.min.css',
 ], 'public/css/admin/libs.css');
 
 mix.scripts([
-  'resources/assets/js/assets/main/jquery.min.js',
-  'resources/assets/js/assets/main/bootstrap.bundle.min.js',
-  'resources/assets/js/assets/plugins/loaders/blockui.min.js',
-  'resources/assets/js/assets/plugins/ui/slinky.min.js',
-  'resources/assets/js/assets/app.js',
-  'resources/assets/js/assets/plugins/forms/styling/uniform.min.js',
-], 'public/js/admin/libs.js')
+  'resources/assets/js/_admin/main/jquery.min.js',
+  'resources/assets/js/_admin/main/bootstrap.bundle.min.js',
+  'resources/assets/js/_admin/plugins/loaders/blockui.min.js',
+  'resources/assets/js/_admin/plugins/ui/slinky.min.js',
+  'resources/assets/js/_admin/app.js',
+  'resources/assets/js/_admin/plugins/forms/styling/uniform.min.js',
+], 'public/js/admin/libs.js');
+
+// for public
+mix.styles([
+  'resources/assets/css/_public/bootstrap.css',
+  'resources/assets/css/_public/style.css',
+  'resources/assets/css/_public/dark.css',
+  'resources/assets/css/_public/animate.css',
+  'resources/assets/css/_public/magnific-popup.css',
+  'resources/assets/css/_public/responsive.css',
+], 'public/css/public/libs.css');
+
+mix.scripts([
+  'resources/assets/js/_public/jquery.js',
+  'resources/assets/js/_public/plugins.js',
+  'resources/assets/js/_public/functions.js',
+], 'public/js/public/libs.js');
+

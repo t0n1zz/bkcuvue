@@ -9,7 +9,7 @@
 					<h6>Foto:</h6>
 
 					<!-- imageupload -->
-					<app-image-upload :image_loc="'/images/tp/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+					<app-image-upload :image_loc="'/images/aktivis/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 				</div>
 			</div>  
 

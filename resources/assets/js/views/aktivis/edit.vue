@@ -441,7 +441,6 @@
 <script>
 	import moment from 'moment';
 	import { mapGetters } from 'vuex';
-	import bootstrapSelect from '../../assets/plugins/forms/selects/bootstrap_multiselect.js';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
