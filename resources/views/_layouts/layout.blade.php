@@ -26,7 +26,10 @@
     <link rel="apple-touch-icon" href="{{asset('images/logo.png')}}" sizes="120x120" />
     <link rel="apple-touch-icon" href="{{asset('images/logo.png')}}" sizes="152x152" />
     <link rel="apple-touch-icon" href="{{asset('images/logo.png')}}" sizes="180x180" />
-	
+    
+    <!-- seo -->
+    {!! SEO::generate(true) !!}
+    
     <!-- css -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/public/libs.css') }}">
@@ -46,14 +49,12 @@
     </script>
     <![endif]-->
 </head>
-<body class="stretched">
+<body class="" style="background-image: url({{ asset('images/patterns/natal.jpg') }}); background-attachment: fixed;">
 
     <!-- wrapper -->
     <div id="wrapper" class="clearfix">
 
         <!-- header -->
-        
-
         @if($subdomain)
             @include('_layouts.headerCu')
         @else

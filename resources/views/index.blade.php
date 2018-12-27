@@ -43,7 +43,7 @@
   <!-- artikel bkcu terbaru -->
   <div class="container clearfix">
     <div class="fancy-title title-border">
-      <h3>Artikel Puskopdit BKCU Kalimantan</h3>
+      <h3>ARTIKEL PUSKOPDIT BKCU KALIMANTAN</h3>
     </div>
 
     <div class="row bottommargin-sm clearfix">
@@ -125,7 +125,7 @@
   @if(!$artikelsCUNew->isEmpty())
   <div class="container clearfix">
     <div class="fancy-title title-border">
-      <h3>Artikel Credit Union</h3>
+      <h3>ARTIKEL CREDIT UNION</h3>
     </div>
     @foreach($artikelsCUNew as $items)
     <div class="col_one_third">

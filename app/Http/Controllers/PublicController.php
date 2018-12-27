@@ -11,6 +11,7 @@ use App\ArtikelKategori;
 use App\Region\Provinces;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use SEO;
 
 class PublicController extends Controller
 {
@@ -29,6 +30,11 @@ class PublicController extends Controller
         $artikelsCUNew = Artikel::with('kategori','penulis','Cu')->where('id_cu','!=',0)->where('terbitkan',1)->orderBy('created_at','desc')->take(15)->get()->chunk(5);
 
         $cus = Cu::with('Provinces')->withCount('hasTp')->inRandomOrder()->take(10)->get();
+
+        // seo
+        SEO::setTitle('Home - Puskopdit BKCU Kalimantan');
+        SEO::setDescription('lembaga yang tercipta dari kumpulan beberapa Credit Union (CU) di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar.');
+        SEO::opengraph()->setUrl(url()->full());
         
         return view('index', compact('artikelsUtama','artikelsBKCUNew','artikelsCUNew','cus'));
     }
@@ -40,6 +46,12 @@ class PublicController extends Controller
         $tipe = 'semua';
 
         $artikels = Artikel::with('kategori','penulis')->where('id_cu',0)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
+
+        // seo
+        SEO::setTitle('Artikel - Puskopdit BKCU Kalimantan');
+        SEO::setDescription('Artikel Puskopdit BKCU Kalimantan');
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
 
         return view('artikel', compact('title','subtitle','tipe','artikels'));
     }
@@ -54,6 +66,12 @@ class PublicController extends Controller
         
         $artikels = Artikel::with('penulis')->where('id_cu',0)->where('id_artikel_kategori',$kategori->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
+        // seo
+        SEO::setTitle($title. ' - Puskopdit BKCU Kalimantan');
+        SEO::setDescription($subtitle);
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
         return view('artikel', compact('title','subtitle','tipe','artikels'));
     }
 
@@ -66,6 +84,12 @@ class PublicController extends Controller
         $tipe = 'penulis';
         
         $artikels = Artikel::with('kategori')->where('id_cu',0)->where('id_artikel_penulis',$penulis->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
+
+         // seo
+         SEO::setTitle($title. ' - Puskopdit BKCU Kalimantan');
+         SEO::setDescription($subtitle);
+         SEO::opengraph()->setUrl(url()->full());
+         SEO::opengraph()->addProperty('type', 'articles');
 
         return view('artikel', compact('title','subtitle','tipe','artikels','penulis'));
     }
@@ -97,6 +121,12 @@ class PublicController extends Controller
 
         $artikelsCUNew = Artikel::where('id_cu','!=',0)->whereNotIn('id',$idList)->orderBy('created_at','desc')->take(5)->get();
 
+         // seo
+         SEO::setTitle($artikel->name. ' - Puskopdit BKCU Kalimantan');
+         SEO::setDescription(str_limit(strip_tags($artikel->content),200));
+         SEO::opengraph()->setUrl(url()->full());
+         SEO::opengraph()->addProperty('type', 'articles');
+
         return view('artikelLihat', compact('artikel','artikelsTerkait','artikelsBKCUNew','artikelsCUNew'));
     }
 
@@ -113,6 +143,11 @@ class PublicController extends Controller
         
         $artikels = $artikels->paginate(8)->appends($queries);
 
+        SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
+        SEO::setDescription($subtitle);
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
         return view('artikel', compact('title','subtitle','tipe','artikels'));
     }
 
@@ -124,6 +159,11 @@ class PublicController extends Controller
         $provinces = Provinces::withCount('hasCu')->orderBy('name')->get();
         $cus = Cu::orderBy('name')->get();
 
+        SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
+        SEO::setDescription($subtitle);
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
         return view('cu', compact('title','subtitle','cus','provinces'));
     }
 
@@ -133,6 +173,11 @@ class PublicController extends Controller
         $subtitle = 'Menampilkan ' . $title;
 
         $dokumens = Download::all();
+
+        SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
+        SEO::setDescription($subtitle);
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
 
         return view('dokumen', compact('title','subtitle','dokumens'));
     }
@@ -146,6 +191,13 @@ class PublicController extends Controller
 
     public function profile()
     {
+        SEO::setTitle('Profile - Puskopdit BKCU Kalimantan');
+        SEO::setDescription('Puskopdit BKCU Kalimantan (awalnya BK3D Kalbar) berdiri pada tanggal 27 November 1988 di Pontianak.
+        Sebagai credit union sekunder,Puskopdit BKCU Kalimantan aktif mempromosikan dan memfasilitasi berdirinya credit union - credit union primer.
+        ');
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
         return view('profile');
     }
 }

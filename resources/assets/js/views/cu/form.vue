@@ -71,7 +71,9 @@
 												class="form-control" 
 												:options="cleaveOption.number3"
 												placeholder="Silahkan masukkan no ba."
-												v-validate="'required'" data-vv-as="No. BA"></cleave>
+												v-validate="'required'" data-vv-as="No. BA" v-if="currentUser.id_cu == 0"></cleave>
+
+											<input type="text" class="form-control" name="no_ba" v-model="form.no_ba" v-else  readonly/>
 											
 
 											<!-- error message -->
@@ -188,7 +190,7 @@
 												Aplikasi Keuangan Utama:</h5>
 
 											<!-- text -->
-											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required|min:5'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
+											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.app')">
@@ -299,7 +301,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%"  data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
 													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 													<span v-else>Silahkan pilih kabupaten</span>
@@ -326,7 +328,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" data-vv-as="Kecamatan" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
 												<option disabled value="">
 													<span v-if="modelDistrictsStat === 'loading'"><i class="icon-spinner spinner"></i></span>
 													<span v-else>Silahkan pilih kecamatan</span>
@@ -353,7 +355,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
+											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%"  data-vv-as="Kelurahan" :disabled="modelVillages.length === 0">
 												<option disabled value="">
 													<span v-if="modelVillagesStat === 'loading'"><i class="icon-spinner spinner"></i> mohon tunggu</span>
 													<span v-else>Silahkan pilih kelurahan</span>
@@ -474,7 +476,7 @@
 												E-mail:</h5>
 
 											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-model="form.email">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.email')">
@@ -634,7 +636,7 @@
 	import axios from 'axios';
 	import { mapGetters } from 'vuex'
 	import pageHeader from "../../components/pageHeader.vue";
-	import { toMulipartedFor } from '../../helpers/form';
+	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";

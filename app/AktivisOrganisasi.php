@@ -5,7 +5,7 @@ use illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AktvisOrganisasi extends Model {
+class AktivisOrganisasi extends Model {
 
     use FilterPaginateOrder, LogsActivity;
 

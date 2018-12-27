@@ -20,7 +20,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('Cu','pus')->advancedFilter();
+			$table_data = User::with('Cu','pus')->where('id','!=',1)->advancedFilter();
 			
     	return response()
 			->json([
@@ -30,7 +30,7 @@ class UserController extends Controller
 
 	public function indexCu($id)
 	{
-			$table_data = User::with('Cu','pus')->where('id_cu',$id)->advancedFilter();
+			$table_data = User::with('Cu','pus')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
 			
     	return response()
 			->json([

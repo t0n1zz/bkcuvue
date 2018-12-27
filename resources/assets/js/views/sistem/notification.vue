@@ -130,7 +130,7 @@
 				this.$store.dispatch(this.kelas +'/getAll');
 			},
 			goToPage(notif){
-				if(notif.data.tp == ''){
+				if(!notif.data.tp || notif.data.tp == ""){
 					this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
 				}else{
 					this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});

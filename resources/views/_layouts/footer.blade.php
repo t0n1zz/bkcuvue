@@ -11,7 +11,7 @@
         <div class="col_half">
 
           <div class="widget clearfix">
-            <h4>Puskopdit BKCU Kalimantan</h4>
+            <h4>Puskopdit BKCU Kalimantan </h4>
             <p>Merupakan lembaga yang tercipta dari kumpulan beberapa <strong>Credit Union (CU)</strong> di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar.</p>
 
             <div style="background: url('images/map.png') no-repeat center center; background-size: 100%;">
@@ -76,23 +76,28 @@
           <div class="row">
 
             <div class="col-lg-12">
-              <h4>DATA PERIODE NOVEMBER 2018</h4>
-              <p>Data akumulasi dari gerakan Puskopdit BKCU Kalimantan per - November 2018</p>
+              <h4>DATA PERIODE {{ date('F Y',strtotime($dataGerakan->periode)) }}</h4>
+              <p>Data akumulasi dari gerakan Puskopdit BKCU Kalimantan per {{ date('F Y',strtotime($dataGerakan->periode)) }}</p>
             </div>
 
             <div class="col-lg-6 bottommargin-sm">
-              <div class="counter counter-small"><span data-from="50" data-to="476147" data-refresh-interval="100" data-speed="3000" data-comma="true"></span></div>
-              <h5 class="nobottommargin">Jumlah Anggota</h5>
+              <div class="counter counter-small"><span data-from="50" data-to="{{ $dataGerakan->total_anggota }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
+              <h5 class="nobottommargin">Anggota Credit Union</h5>
             </div>
 
             <div class="col-lg-6 bottommargin-sm">
-              <div class="counter counter-small"><span data-from="0" data-to="43" data-refresh-interval="5" data-speed="2000" data-comma="true"></span></div>
-              <h5 class="nobottommargin">Jumlah CU</h5>
+              <div class="counter counter-small"><span data-from="10" data-to="{{ $cuCount }}" data-refresh-interval="5" data-speed="1000" data-comma="true"></span></div>
+              <h5 class="nobottommargin">Credit Union</h5>
             </div>
 
             <div class="col-lg-6 bottommargin-sm">
-              <div class="counter counter-small"><span data-from="50" data-to="1741" data-refresh-interval="100" data-speed="3000" data-comma="true"></span></div>
-              <h5 class="nobottommargin">Jumlah Staf CU</h5>
+              <div class="counter counter-small"><span data-from="50" data-to="{{ $aktivisCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
+              <h5 class="nobottommargin">Aktivis Credit Union</h5>
+            </div> 
+
+            <div class="col-lg-6 bottommargin-sm">
+              <div class="counter counter-small"><span data-from="50" data-to="{{ $manajemenBKCUCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
+              <h5 class="nobottommargin">Manajemen BKCU</h5>
             </div> 
 
           </div>
@@ -114,7 +119,6 @@
 
       <div class="col_half">
         Copyrights &copy; <?php echo date("Y") ?> All Rights Reserved by Puskopdit BKCU Kalimantan<br>
-        <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
       </div>
 
       <div class="col_half col_last tright">

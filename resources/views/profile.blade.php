@@ -51,27 +51,27 @@
       </div>
 
       <!-- data count -->
-      <div class="col_one_fourth center" data-animate="bounceIn">
-        <i class="i-plain i-xlarge divcenter nobottommargin icon-building"></i>
-        <div class="counter counter-large" style="color: #3498db;"><span data-from="10" data-to="43" data-refresh-interval="50" data-speed="1000"></span></div>
-        <h5>Credit Union</h5>
-      </div>
-
       <div class="col_one_fourth center" data-animate="bounceIn" data-delay="200">
         <i class="i-plain i-xlarge divcenter nobottommargin icon-briefcase"></i>
-        <div class="counter counter-large" style="color: #e74c3c;"><span data-from="10" data-to="45" data-refresh-interval="50" data-speed="1200"></span></div>
-        <h5>Manajemen</h5>
+        <div class="counter counter-large" style="color: #e74c3c;"><span data-from="10" data-to="{{ $manajemenBKCUCount }}" data-refresh-interval="50" data-speed="1200"></span></div>
+        <h5>Manajemen BKCU</h5>
+      </div>
+
+      <div class="col_one_fourth center" data-animate="bounceIn">
+        <i class="i-plain i-xlarge divcenter nobottommargin icon-building"></i>
+        <div class="counter counter-large" style="color: #3498db;"><span data-from="10" data-to="{{ $cuCount }}" data-refresh-interval="50" data-speed="1000"></span></div>
+        <h5>Credit Union</h5>
       </div>
 
       <div class="col_one_fourth center" data-animate="bounceIn" data-delay="400">
         <i class="i-plain i-xlarge divcenter nobottommargin icon-line2-users"></i>
-        <div class="counter counter-large" style="color: #16a085;"><span data-from="1000" data-to="476147" data-refresh-interval="50" data-speed="1900"></span></div>
+        <div class="counter counter-large" style="color: #16a085;"><span data-from="1000" data-to="{{ $dataGerakan->total_anggota }}" data-refresh-interval="50" data-speed="1900"></span></div>
         <h5>Anggota Credit Union</h5>
       </div>
 
       <div class="col_one_fourth center col_last" data-animate="bounceIn" data-delay="600">
         <i class="i-plain i-xlarge divcenter nobottommargin icon-users"></i>
-        <div class="counter counter-large" style="color: #9b59b6;"><span data-from="100" data-to="1741" data-refresh-interval="30" data-speed="1800"></span></div>
+        <div class="counter counter-large" style="color: #9b59b6;"><span data-from="100" data-to="{{ $aktivisCount }}" data-refresh-interval="30" data-speed="1800"></span></div>
         <h5>Aktivis Credit Union</h5>
       </div>
 
@@ -96,7 +96,7 @@
       </div>
       <div class="line"></div>
       <div class="col_one_third">
-        <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn">
+        <div class="feature-box fbox-small fbox-plain">
           <div class="fbox-icon">
             <a href="#"><i class="icon-support"></i></a>
           </div>
@@ -106,7 +106,7 @@
       </div>
 
       <div class="col_one_third">
-        <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="600">
+        <div class="feature-box fbox-small fbox-plain">
           <div class="fbox-icon">
             <a href="#"><i class="icon-group"></i></a>
           </div>
@@ -116,7 +116,7 @@
       </div>
 
       <div class="col_one_third col_last">
-        <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="200">
+        <div class="feature-box fbox-small fbox-plain">
           <div class="fbox-icon">
             <a href="#"><i class="icon-book2"></i></a>
           </div>
@@ -128,7 +128,7 @@
       <div class="clear"></div>
 
       <div class="col_one_third nobottommargin">
-        <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="1200">
+        <div class="feature-box fbox-small fbox-plain">
           <div class="fbox-icon">
             <a href="#"><i class="icon-desktop"></i></a>
           </div>
@@ -138,7 +138,7 @@
       </div>
 
       <div class="col_one_third nobottommargin">
-        <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="1600">
+        <div class="feature-box fbox-small fbox-plain">
           <div class="fbox-icon">
             <a href="#"><i class="icon-health"></i></a>
           </div>
@@ -148,7 +148,7 @@
       </div>
 
       <div class="col_one_third col_last">
-        <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="1000">
+        <div class="feature-box fbox-small fbox-plain">
           <div class="fbox-icon">
             <a href="#"><i class="icon-zoom-in2"></i></a>
           </div>
@@ -161,155 +161,7 @@
 
       <h3>Temui Kami Di</h3>
 
-      <div id="map" data-position-latitude="-0.03946" data-position-longitude="109.34875"></div>
-      <script>
-          (function($) {
-              $.fn.CustomMap = function(options) {
-
-                  var posLatitude = $('#map').data('position-latitude'),
-                          posLongitude = $('#map').data('position-longitude');
-
-                  var settings = $.extend({
-                      home: {
-                          latitude: posLatitude,
-                          longitude: posLongitude
-                      },
-                      text: '<div class="map-popup"><h4>Puskopdit BKCU Kalimantan | Kantor Pusat</h4><p>Kantor Pusat dan Kantor District Office Barat.</p></div>',
-                      icon_url: $('#map').data('marker-img'),
-                      zoom: 15
-                  }, options);
-
-                  var coords = new google.maps.LatLng(settings.home.latitude, settings.home.longitude);
-
-                  return this.each(function() {
-                      var element = $(this);
-
-                      var options = {
-                          zoom: settings.zoom,
-                          center: coords,
-                          mapTypeId: google.maps.MapTypeId.ROADMAP,
-                          mapTypeControl: false,
-                          scaleControl: false,
-                          streetViewControl: false,
-                          panControl: true,
-                          disableDefaultUI: true,
-                          zoomControlOptions: {
-                              style: google.maps.ZoomControlStyle.DEFAULT
-                          },
-                          overviewMapControl: true,
-                      };
-
-                      var map = new google.maps.Map(element[0], options);
-
-                      var icon = {
-                          url: settings.icon_url,
-                          origin: new google.maps.Point(0, 0)
-                      };
-
-                      var marker = new google.maps.Marker({
-                          position: coords,
-                          map: map,
-                          icon: icon,
-                          draggable: false
-                      });
-
-                      var info = new google.maps.InfoWindow({
-                          content: settings.text
-                      });
-
-                      google.maps.event.addListener(marker, 'click', function() {
-                          info.open(map, marker);
-                      });
-
-                      var styles = [{
-                          "featureType": "landscape",
-                          "stylers": [{
-                              "saturation": -100
-                          }, {
-                              "lightness": 65
-                          }, {
-                              "visibility": "on"
-                          }]
-                      }, {
-                          "featureType": "poi",
-                          "stylers": [{
-                              "saturation": -100
-                          }, {
-                              "lightness": 51
-                          }, {
-                              "visibility": "simplified"
-                          }]
-                      }, {
-                          "featureType": "road.highway",
-                          "stylers": [{
-                              "saturation": -100
-                          }, {
-                              "visibility": "simplified"
-                          }]
-                      }, {
-                          "featureType": "road.arterial",
-                          "stylers": [{
-                              "saturation": -100
-                          }, {
-                              "lightness": 30
-                          }, {
-                              "visibility": "on"
-                          }]
-                      }, {
-                          "featureType": "road.local",
-                          "stylers": [{
-                              "saturation": -100
-                          }, {
-                              "lightness": 40
-                          }, {
-                              "visibility": "on"
-                          }]
-                      }, {
-                          "featureType": "transit",
-                          "stylers": [{
-                              "saturation": -100
-                          }, {
-                              "visibility": "simplified"
-                          }]
-                      }, {
-                          "featureType": "administrative.province",
-                          "stylers": [{
-                              "visibility": "on"
-                          }]
-                      }, {
-                          "featureType": "water",
-                          "elementType": "labels",
-                          "stylers": [{
-                              "visibility": "on"
-                          }, {
-                              "lightness": -25
-                          }, {
-                              "saturation": -100
-                          }]
-                      }, {
-                          "featureType": "water",
-                          "elementType": "geometry",
-                          "stylers": [{
-                              "hue": "#ffff00"
-                          }, {
-                              "lightness": -25
-                          }, {
-                              "saturation": -97
-                          }]
-                      }];
-
-                      map.setOptions({
-                          styles: styles
-                      });
-                  });
-
-              };
-          }(jQuery));
-
-          jQuery(document).ready(function() {
-              jQuery('#map').CustomMap();
-          });
-      </script>
+      <div id="google-map4" style="height: 250px; margin-bottom: 20px;" class="gmap"></div>
 
       <p class="nobottommargin">Jalan Imam Bonjol Gg. H. Mursyid 1 No. 7-8 Pontianak<br/>
       Kalimantan Barat 78123<br/>
@@ -326,7 +178,7 @@
       <div class="col-lg-4 dark col-padding ohidden" style="background-color: #282828;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Misi</h3>
-          <p style="line-height: 1.8;">Transform, agency working families thinkers who make change happen communities. Developing nations legal aid public sector our ambitions future aid The Elders economic security Rosa.</p>
+          <p style="line-height: 1.8;">Memastikan Keberlanjutan Gerakan Credit Union Melalui Tata Kelola Yang Sehat dan Terintegrasi Untuk Meningkatkan Kualitas Anggota</p>
           <i class="icon-bulb bgicon"></i>
         </div>
       </div>
@@ -334,7 +186,7 @@
       <div class="col-lg-4 dark col-padding ohidden" style="background-color: #34495e;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Visi</h3>
-          <p style="line-height: 1.8;">Frontline respond, visionary collaborative cities advancement overcome injustice, UNHCR public-private partnerships cause. Giving, country educate rights-based approach; leverage disrupt solution.</p>
+          <p style="line-height: 1.8;">Menjadi Gerakan Credit Union Nusantara Berbasis Komunitas Yang Terintegrasi, Tangguh Dan Berkelanjutan</p>
           <i class="icon-paperplane bgicon"></i>
         </div>
       </div>
@@ -342,7 +194,7 @@
       <div class="col-lg-4 dark col-padding ohidden" style="background-color: #e74c3c;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Nilai-Nilai Inti</h3>
-          <p style="line-height: 1.8;">Sustainability involvement fundraising campaign connect carbon rights, collaborative cities convener truth. Synthesize change lives treatment fluctuation participatory monitoring underprivileged equal.</p>
+          <p style="line-height: 1.8;"><strong>Setia</strong> dalam <strong>Kesatuan</strong>, <strong>Memberdayakan</strong> secara <strong>Unggul</strong> dan <strong>Inovatif</strong> dengan <strong>Integritas</strong> tinggi serta berperilaku <strong>Ramah Lingkungan</strong></p>
           <i class="icon-settings bgicon"></i>
         </div>
       </div>
@@ -363,5 +215,37 @@
 @stop
 
 @section('js')
-
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kJmqYT0ClNQjXeW6HZtftdUPuPEz8DU"></script>
+<script src="{{ URL::asset('js/public/jquery.gmap.js') }}"></script>
+<script>
+$('#google-map4').gMap({
+    address: 'Gg. H. Mursyid 1, Benua Melayu Laut, Pontianak Sel., Kota Pontianak, Kalimantan Barat 78243',
+    maptype: 'ROADMAP',
+    zoom: 16,
+    markers: [
+        {
+            latitude: -0.039133,
+            longitude: 109.349122,
+            html: "Puskopdit BKCU Kalimantan",
+        }
+    ],
+    icon: {
+		image: "https://www.google.com/mapfiles/marker.png",
+		shadow: "https://www.google.com/mapfiles/shadow50.png",
+		iconsize: [20, 34],
+		shadowsize: [37, 34],
+		iconanchor: [9, 34],
+		shadowanchor: [19, 34]
+	},
+    doubleclickzoom: false,
+    controls: {
+        panControl: true,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        overviewMapControl: false
+    }
+});
+</script>
 @stop

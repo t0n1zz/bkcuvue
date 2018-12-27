@@ -205,6 +205,16 @@
   </div>
 </div>
 
+@if($cu->deskripsi)
+<div class="container clearfix">
+  <div class="heading-block topmargin-lg center">
+    <h2>Tentang Kami</h2>
+    <span class="divcenter">Mengenai CU {{$cu->name}}</span>
+  </div>
+  {!! $cu->deskripsi !!}
+</div>
+@endif  
+
 <!-- visi misi nilai -->
 @if(!empty($cu->misi) && !empty($cu->visi) && !empty($cu->nilai) && !empty($cu->slogan))
 <section id="content" >

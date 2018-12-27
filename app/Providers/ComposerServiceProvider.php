@@ -33,6 +33,22 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             ['_components.pengumumanCU'], 'App\Http\ViewComposers\PengumumanCUComposer'
         );
+
+        View::composer(
+            ['_layouts.footer','profile'], 'App\Http\ViewComposers\DataGerakanComposer'
+        );
+
+        View::composer(
+            ['_layouts.footer','profile'], 'App\Http\ViewComposers\CuCountComposer'
+        );
+
+        View::composer(
+            ['_layouts.footer','profile'], 'App\Http\ViewComposers\AktivisCountComposer'
+        );
+
+        View::composer(
+            ['_layouts.footer','profile'], 'App\Http\ViewComposers\ManajemenBKCUCountComposer'
+        );
     }
 
     /**

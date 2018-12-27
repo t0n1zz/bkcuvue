@@ -57,7 +57,7 @@ class NotificationHelper{
 		}
 	}
 
-	public function store_laporan($id_cu,$id_laporan,$cu_name,$tp_name,$periodesave,$tipe)
+	public static function store_laporan($id_cu,$id_laporan,$cu_name,$tp_name,$periodesave,$tipe)
 	{
 		$users = User::where('id_cu',$id_cu)->get();
 		foreach ($users as $user) {

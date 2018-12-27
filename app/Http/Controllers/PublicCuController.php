@@ -36,6 +36,11 @@ class PublicCuController extends Controller
 
         $kategories = ArtikelKategori::where('id_cu',$cu->id)->get()->chunk(8);
 
+        // seo
+        SEO::setTitle('Home - CU ' .$cu->name);
+        SEO::setDescription(strip_tags($cu->deskripsi));
+        SEO::opengraph()->setUrl(url()->full());
+
         return view('cu.index', compact('cu','artikelsUtama','artikelsNew','kategories'));
     }
 
@@ -50,6 +55,11 @@ class PublicCuController extends Controller
 
         $tps = Tp::where('id_cu',$cu->id)->paginate(9);
 
+        // seo
+        SEO::setTitle($title . ' - CU ' . $cu->name);
+        SEO::setDescription($subtitle);
+        SEO::opengraph()->setUrl(url()->full());
+
         return view('cu.tp', compact('title','subtitle','tps'));
     }
 
@@ -63,6 +73,11 @@ class PublicCuController extends Controller
         $subtitle = 'Menampilkan ' . $title;
 
         $produks = ProdukCu::where('id_cu',$cu->id)->paginate(9);
+
+         // seo
+         SEO::setTitle($title . ' - CU ' . $cu->name);
+         SEO::setDescription($subtitle);
+         SEO::opengraph()->setUrl(url()->full());
 
         return view('cu.produk', compact('title','subtitle','produks'));
     }
@@ -79,6 +94,11 @@ class PublicCuController extends Controller
 
         $artikels = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
+         // seo
+         SEO::setTitle($title . ' - CU ' . $cu->name);
+         SEO::setDescription($subtitle);
+         SEO::opengraph()->setUrl(url()->full());
+
         return view('cu.artikel', compact('title','subtitle','tipe','artikels'));
     }
 
@@ -92,6 +112,11 @@ class PublicCuController extends Controller
         
         $artikels = Artikel::with('penulis')->where('id_artikel_kategori',$kategori->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
+         // seo
+         SEO::setTitle($title . ' - CU ' . $cu->name);
+         SEO::setDescription($subtitle);
+         SEO::opengraph()->setUrl(url()->full());
+
         return view('cu.artikel', compact('title','subtitle','tipe','artikels'));
     }
 
@@ -104,6 +129,11 @@ class PublicCuController extends Controller
         $tipe = 'penulis';
         
         $artikels = Artikel::with('kategori')->where('id_artikel_penulis',$penulis->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
+
+         // seo
+         SEO::setTitle($title . ' - CU ' . $cu->name);
+         SEO::setDescription($subtitle);
+         SEO::opengraph()->setUrl(url()->full());
 
         return view('cu.artikel', compact('title','subtitle','tipe','artikels','penulis'));
     }
@@ -137,6 +167,11 @@ class PublicCuController extends Controller
 
         $artikelsCUNew = Artikel::where('id_cu',$cu->id)->whereNotIn('id',$idList)->orderBy('created_at','desc')->take(5)->get();
 
+         // seo
+         SEO::setTitle($artikel->name . ' - CU ' . $cu->name);
+         SEO::setDescription(str_limit(strip_tags($artikel->content),200));
+         SEO::opengraph()->setUrl(url()->full());
+
         return view('cu.artikelLihat', compact('artikel','artikelsTerkait','artikelsBKCUNew','artikelsCUNew'));
     }
 
@@ -157,11 +192,11 @@ class PublicCuController extends Controller
         
         $artikels = $artikels->paginate(8)->appends($queries);
 
-        return view('cu.artikel', compact('title','subtitle','tipe','artikels'));
-    }
+         // seo
+         SEO::setTitle($title . ' - CU ' . $cu->name);
+         SEO::setDescription($subtitle);
+         SEO::opengraph()->setUrl(url()->full());
 
-    public function profile()
-    {
-        return view('profile');
+        return view('cu.artikel', compact('title','subtitle','tipe','artikels'));
     }
 }

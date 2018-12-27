@@ -4,7 +4,9 @@ class Token{
       const payload = this.payload(token);
       
       if(payload){
-          return payload.iss == "https://bkcuvue.test/api/auth/login" || "https://bkcuvue.test/api/auth/refresh"  ? true : false
+          return payload.iss == "https://puskopditbkcukalimantan.org/api/auth/login" || "https://puskopditbkcukalimantan.org/api/auth/refresh"  ? true : false
+        
+        //   return payload.iss == "https://bkcuvue.test/api/auth/login" || "https://bkcuvue.test/api/auth/refresh"  ? true : false
       }
 
       return false

@@ -59,132 +59,83 @@ Route::get('/admins/{vue?}', function () {
 // test route
 Route::get('/testroute', function () {
 
-    // $user = App\User::find(1);
-    // $user->assignRole('cu-full');
-
-    // $role = $user->getAllPermissions();
-
-    // $role = Spatie\Permission\Models\Role::findOrFail(2);
-
-    // $user = App\User::find(21);
-    // $user->assignRole('cu-test');
-    // $rolename = $user->getRoleNames();
-    // if($rolename[0] == 'cu-test'){
-    //     echo $rolename;
-    // }else{
-    //     echo 'no role';
-    // }
-    // $user->givePermissionTo('index_artikel');
-    // dd($user->getAllPermissions());
-    // $roles = $user->getRoleNames();
-    // $userdata = $user->combine($roles);
-
-    // create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_diklat_bkcu']);
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_diklat_bkcu']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'upload_laporan_cu']);
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'upload_laporan_tp']);
-
-    // give permission to role
-    // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
-    // $role->givePermissionTo([
-    //     'index tp',
-    //     'create tp',
-    //     'update tp',
-    //     'destroy tp']);
-
-    // activity log
-    // $activity = Spatie\Activitylog\Models\Activity::all()->last();
-    // echo $activity->changes();
-
-    // remove permission role
-    // $role =  Spatie\Permission\Models\Role::findByName('BKCU Akses Penuh');
-    // $role->revokePermissionTo('index cu');
-
-    // $sub = App\LaporanCU::with('CU')->orderBy('periode','desc');    
-    // $data = App\LaporanCU::with('CU')->FilterPaginateOrder();
-    // $data = App\LaporanCU::with('cu')->selectRaw('max(periode) as max_periode, no_ba, ANY_VALUE(id), ANY_VALUE(l_biasa)')->groupBy('no_ba')->FilterPaginateOrder();
-
-    // $data = DB::select("SELECT rh.no_ba, rh.periode FROM laporancu rh, (SELECT no_ba, MAX(periode) AS max_periode FROM laporancu WHERE periode < '2016-01-01'  GROUP BY no_ba) maxresult WHERE rh.no_ba = maxresult.no_ba AND rh.periode = maxresult.max_periode");
-    
-    // $periode = '2016-01-01';
-    // $data = App\LaporanCU::with('CU','CU.Provinces')
-    // ->leftjoin('cu','laporancu.no_ba','cu.no_ba')
-    // ->leftjoin('provinces','cu.id_provinces','provinces.id')
-    // ->FilterPaginateOrder();
-
-    // ->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu  GROUP BY no_ba) latest_report"),function($join){
-    //     $join->on('laporancu.no_ba','=','latest_report.no_ba');
-    //     $join->on('laporancu.periode','=','latest_report.max_periode');
-    // })->addSelect(['*',DB::raw('
-    //     (laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
-    //     ((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
-    //     (laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
-    //     )])->FilterPaginateOrder();
-
-    // $data = App\LaporanCU::with('CU','CU.Provinces')
-    // ->leftjoin('cu','laporancu.no_ba','cu.no_ba')
-    // ->leftjoin('provinces','cu.id_provinces','provinces.id')
-    // ->take(10)->get();
-
-    // $data = App\LaporanCU::join('cu','laporancu.no_ba','cu.no_ba')
-    // ->join('provinces','cu.id_provinces','provinces.id')->take(10)->get();
-
-    // dd($data);
-
-    // ->join(DB::RAW("(SELECT no_ba, MAX(periode) AS max_periode FROM laporancu  GROUP BY no_ba) latest_report"),function($join){
-    //     $join->on('laporancu.no_ba','=','latest_report.no_ba');
-    //     $join->on('laporancu.periode','=','latest_report.max_periode');
-    // })->addSelect([DB::raw('
-    //     (laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
-    //     ((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
-    //     (laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
-    //     )])->FilterPaginateOrder();
-
-    // $data = App\Artikel::with(['ArtikelKategori' => function($query){
-    //         $query->orderBy('created_at','asc');
-    //     }])->select('id','id_artikel_kategori','name')->orderBy('name','asc')->get();
-
-    // $data = App\Artikel::with('ArtikelKategori')->select('artikel.id_artikel_kategori', \DB::raw('(SELECT name FROM artikelKategori WHERE artikel.id_artikel_kategori = artikelKategori.id) as kategori_name'))->orderBy('kategori_name','desc')->get();
-
-    // $table_data = App\LaporanCu::select('laporancu.*',
-	// 		'cu.name as cu_name',
-	// 		'provinces.name as provinces_name')
-	// 		->leftjoin('cu','laporancu.no_ba','cu.no_ba')
-	// 		->leftjoin('provinces','cu.id_provinces','provinces.id')
-	// 		->join(DB::RAW('(SELECT no_ba, GROUP_CONCAT(periode ORDER BY periode DESC) grouped_periode FROM laporancu GROUP BY no_ba) latest_report'),function($join){
-	// 				$join->on('laporancu.no_ba','=','latest_report.no_ba');
-	// 				$join->whereBetween(DB::raw('FIND_IN_SET(`laporancu`.`periode`, `latest_report`.`grouped_periode`)'), [1, 2]);
-	// 		})->FilterPaginateOrder();
-			
-
-		// App\salesreport::join(DB::RAW('(SELECT company_id, GROUP_CONCAT(periods ORDER BY periods DESC) grouped_periods FROM salesreport GROUP BY company_id ) latest_report'),function($join){
-    //     $join->on('salesreport.company_id','=','latest_report.company_id');
-    //     $join->whereBetween(DB::raw('FIND_IN_SET(`salesreport`.`periods`, `latest_report`.`grouped_periods`)'), [1, 2]);
-    // })->addSelect([DB::raw('(row1.value - row2.value) as row_differences')])->get();
-
-		// dd($table_data->reverse());	
-
-		// $table_data_prev = collect([]);
-		// foreach($table_data as $table_data_current){
-		// 	$prev = App\LaporanCu::where('no_ba',$table_data_current->no_ba)
-		// 		->where('periode','<',$table_data_current->periode)
-		// 		->addSelect(['*',DB::raw('
-		// 			(laporancu.l_biasa + laporancu.l_lbiasa) as total_anggota, (laporancu.piutang_beredar/laporancu.aset) as rasio_beredar,
-		// 			((laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)/laporancu.piutang_beredar) as rasio_lalai,
-		// 			(laporancu.piutang_beredar - (laporancu.piutang_lalai_1bulan + laporancu.piutang_lalai_12bulan)) as piutang_bersih'
-		// 		)])->orderBy('periode','DESC')->first();
-		// 	$table_data_prev->push($table_data);	
+		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();
+		
+		// foreach($users as $user){
+		// 	$user->givePermissionTo([
+	
+		// 			'index_artikel',
+		// 			'create_artikel',
+		// 			'update_artikel',
+		// 			'destroy_artikel',
+		// 			'terbitkan_artikel',
+		// 			'utamakan_artikel',
+	
+		// 			'index_user',
+		// 			'create_user',
+		// 			'update_user',
+		// 			'destroy_user',
+		// 			'reset_password',
+		// 			'status_user',
+		// 			'hak_akses_user',
+	
+		// 			'index_artikel_penulis',
+		// 			'create_artikel_penulis',
+		// 			'update_artikel_penulis',
+		// 			'destroy_artikel_penulis',
+	
+		// 			'index_artikel_kategori',
+		// 			'create_artikel_kategori',
+		// 			'update_artikel_kategori',
+		// 			'destroy_artikel_kategori',
+	
+		// 			'index_cu',
+		// 			'create_cu',
+		// 			'update_cu',
+		// 			'destroy_cu',
+	
+		// 			'index_tp',
+		// 			'create_tp',
+		// 			'update_tp',
+		// 			'destroy_tp',
+	
+		// 			'index_aktivis',
+		// 			'create_aktivis',
+		// 			'update_aktivis',
+		// 			'destroy_aktivis',
+	
+		// 			'index_produk_cu',
+		// 			'create_produk_cu',
+		// 			'update_produk_cu',
+		// 			'destroy_produk_cu',
+	
+		// 			'index_diklat_bkcu',
+		// 			'create_diklat_bkcu',
+		// 			'update_diklat_bkcu',
+		// 			'destroy_diklat_bkcu',
+	
+		// 			'index_tempat',
+		// 			'create_tempat',
+		// 			'update_tempat',
+		// 			'destroy_tempat',
+	
+		// 			'index_laporan_cu',
+		// 			'create_laporan_cu',
+		// 			'update_laporan_cu',
+		// 			'destroy_laporan_cu',
+		// 			'upload_laporan_cu',
+		// 			'diskusi_laporan_cu',
+	
+		// 			'index_laporan_tp',
+		// 			'create_laporan_tp',
+		// 			'update_laporan_tp',
+		// 			'destroy_laporan_tp',
+		// 			'upload_laporan_tp',
+		// 			'diskusi_laporan_tp',
+		// 	]);
 		// }
-
-		// $table_data = App\LaporanCu::select('periode')->withCount('hasCU')->orderBy('periode','DESC')->get();
-    
-    // $table_data = DB::table('artikel')->select(DB::RAW('* from INFORMATION_SCHEMA.COLUMNS'))->where('COLUMN')  
-
-    // return response()
-    // ->json([
-    //     'model' => $table_data
-    // ]);
+		
+		// echo $users->getAllPermissions();
 
 });
 

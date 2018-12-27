@@ -3,6 +3,7 @@ import footer from './components/footer.vue';
 import login from './views/login.vue';
 import dashboard from './views/dashboard.vue';
 import notification from './views/sistem/notification.vue';
+import changelog from './views/sistem/changelog.vue';
 import notFound from './views/notFound.vue';
 import artikel from './views/artikel/index.vue';
 import artikel_form from './views/artikel/form.vue';
@@ -69,7 +70,13 @@ const routes = [
 	{ path: '/notification',
 		name: 'notification', 
 		components: { default: notification,'header': header, 'footer': footer },
-		meta: { requiresAuth: true }},	
+		meta: { requiresAuth: true }},
+	
+	// changelog
+	{ path: '/changelog',
+		name: 'changelog', 
+		components: { default: changelog,'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
 
 	// not found
 	{ path: '/notFound',
