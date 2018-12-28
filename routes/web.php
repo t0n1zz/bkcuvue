@@ -10,8 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::domain('bkcuvue.test')->group(function () {
+// BKCU
+$appRoutes = function() {
 	// home
 	Route::get('/',array( 'as' => 'home','uses' => 'PublicController@index'));
 
@@ -31,9 +31,12 @@ Route::domain('bkcuvue.test')->group(function () {
     // dokumen
     Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
     Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
-});
+};
+
+Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);
+
 // cu
-Route::domain('{cu}.bkcuvue.test')->group(function () {
+$appSubRoutes = function() {
 	// home
 	Route::get('/',array( 'as' => 'home.cu','uses' => 'PublicCuController@index'));
 
@@ -49,7 +52,10 @@ Route::domain('{cu}.bkcuvue.test')->group(function () {
 
 	// produk
 	Route::get('/produk',array( 'as' => 'produk','uses' => 'PublicCuController@produk'));
-});
+};
+
+Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
+
 
 // admins
 Route::get('/admins/{vue?}', function () {

@@ -216,7 +216,7 @@
 @endif  
 
 <!-- visi misi nilai -->
-@if(!empty($cu->misi) && !empty($cu->visi) && !empty($cu->nilai) && !empty($cu->slogan))
+@if(!empty($cu->misi) && !empty($cu->visi) && !empty($cu->nilai))
 <section id="content" >
 <div class="content-wrap notoppadding">
   <div class="row common-height">
@@ -224,7 +224,7 @@
     <div class="col-lg-4 dark col-padding ohidden" style="background-color: #282828;">
       <div>
         <h3 class="uppercase" style="font-weight: 600;">Misi</h3>
-        <p style="line-height: 1.8;">{{ $cu->misi }}</p>
+        <p style="line-height: 1.8;">{!! $cu->misi !!}</p>
         <i class="icon-bulb bgicon"></i>
       </div>
     </div>
@@ -232,7 +232,7 @@
     <div class="col-lg-4 dark col-padding ohidden" style="background-color: #34495e;">
       <div>
         <h3 class="uppercase" style="font-weight: 600;">Visi</h3>
-        <p style="line-height: 1.8;">{{ $cu->visi }}</p>
+        <p style="line-height: 1.8;">{!! $cu->visi !!}</p>
         <i class="icon-paperplane bgicon"></i>
       </div>
     </div>
@@ -240,7 +240,7 @@
     <div class="col-lg-4 dark col-padding ohidden" style="background-color: #e74c3c;">
       <div>
         <h3 class="uppercase" style="font-weight: 600;">Nilai-Nilai Inti</h3>
-        <p style="line-height: 1.8;">{{ $cu->nilai }}</p>
+        <p style="line-height: 1.8;">{!! $cu->nilai !!}</p>
         <i class="icon-settings bgicon"></i>
       </div>
     </div>
@@ -249,7 +249,7 @@
   </div>
   <a href="#" class="button button-full center tright footer-stick">
     <div class="container clearfix">
-      <strong><i>Slogan: {{ $cu->slogan }}</i></strong>
+      <strong><i>Slogan: {!! $cu->slogan !!}</i></strong>
     </div>
   </a>
 </div>

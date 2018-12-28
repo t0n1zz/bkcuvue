@@ -35,10 +35,15 @@
           <!-- cu -->
           <li class="mega-menu"><a href="#"><div>Credit Union</div></a>
             <div class="mega-menu-content style-2 clearfix">
+            @php $i = 0 @endphp
               @foreach($cuList as $items)
+              @php $i++ @endphp
               <ul class="mega-menu-column col-lg-3">
                 <li>
                   <ul>
+                    @if($i == 1)
+                      <li><a href="{{ route('cu')}}"><div>SEMUA CREDIT UNION</div></a></li>
+                    @endif
                     @foreach($items as $item)
                     <li><a href="{{ route('home.cu',$item->slug)}}"><div>{{ "CU " . $item->name }}</div></a></li>
                     @endforeach

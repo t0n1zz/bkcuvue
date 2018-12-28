@@ -14,7 +14,7 @@
             <h4>Puskopdit BKCU Kalimantan </h4>
             <p>Merupakan lembaga yang tercipta dari kumpulan beberapa <strong>Credit Union (CU)</strong> di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar.</p>
 
-            <div style="background: url('images/map.png') no-repeat center center; background-size: 100%;">
+            <div style="background: url({{ asset('images/map.png') }}) no-repeat center center; background-size: 100%;">
               <address>
                 <strong>Kantor:</strong><br>
                 Jl. Imam Bonjol, Gang Haji Mursyid 1 No. 7-8<br>
@@ -33,23 +33,35 @@
           <div class="widget widget_links clearfix">
 
             <h4>Navigasi Website</h4>
+            @php $subdomain = Route::input('cu') @endphp
+            @if($subdomain)
+              <div class="col_full">
+                <ul>
+                  <li><a href="{{ route('home') }}">Puskopdit BKCU Kalimantan</a></li>
+                  <li><a href="{{ route('home.cu', $subdomain) }}">CU {{ ucwords(str_replace('-', ' ', $subdomain)) }}</a></li>
+                  <li><a href="{{ route('artikel.cu', $subdomain) }}">Artikel</a></li>
+                  <li><a href="{{ route('tp', $subdomain) }}">Tempat/Kantor Pelayanan</a></li>
+                  <li><a href="{{ route('produk', $subdomain) }}">Produk & Pelayanan</a></li>
+                </ul>
+              </div>
+            @else
+              <div class="col_half">
+                <ul>
+                  <li><a href="{{ route('home') }}">Home</a></li>
+                  <li><a href="{{ route('artikel') }}">Artikel</a></li>
+                  <li><a href="{{ route('cu') }}">Credit Union</a></li>
+                  <li><a href="{{ route('profile') }}">Profile</a></li>
+                </ul>
+              </div>
 
-            <div class="col_half">
-              <ul>
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('artikel') }}">Artikel</a></li>
-                <li><a href="{{ route('cu') }}">Credit Union</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-              </ul>
-            </div>
-
-            <div class="col_half col_last">
-              <ul>
-                <li><a href="{{ route('artikel.kategori','sejarah') }}">Sejarah</a></li>
-                <li><a href="{{ route('artikel.kategori','filosofi') }}">Filosofi</a></li>
-                <li><a href="{{ route('dokumen') }}">Dokumen</a></li>
-              </ul>
-            </div>
+              <div class="col_half col_last">
+                <ul>
+                  <li><a href="{{ route('artikel.kategori','sejarah') }}">Sejarah</a></li>
+                  <li><a href="{{ route('artikel.kategori','filosofi') }}">Filosofi</a></li>
+                  <li><a href="{{ route('dokumen') }}">Dokumen</a></li>
+                </ul>
+              </div>
+            @endif
 
           </div>
 

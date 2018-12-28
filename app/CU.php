@@ -21,7 +21,7 @@ class Cu extends Model {
     ];
     
     protected $fillable = [
-      'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','gambar','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah',
+      'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','gambar','badan_hukum','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',
       'bergabung','created_at','updated_at','deleted_at'
     ];
 

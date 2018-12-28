@@ -4,10 +4,11 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class ArtikelKategori extends Model {
     
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity, Sluggable;
 
     protected $table = 'artikel_kategori';
 
@@ -18,6 +19,16 @@ class ArtikelKategori extends Model {
         'name' => 'required',
         'deskripsi' => 'required|min:5'
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => true
+            ]
+        ];
+    }
     
     protected $fillable = ['id_cu','name','deskripsi'];
 

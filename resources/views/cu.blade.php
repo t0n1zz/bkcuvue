@@ -34,7 +34,7 @@
       ============================================= -->
       <ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
 
-        <li class="activeFilter"><a href="#" data-filter="*">Semua</a></li>
+        <li class="activeFilter"><a href="#" data-filter="*">SEMUA</a></li>
         @foreach($provinces as $item)
           @if($item->has_cu_count > 0)
             <li><a href="#" data-filter=".{{ $item->id }}">{{ $item->name }}</a></li>

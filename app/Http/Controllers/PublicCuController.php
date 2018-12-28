@@ -10,6 +10,7 @@ use App\ArtikelPenulis;
 use App\ArtikelKategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use SEO;
 
 class PublicCuController extends Controller
 {
@@ -24,6 +25,10 @@ class PublicCuController extends Controller
         $subdomain = Route::input('cu');
 
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$subdomain)->first();
+
+        if(!$cu){
+            abort(404);
+        }
 
         $artikelsUtama = Artikel::with('kategori')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(6)->get();
 
@@ -50,6 +55,10 @@ class PublicCuController extends Controller
         
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$subdomain)->first();
 
+        if(!$cu){
+            abort(404);
+        }
+
         $title = "Tempat/Kantor Pelayanan";
         $subtitle = 'Menampilkan ' . $title;
 
@@ -69,6 +78,10 @@ class PublicCuController extends Controller
         
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$subdomain)->first();
 
+        if(!$cu){
+            abort(404);
+        }
+
         $title = "Produk dan Pelayanan";
         $subtitle = 'Menampilkan ' . $title;
 
@@ -87,6 +100,10 @@ class PublicCuController extends Controller
         $subdomain = Route::input('cu');
 
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$subdomain)->first();
+
+        if(!$cu){
+            abort(404);
+        }
 
         $title = 'Semua Kategori';
         $subtitle = 'Menampilkan semua artikel';
@@ -142,6 +159,10 @@ class PublicCuController extends Controller
     {
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$cu)->first();
 
+        if(!$cu){
+            abort(404);
+        }
+
         $artikel = Artikel::with('kategori','penulis')->where('slug',$slug)->where('terbitkan',1)->first();
 
         if($artikel->kategori){
@@ -180,6 +201,10 @@ class PublicCuController extends Controller
         $subdomain = Route::input('cu');
 
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$subdomain)->first();
+
+        if(!$cu){
+            abort(404);
+        }
 
         $title = 'Artikel ' .request('cari');
         $subtitle = 'Menampilkan artikel ' . request('cari');

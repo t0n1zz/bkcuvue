@@ -72,7 +72,10 @@ class Helper{
 	{
 		$dom = new \DomDocument();
 
+		libxml_use_internal_errors(true);
 		$dom->loadHTML("<div>$request->content</div>");
+		libxml_clear_errors();
+
 		$container = $dom->getElementsByTagName('div')->item(0);
 		$container = $container->parentNode->removeChild($container);
 
@@ -114,8 +117,11 @@ class Helper{
 	public static function dom_processing_no_image($request)
 	{
 		$dom = new \DomDocument();
-
+		
+		libxml_use_internal_errors(true);
 		$dom->loadHTML("<div>$request->content</div>");
+		libxml_clear_errors();
+		
 		$container = $dom->getElementsByTagName('div')->item(0);
 		$container = $container->parentNode->removeChild($container);
 

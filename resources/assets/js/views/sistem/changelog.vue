@@ -28,7 +28,7 @@
                 <div class="card-body">
                   <p class="mb-3">Pada versi ini SIMO yang berbasis sepenuhnya PHP dengan framework laravel telah berubah menjadi Single Page Application (SPA) berbasis javascript dengan framework Vue.js yang menawarkan pengalaman interaksi desktop pada browser.
                   <br/><br/>
-                  Tampilan keseluruhan pada SIMO juga telah berubah. Menawarkan tampilan yang terinspirasi dari Material design dan Cuppertiono design yang menghasilkan sebuah aplikasi berbasis web yang interaktif dan menarik
+                  Tampilan keseluruhan pada SIMO juga telah berubah. Menawarkan tampilan yang terinspirasi dari Material design dan Cupertino design yang menghasilkan sebuah aplikasi berbasis web yang interaktif dan menarik
                   <br/><br/>
                   Pengolahan data juga telah berubah untuk menyesuaikan dengan transaksi data berbasis API yang menawarkan kecepatan dan reliabilitas serta kemudahan untuk pengembangan lebih lanjut.
                   <br/><br/>
