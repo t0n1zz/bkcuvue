@@ -19,21 +19,26 @@ class Pengumuman extends Model
     ];
 
     protected $fillable = [
-        'name',
+        'id_cu','name'
     ];
 
     protected $allowedFilters = [
-        'name'
+        'name','created_at','updated_at','cu.name'
     ];
 
     protected $orderable = [
-        'name'
+        'name','created_at','updated_at','cu.name'
     ];
 
     public static function initialize()
     {
         return [
-            'name' => '' ,
+            'id_cu' => '' ,'name' => '' ,
         ];
+    }
+
+    public function cu()
+    {
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
     }
 }

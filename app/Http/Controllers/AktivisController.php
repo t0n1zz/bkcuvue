@@ -134,7 +134,7 @@ class AktivisController extends Controller{
 
 	public function indexPekerjaan($id)
 	{
-		$table_data = AktivisPekerjaan::where('id_aktivis',$id)->orderBy('mulai','desc')->get();
+		$table_data = AktivisPekerjaan::with('cu')->where('id_aktivis',$id)->orderBy('mulai','desc')->get();
 
 		return response()
 			->json([

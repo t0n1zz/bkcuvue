@@ -10,19 +10,19 @@
 						</div>
 
 						<!-- select -->
-						<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+						<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCuStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
 							<option value="semua">Semua CU</option>
 							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 							<option disabled value="">----------------</option>
-							<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
+							<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
 						</select>
 
 						<!-- reload cu -->
 						<div class="input-group-append">
-							<button class="btn btn-light" @click="fetchCU" :disabled="modelCUStat === 'loading'">
-								<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
+							<button class="btn btn-light" @click="fetchCU" :disabled="modelCuStat === 'loading'">
+								<i class="icon-sync" :class="{'spinner' : modelCuStat === 'loading'}"></i>
 							</button>
 						</div>
 					</div>
@@ -37,19 +37,19 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text">Pilih Data</span>
 					</div>
-					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCUStat === 'loading'">
+					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCuStat === 'loading'">
 						<option disabled value="">Silahkan pilih data</option>
 						<option value="semua">Semua CU</option>
 						<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 						<option disabled value="">----------------</option>
-						<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
+						<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
 					</select>
 				</div>
 
 				<!-- reload cu -->
 				<div class="pt-2">
-					<button class="btn btn-light btn-lg btn-block" @click="fetchCU" :disabled="modelCUStat === 'loading'">
-						<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i> Reload
+					<button class="btn btn-light btn-lg btn-block" @click="fetchCU" :disabled="modelCuStat === 'loading'">
+						<i class="icon-sync" :class="{'spinner' : modelCuStat === 'loading'}"></i> Reload
 					</button>
 				</div> 
 			</div>
@@ -77,7 +77,7 @@
 				// check current page meta
 				this.fetchCU();
 			},
-			modelCUStat(value){
+			modelCuStat(value){
 				if(value === "success"){
 					this.idCu = this.$route.params.cu;
 				}
@@ -85,8 +85,8 @@
     },
 		methods: {
 			fetchCU(){
-				if(this.modelCU.length == 0){
-					this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+				if(this.modelCu.length == 0){
+					this.$store.dispatch('cu/getHeader', this.currentUser.id_pus);
 				}else{
 					this.idCu = this.$route.params.cu;
 				}
@@ -100,8 +100,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),

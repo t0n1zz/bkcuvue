@@ -1,4 +1,5 @@
 <!-- pengumuman -->
+@if(!$pengumumanCUList->isEmpty())
 <div class="content-wrap nobottommargin nobottompadding">
   <div class="section dark header-stick nobottommargin clearfix" style="padding: 30px 0;">
     <div>
@@ -18,3 +19,4 @@
     </div>
   </div>
 </div>
+@endif

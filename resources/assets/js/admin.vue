@@ -17,9 +17,6 @@
 	>
 		<router-view></router-view>
 	</transition>
-
-	<!-- Footer -->
-	<router-view name="footer"></router-view>
 	
 </div>
 </template>

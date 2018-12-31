@@ -7,10 +7,12 @@ export const cu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
     dataStat: '',
     dataStatS: '',
+    dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
     update: [], //update data
@@ -23,10 +25,12 @@ export const cu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
     update: state => state.update,
@@ -48,6 +52,20 @@ export const cu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexDeleted( { commit }, p ){
+      commit('setDataDeletedStatS', 'loading');
+      
+      CUAPI.indexDeleted( p )
+        .then( function( response ){
+          commit('setDataDeletedS', response.data.model );
+          commit('setDataDeletedStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataDeletedS', error.response);
+          commit('setDataDeletedStatS', 'fail');
         });
     },
 
@@ -171,6 +189,24 @@ export const cu = {
         });
     },
 
+    restore( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      CUAPI.restore( id )
+        .then( function( response ){
+          if(response.data.restored){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     // destroy data
     destroy( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
@@ -218,6 +254,9 @@ export const cu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setDataDeletedS ( state, data ){
+      state.dataDeletedS = data;
+    },
     setCount ( state, data ){
       state.count = data;
     },
@@ -229,6 +268,9 @@ export const cu = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataDeletedStatS( state, status ){
+      state.dataDeletedStatS = status;
     },
     setHeaderDataStatS( state, status ){
       state.headerDataStatS = status;

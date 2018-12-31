@@ -119,7 +119,7 @@
 												<input type="text" name="anak" class="form-control" placeholder="Silahkan masukkan nama anak" v-model="anak.value">
 												
 												<div class="input-group-btn">
-													<button class="btn btn-default" v-tooltip:top="'Hapus anak '" @click.prevent="removeAnak(index)">
+													<button class="btn btn-light" v-tooltip:top="'Hapus anak '" @click.prevent="removeAnak(index)">
 														<i class="icon-cross"></i>
 													</button>
 												</div>
@@ -131,7 +131,7 @@
 
 									<!-- punya anak -->
 									<div class="col-md-12" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'">
-										<button class="btn btn-default btn-block" @click.prevent="addAnak()"><i class="icon-plus3"></i> 
+										<button class="btn btn-light btn-block" @click.prevent="addAnak()"><i class="icon-plus3"></i> 
 											<span v-if="formAnak.length == 0">Punya Anak</span>
 											<span v-else>Tambah Anak</span>
 										</button>
@@ -357,9 +357,9 @@
 			},
 			back(){
 				if(this.$route.meta.mode === 'editIdentitas' && this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tingkat: 'semua'}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
 				}
 			},
 			changeProvinces(id){

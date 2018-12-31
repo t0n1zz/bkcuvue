@@ -178,6 +178,41 @@
 						]
 					},
 					{
+						name: 'Pengumuman',
+						icon: 'icon-megaphone',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_pengumuman',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Tambah',
+								key: 'create_pengumuman',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Ubah',
+								key: 'update_pengumuman',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_pengumuman',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							}
+						]
+					},
+					{
 						name: 'Diklat BKCU',
 						icon: 'icon-graduation2',
 						secondRow: true,
@@ -541,7 +576,27 @@
 							}
 						]
 					},
-					
+					{
+						name: 'Saran',
+						icon: 'icon-lifebuoy',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_saran',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_saran',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+							},
+						]
+					},
 				]
 			}
 		},

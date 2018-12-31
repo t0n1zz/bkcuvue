@@ -5,41 +5,52 @@ use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Cu extends Model {
     
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes, Sluggable;
 
     protected $table = 'cu';
-		protected static $logFillable = true;
-		protected $dates = ['deleted_at'];
+    protected static $logFillable = true;
+    protected $dates = ['deleted_at'];
     
     public static $rules = [
         'id_provinces' => 'required',
         'no_ba' => 'required',
         'name' => 'required|between:3,50'
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => true
+            ]
+        ];
+    }
     
     protected $fillable = [
-      'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','gambar','badan_hukum','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',
+      'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',
       'bergabung','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+        'id','no_ba','name','name_legal','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','has_tp_cu_count'
     ];
 
     protected $orderable = [
-        'id','no_ba','name','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+        'id','no_ba','name','name_legal','badan_hukum','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','has_tp_cu_count'
     ];
 
     public static function initialize(){
         return [
-            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'no_ba' => '', 'name' => '', 'gambar' => '',
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'no_ba' => '', 'name' => '','name_legal' => '', 'gambar' => '',
             'badan_hukum' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => '', 'app' => '', 'ultah' => '', 'bergabung' => ''
         ];
     }

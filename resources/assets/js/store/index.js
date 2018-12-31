@@ -8,6 +8,7 @@ import { global } from './modules/global';
 import { artikel } from './modules/artikel';
 import { artikelKategori } from './modules/artikelKategori';
 import { artikelPenulis } from './modules/artikelPenulis';
+import { pengumuman } from './modules/pengumuman';
 import { cu } from './modules/cu';
 import { tp } from './modules/tp';
 import { pus } from './modules/pus';
@@ -23,6 +24,7 @@ import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
 import { notification } from './modules/notification';
+import { saran } from './modules/saran';
 
 Vue.use(Vuex);
 
@@ -35,6 +37,7 @@ export default new Vuex.Store({
 		 artikel,
 		 artikelKategori,
 		 artikelPenulis,
+		 pengumuman,
 		 cu,
 		 tp,
 		 pus,
@@ -49,6 +52,7 @@ export default new Vuex.Store({
 		 produkCu,
 		 diklatBKCU,
 		 tempat,
-		 notification
+		 notification,
+		 saran
 	 }
 });

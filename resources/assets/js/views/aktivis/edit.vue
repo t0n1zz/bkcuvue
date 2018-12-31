@@ -120,7 +120,7 @@
 												<tr :class="{ 'bg-info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
 													<td>{{ props.item.name }} 
-														<span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
+														<span class="badge bg-blue-400 align-self-center ml-auto" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
 													</td>
 													<td>{{ props.item.tingkat }}</td>
 													<td>
@@ -600,7 +600,7 @@
 				}
 			},
 			back(){
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
 			},
 			saveIdentitas() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);

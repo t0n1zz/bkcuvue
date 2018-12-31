@@ -40,6 +40,26 @@
 				</div>
 			</div>
 
+			<!-- nim_cu -->
+			<div class="col-md-4">
+				<div class="form-group" :class="{'has-error' : errors.has('form.nim_cu')}">
+
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.nim_cu')}">
+						<i class="icon-cross2" v-if="errors.has('form.nim_cu')"></i>
+						NIM Lembaga:</h6>
+
+					<!-- text -->
+					<input type="text" name="nim_cu" class="form-control" placeholder="Silahkan masukkan nim lembaga" v-model="form.nim_cu">
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.nim_cu')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.nim_cu') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
+			</div>
+
 			<!-- name -->
 			<div class="col-md-4">
 				<div class="form-group" :class="{'has-error' : errors.has('form.name')}">

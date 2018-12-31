@@ -17,7 +17,14 @@
 
 			<div class="collapse navbar-collapse" id="navbar-mobile">
 				<span class="navbar-text ml-md-3 mr-md-auto">
-					<span class="badge bg-success-400 badge-pill">
+					<span class="badge bg-info-400">
+						<span>3.0.1</span>
+					</span>
+					
+				</span>
+
+				<span class="navbar-text ml-md-auto mr-md-1">
+					<span class="badge bg-success-400">
 						<span v-if="currentUser.pus">{{currentUser.pus.name}}</span>
 						<span v-if="currentUser.cu">- CU {{currentUser.cu.name}}</span>
 					</span>
@@ -86,9 +93,14 @@
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
+							<a href="#" class="dropdown-item" @click.prevent="modalOpen('saran')"><i class="icon-lifebuoy mr-2"></i> Masukkan Saran</a>
+							<router-link class="dropdown-item" :to="{ name:'panduan' }"><i class="icon-file-text2 mr-2"></i> Panduan</router-link>
+							<router-link class="dropdown-item" :to="{ name:'changelog' }"><i class="icon-list mr-2"></i>  Changelog</router-link>
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
 
 							<!-- logout -->
-							<a href="#" class="dropdown-item" @click.prevent="logout"><i class="icon-switch2"></i> Logout</a>
+							<a href="#" class="dropdown-item" @click.prevent="modalOpen('logout')"><i class="icon-switch2"></i> Logout</a>
 						</div>
 					</li>
 					
@@ -241,6 +253,41 @@
 							<!-- if cu account -->
 							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: currentUser.id_cu}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_artikel_penulis'] && currentUser.id_cu != 0">
 								<i class="icon-pencil6"></i> Penulis Artikel
+							</router-link>
+
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
+							<!-- pengumuman -->
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_pengumuman'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'pengumuman'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('pengumuman')">
+									<i class="icon-megaphone"></i> Pengumuman
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'pengumuman'}">
+
+									<router-link :to="{ name: 'pengumumanCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+									<router-link :to="{ name: 'pengumumanCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact>
+										Puskopdit BKCU Kalimantan
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'pengumumanCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'pengumumanCu', params:{cu: currentUser.id_cu}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_pengumuman'] && currentUser.id_cu != 0">
+								<i class="icon-megaphone"></i> Pengumuman
 							</router-link>
 
 						</div>
@@ -575,6 +622,10 @@
 								<i class="icon-users"></i> User
 							</router-link>
 
+							<router-link :to="{ name: 'saran' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_saran']">
+								<i class="icon-lifebuoy"></i> Saran
+							</router-link>
+
 						</div>
 
 					</li>
@@ -582,14 +633,37 @@
 			</div>
 		</div>
 
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :button="modalButton" :color="modalColor" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- saran -->
+			<template slot="modal-body1">
+				<form-saran 
+				:id_user="currentUser.id"
+				@cancelClick="modalTutup"></form-saran>
+			</template>
+
+		</app-modal>
+
 	</div>
 </template>
 
 <script type="text/javascript">
 	import { logout } from "../helpers/auth.js";
 	import { mapGetters } from 'vuex';
+	import formSaran from "../views/saran/form.vue";
+	import appModal from './modal';
 
 	export default {
+		components: {
+			formSaran,
+			appModal,
+		},
 		data(){
 			return{
 				dropdownMenu: '',
@@ -598,6 +672,13 @@
 				laporanCuDraftCountStat: '',
 				laporanTpDraftCount: [],
 				laporanTpDraftCountStat: '',
+				state: '',
+				modalShow: false,
+				modalState: '',
+				modalTitle: '',
+				modalContent: '',
+				modalColor: '',
+				modalButton: ''
 			}
 		},
 		created(){
@@ -619,9 +700,49 @@
 				if(value === "success"){
 					this.fetchNotif();
 				}
+			},
+			updateSaranStat(value){
+				this.modalState = value;
+				this.modalColor = '';
+
+				if(value === "success"){
+					this.modalTitle = this.updateSaranResponse.message;;
+				}else{
+					this.modalTitle = 'Oops terjadi kesalahan :(';
+					this.modalContent = this.updateSaranResponse.message;
+				}
 			}
 		},
 		methods: {
+			modalOpen(state) {
+				this.state = state;
+				this.modalShow = true;
+				this.modalContent = '';
+
+				if (state == 'logout') {		
+					this.modalState = 'confirm-tutup';
+					this.modalTitle = 'Logout dari aplikasi SIMO?';
+					this.modalButton = 'Iya, Logout';
+				}else if(state == 'saran') {
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Memberikan saran kepada kami?';
+					this.modalButton = 'Ok';
+				}
+			},
+			modalTutup() {
+				this.modalShow = false;
+
+				if(this.state == 'logout'){
+					this.$store.dispatch('auth/logout');
+					this.$router.push('/login');
+				}
+			},
+			modalConfirmOk() {
+				if (this.state == 'logout') {
+					this.logout();
+				}
+			},
 			dropdown(value){
 				if(this.dropdownMenu != value){
 					this.dropdownMenu = value;
@@ -694,17 +815,19 @@
 				this.$store.dispatch('notification/markAllNotifRead');
 			},
 			logout() {
-				// TODO: log out on server side
+				this.modalState = 'loading';
+
 				axios.post('/api/auth/logout')
 				.then((response) => {
-					console.log('success');
+					this.modalState = 'success';
+					this.modalContent = '';
+					this.modalTitle = 'Terima kasih telah menggunakan aplikasi SIMO?';
+					this.modalButton = 'Kembali Ke Halaman Login';
 				})
 				.catch((err) => {
-					console.log(err);
+					this.modalState = 'fail';
+					this.modalContent = this.err;
 				})
-			
-				this.$store.dispatch('auth/logout');
-				this.$router.push('/login');
 			},
 			momentYear(){
 				return moment().year();
@@ -726,6 +849,10 @@
 			...mapGetters('cu',{
 				modelCu: 'headerDataS',
 				modelCuStat: 'headerDataStatS',
+			}),
+			...mapGetters('saran',{
+				updateSaranResponse: 'update',
+				updateSaranStat: 'updateStat',
 			}),
 		}
 	}

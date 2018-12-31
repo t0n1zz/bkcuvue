@@ -55,6 +55,26 @@
 										</div>
 									</div>
 
+									<!-- name -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.name_legal')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.name_legal')}">
+												<i class="icon-cross2" v-if="errors.has('form.name_legal')"></i>
+												Nama Legal: <small class="text-muted"><i>nama yang terdaftar secara hukum contoh: KSP xxx</i></small></h5>
+
+											<!-- text -->
+											<input type="text" name="name_legal" class="form-control" placeholder="Silahkan masukkan nama legal" v-model="form.name_legal">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.name_legal')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name_legal') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
 									<!-- no_ba -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">

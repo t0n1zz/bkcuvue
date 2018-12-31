@@ -23,7 +23,7 @@
 				</button>
 
 				<!-- lihat tpcu -->
-				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['index_tpCu']" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0">
+				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['index_tp']" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0">
 					<i class="icon-file-eye"></i> Lihat TP/KP 
 				</button>
 			</template>
@@ -65,71 +65,74 @@
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.no_ba"></check-value>
+          <td v-if="!columnData[3].hide">
+						<check-value :value="props.item.name_legal"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.has_tp_count"></check-value>
+						<check-value :value="props.item.no_ba"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.has_tp_count"></check-value>
+					</td>
+					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.badan_hukum"></check-value>
 					</td>
-          <td v-if="!columnData[6].hide">
+          <td v-if="!columnData[7].hide">
 						<check-value :value="props.item.npwp"></check-value>
 					</td>
-          <td v-if="!columnData[7].hide">
+          <td v-if="!columnData[8].hide">
 						<check-value :value="props.item.nik"></check-value>
 					</td>
-          <td v-if="!columnData[8].hide">
+          <td v-if="!columnData[9].hide">
 						<check-value :value="props.item.situ"></check-value>
 					</td>
-          <td v-if="!columnData[9].hide">
+          <td v-if="!columnData[10].hide">
 						<check-value :value="props.item.siusp"></check-value>
 					</td>
-          <td v-if="!columnData[10].hide">
+          <td v-if="!columnData[11].hide">
 						<check-value :value="props.item.izin_operasional"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide && !columnData[11].disable">
+					<td v-if="!columnData[12].hide && !columnData[12].disable">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[12].hide && !columnData[12].disable">
+					<td v-if="!columnData[13].hide && !columnData[13].disable">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[13].hide && !columnData[13].disable">
+					<td v-if="!columnData[14].hide && !columnData[14].disable">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[14].hide && !columnData[14].disable">
+					<td v-if="!columnData[15].hide && !columnData[15].disable">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.app"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.ultah)"></td>
-					<td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.ultah)"></td>
+					<td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.website"></check-value>
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.email"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.telp"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.pos"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
+					<td v-if="!columnData[26].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -185,6 +188,16 @@ export default {
         {
           title: "Nama",
           name: "name",
+          tipe: "string",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true,
+          filterDefault: true
+        },
+        {
+          title: "Nama Legal",
+          name: "name_legal",
           tipe: "string",
           sort: true,
           hide: false,

@@ -117,7 +117,7 @@
 			<!-- hak akses -->
 			<template slot="modal-body1">
 				<!-- hak-akses -->
-				<hak-akses :form="modalForm"></hak-akses>
+				<hak-akses :form="modalForm" :tipeUser="tipeUser"></hak-akses>
 				<!-- divider -->
 				<hr>
 			</template>
@@ -243,6 +243,7 @@ export default {
           filter: true,
         }
       ],
+      tipeUser: '',
       modalShow: false,
       modalState: '',
       modalColor: '',
@@ -333,6 +334,13 @@ export default {
       if(isMobile){
         this.selectedItem = itemMobile;
       }
+
+      if(this.selectedItem.id_cu == 0){
+        this.tipeUser = 'bkcu';
+      }else{
+        this.tipeUser = 'cu';
+      }
+
       this.$store.dispatch(this.kelas + '/editHakAkses', this.selectedItem.id);
     },
     modalHakAksesSave(){

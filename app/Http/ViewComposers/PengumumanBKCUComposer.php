@@ -9,7 +9,7 @@ class PengumumanBKCUComposer
 {
     public function compose(View $view)
     {
-        $pengumumanBKCUList = Pengumuman::orderBy('created_at')->select('name')->get();
+        $pengumumanBKCUList = Pengumuman::where('id_cu',0)->orderBy('created_at')->select('name')->get();
 
         $view->with('pengumumanBKCUList', $pengumumanBKCUList);
     }

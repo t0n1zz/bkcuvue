@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/cu' , {params: p});
   },
 
+  indexDeleted: function( p ){
+    return axios.get('/api/cu/deleted' , {params: p});
+  },
+
   get: function(){
     return axios.get('/api/cu/get');
   },
@@ -30,6 +34,10 @@ export default {
 
   update: function ( id, form ){
     return axios.post('/api/cu/update/' + id, form);
+  },
+
+  restore: function ( id ){
+    return axios.post('/api/cu/restore/' + id);
   },
 
   destroy: function( id ){

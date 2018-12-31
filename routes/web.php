@@ -65,7 +65,15 @@ Route::get('/admins/{vue?}', function () {
 // test route
 Route::get('/testroute', function () {
 
+		// create permission
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_pengumuman']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_pengumuman']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_pengumuman']);
+		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_pengumuman']);
+		
+		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();
+		// $users = App\User::find(1);
 		
 		// foreach($users as $user){
 		// 	$user->givePermissionTo([

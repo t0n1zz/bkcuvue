@@ -13,6 +13,35 @@
             <div class="w-100 order-2 order-md-1">
 
               <!-- Version 3.0.0 -->
+              <div class="card" id="3_0_1_simo">
+                <div class="card-header header-elements-inline">
+                  <h5 class="card-title">Version 3.0.1 - SIMO</h5>
+                  <div class="header-elements">
+                    <span class="text-muted">31 Desember 2018</span>
+
+                    <div class="list-icons ml-3">
+                      <a class="list-icons-item" data-action="collapse"></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
+                  <br/><br/>
+                  Berikut adalah rincian perubahan pada versi ini:</p>
+
+                  <ul class="list">
+                    <li>Perbaikan bug subdomain dan domain ketika menambahkan "www" didepan alamat website</li>
+                    <li>Penambahan fitur untuk menuliskan saran terhadap aplikasi ini</li>
+                    <li>Penambahan fitur mengelola pengumuman untuk masing-masing CU yang akan otomatis muncul di website publik di subdomain masing-masing CU</li>
+                    <li>Perbaikan bug hak akses user yang selalu menampilkan hak akses untuk CU dan tidak bisa untuk BKCU</li>
+                    <li>Optimalisasi aplikasi dengan mengurangi beberapa panggilan data ke server yang redundan</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /version 3.0.0 -->
+
+              <!-- Version 3.0.0 -->
               <div class="card" id="3_0_0_simo">
                 <div class="card-header header-elements-inline">
                   <h5 class="card-title">Version 3.0.0 - SIMO</h5>
@@ -414,16 +443,12 @@
                       </div>
                     </div>
 
-                    <div class="card-body">
-                      <a href="#" class="btn bg-danger-400 btn-block"><i class="icon-lifebuoy mr-2"></i>
-                        Saran</a>
-                    </div>
-
-                    <ul class="nav nav-sidebar nav-scrollspy">
+                    <ul class="nav nav-sidebar nav-s`crollspy">
                       <li class="nav-item-header font-size-xs line-height-xs text-uppercase pt-0">Version history</li>
                       <li class="nav-item nav-item-submenu">
                         <a href="#" class="nav-link">SIMO</a>
                         <ul class="nav nav-group-sub d-block">
+                          <li class="nav-item"><a href="#3_0_1_simo" class="nav-link">Version 3.0.1 <span class="text-muted font-weight-normal ml-auto">31.12.2018</span></a></li>
                           <li class="nav-item"><a href="#3_0_0_simo" class="nav-link">Version 3.0.0 <span class="text-muted font-weight-normal ml-auto">27.12.2018</span></a></li>
                           <li class="nav-item"><a href="#2_1_3_simo" class="nav-link">Version 2.1.3 <span class="text-muted font-weight-normal ml-auto">20.04.2017</span></a></li>
                           <li class="nav-item"><a href="#2_1_2_simo" class="nav-link">Version 2.1.2 <span class="text-muted font-weight-normal ml-auto">11.03.2017</span></a></li>
@@ -461,7 +486,7 @@
       return {
         title: 'Changelog',
         titleDesc: 'Sejarah penambahan fitur dan perbaikan pada sistem',
-        titleIcon: 'icon-office',
+        titleIcon: 'icon-list',
       }
     },
     created(){

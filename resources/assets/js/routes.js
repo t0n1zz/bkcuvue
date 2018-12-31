@@ -4,6 +4,9 @@ import login from './views/login.vue';
 import dashboard from './views/dashboard.vue';
 import notification from './views/sistem/notification.vue';
 import changelog from './views/sistem/changelog.vue';
+import panduan from './views/sistem/panduan.vue';
+import saran from './views/saran/index.vue';
+import pengumuman from './views/pengumuman/index.vue';
 import notFound from './views/notFound.vue';
 import artikel from './views/artikel/index.vue';
 import artikel_form from './views/artikel/form.vue';
@@ -77,6 +80,24 @@ const routes = [
 		name: 'changelog', 
 		components: { default: changelog,'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
+
+	// panduan
+	{ path: '/panduan',
+	name: 'panduan', 
+	components: { default: panduan,'header': header, 'footer': footer },
+	meta: { requiresAuth: true }},
+
+	// saran
+	{ path: '/saran',
+	name: 'saran', 
+	components: { default: saran,'header': header, 'footer': footer },
+	meta: { requiresAuth: true }},
+
+	// pengumuman
+	{ path: '/pengumuman/cu/:cu',
+		name: 'pengumumanCu', 
+		components: { default: pengumuman, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
 
 	// not found
 	{ path: '/notFound',

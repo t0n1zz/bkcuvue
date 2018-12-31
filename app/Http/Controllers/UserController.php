@@ -351,6 +351,10 @@ class UserController extends Controller
 		$this->hakAkses($request->create_artikel_kategori,'create_artikel_kategori',$user);
 		$this->hakAkses($request->update_artikel_kategori,'update_artikel_kategori',$user);
 		$this->hakAkses($request->destroy_artikel_kategori,'destroy_artikel_kategori',$user);
+		$this->hakAkses($request->index_pengumuman,'index_pengumuman',$user);
+		$this->hakAkses($request->create_pengumuman,'create_pengumuman',$user);
+		$this->hakAkses($request->update_pengumuman,'update_pengumuman',$user);
+		$this->hakAkses($request->destroy_pengumuman,'destroy_pengumuman',$user);
 		$this->hakAkses($request->index_diklat_bkcu,'index_diklat_bkcu',$user);
 		$this->hakAkses($request->create_diklat_bkcu,'create_diklat_bkcu',$user);
 		$this->hakAkses($request->update_diklat_bkcu,'update_diklat_bkcu',$user);
@@ -394,6 +398,8 @@ class UserController extends Controller
 		$this->hakAkses($request->reset_password,'reset_password',$user);
 		$this->hakAkses($request->hak_akses_user,'hak_akses_user',$user);
 		$this->hakAkses($request->status_user,'status_user',$user);
+		$this->hakAkses($request->index_saran,'index_saran',$user);
+		$this->hakAkses($request->destroy_saran,'destroy_saran',$user);
 	}
 
 	public function count()

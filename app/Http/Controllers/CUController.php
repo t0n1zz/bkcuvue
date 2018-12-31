@@ -25,6 +25,16 @@ class CuController extends Controller{
 		]);
 	}
 
+	public function indexDeleted()
+	{
+		$table_data = Cu::onlyTrashed()->with('Villages','Districts','Regencies','Provinces')->withCount('hasTp')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	public function get()
 	{
 		$table_data = Cu::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
@@ -131,17 +141,26 @@ class CuController extends Controller{
 		$kelas = Cu::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->gambar)){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
-		}
-
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
 				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function restore($id)
+	{
+		$kelas = Cu::onlyTrashed()->findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->restore();
+
+		return response()
+			->json([
+				'restored' => true,
+				'message' =>  $this->message. ' ' .$name. 'berhasil diaktifkan kembali'
 			]);
 	}
 

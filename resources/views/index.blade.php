@@ -2,9 +2,7 @@
 
 @section('css')
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700%7CRaleway:300,400,500,600,700,800,900%7CRoboto:700%2C500%2C400" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="{{ asset('css/public/rs-plugin/css/settings.css') }}" media="screen">
-<link rel="stylesheet" href="{{ asset('css/public/rs-plugin/css/layers.css') }}">
-<link rel="stylesheet" href="{{ asset('css/public/rs-plugin/css/navigation.css') }}">
+<link rel="stylesheet" href="{{ asset('css/public/indexlibs.css') }}">
 @stop
 
 @section('content')
@@ -26,7 +24,7 @@
 
         <div class="col-lg-8">
           <div class="heading-block bottommargin-sm">
-            <h3>Selamat Datang Di Puskopdit BKCU Kalimantan</h3>
+            <h3>Apa Itu Puskopdit BKCU Kalimantan?</h3>
           </div>
 
           <p class="nobottommargin"><strong>Puskopdit BKCU Kalimantan</strong> merupakan lembaga yang tercipta dari kumpulan beberapa <strong>Credit Union (CU)</strong> di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar. Kami percaya bahwa seseorang hanya bisa mencapai kesejahteraan apabila ia mampu menolong dirinya sendiri. Oleh karena itu kami menawarkan solusi-solusi yang cerdas serta terpercaya kepada CU dalam berkarya melalui pelayanan keuangan, diklat, pemberdayaan, pengorganisasian serta teknologi informasi.</p>
@@ -204,7 +202,9 @@
             </div>
             <ul class="entry-meta clearfix">
               <li><i class="icon-map-marker"></i> {{ $item->provinces ? $item->provinces->name : "-"}}</li>
+              @if($item->has_tp_count > 0)
               <li><i class="icon-home2"></i> {{ $item->has_tp_count }} TP/KP</li>
+              @endif
             </ul>
           </div>
         </div>
@@ -228,20 +228,7 @@
 @stop
 
 @section('js')
-<!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
-<script src="{{ URL::asset('js/public/rs-plugin/jquery.themepunch.tools.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/jquery.themepunch.revolution.min.js') }}"></script>
-
-<!-- SLIDER REVOLUTION EXTENSIONS  -->
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.actions.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.carousel.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.kenburn.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.migration.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.navigation.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.parallax.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.slideanims.min.js') }}"></script>
-<script src="{{ URL::asset('js/public/rs-plugin/extensions/revolution.extension.video.min.js') }}"></script>
+<script src="{{ URL::asset('js/public/indexlibs.js') }}"></script>
 
 <!-- ADD-ONS JS FILES -->
 <script>

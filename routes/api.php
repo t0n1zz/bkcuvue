@@ -104,6 +104,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/cu/getHeader', 'CuController@getHeader');   
     Route::group(['middleware' => ['permission:index_cu']], function () {
         Route::get('/cu', 'CuController@index');
+        Route::get('/cu/deleted', 'CuController@indexDeleted');
         Route::get('/cu/get', 'CuController@get');  
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
         Route::get('/cu/count', 'CuController@count');
@@ -115,6 +116,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:update_cu']], function () {
         Route::get('/cu/edit/{id}', 'CuController@edit');
         Route::post('/cu/update/{id}', 'CuController@update');
+        Route::post('/cu/restore/{id}', 'CuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_cu']], function () {
         Route::delete('/cu/{id}', 'CuController@destroy');
@@ -307,6 +309,35 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/laporanTpDraft/destroy/{id}', 'LaporanTpDraftController@destroy');
         Route::delete('/laporanTpDraft/destroyAll', 'LaporanTpDraftController@destroyAll');
         Route::get('/laporanTpDraft/count', 'LaporanTpDraftController@count');
+    });
+
+    //saran
+    Route::group(['middleware' => ['permission:index_saran']], function () {
+        Route::get('/saran', 'SaranController@index');
+        Route::get('/saran/count', 'SaranController@count');
+    });
+    Route::get('/saran/create', 'SaranController@create');
+    Route::post('/saran/store', 'SaranController@store');
+    Route::group(['middleware' => ['permission:destroy_saran']], function () {
+        Route::delete('/saran/{id}', 'SaranController@destroy');
+    });
+
+    //pengumuman
+    Route::group(['middleware' => ['permission:index_pengumuman']], function () {
+        Route::get('/pengumuman', 'PengumumanController@index');
+        Route::get('/pengumuman/indexCu/{id}', 'PengumumanController@indexCu');
+        Route::get('/pengumuman/count', 'PengumumanController@count');
+    });
+    Route::group(['middleware' => ['permission:create_pengumuman']], function () {
+        Route::get('/pengumuman/create', 'PengumumanController@create');
+        Route::post('/pengumuman/store', 'PengumumanController@store');
+    });
+    Route::group(['middleware' => ['permission:update_pengumuman']], function () {
+        Route::get('/pengumuman/edit/{id}', 'PengumumanController@edit');
+        Route::post('/pengumuman/update/{id}', 'PengumumanController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_pengumuman']], function () {
+        Route::delete('/pengumuman/{id}', 'PengumumanController@destroy');
     });
 
     // puskopdit

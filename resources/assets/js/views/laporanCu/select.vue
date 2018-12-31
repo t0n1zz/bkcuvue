@@ -13,18 +13,18 @@
 							</span>
 
 							<!-- select -->
-							<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCUStat === 'loading'">
+							<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCuStat === 'loading'">
 								<option disabled value="">Silahkan pilih data</option>
 								<slot></slot>
 								<option value="semua">Semua CU</option>
 								<option disabled value="">----------------</option>
-								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
+								<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>
 
 							<!-- reload -->
 							<div class="input-group-append">
-								<button class="btn btn-light" @click="fetchCU" :disabled="modelCUStat === 'loading'">
-									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
+								<button class="btn btn-light" @click="fetchCU" :disabled="modelCuStat === 'loading'">
+									<i class="icon-sync" :class="{'spinner' : modelCuStat === 'loading'}"></i>
 								</button>
 							</div>
 						</div>
@@ -71,7 +71,7 @@
 							<!-- reload -->
 							<div class="input-group-append">
 								<button class="btn btn-light" @click="fetchPeriode" :disabled="modelPeriodeStat === 'loading'">
-									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
+									<i class="icon-sync" :class="{'spinner' : modelCuStat === 'loading'}"></i>
 								</button>
 							</div>
 						</div>
@@ -141,7 +141,7 @@
 				// check current page meta
 				this.checkProfileIdCU(); 
 			},
-			modelCUStat(value){
+			modelCuStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'cuPeriode'){			
 						this.idCu = this.$route.params.cu;
@@ -205,7 +205,17 @@
 				}
 			},
 			fetchCU(){
-				this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+				if(this.modelCu.length == 0){
+					this.$store.dispatch('cu/getHeader', this.currentUser.id_pus);
+				}else{
+					if(this.$route.meta.mode == 'cu' || this.$route.meta.mode == 'cuPeriode'){			
+						this.idCu = this.$route.params.cu;
+						this.changeCu(this.idCu);
+					}else{
+						this.idCu = 'semua';
+						this.changeCu(this.idCu);
+					}
+				}
 			},
 			fetchPeriode(){
 				this.$store.dispatch('laporanCu/getPeriode');
@@ -269,8 +279,8 @@
 				modelPeriodeTpStat: 'periodeStat',
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),
