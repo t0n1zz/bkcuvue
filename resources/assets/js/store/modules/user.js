@@ -354,7 +354,6 @@ export const user = {
         });
     },
 
-
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -404,6 +403,9 @@ export const user = {
     },
     setOptions( state, options ){
       state.options = options;
+    },
+    setHakAkses( state, [key, value]){
+      state.data[key] = value;
     }
   }
 

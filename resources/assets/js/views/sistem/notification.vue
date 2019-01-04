@@ -135,7 +135,7 @@
 				}else{
 					this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
 				}
-				this.$store.dispatch('user/markNotifRead',notif.id);
+				this.$store.dispatch(this.kelas + '/markRead',notif.id);
 			},
 			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;

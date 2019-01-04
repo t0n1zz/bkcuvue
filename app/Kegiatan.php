@@ -69,6 +69,10 @@ class Kegiatan extends Model {
         return $this->belongsToMany('App\Sasaran','kegiatan_sasaran')->withTimestamps();
     }
 
+    public function peserta(){
+        return $this->belongsToMany('App\Peserta','kegiatan_peserta')->withTimestamps();
+    }
+
     public function prasyarat(){
         return $this->hasMany('App\KegiatanPrasyarat','id_prasyarat','id');
     }

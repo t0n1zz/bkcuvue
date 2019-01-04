@@ -117,7 +117,8 @@
 			<!-- hak akses -->
 			<template slot="modal-body1">
 				<!-- hak-akses -->
-				<hak-akses :form="modalForm" :tipeUser="tipeUser"></hak-akses>
+				<hak-akses-form :form="modalHakAksesForm" :tipeUser="tipeUser" :data-stat="hakAksesStat"
+        @hakForm="hakForm"></hak-akses-form>
 				<!-- divider -->
 				<hr>
 			</template>
@@ -141,13 +142,13 @@ import { mapGetters } from 'vuex';
 import moment from 'moment';
 import DataViewer from '../../components/dataviewer2.vue';
 import appModal from '../../components/modal';
-import hakAkses from "../../components/hakAkses.vue";
+import hakAksesForm from "../../components/hakAkses.vue";
   
 export default {
   components: {
     DataViewer,
     appModal,
-    hakAkses
+    hakAksesForm
   },
   props:['title','kelas'],
   data(){
@@ -244,6 +245,7 @@ export default {
         }
       ],
       tipeUser: '',
+      modalHakAksesForm: [],
       modalShow: false,
       modalState: '',
       modalColor: '',
@@ -270,11 +272,24 @@ export default {
       if(value == "success"){
         this.modalTitle = this.updateMessage.message;
         this.modalContent = '';
-        this.fetch();
+        this.fetch(this.query);
       }else if(value == "fail"){
         this.modalContent = this.updateMessage;
       }else{
         this.modalContent = '';
+      }
+    },
+    hakAksesStat(value){
+      if(value == "success"){
+        let newData = [];
+
+        if(this.hakAkses.length > 0){
+          this.hakAkses.forEach(e => {
+            newData.push(e.name);
+          })
+        }
+
+        this.modalHakAksesForm = newData;
       }
     }
   },
@@ -298,6 +313,9 @@ export default {
     },
     ubahData(id) {
       this.$router.push('/' + this.kelas + '/edit/' + id);
+    },
+    hakForm(value){
+      this.modalHakAksesForm = value;
     },
     modalConfirmOpen(source, isMobile, itemMobile) {
       this.modalShow = true;
@@ -344,7 +362,7 @@ export default {
       this.$store.dispatch(this.kelas + '/editHakAkses', this.selectedItem.id);
     },
     modalHakAksesSave(){
-      this.$store.dispatch(this.kelas + '/updateHakAkses', [this.selectedItem.id, this.modalForm]);
+      this.$store.dispatch(this.kelas + '/updateHakAkses', [this.selectedItem.id, this.modalHakAksesForm]);
     },
     modalTutup() {
       this.modalShow = false;
@@ -380,17 +398,6 @@ export default {
     ...mapGetters('global',{
       idCu: 'idCu'
     }),
-    modalForm(){
-      let newData = {};
-
-      if(this.hakAkses.length > 0){
-        this.hakAkses.forEach(e => {
-          newData[e.name] = true
-        })
-      }
-
-			return newData;
-    }
   }
 }
 </script>

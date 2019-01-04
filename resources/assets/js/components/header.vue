@@ -18,9 +18,10 @@
 			<div class="collapse navbar-collapse" id="navbar-mobile">
 				<span class="navbar-text ml-md-3 mr-md-auto">
 					<span class="badge bg-info-400">
-						<span>3.0.1</span>
+						<router-link :to="{ name:'changelog' }">
+							<span>3.0.2</span>
+						</router-link>
 					</span>
-					
 				</span>
 
 				<span class="navbar-text ml-md-auto mr-md-1">
@@ -721,6 +722,7 @@
 
 				if (state == 'logout') {		
 					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
 					this.modalTitle = 'Logout dari aplikasi SIMO?';
 					this.modalButton = 'Iya, Logout';
 				}else if(state == 'saran') {
@@ -766,7 +768,7 @@
 				}else{
 					this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
 				}
-				this.$store.dispatch('user/markNotifRead',notif.id);
+				this.$store.dispatch('notification/markRead',notif.id);
 			},
 			fetchLaporanCuDraft(){
 				if(this.currentUser.can['upload_laporan_cu']){
@@ -812,7 +814,7 @@
 				this.$store.dispatch('notification/get');
 			},
 			markAllNotifRead(){
-				this.$store.dispatch('notification/markAllNotifRead');
+				this.$store.dispatch('notification/markAllRead');
 			},
 			logout() {
 				this.modalState = 'loading';

@@ -19,19 +19,6 @@
 								
 								<div class="row">
 
-									<!-- foto -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Foto:</h5>
-
-											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/user/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
-										</div>
-									</div>
-
-
 									<!-- name -->
 									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -190,7 +177,7 @@
 										<!-- title -->
 										<h5>Hak Akses:</h5>
 
-										<hak-akses :tipeUser="roleTipe" :form="form"></hak-akses>
+										<hak-akses :tipeUser="roleTipe" @hakForm="hakForm"></hak-akses>
 									</div>
 								</div>
 
@@ -225,7 +212,6 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
-	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import hakAkses from "../../components/hakAkses.vue";
@@ -304,7 +290,9 @@
 			roleTipe(value){
 				if(value == 'cu'){
 					if(this.modelCuStat != "success"){
-						this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+						if(this.modelCuStat != 'success'){
+							this.$store.dispatch('cu/getHeader');
+						}
 					}
 				}else{
 					this.form.id_cu = '0';
@@ -312,6 +300,9 @@
 			}
     },
 		methods: {
+			hakForm(value){
+				this.form.permission = value;
+			},
 			fetch(){
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
@@ -332,13 +323,12 @@
 					}
 				}
 
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', formData);
+							this.$store.dispatch(this.kelas + '/store', this.form);
 						}
 						this.submited = false;
 					}else{
@@ -397,8 +387,8 @@
 				updateStat: 'updateStat'
 			}),
 			...mapGetters('cu',{
-				modelCu: 'dataS',
-				modelCuStat: 'dataStatS',
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			})
 		}
 	}

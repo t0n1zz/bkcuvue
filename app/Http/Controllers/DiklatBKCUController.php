@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Kegiatan;
-use App\KegiatanSasaran;
+use App\KegiatanPeserta;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
@@ -13,7 +13,7 @@ class DiklatBKCUController extends Controller{
 
 	protected $width = 200;
 	protected $height = 200;
-	protected $message = "Diklat BKCU";
+	protected $message = "Diklat";
 
 	public function index()
 	{
@@ -56,7 +56,7 @@ class DiklatBKCUController extends Controller{
 	}
 
 	public function store(Request $request)
-	{
+	{	
 		$this->validate($request,Kegiatan::$rules);
 
 		$name = $request->name;
@@ -71,6 +71,20 @@ class DiklatBKCUController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	public function storePeserta(Request $request, $id)
+	{
+		$peserta = array_flatten($request->peserta);
+		
+		KegiatanPeserta::insert();
+ 
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Peserta' . $this->message. ' berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}

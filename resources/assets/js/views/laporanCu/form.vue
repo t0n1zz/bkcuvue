@@ -961,7 +961,9 @@
 		methods: {
 			checkProfileIdCU(){
 				if(this.currentUser.id_cu == 0){
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 				}else{
 					this.form.id_cu = this.currentUser.id_cu;
 					this.$store.dispatch('tp/getCu',this.currentUser.id_cu);
@@ -1112,16 +1114,13 @@
 				listLaporanTpDataStat: 'dataStat2S',
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 			}),
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
 			}),
-			modelPus() {
-				return this.$store.getters.getPusS;
-			}
 		}
 	}
 </script>

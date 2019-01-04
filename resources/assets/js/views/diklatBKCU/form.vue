@@ -426,7 +426,7 @@
 						<!-- keterangan -->
 						<div class="card">
 							<div class="card-header bg-white">
-								<h5 class="card-title">3. Informasi Tambah</h5>
+								<h5 class="card-title">3. Informasi</h5>
 							</div>
 							<div class="card-body">	
 								<div class="row">
@@ -456,6 +456,52 @@
 									
 								</div>
 							</div>
+						</div>
+
+						<!-- panitia & fasilitator -->
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">4. Panitia & Fasilitator</h5>
+							</div>
+							<div class="card-body pb-2">
+								<div class="row">
+
+									<div class="col-md-12">
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPanitia')">
+											<i class="icon-plus22"></i> Tambah
+										</button>
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPanitia')"
+										:disabled="!selectedItem.id">
+											<i class="icon-pencil5"></i> Ubah
+										</button>
+
+										<button class="btn btn-light mb-1" @click="modalOpen('hapusPanitia')" :disabled="!selectedItem.id">
+											<i class="icon-bin2"></i> Hapus
+										</button>
+
+									</div>
+
+								</div>		
+							</div>
+
+							<data-table :items="itemData" :columnData="columnDataPanitia" :itemDataStat="itemDataStat">
+								<template slot="item-desktop" slot-scope="props">
+									<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+										<td>{{ props.index + 1 }}</td>
+										<td>{{ props.item.name }}</td>
+										<td>
+											<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
+											<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
+											<span v-else>Puskopdit BKCU Kalimantan</span>
+										</td>
+										<td>{{ props.item.peran }}</td>
+										<td>{{ props.item.keterangan }}</td>
+									</tr>
+								</template>	
+							</data-table>
+
 						</div>
 
 						<!-- form info -->
@@ -491,7 +537,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
-	// import vSelect from 'vue-select';
+	import dataTable from '../../components/datatable.vue';
 
 	export default {
 		components: {
@@ -501,7 +547,7 @@
 			formButton,
 			formInfo,
 			Cleave,
-			// vSelect
+			dataTable,
 		},
 		data() {
 			return {
@@ -544,6 +590,16 @@
             delimiter: '.'
           }
 				},
+				columnDataPanitia:[
+					{ title: 'No.' },
+					{ title: 'Nama' },
+					{ title: 'Cu' },
+					{ title: 'Peran' },
+					{ title: 'keterangan' }
+				],
+				selectedItem: '',
+				itemData: [],
+				itemDataStat: '',
 				cancelState: 'methods',
 				modalShow: false,
 				modalState: '',
@@ -635,7 +691,10 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas});
+				this.$router.push({name: this.kelas, params:{periode: momentYear()}});
+			},
+			selectedRow(item){
+				this.selectedItem = item;
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){

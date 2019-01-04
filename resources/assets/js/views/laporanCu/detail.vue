@@ -137,7 +137,11 @@
 				}
 			},
 			back(){
-				// TODO back route
+				if(this.itemData.id_cu != 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.id_cu, tp: 'konsolidasi'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.id_cu, tp: this.itemData.id_tp}});
+				}
 			} 
 		},
 		computed: {

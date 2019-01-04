@@ -122,7 +122,7 @@
 													<td>{{ props.item.name }} 
 														<span class="badge bg-blue-400 align-self-center ml-auto" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
 													</td>
-													<td>{{ props.item.tingkat }}</td>
+													<td v-html="$options.filters.checkTingkatAktivis(props.item.tingkat )"></td>
 													<td>
 														<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
 														<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
@@ -707,23 +707,33 @@
 
 				if(this.tabName == 'riwayatPekerjaan'){
 					this.modalTitle = 'Tambah riwayat pekerjaan';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					this.$store.dispatch(this.kelas + '/createPekerjaan');	
 				}else if(this.tabName == 'riwayatPendidikan'){
 					this.modalTitle = 'Tambah riwayat pendidikan';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					this.$store.dispatch(this.kelas + '/createPendidikan');
 				}else if(this.tabName == 'riwayatOrganisasi'){
 					this.modalTitle = 'Tambah riwayat organisasi';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					this.$store.dispatch(this.kelas + '/createOrganisasi');
 				}else if(this.tabName == 'keluarga'){
 					this.modalTitle = 'Tambah data keluarga';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					this.$store.dispatch(this.kelas + '/createKeluarga');
 				}else if(this.tabName == 'anggotaCu'){
 					this.modalTitle = 'Tambah data anggota CU';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					this.$store.dispatch(this.kelas + '/createAnggotaCu');
 				}
 			},
@@ -735,7 +745,9 @@
 
 				if(this.tabName == 'riwayatPekerjaan'){
 					this.modalTitle = 'Ubah riwayat pekerjaan';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					if(data){
 						this.formRiwayat.pekerjaan = data;
 					}else{
@@ -743,7 +755,9 @@
 					}
 				}else if(this.tabName == 'riwayatPendidikan'){
 					this.modalTitle = 'Ubah riwayat pendidikan';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					if(data){
 						this.formRiwayat.pendidikan = data;
 					}else{
@@ -751,7 +765,9 @@
 					}
 				}else if(this.tabName == 'riwayatOrganisasi'){
 					this.modalTitle = 'Ubah riwayat organisasi';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					if(data){
 						this.formRiwayat.organisasi = data;
 					}else{
@@ -760,7 +776,9 @@
 					this.formRiwayat.organisasi.aktif = 'Ya';
 				}else if(this.tabName == 'keluarga'){
 					this.modalTitle = 'Ubah data keluarga';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					if(data){
 						this.formRiwayat.keluarga = data;
 					}else{
@@ -768,7 +786,9 @@
 					}
 				}else if(this.tabName == 'anggotaCu'){
 					this.modalTitle = 'Ubah data anggota CU';
-					this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
 					if(data){
 						this.formRiwayat.anggota_cu = data;
 					}else{
@@ -875,8 +895,8 @@
 				updateStat: 'updateStat'
 			}),
 			...mapGetters('cu',{
-				modelCu: 'dataS',
-				modelCuStat: 'dataStatS',
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 			...mapGetters('tp',{
 				modelTp: 'dataS',

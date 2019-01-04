@@ -1,15 +1,38 @@
 <template>
 <div>
 	<div class="row">
+
+		<div class="col-lg-12">
+				<div class="form-group">
+					
+					<!-- title -->
+					<h5>Peran:</h5>
+
+					<!-- select -->
+					<select name="peran" data-width="100%" class="form-control" @change="changePeran($event.target.value)" v-model="selectPeran">
+						<option disabled value="" selected>Silahkan pilih peran user</option>
+						<option value="penuh">Akses Penuh</option>
+						<option value="monitoring">Monitoring</option>
+						<option value="laporan">Laporan</option>
+						<option value="organisasi">Organisasi</option>
+						<option value="kegiatan">Kegiatan</option>
+						<option value="publikasi">Publikasi</option>
+						<option value="kosong">kosong</option>
+						<option value="custom">Custom</option>
+					</select>
+
+				</div>
+		</div>
+
 		<!-- hak akses -->
-		<div class="col-md-12 col-lg-6" v-for="akses in hakAkses">
+		<div class="col-lg-12" v-for="akses in hakAkses" v-if="tipeUser === akses.tipe || akses.tipe ==='all'">
 			
 			<div class="card">
 				<div class="card-header bg-white header-elements-inline">
 					<h6 class="card-title">
 						<i :class="akses.icon" class="mr-1"></i> {{ akses.name }}
 					</h6>
-					<!-- <div class="header-elements">
+					<div class="header-elements">
 						<div class="list-icons">
 							<a href="#" class="list-icons-item" @click.prevent="checkGroup(akses.name)">
 								<i class="icon-checkbox-checked2"></i>
@@ -18,7 +41,7 @@
 								<i class="icon-checkbox-unchecked2"></i>
 							</a>
 						</div>
-					</div> -->
+					</div>
 				</div>
 
 				<div class="card-body">
@@ -26,15 +49,14 @@
 						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='all'">
 							<div class="form-check">
 								<label style="cursor:pointer;">
-									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="form[permission.key]" v-if="permission.type != 'empty'">
+									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
 									<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 								</label>
 							</div>
 						</div>
 					</div>
-					
-
 				</div>
+
 			</div>
 
 		</div>
@@ -43,14 +65,13 @@
 </template>
 
 <script>
+	import _ from 'lodash';
 	export default {
-		props: {
-			tipeUser: '',
-			form: {},
-		},
+		props: ['tipeUser','form','dataStat'],
 		data() {
 			return {
-				hakAksesModel: {},
+				isCheckAll: false,
+				hakForm: [],
 				hakAkses: [
 					{
 						name: 'Artikel',
@@ -118,6 +139,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Kategori Artikel'
 							},
 							{
 								name: 'Tambah',
@@ -125,6 +147,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Kategori Artikel'
 							},
 							{
 								name: 'Ubah',
@@ -132,6 +155,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Kategori Artikel'
 							},
 							{
 								name: 'Hapus',
@@ -139,6 +163,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Kategori Artikel'
 							}
 						]
 					},
@@ -153,6 +178,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Penulis Artikel'
 							},
 							{
 								name: 'Tambah',
@@ -160,6 +186,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Penulis Artikel'
 							},
 							{
 								name: 'Ubah',
@@ -167,6 +194,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Penulis Artikel'
 							},
 							{
 								name: 'Hapus',
@@ -174,6 +202,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Penulis Artikel'
 							}
 						]
 					},
@@ -188,6 +217,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Pengumuman'
 							},
 							{
 								name: 'Tambah',
@@ -195,6 +225,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Pengumuman'
 							},
 							{
 								name: 'Ubah',
@@ -202,6 +233,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Pengumuman'
 							},
 							{
 								name: 'Hapus',
@@ -209,6 +241,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Pengumuman'
 							}
 						]
 					},
@@ -223,6 +256,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Diklat BKCU'
 							},
 							{
 								name: 'Tambah',
@@ -230,6 +264,7 @@
 								icon: 'icon-plus3',
 								tipe: 'bkcu',
 								value: false,
+								group: 'Diklat BKCU'
 							},
 							{
 								name: 'Ubah',
@@ -237,6 +272,7 @@
 								icon: 'icon-pencil',
 								tipe: 'bkcu',
 								value: false,
+								group: 'Diklat BKCU'
 							},
 							{
 								name: 'Hapus',
@@ -244,6 +280,7 @@
 								icon: 'icon-bin2',
 								tipe: 'bkcu',
 								value: false,
+								group: 'Diklat BKCU'
 							}
 						]
 					},
@@ -258,6 +295,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Tempat'
 							},
 							{
 								name: 'Tambah',
@@ -265,6 +303,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Tempat'
 							},
 							{
 								name: 'Ubah',
@@ -272,6 +311,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Tempat'
 							},
 							{
 								name: 'Hapus',
@@ -279,6 +319,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Tempat'
 							}
 						]
 					},
@@ -293,6 +334,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'CU'
 							},
 							{
 								name: 'Tambah',
@@ -300,6 +342,7 @@
 								icon: 'icon-plus3',
 								tipe: 'bkcu',
 								value: false,
+								group: 'CU'
 							},
 							{
 								name: 'Ubah',
@@ -307,6 +350,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'CU'
 							},
 							{
 								name: 'Hapus',
@@ -314,6 +358,7 @@
 								icon: 'icon-bin2',
 								tipe: 'bkcu',
 								value: false,
+								group: 'CU'
 							}
 						]
 					},
@@ -328,6 +373,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'TP/KP'
 							},
 							{
 								name: 'Tambah',
@@ -335,6 +381,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'TP/KP'
 							},
 							{
 								name: 'Ubah',
@@ -342,6 +389,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'TP/KP'
 							},
 							{
 								name: 'Hapus',
@@ -349,6 +397,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'TP/KP'
 							}
 						]
 					},
@@ -363,6 +412,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Produk dan Pelayanan'
 							},
 							{
 								name: 'Tambah',
@@ -370,6 +420,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Produk dan Pelayanan'
 							},
 							{
 								name: 'Ubah',
@@ -377,6 +428,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Produk dan Pelayanan'
 							},
 							{
 								name: 'Hapus',
@@ -384,6 +436,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Produk dan Pelayanan'
 							}
 						]
 					},
@@ -398,6 +451,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Aktivis CU'
 							},
 							{
 								name: 'Tambah',
@@ -405,6 +459,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Aktivis CU'
 							},
 							{
 								name: 'Ubah',
@@ -412,6 +467,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Aktivis CU'
 							},
 							{
 								name: 'Hapus',
@@ -419,6 +475,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Aktivis CU'
 							}
 						]
 					},
@@ -433,6 +490,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan CU'
 							},
 							{
 								name: 'Tambah',
@@ -440,6 +498,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan CU'
 							},
 							{
 								name: 'Ubah',
@@ -447,6 +506,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan CU'
 							},
 							{
 								name: 'Hapus',
@@ -454,6 +514,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan CU'
 							},
 							{
 								name: 'Diskusi',
@@ -461,6 +522,7 @@
 								icon: 'icon-bubble7',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan CU'
 							},
 							{
 								name: 'Upload',
@@ -468,6 +530,7 @@
 								icon: 'icon-file-upload',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan CU'
 							}
 						]
 					},
@@ -482,6 +545,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan TP/KP'
 							},
 							{
 								name: 'Tambah',
@@ -489,6 +553,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan TP/KP'
 							},
 							{
 								name: 'Ubah',
@@ -496,6 +561,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan TP/KP'
 							},
 							{
 								name: 'Hapus',
@@ -503,6 +569,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan TP/KP'
 							},
 							{
 								name: 'Diskusi',
@@ -510,6 +577,7 @@
 								icon: 'icon-bubble7',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan TP/KP'
 							},
 							{
 								name: 'Upload',
@@ -517,6 +585,7 @@
 								icon: 'icon-file-upload',
 								tipe: 'all',
 								value: false,
+								group: 'Laporan TP/KP'
 							}
 						]
 					},
@@ -531,6 +600,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							},
 							{
 								name: 'Tambah',
@@ -538,6 +608,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							},
 							{
 								name: 'Ubah',
@@ -545,6 +616,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							},
 							{
 								name: 'Hapus',
@@ -552,6 +624,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							},
 							{
 								name: 'Reset Password',
@@ -559,6 +632,7 @@
 								icon: 'icon-history',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							},
 							{
 								name: 'Status',
@@ -566,6 +640,7 @@
 								icon: 'icon-pushpin',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							},
 							{
 								name: 'Hak Akses',
@@ -573,6 +648,7 @@
 								icon: 'icon-key',
 								tipe: 'all',
 								value: false,
+								group: 'User'
 							}
 						]
 					},
@@ -587,6 +663,7 @@
 								icon: 'icon-eye',
 								tipe: 'bkcu',
 								value: false,
+								group: 'Saran'
 							},
 							{
 								name: 'Hapus',
@@ -594,51 +671,392 @@
 								icon: 'icon-bin2',
 								tipe: 'bkcu',
 								value: false,
+								group: 'Saran'
 							},
 						]
 					},
-				]
+				],
+				selectPeran: '',
+				peran: {
+					penuhBKCU: [
+						'index_artikel',
+						'create_artikel',
+						'update_artikel',
+						'destroy_artikel',
+						'terbitkan_artikel',
+						'utamakan_artikel',
+
+						'index_user',
+						'create_user',
+						'update_user',
+						'destroy_user',
+						'reset_password',
+						'status_user',
+						'hak_akses_user',
+
+						'index_artikel_penulis',
+						'create_artikel_penulis',
+						'update_artikel_penulis',
+						'destroy_artikel_penulis',
+
+						'index_artikel_kategori',
+						'create_artikel_kategori',
+						'update_artikel_kategori',
+						'destroy_artikel_kategori',
+
+						'index_pengumuman',
+						'create_pengumuman',
+						'update_pengumuman',
+						'destroy_pengumuman',
+
+						'index_saran',
+						'destroy_saran',
+
+						'index_cu',
+						'create_cu',
+						'update_cu',
+						'destroy_cu',
+
+						'index_tp',
+						'create_tp',
+						'update_tp',
+						'destroy_tp',
+
+						'index_aktivis',
+						'create_aktivis',
+						'update_aktivis',
+						'destroy_aktivis',
+
+						'index_produk_cu',
+						'create_produk_cu',
+						'update_produk_cu',
+						'destroy_produk_cu',
+
+						'index_diklat_bkcu',
+						'create_diklat_bkcu',
+						'update_diklat_bkcu',
+						'destroy_diklat_bkcu',
+
+						'index_tempat',
+						'create_tempat',
+						'update_tempat',
+						'destroy_tempat',
+
+						'index_laporan_cu',
+						'create_laporan_cu',
+						'update_laporan_cu',
+						'destroy_laporan_cu',
+						'upload_laporan_cu',
+						'diskusi_laporan_cu',
+
+						'index_laporan_tp',
+						'create_laporan_tp',
+						'update_laporan_tp',
+						'destroy_laporan_tp',
+						'upload_laporan_tp',
+						'diskusi_laporan_tp',
+					],
+					penuhCU: [
+						'index_artikel',
+						'create_artikel',
+						'update_artikel',
+						'destroy_artikel',
+						'terbitkan_artikel',
+						'utamakan_artikel',
+
+						'index_user',
+						'create_user',
+						'update_user',
+						'destroy_user',
+						'reset_password',
+						'status_user',
+						'hak_akses_user',
+
+						'index_artikel_penulis',
+						'create_artikel_penulis',
+						'update_artikel_penulis',
+						'destroy_artikel_penulis',
+
+						'index_artikel_kategori',
+						'create_artikel_kategori',
+						'update_artikel_kategori',
+						'destroy_artikel_kategori',
+
+						'index_pengumuman',
+						'create_pengumuman',
+						'update_pengumuman',
+						'destroy_pengumuman',
+
+						'index_cu',
+						'update_cu',
+
+						'index_tp',
+						'create_tp',
+						'update_tp',
+						'destroy_tp',
+
+						'index_aktivis',
+						'create_aktivis',
+						'update_aktivis',
+						'destroy_aktivis',
+
+						'index_produk_cu',
+						'create_produk_cu',
+						'update_produk_cu',
+						'destroy_produk_cu',
+
+						'index_diklat_bkcu',
+
+						'index_tempat',
+						'create_tempat',
+						'update_tempat',
+						'destroy_tempat',
+
+						'index_laporan_cu',
+						'create_laporan_cu',
+						'update_laporan_cu',
+						'destroy_laporan_cu',
+						'upload_laporan_cu',
+						'diskusi_laporan_cu',
+
+						'index_laporan_tp',
+						'create_laporan_tp',
+						'update_laporan_tp',
+						'destroy_laporan_tp',
+						'upload_laporan_tp',
+						'diskusi_laporan_tp',
+					],
+					monitoring: [
+						'index_artikel',
+						'index_user',
+						'index_artikel_penulis',
+						'index_artikel_kategori',
+						'index_pengumuman',
+						'index_cu',
+						'index_tp',
+						'index_aktivis',
+						'index_produk_cu',
+						'index_diklat_bkcu',
+						'index_tempat',
+						'index_laporan_cu',
+						'diskusi_laporan_cu',
+						'index_laporan_tp',
+						'diskusi_laporan_tp',
+					],
+					laporan: [
+						'index_laporan_cu',
+						'create_laporan_cu',
+						'update_laporan_cu',
+						'destroy_laporan_cu',
+						'upload_laporan_cu',
+						'diskusi_laporan_cu',
+
+						'index_laporan_tp',
+						'create_laporan_tp',
+						'update_laporan_tp',
+						'destroy_laporan_tp',
+						'upload_laporan_tp',
+						'diskusi_laporan_tp',
+					],
+					organisasiBKCU: [
+						'index_cu',
+						'create_cu',
+						'update_cu',
+						'destroy_cu',
+
+						'index_tp',
+						'create_tp',
+						'update_tp',
+						'destroy_tp',
+
+						'index_aktivis',
+						'create_aktivis',
+						'update_aktivis',
+						'destroy_aktivis',
+
+						'index_produk_cu',
+						'create_produk_cu',
+						'update_produk_cu',
+						'destroy_produk_cu',
+					],
+					organisasiCU: [
+						'index_cu',
+						'update_cu',
+
+						'index_tp',
+						'create_tp',
+						'update_tp',
+						'destroy_tp',
+
+						'index_aktivis',
+						'create_aktivis',
+						'update_aktivis',
+						'destroy_aktivis',
+
+						'index_produk_cu',
+						'create_produk_cu',
+						'update_produk_cu',
+						'destroy_produk_cu',
+					],
+					kegiatanBKCU: [
+						'index_diklat_bkcu',
+						'create_diklat_bkcu',
+						'update_diklat_bkcu',
+						'destroy_diklat_bkcu',
+
+						'index_tempat',
+						'create_tempat',
+						'update_tempat',
+						'destroy_tempat',
+					],
+					kegiatanCU:[
+						'index_diklat_bkcu',
+					],
+					publikasi: [
+						'index_artikel',
+						'create_artikel',
+						'update_artikel',
+						'destroy_artikel',
+						'terbitkan_artikel',
+						'utamakan_artikel',
+
+						'index_artikel_penulis',
+						'create_artikel_penulis',
+						'update_artikel_penulis',
+						'destroy_artikel_penulis',
+
+						'index_artikel_kategori',
+						'create_artikel_kategori',
+						'update_artikel_kategori',
+						'destroy_artikel_kategori',
+
+						'index_pengumuman',
+						'create_pengumuman',
+						'update_pengumuman',
+						'destroy_pengumuman',
+					]
+				}
 			}
 		},
-		created() {
-
-		},
-		watch: {
-			permissionData(value) {
-				this.hakAksesModel = value;
+		watch:{
+			dataStat(value){
+				if(value == 'success'){
+					this.hakForm = this.form;
+					this.checkPeran(this.hakForm);
+				}
 			}
 		},
 		methods: {
+			emitData(value){
+				this.$emit('hakForm',value);
+				this.checkPeran(value);
+			},
+			checkChange(){
+				this.emitData(this.hakForm);
+			},
+			changePeran(value){
+				if(this.tipeUser == 'cu'){
+					if(value == 'penuh'){
+						this.hakForm = this.peran.penuhCU;
+					}else if(value == 'organisasi'){
+						this.hakForm = this.peran.organisasiCU;
+					}else if(value == 'kegiatan'){
+						this.hakForm = this.peran.kegiatanCU;
+					}
+				}else if(this.tipeUser == 'bkcu'){
+					if(value == 'penuh'){
+						this.hakForm = this.peran.penuhBKCU;
+					}else if(value == 'organisasi'){
+						this.hakForm = this.peran.organisasiBKCU;
+					}else if(value == 'kegiatan'){
+						this.hakForm = this.peran.kegiatanBKCU;
+					}
+				}
+
+				if(value == 'monitoring'){
+					this.hakForm = this.peran.monitoring;
+				}else if(value == 'laporan'){
+					this.hakForm = this.peran.laporan;
+				}else if(value == 'publikasi'){
+					this.hakForm = this.peran.publikasi;
+				}else if(value == 'kosong'){
+					this.hakForm = [];
+				}
+
+				this.emitData(this.hakForm);
+			},
+			checkPeran(value){
+				if(this.tipeUser == 'cu'){
+					if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.penuhCU))){
+						this.selectPeran = 'penuh';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.organisasiCU))){
+						this.selectPeran = 'organisasi';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.kegiatanCU))){
+						this.selectPeran = 'kegiatan';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.monitoring))){
+						this.selectPeran = 'monitoring';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.laporan))){
+						this.selectPeran = 'laporan';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.publikasi))){
+						this.selectPeran = 'publikasi';
+					}else  if(this.hakForm.length < 1){
+						this.selectPeran = 'kosong';
+					}else{
+						this.selectPeran = 'custom';
+					}
+				}else if(this.tipeUser == 'bkcu'){
+					if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.penuhBKCU))){
+						this.selectPeran = 'penuh';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.organisasiBKCU))){
+						this.selectPeran = 'organisasi';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.kegiatanBKCU))){
+						this.selectPeran = 'kegiatan';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.monitoring))){
+					this.selectPeran = 'monitoring';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.laporan))){
+						this.selectPeran = 'laporan';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.publikasi))){
+						this.selectPeran = 'publikasi';
+					}else  if(this.hakForm.length < 1){
+						this.selectPeran = 'kosong';
+					}else{
+						this.selectPeran = 'custom';
+					}
+				}
+			},
 			checkGroup(value){
-				console.log(value);
 				for(var key in this.hakAkses){
 					for(var key2 in this.hakAkses[key].permission){
 						if(this.hakAkses[key].permission[key2].group == value){
-							this.hakAkses[key].permission[key2].value = true;
-							this.form[this.hakAkses[key].permission[key2].key] = true;
+							if(!_.includes(this.hakForm,this.hakAkses[key].permission[key2].key)){
+								if(this.hakAkses[key].permission[key2].tipe == 'all'){
+									this.hakForm.push(this.hakAkses[key].permission[key2].key);
+								}else{
+									if(this.hakAkses[key].permission[key2].tipe == this.tipeUser){
+										this.hakForm.push(this.hakAkses[key].permission[key2].key);
+									}
+								}	
+							}
 						}
 					}
 				}
+				this.emitData(this.hakForm);
 			},
 			unCheckGroup(value){
 				for(var key in this.hakAkses){
-					for(var key2 in key.permission){
-						if(key2.group == value){
-							key2.value = false;
+					for(var key2 in this.hakAkses[key].permission){
+						if(this.hakAkses[key].permission[key2].group == value){
+							if(this.hakAkses[key].permission[key2].tipe == 'all'){
+								this.hakForm.splice( this.hakForm.indexOf(this.hakAkses[key].permission[key2].key), 1 );
+							}else{
+								if(this.hakAkses[key].permission[key2].tipe == this.tipeUser){
+									this.hakForm.splice( this.hakForm.indexOf(this.hakAkses[key].permission[key2].key), 1 );
+								}
+							}
 						}
 					}
 				}
-			}
-		},
-		computed: {
-			permissionData() {
-				return this.$store.getters.getRoleData;
-			},
-			permissionDataStat() {
-				return this.$store.getters.getRoleDataLoadStat;
-			},
-			groupedHakAkses(){
-				return _.chunk(this.hakAkses,4);
+				this.emitData(this.hakForm);
 			}
 		}
 	}

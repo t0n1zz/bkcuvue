@@ -78,9 +78,11 @@
 
 			<!-- pengumuman -->
 			<template slot="modal-body1">
-				<form-saran 
-				:id_cu="currentUser.id_cu"
-				@cancelClick="modalTutup"></form-saran>
+				<form-pengumuman 
+				:currentUser="currentUser"
+				:state="state"
+				:id="selectedItem.id"
+				@cancelClick="modalTutup"></form-pengumuman>
 			</template>
 
 		</app-modal>
@@ -93,12 +95,14 @@
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
+	import formPengumuman from './form.vue';
 
 	export default {
 		components: {
 			DataViewer,
 			appModal,
-			checkValue
+			checkValue,
+			formPengumuman
 		},
 		props:['title','kelas'],
 		data() {
@@ -220,7 +224,7 @@
 			},
 			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
-				this.modalState = 'confirm-tutup';
+				
 				this.state = state;
 
 				if(isMobile){
@@ -228,12 +232,18 @@
 				}
 
 				if (state == 'hapus') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 				}else if(state == 'ubah'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah ' + this.title;
 					this.modalButton = 'Ok';
 				}else if(state == 'tambah'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Tambah ' + this.title;
 					this.modalButton = 'Ok';
 				}

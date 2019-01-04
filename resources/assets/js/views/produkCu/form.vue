@@ -258,7 +258,9 @@
 		},
 		created(){
 			if(this.currentUser.id_cu == 0){
-				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+				if(this.modelCuStat != 'success'){
+					this.$store.dispatch('cu/getHeader');
+				}
 			}
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu == undefined){
 				this.form.id_cu = this.currentUser.id_cu;
@@ -369,8 +371,8 @@
 				updateStat: 'updateStat'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 			})
 		}
 	}

@@ -9,8 +9,8 @@
       <!-- Logo
       ============================================= -->
       <div id="logo">
-        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logo3.png') }}"><img src="{{ asset('images/logo3.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
-        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logo.png') }}"><img src="{{ asset('images/logo.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoNew.png') }}"><img src="{{ asset('images/logoNew.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoNew.png') }}"><img src="{{ asset('images/logoNew.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
       </div><!-- #logo end -->
 
       <!-- Primary Navigation

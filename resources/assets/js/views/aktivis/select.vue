@@ -170,8 +170,8 @@
 				this.$router.push({name: this.path, params:{cu: this.idCu, tingkat: this.tingkat} });
 			},
 			fetchCU(){
-				if(this.modelCU.length == 0){
-					this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+				if(this.modelCuStat != 'success'){
+					this.$store.dispatch('cu/getHeader');
 				}else{
 					this.idCu = this.$route.params.cu;
 					this.tingkat = this.$route.params.tingkat;
@@ -188,8 +188,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),

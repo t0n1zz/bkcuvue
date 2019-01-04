@@ -49,7 +49,7 @@
     </script>
     <![endif]-->
 </head>
-<body class="" style="background-image: url({{ asset('images/patterns/natal.jpg') }}); background-attachment: fixed;">
+<body class="" style="background-image: url({{ asset('images/patterns/default.png') }}); background-attachment: fixed;">
 
     <!-- wrapper -->
     <div id="wrapper" class="clearfix">

@@ -293,7 +293,9 @@
 		},
 		created(){
 			if(this.currentUser.id_cu === 0){
-				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
+				if(this.modelCuStat != 'success'){
+					this.$store.dispatch('cu/getHeader');
+				}
 			}
 			this.form.id_cu = this.currentUser.id_cu;
 
@@ -409,16 +411,13 @@
 				updateStat: 'updateStat'
 			}),
 			...mapGetters('cu',{
-				modelCu: 'dataS',
-				modelCuStat: 'dataStatS',
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
-			}),
-			modelPus() {
-				return this.$store.getters.getPusS;
-			}
+			})
 		}
 	}
 </script>

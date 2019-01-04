@@ -156,7 +156,7 @@ const routes = [
 		meta: { requiresAuth: true, mode:'edit' } },
 	
 	// diklat pus
-	{ path: '/diklatBKCU/:periode',
+	{ path: '/diklatBKCU/periode/:periode',
 		name: 'diklatBKCU', 
 		components: { default: diklatBKCU, 'header': header, 'footer': footer  }},
 	{ path: '/diklatBKCU/create',

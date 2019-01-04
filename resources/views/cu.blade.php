@@ -7,7 +7,7 @@
 @section('content')
 
 <!-- pengumuman -->
-@include('_components.pengumumanCU')
+@include('_components.pengumumanBKCU')
 
 <!-- Page Title -->
 <section id="page-title">

@@ -12,7 +12,35 @@
             <!-- Left content -->
             <div class="w-100 order-2 order-md-1">
 
-              <!-- Version 3.0.0 -->
+              <!-- Version 3.0.2 -->
+              <div class="card" id="3_0_2_simo">
+                <div class="card-header header-elements-inline">
+                  <h5 class="card-title">Version 3.0.2 - SIMO</h5>
+                  <div class="header-elements">
+                    <span class="text-muted">4 Januari 2019</span>
+
+                    <div class="list-icons ml-3">
+                      <a class="list-icons-item" data-action="collapse"></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
+                  <br/><br/>
+                  Berikut adalah rincian perubahan pada versi ini:</p>
+
+                  <ul class="list">
+                    <li>Penambahan cara menambah hak akses dan peran untuk hak akses user</li>
+                    <li>Perbaikan bug tambah dan ubah data untuk pengumuman</li>
+                    <li>Perbaikan bug dalam mengambil list CU untuk masing-masing halaman</li>
+                    <li>Perbaikan bug pada detail laporan CU</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /version 3.0.2 -->
+
+              <!-- Version 3.0.1 -->
               <div class="card" id="3_0_1_simo">
                 <div class="card-header header-elements-inline">
                   <h5 class="card-title">Version 3.0.1 - SIMO</h5>
@@ -39,7 +67,7 @@
                   </ul>
                 </div>
               </div>
-              <!-- /version 3.0.0 -->
+              <!-- /version 3.0.1 -->
 
               <!-- Version 3.0.0 -->
               <div class="card" id="3_0_0_simo">
@@ -448,12 +476,21 @@
                       <li class="nav-item nav-item-submenu">
                         <a href="#" class="nav-link">SIMO</a>
                         <ul class="nav nav-group-sub d-block">
+
+                          <li class="nav-item"><a href="#3_0_2_simo" class="nav-link">Version 3.0.2 <span class="text-muted font-weight-normal ml-auto">4.01.2019</span></a></li>
+                         
                           <li class="nav-item"><a href="#3_0_1_simo" class="nav-link">Version 3.0.1 <span class="text-muted font-weight-normal ml-auto">31.12.2018</span></a></li>
+
                           <li class="nav-item"><a href="#3_0_0_simo" class="nav-link">Version 3.0.0 <span class="text-muted font-weight-normal ml-auto">27.12.2018</span></a></li>
+
                           <li class="nav-item"><a href="#2_1_3_simo" class="nav-link">Version 2.1.3 <span class="text-muted font-weight-normal ml-auto">20.04.2017</span></a></li>
+
                           <li class="nav-item"><a href="#2_1_2_simo" class="nav-link">Version 2.1.2 <span class="text-muted font-weight-normal ml-auto">11.03.2017</span></a></li>
+
                           <li class="nav-item"><a href="#2_1_0_simo" class="nav-link">Version 2.1.0 <span class="text-muted font-weight-normal ml-auto">9.12.2016</span></a></li>
+
                           <li class="nav-item"><a href="#2_0_1_simo" class="nav-link">Version 2.0.1 <span class="text-muted font-weight-normal ml-auto">2.01.2016</span></a></li>
+                          
                           <li class="nav-item"><a href="#2_0_simo" class="nav-link">Initial release <span class="text-muted font-weight-normal ml-auto">31.12.2015</span></a></li>
                         </ul>
                       </li>

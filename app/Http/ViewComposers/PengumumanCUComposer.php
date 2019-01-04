@@ -2,6 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Cu;
 use App\Pengumuman;
 use App\ArtikelKategori;
 use Illuminate\View\View;

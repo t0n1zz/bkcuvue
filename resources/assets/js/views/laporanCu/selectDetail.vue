@@ -167,7 +167,9 @@
 				}
 			},
 			fetchCU(){
-				this.$store.dispatch('cu/getPus', this.currentUser.id_pus);
+				if(this.modelCuStat != 'success'){
+					this.$store.dispatch('cu/getHeader');
+				}
 			},
 			fetchPeriode(id){
 				this.$store.dispatch('laporanCu/getPeriodeCu',id);
@@ -176,7 +178,9 @@
 				this.$store.dispatch('laporanTp/getPeriodeTp',[id,periode]);
 			},
 			changeCu(value){
-				this.fetchPeriode(value);
+				if(value){
+					this.fetchPeriode(value);
+				}
 			},
 			changePeriode(value){
 				if(this.idCu){
@@ -199,8 +203,8 @@
 				modelTpStat: 'dataStatS',
 			}),
 			...mapGetters('cu',{
-				modelCU: 'dataS',
-				modelCUStat: 'dataStatS',
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),
