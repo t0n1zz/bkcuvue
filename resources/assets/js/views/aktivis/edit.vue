@@ -412,6 +412,27 @@
 					</form>
 				 </div>
 
+				 <!-- organisasi -->
+				 <div v-if="tabName == 'keluarga'">
+					<form @submit.prevent="saveKeluarga" data-vv-scope="form"> 
+						
+						<form-keluarga :form="formRiwayat" :isAktif="false" :modelCu="modelCu" v-if="formRiwayat.keluarga"></form-keluarga>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<hr>
+								<form-button
+									:cancelTitle="cancelTitle"
+									:cancelIcon="cancelIcon"
+									:cancelState="cancelState"
+									:formValidation="'form'"
+									@cancelClick="cancelClick"></form-button>
+							</div>
+						</div>
+						
+					</form>
+				 </div>
+
 				  <!-- anggotacu -->
 				 <div v-if="tabName == 'anggotaCu'">
 					<form @submit.prevent="saveAnggotaCu" data-vv-scope="form"> 
@@ -455,6 +476,7 @@
 	import formPekerjaan from "./formPekerjaan.vue";
 	import formPendidikan from "./formPendidikan.vue";
 	import formOrganisasi from "./formOrganisasi.vue";	
+	import formKeluarga from "./formKeluarga.vue";	
 	
 	export default {
 		name: 'aktivisDetail',
@@ -472,6 +494,7 @@
 			formPekerjaan,
 			formPendidikan,
 			formOrganisasi,
+			formKeluarga,
 		},
 		data() {
 			return {
@@ -538,12 +561,6 @@
 			next(vm => vm.fetch());
 		},
 		watch: {
-			modelCuStat(value){
-				if(value == 'success'){
-					this.other();
-					$('.bootstrap-select').selectpicker();
-				}
-			},
 			formStat(value){
 				if(value === "success"){
 					if(this.tabName == 'identitas'){
@@ -842,7 +859,7 @@
 				this.modalShow = false;
 
 				if(this.tabName == 'identitas'){
-					this.changeTab('identitas');
+					this.back();
 				}else if(this.tabName == 'riwayatPekerjaan'){
 					this.changeTab('riwayatPekerjaan');
 				}else if(this.tabName == 'riwayatPendidikan'){

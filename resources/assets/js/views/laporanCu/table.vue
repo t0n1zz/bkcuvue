@@ -443,7 +443,8 @@ export default {
         this.columnData[6].disable = false;
         this.columnData[2].disable = true;
 
-        this.$store.dispatch(this.kelas + "/index", params);
+				this.$store.dispatch(this.kelas + "/index", params);
+				// this.$store.dispatch(this.kelas + "/indexTotal");
 				this.excelDownloadUrl = this.kelas;
       }
     },
@@ -587,6 +588,8 @@ export default {
       modelTpStat: "dataStatS"
     }),
     ...mapGetters("laporanCu", {
+			totalData: "data",
+			totalDataStat: "dataStat",
       itemData: "dataS",
       itemDataStat: "dataStatS",
       modelPeriode: "periode",

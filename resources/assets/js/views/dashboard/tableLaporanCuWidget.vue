@@ -123,7 +123,13 @@
         tabTitle: 'CU',
         tabTabelName: 'tabelCu',
         isTabelPearls: false,
-				isTabelGerakan: false,
+        isTabelGerakan: false,
+        itemData: [],
+        itemDataStat: '',
+        itemPearlsData: [],
+        itemPearlsDataStat: '',
+        isFirstLoad: false,
+        isFirstPearlsLoad: false,
       }
     },
     created(){
@@ -131,7 +137,29 @@
       if(this.currentUser.id_cu == 0){
         this.tabTitle = 'Gerakan';
       }
-		},
+      
+      
+    },
+    watch: {
+      grafikDataStat(value){
+        if (value === "success") {
+          if(!this.isFirstLoad){
+            this.itemData = this.grafikData;
+            this.itemDataStat = this.grafikDataStat
+            this.isFirstLoad = true;
+          }
+        }
+      },
+      grafikPearlsDataStat(value){
+        if (value === "success") {
+          if(!this.isFirstPearlsLoad){
+            this.itemPearlsData = this.grafikPearlsData;
+            this.itemPearlsDataStat = this.grafikPearlsDataStat;
+            this.isFirstPearlsLoad = true;
+          }
+        }
+      }
+    },
 		methods:{
       removeColumn(){
         this.columnData[1].disable = true;
@@ -181,10 +209,10 @@
     },
     computed: {
       ...mapGetters('laporanCu',{
-        itemData: 'grafik',
-        itemDataStat: 'grafikStat',
-        itemPearlsData: "grafikPearls",
-        itemPearlsDataStat: "grafikPearlsStat",
+        grafikData: 'grafik',
+        grafikDataStat: 'grafikStat',
+        grafikPearlsData: "grafikPearls",
+        grafikPearlsDataStat: "grafikPearlsStat",
       })
     }
   }

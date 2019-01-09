@@ -56,6 +56,21 @@ Vue.filter('checkTingkatAktivis', function(value){
 		return '-';
 	}
 });
+Vue.filter('statusDiklat', function(value){
+	if(value == 1){
+		return '<span class="badge badge-info">MENUNGGU</span>';
+	}else if(value == 2){
+		return '<span class="badge badge-warning">PENDAFTARAN BUKA</span>';
+	}else if(value == 3){
+		return '<span class="badge badge-secondary">PENDAFTARAN TUTUP</span>';
+	}else if(value == 4){
+		return '<span class="badge badge-success"> BERJALAN</span>';
+	}else if(value == 5){
+		return '<span class="badge badge-primary"> TERLAKSANA</span>';
+	}else if(value == 6){
+		return '<span class="badge badge-danger"> BATAL</span>';
+	}
+});
 Vue.filter('notificationIcon', function(value){
 	if (value == 'Menambah laporancu' || value == 'Mengubah laporancu' || value == 'Menghapus laporancu') {
 			return '<i class="icon-stats-bars2"></i>';

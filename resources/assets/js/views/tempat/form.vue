@@ -28,7 +28,7 @@
 												<h5>Foto:</h5>
 
 												<!-- imageupload -->
-												<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+												<app-image-upload :image_loc="'/images/tempat/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 											</div>
 										</div>
 
@@ -376,19 +376,19 @@
 			this.fetch();
 		},
 		watch: {
-			profileStat(value){ //jika refresh halaman maka reload profile
+			currentUserStat(value){ //jika refresh halaman maka reload currentUser
 				if(value === "success"){
-					if(this.profile.id_cu == 0){
-						this.$store.dispatch('cu/getPus',this.profile.id_pus);
+					if(this.currentUser.id_cu == 0){
+						this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 					}else{
-						this.form.id_cu = this.profile.id_cu;
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 			},
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode != 'edit' && this.profile.id_cu != 0){
-						this.form.id_cu = this.profile.id_cu;
+					if(this.$route.meta.mode != 'edit' && this.currentUser.id_cu != 0){
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 			},
@@ -470,9 +470,8 @@
 			},
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser',
 			}),
 			...mapGetters('tempat',{
 				form: 'data',

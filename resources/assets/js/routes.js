@@ -22,6 +22,7 @@ import laporanTp_draft from './views/laporanCu/draftTp.vue';
 import laporanGerakan from './views/laporanGerakan/index.vue';
 import diklatBKCU from './views/diklatBKCU/index.vue';
 import diklatBKCU_form from './views/diklatBKCU/form.vue';
+import diklatBKCU_detail from './views/diklatBKCU/detail.vue';
 import tempat from './views/tempat/index.vue';
 import tempat_form from './views/tempat/form.vue';
 import cu from './views/cu/index.vue';
@@ -158,19 +159,26 @@ const routes = [
 	// diklat pus
 	{ path: '/diklatBKCU/periode/:periode',
 		name: 'diklatBKCU', 
-		components: { default: diklatBKCU, 'header': header, 'footer': footer  }},
+		components: { default: diklatBKCU, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
 	{ path: '/diklatBKCU/create',
 		name: 'diklatBKCUCreate', 
-		components: { default: diklatBKCU_form, 'header': header, 'footer': footer } },
+		components: { default: diklatBKCU_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
 	{ path: '/diklatBKCU/edit/:id',
 		name: 'diklatBKCUEdit', 
 		components: { default: diklatBKCU_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/diklatBKCU/detail/:id',
+		name: 'diklatBKCUDetail', 
+		components: { default: diklatBKCU_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
 
 	// diklat tempat
 	{ path: '/tempat',
 		name: 'tempat', 
-		components: { default: tempat, 'header': header, 'footer': footer  }},
+		components: { default: tempat, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
 	{ path: '/tempat/create',
 		name: 'tempatCreate', 
 		components: { default: tempat_form, 'header': header, 'footer': footer } },

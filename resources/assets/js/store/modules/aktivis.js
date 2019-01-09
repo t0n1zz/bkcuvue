@@ -47,6 +47,34 @@ export const aktivis = {
         });
     },
 
+    indexTingkat( { commit }, [ p, tingkat ] ){
+      commit('setDataStatS', 'loading');
+      
+      aktivisAPI.indexTingkat( p, tingkat )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexLembaga( { commit }, p  ){
+      commit('setDataStatS', 'loading');
+      
+      aktivisAPI.indexLembaga( p )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // load by cu
     indexCu( { commit }, [p, id, tingkat] ){
       commit('setDataStatS', 'loading');
@@ -321,7 +349,7 @@ export const aktivis = {
     saveKeluarga( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      aktivisAPI.saveKeluarga( id, form )
+    aktivisAPI.saveKeluarga( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

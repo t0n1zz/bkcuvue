@@ -31,7 +31,7 @@
 
 				<!-- select -->
 				<select class="form-control" name="pekerjaan_tingkat" v-model="form.keluarga.tipe" data-width="100%" v-validate="'required'" data-vv-as="Tipe keluarga">
-					<option disabled>Silahkan pilih tipe keluarga</option>
+					<option disabled value="">Silahkan pilih tipe keluarga</option>
 					<option value="Ayah">Ayah</option>
 					<option value="Ibu">Ibu</option>
 					<option value="Pasangan">Pasangan</option>

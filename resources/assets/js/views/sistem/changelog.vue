@@ -12,6 +12,25 @@
             <!-- Left content -->
             <div class="w-100 order-2 order-md-1">
 
+              <!-- Version 3.0.3 -->
+              <div class="card" id="3_0_2_simo">
+                <div class="card-header header-elements-inline">
+                  <h5 class="card-title">Version 3.0.3 - SIMO</h5>
+                  <div class="header-elements">
+                    <span class="text-muted">9 Januari 2019</span>
+
+                    <div class="list-icons ml-3">
+                      <a class="list-icons-item" data-action="collapse"></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya</p>
+                </div>
+              </div>
+              <!-- /version 3.0.2 -->
+
               <!-- Version 3.0.2 -->
               <div class="card" id="3_0_2_simo">
                 <div class="card-header header-elements-inline">
@@ -476,6 +495,8 @@
                       <li class="nav-item nav-item-submenu">
                         <a href="#" class="nav-link">SIMO</a>
                         <ul class="nav nav-group-sub d-block">
+
+                          <li class="nav-item"><a href="#3_0_2_simo" class="nav-link">Version 3.0.3 <span class="text-muted font-weight-normal ml-auto">9.01.2019</span></a></li>
 
                           <li class="nav-item"><a href="#3_0_2_simo" class="nav-link">Version 3.0.2 <span class="text-muted font-weight-normal ml-auto">4.01.2019</span></a></li>
                          

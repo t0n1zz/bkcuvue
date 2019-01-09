@@ -145,28 +145,28 @@
 										</div>
 									</div>
 
-									<!-- peserta max -->
+									<!-- durasi -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.peserta_max')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.durasi')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.peserta_max')}">
-												<i class="icon-cross2" v-if="errors.has('form.peserta_max')"></i>
-												Peserta Max:</h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.durasi')}">
+												<i class="icon-cross2" v-if="errors.has('form.durasi')"></i>
+												Durasi: <small>jam</small></h5>
 
 											<!-- input -->
 											<cleave 
-												name="peserta_max"
-												v-model="form.peserta_max" 
+												name="durasi"
+												v-model="form.durasi" 
 												class="form-control" 
 												:raw="false" 
 												:options="cleaveOption.number3" 
-												placeholder="Silahkan masukkan peserta max"
-												v-validate="'required'" data-vv-as="Peserta max"></cleave>
+												placeholder="Silahkan masukkan durasi kegiatan"
+												v-validate="'required'" data-vv-as="Durasi"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.peserta_max')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.peserta_max') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.durasi')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.durasi') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -198,6 +198,61 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+									<!-- peserta max cu -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.peserta_max')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.peserta_max')}">
+												<i class="icon-cross2" v-if="errors.has('form.peserta_max')"></i>
+												Peserta Max:</h5>
+
+											<!-- input -->
+											<cleave 
+												name="peserta_max"
+												v-model="form.peserta_max" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan peserta max"
+												v-validate="'required'" data-vv-as="Peserta max"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.peserta_max')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.peserta_max') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- peserta max -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.peserta_max_cu')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.peserta_max_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.peserta_max_cu')"></i>
+												Peserta Max Per CU:</h5>
+
+											<!-- input -->
+											<cleave 
+												name="peserta_max_cu"
+												v-model="form.peserta_max_cu" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan peserta max per cu"
+												v-validate="'required'" data-vv-as="Peserta max per cu"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.peserta_max_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.peserta_max_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+									
 
 									<!-- peserta -->
 									<div class="col-md-12">
@@ -431,7 +486,19 @@
 							<div class="card-body">	
 								<div class="row">
 
-									<!-- keterangan -->
+									<!-- kerangka -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Kerangka Acuan:</h5>
+
+											<ckeditor type="classic" v-model="form.keterangan"></ckeditor>
+
+										</div>
+									</div>
+
+									<!-- jadwal -->
 									<div class="col-md-12">
 										<div class="form-group">
 
@@ -442,17 +509,7 @@
 										</div>
 									</div>
 
-									<!-- keterangan -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Keterangan:</h5>
-
-											<ckeditor type="classic" v-model="form.keterangan"></ckeditor>
-
-										</div>
-									</div>
+									
 									
 								</div>
 							</div>
@@ -468,16 +525,16 @@
 
 									<div class="col-md-12">
 
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPanitia')">
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
 											<i class="icon-plus22"></i> Tambah
 										</button>
 
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPanitia')"
-										:disabled="!selectedItem.id">
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
+										:disabled="!selectedItem.aktivis_id">
 											<i class="icon-pencil5"></i> Ubah
 										</button>
 
-										<button class="btn btn-light mb-1" @click="modalOpen('hapusPanitia')" :disabled="!selectedItem.id">
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.aktivis_id">
 											<i class="icon-bin2"></i> Hapus
 										</button>
 
@@ -486,16 +543,16 @@
 								</div>		
 							</div>
 
-							<data-table :items="itemData" :columnData="columnDataPanitia" :itemDataStat="itemDataStat">
+							<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemDataPanitiaStat">
 								<template slot="item-desktop" slot-scope="props">
-									<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+									<tr :class="{ 'bg-info': selectedItem.aktivis_id === props.item.aktivis_id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
 										<td>{{ props.index + 1 }}</td>
-										<td>{{ props.item.name }}</td>
 										<td>
-											<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
-											<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
-											<span v-else>Puskopdit BKCU Kalimantan</span>
+											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 										</td>
+										<td>{{ props.item.name }}</td>
+										<td>{{ props.item.lembaga }}</td>
 										<td>{{ props.item.peran }}</td>
 										<td>{{ props.item.keterangan }}</td>
 									</tr>
@@ -522,20 +579,38 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- tambah panitia -->
+			<template slot="modal-body1">
+				<form-panitia 
+				:mode="formPanitiaMode"
+				:selected="selectedItem"
+				@addPanitia="addPanitia"
+				@editPanitia="editPanitia"
+				@tutup="modalTutup"></form-panitia>
+			</template>
+
 		</app-modal>
 
 	</div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import { mapGetters } from 'vuex';
+	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import formPanitia from "./formPanitia.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
 
@@ -546,6 +621,7 @@
 			message,
 			formButton,
 			formInfo,
+			formPanitia,
 			Cleave,
 			dataTable,
 		},
@@ -592,20 +668,24 @@
 				},
 				columnDataPanitia:[
 					{ title: 'No.' },
+					{ title: 'Foto' },
 					{ title: 'Nama' },
 					{ title: 'Cu' },
 					{ title: 'Peran' },
 					{ title: 'keterangan' }
 				],
 				selectedItem: '',
-				itemData: [],
-				itemDataStat: '',
+				formPanitiaMode: '',
+				itemDataPanitia: [],
+				itemDataPanitiaStat: 'success',
 				cancelState: 'methods',
+				state: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
+				modalSize: '',
 				submited: false,
 			}
 		},
@@ -616,12 +696,35 @@
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode == 'edit'){
-						var i;
-						for(i = 0; i < this.form.sasaran.length; i++){
-							this.sasaran.push(this.form.sasaran[i].id);
-						}
 						this.changeProvinces(this. form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
+
+						var i;
+						for(i = 0; i < this.form.sasaran.length; i++){
+							this.sasaran.push(this.form.sasaran[i].id.toString());
+						}
+						
+						var val;
+						for (val of this.form.panitia) {
+							let formData = {};
+							formData.aktivis_id = val.id;
+							formData.name = val.name;
+							formData.gambar = val.gambar;
+							formData.peran = val.pivot.peran;
+							formData.keterangan = val.pivot.keterangan;
+
+							if(val.pekerjaan_aktif){
+								if(val.pekerjaan_aktif.tipe == 1){
+									formData.lembaga = val.pekerjaan_aktif.cu.name;
+								}else if(val.pekerjaan_aktif.tipe == 2){
+									formData.lembaga = val.pekerjaan_aktif.lembaga_lain.name;
+								}else if(val.pekerjaan_aktif.tipe == 3){
+									formData.lembaga = "Puskopdit BKCU Kalimantan"
+								}
+							}
+						
+							this.itemDataPanitia.push(formData);
+						}
 					}
 				}
 			},
@@ -673,8 +776,21 @@
 					});
 				}
 			},
+			addPanitia(value){
+				this.itemDataPanitia.push(value);
+				this.modalTutup();
+			},
+			editPanitia(value){
+				_.remove(this.itemDataPanitia, {
+						id_panitia: value.id_panitia
+				});
+				this.itemDataPanitia.push(value);
+				this.modalTutup(); 
+			},
 			save() {
 				this.form.sasaran = this.sasaran;
+				this.form.panitia = this.itemDataPanitia;
+				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
@@ -691,22 +807,61 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas, params:{periode: momentYear()}});
+				this.$router.push({name: this.kelas, params:{periode: this.momentYear()}});
 			},
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			modalTutup() {
- 				if(this.updateStat === 'success'){
-					this.back();
+			modalOpen(state, isMobile, itemMobile) {
+				this.modalShow = true;
+				this.state = state;
+
+				if(isMobile){
+					this.selectedItem = itemMobile;
 				}
 
-				this.modalShow = false;
+				if (state == 'hapus') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Panitia/Fasilitator ' + this.selectedItem.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+					this.modalSize = '';
+				}else if(state == 'ubah'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah Panitia/Fasilitator';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-full';
+					this.formPanitiaMode = 'edit';
+				}else if(state == 'tambah'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Panitia/Fasilitator';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formPanitiaMode = 'create';
+				}
 			},
 			modalImageShow(content){
 				this.modalShow = true;
 				this.modalState = 'image';
 				this.modalContent = content;
+				this.modalSize = '';
+				this.modalButton = 'Ok';
+			},
+			modalConfirmOk() {
+				this.modalShow = false;
+				if (this.state == 'hapus') {
+					_.remove(this.itemDataPanitia, {
+						aktivis_id: this.selectedItem.aktivis_id
+					});
+				}
+			},
+			modalTutup() {
+ 				if(this.updateStat === 'success'){
+					this.back();
+				}
+				this.modalShow = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
@@ -720,6 +875,9 @@
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			},
+			momentYear(){
+				return moment().year();
+			}
 		},
 		computed: {
 			...mapGetters('diklatBKCU',{

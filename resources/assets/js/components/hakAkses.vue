@@ -25,7 +25,7 @@
 		</div>
 
 		<!-- hak akses -->
-		<div class="col-lg-12" v-for="akses in hakAkses" v-if="tipeUser === akses.tipe || akses.tipe ==='all'">
+		<div class="col-lg-6 col-md-12" v-for="akses in hakAkses" v-if="tipeUser === akses.tipe || akses.tipe ==='all'">
 			
 			<div class="card">
 				<div class="card-header bg-white header-elements-inline">

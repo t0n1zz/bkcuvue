@@ -13,6 +13,50 @@ class LaporanCuHelper{
 		(IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))) as piutang_bersih';
 	}
 
+	public static function queryPerkembanganTotal(){
+		return '
+		sum(l_biasa) as l_biasa, 
+		sum(l_lbiasa) as l_lbiasa, 
+		sum(p_biasa) as p_biasa, 
+		sum(p_lbiasa) as p_lbiasa,
+		sum(total_anggota_lalu) as total_anggota_lalu,
+		sum(aset) as aset,
+		sum(aset_lalu) as aset_lalu,
+		sum(aset_masalah) as aset_masalah,
+		sum(aset_tidak_menghasilkan) as aset_tidak_menghasilkan,
+		sum(aktiva_lancar) as aktiva_lancar,
+		sum(simpanan_saham) as simpanan_saham,
+		sum(simpanan_saham_lalu) as simpanan_saham_lalu,
+		sum(simpanan_saham_des) as simpanan_saham_des,
+		sum(nonsaham_unggulan) as nonsaham_unggulan,
+		sum(nonsaham_harian) as nonsaham_harian,
+		sum(hutang_spd) as hutang_spd,
+		sum(hutang_tidak_berbiaya_30hari) as hutang_tidak_berbiaya_30hari,
+		sum(total_hutang_pihak3) as total_hutang_pihak3,
+		sum(piutang_beredar) as piutang_beredar,
+		sum(piutang_anggota) as piutang_anggota,
+		sum(piutang_lalai_1bulan) as piutang_lalai_1bulan,
+		sum(piutang_lalai_12bulan) as piutang_lalai_12bulan,
+		sum(dcr) as dcr,
+		sum(dcu) as dcu,
+		sum(iuran_gedung) as iuran_gedung,
+		sum(donasi) as donasi,
+		sum(bjs_saham) as bjs_saham,
+		sum(beban_penyisihan_dcr) as beban_penyisihan_dcr, 
+		sum(investasi_likuid) as investasi_likuid,
+		sum(total_pendapatan) as total_pendapatan,
+		sum(total_biaya) as total_biaya,
+		sum(shu) as shu,
+		sum(shu_lalu) as shu_lalu,
+		sum(rata_aset) as rata_aset,
+		sum(laju_inflasi) as laju_inflasi,
+		sum(harga_pasar) as harga_pasar,
+		(sum(IFNULL(laporan_cu.l_biasa, 0)) + sum(IFNULL(laporan_cu.l_lbiasa,0)) + sum(IFNULL(laporan_cu.P_biasa,0)) + sum(IFNULL(laporan_cu.P_lbiasa,0))) as total_anggota,
+		(sum(IFNULL(laporan_cu.piutang_beredar,0))/sum(IFNULL(laporan_cu.aset,0))) as rasio_beredar,
+		((sum(IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + sum(IFNULL(laporan_cu.piutang_lalai_12bulan,0)))/sum(IFNULL(laporan_cu.piutang_beredar,0))) as rasio_lalai,
+		(sum(IFNULL(laporan_cu.piutang_beredar,0)) - (sum(IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + sum(IFNULL(laporan_cu.piutang_lalai_12bulan,0)))) as piutang_bersih';
+	}
+
 	public static function queryPEARLS(){
 		return '
 		@total_anggota := IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0) as total_anggota,

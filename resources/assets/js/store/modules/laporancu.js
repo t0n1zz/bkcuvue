@@ -627,7 +627,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//9
-        title: "P2 (&gt; 100%)",
+        title: "P2 (&gt; 35%)",
         name: "p2",
         tipe: "numeric",
         sort: true,
@@ -854,6 +854,20 @@ export const laporanCu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexTotal( { commit } ){
+      commit('setDataStatS', 'loading');
+      
+      laporanCuAPI.indexTotal()
+        .then( function( response ){
+          commit('setData', response.data.model );
+          commit('setDataStat', 'success');
+        })
+        .catch( error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
         });
     },
 

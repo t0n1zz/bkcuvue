@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\ProdukCu;
-use App\Support\ImageProcessing;
+use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
 use Image;
@@ -57,7 +57,7 @@ class ProdukCuController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request);
 		else
 			$fileName = '';
 
@@ -94,7 +94,7 @@ class ProdukCuController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = ImageProcessing::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
 		else
 			$fileName = '';
 

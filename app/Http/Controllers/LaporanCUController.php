@@ -37,6 +37,26 @@ class LaporanCuController extends Controller{
 		]);
 	}
 
+	public function indexTotal()
+	{
+		$table_data = LaporanCu::select('laporan_cu.*',
+			'cu.name as cu_name',
+			'provinces.name as provinces_name')
+			->leftjoin('cu','laporan_cu.id_cu','cu.id')
+			->leftjoin('provinces','cu.id_provinces','provinces.id')
+			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
+        $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
+				$join->on('laporan_cu.periode','=','latest_report.max_periode');
+		})->whereNull('cu.deleted_at')->get();
+
+		$table_data = $table_data->sum('aset');
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	public function indexCu($id)
 	{
 		$table_data = LaporanCu::with('Cu')->where('id_cu',$id)->addSelect(['*',DB::raw(LaporanCuHelper::queryPerkembangan())])->advancedFilter();
@@ -105,10 +125,10 @@ class LaporanCuController extends Controller{
 			sum(rata_aset) as rata_aset,
 			sum(laju_inflasi) as laju_inflasi,
 			sum(harga_pasar) as harga_pasar,
-			sum(IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0)) as total_anggota,
-			sum((IFNULL(laporan_cu.piutang_beredar,0)/IFNULL(laporan_cu.aset,0))) as rasio_beredar,
-			sum(((IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0))/IFNULL(laporan_cu.piutang_beredar,0))) as rasio_lalai,
-			sum((IFNULL(laporan_cu.piutang_beredar,0) - (IFNULL(laporan_cu.piutang_lalai_1bulan,0) + IFNULL(laporan_cu.piutang_lalai_12bulan,0)))) as piutang_bersih
+			(sum(IFNULL(laporan_cu.l_biasa, 0)) + sum(IFNULL(laporan_cu.l_lbiasa,0)) + sum(IFNULL(laporan_cu.P_biasa,0)) + sum(IFNULL(laporan_cu.P_lbiasa,0))) as total_anggota,
+			(sum(IFNULL(laporan_cu.piutang_beredar,0))/sum(IFNULL(laporan_cu.aset,0))) as rasio_beredar,
+			((sum(IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + sum(IFNULL(laporan_cu.piutang_lalai_12bulan,0)))/sum(IFNULL(laporan_cu.piutang_beredar,0))) as rasio_lalai,
+			(sum(IFNULL(laporan_cu.piutang_beredar,0)) - (sum(IFNULL(laporan_cu.piutang_lalai_1bulan,0)) + sum(IFNULL(laporan_cu.piutang_lalai_12bulan,0)))) as piutang_bersih
 			'))->groupBy('periode')->advancedFilter();
 
 		return response()

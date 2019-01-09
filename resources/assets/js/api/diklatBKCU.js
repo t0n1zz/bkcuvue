@@ -8,6 +8,10 @@ export default {
     return axios.get('/api/diklatBKCU/periode/' + periode , {params: p});
   },
 
+  indexPeserta: function( p, id ){
+    return axios.get('/api/diklatBKCU/indexPeserta/' + id , {params: p});
+  },
+
   getPeriode: function(){
     return axios.get('/api/diklatBKCU/getPeriode');
   },
@@ -20,6 +24,10 @@ export default {
     return axios.post('/api/diklatBKCU/store', form);
   },
 
+  storePeserta: function ( id, form ){
+    return axios.post('/api/diklatBKCU/storePeserta/' + id, form);
+  },
+
   edit: function( id ){
     return axios.get('/api/diklatBKCU/edit/' + id);
   },
@@ -28,11 +36,23 @@ export default {
     return axios.post('/api/diklatBKCU/update/' + id, form);
   },
 
+  updatePeserta: function ( id, form ){
+    return axios.post('/api/diklatBKCU/updatePeserta/' + id, form);
+  },
+
+  updateStatus: function ( id, form ){
+    return axios.post('/api/diklatBKCU/updateStatus/' + id, form);
+  },
+
   destroy: function( id ){
     return axios.delete('/api/diklatBKCU/' + id);
   },
 
-  count: function(){
-    return axios.get('/api/diklatBKCU/count');
+  destroyPeserta: function( id ){
+    return axios.delete('/api/diklatBKCU/destroyPeserta/' + id);
+  },
+
+  countPeserta: function( id ){
+    return axios.get('/api/diklatBKCU/countPeserta/' + id);
   },
 }

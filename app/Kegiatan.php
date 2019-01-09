@@ -20,24 +20,24 @@ class Kegiatan extends Model {
     ];
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','jadwal','keterangan','status','tipe','peserta_max','peserta_min','created_at','updated_at','deleted_at'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','kota','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at',
+        'id','id_tempat','kode_diklat','name','kota','periode','durasi','mulai','selesai','status','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','tempat.name'
     ];
 
     protected $orderable = [
-        'id','id_tempat','kode_diklat','name','kota','periode','mulai','selesai','status','peserta_max','peserta_min','created_at','updated_at','deleted_at',
+        'id','id_tempat','kode_diklat','name','kota','periode','durasi','mulai','selesai','status','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','tempat.name'
     ];
     
     public static function initialize(){
         return [
-            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => ''
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => ''
         ];
     }
         
@@ -67,6 +67,10 @@ class Kegiatan extends Model {
 
     public function sasaran(){
         return $this->belongsToMany('App\Sasaran','kegiatan_sasaran')->withTimestamps();
+    }
+
+    public function panitia(){
+        return $this->belongsToMany('App\Aktivis','kegiatan_panitia')->withPivot('peran','keterangan')->withTimestamps();
     }
 
     public function peserta(){

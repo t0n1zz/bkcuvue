@@ -40,11 +40,11 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at'
+        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at','login'
     ];
 
     protected $orderable = [
-        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at'
+        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at','login'
     ];
 
     public static function initialize()

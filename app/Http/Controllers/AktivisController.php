@@ -15,7 +15,7 @@ use Image;
 
 class AktivisController extends Controller{
 
-	protected $imagepath = 'images/Aktivis/';
+	protected $imagepath = 'images/aktivis/';
 	protected $width = 300;
 	protected $height = 200;
 	protected $message = 'Aktivis CU';
@@ -130,6 +130,28 @@ class AktivisController extends Controller{
 		->json([
 			'model' => $table_data
 		]);
+	}
+
+	public function indexTingkat(Request $request)
+	{
+		$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use($request){
+			$query->whereIn('tingkat',$request)->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
+		})->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexLembaga()
+	{
+		$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+			->whereHas('pekerjaan', function($query){
+				$query->where('tipe',2)->where(function($q){
+					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
+				});
+			})->advancedFilter();
 	}
 
 	public function indexPekerjaan($id)
@@ -502,15 +524,20 @@ class AktivisController extends Controller{
 		}
 	}
 
-	public function saveKeluarga(Request $request, $id, $tipe, $name)
+	public function saveKeluarga(Request $request, $id, $tipe = '', $name = '')
 	{
+
 		if(array_key_exists('id', $request->keluarga)){
 			$kelas = AktivisKeluarga::findOrFail($request->keluarga['id']);
 		}else{
 			$kelas = new AktivisKeluarga();
 		}
 
-		$kelas->tipe = $tipe;
+		if(!empty($tipe)){
+			$kelas->tipe = $tipe;
+		}else{
+			$kelas->tipe = $request->keluarga['tipe'];
+		}
 
 		if(!empty($id)){
 			$kelas->id_aktivis = $id;

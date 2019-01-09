@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- main panel -->
-    <data-viewer :title="title" :kelas="kelas" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="false" @fetch="fetch">
+    <data-viewer :title="title" :kelas="kelas" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :isUploadExcel="false" @fetch="fetch">
 
       <!-- desktop -->
       <!-- button desktop -->
@@ -116,22 +116,34 @@
 
 			<!-- hak akses -->
 			<template slot="modal-body1">
+
 				<!-- hak-akses -->
 				<hak-akses-form :form="modalHakAksesForm" :tipeUser="tipeUser" :data-stat="hakAksesStat"
         @hakForm="hakForm"></hak-akses-form>
+
 				<!-- divider -->
 				<hr>
+        
+        <!-- tombol desktop-->
+        <div class="text-center d-none d-md-block">
+          <button class="btn btn-light" @click="modalTutup">
+            <i class="icon-cross"></i> Tutup</button>
+
+          <button type="submit" class="btn btn-primary" @click="modalHakAksesSave">
+            <i class="icon-floppy-disk"></i> Simpan</button>
+        </div>  
+
+        <!-- tombol mobile-->
+        <div class="d-block d-md-none">
+          <button class="btn btn-light btn-block pb-2" @click="modalTutup">
+            <i class="icon-cross"></i> Tutup</button>
+
+          <button type="submit" class="btn btn-primary btn-block pb-2" @click="modalHakAksesSave">
+            <i class="icon-floppy-disk"></i> Simpan</button>
+        </div> 
+
 			</template>
 
-			<template slot="modal-footer1">
-
-				<!-- button -->
-				<button class="btn btn-light" @click="modalTutup">
-					<i class="icon-cross"></i> Tutup</button>
-				<button type="submit" class="btn btn-primary" @click="modalHakAksesSave">
-					<i class="icon-floppy-disk"></i> Simpan</button>
-
-			</template>
 		</app-modal>
 
   </div>
@@ -161,7 +173,7 @@ export default {
         limit: 10,
         page: 1
       },
-      excelUrl: '',
+      excelDownloadUrl: '',
       columnData: [
         {
           title: "No.",
@@ -298,11 +310,11 @@ export default {
       if(this.$route.params.cu == 'semua'){
         this.disableColumnCu(false);
         this.$store.dispatch(this.kelas + '/index', params);
-        this.excelUrl = this.kelas;
+        this.excelDownloadUrl = this.kelas;
       }else{
         this.disableColumnCu(true);
         this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
-        this.excelUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
       }
     },
     disableColumnCu(status){

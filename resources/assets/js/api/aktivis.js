@@ -4,6 +4,14 @@ export default {
     return axios.get('/api/aktivis/index/' + tingkat ,{params: p});
   },
 
+  indexTingkat: function( p ){
+    return axios.post('/api/aktivis/indexTingkat/' ,{params: p});
+  },
+
+  indexLembaga: function( p ){
+    return axios.get('/api/aktivis/indexLembaga' ,{params: p});
+  },
+
   indexCu: function( p, id, tingkat ){
     return axios.get('/api/aktivis/indexCu/' + id + '/' + tingkat, {params: p});
   },
@@ -66,6 +74,10 @@ export default {
 
   saveOrganisasi: function ( id, form ){
     return axios.post('/api/aktivis/saveOrganisasi/' + id, form);
+  },
+
+  saveKeluarga: function ( id, form ){
+    return axios.post('/api/aktivis/saveKeluarga/' + id, form);
   },
 
   saveAnggotaCu: function ( id, form ){

@@ -2,12 +2,13 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\Kegiatan;
-use App\KegiatanPeserta;
-use App\Support\Helper;
-use Illuminate\Http\Request;
 use File;
 use Image;
+use App\Kegiatan;
+use App\Support\Helper;
+use App\KegiatanPanitia;
+use App\KegiatanPeserta;
+use Illuminate\Http\Request;
 
 class DiklatBKCUController extends Controller{
 
@@ -17,7 +18,7 @@ class DiklatBKCUController extends Controller{
 
 	public function index()
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->where('tipe','diklat_bkcu')->advancedFilter();
 
 		return response()
 		->json([
@@ -27,13 +28,24 @@ class DiklatBKCUController extends Controller{
 
 	public function indexPeriode($periode)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
 
 		return response()
 		->json([
 			'model' => $table_data
 		]);
 	}
+
+	public function indexPeserta($id)
+	{
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+	
 
 	public function getPeriode()
 	{
@@ -62,10 +74,20 @@ class DiklatBKCUController extends Controller{
 		$name = $request->name;
 
 		$kelas = Kegiatan::create($request->except('tipe') + [
-			'tipe' => 'diklat_bkcu'
+			'tipe' => 'diklat_bkcu', 'status' => '1'
 		]);
 
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
+
+		if($request->panitia){
+			$panitiaArray = array();
+
+			foreach($request->panitia as $panitia){
+				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan']];
+			}
+
+			$kelas->panitia()->sync($panitiaArray);
+		}
  
 		return response()
 			->json([
@@ -77,9 +99,8 @@ class DiklatBKCUController extends Controller{
 
 	public function storePeserta(Request $request, $id)
 	{
-		$peserta = array_flatten($request->peserta);
 		
-		KegiatanPeserta::insert();
+		$kelas = KegiatanPeserta::create($request->all() + [ 'kegiatan_id' => $id ]);
  
 		return response()
 			->json([
@@ -91,7 +112,7 @@ class DiklatBKCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia.pekerjaan_aktif.cu')->findOrFail($id);
 
 		return response()
 				->json([
@@ -112,7 +133,18 @@ class DiklatBKCUController extends Controller{
 			'tipe' => 'diklat_bkcu'
 		]);
 		
-		$this->input_sasaran($id,$request);
+		$kelas->sasaran()->sync(array_flatten($request->sasaran));
+
+		if($request->panitia){
+			$panitiaArray = array();
+
+			foreach($request->panitia as $panitia){
+				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan']];
+			}
+
+			$kelas->panitia()->sync($panitiaArray);
+		}
+
 
 		return response()
 			->json([
@@ -121,22 +153,40 @@ class DiklatBKCUController extends Controller{
 			]);
 	}
 
-	public function input_sasaran($id_kegiatan,$request)
+	public function updateStatus(Request $request, $id)
 	{
-			$sasarans = $request->sasaran;
+		$kelas = Kegiatan::findOrFail($id);
 
-			if(!empty($sasarans) && !empty($id_kegiatan)){
-					KegiatanSasaran::where('id_kegiatan',$id_kegiatan)->delete();
+		$kelas->status = $request->status;
 
-					foreach($sasarans as $sasaran){
-						foreach($sasaran as $s){
-							$kelasSasaran = new KegiatanSasaran();
-							$kelasSasaran->id_kegiatan = $id_kegiatan;
-							$kelasSasaran->id_sasaran = $s;
-							$kelasSasaran->save();
-						}
-					}
-			}
+		if($request->status == 6){
+			$kelas->keteranganBatal = $request->keterangan;
+		}else{
+			$kelas->keteranganBatal = "";
+		}
+
+		$kelas->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Status berhasil diubah"
+			]);
+	}
+
+	public function updatePeserta(Request $request, $id)
+	{
+		$kelas = KegiatanPeserta::findOrFail($id);
+
+		$kelas->keterangan = $request->keterangan;
+
+		$kelas->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Peserta berhasil diubah"
+			]);
 	}
 
 	public function destroy($id)
@@ -150,6 +200,30 @@ class DiklatBKCUController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function destroyPeserta($id)
+	{
+		$kelas = KegiatanPeserta::findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Peserta ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function countPeserta($id)
+	{
+			$table_data = KegiatanPeserta::where('kegiatan_id',$id)->count();
+			
+			return response()
+			->json([
+					'model' => $table_data
 			]);
 	}
 }

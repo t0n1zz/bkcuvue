@@ -17,9 +17,19 @@
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
+				<!-- status -->
+				<button @click.prevent="modalConfirmOpen('status')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
+					<i class="icon-calendar5"></i> Status
+				</button>
+
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
+				</button>
+
+				<!-- daftar-->
+				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="selectedItem.status != 2">
+					<i class="icon-stack2"></i> Detail
 				</button>
 
 			</template>
@@ -37,9 +47,19 @@
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
+				<!-- status -->
+				<button @click.prevent="modalConfirmOpen('status')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
+					<i class="icon-calendar5"></i> Status
+				</button>
+
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
+				</button>
+
+				<!-- daftar-->
+				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="selectedItem.status != 2">
+					<i class="icon-stack2"></i> Detail
 				</button>
 
 			</template>
@@ -51,9 +71,10 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<span v-html="$options.filters.statusDiklat(props.item.status)"></span>
+						<span v-html="$options.filters.statusDiklat(props.item.status)" @click.prevent="modalKeteranganBatalOpen(props.item.keteranganBatal)" v-if="props.item.status == '6'" style="cursor:pointer;"></span>
+						<span v-html="$options.filters.statusDiklat(props.item.status)" v-else></span>
 					</td>
-					<td v-if="!columnData[2].hide">
+			 		<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.kode_diklat"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
@@ -106,7 +127,107 @@
 		</data-viewer>
 					
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" :color="modalColor" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+			
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- status -->
+			<template slot="modal-body1">
+				<form @submit.prevent="saveStatus" data-vv-scope="formStatus">
+					<!-- status -->
+					<div class="form-group">
+
+						<!-- title -->
+						<h5>Status Diklat:</h5>
+
+						<!-- select -->
+						<select name="status" data-width="100%" class="form-control" v-model="formStatus.status" @change="changeStatus($event.target.value)">
+							<option disabled value="">Silahkan pilih status diklat</option>
+							<option value="1">Menunggu</option>
+							<option value="2">Pendaftaran Buka</option>
+							<option value="3">Pendaftaran Tutup</option>
+							<option value="4">Berjalan</option>
+							<option value="5">Terlaksana</option>
+							<option value="6">Batal</option>
+						</select>
+
+						<small class="text-muted">{{ penjelasanStatus }}</small>
+
+					</div>
+
+					<!-- keterangan batal -->
+					<div class="form-group" :class="{'has-error' : errors.has('formStatus.keterangan')}" v-if="formStatus.status == 6">
+
+						<!-- title -->
+						<h5 :class="{ 'text-danger' : errors.has('formStatus.keterangan')}">
+							Keterangan:
+						</h5>
+
+						<!-- textarea -->
+						<textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan"></textarea>
+
+						<!-- error message -->
+						<small class="text-muted text-danger" v-if="errors.has('formStatus.keterangan')">
+							<i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.keterangan') }}
+						</small>
+						<small class="text-muted" v-else>&nbsp;
+						</small>
+					</div>
+
+					<!-- divider -->
+					<hr>
+					
+					<!-- tombol desktop-->
+					<div class="text-center d-none d-md-block">
+						<button class="btn btn-light" @click.prevent="modalTutup">
+							<i class="icon-cross"></i> Tutup</button>
+
+						<button type="submit" class="btn btn-primary">
+							<i class="icon-floppy-disk"></i> Simpan</button>
+					</div>  
+
+					<!-- tombol mobile-->
+					<div class="d-block d-md-none">
+						<button class="btn btn-light btn-block pb-2" @click.prevent="modalTutup">
+							<i class="icon-cross"></i> Tutup</button>
+
+						<button type="submit" class="btn btn-primary btn-block pb-2">
+							<i class="icon-floppy-disk"></i> Simpan</button>
+					</div> 
+				</form>	
+
+			</template>
+
+			<!-- keteranganBatal -->
+			<template slot="modal-body2">
+
+				<h5>Penjelasan pembatalan diklat</h5>
+				<div class="card">
+					<div class="card-body">
+						{{ keteranganBatal }}
+					</div>
+				</div>
+
+				<!-- divider -->
+				<hr>
+				
+				<!-- tombol desktop-->
+				<div class="text-center d-none d-md-block">
+					<button class="btn btn-light" @click.prevent="modalTutup">
+						<i class="icon-cross"></i> Tutup</button>
+				</div>  
+
+				<!-- tombol mobile-->
+				<div class="d-block d-md-none">
+					<button class="btn btn-light btn-block pb-2" @click.prevent="modalTutup">
+						<i class="icon-cross"></i> Tutup</button>
+				</div> 
+
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -288,9 +409,16 @@
 						filter: true,
 					}
 				],
+				formStatus: {
+					status: '',
+					keterangan: ''
+				},
+				penjelasanStatus: '',
+				keteranganBatal: '',
 				state: '',
 				modalShow: false,
 				modalState: '',
+				modalColor: '',
 				modalTitle: '',
 				modalContent: '',
 				modalButton: ''
@@ -311,7 +439,7 @@
 				if(value === "success"){
 					this.modalTitle = this.updateMessage.message;
 					this.modalContent = '';
-					this.fetch();
+					this.fetch(this.query);
 				}else if(value === "fail"){
 					this.modalContent = this.updateMessage;
 				}else{
@@ -333,9 +461,31 @@
 			ubahData(id) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
+			detail(id) {
+				this.$router.push({name: this.kelas + 'Detail', params: { id: id }});
+			},
+			changeStatus(value){
+				if(value == 1){
+					this.penjelasanStatus = 'Diklat masih belum dimulai dan belum menerima pendaftaran';
+				}else if(value == 2){
+					this.penjelasanStatus = 'Diklat masih belum dimulai tapi sudah mulai menerima pendaftaran peserta';
+				}else if(value == 3){
+					this.penjelasanStatus = 'Diklat masih belum dimulai tapi sudah tidak menerima lagi pendaftaran peserta';
+				}else if(value == 4){
+					this.penjelasanStatus = 'Diklat sudah dimulai dan sedang berproses/berjalan';
+				}else if(value == 5){
+					this.penjelasanStatus = 'Diklat sudah sukses terlaksana';
+				}else if(value == 6){
+					this.penjelasanStatus = 'Diklat batal dilaksanakan';
+				}
+			},
+			saveStatus(){
+				this.$validator.validateAll('formStatus').then((result) => {
+					this.$store.dispatch(this.kelas + '/updateStatus', [this.selectedItem.id, this.formStatus]);
+				});
+			},
 			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
-				this.modalState = 'confirm-tutup';
 				this.state = state;
 
 				if(isMobile){
@@ -343,9 +493,28 @@
 				}
 
 				if (state == 'hapus') {
+					this.modalState = 'confirm-tutup';
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
 					this.modalButton = 'Iya, Hapus';
+					this.modalColor = '';
+				}else if (state == 'status') {
+					this.modalState = 'normal1';
+					this.modalTitle = 'Ubah status ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+					this.modalColor = 'bg-primary';
+					this.formStatus.status = this.selectedItem.status;
+				}else if (state == 'keteranganBatal') {
+					this.modalState = 'normal2';
+					this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.name;
+					this.modalColor = 'bg-primary';
+					this.keteranganBatal = this.selectedItem.keteranganBatal;
 				}
+			},
+			modalKeteranganBatalOpen(value) {
+				this.modalShow = true;
+				this.modalState = 'normal2';
+				this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.name;
+				this.modalColor = 'bg-primary';
+				this.keteranganBatal = value;
 			},
 			modalTutup() {
 				this.modalShow = false;
@@ -366,25 +535,7 @@
 				itemDataStat: 'dataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
-			}),
-			
-		},
-		filters: {
-			statusDiklat:function(value){
-				if(value == 1){
-					return '<span class="badge badge-info">Menunggu</span>';
-				}else if(value == 2){
-					return '<span class="badge badge-warning">Pendaftaran Buka</span>';
-				}else if(value == 3){
-					return '<span class="badge badge-warning-300">Pendaftaran Tutup</span>';
-				}else if(value == 4){
-					return '<span class="badge badge-primary-300"> Berjalan</span>';
-				}else if(value == 5){
-					return '<span class="badge badge-primary"> Terlaksana</span>';
-				}else if(value == 6){
-					return '<span class="badge badge-danger"> Batal</span>';
-				}
-			}
+			}),	
 		}
 	}
 </script>

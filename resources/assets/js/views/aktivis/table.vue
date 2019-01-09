@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isUploadExcel="true" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
 			<!-- desktop -->
 			<!-- button desktop -->
@@ -68,7 +68,17 @@
 						<check-value :value="props.item.nik"></check-value>
 					</td>
 					<td v-if="!columnData[6].hide && !columnData[6].disable">
-						<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
+						<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
+							<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
+							<span v-else>-</span>
+						</span>
+						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
+							<check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
+							<span v-else>-</span>
+						</span>
+						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
+							Puskopdit BKCU Kalimantan
+						</span>
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[7].hide && !columnData[7].disable" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
@@ -175,6 +185,7 @@
 					limit: 10,
 					page: 1
 				},
+				excelDownloadUrl:'',
 				columnData: [
 					{
 						title: 'No.',
@@ -458,6 +469,7 @@
 				if(this.$route.params.cu == 'semua'){
 					this.disableColumnCu(false);
 					this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tingkat]);
+					this.excelDownloadUrl = this.kelas + '/index/' + this.$route.params.tingkat;
 				}else{
 					this.disableColumnCu(true);
 
@@ -468,6 +480,7 @@
 					}
 
 					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu, this.$route.params.tingkat]);
+					this.excelDownloadUrl = this.kelas + '/index/' + this.$route.params.tingkat;
 				}
 			},
 			disableColumnCu(status){

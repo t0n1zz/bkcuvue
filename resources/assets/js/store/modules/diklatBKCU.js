@@ -65,6 +65,20 @@ export const diklatBKCU = {
         });
     },
 
+    indexPeserta( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      DIKLATBKCUAPI.indexPeserta( p, id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     getPeriode( { commit } ){
       commit('setPeriodeStat', 'loading');
       
@@ -103,6 +117,24 @@ export const diklatBKCU = {
       commit('setUpdateStat', 'loading');
 
       DIKLATBKCUAPI.store( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    storePeserta( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      DIKLATBKCUAPI.storePeserta( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -156,6 +188,42 @@ export const diklatBKCU = {
         });
     },
 
+    updateStatus( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      DIKLATBKCUAPI.updateStatus( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updatePeserta( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      DIKLATBKCUAPI.updatePeserta( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     // destroy data
     destroy( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
@@ -175,10 +243,28 @@ export const diklatBKCU = {
         });
     },
 
-    count( { commit } ){
+    destroyPeserta( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      DIKLATBKCUAPI.destroyPeserta( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    countPeserta( { commit }, id ){
       commit('setCountStat', 'loading');
       
-      DIKLATBKCUAPI.count()
+      DIKLATBKCUAPI.countPeserta( id )
         .then( function( response ){
           commit('setCount', response.data.model);
           commit('setCountStat', 'success');

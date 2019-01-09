@@ -171,7 +171,7 @@
 
 											<!-- select -->
 											<select name="terbitkan" data-width="100%" class="form-control" v-model="form.terbitkan">
-												<option disabled value="">Silahkan pilih CU</option>
+												<option disabled value="">Silahkan pilih status penerbitan</option>
 												<option value="1">Terbitkan artikel</option>
 												<option value="0">Tidak Terbitkan artikel</option>
 											</select>

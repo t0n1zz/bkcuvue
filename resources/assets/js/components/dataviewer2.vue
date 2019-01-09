@@ -137,7 +137,7 @@
                 <button class="btn bg-teal btn-block" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
               </div>
               <div class="col-md-3 pb-2">
-                 <button class="btn btn-primary btn-block" @click="applyFilter"><i class="icon-search4"></i> Cari</button>
+                 <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == ''"><i class="icon-search4"></i> Cari</button>
               </div>
               <div class="col-md-5 pb-2" v-if="this.appliedFilters.length > 0">
                 <button class="btn btn-warning btn-block"  @click="resetFilter"><i class="icon-reset"></i> Reset pencarian</button>
@@ -669,11 +669,13 @@
         this.applyChange()
       },
       applyFilter() {
-        Vue.set(this.$data, 'appliedFilters',
-          JSON.parse(JSON.stringify(this.filterCandidates))
-        )
-        this.query.page = 1;
-        this.applyChange()
+        if(this.filterCandidates[0].query_1 != null && this.filterCandidates[0].query_1 != ''){
+          Vue.set(this.$data, 'appliedFilters',
+            JSON.parse(JSON.stringify(this.filterCandidates))
+          )
+          this.query.page = 1;
+          this.applyChange()
+        }
       },
       removeFilter(f, i) {
         this.filterCandidates.splice(i, 1)
@@ -858,7 +860,7 @@
             ...query
           };
 
-          api.call('get','/' + this.excelDownloadUrl, {params})
+          axios.get('/api/' + this.excelDownloadUrl, {params})
           .then( ({data}) => {
             this.excelAllData = data.model;
             this.modalState = 'normal2';

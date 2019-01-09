@@ -47,7 +47,7 @@ class CuController extends Controller{
 
 	public function getHeader()
 	{
-		$table_data = Cu::with('hasTp')->where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
+		$table_data = Cu::with('hasTp')->where('id','!=',0)->select('id','name','no_ba')->orderby('name','asc')->get();
 
 		return response()
 			->json([

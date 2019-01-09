@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="false" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :isUploadExcel="false" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -157,7 +157,7 @@ export default {
         limit: 10,
         page: 1
       },
-      excelUrl: '',
+      excelDownloadUrl: '',
       columnData: [
         {
           title: "No.",
@@ -435,7 +435,7 @@ export default {
   methods: {
     fetch(params) {
       this.$store.dispatch(this.kelas + "/indexDeleted", params);
-      this.excelUrl = this.kelas;
+      this.excelDownloadUrl = this.kelas;
     },
     selectedRow(item) {
       this.selectedItem = item;

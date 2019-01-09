@@ -27,7 +27,7 @@
 						name="nik"
 						v-model="form.nik" 
 						class="form-control" 
-						:options="cleaveOption.number12"
+						:options="cleaveOption.number16"
 						placeholder="Silahkan masukkan no KTP"
 						v-validate="'required'" data-vv-as="No. KTP"></cleave>
 					
@@ -283,6 +283,13 @@
             datePattern: ['Y','m','d'],
             delimiter: '-'
           },
+          number16: {
+            numeral: true,
+            numeralIntegerScale: 16,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
           number12: {
             numeral: true,
             numeralIntegerScale: 12,

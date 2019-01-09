@@ -6,6 +6,7 @@ use Image;
 use Validator;
 use Illuminate\Http\Request;
 use App\User;
+use App\Tp;
 use App\Notifications\Laporan;
 use Illuminate\Support\Facades\Notification;
 

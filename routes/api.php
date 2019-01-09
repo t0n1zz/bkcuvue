@@ -168,14 +168,23 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/diklatBKCU/periode/{periode}', 'DiklatBKCUController@indexPeriode');
         Route::get('/diklatBKCU/get', 'DiklatBKCUController@get');
         Route::get('/diklatBKCU/getPeriode', 'DiklatBKCUController@getPeriode');
+
+        Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
+
+        Route::get('/diklatBKCU/indexPeserta/{id}', 'DiklatBKCUController@indexPeserta');
+        Route::post('/diklatBKCU/storePeserta/{id}', 'DiklatBKCUController@storePeserta');
+        Route::post('/diklatBKCU/updatePeserta/{id}', 'DiklatBKCUController@updatePeserta');
+        Route::delete('/diklatBKCU/destroyPeserta/{id}', 'DiklatBKCUController@destroyPeserta');
+        Route::get('/diklatBKCU/countPeserta/{id}', 'DiklatBKCUController@countPeserta');
     });
     Route::group(['middleware' => ['permission:create_diklat_bkcu']], function () {
         Route::get('/diklatBKCU/create', 'DiklatBKCUController@create');
         Route::post('/diklatBKCU/store', 'DiklatBKCUController@store');
     });
     Route::group(['middleware' => ['permission:update_diklat_bkcu']], function () {
-        Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
+        
         Route::post('/diklatBKCU/update/{id}', 'DiklatBKCUController@update');
+        Route::post('/diklatBKCU/updateStatus/{id}', 'DiklatBKCUController@updateStatus');
     });
     Route::group(['middleware' => ['permission:destroy_diklat_bkcu']], function () {
         Route::delete('/diklatBKCU/{id}', 'DiklatBKCUController@destroy');
@@ -184,8 +193,10 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // aktivis
     Route::group(['middleware' => ['permission:index_aktivis']], function () {
         Route::get('/aktivis/index/{tingkat}', 'AktivisController@index');
+        Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
+        Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
         Route::get('/aktivis/get', 'AktivisController@get');
-        Route::get('/aktivis/indexCu/{id}/{tingkat}', 'AktivisController@indexCu');         
+        Route::get('/aktivis/indexCu/{id}/{tingkat}', 'AktivisController@indexCu');
         Route::get('/aktivis/getCu/{id}', 'AktivisController@getCu');
         Route::get('/aktivis/count', 'AktivisController@count');
     });
@@ -224,6 +235,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     //laporan cu
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::get('/laporanCu', 'LaporanCuController@index');
+        Route::get('/laporanCu/indexTotal', 'LaporanCuController@indexTotal');
         Route::get('/laporanCu/indexGerakan', 'LaporanCuController@indexGerakan');
         Route::get('/laporanCu/indexCu/{id}', 'LaporanCuController@indexCu');
         Route::get('/laporanCu/indexPeriode/{periode}', 'LaporanCuController@indexPeriode');
@@ -247,10 +259,10 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/laporanCu/{id}', 'LaporanCuController@destroy');
     });
     Route::group(['middleware' => ['permission:diskusi_laporan_cu']], function () {
-        Route::get('/laporanCuDiskusi/get/{id}', 'laporanCuDiskusiController@get');
-        Route::post('/laporanCuDiskusi/store', 'laporanCuDiskusiController@store');
-        Route::post('/laporanCuDiskusi/update/{id}', 'laporanCuDiskusiController@update');
-        Route::delete('/laporanCuDiskusi/{id}', 'laporanCuDiskusiController@destroy');
+        Route::get('/laporanCuDiskusi/get/{id}', 'LaporanCuDiskusiController@get');
+        Route::post('/laporanCuDiskusi/store', 'LaporanCuDiskusiController@store');
+        Route::post('/laporanCuDiskusi/update/{id}', 'LaporanCuDiskusiController@update');
+        Route::delete('/laporanCuDiskusi/{id}', 'LaporanCuDiskusiController@destroy');
     });
     Route::group(['middleware' => ['permission:upload_laporan_cu']], function () {
         Route::post('/laporanCu/uploadExcel', 'LaporanCuController@uploadExcel');

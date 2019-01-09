@@ -306,7 +306,7 @@
 
 											<!-- text -->
 											<cleave 
-												v-model="form.aset_tidak_menghasilkan" 
+												v-model="form.aset_likuid_tidak_menghasilkan" 
 												class="form-control" 
 												:options="cleaveOption.numeric"
 												placeholder="Silahkan masukkan jumlah aset tidak menghasilkan"></cleave>
@@ -478,7 +478,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 
-								b			<!-- title -->
+											<!-- title -->
 											<h5>Total Hutang Pihak Ke-3 <i class="icon-info22" v-tooltip="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></i></h5>
 
 											<!-- text -->

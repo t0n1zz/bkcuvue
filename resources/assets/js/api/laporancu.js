@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/laporanCu' ,{params: p});
   },
 
+  indexTotal: function(){
+    return axios.get('/api/laporanCu/indexTotal');
+  },
+
   indexGerakan: function( p ){
     return axios.get('/api/laporanCu/indexGerakan' ,{params: p});
   },
