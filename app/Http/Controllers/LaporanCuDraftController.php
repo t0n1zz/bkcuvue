@@ -36,19 +36,27 @@ class LaporanCuDraftController extends Controller{
 		$kelas->id_cu = $cu->id;
 		$data = $kelas->toArray();
 		unset($data['id']);
-		unset($data['id_user']);   
+		unset($data['id_user']);  
 
-		$kelas2 = LaporanCu::insert($data);
+		if($this->checkData($kelas)){
+			$kelas2 = LaporanCu::insert($data);
 
-		$kelas->delete();
+			$kelas->delete();
 
-		$this->store_notification($kelas2,'Mengupload');
-		
-		return response()
+			NotificationHelper::store_laporan_tp($kelas2,'Mengupload');
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' berhasil ditambah'
+				]);
+		}else{
+			return response()
 			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
+				'saved' => false,
+				'message' => 'Maaf laporan periode ini sudah ada, silahkan periksa kembali laporan konsolidasi dan laporan Tp'
 			]);
+		}	
 	}
 
 
@@ -175,5 +183,22 @@ class LaporanCuDraftController extends Controller{
 			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
 			NotificationHelper::store_laporan('0',$request->id,$cu->name,'',$periode,$tipe);
 		}
+	}
+
+	public function checkData($request)
+	{
+		$periode = LaporanCu::where('id_cu',$request->id_cu)->where('periode',$request->periode)->first();
+
+		if($periode){
+			return false;
+		}
+
+		$periodeTp = LaporanCu::where('id_cu',$request->id_cu)->where('periode',$request->periode)->where('tp','!=',0)->first();
+
+		if($periodeTp){
+			return false;
+		}
+
+		return true;
 	}
 }

@@ -122,10 +122,12 @@
 			},
 			modelCUStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode == 'detail'){
-							this.idCu = this.itemData.id_cu;
-					}else{
-						this.idCu = this.itemData.tp.id_cu;
+					if(this.itemDataStat == 'success'){
+						if(this.$route.meta.mode == 'detail'){
+								this.idCu = this.itemData.id_cu;
+						}else{
+							this.idCu = this.itemData.tp.id_cu;
+						}
 					}
 					this.changeCu(this.idCu);
 				}

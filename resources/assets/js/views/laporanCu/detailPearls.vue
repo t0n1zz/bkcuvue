@@ -598,6 +598,20 @@
 				}else{
 					this.modalContent = '';
 				}
+			},
+			updateTpStat(value) {
+				this.modalState = value;
+				this.modalButton = "Ok";
+
+				if (value === "success") {
+					this.modalTitle = this.updateTpMessage.message;
+					this.modalContent = "";
+					this.fetch(this.query);
+				} else if (value === "fail") {
+					this.modalContent = this.updateTpMessage;
+				} else {
+					this.modalContent = "";
+				}
 			}
     },
 		methods: {
@@ -631,9 +645,21 @@
 				this.modalState = 'normal1'; 
 
 				this.modalKatex.id = itemData.id;
-				this.modalKatex.no_ba = itemData.no_ba;
 				this.modalKatex.periode = itemData.periode;
-				this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
+
+				if(itemData.id_tp){
+					this.modalKatex.id_cu = itemData.tp.id_cu;
+					this.modalKatex.no_ba = itemData.tp.cu.no_ba;
+					this.modalKatex.id_tp = itemData.id_tp;
+					this.modalKatex.no_tp = itemData.no_tp;
+					this.modalKatex.section = 'CU ' + itemData.tp.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
+				}else{
+					this.modalKatex.id_tp = '';
+					this.modalKatex.no_tp = '';
+					this.modalKatex.id_cu = itemData.id_cu;
+					this.modalKatex.no_ba = itemData.no_ba;
+					this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
+				}
 				
 				this.modalKatex.id_cu = itemData.id_cu;
 				// p1	
@@ -1090,6 +1116,8 @@
 			...mapGetters('laporanTp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
+				updateTpMessage: "update",
+				updateTpStat: "updateStat"
 			}),
 			...mapGetters('cu',{
 				modelCU: 'dataS',

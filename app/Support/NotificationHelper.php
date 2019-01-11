@@ -6,6 +6,7 @@ use Image;
 use Validator;
 use Illuminate\Http\Request;
 use App\User;
+use App\Cu;
 use App\Tp;
 use App\Notifications\Laporan;
 use Illuminate\Support\Facades\Notification;
@@ -52,8 +53,8 @@ class NotificationHelper{
 			$tp = Tp::where('id',$request->id_tp)->select('name')->first();
 			self::store_laporan($request->id_tp,$request->id,'BKCU',$tp->name,$periode,$tipe);
 		}else{
-			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
-			$tp = Tp::where('id',$request->id_tp)->select('name')->first();
+			$tp = Tp::where('id',$request->id_tp)->select('id_cu','name')->first();
+			$cu = Cu::where('id',$tp->id_cu)->select('name')->first();
 			self::store_laporan('0',$request->id,$cu->name,$tp->name,$periode,$tipe);
 		}
 	}
@@ -72,6 +73,4 @@ class NotificationHelper{
 			));
 		}
 	}
-
-
 }

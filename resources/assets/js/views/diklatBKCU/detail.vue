@@ -49,7 +49,7 @@
 											<h6 class="font-weight-semibold" v-if="item.panitia">Panitia dan Fasilitator</h6>
 										</div>
 
-										<data-table :items="item.panitia" :columnData="columnDataPanitia" :itemDataStat="itemStat" v-if="item.panitia">
+										<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat" v-if="itemDataPanitia">
 											<template slot="item-desktop" slot-scope="props">
 												<tr v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
@@ -61,8 +61,17 @@
 														<check-value :value="props.item.name"></check-value>
 													</td>
 													<td>
+														<check-value :value="props.item.kelamin"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.pivot.peran"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.pivot.keterangan"></check-value>
+													</td>
+													<td v-if="props.item.pivot.asal == 'dalam'">
 														<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
-															<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
+															<check-value :front-text="'CU'" :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
 															<span v-else>-</span>
 														</span>
 														<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
@@ -74,11 +83,26 @@
 														</span>
 														<span v-else>-</span>
 													</td>
-													<td>
-														<check-value :value="props.item.pivot.peran"></check-value>
+													<td v-if="props.item.pivot.asal == 'dalam'">
+														<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td v-if="props.item.pivot.asal == 'luar'">
+														<check-value :value="props.item.lembaga"></check-value>
+													</td>
+													<td v-if="props.item.pivot.asal == 'luar'">
+														<check-value :value="props.item.pekerjaan"></check-value>
+													</td>
+													<td v-html="$options.filters.date(props.item.tanggal_lahir)">
 													</td>
 													<td>
-														<check-value :value="props.item.gender"></check-value>
+														<check-value :value="props.item.tempat_lahir"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.agama"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.status"></check-value>
 													</td>
 													<td>
 														<check-value :value="props.item.email"></check-value>
@@ -87,8 +111,9 @@
 														<check-value :value="props.item.hp"></check-value>
 													</td>
 													<td>
-														<check-value :value="props.item.pivot.keterangan"></check-value>
+														<check-value :value="props.item.kontak"></check-value>
 													</td>
+													
 												</tr>
 											</template>	
 										</data-table>
@@ -122,6 +147,9 @@
 													<td v-if="props.item.aktivis">
 														<check-value :value="props.item.aktivis.name"></check-value>
 													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.kelamin"></check-value>
+													</td>
 													<td>
 														<check-value :value="props.item.keterangan"></check-value>
 													</td>
@@ -139,14 +167,42 @@
 														</span>
 														<span v-else>-</span>
 													</td>
+													<td v-if="props.item.aktivis" v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)">
+													</td>
 													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.kelamin"></check-value>
+														<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.pendidikan_tertinggi.name" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td v-if="props.item.aktivis" v-html="$options.filters.date(props.item.aktivis.tanggal_lahir)">
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.tempat_lahir"></check-value>
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.tinggi"></check-value>
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.agama"></check-value>
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.status"></check-value>
 													</td>
 													<td v-if="props.item.aktivis">
 														<check-value :value="props.item.aktivis.email"></check-value>
 													</td>
 													<td v-if="props.item.aktivis">
 														<check-value :value="props.item.aktivis.hp"></check-value>
+													</td>
+													<td v-if="props.item.aktivis">
+														<check-value :value="props.item.aktivis.kontak"></check-value>
 													</td>
 												</tr>
 											</template>	
@@ -157,6 +213,7 @@
 							</div>
 						</div>
 
+						<!-- sidebar -->
 						<div class="col-lg-3 col-md-4">
 
 							<!-- detail -->
@@ -235,7 +292,7 @@
 							</div>
 
 							<!-- tempat -->
-							<div class="card">
+							<div class="card" v-if="item.tempat">
 								<div class="card-header bg-transparent header-elements-inline">
 									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
 									<div class="header-elements">
@@ -285,11 +342,22 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="card" v-else>
+								<div class="card-header bg-transparent header-elements-inline">
+									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
+									<div class="header-elements">
+										<div class="list-icons">
+											<a class="list-icons-item" data-action="collapse"></a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									Belum menentukan tempat pelatihan
+								</div>
+							</div>
 
 						</div>
 					</div>
-
-					
 
 				</div>
 			</div>
@@ -397,8 +465,8 @@
 					page: 1
 				},
 				columnData: [
-					{ title: 'No.', name: 'No.' },
-					{ title: 'Foto', name: 'gambar' },
+					{ title: 'No.' },
+					{ title: 'Foto' },
 					{
 						title: 'Nama',
 						name: 'aktivis.name',
@@ -409,23 +477,41 @@
 						filter: true,
 						filterDefault: true
 					},
-					{ title: 'keterangan', name: 'keterangan' },
-					{ title: 'Lembaga', name: 'lembaga' },
-					{ title: 'Gender', name: 'gender' },
-					{ title: 'Email', name: 'email' },
-					{ title: 'No. Hp', name: 'hp' }
+					{ title: 'keterangan' },
+					{ title: 'Gender' },
+					{ title: 'CU' },
+					{ title: 'Tingkat' },
+					{ title: 'Jabatan' },
+					{ title: 'Pendidikan'},
+					{ title: 'Jurusan' },
+					{ title: 'Tgl. Lahir' },
+					{ title: 'Tempat Lahir' },
+					{ title: 'Tinggi' },
+					{ title: 'Agama' },
+					{ title: 'Status' },
+					{ title: 'Email' },
+					{ title: 'No. Hp' },
+					{ title: 'Kontak Lain' }
 				],
 				columnDataPanitia: [
 					{ title: 'No.' },
 					{ title: 'Foto' },
 					{ title: 'Nama' },
-					{ title: 'Lembaga' },
-					{ title: 'Peran' },
 					{ title: 'Gender' },
+					{ title: 'Peran' },
+					{ title: 'keterangan' },
+					{ title: 'Lembaga' },
+					{ title: 'Jabatan' },
+					{ title: 'Tgl. Lahir' },
+					{ title: 'Tempat Lahir' },
+					{ title: 'Agama' },
+					{ title: 'Status' },
 					{ title: 'Email' },
 					{ title: 'No. Hp' },
-					{ title: 'keterangan' }
+					{ title: 'Kontak Lain' },
+					
 				],
+				itemDataPanitia: [],
 				selectedItem: '',
 				formPesertaMode: '',
 				itemDataPanitia: [],
@@ -449,6 +535,16 @@
 				if (value === "success") {
 					this.fetchPeserta(this.query);
 					this.fetchCountPeserta();
+
+					var valDalam;
+					for(valDalam of this.item.panitia_dalam){
+						this.itemDataPanitia.push(valDalam);
+					}
+
+					var valLuar;
+					for(valLuar of this.item.panitia_luar){
+						this.itemDataPanitia.push(valLuar);
+					}
 				}
 			},
 			updateStat(value) {
@@ -469,7 +565,11 @@
 				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 			},
 			fetchPeserta(params){
-				this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
+				if(this.currentUser.id_cu == 0){
+					this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
+				}else{
+					this.$store.dispatch(this.kelas + '/indexPesertaCu', [params,this.item.id, this.currentUser.id_cu]);
+				}
 			},
 			fetchCountPeserta() {
 				this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
@@ -537,19 +637,25 @@
 					this.modalSize = 'modal-lg';
 					this.formPesertaMode = 'edit';
 				} else if (state == 'tambah') {
-					if(this.countData < this.item.peserta_max || this.countData < this.item.peserta_max_cu){
+					if(this.countData >= this.item.peserta_max ){
+						this.modalState = 'content-tutup';
+						this.modalColor = '';
+						this.modalSize = '';
+						this.modalTitle = 'Diklat sudah penuh';
+						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.';
+					}else if(this.itemData.data.length >= this.item.peserta_max_cu){
+						this.modalState = 'content-tutup';
+						this.modalColor = '';
+						this.modalSize = '';
+						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
+						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta yang bisa CU anda daftarkan untuk pelatihan ini telah terpenuhi.';
+					}else{
 						this.modalState = 'normal1';
 						this.modalColor = 'bg-primary';
 						this.modalTitle = 'Tambah Peserta';
 						this.modalButton = 'Ok';
 						this.modalSize = 'modal-lg';
 						this.formPesertaMode = 'create';
-					}else{
-						this.modalState = 'content-tutup';
-						this.modalColor = '';
-						this.modalSize = '';
-						this.modalTitle = 'Diklat sudah penuh';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.'
 					}
 				}
 			},
@@ -588,6 +694,9 @@
 			}
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('diklatBKCU', {
 				item: 'data',
 				itemStat: 'dataStat',

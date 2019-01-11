@@ -553,7 +553,7 @@ export default {
 
       if (state == "hapus") {
         this.modalTitle =
-          "Hapus " + this.title + " " + this.selectedItem.name + " ?";
+          "Hapus " + this.title +  " ?";
         this.modalButton = "Iya, Hapus";
       }
     },

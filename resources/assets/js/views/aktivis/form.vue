@@ -49,61 +49,44 @@
 
 									<!-- ayah -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.ayah')}">
+										<div class="form-group">
 
 											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.keluarga.ayah')}">
-												<i class="icon-cross2" v-if="errors.has('form.keluarga.ayah')"></i>
+											<h6>
 												Ayah:</h6>
 
 											<!-- text -->
-											<input type="text" name="ayah" class="form-control" placeholder="Silahkan masukkan nama ayah" v-validate="'required'" data-vv-as="Ayah" v-model="form.keluarga.ayah">
+											<input type="text" name="ayah" class="form-control" placeholder="Silahkan masukkan nama ayah" v-model="form.keluarga.ayah">
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.keluarga.ayah')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.keluarga.ayah') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
 									<!-- ibu -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.ibu')}">
+										<div class="form-group">
 
 											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.keluarga.ibu')}">
-												<i class="icon-cross2" v-if="errors.has('form.keluarga.ibu')"></i>
+											<h6>
 												Ibu:</h6>
 
 											<!-- text -->
-											<input type="text" name="ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-validate="'required'" data-vv-as="Ibu" v-model="form.keluarga.ibu">
+											<input type="text" name="ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-model="form.keluarga.ibu">
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.keluarga.ibu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.keluarga.ibu') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
 									<!-- pasangan -->
 									<div class="col-md-4" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'">
-										<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.pasangan')}">
+										<div class="form-group">
 
 											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.keluarga.pasangan')}">
-												<i class="icon-cross2" v-if="errors.has('form.keluarga.pasangan')"></i>
+											<h6>
 												Pasangan:</h6>
 
 											<!-- text -->
-											<input type="text" name="pasangan" class="form-control" placeholder="Silahkan masukkan nama pasangan" v-validate="'required'" data-vv-as="Pasangan" v-model="form.keluarga.pasangan">
+											<input type="text" name="pasangan" class="form-control" placeholder="Silahkan masukkan nama pasangan" v-model="form.keluarga.pasangan">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.keluarga.pasangan')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.keluarga.pasangan') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 									

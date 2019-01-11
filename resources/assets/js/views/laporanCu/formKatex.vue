@@ -121,11 +121,22 @@
 		methods: {
 			save(){
 				this.form = _.chain(this.modalKatex.form).keyBy('key').mapValues('value').value();
-				this.form.id_cu = this.modalKatex.id_cu;
-				this.form.no_ba = this.modalKatex.no_ba;
 				this.form.periode = this.modalKatex.periode;
 				
-				// this.$store.dispatch('laporanCu/update', [this.modalKatex.id,this.form]);
+				if(this.modalKatex.id_tp){
+					this.form.id_tp = this.modalKatex.id_tp;
+					this.form.no_tp = this.modalKatex.no_tp;
+					this.form.id_cu = this.modalKatex.id_cu;
+					this.form.no_ba = this.modalKatex.no_ba;
+
+					this.$store.dispatch('laporanTp/update', [this.modalKatex.id,this.form]);
+				}else{
+					this.form.id_cu = this.modalKatex.id_cu;
+					this.form.no_ba = this.modalKatex.no_ba;
+
+					this.$store.dispatch('laporanCu/update', [this.modalKatex.id,this.form]);
+				}
+				
 			},
 			modalTutup(){
 				this.$emit('tutup');

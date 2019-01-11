@@ -4,7 +4,7 @@
 		
 			<!-- Provinsi -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.id_provinces')}">
+				<div class="form-group">
 
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
@@ -156,7 +156,7 @@
 						Email:</h6>
 
 					<!-- text -->
-					<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat email" v-validate="'required|email'" data-vv-as="Email" v-model="form.email">
+					<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat email" v-validate="'email'" data-vv-as="Email" v-model="form.email">
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.email')">
@@ -171,7 +171,7 @@
 				<div class="form-group">
 
 					<!-- title -->
-					<h6>Kotak Lainnya:</h6>
+					<h6>Kontak Lainnya:</h6>
 
 					<!-- text -->
 					<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak lainnya" v-model="form.kontak">

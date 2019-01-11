@@ -12,34 +12,12 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
+					<infografis-data
+						:title="title"
+						:kelas="kelas"
+						:columnData="columnData"></infografis-data>
 
-					<div class="nav-tabs-responsive mb-3">
-						<ul class="nav nav-tabs nav-tabs-solid bg-light">
-							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'table'}" @click.prevent="changeTab('table')"><i class="icon-table2 mr-2"></i> Tabel Statistik</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'infografis'}" @click.prevent="changeTab('infografis')"><i class="icon-graph mr-2"></i> Infografis Statistik</a>
-							</li>
-						</ul>
-					</div>
-
-					<!-- table data -->
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'table'">
-							<table-data :title="title" :kelas="kelas" :columnData="columnData"></table-data>
-						</div>
-					</transition>
-
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'infografis'" v-if="isInfografis">
-							<infografis-data
-								:title="title"
-								:kelas="kelas"
-								:columnData="columnData"></infografis-data>
-						</div>
-					</transition>
-
+					<table-data :title="title" :kelas="kelas"></table-data>
 
 				</div>
 			</div>
@@ -70,20 +48,9 @@
 				kelas: 'laporanCu',
 				titleDesc: 'Mengelola data perkembangan gerakan',
 				titleIcon: 'icon-stats-bars',
-				selectCUPath: 'laporanCuCU',
-				tabName: 'table',
-				isTablePearls: false,
-				isInfografis: false,
-				isInfografisPearls: false
 			}
 		},
 		methods: {
-			changeTab(value) {
-				this.tabName = value;
-				if (value == 'infografis' && !this.isInfografis) {
-					this.isInfografis = true
-				}
-			}
 		},
 		computed: {
 			...mapGetters('laporanCu', {

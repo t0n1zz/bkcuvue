@@ -58,7 +58,7 @@
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide">
+					<td v-if="!columnData[3].hide && !columnData[3].disable">
 						<check-value :value="props.item.nim"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
@@ -88,7 +88,7 @@
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
+					<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[10].hide">
@@ -212,7 +212,7 @@
 						tipe: 'string',
 						sort: true,
 						hide: false,
-						disable: false,
+						disable: true,
 						filter: true,
 					},
 					{
@@ -360,7 +360,7 @@
 						filter: true,
 					},
 					{
-						title: 'Tempat. Lahir',
+						title: 'Tempat Lahir',
 						name: 'tempat_lahir',
 						tipe: 'string',
 						sort: true,

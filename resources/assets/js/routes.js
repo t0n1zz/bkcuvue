@@ -32,6 +32,10 @@ import tp_form from './views/tp/form.vue';
 import aktivis from './views/aktivis/index.vue';
 import aktivis_form from './views/aktivis/form.vue';
 import aktivis_edit from './views/aktivis/edit.vue';
+import mitraOrang from './views/mitraOrang/index.vue';
+import mitraOrang_form from './views/mitraOrang/form.vue';
+import mitraLembaga from './views/mitraLembaga/index.vue';
+import mitraLembaga_form from './views/mitraLembaga/form.vue';
 import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
@@ -246,6 +250,34 @@ const routes = [
 		name: 'aktivisEdit', 
 		components: { default: aktivis_edit, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
+
+	// mitra perseorangan
+	{ path: '/mitraOrang',
+		name: 'mitraOrang', 
+		components: { default: mitraOrang, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
+	{ path: '/mitraOrang/create',
+		name: 'mitraOrangCreate', 
+		components: { default: mitraOrang_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/mitraOrang/edit/:id',
+		name: 'mitraOrangEdit', 
+		components: { default: mitraOrang_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+		
+	// mitra lembaga
+	{ path: '/mitraLembaga',
+		name: 'mitraLembaga', 
+		components: { default: mitraLembaga, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
+	{ path: '/mitraLembaga/create',
+		name: 'mitraLembagaCreate', 
+		components: { default: mitraLembaga_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/mitraLembaga/edit/:id',
+		name: 'mitraLembagaEdit', 
+		components: { default: mitraLembaga_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
 
 	// laporan cu
 	// bkcu default route

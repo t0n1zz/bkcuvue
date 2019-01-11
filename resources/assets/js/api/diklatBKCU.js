@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/diklatBKCU/indexPeserta/' + id , {params: p});
   },
 
+  indexPesertaCu: function( p, id, cu ){
+    return axios.get('/api/diklatBKCU/indexPesertaCu/' + id + '/cu/' + cu  , {params: p});
+  },
+
   getPeriode: function(){
     return axios.get('/api/diklatBKCU/getPeriode');
   },

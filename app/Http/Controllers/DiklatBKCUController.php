@@ -38,7 +38,19 @@ class DiklatBKCUController extends Controller{
 
 	public function indexPeserta($id)
 	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id',$id)->advancedFilter();
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPesertaCu($id, $cu)
+	{
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($cu){
+			$query->where('tipe','1')->where('id_tempat',$cu);
+		})->advancedFilter();
 
 		return response()
 		->json([
@@ -73,7 +85,7 @@ class DiklatBKCUController extends Controller{
 
 		$name = $request->name;
 
-		$kelas = Kegiatan::create($request->except('tipe') + [
+		$kelas = Kegiatan::create($request->except('tipe','status') + [
 			'tipe' => 'diklat_bkcu', 'status' => '1'
 		]);
 
@@ -83,10 +95,10 @@ class DiklatBKCUController extends Controller{
 			$panitiaArray = array();
 
 			foreach($request->panitia as $panitia){
-				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan']];
+				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan'], 'asal' => $panitia['asal'] ];
 			}
 
-			$kelas->panitia()->sync($panitiaArray);
+			$kelas->panitia_dalam()->sync($panitiaArray);
 		}
  
 		return response()
@@ -99,7 +111,6 @@ class DiklatBKCUController extends Controller{
 
 	public function storePeserta(Request $request, $id)
 	{
-		
 		$kelas = KegiatanPeserta::create($request->all() + [ 'kegiatan_id' => $id ]);
  
 		return response()
@@ -112,7 +123,7 @@ class DiklatBKCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia.pekerjaan_aktif.cu')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar')->findOrFail($id);
 
 		return response()
 				->json([
@@ -139,10 +150,10 @@ class DiklatBKCUController extends Controller{
 			$panitiaArray = array();
 
 			foreach($request->panitia as $panitia){
-				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan']];
+				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan'], 'asal' => $panitia['asal']];
 			}
 
-			$kelas->panitia()->sync($panitiaArray);
+			$kelas->panitia_dalam()->sync($panitiaArray);
 		}
 
 

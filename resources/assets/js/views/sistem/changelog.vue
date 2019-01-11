@@ -26,7 +26,19 @@
                 </div>
 
                 <div class="card-body">
-                  <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya</p>
+                  <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
+                  <br/><br/>
+                  Berikut adalah rincian perubahan pada versi ini:</p>
+
+                  <ul class="list">
+                    <li>Penambahan fitur data panitia dan fasilitator pada saat menambah Diklat BKCU</li>
+                    <li>Penambahan fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU</li>
+                    <li>Perbaikan bug pada download excel</li>
+                    <li>Perbaikan bug pada form laporan CU</li>
+                    <li>Perbaikan bug pada form P.E.A.R.L.S. CU</li>
+                    <li>Perbaikan bug pada notifikasi laporan</li>
+                    <li>Perbaikan bug pada upload gambar Penulis Artikel dan Tp</li>
+                  </ul>
                 </div>
               </div>
               <!-- /version 3.0.2 -->

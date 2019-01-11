@@ -250,7 +250,7 @@
 													E-mail:</h5>
 
 												<!-- text -->
-												<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
+												<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'email'" data-vv-as="E-mail" v-model="form.email">
 
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.email')">

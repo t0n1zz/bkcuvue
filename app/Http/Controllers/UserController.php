@@ -67,6 +67,16 @@ class UserController extends Controller
 		'update_aktivis',
 		'destroy_aktivis',
 
+		'index_mitra_orang',
+		'create_mitra_orang',
+		'update_mitra_orang',
+		'destroy_mitra_orang',
+
+		'index_mitra_lembaga',
+		'create_mitra_lembaga',
+		'update_mitra_lembaga',
+		'destroy_mitra_lembaga',
+
 		'index_produk_cu',
 		'create_produk_cu',
 		'update_produk_cu',

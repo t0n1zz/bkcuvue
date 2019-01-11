@@ -480,6 +480,84 @@
 						]
 					},
 					{
+						name: 'Mitra Perseorangan',
+						icon: 'icon-briefcase',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_mitra_orang',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Orang'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_mitra_orang',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Orang'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_mitra_orang',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Orang'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_mitra_orang',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Orang'
+							}
+						]
+					},
+					{
+						name: 'Lembaga Mitra',
+						icon: 'icon-briefcase',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_mitra_lembaga',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Lembaga'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_mitra_lembaga',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Lembaga'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_mitra_lembaga',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Lembaga'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_mitra_lembaga',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Mitra Lembaga'
+							}
+						]
+					},
+					{
 						name: 'Laporan CU',
 						icon: 'icon-stats-growth',
 						secondRow: true,
@@ -727,6 +805,16 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_mitra_orang',
+						'create_mitra_orang',
+						'update_mitra_orang',
+						'destroy_mitra_orang',
+
+						'index_mitra_lembaga',
+						'create_mitra_lembaga',
+						'update_mitra_lembaga',
+						'destroy_mitra_lembaga',
+
 						'index_produk_cu',
 						'create_produk_cu',
 						'update_produk_cu',
@@ -807,11 +895,6 @@
 
 						'index_diklat_bkcu',
 
-						'index_tempat',
-						'create_tempat',
-						'update_tempat',
-						'destroy_tempat',
-
 						'index_laporan_cu',
 						'create_laporan_cu',
 						'update_laporan_cu',
@@ -859,6 +942,11 @@
 						'diskusi_laporan_tp',
 					],
 					organisasiBKCU: [
+						'index_tempat',
+						'create_tempat',
+						'update_tempat',
+						'destroy_tempat',
+
 						'index_cu',
 						'create_cu',
 						'update_cu',
@@ -873,6 +961,16 @@
 						'create_aktivis',
 						'update_aktivis',
 						'destroy_aktivis',
+
+						'index_mitra_orang',
+						'create_mitra_orang',
+						'update_mitra_orang',
+						'destroy_mitra_orang',
+
+						'index_mitra_lembaga',
+						'create_mitra_lembaga',
+						'update_mitra_lembaga',
+						'destroy_mitra_lembaga',
 
 						'index_produk_cu',
 						'create_produk_cu',
@@ -908,6 +1006,24 @@
 						'create_tempat',
 						'update_tempat',
 						'destroy_tempat',
+
+						'index_cu',
+						'index_tp',
+
+						'index_aktivis',
+						'create_aktivis',
+						'update_aktivis',
+						'destroy_aktivis',
+
+						'index_mitra_orang',
+						'create_mitra_orang',
+						'update_mitra_orang',
+						'destroy_mitra_orang',
+
+						'index_mitra_lembaga',
+						'create_mitra_lembaga',
+						'update_mitra_lembaga',
+						'destroy_mitra_lembaga',
 					],
 					kegiatanCU:[
 						'index_diklat_bkcu',

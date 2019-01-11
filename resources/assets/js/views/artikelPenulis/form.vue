@@ -80,23 +80,16 @@
 
 										<!-- deskripsi -->
 										<div class="col-md-12">
-											<div class="form-group" :class="{'has-error' : errors.has('form.deskripsi')}">
+											<div class="form-group">
 
 												<!-- title -->
-												<h5 :class="{ 'text-danger' : errors.has('form.deskripsi')}">
-													<i class="icon-cross2" v-if="errors.has('form.deskripsi')"></i>
+												<h5>
 													Profil:
 												</h5>
 
 												<!-- textarea -->
-												<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan profil penulis" v-validate="'required|min:5'" data-vv-as="Profil" v-model="form.deskripsi"></textarea>
+												<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan profil penulis" v-model="form.deskripsi"></textarea>
 
-												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.deskripsi')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.deskripsi') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;
-												</small>
 											</div>
 										</div>
 									</div>

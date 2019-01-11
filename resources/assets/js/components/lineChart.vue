@@ -2,16 +2,6 @@
 <div>
 	<div class="card ">
 
-		<!-- heading -->
-		<!-- <div class="card-header header-elements-inline d-print-none">
-			<h5 class="card-title ">&nbsp;</h5>
-			<div class="header-elements">
-				<div class="icons-list">
-					<a class="list-icons-item"  v-tooltip:top="'Reload'"  @click="fetch()" :disabled="itemDataStat === 'loading'"><i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i></a>
-				</div>
-			</div>
-		</div> -->
-
 		<!-- body -->
 		<div class="card-body">
 			<div class="echart-container">
@@ -158,28 +148,6 @@
 
 </div>
 </template>
-
-<style scoped>
-.echart-container {
-  overflow-x: scroll;
-  overflow-y: visible;
-  max-width: 100%;
-  position: relative;
-  width: 100%;
-}
-.echarts {
-  width: 100vw;
-  height: 70vh;
-}
-.btn-group.special {
-  display: flex;
-}
-
-.special .btn {
-  flex: 1;
-}
-</style>
-
 
 <script>
 import Vue from "vue";
@@ -396,3 +364,26 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.echart-container {
+  overflow-x: scroll;
+  overflow-y: visible;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+.echarts {
+  width: 100vw;
+  height: 70vh;
+}
+.btn-group.special {
+  display: flex;
+}
+
+.special .btn {
+  flex: 1;
+}
+</style>
+

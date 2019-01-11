@@ -2,15 +2,16 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Tp;
 use App\LaporanCu;
 use App\LaporanTp;
-use App\Imports\LaporanTpDraftImport;
-use App\Imports\LaporanTpDraftAllImport;
-use Maatwebsite\Excel\Facades\Excel;
-use Maatwebsite\Excel\HeadingRowImport;
-use App\Support\NotificationHelper;
-use App\Support\LaporanTpHelper;
 use Illuminate\Http\Request;
+use App\Support\LaporanTpHelper;
+use App\Support\NotificationHelper;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\LaporanTpDraftImport;
+use Maatwebsite\Excel\HeadingRowImport;
+use App\Imports\LaporanTpDraftAllImport;
 
 class LaporanTpController extends Controller{
 
@@ -18,7 +19,7 @@ class LaporanTpController extends Controller{
 
 	public function index($id)
 	{
-		$table_data = LaporanTp::with('Tp')->select('Laporan_tp.*',
+		$table_data = LaporanTp::with('Tp.Cu')->select('Laporan_tp.*',
 			'tp.name as tp_name',
 			'provinces.name as provinces_name')
 			->leftjoin('tp','Laporan_tp.id_tp','tp.id')
@@ -39,7 +40,7 @@ class LaporanTpController extends Controller{
 
 	public function indexTp($id)
 	{
-		$table_data = LaporanTp::with('Tp')->where('id_tp',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPerkembangan())])->advancedFilter();
+		$table_data = LaporanTp::with('Tp.Cu')->where('id_tp',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPerkembangan())])->advancedFilter();
 
 		return response()
 		->json([
@@ -49,7 +50,7 @@ class LaporanTpController extends Controller{
 
 	public function indexPeriode($id, $periode)
 	{
-		$table_data = LaporanTp::with('Tp')->whereHas('Tp', function($query) use ($id){
+		$table_data = LaporanTp::with('Tp.Cu')->whereHas('Tp', function($query) use ($id){
 			$query->where('id_cu',$id);
 		})->select('Laporan_tp.*',
 		'tp.name as tp_name',
@@ -87,7 +88,7 @@ class LaporanTpController extends Controller{
 
 	public function indexPearlsTp($id)
 	{
-		$table_data = LaporanTp::with('Tp')->where('id_tp',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
+		$table_data = LaporanTp::with('Tp.Cu')->where('id_tp',$id)->addSelect(['*',DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
 
 		return response()
 		->json([
@@ -97,7 +98,7 @@ class LaporanTpController extends Controller{
 
 	public function indexPearlsPeriode($id, $periode)
 	{
-		$table_data = LaporanTp::with('Tp')->whereHas('Tp', function($query) use ($id){
+		$table_data = LaporanTp::with('Tp.Cu')->whereHas('Tp', function($query) use ($id){
 			$query->where('id_cu',$id);
 		})->select('Laporan_tp.*',
 		'tp.name as tp_name',
@@ -117,7 +118,7 @@ class LaporanTpController extends Controller{
 
 	public function listLaporanTp($cu,$periode)
 	{
-		$table_data = LaporanTp::with('Tp')->select('id','id_tp')->whereHas('Tp', function($query) use ($cu){
+		$table_data = LaporanTp::with('Tp.Cu')->select('id','id_tp')->whereHas('Tp', function($query) use ($cu){
 			$query->where('id_cu',$cu);
 		})->where('periode',$periode)->get();
 
@@ -192,20 +193,28 @@ class LaporanTpController extends Controller{
 	{
 		$this->validate($request,LaporanTp::$rules);
 
-		$name = $request->name;
+		if($this->checkData($request)){
+			$name = $request->name;
 
-		$kelas = LaporanTp::create($request->all());
+			$kelas = LaporanTp::create($request->all());
 
-		// $this->konsolidasi($request);
-		LaporanTpHelper::konsolidasi($request);
+			NotificationHelper::store_laporan_tp($kelas,'Menambah');
 
-		NotificationHelper::store_laporan_tp($request,'Menambah');
+			// $this->konsolidasi($request);
+			LaporanTpHelper::konsolidasi($request);
 
-		return response()
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' ' .$name. ' berhasil ditambah'
+				]);
+		}else{
+			return response()
 			->json([
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah'
+				'saved' => false,
+				'message' => 'Maaf laporan periode ini sudah ada, silahkan periksa kembali laporan konsolidasi dan laporan Tp'
 			]);
+		}	
 	}
 
 	public function show($id)
@@ -286,5 +295,25 @@ class LaporanTpController extends Controller{
 				'uploaded' => true,
 				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
 			]);
+	}
+
+	public function checkData($request)
+	{
+		$periode = LaporanTp::where('id_tp',$request->id_tp)->where('periode',$request->periode)->first();
+
+		if($periode){
+			return false;
+		}
+		
+		$tp = Tp::findOrFail($request->id_tp);
+
+		$periodeCu = LaporanCu::where('id_cu',$tp->id_cu)->where('periode',$request->periode)->where('tp','==',0)->first();
+
+		if($periodeCu){
+			return false;
+		}
+
+		return true;
+
 	}
 }

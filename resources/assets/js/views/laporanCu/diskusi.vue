@@ -22,7 +22,7 @@
 
 				<div class="media card-body no-margin">
 					<div class="mr-3">
-						<img :src="'/images/user/' + diskusi.user.gambar + 'n.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="diskusi.user.gambar">
+						<img :src="'/images/user/' + diskusi.user.gambar + '.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="diskusi.user.gambar">
 						<img src="/images/no_image_man.jpg" width="42" height="42" class="rounded-circle" alt="user image" v-else>
 					</div>
 

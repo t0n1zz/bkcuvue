@@ -238,11 +238,11 @@ export const laporanTp = {
       laporanTpAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -277,11 +277,11 @@ export const laporanTp = {
       laporanTpAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   

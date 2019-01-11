@@ -264,43 +264,55 @@
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="1" v-model="sasaran">
-													Staf
+													Pengurus
 												</label>
 											</div>	
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="2" v-model="sasaran">
-													Supervisor
+													Pengawas
 												</label>
 											</div>	
 											<div class="form-check form-check-inline">	
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="3" v-model="sasaran">
-													Manajer
+													Komite
 												</label>
 											</div>	
 											<div class="form-check form-check-inline">	
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="4" v-model="sasaran">
-													Senior Manajer
+													Penasihat
 												</label>
 											</div>	
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="5" v-model="sasaran">
-													Komite
+													Senior Manajer
 												</label>
 											</div>	
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="6" v-model="sasaran">
-													Pengawas
+													Manajer
 												</label>
 											</div>	
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="7" v-model="sasaran">
-													Pengurus
+													Supervisor
+												</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="8" v-model="sasaran">
+													Staf
+												</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="9" v-model="sasaran">
+													Kontrak
 												</label>
 											</div>
 
@@ -380,15 +392,23 @@
 												Tempat:
 											</h5>
 
-											<!-- select -->
-											<select class="form-control" name="id_tempat" v-model="form.id_tempat" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
-												<option disabled value="">Silahkan pilih tempat</option>
-												<option value="0">Belum ditentukan tempat</option>
-												<option disabled value="">----------------</option>
-												<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
-											</select>
-											
+											<div class="input-group">
+												<!-- select -->
+												<select class="form-control" name="id_tempat" v-model="form.id_tempat" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
+													<option disabled value="">Silahkan pilih tempat</option>
+													<option value="0">Belum ditentukan tempat</option>
+													<option disabled value="">----------------</option>
+													<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
+												</select>
 
+												<!-- button -->
+												<div class="input-group-append">
+													<button type="button" class="btn btn-light" @click.prevent="modalOpen('tempat')" :disabled="form.id_regencies === ''">
+														<i class="icon-plus22"></i>
+													</button>
+												</div>
+											</div>
+										
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tempat') }}
@@ -553,6 +573,7 @@
 										</td>
 										<td>{{ props.item.name }}</td>
 										<td>{{ props.item.lembaga }}</td>
+										<td>{{ props.item.asal }} gerakan</td>
 										<td>{{ props.item.peran }}</td>
 										<td>{{ props.item.keterangan }}</td>
 									</tr>
@@ -596,6 +617,14 @@
 				@tutup="modalTutup"></form-panitia>
 			</template>
 
+			<!-- tambah tempat -->
+			<template slot="modal-body2">
+				<form-tempat 
+				:id_provinces="form.id_provinces"
+				:id_regencies="form.id_regencies"
+				@tutup="modalTutup"></form-tempat>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -611,6 +640,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import formPanitia from "./formPanitia.vue";
+	import formTempat from "./formTempat.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
 
@@ -622,6 +652,7 @@
 			formButton,
 			formInfo,
 			formPanitia,
+			formTempat,
 			Cleave,
 			dataTable,
 		},
@@ -670,7 +701,8 @@
 					{ title: 'No.' },
 					{ title: 'Foto' },
 					{ title: 'Nama' },
-					{ title: 'Cu' },
+					{ title: 'Lembaga' },
+					{ title: 'Asal' },
 					{ title: 'Peran' },
 					{ title: 'keterangan' }
 				],
@@ -704,25 +736,40 @@
 							this.sasaran.push(this.form.sasaran[i].id.toString());
 						}
 						
-						var val;
-						for (val of this.form.panitia) {
+						var valDalam;
+						for (valDalam of this.form.panitia_dalam) {
 							let formData = {};
-							formData.aktivis_id = val.id;
-							formData.name = val.name;
-							formData.gambar = val.gambar;
-							formData.peran = val.pivot.peran;
-							formData.keterangan = val.pivot.keterangan;
+							formData.aktivis_id = valDalam.id;
+							formData.name = valDalam.name;
+							formData.gambar = valDalam.gambar;
+							formData.peran = valDalam.pivot.peran;
+							formData.asal = 'dalam';
+							formData.keterangan = valDalam.pivot.keterangan;
 
-							if(val.pekerjaan_aktif){
-								if(val.pekerjaan_aktif.tipe == 1){
-									formData.lembaga = val.pekerjaan_aktif.cu.name;
-								}else if(val.pekerjaan_aktif.tipe == 2){
-									formData.lembaga = val.pekerjaan_aktif.lembaga_lain.name;
-								}else if(val.pekerjaan_aktif.tipe == 3){
+							if(valDalam.pekerjaan_aktif){
+								if(valDalam.pekerjaan_aktif.tipe == 1){
+									formData.lembaga = valDalam.pekerjaan_aktif.cu.name;
+								}else if(valDalam.pekerjaan_aktif.tipe == 2){
+									formData.lembaga = valDalam.pekerjaan_aktif.lembaga_lain.name;
+								}else if(valDalam.pekerjaan_aktif.tipe == 3){
 									formData.lembaga = "Puskopdit BKCU Kalimantan"
 								}
 							}
 						
+							this.itemDataPanitia.push(formData);
+						}
+
+						var valLuar;
+						for (valLuar of this.form.panitia_luar) {
+							let formData = {};
+							formData.aktivis_id = valLuar.id;
+							formData.name = valLuar.name;
+							formData.gambar = valLuar.gambar;
+							formData.peran = valLuar.pivot.peran;
+							formData.asal = 'luar';
+							formData.keterangan = valLuar.pivot.keterangan;
+							formData.lembaga = valLuar.pekerjaan;
+
 							this.itemDataPanitia.push(formData);
 						}
 					}
@@ -743,6 +790,19 @@
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
+				}
+			},
+			updateTempatStat(value){
+				this.modalShow = true;
+				this.modalState = value;
+				this.modalColor = '';
+
+				if(value === "success"){
+					this.modalTitle = this.updateTempatResponse.message;
+					this.changeRegencies(this.form.id_regencies);
+				}else{
+					this.modalTitle = 'Oops terjadi kesalahan :(';
+					this.modalContent = this.updateTempatResponse;
 				}
 			}
     },
@@ -782,7 +842,7 @@
 			},
 			editPanitia(value){
 				_.remove(this.itemDataPanitia, {
-						id_panitia: value.id_panitia
+						aktivis_id: value.aktivis_id
 				});
 				this.itemDataPanitia.push(value);
 				this.modalTutup(); 
@@ -790,6 +850,7 @@
 			save() {
 				this.form.sasaran = this.sasaran;
 				this.form.panitia = this.itemDataPanitia;
+				this.state = '';
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
@@ -831,7 +892,7 @@
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah Panitia/Fasilitator';
 					this.modalButton = 'Ok';
-					this.modalSize = 'modal-full';
+					this.modalSize = 'modal-lg';
 					this.formPanitiaMode = 'edit';
 				}else if(state == 'tambah'){
 					this.modalState = 'normal1';
@@ -840,6 +901,12 @@
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formPanitiaMode = 'create';
+				}else if(state == 'tempat'){
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Tempat';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
 				}
 			},
 			modalImageShow(content){
@@ -858,7 +925,7 @@
 				}
 			},
 			modalTutup() {
- 				if(this.updateStat === 'success'){
+ 				if(this.updateStat == 'success' && this.state == ''){
 					this.back();
 				}
 				this.modalShow = false;
@@ -887,6 +954,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('tempat',{
+				updateTempatResponse: 'update',
+				updateTempatStat: 'updateStat'
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

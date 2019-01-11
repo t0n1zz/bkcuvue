@@ -232,6 +232,20 @@ export default {
       } else {
         this.modalContent = "";
       }
+    },
+    updateTpStat(value) {
+      this.modalState = value;
+      this.modalButton = "Ok";
+
+      if (value === "success") {
+        this.modalTitle = this.updateTpMessage.message;
+        this.modalContent = "";
+        this.fetch(this.query);
+      } else if (value === "fail") {
+        this.modalContent = this.updateTpMessage;
+      } else {
+        this.modalContent = "";
+      }
     }
   },
   methods: {
@@ -243,6 +257,8 @@ export default {
       this.columnData[22].disable = false;
       this.columnData[23].disable = false;
       this.columnData[24].disable = false;
+      this.columnData[25].disable = false;
+      this.columnData[26].disable = false;
       
       if (this.$route.meta.mode == "periode") {
 
@@ -351,15 +367,22 @@ export default {
       this.modalState = "normal1";
 
       this.modalKatex.id = itemData.id;
-      this.modalKatex.no_ba = itemData.no_ba;
       this.modalKatex.periode = itemData.periode;
-      this.modalKatex.section =
-        "CU " +
-        itemData.cu_name +
-        " periode " +
-        this.formatPeriode(itemData.periode);
-
-      this.modalKatex.id_cu = itemData.id_cu;
+      
+      if(itemData.id_tp){
+        this.modalKatex.id_cu = itemData.tp.id_cu;
+        this.modalKatex.no_ba = itemData.tp.cu.no_ba;
+        this.modalKatex.id_tp = itemData.id_tp;
+        this.modalKatex.no_tp = itemData.no_tp;
+        this.modalKatex.section = itemData.tp.name + ' periode ' + this.formatPeriode(itemData.periode);
+      }else{
+        this.modalKatex.id_tp = '';
+        this.modalKatex.no_tp = '';
+        this.modalKatex.id_cu = itemData.id_cu;
+        this.modalKatex.no_ba = itemData.no_ba;
+        this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
+      }
+      
       // p1
       if (type == "p1") {
         this.modalTitle = "P1 - Provisi pinjaman lalai di atas 12 bulan";
@@ -1297,6 +1320,10 @@ export default {
       periodeStat: "periodeStat",
       updateMessage: "update",
       updateStat: "updateStat"
+    }),
+    ...mapGetters("laporanTp", {
+      updateTpMessage: "update",
+      updateTpStat: "updateStat"
     })
   }
 };

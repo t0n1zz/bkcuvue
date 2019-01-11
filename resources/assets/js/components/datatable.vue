@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- table desktop -->
-		<div class="table-responsive">
+		<div class="table-responsive table-scrollable">
 			<table class="table table-striped">
 				<thead class="bg-primary">
 					<tr class="text-nowrap">

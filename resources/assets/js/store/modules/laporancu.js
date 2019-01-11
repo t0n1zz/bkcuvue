@@ -1296,11 +1296,11 @@ export const laporanCu = {
       laporanCuAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1313,11 +1313,11 @@ export const laporanCu = {
       laporanTpAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1330,11 +1330,11 @@ export const laporanCu = {
       laporanCuDraftAPI.store( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1347,11 +1347,11 @@ export const laporanCu = {
       laporanCuDraftAPI.storeAll()
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1364,11 +1364,11 @@ export const laporanCu = {
       laporanTpDraftAPI.store( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1381,11 +1381,11 @@ export const laporanCu = {
       laporanTpDraftAPI.storeAll()
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1472,11 +1472,11 @@ export const laporanCu = {
       laporanCuAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -1489,11 +1489,11 @@ export const laporanCu = {
       laporanTpAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   

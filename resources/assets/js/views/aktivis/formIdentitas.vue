@@ -42,21 +42,20 @@
 
 			<!-- nim_cu -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.nim_cu')}">
+				<div class="form-group">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.nim_cu')}">
-						<i class="icon-cross2" v-if="errors.has('form.nim_cu')"></i>
+					<h6>
 						NIM Lembaga:</h6>
 
 					<!-- text -->
-					<input type="text" name="nim_cu" class="form-control" placeholder="Silahkan masukkan nim lembaga" v-model="form.nim_cu">
+					<cleave 
+						name="nik"
+						v-model="form.nim_cu" 
+						class="form-control" 
+						:options="cleaveOption.number16"
+						placeholder="Silahkan masukkan no induk manajemen lembaga"></cleave>
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.nim_cu')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.nim_cu') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
@@ -107,16 +106,15 @@
 
 			<!-- darah -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.darah')}">
+				<div class="form-group">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.darah')}">
-						<i class="icon-cross2" v-if="errors.has('form.darah')"></i>
+					<h6>
 						Gol. Darah:
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="darah" v-model="form.darah" data-width="100%" v-validate="'required'" data-vv-as="Gol. Darah">
+					<select class="form-control" name="darah" v-model="form.darah" data-width="100%">
 						<option disabled value="">Silahkan pilih golongan darah</option>
 						<option value="A">A</option>
 						<option value="B">B</option>
@@ -124,21 +122,15 @@
 						<option value="O">O</option>
 					</select>
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.darah')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.darah') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tinggi -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.tinggi')}">
+				<div class="form-group" >
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.tinggi')}">
-						<i class="icon-cross2" v-if="errors.has('form.tinggi')"></i>
+					<h6>
 						Tinggi <small>(cm)</small>:</h6>
 
 					<!-- text -->
@@ -147,30 +139,22 @@
 						v-model="form.tinggi" 
 						class="form-control" 
 						:options="cleaveOption.number3"
-						placeholder="Silahkan masukkan tinggi"
-						v-validate="'required'" data-vv-as="Tinggi"></cleave>
+						placeholder="Silahkan masukkan tinggi"></cleave>
 					
-
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.tinggi')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.tinggi') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- agama -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.agama')}">
+				<div class="form-group">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.agama')}">
-						<i class="icon-cross2" v-if="errors.has('form.agama')"></i>
+					<h6>
 						Agama:
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="agama" v-model="form.agama" data-width="100%" v-validate="'required'" data-vv-as="Agama">
+					<select class="form-control" name="agama" v-model="form.agama" data-width="100%">
 						<option disabled value="">Silahkan pilih agama</option>
 						<option value="Buddha">Buddha</option>
 						<option value="Hindu">Hindu</option>
@@ -180,21 +164,15 @@
 						<option value="Protestan">Protestan</option>
 					</select>
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.agama')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.agama') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tanggal lahir -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_lahir')}">
+				<div class="form-group" >
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.tanggal_lahir')}">
-						<i class="icon-cross2" v-if="errors.has('form.tanggal_lahir')"></i>
+					<h6>
 						Tgl. Lahir:</h6>
 
 					<!-- input -->
@@ -204,60 +182,42 @@
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. lahir"
-						v-validate="'required'" data-vv-as="Tgl. lahir"></cleave>
+						placeholder="Silahkan masukkan tgl. lahir"></cleave>
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.tanggal_lahir')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_lahir') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tempat lahir -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.tempat_lahir')}">
+				<div class="form-group">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.tempat_lahir')}">
-						<i class="icon-cross2" v-if="errors.has('form.tempat_lahir')"></i>
+					<h6>
 						Tempat Lahir:</h6>
 
 					<!-- text -->
-					<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-validate="'required|min:5'" data-vv-as="Tempat lahir" v-model="form.tempat_lahir">
+					<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir">
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.tempat_lahir')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.tempat_lahir') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- status -->
 			<div class="col-md-4">
-				<div class="form-group" :class="{'has-error' : errors.has('form.status')}">
+				<div class="form-group">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.status')}">
-						<i class="icon-cross2" v-if="errors.has('form.status')"></i>
+					<h6>
 						Status:
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="status" v-model="form.status" data-width="100%" v-validate="'required'" data-vv-as="Status Pernikahan">
+					<select class="form-control" name="status" v-model="form.status" data-width="100%">
 						<option disabled value="">Silahkan pilih status pernikahan</option>
 						<option value="Belum menikah">Belum menikah</option>
 						<option value="Menikah">Menikah</option>
 						<option value="Janda/Duda">Janda/Duda</option>
 					</select>
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.status')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.status') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 		</div>

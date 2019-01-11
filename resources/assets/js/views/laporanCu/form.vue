@@ -73,7 +73,7 @@
 											</h5>
 
 											<!-- select -->
-										<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeTp($event.target.value)" :disabled="!isModelTp">
+										<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="TP" @change="changeTp($event.target.value)" :disabled="!isModelTp">
 												<option disabled value="">Silahkan pilih TP</option>
 												<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
 												<option disabled value="">----------------</option>
@@ -916,7 +916,7 @@
 						this.checkMetaEditTp();
 					}else if(this.$route.meta.mode !== 'edit'){
 						if(this.currentUser.id_cu == 0){
-							// this.form.id_cu = this.currentUser.id_cu;
+							this.form.id_cu = this.currentUser.id_cu;
 						}	
 					}
 				}
@@ -927,13 +927,16 @@
 						this.changeCu(this.form.id_cu);
 					}else if(this.$route.meta.mode == 'editTp'){
 						this.checkMetaEditTp();
+					}else{
+						if(this.currentUser.id_cu != 0)
+							this.changeCu(this.currentUser.id_cu);
 					}
 				}
 			},
 			modelTpStat(value){
 				if(value == "success"){
 					if(this.$route.meta.mode == 'edit'){
-						this.form.id_tp = 0;
+						this.form.id_tp = 'konsolidasi';
 					}else if(this.$route.meta.mode == 'editTp'){
 						this.changeTp(this.form.id_tp);
 					}
@@ -998,6 +1001,12 @@
 					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
+				}
+				this.fetchCu();
+			},
+			fetchCu(){
+				if(this.modelCuStat != 'success'){
+					this.$store.dispatch('cu/getHeader');
 				}
 			},
 			checkMetaEditTp(){
@@ -1074,7 +1083,7 @@
 							}
 						}
 					}else{
-						this.$router.push({name: this.kelas});
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: this.form.id_tp}});
 					}
 				}
 			},

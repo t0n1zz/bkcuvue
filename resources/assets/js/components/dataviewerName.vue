@@ -50,7 +50,7 @@
               </template>
 
               <div class="col-md-2 pb-2">
-                <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == ''"><i class="icon-search4"></i> Cari</button>
+                <button type="button" class="btn btn-primary btn-block" @click.prevent="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == ''"><i class="icon-search4"></i> Cari</button>
               </div>
             </div>
           </div>
@@ -296,14 +296,6 @@
         modalButton: '',
         modalOptionState: ''
       }
-    },
-    mounted() {
-      document.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) {
-          if(this.filterCandidates.length > 0)
-            this.applyFilter();
-        }
-      });
     },
     created() {
       this.addFilter();

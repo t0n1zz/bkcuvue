@@ -25,6 +25,11 @@
 											<i class="icon-floppy-disk"></i> Simpan ke laporan statistik Tp
 										</button>
 
+										<!-- ubah-->
+										<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" :disabled="!selectedItem.id">
+											<i class="icon-pencil5"></i> Ubah
+										</button>
+
 										<!-- hapus -->
 										<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" :disabled="!selectedItem.id">
 											<i class="icon-bin2"></i> Hapus
@@ -42,6 +47,11 @@
 										<!-- simpan -->
 										<button @click.prevent="modalConfirmOpen('simpan')"  class="btn btn-light btn-block">
 											<i class="icon-floppy-disk"></i>Simpan ke laporan statistik Tp
+										</button>
+
+										<!-- ubah-->
+										<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block" :disabled="!selectedItem.id">
+											<i class="icon-pencil5"></i> Ubah
 										</button>
 
 										<!-- hapus -->
@@ -299,6 +309,9 @@
 			selectedRow(item) {
 				this.selectedItem = item;
 			},
+			ubahData(id) {
+				this.$router.push({ name: this.kelas + "EditDraft", params: { id: id } });
+			},
 			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = "confirm-tutup";
@@ -308,19 +321,19 @@
 					this.selectedItem = itemMobile;
 				}
 
-				if (state == "hapus") {
+				if (state == "simpan") {
 					this.modalTitle =
-						"Hapus " + this.title + " " + this.selectedItem.name + " ini?";
+						"Simpan " + this.title + " ini?";
+					this.modalButton = "Iya, Simpan";
+				}else if (state == "hapus") {
+					this.modalTitle =
+						"Hapus " + this.title + " ini?";
 					this.modalButton = "Iya, Hapus";
 				}else if (state == "hapus_semua") {
 					this.modalTitle =
 						"Hapus semua laporan draft ini?";
 					this.modalButton = "Iya, Hapus";
-				}else if (state == "simpan") {
-					this.modalTitle =
-						"Simpan semua laporan draft ini?";
-					this.modalButton = "Iya, Simpan";
-				}
+				} 
 			},
 			modalTutup() {
 				this.modalShow = false;

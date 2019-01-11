@@ -107,7 +107,11 @@
 												<b>ERROR 422:</b> Username atau password anda salah
 											</span>
 											<span v-else-if="content.status === 500">
-												<b>ERROR 500:</b> {{ content.data.message }}
+												<b>ERROR 500:</b> {{ content.data }}
+											</span>
+											<span v-else>
+												<span v-if="content.message">{{ content.message }}</span>
+												<span v-else>{{ content }}</span>
 											</span>
 										</div>
 										<br/> 
@@ -115,7 +119,11 @@
 										<!-- error detail -->
 										<div v-if="content && showDetail">
 											<hr/>
-											<pre class="pre-scrollable language-markup content-group text-left"><code>{{ content.data }}</code></pre>
+											
+											<pre class="pre-scrollable language-markup content-group text-left" v-if="content.data"><code>{{ content.data }}</code></pre>
+
+											<pre class="pre-scrollable language-markup content-group text-left" v-else><code>{{ content }}</code></pre>
+
 											<br/>
 										</div>
 

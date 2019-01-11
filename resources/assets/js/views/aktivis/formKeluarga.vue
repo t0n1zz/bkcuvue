@@ -20,7 +20,7 @@
 			</div>
 		</div>
 
-		<!-- no_ba -->
+		<!-- tipe -->
 		<div class="col-sm-12">
 			<div class="form-group" :class="{'has-error' : errors.has('form.keluarga.tipe')}">
 

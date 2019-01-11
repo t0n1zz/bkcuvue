@@ -6,9 +6,10 @@ use Auth;
 use App\Tp;
 use App\LaporanTp;
 use App\LaporanTpDraft;
-use App\Support\ImageProcessing;
-use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
+use App\Support\ImageProcessing;
+use App\Support\LaporanTpHelper;
+use App\Support\NotificationHelper;
 
 class LaporanTpDraftController extends Controller{
 
@@ -41,18 +42,27 @@ class LaporanTpDraftController extends Controller{
 		unset($value['id_cu']);
 		unset($value['no_ba']);   
 
-		LaporanTp::insert($data);
-		
+		if($this->checkData($kelas)){
+			$kelas2 = LaporanTp::insert($data);
+			
+			$kelas->delete();
 
-		$kelas->delete();
+			NotificationHelper::store_laporan_tp($kelas2,'Mengupload');
 
-		// $this->store_notification($request,'Menambah');
-		
-		return response()
+			LaporanTpHelper::konsolidasi($kelas2);
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' berhasil ditambah'
+				]);
+		}else{
+			return response()
 			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
+				'saved' => false,
+				'message' => 'Maaf laporan periode ini sudah ada, silahkan periksa kembali laporan konsolidasi dan laporan Tp'
 			]);
+		}		
 	}
 
 
@@ -177,5 +187,25 @@ class LaporanTpDraftController extends Controller{
 			->json([
 					'model' => $table_data
 			]);
+	}
+
+	public function checkData($request)
+	{
+		$periode = LaporanTp::where('id_tp',$request->id_tp)->where('periode',$request->periode)->first();
+
+		if($periode){
+			return false;
+		}
+		
+		$tp = Tp::findOrFail($request->id_tp);
+
+		$periodeCu = LaporanCu::where('id_cu',$tp->id_cu)->where('periode',$request->periode)->where('tp','==',0)->first();
+
+		if($periodeCu){
+			return false;
+		}
+
+		return true;
+
 	}
 }

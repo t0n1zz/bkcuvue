@@ -24,6 +24,6 @@ class KegiatanPeserta extends Model {
     
     public function aktivis()
     {
-        return $this->belongsTo('App\Aktivis','aktivis_id','id')->select('id','gambar','name','kelamin','email','hp');
+        return $this->belongsTo('App\Aktivis','aktivis_id','id');
     }
 }

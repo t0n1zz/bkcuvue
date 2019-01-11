@@ -1,80 +1,84 @@
 <template>
 	<div>
-		<!-- peran -->
-		<div class="form-group" :class="{'has-error' : errors.has('form.peran')}">
-
-			<!-- title -->
-			<h5 :class="{ 'text-danger' : errors.has('form.peran')}">
-				<i class="icon-cross2" v-if="errors.has('form.peran')"></i>
-				Peran:
-			</h5>
-
-			<!-- select -->
-			<select class="form-control" name="peran" v-model="form.peran" data-width="100%" v-validate="'required'" data-vv-as="Peran">
-				<option disabled value="">Silahkan pilih peran</option>
-				<option value="panitia">Panitia</option>
-				<option value="fasilitator">Fasilitator</option>
-			</select>
-
-			<!-- error message -->
-			<small class="text-muted text-danger" v-if="errors.has('form.peran')">
-				<i class="icon-arrow-small-right"></i> {{ errors.first('form.peran') }}
-			</small>
-			<small class="text-muted" v-else>&nbsp;</small>
-		</div>
-
-		<!-- keterangan -->
-		<div class="form-group" :class="{'has-error' : errors.has('form.keterangan')}">
-
-			<!-- title -->
-			<h5 :class="{ 'text-danger' : errors.has('form.keterangan')}">
-				<i class="icon-cross2" v-if="errors.has('form.keterangan')"></i>
-				Keterangan:
-			</h5>
-
-			<!-- textarea -->
-			<textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan"
-				v-validate="'required|min:5'" v-model="form.keterangan"></textarea>
-
-			<!-- error message -->
-			<small class="text-muted text-danger" v-if="errors.has('form.keterangan')">
-				<i class="icon-arrow-small-right"></i> {{ errors.first('form.keterangan') }}
-			</small>
-			<small class="text-muted" v-else>&nbsp;
-			</small>
-		</div>
+		<form @submit.prevent="save" data-vv-scope="formPanitia">
 
 		<!-- asal -->
-		<div class="form-group" :class="{'has-error' : errors.has('form.asal')}" v-if="mode == 'create'">
+		<div class="form-group" :class="{'has-error' : errors.has('formPanitia.asal')}" v-if="mode == 'create'">
 
 			<!-- title -->
-			<h5 :class="{ 'text-danger' : errors.has('form.asal')}">
-				<i class="icon-cross2" v-if="errors.has('form.asal')"></i>
+			<h5 :class="{ 'text-danger' : errors.has('formPanitia.asal')}">
+				<i class="icon-cross2" v-if="errors.has('formPanitia.asal')"></i>
 				Asal:
 			</h5>
 
 			<!-- select -->
-			<select class="form-control" name="asal" v-model="form.asal" data-width="100%" @change="changeAsal($event.target.value)" v-validate="'required'" data-vv-as="asal">
+			<select class="form-control" name="asal" v-model="formPanitia.asal" data-width="100%" @change="changeAsal($event.target.value)" v-validate="'required'" data-vv-as="asal">
 				<option disabled value="">Silahkan pilih asal</option>
 				<option value="dalam">Dalam gerakan</option>
 				<option value="luar">Luar gerakan</option>
 			</select>
 
 			<!-- error message -->
-			<small class="text-muted text-danger" v-if="errors.has('form.asal')">
-				<i class="icon-arrow-small-right"></i> {{ errors.first('form.asal') }}
+			<small class="text-muted text-danger" v-if="errors.has('formPanitia.asal')">
+				<i class="icon-arrow-small-right"></i> {{ errors.first('formPanitia.asal') }}
 			</small>
 			<small class="text-muted" v-else>&nbsp;</small>
 		</div>
 
+		<div class="card" v-if="formPanitia.aktivis_id">
+			<div class="card-header bg-info text-white header-elements-inline">
+				<h6 class="card-title">{{ formPanitia.name }}</h6>
+				<div class="header-elements">
+					<button type="button" class="btn btn-danger" @click.prevent="deleteSelected"><i class="icon-cross2 mr-2"></i> Batal</button>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="media flex-column flex-sm-row mt-0 mb-3">
+					<div class="mr-sm-3 mb-2 mb-sm-0">
+						<div class="card-img-actions" v-if="formPanitia.asal == 'dalam'">
+								<img :src="'/images/aktivis/' + formPanitia.gambar + 'n.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
+								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
+						</div>
+						<div class="card-img-actions" v-if="formPanitia.asal == 'luar'">
+								<img :src="'/images/mitra_orang/' + formPanitia.gambar + 'n.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
+								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
+						</div>
+					</div>
+
+					<div class="media-body">
+						<div class="row">
+							<div class="col-sm-6">
+								<ul class="list list-unstyled mb-0">
+									<li><b>Gender:</b> {{ formPanitia.kelamin}}</li>
+									<li><b>Tempat Lahir:</b> {{ formPanitia.tempat_lahir}}</li>
+									<li><b>Tgl. Lahir:</b> <span v-html="$options.filters.date(formPanitia.tanggal_lahir)"></span></li>
+									<li><b>Status:</b> {{ formPanitia.status}}</li>
+									<li><b>Tinggi:</b> {{ formPanitia.tinggi}}</li>
+									<li><b>Agama:</b> {{ formPanitia.agama}}</li>
+								</ul>
+							</div>
+							<div class="col-sm-6">
+								<ul class="list list-unstyled mb-0">
+									<li><b>Lembaga:</b> <br/>{{ formPanitia.lembaga}}</li>
+									<li><b>Jabatan:</b> <br/>{{ formPanitia.jabatan}}</li>
+									<li><b>Pendidikan:</b> <br/>{{ formPanitia.pendidikan}}</li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- if asal dalam -->
-		<data-viewer :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetchDalam" v-if="form.asal == 'dalam' && mode == 'create'">
+		<data-viewer :columnData="columnDataDalam" :itemData="itemDataDalam" :query="query" :itemDataStat="itemDataDalamStat" @fetch="fetchDalam" v-if="formPanitia.asal == 'dalam' && formPanitia.aktivis_id == '' && mode == 'create'">
 
 			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
 					<td>
-						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
+						{{ props.index + 1 + (+itemDataDalam.current_page-1) * +itemDataDalam.per_page + '.'}}
 					</td>
 					<td>
 						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
@@ -82,6 +86,9 @@
 					</td>
 					<td>
 						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.kelamin"></check-value>
 					</td>
 					<td>
 						<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
@@ -111,70 +118,133 @@
 						<check-value :value="props.item.pendidikan_tertinggi.name" v-if="props.item.pendidikan_tertinggi"></check-value>
 						<span v-else>-</span>
 					</td>
+					<td v-html="$options.filters.date(props.item.tanggal_lahir)">
+					</td>
+					<td>
+						<check-value :value="props.item.tempat_lahir"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.tinggi"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.agama"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.status"></check-value>
+					</td>
 				</tr>
 			</template>
 
 		</data-viewer>
 
 		<!-- if asal luar -->
-		<data-viewer :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetchLuar" v-if="form.asal == 'luar' && mode == 'create'">
+		<data-viewer :columnData="columnDataLuar" :itemData="itemDataLuar" :query="query" :itemDataStat="itemDataLuarStat" @fetch="fetchLuar" v-if="formPanitia.asal == 'luar' && formPanitia.aktivis_id == '' && mode == 'create'">
 
 			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
-					<td v-if="!columnData[0].hide">
-						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
+					<td>
+						{{ props.index + 1 + (+itemDataLuar.current_page-1) * +itemDataLuar.per_page + '.'}}
 					</td>
-					<td v-if="!columnData[1].hide">
-						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+					<td>
+						<img :src="'/images/mitra_orang/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
 						<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
-					<td v-if="!columnData[2].hide">
+					<td>
 						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide && !columnData[3].disable">
-						<check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
-						<span v-else>-</span>
+					<td>
+						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide && !columnData[4].disable" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
+					<td>
+						<check-value :value="props.item.lembaga"></check-value>
 					</td>
-					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
-						<span v-else>-</span>
+					<td>
+						<check-value :value="props.item.jabatan"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
-						<span v-else>-</span>
+					<td>
+						<check-value :value="props.item.pendidikan"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.pendidikan_tertinggi.name" v-if="props.item.pendidikan_tertinggi"></check-value>
-						<span v-else>-</span>
+					<td v-html="$options.filters.date(props.item.tanggal_lahir)">
+					</td>
+					<td>
+						<check-value :value="props.item.tempat_lahir"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.tinggi"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.agama"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.status"></check-value>
 					</td>
 				</tr>
 			</template>
 
 		</data-viewer>
 
+				<!-- peran -->
+		<div class="form-group" :class="{'has-error' : errors.has('formPanitia.peran')}">
+
+			<!-- title -->
+			<h5 :class="{ 'text-danger' : errors.has('formPanitia.peran')}">
+				<i class="icon-cross2" v-if="errors.has('formPanitia.peran')"></i>
+				Peran:
+			</h5>
+
+			<!-- select -->
+			<select class="form-control" name="peran" v-model="formPanitia.peran" data-width="100%" v-validate="'required'" data-vv-as="Peran">
+				<option disabled value="">Silahkan pilih peran</option>
+				<option value="panitia">Panitia</option>
+				<option value="fasilitator">Fasilitator</option>
+			</select>
+
+			<!-- error message -->
+			<small class="text-muted text-danger" v-if="errors.has('formPanitia.peran')">
+				<i class="icon-arrow-small-right"></i> {{ errors.first('formPanitia.peran') }}
+			</small>
+			<small class="text-muted" v-else>&nbsp;</small>
+		</div>
+
+		<!-- keterangan -->
+		<div class="form-group">
+
+			<!-- title -->
+			<h5>
+				Keterangan:
+			</h5>
+
+			<!-- textarea -->
+			<textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan" v-model="formPanitia.keterangan"></textarea>
+
+		</div>
+
+		<!-- message -->
+		<message v-if="errors.any('formPanitia') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
+		</message>
 		<!-- divider -->
 		<hr>
 		
 		<!-- tombol desktop-->
 		<div class="text-center d-none d-md-block">
-			<button class="btn btn-light" @click.prevent="tutup">
+			<button type="button" class="btn btn-light" @click.prevent="tutup">
 				<i class="icon-cross"></i> Tutup</button>
 
-			<button class="btn btn-primary" @click.prevent="tambah" :disabled="form.aktivis_id == ''">
+			<button type="submit" class="btn btn-primary" :disabled="formPanitia.aktivis_id == ''">
 				<i class="icon-floppy-disk"></i> Simpan</button>
 		</div>  
 
 		<!-- tombol mobile-->
 		<div class="d-block d-md-none">
-			<button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
-				<i class="icon-cross"></i> Tutup</button>
-
-			<button class="btn btn-primary btn-block pb-2" @click.prevent="tambah" :disabled="form.aktivis_id == ''">
+			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formPanitia.aktivis_id == ''">
 				<i class="icon-floppy-disk"></i> Simpan</button>
-		</div> 
+
+			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+		</div>
+
+		</form> 
 
 	</div>
 </template>
@@ -183,19 +253,21 @@
 	import { mapGetters } from 'vuex';
 	import checkValue from '../../components/checkValue.vue';
 	import DataViewer from '../../components/dataviewerName.vue';
+	import message from "../../components/message.vue";
 
 	export default {
 		props: ['mode','selected'],
 		components: {
 			DataViewer,
-			checkValue
+			checkValue,
+			message
 		},
 		data() {
 			return {
 				title: '',
 				kelas: 'aktivis',
 				selectedItem: [],
-				form:{
+				formPanitia:{
 					aktivis_id: '',
 					name: '',
 					lembaga: '',
@@ -208,19 +280,12 @@
 					order_column: "name",
 					order_direction: "asc",
 					filter_match: "and",
-					limit: 10,
+					limit: 5,
 					page: 1
 				},
-				columnData: [
-					{
-						title: 'No.',
-						name: 'No.',
-					},
-					{
-						title: 'Foto',
-						name: 'gambar',
-						hide: false,
-					},
+				columnDataDalam: [
+					{ title: 'No.' },
+					{ title: 'Foto' },
 					{
 						title: 'Nama',
 						name: 'name',
@@ -231,52 +296,42 @@
 						filter: true,
 						filterDefault: true
 					},
-					{
-						title: 'CU',
-						name: 'pekerjaan_aktif.cu.name',
-						tipe: 'string',
-						sort: false, 
-						hide: false,
-						disable: false,
-						filter: false,
-					},
-					{
-						title: 'Tingkat',
-						name: 'pekerjaan_aktif.tingkat',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
-					},
-					{
-						title: 'Jabatan',
-						name: 'pekerjaan_aktif.name',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
-					},
-					{
-						title: 'Pendidikan',
-						name: 'pendidikan_tertinggi.tingkat',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
-					},
-					{
-						title: 'Jurusan',
-						name: 'pendidikan_tertinggi.name',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
-					},
+					{ title: 'Gender' },
+					{ title: 'CU' },
+					{ title: 'Tingkat' },
+					{ title: 'Jabatan' },
+					{ title: 'Pendidikan'},
+					{ title: 'Jurusan' },
+					{ title: 'Tgl. Lahir' },
+					{ title: 'Tempat Lahir' },
+					{ title: 'Tinggi' },
+					{ title: 'Agama' },
+					{ title: 'Status' },
 				],
+				columnDataLuar: [
+					{ title: 'No.' },
+					{ title: 'Foto' },
+					{
+						title: 'Nama',
+						name: 'name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true
+					},
+					{ title: 'Gender' },
+					{ title: 'Lembaga' },
+					{ title: 'Jabatan' },
+					{ title: 'Pendidikan'},
+					{ title: 'Tgl. Lahir' },
+					{ title: 'Tempat Lahir' },
+					{ title: 'Tinggi' },
+					{ title: 'Agama' },
+					{ title: 'Status' },
+				],
+				submited: false,
 			}
 		},
 		created(){
@@ -288,6 +343,10 @@
 			changeAsal(value){
 				this.$store.commit('aktivis/setDataS',[]);
 				this.$store.commit('aktivis/setDataStatS','');
+				this.$store.commit('mitraOrang/setDataS',[]);
+				this.$store.commit('mitraOrang/setDataStatS','');
+
+				this.deleteSelected();
 
 				if(this.asal == 'luar'){
 					this.fetchLuar(this.query);
@@ -297,36 +356,55 @@
 				this.$store.dispatch('aktivis/index', [params,'semua']);
 			},
 			fetchLuar(params){
-				this.$store.dispatch('aktivis/indexLembaga');
+				this.$store.dispatch('mitraOrang/index');
+			},
+			deleteSelected(){
+				this.formPanitia.aktivis_id = '';
+				this.selectedItem = '';
 			},
 			selectedRow(item){
 				this.selectedItem = item;
-				this.form.aktivis_id = item.id;
-				this.form.name = item.name;
-				this.form.gambar = item.gambar;
+				this.formPanitia.aktivis_id = item.id;
+				this.formPanitia.name = item.name;
+				this.formPanitia.gambar = item.gambar;
+				this.formPanitia.status = item.status;
+				this.formPanitia.kelamin = item.kelamin;
+				this.formPanitia.agama = item.agama;
+				this.formPanitia.tinggi = item.tinggi;
+				this.formPanitia.tanggat_lahir = item.tanggat_lahir;
+				this.formPanitia.tempat_lahir = item.tempat_lahir;
 
-				if(this.form.asal == 'dalam'){
+				if(this.formPanitia.asal == 'dalam'){
 					if(item.pekerjaan_aktif.tipe == 1){
-						this.form.lembaga = item.pekerjaan_aktif.cu.name
+						this.formPanitia.lembaga = item.pekerjaan_aktif.cu.name
 					}else if(item.pekerjaan_aktif.tipe == 2){
-						this.form.lembaga = item.pekerjaan_aktif.lembaga_lain.name
+						this.formPanitia.lembaga = item.pekerjaan_aktif.lembaga_lain.name
 					}else if(item.pekerjaan_aktif.tipe == 3){
-						this.form.lembaga = "Puskopdit BKCU Kalimantan"
+						this.formPanitia.lembaga = "Puskopdit BKCU Kalimantan"
 					}
+
+					this.formPanitia.jabatan = item.pekerjaan_aktif.name;
+					this.formPanitia.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
 				}else{
-					this.form.lembaga = item.pekerjaan_aktif.lembaga_lain.name
+					this.formPanitia.lembaga = item.lembaga;
+					this.formPanitia.jabatan = item.jabatan;
+					this.formPanitia.pendidikan = item.pendidikan;
 				}
 				
 			},
-			tambah(){
-				if(this.mode == 'edit'){
-					this.$emit('editPanitia',this.form);
-				}else{
-					this.$emit('addPanitia',this.form);
-				}
-			},
-			createAktivis(){
-
+			save(){
+				this.$validator.validateAll('formPanitia').then((result) => {
+					if (result) {
+						if(this.mode == 'edit'){
+							this.$emit('editPanitia',this.formPanitia);
+						}else{
+							this.$emit('addPanitia',this.formPanitia);
+						}
+						this.submited = false;
+					}else{
+						this.submited = true;
+					}	
+				});
 			},
 			tutup(){
 				this.$emit('tutup');
@@ -337,8 +415,12 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('aktivis',{
-				itemData: 'dataS',
-				itemDataStat: 'dataStatS'
+				itemDataDalam: 'dataS',
+				itemDataDalamStat: 'dataStatS'
+			}),
+			...mapGetters('mitraOrang',{
+				itemDataLuar: 'dataS',
+				itemDataLuarStat: 'dataStatS'
 			})
 		}
 	}

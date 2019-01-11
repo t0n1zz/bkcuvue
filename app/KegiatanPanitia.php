@@ -9,6 +9,6 @@ class KegiatanPanitia extends Model {
     
     public function aktivis()
     {
-        return $this->belongsTo('App\Aktivis','aktivis_id','id')->select('id','gambar','name');
+        return $this->belongsTo('App\Aktivis','aktivis_id','id');
     }
 }

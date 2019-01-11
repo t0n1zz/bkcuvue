@@ -79,6 +79,20 @@ export const diklatBKCU = {
         });
     },
 
+    indexPesertaCu( { commit }, [p, id, cu] ){
+      commit('setDataStatS', 'loading');
+      
+      DIKLATBKCUAPI.indexPesertaCu( p, id, cu )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     getPeriode( { commit } ){
       commit('setPeriodeStat', 'loading');
       

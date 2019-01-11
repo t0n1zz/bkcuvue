@@ -137,10 +137,18 @@
 				}
 			},
 			back(){
-				if(this.itemData.id_cu != 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.id_cu, tp: 'konsolidasi'}});
+				if(this.itemData.id_cu){
+					if(this.itemData.id_cu != 0){
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.id_cu, tp: 'konsolidasi'}});
+					}else{
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.id_cu, tp: this.itemData.id_tp}});
+					}
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.id_cu, tp: this.itemData.id_tp}});
+					if(this.itemData.tp.id_cu != 0){
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.tp.id_cu, tp: 'konsolidasi'}});
+					}else{
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.itemData.tp.id_cu, tp: this.itemData.id_tp}});
+					}
 				}
 			} 
 		},

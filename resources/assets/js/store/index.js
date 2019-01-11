@@ -20,6 +20,8 @@ import { laporanCu } from './modules/laporanCu';
 import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
 import { aktivis } from './modules/aktivis';
+import { mitraOrang } from './modules/mitraOrang';
+import { mitraLembaga } from './modules/mitraLembaga';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
@@ -49,6 +51,8 @@ export default new Vuex.Store({
 		 laporanCuDiskusi,
 		 laporanTp,
 		 aktivis,
+		 mitraOrang,
+		 mitraLembaga,
 		 produkCu,
 		 diklatBKCU,
 		 tempat,

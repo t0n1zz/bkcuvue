@@ -309,7 +309,7 @@
 							</router-link>
 
 							<!-- tambah tempat -->
-							<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_tempat']">
+							<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_tempat']">
 								<i class="icon-plus22"></i> Tambah Tempat
 							</router-link>
 
@@ -325,7 +325,7 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- tempat -->
-							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_tempat']">
+							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 &&  currentUser.can['index_tempat']">
 								<i class="icon-location4"></i> Tempat
 							</router-link>
 
@@ -333,7 +333,7 @@
 					</li>
 
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu']">
+					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -358,7 +358,16 @@
 
 							<!-- tambah aktivis -->
 							<router-link :to="{ name:'aktivisCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aktivis']">
-								<i class="icon-plus22"></i> Tambah aktivis
+								<i class="icon-plus22"></i> Tambah Aktivis
+							</router-link>
+							
+							<!-- tambah mitra -->
+							<router-link :to="{ name:'mitraOrangCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_mitra_orang']">
+								<i class="icon-plus22"></i> Tambah Mitra Perseorangan 
+							</router-link>
+
+							<router-link :to="{ name:'mitraLembagaCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_mitra_lembaga']">
+								<i class="icon-plus22"></i> Tambah Lembaga Mitra 
 							</router-link>
 
 							<!-- divider -->
@@ -489,6 +498,30 @@
 								</div>
 							</div>
 
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
+							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu == 'mitra'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('mitra')">
+									<i class="icon-briefcase"></i> Mitra
+								</a>
+
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'mitra'}">
+	
+									<!-- mitra perseorangan -->
+									<router-link :to="{ name: 'mitraOrang' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_mitra_orang']">
+										Perseorangan
+									</router-link>
+
+									<!-- mitra perseorangan -->
+									<router-link :to="{ name: 'mitraLembaga' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_mitra_lembaga']">
+									  Lembaga
+									</router-link>
+
+								</div>
+
+							</div>
+
 						</div>
 					</li>
 
@@ -509,7 +542,7 @@
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
 
-							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu']">
+							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu']&& currentUser.id_cu == '0'">
 								<i class="icon-stats-bars"></i> Laporan Statistik Gerakan
 							</router-link>
 

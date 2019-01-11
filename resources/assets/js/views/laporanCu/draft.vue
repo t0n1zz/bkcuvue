@@ -21,14 +21,9 @@
 									<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
 
 										<!-- simpan semua -->
-										<button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light mb-1" :disabled="itemData.lenght == 0">
+										<!-- <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light mb-1" :disabled="itemData.lenght == 0">
 											<i class="icon-floppy-disk"></i> Simpan Semua ke laporan statistik CU
-										</button>
-
-										<!-- hapus semua -->
-										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="itemData.lenght == 0">
-											<i class="icon-bin2"></i> Hapus Semua
-										</button>
+										</button> -->
 
 										<!-- simpan-->
 										<button @click.prevent="modalConfirmOpen('simpan')" class="btn btn-light mb-1" :disabled="!selectedItem.id">
@@ -45,19 +40,19 @@
 											<i class="icon-bin2"></i> Hapus
 										</button>
 
+										<!-- hapus semua -->
+										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="itemData.lenght == 0">
+											<i class="icon-bin2"></i> Hapus Semua
+										</button>
+
 									</div>
 									<!-- button mobile -->
 									<div class="col-md-12 pb-2 d-block d-sm-none">
 
 										<!-- simpan semua-->
-										<button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light btn-block" :disabled="itemData.lenght == 0">
+										<!-- <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light btn-block" :disabled="itemData.lenght == 0">
 											<i class="icon-floppy-disk"></i>Simpan ke laporan statistik CU
-										</button>
-
-										<!-- hapus semua -->
-										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemData.lenght == 0">
-											<i class="icon-bin2"></i> Hapus Semua
-										</button>
+										</button> -->
 
 										<!-- simpan-->
 										<button @click.prevent="modalConfirmOpen('simpan')" class="btn btn-light btn-block" :disabled="!selectedItem.id">
@@ -72,6 +67,11 @@
 										<!-- hapus -->
 										<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" :disabled="!selectedItem.id">
 											<i class="icon-bin2"></i> Hapus
+										</button>
+
+										<!-- hapus semua -->
+										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemData.lenght == 0">
+											<i class="icon-bin2"></i> Hapus Semua
 										</button>
 
 									</div>
@@ -352,20 +352,16 @@
 
 				if (state == "simpan") {
 					this.modalTitle =
-						"Simpan " + this.title + " " + this.selectedItem.name + " ini?";
+						"Simpan " + this.title + " ini?";
 					this.modalButton = "Iya, Simpan";
 				}else if (state == "hapus") {
 					this.modalTitle =
-						"Hapus " + this.title + " " + this.selectedItem.name + " ini?";
+						"Hapus " + this.title + " ini?";
 					this.modalButton = "Iya, Hapus";
 				}else if (state == "hapus_semua") {
 					this.modalTitle =
 						"Hapus semua laporan draft ini?";
 					this.modalButton = "Iya, Hapus";
-				}else if (state == "simpan") {
-					this.modalTitle =
-						"Simpan semua laporan draft ini?";
-					this.modalButton = "Iya, Simpan";
 				}
 			},
 			modalTutup() {

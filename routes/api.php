@@ -172,6 +172,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
 
         Route::get('/diklatBKCU/indexPeserta/{id}', 'DiklatBKCUController@indexPeserta');
+        Route::get('/diklatBKCU/indexPesertaCu/{id}/cu/{cu}', 'DiklatBKCUController@indexPesertaCu');
         Route::post('/diklatBKCU/storePeserta/{id}', 'DiklatBKCUController@storePeserta');
         Route::post('/diklatBKCU/updatePeserta/{id}', 'DiklatBKCUController@updatePeserta');
         Route::delete('/diklatBKCU/destroyPeserta/{id}', 'DiklatBKCUController@destroyPeserta');
@@ -230,6 +231,42 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
     Route::group(['middleware' => ['permission:destroy_aktivis']], function () {
         Route::delete('/aktivis/{id}', 'AktivisController@destroy');
+    });
+
+    // mitra perserorangan
+    Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
+        Route::get('/mitraOrang', 'MitraOrangController@index');
+        Route::get('/mitraOrang/count', 'MitraOrangController@count');
+    });
+    Route::group(['middleware' => ['permission:create_mitra_orang']], function () {
+        Route::get('/mitraOrang/create', 'MitraOrangController@create');
+        Route::post('/mitraOrang/store', 'MitraOrangController@store');
+    });
+    Route::group(['middleware' => ['permission:update_mitra_orang']], function () {
+        Route::get('/mitraOrang/edit/{id}', 'MitraOrangController@edit');
+        Route::post('/mitraOrang/update/{id}', 'MitraOrangController@update');
+        Route::post('/mitraOrang/restore/{id}', 'MitraOrangController@restore');
+    });
+    Route::group(['middleware' => ['permission:destroy_mitra_orang']], function () {
+        Route::delete('/mitraOrang/{id}', 'MitraOrangController@destroy');
+    });
+
+    // mitra lembaga
+    Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
+        Route::get('/mitraLembaga', 'MitraLembagaController@index');
+        Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
+    });
+    Route::group(['middleware' => ['permission:create_mitra_lembaga']], function () {
+        Route::get('/mitraLembaga/create', 'MitraLembagaController@create');
+        Route::post('/mitraLembaga/store', 'MitraLembagaController@store');
+    });
+    Route::group(['middleware' => ['permission:update_mitra_lembaga']], function () {
+        Route::get('/mitraLembaga/edit/{id}', 'MitraLembagaController@edit');
+        Route::post('/mitraLembaga/update/{id}', 'MitraLembagaController@update');
+        Route::post('/mitraLembaga/restore/{id}', 'MitraLembagaController@restore');
+    });
+    Route::group(['middleware' => ['permission:destroy_mitra_lembaga']], function () {
+        Route::delete('/mitraLembaga/{id}', 'MitraLembagaController@destroy');
     });
 
     //laporan cu
