@@ -12,10 +12,17 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
-					<infografis-data
-						:title="title"
-						:kelas="kelas"
-						:columnData="columnData"></infografis-data>
+					<div class="row">
+						<!-- grafik -->
+						<div class="col-lg-8" >	
+							<grafik-laporan-cu-widget :id_cu="'0'" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
+						</div>
+
+						<!-- tabel -->
+						<div class="col-lg-4">
+							<table-laporan-cu-widget :id_cu="'0'" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
+						</div>
+					</div>
 
 					<table-data :title="title" :kelas="kelas"></table-data>
 
@@ -33,30 +40,36 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import tableData from "./table.vue";
-	import infografisData from "./infografis.vue";
+	import grafikLaporanCuWidget from '../dashboard/grafikLaporanCuWidget.vue';
+	import tableLaporanCuWidget from '../dashboard/tableLaporanCuWidget.vue';
 
 	export default {
 		components: {
 			pageHeader,
 			message,
 			tableData,
-			infografisData,
+			grafikLaporanCuWidget,
+			tableLaporanCuWidget
 		},
 		data() {
 			return {
-				title: 'Laporan Perkembangan Gerakan',
+				title: 'Laporan Statistik Gerakan',
 				kelas: 'laporanCu',
-				titleDesc: 'Mengelola data perkembangan gerakan',
+				titleDesc: 'Mengelola data statistik gerakan',
 				titleIcon: 'icon-stats-bars',
 			}
 		},
 		methods: {
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('laporanCu', {
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				columnData: 'columnData',
+				columnDataPearls: 'columnDataPearls',
 			}),
 		}
 	}

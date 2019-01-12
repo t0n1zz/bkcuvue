@@ -92,10 +92,10 @@
               <p>Data akumulasi dari gerakan Puskopdit BKCU Kalimantan per {{ date('F Y',strtotime($dataGerakan->periode)) }}</p>
             </div>
 
-            <!-- <div class="col-lg-6 bottommargin-sm">
+            <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="50" data-to="{{ $dataGerakan->total_anggota }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
               <h5 class="nobottommargin">Anggota Credit Union</h5>
-            </div> -->
+            </div>
 
             <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="10" data-to="{{ $cuCount }}" data-refresh-interval="5" data-speed="1000" data-comma="true"></span></div>

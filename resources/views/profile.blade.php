@@ -63,11 +63,11 @@
         <h5>Credit Union</h5>
       </div>
 
-      <!-- <div class="col_one_fourth center" data-animate="bounceIn" data-delay="400">
+      <div class="col_one_fourth center" data-animate="bounceIn" data-delay="400">
         <i class="i-plain i-xlarge divcenter nobottommargin icon-line2-users"></i>
         <div class="counter counter-large" style="color: #16a085;"><span data-from="1000" data-to="{{ $dataGerakan->total_anggota }}" data-refresh-interval="50" data-speed="1900"></span></div>
         <h5>Anggota Credit Union</h5>
-      </div> -->
+      </div>
 
       <div class="col_one_fourth center col_last" data-animate="bounceIn" data-delay="600">
         <i class="i-plain i-xlarge divcenter nobottommargin icon-users"></i>

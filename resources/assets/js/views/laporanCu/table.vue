@@ -44,7 +44,7 @@
 
 				<!-- detail-->
 				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-file-stats"></i> Detail
+					<i class="icon-stack2"></i> Detail
 				</button>
 
 			</template>
@@ -68,7 +68,7 @@
 
 				<!-- detail-->
 				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
-					<i class="icon-file-stats"></i> Detail
+					<i class="icon-stack2"></i> Detail
 				</button>
 
 			</template>
@@ -360,23 +360,18 @@ export default {
   },
   methods: {
     fetch(params) {
+			var i;
 			this.checkProfile();
-
-			this.columnData[31].disable = false;
-			this.columnData[32].disable = false;
-			this.columnData[45].disable = false;
-			this.columnData[46].disable = false;
-			this.columnData[47].disable = false;
-			this.columnData[48].disable = false;
 			
       if (this.$route.meta.mode == "periode") { // laporan cu with periode
-
-        this.columnData[1].disable = false;
-        this.columnData[3].disable = false;
-        this.columnData[4].disable = false;
-        this.columnData[5].disable = false;
-        this.columnData[6].disable = false;
-        this.columnData[2].disable = true;
+				
+				for(i = 0; i < this.columnData.length ; i++){
+					if([2].includes(i)){
+						this.columnData[i].disable = true;
+					}else{
+						this.columnData[i].disable = false;
+					}	
+				}
 
         this.$store.dispatch(this.kelas + "/indexPeriode", [
           params,
@@ -387,17 +382,17 @@ export default {
 				this.periode = this.$route.params.periode;
 
       } else if (this.$route.meta.mode == "cu") {
-        
-        this.columnData[5].disable = false;
-        this.columnData[1].disable = true;
-        this.columnData[2].disable = true;
-        this.columnData[3].disable = true;
-        this.columnData[4].disable = true;
+				
+				for(i = 0; i < this.columnData.length ; i++){
+					if([1,2,3,4].includes(i)){
+						this.columnData[i].disable = true;
+					}else{
+						this.columnData[i].disable = false;
+					}	
+				}
         
         if (this.$route.params.tp == "konsolidasi") { //laporan cu konsolidasi per cu
-          
-          this.columnData[6].disable = false;
-
+        
           this.$store.dispatch(this.kelas + "/indexCu", [
             params,
             this.$route.params.cu
@@ -407,7 +402,13 @@ export default {
 
         } else { // laporan tp/kp per tp
           
-          this.columnData[6].disable = true;
+					for(i = 0; i < this.columnData.length ; i++){
+						if([6].includes(i)){
+							this.columnData[i].disable = true;
+						}else{
+							this.columnData[i].disable = false;
+						}	
+					}
 
           this.$store.dispatch(this.kelas + "/indexTp", [
             params,
@@ -418,13 +419,14 @@ export default {
 
         }
       } else if (this.$route.meta.mode == "cuPeriode") { // laporan tp/kp semua tp
-
-				this.columnData[5].disable = false;
-				this.columnData[2].disable = false;
-        this.columnData[1].disable = true;
-        this.columnData[3].disable = true;
-        this.columnData[4].disable = true;
-        this.columnData[6].disable = true;
+				
+				for(i = 0; i < this.columnData.length ; i++){
+					if([1,3,4,6].includes(i)){
+						this.columnData[i].disable = true;
+					}else{
+						this.columnData[i].disable = false;
+					}	
+				}
 
         this.$store.dispatch(this.kelas + "/indexTpPeriode", [
           params,
@@ -435,13 +437,14 @@ export default {
 				this.periode = this.$route.params.periode;
 
       } else { // laporan cu default
-
-        this.columnData[1].disable = false;
-        this.columnData[3].disable = false;
-        this.columnData[4].disable = false;
-        this.columnData[5].disable = false;
-        this.columnData[6].disable = false;
-        this.columnData[2].disable = true;
+				
+				for(i = 0; i < this.columnData.length ; i++){
+					if([2].includes(i)){
+						this.columnData[i].disable = true;
+					}else{
+						this.columnData[i].disable = false;
+					}	
+				}
 
 				this.$store.dispatch(this.kelas + "/index", params);
 				// this.$store.dispatch(this.kelas + "/indexTotal");
@@ -540,7 +543,43 @@ export default {
           }
         });
       }
-    },
+		},
+		columnGroup(value){
+			var i;
+			if(value == 'anggota'){
+				for(i = 0; i < this.columnData.length ; i++){
+					if([0,1,2,3,4,5,6,7,8,9,10,11,12,47,48].includes(i)){
+						this.columnData[i].hide = false;
+					}else{
+						this.columnData[i].hide = true;
+					}	
+				}
+			}else if(value == 'aset'){
+				for(i = 0; i < this.columnData.length ; i++){
+					if([0,1,2,3,4,5,6,13,14,15,16,18,21,22,44,47,48].includes(i)){
+						this.columnData[i].hide = false;
+					}else{
+						this.columnData[i].hide = true;
+					}	
+				}
+			}else if(value == 'shu'){
+				for(i = 0; i < this.columnData.length ; i++){
+					if([0,1,2,3,4,5,6,33,34,40,41,42,43,47,48].includes(i)){
+						this.columnData[i].hide = false;
+					}else{
+						this.columnData[i].hide = true;
+					}
+				}
+			}else if(value == 'piutang'){
+				for(i = 0; i < this.columnData.length ; i++){
+					if([0,1,2,3,4,5,6,26,27,28,29,30,31,32,47,48].includes(i)){
+						this.columnData[i].hide = false;
+					}else{
+						this.columnData[i].hide = true;
+					}
+				}
+			}
+		},
     modalConfirmOpen(state, isMobile, itemMobile) {
       this.modalShow = true;
       this.modalColor = "";

@@ -89,7 +89,7 @@
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'r8')" style="cursor:pointer;">
+					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r7'"
 							:props="props.item"
@@ -369,6 +369,8 @@ export default {
       this.modalKatex.id = itemData.id;
       this.modalKatex.periode = itemData.periode;
       
+      console.log(itemData);
+
       if(itemData.id_tp){
         this.modalKatex.id_cu = itemData.tp.id_cu;
         this.modalKatex.no_ba = itemData.tp.cu.no_ba;
@@ -380,7 +382,7 @@ export default {
         this.modalKatex.no_tp = '';
         this.modalKatex.id_cu = itemData.id_cu;
         this.modalKatex.no_ba = itemData.no_ba;
-        this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
+        this.modalKatex.section = 'CU ' + itemData.cu_name + ' periode ' + this.formatPeriode(itemData.periode);
       }
       
       // p1
@@ -1190,9 +1192,9 @@ export default {
         let katex2Content1 =
           "\\text{s10} = \\dfrac{\\text{" +
           this.formatCurrency(this.modalKatex.form[4].value) +
-          "}} - \\text{" +
+          "} - \\text{" +
           this.formatCurrency(this.modalKatex.form[5].value) +
-          "}{\\text{" +
+          "}}{\\text{" +
           this.formatCurrency(this.modalKatex.form[5].value) +
           "}} \\times \\text{100} \\% = " +
           this.formatPercentage(itemData.s10) +
@@ -1231,9 +1233,9 @@ export default {
         let katex2Content1 =
           "\\text{S11} = \\dfrac{\\text{" +
           this.formatCurrency(this.modalKatex.form[0].value) +
-          "}} - \\text{" +
+          "} - \\text{" +
           this.formatCurrency(this.modalKatex.form[1].value) +
-          "}{\\text{" +
+          "}}{\\text{" +
           this.formatCurrency(this.modalKatex.form[1].value) +
           "}} \\times \\text{100} \\% = " +
           this.formatPercentage(itemData.s11) +

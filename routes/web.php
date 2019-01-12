@@ -64,7 +64,7 @@ Route::get('/admins/{vue?}', function () {
 
 // test route
 Route::get('/testroute', function () {
-
+	
 		// create permission
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_mitra_lembaga']);
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_mitra_lembaga']); 

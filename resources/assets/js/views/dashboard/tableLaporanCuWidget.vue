@@ -3,11 +3,82 @@
     <div class="card-header bg-light header-elements-inline">
       <h6 class="card-title"><i></i><i class="icon-table2 mr-2"></i> Tabel Perkembangan</h6>
       <div class="header-elements">
-        <span v-if="itemDataStat == 'success'"><i class="badge badge-mark border-warning"></i> {{ itemData.data[itemData.total-1]['periode'] | dateMonth }}</span>
+        <span v-if="itemDataStat == 'success' && id_cu != 0"><i class="badge badge-mark border-warning"></i> {{ itemData.data[itemData.total-1]['periode'] | dateMonth }}</span>
+        <span v-if="itemDataStat == 'success' && id_cu == 0"><i class="badge badge-mark border-warning"></i> {{ itemData[0]['periode'] | dateMonth }}</span>
       </div>
     </div>
 
-    <div class="card-body pb-0" v-if="itemData.data">
+    <!-- bkcu -->
+    <div class="card-body pb-0" v-if="itemData && id_cu == 0">
+
+      <!-- tableCu -->
+      <div class="row text-center">
+
+        <div class="col-6">
+          <div class="mb-3" v-if="itemDataStat == 'success'">
+            <h5 class="font-weight-semibold mb-0">
+              <check-value :value="itemData[0]['cu']"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Total CU</span>
+          </div>
+          <div class="mb-3" v-else-if="itemDataStat == 'loading'">
+            <h5 class="font-weight-semibold mb-0">
+              <i class="icon-spinner2 spinner"></i>
+            </h5>
+            <span class="text-muted font-size-sm">Total CU</span>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="mb-3" v-if="itemDataStat == 'success'">
+            <h5 class="font-weight-semibold mb-0">
+              <check-value :value="itemData[0]['cu_sesuai'].cu"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">CU Sesuai Periode</span>
+          </div>
+          <div class="mb-3" v-else-if="itemDataStat == 'loading'">
+            <h5 class="font-weight-semibold mb-0">
+              <i class="icon-spinner2 spinner"></i>
+            </h5>
+            <span class="text-muted font-size-sm">Total CU</span>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="mb-3" v-if="itemDataStat == 'success'">
+            <h5 class="font-weight-semibold mb-0">
+              <check-value :value="itemData[0]['rasio_beredar']" valueType="percentage"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Beredar</span>
+          </div>
+          <div class="mb-3" v-else-if="itemDataStat == 'loading'">
+            <h5 class="font-weight-semibold mb-0">
+              <i class="icon-spinner2 spinner"></i>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Beredar</span>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="mb-3" v-if="itemDataStat == 'success'">
+            <h5 class="font-weight-semibold mb-0">
+              <check-value :value="itemData[0]['rasio_lalai']" valueType="percentage"></check-value>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Lalai</span>
+          </div>
+          <div class="mb-3" v-else-if="itemDataStat == 'loading'">
+            <h5 class="font-weight-semibold mb-0">
+              <i class="icon-spinner2 spinner"></i>
+            </h5>
+            <span class="text-muted font-size-sm">Rasio Piutang Lalai</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- cu -->
+    <div class="card-body pb-0" v-if="itemData.data && id_cu != 0">
 
       <!-- tableCu -->
       <div class="row text-center">
@@ -47,6 +118,7 @@
 
     <ul class="nav nav-tabs nav-tabs-solid nav-justified bg-indigo-400 border-x-0 border-bottom-0 border-top-indigo-300 mb-0">
 
+
       <!-- tabel cu -->
       <li class="nav-item">
         <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelCu'}" @click.prevent="changeTabelTab('tabelCu')">{{ tabTitle}}</a>
@@ -54,7 +126,7 @@
 
       <!-- tabel pearls -->
       <li class="nav-item">
-        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelPearls'}" @click.prevent="changeTabelTab('tabelPearls')" v-if="currentUser.id_cu != 0">P.E.A.R.L.S. CU</a>
+        <a href="#" class="nav-link" :class="{'active' : tabTabelName == 'tabelPearls'}" @click.prevent="changeTabelTab('tabelPearls')" v-if="id_cu != 0">P.E.A.R.L.S. CU</a>
       </li>
 
     </ul>
@@ -71,8 +143,11 @@
           <tbody>
             <tr v-for="column in columnData" v-if="column.tipe && !column.disable">
               <td class="font-weight-semibold">{{column.title}}</td>
-              <td v-if="itemDataStat == 'success'">
+              <td v-if="itemDataStat == 'success' && id_cu != 0">
                 <check-value :value="itemData.data[itemData.total-1][column.name]" valueType="currency" v-if="column.name != 'rasio_beredar' && column.name != 'rasio_lalai'"></check-value>
+              </td>
+              <td v-if="itemDataStat == 'success' && id_cu == 0">
+                <check-value :value="itemData[0][column.name]" valueType="currency" v-if="column.name != 'rasio_beredar' && column.name != 'rasio_lalai'"></check-value>
               </td>
             </tr>
           </tbody>
@@ -117,7 +192,7 @@
       checkValue,
       itemPearls
     },
-    props: ['currentUser','columnData','columnDataPearls'],
+    props: ['id_cu','columnData','columnDataPearls'],
     data(){
       return {
         tabTitle: 'CU',
@@ -134,11 +209,9 @@
     },
     created(){
       this.removeColumn();
-      if(this.currentUser.id_cu == 0){
+      if(this.id_cu == 0){
         this.tabTitle = 'Gerakan';
       }
-      
-      
     },
     watch: {
       grafikDataStat(value){
@@ -162,30 +235,24 @@
     },
 		methods:{
       removeColumn(){
-        this.columnData[1].disable = true;
-        this.columnData[2].disable = true;
-        this.columnData[3].disable = true;
-        this.columnData[4].disable = true;
-        this.columnData[5].disable = true;
-        this.columnData[6].disable = true;
-        this.columnData[31].disable = true;
-        this.columnData[32].disable = true;
-        this.columnData[45].disable = true;
-        this.columnData[46].disable = true;
-        this.columnData[47].disable = true;
-        this.columnData[48].disable = true;
+        var i;
 
-        this.columnDataPearls[1].disable = true;
-        this.columnDataPearls[2].disable = true;
-        this.columnDataPearls[3].disable = true;
-        this.columnDataPearls[4].disable = true;
-        this.columnDataPearls[5].disable = true;
-        this.columnDataPearls[6].disable = true;
-        this.columnDataPearls[7].disable = true;
-        this.columnDataPearls[23].disable = true;
-        this.columnDataPearls[24].disable = true;
-        this.columnDataPearls[25].disable = true;
-        this.columnDataPearls[26].disable = true;
+        for(i = 0; i < this.columnData.length ; i++){
+					if([1,2,3,4,5,6,31,32,45,46,47,48].includes(i)){
+						this.columnData[i].disable = true;
+					}else{
+						this.columnData[i].disable = false;
+					}	
+        }
+        
+        for(i = 0; i < this.columnDataPearls.length ; i++){
+					if([1,2,3,4,5,6,7,23,24,25,26].includes(i)){
+						this.columnDataPearls[i].disable = true;
+					}else{
+						this.columnDataPearls[i].disable = false;
+					}	
+				}
+
       },
 			changeTabelTab(value) {
 				this.tabTabelName = value;
@@ -202,7 +269,7 @@
               page: 1
             };
 
-            this.$store.dispatch('laporanCu/grafikPearlsCu', [query,this.currentUser.id_cu]);
+            this.$store.dispatch('laporanCu/grafikPearlsCu', [query,this.id_cu]);
           }
 				}
 			},

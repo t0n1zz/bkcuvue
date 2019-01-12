@@ -542,7 +542,7 @@
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
 
-							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu']&& currentUser.id_cu == '0'">
+							<router-link :to="{ name: 'laporanGerakan' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu']">
 								<i class="icon-stats-bars"></i> Laporan Statistik Gerakan
 							</router-link>
 
