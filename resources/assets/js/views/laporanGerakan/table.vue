@@ -2,8 +2,32 @@
 	<div>
 
 		<div class="card">
-      <div class="card-header">
-        <h5><strong>Tabel Infografis Gerakan</strong></h5>     
+      <div class="card-header d-print-none">
+        <div class="card-title">
+          Tabel Infografis Gerakan  
+        </div>
+      </div>
+
+      <div class="card-body pb-2 d-print-none">
+        <div class="row">
+
+          <!-- button desktop -->
+          <div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
+            <!-- lihat laporan cu -->
+            <button @click.prevent="lihatData(selectedItem.periode)" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0" :disabled="!selectedItem.periode">
+              <i class="icon-file-eye"></i> Lihat Laporan Statistik CU
+            </button>
+          </div>
+
+          <!-- button mobile -->
+          <div class="col-md-12 pb-2 d-block d-sm-none">
+            <!-- lihat laporan cu -->
+            <button @click.prevent="lihatData(selectedItem.periode)" class="btn btn-light btn-icon btn-block pb-1" :disabled="!selectedItem.periode" v-if="currentUser.id_cu == 0">
+              <i class="icon-file-eye"></i> Lihat Laporan Statistik CU
+            </button>
+          </div>
+
+        </div>
       </div>
 
 			<!-- main panel -->
@@ -11,9 +35,12 @@
 
 				<!-- item desktop -->
 				<template slot="item-desktop" slot-scope="props">
-					<tr class="text-nowrap" @click="selectedRow(props.item)">
+					<tr :class="{ 'bg-info': selectedItem.periode == props.item.periode }" class="text-nowrap" @click="selectedRow(props.item)">
 						<td>
 							{{ props.index + 1 }}
+						</td>
+						<td>
+							{{ props.item.periode | dateMonth }}
 						</td>
 						<td>
 							<check-value :value="props.item.cu"></check-value>
@@ -23,9 +50,6 @@
 								<check-value :value="props.item.cu_sesuai.cu"></check-value>
 							</span>
 							<span v-else>-</span>
-						</td>
-						<td>
-							{{ props.item.periode | dateMonth }}
 						</td>
 						<td>
 							<check-value :value="props.item.l_biasa" valueType="currency"></check-value>
@@ -56,6 +80,9 @@
 						</td>
 						<td>
 							<check-value :value="props.item.aset_tidak_menghasilkan" valueType="currency"></check-value>
+						</td>
+						<td>
+							<check-value :value="props.item.aset_likuid_tidak_menghasilkan" valueType="currency"></check-value>
 						</td>
 						<td>
 							<check-value :value="props.item.aktiva_lancar" valueType="currency"></check-value>
@@ -180,6 +207,16 @@ export default {
           title: "No.",
           name: "No."
         },
+        {//5
+          title: "Periode",
+          name: "periode",
+          tipe: "datetime",
+          sort: true,
+          hide: false,
+          disable: false,
+          isChart: false,
+          filter: true,
+        },
         {//6
           title: "Total CU",
           name: "cu",
@@ -199,16 +236,6 @@ export default {
           disable: false,
           isChart: false,
           filter: true
-        },
-        {//5
-          title: "Periode",
-          name: "periode",
-          tipe: "datetime",
-          sort: true,
-          hide: false,
-          disable: false,
-          isChart: false,
-          filter: true,
         },
         {//7
           title: "Lelaki Biasa",
@@ -312,6 +339,17 @@ export default {
         {//16
           title: "Aset Tdk Menghasilkan",
           name: "aset_tidak_menghasilkan",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          isChart: true,
+          isChartSelect: false,
+          filter: true
+        },
+        {//16
+          title: "Aset Likuid Tdk Menghasilkan",
+          name: "aset_likuid_tidak_menghasilkan",
           tipe: "numeric",
           sort: true,
           hide: false,
@@ -668,11 +706,17 @@ export default {
     selectedRow(item) {
       this.selectedItem = item;
     },
+    lihatData(periode) {
+      this.$router.push({ name: "laporanCuPeriode", params: { periode: periode } });
+    },
     formatPeriode(value) {
       return Vue.filter("dateMonth")(value);
-    }
+    },
   },
   computed: {
+    ...mapGetters('auth',{
+      currentUser: 'currentUser'
+    }),
     ...mapGetters("laporanCu", {
       itemData: "dataS",
       itemDataStat: "dataStatS",

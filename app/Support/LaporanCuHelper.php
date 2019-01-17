@@ -24,6 +24,7 @@ class LaporanCuHelper{
 		sum(aset_lalu) as aset_lalu,
 		sum(aset_masalah) as aset_masalah,
 		sum(aset_tidak_menghasilkan) as aset_tidak_menghasilkan,
+		sum(aset_likuid_tidak_menghasilkan) as aset_likuid_tidak_menghasilkan,
 		sum(aktiva_lancar) as aktiva_lancar,
 		sum(simpanan_saham) as simpanan_saham,
 		sum(simpanan_saham_lalu) as simpanan_saham_lalu,

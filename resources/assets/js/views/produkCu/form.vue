@@ -44,7 +44,10 @@
 
 											<!-- select -->
 											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
-												<option disabled value="0">Silahkan pilih CU</option>
+												<option disabled value="0">
+													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih CU</span>
+												</option>
 												<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 											</select>
 

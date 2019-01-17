@@ -238,7 +238,7 @@
         var i;
 
         for(i = 0; i < this.columnData.length ; i++){
-					if([1,2,3,4,5,6,31,32,45,46,47,48].includes(i)){
+					if([1,2,3,4,5,6,32,33,46,47,48,49].includes(i)){
 						this.columnData[i].disable = true;
 					}else{
 						this.columnData[i].disable = false;

@@ -298,7 +298,10 @@
 
 											<!-- select -->
 											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
-												<option disabled value="">Silahkan pilih Provinsi</option>
+												<option disabled value="">
+													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih provinsi</span>
+												</option>
 												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
 											</select>
 
@@ -323,7 +326,7 @@
 											<!-- select -->
 											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%"  data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
-													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
 												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
@@ -350,7 +353,7 @@
 											<!-- select -->
 											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" data-vv-as="Kecamatan" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
 												<option disabled value="">
-													<span v-if="modelDistrictsStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kecamatan</span>
 												</option>
 												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
@@ -377,7 +380,7 @@
 											<!-- select -->
 											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%"  data-vv-as="Kelurahan" :disabled="modelVillages.length === 0">
 												<option disabled value="">
-													<span v-if="modelVillagesStat === 'loading'"><i class="icon-spinner spinner"></i> mohon tunggu</span>
+													<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
 													<span v-else>Silahkan pilih kelurahan</span>
 												</option>
 												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>

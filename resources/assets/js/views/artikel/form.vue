@@ -53,7 +53,10 @@
 
 											<!-- select -->
 											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
-												<option disabled value="">Silahkan pilih CU</option>
+												<option disabled value="">
+													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih CU</span>
+												</option>
 												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 											</select>
@@ -91,7 +94,8 @@
 															<span v-if="form.id_cu != 0 && modelPenulis.length == 0">Silahkan tambah penulis baru</span>
 															<span v-else-if="form.id_cu == '' && modelPenulis.length == 0">Silahkan pilih CU terlebih dahulu</span>
 															<span v-else>
-																Silahkan pilih penulis
+																<span v-if="modelPenulisStat === 'loading'">Mohon tunggu...</span>
+																<span v-else>Silahkan pilih penulis</span>
 															</span>
 														</option>
 														<option v-for="penulis in modelPenulis" v-if="penulis" :value="penulis.id">{{penulis.name}}</option>
@@ -137,7 +141,10 @@
 													<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
 														<option disabled value="">
 															<span v-if="form.id_cu != 0 && modelKategori.length == 0">Silahkan tambah kategori baru</span>
-															<span v-else>Silahkan pilih kategori</span>
+															<span v-else>
+																<span v-if="modelKategoriStat === 'loading'">Mohon tunggu...</span>
+																<span v-else>Silahkan pilih kategori</span>
+															</span>
 														</option>
 														<option v-for="kategori in modelKategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
 													</select>

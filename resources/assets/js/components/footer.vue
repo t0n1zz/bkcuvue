@@ -9,7 +9,7 @@
 
 		<div class="navbar-collapse collapse show" id="navbar-footer">
 			<span class="navbar-text">
-				&copy; {{ momentYear() }}. <router-link :to="{ name:'changelog' }">SIMO 3.0.0</router-link> by <a href="https://puskopditbkcukalimantan.org" target="_blank">Puskopdit BKCU Kalimantan</a>
+				&copy; {{ momentYear() }}. <router-link :to="{ name:'changelog' }">SIMO 3.0.4</router-link> by <a href="https://puskopditbkcukalimantan.org" target="_blank">Puskopdit BKCU Kalimantan</a>
 			</span>
 
 			<ul class="navbar-nav ml-lg-auto">

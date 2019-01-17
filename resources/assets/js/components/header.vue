@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-auto">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>3.0.3</span>
+							<span>3.0.4</span>
 						</router-link>
 					</span>
 				</span>
@@ -38,7 +38,13 @@
 						<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
 							<i class="icon-bell2"></i>
 							<span class="d-md-none ml-2">Pemberitahuan</span>
-							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotification && unreadNotification > 0">{{unreadNotification}}</span>
+
+							<!-- loading -->
+							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotificationStat == 'loading'"><i class="icon-spinner"></i></span>
+							
+							<!-- success -->
+							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotificationStat == 'success' && unreadNotification && unreadNotification > 0">{{unreadNotification}}</span>
+							
 						</a>			
 
 						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
@@ -47,7 +53,7 @@
 								<a href="#" class="text-default" @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a>
 							</div>
 							<div class="dropdown-content-header" v-else>
-								<span class="font-weight-semibold">Tidak ada pemberitahuan <span v-if="notification && notification.length > 0">baru</span></span>
+								<span class="font-weight-semibold">Tidak ada pemberitahuan <span v-if="notification && notification.length> 0">baru</span></span>
 							</div>
 
 							<div class="dropdown-content-body dropdown-scrollable">
@@ -875,6 +881,7 @@
 			...mapGetters('notification',{
 				notification: 'notification',
 				unreadNotification: 'unreadNotification',
+				unreadNotificationStat: 'notifStat',
 				markNotifStat: 'markNotifStat',
 			}),
 			...mapGetters('tp',{

@@ -490,7 +490,7 @@
 								icon: 'icon-eye',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Orang'
+								group: 'Mitra Perseorangan'
 							},
 							{
 								name: 'Tambah',
@@ -498,7 +498,7 @@
 								icon: 'icon-plus3',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Orang'
+								group: 'Mitra Perseorangan'
 							},
 							{
 								name: 'Ubah',
@@ -506,7 +506,7 @@
 								icon: 'icon-pencil',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Orang'
+								group: 'Mitra Perseorangan'
 							},
 							{
 								name: 'Hapus',
@@ -514,7 +514,7 @@
 								icon: 'icon-bin2',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Orang'
+								group: 'Mitra Perseorangan'
 							}
 						]
 					},
@@ -529,7 +529,7 @@
 								icon: 'icon-eye',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Lembaga'
+								group: 'Lembaga Mitra'
 							},
 							{
 								name: 'Tambah',
@@ -537,7 +537,7 @@
 								icon: 'icon-plus3',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Lembaga'
+								group: 'Lembaga Mitra'
 							},
 							{
 								name: 'Ubah',
@@ -545,7 +545,7 @@
 								icon: 'icon-pencil',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Lembaga'
+								group: 'Lembaga Mitra'
 							},
 							{
 								name: 'Hapus',
@@ -553,7 +553,7 @@
 								icon: 'icon-bin2',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Mitra Lembaga'
+								group: 'Lembaga Mitra'
 							}
 						]
 					},

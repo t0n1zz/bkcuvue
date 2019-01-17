@@ -343,7 +343,10 @@
 
 											<!-- select -->
 											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
-												<option disabled value="">Silahkan pilih Provinsi</option>
+												<option disabled value="">
+													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih provinsi</span>
+												</option>
 												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
 											</select>
 
@@ -368,7 +371,7 @@
 											<!-- select -->
 											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
-													<span v-if="modelRegenciesStat === 'loading'"><i class="icon-spinner spinner"></i></span>
+													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
 												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
@@ -395,7 +398,10 @@
 											<div class="input-group">
 												<!-- select -->
 												<select class="form-control" name="id_tempat" v-model="form.id_tempat" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
-													<option disabled value="">Silahkan pilih tempat</option>
+													<option disabled value="">
+														<span v-if="modelTempatStat === 'loading'">Mohon tunggu...</span>
+														<span v-else>Silahkan pilih tempat</span>
+													</option>
 													<option value="0">Belum ditentukan tempat</option>
 													<option disabled value="">----------------</option>
 													<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>

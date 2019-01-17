@@ -27,8 +27,10 @@ export function initialize(store, router) {
         const currentTime = new Date().getTime() / 1000;
         const user = getLocalUser();
         const token = Token.payload(user.token);
+
+        // console.log(currentTime, token.exp);
   
-        if(currentTime > token.exp - 1000 && !store.state.auth.isLoading){
+        if(currentTime > token.exp - 600 && !store.state.auth.isLoading){
             store.dispatch('auth/login');
 
             refreshToken()

@@ -191,6 +191,17 @@ export const laporanCu = {
         filter: true
       },
       {//17
+        title: "Aset Likuid Tdk Menghasilkan",
+        name: "aset_likuid_tidak_menghasilkan",
+        tipe: "numeric",
+        sort: true,
+        hide: false,
+        disable: false,
+        isChart: true,
+        isChartSelect: false,
+        filter: true
+      },
+      {//18
         title: "Aktiva Lancar",
         name: "aktiva_lancar",
         tipe: "numeric",
@@ -201,7 +212,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//18
+      {//19
         title: "Simp. Saham",
         name: "simpanan_saham",
         tipe: "numeric",
@@ -212,7 +223,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//19
+      {//20
         title: "Simp. Saham Lalu",
         name: "simpanan_saham_lalu",
         tipe: "numeric",
@@ -223,7 +234,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//20
+      {//21
         title: "Simp. Saham Des",
         name: "simpanan_saham_des",
         tipe: "numeric",
@@ -234,7 +245,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//21
+      {//22
         title: "Simp. Nonsaham Unggulan",
         name: "nonsaham_unggulan",
         tipe: "numeric",
@@ -245,7 +256,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//22
+      {//23
         title: "Simp. Nonsaham Harian",
         name: "nonsaham_harian",
         tipe: "numeric",
@@ -256,7 +267,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//23
+      {//24
         title: "Hutang SPD",
         name: "hutang_spd",
         tipe: "numeric",
@@ -267,7 +278,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//24
+      {//25
         title: "Hutang Tdk Berbiaya",
         name: "hutang_tidak_berbiaya_30hari",
         tipe: "numeric",
@@ -278,7 +289,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//25
+      {//26
         title: "Total Hutang Pihak Ke-3",
         name: "total_hutang_pihak3",
         tipe: "numeric",
@@ -289,7 +300,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//26
+      {//27
         title: "Piutang Beredar",
         name: "piutang_beredar",
         tipe: "numeric",
@@ -300,7 +311,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//27
+      {//28
         title: "Piutang Bersih",
         name: "piutang_bersih",
         tipe: "numeric",
@@ -310,7 +321,7 @@ export const laporanCu = {
         isChart: true,
         isChartSelect: false
       },
-      {//28
+      {//29
         title: "Piutang Anggota",
         name: "piutang_anggota",
         tipe: "numeric",
@@ -321,7 +332,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//29
+      {//30
         title: "Piutang Lalai 1-12 Bulan",
         name: "piutang_lalai_1bulan",
         tipe: "numeric",
@@ -332,7 +343,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//30
+      {//31
         title: "Piutang Lalai > 12 Bulan",
         name: "piutang_lalai_12bulan",
         tipe: "numeric",
@@ -343,7 +354,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//31
+      {//32
         title: "Rasio Piutang Beredar",
         name: "rasio_beredar",
         tipe: "numeric",
@@ -353,7 +364,7 @@ export const laporanCu = {
         isChart: true,
         isChartSelect: false
       },
-      {//32
+      {//33
         title: "Rasio Piutang Lalai",
         name: "rasio_lalai",
         tipe: "numeric",
@@ -363,7 +374,7 @@ export const laporanCu = {
         isChart: true,
         isChartSelect: false
       },
-      {//33
+      {//34
         title: "DCR",
         name: "dcr",
         tipe: "numeric",
@@ -374,7 +385,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//34
+      {//35
         title: "DCU",
         name: "dcu",
         tipe: "numeric",
@@ -385,7 +396,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//35
+      {//36
         title: "Iuran Gedung",
         name: "iuran_gedung",
         tipe: "numeric",
@@ -396,7 +407,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//36
+      {//37
         title: "Donasi",
         name: "donasi",
         tipe: "numeric",
@@ -407,7 +418,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//37
+      {//38
         title: "BJS Saham",
         name: "bjs_saham",
         tipe: "numeric",
@@ -418,7 +429,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//38
+      {//39
         title: "Beban Penyisihan DCR",
         name: "beban_penyisihan_dcr",
         tipe: "numeric",
@@ -429,7 +440,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//39
+      {//40
         title: "Investasi Likuid",
         name: "investasi_likuid",
         tipe: "numeric",
@@ -440,7 +451,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//40
+      {//41
         title: "Total Pendapatan",
         name: "total_pendapatan",
         tipe: "numeric",
@@ -451,7 +462,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//41
+      {//42
         title: "Total Biaya",
         name: "total_biaya",
         tipe: "numeric",
@@ -462,7 +473,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//42
+      {//43
         title: "SHU",
         name: "shu",
         tipe: "numeric",
@@ -473,7 +484,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//43
+      {//44
         title: "SHU Lalu",
         name: "shu_lalu",
         tipe: "numeric",
@@ -484,7 +495,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//44
+      {//45
         title: "Rata-rata Aset",
         name: "rata_aset",
         tipe: "numeric",
@@ -495,7 +506,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//45
+      {//46
         title: "Laju Inflasi",
         name: "laju_inflasi",
         tipe: "numeric",
@@ -506,7 +517,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//46
+      {//47
         title: "Harga Pasar",
         name: "harga_pasar",
         tipe: "numeric",
@@ -517,7 +528,7 @@ export const laporanCu = {
         isChartSelect: false,
         filter: true
       },
-      {//47
+      {//48
         title: "Tgl. Buat",
         name: "created_at",
         tipe: "datetime",
@@ -527,7 +538,7 @@ export const laporanCu = {
         isChart: false,
         filter: true
       },
-      {//48
+      {//49
         title: "Tgl. Ubah",
         name: "updated_at",
         tipe: "datetime",

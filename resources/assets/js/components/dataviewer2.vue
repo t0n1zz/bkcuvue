@@ -123,30 +123,30 @@
               </div>
             </div>
           </div>
+          <div class="col-md-12">
+            <button class="btn btn-light btn-block" @click="addFilter"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
+          </div>
         </div>
 
         <!-- divider -->
-        <div class="row"><div class="col-sm-12"><hr class="mt-1"></div></div>
+        <div class="row"><div class="col-sm-12"><hr class="mt-2"></div></div>
 
         <!-- button row -->
         <div class="row">
           <!-- filter -->
-          <div class="col-md-6 col-lg-7 pb-2">
+          <div class="col-md-5 col-lg-6 pb-2">
             <div class="row">
-              <div class="col-md-4 pb-2">
-                <button class="btn bg-teal btn-block" @click="addFilter"><i class="icon-plus3"></i> Tambah Pencarian</button>
-              </div>
-              <div class="col-md-3 pb-2">
+              <div class="col-md-6 pb-2">
                  <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == ''"><i class="icon-search4"></i> Cari</button>
               </div>
-              <div class="col-md-5 pb-2" v-if="this.appliedFilters.length > 0">
+              <div class="col-md-6 pb-2" v-if="this.appliedFilters.length > 0">
                 <button class="btn btn-warning btn-block"  @click="resetFilter"><i class="icon-reset"></i> Reset pencarian</button>
               </div>
             </div>
           </div>
 
           <!-- entri & order -->
-          <div class="col-md-6 col-lg-5 text-right">
+          <div class="col-md-7 col-lg-6 text-right">
             <div class="row">
 
               <!-- entri -->
@@ -233,7 +233,7 @@
       </div>
 
       <!-- table-->
-      <div class="table-responsive">
+      <div class="table-responsive table-scrollable" style="max-height: 33rem;">
         <table class="table table-striped">
 
           <!-- header -->

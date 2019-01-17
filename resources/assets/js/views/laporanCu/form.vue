@@ -23,7 +23,10 @@
 
 								<!-- select -->
 								<select class="form-control" name="idLaporanTp" v-model="idLaporanTp" data-width="100%" @change="changeLaporanTp($event.target.value)" :disabled="listLaporanTpDataStat === 'loading'">
-									<option disabled value="">Silahkan pilih laporan tp</option>
+									<option disabled value="">
+										<span v-if="listLaporanTpDataStat === 'loading'">Mohon tunggu...</span>
+										<span v-else>Silahkan pilih laporan</span>
+									</option>
 									<option v-for="tp in listLaporanTpData" :value="tp.id" v-if="tp">{{tp.tp.name}}</option>
 								</select>
 							</div>
@@ -74,7 +77,10 @@
 
 											<!-- select -->
 										<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="TP" @change="changeTp($event.target.value)" :disabled="!isModelTp">
-												<option disabled value="">Silahkan pilih TP</option>
+												<option disabled value="">
+													<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih TP/KP</span>
+												</option>
 												<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
 												<option disabled value="">----------------</option>
 												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>

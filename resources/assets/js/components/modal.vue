@@ -107,7 +107,7 @@
 												<b>ERROR 422:</b> Username atau password anda salah
 											</span>
 											<span v-else-if="content.status === 500">
-												<b>ERROR 500:</b> {{ content.data }}
+												<b>ERROR 500:</b> Kesalahan pada backend
 											</span>
 											<span v-else>
 												<span v-if="content.message">{{ content.message }}</span>

@@ -14,7 +14,10 @@
 
 					<!-- select -->
 					<select class="form-control" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
-						<option disabled value="">Silahkan pilih tempat bekerja</option>
+						<option disabled value="">
+							<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
+							<span v-else>Silahkan pilih tempat bekerja</span>
+						</option>
 						<option value="0">Puskopdit BKCU Kalimantan</option>
 						<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
 						<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
@@ -107,12 +110,15 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.id_tp')}">
 						<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
-						TP:
+						TP/KP:
 					</h6>
 
 					<!-- select -->
 					<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="CU">
-						<option disabled value="">Silahkan pilih TP</option>
+						<option disabled value="">
+							<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
+							<span v-else>Silahkan pilih TP/KP</span>
+						</option>
 						<option value="0">Kantor Pusat</option>
 						<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
 					</select>

@@ -34,7 +34,7 @@ class Authcontroller extends Controller
     {
         $credentials = request(['username', 'password']);
 
-        if (! $token = auth('api')->attempt($credentials)) {
+        if (! $token = auth('api')->setTTL(180)->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 

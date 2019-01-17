@@ -29,7 +29,7 @@ class LaporanCuController extends Controller{
 			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
         $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
 				$join->on('laporan_cu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembangan())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->withTrashed()->advancedFilter();
+		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembangan())])->Where('cu.deleted_at',null)->advancedFilter();
 
 		return response()
 		->json([
@@ -44,7 +44,7 @@ class LaporanCuController extends Controller{
 			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
         $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
 				$join->on('laporan_cu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembanganTotal())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->withTrashed()->get();
+		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembanganTotal())])->Where('cu.deleted_at',null)->get();
 
 		return response()
 		->json([
@@ -72,7 +72,7 @@ class LaporanCuController extends Controller{
 		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
         $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
 				$join->on('laporan_cu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembangan())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->withTrashed()->advancedFilter();
+		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembangan())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','$periode')->advancedFilter();
 
 		return response()
 		->json([
@@ -87,7 +87,7 @@ class LaporanCuController extends Controller{
 			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
         $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
 				$join->on('laporan_cu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembanganTotal())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','$periode')->withTrashed()->get();
+		})->addSelect([DB::raw(LaporanCuHelper::queryPerkembanganTotal())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','$periode')->get();
 
 		return response()
 		->json([
@@ -109,7 +109,7 @@ class LaporanCuController extends Controller{
 				->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
 						$join->on('laporan_cu.id_cu','=','latest_report.id_cu');
 						$join->on('laporan_cu.periode','=','latest_report.max_periode');
-				})->addSelect([DB::raw('max(latest_report.max_periode) as periode, count(*) as cu'),DB::raw(LaporanCuHelper::queryPerkembanganTotal())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','$periode')->withTrashed()->first();
+				})->addSelect([DB::raw('max(latest_report.max_periode) as periode, count(*) as cu'),DB::raw(LaporanCuHelper::queryPerkembanganTotal())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','$periode')->first();
 
 			$cu_sesuai = $table_cu->filter(function($item) use($periode){
 				return $item->periode == $periode;
@@ -137,7 +137,7 @@ class LaporanCuController extends Controller{
 			->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu GROUP BY id_cu) latest_report"),function($join){
         $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
         $join->on('laporan_cu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(LaporanCuHelper::queryPEARLS())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->withTrashed()->advancedFilter();
+		})->addSelect([DB::raw(LaporanCuHelper::queryPEARLS())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->advancedFilter();
 
 		return response()
 		->json([
@@ -165,7 +165,7 @@ class LaporanCuController extends Controller{
 		->join(DB::RAW("(SELECT id_cu, MAX(periode) AS max_periode FROM laporan_cu WHERE periode <= '$periode' GROUP BY id_cu) latest_report"),function($join){
         $join->on('laporan_cu.id_cu','=','latest_report.id_cu');
         $join->on('laporan_cu.periode','=','latest_report.max_periode');
-		})->addSelect([DB::raw(LaporanCuHelper::queryPEARLS())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->withTrashed()->advancedFilter();
+		})->addSelect([DB::raw(LaporanCuHelper::queryPEARLS())])->Where('cu.deleted_at',null)->orWhere('cu.deleted_at','<','max_periode')->advancedFilter();
 
 		return response()
 		->json([
@@ -249,8 +249,15 @@ class LaporanCuController extends Controller{
 		$name = $request->name;
 
 		if($this->checkData($request)){
-			$kelas = LaporanCu::create($request->all());
-
+			if(!$request->no_ba){
+				$cu = Cu::findOrFail($request->id_cu);
+				$kelas = LaporanCu::create($request->except('no_ba') + [
+					'no_ba' => $cu->no_ba
+				]);
+			}else{
+				$kelas = LaporanCu::create($request->all());
+			}	
+			
 			NotificationHelper::store_laporan_cu($kelas,'Menambah');
 			
 			return response()

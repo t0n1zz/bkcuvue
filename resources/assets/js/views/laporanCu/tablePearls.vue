@@ -183,7 +183,7 @@ export default {
         order_column: "periode",
         order_direction: "desc",
         filter_match: "and",
-        limit: 10,
+        limit: 50,
         page: 1
       },
       excelDownloadUrl: '',
@@ -368,8 +368,6 @@ export default {
 
       this.modalKatex.id = itemData.id;
       this.modalKatex.periode = itemData.periode;
-      
-      console.log(itemData);
 
       if(itemData.id_tp){
         this.modalKatex.id_cu = itemData.tp.id_cu;
@@ -382,7 +380,11 @@ export default {
         this.modalKatex.no_tp = '';
         this.modalKatex.id_cu = itemData.id_cu;
         this.modalKatex.no_ba = itemData.no_ba;
-        this.modalKatex.section = 'CU ' + itemData.cu_name + ' periode ' + this.formatPeriode(itemData.periode);
+        if(itemData.cu){
+          this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
+        }else{
+          this.modalKatex.section = 'CU ' + itemData.cu_name + ' periode ' + this.formatPeriode(itemData.periode);
+        }
       }
       
       // p1

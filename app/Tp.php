@@ -21,17 +21,17 @@ class Tp extends Model {
     ];
     
     protected $fillable = [
-      'id_cu','id_villages','id_districts','id_regencies','id_provinces','no_ba','name','gambar','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at'
+      'id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','gambar','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at', 
+        'id','id_cu','no_tp','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at', 
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name', 'cu.name',
     ];
 
     protected $orderable = [
-        'id','id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at', 
+        'id','id_cu','no_tp','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at', 
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name', 'cu.name',
     ];

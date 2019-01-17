@@ -134,97 +134,100 @@
 						<check-value :value="props.item.aset_tidak_menghasilkan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[17].hide">
-						<check-value :value="props.item.aktiva_lancar" valueType="currency"></check-value>
+						<check-value :value="props.item.aset_likuid_tidak_menghasilkan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[18].hide">
-						<check-value :value="props.item.simpanan_saham" valueType="currency"></check-value>
+						<check-value :value="props.item.aktiva_lancar" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[19].hide">
-						<check-value :value="props.item.simpanan_saham_lalu" valueType="currency"></check-value>
+						<check-value :value="props.item.simpanan_saham" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[20].hide">
-						<check-value :value="props.item.simpanan_saham_des" valueType="currency"></check-value>
+						<check-value :value="props.item.simpanan_saham_lalu" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[21].hide">
-						<check-value :value="props.item.nonsaham_unggulan" valueType="currency"></check-value>
+						<check-value :value="props.item.simpanan_saham_des" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[22].hide">
-						<check-value :value="props.item.nonsaham_harian" valueType="currency"></check-value>
+						<check-value :value="props.item.nonsaham_unggulan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[23].hide">
-						<check-value :value="props.item.hutang_spd" valueType="currency"></check-value>
+						<check-value :value="props.item.nonsaham_harian" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[24].hide">
-						<check-value :value="props.item.hutang_tidak_berbiaya_30hari" valueType="currency"></check-value>
+						<check-value :value="props.item.hutang_spd" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[25].hide">
-						<check-value :value="props.item.total_hutang_pihak3" valueType="currency"></check-value>
+						<check-value :value="props.item.hutang_tidak_berbiaya_30hari" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[26].hide">
-						<check-value :value="props.item.piutang_beredar" valueType="currency"></check-value>
+						<check-value :value="props.item.total_hutang_pihak3" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[27].hide">
-						<check-value :value="props.item.piutang_bersih" valueType="currency"></check-value>
+						<check-value :value="props.item.piutang_beredar" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[28].hide">
-						<check-value :value="props.item.piutang_anggota" valueType="currency"></check-value>
+						<check-value :value="props.item.piutang_bersih" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[29].hide">
-						<check-value :value="props.item.piutang_lalai_1bulan" valueType="currency"></check-value>
+						<check-value :value="props.item.piutang_anggota" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[30].hide">
-						<check-value :value="props.item.piutang_lalai_12bulan" valueType="currency"></check-value>
+						<check-value :value="props.item.piutang_lalai_1bulan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[31].hide">
-						<check-value :value="props.item.rasio_beredar" valueType="percentage"></check-value>
+						<check-value :value="props.item.piutang_lalai_12bulan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[32].hide">
-						<check-value :value="props.item.rasio_lalai" valueType="percentage"></check-value>
+						<check-value :value="props.item.rasio_beredar" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[33].hide">
-						<check-value :value="props.item.dcr" valueType="currency"></check-value>
+						<check-value :value="props.item.rasio_lalai" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[34].hide">
-						<check-value :value="props.item.dcu" valueType="currency"></check-value>
+						<check-value :value="props.item.dcr" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[35].hide">
-						<check-value :value="props.item.iuran_gedung" valueType="currency"></check-value>
+						<check-value :value="props.item.dcu" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[36].hide">
-						<check-value :value="props.item.donasi" valueType="currency"></check-value>
+						<check-value :value="props.item.iuran_gedung" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[37].hide">
-						<check-value :value="props.item.bjs_saham" valueType="currency"></check-value>
+						<check-value :value="props.item.donasi" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[38].hide">
-						<check-value :value="props.item.beban_penyisihan_dcr" valueType="currency"></check-value>
+						<check-value :value="props.item.bjs_saham" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[39].hide">
-						<check-value :value="props.item.investasi_likuid" valueType="currency"></check-value>
+						<check-value :value="props.item.beban_penyisihan_dcr" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[40].hide">
-						<check-value :value="props.item.total_pendapatan" valueType="currency"></check-value>
+						<check-value :value="props.item.investasi_likuid" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[41].hide">
-						<check-value :value="props.item.total_biaya" valueType="currency"></check-value>
+						<check-value :value="props.item.total_pendapatan" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[42].hide">
-						<check-value :value="props.item.shu" valueType="currency"></check-value>
+						<check-value :value="props.item.total_biaya" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[43].hide">
-						<check-value :value="props.item.shu_lalu" valueType="currency"></check-value>
+						<check-value :value="props.item.shu" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[44].hide">
-						<check-value :value="props.item.rata_aset" valueType="currency"></check-value>
+						<check-value :value="props.item.shu_lalu" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[45].hide">
-						<check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value>
+						<check-value :value="props.item.rata_aset" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[46].hide">
+						<check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value>
+					</td>
+					<td v-if="!columnData[47].hide">
 						<check-value :value="props.item.harga_pasar" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[47].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[48].hide">
+					<td v-if="!columnData[48].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[49].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -291,7 +294,7 @@ export default {
         order_column: "periode",
         order_direction: "desc",
         filter_match: "and",
-        limit: 10,
+        limit: 50,
         page: 1
       },
 			excelDownloadUrl:'',
@@ -323,7 +326,8 @@ export default {
   },
   created() {
     this.checkProfile();
-    this.fetch(this.query);
+		this.fetch(this.query);
+		this.columnGroup('semua');
   },
   watch: {
     // check route changes
@@ -548,7 +552,7 @@ export default {
 			var i;
 			if(value == 'anggota'){
 				for(i = 0; i < this.columnData.length ; i++){
-					if([0,1,2,3,4,5,6,7,8,9,10,11,12,47,48].includes(i)){
+					if([0,1,2,3,4,5,6,7,8,9,10,11,12,48,49].includes(i)){
 						this.columnData[i].hide = false;
 					}else{
 						this.columnData[i].hide = true;
@@ -556,7 +560,7 @@ export default {
 				}
 			}else if(value == 'aset'){
 				for(i = 0; i < this.columnData.length ; i++){
-					if([0,1,2,3,4,5,6,13,14,15,16,18,21,22,44,47,48].includes(i)){
+					if([0,1,2,3,4,5,6,13,14,15,16,17,19,22,23,45,48,49].includes(i)){
 						this.columnData[i].hide = false;
 					}else{
 						this.columnData[i].hide = true;
@@ -564,7 +568,7 @@ export default {
 				}
 			}else if(value == 'shu'){
 				for(i = 0; i < this.columnData.length ; i++){
-					if([0,1,2,3,4,5,6,33,34,40,41,42,43,47,48].includes(i)){
+					if([0,1,2,3,4,5,6,34,35,41,42,43,44,48,49].includes(i)){
 						this.columnData[i].hide = false;
 					}else{
 						this.columnData[i].hide = true;
@@ -572,11 +576,15 @@ export default {
 				}
 			}else if(value == 'piutang'){
 				for(i = 0; i < this.columnData.length ; i++){
-					if([0,1,2,3,4,5,6,26,27,28,29,30,31,32,47,48].includes(i)){
+					if([0,1,2,3,4,5,6,27,28,29,30,31,32,33,48,49].includes(i)){
 						this.columnData[i].hide = false;
 					}else{
 						this.columnData[i].hide = true;
 					}
+				}
+			}else if(value == 'semua'){
+				for(i = 0; i < this.columnData.length ; i++){
+						this.columnData[i].hide = false;
 				}
 			}
 		},

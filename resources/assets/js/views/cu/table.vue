@@ -47,7 +47,7 @@
 				</button>
 
 				<!-- lihat tpcu -->
-				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0" v-if="currentUser.can && currentUser.can['index_tpCu']">
+				<button @click.prevent="lihatTpCu(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" :disabled="!selectedItem.id || selectedItem.has_tp_cu_count === 0" v-if="currentUser.can && currentUser.can['index_tp']">
 					<i class="icon-file-eye"></i> Lihat TP/KP 
 				</button>
 			</template>
