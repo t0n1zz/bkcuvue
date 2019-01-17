@@ -22,42 +22,58 @@
 						</div>
 					</div>
 
-					<!-- itemdata -->
-					<div v-if="notification && notification.length > 0">
-						<div class="card card-body" v-for="notif in notification">
-							<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
-								<div class="mr-3 position-relative">
-									<img :src="'/images/user/' +  notif.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if=" notif.user.gambar">
-									<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
-								</div>
-
-								<div class="media-body">
-									<div class="media-title">
-										<span class="font-weight-semibold">
-											<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}}
-										</span>
-										<span class="font-size-xs">
-											[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
-										</span>
-										<span class="text-muted float-right">
-											<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
-										</span>
-									</div>
-
-									<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
-								</div>
-								
+					<div v-if="notifStat == 'loading'">
+						<div class="card">
+							<div class="card-body">
+								<h4>Mohon tunggu...</h4>
+								<div class="progress">
+                  <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
 							</div>
 						</div>
 					</div>
 
-					<!-- no itemdata -->
+					<!-- itemdata -->
 					<div v-else>
-						<div class="card">
-							<div class="card-body">
-								<h3>Belum terdapat notifikasi apapun...</h3>
+						<div v-if="notification && notification.length > 0" class="overflow-auto">
+							<div class="card card-body" v-for="notif in notification">
+								<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+									<div class="mr-3 position-relative">
+										<img :src="'/images/user/' +  notif.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if=" notif.user.gambar">
+										<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
+									</div>
+
+									<div class="media-body">
+										<div class="media-title">
+											<span class="font-weight-semibold">
+												<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}}
+											</span>
+											<span class="font-size-xs">
+												[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
+											</span>
+											<span class="text-muted float-right">
+												<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
+											</span>
+										</div>
+
+										<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+									</div>
+									
+								</div>
 							</div>
 						</div>
+
+						<!-- no itemdata -->
+						<div v-else>
+							<div class="card">
+								<div class="card-body">
+									<h3>Belum terdapat notifikasi apapun...</h3>
+								</div>
+							</div>
+						</div>
+
 					</div>
 
 				</div>
@@ -166,6 +182,7 @@
 			}),
 			...mapGetters('notification',{
 				notification: 'notification',
+				notifStat: 'notifStat',
 				unreadNotification: 'unreadNotification',
 				markNotifStat: 'markNotifStat',
 			}),

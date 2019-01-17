@@ -36,12 +36,27 @@
 					<!-- table data -->
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'analisisLaporanCu'">
+
 							<infografis-data
 								:title="title"
 								:kelas="kelas"
 								:columnData="columnData"
 								v-if="itemDataStat == 'success'"
 								></infografis-data>
+
+							<div v-if="itemDataStat == 'loading'">
+								<div class="card">
+									<div class="card-body">
+										<h4>Mohon tunggu...</h4>
+										<div class="progress">
+											<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+												<span class="sr-only">100% Complete</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<detail-laporan-cu
 								:kelas="kelas"
 								:columnData="columnData"
@@ -57,6 +72,20 @@
 								:columnData="columnDataPearls"
 								v-if="itemPearlsStat == 'success'"
 								></infografis-pearls-data>
+
+							<div v-if="itemPearlsStat == 'loading'">
+								<div class="card">
+									<div class="card-body">
+										<h4>Mohon tunggu...</h4>
+										<div class="progress">
+											<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+												<span class="sr-only">100% Complete</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+							
 							<detail-pearls
 								:kelas="kelas"
 								:columnData="columnData"

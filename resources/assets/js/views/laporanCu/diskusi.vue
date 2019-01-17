@@ -1,44 +1,60 @@
 <template>
 	<div>
 		<!-- itemdata -->
-		<div v-if="itemData.length > 0">
-			<div class="card card-body border-left-primary rounded-left-0" v-for="(diskusi,index) in itemData" >
-				<div class="card-header bg-white header-elements-inline">
-					<h6 class="card-title">
-						<b>{{diskusi.user.name}}</b> 
-						<span class="text-muted">
-							<i class="icon-primitive-dot"></i>
-							<small v-html="$options.filters.dateTime(diskusi.created_at)"></small>	
-						</span>
-					</h6>
+		<div v-if="itemDataStat == 'success'">
+			<div v-if="itemData.length > 0">
+				<div class="card card-body border-left-primary rounded-left-0" v-for="(diskusi,index) in itemData" >
+					<div class="card-header bg-white header-elements-inline">
+						<h6 class="card-title">
+							<b>{{diskusi.user.name}}</b> 
+							<span class="text-muted">
+								<i class="icon-primitive-dot"></i>
+								<small v-html="$options.filters.dateTime(diskusi.created_at)"></small>	
+							</span>
+						</h6>
 
-					<div class="header-elements">
-						<div class="list-icons">
-							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == currentUser.id"><i class="icon-pencil5"></i></a>
-							<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == currentUser.id"><i class="icon-bin2"></i></a>
+						<div class="header-elements">
+							<div class="list-icons">
+								<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Ubah" @click.prevent="modalUbah(diskusi)" v-if="diskusi.id_user == currentUser.id"><i class="icon-pencil5"></i></a>
+								<a href="#" class="list-icons-item" data-popup="tooltip" data-container="body" title="Hapus" @click.prevent="modalHapus(diskusi)" v-if="diskusi.id_user == currentUser.id"><i class="icon-bin2"></i></a>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="media card-body no-margin">
-					<div class="mr-3">
-						<img :src="'/images/user/' + diskusi.user.gambar + '.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="diskusi.user.gambar">
-						<img src="/images/no_image_man.jpg" width="42" height="42" class="rounded-circle" alt="user image" v-else>
-					</div>
+					<div class="media card-body no-margin">
+						<div class="mr-3">
+							<img :src="'/images/user/' + diskusi.user.gambar + '.jpg'" width="42" height="42" class="rounded-circle"  alt="user image" v-if="diskusi.user.gambar">
+							<img src="/images/no_image_man.jpg" width="42" height="42" class="rounded-circle" alt="user image" v-else>
+						</div>
 
-					<div class="media-body">
-						<p v-html="diskusi.content"></p> 
+						<div class="media-body">
+							<p v-html="diskusi.content"></p> 
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<!-- no itemdata -->
+			<div v-else>
+				<div class="panel panel-white">
+					<div class="panel-body">
+						<h3>Belum terdapat diskusi apapun...</h3>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 
-		<!-- no itemdata -->
-		<div v-else>
-			<div class="panel panel-white">
-				<div class="panel-body">
-					<h3>Belum terdapat diskusi apapun...</h3>
+		<!-- loading -->
+		<div v-if="itemDataStat == 'loading'">
+			<div class="card">
+				<div class="card-body">
+					<h4>Mohon tunggu...</h4>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+							<span class="sr-only">100% Complete</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

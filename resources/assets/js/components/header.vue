@@ -40,7 +40,7 @@
 							<span class="d-md-none ml-2">Pemberitahuan</span>
 
 							<!-- loading -->
-							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotificationStat == 'loading'"><i class="icon-spinner"></i></span>
+							<span class="badge badge-pill ml-auto ml-md-0" v-if="unreadNotificationStat == 'loading'"><i class="icon-spinner2 spinner font-size-xs"></i></span>
 							
 							<!-- success -->
 							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotificationStat == 'success' && unreadNotification && unreadNotification > 0">{{unreadNotification}}</span>

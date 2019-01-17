@@ -250,7 +250,7 @@
             <tr>
               <td :colspan="columnData.length">
                 <div class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+                  <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
                     <span class="sr-only">100% Complete</span>
                   </div>
                 </div>
@@ -426,17 +426,10 @@
           <hr/>
 
           <!-- download table -->
-          <json-excel 
-            class="btn btn-light btn-block"
-            :data="excel.data" 
-            :fields="excel.fields" 
-            :meta="excel.meta"
-            :title="'Data ' + title" 
-            :name="title + '.xls'"
-            ><i class="icon-file-download"></i> Download data di tabel</json-excel>
+          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen('excel')"><i class="icon-folder-download2"></i> Download data di tabel</button>
 
           <!-- download all   -->
-          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen"><i class="icon-folder-download2"></i> Download semua data</button>
+          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen('excelAll')"><i class="icon-folder-download2"></i> Download semua data</button>
           <hr/>
 
           <!-- uploadexcel -->
@@ -451,33 +444,9 @@
 
       <!-- excel download all data -->
       <div slot="modal-body2" class="text-center">
-
-        <!-- default -->
-        <div v-if="excelAllDataStat === ''">
-
-          <!-- icon -->
-          <span class="text-warning">
-            <i class="icon-exclamation" style="font-size: 5em"></i>
-          </span>
-
-          <!-- title -->
-          <h2>Yakin akan mendownload semua data ke excel?</h2>
-          
-          <!-- subtitle -->
-          <pre class="pre-scrollable text-center" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
-          <br>
-
-          <!-- batal button -->
-          <button type="button" class="btn btn-light" @click="modalBatal('excel')">
-                <i class="icon-arrow-left13"></i> Batal</button>  
-
-          <!-- download button -->
-          <button type="button" class="btn btn-warning" @click="modalExcelOk">
-                <i class="icon-checkmark5"></i> Ya, download semua</button>
-        </div>
-
-        <!-- success -->
-        <div v-else-if="excelAllDataStat === 'success'">
+        
+        <!-- excel table -->
+        <div v-if="state === 'excel'">
 
           <!-- icon -->
           <span class="text-primary">
@@ -494,17 +463,70 @@
 
           <!-- download button -->
           <json-excel 
-            :data="excelAll.data"
-            :fields="excelAll.fields" 
-            :meta="excelAll.meta" 
-            :title="title"
+            class="btn btn-light"
+            :data="excel.data" 
+            :exportFields="excel.fields" 
+            :meta="excel.meta"
+            :title="'Data ' + title" 
             :name="title + '.xls'"
-            class="btn btn-light">
-            <i class="icon-folder-download2"></i> Download Excel</json-excel>   
+            ><i class="icon-file-download"></i> Download data di tabel</json-excel> 
+        </div>
+
+        <div v-else-if="state === 'excelAll'">
+          <!-- default -->
+          <div v-if="excelAllDataStat === ''">
+
+            <!-- icon -->
+            <span class="text-warning">
+              <i class="icon-exclamation" style="font-size: 5em"></i>
+            </span>
+
+            <!-- title -->
+            <h2>Yakin akan mendownload semua data ke excel?</h2>
+            
+            <!-- subtitle -->
+            <pre class="pre-scrollable text-center" id="stack">Lama download tergantung pada jumlah data yang ada.</pre>
+            <br>
+
+            <!-- batal button -->
+            <button type="button" class="btn btn-light" @click="modalBatal('excel')">
+                  <i class="icon-arrow-left13"></i> Batal</button>  
+
+            <!-- download button -->
+            <button type="button" class="btn btn-warning" @click="modalExcelOk">
+                  <i class="icon-checkmark5"></i> Ya, download semua</button>
+          </div>
+
+          <!-- success -->
+          <div v-else-if="excelAllDataStat === 'success'">
+
+            <!-- icon -->
+            <span class="text-primary">
+              <i class="icon-checkmark-circle2" style="font-size: 5em"></i>
+            </span>
+
+            <!-- title -->
+            <h2>Silahkan tekan tombol download</h2>
+            
+            <!-- tutup button -->
+            <button type="button" class="btn btn-light" @click="modalTutup">
+                <i class="icon-cross"></i> Tutup
+            </button>  
+
+            <!-- download button -->
+            <json-excel 
+              :data="excelAll.data"
+              :exportFields="excelAll.fields" 
+              :meta="excelAll.meta" 
+              :title="title"
+              :name="title + '.xls'"
+              class="btn btn-light">
+              <i class="icon-folder-download2"></i> Download Excel</json-excel>   
+          </div>
         </div>
 
         <!-- upload excel -->
-        <div v-else-if="excelAllDataStat === 'upload'">
+        <div v-else-if="state === 'upload'">
 
           <!-- title -->
           <h2>Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload</h2>
@@ -583,6 +605,7 @@
         excelUploadIndex: '',
         isExcelAll: false,
         files: new FormData(),
+        state: '',
         updateStat: '',
         updateResponse: '',
         modalShow: false,
@@ -638,14 +661,14 @@
           this.columnData[index].hide = true;
         else
           this.columnData[index].hide = false;
-        this.fieldExcel(this);
+        this.fieldExcel();
       },
       showAllColumn(index) {
         for (var t in this.columnData) {
           if (t != index)
             this.columnData[t].hide = false;
         }
-        this.fieldExcel(this);
+        this.fieldExcel();
       },
       updateOrderDirection() {
         if (this.query.order_direction === 'desc') {
@@ -873,43 +896,33 @@
       },
 
       // download excel
-      fieldExcel(itemData) {
+      fieldExcel() {
         var vm = this;
         vm.excel.fields = {};
         vm.columnData.forEach(function (column) {
           if (!column.hide && !column.disable && column.tipe) {
-            vm.excel.fields[column.title] = column.name;
+            if(column.excelName){
+              vm.excel.fields[column.title] = column.excelName;
+            }else{
+              vm.excel.fields[column.title] = column.name;
+            }
           }
         });
-        vm.excel.data = _.chain(vm.itemData.data).map(function (item) {
-          var object = {};
-          vm.columnData.forEach(function (key) {
-            if (!key.hide && !key.disable && key.tipe) {
-              const value = _.get(item, key.name, '-');
-              object[key.name] = value === '' || value === null ? '-' : value;
-            }
-          })
-          return object;
-        }).value();
+        vm.excel.data = vm.itemData.data;
       },
       fieldExcelAll() {
         var vm = this;
         vm.excelAll.fields = {};
         vm.columnData.forEach(function (column) {
           if (!column.disable && !column.notExcel) {
-            vm.excelAll.fields[column.title] = column.name;
+            if(column.excelName){
+              vm.excelAll.fields[column.title] = column.excelName;
+            }else{
+              vm.excelAll.fields[column.title] = column.name;
+            }
           }
         });
-        vm.excelAll.data = _.chain(vm.excelAllData.data).map(function (item) {
-          var object = {};
-          vm.columnData.forEach(function (key) {
-            if (!key.disable && !key.notExcel) {
-              const value = _.get(item, key.name, '-');
-              object[key.name] = value === '' || value === null ? '-' : value;
-            }
-          })
-          return object;
-        }).value();
+        vm.excelAll.data = vm.excelAllData.data;
       },
 
       // upload excel
@@ -942,10 +955,16 @@
       },
 
       // modal
-      modalExcelOpen() {
+      modalExcelOpen(state) {
         this.modalShow = true;
         this.modalState = "normal2";
-        this.excelAllDataStat = '';
+        this.state = state;
+        
+        if(state == 'excel'){
+          this.fieldExcel();
+        }else if(state == 'excelAll'){
+          this.excelAllDataStat = '';
+        }
       },
       modalExcelOk() {
         this.isExcelAll = true;
@@ -953,7 +972,7 @@
       },
       modalExcelUploadOpen(index) {
         this.modalState = "normal2";
-        this.excelAllDataStat = "upload";
+        this.state = "upload";
         this.excelUploadIndex = index;
       },
       modalOptionOpen(state){

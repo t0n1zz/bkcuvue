@@ -70,46 +70,15 @@ class Helper{
 
 	public static function dom_processing($request, $path)
 	{
-		$dom = new \DomDocument();
-
+		$dom = new DomDocument();
 		libxml_use_internal_errors(true);
-		$dom->loadHTML("<div>$request->content</div>");
-		libxml_clear_errors();
+		$dom->loadHTML(mb_convert_encoding($request->content, 'HTML-ENTITIES', "UTF-8"), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+		$images2 = $dom->getElementsByTagName('img');
 
-		$container = $dom->getElementsByTagName('div')->item(0);
-		$container = $container->parentNode->removeChild($container);
-
-		while($dom->firstChild){
-			$dom->removeChild($dom->firstChild);
+		foreach ($images2 as $img2) {
+				$src2 = $img2->getAttribute('src');
+				$array2[] = $src2;
 		}
-
-		while($container->firstChild){
-			$dom->appendChild($container->firstChild);
-		}
-
-		$images = $dom->getElementsByTagName('img');
-			// foreach <img> in the submited message
-			foreach($images as $img){
-				$src = $img->getAttribute('src');
-
-					// if the img source is 'data-url'
-				if(preg_match('/data:image/', $src)){ 
-					preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
-					$mimetype = $groups['mime']; 
-					// Generating a random filename
-					$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-					$filepath = "$path.$filename.$mimetype";
-					// You can put your directory to upload image 
-					$image = Image::make($src)
-					// resize if required
-					/* ->resize(300, 200) */
-					->encode($mimetype, 100) // encode file to the specified mimetype
-					->save(public_path($filepath)); 
-					$new_src = $filepath;
-					$img->removeAttribute('src');
-					$img->setAttribute('src', $new_src);
-				} // <!--endif
-			} // 
 
 		return $dom->saveHTML();
 	}

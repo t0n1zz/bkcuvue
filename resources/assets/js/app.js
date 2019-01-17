@@ -15,7 +15,6 @@ import VueKatex from 'vue-katex';
 import VTooltip from 'v-tooltip';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import VueCkeditor from 'vue-ckeditor5';
-import vSelect from 'vue-select';
 
 Validator.localize('id', id); //localization
 Vue.use(VueRouter);
@@ -25,7 +24,6 @@ Vue.use(VeeValidate, {
 Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 Vue.use(VTooltip);
-Vue.component('v-select', vSelect);
 
 const options = {
   editors: {

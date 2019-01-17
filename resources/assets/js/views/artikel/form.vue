@@ -79,34 +79,26 @@
 												Penulis:
 											</h5>
 
-											<!-- loading -->
-											<div v-if="modelPenulisStat === 'loading'">
-													<i class="icon-spinner spinner"></i>
-											</div>
+											<div class="input-group">
 
-											<!-- success -->
-											<div v-else>
-												<div class="input-group">
+												<!-- select -->
+												<select class="form-control"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPenulis.length === 0">
+													<option disabled value="">
+														<span v-if="form.id_cu != 0 && modelPenulis.length == 0">Silahkan tambah penulis baru</span>
+														<span v-else-if="form.id_cu == '' && modelPenulis.length == 0">Silahkan pilih CU terlebih dahulu</span>
+														<span v-else>
+															<span v-if="modelPenulisStat === 'loading'">Mohon tunggu...</span>
+															<span v-else>Silahkan pilih penulis</span>
+														</span>
+													</option>
+													<option v-for="penulis in modelPenulis" v-if="penulis" :value="penulis.id">{{penulis.name}}</option>
+												</select>
 
-													<!-- select -->
-													<select class="form-control"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPenulis.length === 0">
-														<option disabled value="">
-															<span v-if="form.id_cu != 0 && modelPenulis.length == 0">Silahkan tambah penulis baru</span>
-															<span v-else-if="form.id_cu == '' && modelPenulis.length == 0">Silahkan pilih CU terlebih dahulu</span>
-															<span v-else>
-																<span v-if="modelPenulisStat === 'loading'">Mohon tunggu...</span>
-																<span v-else>Silahkan pilih penulis</span>
-															</span>
-														</option>
-														<option v-for="penulis in modelPenulis" v-if="penulis" :value="penulis.id">{{penulis.name}}</option>
-													</select>
-
-													<!-- button -->
-													<div class="input-group-append">
-														<button type="button" class="btn btn-light" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
-															<i class="icon-plus22"></i>
-														</button>
-													</div>
+												<!-- button -->
+												<div class="input-group-append">
+													<button type="button" class="btn btn-light" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
+														<i class="icon-plus22"></i>
+													</button>
 												</div>
 											</div>
 
@@ -128,33 +120,25 @@
 												Kategori:
 											</h5>
 
-											<!-- loading -->
-											<div v-if="modelKategoriStat === 'loading'">
-													<i class="icon-spinner spinner"></i>
-											</div>
+											<div class="input-group">
 
-											<!-- sucess -->
-											<div v-else>
-												<div class="input-group">
+												<!-- select -->
+												<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
+													<option disabled value="">
+														<span v-if="form.id_cu != 0 && modelKategori.length == 0">Silahkan tambah kategori baru</span>
+														<span v-else>
+															<span v-if="modelKategoriStat === 'loading'">Mohon tunggu...</span>
+															<span v-else>Silahkan pilih kategori</span>
+														</span>
+													</option>
+													<option v-for="kategori in modelKategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
+												</select>
 
-													<!-- select -->
-													<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
-														<option disabled value="">
-															<span v-if="form.id_cu != 0 && modelKategori.length == 0">Silahkan tambah kategori baru</span>
-															<span v-else>
-																<span v-if="modelKategoriStat === 'loading'">Mohon tunggu...</span>
-																<span v-else>Silahkan pilih kategori</span>
-															</span>
-														</option>
-														<option v-for="kategori in modelKategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
-													</select>
-
-													<!-- button -->
-													<div class="input-group-append">
-														<button type="button" class="btn btn-light" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
-															<i class="icon-plus22"></i>
-														</button>
-													</div>
+												<!-- button -->
+												<div class="input-group-append">
+													<button type="button" class="btn btn-light" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
+														<i class="icon-plus22"></i>
+													</button>
 												</div>
 											</div>
 
@@ -311,6 +295,8 @@
 	import formInfo from "../../components/formInfo.vue";
 	import formKategori from "./formKategori.vue";
 	import formPenulis from "./formPenulis.vue";
+	import { getLocalUser } from "../../helpers/auth";
+	import { url_config } from '../../helpers/url.js';
 
 	export default {
 		components: {
@@ -336,16 +322,17 @@
           this.loader = loader
           this.upload = () => {
             const body = new FormData();
-						body.append('gambar', this.loader.file);
+						const user = getLocalUser();
+						let token = user.token;
 
-						let token = window.localStorage.getItem('token');
-						
-            return fetch('https://bkcuvue.test/api/v1/artikel/upload', {
+						body.append('gambar', this.loader.file);
+	
+            return fetch(url_config.api_url + 'artikel/upload', {
 							headers: {"Authorization": 'Bearer ' + token},
               body: body,
               method: 'POST'
             })
-              .then(response => response.json())
+						.then(response => response.json())
               .then(downloadUrl => {
                 return {
 									default: downloadUrl

@@ -1,57 +1,73 @@
 <template>
 	<div>
 		<!-- itemdata -->
-		<div v-if="itemData.length > 0">
-			<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
-				<div class="card-header bg-white header-elements-sm-inline">
-					<h6 class="card-title">
-						&nbsp;
-					</h6>
-					<div class="header-elements">
-						<ul class="list-inline mb-0">
-							<li class="list-inline-item"><i class="icon-calendar2"></i> <span v-html="$options.filters.date(index)"></span></li>
-							<li class="list-inline-item"><i></i><i class="icon-alarm"></i> <span v-html="$options.filters.time(index)"></span></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="card-body">	
-
-					<div class="card card-body" v-for="(rev, index) in revisi">
-						<div class="media">
-							<div class="mr-3 position-relative">
-								<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
-								<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
-							</div>
-
-							<div class="media-body">
-								<div class="media-title">
-									<a href="#">
-										<span class="font-weight-semibold">{{ rev.user.name }}</span>
-									</a>
-								</div>
-
-								<span>Telah mengubah nilai pada akun <mark>{{ revisionField[rev.key] }}</mark> dari <mark><check-value :value="rev.old_value" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="rev.new_value" valueType="currency"></check-value></mark></span>
-							</div>
-							
+		<div v-if="itemDataStat == 'success'">
+			<div v-if="itemData.length > 0">
+				<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
+					<div class="card-header bg-white header-elements-sm-inline">
+						<h6 class="card-title">
+							&nbsp;
+						</h6>
+						<div class="header-elements">
+							<ul class="list-inline mb-0">
+								<li class="list-inline-item"><i class="icon-calendar2"></i> <span v-html="$options.filters.date(index)"></span></li>
+								<li class="list-inline-item"><i></i><i class="icon-alarm"></i> <span v-html="$options.filters.time(index)"></span></li>
+							</ul>
 						</div>
 					</div>
 
-				</div>
+					<div class="card-body">	
 
+						<div class="card card-body" v-for="(rev, index) in revisi">
+							<div class="media">
+								<div class="mr-3 position-relative">
+									<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
+									<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
+								</div>
+
+								<div class="media-body">
+									<div class="media-title">
+										<a href="#">
+											<span class="font-weight-semibold">{{ rev.user.name }}</span>
+										</a>
+									</div>
+
+									<span>Telah mengubah nilai pada akun <mark>{{ revisionField[rev.key] }}</mark> dari <mark><check-value :value="rev.old_value" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="rev.new_value" valueType="currency"></check-value></mark></span>
+								</div>
+								
+							</div>
+						</div>
+
+					</div>
+
+				</div>
 			</div>
+
+			<!-- no itemdata -->
+			<div v-else>
+				<div class="card">
+					<div class="card-body">
+						<h3>Belum terdapat revisi apapun...</h3>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
-		<!-- no itemdata -->
-		<div v-else>
+		<!-- loading -->
+		<div v-if="itemDataStat == 'loading'">
 			<div class="card">
 				<div class="card-body">
-					<h3>Belum terdapat revisi apapun...</h3>
+					<h4>Mohon tunggu...</h4>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+							<span class="sr-only">100% Complete</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :color="modalColor" :button="modalButton" :content="modalContent" @confirmOk="modalConfirmOk" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<template slot="modal-title">{{ modalTitle }}</template>
@@ -259,7 +275,7 @@
 			}),
 			...mapGetters('laporanCu',{
 				itemData: 'history',
-				itemDataStat: 'dataStatS',
+				itemDataStat: 'dataStat',
 				columnData: 'columnData'
 			}),
 			history(){

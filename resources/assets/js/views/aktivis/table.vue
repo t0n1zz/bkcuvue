@@ -189,7 +189,6 @@
 				columnData: [
 					{
 						title: 'No.',
-						name: 'No.',
 					},
 					{
 						title: 'Foto',
