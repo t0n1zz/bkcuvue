@@ -2,11 +2,12 @@
 namespace App\Http\Controllers;
 
 use DB;
+use File;
+use Image;
 use App\Tp;
 use App\Support\Helper;
 use Illuminate\Http\Request;
-use File;
-use Image;
+use Venturecraft\Revisionable\Revision;
 
 class TpController extends Controller{
 
@@ -145,18 +146,37 @@ class TpController extends Controller{
 	}
 
 	public function count()
-    {
-        $id = \Auth::user()->id_cu;
+	{
+			$id = \Auth::user()->id_cu;
 
-        if($id == 'semua'){
-            $table_data = TP::count();
-        }else{
-            $table_data = TP::where('id_cu',$id)->count();
-        }
-        
-        return response()
-        ->json([
-            'model' => $table_data
-        ]);
-    }
+			if($id == 'semua'){
+					$table_data = TP::count();
+			}else{
+					$table_data = TP::where('id_cu',$id)->count();
+			}
+			
+			return response()
+			->json([
+					'model' => $table_data
+			]);
+	}
+
+	public function history()
+  {
+		$time = \Carbon\Carbon::now()->subMonths(6);
+		
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\Tp')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+
+    $history = collect();		
+		foreach($table_data as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
+
+		return response()
+			->json([
+				'model' => $history
+			]);
+  }
 }

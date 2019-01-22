@@ -19,7 +19,7 @@ class NotificationController extends Controller
 
 		$i = 0;
 		foreach ($kelas->notifications as $notif) {
-			$username = User::where('id',$notif->data['user'])->select('name')->first();
+			$username = User::with('Cu')->where('id',$notif->data['user'])->select('id','id_cu','name')->first();
 			
 			$n = collect($notif);
 			$n->put('user',$username);
@@ -43,12 +43,11 @@ class NotificationController extends Controller
 
 		$i = 0;
 		foreach ($kelas->notifications as $notif) {
-			$username = User::where('id',$notif->data['user'])->select('name')->first();
+			$username = User::with('Cu')->where('id',$notif->data['user'])->select('id','id_cu','name')->first();
 			
 			$n = collect($notif);
 			$n->put('user',$username);
 			$notification->push($n);
-			if (++$i == 50) break;
 		}
 
 		return response()

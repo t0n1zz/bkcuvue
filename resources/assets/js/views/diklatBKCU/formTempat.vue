@@ -299,7 +299,8 @@
 			appImageUpload,
 			checkValue,
 			formInfo,
-			Cleave
+			Cleave,
+			message
 		},
 		data() {
 			return {

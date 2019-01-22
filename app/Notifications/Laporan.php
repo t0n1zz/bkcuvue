@@ -12,13 +12,13 @@ class Laporan extends Notification
 {
     use Queueable;
 
-		private $url;
-		private $user;
-		private $message;
-		private $message2;
-		private $tipe;
-		private $cu;
-		private $tp;
+    private $url;
+    private $user;
+    private $message;
+    private $message2;
+    private $tipe;
+    private $cu;
+    private $tp;
 
     /**
      * Create a new notification instance.
@@ -27,13 +27,13 @@ class Laporan extends Notification
      */
     public function __construct($url,$cu,$tp,$message,$message2,$tipe)
     {
-			$this->user = Auth::user()->getId();
-			$this->url = $url;
-			$this->cu = $cu;
-			$this->tp = $tp;
-			$this->message = $message;
-			$this->message2 = $message2;
-			$this->tipe = $tipe;
+        $this->user = Auth::user()->getId();
+        $this->url = $url;
+        $this->cu = $cu;
+        $this->tp = $tp;
+        $this->message = $message;
+        $this->message2 = $message2;
+        $this->tipe = $tipe;
     }
 
     /**

@@ -21,7 +21,6 @@
 											<i class="icon-exclamation" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<div class="card card-body" v-if="content">{{ content }}</div>
 										<br>
 										<div class=" d-none d-sm-block">
 											<button type="button" class="btn btn-light" @click="batal">
@@ -58,7 +57,6 @@
 											<i class="icon-exclamation" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<pre class="pre-scrollable" id="stack" v-if="content">{{ content }}</pre>
 										<br>
 										<div class=" d-none d-sm-block">
 											<button type="button" class="btn btn-light" @click="tutup">
@@ -128,7 +126,7 @@
 										</div>
 
 										<!-- error detail button -->
-										<button class="btn btn-light btn-block" @click="detail">
+										<button class="btn btn-danger btn-block" @click="detail">
 											<span v-if="showDetail">TUTUP DETAIL ERROR</span>
 											<span v-else>BUKA DETAIL ERROR</span>
 										</button>
@@ -136,10 +134,10 @@
 										<hr>
 
 										<div class=" d-none d-sm-block">
-											<button type="button" class="btn btn-danger" @click="failOk">{{ button }}</button>
+											<button type="button" class="btn btn-light" @click="failOk">{{ button }}</button>
 										</div>
 										<div class="d-block d-sm-none">
-											<button type="button" class="btn btn-danger btn-block" @click="failOk">{{ button }}</button>
+											<button type="button" class="btn btn-light btn-block" @click="failOk">{{ button }}</button>
 										</div>
 									</div>
 

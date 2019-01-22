@@ -4,12 +4,40 @@ export default {
     return axios.get('/api/diklatBKCU' , {params: p});
   },
 
+  indexBaru: function(){
+    return axios.get('/api/diklatBKCU/baru');
+  },
+
+  indexMulai: function(){
+    return axios.get('/api/diklatBKCU/mulai');
+  },
+
+  indexBuka: function(){
+    return axios.get('/api/diklatBKCU/buka');
+  },
+
+  indexJalan: function(){
+    return axios.get('/api/diklatBKCU/jalan');
+  },
+
   indexPeriode: function( p, periode ){
     return axios.get('/api/diklatBKCU/periode/' + periode , {params: p});
   },
 
   indexPeserta: function( p, id ){
     return axios.get('/api/diklatBKCU/indexPeserta/' + id , {params: p});
+  },
+
+  indexPesertaTerdaftar: function(id){
+    return axios.get('/api/diklatBKCU/indexPesertaTerdaftar/' + id);
+  },
+
+  indexPesertaBerjalan: function(id){
+    return axios.get('/api/diklatBKCU/indexPesertaBerjalan/' + id);
+  },
+
+  indexPesertaBatal: function(id){
+    return axios.get('/api/diklatBKCU/indexPesertaBatal/' + id);
   },
 
   indexPesertaCu: function( p, id, cu ){
@@ -54,6 +82,10 @@ export default {
 
   destroyPeserta: function( id ){
     return axios.delete('/api/diklatBKCU/destroyPeserta/' + id);
+  },
+
+  batalPeserta: function( id , form){
+    return axios.post('/api/diklatBKCU/batalPeserta/' + id, form);
   },
 
   countPeserta: function( id ){

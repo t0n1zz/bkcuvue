@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="nav-tabs-responsive mb-3">
-      <ul class="nav nav-tabs nav-tabs-solid bg-light">
+      <ul class="nav nav-tabs nav-tabs-solid bg-teal-400">
 
         <!-- grafik cu -->
         <li class="nav-item">
@@ -15,7 +15,7 @@
 
         <!-- grafik perkembangan -->
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikGerakan'}" @click.prevent="changeGrafikTab('grafikGerakan')" v-if="id_cu == 0"><i class="icon-stats-dots mr-2"></i> Grafik Perkembangan Gerakan</a>
+          <a href="#" class="nav-link" :class="{'active' : tabGrafikName == 'grafikGerakan'}" @click.prevent="changeGrafikTab('grafikGerakan')" v-if="id_cu == 0"><i class="icon-stats-dots mr-2"></i> Grafik Statistik Gerakan</a>
         </li>
 
       </ul>

@@ -36,7 +36,11 @@ export default {
     return axios.delete('/api/tp/' + id);
   },
 
-  count: function( p ){
+  count: function(){
     return axios.get('/api/tp/count');
+  },
+
+  history: function(){
+    return axios.get('/api/tp/history');
   },
 }

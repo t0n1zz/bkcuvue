@@ -275,6 +275,24 @@ export const diklatBKCU = {
         });
     },
 
+    batalPeserta( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      DIKLATBKCUAPI.batalPeserta( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     countPeserta( { commit }, id ){
       commit('setCountStat', 'loading');
       

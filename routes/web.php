@@ -65,6 +65,21 @@ Route::get('/admins/{vue?}', function () {
 // test route
 Route::get('/testroute', function () {
 	
+	$time = \Carbon\Carbon::now()->subMonths(6);
+
+	$table_data = \Venturecraft\Revisionable\Revision::with('revisionable')->where('revisionable_type','App\LaporanCu')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+	
+	$history = collect();		
+	foreach($table_data as $hs){
+		$n = collect($hs);
+		$n->put('user',$hs->userResponsible());
+		$history->push($n);
+	}
+
+	return response()
+		->json([
+			'model' => $history
+		]);
 		// create permission
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_mitra_lembaga']);
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_mitra_lembaga']); 

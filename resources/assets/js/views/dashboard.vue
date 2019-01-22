@@ -14,22 +14,33 @@
 <div class="page-content pt-0">
 	<div class="content-wrapper">
 
-		<!-- count row -->
-		<count-row></count-row>
+		<!-- button row -->
+		<button-row></button-row>
 
-		<!-- laporan row -->
-		<div class="row">
+		<div class="row align-items-stretch">
 
-			<!-- grafik -->
-			<div class="col-lg-8" >	
+			<!-- daftar diklat -->
+			<div class="col-lg-8">
+				<diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']"></diklat-bkcu-widget>
+
+				<history-organisasi-widget></history-organisasi-widget>
+
 				<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
+
 			</div>
 
-			<!-- tabel -->
+			<!-- peserta diklat -->
 			<div class="col-lg-4">
+				<peserta-diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" ></peserta-diklat-bkcu-widget>
+
+				<count-organisasi-widget></count-organisasi-widget>
+
 				<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
+				
 			</div>
 
+			
+		
 		</div>
 
 	</div>
@@ -38,15 +49,23 @@
 </div></template>
 <script type="text/javascript">
 	import { mapGetters } from 'vuex';
-	import countRow from './dashboard/countRow.vue';
+	import buttonRow from './dashboard/buttonRow.vue';
+	import diklatBkcuWidget from './dashboard/diklatBKCUWidget.vue';
+	import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
 	import grafikLaporanCuWidget from './dashboard/grafikLaporanCuWidget.vue';
 	import tableLaporanCuWidget from './dashboard/tableLaporanCuWidget.vue';
+	import historyOrganisasiWidget from './dashboard/historyOrganisasiWidget.vue';
+	import countOrganisasiWidget from './dashboard/countOrganisasiWidget.vue';
 
 	export default{
 		components: {
-			countRow,
+			buttonRow,
+			diklatBkcuWidget,
+			pesertaDiklatBkcuWidget,
 			grafikLaporanCuWidget,
-			tableLaporanCuWidget
+			tableLaporanCuWidget,
+			historyOrganisasiWidget,
+			countOrganisasiWidget,
 		},
 		data(){
 			return{

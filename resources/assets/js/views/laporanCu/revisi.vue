@@ -21,7 +21,7 @@
 						<div class="card card-body" v-for="(rev, index) in revisi">
 							<div class="media">
 								<div class="mr-3 position-relative">
-									<img :src="'/images/user/' + rev.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
+									<img :src="'/images/user/' + rev.user.gambar + '.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">
 									<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
 								</div>
 

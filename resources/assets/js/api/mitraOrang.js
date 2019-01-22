@@ -31,4 +31,8 @@ export default {
   count: function(){
     return axios.get('/api/mitraOrang/count');
   },
+
+  history: function(){
+    return axios.get('/api/mitraOrang/history');
+  },
 }

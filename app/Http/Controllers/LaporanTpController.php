@@ -11,6 +11,7 @@ use App\Support\NotificationHelper;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\LaporanTpDraftImport;
 use Maatwebsite\Excel\HeadingRowImport;
+use Venturecraft\Revisionable\Revision;
 use App\Imports\LaporanTpDraftAllImport;
 
 class LaporanTpController extends Controller{
@@ -314,6 +315,24 @@ class LaporanTpController extends Controller{
 		}
 
 		return true;
-
 	}
+
+	public function history()
+  {
+		$time = \Carbon\Carbon::now()->subMonths(6);
+		
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\LaporanTp')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+
+    $history = collect();		
+		foreach($table_data as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
+
+		return response()
+			->json([
+				'model' => $history
+			]);
+  }
 }

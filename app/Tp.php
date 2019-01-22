@@ -8,17 +8,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tp extends Model {
     
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'tp';
     protected static $logFillable = true;
     protected $dates = ['deleted_at'];
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
+    protected $historyLimit = 100; //Maintain a maximum of 100 changes at any point of time, while cleaning up old revisions.
     
     public static $rules = [
         'id_provinces' => 'required',
         'no_tp' => 'required',
         'name' => 'required|between:3,50'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $dontKeepRevisionOf = array(
+        'deleted_at'
+    );
     
     protected $fillable = [
       'id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','gambar','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at'

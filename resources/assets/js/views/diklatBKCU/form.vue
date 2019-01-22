@@ -519,7 +519,8 @@
 											<!-- title -->
 											<h5>Kerangka Acuan:</h5>
 
-											<ckeditor type="classic" v-model="form.keterangan"></ckeditor>
+											<ckeditor type="classic" 
+											:config="ckeditorNoImageConfig" v-model="form.keterangan"></ckeditor>
 
 										</div>
 									</div>
@@ -531,7 +532,8 @@
 											<!-- title -->
 											<h5>Jadwal:</h5>
 
-											<ckeditor type="classic" v-model="form.jadwal"></ckeditor>
+											<ckeditor type="classic"
+											:config="ckeditorNoImageConfig"  v-model="form.jadwal"></ckeditor>
 										</div>
 									</div>
 
@@ -672,6 +674,31 @@
 				kelas: 'diklatBKCU',
 				sasaran: [],
 				tempatData: '',
+				ckeditorNoImageConfig: {
+					toolbar: {
+						items: [
+							'heading',
+							'|',
+							'bold',
+							'italic',
+							'link',
+							'bulletedList',
+							'numberedList',
+							'blockQuote',
+							'insertTable',
+							'mediaEmbed',
+							'undo',
+							'redo'
+						]
+					},
+					table: {
+						contentToolbar: [
+							'tableColumn',
+							'tableRow',
+							'mergeTableCells'
+						]
+					},
+				},
 				cleaveOption: {
           date:{
             date: true,
@@ -874,7 +901,11 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas, params:{periode: this.momentYear()}});
+				if(this.$route.meta.isDetail){
+					this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
+				}else{
+					this.$router.push({name: this.kelas, params:{periode: this.momentYear()}});
+				}
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -924,6 +955,11 @@
 			},
 			modalConfirmOk() {
 				this.modalShow = false;
+
+				if(this.$route.meta.isDetail){
+					this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
+				}
+
 				if (this.state == 'hapus') {
 					_.remove(this.itemDataPanitia, {
 						aktivis_id: this.selectedItem.aktivis_id

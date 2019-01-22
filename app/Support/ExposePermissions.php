@@ -26,10 +26,12 @@ trait ExposePermissions {
     {
         $permissions = [];
         foreach (Permission::all() as $permission) {
-            if (Auth::user()->can($permission->name)) {
-                $permissions[$permission->name] = true;
-            } else {
-                $permissions[$permission->name] = false;
+            if(Auth::user()){
+                if (Auth::user()->can($permission->name)) {
+                    $permissions[$permission->name] = true;
+                } else {
+                    $permissions[$permission->name] = false;
+                }
             }
         }
         return $permissions;

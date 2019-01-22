@@ -3,7 +3,7 @@ import Vue from 'vue';
 // filters
 Vue.filter('dateTime', function(value){
 	if(value){
-			return window.moment(value).format('DD-MM-YYYY') + '&nbsp; / &nbsp;'  + moment(value).format('kk:mm:ss');
+			return window.moment(value).format('DD-MM-YYYY') + '&nbsp; | &nbsp;'  + moment(value).format('kk:mm:ss');
 	}else{
 			return '-';
 	}
@@ -69,6 +69,21 @@ Vue.filter('statusDiklat', function(value){
 		return '<span class="badge badge-primary"> TERLAKSANA</span>';
 	}else if(value == 6){
 		return '<span class="badge badge-danger"> BATAL</span>';
+	}
+});
+Vue.filter('statusPeserta', function(value){
+	if(value == 1){
+		return '<span class="badge badge-info">MENUNGGU</span>';
+	}else if(value == 2){
+		return '<span class="badge badge-warning">TERDAFTAR</span>';
+	}else if(value == 3){
+		return '<span class="badge badge-secondary">DITOLAK</span>';
+	}else if(value == 4){
+		return '<span class="badge badge-success">BERJALAN</span>';
+	}else if(value == 5){
+		return '<span class="badge badge-primary">TERLAKSANA</span>';
+	}else if(value == 6){
+		return '<span class="badge badge-danger">BATAL</span>';
 	}
 });
 Vue.filter('notificationIcon', function(value){

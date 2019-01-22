@@ -53,7 +53,7 @@
 						name="nik"
 						v-model="form.nim_cu" 
 						class="form-control" 
-						:options="cleaveOption.number16"
+						:options="cleaveOption.number24"
 						placeholder="Silahkan masukkan no induk manajemen lembaga"></cleave>
 
 				</div>
@@ -243,6 +243,13 @@
             datePattern: ['Y','m','d'],
             delimiter: '-'
           },
+          number24: {
+            numeral: true,
+            numeralIntegerScale: 24,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
           number16: {
             numeral: true,
             numeralIntegerScale: 16,

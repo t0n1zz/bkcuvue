@@ -7,6 +7,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class MitraOrang extends Model {
     
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity;
 
     protected $table = 'mitra_orang';
@@ -15,6 +16,11 @@ class MitraOrang extends Model {
     public static $rules = [
         'name' => 'required'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
     
     protected $fillable = [
         'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','jabatan','pendidikan','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces'

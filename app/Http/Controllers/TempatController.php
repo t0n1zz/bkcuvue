@@ -2,11 +2,12 @@
 namespace App\Http\Controllers;
 
 use DB;
+use File;
+use Image;
 use App\Tempat;
 use App\Support\Helper;
 use Illuminate\Http\Request;
-use File;
-use Image;
+use Venturecraft\Revisionable\Revision;
 
 class TempatController extends Controller{
 
@@ -124,4 +125,14 @@ class TempatController extends Controller{
 				'message' => $this->message . $name . 'berhasil dihapus'
 			]);
 	}
+
+	public function history()
+  {
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\Tempat')->get();
+
+    return response()
+			->json([
+				'model' => $table_data
+			]);
+  }
 }

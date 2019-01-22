@@ -28,7 +28,7 @@
 				</button>
 
 				<!-- daftar-->
-				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="selectedItem.status != 2">
+				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-stack2"></i> Detail
 				</button>
 
@@ -58,7 +58,7 @@
 				</button>
 
 				<!-- daftar-->
-				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="selectedItem.status != 2">
+				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-stack2"></i> Detail
 				</button>
 
@@ -90,7 +90,7 @@
 					</td>
 					<td v-if="!columnData[6].hide && !columnData[6].disable">
 						<check-value :value="props.item.tempat.name" v-if="props.item.tempat"></check-value>
-						<span v-else>-</span>	
+						<span v-else>Belum ditentukan tempat</span>	
 					</td>
 					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.periode"></check-value>
@@ -110,14 +110,8 @@
 							</label>
 						</span>
 					</td>
-					<td v-if="!columnData[13].hide">
-						<check-value :value="props.item.jadwal" valueType="modal"></check-value>
-					</td>
+					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[14].hide">
-						<check-value :value="props.item.keterangan" valueType="modal"></check-value>
-					</td>
-					<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[16].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -136,69 +130,8 @@
 
 			<!-- status -->
 			<template slot="modal-body1">
-				<form @submit.prevent="saveStatus" data-vv-scope="formStatus">
-					<!-- status -->
-					<div class="form-group">
-
-						<!-- title -->
-						<h5>Status Diklat:</h5>
-
-						<!-- select -->
-						<select name="status" data-width="100%" class="form-control" v-model="formStatus.status" @change="changeStatus($event.target.value)">
-							<option disabled value="">Silahkan pilih status diklat</option>
-							<option value="1">Menunggu</option>
-							<option value="2">Pendaftaran Buka</option>
-							<option value="3">Pendaftaran Tutup</option>
-							<option value="4">Berjalan</option>
-							<option value="5">Terlaksana</option>
-							<option value="6">Batal</option>
-						</select>
-
-						<small class="text-muted">{{ penjelasanStatus }}</small>
-
-					</div>
-
-					<!-- keterangan batal -->
-					<div class="form-group" :class="{'has-error' : errors.has('formStatus.keterangan')}" v-if="formStatus.status == 6">
-
-						<!-- title -->
-						<h5 :class="{ 'text-danger' : errors.has('formStatus.keterangan')}">
-							Keterangan:
-						</h5>
-
-						<!-- textarea -->
-						<textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan"></textarea>
-
-						<!-- error message -->
-						<small class="text-muted text-danger" v-if="errors.has('formStatus.keterangan')">
-							<i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.keterangan') }}
-						</small>
-						<small class="text-muted" v-else>&nbsp;
-						</small>
-					</div>
-
-					<!-- divider -->
-					<hr>
-					
-					<!-- tombol desktop-->
-					<div class="text-center d-none d-md-block">
-						<button class="btn btn-light" @click.prevent="modalTutup">
-							<i class="icon-cross"></i> Tutup</button>
-
-						<button type="submit" class="btn btn-primary">
-							<i class="icon-floppy-disk"></i> Simpan</button>
-					</div>  
-
-					<!-- tombol mobile-->
-					<div class="d-block d-md-none">
-						<button class="btn btn-light btn-block pb-2" @click.prevent="modalTutup">
-							<i class="icon-cross"></i> Tutup</button>
-
-						<button type="submit" class="btn btn-primary btn-block pb-2">
-							<i class="icon-floppy-disk"></i> Simpan</button>
-					</div> 
-				</form>	
-
+				<form-status :kelas="kelas" :id="selectedItem.id" :status="selectedItem.status" :keteranganBatal="selectedItem.keteranganBatal"
+				@tutup="modalTutup"></form-status>
 			</template>
 
 			<!-- keteranganBatal -->
@@ -238,22 +171,22 @@
 	import { mapGetters } from 'vuex';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
-	import collapseButton from '../../components/collapseButton.vue';
 	import checkValue from '../../components/checkValue.vue';
+	import formStatus from "./formStatus.vue";
 
 	export default {
 		components: {
 			DataViewer,
 			appModal,
-			collapseButton,
-			checkValue
+			checkValue,
+			formStatus
 		},
 		props:['title','kelas'],
 		data() {
 			return {
 				selectedItem: [],
 				query: {
-					order_column: "name",
+					order_column: "mulai",
 					order_direction: "asc",
 					filter_match: "and",
 					limit: 10,
@@ -273,7 +206,7 @@
 						disable: false,
 					},
 					{
-						title: 'Kode Diklat',
+						title: 'Kode',
 						name: 'kode_diklat',
 						tipe: 'string',
 						sort: false,
@@ -373,24 +306,6 @@
 						filter: true,
 					},
 					{
-						title: 'Jadwal',
-						name: 'jadwal',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
-					},
-					{
-						title: 'Keterangan',
-						name: 'keterangan',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
-					},
-					{
 						title: 'Tgl. / Waktu Buat',
 						name: 'created_at',
 						tipe: 'datetime',
@@ -409,11 +324,6 @@
 						filter: true,
 					}
 				],
-				formStatus: {
-					status: '',
-					keterangan: ''
-				},
-				penjelasanStatus: '',
 				keteranganBatal: '',
 				state: '',
 				modalShow: false,
@@ -464,21 +374,6 @@
 			detail(id) {
 				this.$router.push({name: this.kelas + 'Detail', params: { id: id }});
 			},
-			changeStatus(value){
-				if(value == 1){
-					this.penjelasanStatus = 'Diklat masih belum dimulai dan belum menerima pendaftaran';
-				}else if(value == 2){
-					this.penjelasanStatus = 'Diklat masih belum dimulai tapi sudah mulai menerima pendaftaran peserta';
-				}else if(value == 3){
-					this.penjelasanStatus = 'Diklat masih belum dimulai tapi sudah tidak menerima lagi pendaftaran peserta';
-				}else if(value == 4){
-					this.penjelasanStatus = 'Diklat sudah dimulai dan sedang berproses/berjalan';
-				}else if(value == 5){
-					this.penjelasanStatus = 'Diklat sudah sukses terlaksana';
-				}else if(value == 6){
-					this.penjelasanStatus = 'Diklat batal dilaksanakan';
-				}
-			},
 			saveStatus(){
 				this.$validator.validateAll('formStatus').then((result) => {
 					this.$store.dispatch(this.kelas + '/updateStatus', [this.selectedItem.id, this.formStatus]);
@@ -501,7 +396,6 @@
 					this.modalState = 'normal1';
 					this.modalTitle = 'Ubah status ' + this.title + ' ' + this.selectedItem.name + ' ini?';
 					this.modalColor = 'bg-primary';
-					this.formStatus.status = this.selectedItem.status;
 				}else if (state == 'keteranganBatal') {
 					this.modalState = 'normal2';
 					this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.name;
@@ -509,7 +403,7 @@
 					this.keteranganBatal = this.selectedItem.keteranganBatal;
 				}
 			},
-			modalKeteranganBatalOpen(value) {
+		modalKeteranganBatalOpen(value) {
 				this.modalShow = true;
 				this.modalState = 'normal2';
 				this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.name;

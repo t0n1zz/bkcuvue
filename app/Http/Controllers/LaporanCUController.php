@@ -7,13 +7,14 @@ use App\Tp;
 use App\LaporanCu;
 use App\LaporanTp;
 use App\LaporanCuDraft;
-use App\Support\NotificationHelper;
-use App\Support\LaporanCuHelper;
-use App\Imports\LaporanCuDraftImport;
-use App\Imports\LaporanCuDraftAllImport;
-use Maatwebsite\Excel\Facades\Excel;
-use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Http\Request;
+use App\Support\LaporanCuHelper;
+use App\Support\NotificationHelper;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\LaporanCuDraftImport;
+use Maatwebsite\Excel\HeadingRowImport;
+use Venturecraft\Revisionable\Revision;
+use App\Imports\LaporanCuDraftAllImport;
 
 class LaporanCuController extends Controller{
 
@@ -367,4 +368,23 @@ class LaporanCuController extends Controller{
 					'model' => $table_data
 			]);
 	}
+
+	public function history()
+  {
+		$time = \Carbon\Carbon::now()->subMonths(6);
+		
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\LaporanCu')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+
+    $history = collect();		
+		foreach($table_data as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
+
+		return response()
+			->json([
+				'model' => $history
+			]);
+  }
 }

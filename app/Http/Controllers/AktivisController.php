@@ -2,16 +2,17 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\Aktivis;
-use App\AktivisPekerjaan;
-use App\AktivisPendidikan;
-use App\AktivisOrganisasi;
-use App\AktivisKeluarga;
-use App\AktivisAnggotaCu;
-use App\Support\Helper;
-use Illuminate\Http\Request;
 use File;
 use Image;
+use App\Aktivis;
+use App\Support\Helper;
+use App\AktivisKeluarga;
+use App\AktivisAnggotaCu;
+use App\AktivisPekerjaan;
+use App\AktivisOrganisasi;
+use App\AktivisPendidikan;
+use Illuminate\Http\Request;
+use Venturecraft\Revisionable\Revision;
 
 class AktivisController extends Controller{
 
@@ -389,6 +390,32 @@ class AktivisController extends Controller{
 			$kelas = AktivisPekerjaan::findOrFail($request->pekerjaan['id']);
 		}else{
 			$kelas = new AktivisPekerjaan();
+
+			if($tipe == '1'){ //cu
+				$kelas->id_tempat = $request->pekerjaan['id_tempat'];
+				$lembaga = $request->pekerjaan['id_tempat'];
+	
+				if($kelamin == 'Pria')//no tipe utk nim
+						$no_tipe = 1;
+				else
+						$no_tipe = 2;
+			}elseif($tipe == '2'){//lembaga lain
+				$lembaga = 0;
+				$kelas->lembaga_lain = $request->pekerjaan['lembaga_lain'];
+	
+				if($kelamin == 'Pria')//no tipe utk nim
+						$no_tipe = 3;
+				else
+						$no_tipe = 4;
+			}elseif($tipe == '3'){//bkcu
+				$kelas->id_tempat = 1;
+				$lembaga = 1;
+	
+				if($kelamin == 'Pria')//no tipe utk nim
+						$no_tipe = 5;
+				else
+						$no_tipe = 6;
+			}
 		}
 
 		if(!empty($id)){
@@ -402,32 +429,6 @@ class AktivisController extends Controller{
 		$kelas->tingkat = $request->pekerjaan['tingkat'];
 		$kelas->mulai = $request->pekerjaan['mulai'];
 		$kelas->selesai = $request->pekerjaan['selesai'];
-
-		if($tipe == '1'){ //cu
-			$kelas->id_tempat = $request->pekerjaan['id_tempat'];
-			$lembaga = $request->pekerjaan['id_tempat'];
-
-			if($kelamin == 'Pria')//no tipe utk nim
-					$no_tipe = 1;
-			else
-					$no_tipe = 2;
-		}elseif($tipe == '2'){//lembaga lain
-			$lembaga = 0;
-			$kelas->lembaga_lain = $request->pekerjaan['id_lembaga_lain'];
-
-			if($kelamin == 'Pria')//no tipe utk nim
-					$no_tipe = 3;
-			else
-					$no_tipe = 4;
-		}elseif($tipe == '3'){//bkcu
-			$kelas->id_tempat = 1;
-			$lembaga = 1;
-
-			if($kelamin == 'Pria')//no tipe utk nim
-					$no_tipe = 5;
-			else
-					$no_tipe = 6;
-		}
 
 		$kelas->save();
 
@@ -684,21 +685,39 @@ class AktivisController extends Controller{
 	}
 
 	public function count()
-    {
-        $id = \Auth::user()->id_cu;
+	{
+			$id = \Auth::user()->id_cu;
 
-        if($id == 0){
-            $table_data = Aktivis::count();
-        }else{
-            $table_data = Aktivis::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
-                $query->where('id_tempat',$id);
-            })->count();
-        }
-        
-        return response()
-        ->json([
-            'model' => $table_data
-        ]);
-    }
+			if($id == 0){
+					$table_data = Aktivis::count();
+			}else{
+					$table_data = Aktivis::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
+							$query->where('id_tempat',$id);
+					})->count();
+			}
+			
+			return response()
+			->json([
+					'model' => $table_data
+			]);
+	}
 
+	public function history()
+  {
+    $time = \Carbon\Carbon::now()->subMonths(6);
+		
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\Aktivis')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+
+    $history = collect();		
+		foreach($table_data as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
+
+		return response()
+			->json([
+				'model' => $history
+			]);
+  }
 }

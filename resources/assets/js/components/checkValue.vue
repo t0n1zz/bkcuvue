@@ -1,19 +1,19 @@
 <template>
-    <div style="display:inline">
-      <span v-if="value" style="display:inline">
-        <span v-if="valueType == 'trim'" style="display:inline">
-          <truncate action-class="badge bg-blue" clamp="selengkapnya >" :length="trimLength" less="< kembali" :text="frontText + ' ' +value" style="display:inline;"></truncate>
+    <div style="display:inline-block">
+      <span v-if="value" style="display:inline-block">
+        <span v-if="valueType == 'trim'" style="display:inline-block">
+          <truncate action-class="badge bg-blue" clamp="selengkapnya >" :length="trimLength" less="< kembali" :text="frontText + ' ' +value" style="display:inline-block;"></truncate>
         </span>
-        <span v-else-if="valueType == 'modal'" style="display:inline">
+        <span v-else-if="valueType == 'modal'" style="display:inline-block">
           <button class="btn btn-light" @click.prevent="modalOpen()">
               Lihat
           </button>
         </span>
-        <span v-else-if="valueType == 'currency'" style="display:inline">{{frontText}} {{ value | currency('',0,{ thousandsSeparator: '.'}) }}</span>
-        <span v-else-if="valueType == 'percentage'" style="display:inline">{{frontText}} {{ value | percentage(2) }}</span>
-        <span v-else style="display:inline">{{frontText}} {{value}}</span>
+        <span v-else-if="valueType == 'currency'" style="display:inline-block">{{frontText}} {{ value | currency('',0,{ thousandsSeparator: '.'}) }}</span>
+        <span v-else-if="valueType == 'percentage'" style="display:inline-block">{{frontText}} {{ value | percentage(2) }}</span>
+        <span v-else style="display:inline-block">{{frontText}} {{value}}</span>
       </span>
-      <span v-else style="display:inline">{{frontText}} {{empty}}</span>
+      <span v-else style="display:inline-block">{{frontText}} {{empty}}</span>
 
       <!-- modal -->
       <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @backgroundClick="modalTutup">

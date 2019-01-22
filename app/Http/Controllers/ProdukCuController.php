@@ -2,11 +2,12 @@
 namespace App\Http\Controllers;
 
 use DB;
+use File;
+use Image;
 use App\ProdukCu;
 use App\Support\Helper;
 use Illuminate\Http\Request;
-use File;
-use Image;
+use Venturecraft\Revisionable\Revision;
 
 class ProdukCuController extends Controller{
 
@@ -143,4 +144,23 @@ class ProdukCuController extends Controller{
 					'model' => $table_data
 			]);
 	}
+
+	public function history()
+  {
+    $time = \Carbon\Carbon::now()->subMonths(6);
+		
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\ProdukCu')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+
+    $history = collect();		
+		foreach($table_data as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
+
+		return response()
+			->json([
+				'model' => $history
+			]);
+  }
 }

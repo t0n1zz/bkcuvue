@@ -67,4 +67,8 @@ export default {
   uploadExcel: function ( form ){
     return axios.post('/api/laporanTp/uploadExcel', form);
   },
+
+  history: function(){
+    return axios.get('/api/laporanTp/history');
+  },
 }

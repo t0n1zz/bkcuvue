@@ -119,4 +119,8 @@ export default {
   count: function(){
     return axios.get('/api/aktivis/count');
   },
+
+  history: function(){
+    return axios.get('/api/aktivis/history');
+  },
 }

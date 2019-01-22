@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header bg-light header-elements-inline">
+    <div class="card-header bg-grey-400 header-elements-inline">
       <h6 class="card-title"><i></i><i class="icon-table2 mr-2"></i> Tabel Perkembangan</h6>
       <div class="header-elements">
         <span v-if="itemDataStat == 'success' && id_cu != 0"><i class="badge badge-mark border-warning"></i> {{ itemData.data[itemData.total-1]['periode'] | dateMonth }}</span>
@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <ul class="nav nav-tabs nav-tabs-solid nav-justified bg-indigo-400 border-x-0 border-bottom-0 border-top-indigo-300 mb-0">
+    <ul class="nav nav-tabs nav-tabs-solid nav-justified bg-grey-400 border-x-0 border-bottom-0 border-top-grey-300 mb-0">
 
 
       <!-- tabel cu -->
@@ -132,7 +132,7 @@
     </ul>
 
     <transition enter-active-class="animated fadeIn" mode="out-in">
-      <div class="table-responsive table-scrollable" v-show="tabTabelName == 'tabelCu'">
+      <div class="table-responsive table-scrollable"  v-show="tabTabelName == 'tabelCu'">
         <table class="table text-nowrap">
           <thead>
             <tr>

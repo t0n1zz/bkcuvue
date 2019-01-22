@@ -29,7 +29,7 @@
 							<li class="nav-item"><a href="#" class="nav-link" :class="{'active' : tabName == 'analisisLaporanCu'}" @click.prevent="changeTab('analisisLaporanCu')"><i class="icon-dots mr-2"></i> Laporan CU</a></li>
 							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'analisisPearls'}" @click.prevent="changeTab('analisisPearls')"><i class="icon-dots mr-2"></i> P.E.A.R.L.S.</a></li>
 							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'diskusi'}" @click.prevent="changeTab('diskusi')"><i class="icon-bubble2 mr-2"></i> Diskusi</a></li>
-							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'revisi'}" @click.prevent="changeTab('revisi')"><i class="icon-stack2 mr-2"></i> Revisi</a></li>
+							<li class="nav-item"><a href="#" class="nav-link"  :class="{'active' : tabName == 'revisi'}" @click.prevent="changeTab('revisi')"><i class="icon-copy3 mr-2"></i> Revisi</a></li>
 						</ul>
 					</div>
 

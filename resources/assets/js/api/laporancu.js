@@ -78,4 +78,8 @@ export default {
   uploadExcelAll: function ( form ){
     return axios.post('/api/laporanCu/uploadExcelAll', form);
   },
+
+  history: function(){
+    return axios.get('/api/laporanCu/history');
+  },
 }

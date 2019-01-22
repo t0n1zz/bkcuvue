@@ -9,11 +9,15 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Cu extends Model {
     
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes, Sluggable;
 
     protected $table = 'cu';
     protected static $logFillable = true;
     protected $dates = ['deleted_at'];
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
+    protected $historyLimit = 100; //Maintain a maximum of 100 changes at any point of time, while cleaning up old revisions.
     
     public static $rules = [
         'id_provinces' => 'required',
@@ -30,6 +34,15 @@ class Cu extends Model {
             ]
         ];
     }
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $dontKeepRevisionOf = array(
+        'deleted_at'
+    );
     
     protected $fillable = [
       'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',

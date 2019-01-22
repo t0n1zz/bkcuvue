@@ -46,6 +46,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
         Route::post('/artikel/upload', 'ArtikelController@upload');
         Route::get('/artikel/count', 'ArtikelController@count');
+        Route::get('/artikel/history', 'ArtikelController@history');
     });
     Route::group(['middleware' => ['permission:create_artikel']], function () {
         Route::get('/artikel/create', 'ArtikelController@create');
@@ -67,6 +68,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/artikelKategori/get', 'ArtikelKategoriController@get');
         Route::get('/artikelKategori/indexCu/{id}', 'ArtikelKategoriController@indexCu');
         Route::get('/artikelKategori/getCu/{id}', 'ArtikelKategoriController@getCu');
+        Route::get('/artikelKategori/history', 'ArtikelKategoriController@history');
     });
     Route::group(['middleware' => ['permission:create_artikel_kategori']], function () {
         Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
@@ -87,6 +89,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/artikelPenulis/indexCu/{id}', 'ArtikelPenulisController@indexCu');
         Route::get('/artikelPenulis/getCu/{id}', 'ArtikelPenulisController@getCu');
         Route::get('/artikelPenulis/count', 'ArtikelPenulisController@count');
+        Route::get('/artikelPenulis/history', 'ArtikelPenulisController@history');
     });
     Route::group(['middleware' => ['permission:create_artikel_penulis']], function () {
         Route::get('/artikelPenulis/create', 'ArtikelPenulisController@create');
@@ -108,6 +111,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/cu/get', 'CuController@get');  
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
         Route::get('/cu/count', 'CuController@count');
+        Route::get('/cu/history', 'CuController@history');
     });
     Route::group(['middleware' => ['permission:create_cu']], function () {
         Route::get('/cu/create', 'CuController@create');
@@ -129,6 +133,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/tp/get', 'TpController@get');
         Route::get('/tp/indexCu/{id}', 'TpController@indexCu'); 
         Route::get('/tp/count', 'TpController@count');
+        Route::get('/tp/history', 'TpController@history');
     });
     Route::group(['middleware' => ['permission:create_tp']], function () {
         Route::get('/tp/create', 'TpController@create');
@@ -149,6 +154,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/produkcu/indexCu/{id}', 'ProdukCuController@indexCu'); 
         Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
         Route::get('/produkcu/count', 'ProdukCuController@count');
+        Route::get('/produkcu/history', 'ProdukCuController@history');
     });
     Route::group(['middleware' => ['permission:create_produk_cu']], function () {
         Route::get('/produkcu/create', 'ProdukCuController@create');
@@ -165,17 +171,26 @@ Route::group(['middleware'=>'jwt.auth'],function(){
      // diklatBKCU
     Route::group(['middleware' => ['permission:index_diklat_bkcu']], function () {
         Route::get('/diklatBKCU/', 'DiklatBKCUController@index');
+        Route::get('/diklatBKCU/baru', 'DiklatBKCUController@indexBaru');
+        Route::get('/diklatBKCU/mulai', 'DiklatBKCUController@indexMulai');
+        Route::get('/diklatBKCU/buka', 'DiklatBKCUController@indexBuka');
+        Route::get('/diklatBKCU/jalan', 'DiklatBKCUController@indexJalan');
         Route::get('/diklatBKCU/periode/{periode}', 'DiklatBKCUController@indexPeriode');
         Route::get('/diklatBKCU/get', 'DiklatBKCUController@get');
         Route::get('/diklatBKCU/getPeriode', 'DiklatBKCUController@getPeriode');
-
         Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
+        Route::get('/diklatBKCU/history', 'DiklatBKCUController@history');
 
+        // peserta
         Route::get('/diklatBKCU/indexPeserta/{id}', 'DiklatBKCUController@indexPeserta');
+        Route::get('/diklatBKCU/indexPesertaTerdaftar/{id}', 'DiklatBKCUController@indexPesertaTerdaftar');
+        Route::get('/diklatBKCU/indexPesertaBerjalan/{id}', 'DiklatBKCUController@indexPesertaBerjalan');
+        Route::get('/diklatBKCU/indexPesertaBatal/{id}', 'DiklatBKCUController@indexPesertaBatal');
         Route::get('/diklatBKCU/indexPesertaCu/{id}/cu/{cu}', 'DiklatBKCUController@indexPesertaCu');
         Route::post('/diklatBKCU/storePeserta/{id}', 'DiklatBKCUController@storePeserta');
         Route::post('/diklatBKCU/updatePeserta/{id}', 'DiklatBKCUController@updatePeserta');
         Route::delete('/diklatBKCU/destroyPeserta/{id}', 'DiklatBKCUController@destroyPeserta');
+        Route::post('/diklatBKCU/batalPeserta/{id}', 'DiklatBKCUController@batalPeserta');
         Route::get('/diklatBKCU/countPeserta/{id}', 'DiklatBKCUController@countPeserta');
     });
     Route::group(['middleware' => ['permission:create_diklat_bkcu']], function () {
@@ -200,6 +215,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/aktivis/indexCu/{id}/{tingkat}', 'AktivisController@indexCu');
         Route::get('/aktivis/getCu/{id}', 'AktivisController@getCu');
         Route::get('/aktivis/count', 'AktivisController@count');
+        Route::get('/aktivis/history', 'AktivisController@history');
     });
     Route::group(['middleware' => ['permission:create_aktivis']], function () {
         Route::get('/aktivis/create', 'AktivisController@create');
@@ -237,6 +253,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
         Route::get('/mitraOrang', 'MitraOrangController@index');
         Route::get('/mitraOrang/count', 'MitraOrangController@count');
+        Route::get('/mitraOrang/history', 'MitraOrangController@history');
     });
     Route::group(['middleware' => ['permission:create_mitra_orang']], function () {
         Route::get('/mitraOrang/create', 'MitraOrangController@create');
@@ -255,6 +272,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
         Route::get('/mitraLembaga', 'MitraLembagaController@index');
         Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
+        Route::get('/mitraLembaga/history', 'MitraLembagaController@history');
     });
     Route::group(['middleware' => ['permission:create_mitra_lembaga']], function () {
         Route::get('/mitraLembaga/create', 'MitraLembagaController@create');
@@ -283,6 +301,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/laporanCu/getPeriodeCu/{id}', 'LaporanCuController@getPeriodeCu');
         Route::get('/laporanCu/detail/{id}', 'LaporanCuController@detail');
         Route::get('/laporanCu/detailPearls/{id}', 'LaporanCuController@detailPearls');
+        Route::get('/laporanCu/history', 'LaporanCuController@history');
     });
     Route::group(['middleware' => ['permission:create_laporan_cu']], function () {
         Route::get('/laporanCu/create', 'LaporanCuController@create');
@@ -328,6 +347,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/laporanTp/listLaporanTp/{cu}/{periode}', 'LaporanTpController@listLaporanTp');
         Route::get('/laporanTp/detail/{id}', 'LaporanTpController@detail');
         Route::get('/laporanTp/detailPearls/{id}', 'LaporanTpController@detailPearls');
+        Route::get('/laporanTp/history', 'LaporanTpController@history');
     });
     Route::group(['middleware' => ['permission:create_laporan_tp']], function () {
         Route::get('/laporanTp/create', 'LaporanTpController@create');
@@ -447,6 +467,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     // file
     Route::get('download/{filename}','SystemController@download_file');
+    Route::get('countOrganisasi','SystemController@countOrganisasi');
 
     // notification
     Route::get('/notification/get', 'NotificationController@get');

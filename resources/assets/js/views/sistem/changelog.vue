@@ -8,6 +8,39 @@
       <div class="content-wrapper">
         <div class="content">
         
+            <!-- Version 3.0.5 -->
+            <div class="card" id="3_0_5_simo">
+              <div class="card-header header-elements-inline">
+                <h5 class="card-title">Version 3.0.5 - SIMO</h5>
+                <div class="header-elements">
+                  <span class="text-muted">22 Januari 2019</span>
+
+                  <div class="list-icons ml-3">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <p class="mb-3">Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU dan penambahan widget untuk halaman dashboard.
+                <br/><br/>
+                Berikut adalah rincian perubahan pada versi ini:</p>
+
+                <ul class="list">
+                  <li>Penambahan visualisasi pada penambahan panitia Diklat BKCU</li>
+                  <li>Penambahan visualisasi pada penambahan peserta Diklat BKCU</li>
+                  <li>Perbaikan bug untuk penambahan peserta Diklat BKCU</li>
+                  <li>Penambahan widget navigasi halaman pada halaman dashboard</li>
+                  <li>Penambahan widget Diklat BKCU pada halaman dashboard</li>
+                  <li>Penambahan widget peserta Diklat BKCU pada halaman dashboard</li>
+                  <li>Penambahan widget aktivitas perubahan data organisasi pada halaman dashboard</li>
+                  <li>Penambahan widget jumlah data organisasi pada halaman dashboard</li>
+                  <li>Perbaikan bug pada penampilan informasi error pada modal</li>
+                </ul>
+              </div>
+            </div>
+            <!-- /version 3.0.5 -->
+
             <!-- Version 3.0.4 -->
             <div class="card" id="3_0_4_simo">
               <div class="card-header header-elements-inline">

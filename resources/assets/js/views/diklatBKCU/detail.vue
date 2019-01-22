@@ -23,30 +23,29 @@
 
 								<div class="nav-tabs-responsive bg-light border-top">
 									<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
-										<li class="nav-item"><a href="#detail" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i>
-												Detail Diklat</a></li>
-										<li class="nav-item"><a href="#peserta" class="nav-link" data-toggle="tab"><i class="icon-people mr-2"></i>
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-menu7 mr-2"></i>
+												Informasi Diklat</a></li>
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'peserta'}" @click.prevent="changeTab('peserta')"><i class="icon-people mr-2"></i>
 												Peserta</a></li>
 									</ul>
 								</div>
 
-								<div class="tab-content">
-
-									<!-- informasi -->
-									<div class="tab-pane fade show active" id="detail">
+								<!-- informasi -->
+								<transition enter-active-class="animated fadeIn" mode="out-in">
+									<div v-show="tabName == 'info'">
 										<div class="card-body">
 
 											<!-- keterangan -->
 											<div class="mt-1 mb-4" v-if="item.keterangan">
-												<h6 class="font-weight-semibold">Kerangka Acuan</h6>
+												<h6 class="font-weight-semibold">1. Kerangka Acuan</h6>
 												<div v-html="item.keterangan"></div>
 											</div>
 
 											<!-- jadwal -->
-											<h6 class="font-weight-semibold" v-if="item.jadwal">Jadwal Kegiatan</h6>
+											<h6 class="font-weight-semibold" v-if="item.jadwal">2. Jadwal Kegiatan</h6>
 											<div class="mb-4" v-html="item.jadwal"></div>		
 
-											<h6 class="font-weight-semibold" v-if="item.panitia">Panitia dan Fasilitator</h6>
+											<h6 class="font-weight-semibold" v-if="itemDataPanitia">3. Panitia dan Fasilitator</h6>
 										</div>
 
 										<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat" v-if="itemDataPanitia">
@@ -119,27 +118,51 @@
 										</data-table>
 
 									</div>
+								</transition>
 
-									<!-- peserta -->
-									<div class="tab-pane fade" id="peserta">
+								<!-- peserta -->
+								<transition enter-active-class="animated fadeIn" mode="out-in">
+									<div v-show="tabName == 'peserta'" v-if="isPeserta">
 										<data-viewer :itemData="itemData" :columnData="columnData" :itemDataStat="itemDataStat" :query="query" @fetch="fetchPeserta">
-											<template slot="button-desktop" v-if="item.status == 2">
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')" >
+
+											<!-- if bkcu -->
+											<template slot="button-desktop" v-if="currentUser.id_cu == 0">
+												<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
 													<i class="icon-plus22"></i> Tambah
 												</button>
 
 												<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-												:disabled="!selectedItem.id">
+												:disabled="!selectedItem.id" >
 													<i class="icon-pencil5"></i> Ubah
 												</button>
 
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id">
+												<button class="btn btn-light mb-1" @click.prevent="modalOpen('batal')" :disabled="!selectedItem.id">
 													<i class="icon-bin2"></i> Hapus
 												</button>
 											</template>
+
+											<!-- if cu -->
+											<template slot="button-desktop" v-if="currentUser.id_cu != 0">
+												<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')" v-if="item.status == 2">
+													<i class="icon-plus22"></i> Tambah
+												</button>
+
+												<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
+												:disabled="!selectedItem.id" v-if="item.status == 2" >
+													<i class="icon-pencil5"></i> Ubah
+												</button>
+
+												<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id" v-if="item.status == 2">
+													<i class="icon-bin2"></i> Hapus
+												</button>
+											</template>
+
 											<template slot="item-desktop" slot-scope="props">
 												<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
+													<td>
+														<span v-html="$options.filters.statusPeserta(props.item.status)"></span>
+													</td>
 													<td v-if="props.item.aktivis">
 														<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
 														<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
@@ -208,8 +231,8 @@
 											</template>	
 										</data-viewer>
 									</div>
+								</transition>
 
-								</div>
 							</div>
 						</div>
 
@@ -227,9 +250,33 @@
 									</div>
 								</div>
 								<div class="card-body pb-0">
-									<button class="btn bg-teal-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" :disabled="item.status != 2">
+
+									<!-- ubah -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="ubahData(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']">
+										<i class="icon-pencil5"></i> Ubah
+									</button>
+
+									<!-- status -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('status')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" >
+										<i class="icon-calendar5"></i> Status
+									</button>
+
+									<!-- status -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusDiklat')" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" >
+										<i class="icon-bin2"></i> Hapus
+									</button>
+
+									<hr v-if="currentUser.can['destroy_diklat_bkcu'] || currentUser.can['update_diklat_bkcu']" />
+
+									<!-- daftar -->
+									<button class="btn bg-teal-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" v-if="currentUser.id_cu == 0">
 										<i class="icon-plus22"></i> Daftar
 									</button>
+
+									<button class="btn bg-teal-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" :disabled="item.status != 2" v-if="currentUser.id_cu != 0">
+										<i class="icon-plus22"></i> Daftar
+									</button>
+
 								</div>
 								<table class="table table-borderless table-xs border-top-0 my-2">
 									<tbody>
@@ -383,6 +430,12 @@
 				@tutup="modalTutup"></form-peserta>
 			</template>
 
+			<!-- status -->
+			<template slot="modal-body2">
+				<form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
+				@tutup="modalTutup"></form-status>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -404,6 +457,7 @@
 	import dataTable from '../../components/datatable.vue';
 	import dataViewer from '../../components/dataviewerName.vue';
 	import checkValue from '../../components/checkValue.vue';
+	import formStatus from "./formStatus.vue";
 
 	export default {
 		components: {
@@ -414,7 +468,8 @@
 			dataTable,
 			dataViewer,
 			checkValue,
-			formPeserta
+			formPeserta,
+			formStatus
 		},
 		data() {
 			return {
@@ -425,6 +480,8 @@
 				level2Title: 'Diklat BKCU',
 				kelas: 'diklatBKCU',
 				sasaran: [],
+				tabName: 'info',
+				isPeserta: false,
 				tempatData: '',
 				cleaveOption: {
 					date: {
@@ -466,6 +523,7 @@
 				},
 				columnData: [
 					{ title: 'No.' },
+					{ title: 'Status' },
 					{ title: 'Foto' },
 					{
 						title: 'Nama',
@@ -477,7 +535,7 @@
 						filter: true,
 						filterDefault: true
 					},
-					{ title: 'keterangan' },
+					{ title: 'Keterangan' },
 					{ title: 'Gender' },
 					{ title: 'CU' },
 					{ title: 'Tingkat' },
@@ -533,7 +591,6 @@
 		watch: {
 			itemStat(value) {
 				if (value === "success") {
-					this.fetchPeserta(this.query);
 					this.fetchCountPeserta();
 
 					var valDalam;
@@ -554,6 +611,9 @@
 
 				if (value === "success") {
 					this.modalTitle = this.updateResponse.message;
+					if (this.state == 'status'){
+						this.fetch();
+					}
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
@@ -574,16 +634,13 @@
 			fetchCountPeserta() {
 				this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
 			},
-			addPanitia(value) {
-				this.itemDataPanitia.push(value);
-				this.modalTutup();
-			},
-			editPanitia(value) {
-				_.remove(this.itemDataPanitia, {
-					id_panitia: value.id_panitia
-				});
-				this.itemDataPanitia.push(value);
-				this.modalTutup();
+			changeTab(value){
+				this.tabName = value;
+
+				if(value == 'peserta' && !this.isPeserta){
+					this.isPeserta = true;
+					this.fetchPeserta(this.query);
+				}
 			},
 			save() {
 				this.form.sasaran = this.sasaran;
@@ -605,12 +662,10 @@
 				});
 			},
 			back() {
-				this.$router.push({
-					name: this.kelas,
-					params: {
-						periode: this.momentYear()
-					}
-				});
+				this.$router.push({name: this.kelas, params: { periode: this.momentYear()} });
+			},
+			ubahData(id) {
+				this.$router.push({name: this.kelas + 'EditDetail', params: { id: id }});
 			},
 			selectedRow(item) {
 				this.selectedItem = item;
@@ -623,12 +678,28 @@
 					this.selectedItem = itemMobile;
 				}
 
-				if (state == 'hapus') {
+				if (state == 'hapusDiklat') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Diklat ' + this.item.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+					this.modalSize = '';
+				} else if (state == 'hapus') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
 					this.modalTitle = 'Hapus Peserta ' + this.selectedItem.aktivis.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
+				} else if (state == 'batal') {
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Batalkan Peserta ' + this.selectedItem.aktivis.name + ' ?';
+					this.modalButton = 'Ok';
+					this.modalSize = '';
+				} else if (state == 'status') {
+					this.modalState = 'normal2';
+					this.modalTitle = 'Ubah status ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+					this.modalColor = 'bg-primary';
 				} else if (state == 'ubah') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
@@ -668,14 +739,23 @@
 			},
 			modalConfirmOk() {
 				this.modalShow = false;
-				if (this.state == 'hapus') {
+				if (this.state == 'hapusDiklat') {
+					this.$store.dispatch(this.kelas + '/destroy', this.item.id);
+				}else if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroyPeserta', this.selectedItem.id);
+				}else if (this.state == 'batal') {
+					this.$store.dispatch(this.kelas + '/batalPeserta', this.selectedItem.id);
 				}
 			},
 			modalTutup() {
 				if(this.state == 'tambah' || this.state == 'ubah' || this.state == 'hapus'){
+					this.tabName = 'peserta';
 					this.fetchPeserta(this.query);
 					this.fetchCountPeserta();
+				}
+
+				if(this.state == 'hapusDiklat'){
+					this.back();
 				}
 				
 				this.modalShow = false;

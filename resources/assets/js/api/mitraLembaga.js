@@ -3,6 +3,7 @@ export default {
   index: function( p ){
     return axios.get('/api/mitraLembaga' , {params: p});
   },
+
   create: function(){
     return axios.get('/api/mitraLembaga/create');
   },
@@ -25,5 +26,9 @@ export default {
 
   count: function(){
     return axios.get('/api/mitraLembaga/count');
+  },
+
+  history: function(){
+    return axios.get('/api/mitraLembaga/history');
   },
 }

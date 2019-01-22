@@ -7,6 +7,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class MitraLembaga extends Model {
     
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity;
 
     protected $table = 'mitra_lembaga';
@@ -15,6 +16,11 @@ class MitraLembaga extends Model {
     public static $rules = [
         'name' => 'required'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
     
     protected $fillable = [
         'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at'    

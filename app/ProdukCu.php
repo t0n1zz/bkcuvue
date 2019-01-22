@@ -8,16 +8,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProdukCu extends Model {
     
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'produk_cu';
     protected static $logFillable = true;
     protected $dates = ['deleted_at'];
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
+    protected $historyLimit = 100; //Maintain a maximum of 100 changes at any point of time, while cleaning up old revisions.
     
     public static $rules = [
         'id_cu' => 'required',
         'name' => 'required|between:3,50'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $dontKeepRevisionOf = array(
+        'deleted_at'
+    );
     
     protected $fillable = [
         'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'

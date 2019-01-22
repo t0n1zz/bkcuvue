@@ -37,30 +37,75 @@
 
 					<!-- itemdata -->
 					<div v-else>
-						<div v-if="notification && notification.length > 0" class="overflow-auto">
-							<div class="card card-body" v-for="notif in notification">
-								<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
-									<div class="mr-3 position-relative">
-										<img :src="'/images/user/' +  notif.user.gambar + 'n.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if=" notif.user.gambar">
-										<img src="/images/no_image_man.jpg" width="36" height="36" class="rounded-circle" alt="user image" v-else>
+						<div v-if="notification && notification.length > 0" >
+							<div class="row">
+								<div class="col-md-6 overflow-auto" style="max-height: 40rem;">
+									<div class="card card-body">
+										<strong>NOTIFIKASI LAPORAN</strong>
 									</div>
 
-									<div class="media-body">
-										<div class="media-title">
-											<span class="font-weight-semibold">
-												<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}}
-											</span>
-											<span class="font-size-xs">
-												[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
-											</span>
-											<span class="text-muted float-right">
-												<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
-											</span>
+									<div class="card card-body" v-for="notif in notification" v-if="notif.type == 'App\\Notifications\\Laporan'">
+
+										<!-- laporan -->
+										<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+
+											<div class="media-body">
+												<div class="media-title">
+													<span class="font-weight-semibold">
+														<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}}
+													</span>
+													<span class="font-size-xs">
+														[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
+													</span>
+													<span class="text-muted float-right">
+														<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
+													</span>
+												</div>
+
+												<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+											</div>
+											
 										</div>
 
-										<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+										
 									</div>
-									
+								</div>
+
+								<div class="col-md-6 overflow-auto" style="max-height: 40rem;">
+									<div class="card card-body">
+										<strong>NOTIFIKASI DIKLAT BKCU</strong>
+									</div>
+
+									<div class="card card-body" v-for="notif in notification" v-if="notif.type == 'App\\Notifications\\DiklatBKCU'">
+
+										<!-- laporan -->
+										<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+
+											<div class="media-body">
+												<div class="media-title">
+													<span class="font-weight-semibold">
+														<i class="icon-graduation2"></i> {{notif.user.name}}
+													</span>
+
+													<span class="font-size-xs" v-if="notif.user.cu">
+														[ CU {{notif.user.cu.name}} ]
+													</span>
+													<span class="font-size-xs" v-else>
+														[ Puskopdit BKCU Kalimantan ]
+													</span>
+
+													<span class="text-muted float-right">
+														<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
+													</span>
+												</div>
+
+												<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+											</div>
+											
+										</div>
+
+										
+									</div>
 								</div>
 							</div>
 						</div>
@@ -146,10 +191,14 @@
 				this.$store.dispatch(this.kelas +'/getAll');
 			},
 			goToPage(notif){
-				if(!notif.data.tp || notif.data.tp == ""){
-					this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
-				}else{
-					this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
+				if(notif.type == 'App\\Notifications\\Laporan'){
+					if(!notif.data.tp || notif.data.tp == ""){
+						this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
+					}else{
+						this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
+					}
+				}else if(notif.type == 'App\\Notifications\\DiklatBKCU'){
+					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
 				}
 				this.$store.dispatch(this.kelas + '/markRead',notif.id);
 			},

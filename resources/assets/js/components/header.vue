@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-auto">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>3.0.4</span>
+							<span>3.0.5</span>
 						</router-link>
 					</span>
 				</span>
@@ -47,7 +47,7 @@
 							
 						</a>			
 
-						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350" v-if="unreadNotificationStat == 'success'">
 							<div class="dropdown-content-header" v-if="unreadNotification > 0">
 								<span class="font-weight-semibold">Terdapat {{unreadNotification}} pemberitahuan</span>
 								<a href="#" class="text-default" @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a>
@@ -59,7 +59,10 @@
 							<div class="dropdown-content-body dropdown-scrollable">
 								<ul class="media-list" v-if="notification && notification.length > 0">
 									<li class="media" v-for="notif in notification">
-										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+
+										<!-- notif laporan -->
+										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;" v-if="notif.type == 'App\\Notifications\\Laporan'">
+
 											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-weight-semibold">
 													<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}} <br/>
@@ -71,15 +74,49 @@
 													<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
 												</span>
 											</div>
+
 											<hr class="mt-1 mb-1">
+
 											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+
 										</div>
+
+										<!-- notif diklatBKCU -->
+										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;" v-if="notif.type == 'App\\Notifications\\DiklatBKCU'">
+
+											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
+												<span class="font-weight-semibold">
+													<i class="icon-graduation2"></i> {{notif.user.name}} <br/>
+												</span>
+												<span class="font-size-xs" v-if="notif.user.cu">
+													[ CU {{notif.user.cu.name}} ]
+												</span>
+												<span class="font-size-xs" v-else>
+													[ Puskopdit BKCU Kalimantan ]
+												</span>
+												<span class="text-muted float-right font-size-xs">
+													<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
+												</span>
+											</div>
+
+											<hr class="mt-1 mb-1">
+
+											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+
+										</div>
+
 									</li>
 								</ul>
 							</div>
 
 							<div class="dropdown-content-footer text-center p-0"  v-if="notification && notification.length > 0">
 								<a href="#" class="bg-light text-grey w-100 py-2" @click.prevent="goToNotifCenter()">LIHAT SEMUA PEMBERITAHUAN</a>
+							</div>
+						</div>
+
+						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350" v-if="unreadNotificationStat == 'loading'">
+							<div class="dropdown-content-header">
+								<span class="font-weight-semibold">Mohon tunggu...</span>
 							</div>
 						</div>		
 					</li>
@@ -380,9 +417,12 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- cu -->
+							<!-- if bkcu account -->
 							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_cu']">
 								<i class="icon-office"></i> CU
 							</router-link>
+							
+							<!-- if cu account -->
 							<router-link :to="{ name: 'cuProfile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu != 0 && currentUser.can['update_cu']">
 								<i class="icon-office"></i> Profile CU
 							</router-link>
@@ -802,10 +842,14 @@
 				this.$router.push('/notification');
 			},
 			goToPage(notif){
-				if(!notif.data.tp || notif.data.tp == ""){
-					this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
-				}else{
-					this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
+				if(notif.type == 'App\\Notifications\\Laporan'){
+					if(!notif.data.tp || notif.data.tp == ""){
+						this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
+					}else{
+						this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
+					}
+				}else if(notif.type == 'App\\Notifications\\DiklatBKCU'){
+					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
 				}
 				this.$store.dispatch('notification/markRead',notif.id);
 			},

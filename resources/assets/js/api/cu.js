@@ -47,4 +47,8 @@ export default {
   count: function(){
     return axios.get('/api/cu/count');
   },
+
+  history: function(){
+    return axios.get('/api/cu/history');
+  },
 }
