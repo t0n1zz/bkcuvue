@@ -13,6 +13,7 @@ class ArtikelPenulis extends Model {
     protected $table = 'artikel_penulis';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'id_cu' => 'required',

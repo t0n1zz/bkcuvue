@@ -13,6 +13,7 @@ class ProdukCu extends Model {
 
     protected $table = 'produk_cu';
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     protected $dates = ['deleted_at'];
     protected $revisionEnabled = true;
     protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)

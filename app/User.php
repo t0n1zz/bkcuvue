@@ -19,7 +19,9 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = 'users';
     protected $guard_name = 'api';
-    protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status'];
+    protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status','gambar'];
+    protected static $ignoreChangedAttributes = ['login','updated_at'];
+    protected static $logOnlyDirty = true;
     
     /**
      * The accessors to append to the model's array form.
@@ -36,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $fillable = [
-        'id_pus','id_cu','name','email','username', 'password','gambar','status'
+        'id_pus','id_cu','name','email','username', 'password','gambar','status','login'
     ];
 
     protected $allowedFilters = [

@@ -12,6 +12,7 @@ class AktivisKeluarga extends Model {
     protected $table = 'aktivis_keluarga';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     protected $fillable = [
         'id_aktivis','name','tipe'

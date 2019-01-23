@@ -12,6 +12,7 @@ class MitraLembaga extends Model {
 
     protected $table = 'mitra_lembaga';
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required'

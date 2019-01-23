@@ -12,6 +12,7 @@ class AktivisAnggotaCu extends Model {
     protected $table = 'aktivis_anggota_cu';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     protected $fillable = [
         'id_aktivis','name','no_ba'

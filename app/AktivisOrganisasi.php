@@ -12,6 +12,7 @@ class AktivisOrganisasi extends Model {
     protected $table = 'aktivis_organisasi';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     protected $fillable = [
         'id_aktivis','tipe','name','jabatan','tempat','mulai','selesai'

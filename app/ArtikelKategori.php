@@ -13,6 +13,7 @@ class ArtikelKategori extends Model {
     protected $table = 'artikel_kategori';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'id_cu' => 'required',

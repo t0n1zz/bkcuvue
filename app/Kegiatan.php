@@ -12,6 +12,7 @@ class Kegiatan extends Model {
 
     protected $table = 'kegiatan';
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     protected $dates = ['deleted_at'];
     
     public static $rules = [

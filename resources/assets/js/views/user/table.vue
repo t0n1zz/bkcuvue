@@ -39,6 +39,11 @@
           <i class="icon-key"></i> Hak Akses
         </button>
 
+        <!-- aktivitas-->
+        <button @click.prevent="aktivitas(selectedItem.id)" class="btn btn-light mb-1" :disabled="!selectedItem.id">
+          <i class="icon-eye2"></i> Aktivitas
+        </button>
+
       </template>
 
        <!-- button mobile -->
@@ -74,6 +79,11 @@
         <!-- hak akses -->
         <button @click.prevent="modalHakAksesOpen()" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-key"></i> Hak Akses
+        </button>
+
+        <!-- aktivitas-->
+        <button @click.prevent="aktivitas(selectedItem.id)" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id">
+          <i class="icon-eye2"></i> Aktivitas
         </button>
 
       </template>
@@ -325,6 +335,9 @@ export default {
     },
     ubahData(id) {
       this.$router.push('/' + this.kelas + '/edit/' + id);
+    },
+    aktivitas(id) {
+      this.$router.push('/' + this.kelas + '/aktivitas/' + id);
     },
     hakForm(value){
       this.modalHakAksesForm = value;

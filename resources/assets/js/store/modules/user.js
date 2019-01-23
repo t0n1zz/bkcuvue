@@ -101,6 +101,20 @@ export const user = {
         });
     },
 
+    getActivity( { commit }, [ page, id ] ){
+      commit('setDataStatS', 'loading');
+      
+      UserAPI.getActivity( page, id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // create page
     create( {commit} ){
       commit('setDataStat', 'loading');
@@ -196,6 +210,24 @@ export const user = {
       commit('setUpdateStat', 'loading');
 
       UserAPI.updateFoto( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateIdentitas( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      UserAPI.updateIdentitas( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

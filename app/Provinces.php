@@ -12,6 +12,7 @@ class Provinces extends Model {
     protected $table = 'provinces';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required',

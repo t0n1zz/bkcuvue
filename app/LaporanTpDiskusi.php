@@ -2,10 +2,15 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class LaporanTpDiskusi extends Model {
     
+    use LogsActivity;
+    
     protected $table = 'laporan_tp_diskusi';
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'content' => 'required|min:5'

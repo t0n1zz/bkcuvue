@@ -12,6 +12,7 @@ class Districts extends Model {
     protected $table = 'districts';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required',

@@ -22,7 +22,7 @@
               </div>
 
               <div class="card-body">
-                <p class="mb-3">Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU dan penambahan widget untuk halaman dashboard.
+                <p class="mb-3">Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU, profile user dan penambahan widget untuk halaman dashboard.
                 <br/><br/>
                 Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -30,6 +30,9 @@
                   <li>Penambahan visualisasi pada penambahan panitia Diklat BKCU</li>
                   <li>Penambahan visualisasi pada penambahan peserta Diklat BKCU</li>
                   <li>Perbaikan bug untuk penambahan peserta Diklat BKCU</li>
+                  <li>Penambahan fitur untuk melihat aktivitas masing-masing user</li>
+                  <li>Penambahan fitur untuk mengubah nama dan email masing-masing user</li>
+                  <li>Perbaikan bug pada ubah password di profile</li>
                   <li>Penambahan widget navigasi halaman pada halaman dashboard</li>
                   <li>Penambahan widget Diklat BKCU pada halaman dashboard</li>
                   <li>Penambahan widget peserta Diklat BKCU pada halaman dashboard</li>

@@ -12,6 +12,7 @@ class AktivisPekerjaan extends Model {
     protected $table = 'aktivis_pekerjaan';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     protected $fillable = [
         'id_aktivis','id_tempat','id_tp','lembaga_lain','tipe','name','tingkat','mulai','selesai'

@@ -13,6 +13,7 @@ class Download extends Model
     protected $table = 'download';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required|between:5,100'

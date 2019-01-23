@@ -36,11 +36,11 @@
 				<div class="media flex-column flex-sm-row mt-0 mb-3">
 					<div class="mr-sm-3 mb-2 mb-sm-0">
 						<div class="card-img-actions" v-if="formPanitia.asal == 'dalam'">
-								<img :src="'/images/aktivis/' + formPanitia.gambar + 'n.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
+								<img :src="'/images/aktivis/' + formPanitia.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
 								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
 						</div>
 						<div class="card-img-actions" v-if="formPanitia.asal == 'luar'">
-								<img :src="'/images/mitra_orang/' + formPanitia.gambar + 'n.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
+								<img :src="'/images/mitra_orang/' + formPanitia.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
 								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
 						</div>
 					</div>

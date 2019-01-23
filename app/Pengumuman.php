@@ -13,6 +13,7 @@ class Pengumuman extends Model
     protected $table = 'pengumuman';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     public static $rules = [
         'name' => 'required|min:5'

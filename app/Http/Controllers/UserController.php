@@ -127,10 +127,11 @@ class UserController extends Controller
 			]);
 	}
 
-	public function profileActivity()
+	public function getActivity($id)
 	{
-		$user = User::find(Auth::user()->id);
-		$table_data = Activity::causedBy($form)->orderBy('created_at','desc')->advancedFilter();
+		$user = User::findOrFail($id);
+
+		$table_data = Activity::causedBy($user)->orderBy('created_at','desc')->paginate();
 
 		return response()
 			->json([
@@ -299,6 +300,19 @@ class UserController extends Controller
 			->json([
 				'saved' => true,
 				'message' => 'Foto user ' .$username. ' berhasil diubah'
+			]);
+	}
+
+	public function updateIdentitas(Request $request, $id)
+	{
+		$kelas = User::findOrFail($id);
+
+		$kelas->update(['name' => $request->name, 'email' => $request->email]);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Identitas user ' .$kelas->username. ' telah berhasil diubah, silahkan logout dan login kembali untuk melihat perubahannya'
 			]);
 	}
 

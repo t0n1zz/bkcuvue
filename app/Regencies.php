@@ -12,6 +12,7 @@ class Regencies extends Model {
     protected $table = 'regencies';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required',

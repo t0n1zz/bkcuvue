@@ -12,6 +12,7 @@ class MitraOrang extends Model {
 
     protected $table = 'mitra_orang';
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required'

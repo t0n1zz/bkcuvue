@@ -12,6 +12,7 @@ class Villages extends Model {
     protected $table = 'villages';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     
     public static $rules = [
         'name' => 'required',

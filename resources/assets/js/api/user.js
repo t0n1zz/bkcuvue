@@ -8,6 +8,10 @@ export default {
     return axios.get('/api/user/indexCu/' + id, {params: p});
   },
 
+  getActivity: function( page, id ){
+    return axios.get('/api/user/getActivity/' + id + '?page=' + page);
+  },
+
   create: function(){
     return axios.get('/api/user/create');
   },
@@ -38,6 +42,10 @@ export default {
 
   updateFoto: function ( id, form ){
     return axios.post('/api/user/updateFoto/' + id, form);
+  },
+
+  updateIdentitas: function ( id, form ){
+    return axios.post('/api/user/updateIdentitas/' + id, form);
   },
 
   updatePassword: function ( id, form ){

@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class LaporanCuDraft extends Model
 {
+    use LogsActivity;
+
     protected $table = 'laporan_cu_draft';
     protected $guarded = ['id'];
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     public static $rules = [
         'periode' => 'required',

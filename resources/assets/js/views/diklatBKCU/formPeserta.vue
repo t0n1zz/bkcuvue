@@ -26,7 +26,7 @@
 				<div class="media flex-column flex-sm-row mt-0 mb-3">
 					<div class="mr-sm-3 mb-2 mb-sm-0">
 						<div class="card-img-actions">
-								<img :src="'/images/aktivis/' + formPeserta.gambar + 'n.jpg'" class="img-fluid img-preview rounded" v-if="formPeserta.gambar" >
+								<img :src="'/images/aktivis/' + formPeserta.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formPeserta.gambar" >
 								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
 						</div>
 					</div>

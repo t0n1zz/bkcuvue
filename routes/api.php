@@ -17,6 +17,11 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::get('/profile', 'AuthController@profile');
 
     // user
+    Route::get('/user/getActivity/{id}', 'UserController@getActivity');
+    Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
+    Route::post('/user/updateFoto/{id}', 'UserController@updateFoto');
+    Route::post('/user/updateIdentitas/{id}', 'UserController@updateIdentitas');
+
     Route::group(['middleware' => ['permission:index_user']], function () {
         Route::get('/user', 'UserController@index');
         Route::get('/user/indexCu/{id}', 'UserController@indexCu');
@@ -30,11 +35,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/user/edit/{id}', 'UserController@edit');
         Route::get('/user/editHakAkses/{id}', 'UserController@editHakAkses');
         Route::post('/user/update/{id}', 'UserController@update');
-        Route::post('/user/updateFoto/{id}', 'UserController@updateFoto');
         Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
         Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses'); 
         Route::post('/user/updateResetPassword/{id}', 'UserController@updateResetPassword');
-        Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
     });
     Route::group(['middleware' => ['permission:destroy_user']], function () {
         Route::delete('/user/{id}', 'UserController@destroy');

@@ -12,6 +12,7 @@ class Aktivis extends Model {
     protected $table = 'aktivis';
 
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     public static $rules = [
         'nik'=>'required',

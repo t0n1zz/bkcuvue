@@ -12,6 +12,7 @@ class Tempat extends Model {
 
     protected $table = 'kegiatan_tempat';
     protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
     protected $dates = ['deleted_at'];
     
     public static $rules = [

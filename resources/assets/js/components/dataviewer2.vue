@@ -22,7 +22,7 @@
                   <span class="input-group-prepend">
                     <span class="input-group-text">Kolom</span>
                   </span>
-                  <select class="form-control" @input="selectColumn(f, i, $event)">
+                  <select class="form-control" @input="selectColumn(f, i, $event)" :disabled="itemDataStat !== 'success'">
                     <option disabled value="">Silahkan masukkan kolom pencarian</option>
                     <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
                       v-if="x.filter && !x.disable">
@@ -37,7 +37,7 @@
                   <span class="input-group-prepend">
                     <span class="input-group-text">Operator</span>
                   </span>
-                  <select class="form-control" @input="selectOperator(f, i, $event)">
+                  <select class="form-control" @input="selectOperator(f, i, $event)" :disabled="itemDataStat !== 'success'">
                     <option v-for="y in fetchOperators(f)" :value="JSON.stringify(y)" :selected="f.operator && y.name === f.operator.name">
                       {{y.title}}
                     </option>
@@ -51,7 +51,7 @@
                     <span class="input-group-prepend">
                       <span class="input-group-text">Kata Kunci</span>
                     </span>
-                    <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian">
+                    <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
                   </div>
                 </div>
                 <template v-if="f.operator.component === 'double'">
@@ -60,7 +60,7 @@
                       <span class="input-group-prepend">
                         <span class="input-group-text">Kata Kunci</span>
                       </span>
-                      <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1">
+                      <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1" :disabled="itemDataStat !== 'success'">
                     </div>
                   </div>
                   <div class="col-md-2 pb-2">
@@ -68,7 +68,7 @@
                       <span class="input-group-prepend">
                         <span class="input-group-text">Kata Kunci</span>
                       </span>
-                      <input type="text" class="form-control" v-model="f.query_2" placeholder="Masukkan kata kunci pencarian 2">
+                      <input type="text" class="form-control" v-model="f.query_2" placeholder="Masukkan kata kunci pencarian 2" :disabled="itemDataStat !== 'success'">
                     </div>
                   </div>
                 </template>
@@ -78,7 +78,7 @@
                       <span class="input-group-prepend">
                         <span class="input-group-text">Kata Kunci</span>
                       </span>
-                      <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian">
+                      <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
                     </div>
                   </div>
                   <div class="col-md-2 pb-2">
@@ -86,7 +86,7 @@
                       <span class="input-group-prepend">
                         <span class="input-group-text">Waktu</span>
                       </span>
-                      <select class="form-control" v-model="f.query_2">
+                      <select class="form-control" v-model="f.query_2" :disabled="itemDataStat !== 'success'">
                         <option value="hours">jam</option>
                         <option value="days">hari</option>
                         <option value="months">bulan</option>
@@ -101,7 +101,7 @@
                       <span class="input-group-prepend">
                         <span class="input-group-text">Waktu</span>
                       </span>
-                      <select class="form-control" v-model="f.query_1">
+                      <select class="form-control" v-model="f.query_1" :disabled="itemDataStat !== 'success'">
                         <option value="yesterday">kemarin</option>
                         <option value="today">hari ini</option>
                         <option value="tomorrow">besok</option>
@@ -119,12 +119,12 @@
               </template>
 
               <div class="col-md-1 pb-2">
-                <button class="btn bg-slate-300 btn-block" @click="removeFilter(f,i)"><i class="icon-cross3"></i></button>
+                <button class="btn bg-slate-300 btn-block" @click="removeFilter(f,i)" :disabled="itemDataStat !== 'success'"><i class="icon-cross3"></i></button>
               </div>
             </div>
           </div>
           <div class="col-md-12">
-            <button class="btn btn-light btn-block" @click="addFilter"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
+            <button class="btn btn-light btn-block" @click="addFilter" :disabled="itemDataStat !== 'success'"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
           </div>
         </div>
 
@@ -137,10 +137,10 @@
           <div class="col-md-5 col-lg-6 pb-2">
             <div class="row">
               <div class="col-md-6 pb-2">
-                 <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == ''"><i class="icon-search4"></i> Cari</button>
+                 <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
               </div>
               <div class="col-md-6 pb-2" v-if="this.appliedFilters.length > 0">
-                <button class="btn btn-warning btn-block"  @click="resetFilter"><i class="icon-reset"></i> Reset pencarian</button>
+                <button class="btn btn-warning btn-block"  @click="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
               </div>
             </div>
           </div>
@@ -155,7 +155,7 @@
                   <span class="input-group-prepend">
                     <span class="input-group-text">Entri</span>
                   </span>
-                  <select class="form-control"  v-model="query.limit" @change="updateLimit">
+                  <select class="form-control"  v-model="query.limit" @change="updateLimit" :disabled="itemDataStat !== 'success'">
                     <option>10</option>
                     <option>15</option>
                     <option>25</option>
@@ -170,7 +170,7 @@
                   <span class="input-group-prepend">
                     <span class="input-group-text">Urutkan</span>
                   </span>
-                  <select class="form-control" @input="updateOrderColumn">
+                  <select class="form-control" @input="updateOrderColumn" :disabled="itemDataStat !== 'success'">
                     <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
                       v-if="column.sort && !column.disable">
                       {{column.title}}
@@ -181,7 +181,7 @@
 
               <!-- order direction -->
               <div class="col-md-2">
-                <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection">
+                <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection" :disabled="itemDataStat !== 'success'">
                   <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
                   <i class="icon-arrow-down7" v-else></i>
                 </button>
@@ -619,7 +619,7 @@
     mounted() {
       document.addEventListener("keydown", (e) => {
         if (e.keyCode == 13) {
-          if(this.filterCandidates.length > 0)
+          if(this.filterCandidates.length > 0 && this.itemDataStat === 'success')
             this.applyFilter();
         }
       });

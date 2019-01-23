@@ -40,6 +40,7 @@ import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
+import user_aktivitas from './views/user/aktivitas.vue';
 import profile from './views/user/profile.vue';
 
 const routes = [
@@ -63,6 +64,10 @@ const routes = [
 		name: 'userEdit', 
 		components: { default: user_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' }},
+		{ path: '/user/aktivitas/:id',
+		name: 'userAktivitas', 
+		components: { default: user_aktivitas, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true }},	
 	{ path: '/profile/:id',
 		name: 'profile', 
 		components: { default: profile, 'header': header, 'footer': footer },
