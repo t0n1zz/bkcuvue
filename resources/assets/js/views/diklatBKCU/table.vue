@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :dataview="dataview" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -118,6 +118,65 @@
 				</tr>
 			</template>
 
+			<!-- item mobile -->
+			<template slot="item-mobile" slot-scope="props">
+				<div class="col-lg-4 col-md-6">
+
+					<div class="card border-left-3 rounded-left-0 cursor-pointer" :class="[gridColor(props.item.status)]" @click.prevent="detail(props.item.id)">
+						<div class="card-header bg-light header-elements-inline">
+							<h6 class="card-title"><check-value :value="props.item.kode_diklat"></check-value>
+								</h6>
+							<div class="header-elements">
+								<span v-html="$options.filters.statusDiklat(props.item.status)"></span>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="d-sm-flex align-item-sm-center flex-sm-nowrap">
+								<div>
+									<h6 class="text-primary">{{ props.item.name }}</h6>
+
+									<p class="mb-3" v-if="props.item.keterangan">{{ props.item.keterangan | trimString }}</p>
+									
+									<hr/>
+
+									<div class="row">
+										<div class="col-md-6">
+											<ul class="list list-unstyled">
+												<li>Mulai: <br/><span class="text-muted">{{ props.item.mulai | date }}</span></li>
+												<li>Selesai: <br/><span class="text-muted">{{ props.item.selesai | date }}</span></li>
+												<li>Peserta Maksimal: <br/><span class="text-muted"><check-value :value="props.item.peserta_max"></check-value></span></li>
+												<li>Peserta Maksimal Per-CU: <br/><span class="text-muted"><check-value :value="props.item.peserta_max_cu"></check-value></span></li>
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<ul class="list list-unstyled">
+												<li>Tempat: <check-value :value="props.item.tempat.name" v-if="props.item.tempat" class="text-muted"></check-value><span class="text-muted" v-else>Belum ditentukan tempat</span></li>
+												<li>Kabupaten/Kota: <check-value :value="props.item.regencies.name" v-if="props.item.regencies" class="text-muted"></check-value><span class="text-muted" v-else>-</span></li>
+												<li>Provinsi: <check-value :value="props.item.provinces.name" v-if="props.item.provinces" class="text-muted"></check-value><span class="text-muted" v-else>-</span></li>
+											</ul>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
+							<span v-if="props.item.sasaran">
+								<label v-for="sasaran in props.item.sasaran" class="badge badge-primary ml-1">
+									{{ sasaran.name }}
+								</label>
+							</span>
+							<ul class="list-inline list-inline-dotted mb-0">
+								<li class="list-inline-item"><i class="icon-users mr-2"></i> <check-value :value="props.item.has_peserta_count"></check-value></li>
+								<li class="list-inline-item"><i class="icon-alarm mr-2"></i> <check-value :value="props.item.durasi"></check-value> jam</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</template>
+
 		</data-viewer>
 					
 		<!-- modal -->
@@ -192,6 +251,7 @@
 					limit: 10,
 					page: 1
 				},
+				dataview: '',
 				columnData: [
 					{
 						title: 'No.',
@@ -364,6 +424,13 @@
 				}else{
 					this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.periode]);
 				}
+
+				if(this.currentUser.id_cu == 0){
+					this.dataview = 'list';
+				}else{
+					this.dataview = 'grid';
+					this.query.limit = 15;
+				}
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -418,7 +485,22 @@
 				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
-			}
+			},
+			gridColor(value) {
+				if(value == 1){
+					return 'border-left-primary-400';
+				}else if(value == 2){
+					return 'border-left-warning-400';
+				}else if(value == 3){
+					return 'border-left-secondary-400';
+				}else if(value == 4){
+					return 'border-left-success-400';
+				}else if(value == 5){
+					return 'border-left-primary-400';
+				}else if(value == 6){
+					return 'border-left-danger-400';
+				}
+      },
 		},
 		computed: {
 			...mapGetters('auth',{
@@ -430,6 +512,7 @@
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),	
+			
 		}
 	}
 </script>

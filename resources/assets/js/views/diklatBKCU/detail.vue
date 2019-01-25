@@ -269,11 +269,11 @@
 									<hr v-if="currentUser.can['destroy_diklat_bkcu'] || currentUser.can['update_diklat_bkcu']" />
 
 									<!-- daftar -->
-									<button class="btn bg-teal-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" v-if="currentUser.id_cu == 0">
+									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" v-if="currentUser.id_cu == 0">
 										<i class="icon-plus22"></i> Daftar
 									</button>
 
-									<button class="btn bg-teal-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" :disabled="item.status != 2" v-if="currentUser.id_cu != 0">
+									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" :disabled="item.status != 2" v-if="currentUser.id_cu != 0">
 										<i class="icon-plus22"></i> Daftar
 									</button>
 

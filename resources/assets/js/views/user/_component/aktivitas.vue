@@ -133,7 +133,7 @@
 					return 'Mitra Perseorangan';
 				}else if(value == 'App\\Pengumuman'){
 					return 'Pengumuman';
-				}else if(value == 'App\\ProdukCu'){
+				}else if(value == 'App\\ProdukCu'){ 
 					return 'Produk CU';
 				}else if(value == 'App\\Saran'){
 					return 'Saran';

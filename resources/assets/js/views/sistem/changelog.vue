@@ -7,546 +7,590 @@
     <div class="page-content pt-0">
       <div class="content-wrapper">
         <div class="content">
-        
-            <!-- Version 3.0.5 -->
-            <div class="card" id="3_0_5_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 3.0.5 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">22 Januari 2019</span>
 
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
+            <div class="card-group-control card-group-control-right" id="accordion-control-right">
+
+              <!-- Version 3.0.6 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#306">Version 3.0.6 <small class="text-muted"> / 25 Januari 2019</small></a>
+                  </h5>
                 </div>
-              </div>
 
-              <div class="card-body">
-                <p class="mb-3">Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU, profile user dan penambahan widget untuk halaman dashboard.
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
+                <div id="306" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini berfokus pada perbaikan pada halaman produk CU dan perbaikan pada halaman diklat BKCU.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
 
-                <ul class="list">
-                  <li>Penambahan visualisasi pada penambahan panitia Diklat BKCU</li>
-                  <li>Penambahan visualisasi pada penambahan peserta Diklat BKCU</li>
-                  <li>Perbaikan bug untuk penambahan peserta Diklat BKCU</li>
-                  <li>Penambahan fitur untuk melihat aktivitas masing-masing user</li>
-                  <li>Penambahan fitur untuk mengubah nama dan email masing-masing user</li>
-                  <li>Perbaikan bug pada ubah password di profile</li>
-                  <li>Penambahan widget navigasi halaman pada halaman dashboard</li>
-                  <li>Penambahan widget Diklat BKCU pada halaman dashboard</li>
-                  <li>Penambahan widget peserta Diklat BKCU pada halaman dashboard</li>
-                  <li>Penambahan widget aktivitas perubahan data organisasi pada halaman dashboard</li>
-                  <li>Penambahan widget jumlah data organisasi pada halaman dashboard</li>
-                  <li>Perbaikan bug pada penampilan informasi error pada modal</li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 3.0.5 -->
-
-            <!-- Version 3.0.4 -->
-            <div class="card" id="3_0_4_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 3.0.4 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">13 Januari 2019</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Update untuk versi ini berfokus pada penyelesaian/perbaikan pada fitur diklat BKCU dan pendaftaran peserta diklat BKCU, perbaikan pada laporan gerakan dan laporan statistik CU, peningkatan kecepatan dan keamanan dengan menggunakan layanan dari pihak ketiga, dan perbaikan serta peningkatan sistem secara keseluruhan agar pengalaman pengoperasian lebih konsisten, cepat dan menyenangkan.
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <ul class="list">
-                  <li>Perbaikan bug pada fitur data panitia dan fasilitator pada saat menambah Diklat BKCU</li>
-                  <li>Perbaikan bug pada fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU</li>
-                  <li>Perbaikan perhitungan laporan gerakan</li>
-                  <li>Pengubahan format dan jenis informasi yang ditampilkan pada halaman laporan gerakan</li>
-                  <li>Perbaikan bug pada laporan CU ketika menambah data</li>
-                  <li>Perbaikan bug pada perhitungan P.E.A.R.L.S. CU</li>
-                  <li>Pengubahan tampilan dalam pencarian data CU agak lebih mudah dipahami.</li>
-                  <li>Peningkatan waktu idle pada user yang terlogin di SIMO dari awalnya kurang dari 1 jam menjadi 3 jam</li>
-                  <li>Peningkatan keamanan dan kecepatan transfer data dengan menggunakan CDN dari cloudflare yang menyediakan peningkatan kecepatan loading halaman dan data, perlindungan dari serangan DDos, bots jahat dan intrusi-intrusi jahat lainnya, menambahkan satu lapisan perlindungan tambahan dengan menggunakan DNS cloudflare yang terenkripsi. Keterangan lebih lanjut mengenai cloudflare bisa dilihat <a href="https://www.cloudflare.com/learning/what-is-cloudflare/" target="_blank">di website cloudflare</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 3.0.4 -->
-            
-            <!-- Version 3.0.3 -->
-            <div class="card" id="3_0_3_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 3.0.3 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">9 Januari 2019</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <ul class="list">
-                  <li>Penambahan fitur data panitia dan fasilitator pada saat menambah Diklat BKCU</li>
-                  <li>Penambahan fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU</li>
-                  <li>Perbaikan bug pada download excel</li>
-                  <li>Perbaikan bug pada form laporan CU</li>
-                  <li>Perbaikan bug pada form P.E.A.R.L.S. CU</li>
-                  <li>Perbaikan bug pada notifikasi laporan</li>
-                  <li>Perbaikan bug pada upload gambar Penulis Artikel dan Tp</li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 3.0.3 -->
-
-            <!-- Version 3.0.2 -->
-            <div class="card" id="3_0_2_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 3.0.2 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">4 Januari 2019</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <ul class="list">
-                  <li>Penambahan cara menambah hak akses dan peran untuk hak akses user</li>
-                  <li>Perbaikan bug tambah dan ubah data untuk pengumuman</li>
-                  <li>Perbaikan bug dalam mengambil list CU untuk masing-masing halaman</li>
-                  <li>Perbaikan bug pada detail laporan CU</li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 3.0.2 -->
-
-            <!-- Version 3.0.1 -->
-            <div class="card" id="3_0_1_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 3.0.1 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">31 Desember 2018</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <ul class="list">
-                  <li>Perbaikan bug subdomain dan domain ketika menambahkan "www" didepan alamat website</li>
-                  <li>Penambahan fitur untuk menuliskan saran terhadap aplikasi ini</li>
-                  <li>Penambahan fitur mengelola pengumuman untuk masing-masing CU yang akan otomatis muncul di website publik di subdomain masing-masing CU</li>
-                  <li>Perbaikan bug hak akses user yang selalu menampilkan hak akses untuk CU dan tidak bisa untuk BKCU</li>
-                  <li>Optimalisasi aplikasi dengan mengurangi beberapa panggilan data ke server yang redundan</li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 3.0.1 -->
-
-            <!-- Version 3.0.0 -->
-            <div class="card" id="3_0_0_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 3.0.0 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">27 Desember 2018</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Pada versi ini SIMO yang berbasis sepenuhnya PHP dengan framework laravel telah berubah menjadi Single Page Application (SPA) berbasis javascript dengan framework Vue.js yang menawarkan pengalaman interaksi desktop pada browser.
-                <br/><br/>
-                Tampilan keseluruhan pada SIMO juga telah berubah. Menawarkan tampilan yang terinspirasi dari Material design dan Cupertino design yang menghasilkan sebuah aplikasi berbasis web yang interaktif dan menarik
-                <br/><br/>
-                Pengolahan data juga telah berubah untuk menyesuaikan dengan transaksi data berbasis API yang menawarkan kecepatan dan reliabilitas serta kemudahan untuk pengembangan lebih lanjut.
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <div class="row mb-3">
-                  <div class="col-sm-6">
                     <ul class="list">
-                      <li>Frontend PHP menjadi Javascript Single Page Application dari Vue.js yang menawarkan:
-                        <ul>
-                          <li>Transaksi data berbasis API</li>
-                          <li>Keamanan dengan JWT Auth</li>
-                          <li>Kecepatan pengoperasian karena hanya 1 kali saja loading asset aplikasi, sisanya adalah loading data dari server</li>
-                          <li>Peningkatan interaksi dan animasi pada pengoperasian</li>
+                      <li>Penambahan field tipe produk CU</li>
+                      <li>Perubahan tampilan daftar produk CU pada halaman Produk CU dari tabel menjadi card yang memudahkan dalam melihat informasi terkait produk CU</li>
+                      <li>Perubahan tampilan daftar diklat pada halaman Diklat BKCU dari tabel menjadi card yang memudahkan dalam melihat informasi terkait diklat yang tersedia</li>
+                      <li>Perbaikan widget Diklat BKCU pada halaman dashboard</li>
+                      <li>Perbaikan widget peserta Diklat BKCU pada halaman dashboard</li>
+                      <li>Perbaikan widget aktivitas perubahan data organisasi pada halaman dashboard</li>
+                      <li>Perbaikan bug modal logout</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.5 -->
+
+              <!-- Version 3.0.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#305">Version 3.0.5 <small class="text-muted"> / 22 Januari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="305" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU, profile user dan penambahan widget untuk halaman dashboard.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan visualisasi pada penambahan panitia Diklat BKCU</li>
+                      <li>Penambahan visualisasi pada penambahan peserta Diklat BKCU</li>
+                      <li>Perbaikan bug untuk penambahan peserta Diklat BKCU</li>
+                      <li>Penambahan fitur untuk melihat aktivitas masing-masing user</li>
+                      <li>Penambahan fitur untuk mengubah nama dan email masing-masing user</li>
+                      <li>Perbaikan bug pada ubah password di profile</li>
+                      <li>Penambahan widget navigasi halaman pada halaman dashboard</li>
+                      <li>Penambahan widget Diklat BKCU pada halaman dashboard</li>
+                      <li>Penambahan widget peserta Diklat BKCU pada halaman dashboard</li>
+                      <li>Penambahan widget aktivitas perubahan data organisasi pada halaman dashboard</li>
+                      <li>Penambahan widget jumlah data organisasi pada halaman dashboard</li>
+                      <li>Perbaikan bug pada penampilan informasi error pada modal</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.5 -->
+
+              <!-- Version 3.0.4 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#304">Version 3.0.4 <small class="text-muted"> / 13 Januari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="304" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update untuk versi ini berfokus pada penyelesaian/perbaikan pada fitur diklat BKCU dan pendaftaran peserta diklat BKCU, perbaikan pada laporan gerakan dan laporan statistik CU, peningkatan kecepatan dan keamanan dengan menggunakan layanan dari pihak ketiga, dan perbaikan serta peningkatan sistem secara keseluruhan agar pengalaman pengoperasian lebih konsisten, cepat dan menyenangkan.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug pada fitur data panitia dan fasilitator pada saat menambah Diklat BKCU</li>
+                      <li>Perbaikan bug pada fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU</li>
+                      <li>Perbaikan perhitungan laporan gerakan</li>
+                      <li>Pengubahan format dan jenis informasi yang ditampilkan pada halaman laporan gerakan</li>
+                      <li>Perbaikan bug pada laporan CU ketika menambah data</li>
+                      <li>Perbaikan bug pada perhitungan P.E.A.R.L.S. CU</li>
+                      <li>Pengubahan tampilan dalam pencarian data CU agak lebih mudah dipahami.</li>
+                      <li>Peningkatan waktu idle pada user yang terlogin di SIMO dari awalnya kurang dari 1 jam menjadi 3 jam</li>
+                      <li>Peningkatan keamanan dan kecepatan transfer data dengan menggunakan CDN dari cloudflare yang menyediakan peningkatan kecepatan loading halaman dan data, perlindungan dari serangan DDos, bots jahat dan intrusi-intrusi jahat lainnya, menambahkan satu lapisan perlindungan tambahan dengan menggunakan DNS cloudflare yang terenkripsi. Keterangan lebih lanjut mengenai cloudflare bisa dilihat <a href="https://www.cloudflare.com/learning/what-is-cloudflare/" target="_blank">di website cloudflare</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.4 -->
+              
+              <!-- Version 3.0.3 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#303">Version 3.0.3 <small class="text-muted"> / 9 Januari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="303" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur data panitia dan fasilitator pada saat menambah Diklat BKCU</li>
+                      <li>Penambahan fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU</li>
+                      <li>Perbaikan bug pada download excel</li>
+                      <li>Perbaikan bug pada form laporan CU</li>
+                      <li>Perbaikan bug pada form P.E.A.R.L.S. CU</li>
+                      <li>Perbaikan bug pada notifikasi laporan</li>
+                      <li>Perbaikan bug pada upload gambar Penulis Artikel dan Tp</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.3 -->
+
+              <!-- Version 3.0.2 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#302">Version 3.0.2 <small class="text-muted"> / 4 Januari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="302" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan cara menambah hak akses dan peran untuk hak akses user</li>
+                      <li>Perbaikan bug tambah dan ubah data untuk pengumuman</li>
+                      <li>Perbaikan bug dalam mengambil list CU untuk masing-masing halaman</li>
+                      <li>Perbaikan bug pada detail laporan CU</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.2 -->
+
+              <!-- Version 3.0.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#301">Version 3.0.1 <small class="text-muted"> / 31 Desember 2018</small></a>
+                  </h5>
+                </div>
+
+                <div id="301" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug subdomain dan domain ketika menambahkan "www" didepan alamat website</li>
+                      <li>Penambahan fitur untuk menuliskan saran terhadap aplikasi ini</li>
+                      <li>Penambahan fitur mengelola pengumuman untuk masing-masing CU yang akan otomatis muncul di website publik di subdomain masing-masing CU</li>
+                      <li>Perbaikan bug hak akses user yang selalu menampilkan hak akses untuk CU dan tidak bisa untuk BKCU</li>
+                      <li>Optimalisasi aplikasi dengan mengurangi beberapa panggilan data ke server yang redundan</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.1 -->
+
+              <!-- Version 3.0.0 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#300">Version 3.0.0 <small class="text-muted"> / 27 Desember 2018</small></a>
+                  </h5>
+                </div>
+
+                <div id="300" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Pada versi ini SIMO yang berbasis sepenuhnya PHP dengan framework laravel telah berubah menjadi Single Page Application (SPA) berbasis javascript dengan framework Vue.js yang menawarkan pengalaman interaksi desktop pada browser.
+                    <br/><br/>
+                    Tampilan keseluruhan pada SIMO juga telah berubah. Menawarkan tampilan yang terinspirasi dari Material design dan Cupertino design yang menghasilkan sebuah aplikasi berbasis web yang interaktif dan menarik
+                    <br/><br/>
+                    Pengolahan data juga telah berubah untuk menyesuaikan dengan transaksi data berbasis API yang menawarkan kecepatan dan reliabilitas serta kemudahan untuk pengembangan lebih lanjut.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <div class="row mb-3">
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Frontend PHP menjadi Javascript Single Page Application dari Vue.js yang menawarkan:
+                            <ul>
+                              <li>Transaksi data berbasis API</li>
+                              <li>Keamanan dengan JWT Auth</li>
+                              <li>Kecepatan pengoperasian karena hanya 1 kali saja loading asset aplikasi, sisanya adalah loading data dari server</li>
+                              <li>Peningkatan interaksi dan animasi pada pengoperasian</li>
+                            </ul>
+                          </li>
+                          <li>Penambahan fitur publikasi website bagi CU, dimana masing-masing user CU telah diberikan halaman website tersendiri yang berisi informasi standar sebuah website perusahaan dan dapat dioleh sendiri dengan fitur:
+                            <ul>
+                              <li>Memiliki subdomain khusus untuk masing-masing CU</li>
+                              <li>Menambah artikel</li>
+                              <li>Menambah data produk dan pelayanan</li>
+                              <li>Menambah informasi lembaga seperti misi, visi, nilai-nilai, sejarah dan slogan</li>
+                            </ul>
+                          </li>
                         </ul>
-                      </li>
-                      <li>Penambahan fitur publikasi website bagi CU, dimana masing-masing user CU telah diberikan halaman website tersendiri yang berisi informasi standar sebuah website perusahaan dan dapat dioleh sendiri dengan fitur:
-                        <ul>
-                          <li>Memiliki subdomain khusus untuk masing-masing CU</li>
-                          <li>Menambah artikel</li>
-                          <li>Menambah data produk dan pelayanan</li>
-                          <li>Menambah informasi lembaga seperti misi, visi, nilai-nilai, sejarah dan slogan</li>
+                      </div>
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Penambahan input data pada laporan sampai dengan laporan per TP/KP dari masing-masing CU yang otomatis akan dikonsolidasikan</li>
+                          <li>Penambahan 2 indikator baru pada perhitungan P.E.A.R.L.S</li>
+                          <li>Penambahan visualisasi dan analisis data pada laporan keuangan di detail laporan</li>
+                          <li>Penambahan upload excel pada laporan Cu dan Laporan Tp</li>
+                          <li>Penambahan fitur filter data yang mampu mendukung pencarian secara lebih mendetail</li>
+                          <li>Penambahaan fitur manajemen user kepada masing-masing CU</li>
+                          <li>Penambahan field-field baru untuk informasi CU seperti npwp, situ, siusp, izin operasional dan lainnya</li>
+                          <li>Perbaikan bug dan peningkatan performa</li>
                         </ul>
-                      </li>
-                    </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-sm-6">
+                </div>
+              </div>
+              <!-- /version 3.0.0 -->
+
+              <!-- Version 2.1.3 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#213">Version 2.1.3 <small class="text-muted"> / 20 April 2017</small></a>
+                  </h5>
+                </div>
+
+                <div id="213" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Pada versi ini <b>AdminBKCU</b> berubah nama menjadi <b>SIMO</b> yang merupakan singkatan dari <b>S</b>istem <b>I</b>nformasi <b>M</b>anajemen <b>O</b>rganisasi. Pemilihan nama ini adalah didasarkan dari fitur yang ditawarkan oleh aplikasi ini yaitu memanajemen informasi dari organisasi (bukan bidang organisasi, melainkan organisasi dalam artian Puskopdit BKCU Kalimantan dan CU Primer anggota).
+                    <br/><br/>
+                    Dalam versi ini terdapat 2 bagian baru yang ditambahkan di aplikasi ini yaitu bagian <b>Diklat</b> dan bagian <b>Staf</b>. Kedua bagian tersebut merupakan pengembangan dari bagian <b>Kegiatan</b> yang sekarang menjadi <b>Diklat</b> dengan penambahan fitur informasi yang lebih mendetail serta fitur pendaftaran peserta. Kemudian bagian <b>Staf</b> juga ditambahkan beberapa fitur agak dapat saling berinteraksi dengan bagian <b>Diklat</b>, karena peserta adalah berasal dari bagian <b>Staf</b>
+                    <br/><br/>
+                    Selain itu juga terdapat banyak penambahan serta perbaikan pada aplikasi yang memberikan peningkatan performa, stabilitas, serta pengalaman menggunakan aplikasi ini.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <div class="row mb-3">
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>AdminBKCU berubah nama menjadi SIMO</li>
+                            <li>Penambahan bagian Diklat yang berfungsi:
+                              <ul>
+                                <li>Data diklat yang dilaksanakan oleh Puskopdit BKCU Kalimantan</li>
+                                <li>Daftar diklat yang bisa dilakukan langsung melalui program oleh CU Primer anggota</li>
+                                <li>Data tempat dilaksanakan diklat</li>
+                                <li>Penambahan widget kegiatan terdekat, kegiatan berjalan dan kalender pada dashboard</li>
+                              </ul>
+                            </li>
+                            <li>Penambahan bagian Staf yang berfungsi:
+                              <ul>
+                                <li>Data staf dalam gerakan Puskopdit BKCU Kalimantan</li>
+                                <li>Komunikasi data antara bagian Staf dengan bagian Diklat</li>
+                              </ul>
+                            </li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Perubahan navigasi website dimana panel navigasi yang versi sebelumnya berada di tepi kiri menjadi berada di atas</li>
+                          <li>Pengubahan semua tabel kecuali tabel bagian laporan CU menjadi tabel yang responsive/mobile friendly</li>
+                          <li>Penambahan bagian Panduan untuk memberikan petunjuk pengoperasian aplikasi ini</li>
+                          <li>Perbaikan rumusan laporan P.E.A.R.L.S.</li>
+                          <li>Perbaikan integrasi plugin upload foto</li>
+                          <li>Perbaikan bug dan peningkatan performa</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 2.1.3 -->
+              
+              <!-- Version 2.1.2 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#212">Version 2.1.2 <small class="text-muted"> / 11 Maret 2017</small></a>
+                  </h5>
+                </div>
+
+                <div id="212" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Penambahan fitur bagian laporan P.E.A.R.L.S Berikut adalah rincian perubahan pada versi ini</p>
                     <ul class="list">
-                      <li>Penambahan input data pada laporan sampai dengan laporan per TP/KP dari masing-masing CU yang otomatis akan dikonsolidasikan</li>
-                      <li>Penambahan 2 indikator baru pada perhitungan P.E.A.R.L.S</li>
-                      <li>Penambahan visualisasi dan analisis data pada laporan keuangan di detail laporan</li>
-                      <li>Penambahan upload excel pada laporan Cu dan Laporan Tp</li>
-                      <li>Penambahan fitur filter data yang mampu mendukung pencarian secara lebih mendetail</li>
-                      <li>Penambahaan fitur manajemen user kepada masing-masing CU</li>
-                      <li>Penambahan field-field baru untuk informasi CU seperti npwp, situ, siusp, izin operasional dan lainnya</li>
+                      <li>Upgrade template AdminLte ke versi 2.3.12</li>
+                      <li>Perubahan model navigasi panel samping</li>
+                      <li>Penambahan plugin Mathjax untuk menampilkan kalkulasi perhitungan</li>
+                      <li>Penambahan fitur melihat detail perhitungan laporan P.E.A.R.L.S</li>
+                      <li>Perbaikan rumus perhitungan laporan P.E.A.R.L.S</li>
                       <li>Perbaikan bug dan peningkatan performa</li>
                     </ul>
                   </div>
                 </div>
               </div>
+              <!-- /version 2.1.2 -->
+
+              <!-- Version 2.1.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#211">Version 2.1.1 <small class="text-muted"> / 14 Februari 2017</small></a>
+                  </h5>
+                </div>
+
+                <div id="211" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Penambahan fitur bagian laporan CU serta fitur diskusi pada laporan CU Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <div class="row mb-3">
+                      <div class="col-sm-4">
+                        <ul class="list">
+                          <li>Upgrade laravel versi 5.2 ke versi 5.3 yang menawarkan:
+                              <ul>
+                                  <li>Support Vue.js</li>
+                                  <li>Fitur sistem notifikasi</li>
+                                  <li>Penyederhanaan struktur folder project</li>
+                                  <li>Pembagian rute akses website menjadi dua yaitu untuk akses ke web dan akses melalui aplikasi selain web (API)</li>
+                              </ul>
+                          </li>
+                          <li>Penambahan bagian laporan CU yang berfungsi:
+                              <ul>
+                                  <li>Menampung dan mengolah data laporan keuangan CU menjadi laporan perkembangan CU serta analisis P.E.A.R.L.S</li>
+                                  <li>Menampilkan laporan CU dalam tabel interaktif serta grafik</li>
+                                  <li>Input data laporan melalui upload excel <small class="label bg-yellow">beta</small></li>
+                              </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <ul class="list">
+                          <li>Penambahan bagian laporan CU yang berfungsi:
+                              <ul>
+                                  <li>Menampilkan pertumbuhan perakun perperiode pada masing-masing laporan</li>
+                                  <li>Menampilkan panel overview kondisi CU berdasarkan laporan terbaru</li>
+                                  <li>Penambahan fitur pada input data laporan melalui upload excel <small class="label bg-yellow">beta 2</small></li>
+                              </ul>
+                          </li>
+                          <li>Penambahan fitur sistem notifikasi yang berfungsi:
+                              <ul>
+                                  <li>Memberikan pemberitahuan mengenai laporan CU yang masuk, diubah, dan dihapus</li>
+                                  <li>Memberikan pemberitahuan mengenai diskusi laporan CU yang masuk, diubah, dan dihapus</li>
+                              </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <ul class="list">
+                          <li>Penambahan bagian diskusi laporan CU yang berfungsi:
+                              <ul>
+                                  <li>Memberikan masukkan kepada CU bahwa laporan telah diterima/diperiksa</li>
+                                  <li>Memberikan masukkan/pertanyaan terhadap laporan CU yang telah diterima/diperiksa</li>
+                              </ul>
+                          </li>
+                          <li>Penambahan bagian revisi laporan CU yang berfungsi Menampilkan data apa saja yang telah diubah</li>
+                          <li>Penambahan fitur mengubah foto profil admin pada bagian admin</li>
+                          <li>Perbaikan bug dan peningkatan performa</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 2.1.1 -->
+
+              <!-- Version 2.1.0 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#210">Version 2.1.0 <small class="text-muted"> / 9 Desember 2016</small></a>
+                  </h5>
+                </div>
+
+                <div id="210" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Penambahan fitur bagian laporan CU yang berfungsi untuk menampilkan perkembangan Credit Union diserta dengan perhitungan analisis P.E.A.R.L.S serta upgrade sistem utama aplikasi dari versi 4.2 ke versi 5.2 dan peningkatan fitur-fitur pada plugin yang dipakai. Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <div class="row mb-3">
+                      <div class="col-sm-4">
+                        <ul class="list">
+                          <li>Upgrade laravel versi 4.2 ke versi 5.2 yang menawarkan:
+                              <ul>
+                                  <li>Support PHP 7</li>
+                                  <li>Peningkatan keamanan dengan "middleware"</li>
+                                  <li>Peningkatan eksekusi kode program</li>
+                                  <li>Penambahan dukungan terhadap plugin-plugin</li>
+                                  <li>Proteksi semua input terhadap serangan SQL injection</li>
+                              </ul>
+                          </li>
+                          <li>Penambahan bagian laporan CU yang berfungsi:
+                              <ul>
+                                  <li>Menampung dan mengolah data laporan keuangan CU menjadi laporan perkembangan CU serta analisis P.E.A.R.L.S</li>
+                                  <li>Menampilkan laporan CU dalam tabel interaktif serta grafik</li>
+                                  <li>Input data laporan melalui upload excel <small class="label bg-yellow">beta</small></li>
+                              </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <ul class="list">
+                          <li>Penambahan bagian TP CU untuk mendata informasi TP tiap CU secara lebih mendetail</li>
+                          <li>Penambahan bagian admin untuk CU yang memungkinkan staf CU untuk:
+                              <ul>
+                                  <li>Mengisi / mengubah profil dari CU</li>
+                                  <li>Menambah, mengubah dan menghapus data TP di CU</li>
+                                  <li>Menambah, mengubah dan menghapus laporan CU</li>
+                              </ul>
+                          </li>
+                          <li>Penambahan fitur dan perubahan penggunaan pada Datatable</li>
+                          <li>Penambahan fitur text editor untuk bagian artikel</li>
+                          <li>Penambahan fitur pada bagian admin</li>
+                          <li>Pengubahan struktur navigasi sidebar</li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <ul class="list">
+                          <li>Penambahan fitur validator untuk validasi input</li>
+                          <li>Penggunaan input mask untuk pengisian tanggal serta pengisian angka</li>
+                          <li>Penggunaan pace untuk animasi loading resource dan request ajax</li>
+                          <li>Penggantian Plugin ACL entrust dengan kodeine untuk integrasi lebih lanjut dengan laravel ACL</li>
+                          <li>Menghapus plugin flickering untuk akses ke flickr</li>
+                          <li>Perbaikan bug dan peningkatan performa</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 2.1.0 -->
+
+              <!-- Version 2.0.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#201">Version 2.0.1 <small class="text-muted"> / 2 Januari 2016</small></a>
+                  </h5>
+                </div>
+
+                <div id="201" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Pengubahan penggunaan rich text editor dari CKeditor menjadi Summernote. Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul>
+                        <li>Penggantian CKeditor menjadi Summernote</li>
+                        <li>Pengubahan cara penanganan gambar pada Summernote</li>
+                        <li>Peningkatan penanganan upload gambar dengan metode baru yang diperkenalkan
+                        pada versi Intervention Image v2.x</li>
+                        <li>Penambahan halaman version</li>
+                        <li>Perbaikan bug dan peningkatan performa</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 2.0.1 -->
+
+              <!-- Initial release -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#200">Version 2.0.0 <small class="text-muted"> / 31 Desember 2015</small></a>
+                  </h5>
+                </div>
+
+                <div id="200" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Rombak ulang keseluruhan tampilan admin menjadi lebih mudah di operasikan, lebih <i>responsive/mobile friendly</i> dan pengubahan code php pada controller dan model untuk peningkatan performa dan konsistensi pada tiap pengoperasian. Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <div class="row mb-3">
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Pengalaman penggunaan dengan desain yang lebih modern dan responsive</li>
+                          <li>Sidebar yang fleksibel dan responsive</li>
+                          <li>Upgrade bootstrap v3.3.2</li>
+                          <li>Upgrade font-awesome v4.5.0</li>
+                          <li>Upgrade Datatables v1.10.10</li>
+                          <li>Upgrade Image Intervention v2.x</li>
+                          <li>Upgrade Jquery v2.1.3 </li>
+                          <li>Penambahan fitur pada semua tabel di halaman kelola yaitu
+                              <ul>
+                                  <li>Tabel menjadi responsive dan dapat menyesuaikan di hampir semua ukuran layar.
+                                      maka apabila layar terlalu kecil untuk kolom, kolom otomatis akan disembunyikan dan
+                                      akan muncul tombol untuk menampilkan kolom yang telah di sembunyikan tersebut</li>
+                                  <li>Warp text pada masing-masing cell di kolom untuk pemanfaatan ruang kosong pada cell</li>
+                                  <li>Colum priority pada kolom hapus,ubah dan detail membuat kolom tersebut tidak akan
+                                      tersembunyi apabila ukuran layar terlalu kecil untuk semua tabel</li>
+                                  <li>Pengubahan cara berinteraksi pada tiap tabel agar lebih konsisten</li>
+                              </ul>
+                          </li>
+                          <li>Peningkatan cara mengangani error dan penyampaian informasi error yang lebih informatif dan akurat</li>
+                          <li>Peningkatan penanganan upload gambar</li>
+                          <li>Penambahan halaman detail staf untuk pemberian informasi lengkap mengenai staf</li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Penambahan fitur pada semua form di halaman tambah dan ubah yaitu
+                              <ul>
+                                  <li>Peningkatan desain yang lebih modern dan lebih jelas fungsinya</li>
+                                  <li>Penggunaan input mask pada pengisian tanggal untuk mempermudah pengisian tanggal</li>
+                                  <li>Peningkatan pada CKeditor dengan menambahkan fitur responsive pada gambar</li>
+                                  <li>Penggunaan laravel validation pada input text untuk menginformasikan bagian yang bermasalah</li>
+                                  <li>Peningkatan visualisasi dan informasi yang disampaikan pada bagian pemberitahuan setelah melakukan penyimpanan atau pengubahan data</li>
+                              </ul>
+                          </li>
+                          <li>Peningkatan halaman admin (kelola admin,tambah admin, ubah admin) yaitu
+                              <ul>
+                                  <li>Pengubahan cara mengubah password</li>
+                                  <li>Penambahan tipe admin untuk membedakan admin BKCU dan admin CU Primer</li>
+                                  <li>Menyatukan tipe admin CU Primer dengan data CU Primer yang dipilih</li>
+
+                              </ul>
+                          </li>
+                          <li>Perbaikan error routing pada beberapa halaman</li>
+                          <li>Perbaikan error pada controller</li>
+                          <li>Perbaikan error pada model</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <hr/>
+
+                    <p class="mb-3">Rombak ulang seluruh halaman pada website publik dengan tampilan yang lebih bersih, modern,
+                    responsive/mobile friendly dan visualisasi yang lebih bai k. Pada update kali ini semua
+                    bagian pada halaman telah di desain ulang menyesuaikan tema halaman dengan warna dasar putih
+                    dan biru serta background yang dapat disesuaikan dengan keadaan/event yang sedang berlangsung.
+                    Serta penambahan halaman CU untuk melakukan pengubahan dan penambahan data pada data CU Primer.
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <div class="row mb-3">
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Penambahan plugin javascript yaitu:
+                              <ul>
+                                  <li>jquery.fitvids</li>
+                                  <li>nivo-lightbox</li>
+                                  <li>jquery.isotope</li>
+                                  <li>jquery.appear</li>
+                                  <li>count.to</li>
+                                  <li>jquery.textillate</li>
+                                  <li>jquery.lettering</li>
+                                  <li>jquery.easypiechart</li>
+                                  <li>jquery.nicescroll</li>
+                                  <li>jquery.parallax</li>
+                                  <li>jquery.slicknav</li>
+                              </ul>
+                          </li>
+                          <li>Upgrade bootstrap v3.3.2</li>
+                          <li>Upgrade font-awesome v4.5.0</li>
+                          <li>Upgrade Jquery v2.1.4</li>
+                          <li>Upgrade plugin google maps</li>
+                          <li>Penghapusan plugin social network sharing</li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6">
+                        <ul class="list">
+                          <li>Pengubahan fitur sharing social network, tidak bergantung pada plugin lagi tapi
+                          dibangun 1-1 sesuai guidelines dari sharing API masing-masing social network</li>
+                          <li>Penambahan animasi melalui css pada beberapa komponen halaman</li>
+                          <li>Peningkatan carousel pada halaman utama untuk artikel pilihan menjadi lebih elegan
+                              dan informatif</li>
+                          <li>Peningkatan zoom foto/gambar di seluruh halaman dengan menggunakan lightbox</li>
+                          <li>Peningkatan menu yang lebih responsive dengan tampilan yang lebih rapi dan bersih</li>
+                          <li>Peningkatan pengalaman membaca artikel dengan tulisan serta layout yang lebih nyaman di mata</li>
+                          <li>Peningkatan pengalaman berinteraksi dan konsistensi desain secara keseluruhan pada semua halaman.</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- /initial release -->
             </div>
-            <!-- /version 3.0.0 -->
-
-            <!-- Version 2.1.1 -->
-            <div class="card" id="2_1_3_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 2.1.3 - SIMO</h5>
-                <div class="header-elements">
-                  <span class="text-muted">20 April 2017</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Pada versi ini <b>AdminBKCU</b> berubah nama menjadi <b>SIMO</b> yang merupakan singkatan dari <b>S</b>istem <b>I</b>nformasi <b>M</b>anajemen <b>O</b>rganisasi. Pemilihan nama ini adalah didasarkan dari fitur yang ditawarkan oleh aplikasi ini yaitu memanajemen informasi dari organisasi (bukan bidang organisasi, melainkan organisasi dalam artian Puskopdit BKCU Kalimantan dan CU Primer anggota).
-                <br/><br/>
-                Dalam versi ini terdapat 2 bagian baru yang ditambahkan di aplikasi ini yaitu bagian <b>Diklat</b> dan bagian <b>Staf</b>. Kedua bagian tersebut merupakan pengembangan dari bagian <b>Kegiatan</b> yang sekarang menjadi <b>Diklat</b> dengan penambahan fitur informasi yang lebih mendetail serta fitur pendaftaran peserta. Kemudian bagian <b>Staf</b> juga ditambahkan beberapa fitur agak dapat saling berinteraksi dengan bagian <b>Diklat</b>, karena peserta adalah berasal dari bagian <b>Staf</b>
-                <br/><br/>
-                Selain itu juga terdapat banyak penambahan serta perbaikan pada aplikasi yang memberikan peningkatan performa, stabilitas, serta pengalaman menggunakan aplikasi ini.
-                <br/><br/>
-                Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <div class="row mb-3">
-                  <div class="col-sm-6">
-                    <ul class="list">
-                      <li>AdminBKCU berubah nama menjadi SIMO</li>
-                        <li>Penambahan bagian Diklat yang berfungsi:
-                          <ul>
-                            <li>Data diklat yang dilaksanakan oleh Puskopdit BKCU Kalimantan</li>
-                            <li>Daftar diklat yang bisa dilakukan langsung melalui program oleh CU Primer anggota</li>
-                            <li>Data tempat dilaksanakan diklat</li>
-                            <li>Penambahan widget kegiatan terdekat, kegiatan berjalan dan kalender pada dashboard</li>
-                          </ul>
-                        </li>
-                        <li>Penambahan bagian Staf yang berfungsi:
-                          <ul>
-                            <li>Data staf dalam gerakan Puskopdit BKCU Kalimantan</li>
-                            <li>Komunikasi data antara bagian Staf dengan bagian Diklat</li>
-                          </ul>
-                        </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-6">
-                    <ul class="list">
-                      <li>Perubahan navigasi website dimana panel navigasi yang versi sebelumnya berada di tepi kiri menjadi berada di atas</li>
-                      <li>Pengubahan semua tabel kecuali tabel bagian laporan CU menjadi tabel yang responsive/mobile friendly</li>
-                      <li>Penambahan bagian Panduan untuk memberikan petunjuk pengoperasian aplikasi ini</li>
-                      <li>Perbaikan rumusan laporan P.E.A.R.L.S.</li>
-                      <li>Perbaikan integrasi plugin upload foto</li>
-                      <li>Perbaikan bug dan peningkatan performa</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /version 2.1.3 -->
-            
-            <!-- Version 2.1.2 -->
-            <div class="card" id="2_1_2_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 2.1.2 - Admin Site</h5>
-                <div class="header-elements">
-                  <span class="text-muted">11 Maret 2017</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Penambahan fitur bagian laporan P.E.A.R.L.S Berikut adalah rincian perubahan pada versi ini</p>
-                <ul class="list">
-                  <li>Upgrade template AdminLte ke versi 2.3.12</li>
-                  <li>Perubahan model navigasi panel samping</li>
-                  <li>Penambahan plugin Mathjax untuk menampilkan kalkulasi perhitungan</li>
-                  <li>Penambahan fitur melihat detail perhitungan laporan P.E.A.R.L.S</li>
-                  <li>Perbaikan rumus perhitungan laporan P.E.A.R.L.S</li>
-                  <li>Perbaikan bug dan peningkatan performa</li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 2.1.2 -->
-
-            <!-- Version 2.1.1 -->
-            <div class="card" id="2_1_1_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 2.1.1 - Admin Site</h5>
-                <div class="header-elements">
-                  <span class="text-muted">14 Februari 2017</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Penambahan fitur bagian laporan CU serta fitur diskusi pada laporan CU Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <div class="row mb-3">
-                  <div class="col-sm-4">
-                    <ul class="list">
-                      <li>Upgrade laravel versi 5.2 ke versi 5.3 yang menawarkan:
-                          <ul>
-                              <li>Support Vue.js</li>
-                              <li>Fitur sistem notifikasi</li>
-                              <li>Penyederhanaan struktur folder project</li>
-                              <li>Pembagian rute akses website menjadi dua yaitu untuk akses ke web dan akses melalui aplikasi selain web (API)</li>
-                          </ul>
-                      </li>
-                      <li>Penambahan bagian laporan CU yang berfungsi:
-                          <ul>
-                              <li>Menampung dan mengolah data laporan keuangan CU menjadi laporan perkembangan CU serta analisis P.E.A.R.L.S</li>
-                              <li>Menampilkan laporan CU dalam tabel interaktif serta grafik</li>
-                              <li>Input data laporan melalui upload excel <small class="label bg-yellow">beta</small></li>
-                          </ul>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="list">
-                      <li>Penambahan bagian laporan CU yang berfungsi:
-                          <ul>
-                              <li>Menampilkan pertumbuhan perakun perperiode pada masing-masing laporan</li>
-                              <li>Menampilkan panel overview kondisi CU berdasarkan laporan terbaru</li>
-                              <li>Penambahan fitur pada input data laporan melalui upload excel <small class="label bg-yellow">beta 2</small></li>
-                          </ul>
-                      </li>
-                      <li>Penambahan fitur sistem notifikasi yang berfungsi:
-                          <ul>
-                              <li>Memberikan pemberitahuan mengenai laporan CU yang masuk, diubah, dan dihapus</li>
-                              <li>Memberikan pemberitahuan mengenai diskusi laporan CU yang masuk, diubah, dan dihapus</li>
-                          </ul>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="list">
-                      <li>Penambahan bagian diskusi laporan CU yang berfungsi:
-                          <ul>
-                              <li>Memberikan masukkan kepada CU bahwa laporan telah diterima/diperiksa</li>
-                              <li>Memberikan masukkan/pertanyaan terhadap laporan CU yang telah diterima/diperiksa</li>
-                          </ul>
-                      </li>
-                      <li>Penambahan bagian revisi laporan CU yang berfungsi Menampilkan data apa saja yang telah diubah</li>
-                      <li>Penambahan fitur mengubah foto profil admin pada bagian admin</li>
-                      <li>Perbaikan bug dan peningkatan performa</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /version 2.1.1 -->
-
-            <!-- Version 2.1.0 -->
-            <div class="card" id="2_1_0_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 2.1.0 - Admin Site</h5>
-                <div class="header-elements">
-                  <span class="text-muted">9 Desember 2016</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Penambahan fitur bagian laporan CU yang berfungsi untuk menampilkan perkembangan Credit Union diserta dengan perhitungan analisis P.E.A.R.L.S serta upgrade sistem utama aplikasi dari versi 4.2 ke versi 5.2 dan peningkatan fitur-fitur pada plugin yang dipakai. Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <div class="row mb-3">
-                  <div class="col-sm-4">
-                    <ul class="list">
-                      <li>Upgrade laravel versi 4.2 ke versi 5.2 yang menawarkan:
-                          <ul>
-                              <li>Support PHP 7</li>
-                              <li>Peningkatan keamanan dengan "middleware"</li>
-                              <li>Peningkatan eksekusi kode program</li>
-                              <li>Penambahan dukungan terhadap plugin-plugin</li>
-                              <li>Proteksi semua input terhadap serangan SQL injection</li>
-                          </ul>
-                      </li>
-                      <li>Penambahan bagian laporan CU yang berfungsi:
-                          <ul>
-                              <li>Menampung dan mengolah data laporan keuangan CU menjadi laporan perkembangan CU serta analisis P.E.A.R.L.S</li>
-                              <li>Menampilkan laporan CU dalam tabel interaktif serta grafik</li>
-                              <li>Input data laporan melalui upload excel <small class="label bg-yellow">beta</small></li>
-                          </ul>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="list">
-                      <li>Penambahan bagian TP CU untuk mendata informasi TP tiap CU secara lebih mendetail</li>
-                      <li>Penambahan bagian admin untuk CU yang memungkinkan staf CU untuk:
-                          <ul>
-                              <li>Mengisi / mengubah profil dari CU</li>
-                              <li>Menambah, mengubah dan menghapus data TP di CU</li>
-                              <li>Menambah, mengubah dan menghapus laporan CU</li>
-                          </ul>
-                      </li>
-                      <li>Penambahan fitur dan perubahan penggunaan pada Datatable</li>
-                      <li>Penambahan fitur text editor untuk bagian artikel</li>
-                      <li>Penambahan fitur pada bagian admin</li>
-                      <li>Pengubahan struktur navigasi sidebar</li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="list">
-                      <li>Penambahan fitur validator untuk validasi input</li>
-                      <li>Penggunaan input mask untuk pengisian tanggal serta pengisian angka</li>
-                      <li>Penggunaan pace untuk animasi loading resource dan request ajax</li>
-                      <li>Penggantian Plugin ACL entrust dengan kodeine untuk integrasi lebih lanjut dengan laravel ACL</li>
-                      <li>Menghapus plugin flickering untuk akses ke flickr</li>
-                      <li>Perbaikan bug dan peningkatan performa</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /version 2.1.0 -->
-
-            <!-- Version 2.0.1 -->
-            <div class="card" id="2_0_1_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 2.0.1 - Admin Site</h5>
-                <div class="header-elements">
-                  <span class="text-muted">2 Januari 2016</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Pengubahan penggunaan rich text editor dari CKeditor menjadi Summernote. Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <ul>
-                    <li>Penggantian CKeditor menjadi Summernote</li>
-                    <li>Pengubahan cara penanganan gambar pada Summernote</li>
-                    <li>Peningkatan penanganan upload gambar dengan metode baru yang diperkenalkan
-                    pada versi Intervention Image v2.x</li>
-                    <li>Penambahan halaman version</li>
-                    <li>Perbaikan bug dan peningkatan performa</li>
-                </ul>
-              </div>
-            </div>
-            <!-- /version 2.0.1 -->
-
-            <!-- Initial release -->
-            <div class="card" id="2_0_simo">
-              <div class="card-header header-elements-inline">
-                <h5 class="card-title">Version 2.0 - Admin Site</h5>
-                <div class="header-elements">
-                  <span class="text-muted">31 Desember 2015</span>
-
-                  <div class="list-icons ml-3">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-body">
-                <p class="mb-3">Rombak ulang keseluruhan tampilan admin menjadi lebih mudah di operasikan, lebih <i>responsive/mobile friendly</i> dan pengubahan code php pada controller dan model untuk peningkatan performa dan konsistensi pada tiap pengoperasian. Berikut adalah rincian perubahan pada versi ini:</p>
-
-                <div class="row mb-3">
-                  <div class="col-sm-6">
-                    <ul class="list">
-                      <li>Pengalaman penggunaan dengan desain yang lebih modern dan responsive</li>
-                      <li>Sidebar yang fleksibel dan responsive</li>
-                      <li>Upgrade bootstrap v3.3.2</li>
-                      <li>Upgrade font-awesome v4.5.0</li>
-                      <li>Upgrade Datatables v1.10.10</li>
-                      <li>Upgrade Image Intervention v2.x</li>
-                      <li>Upgrade Jquery v2.1.3 </li>
-                      <li>Penambahan fitur pada semua tabel di halaman kelola yaitu
-                          <ul>
-                              <li>Tabel menjadi responsive dan dapat menyesuaikan di hampir semua ukuran layar.
-                                  maka apabila layar terlalu kecil untuk kolom, kolom otomatis akan disembunyikan dan
-                                  akan muncul tombol untuk menampilkan kolom yang telah di sembunyikan tersebut</li>
-                              <li>Warp text pada masing-masing cell di kolom untuk pemanfaatan ruang kosong pada cell</li>
-                              <li>Colum priority pada kolom hapus,ubah dan detail membuat kolom tersebut tidak akan
-                                  tersembunyi apabila ukuran layar terlalu kecil untuk semua tabel</li>
-                              <li>Pengubahan cara berinteraksi pada tiap tabel agar lebih konsisten</li>
-                          </ul>
-                      </li>
-                      <li>Peningkatan cara mengangani error dan penyampaian informasi error yang lebih informatif dan akurat</li>
-                      <li>Peningkatan penanganan upload gambar</li>
-                      <li>Penambahan halaman detail staf untuk pemberian informasi lengkap mengenai staf</li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-6">
-                    <ul class="list">
-                      <li>Penambahan fitur pada semua form di halaman tambah dan ubah yaitu
-                          <ul>
-                              <li>Peningkatan desain yang lebih modern dan lebih jelas fungsinya</li>
-                              <li>Penggunaan input mask pada pengisian tanggal untuk mempermudah pengisian tanggal</li>
-                              <li>Peningkatan pada CKeditor dengan menambahkan fitur responsive pada gambar</li>
-                              <li>Penggunaan laravel validation pada input text untuk menginformasikan bagian yang bermasalah</li>
-                              <li>Peningkatan visualisasi dan informasi yang disampaikan pada bagian pemberitahuan setelah melakukan penyimpanan atau pengubahan data</li>
-                          </ul>
-                      </li>
-                      <li>Peningkatan halaman admin (kelola admin,tambah admin, ubah admin) yaitu
-                          <ul>
-                              <li>Pengubahan cara mengubah password</li>
-                              <li>Penambahan tipe admin untuk membedakan admin BKCU dan admin CU Primer</li>
-                              <li>Menyatukan tipe admin CU Primer dengan data CU Primer yang dipilih</li>
-
-                          </ul>
-                      </li>
-                      <li>Perbaikan error routing pada beberapa halaman</li>
-                      <li>Perbaikan error pada controller</li>
-                      <li>Perbaikan error pada model</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /initial release -->
-
           </div>
 
         </div>

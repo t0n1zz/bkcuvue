@@ -12,7 +12,7 @@ class KegiatanPeserta extends Model {
 
     protected $fillable = [
         'aktivis_id','kegiatan_id','keterangan','status','created_at','updated_at'
-      ];
+    ];
 
     protected $allowedFilters = [
         'aktivis.name'

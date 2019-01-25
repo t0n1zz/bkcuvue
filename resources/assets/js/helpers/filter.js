@@ -86,6 +86,21 @@ Vue.filter('statusPeserta', function(value){
 		return '<span class="badge badge-danger">BATAL</span>';
 	}
 });
+Vue.filter('tipeProdukCu', function(value){
+	if(value == 'Simpanan Pokok'){
+		return '<span class="badge badge-info">Simpanan Pokok</span>';
+	}else if(value == 'Simpanan Wajib'){
+		return '<span class="badge badge-warning">Simpanan Wajib</span>';
+	}else if(value == 'Simpanan Non Saham'){
+		return '<span class="badge badge-secondary">Simpanan Non Saham</span>';
+	}else if(value == 'Pinjaman Kapitalisasi'){
+		return '<span class="badge badge-success"> Pinjaman Kapitalisasi</span>';
+	}else if(value == 'Pinjaman Umum'){
+		return '<span class="badge badge-primary"> Pinjaman Umum</span>';
+	}else if(value == 'Pinjaman Produktif'){
+		return '<span class="badge badge-green"> Pinjaman Produktif</span>';
+	}
+});
 Vue.filter('notificationIcon', function(value){
 	if (value == 'Menambah laporancu' || value == 'Mengubah laporancu' || value == 'Menghapus laporancu') {
 			return '<i class="icon-stats-bars2"></i>';
@@ -94,8 +109,7 @@ Vue.filter('notificationIcon', function(value){
 	}
 });
 Vue.filter('trimString', function(string){
-	return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 150) +
-				' [...]';
+	return string.replace(/<(?:.|\n)*?>/gm, '').replace(/\&nbsp;/g, '').replace(/\&ldquo;/g, '').substring(0, 300) + '...';
 });
 Vue.filter('percentage', function(value, decimals) {
 	if(!value) {

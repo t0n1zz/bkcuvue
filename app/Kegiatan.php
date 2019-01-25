@@ -86,7 +86,7 @@ class Kegiatan extends Model {
         return $this->hasMany('App\KegiatanPrasyarat','id_prasyarat','id');
     }
 
-    public function total_peserta(){
-        return $this->hasmany('App\KegiatanPeserta','id_kegiatan','id');
+    public function hasPeserta(){
+        return $this->hasMany('App\KegiatanPeserta','kegiatan_id','id');
     }
 }

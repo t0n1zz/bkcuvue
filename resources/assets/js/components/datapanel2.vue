@@ -195,7 +195,8 @@
       </div>
     </div>
 
-    <div class="card" v-if="this.dataview == 'list' || this.dataview == undefined">
+    <!-- tabel -->
+    <div class="card">
       <!-- button -->
       <div class="card-header d-print-none">
         <div class="row">
@@ -210,18 +211,12 @@
           </div>
 
           <div class="col-md-4 col-lg-2 text-right d-none d-sm-block">
-            <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" >
-              <i class="icon-table2"></i> Kolom
-            </button>
             <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
               <i class="icon-file-excel"></i> Excel
             </button>
           </div>
 
           <div class="col-md-4 col-lg-2 d-block d-sm-none">
-            <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" >
-              <i class="icon-table2"></i> Kolom
-            </button>
             <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
               <i class="icon-file-excel"></i> Excel
             </button>
@@ -231,351 +226,151 @@
         
       </div>
 
-      <!-- listview -->
-      <!-- table-->
-      <div class="table-responsive table-scrollable" style="max-height: 33rem;" >
-        <table class="table table-striped">
+    </div>
 
-          <!-- header -->
-          <thead class="bg-primary">
-            <tr class="text-nowrap">
-              <th v-for="item in columnData" v-if="!item.hide && !item.disable">
-                <span v-html="item.title"></span> <i class="icon-menu-open" v-if="item.name == query.order_column"></i>
-              </th>
-            </tr>
-          </thead>
-
-          <!-- loading body -->
-          <tbody v-if="itemDataStat === 'loading'">
-            <tr>
-              <td :colspan="columnData.length">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-                    <span class="sr-only">100% Complete</span>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-
-          <!-- data body -->
-          <tbody v-else-if="itemDataStat === 'success'">
-
-            <slot name="item-desktop" v-for="(item,index) in itemData.data" :item="item" :index="index"></slot>
-          </tbody>
-
-          <!-- error body -->
-          <tbody v-else-if="itemDataStat === 'fail'">
-            <tr>
-              <td :colspan="columnData.length">
-                Oops.. Terjadi kesalahan, silahkan coba lagi.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- pagination -->
-      <!-- footer  -->
-      <div class="card-footer bg-white d-print-none" >
-        <div class="row">
-          <!-- entri info -->
-          <div class="col-md-4 pt-2">
-            <!-- total entri note success-->
-
-            <!-- desktop -->
-            <div v-if="itemDataStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemData.from}} -
-              {{itemData.to}} entri dari {{itemData.total}} entri
-            </div>
-
-            <!-- mobile -->
-            <div v-if="itemDataStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemData.from}} -
-              {{itemData.to}} entri dari {{itemData.total}} entri
-            </div>
-
-            <!-- total entri note loading -->
-            <div v-else>Menampilkan
-              <i class="icon-spinner2 spinner"></i> -
-              <i class="icon-spinner2 spinner"></i> entri dari
-              <i class="icon-spinner2 spinner"></i> entri
-            </div>
-
-          </div>
-
-          <!-- pagination -->
-          <!-- desktop -->
-          <div class="col-md-8 pt-2 text-right d-none d-sm-block">
-            <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
-                  {{n}}
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
-                  <i class="icon-forward3"></i>
-              </button>
-            </div>
-            
-            <!-- pagination loading-->
-            <div class="btn-group" v-else>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-spinner2 spinner"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-forward3"></i>
-              </button>
-              
-            </div>
-          </div>
-          <!-- mobile -->
-          <div class="col-md-12 pt-2 text-center d-block d-sm-none">
-
-            <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
-                  {{n}}
-              </button>
-            </div>
-
-            <br/>
-
-            <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
-                  <i class="icon-forward3"></i>
-              </button>
-            </div>
-            
-            <!-- pagination loading-->
-            <div class="btn-group" v-else>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-spinner2 spinner"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-forward3"></i>
-              </button>
-              
-            </div>
-
-          </div>
+    <div v-if="itemDataStat === 'loading'" class="card card-body">
+      <h4>Mohon tunggu...</h4>
+      <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+          <span class="sr-only">100% Complete</span>
         </div>
-
       </div>
     </div>
 
-    <!-- grid view -->
-    <div v-if="this.dataview == 'grid'">
-      <!-- button -->
-      <div class="card card-body d-print-none">
-        <div class="row">
-          <!-- slot button -->
-          <!-- button desktop -->
-          <div class="col-md-8 col-lg-10 d-none d-sm-block">
-            <slot name="button-desktop"></slot>
-          </div>
-          <!-- button mobile -->
-          <div class="col-md-12 pb-2 d-block d-sm-none">
-            <slot name="button-mobile"></slot>
-          </div>
+    <div v-else-if="itemDataStat === 'success'">
 
-          <div class="col-md-4 col-lg-2 text-right d-none d-sm-block">
-            <button type="button" class="btn bg-green-300 btn-icon" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
-              <i class="icon-file-excel"></i> Excel
-            </button>
-          </div>
+      <slot name="item-desktop" v-for="(item,index) in itemData.data" :item="item" :index="index"></slot>
 
-          <div class="col-md-4 col-lg-2 d-block d-sm-none">
-            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
-              <i class="icon-file-excel"></i> Excel
-            </button>
-          </div>
+      <div  v-if="itemData.data.length == 0">
+				<div class="card">
+					<div class="card-body">
+						<h3>Belum terdapat data...</h3>
+					</div>
+				</div>
+			</div>
 
+    </div>
+
+    <div v-else-if="itemDataStat === 'fail'" class="card card-body">
+      <h4>Oops.. Terjadi kesalahan, silahkan coba lagi.</h4>
+    </div>
+    
+    <!-- pagination -->
+    <div class="row pre-scrollable">
+
+      <!-- entri info -->
+      <div class="col-md-4 pt-2">
+        <!-- total entri note success-->
+
+        <!-- desktop -->
+        <div v-if="itemDataStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemData.from}} -
+          {{itemData.to}} entri dari {{itemData.total}} entri
+        </div>
+
+        <!-- mobile -->
+        <div v-if="itemDataStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemData.from}} -
+          {{itemData.to}} entri dari {{itemData.total}} entri
+        </div>
+
+        <!-- total entri note loading -->
+        <div v-else>Menampilkan
+          <i class="icon-spinner2 spinner"></i> -
+          <i class="icon-spinner2 spinner"></i> entri dari
+          <i class="icon-spinner2 spinner"></i> entri
+        </div>
+
+      </div>
+
+      <!-- pagination -->
+      <!-- desktop -->
+      <div class="col-md-8 pt-2 text-right d-none d-sm-block">
+        <!-- pagination success-->
+        <div class="btn-group" v-if="itemDataStat === 'success'">
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+              <i class="icon-backward2"></i>
+          </button>
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+              <i class="icon-arrow-left5"></i>
+          </button>
+          <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              {{n}}
+          </button>
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+              <i class="icon-arrow-right5"></i>
+          </button>
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+              <i class="icon-forward3"></i>
+          </button>
         </div>
         
-      </div>
-
-      <div v-if="itemDataStat === 'loading'" class="card card-body">
-        <h4>Mohon tunggu...</h4>
-        <div class="progress">
-          <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-            <span class="sr-only">100% Complete</span>
-          </div>
+        <!-- pagination loading-->
+        <div class="btn-group" v-else>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-backward2"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-arrow-left5"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-spinner2 spinner"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-arrow-right5"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-forward3"></i>
+          </button>
+          
         </div>
       </div>
 
-      <div v-else-if="itemDataStat === 'success'">
+      <!-- mobile -->
+      <div class="col-md-12 pt-2 text-center d-block d-sm-none">
 
-        <div class="row">
-          <slot name="item-mobile" v-for="(item,index) in itemData.data" :item="item" :index="index"></slot>
+        <!-- pagination success-->
+        <div class="btn-group" v-if="itemDataStat === 'success'">
+          <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              {{n}}
+          </button>
         </div>
 
-        <div  v-if="itemData.data.length == 0">
-          <div class="card">
-            <div class="card-body">
-              <h3>Belum terdapat data...</h3>
-            </div>
-          </div>
+        <br/>
+
+        <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+              <i class="icon-backward2"></i>
+          </button>
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+              <i class="icon-arrow-left5"></i>
+          </button>
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+              <i class="icon-arrow-right5"></i>
+          </button>
+          <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+              <i class="icon-forward3"></i>
+          </button>
+        </div>
+        
+        <!-- pagination loading-->
+        <div class="btn-group" v-else>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-backward2"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-arrow-left5"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-spinner2 spinner"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-arrow-right5"></i>
+          </button>
+          <button href="#" class="btn btn-light disabled">
+              <i class="icon-forward3"></i>
+          </button>
+          
         </div>
 
-      </div>
-
-      <div v-else-if="itemDataStat === 'fail'" class="card card-body">
-        <h4>Oops.. Terjadi kesalahan, silahkan coba lagi.</h4>
-      </div>
-      
-      <!-- pagination -->
-      <div class="card card-body">
-        <div class="row pre-scrollable">
-
-          <!-- entri info -->
-          <div class="col-md-4 pt-2">
-              <!-- total entri note success-->
-              <!-- desktop -->
-              <div v-if="itemDataStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemData.from}} -
-                {{itemData.to}} entri dari {{itemData.total}} entri
-              </div>
-
-              <!-- mobile -->
-              <div v-if="itemDataStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemData.from}} -
-                {{itemData.to}} entri dari {{itemData.total}} entri
-              </div>
-
-              <!-- total entri note loading -->
-              <div v-else>Menampilkan
-                <i class="icon-spinner2 spinner"></i> -
-                <i class="icon-spinner2 spinner"></i> entri dari
-                <i class="icon-spinner2 spinner"></i> entri
-              </div>
-
-          </div>
-
-          <!-- pagination -->
-          <!-- desktop -->
-          <div class="col-md-8 pt-2 text-right d-none d-sm-block">
-            <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
-                  {{n}}
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
-                  <i class="icon-forward3"></i>
-              </button>
-            </div>
-            
-            <!-- pagination loading-->
-            <div class="btn-group" v-else>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-spinner2 spinner"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-forward3"></i>
-              </button>
-              
-            </div>
-          </div>
-
-          <!-- mobile -->
-          <div class="col-md-12 pt-2 text-center d-block d-sm-none">
-
-            <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
-                  {{n}}
-              </button>
-            </div>
-
-            <br/>
-
-            <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
-                  <i class="icon-forward3"></i>
-              </button>
-            </div>
-            
-            <!-- pagination loading-->
-            <div class="btn-group" v-else>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-spinner2 spinner"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-forward3"></i>
-              </button>
-              
-            </div>
-
-          </div>
-
-        </div>
       </div>
 
     </div>
@@ -584,26 +379,6 @@
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
       <div slot="modal-body1">
-        <!-- column -->
-        <div v-if="modalOptionState === 'column'">
-
-          <!-- title -->
-          <h2 class="text-center">Kolom yang ditampilkan</h2>
-          <hr/>
-
-          <!-- semua button -->
-          <button class="btn btn-light btn-block" @click.prevent="showAllColumn" >Semua kolom</button>
-          <slot name="button-kolom"></slot>
-          <hr/>
-
-          <!-- column button -->
-          <button class="btn btn-block" v-for="(column,index) in columnData" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)" >{{column.title}}</button>
-          <hr/>
-
-          <!-- tutup button -->
-          <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
-        </div>
-
         <!-- excel -->
         <div v-else-if="modalOptionState === 'excel'">
           <h2 class="text-center">Excel</h2>
@@ -754,7 +529,7 @@
   import FileSaver from 'file-saver';
 
   export default {
-    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUploads','dataview'],
+    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUploads'],
     components: {
       jsonExcel,
       appModal,

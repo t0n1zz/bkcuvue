@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :dataview="'grid'"  :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -11,16 +11,6 @@
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_produk_cu']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
-
-				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_produk_cu']"  :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
-				</button>
-
-				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_produk_cu']" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus
-				</button>
 
 			</template>
 
@@ -32,63 +22,140 @@
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
-				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_produk_cu']" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
-				</button>
-
-				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_produk_cu']" :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus
-				</button>
-
 			</template>
 
-			<!-- item desktop -->
-			<template slot="item-desktop" slot-scope="props">
-				<tr :class="{ 'bg-info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
-					<td v-if="!columnData[0].hide">
-						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
-					</td>
-					<td v-if="!columnData[1].hide">
-						<img :src="'/images/artikel/' + props.item.gambar + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
-					</td>
-					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.name"></check-value>
-					</td>
-					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.kode_produk"></check-value>
-					</td>
-					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
-						<span v-else>-</span>
-					</td>
-					<td v-if="!columnData[5].hide">
-						<span style="display:inline">
-							<check-value :value="props.item.keterangan" valueType="modal"></check-value>
-						</span>
-					</td>
-					<td v-if="!columnData[6].hide">
-						<span style="display:inline">
-							<check-value :value="props.item.aturan_setor" valueType="modal"></check-value>
-						</span>
-					</td>
-					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.aturan_tarik" valueType="modal"></check-value>
-					</td>
-					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.aturan_balas_jasa" valueType="modal"></check-value>
-					</td>
-					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.aturan_lain" valueType="modal"></check-value>
-					</td>
-					<td v-if="!columnData[10].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[11].hide">
-						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
-						<span v-else>-</span>
-					</td>
-				</tr>
+			<!-- item mobile -->
+			<template slot="item-mobile" slot-scope="props">
+				<div class="col-12">
+
+					<div class="card border-left-3 rounded-left-0" :class="[gridColor(props.item.tipe)]">
+						<div class="card-header bg-light header-elements-inline">
+							<h6 class="card-title"><check-value :value="props.item.kode_produk"></check-value></h6>
+							<div class="header-elements">
+								<span v-html="$options.filters.tipeProdukCu(props.item.tipe)"></span>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-4 col-lg-2">
+									<img :src="'/images/produk_cu/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+									<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+									
+									<hr class="d-block d-sm-none"/>
+								</div>
+								<div class="col-md-8 col-lg-10">
+									<h6 class="text-primary">{{ props.item.name }} {{ props.item.cu ? ' - CU ' + props.item.cu.name : ''}}</h6>
+									<p v-html="props.item.keterangan"></p>
+								</div>
+								<div class="col-12">
+									<hr/>
+									<!-- aturan -->
+									<div class="card-group-control card-group-control-right" :id="'parent_' + props.item.id">
+										
+										<div class="row">
+											<div class="col-md-6 col-lg-6">
+												<!-- aturan setor -->
+												<div class="card">
+													<div class="card-header">
+														<h6 class="card-title">
+															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_setor_' + props.item.id">{{ columnData[7].title }}</a>
+														</h6>
+													</div>
+
+													<div :id="'aturan_setor_' + props.item.id" class="collapse" :data-parent="'#parent_' + props.item.id">
+														<div class="card-body" v-html="props.item.aturan_setor">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-lg-6">
+												<!-- aturan tarik -->
+												<div class="card">
+													<div class="card-header">
+														<h6 class="card-title">
+															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_tarik_' + props.item.id">{{ columnData[8].title }}</a>
+														</h6>
+													</div>
+
+													<div :id="'aturan_tarik_' + props.item.id" class="collapse" :data-parent="'#parent_' + props.item.id">
+														<div class="card-body" v-html="props.item.aturan_tarik">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-lg-6">
+												<!-- aturan balas jasa -->
+												<div class="card">
+													<div class="card-header">
+														<h6 class="card-title">
+															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_balas_jasa_' + props.item.id">{{ columnData[8].title }}</a>
+														</h6>
+													</div>
+
+													<div :id="'aturan_balas_jasa_' + props.item.id" class="collapse" :data-parent="'#parent_' + props.item.id">
+														<div class="card-body" v-html="props.item.aturan_balas_jasa">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-lg-6">
+												<!-- aturan balas jasa -->
+												<div class="card pb-0 mb-0">
+													<div class="card-header">
+														<h6 class="card-title">
+															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_lain_' + props.item.id">{{ columnData[9].title }}</a>
+														</h6>
+													</div>
+
+													<div :id="'aturan_lain_' + props.item.id" class="collapse" :data-parent="'#parent_' + props.item.id">
+														<div class="card-body" v-html="props.item.aturan_lain">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
+							<ul class="list-inline list-inline-dotted mb-1">
+								<li class="list-inline-item"><strong>{{columnData[11].title}}:</strong> &nbsp; <span v-html="$options.filters.dateTime(props.item.created_at)"></span></li>
+								<li class="list-inline-item" v-if="props.item.created_at !== props.item.updated_at"><strong>{{columnData[12].title}}:</strong> &nbsp; <span v-html="$options.filters.dateTime(props.item.updated_at)"></span></li>
+							</ul>
+
+							<!-- btn desktop -->
+							<div class="mt-2 mt-sm-0 d-none d-sm-block">
+								<!-- ubah-->
+								<button @click.prevent="ubahData(props.item.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_produk_cu']" >
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<!-- hapus -->
+								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-light ml-2 mb-1" v-if="currentUser.can && currentUser.can['destroy_produk_cu']">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+
+							<!-- btn mobile -->
+							<div class="d-block d-sm-none">
+								<!-- ubah-->
+								<button @click.prevent="ubahData(props.item.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_produk_cu']" >
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<!-- hapus -->
+								<button @click.prevent="modalConfirmOpen('hapus',true,props.item)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_produk_cu']">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</template>
 
 		</data-viewer>
@@ -137,6 +204,15 @@
 						title: 'Foto',
 						name: 'gambar',
 						hide: false,
+					},
+					{
+						title: 'Tipe',
+						name: 'tipe',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Nama',
@@ -250,7 +326,7 @@
 				}
 			},
 			disableColumnCu(status){
-				this.columnData[4].disable = status;
+				this.columnData[5].disable = status;
 			},
 			resetParams(){
 				this.params.search_column = 'name';
@@ -293,7 +369,22 @@
 				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				}
-			}
+			},
+			gridColor(value) {
+				if(value == 'Simpanan Pokok'){
+					return 'border-left-primary-400';
+				}else if(value == 'Simpanan Wajib'){
+					return 'border-left-warning-400';
+				}else if(value == 'Simpanan Non Saham'){
+					return 'border-left-secondary-400';
+				}else if(value == 'Pinjaman Kapitalisasi'){
+					return 'border-left-success-400';
+				}else if(value == 'Pinjaman Umum'){
+					return 'border-left-primary-400';
+				}else if(value == 'Pinjaman Produktif'){
+					return 'border-left-green-400';
+				}
+      },
 		},
 		computed: {
 			...mapGetters('auth',{

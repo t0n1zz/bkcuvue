@@ -34,15 +34,15 @@ class ProdukCu extends Model {
     );
     
     protected $fillable = [
-        'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+        'id_cu','kode_produk','name','gambar','tipe','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+        'id_cu','kode_produk','name','gambar','tipe','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
     ];
 
     protected $orderable = [
-        'id_cu','kode_produk','name','gambar','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
+        'id_cu','kode_produk','name','gambar','tipe','aturan_setor','aturan_tarik','aturan_balas_jasa','aturan_lain','keterangan','created_at','updated_at','deleted_at'
     ];
 
     protected $filter = [
@@ -51,7 +51,7 @@ class ProdukCu extends Model {
 
     public static function initialize(){
         return [
-            'id_cu' => '','kode_produk' => '', 'name' => '', 'gambar' => '', 'aturan_setor' => '', 'aturan_tarik' => '', 'aturan_balas_jasa' => '', 'aturan_lain' => '', 'keterangan' => ''
+            'id_cu' => '','kode_produk' => '', 'name' => '', 'gambar' => '', 'tipe' => '', 'aturan_setor' => '', 'aturan_tarik' => '', 'aturan_balas_jasa' => '', 'aturan_lain' => '', 'keterangan' => ''
         ];
     }
         

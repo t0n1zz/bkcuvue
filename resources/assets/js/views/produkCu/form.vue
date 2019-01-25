@@ -28,7 +28,7 @@
 											<h5>Foto:</h5>
 
 											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/tp/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<app-image-upload :image_loc="'/images/produk_cu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>  
 
@@ -59,7 +59,35 @@
 										</div>
 									</div>
 
-									<!-- no_ba -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.tipe')}">
+												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
+												Tipe Produk:
+											</h5>
+
+											<!-- select -->
+											<select class="form-control" name="tipe" v-model="form.tipe" data-width="100%" v-validate="'required'" data-vv-as="Tipe Produk" @change="changeTipe($event.target.value)">
+												<option disabled value="">Silahkan pilih tipe produk</option>
+												<option value="Simpanan Pokok">Simpanan Pokok</option>
+												<option value="Simpanan Wajib">Simpanan Wajib</option>
+												<option value="Simpanan Non Saham">Simpanan Non Saham</option>
+												<option value="Pinjaman Kapitalisasi">Pinjaman Kapitalisasi</option>
+												<option value="Pinjaman Umum">Pinjaman Umum</option>
+												<option value="Pinjaman Produktif">Pinjaman Produktif</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- kode -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_produk')}">
 
@@ -69,7 +97,7 @@
 												Kode Produk & Pelayanan:</h5>
 
 											<!-- text -->
-											<input type="text" name="kode_produk" class="form-control" placeholder="Silahkan masukkan kode produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Kode Produkdan Pelayanan" v-model="form.kode_produk">	
+											<input type="text" name="kode_produk" class="form-control" placeholder="Silahkan masukkan kode produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Kode Produk dan Pelayanan" v-model="form.kode_produk">	
 											
 
 											<!-- error message -->
@@ -90,7 +118,7 @@
 												Nama:</h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" :disabled="isDisabledName">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
@@ -99,6 +127,8 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+									
 
 									<div class="col-md-12">
 										<div class="form-group">
@@ -247,7 +277,8 @@
             numeralDecimalMark: ',',
             delimiter: '.'
           }
-        },
+				},
+				isDisabledName: false,
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -330,6 +361,18 @@
 						this.submited = true;
 					}
 				});
+			},
+			changeTipe(value){
+				if(value == 'Simpanan Pokok'){
+					this.form.name = 'Simpanan Pokok';
+					this.isDisabledName = true;
+				}else if(value == 'Simpanan Wajib'){
+					this.form.name = 'Simpanan Wajib';
+					this.isDisabledName = true;
+				}else{
+					this.form.name = '';
+					this.isDisabledName = false;
+				}
 			},
 			back(){
 				if(this.$route.meta.mode == 'edit' && this.currentUser.id_cu == 0){

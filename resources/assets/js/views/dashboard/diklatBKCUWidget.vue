@@ -28,23 +28,9 @@
 		<!-- baru -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'baru'">
-				<div class="card-body pb-0">
-					<!-- button desktop -->
-					<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
-						<button @click.prevent="detail(selectedItemBaru.id)" class="btn btn-light mb-1"  :disabled="!selectedItemBaru.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-					<!-- button mobile -->
-					<div class="col-md-12 pb-2 d-block d-sm-none">
-						<button @click.prevent="detail(selectedItemBaru.id)" class="btn btn-light btn-block mb-1"  :disabled="!selectedItemBaru.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-				</div>
 				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead class="bg-blue-400">
+					<table class="table table-striped  table-hover">
+						<thead>
 							<tr class="text-nowarp">
 								<th>Status</th>
 								<th>Kode</th>
@@ -56,16 +42,16 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemBaruStat === 'success'">
-							<tr v-for="item in itemBaru" :class="{ 'bg-info': selectedItemBaru.id === item.id }" class="text-nowrap" @click="selectedRowBaru(item)">
+							<tr v-for="item in itemBaru" :class="{ 'bg-info': selectedItemBaru.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
-									<span v-html="$options.filters.statusDiklat(item.status)" @click.prevent="modalKeteranganBatalOpen(item.keteranganBatal)" v-if="item.status == '6'" style="cursor:pointer;"></span>
+									<span v-html="$options.filters.statusDiklat(item.status)" @click.prevent="modalKeteranganBatalOpen(item.keteranganBatal)" v-if="item.status == '6'" class="cursor-pointer"></span>
 									<span v-html="$options.filters.statusDiklat(item.status)" v-else></span>
 								</td>
 								<td>
 									<check-value :value="item.kode_diklat"></check-value>
 								</td>
 								<td>
-									<check-value :value="item.name"></check-value>
+									{{ item.name }}
 								</td>
 								<td>
 									<check-value :value="item.regencies.name" v-if="item.regencies"></check-value>
@@ -105,23 +91,9 @@
 		<!-- mulai -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'mulai'" v-if="isMulai">
-				<div class="card-body pb-0">
-					<!-- button desktop -->
-					<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
-						<button @click.prevent="detail(selectedItemMulai.id)" class="btn btn-light mb-1"  :disabled="!selectedItemMulai.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-					<!-- button mobile -->
-					<div class="col-md-12 pb-2 d-block d-sm-none">
-						<button @click.prevent="detail(selectedItemMulai.id)" class="btn btn-light btn-block mb-1"  :disabled="!selectedItemMulai.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-				</div>
 				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead class="bg-blue-400">
+					<table class="table table-striped  table-hover">
+						<thead>
 							<tr class="text-nowarp">
 								<th>Status</th>
 								<th>Kode</th>
@@ -133,7 +105,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemMulaiStat === 'success'">
-							<tr v-for="item in itemMulai" :class="{ 'bg-info': selectedItemMulai.id === item.id }" class="text-nowrap" @click="selectedRowMulai(item)">
+							<tr v-for="item in itemMulai" :class="{ 'bg-info': selectedItemMulai.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<span v-html="$options.filters.statusDiklat(item.status)" @click.prevent="modalKeteranganBatalOpen(item.keteranganBatal)" v-if="item.status == '6'" style="cursor:pointer;"></span>
 									<span v-html="$options.filters.statusDiklat(item.status)" v-else></span>
@@ -182,23 +154,9 @@
 		<!-- buka -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'buka'" v-if="isBuka">
-				<div class="card-body pb-0">
-					<!-- button desktop -->
-					<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
-						<button @click.prevent="detail(selectedItemBuka.id)" class="btn btn-light mb-1"  :disabled="!selectedItemBuka.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-					<!-- button mobile -->
-					<div class="col-md-12 pb-2 d-block d-sm-none">
-						<button @click.prevent="detail(selectedItemBuka.id)" class="btn btn-light btn-block mb-1"  :disabled="!selectedItemBuka.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-				</div>
 				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead class="bg-blue-400">
+					<table class="table table-striped  table-hover">
+						<thead>
 							<tr class="text-nowarp">
 								<th>Kode</th>
 								<th>Nama</th>
@@ -209,7 +167,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemBukaStat === 'success'">
-							<tr v-for="item in itemBuka" :class="{ 'bg-info': selectedItemBuka.id === item.id }" class="text-nowrap" @click="selectedRowBuka(item)">
+							<tr v-for="item in itemBuka" :class="{ 'bg-info': selectedItemBuka.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<check-value :value="item.kode_diklat"></check-value>
 								</td>
@@ -254,23 +212,9 @@
 		<!-- jalan -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'jalan'" v-if="isJalan">
-				<div class="card-body pb-0">
-					<!-- button desktop -->
-					<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
-						<button @click.prevent="detail(selectedItemJalan.id)" class="btn btn-light mb-1"  :disabled="!selectedItemJalan.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-					<!-- button mobile -->
-					<div class="col-md-12 pb-2 d-block d-sm-none">
-						<button @click.prevent="detail(selectedItemJalan.id)" class="btn btn-light btn-block mb-1"  :disabled="!selectedItemJalan.id">
-							<i class="icon-stack2"></i> Detail
-						</button>
-					</div>
-				</div>
 				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead class="bg-blue-400">
+					<table class="table table-striped  table-hover">
+						<thead>
 							<tr class="text-nowarp">
 								<th>Kode</th>
 								<th>Nama</th>
@@ -281,7 +225,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemJalanStat === 'success'">
-							<tr v-for="item in itemJalan" :class="{ 'bg-info': selectedItemJalan.id === item.id }" class="text-nowrap" @click="selectedRowJalan(item)">
+							<tr v-for="item in itemJalan" :class="{ 'bg-info': selectedItemJalan.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<check-value :value="item.kode_diklat"></check-value>
 								</td>

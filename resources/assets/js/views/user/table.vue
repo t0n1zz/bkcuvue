@@ -177,8 +177,8 @@ export default {
     return {
       selectedItem: [],
       query: {
-        order_column: "username",
-        order_direction: "asc",
+        order_column: "login",
+        order_direction: "desc",
         filter_match: "and",
         limit: 10,
         page: 1

@@ -1,7 +1,7 @@
-import laporanCuAPI from '../../api/laporanCu.js';
-import laporanCuDraftAPI from '../../api/laporanCuDraft.js';
-import laporanTpAPI from '../../api/laporanTp.js';
-import laporanTpDraftAPI from '../../api/laporanTpDraft.js';
+import LaporanCuAPI from '../../api/laporanCu.js';
+import LaporanCuDraftAPI from '../../api/laporanCuDraft.js';
+import LaporanTpAPI from '../../api/laporanTp.js';
+import LaporanTpDraftAPI from '../../api/laporanTpDraft.js';
 
 export const laporanCu = {
   namespaced: true,
@@ -860,7 +860,7 @@ export const laporanCu = {
     index( { commit }, p ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.index( p )
+      LaporanCuAPI.index( p )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -874,7 +874,7 @@ export const laporanCu = {
     indexTotal( { commit } ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.indexTotal()
+      LaporanCuAPI.indexTotal()
         .then( function( response ){
           commit('setData', response.data.model );
           commit('setDataStat', 'success');
@@ -889,7 +889,7 @@ export const laporanCu = {
     indexGerakan( { commit }, p ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.indexGerakan( p )
+      LaporanCuAPI.indexGerakan( p )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -904,7 +904,7 @@ export const laporanCu = {
     indexCu( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.indexCu( p, id )
+      LaporanCuAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -919,7 +919,7 @@ export const laporanCu = {
     indexCuDraft( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      laporanCuDraftAPI.index( id )
+      LaporanCuDraftAPI.index( id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -933,7 +933,7 @@ export const laporanCu = {
     indexTpDraft( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      laporanTpDraftAPI.index( id )
+      LaporanTpDraftAPI.index( id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -949,7 +949,7 @@ export const laporanCu = {
     indexTpPeriode( { commit }, [p, id, periode] ){
       commit('setDataStatS', 'loading');
       
-      laporanTpAPI.indexPeriode( p, id, periode )
+      LaporanTpAPI.indexPeriode( p, id, periode )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -963,7 +963,7 @@ export const laporanCu = {
     indexTp( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       
-      laporanTpAPI.indexTp( p, id )
+      LaporanTpAPI.indexTp( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -979,7 +979,7 @@ export const laporanCu = {
     indexPeriode( { commit }, [p, periode] ){
       commit('setDataStatS', 'loading');
       
-      laporanCuAPI.indexPeriode( p, periode )
+      LaporanCuAPI.indexPeriode( p, periode )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -994,7 +994,7 @@ export const laporanCu = {
     indexPearls( { commit }, p ){
       commit('setPearlsStat', 'loading');
       
-      laporanCuAPI.indexPearls( p )
+      LaporanCuAPI.indexPearls( p )
         .then( function( response ){
           commit('setPearls', response.data.model );
           commit('setPearlsStat', 'success');
@@ -1009,7 +1009,7 @@ export const laporanCu = {
     indexPearlsCu( { commit }, [p, id] ){
       commit('setPearlsStat', 'loading');
       
-      laporanCuAPI.indexPearlsCu( p, id )
+      LaporanCuAPI.indexPearlsCu( p, id )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -1024,7 +1024,7 @@ export const laporanCu = {
     indexPearlsTp( { commit }, [p, id] ){
       commit('setPearlsStat', 'loading');
       
-      laporanTpAPI.indexPearlsTp( p, id )
+      LaporanTpAPI.indexPearlsTp( p, id )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -1037,7 +1037,7 @@ export const laporanCu = {
     indexPearlsTpPeriode( { commit }, [p, id, periode] ){
       commit('setPearlsStat', 'loading');
       
-      laporanTpAPI.indexPearlsPeriode( p, id, periode )
+      LaporanTpAPI.indexPearlsPeriode( p, id, periode )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -1052,7 +1052,7 @@ export const laporanCu = {
     indexPearlsPeriode( { commit }, [p, periode] ){
       commit('setPearlsStat', 'loading');
       
-      laporanCuAPI.indexPearlsPeriode( p, periode )
+      LaporanCuAPI.indexPearlsPeriode( p, periode )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -1067,7 +1067,7 @@ export const laporanCu = {
     getPeriode( {commit} ){
       commit('setPeriodeStat', 'loading');
       
-      laporanCuAPI.getPeriode()
+      LaporanCuAPI.getPeriode()
         .then( function( response ){
           commit('setPeriode', response.data.model);
           commit('setPeriodeStat', 'success');
@@ -1082,7 +1082,7 @@ export const laporanCu = {
     getPeriodeCu( {commit}, id ){
       commit('setPeriodeStat', 'loading');
       
-      laporanCuAPI.getPeriodeCu( id )
+      LaporanCuAPI.getPeriodeCu( id )
         .then( function( response ){
           commit('setPeriode', response.data.model);
           commit('setPeriodeStat', 'success');
@@ -1098,7 +1098,7 @@ export const laporanCu = {
     grafikGerakan( { commit }, p ){
       commit('setGrafikStat', 'loading');
       
-      laporanCuAPI.indexGerakan( p )
+      LaporanCuAPI.indexGerakan( p )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
@@ -1113,7 +1113,7 @@ export const laporanCu = {
     grafikPeriode( { commit }, [p, periode] ){
       commit('setGrafikStat', 'loading');
       
-      laporanCuAPI.indexPeriode( p, periode )
+      LaporanCuAPI.indexPeriode( p, periode )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
@@ -1128,7 +1128,7 @@ export const laporanCu = {
     grafikCu( { commit }, [p, id] ){
       commit('setGrafikStat', 'loading');
       
-      laporanCuAPI.indexCu( p, id )
+      LaporanCuAPI.indexCu( p, id )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
@@ -1142,7 +1142,7 @@ export const laporanCu = {
     grafikTpPeriode( { commit }, [p, id, periode] ){
       commit('setGrafikStat', 'loading');
       
-      laporanTpAPI.indexPeriode( p, id, periode )
+      LaporanTpAPI.indexPeriode( p, id, periode )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
@@ -1157,7 +1157,7 @@ export const laporanCu = {
     grafikTp( { commit }, [p, id] ){
       commit('setGrafikStat', 'loading');
       
-      laporanTpAPI.indexTp( p, id )
+      LaporanTpAPI.indexTp( p, id )
         .then( function( response ){
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
@@ -1172,7 +1172,7 @@ export const laporanCu = {
     grafikPearlsPeriode( { commit }, [p, periode] ){
       commit('setGrafikPearlsStat', 'loading');
       
-      laporanCuAPI.indexPearlsPeriode( p, periode )
+      LaporanCuAPI.indexPearlsPeriode( p, periode )
         .then( function( response ){
           commit('setGrafikPearls', response.data.model);
           commit('setGrafikPearlsStat', 'success');
@@ -1187,7 +1187,7 @@ export const laporanCu = {
     grafikPearlsCu( { commit }, [p, id] ){
       commit('setGrafikPearlsStat', 'loading');
       
-      laporanCuAPI.indexPearlsCu( p, id )
+      LaporanCuAPI.indexPearlsCu( p, id )
         .then( function( response ){
           commit('setGrafikPearls', response.data.model);
           commit('setGrafikPearlsStat', 'success');
@@ -1201,7 +1201,7 @@ export const laporanCu = {
     grafikPearlsTpPeriode( { commit }, [p, id, periode] ){
       commit('setGrafikPearlsStat', 'loading');
       
-      laporanTpAPI.indexPearlsPeriode( p, id, periode )
+      LaporanTpAPI.indexPearlsPeriode( p, id, periode )
         .then( function( response ){
           commit('setGrafikPearls', response.data.model);
           commit('setGrafikPearlsStat', 'success');
@@ -1216,7 +1216,7 @@ export const laporanCu = {
     grafikPearlsTp( { commit }, [p, id] ){
       commit('setGrafikPearlsStat', 'loading');
       
-      laporanTpAPI.indexPearlsTp( p, id )
+      LaporanTpAPI.indexPearlsTp( p, id )
         .then( function( response ){
           commit('setGrafikPearls', response.data.model);
           commit('setGrafikPearlsStat', 'success');
@@ -1230,7 +1230,7 @@ export const laporanCu = {
     create( {commit} ){
       commit('setDataStat', 'loading');
       
-      laporanCuAPI.create()
+      LaporanCuAPI.create()
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -1249,7 +1249,7 @@ export const laporanCu = {
     detail( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      laporanCuAPI.detail( id )
+      LaporanCuAPI.detail( id )
         .then( function( response ){
           commit('setData', response.data.model);
           commit('setHistory', response.data.history);
@@ -1264,7 +1264,7 @@ export const laporanCu = {
     detailPearls( {commit}, id ){
       commit('setPearlsStat', 'loading');
       
-      laporanCuAPI.detailPearls( id )
+      LaporanCuAPI.detailPearls( id )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -1277,7 +1277,7 @@ export const laporanCu = {
     detailTp( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      laporanTpAPI.detail( id )
+      LaporanTpAPI.detail( id )
         .then( function( response ){
           commit('setData', response.data.model);
           commit('setHistory', response.data.history);
@@ -1292,7 +1292,7 @@ export const laporanCu = {
     detailPearlsTp( {commit}, id ){
       commit('setPearlsStat', 'loading');
       
-      laporanTpAPI.detailPearls( id )
+      LaporanTpAPI.detailPearls( id )
         .then( function( response ){
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
@@ -1307,7 +1307,7 @@ export const laporanCu = {
     store( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.store( form )
+      LaporanCuAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1324,7 +1324,7 @@ export const laporanCu = {
     storeTp( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.store( form )
+      LaporanTpAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1341,7 +1341,7 @@ export const laporanCu = {
     storeDraft( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuDraftAPI.store( id )
+      LaporanCuDraftAPI.store( id )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1358,7 +1358,7 @@ export const laporanCu = {
     storeDraftAll( {commit, state, dispatch} ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuDraftAPI.storeAll()
+      LaporanCuDraftAPI.storeAll()
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1375,7 +1375,7 @@ export const laporanCu = {
     storeTpDraft( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpDraftAPI.store( id )
+      LaporanTpDraftAPI.store( id )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1392,7 +1392,7 @@ export const laporanCu = {
     storeTpDraftAll( {commit, state, dispatch} ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpDraftAPI.storeAll()
+      LaporanTpDraftAPI.storeAll()
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1412,7 +1412,7 @@ export const laporanCu = {
     edit( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      laporanCuAPI.edit( id )
+      LaporanCuAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -1430,7 +1430,7 @@ export const laporanCu = {
     editTp( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      laporanTpAPI.edit( id )
+      LaporanTpAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -1447,7 +1447,7 @@ export const laporanCu = {
     editDraft( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      laporanCuDraftAPI.edit( id )
+      LaporanCuDraftAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -1464,7 +1464,7 @@ export const laporanCu = {
     editTpDraft( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      laporanTpDraftAPI.edit( id )
+      LaporanTpDraftAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -1483,7 +1483,7 @@ export const laporanCu = {
     update( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.update( id, form )
+      LaporanCuAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1500,7 +1500,7 @@ export const laporanCu = {
     updateTp( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.update( id, form )
+      LaporanTpAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -1517,7 +1517,7 @@ export const laporanCu = {
     updateDraft( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuDraftAPI.update( id, form )
+      LaporanCuDraftAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1534,7 +1534,7 @@ export const laporanCu = {
     updateTpDraft( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpDraftAPI.update( id, form )
+      LaporanTpDraftAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1553,7 +1553,7 @@ export const laporanCu = {
     destroy( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.destroy( id )
+      LaporanCuAPI.destroy( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -1570,7 +1570,7 @@ export const laporanCu = {
     destroyTp( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.destroy( id )
+      LaporanTpAPI.destroy( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -1587,7 +1587,7 @@ export const laporanCu = {
     destroyDraft( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuDraftAPI.destroy( id )
+      LaporanCuDraftAPI.destroy( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -1604,7 +1604,7 @@ export const laporanCu = {
     destroyDraftAll( {commit, state, dispatch} ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuDraftAPI.destroyAll()
+      LaporanCuDraftAPI.destroyAll()
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -1621,7 +1621,7 @@ export const laporanCu = {
     destroyTpDraft( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpDraftAPI.destroy( id )
+      LaporanTpDraftAPI.destroy( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -1638,7 +1638,7 @@ export const laporanCu = {
     destroyTpDraftAll( {commit, state, dispatch} ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpDraftAPI.destroyAll()
+      LaporanTpDraftAPI.destroyAll()
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -1656,7 +1656,7 @@ export const laporanCu = {
     uploadExcel( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.uploadExcel( form )
+      LaporanCuAPI.uploadExcel( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1674,7 +1674,7 @@ export const laporanCu = {
     uploadExcelAll( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanCuAPI.uploadExcelAll( form )
+      LaporanCuAPI.uploadExcelAll( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1692,7 +1692,7 @@ export const laporanCu = {
     uploadExcelTp( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.uploadExcel( form )
+      LaporanTpAPI.uploadExcel( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1709,7 +1709,7 @@ export const laporanCu = {
     uploadExcelTpAll( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.uploadExcelAll( form )
+      LaporanTpAPI.uploadExcelAll( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

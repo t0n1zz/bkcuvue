@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-auto">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>3.0.5</span>
+							<span>3.0.6</span>
 						</router-link>
 					</span>
 				</span>
@@ -201,7 +201,7 @@
 							</router-link>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['create_artikel'] || currentUser.can['create_artikel_kategori'] || currentUser.can['create_artikel_penulis']"></div> 
 
 							<!-- artikel -->
 							<!-- if bkcu account -->
@@ -300,7 +300,7 @@
 							</router-link>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_pengumuman']"></div> 
 
 							<!-- pengumuman -->
 							<!-- if bkcu account -->
@@ -357,7 +357,7 @@
 							</router-link>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu'] || currentUser.can['create_tempat']"></div> 
 
 							<!-- diklat pus -->
 							<router-link :to="{ name: 'diklatBKCU', params:{periode: momentYear() } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_diklat_bkcu']">
@@ -365,7 +365,7 @@
 							</router-link>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_tempat']"></div> 
 
 							<!-- tempat -->
 							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 &&  currentUser.can['index_tempat']">
@@ -375,8 +375,57 @@
 						</div>
 					</li>
 
+					<!-- anggota cu -->
+					<li class="nav-item dropdown" v-if="currentUser.can['create_anggota_cu'] || currentUser.can['index_anggota_cu']">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-users4 mr-2"></i>
+							Anggota CU
+						</a>
+
+						<div class="dropdown-menu">
+
+							<!-- tambah diklat pus -->
+							<router-link :to="{ name:'diklatBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_diklat_bkcu']">
+								<i class="icon-plus22"></i> Tambah Anggota CU
+							</router-link>
+
+							<!-- divider -->
+							<div class="dropdown-divider" v-if="currentUser.can['create_anggota_cu']"></div> 
+
+							<!-- anggota cu -->
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'anggota_cu'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('anggota_cu')">
+									<i class="icon-users4"></i> Anggota CU
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu'}">
+
+									<router-link :to="{ name: 'anggotaCuCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'anggotaCuCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'anggotaCuCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0">
+								<i class="icon-users4"></i> Anggota CU
+							</router-link>
+
+						</div>
+					</li>
+
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang']">
+					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -414,7 +463,7 @@
 							</router-link>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] || currentUser.can['create_mitra_lembaga']"></div> 
 
 							<!-- cu -->
 							<!-- if bkcu account -->
@@ -545,7 +594,7 @@
 							</div>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
 
 							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu == 'mitra'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('mitra')">
@@ -814,13 +863,14 @@
 			modalTutup() {
 				this.modalShow = false;
 
-				if(this.state == 'logout'){
+				if(this.state == 'logout-confirmed'){
 					this.$store.dispatch('auth/logout');
 					this.$router.push('/login');
 				}
 			},
 			modalConfirmOk() {
 				if (this.state == 'logout') {
+					this.state = 'logout-confirmed'
 					this.logout();
 				}
 			},

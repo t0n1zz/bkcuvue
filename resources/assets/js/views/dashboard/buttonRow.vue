@@ -27,7 +27,7 @@
     </div>
 
     <!-- tempat -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_tempat']" @click.prevent="goTo(tempatWidgetRoute)">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_tempat'] && currentUser.id_cu == '0'" @click.prevent="goTo(tempatWidgetRoute)">
       <count-widget :title="'Tempat'" :color="'bg-purple-400'" :icon="'icon-location4'"></count-widget>
     </div>
 

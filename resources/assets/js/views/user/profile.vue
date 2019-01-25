@@ -75,7 +75,7 @@
 
 									<div class="card-header bg-white">
 										<h6 class="card-title">	
-											<a data-toggle="collapse" class="text-default" href="#identitas">Identitas</a>
+											<a data-toggle="collapse" class="collapsed text-default" href="#identitas">Identitas</a>
 										</h6>
 									</div>
 
@@ -153,7 +153,7 @@
 
 								<div class="card-header bg-white">
 										<h6 class="card-title">	
-											<a data-toggle="collapse" class="text-default" href="#password">Ubah Password</a>
+											<a data-toggle="collapse" class="collapsed text-default" href="#password">Ubah Password</a>
 										</h6>
 									</div>
 

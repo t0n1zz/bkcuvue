@@ -558,6 +558,53 @@
 						]
 					},
 					{
+						name: 'Anggota CU',
+						icon: 'icon-stats-growth',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_anggota_cu',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_anggota_cu',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_anggota_cu',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_anggota_cu',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Upload',
+								key: 'upload_anggota_cu',
+								icon: 'icon-file-upload',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							}
+						]
+					},
+					{
 						name: 'Laporan CU',
 						icon: 'icon-stats-growth',
 						secondRow: true,

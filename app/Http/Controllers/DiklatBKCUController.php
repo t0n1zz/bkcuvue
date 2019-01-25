@@ -20,13 +20,24 @@ class DiklatBKCUController extends Controller{
 
 	public function index()
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->where('tipe','diklat_bkcu')->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe','diklat_bkcu')->advancedFilter();
 
 		return response()
 		->json([
 			'model' => $table_data
 		]);
 	}
+
+	public function indexPeriode($periode)
+	{
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 
 	public function indexBaru()
 	{
@@ -81,16 +92,6 @@ class DiklatBKCUController extends Controller{
 		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
 
 		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->where('status',4)->take(6)->get();
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
-	public function indexPeriode($periode)
-	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
 
 		return response()
 		->json([

@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 use DB;
 use File;
 use Image;
-use App\ProdukCu;
+use App\AnggotaCu;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
+use App\Imports\AnggotaCuNewDraftImport;
 
-class ProdukCuController extends Controller{
+class AnggotaCuController extends Controller{
 
-	protected $imagepath = 'images/produk_cu/';
+	protected $imagepath = 'images/anggota_cu/';
 	protected $width = 200;
 	protected $height = 200;
-	protected $message = "Produk dan pelayanan";
+	protected $message = "Anggota CU";
 
 	public function index()
 	{
-		$table_data = ProdukCu::with('Cu')->select(
-			DB::raw('*,(SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
-		)->advancedFilter();
+		$table_data = AnggotaCu::with('Cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([
@@ -30,9 +29,7 @@ class ProdukCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = ProdukCu::where('id_cu',$id)->select(
-			DB::raw('*, (SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
-		)->advancedFilter();
+		$table_data = AnggotaCu::with('Cu','Villages','Districts','Regencies','Provinces')->where('id_cu',$id)->advancedFilter();
 
 		return response()
 			->json([
@@ -44,25 +41,25 @@ class ProdukCuController extends Controller{
 	{
 		return response()
 			->json([
-					'form' => ProdukCu::initialize(),
-					'rules' => ProdukCu::$rules,
+					'form' => AnggotaCu::initialize(),
+					'rules' => AnggotaCu::$rules,
 					'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-		$this->validate($request,ProdukCu::$rules);
+		$this->validate($request,AnggotaCu::$rules);
 
 		$name = $request->name;
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
 		else
 			$fileName = '';
 
-		$kelas = ProdukCu::create($request->except('gambar') + [
+		$kelas = AnggotaCu::create($request->except('gambar') + [
 			'gambar' => $fileName
 		]);
 		
@@ -76,7 +73,7 @@ class ProdukCuController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = ProdukCu::findOrFail($id);
+		$kelas = AnggotaCu::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 				->json([
@@ -87,11 +84,11 @@ class ProdukCuController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, ProdukCu::$rules);
+		$this->validate($request, AnggotaCu::$rules);
 
 		$name = $request->name;
 
-		$kelas = ProdukCu::findOrFail($id);
+		$kelas = AnggotaCu::findOrFail($id);
 
 		// processing single image upload
 		if(!empty($request->gambar))
@@ -112,13 +109,8 @@ class ProdukCuController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = ProdukCu::findOrFail($id);
+		$kelas = AnggotaCu::findOrFail($id);
 		$name = $kelas->name;
-
-		if(!empty($kelas->gambar)){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
-		}
 
 		$kelas->delete();
 
@@ -129,16 +121,21 @@ class ProdukCuController extends Controller{
 			]);
 	}
 
+	public function uploadExcelNew(Request $request)
+	{
+		Excel::import(new AnggotaCuNewDraftImport, request()->file('file'));
+
+		return response()
+			->json([
+				'uploaded' => true,
+				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+			]);
+	}
+
 	public function count()
 	{
-			$id = \Auth::user()->id_cu;
+			$table_data = AnggotaCu::count();
 
-			if($id == 0){
-					$table_data = ProdukCu::count();
-			}else{
-					$table_data = ProdukCu::where('id_cu',$id)->count();
-			}
-			
 			return response()
 			->json([
 					'model' => $table_data
@@ -149,7 +146,7 @@ class ProdukCuController extends Controller{
   {
     $time = \Carbon\Carbon::now()->subMonths(6);
 		
-    $table_data = Revision::with('revisionable')->where('revisionable_type','App\ProdukCu')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\AnggotaCu')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
 
     $history = collect();		
 		foreach($table_data as $hs){

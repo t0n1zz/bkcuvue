@@ -290,6 +290,39 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/mitraLembaga/{id}', 'MitraLembagaController@destroy');
     });
 
+    // anggota cu
+    Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
+        Route::get('/anggotaCu', 'AnggotaCuController@index');
+        Route::get('/anggotaCu/indexCu/{id}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/count', 'AnggotaCuController@count');
+        Route::get('/anggotaCu/history', 'AnggotaCuController@history');
+    });
+    Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
+        Route::get('/anggotaCu/create', 'AnggotaCuController@create');
+        Route::post('/anggotaCu/store', 'AnggotaCuController@store');
+    });
+    Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
+        Route::get('/anggotaCu/edit/{id}', 'AnggotaCuController@edit');
+        Route::post('/anggotaCu/update/{id}', 'AnggotaCuController@update');
+        Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
+    });
+    Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {
+        Route::delete('/anggotaCu/{id}', 'AnggotaCuController@destroy');
+    });
+    Route::group(['middleware' => ['permission:upload_anggota_cu']], function () {
+        Route::post('/anggotaCu/uploadExcelNew', 'AnggotaCuController@uploadExcelNew');
+        Route::post('/anggotaCu/uploadExcel', 'AnggotaCuController@uploadExcel');
+
+        Route::get('/anggotaCuDraft', 'AnggotaCuDraftController@index');
+        Route::post('/anggotaCuDraft/store/{id}', 'AnggotaCuDraftController@store');
+        Route::post('/anggotaCuDraft/storeAll', 'AnggotaCuDraftController@storeAll');
+        Route::get('/anggotaCuDraft/edit/{id}', 'AnggotaCuDraftController@edit');
+        Route::post('/anggotaCuDraft/update/{id}', 'AnggotaCuDraftController@update');
+        Route::delete('/anggotaCuDraft/destroy/{id}', 'AnggotaCuDraftController@destroy');
+        Route::delete('/anggotaCuDraft/destroyAll', 'AnggotaCuDraftController@destroyAll');
+        Route::get('/anggotaCuDraft/count', 'AnggotaCuDraftController@count');
+    });
+
     //laporan cu
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::get('/laporanCu', 'LaporanCuController@index');

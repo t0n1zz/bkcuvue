@@ -22,6 +22,7 @@ import { laporanTp } from './modules/laporanTp';
 import { aktivis } from './modules/aktivis';
 import { mitraOrang } from './modules/mitraOrang';
 import { mitraLembaga } from './modules/mitraLembaga';
+import { anggotaCu } from './modules/anggotaCu';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
@@ -53,6 +54,7 @@ export default new Vuex.Store({
 		 aktivis,
 		 mitraOrang,
 		 mitraLembaga,
+		 anggotaCu,
 		 produkCu,
 		 diklatBKCU,
 		 tempat,
