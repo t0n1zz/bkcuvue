@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Villages;
+use App\Region\Villages;
 use Illuminate\Http\Request;
 
 class VillagesController extends Controller{

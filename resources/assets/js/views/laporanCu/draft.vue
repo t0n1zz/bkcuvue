@@ -21,7 +21,7 @@
 									<div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
 
 										<!-- simpan semua -->
-										<!-- <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light mb-1" :disabled="itemData.lenght == 0">
+										<!-- <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light mb-1" :disabled="itemData.length == 0">
 											<i class="icon-floppy-disk"></i> Simpan Semua ke laporan statistik CU
 										</button> -->
 
@@ -41,7 +41,7 @@
 										</button>
 
 										<!-- hapus semua -->
-										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="itemData.lenght == 0">
+										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="itemData.length == 0">
 											<i class="icon-bin2"></i> Hapus Semua
 										</button>
 
@@ -50,7 +50,7 @@
 									<div class="col-md-12 pb-2 d-block d-sm-none">
 
 										<!-- simpan semua-->
-										<!-- <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light btn-block" :disabled="itemData.lenght == 0">
+										<!-- <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light btn-block" :disabled="itemData.length == 0">
 											<i class="icon-floppy-disk"></i>Simpan ke laporan statistik CU
 										</button> -->
 
@@ -70,7 +70,7 @@
 										</button>
 
 										<!-- hapus semua -->
-										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemData.lenght == 0">
+										<button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemData.length == 0">
 											<i class="icon-bin2"></i> Hapus Semua
 										</button>
 

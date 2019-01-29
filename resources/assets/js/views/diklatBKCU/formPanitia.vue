@@ -72,7 +72,7 @@
 		</div>
 
 		<!-- if asal dalam -->
-		<data-viewer :columnData="columnDataDalam" :itemData="itemDataDalam" :query="query" :itemDataStat="itemDataDalamStat" @fetch="fetchDalam" v-if="formPanitia.asal == 'dalam' && formPanitia.aktivis_id == '' && mode == 'create'">
+		<data-viewer :title="'Aktivis'" :columnData="columnDataDalam" :itemData="itemDataDalam" :query="query" :itemDataStat="itemDataDalamStat" @fetch="fetchDalam" :isDasar="'true'" :isNoButtonRow="'true'" v-if="formPanitia.asal == 'dalam' && formPanitia.aktivis_id == '' && mode == 'create'">
 
 			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
@@ -138,7 +138,7 @@
 		</data-viewer>
 
 		<!-- if asal luar -->
-		<data-viewer :columnData="columnDataLuar" :itemData="itemDataLuar" :query="query" :itemDataStat="itemDataLuarStat" @fetch="fetchLuar" v-if="formPanitia.asal == 'luar' && formPanitia.aktivis_id == '' && mode == 'create'">
+		<data-viewer :title="'Mitra'" :columnData="columnDataLuar" :itemData="itemDataLuar" :query="query" :itemDataStat="itemDataLuarStat" @fetch="fetchLuar" :isDasar="'true'" :isNoButtonRow="'true'"  v-if="formPanitia.asal == 'luar' && formPanitia.aktivis_id == '' && mode == 'create'">
 
 			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
@@ -252,7 +252,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import checkValue from '../../components/checkValue.vue';
-	import DataViewer from '../../components/dataviewerName.vue';
+	import DataViewer from '../../components/dataviewer2.vue';
 	import message from "../../components/message.vue";
 
 	export default {
@@ -348,8 +348,10 @@
 
 				this.deleteSelected();
 
-				if(this.asal == 'luar'){
+				if(value == 'luar'){
 					this.fetchLuar(this.query);
+				}else if(value == 'dalam'){
+					this.fetchDalam(this.query);
 				}
 			},
 			fetchDalam(params){

@@ -39,11 +39,11 @@ class LaporanCuDraftController extends Controller{
 		unset($data['id_user']);  
 
 		if($this->checkData($kelas)){
-			$kelas2 = LaporanCu::insert($data);
+			$kelas2 = LaporanCu::create($data);
 
 			$kelas->delete();
 
-			NotificationHelper::store_laporan_tp($kelas2,'Mengupload');
+			NotificationHelper::store_laporan_cu($kelas2,'Mengupload');
 			
 			return response()
 				->json([

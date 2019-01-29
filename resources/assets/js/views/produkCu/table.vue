@@ -68,7 +68,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6 col-lg-6">
+											<div class="col-md-6 col-lg-6" v-if="props.item.tipe == 'Simpanan Pokok' || props.item.tipe == 'Simpanan Wajib' || props.item.tipe == 'Simpanan Non Saham'">
 												<!-- aturan tarik -->
 												<div class="card">
 													<div class="card-header">
@@ -99,7 +99,7 @@
 												</div>
 											</div>
 											<div class="col-md-6 col-lg-6">
-												<!-- aturan balas jasa -->
+												<!-- aturan lain-->
 												<div class="card pb-0 mb-0">
 													<div class="card-header">
 														<h6 class="card-title">

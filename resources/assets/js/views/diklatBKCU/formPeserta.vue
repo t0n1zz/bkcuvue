@@ -12,7 +12,7 @@
 		</div>
 
 		<!-- message -->
-		<message v-if="message.show" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
+		<message v-if="message.show" @close="messageClose" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
 		</message>
 
 		<div class="card" v-if="formPeserta.aktivis_id">
@@ -58,11 +58,11 @@
 		</div>
 
 		<!-- peserta -->
-		<data-viewer :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetch" v-if="formPeserta.aktivis_id == '' && mode == 'create'">
+		<data-viewer :title="'Aktivis'" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetch" :isDasar="'true'" :isNoButtonRow="'true'" v-if="formPeserta.aktivis_id == '' && mode == 'create'">
 
 			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
-				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
+				<tr class="text-nowrap cursor-pointer" @click="selectedRow(props.item)">
 					<td>
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
@@ -76,7 +76,7 @@
 					<td>
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-					<td>
+					<td v-if="!columnData[4].disable">
 						<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
 							<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
 							<span v-else>-</span>
@@ -254,7 +254,7 @@
 	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import checkValue from '../../components/checkValue.vue';
-	import DataViewer from '../../components/dataviewerName.vue';
+	import DataViewer from '../../components/dataviewer2.vue';
 	import Message from "../../components/message.vue";
 	import Cleave from 'vue-cleave-component';
 
@@ -318,7 +318,7 @@
 						filterDefault: true
 					},
 					{ title: 'Gender' },
-					{ title: 'CU' },
+					{ title: 'CU',disable: false },
 					{ title: 'Tingkat' },
 					{ title: 'Jabatan' },
 					{ title: 'Pendidikan'},
@@ -327,7 +327,7 @@
 					{ title: 'Tempat Lahir' },
 					{ title: 'Tinggi' },
 					{ title: 'Agama' },
-					{ title: 'Status' },
+					{ title: 'Status Pernikahan' },
 				],
 				submited: false,
 			}
@@ -359,6 +359,7 @@
 				for(i = 0; i < this.tingkat.length; i++){
 					this.tingkatArray.push(this.tingkat[i].id);
 				}
+				this.fetch(this.query);
 			}
 		},
 		methods: {
@@ -372,7 +373,7 @@
 				}
 			},
 			disableColumnCu(value){
-				this.columnData[3].disable = status;
+				this.columnData[4].disable = value;
 			},
 			deleteSelected(){
 				this.formPeserta.aktivis_id = '';
@@ -403,6 +404,7 @@
 					}else if(item.pekerjaan_aktif.tipe == 3){
 						this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan"
 					}
+					this.message.show = false;
 				}else{
 					this.message.show = true;
 					this.message.content = "Maaf peserta ini tidak memenuhi persyaratan sasaran peserta";
@@ -421,6 +423,9 @@
 						this.submited = true;
 					}	
 				});	
+			},
+			messageClose(){
+				this.message.show = false;
 			},
 			tutup(){
 				this.$emit('tutup');

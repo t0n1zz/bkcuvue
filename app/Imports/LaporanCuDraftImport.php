@@ -20,7 +20,7 @@ class LaporanCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
     public function model(array $row)
     {
         $id = Auth::user()->getIdCu();
-        $cu = Cu::where('id_cu',$id)->select('id','no_ba')->first();
+        $cu = Cu::where('id',$id)->select('id','no_ba')->first();
 
         return new LaporanCuDraft([
             'id_user' => Auth::user()->getId(),

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Regencies;
+use App\Region\Regencies;
 use Illuminate\Http\Request;
 
 class RegenciesController extends Controller{

@@ -7,201 +7,399 @@
         <h5 class="card-title">Pencarian data {{ title }}</h5>
         <div class="header-elements">
           <div class="list-icons">
-            <a class="list-icons-item" data-action="collapse"></a>
+            <!-- <a class="list-icons-item" data-action="collapse"></a> -->
           </div>
         </div>
       </div>
 
-      <div class="card-body">
-        <!-- search row -->
-        <div class="row">
-          <div class="col-md-12" v-for="(f, i, index) in filterCandidates">
+      <div class="nav-tabs-responsive bg-light border-top" v-if="!isDasar">
+        <ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+          <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'dasar'}" @click.prevent="changeTab('dasar')"><i class="icon-search4 mr-2"></i>
+              Pencarian Dasar</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'lanjutan'}" @click.prevent="changeTab('lanjutan')"><i class="icon-folder-search mr-2"></i>
+              Pencarian Lanjutan</a></li>
+        </ul>
+      </div>
+
+      <!-- dasar -->
+      <transition enter-active-class="animated fadeIn" mode="out-in">
+        <div v-show="tabName == 'dasar'">
+          <div class="card-body">
+
+            <!-- search row -->
             <div class="row">
-              <div class="col-md-4 pb-2">
-                <div class="input-group">
-                  <span class="input-group-prepend">
-                    <span class="input-group-text">Kolom</span>
-                  </span>
-                  <select class="form-control" @input="selectColumn(f, i, $event)" :disabled="itemDataStat !== 'success'">
-                    <option disabled value="">Silahkan masukkan kolom pencarian</option>
-                    <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
-                      v-if="x.filter && !x.disable">
-                      {{x.title}}
-                    </option>
-                  </select>
-                </div>
-              </div>
+              <div class="col-md-12" v-for="(f, i, index) in filterCandidates">
+                <div class="row">
 
-              <div class="col-md-3 pb-2" v-if="f.column">
-                <div class="input-group">
-                  <span class="input-group-prepend">
-                    <span class="input-group-text">Operator</span>
-                  </span>
-                  <select class="form-control" @input="selectOperator(f, i, $event)" :disabled="itemDataStat !== 'success'">
-                    <option v-for="y in fetchOperators(f)" :value="JSON.stringify(y)" :selected="f.operator && y.name === f.operator.name">
-                      {{y.title}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <template v-if="f.column && f.operator">
-                <div class="col-md-4 pb-2" v-if="f.operator.component === 'single'">
-                  <div class="input-group">
-                    <span class="input-group-prepend">
-                      <span class="input-group-text">Kata Kunci</span>
-                    </span>
-                    <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
-                  </div>
-                </div>
-                <template v-if="f.operator.component === 'double'">
-                  <div class="col-md-2 pb-2">
+                  <div class="col-md-3 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text">Kata Kunci</span>
+                        <span class="input-group-text">Kolom</span>
                       </span>
-                      <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1" :disabled="itemDataStat !== 'success'">
-                    </div>
-                  </div>
-                  <div class="col-md-2 pb-2">
-                    <div class="input-group">
-                      <span class="input-group-prepend">
-                        <span class="input-group-text">Kata Kunci</span>
-                      </span>
-                      <input type="text" class="form-control" v-model="f.query_2" placeholder="Masukkan kata kunci pencarian 2" :disabled="itemDataStat !== 'success'">
-                    </div>
-                  </div>
-                </template>
-                <template v-if="f.operator.component === 'datetime_1'">
-                  <div class="col-md-2 pb-2">
-                    <div class="input-group">
-                      <span class="input-group-prepend">
-                        <span class="input-group-text">Kata Kunci</span>
-                      </span>
-                      <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
-                    </div>
-                  </div>
-                  <div class="col-md-2 pb-2">
-                    <div class="input-group">
-                      <span class="input-group-prepend">
-                        <span class="input-group-text">Waktu</span>
-                      </span>
-                      <select class="form-control" v-model="f.query_2" :disabled="itemDataStat !== 'success'">
-                        <option value="hours">jam</option>
-                        <option value="days">hari</option>
-                        <option value="months">bulan</option>
-                        <option value="years">tahun</option>
+                      <select class="form-control" @input="selectColumn(f, i, $event)" :disabled="itemDataStat !== 'success'">
+                        <option disabled value="">Silahkan masukkan kolom pencarian</option>
+                        <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
+                          v-if="x.filter && !x.disable">
+                          {{x.title}}
+                        </option>
                       </select>
                     </div>
                   </div>
-                </template>
-                <template v-if="f.operator.component === 'datetime_2'">
+
+                  <div class="col-md-3 pb-2" v-if="f.column">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Operator</span>
+                      </span>
+                      <select class="form-control" @input="selectOperator(f, i, $event)" :disabled="itemDataStat !== 'success'">
+                        <option v-for="y in fetchOperators(f)" :value="JSON.stringify(y)" :selected="f.operator && y.name === f.operator.name">
+                          {{y.title}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <template v-if="f.column && f.operator">
+                    <div class="col-md-6 pb-2" v-if="f.operator.component === 'single'">
+                      <div class="input-group">
+                        <span class="input-group-prepend">
+                          <span class="input-group-text">Kata Kunci</span>
+                        </span>
+                        <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
+                      </div>
+                    </div>
+                    <template v-if="f.operator.component === 'double'">
+                      <div class="col-md-3 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Kata Kunci</span>
+                          </span>
+                          <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1" :disabled="itemDataStat !== 'success'">
+                        </div>
+                      </div>
+                      <div class="col-md-3 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Kata Kunci</span>
+                          </span>
+                          <input type="text" class="form-control" v-model="f.query_2" placeholder="Masukkan kata kunci pencarian 2" :disabled="itemDataStat !== 'success'">
+                        </div>
+                      </div>
+                    </template>
+                    <template v-if="f.operator.component === 'datetime_1'">
+                      <div class="col-md-3 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Kata Kunci</span>
+                          </span>
+                          <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
+                        </div>
+                      </div>
+                      <div class="col-md-3 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Waktu</span>
+                          </span>
+                          <select class="form-control" v-model="f.query_2" :disabled="itemDataStat !== 'success'">
+                            <option value="hours">jam</option>
+                            <option value="days">hari</option>
+                            <option value="months">bulan</option>
+                            <option value="years">tahun</option>
+                          </select>
+                        </div>
+                      </div>
+                    </template>
+                    <template v-if="f.operator.component === 'datetime_2'">
+                      <div class="col-md-6 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Waktu</span>
+                          </span>
+                          <select class="form-control" v-model="f.query_1" :disabled="itemDataStat !== 'success'">
+                            <option value="yesterday">kemarin</option>
+                            <option value="today">hari ini</option>
+                            <option value="tomorrow">besok</option>
+                            <option value="last_month">bulan lalu</option>
+                            <option value="this_month">bulan ini</option>
+                            <option value="next_month">bulan depan</option>
+                            <option value="last_year">tahun lalu</option>
+                            <option value="this_year">tahun ini</option>
+                            <option value="next_year">tahun depan</option>
+                          </select>
+                        </div>
+                      </div>
+                    </template>
+                  </template>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- divider -->
+            <div class="row"><div class="col-sm-12"><hr class="mt-2"></div></div>
+
+            <!-- button row -->
+            <div class="row justify-content-between">
+              <!-- filter -->
+              <div class="col-md-5 col-lg-4 pb-2">
+                <div class="row">
+                  <div class="col-md-6 pb-2">
+                    <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
+                  </div>
+                  <div class="col-md-6 pb-2" v-if="appliedFilters.length > 0">
+                    <button class="btn btn-warning btn-block"  @click="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- entri & order -->
+              <div class="col-md-6 col-lg-4 text-right">
+                <div class="row">
+
+                  <!-- entri -->
                   <div class="col-md-4 pb-2">
                     <div class="input-group">
                       <span class="input-group-prepend">
-                        <span class="input-group-text">Waktu</span>
+                        <span class="input-group-text">Entri</span>
                       </span>
-                      <select class="form-control" v-model="f.query_1" :disabled="itemDataStat !== 'success'">
-                        <option value="yesterday">kemarin</option>
-                        <option value="today">hari ini</option>
-                        <option value="tomorrow">besok</option>
-                        <option value="last_month">bulan lalu</option>
-                        <option value="this_month">bulan ini</option>
-                        <option value="next_month">bulan depan</option>
-                        <option value="last_year">tahun lalu</option>
-                        <option value="this_year">tahun ini</option>
-                        <option value="next_year">tahun depan</option>
+                      <select class="form-control"  v-model="query.limit" @change="updateLimit" :disabled="itemDataStat !== 'success'">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>25</option>
+                        <option>50</option>
+                      </select>
+                    </div> 
+                  </div>
+
+                  <!-- order -->
+                  <div class="col-md-6 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Urutkan</span>
+                      </span>
+                      <select class="form-control" @input="updateOrderColumn" :disabled="itemDataStat !== 'success'">
+                        <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
+                          v-if="column.sort && !column.disable">
+                          {{column.title}}
+                        </option>
+                      </select>
+                    </div>  
+                  </div>
+
+                  <!-- order direction -->
+                  <div class="col-md-2">
+                    <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection" :disabled="itemDataStat !== 'success'">
+                      <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
+                      <i class="icon-arrow-down7" v-else></i>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </transition>  
+      
+      <!-- lanjutan -->
+      <transition enter-active-class="animated fadeIn" mode="out-in">
+        <div v-show="tabName == 'lanjutan'" v-if="!isDasar">
+          <div class="card-body">
+
+            <!-- search row -->
+            <div class="row">
+              <div class="col-md-12" v-for="(f, i, index) in filterCandidates">
+                <div class="row">
+                  <div class="col-md-4 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Kolom</span>
+                      </span>
+                      <select class="form-control" @input="selectColumn(f, i, $event)" :disabled="itemDataStat !== 'success'">
+                        <option disabled value="">Silahkan masukkan kolom pencarian</option>
+                        <option v-for="x in columnData" :value="JSON.stringify(x)" :selected="f.column && x.name === f.column.name"
+                          v-if="x.filter && !x.disable">
+                          {{x.title}}
+                        </option>
                       </select>
                     </div>
                   </div>
-                </template>
 
-              </template>
+                  <div class="col-md-3 pb-2" v-if="f.column">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Operator</span>
+                      </span>
+                      <select class="form-control" @input="selectOperator(f, i, $event)" :disabled="itemDataStat !== 'success'">
+                        <option v-for="y in fetchOperators(f)" :value="JSON.stringify(y)" :selected="f.operator && y.name === f.operator.name">
+                          {{y.title}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
 
-              <div class="col-md-1 pb-2">
-                <button class="btn bg-slate-300 btn-block" @click="removeFilter(f,i)" :disabled="itemDataStat !== 'success'"><i class="icon-cross3"></i></button>
+                  <template v-if="f.column && f.operator">
+                    <div class="col-md-4 pb-2" v-if="f.operator.component === 'single'">
+                      <div class="input-group">
+                        <span class="input-group-prepend">
+                          <span class="input-group-text">Kata Kunci</span>
+                        </span>
+                        <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
+                      </div>
+                    </div>
+                    <template v-if="f.operator.component === 'double'">
+                      <div class="col-md-2 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Kata Kunci</span>
+                          </span>
+                          <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1" :disabled="itemDataStat !== 'success'">
+                        </div>
+                      </div>
+                      <div class="col-md-2 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Kata Kunci</span>
+                          </span>
+                          <input type="text" class="form-control" v-model="f.query_2" placeholder="Masukkan kata kunci pencarian 2" :disabled="itemDataStat !== 'success'">
+                        </div>
+                      </div>
+                    </template>
+                    <template v-if="f.operator.component === 'datetime_1'">
+                      <div class="col-md-2 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Kata Kunci</span>
+                          </span>
+                          <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
+                        </div>
+                      </div>
+                      <div class="col-md-2 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Waktu</span>
+                          </span>
+                          <select class="form-control" v-model="f.query_2" :disabled="itemDataStat !== 'success'">
+                            <option value="hours">jam</option>
+                            <option value="days">hari</option>
+                            <option value="months">bulan</option>
+                            <option value="years">tahun</option>
+                          </select>
+                        </div>
+                      </div>
+                    </template>
+                    <template v-if="f.operator.component === 'datetime_2'">
+                      <div class="col-md-4 pb-2">
+                        <div class="input-group">
+                          <span class="input-group-prepend">
+                            <span class="input-group-text">Waktu</span>
+                          </span>
+                          <select class="form-control" v-model="f.query_1" :disabled="itemDataStat !== 'success'">
+                            <option value="yesterday">kemarin</option>
+                            <option value="today">hari ini</option>
+                            <option value="tomorrow">besok</option>
+                            <option value="last_month">bulan lalu</option>
+                            <option value="this_month">bulan ini</option>
+                            <option value="next_month">bulan depan</option>
+                            <option value="last_year">tahun lalu</option>
+                            <option value="this_year">tahun ini</option>
+                            <option value="next_year">tahun depan</option>
+                          </select>
+                        </div>
+                      </div>
+                    </template>
+                  </template>
+
+                  <div class="col-md-1 pb-2">
+                    <button class="btn bg-slate-300 btn-block" @click="removeFilter(f,i)" :disabled="itemDataStat !== 'success' || filterCandidates.length == 1"><i class="icon-cross3"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button class="btn btn-light btn-block" @click="addFilter" :disabled="itemDataStat !== 'success'"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
               </div>
             </div>
-          </div>
-          <div class="col-md-12">
-            <button class="btn btn-light btn-block" @click="addFilter" :disabled="itemDataStat !== 'success'"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
+
+            <!-- divider -->
+            <div class="row"><div class="col-sm-12"><hr class="mt-2"></div></div>
+
+            <!-- button row -->
+            <div class="row justify-content-between">
+              <!-- filter -->
+              <div class="col-md-5 col-lg-4 pb-2">
+                <div class="row">
+                  <div class="col-md-6 pb-2">
+                    <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
+                  </div>
+                  <div class="col-md-6 pb-2" v-if="appliedFilters.length > 0">
+                    <button class="btn btn-warning btn-block"  @click="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- entri & order -->
+              <div class="col-md-6 col-lg-4 text-right">
+                <div class="row">
+
+                  <!-- entri -->
+                  <div class="col-md-4 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Entri</span>
+                      </span>
+                      <select class="form-control"  v-model="query.limit" @change="updateLimit" :disabled="itemDataStat !== 'success'">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>25</option>
+                        <option>50</option>
+                      </select>
+                    </div> 
+                  </div>
+
+                  <!-- order -->
+                  <div class="col-md-6 pb-2">
+                    <div class="input-group">
+                      <span class="input-group-prepend">
+                        <span class="input-group-text">Urutkan</span>
+                      </span>
+                      <select class="form-control" @input="updateOrderColumn" :disabled="itemDataStat !== 'success'">
+                        <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
+                          v-if="column.sort && !column.disable">
+                          {{column.title}}
+                        </option>
+                      </select>
+                    </div>  
+                  </div>
+
+                  <!-- order direction -->
+                  <div class="col-md-2">
+                    <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection" :disabled="itemDataStat !== 'success'">
+                      <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
+                      <i class="icon-arrow-down7" v-else></i>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </div>
+      </transition>
 
-        <!-- divider -->
-        <div class="row"><div class="col-sm-12"><hr class="mt-2"></div></div>
-
-        <!-- button row -->
-        <div class="row">
-          <!-- filter -->
-          <div class="col-md-5 col-lg-6 pb-2">
-            <div class="row">
-              <div class="col-md-6 pb-2">
-                 <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
-              </div>
-              <div class="col-md-6 pb-2" v-if="this.appliedFilters.length > 0">
-                <button class="btn btn-warning btn-block"  @click="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- entri & order -->
-          <div class="col-md-7 col-lg-6 text-right">
-            <div class="row">
-
-              <!-- entri -->
-              <div class="col-md-4 pb-2">
-                <div class="input-group">
-                  <span class="input-group-prepend">
-                    <span class="input-group-text">Entri</span>
-                  </span>
-                  <select class="form-control"  v-model="query.limit" @change="updateLimit" :disabled="itemDataStat !== 'success'">
-                    <option>10</option>
-                    <option>15</option>
-                    <option>25</option>
-                    <option>50</option>
-                  </select>
-                </div> 
-              </div>
-
-              <!-- order -->
-              <div class="col-md-6 pb-2">
-                <div class="input-group">
-                  <span class="input-group-prepend">
-                    <span class="input-group-text">Urutkan</span>
-                  </span>
-                  <select class="form-control" @input="updateOrderColumn" :disabled="itemDataStat !== 'success'">
-                    <option v-for="column in columnData" :value="column.name" :selected="column && column.name == query.order_column"
-                      v-if="column.sort && !column.disable">
-                      {{column.title}}
-                    </option>
-                  </select>
-                </div>  
-              </div>
-
-              <!-- order direction -->
-              <div class="col-md-2">
-                <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection" :disabled="itemDataStat !== 'success'">
-                  <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
-                  <i class="icon-arrow-down7" v-else></i>
-                </button>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
     </div>
 
     <div class="card" v-if="this.dataview == 'list' || this.dataview == undefined">
       <!-- button -->
-      <div class="card-header d-print-none">
+      <div class="card-header d-print-none" v-if="!isNoButtonRow">
         <div class="row">
           <!-- slot button -->
           <!-- button desktop -->
-          <div class="col-md-8 col-lg-10 pb-2 d-none d-sm-block">
+          <div class="col-md-7 col-lg-9 pb-2 d-none d-sm-block">
             <slot name="button-desktop"></slot>
           </div>
           <!-- button mobile -->
@@ -209,31 +407,30 @@
             <slot name="button-mobile"></slot>
           </div>
 
-          <div class="col-md-4 col-lg-2 text-right d-none d-sm-block">
-            <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" >
+          <div class="col-md-5 col-lg-3 text-right d-none d-sm-block">
+            <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" v-if="!isNoKolom">
               <i class="icon-table2"></i> Kolom
             </button>
-            <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+            <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
             </button>
           </div>
 
-          <div class="col-md-4 col-lg-2 d-block d-sm-none">
-            <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" >
+          <div class="col-md-12 d-block d-sm-none">
+            <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" v-if="!isNoKolom">
               <i class="icon-table2"></i> Kolom
             </button>
-            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
             </button>
           </div>
 
-        </div>
-        
+        </div>     
       </div>
 
       <!-- listview -->
       <!-- table-->
-      <div class="table-responsive table-scrollable" style="max-height: 33rem;" >
+      <div class="table-responsive table-scrollable" style="max-height: 33rem;" :class="tableClass">
         <table class="table table-striped">
 
           <!-- header -->
@@ -754,7 +951,7 @@
   import FileSaver from 'file-saver';
 
   export default {
-    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUploads','dataview'],
+    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUploads','dataview','tableClass','isDasar','isNoKolom','isNoExcel','isNoButtonRow'],
     components: {
       jsonExcel,
       appModal,
@@ -764,6 +961,7 @@
         appliedFilters: [],
         filterCandidates: [],
         pages: [],
+        tabName: 'dasar',
         excel: {
           fields: {},
           data: [],
@@ -839,6 +1037,12 @@
 			},
     },
     methods: {
+      changeTab(value){
+        this.tabName = value;
+        if(this.appliedFilters.length > 0){
+          this.resetFilter();
+        }
+			},
       // show column
       hideColumn(index) {
         if (this.columnData[index].hide === false)

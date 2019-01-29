@@ -15,7 +15,7 @@
 					<!-- main panel -->
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
-						<!-- informasi umum -->
+						<!-- form -->
 						<div class="card">
 							<div class="card-body">
 								<div class="row">
@@ -59,6 +59,7 @@
 										</div>
 									</div>
 
+									<!-- tipe -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
 
@@ -127,9 +128,8 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
-
-									
-
+	
+									<!-- keterangan -->
 									<div class="col-md-12">
 										<div class="form-group">
 
@@ -143,6 +143,7 @@
 										</div>
 									</div>
 
+									<!-- aturan setor -->
 									<div class="col-md-12">
 										<div class="form-group">
 
@@ -156,7 +157,8 @@
 										</div>
 									</div>
 
-									<div class="col-md-12">
+									<!-- aturan tarik -->
+									<div class="col-md-12" v-if="form.tipe == 'Simpanan Pokok' || form.tipe == 'Simpanan Wajib' || form.tipe == 'Simpanan Non Saham'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -169,6 +171,7 @@
 										</div>
 									</div>
 
+									<!-- aturan balas jasa -->
 									<div class="col-md-12">
 										<div class="form-group">
 
@@ -182,6 +185,7 @@
 										</div>
 									</div>
 
+									<!-- aturan lain -->
 									<div class="col-md-12">
 										<div class="form-group">
 

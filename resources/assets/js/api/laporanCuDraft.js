@@ -1,7 +1,7 @@
 export default {
   
   index: function(){
-    return axios.get('/api/laporanCuDraft/');
+    return axios.get('/api/laporanCuDraft');
   },
 
   store: function ( id ){

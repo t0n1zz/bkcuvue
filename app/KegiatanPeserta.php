@@ -11,15 +11,15 @@ class KegiatanPeserta extends Model {
     protected $table = 'kegiatan_peserta';
 
     protected $fillable = [
-        'aktivis_id','kegiatan_id','keterangan','status','created_at','updated_at'
+        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at',''
     ];
 
     protected $allowedFilters = [
-        'aktivis.name'
+        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status'
     ];
 
     protected $orderable = [
-        'aktivis.name','created_at'
+        'name_nametag','name_sertifikat','datang','pulang','status'
     ];
     
     public function aktivis()

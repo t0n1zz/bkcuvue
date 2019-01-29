@@ -4,7 +4,7 @@
 			<div class="alert alert-styled-left alert-arrow-left alert-component content-group-lg" :class="className" v-show="show">
 
 					<!-- close -->
-					<button type="button" class="close" @click="close" v-tooltip:top="'Tutup'" v-if="!errorItem">
+					<button type="button" class="close" @click.prevent="close" v-tooltip:top="'Tutup'" v-if="!errorItem">
 							<span><i class="icon-cross"></i></span>
 					</button>
 
@@ -101,7 +101,7 @@
 					}
 				},
 				close(){
-					this.show = false;
+					this.$emit('close');
 				}
 			}
     }

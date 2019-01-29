@@ -66,7 +66,7 @@ export const laporanCu = {
       {//5
         title: "Periode",
         name: "periode",
-        tipe: "datetime",
+        tipe: "string",
         sort: true,
         hide: false,
         disable: false,
@@ -641,7 +641,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//9
-        title: "P2 (&gt; 35%)",
+        title: "P2 (> 35%)",
         name: "p2",
         tipe: "numeric",
         sort: true,
@@ -671,7 +671,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//12
-        title: "E6 (&le; 5%)",
+        title: "E6 (<= 5%)",
         name: "e6",
         tipe: "numeric",
         sort: true,
@@ -691,7 +691,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//14
-        title: "E9 (&ge; 10%)",
+        title: "E9 (>= 10%)",
         name: "e9",
         tipe: "numeric",
         sort: true,
@@ -701,7 +701,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//15
-        title: "A1 (&le; 5%)",
+        title: "A1 (<= 5%)",
         name: "a1",
         tipe: "numeric",
         sort: true,
@@ -711,7 +711,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//16
-        title: "A2 (&lt; 5%)",
+        title: "A2 (< 5%)",
         name: "a2",
         tipe: "numeric",
         sort: true,
@@ -731,7 +731,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//18
-        title: "R9 (= 5%)",
+        title: "R9 (<= 5%)",
         name: "r9",
         tipe: "numeric",
         sort: true,
@@ -761,7 +761,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//21
-        title: "S10 (&gt; 12%)",
+        title: "S10 (> 12%)",
         name: "s10",
         tipe: "numeric",
         sort: true,
@@ -771,7 +771,7 @@ export const laporanCu = {
         isChart: true,
       },
       {//22
-        title: "S11 (&gt; 10% + Laju Inflasi)",
+        title: "S11 (> 10% + Laju Inflasi)",
         name: "s11",
         tipe: "numeric",
         sort: true,

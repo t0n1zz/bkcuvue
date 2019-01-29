@@ -70,7 +70,7 @@ class Helper{
 
 	public static function dom_processing($request, $path)
 	{
-		$dom = new DomDocument();
+		$dom = new \DomDocument();
 		libxml_use_internal_errors(true);
 		$dom->loadHTML(mb_convert_encoding($request->content, 'HTML-ENTITIES', "UTF-8"), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 		$images2 = $dom->getElementsByTagName('img');
@@ -79,7 +79,7 @@ class Helper{
 				$src2 = $img2->getAttribute('src');
 				$array2[] = $src2;
 		}
-
+ 
 		return $dom->saveHTML();
 	}
 

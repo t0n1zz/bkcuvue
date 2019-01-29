@@ -1005,7 +1005,7 @@ export default {
           this.modalKatex.form[2].title +
           "} - \\text{" +
           this.modalKatex.form[3].title +
-          "}}{\\text{2}})} \\times \\text{100} \\% = \\text{5} \\% (\\text{IDEAL})";
+          "}}{\\text{2}})} \\times \\text{100} \\% <= \\text{5} \\% (\\text{IDEAL})";
 
         let katex2Content1 =
           "\\text{R9} = \\dfrac{\\text{" +
@@ -1019,7 +1019,7 @@ export default {
           "}}{\\text{2}}} \\times \\text{100} \\% = " +
           this.formatPercentage(itemData.r9) +
           " \\% ( \\text{" +
-          (itemData.r9 == 0.05 ? "IDEAL" : "TIDAK IDEAL") +
+          (itemData.r9 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") +
           "})";
 
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });

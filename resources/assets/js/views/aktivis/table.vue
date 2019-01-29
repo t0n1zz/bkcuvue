@@ -81,7 +81,7 @@
 						</span>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[7].hide && !columnData[7].disable" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
+					<td v-if="!columnData[7].hide && !columnData[7].disable && props.item.pekerjaan_aktif.tingkat" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
 					</td>
 					<td v-if="!columnData[8].hide">
 						<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
@@ -341,7 +341,7 @@
 						filter: true,
 					},
 					{
-						title: 'Status',
+						title: 'Status Pernikahan',
 						name: 'status',
 						tipe: 'string',
 						sort: true,

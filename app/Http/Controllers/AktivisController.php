@@ -84,7 +84,7 @@ class AktivisController extends Controller{
 			->whereHas('pekerjaan', function($query) use ($id,$tipe){
 				$query->where('tipe',$tipe)->where('id_tempat',$id)
 				->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
+					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
 				});
 			})->advancedFilter();
 		}elseif($tingkat == 'manajemen'){
@@ -293,7 +293,11 @@ class AktivisController extends Controller{
 		// keluarga
 		$ayah = $request->keluarga['ayah'];
 		$ibu = $request->keluarga['ibu'];
-		$pasangan = $request->keluarga['pasangan'];
+
+		if(array_key_exists('pasangan',$request->keluarga)){
+			$pasangan = $request->keluarga['pasangan'];
+		}
+
 		$anak = $request->anak;
 
 		if(!empty($ayah))
@@ -314,7 +318,11 @@ class AktivisController extends Controller{
 		// anggota cu, pendidikan, organisasi, pekerjaan
 		$this->saveAnggotaCu($request,$kelas->id);
 		$this->savePendidikan($request,$kelas->id);
-		$this->saveOrganisasi($request,$kelas->id);
+ 
+		if($request->organisasi['aktif'] == 'Ya'){
+			$this->saveOrganisasi($request,$kelas->id);
+		}
+
 		$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
 
 		// nim

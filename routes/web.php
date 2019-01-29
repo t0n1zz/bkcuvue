@@ -25,12 +25,17 @@ $appRoutes = function() {
 	Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori','uses' => 'PublicController@artikelKategori'));
     Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis','uses' => 'PublicController@artikelPenulis'));
     
-    // cu
-    Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));
-    
-    // dokumen
-    Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
-    Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
+	// cu
+	Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));
+	
+	// dokumen
+	Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
+	Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
+
+	Route::get('panduan',array('as' => 'panduan', function()
+	{
+			return view('panduan.index');
+	}));
 };
 
 Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);
@@ -55,6 +60,7 @@ $appSubRoutes = function() {
 };
 
 Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
+
 
 
 // admins

@@ -92,11 +92,11 @@ class UserController extends Controller
 		'update_tempat',
 		'destroy_tempat',
 
-		'index_anggota_cu',
-		'create_anggota_cu',
-		'update_anggota_cu',
-		'destroy_anggota_cu',
-		'upload_anggota_cu',
+		// 'index_anggota_cu',
+		// 'create_anggota_cu',
+		// 'update_anggota_cu',
+		// 'destroy_anggota_cu',
+		// 'upload_anggota_cu',
 
 		'index_laporan_cu',
 		'create_laporan_cu',

@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Provinces;
+
+use App\Region\Provinces;
 use Illuminate\Http\Request;
 
 class ProvincesController extends Controller{

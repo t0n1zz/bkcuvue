@@ -221,7 +221,7 @@
 		<!-- r9 -->
 		<div v-else-if="type == 'r9'" class="d-flex align-items-center">
 			<div class="mr-3">
-				<button type="button" class="btn rounded-round btn-icon btn-xs" :class="{'btn-primary': props.r9 == 0.05, 'btn-danger': props.r9 < 0.05, 'btn-danger': props.r9 < 0.05}">
+				<button type="button" class="btn rounded-round btn-icon btn-xs" :class="{'btn-primary': props.r9 <= 0.05, 'btn-danger': props.r9 > 0.05}">
 					<span class="letter-icon">R9</span>
 				</button>
 			</div>
@@ -230,7 +230,7 @@
 					<check-value :value="props.r9" valueType="percentage"></check-value>
 				</a>
 				<div class="font-size-sm">
-					<span v-if="props.r9 == 0.05">IDEAL</span>
+					<span v-if="props.r9 <= 0.05">IDEAL</span>
 					<span v-else>TIDAK IDEAL</span>
 				</div>
 			</div>

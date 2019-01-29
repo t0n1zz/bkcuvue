@@ -25,7 +25,7 @@
                 </div>
               </div>
 
-              <div class="col-md-4 pb-2" v-if="f.column">
+              <div class="col-md-4 pb-2" v-if="f.column" v-show="false">
                 <div class="input-group">
                   <span class="input-group-prepend">
                     <span class="input-group-text">Operator</span>
@@ -39,7 +39,7 @@
               </div>
 
               <template>
-                <div class="col-md-6 pb-2" >
+                <div class="col-md-10 pb-2" >
                   <div class="input-group">
                     <span class="input-group-prepend">
                       <span class="input-group-text">Nama</span>

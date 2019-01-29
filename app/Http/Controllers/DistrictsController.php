@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Districts;
+use App\Region\Districts;
 use Illuminate\Http\Request;
 
 class DistrictsController extends Controller{

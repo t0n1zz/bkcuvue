@@ -254,7 +254,7 @@ class DiklatBKCUController extends Controller{
 		$time = \Carbon\Carbon::now();
 
 		// save data
-		$kelas = KegiatanPeserta::create($request->all() + [ 'kegiatan_id' => $id, 'status' => 1 ]);
+		$kelas = KegiatanPeserta::create($request->except('status','kegiatan_id') + [ 'kegiatan_id' => $id, 'status' => 1 ]);
 
 		// send notif if interval different is more than 2 hours
 		if($dataPeserta){
@@ -381,9 +381,7 @@ class DiklatBKCUController extends Controller{
 	{
 		$kelas = KegiatanPeserta::findOrFail($id);
 
-		$kelas->keterangan = $request->keterangan;
-
-		$kelas->update();
+		$kelas->update($request->except('status'));
 
 		return response()
 			->json([
@@ -430,7 +428,7 @@ class DiklatBKCUController extends Controller{
 		$kelas->update();
 
 		if($request->keteranganBatal != ''){
-			NotificationHelper::store_diklat_bkcu(0, $kelas->kegiatan_id,'Maaf, peserta telah dibatalkan dengan alasan ' + $request->keteranganBatal);
+			NotificationHelper::store_diklat_bkcu(0, $kelas->kegiatan_id,'Maaf, peserta telah dibatalkan dengan alasan ' . $request->keteranganBatal);
 		}else{
 			NotificationHelper::store_diklat_bkcu(0, $kelas->kegiatan_id,'Maaf, peserta telah dibatalkan');
 		}

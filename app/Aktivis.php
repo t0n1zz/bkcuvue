@@ -64,7 +64,7 @@ class Aktivis extends Model {
     }
 
     public function pekerjaan_aktif(){
-        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->latest();
+        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1)->latest();
     }
 
     public function keluarga(){

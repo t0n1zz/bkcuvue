@@ -121,6 +121,7 @@ class PublicCuController extends Controller
 
     public function artikelKategori($cu, $slug)
     {
+        $cu = Cu::where('slug',$cu)->first();
         $kategori = ArtikelKategori::where('slug',$slug)->first();
 
         $title = $kategori->name;
@@ -139,6 +140,7 @@ class PublicCuController extends Controller
 
     public function artikelPenulis($cu, $slug)
     {
+        $cu = Cu::where('slug',$cu)->first();
         $penulis = ArtikelPenulis::where('slug',$slug)->first();
 
         $title = 'Artikel oleh ' . $penulis->name;

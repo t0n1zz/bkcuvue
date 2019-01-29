@@ -16,11 +16,12 @@
 					<div class="row">
 						<div class="col-lg-9 col-md-8">
 							<div class="card">
-								<div class="card-header header-elements-md-inline">
-									<h5 class="card-title">{{ item.name }}</h5>
-									
+								<div class="card-header header-elements-inline">
+									<h5 class="card-title">{{ item.name }}</h5>	
+									<div class="header-elements">
+										[{{ item.kode_diklat }}]
+									</div>
 								</div>
-
 								<div class="nav-tabs-responsive bg-light border-top">
 									<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-menu7 mr-2"></i>
@@ -30,25 +31,33 @@
 									</ul>
 								</div>
 
-								<!-- informasi -->
-								<transition enter-active-class="animated fadeIn" mode="out-in">
-									<div v-show="tabName == 'info'">
-										<div class="card-body">
+							</div>
 
-											<!-- keterangan -->
-											<div class="mt-1 mb-4" v-if="item.keterangan">
-												<h6 class="font-weight-semibold">1. Kerangka Acuan</h6>
-												<div v-html="item.keterangan"></div>
-											</div>
-
-											<!-- jadwal -->
-											<h6 class="font-weight-semibold" v-if="item.jadwal">2. Jadwal Kegiatan</h6>
-											<div class="mb-4" v-html="item.jadwal"></div>		
-
-											<h6 class="font-weight-semibold" v-if="itemDataPanitia">3. Panitia dan Fasilitator</h6>
+							<!-- informasi -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'info'">
+									<div class="card" v-if="item.keterangan">
+										<div class="card-header bg-white">
+											<h5 class="card-title">1. Kerangka Acuan</h5>
 										</div>
+										<div class="card-body" v-html="item.keterangan">
+										</div>
+									</div>
 
-										<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat" v-if="itemDataPanitia">
+									<div class="card" v-if="item.jadwal">
+										<div class="card-header bg-white">
+											<h5 class="card-title">2. Jadwal</h5>
+										</div>
+										<div class="card-body" v-html="item.jadwal">
+										</div>
+									</div>
+									
+
+									<div class="card" v-if="itemDataPanitia">
+										<div class="card-header bg-white">
+											<h5 class="card-title">3. Panitia dan Fasilitator</h5>
+										</div>
+										<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat">
 											<template slot="item-desktop" slot-scope="props">
 												<tr v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
@@ -116,124 +125,143 @@
 												</tr>
 											</template>	
 										</data-table>
-
 									</div>
-								</transition>
 
-								<!-- peserta -->
-								<transition enter-active-class="animated fadeIn" mode="out-in">
-									<div v-show="tabName == 'peserta'" v-if="isPeserta">
-										<data-viewer :itemData="itemData" :columnData="columnData" :itemDataStat="itemDataStat" :query="query" @fetch="fetchPeserta">
+								</div>
+							</transition>
 
-											<!-- if bkcu -->
-											<template slot="button-desktop" v-if="currentUser.id_cu == 0">
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
-													<i class="icon-plus22"></i> Tambah
-												</button>
+							<!-- peserta -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'peserta'">
+									<data-viewer :title="'peserta'" :itemData="itemData" :columnData="columnData" :itemDataStat="itemDataStat" :query="query" @fetch="fetchPeserta" :excelDownloadUrl="excelDownloadUrl" :isDasar="'true'" :isNoKolom="isNoKolom" :isNoExcel="isNoExcel">
 
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-												:disabled="!selectedItem.id" >
-													<i class="icon-pencil5"></i> Ubah
-												</button>
+										<!-- if bkcu -->
+										<template slot="button-desktop" v-if="currentUser.id_cu == 0">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
+												<i class="icon-plus22"></i> Tambah
+											</button>
 
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('batal')" :disabled="!selectedItem.id">
-													<i class="icon-bin2"></i> Hapus
-												</button>
-											</template>
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
+											:disabled="!selectedItem.id || selectedItem.status != 1" >
+												<i class="icon-pencil5"></i> Ubah
+											</button>
 
-											<!-- if cu -->
-											<template slot="button-desktop" v-if="currentUser.id_cu != 0">
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')" v-if="item.status == 2">
-													<i class="icon-plus22"></i> Tambah
-												</button>
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('batal')" :disabled="!selectedItem.id || selectedItem.status != 1">
+												<i class="icon-bin2"></i> Tolak
+											</button>
 
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-												:disabled="!selectedItem.id" v-if="item.status == 2" >
-													<i class="icon-pencil5"></i> Ubah
-												</button>
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasan')" v-if="selectedItem.status == 3">
+												<i class="icon-eye"></i> Lihat Alasan Penolakan
+											</button>
+										</template>
 
-												<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id" v-if="item.status == 2">
-													<i class="icon-bin2"></i> Hapus
-												</button>
-											</template>
+										<!-- if cu -->
+										<template slot="button-desktop" v-if="currentUser.id_cu != 0">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')" v-if="item.status == 2">
+												<i class="icon-plus22"></i> Tambah
+											</button>
 
-											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>
-														<span v-html="$options.filters.statusPeserta(props.item.status)"></span>
-													</td>
-													<td v-if="props.item.aktivis">
-														<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
-														<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.name"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.kelamin"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.keterangan"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<span v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 1">
-															<check-value :value="props.item.aktivis.pekerjaan_aktif.cu.name" v-if="props.item.aktivis.pekerjaan_aktif.cu"></check-value>
-															<span v-else>-</span>
-														</span>
-														<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 2">
-															<check-value :value="props.item.aktivis.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.aktivis.pekerjaan_aktif.lembaga_lain"></check-value>
-															<span v-else>-</span>
-														</span>
-														<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
-															Puskopdit BKCU Kalimantan
-														</span>
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
+											:disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3" >
+												<i class="icon-pencil5"></i> Ubah
+											</button>
+
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+												<i class="icon-bin2"></i> Hapus
+											</button>
+
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasan')" v-if="selectedItem.status == 3">
+												<i class="icon-eye"></i> Lihat Alasan Penolakan
+											</button>
+										</template>
+
+										<template slot="item-desktop" slot-scope="props">
+											<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+												<td>{{ props.index + 1 }}</td>
+												<td>
+													<span v-html="$options.filters.statusPeserta(props.item.status)"></span>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[2].hide">
+													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
+													<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[3].hide">
+													<check-value :value="props.item.aktivis.name"></check-value>
+												</td>
+												<td v-if="!columnData[4].hide">
+													<check-value :value="props.item.name_nametag"></check-value>
+												</td>
+												<td v-if="!columnData[5].hide">
+													<check-value :value="props.item.name_sertifikat"></check-value>
+												</td>
+												<td v-if="!columnData[6].hide">
+													<check-value :value="props.item.datang"></check-value>
+												</td>
+												<td v-if="!columnData[7].hide">
+													<check-value :value="props.item.pulang"></check-value>
+												</td>
+												<td v-if="!columnData[8].hide">
+													<check-value :value="props.item.keterangan"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[9].hide">
+													<check-value :value="props.item.aktivis.kelamin"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[10].hide">
+													<span v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 1">
+														<check-value :value="props.item.aktivis.pekerjaan_aktif.cu.name" v-if="props.item.aktivis.pekerjaan_aktif.cu"></check-value>
 														<span v-else>-</span>
-													</td>
-													<td v-if="props.item.aktivis" v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)">
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
+													</span>
+													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 2">
+														<check-value :value="props.item.aktivis.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.aktivis.pekerjaan_aktif.lembaga_lain"></check-value>
 														<span v-else>-</span>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
-														<span v-else>-</span>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.pendidikan_tertinggi.name" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
-														<span v-else>-</span>
-													</td>
-													<td v-if="props.item.aktivis" v-html="$options.filters.date(props.item.aktivis.tanggal_lahir)">
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.tempat_lahir"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.tinggi"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.agama"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.status"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.email"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.hp"></check-value>
-													</td>
-													<td v-if="props.item.aktivis">
-														<check-value :value="props.item.aktivis.kontak"></check-value>
-													</td>
-												</tr>
-											</template>	
-										</data-viewer>
-									</div>
-								</transition>
-
-							</div>
+													</span>
+													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
+														Puskopdit BKCU Kalimantan
+													</span>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[11].hide" v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)">
+												</td>
+												<td v-if="props.item.aktivis && !columnData[12].hide">
+													<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[13].hide">
+													<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[14].hide">
+													<check-value :value="props.item.aktivis.pendidikan_tertinggi.name" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[15].hide" v-html="$options.filters.date(props.item.aktivis.tanggal_lahir)">
+												</td>
+												<td v-if="props.item.aktivis && !columnData[16].hide">
+													<check-value :value="props.item.aktivis.tempat_lahir"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[17].hide">
+													<check-value :value="props.item.aktivis.tinggi"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[18].hide">
+													<check-value :value="props.item.aktivis.agama"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[19].hide">
+													<check-value :value="props.item.aktivis.status"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[20].hide">
+													<check-value :value="props.item.aktivis.email"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[21].hide">
+													<check-value :value="props.item.aktivis.hp"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnData[22].hide">
+													<check-value :value="props.item.aktivis.kontak"></check-value>
+												</td>
+											</tr>
+										</template>	
+									</data-viewer>
+								</div>
+							</transition>
 						</div>
 
 						<!-- sidebar -->
@@ -420,7 +448,7 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah panitia -->
+			<!-- tambah peserta -->
 			<template slot="modal-body1">
 				<form-peserta 
 				:mode="formPesertaMode"
@@ -434,6 +462,12 @@
 			<template slot="modal-body2">
 				<form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
 				@tutup="modalTutup"></form-status>
+			</template>
+
+			<!-- batal peserta -->
+			<template slot="modal-body3">
+				<form-peserta-batal :kelas="kelas" :id="selectedItem.id"
+				@tutup="modalTutup"></form-peserta-batal>
 			</template>
 
 		</app-modal>
@@ -453,9 +487,10 @@
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formPeserta from "./formPeserta.vue";
+	import formPesertaBatal from "./formPesertaBatal.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
-	import dataViewer from '../../components/dataviewerName.vue';
+	import dataViewer from '../../components/dataviewer2.vue';
 	import checkValue from '../../components/checkValue.vue';
 	import formStatus from "./formStatus.vue";
 
@@ -469,6 +504,7 @@
 			dataViewer,
 			checkValue,
 			formPeserta,
+			formPesertaBatal,
 			formStatus
 		},
 		data() {
@@ -483,6 +519,9 @@
 				tabName: 'info',
 				isPeserta: false,
 				tempatData: '',
+				formPesertaBatal: {
+					keterangan: ''
+				},
 				cleaveOption: {
 					date: {
 						date: true,
@@ -515,41 +554,182 @@
 					}
 				},
 				query: {
-					order_column: "created_at",
+					order_column: "status",
 					order_direction: "asc",
 					filter_match: "and",
 					limit: 10,
 					page: 1
 				},
+				excelDownloadUrl: '',
+				isNoKolom: '',
+				isNoExcel:'',
 				columnData: [
-					{ title: 'No.' },
-					{ title: 'Status' },
-					{ title: 'Foto' },
+					{
+						title: 'No.',
+					},
+					{
+						title: 'Status',
+						name: 'status',
+						tipe: 'string',
+						sort: true,
+						filter: false,
+					},
+					{
+						title: 'Foto',
+						name: 'gambar',
+						hide: false,
+					},
 					{
 						title: 'Nama',
 						name: 'aktivis.name',
 						tipe: 'string',
-						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
 						filterDefault: true
 					},
-					{ title: 'Keterangan' },
-					{ title: 'Gender' },
-					{ title: 'CU' },
-					{ title: 'Tingkat' },
-					{ title: 'Jabatan' },
-					{ title: 'Pendidikan'},
-					{ title: 'Jurusan' },
-					{ title: 'Tgl. Lahir' },
-					{ title: 'Tempat Lahir' },
-					{ title: 'Tinggi' },
-					{ title: 'Agama' },
-					{ title: 'Status' },
-					{ title: 'Email' },
-					{ title: 'No. Hp' },
-					{ title: 'Kontak Lain' }
+					{
+						title: 'Nama Di Nametag',
+						name: 'name_nametag',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Nama Di Sertifikat',
+						name: 'name_sertifikat',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Datang',
+						name: 'datang',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Pulang',
+						name: 'pulang',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Keterangan',
+						name: 'keterangan',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Gender',
+						name: 'aktivis.kelamin',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'CU',
+						name: 'aktivis.pekerjaan_aktif.cu.name',
+						tipe: 'string',
+					},
+					{
+						title: 'Tingkat',
+						name: 'aktivis.pekerjaan_aktif.tingkat',
+						tipe: 'string',
+					},
+					{
+						title: 'Jabatan',
+						name: 'aktivis.pekerjaan_aktif.name',
+						tipe: 'string',
+					},
+					{
+						title: 'Pendidikan',
+						name: 'aktivis.pendidikan_tertinggi.tingkat',
+						tipe: 'string',
+					},
+					{
+						title: 'Jurusan',
+						name: 'aktivis.pendidikan_tertinggi.name',
+						tipe: 'string',
+					},
+					{
+						title: 'Tgl. Lahir',
+						name: 'aktivis.tanggal_lahir',
+						tipe: 'datetime',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tempat Lahir',
+						name: 'aktivis.tempat_lahir',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tinggi',
+						name: 'aktivis.tinggi',
+						tipe: 'numeric',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Agama',
+						name: 'aktivis.agama',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Status Pernikahan',
+						name: 'aktivis.status',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Email',
+						name: 'aktivis.email',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'No. Hp',
+						name: 'aktivis.hp',
+						tipe: 'numeric',
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Kontak Lain',
+						name: 'aktivis.kontak',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+					}
 				],
 				columnDataPanitia: [
 					{ title: 'No.' },
@@ -592,6 +772,7 @@
 			itemStat(value) {
 				if (value === "success") {
 					this.fetchCountPeserta();
+					this.fetchPeserta(this.query);
 
 					var valDalam;
 					for(valDalam of this.item.panitia_dalam){
@@ -627,8 +808,11 @@
 			fetchPeserta(params){
 				if(this.currentUser.id_cu == 0){
 					this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
+					this.excelDownloadUrl = this.kelas + '/indexPeserta';
+					
 				}else{
 					this.$store.dispatch(this.kelas + '/indexPesertaCu', [params,this.item.id, this.currentUser.id_cu]);
+					this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + this.$route.params.cu;
 				}
 			},
 			fetchCountPeserta() {
@@ -636,11 +820,6 @@
 			},
 			changeTab(value){
 				this.tabName = value;
-
-				if(value == 'peserta' && !this.isPeserta){
-					this.isPeserta = true;
-					this.fetchPeserta(this.query);
-				}
 			},
 			save() {
 				this.form.sasaran = this.sasaran;
@@ -690,10 +869,16 @@
 					this.modalTitle = 'Hapus Peserta ' + this.selectedItem.aktivis.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
-				} else if (state == 'batal') {
-					this.modalState = 'normal2';
+				}else if(state == 'alasan'){
+					this.modalState = 'content-tutup';
+					this.modalColor = '';
+					this.modalSize = '';
+					this.modalTitle = 'Maaf anda belum bisa mengikuti diklat ini';
+					this.modalContent = 'Alasan penolakkan: <br/>' + this.selectedItem.keteranganBatal;
+				}else if (state == 'batal') {
+					this.modalState = 'normal3';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Batalkan Peserta ' + this.selectedItem.aktivis.name + ' ?';
+					this.modalTitle = 'Tolak Peserta ' + this.selectedItem.aktivis.name + ' ?';
 					this.modalButton = 'Ok';
 					this.modalSize = '';
 				} else if (state == 'status') {
@@ -714,7 +899,9 @@
 						this.modalSize = '';
 						this.modalTitle = 'Diklat sudah penuh';
 						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.';
-					}else if(this.itemData.data.length >= this.item.peserta_max_cu){
+					}
+					
+					if(this.itemData.data.length >= this.item.peserta_max_cu && this.currentUser.id_cu != 0){
 						this.modalState = 'content-tutup';
 						this.modalColor = '';
 						this.modalSize = '';
@@ -739,16 +926,15 @@
 			},
 			modalConfirmOk() {
 				this.modalShow = false;
+
 				if (this.state == 'hapusDiklat') {
 					this.$store.dispatch(this.kelas + '/destroy', this.item.id);
 				}else if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroyPeserta', this.selectedItem.id);
-				}else if (this.state == 'batal') {
-					this.$store.dispatch(this.kelas + '/batalPeserta', this.selectedItem.id);
 				}
 			},
 			modalTutup() {
-				if(this.state == 'tambah' || this.state == 'ubah' || this.state == 'hapus'){
+				if(this.state == 'tambah' || this.state == 'ubah' || this.state == 'hapus' || this.state == 'batal'){
 					this.tabName = 'peserta';
 					this.fetchPeserta(this.query);
 					this.fetchCountPeserta();

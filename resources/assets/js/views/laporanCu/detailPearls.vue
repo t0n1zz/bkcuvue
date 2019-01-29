@@ -336,11 +336,11 @@
 			</div>
 			<!-- r9 -->
 			<div class="col-sm-3">
-				<div class="card card-body" :class="{'bg-primary': itemData.r9 == 0.05, 'bg-danger': itemData.r9 < 0.05, 'bg-danger': itemData.r9 > 0.05}" @click.prevent="modalBuka(itemData,'r9')" style="cursor:pointer;">
+				<div class="card card-body" :class="{'bg-primary': itemData.r9 <= 0.05,'bg-danger': itemData.r9 > 0.05}" @click.prevent="modalBuka(itemData,'r9')" style="cursor:pointer;">
 					<div class="media no-margin-top content-group">
 						<div class="media-body">
 							<h6 class="font-weight-semibold mb-8">{{ itemData.r9 | percentage(2) }}</h6>
-							<span class="opacity-75" v-if="itemData.r9 == 0.05">
+							<span class="opacity-75" v-if="itemData.r9 <= 0.05">
 								IDEAL
 							</span>
 							<span v-else>
@@ -938,9 +938,9 @@
 					
 					this.modalKatex.indikator = 'Beban operasional terhadap rata-rata aset sebesar 5%.';
 
-					let katex1Content1 = '\\text{R9} = \\dfrac{\\text{Beban Operasional}(\\text{'+ this.modalKatex.form[0].title +'} - \\text{'+ this.modalKatex.form[1].title +'})}{\\text{Rata-rata Aset}(\\frac{\\text{'+ this.modalKatex.form[2].title +'} - \\text{'+ this.modalKatex.form[3].title +'}}{\\text{2}})} \\times \\text{100} \\% = \\text{5} \\% (\\text{IDEAL})';
+					let katex1Content1 = '\\text{R9} = \\dfrac{\\text{Beban Operasional}(\\text{'+ this.modalKatex.form[0].title +'} - \\text{'+ this.modalKatex.form[1].title +'})}{\\text{Rata-rata Aset}(\\frac{\\text{'+ this.modalKatex.form[2].title +'} - \\text{'+ this.modalKatex.form[3].title +'}}{\\text{2}})} \\times \\text{100} \\% <= \\text{5} \\% (\\text{IDEAL})';
 
-					let katex2Content1 = '\\text{R9} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{\\frac{\\text{'+ this.formatCurrency(this.modalKatex.form[2].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[3].value) +'}}{\\text{2}}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) +' \\% ( \\text{'+ (itemData.r9 == 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					let katex2Content1 = '\\text{R9} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}}{\\frac{\\text{'+ this.formatCurrency(this.modalKatex.form[2].value) +'} + \\text{'+ this.formatCurrency(this.modalKatex.form[3].value) +'}}{\\text{2}}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) +' \\% ( \\text{'+ (itemData.r9 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
 					
 					this.modalKatex.katex1.push({title:'',content:katex1Content1});
 					this.modalKatex.katex2.push({title:'',content:katex2Content1});

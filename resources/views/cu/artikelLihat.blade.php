@@ -67,7 +67,7 @@
                 <li><i class="icon-line-grid"></i>{{"-"}}</li> 
               @endif
               @if($artikel->penulis)
-                <li><a href="{{ route('artikel.penulis',['cu'=>$subdomain,'slug'=>$item->kategori->slug]) }}"><i class="icon-user"></i>{{ $artikel->penulis->name }}</a></li>
+                <li><a href="{{ route('artikel.penulis',['cu'=>$subdomain,'slug'=>$artikel->penulis->slug]) }}"><i class="icon-user"></i>{{ $artikel->penulis->name }}</a></li>
               @else 
                 <li><i class="icon-user"></i>{{"-"}}</li> 
               @endif

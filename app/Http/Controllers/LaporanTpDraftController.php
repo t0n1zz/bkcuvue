@@ -43,7 +43,7 @@ class LaporanTpDraftController extends Controller{
 		unset($value['no_ba']);   
 
 		if($this->checkData($kelas)){
-			$kelas2 = LaporanTp::insert($data);
+			$kelas2 = LaporanTp::create($data);
 			
 			$kelas->delete();
 
