@@ -8,190 +8,75 @@
 			<div class="content-wrapper">
 				<div class="content">
 
-					<!-- message -->
-					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
-					</message>
+					<!-- check nik -->
+					<div class="card" v-if="$route.meta.mode == 'create'">
+						<div class="card-body">	
+							<div class="row">
+								<div class="col-12">
+									<h6>
+										Silahkan masukkan NIK aktivis untuk memastikan apakah data aktivis dengan NIK tersebut sudah terdaftar di SIMO
+									</h6>
+								</div>
+								<div class="col-12 pb-2">
+									<!-- text -->
+									<cleave 
+										name="nik"
+										v-model="nik" 
+										class="form-control" 
+										:options="cleaveOption.number16"
+										placeholder="Silahkan masukkan no KTP"
+										v-validate="'required'" data-vv-as="No. KTP" :disabled="isNew"></cleave>
+								</div>
 
-					<!-- main panel -->
-					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
-
-						<!-- identitas -->
-						<div class="card">
-							<div class="card-header bg-white">
-								<h5 class="card-title">1. Identitas</h5>
-							</div>
-							<div class="card-body">
-									
-								<form-identitas :form="form"></form-identitas>
-
-							</div>
-						</div>
-
-						<!-- lokasi -->
-						<div class="card">
-							<div class="card-header bg-white">
-								<h5 class="card-title">2. Alamat & Kontak</h5>
-							</div>
-							<div class="card-body">
-
-								<form-lokasi :form="form"></form-lokasi>
-
-							</div>
-						</div>
-
-						<!-- keluarga -->
-						<div class="card" v-if="$route.meta.mode == 'create' && form.keluarga">
-							<div class="card-header bg-white">
-								<h5 class="card-title">3. Keluarga</h5>
-							</div>
-							<div class="card-body">
-								<div class="row">
-
-									<!-- ayah -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												Ayah:</h6>
-
-											<!-- text -->
-											<input type="text" name="ayah" class="form-control" placeholder="Silahkan masukkan nama ayah" v-model="form.keluarga.ayah">
-
+								<div class="col-4">
+									<div class="row">
+										<div class="col-6 pb-2">
+											<button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
 										</div>
-									</div>
-
-									<!-- ibu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												Ibu:</h6>
-
-											<!-- text -->
-											<input type="text" name="ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-model="form.keluarga.ibu">
-
-										</div>
-									</div>
-
-									<!-- pasangan -->
-									<div class="col-md-4" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												Pasangan:</h6>
-
-											<!-- text -->
-											<input type="text" name="pasangan" class="form-control" placeholder="Silahkan masukkan nama pasangan" v-model="form.keluarga.pasangan">
-
-											<!-- error message -->
+										<div class="col-6 pb-2" v-if="itemDataStat != ''">
+											<button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
 										</div>
 									</div>
 									
-									<!-- anak -->
-									<div class="col-md-4" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'" v-for="(anak,index) in formAnak">
-										<div class="form-group">
+								</div>
 
-											<!-- title -->
-											<h6>Anak {{ index + 1}}:</h6>
-
-											<div class="input-group">
-												<!-- text -->
-												<input type="text" name="anak" class="form-control" placeholder="Silahkan masukkan nama anak" v-model="anak.value">
-												
-												<div class="input-group-btn">
-													<button class="btn btn-light" v-tooltip:top="'Hapus anak '" @click.prevent="removeAnak(index)">
-														<i class="icon-cross"></i>
-													</button>
-												</div>
-											</div>
-
-											<small class="text-muted">&nbsp;</small>
+								<!-- loading -->
+								<div class="col-12" v-if="itemDataStat == 'loading'">
+									<hr/>
+									<div class="progress">
+										<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+											<span class="sr-only">100% Complete</span>
 										</div>
 									</div>
-
-									<!-- punya anak -->
-									<div class="col-md-12" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'">
-										<button class="btn btn-light btn-block" @click.prevent="addAnak()"><i class="icon-plus3"></i> 
-											<span v-if="formAnak.length == 0">Punya Anak</span>
-											<span v-else>Tambah Anak</span>
-										</button>
-									</div>
-								</div>	
-							</div>
-						</div>
-						
-						<!-- anggota cu -->
-						<div class="card" v-if="$route.meta.mode == 'create' && form.anggota_cu">
-							<div class="card-header bg-white">
-								<h5 class="card-title">4. Anggota CU</h5>
-							</div>
-							<div class="card-body">
-
-									<form-anggota-cu :form="form" :modelCu="modelCu"></form-anggota-cu>
-
+								</div>
 							</div>
 						</div>
 
+					</div>
 
-						<!-- pekerjaan -->
-						<div class="card" v-if="$route.meta.mode == 'create' && form.pekerjaan">
-							<div class="card-header bg-white">
-								<h5 class="card-title">5. Jabatan </h5>
-							</div>
-							<div class="card-body">
+					<!-- data exist -->
+					<div class="alert bg-info text-white alert-styled-left alert-dismissible" v-if="Object.keys(itemData).length != 0">
+						<span class="font-weight-semibold">NIK sudah terdaftar di SIMO, maka silahkan melakukan pengubahan. Apabila anda ingin menambahkan pekerjaannya di CU anda maka silahkan ke bagian riwayat pekerjaan untuk menambahkan pekerjaannya.
+						</span>
+					</div>
 
-									<form-pekerjaan :form="form" :modelCu="modelCu" :modelTp="modelTp"></form-pekerjaan>
+					<!-- data not exits -->
+					<div class="alert bg-info text-white alert-styled-left alert-dismissible" v-if="itemDataStat == 'success' && Object.keys(itemData).length == 0">
+						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO, maka silahkan menambahkan data aktivis baru.
+						</span>
+					</div>
 
-							</div>
-						</div>
+					<div v-if="$route.meta.mode == 'create'">
+						<form-create v-if="isNew" :nik="nik"></form-create>
+						<form-edit v-if="itemDataStat == 'success' && !isNew" :mode="'props'" :id_props="itemData.id"></form-edit>
+					</div>
+					
+					<form-edit v-if="$route.meta.mode == 'edit'" :mode="'local'"></form-edit>
 
-						<!-- pendidikan -->
-						<div class="card" v-if="$route.meta.mode == 'create' && form.pendidikan">
-							<div class="card-header bg-white">
-								<h5 class="card-title">6. Pendidikan</h5>
-							</div>
-							<div class="card-body">
-
-									<form-pendidikan :form="form"></form-pendidikan>
-
-							</div>
-						</div>
-
-						<!-- organisasi -->
-						<div class="card" v-if="$route.meta.mode == 'create' && form.organisasi">
-							<div class="card-header bg-white">
-								<h5 class="card-title">7. Organisasi</h5>
-							</div>
-							<div class="card-body">
-
-									<form-organisasi :form="form" :isAktif="true"></form-organisasi>
-
-							</div>
-						</div>
-
-						<!-- form info -->
-						<form-info></form-info>	
-						<br/>
-
-						<!-- form button -->
-						<div class="card card-body">
-							<form-button
-								:cancelState="'methods'"
-								:formValidation="'form'"
-								@cancelClick="back"></form-button>
-						</div>
-
-					</form>
 				</div>
 			</div>
 		</div>
 
-		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
-		</app-modal>
 
 	</div>
 </template>
@@ -199,34 +84,18 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
-	import { toMulipartedForm } from '../../helpers/form';
-	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
-	import formIdentitas from "./formIdentitas.vue";
-	import formLokasi from "./formLokasi.vue";
-	import formAnggotaCu from "./formAnggotaCu.vue";
-	import formPekerjaan from "./formPekerjaan.vue";
-	import formPendidikan from "./formPendidikan.vue";
-	import formOrganisasi from "./formOrganisasi.vue";	
-	import formButton from "../../components/formButton.vue";
-	import formInfo from "../../components/formInfo.vue";
+	import aktivisAPI from '../../api/aktivis.js';
 	import Cleave from 'vue-cleave-component';
+	import formCreate from "./create.vue";	
+	import formEdit from "./edit.vue";	
 	
-
 	export default {
 		components: {
 			pageHeader,
-			appModal,
-			message,
-			formIdentitas,
-			formLokasi,
-			formAnggotaCu,
-			formPekerjaan,
-			formPendidikan,
-			formOrganisasi,
-			formButton,
-			formInfo,
-			Cleave
+			formCreate,
+			formEdit,
+			Cleave,
 		},
 		data() {
 			return {
@@ -235,172 +104,66 @@
 				titleIcon: '',
 				kelas: 'aktivis',
 				level2Title: 'Aktivis CU',
+				isNew: false,
+				itemData: {},
+				itemDataStat: '',
+				nik: '',
 				cleaveOption: {
-          date:{
-            date: true,
-            datePattern: ['Y','m','d'],
-            delimiter: '-'
-          },
-          number12: {
+          number16: {
             numeral: true,
-            numeralIntegerScale: 12,
+            numeralIntegerScale: 16,
             numeralDecimalScale: 0,
 						stripLeadingZeroes: false,
 						delimiter: ''
 					},
-					number3: {
-            numeral: true,
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
-            stripLeadingZeroes: false
-          },
-          numeric: {
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand',
-            numeralDecimalScale: 2,
-            numeralDecimalMark: ',',
-            delimiter: '.'
-          }
-        },
-				formAnak: [],
-				modalShow: false,
-				modalState: '',
-				modalTitle: '',
-				modalColor: '',
-				modalContent: '',
-				submited: false,
+				},
 			}
-		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => vm.fetch());
 		},
 		created(){
-			if(this.currentUser.id_cu === 0){
-				if(this.modelCuStat != 'success'){
-					this.$store.dispatch('cu/getHeader');
-				}
-			}
-			this.form.id_cu = this.currentUser.id_cu;
-
-			// check permission
-			if(this.$route.meta.mode === 'editIdentitas'){
-				if(!this.currentUser.can || !this.currentUser.can['update_' + this.kelas]){
-					this.$router.push({name: 'notFound'});
-				}
+			if(this.$route.meta.mode === 'edit'){
+				this.title = 'Ubah ' + this.level2Title;
+				this.titleDesc = 'Mengubah ' + this.level2Title;
+				this.titleIcon = 'icon-pencil5';
 			}else{
-				if(!this.currentUser.can || !this.currentUser.can['create_' + this.kelas]){
-					this.$router.push({name: 'notFound'});
-				}
-			}
-		},
-		watch: {
-			updateStat(value){
-				this.modalShow = true;
-				this.modalState = value;
-				this.modalColor = '';
-
-				if(value === "success"){
-					this.modalTitle = this.updateResponse.message;
-				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updateResponse;
-				}
-			}
-    },
-		methods: {
-			fetch(){
 				this.title = 'Tambah ' + this.level2Title;
 				this.titleDesc = 'Menambah ' + this.level2Title;
 				this.titleIcon = 'icon-plus3';
-				this.$store.dispatch(this.kelas + '/create');
-				this.$store.dispatch('provinces/get');
-			},
-			save() {
-				this.form.anak = this.formAnak;
+			}
+		},
+		methods: {
+			cariData(){
+				this.itemDataStat = 'loading';
+				this.isNew = false;
 
-				if(this.$route.meta.mode == 'create'){
-					if(this.currentUser.id_cu == 0){
-						if(this.form.pekerjaan.tipe == 0){
-							this.form.pekerjaan.tipe = 3;
-						}
+				aktivisAPI.cariData(this.nik)
+        .then((response) => {
+					if(response.data.model){
+						this.itemData = response.data.model;
 					}else{
-						this.form.pekerjaan.tipe = 1;
-						this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
+						this.itemData = {};
+						this.isNew = true;
 					}
-				}
-				
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
-				this.$validator.validateAll('form').then((result) => {
-					if (result) {
-						this.$store.dispatch(this.kelas + '/store', formData);
-						this.submited = false;
-					}else{
-						window.scrollTo(0, 0);
-						this.submited = true;
-					}
+					this.itemDataStat = 'success';
+        })
+        .catch((error) => {
+					this.itemData = error.response;
+          this.itemDataStat = 'fail';
 				});
 			},
+			resetData(){
+				this.nik = '';
+				this.itemData = {};
+				this.isNew = false;
+				this.itemDataStat = '';
+			},
 			back(){
-				if(this.$route.meta.mode === 'editIdentitas' && this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tingkat: 'semua'}});
-				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
-				}
-			},
-			changeProvinces(id){
-				this.$store.dispatch('regencies/getProvinces', id);
-			},
-			changeRegencies(id){
-				this.$store.dispatch('districts/getRegencies', id);
-			},
-			changeDistricts(id){
-				this.$store.dispatch('villages/getDistricts', id);
-			},
-			addAnak(){
-				this.formAnak.push({});
-			},
-			removeAnak(index){
-				this.formAnak.splice(index,1);
-			},
-			modalTutup() {
- 				if(this.updateStat === 'success'){
-					this.back();
-				}
-
-				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
-			},
-			modalBackgroundClick(){
-				if(this.modalState === 'success'){
-					this.modalTutup;
-				}else if(this.modalState === 'loading'){
-					// do nothing
-				}else{
-					this.modalShow = false
-				}
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
 			},
 		},
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('aktivis',{
-				form: 'data',
-				formStat: 'dataStat',
-				rules: 'rules',
-				options: 'options',
-				updateResponse: 'update',
-				updateStat: 'updateStat'
-			}),
-			...mapGetters('cu',{
-				modelCu: 'headerDataS',
-				modelCuStat: 'headerDataStatS',
-			}),
-			...mapGetters('tp',{
-				modelTp: 'dataS',
-				modelTpStat: 'dataStatS',
-			})
 		}
 	}
 </script>

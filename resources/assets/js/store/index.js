@@ -28,6 +28,7 @@ import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
 import { notification } from './modules/notification';
 import { saran } from './modules/saran';
+import { errorLog } from './modules/errorLog';
 
 Vue.use(Vuex);
 
@@ -59,6 +60,7 @@ export default new Vuex.Store({
 		 diklatBKCU,
 		 tempat,
 		 notification,
-		 saran
+		 saran,
+		 errorLog
 	 }
 });

@@ -187,7 +187,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['form','modelCu','modelTp'],
+		props:['form','modelCu','modelTp','modelCuStat'],
 		components: {
 			Cleave
 		},
@@ -220,6 +220,12 @@
             delimiter: '.'
           }
         }
+			}
+		},
+		created(){
+			if(this.currentUser.id_cu != 0){
+				this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
+				this.changeLembagaPekerjaan(this.currentUser.id_cu);
 			}
 		},
 		methods: {

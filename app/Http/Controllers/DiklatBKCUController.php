@@ -124,21 +124,19 @@ class DiklatBKCUController extends Controller{
 	public function indexPesertaTerdaftar($cu)
 	{
 		if($cu == 0){
-			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query){
-				$query->where('tipe','1');
-			})->where('status','2')->take(6)->get();
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->where('status','2')->take(6)->get();
 
-			$countIkut = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->whereHas('aktivis.pekerjaan', function($query){
-				$query->where('tipe','1');
-			})->where('status','4')->count();
-
-			$countBatal = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->whereHas('aktivis.pekerjaan', function($query){
-				$query->where('tipe','1');
-			})->where('status','6')->count();
+			$countMenunggu = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('status','1')->count();
+			$countIkut = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('status','4')->count();
+			$countBatal = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('status','6')->count();
 		}else{
 			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($cu){
 				$query->where('tipe','1')->where('id_tempat',$cu);
 			})->where('status','2')->take(6)->get();
+
+			$countMenunggu = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->whereHas('aktivis.pekerjaan', function($query) use ($cu){
+				$query->where('tipe','1')->where('id_tempat',$cu);
+			})->where('status','1')->count();
 
 			$countIkut = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->whereHas('aktivis.pekerjaan', function($query) use ($cu){
 				$query->where('tipe','1')->where('id_tempat',$cu);
@@ -152,17 +150,32 @@ class DiklatBKCUController extends Controller{
 		return response()
 		->json([
 			'model' => $table_data,
+			'countMenunggu' => $countMenunggu,
 			'countIkut' => $countIkut,
 			'countBatal' => $countBatal,
+		]);
+	}
+
+	public function indexPesertaMenunggu($cu)
+	{
+		if($cu == 0){
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->where('status','1')->take(6)->get();
+		}else{
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($cu){
+				$query->where('tipe','1')->where('id_tempat',$cu);
+			})->where('status','1')->take(6)->get();
+		}
+
+		return response()
+		->json([
+			'model' => $table_data
 		]);
 	}
 
 	public function indexPesertaBerjalan($cu)
 	{
 		if($cu == 0){
-			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query){
-				$query->where('tipe','1');
-			})->where('status','4')->take(6)->get();
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->where('status','4')->take(6)->get();
 		}else{
 			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($cu){
 				$query->where('tipe','1')->where('id_tempat',$cu);
@@ -178,9 +191,7 @@ class DiklatBKCUController extends Controller{
 	public function indexPesertaBatal($cu)
 	{
 		if($cu == 0){
-			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query){
-				$query->where('tipe','1');
-			})->where('status','6')->take(6)->get();
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->where('status','6')->take(6)->get();
 		}else{
 			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($cu){
 				$query->where('tipe','1')->where('id_tempat',$cu);
@@ -193,7 +204,6 @@ class DiklatBKCUController extends Controller{
 		]);
 	}
 	
-
 	public function getPeriode()
 	{
 		$table_data = Kegiatan::distinct('periode')->pluck('periode');
@@ -230,7 +240,14 @@ class DiklatBKCUController extends Controller{
 			$panitiaArray = array();
 
 			foreach($request->panitia as $panitia){
-				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan'], 'asal' => $panitia['asal'] ];
+				$keterangan = '';
+				if (array_key_exists("keterangan",$panitia)){
+					$keterangan = $panitia['keterangan'];
+				}
+				$panitiaArray[$panitia['aktivis_id']] = [
+					'peran' => $panitia['peran'],
+					'keterangan' => $keterangan, 
+					'asal' => $panitia['asal'] ];
 			}
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
@@ -303,7 +320,14 @@ class DiklatBKCUController extends Controller{
 			$panitiaArray = array();
 
 			foreach($request->panitia as $panitia){
-				$panitiaArray[$panitia['aktivis_id']] = ['peran' => $panitia['peran'], 'keterangan' => $panitia['keterangan'], 'asal' => $panitia['asal'] ];
+				$keterangan = '';
+				if (array_key_exists("keterangan",$panitia)){
+					$keterangan = $panitia['keterangan'];
+				}
+				$panitiaArray[$panitia['aktivis_id']] = [
+					'peran' => $panitia['peran'], 
+					'keterangan' => $keterangan, 
+					'asal' => $panitia['asal'] ];
 			}
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
@@ -354,7 +378,7 @@ class DiklatBKCUController extends Controller{
 		$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->get();
 
 		if($statusPeserta){
-			$updatePeserta = KegiatanPeserta::where('kegiatan_id', $id)->update(['status' => $statusPeserta]);
+			$updatePeserta = KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',3)->update(['status' => $statusPeserta]);
 
 			$id_cus = [];
 			foreach($dataPeserta as $peserta){

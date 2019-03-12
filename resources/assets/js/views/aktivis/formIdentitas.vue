@@ -29,7 +29,7 @@
 						class="form-control" 
 						:options="cleaveOption.number16"
 						placeholder="Silahkan masukkan no KTP"
-						v-validate="'required'" data-vv-as="No. KTP"></cleave>
+						v-validate="'required'" data-vv-as="No. KTP" readonly></cleave>
 					
 
 					<!-- error message -->
@@ -69,7 +69,7 @@
 						Nama:</h6>
 
 					<!-- text -->
-					<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
+					<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required'" data-vv-as="Nama" v-model="form.name">
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.name')">
@@ -172,8 +172,7 @@
 				<div class="form-group" >
 
 					<!-- title -->
-					<h6>
-						Tgl. Lahir:</h6>
+					<h6>Tgl. Lahir: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 					<!-- input -->
 					<cleave 
@@ -192,8 +191,7 @@
 				<div class="form-group">
 
 					<!-- title -->
-					<h6>
-						Tempat Lahir:</h6>
+					<h6>Tempat Lahir:</h6>
 
 					<!-- text -->
 					<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir">
@@ -228,12 +226,14 @@
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
 	import appImageUpload from '../../components/ImageUpload.vue';
+	import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
 		props:['form'],
 		components: {
 			appImageUpload,
-			Cleave
+			Cleave,
+			infoIcon
 		},
 		data() {
 			return {

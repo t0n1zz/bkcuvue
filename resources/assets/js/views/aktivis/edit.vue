@@ -1,345 +1,327 @@
 <template>
 	<div>
-		<!-- Page header -->
-		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
-		
-		<!-- page container -->
-		<div class="page-content pt-0">
-			<div class="content-wrapper">
-				<div class="content">
-
-					<div class="row">
-
-						<div class="col-sm-12">
 							
-							<!-- message -->
-							<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
-							</message>
+		<!-- message -->
+		<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
+		</message>
 
-							<div class="nav-tabs-responsive">
-								<ul class="nav nav-tabs nav-tabs-solid bg-light">
-									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-vcard position-left mr-2"></i> Identitas & Alamat</a>
-									</li>
-									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPekerjaan'}" @click.prevent="changeTab('riwayatPekerjaan')"><i class="icon-list2 position-left mr-2"></i> Riwayat Pekerjaan</a>
-									</li>
-									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPendidikan'}" @click.prevent="changeTab('riwayatPendidikan')"><i class="icon-list2 position-left mr-2 "></i> Riwayat Pendidikan</a>
-									</li>
-									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatOrganisasi'}" @click.prevent="changeTab('riwayatOrganisasi')"><i class="icon-list2 position-left mr-2"></i> Riwayat Organisasi</a>
-									</li>
-									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'keluarga'}" @click.prevent="changeTab('keluarga')"><i class="icon-list2 position-left mr-2"></i> Keluarga</a>
-									</li>
-									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'anggotaCu'}" @click.prevent="changeTab('anggotaCu')"><i class="icon-list2 position-left mr-2"></i> Anggota CU</a>
-									</li>
-								</ul>
-							</div>
+		<div class="nav-tabs-responsive">
+			<ul class="nav nav-tabs nav-tabs-solid bg-light">
+				<li class="nav-item">
+					<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-vcard position-left mr-2"></i> Identitas & Alamat</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPekerjaan'}" @click.prevent="changeTab('riwayatPekerjaan')"><i class="icon-list2 position-left mr-2"></i> Riwayat Pekerjaan</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatPendidikan'}" @click.prevent="changeTab('riwayatPendidikan')"><i class="icon-list2 position-left mr-2 "></i> Riwayat Pendidikan</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayatOrganisasi'}" @click.prevent="changeTab('riwayatOrganisasi')"><i class="icon-list2 position-left mr-2"></i> Riwayat Organisasi</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link" :class="{'active' : tabName == 'keluarga'}" @click.prevent="changeTab('keluarga')"><i class="icon-list2 position-left mr-2"></i> Keluarga</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link" :class="{'active' : tabName == 'anggotaCu'}" @click.prevent="changeTab('anggotaCu')"><i class="icon-list2 position-left mr-2"></i> Anggota CU</a>
+				</li>
+			</ul>
+		</div>
 
-							<br/>
+		<br/>
 
-							<!-- identitas -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'identitas'">
-									<form @submit.prevent="saveIdentitas" enctype="multipart/form-data" data-vv-scope="form">
+		<!-- identitas -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'identitas'">
+				<form @submit.prevent="saveIdentitas" enctype="multipart/form-data" data-vv-scope="form">
 
-										<!-- desktop -->
-										<div class="card">
-											<div class="card-header bg-white">
-												<h5 class="card-title">1. Identitas</h5>
-											</div>
-											<div class="card-body pb-2">
-													
-												<form-identitas :form="form"></form-identitas>
-														
-											</div>
-										</div>
-
-										<div class="card">
-											<div class="card-header bg-white">
-												<h5 class="card-title">2. Alamat</h5>
-											</div>
-											<div class="card-body pb-2">
-
-												<form-lokasi :form="form"></form-lokasi>
-		
-											</div>
-										</div>
-
-										<!-- form info -->
-										<form-info></form-info>	
-
-										<!-- form button -->
-										<div class="card card-body">
-											<form-button
-												:cancelState="'methods'"
-												:formValidation="'form'"
-												@cancelClick="back"></form-button>
-										</div>
-									</form>
-								</div>
-							</transition>	
-
-							<!-- riwayat pekerjaan -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'riwayatPekerjaan'">
-
-									<!-- desktop -->
-									<div class="card">
-										<div class="card-header bg-white">
-											<h5 class="card-title">3. Pekerjaan</h5>
-										</div>
-										<div class="card-body pb-2">
-											<div class="row">
-
-												<div class="col-md-12">
-
-													<button class="btn btn-light mb-1" @click.prevent="createRiwayat()">
-														<i class="icon-plus22"></i> Tambah
-													</button>
-
-													<button class="btn btn-light mb-1" @click.prevent="updateRiwayat()"
-													:disabled="!selectedItemPekerjaan.id">
-														<i class="icon-pencil5"></i> Ubah
-													</button>
-
-													<button class="btn btn-light mb-1" @click="destroyRiwayat()" :disabled="!selectedItemPekerjaan.id">
-														<i class="icon-bin2"></i> Hapus
-													</button>
-
-												</div>
-
-											</div>		
-										</div>
-
-										<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>{{ props.item.name }} 
-														<span class="badge bg-blue-400 align-self-center ml-auto" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
-													</td>
-													<td v-html="$options.filters.checkTingkatAktivis(props.item.tingkat )"></td>
-													<td>
-														<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
-														<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
-														<span v-else>Puskopdit BKCU Kalimantan</span>
-													</td>
-													<td>{{ props.item.mulai }}</td>
-													<td>
-														<span v-if="props.item.selesai">{{ props.item.selesai }}</span>
-														<span v-else>-</span>
-													</td>
-												</tr>
-											</template>	
-										</data-table>
-
-									</div>
-
-								</div>
-							</transition>		
-
-							<!-- riwayat pendidikan -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'riwayatPendidikan'">
-
-									<!-- desktop -->
-									<div class="card">
-										<div class="card-header bg-white">
-											<h5 class="card-title">4. Pendidikan</h5>
-										</div>
-										<div class="card-body pb-2">
-											<div class="row">
-
-												<div class="col-md-12">
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah riwayat pendidikan baru'" @click.prevent="createRiwayat()">
-														<i class="icon-plus22"></i> Tambah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah riwayat pendidikan'" @click.prevent="updateRiwayat()"
-													:disabled="!selectedItemPendidikan.id">
-														<i class="icon-pencil5"></i> Ubah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus riwayat pendidikan'" @click="destroyRiwayat()" :disabled="!selectedItemPendidikan.id">
-														<i class="icon-bin2"></i> Hapus
-													</button>
-
-												</div>
-
-											</div>		
-										</div>
-
-										<data-table :items="itemData" :columnData="columnDataPendidikan" :itemDataStat="itemDataStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>{{ props.item.name }}</td>
-													<td>{{ props.item.tingkat }}</td>
-													<td>{{ props.item.tempat }}</td>
-													<td>{{ props.item.mulai }}</td>
-													<td>
-														<span v-if="props.item.selesai">{{ props.item.selesai }}</span>
-														<span v-else>-</span>
-													</td>
-												</tr>
-											</template>	
-										</data-table>
-
-									</div>
-
-								</div>
-							</transition>		
-
-							<!-- riwayat organisasi -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'riwayatOrganisasi'">
-
-									<!-- desktop -->
-									<div class="card">
-										<div class="card-header bg-white">
-											<h5 class="card-title">5. Organisasi</h5>
-										</div>
-										<div class="card-body pb-2">
-											<div class="row">
-
-												<div class="col-md-12">
-													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah riwayat berorganisasi baru'" @click.prevent="createRiwayat()">
-														<i class="icon-plus22"></i> Tambah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah riwayat berorganisasi'" @click.prevent="updateRiwayat()"
-													:disabled="!selectedItemOrganisasi.id">
-														<i class="icon-pencil5"></i> Ubah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus riwayat berorganisasi'" @click="destroyRiwayat()" :disabled="!selectedItemOrganisasi.id">
-														<i class="icon-bin2"></i> Hapus
-													</button>
-												</div>
-											</div>		
-										</div>
-
-										<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-info': selectedItemOrganisasi.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>{{ props.item.name }} <span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Masih aktif</span></td>
-													<td>{{ props.item.jabatan }}</td>
-													<td>{{ props.item.tempat }}</td>
-													<td>{{ props.item.mulai }}</td>
-													<td>
-														<span v-if="props.item.selesai">{{ props.item.selesai }}</span>
-														<span v-else>-</span>
-													</td>
-												</tr>
-											</template>	
-
-										</data-table>
-
-									</div>
-
-								</div>
-							</transition>	
-
-							<!-- keluarga -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'keluarga'">
-
-									<!-- desktop -->
-									<div class="card">
-										<div class="card-header bg-white">
-											<h5 class="card-title">6. Keluarga</h5>
-										</div>
-										<div class="card-body pb-2">
-											<div class="row">
-
-												<div class="col-md-12">
-													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah data keluarga baru'" @click.prevent="createRiwayat()">
-														<i class="icon-plus22"></i> Tambah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah data keluarga'" @click.prevent="updateRiwayat()"
-													:disabled="!selectedItemKeluarga.id">
-														<i class="icon-pencil5"></i> Ubah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus data keluarga'" @click="destroyRiwayat()" :disabled="!selectedItemKeluarga.id">
-														<i class="icon-bin2"></i> Hapus
-													</button>
-												</div>
-											</div>		
-										</div>
-
-										<data-table :items="itemData" :columnData="columnDataKeluarga" :itemDataStat="itemDataStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>{{ props.item.name }}</td>
-													<td>{{ props.item.tipe }}</td>
-												</tr>
-											</template>	
-										</data-table>
-
-									</div>
-
-								</div>
-							</transition>	
-
-							<!-- anggota cu -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'anggotaCu'">
-
-									<!-- desktop -->
-									<div class="card">
-										<div class="card-header bg-white">
-											<h5 class="card-title">7. Anggota CU</h5>
-										</div>
-										<div class="card-body pb-2">
-											<div class="row">
-
-												<div class="col-md-12">
-													<button class="btn btn-light mb-1" v-tooltip:top="'Tambah data keanggotaan CU baru'" @click.prevent="createRiwayat()">
-														<i class="icon-plus22"></i> Tambah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Ubah data keanggotaan CU'" @click.prevent="updateRiwayat()"
-													:disabled="!selectedItemAnggotaCu.id">
-														<i class="icon-pencil5"></i> Ubah
-													</button>
-
-													<button class="btn btn-light mb-1" v-tooltip:top="'Hapus data keanggotaan CU'" @click="destroyRiwayat()" :disabled="!selectedItemAnggotaCu.id">
-														<i class="icon-bin2"></i> Hapus
-													</button>
-												</div>
-											</div>		
-										</div>
-
-										<data-table :items="itemData" :columnData="columnDataAnggotaCu" :itemDataStat="itemDataStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr :class="{ 'bg-info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>{{ props.item.name }}</td>
-													<td>{{ props.item.no_ba }}</td>
-												</tr>
-											</template>	
-										</data-table>
-
-									</div>
-
-								</div>
-							</transition>		
-	
+					<!-- desktop -->
+					<div class="card">
+						<div class="card-header bg-white">
+							<h5 class="card-title">1. Identitas</h5>
+						</div>
+						<div class="card-body pb-2">
+								
+							<form-identitas :form="form"></form-identitas>
+									
 						</div>
 					</div>
-					
-				</div>
+
+					<div class="card">
+						<div class="card-header bg-white">
+							<h5 class="card-title">2. Alamat</h5>
+						</div>
+						<div class="card-body pb-2">
+
+							<form-lokasi :form="form"></form-lokasi>
+
+						</div>
+					</div>
+
+					<!-- form info -->
+					<form-info></form-info>	
+
+					<!-- form button -->
+					<div class="card card-body">
+						<form-button
+							:cancelState="'methods'"
+							:formValidation="'form'"
+							@cancelClick="back"></form-button>
+					</div>
+				</form>
 			</div>
-		</div>
+		</transition>	
+
+		<!-- riwayat pekerjaan -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'riwayatPekerjaan'">
+
+				<!-- desktop -->
+				<div class="card">
+					<div class="card-header bg-white">
+						<h5 class="card-title">3. Pekerjaan</h5>
+					</div>
+					<div class="card-body pb-2">
+						<div class="row">
+
+							<div class="col-md-12">
+
+								<button class="btn btn-light mb-1" @click.prevent="createRiwayat()">
+									<i class="icon-plus22"></i> Tambah
+								</button>
+
+								<button class="btn btn-light mb-1" @click.prevent="updateRiwayat()"
+								:disabled="!selectedItemPekerjaan.id">
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<button class="btn btn-light mb-1" @click="destroyRiwayat()" :disabled="!selectedItemPekerjaan.id">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+
+							</div>
+
+						</div>		
+					</div>
+
+					<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
+						<template slot="item-desktop" slot-scope="props">
+							<tr :class="{ 'bg-info': selectedItemPekerjaan.id === props.item.id }" class="text-nowrap" @click="selectedRowPekerjaan(props.item)" v-if="props.item">
+								<td>{{ props.index + 1 }}</td>
+								<td>{{ props.item.name }} 
+									<span class="badge bg-blue-400 align-self-center ml-auto" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Pekerjaan saat ini</span>
+								</td>
+								<td v-html="$options.filters.checkTingkatAktivis(props.item.tingkat )"></td>
+								<td>
+									<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
+									<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
+									<span v-else>Puskopdit BKCU Kalimantan</span>
+								</td>
+								<td>{{ props.item.mulai }}</td>
+								<td>
+									<span v-if="props.item.selesai">{{ props.item.selesai }}</span>
+									<span v-else>-</span>
+								</td>
+							</tr>
+						</template>	
+					</data-table>
+
+				</div>
+
+			</div>
+		</transition>		
+
+		<!-- riwayat pendidikan -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'riwayatPendidikan'">
+
+				<!-- desktop -->
+				<div class="card">
+					<div class="card-header bg-white">
+						<h5 class="card-title">4. Pendidikan</h5>
+					</div>
+					<div class="card-body pb-2">
+						<div class="row">
+
+							<div class="col-md-12">
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Tambah riwayat pendidikan baru'" @click.prevent="createRiwayat()">
+									<i class="icon-plus22"></i> Tambah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Ubah riwayat pendidikan'" @click.prevent="updateRiwayat()"
+								:disabled="!selectedItemPendidikan.id">
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Hapus riwayat pendidikan'" @click="destroyRiwayat()" :disabled="!selectedItemPendidikan.id">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+
+							</div>
+
+						</div>		
+					</div>
+
+					<data-table :items="itemData" :columnData="columnDataPendidikan" :itemDataStat="itemDataStat">
+						<template slot="item-desktop" slot-scope="props">
+							<tr :class="{ 'bg-info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
+								<td>{{ props.index + 1 }}</td>
+								<td>{{ props.item.name }}</td>
+								<td>{{ props.item.tingkat }}</td>
+								<td>{{ props.item.tempat }}</td>
+								<td>{{ props.item.mulai }}</td>
+								<td>
+									<span v-if="props.item.selesai">{{ props.item.selesai }}</span>
+									<span v-else>-</span>
+								</td>
+							</tr>
+						</template>	
+					</data-table>
+
+				</div>
+
+			</div>
+		</transition>		
+
+		<!-- riwayat organisasi -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'riwayatOrganisasi'">
+
+				<!-- desktop -->
+				<div class="card">
+					<div class="card-header bg-white">
+						<h5 class="card-title">5. Organisasi</h5>
+					</div>
+					<div class="card-body pb-2">
+						<div class="row">
+
+							<div class="col-md-12">
+								<button class="btn btn-light mb-1" v-tooltip:top="'Tambah riwayat berorganisasi baru'" @click.prevent="createRiwayat()">
+									<i class="icon-plus22"></i> Tambah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Ubah riwayat berorganisasi'" @click.prevent="updateRiwayat()"
+								:disabled="!selectedItemOrganisasi.id">
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Hapus riwayat berorganisasi'" @click="destroyRiwayat()" :disabled="!selectedItemOrganisasi.id">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+						</div>		
+					</div>
+
+					<data-table :items="itemData" :columnData="columnDataPekerjaan" :itemDataStat="itemDataStat">
+						<template slot="item-desktop" slot-scope="props">
+							<tr :class="{ 'bg-info': selectedItemOrganisasi.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
+								<td>{{ props.index + 1 }}</td>
+								<td>{{ props.item.name }} <span class="label label-primary" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">Masih aktif</span></td>
+								<td>{{ props.item.jabatan }}</td>
+								<td>{{ props.item.tempat }}</td>
+								<td>{{ props.item.mulai }}</td>
+								<td>
+									<span v-if="props.item.selesai">{{ props.item.selesai }}</span>
+									<span v-else>-</span>
+								</td>
+							</tr>
+						</template>	
+
+					</data-table>
+
+				</div>
+
+			</div>
+		</transition>	
+
+		<!-- keluarga -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'keluarga'">
+
+				<!-- desktop -->
+				<div class="card">
+					<div class="card-header bg-white">
+						<h5 class="card-title">6. Keluarga</h5>
+					</div>
+					<div class="card-body pb-2">
+						<div class="row">
+
+							<div class="col-md-12">
+								<button class="btn btn-light mb-1" v-tooltip:top="'Tambah data keluarga baru'" @click.prevent="createRiwayat()">
+									<i class="icon-plus22"></i> Tambah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Ubah data keluarga'" @click.prevent="updateRiwayat()"
+								:disabled="!selectedItemKeluarga.id">
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Hapus data keluarga'" @click="destroyRiwayat()" :disabled="!selectedItemKeluarga.id">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+						</div>		
+					</div>
+
+					<data-table :items="itemData" :columnData="columnDataKeluarga" :itemDataStat="itemDataStat">
+						<template slot="item-desktop" slot-scope="props">
+							<tr :class="{ 'bg-info': selectedItemKeluarga.id === props.item.id }" class="text-nowrap" @click="selectedRowKeluarga(props.item)" v-if="props.item">
+								<td>{{ props.index + 1 }}</td>
+								<td>{{ props.item.name }}</td>
+								<td>{{ props.item.tipe }}</td>
+							</tr>
+						</template>	
+					</data-table>
+
+				</div>
+
+			</div>
+		</transition>	
+
+		<!-- anggota cu -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'anggotaCu'">
+
+				<!-- desktop -->
+				<div class="card">
+					<div class="card-header bg-white">
+						<h5 class="card-title">7. Anggota CU</h5>
+					</div>
+					<div class="card-body pb-2">
+						<div class="row">
+
+							<div class="col-md-12">
+								<button class="btn btn-light mb-1" v-tooltip:top="'Tambah data keanggotaan CU baru'" @click.prevent="createRiwayat()">
+									<i class="icon-plus22"></i> Tambah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Ubah data keanggotaan CU'" @click.prevent="updateRiwayat()"
+								:disabled="!selectedItemAnggotaCu.id">
+									<i class="icon-pencil5"></i> Ubah
+								</button>
+
+								<button class="btn btn-light mb-1" v-tooltip:top="'Hapus data keanggotaan CU'" @click="destroyRiwayat()" :disabled="!selectedItemAnggotaCu.id">
+									<i class="icon-bin2"></i> Hapus
+								</button>
+							</div>
+						</div>		
+					</div>
+
+					<data-table :items="itemData" :columnData="columnDataAnggotaCu" :itemDataStat="itemDataStat">
+						<template slot="item-desktop" slot-scope="props">
+							<tr :class="{ 'bg-info': selectedItemAnggotaCu.id === props.item.id }" class="text-nowrap" @click="selectedRowAnggotaCu(props.item)" v-if="props.item">
+								<td>{{ props.index + 1 }}</td>
+								<td>{{ props.item.name }}</td>
+								<td>{{ props.item.no_ba }}</td>
+							</tr>
+						</template>	
+					</data-table>
+
+				</div>
+
+			</div>
+		</transition>		
 		
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalTutup">
@@ -456,13 +438,13 @@
 				 
 			 </template>
 		</app-modal>
+
 	</div>
 </template>
 
 <script>
 	import moment from 'moment';
 	import { mapGetters } from 'vuex';
-	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
 	import appModal from '../../components/modal';
@@ -479,9 +461,8 @@
 	import formKeluarga from "./formKeluarga.vue";	
 	
 	export default {
-		name: 'aktivisDetail',
+		props: ['mode','id_props'],
 		components: {
-			pageHeader,
 			message,
 			dataTable,
 			appModal,
@@ -498,12 +479,9 @@
 		},
 		data() {
 			return {
-				title: 'Ubah Aktivis',
 				kelas: 'aktivis',
-				titleDesc: 'Mengubah aktivis',
-				titleIcon: 'icon-pencil5',
-				level2Title: 'Aktivis',
 				tabName: 'identitas',
+				id_local: '',
 				selectedItemPekerjaan: {},
 				selectedItemPendidikan: {},
 				selectedItemOrganisasi: {},
@@ -557,8 +535,8 @@
 				submited: false,
 			}
 		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => vm.fetch());
+		created(){
+			this.fetch();
 		},
 		watch: {
 			formStat(value){
@@ -597,23 +575,28 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch(this.kelas + '/editIdentitas',this.$route.params.id);	
+				if(this.mode == 'local'){
+					this.id_local = this.$route.params.id;
+				}else{
+					this.id_local = this.id_props;
+				}
+				this.$store.dispatch(this.kelas + '/editIdentitas',this.id_local);	
 				this.$store.dispatch('provinces/get');
 			},
 			changeTab(value){
 				this.tabName = value;
 				if(value == 'identitas'){
-					this.$store.dispatch(this.kelas + '/editIdentitas',this.$route.params.id);	
+					this.$store.dispatch(this.kelas + '/editIdentitas',this.id_local);	
 				}else if(value =='riwayatPekerjaan'){
-					this.$store.dispatch(this.kelas + '/indexPekerjaan',this.$route.params.id);	
+					this.$store.dispatch(this.kelas + '/indexPekerjaan',this.id_local);	
 				}else if(value =='riwayatPendidikan'){
-					this.$store.dispatch(this.kelas + '/indexPendidikan',this.$route.params.id);
+					this.$store.dispatch(this.kelas + '/indexPendidikan',this.id_local);
 				}else if(value =='riwayatOrganisasi'){
-					this.$store.dispatch(this.kelas + '/indexOrganisasi',this.$route.params.id);
+					this.$store.dispatch(this.kelas + '/indexOrganisasi',this.id_local);
 				}else if(value =='keluarga'){
-					this.$store.dispatch(this.kelas + '/indexKeluarga',this.$route.params.id);
+					this.$store.dispatch(this.kelas + '/indexKeluarga',this.id_local);
 				}else if(value =='anggotaCu'){
-					this.$store.dispatch(this.kelas + '/indexAnggotaCu',this.$route.params.id);
+					this.$store.dispatch(this.kelas + '/indexAnggotaCu',this.id_local);
 				}
 			},
 			back(){
@@ -623,7 +606,7 @@
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/updateIdentitas', [this.$route.params.id, formData]);
+						this.$store.dispatch(this.kelas + '/updateIdentitas', [this.id_local, formData]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -634,7 +617,7 @@
 			savePekerjaan(){
 				this.$validator.validateAll('form.pekerjaan').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.$route.params.id, this.formRiwayat]);
+						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.id_local, this.formRiwayat]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -645,7 +628,7 @@
 			savePendidikan(){
 				this.$validator.validateAll('form.pendidikan').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/savePendidikan', [this.$route.params.id, this.formRiwayat]);
+						this.$store.dispatch(this.kelas + '/savePendidikan', [this.id_local, this.formRiwayat]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -656,7 +639,7 @@
 			saveOrganisasi(){
 				this.$validator.validateAll('form.organisasi').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/saveOrganisasi', [this.$route.params.id, this.formRiwayat]);
+						this.$store.dispatch(this.kelas + '/saveOrganisasi', [this.id_local, this.formRiwayat]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -667,7 +650,7 @@
 			saveKeluarga(){
 				this.$validator.validateAll('form.keluarga').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/saveKeluarga', [this.$route.params.id, this.formRiwayat]);
+						this.$store.dispatch(this.kelas + '/saveKeluarga', [this.id_local, this.formRiwayat]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -678,7 +661,7 @@
 			saveAnggotaCu(){
 				this.$validator.validateAll('form.anggota_cu').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/saveAnggotaCu', [this.$route.params.id, this.formRiwayat]);
+						this.$store.dispatch(this.kelas + '/saveAnggotaCu', [this.id_local, this.formRiwayat]);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);

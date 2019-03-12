@@ -632,16 +632,22 @@
 						</div>
 
 						<!-- form info -->
-						<form-info></form-info>	
+						<form-info v-if="currentUser.can && currentUser.can['update_' + kelas]"></form-info>	
 						<br/>
 
 						<!-- form button -->
-						<div class="card card-body">
+						<div class="card card-body" v-if="currentUser.can && currentUser.can['update_' + kelas]">
 							<form-button
 								:cancelState="cancelState"
 								:formValidation="'form'"
 								@cancelClick="back"></form-button>
 						</div>	
+
+						<div v-else>
+							<div class="alert bg-warning alert-styled-left">
+								<h6>Untuk menyimpan pengubahan data, anda mesti memiliki hak akses untuk mengubah CU, silahkan hubungi user di CU anda yang memiliki akses mengelola user.</h6>
+							</div>
+						</div>
 
 					</form>
 
@@ -759,6 +765,7 @@
 						if(this.currentUser.id_cu !== 0 && this.currentUser.id_cu !== this.form.id){
 							this.$router.push({name: 'notFound'});
 						}
+
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);

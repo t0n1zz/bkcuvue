@@ -373,7 +373,7 @@
 				this.formPanitia.kelamin = item.kelamin;
 				this.formPanitia.agama = item.agama;
 				this.formPanitia.tinggi = item.tinggi;
-				this.formPanitia.tanggat_lahir = item.tanggat_lahir;
+				this.formPanitia.tanggal_lahir = item.tanggal_lahir;
 				this.formPanitia.tempat_lahir = item.tempat_lahir;
 
 				if(this.formPanitia.asal == 'dalam'){

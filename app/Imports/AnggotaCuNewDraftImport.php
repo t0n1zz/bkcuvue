@@ -75,7 +75,8 @@ class AnggotaCuNewDraftImport implements ToCollection, WithHeadingRow, WithBatch
                 'hp' => $row['hp'],
                 'pendidikan' => $row['pendidikan'],
                 'pekerjaan' => $row['pekerjaan'],
-                'lembaga' => $row['tempat_bekerja']
+                'lembaga' => $row['tempat_bekerja'],
+                ,'alih_waris' => $row['alih_waris']
             ]);
 
             $produks = ProdukCu::where('id_cu',$cu->id_cu)->get();

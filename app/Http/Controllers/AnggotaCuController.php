@@ -5,7 +5,9 @@ use DB;
 use File;
 use Image;
 use App\AnggotaCu;
+use App\AnggotaCuCu;
 use App\Support\Helper;
+use App\AnggotaProdukCu;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 use App\Imports\AnggotaCuNewDraftImport;
@@ -19,7 +21,7 @@ class AnggotaCuController extends Controller{
 
 	public function index()
 	{
-		$table_data = AnggotaCu::with('Cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
+		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([
@@ -29,7 +31,7 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = AnggotaCu::with('Cu','Villages','Districts','Regencies','Provinces')->where('id_cu',$id)->advancedFilter();
+		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ $query->where('cu_id',$id); })->advancedFilter();
 
 		return response()
 			->json([
@@ -53,15 +55,41 @@ class AnggotaCuController extends Controller{
 
 		$name = $request->name;
 
-		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
-		else
-			$fileName = '';
+		$kelas = AnggotaCu::create($request->all());
 
-		$kelas = AnggotaCu::create($request->except('gambar') + [
-			'gambar' => $fileName
-		]);
+		// cu
+		if($request->cu){
+			$cuArray = array();
+
+			foreach($request->cu as $cu){
+				$cuArray[$cu['no_ba']] = [
+					'cu_id' => $cu['cu']['id'],
+					'no_ba' => $cu['no_ba'] ];
+			}
+
+			$kelas->anggota_cu()->sync($cuArray);
+		}else if($request->id_cu){
+			AnggotaCuCu::create([
+				'anggota_cu_id' => $kelas->id,
+				'cu_id' => $request->id_cu,
+				'no_ba' => $request->no_ba
+			]);
+		}
+
+		$produkcu = array_merge($request->simpanan, $request->pinjaman);
+
+		// produk cu
+		if($produkcu){
+			$produkCuArray = array();
+
+			foreach($produkcu as $produk){
+				$produkCuArray[$produk['produk_cu']['id']] = [
+					'produk_cu_id' => $produk['produk_cu']['id'],
+					'saldo' => $produk['saldo'] ];
+			}
+
+			$kelas->anggota_produk_cu()->sync($produkCuArray);
+		}
 		
 		return response()
 			->json([
@@ -82,7 +110,7 @@ class AnggotaCuController extends Controller{
 				]);
 	}
 
-	public function update(Request $request, $id)
+	public function updateIdentitas(Request $request, $id)
 	{
 		$this->validate($request, AnggotaCu::$rules);
 
@@ -90,20 +118,25 @@ class AnggotaCuController extends Controller{
 
 		$kelas = AnggotaCu::findOrFail($id);
 
-		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
-		else
-			$fileName = '';
-
-		$kelas->update($request->except('gambar') + [
-			'gambar' => $fileName
-		]);	
+		$kelas->update($request->all());	
 
 		return response()
 			->json([
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+			]);
+	}
+
+	public function updateSaldo(Request $request, $id)
+	{
+		$kelas = AnggotaProdukCu::findOrFail($id);
+
+		$kelas->update($request->all());	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Produk anggota berhasil diubah'
 			]);
 	}
 
@@ -159,5 +192,15 @@ class AnggotaCuController extends Controller{
 			->json([
 				'model' => $history
 			]);
-  }
+	}
+	
+	public function cariData($nik)
+	{
+		$table_data = AnggotaCu::where('nik',$nik)->first();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
 }

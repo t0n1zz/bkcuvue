@@ -266,6 +266,7 @@
 						} else if(this.form.id_cu != 0){
 							this.roleTipe = 'cu';
 						}
+						this.checkUser('update_user',this.form.id_cu);
 					}else{
 						if(this.currentUser.id_cu == 0){
 							this.roleTipe = 'bkcu';
@@ -315,6 +316,18 @@
 			},
 			changeRole(id){
 				this.$store.dispatch('loadRolePermission',id);
+			},
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
+				}
 			},
 			save() {
 				if(this.$route.meta.mode != 'edit'){

@@ -4,8 +4,8 @@ import login from './views/login.vue';
 import dashboard from './views/dashboard.vue';
 import notification from './views/sistem/notification.vue';
 import changelog from './views/sistem/changelog.vue';
-import panduan from './views/sistem/panduan.vue';
 import saran from './views/saran/index.vue';
+import errorLog from './views/errorLog/index.vue';
 import pengumuman from './views/pengumuman/index.vue';
 import notFound from './views/notFound.vue';
 import artikel from './views/artikel/index.vue';
@@ -93,16 +93,16 @@ const routes = [
 		components: { default: changelog,'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
 
-	// panduan
-	{ path: '/panduan',
-	name: 'panduan', 
-	components: { default: panduan,'header': header, 'footer': footer },
-	meta: { requiresAuth: true }},
-
 	// saran
 	{ path: '/saran',
 	name: 'saran', 
 	components: { default: saran,'header': header, 'footer': footer },
+	meta: { requiresAuth: true }},
+
+	// errorLog
+	{ path: '/errorLog',
+	name: 'errorLog', 
+	components: { default: errorLog,'header': header, 'footer': footer },
 	meta: { requiresAuth: true }},
 
 	// pengumuman
@@ -167,7 +167,7 @@ const routes = [
 		components: { default: artikelPenulis_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
 	
-	// diklat pus
+	// diklat 
 	{ path: '/diklatBKCU/periode/:periode',
 		name: 'diklatBKCU', 
 		components: { default: diklatBKCU, 'header': header, 'footer': footer  },
@@ -259,8 +259,8 @@ const routes = [
 		meta: { requiresAuth: true, mode:'create' }},
 	{ path: '/aktivis/edit/:id',
 		name: 'aktivisEdit', 
-		components: { default: aktivis_edit, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true }},
+		components: { default: aktivis_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
 
 	// mitra perseorangan
 	{ path: '/mitraOrang',
@@ -302,7 +302,7 @@ const routes = [
 	{ path: '/anggotaCu/create',
 		name: 'anggotaCuCreate', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true }},
+		meta: { requiresAuth: true, mode:'create' }},
 	{ path: '/anggotaCu/edit/:id',
 		name: 'anggotaCuEdit', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer }, 

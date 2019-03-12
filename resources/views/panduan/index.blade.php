@@ -10,5 +10,7 @@
   @include('panduan.artikel')
   @include('panduan.artikelKategori')
   @include('panduan.artikelPenulis')
+  @include('panduan.pengumuman')
   @include('panduan.diklatBKCU')
+  @include('panduan.profilCU')
 @stop

@@ -27,11 +27,11 @@ var Scrollspy = function () {
         // Initialize
         $('.sidebar-sticky .sidebar').stick_in_parent({
             offset_top: 20,
-            parent: '.content'
+            parent: '.page-content'
         });
 
         // Detach on mobiles
-        $('.sidebar-mobile-component-toggle').on('click', function() {
+        $('.sidebar-mobile-main-toggle').on('click', function() {
             $('.sidebar-sticky .sidebar').trigger("sticky_kit:detach");
         });
     };

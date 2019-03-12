@@ -53,8 +53,9 @@
 									<div class="card-group-control card-group-control-right" :id="'parent_' + props.item.id">
 										
 										<div class="row">
+
+											<!-- aturan setor -->
 											<div class="col-md-6 col-lg-6">
-												<!-- aturan setor -->
 												<div class="card">
 													<div class="card-header">
 														<h6 class="card-title">
@@ -68,8 +69,9 @@
 													</div>
 												</div>
 											</div>
+
+											<!-- aturan tarik -->
 											<div class="col-md-6 col-lg-6" v-if="props.item.tipe == 'Simpanan Pokok' || props.item.tipe == 'Simpanan Wajib' || props.item.tipe == 'Simpanan Non Saham'">
-												<!-- aturan tarik -->
 												<div class="card">
 													<div class="card-header">
 														<h6 class="card-title">
@@ -83,12 +85,13 @@
 													</div>
 												</div>
 											</div>
+
+											<!-- aturan balas jasa -->
 											<div class="col-md-6 col-lg-6">
-												<!-- aturan balas jasa -->
 												<div class="card">
 													<div class="card-header">
 														<h6 class="card-title">
-															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_balas_jasa_' + props.item.id">{{ columnData[8].title }}</a>
+															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_balas_jasa_' + props.item.id">{{ columnData[9].title }}</a>
 														</h6>
 													</div>
 
@@ -98,12 +101,13 @@
 													</div>
 												</div>
 											</div>
+
 											<div class="col-md-6 col-lg-6">
 												<!-- aturan lain-->
 												<div class="card pb-0 mb-0">
 													<div class="card-header">
 														<h6 class="card-title">
-															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_lain_' + props.item.id">{{ columnData[9].title }}</a>
+															<a data-toggle="collapse" class="collapsed text-default" :href="'#aturan_lain_' + props.item.id">{{ columnData[10].title }}</a>
 														</h6>
 													</div>
 

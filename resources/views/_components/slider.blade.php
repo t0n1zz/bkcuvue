@@ -79,7 +79,7 @@
 																data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 																data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 																data-paddingtop="[0,0,0,0]" data-paddingright="[5,5,5,5]" data-paddingbottom="[0,0,0,0]"
-																data-paddingleft="[5,5,5,5]" style="z-index: 8; white-space: nowrap; font-size: 13px; line-height: 20px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;background-color:rgb(94,53,177);">{{ $item->kategori ? $item->kategori->name : "-"}} </div>
+																data-paddingleft="[5,5,5,5]" style="z-index: 8; white-space: nowrap; font-size: 13px; line-height: 20px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;background-color:rgb(94,53,177);">{{ $item->kategori ? $item->kategori->name : "-"}} {{ $item->cu ? " / CU" . $item->cu->name : ""}} </div>
 
 														<!-- LAYER NR. 5 -->
 														<div class="tp-caption   tp-resizeme" id="slide-582-layer-5" data-x="['left','left','left','left']"

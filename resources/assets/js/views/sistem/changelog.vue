@@ -10,15 +10,91 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.0.9 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#309">Version 3.0.9 <small class="text-muted"> / 20 Februari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="309" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini berfokus pada perbaikan di beberapa bagian dan penambahan fitur pelaporan error/
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur rekam semua error yang terjadi pada sistem agar memudahkan pengembang untuk melakukan troubleshooting dan perbaikan bug pada error yang terjadi</li>
+                      <li>Perbaikan penampilan data produk dan pelayanan CU</li>
+                      <li>Perbaikan pada dashboard dalam penyajian data</li>
+                      <li>Perbaikan pada redirect login user</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.9 -->
+
+              <!-- Version 3.0.8 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#308">Version 3.0.8 <small class="text-muted"> / 8 Februari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="308" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini berfokus pada perbaikan data aktivis dan penambahan fitur pada aktivis
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Pengubahan cara menambah data aktivis, dimana pengguna mesti mengisikan dan melakukan pencarian berdasarkan no. KTP (NIK) untuk memastikan apakah aktivis tersebut sudah ada di dalam SIMO, jika ada maka pengguna tinggal melakukan pengubahan data sedangkan apabila data NIK aktivis tidak ada di dalam SIMO maka pengguna bisa langsung menambahkan data aktivis baru</li>
+                      <li>Perbaikan pada perhitungan data aktivis di dashboard</li>
+                      <li>Perbaikan pada download semua data di excel untuk aktivis</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.8 -->
+
+              <!-- Version 3.0.7 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#307">Version 3.0.7 <small class="text-muted"> / 29 Januari 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="307" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini berfokus pada perbaikan artikel, aktivis dan peningkatan pada diklat BKCU.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan pada halaman aktivis dalam menampilkan data aktivis yang tanggal selesai sudah melewati tanggal hari ini tapi statusnya masih bekerja</li>
+                      <li>Perbaikan pada pengubahan artikel</li>
+                      <li>Perbaikan untuk menampilkan artikel pada halaman website publik CU</li>
+                      <li>Perbaikan untuk notifikasi pada diklat BKCU</li>
+                      <li>Peningkatan tampilan pada halaman detail Diklat BKCU</li>
+                      <li>Peningkatan tampilan pada pencarian data untuk semua halaman yang memiliki fitur pencarian data</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.0.7 -->
+
               <!-- Version 3.0.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#306">Version 3.0.6 <small class="text-muted"> / 25 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#306">Version 3.0.6 <small class="text-muted"> / 25 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="306" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="306" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan pada halaman produk CU dan perbaikan pada halaman diklat BKCU.
                     <br/><br/>
@@ -36,7 +112,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /version 3.0.5 -->
+              <!-- /version 3.0.6 -->
 
               <!-- Version 3.0.5 -->
               <div class="card">

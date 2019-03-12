@@ -43,4 +43,8 @@ export default {
   history: function(){
     return axios.get('/api/anggotaCu/history');
   },
+
+  cariData: function( nik ){
+    return axios.get('/api/anggotaCu/cariData/' + nik);
+  },
 }

@@ -9,586 +9,160 @@
 			<div class="content-wrapper">
 				<div class="content">
 
-					<!-- message -->
-					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
-					</message>
+					<!-- check nik -->
+					<div class="card" v-if="$route.meta.mode == 'create'">
+						<div class="card-body">	
+							<div class="row">
+								<div class="col-12">
+									<h6>
+										Silahkan masukkan NIK anggota CU untuk memastikan apakah data anggota CU dengan NIK tersebut sudah terdaftar di SIMO
+									</h6>
+								</div>
+								<div class="col-12 pb-2">
+									<!-- text -->
+									<cleave 
+										name="nik"
+										v-model="nik" 
+										class="form-control" 
+										:options="cleaveOption.number16"
+										placeholder="Silahkan masukkan no KTP"
+										v-validate="'required'" data-vv-as="No. KTP" :disabled="isNew"></cleave>
+								</div>
 
-					<!-- main panel -->
-					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
-
-						<!-- identitas -->
-						<div class="card">
-							<div class="card-body">
-
-								<div class="row">
-									<!-- foto -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Foto:</h6>
-
-											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/mitra_orang/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+								<div class="col-4">
+									<div class="row">
+										<div class="col-6 pb-2">
+											<button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
 										</div>
-									</div>
-
-									<!-- nik -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												No. KTP:</h6>
-
-											<!-- text -->
-											<cleave name="nik" v-model="form.nik" class="form-control" :options="cleaveOption.number16" placeholder="Silahkan masukkan no KTP"></cleave>
-
-										</div>
-									</div>
-
-									<!-- name -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
-
-											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama:</h6>
-
-											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required|min:5'"
-											 data-vv-as="Nama" v-model="form.name">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- gender -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.kelamin')}">
-
-											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.kelamin')}">
-												<i class="icon-cross2" v-if="errors.has('form.kelamin')"></i>
-												Gender:
-											</h6>
-
-											<!-- select -->
-											<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'"
-											 data-vv-as="Gender">
-												<option disabled value="">Silahkan pilih gender</option>
-												<option value="Pria">Pria</option>
-												<option value="Wanita">Wanita</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.kelamin')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kelamin') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- darah -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												Gol. Darah:
-											</h6>
-
-											<!-- select -->
-											<select class="form-control" name="darah" v-model="form.darah" data-width="100%">
-												<option disabled value="">Silahkan pilih golongan darah</option>
-												<option value="A">A</option>
-												<option value="B">B</option>
-												<option value="AB">AB</option>
-												<option value="O">O</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- tinggi -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6> Tinggi <small>(cm)</small>:</h6>
-
-											<!-- text -->
-											<cleave name="tinggi" v-model="form.tinggi" class="form-control" :options="cleaveOption.number3" placeholder="Silahkan masukkan tinggi"></cleave>
-										</div>
-									</div>
-
-									<!-- agama -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Agama:</h6>
-
-											<!-- select -->
-											<select class="form-control" name="agama" v-model="form.agama" data-width="100%">
-												<option disabled value="">Silahkan pilih agama</option>
-												<option value="Buddha">Buddha</option>
-												<option value="Hindu">Hindu</option>
-												<option value="Islam">Islam</option>
-												<option value="Khatolik">Khatolik</option>
-												<option value="Kong Hu Cu">Kong Hu Cu</option>
-												<option value="Protestan">Protestan</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- tanggal lahir -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Tgl. Lahir:</h6>
-
-											<!-- input -->
-											<cleave name="tanggal_lahir" v-model="form.tanggal_lahir" class="form-control" :raw="false" :options="cleaveOption.date"
-											 placeholder="Silahkan masukkan tgl. lahir"></cleave>
-
-										</div>
-									</div>
-
-									<!-- tempat lahir -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Tempat Lahir:</h6>
-
-											<!-- text -->
-											<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir">
-
-										</div>
-									</div>
-
-									<!-- status -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												Status:
-											</h6>
-
-											<!-- select -->
-											<select class="form-control" name="status" v-model="form.status" data-width="100%">
-												<option disabled value="">Silahkan pilih status pernikahan</option>
-												<option value="Belum menikah">Belum menikah</option>
-												<option value="Menikah">Menikah</option>
-												<option value="Janda/Duda">Janda/Duda</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- lembaga -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Lembaga:</h6>
-
-											<!-- text -->
-											<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan lembaga" v-model="form.lembaga">
-										</div>
-									</div>
-
-									<!-- jabatan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Jabatan:</h6>
-
-											<!-- text -->
-											<input type="text" name="jabatan" class="form-control" placeholder="Silahkan masukkan jabatan" v-model="form.jabatan">
-										</div>
-									</div>
-
-									<!-- pendidikan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Pendidikan:</h6>
-
-											<!-- text -->
-											<input type="text" name="pendidikan" class="form-control" placeholder="Silahkan masukkan pendidikan" v-model="form.pendidikan">
-
-										</div>
-									</div>
-
-									<!-- Provinsi -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>
-												Provinsi:
-											</h6>
-
-											<!-- select -->
-											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" :disabled="modelProvinces.length == 0" @change="changeProvinces($event.target.value)">
-												<option disabled value="">
-													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih provinsi</span>
-												</option>
-												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- kabupaten -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Kabupaten:</h6>
-
-											<!-- select -->
-											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
-												<option disabled value="">
-													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih kabupaten</span>
-												</option>
-												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- kecamatan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Kecamatan:</h6>
-
-											<!-- select -->
-											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
-												<option disabled value="">
-													<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih kecamatan</span>
-												</option>
-												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- kelurahan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Kelurahan:</h6>
-
-											<!-- select -->
-											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
-												<option disabled value="">
-													<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
-													<span v-else>Silahkan pilih kelurahan</span>
-												</option>
-												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
-											</select>
-
-										</div>
-									</div>
-
-									<!-- alamat -->
-									<div class="col-md-8">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Alamat:</h6>
-
-											<!-- text -->
-											<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-model="form.alamat">
-
-										</div>
-									</div>
-
-									<!-- no hp -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>No. Hp:</h6>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.hp" 
-												class="form-control" 
-												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no hp"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- email -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.email')}">
-
-											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.email')}">
-												<i class="icon-cross2" v-if="errors.has('form.email')"></i>
-												Email:</h6>
-
-											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat email" v-validate="'email'" data-vv-as="Email" v-model="form.email">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.email')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.email') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- kontak -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6>Kontak Lainnya:</h6>
-
-											<!-- text -->
-											<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak lainnya" v-model="form.kontak">
-
+										<div class="col-6 pb-2" v-if="itemDataStat != ''">
+											<button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
 										</div>
 									</div>
 									
 								</div>
 
+								<!-- loading -->
+								<div class="col-12" v-if="itemDataStat == 'loading'">
+									<hr/>
+									<div class="progress">
+										<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+											<span class="sr-only">100% Complete</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<!-- form info -->
-						<form-info></form-info>
-						<br />
+					</div>
 
-						<!-- form button -->
-						<div class="card card-body">
-							<form-button :cancelState="'methods'" :formValidation="'form'" @cancelClick="back"></form-button>
-						</div>
+					<!-- data exist -->
+					<div class="alert bg-info text-white alert-styled-left alert-dismissible" v-if="Object.keys(itemData).length != 0">
+						<span class="font-weight-semibold">NIK sudah terdaftar di SIMO, maka silahkan melakukan pengubahan.
+						</span>
+					</div>
 
-					</form>
+					<!-- data not exits -->
+					<div class="alert bg-info text-white alert-styled-left alert-dismissible" v-if="itemDataStat == 'success' && Object.keys(itemData).length == 0">
+						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO, maka silahkan menambahkan data anggota CU baru.
+						</span>
+					</div>
+
+					<div v-if="$route.meta.mode == 'create'">
+						<form-create v-if="isNew" :nik="nik"></form-create>
+						<form-edit v-if="itemDataStat == 'success' && !isNew" :mode="'props'" :id_props="itemData.id"></form-edit>
+					</div>
+
+					<form-edit v-if="$route.meta.mode == 'edit'" :mode="'local'"></form-edit>
+
 				</div>
 			</div>
 		</div>
-
-		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor"
-		 @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalBackgroundClick">
-		</app-modal>
 
 	</div>
 </template>
 
 <script>
-	import {
-		mapGetters
-	} from 'vuex';
+	import {mapGetters} from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
-	import {
-		toMulipartedForm
-	} from '../../helpers/form';
-	import appImageUpload from '../../components/ImageUpload.vue';
-	import appModal from '../../components/modal';
-	import message from "../../components/message.vue";
-	import formButton from "../../components/formButton.vue";
-	import formInfo from "../../components/formInfo.vue";
+	import anggotaCuAPI from '../../api/anggotaCu.js';
 	import Cleave from 'vue-cleave-component';
+	import formCreate from "./create.vue";	
+	import formEdit from "./edit.vue";	
 
 	export default {
 		components: {
 			pageHeader,
-			appModal,
-			appImageUpload,
-			message,
-			formButton,
-			formInfo,
+			formCreate,
+			formEdit,
 			Cleave
 		},
 		data() {
 			return {
-				title: 'Tambah Mitra Perorangan',
-				titleDesc: 'Menambah mitra perorangan baru',
-				titleIcon: 'icon-plus3',
-				kelas: 'mitraOrang',
-				level2Title: 'Mitra Perorangan',
+				title: '',
+				titleDesc: '',
+				titleIcon: '',
+				kelas: 'anggotaCu',
+				level2Title: 'Anggota CU',
+				isNew: false,
+				itemData: {},
+				itemDataStat: '',
+				nik: '',
 				cleaveOption: {
-          date:{
-            date: true,
-            datePattern: ['Y','m','d'],
-            delimiter: '-'
-          },
-          number12: {
+          number16: {
             numeral: true,
-            numeralIntegerScale: 12,
+            numeralIntegerScale: 16,
             numeralDecimalScale: 0,
 						stripLeadingZeroes: false,
 						delimiter: ''
 					},
-					number3: {
-            numeral: true,
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
-            stripLeadingZeroes: false
-          },
-          numeric: {
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand',
-            numeralDecimalScale: 2,
-            numeralDecimalMark: ',',
-            delimiter: '.'
-          }
-        },
-				modalShow: false,
-				modalState: '',
-				modalTitle: '',
-				modalColor: '',
-				modalContent: '',
-				submited: false,
+				},
 			}
-		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => vm.fetch());
 		},
 		created() {
-			if (this.currentUser.id_cu == 0) {
-				if (this.modelCuStat != 'success') {
-					this.$store.dispatch('cu/getHeader');
-				}
-			}
-			this.form.id_cu = this.currentUser.id_cu;
-		},
-		watch: {
-			formStat(value) {
-				if (value === "success") {
-					if (this.$route.meta.mode !== 'edit') {
-						this.form.id_cu = this.currentUser.id_cu;
-					}
-				}
-			},
-			updateStat(value) {
-				this.modalShow = true;
-				this.modalState = value;
-				this.modalColor = '';
-
-				if (value === "success") {
-					this.modalTitle = this.updateResponse.message;
-				} else {
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updateResponse;
-				}
+			if(this.$route.meta.mode === 'edit'){
+				this.title = 'Ubah ' + this.level2Title;
+				this.titleDesc = 'Mengubah ' + this.level2Title;
+				this.titleIcon = 'icon-pencil5';
+			}else{
+				this.title = 'Tambah ' + this.level2Title;
+				this.titleDesc = 'Menambah ' + this.level2Title;
+				this.titleIcon = 'icon-plus3';
 			}
 		},
 		methods: {
-			fetch() {
-				if (this.$route.meta.mode === 'edit') {
-					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
-					this.title = 'Ubah mitra perorangan';
-					this.titleDesc = 'Mengubah mitra perorangan';
-					this.titleIcon = 'icon-pencil5';
-				} else {
-					this.title = 'Tambah mitra perorangan';
-					this.titleDesc = 'Menambah mitra perorangan';
-					this.titleIcon = 'icon-plus3';
-					this.$store.dispatch(this.kelas + '/create');
-				}
-				this.$store.dispatch('provinces/get');
-			},
-			save() {
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
-				this.$validator.validateAll('form').then((result) => {
-					if (result) {
-						if (this.$route.meta.mode == 'edit') {
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
-						} else {
-							this.$store.dispatch(this.kelas + '/store', formData);
-						}
-						this.submited = false;
-					} else {
-						window.scrollTo(0, 0);
-						this.submited = true;
+			cariData(){
+				this.itemDataStat = 'loading';
+				this.isNew = false;
+
+				anggotaCuAPI.cariData(this.nik)
+        .then((response) => {
+					if(response.data.model){
+						this.itemData = response.data.model;
+					}else{
+						this.itemData = {};
+						this.isNew = true;
 					}
+					this.itemDataStat = 'success';
+        })
+        .catch((error) => {
+					this.itemData = error.response;
+          this.itemDataStat = 'fail';
 				});
 			},
-			changeProvinces(id){
-				this.$store.dispatch('regencies/getProvinces', id);
+			resetData(){
+				this.nik = '';
+				this.itemData = {};
+				this.isNew = false;
+				this.itemDataStat = '';
 			},
-			changeRegencies(id){
-				this.$store.dispatch('districts/getRegencies', id);
-			},
-			changeDistricts(id){
-				this.$store.dispatch('villages/getDistricts', id);
-			},
-			back() {
-				this.$router.push({name: this.kelas});
-			},
-			modalTutup() {
-				if (this.updateStat === 'success') {
-					this.back();
-				}
-
-				this.modalShow = false;
-			},
-			modalBackgroundClick() {
-				if (this.modalState === 'success') {
-					this.modalTutup;
-				} else if (this.modalState === 'loading') {
-					// do nothing
-				} else {
-					this.modalShow = false
-				}
+			back(){
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
 			},
 		},
 		computed: {
 			...mapGetters('auth', {
 				currentUser: 'currentUser'
-			}),
-			...mapGetters('mitraOrang', {
-				form: 'data',
-				formStat: 'dataStat',
-				rules: 'rules',
-				options: 'options',
-				updateResponse: 'update',
-				updateStat: 'updateStat'
-			}),
-			...mapGetters('provinces',{
-				modelProvinces: 'dataS',
-				modelProvincesStat: 'dataStatS'
-			}),
-			...mapGetters('regencies',{
-				modelRegencies: 'dataS',
-				modelRegenciesStat: 'dataStatS'
-			}),
-			...mapGetters('districts',{
-				modelDistricts: 'dataS',
-				modelDistrictsStat: 'dataStatS'
-			}),
-			...mapGetters('villages',{
-				modelVillages: 'dataS',
-				modelVillagesStat: 'dataStatS'
-			}),
+			})
 		}
 	}
 </script>

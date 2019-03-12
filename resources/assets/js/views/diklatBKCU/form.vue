@@ -71,7 +71,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
 												<i class="icon-cross2" v-if="errors.has('form.periode')"></i>
-												Periode: <small>(YYYY)</small></h5>
+												Periode: <info-icon :message="'Format: tahun. Contoh: 2019'"></info-icon></h5>
 
 											<!-- input -->
 											<cleave 
@@ -98,7 +98,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.mulai')}">
 												<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
-												Tgl. Mulai: <small>(YYYY-MM-DD)</small></h5>
+												Tgl. Mulai: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input -->
 											<cleave 
@@ -125,7 +125,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.selesai')}">
 												<i class="icon-cross2" v-if="errors.has('form.selesai')"></i>
-												Tgl. Selesai: <small>(YYYY-MM-DD)</small></h5>
+												Tgl. Selesai: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input  -->
 											<cleave 
@@ -536,8 +536,6 @@
 											:config="ckeditorNoImageConfig"  v-model="form.jadwal"></ckeditor>
 										</div>
 									</div>
-
-									
 									
 								</div>
 							</div>
@@ -642,6 +640,7 @@
 	import { mapGetters } from 'vuex';
 	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
+	import infoIcon from "../../components/infoIcon.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
@@ -663,6 +662,7 @@
 			formTempat,
 			Cleave,
 			dataTable,
+			infoIcon
 		},
 		data() {
 			return {

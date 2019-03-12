@@ -196,6 +196,9 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+	import ErrorLogAPI from '../api/errorLog.js';
+
 	export default {
 		props: {
 			show: {
@@ -241,12 +244,24 @@
 				showDetail: false,
 			}
 		},
+		created(){
+			if(this.state == 'fail'){
+				this.sendError(this.content);
+			}
+		},
 		mounted() {
 			document.addEventListener("keydown", (e) => {
 				if (this.getModalShow && e.keyCode == 27) {
 					this.tutup();
 				}
 			});
+		},
+		watch:{
+			state(value){
+				if(value == 'fail'){
+					this.sendError(this.content);
+				}
+			}
 		},
 		methods: {
 			backgroundClick() {
@@ -287,7 +302,30 @@
 				}else{
 					this.showDetail = true;
 				}
+			},
+			sendError(content){
+				let form = {};
+
+				form.id_user = this.currentUser.id;
+				form.status = content.status;
+
+				if(content.data){
+					form.content = JSON.stringify(content.data);
+				}else{
+					form.content = JSON.stringify(content);
+				}
+
+				ErrorLogAPI.store(form)
+        .then((response) => {})
+        .catch((error) => {
+					console.log(error.response);
+				});
 			}
+		},
+		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 		}
 	}
 </script>

@@ -23,7 +23,7 @@
 			<div class="col-lg-8">
 				<diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']"></diklat-bkcu-widget>
 
-				<history-organisasi-widget></history-organisasi-widget>
+				<history-organisasi-widget v-if="currentUser.id_cu == 0"></history-organisasi-widget>
 
 				<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
 

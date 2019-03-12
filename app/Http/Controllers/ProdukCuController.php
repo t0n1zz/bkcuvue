@@ -19,7 +19,7 @@ class ProdukCuController extends Controller{
 	public function index()
 	{
 		$table_data = ProdukCu::with('Cu')->select(
-			DB::raw('*,(SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
+			DB::raw('*, (SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
 		)->advancedFilter();
 
 		return response()
@@ -33,6 +33,26 @@ class ProdukCuController extends Controller{
 		$table_data = ProdukCu::where('id_cu',$id)->select(
 			DB::raw('*, (SELECT name FROM cu WHERE produk_cu.id_cu = cu.id) as cu_name')
 		)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function getSimpananCu($id)
+	{
+		$table_data = ProdukCu::where('id_cu',$id)->whereIn('tipe',['Simpanan Pokok','Simpanan Wajib','Simpanan Non Saham'])->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function getPinjamanCu($id)
+	{
+		$table_data = ProdukCu::where('id_cu',$id)->whereIn('tipe',['Pinjaman Kapitalisasi','Pinjaman Umum','Pinjaman Produktif'])->get();
 
 		return response()
 			->json([
@@ -58,7 +78,7 @@ class ProdukCuController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
 		else
 			$fileName = '';
 
@@ -116,8 +136,8 @@ class ProdukCuController extends Controller{
 		$name = $kelas->name;
 
 		if(!empty($kelas->gambar)){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
+			File::delete($this->imagepath . $kelas->gambar . '.jpg');
+			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
 		}
 
 		$kelas->delete();

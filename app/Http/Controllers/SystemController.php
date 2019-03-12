@@ -55,13 +55,16 @@ class SystemController extends Controller
       $id = $user->id_cu;
       
       if($user->id_cu == 0){
-        $countAktivis = Aktivis::count();
+        $countAktivis = Aktivis::with('pekerjaan_aktif.cu')
+        ->whereHas('pekerjaan', function($query){
+          $query->whereIn('tipe',[1,3])->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+        })->count();
       }else{
         $countAktivis = Aktivis::with('pekerjaan_aktif.cu')
         ->whereHas('pekerjaan', function($query) use ($id){
           $query->where('tipe','1')->where('id_tempat',$id)
           ->where(function($q){
-            $q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
+            $q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
           });
         })->count();
       } 

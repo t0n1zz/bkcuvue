@@ -14,10 +14,20 @@
 		<!-- nav -->
 		<div class="nav-tabs-responsive bg-light border-top">
 			<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+
+				<!-- terdaftar -->
 				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'daftar'}" @click.prevent="changeTab('daftar')"><i class="icon-stack-check mr-2"></i>
 						Terdaftar <span class="badge bg-blue-400 align-self-center ml-2" v-if="countDaftar > 0">{{ countDaftar }}</span></a></li>
+
+				<!-- menunggu		 -->
+				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'menunggu'}" @click.prevent="changeTab('menunggu')"><i class="icon-stack-empty mr-2"></i>
+						Menunggu <span class="badge bg-blue-400 align-self-center ml-2" v-if="countMenunggu > 0">{{ countMenunggu }}</span></a></li>	
+
+				<!-- ikut		 -->
 				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'ikut'}" @click.prevent="changeTab('ikut')"><i class="icon-stack-play mr-2"></i>
 						Sedang Mengikuti <span class="badge bg-blue-400 align-self-center ml-2" v-if="countIkut > 0">{{ countIkut }}</span></a></li>	
+
+				<!-- batal		 -->
 				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'batal'}" @click.prevent="changeTab('batal')"><i class="icon-stack-cancel mr-2"></i>
 						Batal <span class="badge bg-blue-400 align-self-center ml-2" v-if="countBatal > 0">{{ countBatal }}</span></a></li>	
 			</ul>
@@ -53,6 +63,36 @@
 			</div>
 		</transition>
 
+		<!-- menunggu -->
+		<transition enter-active-class="animated fadeIn" mode="out-in">
+			<div v-show="tabName == 'menunggu'">
+				<div class="card-body">
+					<ul class="media-list" v-if="itemMenungguStat === 'success'">
+						<li class="media cursor-pointer" v-for="item in itemMenunggu" @click.prevent="detail(item.kegiatan.id)">
+							<div class="mr-3 position-relative">
+								<img :src="'/images/aktivis/' + item.aktivis.gambar + 'n.jpg'" class="rounded-circle" v-if="item.aktivis.gambar" width="36" jeight="36">
+								<img :src="'/images/no_image_man.jpg'" class="rounded-circle" width="36" height="36" v-else>
+							</div>
+
+							<div class="media-body">
+								<div class="d-flex justify-content-between">
+									<a href="#" v-if="item.aktivis">{{ item.aktivis.name }} {{ currentUser.id_cu == 0 ? ' - CU ' + item.aktivis.pekerjaan_aktif.cu.name : '' }}</a>
+									<span class="font-size-sm text-muted">{{ item.created_at | relativeHour }}</span>
+								</div>
+								Sedang menunggu konfirmasi di diklat {{ item.kegiatan ? item.kegiatan.name : '' }}
+							</div>
+						</li>
+						<li v-if="itemMenunggu.length == 0">Tidak terdapat data peserta</li>
+					</ul>
+					<div class="progress" v-else-if="itemMenungguStat === 'loading'">
+						<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+							<span class="sr-only">100% Complete</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</transition>
+		
 		<!-- ikut -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'ikut'">
@@ -130,13 +170,18 @@
 				kelas: 'diklatBKCU',
 				tabName: 'daftar',
 				isIkut: false,
+				isMenunggu: false,
+				isBatal: false,
 				itemDaftar: [],
+				itemMenunggu: [],
 				itemIkut: [],
 				itemBatal: [],
 				countDaftar: '',
+				countMenunggu: '',
 				countIkut: '',
 				countBatal: '',
 				itemDaftarStat: '',
+				itemMenungguStat: '',
 				itemIkutStat: '',
 				itemBatalStat: '',
 			}
@@ -152,6 +197,7 @@
         .then((response) => {
 					this.itemDaftar = response.data.model;
 					this.countDaftar = response.data.model.length;
+					this.countMenunggu = response.data.countMenunggu;
 					this.countIkut = response.data.countIkut;
 					this.countBatal = response.data.countBatal;
           this.itemDaftarStat = 'success';
@@ -159,6 +205,19 @@
         .catch((error) => {
 					this.itemDaftar = error.response;
           this.itemDaftarStat = 'fail';
+				});
+			},
+			fetchMenunggu(){
+				this.itemMenungguStat = 'loading';
+
+				DIKLATBKCUAPI.indexPesertaMenunggu( this.currentUser.id_cu )
+        .then((response) => {
+          this.itemMenunggu = response.data.model;
+          this.itemMenungguStat = 'success';
+        })
+        .catch((error) => {
+					this.itemMenunggu = error.response;
+          this.itemMenungguStat = 'fail';
 				});
 			},
 			fetchIkut(){
@@ -195,6 +254,9 @@
 				if(value == 'ikut' && !this.isIkut){
 					this.isIkut = true;
 					this.fetchIkut();
+				}else if(value == 'menunggu' && !this.isMenunggu){
+					this.isMenunggu = true;
+					this.fetchMenunggu();
 				}else if(value == 'batal' && !this.isBatal){
 					this.isBatal = true;
 					this.fetchBatal();

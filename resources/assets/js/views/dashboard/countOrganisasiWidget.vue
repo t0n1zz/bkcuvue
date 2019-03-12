@@ -15,37 +15,37 @@
 
 				<div class="col-lg-4 col-3 pb-3 cursor-pointer cursor-pointer" v-if="currentUser.can['index_cu'] && currentUser.id_cu == 0" @click.prevent="detail('cu')">
 					<p><i class="icon-office icon-2x d-inline-block text-info"></i></p>
-					<h5 class="font-weight-semibold mb-0">{{ countCu }}</h5>
+					<h5 class="font-weight-semibold mb-0">{{ countCu }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">CU</span>
 				</div>
 
 				<div class="col-lg-4 col-3 pb-3 cursor-pointer" v-if="currentUser.can['index_tp']" @click.prevent="detail('tp')">
 					<p><i class="icon-home9 icon-2x d-inline-block text-info"></i></p>
-					<h5 class="font-weight-semibold mb-0">{{ countTp }}</h5>
+					<h5 class="font-weight-semibold mb-0">{{ countTp }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">TP/KP</span>
 				</div>
 
 				<div class="col-lg-4 col-3 pb-3 cursor-pointer" v-if="currentUser.can['index_produk_cu']" @click.prevent="detail('produk_cu')">
 					<p><i class="icon-list3 icon-2x d-inline-block text-info"></i></p>
-					<h5 class="font-weight-semibold mb-0">{{ countProdukCu }}</h5>
+					<h5 class="font-weight-semibold mb-0">{{ countProdukCu }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Produk & Pelayanan</span>
 				</div>
 
 				<div class="col-lg-4 col-3 pb-3 cursor-pointer" v-if="currentUser.can['index_aktivis']" @click.prevent="detail('aktivis')">
 					<p><i class="icon-user-tie icon-2x d-inline-block text-info"></i></p>
-					<h5 class="font-weight-semibold mb-0">{{ countAktivis }}</h5>
+					<h5 class="font-weight-semibold mb-0">{{ countAktivis }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Aktivis</span>
 				</div>
 
 				<div class="col-lg-4 col-3 pb-3 cursor-pointer" v-if="currentUser.can['index_mitra_orang']" @click.prevent="detail('mitra_orang')">
 					<p><i class="icon-briefcase icon-2x d-inline-block text-info"></i></p>
-					<h5 class="font-weight-semibold mb-0">{{ countMitraOrang}}</h5>
+					<h5 class="font-weight-semibold mb-0">{{ countMitraOrang}} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Mitra Perseorangan</span>
 				</div>
 
 				<div class="col-lg-4 col-3 pb-3 cursor-pointer" v-if="currentUser.can['index_mitra_lembaga']" @click.prevent="detail('mitra_lembaga')">
 					<p><i class="icon-briefcase icon-2x d-inline-block text-info"></i></p>
-					<h5 class="font-weight-semibold mb-0">{{ countMitraLembaga}}</h5>
+					<h5 class="font-weight-semibold mb-0">{{ countMitraLembaga}} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Lembaga Mitra</span>
 				</div>
 				

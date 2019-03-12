@@ -5,12 +5,12 @@ class Token{
       
       if(payload){
         switch( process.env.NODE_ENV){
-            case 'development':
-                return payload.iss == "https://bkcuvue.test/api/auth/login" || "https://bkcuvue.test/api/auth/refresh"  ? true : false
-            break;
-            case 'production': 
-                return payload.iss == "https://puskopditbkcukalimantan.org/api/auth/login" || "https://puskopditbkcukalimantan.org/api/auth/refresh"  ? true : false
-            break;   
+					case 'development':
+						return payload.iss == "https://bkcuvue.test/api/auth/login" || "https://bkcuvue.test/api/auth/refresh"  ? true : false
+					break;
+					case 'production': 
+						return payload.iss == "https://puskopditbkcukalimantan.org/api/auth/login" || "https://puskopditbkcukalimantan.org/api/auth/refresh"  ? true : false
+					break;   
         }        
       }
 

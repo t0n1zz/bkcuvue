@@ -100,8 +100,10 @@
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
-												<i class="icon-cross2" v-if="errors.has('form.periode')"></i>
-												Periode:</h5>
+												<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
+												Periode: 
+												<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+											</h5>
 
 											<!-- input -->
 											<cleave 
@@ -210,7 +212,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Total Anggota Tahun Lalu <i class="icon-info22" v-tooltip="'Anggota tahun lalu dari bulan yang sama dengan periode laporan ini.'"></i></h5>
+											<h5>Total Anggota Tahun Lalu <info-icon :message="'Anggota tahun lalu dari bulan yang sama dengan periode laporan ini.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -251,7 +253,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Aset Tahun Lalu <i class="icon-info22" v-tooltip="'Aset tahun lalu dari periode laporan ini.'"></i></h5>
+											<h5>Aset Tahun Lalu <info-icon :message="'Aset tahun lalu dari periode laporan ini.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -270,7 +272,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Aset Masalah <i class="icon-info22" v-tooltip="'Aset tahun lalu dari periode laporan ini.'"></i></h5>
+											<h5>Aset Masalah <info-icon :message="'Nilai dari investasi CU Primer yang sudah tidak menghasilkan dan atau saldo dari piutang anggota yang sudah berhenti tetapi simpanannya tidak tersedia untuk pelunasan piutang tersebut.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -406,7 +408,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Non Saham (Harian & Deposito) <i class="icon-info22" v-tooltip="'Seluruh simpanan non-saham (Harian & Deposito) kecuali simpanan unggulan.'"></i></h5>
+											<h5>Simp. Non Saham (Harian & Deposito) <info-icon :message="'Seluruh simpanan non-saham (Harian & Deposito) kecuali simpanan unggulan.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -425,7 +427,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu <i class="icon-info22" v-tooltip="'Simpanan saham tahun lalu dari bulan yang sama/bulan ini.'"></i></h5>
+											<h5>Simp. Saham Tahun Lalu <info-icon :message="'Simpanan saham tahun lalu dari bulan yang sama/bulan ini.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -444,7 +446,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu Bulan Des <i class="icon-info22" v-tooltip="'Simpanan saham bulan desember tahun lalu.'"></i></h5>
+											<h5>Simp. Saham Tahun Lalu Bulan Des <info-icon :message="'Simpanan saham bulan desember tahun lalu.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -485,7 +487,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Total Hutang Pihak Ke-3 <i class="icon-info22" v-tooltip="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></i></h5>
+											<h5>Total Hutang Pihak Ke-3 <info-icon :message="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></info-icon></h5>
 
 											<!-- text -->
 											<cleave 
@@ -845,6 +847,7 @@
 	import { mapGetters } from 'vuex';
 	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
+	import infoIcon from "../../components/infoIcon.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
@@ -861,7 +864,8 @@
 			message,
 			formButton,
 			formInfo,
-			Cleave
+			Cleave,
+			infoIcon
 		},
 		data() {
 			return {
@@ -918,8 +922,10 @@
 				if(value == "success"){
 					if(this.$route.meta.mode == 'edit' && this.modelCUStat == "success"){
 						this.changeCu(this.form.id_cu);
+						this.checkUser('update_laporan_cu',this.form.id_cu);
 					}else if(this.$route.meta.mode == 'editTp' && this.modelCUStat == "success"){
 						this.checkMetaEditTp();
+						this.checkUser('update_laporan_tp',this.form.id_cu);
 					}else if(this.$route.meta.mode !== 'edit'){
 						if(this.currentUser.id_cu == 0){
 							this.form.id_cu = this.currentUser.id_cu;
@@ -1039,6 +1045,18 @@
 			},
 			changeLaporanTp(id,tp){
 				this.$router.push({name: 'laporanTpEdit', params: { id: id}});
+			},
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
+				}
 			},
 			save() {
 				if(this.currentUser.id_cu != 0){

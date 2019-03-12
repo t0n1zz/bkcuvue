@@ -115,6 +115,7 @@
 		},
 		created(){
 			this.checkTitle();
+			this.checkUser('index_laporan_cu',this.$route.params.cu);
 		},
 		watch: {
 			'$route' (to, from){
@@ -123,6 +124,18 @@
 			}
 		},
 		methods: {
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
+				}
+			},
 			checkTitle(){
 				if (this.$route.meta.mode == "periode") {
 					this.title = "Laporan Statistik CU";

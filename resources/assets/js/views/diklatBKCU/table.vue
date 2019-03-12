@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :dataview="dataview" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isNoButtonRow="isNoButtonRow" :dataview="dataview" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -252,6 +252,7 @@
 					page: 1
 				},
 				dataview: '',
+				isNoButtonRow:'',
 				columnData: [
 					{
 						title: 'No.',
@@ -427,8 +428,10 @@
 
 				if(this.currentUser.id_cu == 0){
 					this.dataview = 'list';
+					this.isNoButtonRow = false;
 				}else{
 					this.dataview = 'grid';
+					this.isNoButtonRow = true;
 					this.query.limit = 15;
 				}
 			},

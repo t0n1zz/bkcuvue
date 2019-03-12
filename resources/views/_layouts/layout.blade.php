@@ -66,6 +66,7 @@
 
         <!-- footer -->
         @include('_layouts.footer')
+        
     </div>
 
     <!-- go to top -->

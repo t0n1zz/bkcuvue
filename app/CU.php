@@ -42,7 +42,7 @@ class Cu extends Model {
     }
 
     protected $dontKeepRevisionOf = array(
-        'deleted_at'
+        'deleted_at','updated_at'
     );
     
     protected $fillable = [

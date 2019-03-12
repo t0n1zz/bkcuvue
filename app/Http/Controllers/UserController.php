@@ -52,6 +52,9 @@ class UserController extends Controller
 		'index_saran',
 		'destroy_saran',
 
+		'index_error_log',
+		'destroy_error_log',
+
 		'index_cu',
 		'create_cu',
 		'update_cu',
@@ -371,6 +374,20 @@ class UserController extends Controller
 			->json([
 				'saved' => true,
 				'message' => 'Password user ' .$username. ' telah berhasil direset'
+			]);
+	}
+
+	public function destroy($id)
+	{
+		$kelas = User::findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'User ' .$name. 'berhasil dihapus'
 			]);
 	}
 

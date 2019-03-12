@@ -800,6 +800,29 @@
 							},
 						]
 					},
+					{
+						name: 'Error Log',
+						icon: 'icon-cancel-square2',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_error_log',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Saran'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_error_log',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Saran'
+							},
+						]
+					},
 				],
 				selectPeran: '',
 				peran: {
@@ -836,6 +859,9 @@
 
 						'index_saran',
 						'destroy_saran',
+
+						'index_error_log',
+						'destroy_error_log',
 
 						'index_cu',
 						'create_cu',

@@ -20,14 +20,14 @@ class LaporanTpController extends Controller{
 
 	public function index($id)
 	{
-		$table_data = LaporanTp::with('Tp.Cu')->select('Laporan_tp.*',
+		$table_data = LaporanTp::with('Tp.Cu')->select('laporan_tp.*',
 			'tp.name as tp_name',
 			'provinces.name as provinces_name')
-			->leftjoin('tp','Laporan_tp.id_tp','tp.id')
+			->leftjoin('tp','laporan_tp.id_tp','tp.id')
 			->leftjoin('provinces','tp.id_provinces','provinces.id')
-			->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp GROUP BY id_tp) latest_report"),function($join){
-        $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
-        $join->on('Laporan_tp.periode','=','latest_report.max_periode');
+			->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM laporan_tp GROUP BY id_tp) latest_report"),function($join){
+        $join->on('laporan_tp.id_tp','=','latest_report.id_tp');
+        $join->on('laporan_tp.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw(LaporanTpHelper::queryPerkembangan()
 			)])->whereHas('Tp', function($query) use ($id){
 				$query->where('id_cu',$id);
@@ -53,14 +53,14 @@ class LaporanTpController extends Controller{
 	{
 		$table_data = LaporanTp::with('Tp.Cu')->whereHas('Tp', function($query) use ($id){
 			$query->where('id_cu',$id);
-		})->select('Laporan_tp.*',
+		})->select('laporan_tp.*',
 		'tp.name as tp_name',
 		'provinces.name as provinces_name')
-		->leftjoin('tp','Laporan_tp.id_tp','tp.id')
+		->leftjoin('tp','laporan_tp.id_tp','tp.id')
     ->leftjoin('provinces','tp.id_provinces','provinces.id')
-		->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp WHERE periode <= '$periode' GROUP BY id_tp) latest_report"),function($join){
-        $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
-        $join->on('Laporan_tp.periode','=','latest_report.max_periode');
+		->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM laporan_tp WHERE periode <= '$periode' GROUP BY id_tp) latest_report"),function($join){
+        $join->on('laporan_tp.id_tp','=','latest_report.id_tp');
+        $join->on('laporan_tp.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw(LaporanTpHelper::queryPerkembangan())])->advancedFilter();
 
 		return response()
@@ -71,14 +71,14 @@ class LaporanTpController extends Controller{
 
 	public function indexPearls()
 	{
-		$table_data = LaporanTp::select('Laporan_tp.*',
+		$table_data = LaporanTp::select('laporan_tp.*',
 			'tp.name as tp_name',
 			'provinces.name as provinces_name')
-			->leftjoin('tp','Laporan_tp.id_tp','tp.id')
+			->leftjoin('tp','laporan_tp.id_tp','tp.id')
 			->leftjoin('provinces','tp.id_provinces','provinces.id')
-			->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp GROUP BY id_tp) latest_report"),function($join){
-        $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
-        $join->on('Laporan_tp.periode','=','latest_report.max_periode');
+			->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM laporan_tp GROUP BY id_tp) latest_report"),function($join){
+        $join->on('laporan_tp.id_tp','=','latest_report.id_tp');
+        $join->on('laporan_tp.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
 
 		return response()
@@ -101,14 +101,14 @@ class LaporanTpController extends Controller{
 	{
 		$table_data = LaporanTp::with('Tp.Cu')->whereHas('Tp', function($query) use ($id){
 			$query->where('id_cu',$id);
-		})->select('Laporan_tp.*',
+		})->select('laporan_tp.*',
 		'tp.name as tp_name',
 		'provinces.name as provinces_name')
-		->leftjoin('tp','Laporan_tp.id_tp','tp.id')
+		->leftjoin('tp','laporan_tp.id_tp','tp.id')
     ->leftjoin('provinces','tp.id_provinces','provinces.id')
-		->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM Laporan_tp WHERE periode <= '$periode' GROUP BY id_tp) latest_report"),function($join){
-        $join->on('Laporan_tp.id_tp','=','latest_report.id_tp');
-        $join->on('Laporan_tp.periode','=','latest_report.max_periode');
+		->join(DB::RAW("(SELECT id_tp, MAX(periode) AS max_periode FROM laporan_tp WHERE periode <= '$periode' GROUP BY id_tp) latest_report"),function($join){
+        $join->on('laporan_tp.id_tp','=','latest_report.id_tp');
+        $join->on('laporan_tp.periode','=','latest_report.max_periode');
 		})->addSelect([DB::raw(LaporanTpHelper::queryPEARLS())])->advancedFilter();
 
 		return response()

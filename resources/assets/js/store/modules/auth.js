@@ -10,6 +10,7 @@ export const auth = {
     currentUser: user,
     isLoggedIn: !!user,
     isLoading: false,
+    isTokenExpired: false,
     authError: null,
     notification: {},
     unreadNotification:'',
@@ -20,6 +21,7 @@ export const auth = {
   getters: {
     isLoading: state => state.isLoading,
     isLoggedIn: state => state.isLoggedIn,
+    isTokenExpired: state => state.isTokenExpired,
     currentUser: state => state.currentUser,
     authError: state => state.authError,
     notification: state => state.notification,
@@ -38,13 +40,15 @@ export const auth = {
       commit('setIsLoggedIn', true);
       commit('setIsLoading', false);
       commit('setCurrentUser', Object.assign({}, payload.user, {token: payload.access_token}));
-      
       localStorage.setItem("user", JSON.stringify(state.currentUser));
-
+      commit('setIsTokenExpired', false);
     },
     loginFailed({ commit, state }, payload){
       commit('setIsLoading', false);
       commit('setAuthError', payload.error);
+    },
+    logoutTokenExpired({ commit, state }){
+      commit('setIsTokenExpired', true);
     },
     logout({ commit, state }){
       localStorage.removeItem("user");
@@ -62,6 +66,9 @@ export const auth = {
     },
     setIsLoggedIn ( state, data ){
       state.isLoggedIn = data;
+    },
+    setIsTokenExpired ( state, data ){
+      state.isTokenExpired = data;
     },
     setCurrentUser ( state, data ){
       state.currentUser = data;

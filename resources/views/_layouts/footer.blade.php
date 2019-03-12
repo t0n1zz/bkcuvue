@@ -1,3 +1,4 @@
+@php $subdomain = Route::input('cu') @endphp
 <footer id="footer" class="dark">
 
   <div class="container">
@@ -33,7 +34,7 @@
           <div class="widget widget_links clearfix">
 
             <h4>Navigasi Website</h4>
-            @php $subdomain = Route::input('cu') @endphp
+            
             @if($subdomain)
               <div class="col_full">
                 <ul>

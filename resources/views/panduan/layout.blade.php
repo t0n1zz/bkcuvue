@@ -25,8 +25,8 @@
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/icons/icomoon/styles.css')}}" >
+	
 	<link rel="stylesheet" type="text/css" href="{{mix('css/admin/libs.css')}}" >
-	<link rel="stylesheet" type="text/css" href="{{asset('css/admin/v-tooltip-style.css')}}" >
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -45,7 +45,7 @@
 	<![endif]-->
 </head>
 
-<body data-spy="scroll" data-target=".sidebar-component-right">
+<body data-spy="scroll" data-target=".sidebar">
 	
 	<!-- first navbar -->
 	<div class="navbar navbar-expand-md navbar-dark bg-indigo d-print-none">
@@ -60,15 +60,11 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
 				<i class="icon-tree5"></i>
 			</button>
+			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+				<i class="icon-paragraph-justify3"></i>
+			</button>
 		</div>
 
-		<div class="collapse navbar-collapse" id="navbar-mobile">
-				<span class="navbar-text ml-md-3 mr-md-auto">
-					<span class="badge bg-info-400">
-							<span>3.0.6</span>
-					</span>
-				</span>
-			</div>
 	</div>
 
 	<!-- second navbar -->
@@ -88,7 +84,7 @@
 
 					<!-- print -->
 					<li class="nav-item">
-						<a href="#" onclick="printfunc()" class="navbar-nav-link"><i class="icon-printer2 mr-2"></i>  PRINT/CETAK PANDUAN</a>
+						<a href="#" onclick="printfunc()" class="navbar-nav-link"><i class="icon-printer2 mr-2"></i> Print/Cetak Panduan</a>
 					</li>
 				</ul>
 			</div>
@@ -110,21 +106,16 @@
 	</div>
 
 	<!-- content -->
-	<div class="page-content">
+	<div class="page-content pt-0">
+
+		<!-- sidebar -->
+		@include('panduan.sidebar')
+
+		<!-- content -->
 		<div class="content-wrapper">
 
 			<div class="content">
-				<div class="d-flex align-items-start flex-column flex-md-row">
-
-					<div class="w-100 order-2 order-md-1">
-						<!-- content -->
-						@yield('content')
-					</div>
-
-					<!-- sidebar -->
-					@include('panduan.sidebar')
-
-				</div>
+				@yield('content')
 			</div>
 
 		</div>
@@ -146,7 +137,8 @@
 		</div>
 	</div>
 
-	<script>
+
+<script>
 	function printfunc() {
 		window.print();
 	}

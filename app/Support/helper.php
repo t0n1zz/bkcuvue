@@ -22,7 +22,7 @@ class Helper{
 
 			// validate image request
 			$validator = Validator::make($request->all(), [
-				'gambar' => 'image|mimes:jpeg,png,jpg|max:2048'
+				'gambar' => 'image|mimes:jpeg,png,jpg'
 			]);
 
 			if ($validator->fails()) {

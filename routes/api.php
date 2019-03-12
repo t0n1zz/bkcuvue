@@ -115,13 +115,13 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/cu/getPus/{id}', 'CuController@getPus');
         Route::get('/cu/count', 'CuController@count');
         Route::get('/cu/history', 'CuController@history');
+        Route::get('/cu/edit/{id}', 'CuController@edit');
     });
     Route::group(['middleware' => ['permission:create_cu']], function () {
         Route::get('/cu/create', 'CuController@create');
         Route::post('/cu/store', 'CuController@store');
     });
     Route::group(['middleware' => ['permission:update_cu']], function () {
-        Route::get('/cu/edit/{id}', 'CuController@edit');
         Route::post('/cu/update/{id}', 'CuController@update');
         Route::post('/cu/restore/{id}', 'CuController@restore');
     });
@@ -151,11 +151,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // produk
+    Route::get('/produkcu/getSimpananCu/{id}', 'ProdukCuController@getSimpananCu');
+    Route::get('/produkcu/getPinjamanCu/{id}', 'ProdukCuController@getPinjamanCu');
     Route::group(['middleware' => ['permission:index_produk_cu']], function () {
         Route::get('/produkcu', 'ProdukCuController@index');
         Route::get('/produkcu/get', 'ProdukCuController@get');
         Route::get('/produkcu/indexCu/{id}', 'ProdukCuController@indexCu'); 
-        Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
         Route::get('/produkcu/count', 'ProdukCuController@count');
         Route::get('/produkcu/history', 'ProdukCuController@history');
     });
@@ -187,6 +188,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         // peserta
         Route::get('/diklatBKCU/indexPeserta/{id}', 'DiklatBKCUController@indexPeserta');
         Route::get('/diklatBKCU/indexPesertaTerdaftar/{id}', 'DiklatBKCUController@indexPesertaTerdaftar');
+        Route::get('/diklatBKCU/indexPesertaMenunggu/{id}', 'DiklatBKCUController@indexPesertaMenunggu');
         Route::get('/diklatBKCU/indexPesertaBerjalan/{id}', 'DiklatBKCUController@indexPesertaBerjalan');
         Route::get('/diklatBKCU/indexPesertaBatal/{id}', 'DiklatBKCUController@indexPesertaBatal');
         Route::get('/diklatBKCU/indexPesertaCu/{id}/cu/{cu}', 'DiklatBKCUController@indexPesertaCu');
@@ -223,6 +225,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:create_aktivis']], function () {
         Route::get('/aktivis/create', 'AktivisController@create');
         Route::post('/aktivis/store', 'AktivisController@store');
+        Route::get('/aktivis/cariData/{nik}', 'AktivisController@cariData');
     });
     Route::group(['middleware' => ['permission:update_aktivis']], function () {
         Route::get('/aktivis/editIdentitas/{id}', 'AktivisController@editIdentitas');
@@ -300,6 +303,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
         Route::get('/anggotaCu/create', 'AnggotaCuController@create');
         Route::post('/anggotaCu/store', 'AnggotaCuController@store');
+        Route::get('/anggotaCu/cariData/{nik}', 'AnggotaCuController@cariData');
     });
     Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
         Route::get('/anggotaCu/edit/{id}', 'AnggotaCuController@edit');
@@ -426,6 +430,18 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:destroy_saran']], function () {
         Route::delete('/saran/{id}', 'SaranController@destroy');
     });
+
+    //error log
+    Route::group(['middleware' => ['permission:index_saran']], function () {
+        Route::get('/errorLog', 'ErrorLogController@index');
+        Route::get('/errorLog/count', 'ErrorLogController@count');
+    });
+    Route::get('/errorLog/create', 'ErrorLogController@create');
+    Route::post('/errorLog/store', 'ErrorLogController@store');
+    Route::group(['middleware' => ['permission:destroy_saran']], function () {
+        Route::delete('/errorLog/{id}', 'ErrorLogController@destroy');
+    });
+
 
     //pengumuman
     Route::group(['middleware' => ['permission:index_pengumuman']], function () {

@@ -32,6 +32,10 @@ export default {
     return axios.get('/api/diklatBKCU/indexPesertaTerdaftar/' + id);
   },
 
+  indexPesertaMenunggu: function(id){
+    return axios.get('/api/diklatBKCU/indexPesertaMenunggu/' + id);
+  },
+
   indexPesertaBerjalan: function(id){
     return axios.get('/api/diklatBKCU/indexPesertaBerjalan/' + id);
   },

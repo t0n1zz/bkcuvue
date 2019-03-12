@@ -16,22 +16,37 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="navbar-mobile">
-				<span class="navbar-text ml-md-3 mr-md-auto">
+				<span class="navbar-text ml-md-3 mr-md-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>3.0.6</span>
+							<span>VERSION 3.0.9</span>
 						</router-link>
 					</span>
 				</span>
 
-				<span class="navbar-text ml-md-auto mr-md-1">
+				<span class="navbar-text ml-md-3 mr-md-auto">
 					<span class="badge bg-success-400">
-						<span v-if="currentUser.pus">{{currentUser.pus.name}}</span>
-						<span v-if="currentUser.cu">- CU {{currentUser.cu.name}}</span>
+						<span v-if="currentUser && currentUser.id_cu != 0">CU {{currentUser.cu.name.toUpperCase()}}</span>
+						<span v-else-if="currentUser && currentUser.id_cu == 0">PUSKOPDIT BKCU KALIMANTAN</span>
 					</span>
 				</span>
 
 				<ul class="navbar-nav">
+
+					<!-- panduan -->
+					<li class="nav-item">
+						<a href="https://puskopditbkcukalimantan.org/panduan" class="navbar-nav-link " target="_blank">
+							<i class="icon-book mr-2"></i>Panduan
+						</a>
+					</li>
+
+					<!-- saran -->
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link " @click.prevent="modalOpen('saran')">
+							<i class="icon-lifebuoy mr-2"></i>Saran
+						</a>
+					</li>
+
 
 					<!-- notification -->
 					<li class="nav-item dropdown">
@@ -124,25 +139,20 @@
 					<!-- user -->
 					<li class="nav-item dropdown dropdown-user">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-							<img :src="'/images/user/' + currentUser.gambar + '.jpg'" alt="user image" class="rounded-circle" v-if="currentUser.gambar" width="36" height="36">
+							<img :src="'/images/user/' + currentUser.gambar + '.jpg'" alt="user image" class="rounded-circle" v-if="currentUser && currentUser.gambar" width="36" height="36">
 							<img src="/images/no_image_man.jpg" alt="user image" class="rounded-circle" width="36" height="36" v-else>
-							<span>{{currentUser.name}}</span>
+							<span>{{ currentUser ? currentUser.name : "" }}</span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
 							<!-- profile -->
-							<router-link :to="{ name: 'profile', params:{id: currentUser.id} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can">
+							<router-link :to="{ name: 'profile', params:{id: currentUser.id} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can">
 								<i class="icon-user"></i> Profile
 							</router-link>
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
-							<a href="#" class="dropdown-item" @click.prevent="modalOpen('saran')"><i class="icon-lifebuoy mr-2"></i> Masukkan Saran</a>
-							<router-link class="dropdown-item" :to="{ name:'panduan' }"><i class="icon-file-text2 mr-2"></i> Panduan</router-link>
-							<router-link class="dropdown-item" :to="{ name:'changelog' }"><i class="icon-list mr-2"></i>  Changelog</router-link>
-							<!-- divider -->
-							<div class="dropdown-divider"></div> 
-
+							
 							<!-- logout -->
 							<a href="#" class="dropdown-item" @click.prevent="modalOpen('logout')"><i class="icon-switch2"></i> Logout</a>
 						</div>
@@ -177,7 +187,7 @@
 					</li>
 
 					<!-- publikasi -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_artikel'] || currentUser.can['create_artikel_kategori'] || currentUser.can['create_artikel_penulis'] || currentUser.can['index_artikel'] || currentUser.can['index_artikel_kategori'] || currentUser.can['index_artikel_penulis']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_artikel'] || currentUser.can['create_artikel_kategori'] || currentUser.can['create_artikel_penulis'] || currentUser.can['index_artikel'] || currentUser.can['index_artikel_kategori'] || currentUser.can['index_artikel_penulis']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-newspaper mr-2"></i>
 							Publikasi
@@ -338,7 +348,7 @@
 					</li>
 
 					<!-- kegiatan -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_diklat_bkcu'] || currentUser.can['create_tempat'] || currentUser.can['index_diklat_bkcu'] || currentUser.can['index_tempat']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_diklat_bkcu'] || currentUser.can['create_tempat'] || currentUser.can['index_diklat_bkcu'] || currentUser.can['index_tempat']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-calendar3 mr-2"></i>
 							Kegiatan
@@ -376,7 +386,7 @@
 					</li>
 
 					<!-- anggota cu -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_anggota_cu'] || currentUser.can['index_anggota_cu']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_anggota_cu'] || currentUser.can['index_anggota_cu']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-users4 mr-2"></i>
 							Anggota CU
@@ -385,7 +395,7 @@
 						<div class="dropdown-menu">
 
 							<!-- tambah diklat pus -->
-							<router-link :to="{ name:'diklatBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_diklat_bkcu']">
+							<router-link :to="{ name:'anggotaCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_anggota_cu']">
 								<i class="icon-plus22"></i> Tambah Anggota CU
 							</router-link>
 
@@ -425,7 +435,7 @@
 					</li>
 
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -472,7 +482,7 @@
 							</router-link>
 							
 							<!-- if cu account -->
-							<router-link :to="{ name: 'cuProfile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu != 0 && currentUser.can['update_cu']">
+							<router-link :to="{ name: 'cuProfile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu != 0 && currentUser.can['index_cu']">
 								<i class="icon-office"></i> Profile CU
 							</router-link>
 
@@ -621,7 +631,7 @@
 					</li>
 
 					<!-- keuangan -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_laporan_cu'] || currentUser.can['index_laporan_cu']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['index_laporan_cu']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-calculator3 mr-2"></i>
 							Keuangan
@@ -703,7 +713,7 @@
 				<ul class="navbar-nav ml-md-auto">
 
 					<!-- pengaturan -->
-					<li class="nav-item dropdown" v-if="currentUser.can['create_user'] || currentUser.can['index_user']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_user'] || currentUser.can['index_user']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-cog3"></i>
 							<span class="d-md-none ml-2">Pengaturan</span>
@@ -755,6 +765,10 @@
 								<i class="icon-lifebuoy"></i> Saran
 							</router-link>
 
+							<router-link :to="{ name: 'errorLog' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_error_log']">
+								<i class="icon-cancel-square2"></i> Error Log
+							</router-link>
+
 						</div>
 
 					</li>
@@ -777,6 +791,10 @@
 				@cancelClick="modalTutup"></form-saran>
 			</template>
 
+			<template slot="modal-body2">
+				<form-login :mode="'loginModal'"></form-login>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -787,11 +805,13 @@
 	import { mapGetters } from 'vuex';
 	import formSaran from "../views/saran/form.vue";
 	import appModal from './modal';
+	import formLogin from './loginForm';
 
 	export default {
 		components: {
 			formSaran,
 			appModal,
+			formLogin
 		},
 		data(){
 			return{
@@ -807,7 +827,7 @@
 				modalTitle: '',
 				modalContent: '',
 				modalColor: '',
-				modalButton: ''
+				modalButton: '',
 			}
 		},
 		created(){
@@ -824,6 +844,17 @@
 				this.fetchNotif();
 				this.fetchLaporanCuDraft();
 				this.fetchLaporanTpDraft();
+			},
+			isTokenExpired(value){ 
+				if(value == true){
+					this.modalShow = true;
+					this.modalState = 'normal2';
+					this.modalColor = '';
+					this.modalTitle = '';
+					this.modalButton = '';
+				}else{
+					this.modalShow = false;
+				}
 			},
 			markNotifStat(value){
 				if(value === "success"){
@@ -861,7 +892,9 @@
 				}
 			},
 			modalTutup() {
-				this.modalShow = false;
+				if(!this.isTokenExpired){
+					this.modalShow = false;
+				}
 
 				if(this.state == 'logout-confirmed'){
 					this.$store.dispatch('auth/logout');
@@ -962,7 +995,7 @@
 				.catch((err) => {
 					this.modalState = 'fail';
 					this.modalContent = this.err;
-				})
+				});
 			},
 			momentYear(){
 				return moment().year();
@@ -971,6 +1004,7 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser',
+				isTokenExpired: 'isTokenExpired'
 			}),
 			...mapGetters('notification',{
 				notification: 'notification',

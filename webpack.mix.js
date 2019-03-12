@@ -55,6 +55,7 @@ mix.scripts([
 ], 'public/js/public/libs.js');
 
 mix.styles([
+  'resources/assets/css/_public/swiper.css',
   'resources/assets/css/_public/rs-plugin/css/settings.css',
   'resources/assets/css/_public/rs-plugin/css/layers.css',
   'resources/assets/css/_public/rs-plugin/css/navigation.css',

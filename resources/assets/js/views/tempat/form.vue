@@ -390,6 +390,11 @@
 					if(this.$route.meta.mode != 'edit' && this.currentUser.id_cu != 0){
 						this.form.id_cu = this.currentUser.id_cu;
 					}
+					if(this.$route.meta.mode == 'edit'){
+						this.changeProvinces(this.form.id_provinces);
+						this.changeRegencies(this.form.id_regencies);
+						this.changeDistricts(this.form.id_districts);
+					}
 				}
 			},
 			updateStat(value){

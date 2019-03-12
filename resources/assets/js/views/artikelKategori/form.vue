@@ -158,6 +158,8 @@
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
 						this.form.id_cu = this.currentUser.id_cu;
+					}else{
+						this.checkUser('update_artikel_kategori',this.form.id_cu);
 					}
 				}
 			},
@@ -186,6 +188,18 @@
 					this.titleDesc = 'Menambah kategori artikel';
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
+				}
+			},
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
 				}
 			},
 			save() {

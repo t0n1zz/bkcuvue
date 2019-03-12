@@ -70,6 +70,9 @@
 									</span>
 								</td>
 							</tr>
+							<tr v-if="itemBaru.length >= 6" class="cursor-pointer">
+								<td :colspan="7" @click.prevent="goToDiklatBKCU"><i class="icon-arrow-right6 mr-2"></i> <strong>LIHAT SEMUA DIKLAT BKCU</strong></td>
+							</tr>
 							<tr v-if="itemBaru.length == 0">
 								<td :colspan="7">Tidak terdapat data diklat</td>
 							</tr>
@@ -133,6 +136,9 @@
 									</span>
 								</td>
 							</tr>
+							<tr v-if="itemMulai.length >= 6" class="cursor-pointer">
+								<td :colspan="7" @click.prevent="goToDiklatBKCU"><i class="icon-arrow-right6 mr-2"></i> <strong>LIHAT SEMUA DIKLAT BKCU</strong></td>
+							</tr>
 							<tr v-if="itemMulai.length == 0">
 								<td :colspan="7">Tidak terdapat data diklat</td>
 							</tr>
@@ -191,7 +197,10 @@
 									</span>
 								</td>
 							</tr>
-							<tr  v-if="itemBuka.length == 0">
+							<tr v-if="itemBuka.length >= 6" class="cursor-pointer">
+								<td :colspan="7" @click.prevent="goToDiklatBKCU"><i class="icon-arrow-right6 mr-2"></i> <strong>LIHAT SEMUA DIKLAT BKCU</strong></td>
+							</tr>
+							<tr v-if="itemBuka.length == 0">
 								<td :colspan="6">Tidak terdapat data diklat</td>
 							</tr>
 						</tbody>
@@ -248,6 +257,9 @@
 										</label>
 									</span>
 								</td>
+							</tr>
+							<tr v-if="itemJalan.length >= 6" class="cursor-pointer">
+								<td :colspan="7" @click.prevent="goToDiklatBKCU"><i class="icon-arrow-right6 mr-2"></i> <strong>LIHAT SEMUA DIKLAT BKCU</strong></td>
 							</tr>
 							<tr v-if="itemJalan.length == 0">
 								<td :colspan="6">Tidak terdapat data diklat</td>
@@ -397,6 +409,12 @@
 			detail(id) {
 				this.$router.push({name: this.kelas + 'Detail', params: { id: id }});
 			},
+			goToDiklatBKCU(){
+				this.$router.push({ name: 'diklatBKCU', params:{periode: this.momentYear()} });
+			},
+			momentYear(){
+				return moment().year();
+			}	
 		},
 		computed: {
 			...mapGetters('auth',{

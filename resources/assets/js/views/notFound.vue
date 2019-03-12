@@ -1,34 +1,34 @@
 <template>
 	<div>
 		<!-- page container -->
-		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
 					
-					<!-- error title -->
-					<div class="text-center content-group">
-						<h1 class="error-title">404</h1>
-						<h5>Oops, terjadi kesalahan. Halaman tidak ditemukan!</h5>
-					</div>
+					<div class="content d-flex justify-content-center align-items-center">
+						<div class="flex-fill">
 
-					<!-- error content -->
-					<div class="row">
-					<div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
-
-							<div class="row">
-								<div class="col-sm-12">
-									<router-link :to="{ name: 'dashboard' }" class="btn btn-primary btn-block content-group" exact>
-										<i class="icon-circle-left2 position-left"></i> ke dashboard
-									</router-link>
-								</div>
+							<!-- error title -->
+							<div class="text-center mb-3">
+								<h1 class="error-title">404</h1>
+								<h5>Oops, terjadi kesalahan. Halaman tidak ditemukan!</h5>
 							</div>
 
+							<!-- error content -->
+							<div class="row">
+								<div class="col-xl-4 offset-xl-4 col-md-8 offset-md-2">
+									<router-link :to="{ name: 'dashboard' }" class="btn btn-primary btn-block">
+										<i class="icon-screen3"></i> kembali ke halaman dashboard
+									</router-link>
+								</div>
+								<div class="col-12">
+									<br/><br/>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
-
-				</div>
 			</div>
-		</div>
 		<!-- page container -->
 	</div>
 </template>

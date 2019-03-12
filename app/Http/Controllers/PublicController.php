@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Response;
+use SEO;
 use App\Cu;
-use App\Download;
+use Response;
 use App\Artikel;
+use App\Download;
 use App\ArtikelPenulis;
 use App\ArtikelKategori;
 use App\Region\Provinces;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
-use SEO;
 
 class PublicController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
@@ -23,7 +23,7 @@ class PublicController extends Controller
      */
     public function index()
     {
-        $artikelsUtama = Artikel::with('kategori','penulis','Cu')->where('id_cu',0)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(11)->get()->chunk(4);
+        $artikelsUtama = Artikel::with('kategori','penulis','Cu')->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(11)->get()->chunk(4);
 
         $artikelsBKCUNew = Artikel::with('kategori','penulis','Cu')->where('id_cu',0)->where('terbitkan',1)->where('utamakan','!=',1)->orderBy('created_at','desc')->take(7)->get();
 
@@ -90,6 +90,10 @@ class PublicController extends Controller
          SEO::setDescription($subtitle);
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
+         
+         if($penulis->gambar){
+            SEO::opengraph()->addImage(route('home') . 'images/penulis/' . $penulis->gambar. '.jpg');
+         }
 
         return view('artikel', compact('title','subtitle','tipe','artikels','penulis'));
     }
@@ -98,7 +102,7 @@ class PublicController extends Controller
     {
         $artikel = Artikel::with('kategori','penulis')->where('slug',$slug)->where('terbitkan',1)->first();
 
-        if($artikel->kategori){
+        if($artikel && $artikel->kategori){
             $artikelsKategori = Artikel::where('id','!=',$artikel->id)->where('id_cu',0)->where('id_artikel_kategori',$artikel->kategori->id)->inRandomOrder()->take(4)->get();
         }
 
@@ -126,6 +130,10 @@ class PublicController extends Controller
          SEO::setDescription(str_limit(strip_tags($artikel->content),200));
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
+
+         if($artikel->gambar){
+            SEO::opengraph()->addImage(route('home') . '/images/artikel/' . $artikel->gambar. '.jpg');
+         }
 
         return view('artikelLihat', compact('artikel','artikelsTerkait','artikelsBKCUNew','artikelsCUNew'));
     }

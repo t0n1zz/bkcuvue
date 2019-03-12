@@ -174,7 +174,7 @@
 				<div class="form-group">
 
 					<!-- title -->
-					<h5>Tgl. Kedatangan: <small>(YYYY-MM-DD)</small></h5>
+					<h5>Tgl. Kedatangan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 					<!-- input -->
 					<cleave 
@@ -193,7 +193,7 @@
 				<div class="form-group">
 
 					<!-- title -->
-					<h5>Tgl. Pulang: <small>(YYYY-MM-DD)</small></h5>
+					<h5>Tgl. Pulang: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 					<!-- input -->
 					<cleave 
@@ -253,6 +253,7 @@
 <script>
 	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
+	import infoIcon from "../../components/infoIcon.vue";
 	import checkValue from '../../components/checkValue.vue';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import Message from "../../components/message.vue";
@@ -264,7 +265,8 @@
 			DataViewer,
 			checkValue,
 			Message,
-			Cleave
+			Cleave,
+			infoIcon
 		},
 		data() {
 			return {
@@ -342,7 +344,7 @@
 				this.formPeserta.kelamin = this.selected.aktivis.kelamin;
 				this.formPeserta.agama = this.selected.aktivis.agama;
 				this.formPeserta.tinggi = this.selected.aktivis.tinggi;
-				this.formPeserta.tanggat_lahir = this.selected.aktivis.tanggat_lahir;
+				this.formPeserta.tanggal_lahir = this.selected.aktivis.tanggal_lahir;
 				this.formPeserta.tempat_lahir = this.selected.aktivis.tempat_lahir;
 				this.formPeserta.name = this.selected.aktivis.name;
 				this.formPeserta.gambar = this.selected.aktivis.gambar;

@@ -123,4 +123,8 @@ export default {
   history: function(){
     return axios.get('/api/aktivis/history');
   },
+
+  cariData: function( nik ){
+    return axios.get('/api/aktivis/cariData/' + nik);
+  },
 }

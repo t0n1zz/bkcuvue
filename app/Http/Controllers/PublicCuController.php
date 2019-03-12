@@ -153,6 +153,10 @@ class PublicCuController extends Controller
          SEO::setTitle($title . ' - CU ' . $cu->name);
          SEO::setDescription($subtitle);
          SEO::opengraph()->setUrl(url()->full());
+         
+         if($penulis->gambar){
+             SEO::opengraph()->addImage(route('home') . 'images/penulis/' . $penulis->gambar. '.jpg');
+         }
 
         return view('cu.artikel', compact('title','subtitle','tipe','artikels','penulis'));
     }
@@ -194,6 +198,9 @@ class PublicCuController extends Controller
          SEO::setTitle($artikel->name . ' - CU ' . $cu->name);
          SEO::setDescription(str_limit(strip_tags($artikel->content),200));
          SEO::opengraph()->setUrl(url()->full());
+         if($artikel->gambar){
+            SEO::opengraph()->addImage(route('home') . '/images/artikel/' . $artikel->gambar. '.jpg');
+         }
 
         return view('cu.artikelLihat', compact('artikel','artikelsTerkait','artikelsBKCUNew','artikelsCUNew'));
     }

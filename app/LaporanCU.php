@@ -34,7 +34,7 @@ class LaporanCu extends Model {
     );
     
     protected $fillable = [
-        'id_cu','no_ba','l_biasa','l_lbiasa','p_biasa','p_lbiasa','total_anggota_lalu','aset','aset_lalu','aset_masalah','aset_tidak_menghasilkan','aset_likuid_tidak_menghasilkan','aktiva_lancar','simpanan_saham','simpanan_saham_lalu','simpanan_saham_des','nonsaham_unggulan','nonsaham_harian','hutangspd','hutang_tidak_berbiaya_30hari','piutang_beredar','piutang_anggota','piutang_lalai_1bulan','piutang_lalai_12bulan','dcr','dcu','total_hutang_pihak3','iuran_gedung','donasi','bjs_saham','beban_penyisihan_dcr','investasi_likuid','total_pendapatan','total_biaya','shu','shu_lalu','rata_aset','laju_inflasi','harga_pasar','periode'
+        'id_cu','no_ba','l_biasa','l_lbiasa','p_biasa','p_lbiasa','total_anggota_lalu','aset','aset_lalu','aset_masalah','aset_tidak_menghasilkan','aset_likuid_tidak_menghasilkan','aktiva_lancar','simpanan_saham','simpanan_saham_lalu','simpanan_saham_des','nonsaham_unggulan','nonsaham_harian','hutangspd','hutang_tidak_berbiaya_30hari','piutang_beredar','piutang_anggota','piutang_lalai_1bulan','piutang_lalai_12bulan','dcr','dcu','total_hutang_pihak3','iuran_gedung','donasi','bjs_saham','beban_penyisihan_dcr','investasi_likuid','total_pendapatan','total_biaya','shu','shu_lalu','rata_aset','laju_inflasi','harga_pasar','periode','tp'
     ];
 
     protected $allowedFilters = [

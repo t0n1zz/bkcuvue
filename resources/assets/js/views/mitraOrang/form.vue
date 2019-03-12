@@ -153,7 +153,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Tgl. Lahir:</h6>
+											<h6>Tgl. Lahir: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 											<!-- input -->
 											<cleave name="tanggal_lahir" v-model="form.tanggal_lahir" class="form-control" :raw="false" :options="cleaveOption.date"
@@ -411,6 +411,7 @@
 		toMulipartedForm
 	} from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
+	import infoIcon from "../../components/infoIcon.vue";
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
@@ -425,7 +426,8 @@
 			message,
 			formButton,
 			formInfo,
-			Cleave
+			Cleave,
+			infoIcon
 		},
 		data() {
 			return {

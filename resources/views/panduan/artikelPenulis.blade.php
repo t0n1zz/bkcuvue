@@ -12,24 +12,24 @@
       <img src="{{ asset('images/panduan/artikelPenulis.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman kategori artikel berguna untuk mengelola semua kategori pada artikel yang ada.
+        Halaman penulis artikel berguna untuk mengelola semua penulis pada artikel yang ada.
     </p>
 
     <h6>A. Menambah Penulis Artikel</h6>
     <p>
-        Untuk menambah kategori artikel pengguna mesti menekan tombol tambah pada halaman kategori artikel ataupun menekan tombol tambah kategori artikel pada menu diatas. Kemudian mengisi semua bagian yang ada sesuai dengan penjelasannya dan ketika sudah selesai maka menekan tombol simpan untuk menyimpan semua data yang telah diisi.
+        Untuk menambah penulis artikel pengguna mesti menekan tombol tambah pada halaman penulis artikel ataupun menekan tombol tambah penulis artikel pada menu diatas. Kemudian mengisi semua bagian yang ada sesuai dengan penjelasannya dan ketika sudah selesai maka menekan tombol simpan untuk menyimpan semua data yang telah diisi.
     </p>
 
     <hr/> 
-    <h6>B. Mengubah Kategori Artikel</h6>
+    <h6>B. Mengubah Penulis Artikel</h6>
     <p>
-        Untuk mengubah kategori artikel pengguna mesti memilih data yang akan diubah dibagian konten terlebih dahulu baru kemudian menekan tombol ubah.
+        Untuk mengubah penulis artikel pengguna mesti memilih data yang akan diubah dibagian konten terlebih dahulu baru kemudian menekan tombol ubah.
     </p>
 
     <hr/> 
-    <h6>C. Menghapus Kategori Artikel</h6>
+    <h6>C. Menghapus Penulis Artikel</h6>
     <p>
-        Untuk menghapus kategori artikel pengguna mesti memilih data yang akan dihapus dibagian konten terlebih dahulu baru kemudian menekan tombol hapus.
+        Untuk menghapus penulis artikel pengguna mesti memilih data yang akan dihapus dibagian konten terlebih dahulu baru kemudian menekan tombol hapus.
     </p>
   </div>
   

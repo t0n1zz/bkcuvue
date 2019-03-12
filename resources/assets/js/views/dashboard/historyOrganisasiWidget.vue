@@ -40,7 +40,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'cu'">
 				<div class="card-body pb-2">
-					<div class="list-feed overflow-auto" style="max-height: 40rem;" v-if="itemCuStat === 'success'">
+					<div class="list-feed overflow-auto" style="max-height: 20rem;" v-if="itemCuStat === 'success'">
 						<div class="list-feed-item cursor-pointer" v-for="item in itemCu" @click.prevent="detail('cu',item.revisionable_id)">
 							<div class="text-muted" v-html="$options.filters.dateTime(item.created_at)"></div>
 							{{ item.user.name }} mengubah <mark>{{ item.key }}</mark> CU {{ item.revisionable.name }} dari 
@@ -63,7 +63,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'tp'">
 				<div class="card-body pb-2">
-					<div class="list-feed overflow-auto" style="max-height: 40rem;" v-if="itemTpStat === 'success'">
+					<div class="list-feed overflow-auto" style="max-height: 20rem;" v-if="itemTpStat === 'success'">
 						<div class="list-feed-item cursor-pointer" v-for="item in itemTp" @click.prevent="detail('tp',item.revisionable_id)">
 							<div class="text-muted" v-html="$options.filters.dateTime(item.created_at)"></div>
 							{{ item.user.name }} mengubah <mark>{{ item.key }}</mark> CU {{ item.revisionable.name }} dari 
@@ -86,7 +86,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'produk_cu'">
 				<div class="card-body pb-2">
-					<div class="list-feed overflow-auto" style="max-height: 40rem;" v-if="itemProdukCuStat === 'success'">
+					<div class="list-feed overflow-auto" style="max-height: 20rem;" v-if="itemProdukCuStat === 'success'">
 						<div class="list-feed-item cursor-pointer" v-for="item in itemProdukCu" @click.prevent="detail('produk_cu',item.revisionable_id)">
 							<div class="text-muted" v-html="$options.filters.dateTime(item.created_at)"></div>
 							{{ item.user.name }} mengubah <mark>{{ item.key }}</mark> CU {{ item.revisionable.name }} dari 
@@ -109,7 +109,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'aktivis'">
 				<div class="card-body pb-2">
-					<div class="list-feed overflow-auto" style="max-height: 40rem;" v-if="itemAktivisStat === 'success'">
+					<div class="list-feed overflow-auto" style="max-height: 20rem;" v-if="itemAktivisStat === 'success'">
 						<div class="list-feed-item cursor-pointer" v-for="item in itemAktivis" @click.prevent="detail('aktivis',item.revisionable_id)">
 							<div class="text-muted" v-html="$options.filters.dateTime(item.created_at)"></div>
 							{{ item.user.name }} mengubah <mark>{{ item.key }}</mark> CU {{ item.revisionable.name }} dari 
@@ -132,7 +132,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'mitra_orang'">
 				<div class="card-body pb-2">
-					<div class="list-feed overflow-auto" style="max-height: 40rem;" v-if="itemMitraOrangStat === 'success'">
+					<div class="list-feed overflow-auto" style="max-height: 20rem;" v-if="itemMitraOrangStat === 'success'">
 						<div class="list-feed-item cursor-pointer" v-for="item in itemMitraOrang" @click.prevent="detail('mitra_orang',item.revisionable_id)">
 							<div class="text-muted" v-html="$options.filters.dateTime(item.created_at)"></div>
 							{{ item.user.name }} mengubah <mark>{{ item.key }}</mark> CU {{ item.revisionable.name }} dari 
@@ -155,7 +155,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'mitra_lembaga'">
 				<div class="card-body pb-2">
-					<div class="list-feed overflow-auto" style="max-height: 40rem;" v-if="itemMitraLembagaStat === 'success'">
+					<div class="list-feed overflow-auto" style="max-height: 20rem;" v-if="itemMitraLembagaStat === 'success'">
 						<div class="list-feed-item cursor-pointer" v-for="item in itemMitraLembaga" @click.prevent="detail('mitra_lembaga',item.revisionable_id)">
 							<div class="text-muted" v-html="$options.filters.dateTime(item.created_at)"></div>
 							{{ item.user.name }} mengubah <mark>{{ item.key }}</mark> CU {{ item.revisionable.name }} dari 

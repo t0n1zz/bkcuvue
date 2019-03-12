@@ -479,7 +479,7 @@
 					}
 
 					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu, this.$route.params.tingkat]);
-					this.excelDownloadUrl = this.kelas + '/index/' + this.$route.params.tingkat;
+					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tingkat;
 				}
 			},
 			disableColumnCu(status){

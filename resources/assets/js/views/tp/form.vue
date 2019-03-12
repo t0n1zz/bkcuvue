@@ -112,7 +112,8 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
 												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri:</h5>
+												Tgl. Berdiri: <br/>
+												<small class="text-muted"><i>Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23</i></small></h5>
 
 											<!-- input -->
 											<cleave 
@@ -358,7 +359,7 @@
 												E-mail:</h5>
 
 											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'required|email'" data-vv-as="E-mail" v-model="form.email">
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-validate="'email'" data-vv-as="E-mail" v-model="form.email">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.email')">
@@ -517,6 +518,7 @@
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
+						this.checkUser('update_tp',this.form.id_cu);
 					}else{
 						this.form.id_cu = this.currentUser.id_cu;
 					}
@@ -550,6 +552,18 @@
 				}
 
 				this.$store.dispatch('provinces/get');
+			},
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
+				}
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);

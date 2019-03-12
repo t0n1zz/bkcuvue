@@ -46,7 +46,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-3 pb-2" v-if="f.column">
+                  <div class="col-md-3 pb-2" v-if="f.column" v-show="false">
                     <div class="input-group">
                       <span class="input-group-prepend">
                         <span class="input-group-text">Operator</span>
@@ -60,7 +60,7 @@
                   </div>
 
                   <template v-if="f.column && f.operator">
-                    <div class="col-md-6 pb-2" v-if="f.operator.component === 'single'">
+                    <div class="col-md-9 pb-2" v-if="f.operator.component === 'single'">
                       <div class="input-group">
                         <span class="input-group-prepend">
                           <span class="input-group-text">Kata Kunci</span>
@@ -69,7 +69,7 @@
                       </div>
                     </div>
                     <template v-if="f.operator.component === 'double'">
-                      <div class="col-md-3 pb-2">
+                      <div class="col-md-5 pb-2">
                         <div class="input-group">
                           <span class="input-group-prepend">
                             <span class="input-group-text">Kata Kunci</span>
@@ -77,7 +77,7 @@
                           <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian 1" :disabled="itemDataStat !== 'success'">
                         </div>
                       </div>
-                      <div class="col-md-3 pb-2">
+                      <div class="col-md-4 pb-2">
                         <div class="input-group">
                           <span class="input-group-prepend">
                             <span class="input-group-text">Kata Kunci</span>
@@ -87,7 +87,7 @@
                       </div>
                     </template>
                     <template v-if="f.operator.component === 'datetime_1'">
-                      <div class="col-md-3 pb-2">
+                      <div class="col-md-5 pb-2">
                         <div class="input-group">
                           <span class="input-group-prepend">
                             <span class="input-group-text">Kata Kunci</span>
@@ -95,7 +95,7 @@
                           <input type="text" class="form-control" v-model="f.query_1" placeholder="Masukkan kata kunci pencarian" :disabled="itemDataStat !== 'success'">
                         </div>
                       </div>
-                      <div class="col-md-3 pb-2">
+                      <div class="col-md-4 pb-2">
                         <div class="input-group">
                           <span class="input-group-prepend">
                             <span class="input-group-text">Waktu</span>
@@ -110,7 +110,7 @@
                       </div>
                     </template>
                     <template v-if="f.operator.component === 'datetime_2'">
-                      <div class="col-md-6 pb-2">
+                      <div class="col-md-9 pb-2">
                         <div class="input-group">
                           <span class="input-group-prepend">
                             <span class="input-group-text">Waktu</span>
@@ -458,7 +458,14 @@
           <!-- data body -->
           <tbody v-else-if="itemDataStat === 'success'">
 
-            <slot name="item-desktop" v-for="(item,index) in itemData.data" :item="item" :index="index"></slot>
+            <tr v-if="itemData.data.length == 0">
+              <td :colspan="columnData.length">
+                Belum terdapat data...
+              </td>
+            </tr>
+
+            <slot name="item-desktop" v-for="(item,index) in itemData.data" :item="item" :index="index" v-else></slot>
+            
           </tbody>
 
           <!-- error body -->
@@ -597,7 +604,7 @@
     <!-- grid view -->
     <div v-if="this.dataview == 'grid'">
       <!-- button -->
-      <div class="card card-body d-print-none">
+      <div class="card card-body d-print-none" v-if="!isNoButtonRow">
         <div class="row">
           <!-- slot button -->
           <!-- button desktop -->
@@ -640,7 +647,7 @@
           <slot name="item-mobile" v-for="(item,index) in itemData.data" :item="item" :index="index"></slot>
         </div>
 
-        <div  v-if="itemData.data.length == 0">
+        <div v-if="itemData.data.length == 0">
           <div class="card">
             <div class="card-body">
               <h3>Belum terdapat data...</h3>
@@ -896,13 +903,13 @@
 
             <!-- download button -->
             <json-excel 
+              class="btn btn-light"
               :data="excelAll.data"
               :exportFields="excelAll.fields" 
               :meta="excelAll.meta" 
-              :title="title"
+              :title="'Data ' + title" 
               :name="title + '.xls'"
-              class="btn btn-light">
-              <i class="icon-folder-download2"></i> Download Excel</json-excel>   
+              ><i class="icon-folder-download2"></i> Download Excel</json-excel>   
           </div>
         </div>
 
@@ -1130,7 +1137,7 @@
 
         switch (obj.tipe) {
           case 'numeric':
-            this.filterCandidates[i].operator = this.availableOperators()[4]
+            this.filterCandidates[i].operator = this.availableOperators()[6]
             this.filterCandidates[i].query_1 = null
             this.filterCandidates[i].query_2 = null
             break;
@@ -1140,12 +1147,12 @@
             this.filterCandidates[i].query_2 = null
             break;
           case 'datetime':
-            this.filterCandidates[i].operator = this.availableOperators()[9]
-            this.filterCandidates[i].query_1 = 28
-            this.filterCandidates[i].query_2 = 'days'
+            this.filterCandidates[i].operator = this.availableOperators()[6]
+            this.filterCandidates[i].query_1 = '2019-01-31'
+            this.filterCandidates[i].query_2 = null
             break;
           case 'counter':
-            this.filterCandidates[i].operator = this.availableOperators()[14]
+            this.filterCandidates[i].operator = this.availableOperators()[6]
             this.filterCandidates[i].query_1 = null
             this.filterCandidates[i].query_2 = null
             break;
@@ -1166,7 +1173,7 @@
         
         switch (data.tipe) {
           case 'numeric':
-            this.filterCandidates[0].operator = this.availableOperators()[4]
+            this.filterCandidates[0].operator = this.availableOperators()[6]
             this.filterCandidates[0].query_1 = null
             this.filterCandidates[0].query_2 = null
             break;
@@ -1176,12 +1183,12 @@
             this.filterCandidates[0].query_2 = null
             break;
           case 'datetime':
-            this.filterCandidates[0].operator = this.availableOperators()[9]
-            this.filterCandidates[0].query_1 = 28
-            this.filterCandidates[0].query_2 = 'days'
+            this.filterCandidates[0].operator = this.availableOperators()[6]
+            this.filterCandidates[0].query_1 = null
+            this.filterCandidates[0].query_2 = null
             break;
           case 'counter':
-            this.filterCandidates[0].operator = this.availableOperators()[14]
+            this.filterCandidates[0].operator = this.availableOperators()[6]
             this.filterCandidates[0].query_1 = null
             this.filterCandidates[0].query_2 = null
             break;
@@ -1302,7 +1309,7 @@
         var vm = this;
         vm.excelAll.fields = {};
         vm.columnData.forEach(function (column) {
-          if (!column.disable && !column.notExcel) {
+          if (!column.disable && column.tipe) {
             if(column.excelName){
               vm.excelAll.fields[column.title] = column.excelName;
             }else{
@@ -1420,7 +1427,7 @@
           {
             title: 'mengandung kata',
             name: 'contains',
-            parent: ['string'],
+            parent: ['string','datetime','numeric','counter'],
             component: 'single'
           },
           {

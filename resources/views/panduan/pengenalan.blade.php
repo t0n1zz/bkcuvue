@@ -25,10 +25,6 @@
         Dari fitur-fitur diatas maka dapat dilihat bahwa tujuan dari <b>SIMO</b> adalah untuk menyatukan semua data dalam organisasi kedalam satu tempat yang mudah diakses dan mudah untuk diperbaharui langsung.
     </p>
 
-    <div class="alert bg-info text-white alert-styled-left alert-dismissible">
-      <span class="font-weight-semibold">Info!</span> Panduan ini untuk aplikasi website <b>SIMO</b> versi {{ $versi }}, jadi mungkin akan terdapat perbedaan dalam penjelasan apabila versi panduan ini dan versi aplikasi <b>SIMO</b> berbeda. Untuk mengetahui versi aplikasi SIMO, bisa dilihat pada bagian kiri atas di samping nama SIMO.
-    </div>
-
     <div class="alert bg-warning text-white alert-styled-left alert-dismissible">
       <span class="font-weight-semibold">Penting!</span> Aplikasi ini memerlukan <b>koneksi internet</b> dan browser yang digunakan mesti sudah mendukung <b>HTML5</b> dan <b>Javascript</b>. Hubungi bagian IT apabila terjadi masalah dalam mengakses aplikasi. 
     </div>
