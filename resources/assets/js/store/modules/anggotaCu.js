@@ -147,10 +147,10 @@ export const anggotaCu = {
 
 
     // edit page
-    edit( {commit}, id ){
+    editIdentitas( {commit}, id ){
       commit('setDataStat', 'loading');
       
-      AnggotaCuAPI.edit( id )
+      AnggotaCuAPI.editIdentitas( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -183,10 +183,10 @@ export const anggotaCu = {
     },
 
     // update data
-    update( {commit, state, dispatch}, [id, form] ){
+    updateIdentitas( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
-      AnggotaCuAPI.update( id, form )
+      AnggotaCuAPI.updateIdentitas( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

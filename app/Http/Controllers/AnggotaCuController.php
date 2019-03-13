@@ -99,7 +99,7 @@ class AnggotaCuController extends Controller{
 			]);	
 	}
 
-	public function edit($id)
+	public function editIdentitas($id)
 	{
 		$kelas = AnggotaCu::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
 

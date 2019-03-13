@@ -306,8 +306,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCu/cariData/{nik}', 'AnggotaCuController@cariData');
     });
     Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
-        Route::get('/anggotaCu/edit/{id}', 'AnggotaCuController@edit');
-        Route::post('/anggotaCu/update/{id}', 'AnggotaCuController@update');
+        Route::get('/anggotaCu/editIdentitas/{id}', 'AnggotaCuController@editIdentitas');
+        Route::post('/anggotaCu/updateIdentitas/{id}', 'AnggotaCuController@updateIdentitas');
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {

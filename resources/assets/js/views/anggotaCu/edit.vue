@@ -10,35 +10,25 @@
 
 			<!-- identitas -->
 			<div class="card">
-				<div class="card-header bg-white">
-					<h5 class="card-title">1. Identitas Anggota</h5>
-				</div>
 				<div class="card-body">
 
 					<div class="row">
-						<!-- foto -->
-						<div class="col-md-12">
-							<div class="form-group">
-
-								<!-- title -->
-								<h6>Foto:</h6>
-
-								<!-- imageupload -->
-								<app-image-upload :image_loc="'/images/anggota_cu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
-
-							</div>
-						</div>
 
 						<!-- nik -->
 						<div class="col-md-4">
 							<div class="form-group">
 
 								<!-- title -->
-								<h6>
-									No. KTP:</h6>
+								<h6>No. KTP:</h6>
 
 								<!-- text -->
-								<cleave name="nik" v-model="form.nik" class="form-control" :options="cleaveOption.number16" placeholder="Silahkan masukkan no KTP"></cleave>
+								<cleave 
+									name="nik"
+									v-model="form.nik" 
+									class="form-control" 
+									:options="cleaveOption.number16"
+									placeholder="Silahkan masukkan no KTP"
+									v-validate="'required'" data-vv-as="No. KTP" readonly></cleave>
 
 							</div>
 						</div>
@@ -376,46 +366,6 @@
 				</div>
 			</div>
 
-			<!-- simpanan -->
-			<div class="card">
-				<div class="card-header bg-white">
-					<h5 class="card-title">2. Simpanan</h5>
-				</div>
-				<div class="card-body pb-2">
-					<div class="row">
-
-						<div class="col-md-12">
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
-								<i class="icon-plus22"></i> Tambah
-							</button>
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-							:disabled="!selectedItemSimpanan.aktivis_id">
-								<i class="icon-pencil5"></i> Ubah
-							</button>
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItemSimpanan.aktivis_id">
-								<i class="icon-bin2"></i> Hapus
-							</button>
-
-						</div>
-
-					</div>		
-				</div>
-
-				<data-table :items="itemDataSimpanan" :columnData="columnDataSimpanan" :itemDataStat="itemDataSimpananStat">
-					<template slot="item-desktop" slot-scope="props">
-						<tr :class="{ 'bg-info': selectedItemSimpanan.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
-							<td>{{ props.index + 1 }}</td>
-							<td>{{ props.item.name }}</td>
-							<td>{{ props.item.saldo }}</td>
-						</tr>
-					</template>	
-				</data-table>
-
-			</div>
-
 			<!-- form info -->
 			<form-info></form-info>
 			<br />
@@ -447,7 +397,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props: ['nik'],
+		props: ['mode','id_props'],
 		components: {
 			appModal,
 			appImageUpload,
@@ -460,12 +410,20 @@
 		data() {
 			return {
 				kelas: 'anggotaCu',
+				id_local: '',
 				cleaveOption: {
           date:{
             date: true,
             datePattern: ['Y','m','d'],
             delimiter: '-'
-          },
+					},
+					number16: {
+            numeral: true,
+            numeralIntegerScale: 16,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
           number12: {
             numeral: true,
             numeralIntegerScale: 12,
@@ -515,7 +473,7 @@
 		watch: {
 			formStat(value) {
 				if (value === "success") {
-					this.form.nik = this.nik;
+					// this.form.nik = this.nik;
 				}
 			},
 			updateStat(value) {
@@ -533,14 +491,19 @@
 		},
 		methods: {
 			fetch() {
-				this.$store.dispatch(this.kelas + '/create');
+				if(this.mode == 'local'){
+					this.id_local = this.$route.params.id;
+				}else{
+					this.id_local = this.id_props;
+				}
+				this.$store.dispatch(this.kelas + '/editIdentitas', this.id_local);
 				this.$store.dispatch('provinces/get');
 			},
 			save() {
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
+				const formData = this.form;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/store', formData);
+						this.$store.dispatch(this.kelas + '/updateIdentitas', [this.id_local,formData]);
 						this.submited = false;
 					} else {
 						window.scrollTo(0, 0);
@@ -558,13 +521,16 @@
 				this.$store.dispatch('villages/getDistricts', id);
 			},
 			back() {
-				this.$router.push({name: this.kelas});
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			modalTutup() {
 				if (this.updateStat === 'success') {
 					this.back();
 				}
-
 				this.modalShow = false;
 			},
 			modalBackgroundClick() {

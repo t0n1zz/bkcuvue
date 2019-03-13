@@ -406,7 +406,7 @@
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'anggota_cu'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('anggota_cu')">
-									<i class="icon-users4"></i> Anggota CU
+									<i class="icon-magazine"></i> Identitas
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu'}">
 
@@ -428,7 +428,7 @@
 
 							<!-- if cu account -->
 							<router-link :to="{ name: 'anggotaCuCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0">
-								<i class="icon-users4"></i> Anggota CU
+								<i class="icon-magazine"></i> Identitas
 							</router-link>
 
 						</div>

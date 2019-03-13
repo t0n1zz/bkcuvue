@@ -701,7 +701,7 @@
 				this.modalColor = '';
 
 				if (value === "success") {
-					this.modalTitle = this.updateResponse.message;
+				this.modalTitle = this.updateResponse.message;
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
@@ -777,7 +777,11 @@
 				this.$store.dispatch('villages/getDistricts', id);
 			},
 			back() {
-				this.$router.push({name: this.kelas});
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			selectedCuRow(index,item){
 				this.selectedItemCu = item;

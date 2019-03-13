@@ -15,7 +15,7 @@
         <!-- ubah-->
         <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_mitra_orang']"
           :disabled="!selectedItem.id">
-          <i class="icon-pencil5"></i> Ubah
+          <i class="icon-pencil5"></i> Ubah Identitas
         </button>
 
         <!-- hapus -->
@@ -37,7 +37,7 @@
         <!-- ubah-->
         <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_mitra_orang']"
           :disabled="!selectedItem.id">
-          <i class="icon-pencil5"></i> Ubah
+          <i class="icon-pencil5"></i> Ubah Identitas
         </button>
 
         <!-- hapus -->
@@ -60,9 +60,9 @@
           <td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-          <td v-if="!columnData[3].hide && !columnData[3].disable">
+          <td v-if="!columnData[3].hide">
 						<label v-for="anggota_cu in props.item.anggota_cu" v-if="props.item.anggota_cu" class="badge badge-primary ml-1">
-              {{ anggota_cu.name }} - {{ anggota_cu.no_ba }}
+              {{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}
             </label>
             <span v-else>-</span>
 					</td>
@@ -445,19 +445,14 @@
     methods: {
       fetch(params) {
         if(this.$route.params.cu == 'semua'){
-					this.disableColumnCu(false);
 					this.$store.dispatch(this.kelas + '/index', params);
 					this.excelDownloadUrl = this.kelas;
 				}else{
-					this.disableColumnCu(true);
 					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
 					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
 				}
         this.excelDownloadUrl = this.kelas;
       },
-      disableColumnCu(status){
-				this.columnData[3].disable = status;
-			},
       selectedRow(item) {
         this.selectedItem = item;
       },

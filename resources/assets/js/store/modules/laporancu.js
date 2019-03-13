@@ -560,6 +560,7 @@ export const laporanCu = {
       {//1
         title: "CU",
         name: "cu.name",
+        excelName: "cu_name",
         tipe: "string",
         sort: true,
         hide: false,
@@ -571,6 +572,7 @@ export const laporanCu = {
       {//2
         title: "TP",
         name: "tp.name",
+        excelName: "tp_name",
         tipe: "string",
         sort: true,
         hide: false,
@@ -582,6 +584,7 @@ export const laporanCu = {
       {//3
         title: "No. BA",
         name: "laporan_cu.no_ba",
+        excelName: "no_ba",
         tipe: "numeric",
         sort: true,
         hide: false,
@@ -592,6 +595,7 @@ export const laporanCu = {
       {//4
         title: "Provinsi",
         name: "provinces.name",
+        excelName: "provinces_name",
         tipe: "string",
         sort: true,
         hide: false,
