@@ -55,13 +55,13 @@
 					</div>
 
 					<!-- data exist -->
-					<div class="alert bg-info text-white alert-styled-left alert-dismissible" v-if="Object.keys(itemData).length != 0">
+					<div class="alert bg-warning text-white alert-styled-left " v-if="Object.keys(itemData).length != 0">
 						<span class="font-weight-semibold">NIK sudah terdaftar di SIMO, maka silahkan melakukan pengubahan. Apabila anda ingin menambahkan pekerjaannya di CU anda maka silahkan ke bagian riwayat pekerjaan untuk menambahkan pekerjaannya.
 						</span>
 					</div>
 
 					<!-- data not exits -->
-					<div class="alert bg-info text-white alert-styled-left alert-dismissible" v-if="itemDataStat == 'success' && Object.keys(itemData).length == 0">
+					<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'success' && Object.keys(itemData).length == 0">
 						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO, maka silahkan menambahkan data aktivis baru.
 						</span>
 					</div>

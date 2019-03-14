@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use Auth;
 use App\Cu;
+use App\AnggotaCuCu;
 use App\AnggotaCuDraft;
 use App\Region\Villages;
 use App\Region\Districts;
@@ -51,19 +52,16 @@ class AnggotaCuNewDraftImport implements ToCollection, WithHeadingRow, WithBatch
                 $villages = Villages::where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first();
                 $villages = $villages->id;
             }
-            
-            $kelas = AnggotaCuDraft::create([
-                'id_cu' => $cu->id_cu,
+
+            $datas = array(
                 'id_provinces' => $provinces,
                 'id_regencies' => $regencies,
                 'id_districts' => $districts,
                 'id_villages' => $villages,
-                'no_ba' => $row['no_ba'],
                 'nik' => $row['nik'],
                 'name' => $row['nama'],
                 'tempat_lahir' => $row['tempat_lahir'],
                 'tanggal_lahir' => $row['tanggal_lahir'],
-                'tanggal_masuk' => $row['tanggal_jadi_anggota'],
                 'kelamin' => $row['gender'],
                 'agama' => $row['agama'],
                 'status' => $row['status_pernikahan'],
@@ -76,15 +74,24 @@ class AnggotaCuNewDraftImport implements ToCollection, WithHeadingRow, WithBatch
                 'pendidikan' => $row['pendidikan'],
                 'pekerjaan' => $row['pekerjaan'],
                 'lembaga' => $row['tempat_bekerja'],
-                ,'alih_waris' => $row['alih_waris']
-            ]);
+                'alih_waris' => $row['alih_waris'],
+            );
+            
+            $kelas = AnggotaCuDraft::create($datas);
+
+            AnggotaCuCu::create([
+				'anggota_cu_id' => $kelas->id,
+				'cu_id' => $cu->id_cu,
+                'no_ba' => $row['no_ba'],
+                'tanggal_masuk' => $row['tanggal_jadi_anggota'],
+			]);
 
             $produks = ProdukCu::where('id_cu',$cu->id_cu)->get();
 
             foreach($produks as $produk){
                 if(array_key_exists($produk->name, $row)){
                     AnggotaProdukCuDraft::create([
-                        'anggota_id' => $kelas->id,
+                        'anggota_cu_id' => $kelas->id,
                         'produk_cu_id' => $produk_id,
                         'saldo' => $row[$produk->name]
                     ]);

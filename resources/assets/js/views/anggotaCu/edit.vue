@@ -33,6 +33,48 @@
 							</div>
 						</div>
 
+							<!-- no_ba -->
+						<div class="col-md-4" v-if="currentUser && currentUser.id_cu != 0">
+							<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.no_ba')}">
+									<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
+									No. BA:</h6>
+
+								<!-- text -->
+								<input type="text" nama="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-validate="'required|min:5'"
+								data-vv-as="No. BA" v-model="form.no_ba">
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
+							</div>
+						</div>
+
+						<!-- tanggal_masuk -->
+						<div class="col-md-4" v-if="currentUser && currentUser.id_cu != 0">
+							<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
+									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
+									Tgl. Jadi Anggota:</h6>
+
+								<!-- text -->
+								<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date" v-validate="'required'" data-vv-as="Tgl. jadi anggota"
+								placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_masuk') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
+							</div>
+						</div>
+
 						<!-- name -->
 						<div class="col-md-4">
 							<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -49,6 +91,27 @@
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.name')">
 									<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
+							</div>
+						</div>
+
+						<!-- alih waris -->
+						<div class="col-md-4">
+							<div class="form-group" :class="{'has-error' : errors.has('form.alih_waris')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.alih_waris')}">
+									<i class="icon-cross2" v-if="errors.has('form.alih_waris')"></i>
+									Nama Alih Waris:</h6>
+
+								<!-- text -->
+								<input type="text" name="alih_waris" class="form-control" placeholder="Silahkan masukkan nama alih waris" v-validate="'required'"
+									data-vv-as="Nama alih waris" v-model="form.alih_waris">
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.alih_waris')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.alih_waris') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
@@ -493,10 +556,10 @@
 			fetch() {
 				if(this.mode == 'local'){
 					this.id_local = this.$route.params.id;
+					this.$store.dispatch(this.kelas + '/editIdentitas', this.id_local);
 				}else{
 					this.id_local = this.id_props;
 				}
-				this.$store.dispatch(this.kelas + '/editIdentitas', this.id_local);
 				this.$store.dispatch('provinces/get');
 			},
 			save() {
@@ -521,10 +584,14 @@
 				this.$store.dispatch('villages/getDistricts', id);
 			},
 			back() {
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+				if(this.mode == 'local'){
+					if(this.currentUser.id_cu == 0){
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+					}else{
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					}
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					this.$emit('hideUbahData');
 				}
 			},
 			modalTutup() {

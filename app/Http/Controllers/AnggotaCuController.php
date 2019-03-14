@@ -14,9 +14,6 @@ use App\Imports\AnggotaCuNewDraftImport;
 
 class AnggotaCuController extends Controller{
 
-	protected $imagepath = 'images/anggota_cu/';
-	protected $width = 200;
-	protected $height = 200;
 	protected $message = "Anggota CU";
 
 	public function index()
@@ -31,7 +28,11 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ $query->where('cu_id',$id); })->advancedFilter();
+		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
+			$query->where('cu_id',$id); 
+		})->advancedFilter();
+
+		
 
 		return response()
 			->json([
@@ -64,7 +65,9 @@ class AnggotaCuController extends Controller{
 			foreach($request->cu as $cu){
 				$cuArray[$cu['no_ba']] = [
 					'cu_id' => $cu['cu']['id'],
-					'no_ba' => $cu['no_ba'] ];
+					'no_ba' => $cu['no_ba'],
+					'tanggal_masuk' => $cu['tanggal_masuk']
+				];	
 			}
 
 			$kelas->anggota_cu()->sync($cuArray);
@@ -72,7 +75,8 @@ class AnggotaCuController extends Controller{
 			AnggotaCuCu::create([
 				'anggota_cu_id' => $kelas->id,
 				'cu_id' => $request->id_cu,
-				'no_ba' => $request->no_ba
+				'no_ba' => $request->no_ba,
+				'tanggal_masuk' => $request->tanggal_masuk
 			]);
 		}
 
@@ -99,9 +103,27 @@ class AnggotaCuController extends Controller{
 			]);	
 	}
 
+	public function storeCu(Request $request, $id)
+	{
+		AnggotaCuCu::create([
+			'anggota_cu_id' => $id,
+			'cu_id' => $request->id_cu,
+			'no_ba' => $request->no_ba,
+			'tanggal_masuk' => $request->tanggal_masuk
+		]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keanggotaan CU berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+
 	public function editIdentitas($id)
 	{
-		$kelas = AnggotaCu::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
+		$kelas = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 				->json([
@@ -124,6 +146,19 @@ class AnggotaCuController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+			]);
+	}
+
+	public function updateCu(Request $request, $id)
+	{
+		$kelas = AnggotaCuCu::findOrFail($id);
+
+		$kelas->update($request->all());	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keanggotaan CU berhasil diubah'
 			]);
 	}
 

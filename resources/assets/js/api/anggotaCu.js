@@ -20,6 +20,10 @@ export default {
     return axios.post('/api/anggotaCu/store', form);
   },
 
+  store: function ( form ){
+    return axios.post('/api/anggotaCu/store', form);
+  },
+
   editIdentitas: function( id ){
     return axios.get('/api/anggotaCu/editIdentitas/' + id);
   },

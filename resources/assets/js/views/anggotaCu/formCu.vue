@@ -57,6 +57,29 @@
 				</div>
 			</div>
 
+			<!-- tanggal masuk -->
+			<div class="col-md-12">
+				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.tanggal_masuk')}">
+
+					<!-- title -->
+					<h5 :class="{ 'text-danger' : errors.has('formDataCu.tanggal_masuk')}">
+						<i class="icon-cross2" v-if="errors.has('formDataCu.tanggal_masuk')"></i>
+						Tgl. Jadi Anggota:
+					</h5>
+
+					<!-- text -->
+					<cleave name="tanggal_masuk" v-model="formDataCu.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date" v-validate="'required'" data-vv-as="Tgl. jadi anggota"
+					placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formDataCu.tanggal_masuk')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formDataCu.tanggal_masuk') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
+
 		</div>
 
 		<!-- divider -->
@@ -114,6 +137,11 @@
 				modelProdukCu: [],
 				modelProdukCuStat: '',
 				cleaveOption: {
+					date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+					},
           numeric: {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand',

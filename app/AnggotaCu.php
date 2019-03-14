@@ -25,28 +25,28 @@ class AnggotaCu extends Model {
     }
     
     protected $fillable = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','jabatan','pendidikan','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces',
+        'nik','name','alih_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','id_villages','id_districts','id_regencies','id_provinces',
     ];
 
     protected $allowedFilters = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','created_at','updated_at',
+        'nik','name','alih_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','created_at','updated_at',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
 
     protected $orderable = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','created_at','updated_at',
+        'nik','name','alih_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','created_at','updated_at',
     ];
 
     public static function initialize()
     {
         return [
-            'nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','pendidikan' => '','gambar'=> '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => ''
+            'nik' => '','name' => '','alih_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','pendidikan' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => ''
         ];
     }
 
     public function anggota_cu(){
-        return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('no_ba')->withTimestamps();
+        return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('no_ba','tanggal_masuk')->withTimestamps();
 	}
 		
     public function anggota_produk_cu(){

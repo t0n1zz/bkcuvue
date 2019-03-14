@@ -64,6 +64,27 @@
 							</div>
 						</div>
 
+						<!-- tanggal_masuk -->
+						<div class="col-md-4" v-if="currentUser && currentUser.id_cu != 0">
+							<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
+									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
+									Tgl. Jadi Anggota:</h6>
+
+								<!-- text -->
+								<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date" v-validate="'required'" data-vv-as="Tgl. jadi anggota"
+								placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_masuk') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
+							</div>
+						</div>
+
 						<!-- name -->
 						<div class="col-md-4">
 							<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -74,12 +95,33 @@
 									Nama:</h6>
 
 								<!-- text -->
-								<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required|min:5'"
+								<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required'"
 									data-vv-as="Nama" v-model="form.name">
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.name')">
 									<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
+							</div>
+						</div>
+
+						<!-- alih waris -->
+						<div class="col-md-4">
+							<div class="form-group" :class="{'has-error' : errors.has('form.alih_waris')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.alih_waris')}">
+									<i class="icon-cross2" v-if="errors.has('form.alih_waris')"></i>
+									Nama Alih Waris:</h6>
+
+								<!-- text -->
+								<input type="text" name="alih_waris" class="form-control" placeholder="Silahkan masukkan nama alih waris" v-validate="'required'"
+									data-vv-as="Nama alih waris" v-model="form.alih_waris">
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.alih_waris')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.alih_waris') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
@@ -431,6 +473,7 @@
 							<td>{{ props.index + 1 }}</td>
 							<td><check-value :value="props.item.cu.name"></check-value></td>
 							<td><check-value :value="props.item.no_ba"></check-value></td>
+							<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
 						</tr>
 					</template>	
 				</data-table>
@@ -651,6 +694,7 @@
 					{ title: 'No.' },
 					{ title: 'CU' },
 					{ title: 'No. BA' },
+					{ title: 'Tgl. Jadi Anggota' },
 				],
 				formSimpananMode: '',
 				selectedItemSimpanan: '',
@@ -743,7 +787,7 @@
 				_.remove(this.itemDataPinjaman, {
 						index: value.index
 				});
-			this.itemDataSimpanan.push(value);
+			  this.itemDataSimpanan.push(value);
 				this.modalTutup(); 
 			},
 			save() {

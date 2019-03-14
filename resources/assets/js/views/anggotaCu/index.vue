@@ -50,10 +50,10 @@
 		},
 		data() {
 			return {
-				title: 'Anggota CU',
+				title: 'Identitas Anggota CU',
 				kelas: 'anggotaCu',
-				titleDesc: 'Mengelola data anggota CU',
-				titleIcon: 'icon-users4',
+				titleDesc: 'Mengelola data identitas anggota CU',
+				titleIcon: 'icon-vcard',
 				selectCuPath: 'anggotaCuCu',
 			}
 		},

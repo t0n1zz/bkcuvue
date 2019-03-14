@@ -303,11 +303,13 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
         Route::get('/anggotaCu/create', 'AnggotaCuController@create');
         Route::post('/anggotaCu/store', 'AnggotaCuController@store');
+        Route::post('/anggotaCu/storeCu/{id}', 'AnggotaCuController@storeCu');
         Route::get('/anggotaCu/cariData/{nik}', 'AnggotaCuController@cariData');
     });
     Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
         Route::get('/anggotaCu/editIdentitas/{id}', 'AnggotaCuController@editIdentitas');
         Route::post('/anggotaCu/updateIdentitas/{id}', 'AnggotaCuController@updateIdentitas');
+        Route::post('/anggotaCu/updateCu/{id}', 'AnggotaCuController@updateCu');
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {

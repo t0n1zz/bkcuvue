@@ -19,10 +19,10 @@
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_mitra_orang']"
+        <!-- <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_mitra_orang']"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
-        </button>
+        </button> -->
 
       </template>
 
@@ -41,10 +41,10 @@
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_mitra_orang']"
+        <!-- <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_mitra_orang']"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
-        </button>
+        </button> -->
 
       </template>
 
@@ -87,46 +87,49 @@
 					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
-						<check-value :value="props.item.darah"></check-value>
+          <td v-if="!columnData[11].hide">
+						<check-value :value="props.item.alih_waris"></check-value>
 					</td>
 					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.tinggi"></check-value>
+						<check-value :value="props.item.darah"></check-value>
 					</td>
 					<td v-if="!columnData[13].hide">
-						<check-value :value="props.item.agama"></check-value>
+						<check-value :value="props.item.tinggi"></check-value>
 					</td>
 					<td v-if="!columnData[14].hide">
+						<check-value :value="props.item.agama"></check-value>
+					</td>
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.status"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[16].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-          <td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
+          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
 					</td>
-					<td v-if="!columnData[18].hide && !columnData[18].disable">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[19].hide && !columnData[19].disable">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[20].hide && !columnData[20].disable">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[21].hide && !columnData[21].disable">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[25].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -284,6 +287,15 @@
             filter: true,
           },
           {
+            title: 'Alih Waris',
+            name: 'alih_waris',
+            tipe: 'string',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
             title: 'Gol. Darah',
             name: 'darah',
             tipe: 'string',
@@ -338,7 +350,7 @@
             filter: true,
           },
           {
-            title: 'Tgl. Masuk',
+            title: 'Tgl. Jadi Anggota',
             name: 'tanggal_masuk',
             tipe: 'datetime',
             sort: true,
