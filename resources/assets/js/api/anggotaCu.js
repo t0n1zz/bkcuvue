@@ -20,8 +20,8 @@ export default {
     return axios.post('/api/anggotaCu/store', form);
   },
 
-  store: function ( form ){
-    return axios.post('/api/anggotaCu/store', form);
+  storeCu: function ( id, form ){
+    return axios.post('/api/anggotaCu/storeCu/' + id, form);
   },
 
   editIdentitas: function( id ){
@@ -32,8 +32,16 @@ export default {
     return axios.post('/api/anggotaCu/updateIdentitas/' + id, form);
   },
 
+  updateCu: function ( id, form ){
+    return axios.post('/api/anggotaCu/updateCu/' + id, form);
+  },
+
   destroy: function( id ){
     return axios.delete('/api/anggotaCu/' + id);
+  },
+  
+  destroyCu: function( id ){
+    return axios.delete('/api/anggotaCuCu/' + id);
   },
 
   uploadExcel: function ( form ){

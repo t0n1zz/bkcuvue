@@ -32,8 +32,6 @@ class AnggotaCuController extends Controller{
 			$query->where('cu_id',$id); 
 		})->advancedFilter();
 
-		
-
 		return response()
 			->json([
 				'model' => $table_data
@@ -107,7 +105,7 @@ class AnggotaCuController extends Controller{
 	{
 		AnggotaCuCu::create([
 			'anggota_cu_id' => $id,
-			'cu_id' => $request->id_cu,
+			'cu_id' => $request->cu['id'],
 			'no_ba' => $request->no_ba,
 			'tanggal_masuk' => $request->tanggal_masuk
 		]);
@@ -115,15 +113,14 @@ class AnggotaCuController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Keanggotaan CU berhasil ditambah',
-				'id' => $kelas->id
+				'message' => 'Keanggotaan CU berhasil ditambah'
 			]);	
 	}
 
 
 	public function editIdentitas($id)
 	{
-		$kelas = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
+		$kelas = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 				->json([
@@ -189,6 +186,18 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function destroyCu($id)
+	{
+		$kelas = AnggotaCuCu::findOrFail($id);
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Keanggotaan CU berhasil dihapus'
+			]);
+	}
+
 	public function uploadExcelNew(Request $request)
 	{
 		Excel::import(new AnggotaCuNewDraftImport, request()->file('file'));
@@ -231,7 +240,7 @@ class AnggotaCuController extends Controller{
 	
 	public function cariData($nik)
 	{
-		$table_data = AnggotaCu::where('nik',$nik)->first();
+		$table_data = AnggotaCu::where('nik',$nik)->select('id')->first();
 
 		return response()
 		->json([

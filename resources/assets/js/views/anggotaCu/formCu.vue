@@ -129,6 +129,7 @@
 				kelas: 'aktivis',
 				formDataCu:{
 					no_ba: '',
+					tanggal_masuk: '',
 					cu:{
 						id: 0,
 						name: ''

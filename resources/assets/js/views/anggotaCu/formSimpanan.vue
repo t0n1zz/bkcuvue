@@ -35,6 +35,16 @@
 				</div>
 			</div>
 
+			<div class="alert bg-warning text-white alert-styled-left " v-if="modelProdukCu.length === 0">
+				<span class="font-weight-semibold">Maaf data jenis simpanan tidak ditemukan, pastikan anda sudah menambahkan data simpanan di menu <u>Tambah Produk & Pelayanan</u>
+				</span>
+			</div>
+
+			<div class="alert bg-info text-white alert-styled-left " v-else>
+				<span class="font-weight-semibold">Apabila jenis simpanan yang ingin anda pilih tidak ada, pastikan anda sudah menambahkan data simpanan di menu <u>Tambah Produk & Pelayanan</u>
+				</span>
+			</div>
+
 			<!-- produk cu -->
 			<div class="col-md-12">
 				<div class="form-group" :class="{'has-error' : errors.has('formSimpanan.produk_cu_id')}">
@@ -169,10 +179,14 @@
 		},
 		created(){
 			this.fetchCU();
-
-			if(this.mode == 'edit'){
-				if(this.modelCUStat == 'success'){
+			
+			if(this.modelCUStat == 'success'){
+				if(this.mode == 'edit'){
 					this.formSimpanan = this.selected;
+				}
+
+				if(this.currentUser.id_cu != 0){
+					this.changeCu(this.currentUser.id_cu);
 				}
 			}
 		},
@@ -181,6 +195,10 @@
 				if(value === "success"){
 					if(this.mode == 'edit'){
 						this.formSimpanan = this.selected;
+					}
+
+					if(this.currentUser.id_cu != 0){
+						this.changeCu(this.currentUser.id_cu);
 					}
 				}
 			},

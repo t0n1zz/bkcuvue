@@ -23,16 +23,22 @@ class AktivisController extends Controller{
 
 	public function index($tingkat)
 	{
+
 		if($tingkat == 'semua'){
 			
 			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-				$query->whereIn('tipe',[1,3])->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+				$query->whereIn('tipe',[1,3])->where(function($q){
+					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+				});
 			})->advancedFilter();
 
 		}elseif($tingkat == 'manajemen'){
 
 			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-				$query->whereIn('tipe',[1,3])->whereIn('tingkat',[6,7,8,9])->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+				$query->whereIn('tipe',[1,3])->whereIn('tingkat',[6,7,8,9])
+				->where(function($q){
+					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+				});
 			})->advancedFilter();
 
 		}else{
@@ -59,7 +65,9 @@ class AktivisController extends Controller{
 			}
 
 			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
-				$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+				$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where(function($q){
+					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+				});
 			})->advancedFilter();
 		}
 	
@@ -694,20 +702,20 @@ class AktivisController extends Controller{
 
 	public function count()
 	{
-			$id = \Auth::user()->id_cu;
+		$id = \Auth::user()->id_cu;
 
-			if($id == 0){
-					$table_data = Aktivis::count();
-			}else{
-					$table_data = Aktivis::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
-							$query->where('id_tempat',$id);
-					})->count();
-			}
-			
-			return response()
-			->json([
-					'model' => $table_data
-			]);
+		if($id == 0){
+				$table_data = Aktivis::count();
+		}else{
+				$table_data = Aktivis::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
+						$query->where('id_tempat',$id);
+				})->count();
+		}
+		
+		return response()
+		->json([
+				'model' => $table_data
+		]);
 	}
 
 	public function history()

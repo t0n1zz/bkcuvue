@@ -395,7 +395,7 @@
 						<div class="dropdown-menu">
 
 							<!-- tambah diklat pus -->
-							<router-link :to="{ name:'anggotaCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_anggota_cu']">
+							<router-link :to="{ name:'anggotaCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_anggota_cu']">
 								<i class="icon-plus22"></i> Tambah Anggota CU
 							</router-link>
 

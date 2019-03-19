@@ -6,7 +6,7 @@
 		</message>
 
 		<!-- main panel -->
-		<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+		<form @submit.prevent="save" data-vv-scope="form">
 
 			<!-- identitas -->
 			<div class="card">
@@ -38,48 +38,6 @@
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.nik')">
 									<i class="icon-arrow-small-right"></i> {{ errors.first('form.nik') }}
-								</small>
-								<small class="text-muted" v-else>&nbsp;</small>
-							</div>
-						</div>
-
-						<!-- no_ba -->
-						<div class="col-md-4" v-if="currentUser && currentUser.id_cu != 0">
-							<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
-
-								<!-- title -->
-								<h6 :class="{ 'text-danger' : errors.has('form.no_ba')}">
-									<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
-									No. BA:</h6>
-
-								<!-- text -->
-								<input type="text" nama="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-validate="'required|min:5'"
-								data-vv-as="No. BA" v-model="form.no_ba">
-
-								<!-- error message -->
-								<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
-									<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
-								</small>
-								<small class="text-muted" v-else>&nbsp;</small>
-							</div>
-						</div>
-
-						<!-- tanggal_masuk -->
-						<div class="col-md-4" v-if="currentUser && currentUser.id_cu != 0">
-							<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
-
-								<!-- title -->
-								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
-									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
-									Tgl. Jadi Anggota:</h6>
-
-								<!-- text -->
-								<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date" v-validate="'required'" data-vv-as="Tgl. jadi anggota"
-								placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
-
-								<!-- error message -->
-								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
-									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_masuk') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
@@ -439,7 +397,47 @@
 				</div>
 			</div>
 
-			<!-- cu -->
+			<!-- if cu -->
+			<div class="card" v-if="currentUser && currentUser.id_cu != 0">
+				<div class="card-header bg-white">
+					<h5 class="card-title">2. CU</h5>
+				</div>
+				<div class="card-body">
+					
+						<div class="row">
+						
+							<!-- no_ba -->
+							<div class="col-md-6">
+								<div class="form-group">
+
+									<!-- title -->
+									<h6>No. BA:</h6>
+
+									<!-- text -->
+									<input type="text" name="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-model="form.no_ba">
+
+								</div>
+							</div>
+
+							<!-- tanggal_masuk -->
+							<div class="col-md-6">
+								<div class="form-group">
+
+									<!-- title -->
+									<h6>Tgl. Jadi Anggota:</h6>
+
+									<!-- text -->
+									<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date"
+									placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+
+								</div>
+							</div>
+
+						</div>
+				</div>
+			</div>
+
+			<!-- if bkcu -->
 			<div class="card" v-if="currentUser && currentUser.id_cu == 0">
 				<div class="card-header bg-white">
 					<h5 class="card-title">2. CU</h5>
@@ -481,10 +479,10 @@
 			</div>
 
 			<!-- simpanan -->
-			<div class="card">
+			<div class="card" v-if="mode != 'edit'">
 				<div class="card-header bg-white">
 					<h5 class="card-title" v-if="currentUser && currentUser.id_cu == 0">3. Simpanan</h5>
-					<h5 class="card-title" v-else>2. Simpanan</h5>
+					<h5 class="card-title" v-else>3. Simpanan</h5>
 				</div>
 				<div class="card-body pb-2">
 					<div class="row">
@@ -523,10 +521,10 @@
 			</div>
 
 			<!-- pinjaman -->
-			<div class="card">
+			<div class="card" v-if="mode != 'edit'">
 				<div class="card-header bg-white">
 					<h5 class="card-title" v-if="currentUser && currentUser.id_cu == 0">4. Pinjaman</h5>
-					<h5 class="card-title" v-else>3. Pinjaman</h5>
+					<h5 class="card-title" v-else>4. Pinjaman</h5>
 				</div>
 				<div class="card-body pb-2">
 					<div class="row">
@@ -621,6 +619,7 @@
 
 <script>
 	import {mapGetters} from 'vuex';
+	import _ from 'lodash';
 	import {toMulipartedForm} from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
@@ -635,7 +634,7 @@
 	import checkValue from "../../components/checkValue.vue";
 
 	export default {
-		props: ['nik'],
+		props: ['mode','nik','itemData'],
 		components: {
 			appModal,
 			appImageUpload,
@@ -736,7 +735,82 @@
 		watch: {
 			formStat(value) {
 				if (value === "success") {
-					this.form.nik = this.nik;
+					this.changeProvinces(this.form.id_provinces);
+					this.changeRegencies(this.form.id_regencies);
+					this.changeDistricts(this.form.id_districts);
+
+					if(this.mode == 'create_new'){
+						this.form.nik = this.nik;
+					}else if(this.mode == 'create_old'){
+
+						// cu
+						if(this.currentUser.id_cu == 0){
+							this.itemDataCu = [];
+							var valData;
+
+							if(this.form.anggota_cu){
+								for(valData of this.form.anggota_cu){
+									var datas = {};
+									var cu = {};
+									cu.name = valData.name;
+									cu.id = valData.id;
+	
+									datas = valData.pivot;
+									datas.cu = cu;
+									this.itemDataCu.push(datas);
+								}
+							}
+						}else{
+							let data = _.find(this.form.anggota_cu,{'id':this.currentUser.id_cu});
+
+							if(data){
+								this.form.no_ba = data.pivot.no_ba;
+								this.form.tanggal_masuk = data.pivot.tanggal_masuk;
+							}
+						}
+
+						// produk cu
+						this.itemDataSimpanan = [];
+						this.itemDataPinjaman = [];
+						var valDataProduk;
+
+						if(this.form.anggota_produk_cu){
+							for(valDataProduk of this.form.anggota_produk_cu){
+								var datas = {};
+								var cu = {};
+								var produk_cu = {};
+	
+								if(this.currentUser.id_cu == 0){
+									let data = _.find(this.modelCu,{'id':valDataProduk.id_cu});
+									cu.name = data.name;
+								}else{
+									cu.name = this.currentUser.cu.name;
+								}
+	
+								produk_cu.name = valDataProduk.name
+								datas = valDataProduk.pivot;
+								datas.cu = cu;
+								datas.produk_cu = produk_cu;
+								
+								if(this.currentUser.id_cu == 0){
+									if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
+										this.itemDataSimpanan.push(datas);
+									}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
+										this.itemDataPinjaman.push(datas);
+									}
+								}else{
+									if(valDataProduk.id_cu == this.currentUser.id_cu){
+										if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
+											this.itemDataSimpanan.push(datas);
+										}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
+											this.itemDataPinjaman.push(datas);
+										}
+									}	
+								}
+	
+							}
+						}
+					}
 				}
 			},
 			updateStat(value) {
@@ -754,7 +828,13 @@
 		},
 		methods: {
 			fetch() {
-				this.$store.dispatch(this.kelas + '/create');
+				if(this.mode == 'create_new'){
+					this.$store.dispatch(this.kelas + '/create');
+				}else if(this.mode == 'create_old'){
+					this.$store.dispatch(this.kelas + '/editIdentitas', this.itemData.id);
+				}else if(this.mode == 'edit'){
+					this.$store.dispatch(this.kelas + '/editIdentitas', this.$route.params.id);
+				}
 				this.$store.dispatch('provinces/get');
 			},
 			createCu(value){
@@ -791,19 +871,27 @@
 				this.modalTutup(); 
 			},
 			save() {
-				this.form.simpanan = this.itemDataSimpanan;
-				this.form.pinjaman = this.itemDataPinjaman;
-
-				if(this.currentUser.id_cu == 0){
-					this.form.cu = this.itemDataCu;
-				}else{
-					this.form.cu_id = this.currentUser.id_cu;
+				if(this.mode != 'edit'){
+					this.form.simpanan = this.itemDataSimpanan;
+					this.form.pinjaman = this.itemDataPinjaman;
+	
+					if(this.currentUser.id_cu == 0){
+						this.form.cu = this.itemDataCu;
+					}else{
+						this.form.id_cu = this.currentUser.id_cu;
+					}
 				}
 
 				const formData = this.form;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/store', formData);
+						if(this.mode == 'create_new'){
+							this.$store.dispatch(this.kelas + '/store', formData);
+						}else if(this.mode == 'create_old'){
+							this.$store.dispatch(this.kelas + '/updateIdentitas', [this.itemData.id,formData]);
+						}else if(this.mode == 'edit'){
+							this.$store.dispatch(this.kelas + '/updateIdentitas', [this.$route.params.id,formData]);
+						}
 						this.submited = false;
 					} else {
 						window.scrollTo(0, 0);
@@ -950,6 +1038,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('cu',{
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

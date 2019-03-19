@@ -6,7 +6,7 @@
 		</message>
 
 		<!-- main panel -->
-		<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+		<form @submit.prevent="save" data-vv-scope="form">
 
 			<!-- identitas -->
 			<div class="card">
@@ -43,7 +43,7 @@
 									No. BA:</h6>
 
 								<!-- text -->
-								<input type="text" nama="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-validate="'required|min:5'"
+								<input type="text" name="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-validate="'required'"
 								data-vv-as="No. BA" v-model="form.no_ba">
 
 								<!-- error message -->
@@ -460,7 +460,6 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props: ['mode','id_props'],
 		components: {
 			appModal,
 			appImageUpload,
@@ -534,11 +533,6 @@
 			this.fetch();
 		},
 		watch: {
-			formStat(value) {
-				if (value === "success") {
-					// this.form.nik = this.nik;
-				}
-			},
 			updateStat(value) {
 				this.modalShow = true;
 				this.modalState = value;
@@ -554,19 +548,14 @@
 		},
 		methods: {
 			fetch() {
-				if(this.mode == 'local'){
-					this.id_local = this.$route.params.id;
-					this.$store.dispatch(this.kelas + '/editIdentitas', this.id_local);
-				}else{
-					this.id_local = this.id_props;
-				}
+				this.$store.dispatch(this.kelas + '/editIdentitas', this.$route.params.id);
 				this.$store.dispatch('provinces/get');
 			},
 			save() {
 				const formData = this.form;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/updateIdentitas', [this.id_local,formData]);
+						this.$store.dispatch(this.kelas + '/updateIdentitas', [this.$route.params.id,formData]);
 						this.submited = false;
 					} else {
 						window.scrollTo(0, 0);

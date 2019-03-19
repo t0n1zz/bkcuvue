@@ -203,7 +203,6 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/diklatBKCU/store', 'DiklatBKCUController@store');
     });
     Route::group(['middleware' => ['permission:update_diklat_bkcu']], function () {
-        
         Route::post('/diklatBKCU/update/{id}', 'DiklatBKCUController@update');
         Route::post('/diklatBKCU/updateStatus/{id}', 'DiklatBKCUController@updateStatus');
     });
@@ -314,6 +313,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {
         Route::delete('/anggotaCu/{id}', 'AnggotaCuController@destroy');
+        Route::delete('/anggotaCuCu/{id}', 'AnggotaCuController@destroyCu');
     });
     Route::group(['middleware' => ['permission:upload_anggota_cu']], function () {
         Route::post('/anggotaCu/uploadExcelNew', 'AnggotaCuController@uploadExcelNew');

@@ -46,11 +46,11 @@ class AnggotaCu extends Model {
     }
 
     public function anggota_cu(){
-        return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('no_ba','tanggal_masuk')->withTimestamps();
+        return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','no_ba','tanggal_masuk')->withTimestamps();
 	}
 		
     public function anggota_produk_cu(){
-        return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('saldo')->withTimestamps();
+        return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('id','saldo')->withTimestamps();
     }
 
     public function Provinces()
