@@ -17,9 +17,5 @@
         default: ''
       },
     },
-    data(){
-    },
-    methods: {
-    }
   }
 </script>

@@ -77,8 +77,12 @@ class AnggotaCuNewDraftImport implements ToCollection, WithHeadingRow, WithBatch
                 'alih_waris' => $row['alih_waris'],
             );
             
-            $kelas = AnggotaCuDraft::create($datas);
+            $kelas = AnggotaCu::where('nik',$row['nik'])->select('id','nik')->first();
 
+            if(!$kelas){
+                $kelas = AnggotaCuDraft::create($datas);
+            }
+            
             AnggotaCuCu::create([
 				'anggota_cu_id' => $kelas->id,
 				'cu_id' => $cu->id_cu,
@@ -93,7 +97,8 @@ class AnggotaCuNewDraftImport implements ToCollection, WithHeadingRow, WithBatch
                     AnggotaProdukCuDraft::create([
                         'anggota_cu_id' => $kelas->id,
                         'produk_cu_id' => $produk_id,
-                        'saldo' => $row[$produk->name]
+                        'saldo' => $row[$produk->name],
+                        'tanggal' => $row[$produk->name . ' tanggal']
                     ]);
                 }
             }

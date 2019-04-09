@@ -16,7 +16,7 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
-						<!-- select data -->
+					<!-- select data -->
 					<select-cu 
 						:kelas="kelas"
 						:path="selectCuPath"
@@ -50,10 +50,10 @@
 		},
 		data() {
 			return {
-				title: 'Identitas Anggota CU',
+				title: 'Anggota CU',
 				kelas: 'anggotaCu',
-				titleDesc: 'Mengelola data identitas anggota CU',
-				titleIcon: 'icon-vcard',
+				titleDesc: 'Mengelola anggota CU',
+				titleIcon: 'icon-users4',
 				selectCuPath: 'anggotaCuCu',
 			}
 		},

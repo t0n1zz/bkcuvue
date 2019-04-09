@@ -90,6 +90,33 @@
 				</div>
 			</div>
 
+			<!-- tanggal -->
+			<div class="col-md-12">
+				<div class="form-group" :class="{'has-error' : errors.has('formPinjaman.tanggal')}">
+
+					<!-- title -->
+					<h5 :class="{ 'text-danger' : errors.has('formPinjaman.tanggal')}"><i class="icon-cross2" v-if="errors.has('formPinjaman.tanggal')"></i> Tanggal: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+
+					<!-- input -->
+					<cleave 
+						name="tanggal"
+						v-model="formPinjaman.tanggal" 
+						class="form-control" 
+						:raw="false" 
+						:options="cleaveOption.date" 
+						placeholder="Silahkan masukkan tanggal"
+						v-validate="'required'" data-vv-as="Tanggal"></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formPinjaman.tanggal')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formPinjaman.tanggal') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>	
+
+				</div>
+			</div>
+
 		</div>
 
 		<!-- divider -->
@@ -125,13 +152,15 @@
 	import Message from "../../components/message.vue";
 	import Cleave from 'vue-cleave-component';
 	import produkCuAPI from '../../api/produkCu.js';
+	import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
 		props: ['mode','selected'],
 		components: {
 			checkValue,
 			Message,
-			Cleave
+			Cleave,
+			infoIcon
 		},
 		data() {
 			return {
@@ -147,7 +176,8 @@
 					produk_cu: {
 						id: 0,
 						name: ''
-					}
+					},
+					tanggal: ''
 				},
 				modelProdukCu: [],
 				modelProdukCuStat: '',
@@ -159,6 +189,11 @@
             numeralDecimalMark: ',',
             delimiter: '.'
 					},
+					date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+          },
 				},
 				message: {
 					show: false,
@@ -174,6 +209,14 @@
 				if(this.modelCUStat == 'success'){
 					this.formPinjaman = this.selected;
 				}
+
+				if(this.currentUser.id_cu == 0){
+					this.changeCu(this.formPinjaman.cu.id);
+				}
+			}
+
+			if(this.currentUser.id_cu != 0){
+				this.changeCu(this.currentUser.id_cu);
 			}
 		},
 		watch: {
@@ -181,6 +224,14 @@
 				if(value === "success"){
 					if(this.mode == 'edit'){
 						this.formPinjaman = this.selected;
+
+						if(this.currentUser.id_cu == 0){
+							this.changeCu(this.formPinjaman.cu.id);
+						}
+					}
+
+					if(this.currentUser.id_cu != 0){
+						this.changeCu(this.currentUser.id_cu);
 					}
 				}
 			},

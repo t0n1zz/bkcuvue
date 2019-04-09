@@ -56,42 +56,9 @@ class AnggotaCuController extends Controller{
 
 		$kelas = AnggotaCu::create($request->all());
 
-		// cu
-		if($request->cu){
-			$cuArray = array();
+		$this->syncCu($request, $kelas);
 
-			foreach($request->cu as $cu){
-				$cuArray[$cu['no_ba']] = [
-					'cu_id' => $cu['cu']['id'],
-					'no_ba' => $cu['no_ba'],
-					'tanggal_masuk' => $cu['tanggal_masuk']
-				];	
-			}
-
-			$kelas->anggota_cu()->sync($cuArray);
-		}else if($request->id_cu){
-			AnggotaCuCu::create([
-				'anggota_cu_id' => $kelas->id,
-				'cu_id' => $request->id_cu,
-				'no_ba' => $request->no_ba,
-				'tanggal_masuk' => $request->tanggal_masuk
-			]);
-		}
-
-		$produkcu = array_merge($request->simpanan, $request->pinjaman);
-
-		// produk cu
-		if($produkcu){
-			$produkCuArray = array();
-
-			foreach($produkcu as $produk){
-				$produkCuArray[$produk['produk_cu']['id']] = [
-					'produk_cu_id' => $produk['produk_cu']['id'],
-					'saldo' => $produk['saldo'] ];
-			}
-
-			$kelas->anggota_produk_cu()->sync($produkCuArray);
-		}
+		$this->syncProdukCu($request, $kelas);
 		
 		return response()
 			->json([
@@ -118,7 +85,7 @@ class AnggotaCuController extends Controller{
 	}
 
 
-	public function editIdentitas($id)
+	public function edit($id)
 	{
 		$kelas = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
@@ -129,7 +96,7 @@ class AnggotaCuController extends Controller{
 				]);
 	}
 
-	public function updateIdentitas(Request $request, $id)
+	public function update(Request $request, $id)
 	{
 		$this->validate($request, AnggotaCu::$rules);
 
@@ -138,6 +105,12 @@ class AnggotaCuController extends Controller{
 		$kelas = AnggotaCu::findOrFail($id);
 
 		$kelas->update($request->all());	
+
+		$this->syncCu($request, $kelas);
+
+		if($request->simpanan || $request->pinjaman){
+			$this->syncProdukCu($request, $kelas);
+		}
 
 		return response()
 			->json([
@@ -198,6 +171,61 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	private function syncCu($request, $kelas)
+	{
+		if($request->cu){
+			$cuArray = array();
+
+			foreach($request->cu as $cu){
+				$cuArray[$cu['no_ba']] = [
+					'cu_id' => $cu['cu']['id'],
+					'no_ba' => $cu['no_ba'],
+					'tanggal_masuk' => $cu['tanggal_masuk']
+				];	
+			}
+
+			$kelas->anggota_cu()->sync($cuArray);
+		}else if($request->id_cu){
+			$kelasCu = AnggotaCuCU::where('anggota_cu_id',$kelas->id);
+
+			if($kelasCu){
+				$kelasCu->update([
+					'anggota_cu_id' => $kelas->id,
+					'cu_id' => $request->id_cu,
+					'no_ba' => $request->no_ba,
+					'tanggal_masuk' => $request->tanggal_masuk
+				]);
+			}else{
+				AnggotaCuCu::create([
+					'anggota_cu_id' => $kelas->id,
+					'cu_id' => $request->id_cu,
+					'no_ba' => $request->no_ba,
+					'tanggal_masuk' => $request->tanggal_masuk
+				]);
+			}
+			
+		}
+	}
+
+	private function syncProdukCu($request, $kelas)
+	{
+		$produkcu = array_merge($request->simpanan, $request->pinjaman);
+
+		if($produkcu){
+			$produkCuArray = array();
+
+			foreach($produkcu as $produk){
+				$produkCuArray[$produk['produk_cu']['id']] = [
+					'produk_cu_id' => $produk['produk_cu']['id'],
+					'saldo' => $produk['saldo'],
+					'tanggal' => $produk['tanggal']
+				];
+			}
+
+			$kelas->anggota_produk_cu()->sync($produkCuArray);
+		}
+	}
+
 	public function uploadExcelNew(Request $request)
 	{
 		Excel::import(new AnggotaCuNewDraftImport, request()->file('file'));
@@ -240,11 +268,20 @@ class AnggotaCuController extends Controller{
 	
 	public function cariData($nik)
 	{
-		$table_data = AnggotaCu::where('nik',$nik)->select('id')->first();
+		$table_data = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
 
-		return response()
-		->json([
-			'model' => $table_data
-		]);
+		if($table_data){
+			return response()
+			->json([
+				'model' => $table_data
+			]);
+		}else{
+			return response()
+			->json([
+					'form' => AnggotaCu::initialize(),
+					'rules' => AnggotaCu::$rules,
+					'option' => []
+			]);
+		}
 	}
 }

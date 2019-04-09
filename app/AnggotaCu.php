@@ -50,7 +50,7 @@ class AnggotaCu extends Model {
 	}
 		
     public function anggota_produk_cu(){
-        return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('id','saldo')->withTimestamps();
+        return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('id','saldo','tanggal')->withTimestamps();
     }
 
     public function Provinces()

@@ -55,20 +55,20 @@
 						</div>
 
 						<!-- data not exist -->
-						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'success' && Object.keys(itemData).length == 0">
+						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
 							<span class="font-weight-semibold">NIK tidak terdaftar di SIMO, maka silahkan menambahkan data anggota CU baru.
 							</span>
 						</div>
 
-						<form-create v-if="itemDataStat == 'success' && Object.keys(itemData).length == 0" :nik="nik" :mode="'create_new'"></form-create>
+						<form-create v-if="itemDataStat == 'fail'" :nik="nik" :mode="'create_new'"></form-create>
 
 						<!-- data exist -->
-						<div class="alert bg-warning text-white alert-styled-left " v-if="Object.keys(itemData).length != 0">
+						<div class="alert bg-warning text-white alert-styled-left " v-if="itemDataStat == 'success'">
 							<span class="font-weight-semibold">NIK sudah terdaftar di SIMO. Apabila ingin menambahkan anggota tersebut menjadi anggota cu maka silahkan tambahkan no. ba dan tgl. jadi anggota. 
 							</span>
 						</div>
 
-						<form-create v-if="Object.keys(itemData).length != 0"  :itemData="itemData" :mode="'create_old'"></form-create>
+						<form-create v-if="itemDataStat == 'success'" :mode="'create_old'"></form-create>
 						
 					</div>
 
@@ -88,15 +88,13 @@
 	import appModal from '../../components/modal';
 	import anggotaCuAPI from '../../api/anggotaCu.js';
 	import Cleave from 'vue-cleave-component';
-	import formCreate from "./create.vue";	
-	import formEdit from "./edit.vue";	
+	import formCreate from "./create.vue";
 
 	export default {
 		components: {
 			pageHeader,
 			appModal,
 			formCreate,
-			formEdit,
 			Cleave
 		},
 		data() {
@@ -107,8 +105,6 @@
 				kelas: 'anggotaCu',
 				level2Title: 'Anggota CU',
 				isNew: false,
-				itemData: {},
-				itemDataStat: '',
 				nik: '',
 				isEdit: false,
 				cleaveOption: {
@@ -134,38 +130,11 @@
 			}
 		},
 		watch: {
-			updateStat(value) {
-				this.modalShow = true;
-				this.modalState = value;
-				this.modalColor = '';
-
-				if (value === "success") {
-				this.modalTitle = this.updateResponse.message;
-				} else {
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updateResponse;
-				}
-			}
 		},
 		methods: {
 			cariData(){
-				this.itemDataStat = 'loading';
-				this.isNew = false;
-
-				anggotaCuAPI.cariData(this.nik)
-        .then((response) => {
-					if(response.data.model){
-						this.itemData = response.data.model;
-					}else{
-						this.itemData = {};
-						this.isNew = true;
-					}
-					this.itemDataStat = 'success';
-        })
-        .catch((error) => {
-					this.itemData = error.response;
-          this.itemDataStat = 'fail';
-				});
+				this.isNew = true;
+				this.$store.dispatch(this.kelas + '/cariData', this.nik);
 			},
 			showUbahData(){
 				this.isEdit = true;
@@ -175,9 +144,9 @@
 			},
 			resetData(){
 				this.nik = '';
-				this.itemData = {};
 				this.isNew = false;
-				this.itemDataStat = '';
+				this.$store.commit(this.kelas + '/setData',{});
+				this.$store.commit(this.kelas + '/setDataStat','');
 			},
 			back(){
 				if(this.currentUser.id_cu == 0){
@@ -192,12 +161,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('anggotaCu', {
-				form: 'data',
-				formStat: 'dataStat',
-				rules: 'rules',
-				options: 'options',
-				updateResponse: 'update',
-				updateStat: 'updateStat'
+				itemData: 'data',
+				itemDataStat: 'dataStat'
 			}),
 		}
 	}

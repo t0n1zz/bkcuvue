@@ -15,11 +15,11 @@ class AnggotaProdukCu extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'anggota_id','produk_cu_id','saldo'
+        'anggota_id','produk_cu_id','saldo','tanggal'
     ];
 
     protected $filter = [
-        'anggota_id','produk_cu_id','saldo','created_at','updated_at'
+        'anggota_id','produk_cu_id','saldo','tanggal','created_at','updated_at'
     ];
 
     public static function initialize()

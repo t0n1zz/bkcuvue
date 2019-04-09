@@ -24,12 +24,12 @@ export default {
     return axios.post('/api/anggotaCu/storeCu/' + id, form);
   },
 
-  editIdentitas: function( id ){
-    return axios.get('/api/anggotaCu/editIdentitas/' + id);
+  edit: function( id ){
+    return axios.get('/api/anggotaCu/edit/' + id);
   },
 
-  updateIdentitas: function ( id, form ){
-    return axios.post('/api/anggotaCu/updateIdentitas/' + id, form);
+  update: function ( id, form ){
+    return axios.post('/api/anggotaCu/update/' + id, form);
   },
 
   updateCu: function ( id, form ){

@@ -170,7 +170,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h6>Tgl. Lahir:</h6>
+								<h6>Tgl. Lahir: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 								<!-- input -->
 								<cleave name="tanggal_lahir" v-model="form.tanggal_lahir" class="form-control" :raw="false" :options="cleaveOption.date"
@@ -424,7 +424,7 @@
 								<div class="form-group">
 
 									<!-- title -->
-									<h6>Tgl. Jadi Anggota:</h6>
+									<h6>Tgl. Jadi Anggota: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 									<!-- text -->
 									<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date"
@@ -514,6 +514,7 @@
 							<td><check-value :value="props.item.cu.name"></check-value></td>
 							<td><check-value :value="props.item.produk_cu.name"></check-value></td>
 							<td><check-value :value="props.item.saldo" valueType="currency"></check-value></td>
+							<td><span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span> <span v-else>-</span></td>
 						</tr>
 					</template>	
 				</data-table>
@@ -556,6 +557,7 @@
 							<td><check-value :value="props.item.cu.name"></check-value></td>
 							<td><check-value :value="props.item.produk_cu.name"></check-value></td>
 							<td><check-value :value="props.item.saldo" valueType="currency"></check-value></td>
+							<td><span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span> <span v-else>-</span></td>
 						</tr>
 					</template>	
 				</data-table>
@@ -632,9 +634,10 @@
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
 	import checkValue from "../../components/checkValue.vue";
+	import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
-		props: ['mode','nik','itemData'],
+		props: ['mode','nik'],
 		components: {
 			appModal,
 			appImageUpload,
@@ -646,7 +649,8 @@
 			formInfo,
 			Cleave,
 			dataTable,
-			checkValue
+			checkValue,
+			infoIcon
 		},
 		data() {
 			return {
@@ -704,6 +708,7 @@
 					{ title: 'CU' },
 					{ title: 'Simpanan' },
 					{ title: 'Saldo' },
+					{ title: 'Tanggal' },
 				],
 				formPinjamanMode: '',
 				selectedItemPinjaman: '',
@@ -713,7 +718,8 @@
 					{ title: 'No.' },
 					{ title: 'CU' },
 					{ title: 'Pinjaman' },
-					{ title: 'saldo' },
+					{ title: 'Saldo' },
+					{ title: 'Tanggal' },
 				],
 				modalShow: false,
 				modalState: '',
@@ -729,90 +735,24 @@
 					this.$store.dispatch('cu/getHeader');
 				}
 			}
+			
 			this.form.id_cu = this.currentUser.id_cu;
-			this.fetch();
+
+			this.$store.dispatch('provinces/get');
+			if(this.form.id_provinces){
+				this.changeProvinces(this.form.id_provinces);
+			}
+			if(this.form.id_regencies){
+				this.changeRegencies(this.form.id_regencies);
+			}
+			if(this.form.id_districts){
+				this.changeDistricts(this.form.id_districts);
+			}
+
+			this.fetchProduk();
+			this.fetchCu();
 		},
 		watch: {
-			formStat(value) {
-				if (value === "success") {
-					this.changeProvinces(this.form.id_provinces);
-					this.changeRegencies(this.form.id_regencies);
-					this.changeDistricts(this.form.id_districts);
-
-					if(this.mode == 'create_new'){
-						this.form.nik = this.nik;
-					}else if(this.mode == 'create_old'){
-
-						// cu
-						if(this.currentUser.id_cu == 0){
-							this.itemDataCu = [];
-							var valData;
-
-							if(this.form.anggota_cu){
-								for(valData of this.form.anggota_cu){
-									var datas = {};
-									var cu = {};
-									cu.name = valData.name;
-									cu.id = valData.id;
-	
-									datas = valData.pivot;
-									datas.cu = cu;
-									this.itemDataCu.push(datas);
-								}
-							}
-						}else{
-							let data = _.find(this.form.anggota_cu,{'id':this.currentUser.id_cu});
-
-							if(data){
-								this.form.no_ba = data.pivot.no_ba;
-								this.form.tanggal_masuk = data.pivot.tanggal_masuk;
-							}
-						}
-
-						// produk cu
-						this.itemDataSimpanan = [];
-						this.itemDataPinjaman = [];
-						var valDataProduk;
-
-						if(this.form.anggota_produk_cu){
-							for(valDataProduk of this.form.anggota_produk_cu){
-								var datas = {};
-								var cu = {};
-								var produk_cu = {};
-	
-								if(this.currentUser.id_cu == 0){
-									let data = _.find(this.modelCu,{'id':valDataProduk.id_cu});
-									cu.name = data.name;
-								}else{
-									cu.name = this.currentUser.cu.name;
-								}
-	
-								produk_cu.name = valDataProduk.name
-								datas = valDataProduk.pivot;
-								datas.cu = cu;
-								datas.produk_cu = produk_cu;
-								
-								if(this.currentUser.id_cu == 0){
-									if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-										this.itemDataSimpanan.push(datas);
-									}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-										this.itemDataPinjaman.push(datas);
-									}
-								}else{
-									if(valDataProduk.id_cu == this.currentUser.id_cu){
-										if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-											this.itemDataSimpanan.push(datas);
-										}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-											this.itemDataPinjaman.push(datas);
-										}
-									}	
-								}
-	
-							}
-						}
-					}
-				}
-			},
 			updateStat(value) {
 				this.modalShow = true;
 				this.modalState = value;
@@ -827,15 +767,82 @@
 			}
 		},
 		methods: {
-			fetch() {
+			fetchProduk() {
 				if(this.mode == 'create_new'){
-					this.$store.dispatch(this.kelas + '/create');
+					this.form.nik = this.nik;
 				}else if(this.mode == 'create_old'){
-					this.$store.dispatch(this.kelas + '/editIdentitas', this.itemData.id);
-				}else if(this.mode == 'edit'){
-					this.$store.dispatch(this.kelas + '/editIdentitas', this.$route.params.id);
+
+					// produk cu
+					this.itemDataSimpanan = [];
+					this.itemDataPinjaman = [];
+					var valDataProduk;
+
+					if(this.form.anggota_produk_cu){
+						for(valDataProduk of this.form.anggota_produk_cu){
+							var datas = {};
+							var cu = {};
+							var produk_cu = {};
+
+							if(this.currentUser.id_cu == 0){
+								let data = _.find(this.modelCu,{'id':valDataProduk.id_cu});
+								cu.id = data.id;
+								cu.name = data.name;
+							}else{
+								cu.id = this.currentUser.cu.id;
+								cu.name = this.currentUser.cu.name;
+							}
+							
+							produk_cu.id = valDataProduk.id;
+							produk_cu.name = valDataProduk.name;
+							datas = valDataProduk.pivot;
+							datas.cu = cu;
+							datas.produk_cu = produk_cu;
+							
+							if(this.currentUser.id_cu == 0){
+								if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
+									this.itemDataSimpanan.push(datas);
+								}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
+									this.itemDataPinjaman.push(datas);
+								}
+							}else{
+								if(valDataProduk.id_cu == this.currentUser.id_cu){
+									if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
+										this.itemDataSimpanan.push(datas);
+									}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
+										this.itemDataPinjaman.push(datas);
+									}
+								}	
+							}
+
+						}
+					}
 				}
-				this.$store.dispatch('provinces/get');
+			},
+			fetchCu(){
+				if(this.currentUser.id_cu == 0){
+					this.itemDataCu = [];
+					var valData;
+
+					if(this.form.anggota_cu){
+						for(valData of this.form.anggota_cu){
+							var datas = {};
+							var cu = {};
+							cu.name = valData.name;
+							cu.id = valData.id;
+
+							datas = valData.pivot;
+							datas.cu = cu;
+							this.itemDataCu.push(datas);
+						}
+					}
+				}else{
+					let data = _.find(this.form.anggota_cu,{'id':this.currentUser.id_cu});
+
+					if(data){
+						this.form.no_ba = data.pivot.no_ba;
+						this.form.tanggal_masuk = data.pivot.tanggal_masuk;
+					}
+				}
 			},
 			createCu(value){
 				this.itemDataCu.push(value);
@@ -850,6 +857,7 @@
 			},
 			createSimpanan(value){
 				this.itemDataSimpanan.push(value);
+				this.selectedItemSimpanan = '';
 				this.modalTutup();
 			},
 			editSimpanan(value){
@@ -857,29 +865,30 @@
 						index: value.index
 				});
 				this.itemDataSimpanan.push(value);
+				this.selectedItemSimpanan = '';
 				this.modalTutup(); 
 			},
 			createPinjaman(value){
 				this.itemDataPinjaman.push(value);
+				this.selectedItemPinjaman = '';
 				this.modalTutup();
 			},
 			editPinjaman(value){
 				_.remove(this.itemDataPinjaman, {
 						index: value.index
 				});
-			  this.itemDataSimpanan.push(value);
+				this.itemDataPinjaman.push(value);
+				this.selectedItemPinjaman = '';
 				this.modalTutup(); 
 			},
 			save() {
-				if(this.mode != 'edit'){
-					this.form.simpanan = this.itemDataSimpanan;
-					this.form.pinjaman = this.itemDataPinjaman;
-	
-					if(this.currentUser.id_cu == 0){
-						this.form.cu = this.itemDataCu;
-					}else{
-						this.form.id_cu = this.currentUser.id_cu;
-					}
+				this.form.simpanan = this.itemDataSimpanan;
+				this.form.pinjaman = this.itemDataPinjaman;
+
+				if(this.currentUser.id_cu == 0){
+					this.form.cu = this.itemDataCu;
+				}else{
+					this.form.id_cu = this.currentUser.id_cu;
 				}
 
 				const formData = this.form;
@@ -888,9 +897,9 @@
 						if(this.mode == 'create_new'){
 							this.$store.dispatch(this.kelas + '/store', formData);
 						}else if(this.mode == 'create_old'){
-							this.$store.dispatch(this.kelas + '/updateIdentitas', [this.itemData.id,formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.itemData.id,formData]);
 						}else if(this.mode == 'edit'){
-							this.$store.dispatch(this.kelas + '/updateIdentitas', [this.$route.params.id,formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id,formData]);
 						}
 						this.submited = false;
 					} else {
@@ -1004,10 +1013,12 @@
 					_.remove(this.itemDataSimpanan, {
 						index: this.selectedItemSimpanan.index
 					});
+					this.selectedItemSimpanan = '';
 				}else if (this.state == 'hapusPinjaman') {
 					_.remove(this.itemDataPinjaman, {
 						index: this.selectedItemPinjaman.index
 					});
+					this.selectedItemPinjaman = '';
 				}
 			},
 			modalTutup() {

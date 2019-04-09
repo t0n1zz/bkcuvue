@@ -9,7 +9,7 @@
 
         <!-- tambah -->
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
-          <i class="icon-plus3"></i> Tambah
+          <i class="icon-plus3"></i> Tambah Anggota CU
         </router-link>
 
         <!-- ubah-->
@@ -17,6 +17,13 @@
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>
+
+        <!-- TODO:: ganti akses ke index_anggota_cu_saldo -->
+        <!-- saldo-->
+        <!-- <button @click.prevent="lihatSaldo(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
+          :disabled="!selectedItem.id">
+          <i class="icon-wallet"></i> Lihat Saldo
+        </button> -->
 
         <!-- hapus -->
         <!-- <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
@@ -31,7 +38,7 @@
 
         <!-- tambah -->
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
-          <i class="icon-plus3"></i> Tambah
+          <i class="icon-plus3"></i> Tambah Anggota CU
         </router-link>
 
         <!-- ubah-->
@@ -39,6 +46,13 @@
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>
+
+        <!-- TODO:: ganti akses ke index_anggota_cu_saldo -->
+        <!-- saldo-->
+        <!-- <button @click.prevent="lihatSaldo(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
+          :disabled="!selectedItem.id">
+          <i class="icon-wallet"></i> Lihat Saldo
+        </button> -->
 
         <!-- hapus -->
         <!-- <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
@@ -61,9 +75,14 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
           <td v-if="!columnData[3].hide">
-						<label v-for="anggota_cu in props.item.anggota_cu" v-if="props.item.anggota_cu" class="badge badge-primary ml-1">
-              {{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}
-            </label>
+						<span v-for="anggota_cu in props.item.anggota_cu" v-if="props.item.anggota_cu">
+              <span v-if="$route.params.cu != 'semua'">
+                <span v-if="$route.params.cu == anggota_cu.id">
+                  {{ anggota_cu.pivot.no_ba }}
+                </span>
+              </span>
+              <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
+            </span>
             <span v-else>-</span>
 					</td>
 					<td v-if="!columnData[4].hide">
@@ -215,7 +234,7 @@
             filterDefault: true
           },
           {
-            title: 'CU - No. BA',
+            title: 'No. BA',
             name: 'cu.name',
             tipe: 'string',
             sort: true,
@@ -471,6 +490,14 @@
       ubahData(id) {
         this.$router.push({
           name: this.kelas + "Edit",
+          params: {
+            id: id
+          }
+        });
+      },
+      lihatSaldo(id) {
+        this.$router.push({
+          name: this.kelas + "Saldo",
           params: {
             id: id
           }

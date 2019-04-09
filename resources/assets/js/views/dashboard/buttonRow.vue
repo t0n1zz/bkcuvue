@@ -81,7 +81,7 @@
 
 <script type="text/javascript">
 	import { mapGetters } from 'vuex';
-  import countWidget from './_component/countWidget.vue';
+  import countWidget from '../../components/countWidget';
   
 	export default{
 		components: {
