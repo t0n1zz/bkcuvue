@@ -431,6 +431,11 @@
 								<i class="icon-users4"></i> Anggota CU
 							</router-link>
 
+							<!-- if cu account -->
+							<router-link :to="{ name: 'anggotaCuProduk'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu']">
+								<i class="icon-wallet"></i> Saldo
+							</router-link>
+
 						</div>
 					</li>
 

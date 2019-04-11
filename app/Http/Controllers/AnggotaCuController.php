@@ -185,10 +185,13 @@ class AnggotaCuController extends Controller{
 			}
 
 			$kelas->anggota_cu()->sync($cuArray);
-		}else if($request->id_cu){
-			$kelasCu = AnggotaCuCU::where('anggota_cu_id',$kelas->id);
+		}
+		
+		if($request->id_cu){
+			$kelasCu = AnggotaCuCU::where('anggota_cu_id',$kelas->id)->first();
 
 			if($kelasCu){
+				$kelasCu = AnggotaCuCU::where('anggota_cu_id',$kelas->id);
 				$kelasCu->update([
 					'anggota_cu_id' => $kelas->id,
 					'cu_id' => $request->id_cu,
@@ -269,6 +272,27 @@ class AnggotaCuController extends Controller{
 	public function cariData($nik)
 	{
 		$table_data = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
+
+		if($table_data){
+			return response()
+			->json([
+				'model' => $table_data
+			]);
+		}else{
+			return response()
+			->json([
+					'form' => AnggotaCu::initialize(),
+					'rules' => AnggotaCu::$rules,
+					'option' => []
+			]);
+		}
+	}
+
+	public function cariData2($cu, $noba)
+	{
+		$table_data = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($cu, $noba){ 
+			$query->where('cu_id',$cu)->where('cu.no_ba',$noba); 
+		})->first();
 
 		if($table_data){
 			return response()

@@ -298,12 +298,13 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCu/indexCu/{id}', 'AnggotaCuController@indexCu'); 
         Route::get('/anggotaCu/count', 'AnggotaCuController@count');
         Route::get('/anggotaCu/history', 'AnggotaCuController@history');
+        Route::get('/anggotaCu/cariData/{nik}', 'AnggotaCuController@cariData');
+        Route::get('/anggotaCu/cariData2/cu/{cu}/noba/{noba}', 'AnggotaCuController@cariData2');
     });
     Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
         Route::get('/anggotaCu/create', 'AnggotaCuController@create');
         Route::post('/anggotaCu/store', 'AnggotaCuController@store');
         Route::post('/anggotaCu/storeCu/{id}', 'AnggotaCuController@storeCu');
-        Route::get('/anggotaCu/cariData/{nik}', 'AnggotaCuController@cariData');
     });
     Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
         Route::get('/anggotaCu/edit/{id}', 'AnggotaCuController@edit');

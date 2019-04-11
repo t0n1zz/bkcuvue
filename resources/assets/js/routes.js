@@ -38,6 +38,7 @@ import mitraLembaga from './views/mitraLembaga/index.vue';
 import mitraLembaga_form from './views/mitraLembaga/form.vue';
 import anggotaCu from './views/anggotaCu/index.vue';
 import anggotaCu_form from './views/anggotaCu/form.vue';
+import anggotaCu_produk from './views/anggotaCu/produk.vue';
 import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
@@ -307,6 +308,10 @@ const routes = [
 		name: 'anggotaCuEdit', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },	
+	{ path: '/anggotaCu/produk',
+		name: 'anggotaCuProduk', 
+		components: { default: anggotaCu_produk, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
 
 	// laporan cu
 	// bkcu default route

@@ -110,6 +110,27 @@ export const anggotaCu = {
         });
     },
 
+    cariData2( {commit}, [ idCu, noba ] ){
+      commit('setDataStat', 'loading');
+      
+      AnggotaCuAPI.cariData2( idCu, noba )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setData', response.data.model);
+            commit('setDataStat', 'success');
+          }else{
+            commit('setData', response.data.form);
+            commit('setRules', response.data.rules);
+            commit('setOptions', response.data.options)
+            commit('setDataStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // create page
     create( {commit} ){
       commit('setDataStat', 'loading');
@@ -185,6 +206,7 @@ export const anggotaCu = {
           commit('setDataStat', 'fail');
         });
     },
+
     editDraft( {commit}, id ){
       commit('setDataStat', 'loading');
       
@@ -221,6 +243,7 @@ export const anggotaCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    
     updateDraft( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 

@@ -41,7 +41,7 @@
   <!-- artikel bkcu terbaru -->
   <div class="container clearfix">
     <div class="fancy-title title-border">
-      <h3>ARTIKEL PUSKOPDIT BKCU KALIMANTAN</h3>
+      <h3>ARTIKEL TERBARU</h3>
     </div>
 
     <div class="row bottommargin-sm clearfix">

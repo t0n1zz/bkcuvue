@@ -59,4 +59,8 @@ export default {
   cariData: function( nik ){
     return axios.get('/api/anggotaCu/cariData/' + nik);
   },
+
+  cariData2: function( idCu, noba ){
+    return axios.get('/api/anggotaCu/cariData2/cu/' + idCu + '/noba/' + noba);
+  },
 }

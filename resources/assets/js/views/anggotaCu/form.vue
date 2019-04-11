@@ -119,6 +119,8 @@
 			}
 		},
 		created() {
+			this.resetData();
+
 			if(this.$route.meta.mode === 'edit'){
 				this.title = 'Ubah ' + this.level2Title;
 				this.titleDesc = 'Mengubah ' + this.level2Title;
@@ -128,8 +130,6 @@
 				this.titleDesc = 'Menambah ' + this.level2Title;
 				this.titleIcon = 'icon-plus3';
 			}
-		},
-		watch: {
 		},
 		methods: {
 			cariData(){

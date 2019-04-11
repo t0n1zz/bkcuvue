@@ -1,97 +1,144 @@
 <template>
 	<div>
 
-		<!-- message -->
-		<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
-		</message>
+		<!-- Page header -->
+		<page-header 
+		:title="title" 
+		:titleDesc="titleDesc" 
+		:titleIcon="titleIcon"></page-header>
+		
+		<!-- page container -->
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
 
-		<!-- main panel -->
+					<!-- message -->
+					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
+					</message>
 
-		<!-- check nik -->
-		<div class="card card-body">	
-			<div class="row">
-				<div class="col-12">
-					<h6>
-						Silahkan masukkan NIK anggota CU 
-					</h6>
-				</div>
-				<div class="col-12 pb-2">
-					<!-- text -->
-					<cleave 
-						name="nik"
-						v-model="nik" 
-						class="form-control" 
-						:options="cleaveOption.number16"
-						placeholder="Silahkan masukkan no KTP" :disabled="isNew"></cleave>
-				</div>
+					<!-- main panel -->
 
-				<div class="col-4">
-					<div class="row">
-						<div class="col-6 pb-2">
-							<button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
+					<!-- cari data -->
+					<div class="card card-body">	
+							<div class="row">
+								<div class="col-12">
+									<h6>
+										Silahkan masukkan NIK anggota CU
+									</h6>
+								</div>
+								<div class="col-12 pb-2">
+									<!-- text -->
+									<cleave 
+										name="nik"
+										v-model="nik" 
+										class="form-control" 
+										:options="cleaveOption.number16"
+										placeholder="Silahkan masukkan no KTP" :disabled="isNew"></cleave>
+								</div>
+
+								<div class="col-4">
+									<div class="row">
+										<div class="col-6 pb-2">
+											<button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
+										</div>
+										<div class="col-6 pb-2" v-if="itemDataStat != ''">
+											<button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
+										</div>
+									</div>
+								</div>
+
+								<!-- loading -->
+								<div class="col-12" v-if="itemDataStat == 'loading'">
+									<hr/>
+									<div class="progress">
+										<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+											<span class="sr-only">100% Complete</span>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-6 pb-2" v-if="itemDataStat != ''">
-							<button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
+
+					<!-- data not exist -->
+					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">
+						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO
+						</span>
+					</div>
+
+					<!-- data exist -->
+					<!-- identitas -->
+					<div class="card" v-if="itemDataStat == 'success'">
+						<div class="card-header bg-white">
+							<h5 class="card-title">1. Identitas Anggota</h5>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-4">
+									<ul class="list list-unstyled mb-0">
+										<li><b>Nama:</b> {{ itemData.name}}</li>
+										<li><b>No. KTP:</b> {{ itemData.nik}}</li>
+										<li><b>Nama Alih Waris:</b> {{ itemData.alih_waris}}</li>
+										<li><b>Gender:</b> {{ itemData.kelamin}}</li>
+										<li><b>Tinggi:</b> {{ itemData.tinggi}}</li>
+										<li><b>Agama:</b> {{ itemData.agama}}</li>
+										<li><b>Darah:</b> {{ itemData.darah}}</li>
+									</ul>
+								</div>
+								<div class="col-sm-4">
+									<ul class="list list-unstyled mb-0">
+										<li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span> <span v-else>-</span></li>
+										<li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
+										<li><b>Status:</b> {{ itemData.status}}</li>
+										<li><b>Lembaga:</b> {{ itemData.lembaga}}</li>
+										<li><b>Jabatan:</b> {{ itemData.jabatan}}</li>
+										<li><b>Pendidikan:</b> {{ itemData.pendidikan}}</li>
+										<li><b>Email:</b> {{ itemData.email}}</li>
+									</ul>
+								</div>
+								<div class="col-sm-4">
+									<ul class="list list-unstyled mb-0">
+										<li><b>Provinsi:</b> {{ itemData.provinces.name}}</li>
+										<li><b>Kabupaten:</b> {{ itemData.regencies.name}}</li>
+										<li><b>Kecamatan:</b> {{ itemData.districts.name}}</li>
+										<li><b>Kelurahan:</b> {{ itemData.villages.name}}</li>
+										<li><b>Alamat:</b> {{ itemData.alamat}}</li>
+										<li><b>No. Hp:</b> {{ itemData.hp}}</li>
+										<li><b>Kontak Lainnya:</b> {{ itemData.kontak}}</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 					
-				</div>
-
-				<!-- loading -->
-				<div class="col-12" v-if="itemDataStat == 'loading'">
-					<hr/>
-					<div class="progress">
-						<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-							<span class="sr-only">100% Complete</span>
+					<!-- produk -->
+					<div class="card" v-if="itemDataStat == 'success'">
+						<div class="card-header bg-white">
+							<h5 class="card-title">2. Produk CU</h5>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<!-- identitas -->
-		<div class="card">
-			<div class="card-header bg-white">
-				<h5 class="card-title">1. Identitas Anggota</h5>
-			</div>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-sm-4">
-						<ul class="list list-unstyled mb-0">
-							<li><b>Nama:</b> {{ form.name}}</li>
-							<li><b>No. KTP:</b> {{ form.nik}}</li>
-							<li><b>Nama Alih Waris:</b> {{ form.alih_waris}}</li>
-							<li><b>Gender:</b> {{ form.kelamin}}</li>
-							<li><b>Tinggi:</b> {{ form.tinggi}}</li>
-							<li><b>Agama:</b> {{ form.agama}}</li>
-							<li><b>Darah:</b> {{ form.darah}}</li>
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<ul class="list list-unstyled mb-0">
-							<li><b>Tgl. Lahir:</b> <span v-if="form.tanggal_lahir" v-html="$options.filters.date(form.tanggal_lahir)"></span> <span v-else>-</span></li>
-							<li><b>Tempat Lahir:</b> {{ form.tempat_lahir}}</li>
-							<li><b>Status:</b> {{ form.status}}</li>
-							<li><b>Lembaga:</b> {{ form.lembaga}}</li>
-							<li><b>Jabatan:</b> {{ form.jabatan}}</li>
-							<li><b>Pendidikan:</b> {{ form.pendidikan}}</li>
-							<li><b>Email:</b> {{ form.email}}</li>
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<ul class="list list-unstyled mb-0">
-							<li><b>Provinsi:</b> {{ form.provinsi}}</li>
-							<li><b>Kabupaten:</b> {{ form.kabupaten}}</li>
-							<li><b>Kecamatan:</b> {{ form.kecamatan}}</li>
-							<li><b>Kelurahan:</b> {{ form.kelurahan}}</li>
-							<li><b>Alamat:</b> {{ form.Alamat}}</li>
-							<li><b>No. Hp:</b> {{ form.no_hp}}</li>
-							<li><b>Kontak Lainnya:</b> {{ form.kontak}}</li>
-						</ul>
-					</div>
+						<div class="nav-tabs-responsive bg-light border-top">
+							<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+								<li class="nav-item" v-for="cu in itemDataCu"><a href="#" class="nav-link" :class="{'active': tabName == cu.id}" @click.prevent="changeTab(cu.id)">{{'CU ' + cu.cu.name + ' | No. BA: ' + cu.no_ba}}</a></li>
+							</ul>
+						</div>
+
+						<transition-group name="list" tag="div" enter-active-class="animated fadeIn" mode="out-in">
+							<div class="card-body" v-for="cu in itemDataCu" v-bind:key="cu.id" v-show="tabName == cu.id">
+								<div class="row">
+									<div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="(produks,index) in itemDataProduk" v-if="index == cu.cu_id">
+										<div v-for="produk in produks">
+											<count-widget :count="produk.pivot.saldo" :title="produk.name" :color="'bg-green-400'" :icon="'icon-office'"></count-widget>
+										</div>
+									</div>
+								</div>
+							</div>
+						</transition-group>
+
+					</div>	
+ 
 				</div>
 			</div>
-		</div>
+		</div>		
 
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor"
@@ -130,6 +177,7 @@
 <script>
 	import {mapGetters} from 'vuex';
 	import _ from 'lodash';
+	import pageHeader from "../../components/pageHeader.vue";
 	import {toMulipartedForm} from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
@@ -144,6 +192,7 @@
 
 	export default {
 		components: {
+			pageHeader,
 			appModal,
 			appImageUpload,
 			message,
@@ -157,8 +206,13 @@
 		},
 		data() {
 			return {
+				title: 'Saldo',
+				titleDesc: 'Mengelola data saldo anggota cu',
+				titleIcon: 'icon-wallet',
 				kelas: 'anggotaCu',
 				nik: '',
+				tabName: 'nik',
+				isNew: false,
 				cleaveOption: {
           date:{
             date: true,
@@ -193,6 +247,16 @@
             delimiter: '.'
           }
 				},
+				formCuMode: '',
+				selectedItemCu: '',
+				itemDataCu: [],
+				itemDataCuStat: 'success',
+				columnDataCu:[
+					{ title: 'No.' },
+					{ title: 'CU' },
+					{ title: 'No. BA' },
+					{ title: 'Tgl. Jadi Anggota' },
+				],
 				formSimpananMode: '',
 				selectedItemSimpanan: '',
 				itemDataSimpanan: [],
@@ -221,73 +285,44 @@
 				modalColor: '',
 				modalContent: '',
 				submited: false,
+				itemDataProduk: []
 			}
 		},
 		created() {
+			this.resetData();
+
 			if (this.currentUser.id_cu == 0) {
 				if (this.modelCuStat != 'success') {
 					this.$store.dispatch('cu/getHeader');
 				}
 			}
-			this.form.id_cu = this.currentUser.id_cu;
-			this.fetch();
 		},
 		watch: {
-			formStat(value) {
+			itemDataStat(value) {
 				if (value === "success") {
-					this.changeProvinces(this.form.id_provinces);
-					this.changeRegencies(this.form.id_regencies);
-					this.changeDistricts(this.form.id_districts);
 
-					if(this.mode == 'create_new'){
-						this.form.nik = this.nik;
-					}else if(this.mode == 'create_old'){
-
-						// produk cu
-						this.itemDataSimpanan = [];
-						this.itemDataPinjaman = [];
-						var valDataProduk;
-
-						if(this.form.anggota_produk_cu){
-							for(valDataProduk of this.form.anggota_produk_cu){
-								var datas = {};
-								var cu = {};
-								var produk_cu = {};
-	
-								if(this.currentUser.id_cu == 0){
-									let data = _.find(this.modelCu,{'id':valDataProduk.id_cu});
-									cu.id = data.id;
-									cu.name = data.name;
-								}else{
-									cu.id = this.currentUser.cu.id;
-									cu.name = this.currentUser.cu.name;
-								}
-								
-								produk_cu.id = valDataProduk.id;
-								produk_cu.name = valDataProduk.name;
-								datas = valDataProduk.pivot;
-								datas.cu = cu;
-								datas.produk_cu = produk_cu;
-								
-								if(this.currentUser.id_cu == 0){
-									if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-										this.itemDataSimpanan.push(datas);
-									}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-										this.itemDataPinjaman.push(datas);
-									}
-								}else{
-									if(valDataProduk.id_cu == this.currentUser.id_cu){
-										if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-											this.itemDataSimpanan.push(datas);
-										}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-											this.itemDataPinjaman.push(datas);
-										}
-									}	
-								}
-	
-							}
-						}
+					if(this.itemData.anggota_produk_cu){
+						this.itemDataProduk = _.groupBy(this.itemData.anggota_produk_cu, item => {
+							 return _.get(item, 'id_cu', '');
+						});
 					}
+
+					// cu
+					if(this.itemData.anggota_cu){
+						var valData;
+						for(valData of this.itemData.anggota_cu){
+							var datas = {};
+							var cu = {};
+							cu.name = valData.name;
+							cu.id = valData.id;
+
+							datas = valData.pivot;
+							datas.cu = cu;
+							this.itemDataCu.push(datas);
+						}
+						this.tabName = this.itemDataCu[0].id;
+					}
+
 				}
 			},
 			updateStat(value) {
@@ -305,7 +340,26 @@
 		},
 		methods: {
 			cariData(){
+				this.isNew = true;
 				this.$store.dispatch(this.kelas + '/cariData', this.nik);
+			},
+			resetData(){
+				this.nik = '';
+				this.isNew = false;
+				this.itemDataCu = [];
+				this.itemDataProduk = [];
+				this.$store.commit(this.kelas + '/setData',{});
+				this.$store.commit(this.kelas + '/setDataStat','');
+			},
+			changeTab(value){
+				this.tabName = value;
+			},
+			classCu(){
+				if(this.currentUser.id_cu == 0){
+					return 'col-8';
+				}else{
+					return 'col-12';
+				}
 			},
 			createSimpanan(value){
 				this.itemDataSimpanan.push(value);
@@ -332,22 +386,6 @@
 				this.itemDataPinjaman.push(value);
 				this.selectedItemPinjaman = '';
 				this.modalTutup(); 
-			},
-			changeProvinces(id){
-				this.$store.dispatch('regencies/getProvinces', id);
-			},
-			changeRegencies(id){
-				this.$store.dispatch('districts/getRegencies', id);
-			},
-			changeDistricts(id){
-				this.$store.dispatch('villages/getDistricts', id);
-			},
-			back() {
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
-				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
-				}
 			},
 			selectedSimpananRow(index,item){
 				this.selectedItemSimpanan = item;
@@ -440,8 +478,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('anggotaCu', {
-				form: 'data',
-				formStat: 'dataStat',
+				itemData: 'data',
+				itemDataStat: 'dataStat',
 				rules: 'rules',
 				options: 'options',
 				updateResponse: 'update',
