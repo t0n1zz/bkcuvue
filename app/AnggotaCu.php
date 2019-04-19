@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use Auth;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -46,11 +47,23 @@ class AnggotaCu extends Model {
     }
 
     public function anggota_cu(){
-        return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','no_ba','tanggal_masuk')->withTimestamps();
-	}
-		
+        $id = Auth::user()->getIdCu();
+
+        if($id == 0){
+            return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','no_ba','tanggal_masuk')->withTimestamps();
+        }else{
+            return $this->belongsToMany('App\Cu','anggota_cu_cu')->where('cu.id',$id)->withPivot('id','no_ba','tanggal_masuk')->withTimestamps();
+        }
+    }
+
     public function anggota_produk_cu(){
-        return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('id','saldo','tanggal')->withTimestamps();
+        $id = Auth::user()->getIdCu();
+
+        if($id == 0){
+            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('id','saldo','tanggal')->withTimestamps();
+        }else{
+            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->where('id_cu',$id)->withPivot('id','saldo','tanggal')->withTimestamps();
+        }
     }
 
     public function Provinces()

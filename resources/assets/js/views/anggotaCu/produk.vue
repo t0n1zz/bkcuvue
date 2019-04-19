@@ -68,9 +68,6 @@
 					<!-- data exist -->
 					<!-- identitas -->
 					<div class="card" v-if="itemDataStat == 'success'">
-						<div class="card-header bg-white">
-							<h5 class="card-title">1. Identitas Anggota</h5>
-						</div>
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-4">
@@ -86,7 +83,7 @@
 								</div>
 								<div class="col-sm-4">
 									<ul class="list list-unstyled mb-0">
-										<li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span> <span v-else>-</span></li>
+										<li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
 										<li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
 										<li><b>Status:</b> {{ itemData.status}}</li>
 										<li><b>Lembaga:</b> {{ itemData.lembaga}}</li>
@@ -97,10 +94,10 @@
 								</div>
 								<div class="col-sm-4">
 									<ul class="list list-unstyled mb-0">
-										<li><b>Provinsi:</b> {{ itemData.provinces.name}}</li>
-										<li><b>Kabupaten:</b> {{ itemData.regencies.name}}</li>
-										<li><b>Kecamatan:</b> {{ itemData.districts.name}}</li>
-										<li><b>Kelurahan:</b> {{ itemData.villages.name}}</li>
+										<li><b>Provinsi:</b> {{ itemData.provinces ? itemData.provinces.name : ''}}</li>
+										<li><b>Kabupaten:</b> {{ itemData.regencies ? itemData.regencies.name : ''}}</li>
+										<li><b>Kecamatan:</b> {{ itemData.districts ? itemData.districts.name : ''}}</li>
+										<li><b>Kelurahan:</b> {{ itemData.villages ? itemData.villages.name : ''}}</li>
 										<li><b>Alamat:</b> {{ itemData.alamat}}</li>
 										<li><b>No. Hp:</b> {{ itemData.hp}}</li>
 										<li><b>Kontak Lainnya:</b> {{ itemData.kontak}}</li>
@@ -111,30 +108,80 @@
 					</div>
 					
 					<!-- produk -->
-					<div class="card" v-if="itemDataStat == 'success'">
-						<div class="card-header bg-white">
-							<h5 class="card-title">2. Produk CU</h5>
-						</div>
+					<ul class="nav nav-tabs nav-tabs-solid nav-justified rounded bg-light" v-if="itemDataStat == 'success'">
+						<li class="nav-item" v-for="cu in itemDataCu">
+							<a href="#" class="nav-link rounded-left" :class="{'active': tabName == cu.cu_id}" @click.prevent="changeTab(cu.cu_id)">
+								<b>{{'Anggota CU ' + cu.cu.name}}</b> <br/> 
+								{{ 'No. BA: ' + cu.no_ba }} <br/> 
+								Sejak: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(itemData.tanggal_masuk)"></span>
+							</a>
+						</li>
+					</ul>
 
-						<div class="nav-tabs-responsive bg-light border-top">
-							<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
-								<li class="nav-item" v-for="cu in itemDataCu"><a href="#" class="nav-link" :class="{'active': tabName == cu.id}" @click.prevent="changeTab(cu.id)">{{'CU ' + cu.cu.name + ' | No. BA: ' + cu.no_ba}}</a></li>
-							</ul>
-						</div>
+					<transition-group name="list" tag="div" enter-active-class="animated fadeIn" mode="out-in">
+						<div class="card" v-for="cu in itemDataCu" v-bind:key="cu.cu_id" v-show="tabName == cu.cu_id">
+							<div v-for="(produks,index) in itemDataProduk" v-if="index == cu.cu_id">
 
-						<transition-group name="list" tag="div" enter-active-class="animated fadeIn" mode="out-in">
-							<div class="card-body" v-for="cu in itemDataCu" v-bind:key="cu.id" v-show="tabName == cu.id">
-								<div class="row">
-									<div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="(produks,index) in itemDataProduk" v-if="index == cu.cu_id">
-										<div v-for="produk in produks">
-											<count-widget :count="produk.pivot.saldo" :title="produk.name" :color="'bg-green-400'" :icon="'icon-office'"></count-widget>
-										</div>
-									</div>
+								<div class="nav-tabs-responsive bg-light border-top" >
+									<ul class="nav nav-tabs nav-tabs-solid bg-light">
+										<li class="nav-item" v-for="produk in produks">
+											<a href="#" class="nav-link" :class="{'active': tabName2 == 'produk_' + produk.id}" @click.prevent="changeTab2('produk_' + produk.id)">
+												<b>{{ produk.name }}</b> <br/>
+												{{ 'Kode: ' + produk.kode_produk }} <br/>
+												{{ 'Tipe: ' + produk.tipe }}
+											</a>
+										</li>
+									</ul>
 								</div>
-							</div>
-						</transition-group>
 
-					</div>	
+								<div class="card-body pb-2">
+									<div class="row">
+
+										<div class="col-md-12">
+
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
+												<i class="icon-plus22"></i> Tambah
+											</button>
+
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
+											:disabled="!selectedProduk.index">
+												<i class="icon-pencil5"></i> Ubah
+											</button>
+
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedProduk.index">
+												<i class="icon-bin2"></i> Hapus
+											</button>
+
+										</div>
+
+									</div>		
+								</div>
+
+								<transition-group name="list2" tag="div" enter-active-class="animated fadeIn" mode="out-in">
+
+									<div class="table-responsive table-scrollable" style="max-height: 33rem;" v-for="produk in produks" v-bind:key="produk.id" v-show="tabName2 == 'produk_' + produk.id">
+										<table class="table table-striped">
+											<thead class="bg-primary">
+												<tr class="text-nowarp">
+													<th>No.</th>
+													<th>Saldo</th>
+													<th>Tanggal</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr v-for="(item, index) in produks" v-if="item.name == produk.name">
+													<td>{{ index + 1 }}</td>
+													<td><check-value :value="item.pivot.saldo" valueType="currency"></check-value></td>
+													<td><span v-if="item.pivot.tanggal" v-html="$options.filters.date(item.pivot.tanggal)"></span> <span v-else>-</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>		
+								</transition-group>	
+
+							</div>
+						</div>
+					</transition-group>
  
 				</div>
 			</div>
@@ -212,7 +259,10 @@
 				kelas: 'anggotaCu',
 				nik: '',
 				tabName: 'nik',
+				tabName2: '',
 				isNew: false,
+				formProdukMode: '',
+				selectedProduk: '',
 				cleaveOption: {
           date:{
             date: true,
@@ -250,42 +300,14 @@
 				formCuMode: '',
 				selectedItemCu: '',
 				itemDataCu: [],
+				itemDataProduk: [],
 				itemDataCuStat: 'success',
-				columnDataCu:[
-					{ title: 'No.' },
-					{ title: 'CU' },
-					{ title: 'No. BA' },
-					{ title: 'Tgl. Jadi Anggota' },
-				],
-				formSimpananMode: '',
-				selectedItemSimpanan: '',
-				itemDataSimpanan: [],
-				itemDataSimpananStat: 'success',
-				columnDataSimpanan:[
-					{ title: 'No.' },
-					{ title: 'CU' },
-					{ title: 'Simpanan' },
-					{ title: 'Saldo' },
-					{ title: 'Tanggal' },
-				],
-				formPinjamanMode: '',
-				selectedItemPinjaman: '',
-				itemDataPinjaman: [],
-				itemDataPinjamanStat: 'success',
-				columnDataPinjaman:[
-					{ title: 'No.' },
-					{ title: 'CU' },
-					{ title: 'Pinjaman' },
-					{ title: 'Saldo' },
-					{ title: 'Tanggal' },
-				],
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
 				submited: false,
-				itemDataProduk: []
 			}
 		},
 		created() {
@@ -301,12 +323,6 @@
 			itemDataStat(value) {
 				if (value === "success") {
 
-					if(this.itemData.anggota_produk_cu){
-						this.itemDataProduk = _.groupBy(this.itemData.anggota_produk_cu, item => {
-							 return _.get(item, 'id_cu', '');
-						});
-					}
-
 					// cu
 					if(this.itemData.anggota_cu){
 						var valData;
@@ -320,7 +336,21 @@
 							datas.cu = cu;
 							this.itemDataCu.push(datas);
 						}
-						this.tabName = this.itemDataCu[0].id;
+
+						if(this.itemDataCu[0]){
+							this.tabName = this.itemDataCu[0].cu_id;
+						}
+					}
+
+					// produk cu
+					if(this.itemData.anggota_produk_cu){
+						this.itemDataProduk = _.groupBy(this.itemData.anggota_produk_cu, item => {
+							return _.get(item, 'id_cu', '');
+						});
+
+						if(this.itemDataProduk[this.tabName]){
+							this.tabName2 = 'produk_' + this.itemDataProduk[this.tabName][0].id;
+						}
 					}
 
 				}
@@ -353,6 +383,10 @@
 			},
 			changeTab(value){
 				this.tabName = value;
+				this.tabName2 = 'produk_' + this.itemDataProduk[this.tabName][0].id
+			},
+			changeTab2(value){
+				this.tabName2 = value;
 			},
 			classCu(){
 				if(this.currentUser.id_cu == 0){
@@ -361,84 +395,34 @@
 					return 'col-12';
 				}
 			},
-			createSimpanan(value){
-				this.itemDataSimpanan.push(value);
-				this.selectedItemSimpanan = '';
-				this.modalTutup();
-			},
-			editSimpanan(value){
-				_.remove(this.itemDataSimpanan, {
-						index: value.index
-				});
-				this.itemDataSimpanan.push(value);
-				this.selectedItemSimpanan = '';
-				this.modalTutup(); 
-			},
-			createPinjaman(value){
-				this.itemDataPinjaman.push(value);
-				this.selectedItemPinjaman = '';
-				this.modalTutup();
-			},
-			editPinjaman(value){
-				_.remove(this.itemDataPinjaman, {
-						index: value.index
-				});
-				this.itemDataPinjaman.push(value);
-				this.selectedItemPinjaman = '';
-				this.modalTutup(); 
-			},
-			selectedSimpananRow(index,item){
-				this.selectedItemSimpanan = item;
-				this.selectedItemSimpanan.index = index + 1;
-			},
-			selectedPinjamanRow(index,item){
-				this.selectedItemPinjaman = item;
-				this.selectedItemPinjaman.index = index + 1;
+			selectedProdukRow(index,item){
+				this.selectedProduk = item;
+				this.selectedProduk.index = index + 1;
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.state = state;
 				
-				if (state == 'hapusSimpanan') {
+				if (state == 'hapus') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
-					this.modalTitle = 'Hapus Simpanan ' + this.selectedItemSimpanan.produk_cu.name + ' ?';
+					this.modalTitle = 'Hapus Simpanan ' + this.selectedProduk.produk_cu.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
-				}else if(state == 'ubahSimpanan'){
+				}else if(state == 'ubah'){
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah Simpanan';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
-					this.formSimpananMode = 'edit';
-				}else if(state == 'tambahSimpanan'){
+					this.formProdukMode = 'edit';
+				}else if(state == 'tambah'){
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Tambah Simpanan';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
-					this.formSimpananMode = 'create';
-				}else if (state == 'hapusPinjaman') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Pinjaman ' + this.selectedItemPinjaman.produk_cu.name + ' ?';
-					this.modalButton = 'Iya, Hapus';
-					this.modalSize = '';
-				}else if(state == 'ubahPinjaman'){
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Pinjaman';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formPinjamanMode = 'edit';
-				}else if(state == 'tambahPinjaman'){
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Pinjaman';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formPinjamanMode = 'create';
+					this.formProdukMode = 'create';
 				}
 			},
 			modalConfirmOk() {

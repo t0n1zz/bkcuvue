@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use File;
 use Image;
+use Auth;
 use App\AnggotaCu;
 use App\AnggotaCuCu;
 use App\Support\Helper;
@@ -90,10 +91,10 @@ class AnggotaCuController extends Controller{
 		$kelas = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+					'form' => $kelas,
+					'option' => []
+			]);
 	}
 
 	public function update(Request $request, $id)
@@ -272,7 +273,7 @@ class AnggotaCuController extends Controller{
 	public function cariData($nik)
 	{
 		$table_data = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
-
+		
 		if($table_data){
 			return response()
 			->json([
@@ -288,24 +289,14 @@ class AnggotaCuController extends Controller{
 		}
 	}
 
-	public function cariData2($cu, $noba)
+	// TODO:
+	public function produkData($id)
 	{
-		$table_data = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($cu, $noba){ 
-			$query->where('cu_id',$cu)->where('cu.no_ba',$noba); 
-		})->first();
+		$table_data = AnggotaProdukCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
 
-		if($table_data){
-			return response()
-			->json([
-				'model' => $table_data
-			]);
-		}else{
-			return response()
-			->json([
-					'form' => AnggotaCu::initialize(),
-					'rules' => AnggotaCu::$rules,
-					'option' => []
-			]);
-		}
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 }

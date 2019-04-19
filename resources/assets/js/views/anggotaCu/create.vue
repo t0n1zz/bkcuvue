@@ -798,20 +798,10 @@
 							datas.cu = cu;
 							datas.produk_cu = produk_cu;
 							
-							if(this.currentUser.id_cu == 0){
-								if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-									this.itemDataSimpanan.push(datas);
-								}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-									this.itemDataPinjaman.push(datas);
-								}
-							}else{
-								if(valDataProduk.id_cu == this.currentUser.id_cu){
-									if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-										this.itemDataSimpanan.push(datas);
-									}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-										this.itemDataPinjaman.push(datas);
-									}
-								}	
+							if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
+								this.itemDataSimpanan.push(datas);
+							}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
+								this.itemDataPinjaman.push(datas);
 							}
 
 						}
