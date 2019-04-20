@@ -169,7 +169,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr v-for="(item, index) in produks" v-if="item.name == produk.name">
+												<tr v-for="(item, index) in produks"  v-if="item.name == produk.name" :class="{ 'bg-info': selectedProduk.index === index + 1 }" class="text-nowrap" @click="selectedProdukRow(index,item)">
 													<td>{{ index + 1 }}</td>
 													<td><check-value :value="item.pivot.saldo" valueType="currency"></check-value></td>
 													<td><span v-if="item.pivot.tanggal" v-html="$options.filters.date(item.pivot.tanggal)"></span> <span v-else>-</span></td>
@@ -196,24 +196,24 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah simpanan -->
+			<!-- tambah -->
 			<template slot="modal-body1">
-				<form-simpanan 
-				:mode="formSimpananMode"
-				:selected="selectedItemSimpanan"
-				@createSimpanan="createSimpanan"
-				@editSimpanan="editSimpanan"
-				@tutup="modalTutup"></form-simpanan>
+
 			</template>
 
-			<!-- tambah pinjaman -->
+			<!-- ubah -->
 			<template slot="modal-body2">
+				<form-simpanan 
+				:mode="'edit'"
+				:selected="selectedProduk.pivot"
+				@editSimpanan="editSimpanan"
+				@tutup="modalTutup" v-if="tipeProduk == 'simpanan'"></form-simpanan>
+
 				<form-pinjaman 
-				:mode="formPinjamanMode"
-				:selected="selectedItemPinjaman"
-				@createPinjaman="createPinjaman"
+				:mode="'edit'"
+				:selected="selectedProduk.pivot"
 				@editPinjaman="editPinjaman"
-				@tutup="modalTutup"></form-pinjaman>
+				@tutup="modalTutup" v-if="tipeProduk == 'pinjaman'"></form-pinjaman>
 			</template>
 
 		</app-modal>
@@ -260,9 +260,12 @@
 				nik: '',
 				tabName: 'nik',
 				tabName2: '',
+				tabNameModal: '',
 				isNew: false,
 				formProdukMode: '',
-				selectedProduk: '',
+				tipeProduk: '',
+				selectedCu: '',
+				selectedProduk: [],
 				cleaveOption: {
           date:{
             date: true,
@@ -383,10 +386,16 @@
 			},
 			changeTab(value){
 				this.tabName = value;
-				this.tabName2 = 'produk_' + this.itemDataProduk[this.tabName][0].id
+				this.tabName2 = 'produk_' + this.itemDataProduk[this.tabName][0].id;
+				this.selectedProduk = '';
+				this.selectedCu = value;
 			},
 			changeTab2(value){
 				this.tabName2 = value;
+				this.selectedProduk = '';
+			},
+			changeTabModal(value){
+				this.tabNameModal = value;
 			},
 			classCu(){
 				if(this.currentUser.id_cu == 0){
@@ -398,6 +407,24 @@
 			selectedProdukRow(index,item){
 				this.selectedProduk = item;
 				this.selectedProduk.index = index + 1;
+
+				if(item.tipe == 'Simpanan Pokok' || 	item.tipe == 'Simpanan Wajib' ||item.tipe == 'Simpanan Non Saham'){
+					this.tipeProduk = 'simpanan';
+				}else if(item.tipe == 'Pinjaman Kapitalisasi' || item.tipe == 'Pinjaman Umum' ||item.tipe == 'Pinjaman Produktif'){
+					this.tipeProduk = 'pinjaman';
+				}
+			},
+			createSimpanan(value){
+				this.modalTutup();
+			},
+			editSimpanan(value){
+				this.modalTutup(); 
+			},
+			createPinjaman(value){
+				this.modalTutup();
+			},
+			editPinjaman(value){
+				this.modalTutup(); 
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -406,20 +433,33 @@
 				if (state == 'hapus') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
-					this.modalTitle = 'Hapus Simpanan ' + this.selectedProduk.produk_cu.name + ' ?';
+					this.modalTitle = 'Hapus ' + this.tipeProduk + ' ' + this.selectedProduk.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
 				}else if(state == 'ubah'){
-					this.modalState = 'normal1';
+					this.modalState = 'normal2';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Simpanan';
+					this.modalTitle = 'Ubah ' + this.tipeProduk;
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formProdukMode = 'edit';
+
+					var datas = {};
+					var cu = {};
+					var produk_cu = {};
+
+					produk_cu.id = this.selectedProduk.id;
+					produk_cu.name = this.selectedProduk.name;
+					datas = this.selectedProduk.pivot;
+					datas.cu = cu;
+					datas.produk_cu = produk_cu;
+
+					this.selectedProduk.push(datas)
+
 				}else if(state == 'tambah'){
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Simpanan';
+					this.modalTitle = 'Tambah Simpanan/Pinjaman';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formProdukMode = 'create';

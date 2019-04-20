@@ -1,6 +1,9 @@
 import Vue from 'vue';
 
 // filters
+Vue.filter('uppercase', function(value){
+	return value.charAt(0).toUpperCase() + value.slice(1);
+});
 Vue.filter('dateTime', function(value){
 	if(value){
 			return window.moment(value).format('DD-MM-YYYY') + '&nbsp; | &nbsp;'  + moment(value).format('kk:mm:ss');
