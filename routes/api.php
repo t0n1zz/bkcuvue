@@ -305,16 +305,19 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCu/create', 'AnggotaCuController@create');
         Route::post('/anggotaCu/store', 'AnggotaCuController@store');
         Route::post('/anggotaCu/storeCu/{id}', 'AnggotaCuController@storeCu');
+        Route::post('/anggotaCu/storeProduk/{id}', 'AnggotaCuController@storeProduk');
     });
     Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
         Route::get('/anggotaCu/edit/{id}', 'AnggotaCuController@edit');
         Route::post('/anggotaCu/update/{id}', 'AnggotaCuController@update');
         Route::post('/anggotaCu/updateCu/{id}', 'AnggotaCuController@updateCu');
+        Route::post('/anggotaCu/updateProduk/{id}', 'AnggotaCuController@updateProduk');
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {
         Route::delete('/anggotaCu/{id}', 'AnggotaCuController@destroy');
         Route::delete('/anggotaCuCu/{id}', 'AnggotaCuController@destroyCu');
+        Route::delete('/anggotaProdukCu/{id}', 'AnggotaCuController@destroyProduk');
     });
     Route::group(['middleware' => ['permission:upload_anggota_cu']], function () {
         Route::post('/anggotaCu/uploadExcelNew', 'AnggotaCuController@uploadExcelNew');

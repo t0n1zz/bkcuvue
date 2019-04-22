@@ -85,6 +85,23 @@ class AnggotaCuController extends Controller{
 			]);	
 	}
 
+	public function storeProduk(Request $request, $id)
+	{
+		AnggotaProdukCu::create([
+			'anggota_cu_id' => $id,
+			'produk_cu_id' => $request->produk_cu->id,
+			'saldo' => $request->saldo,
+			'tanggal' => $request->tanggal,
+			'lama_pinjaman' => $request->lama_pinjaman,
+		]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Produk anggota CU berhasil ditambah'
+			]);	
+	}
+
 
 	public function edit($id)
 	{
@@ -133,6 +150,24 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function updateProduk(Request $request, $id)
+	{
+		$kelas = AnggotaProdukCu::findOrFail($id);
+
+		$kelas->update([
+			'produk_cu_id' => $request->produk_cu->id,
+			'saldo' => $request->saldo,
+			'tanggal' => $request->tanggal,
+			'lama_pinjaman' => $request->lama_pinjaman,
+		]);	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Produk anggota CU berhasil diubah'
+			]);
+	}
+
 	public function updateSaldo(Request $request, $id)
 	{
 		$kelas = AnggotaProdukCu::findOrFail($id);
@@ -169,6 +204,18 @@ class AnggotaCuController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => 'Keanggotaan CU berhasil dihapus'
+			]);
+	}
+
+	public function destroyProduk($id)
+	{
+		$kelas = AnggotaProdukCu::findOrFail($id);
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Produk anggota CU berhasil dihapus'
 			]);
 	}
 

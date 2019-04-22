@@ -169,6 +169,24 @@ export const anggotaCu = {
         });
     },
 
+    storeProduk( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.storeProduk( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     storeDraft( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
@@ -230,6 +248,24 @@ export const anggotaCu = {
       commit('setUpdateStat', 'loading');
 
       AnggotaCuAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateProduk( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.updateProduk( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

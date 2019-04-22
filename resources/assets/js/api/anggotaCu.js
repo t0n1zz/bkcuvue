@@ -24,6 +24,10 @@ export default {
     return axios.post('/api/anggotaCu/storeCu/' + id, form);
   },
 
+  storeProduk: function ( id, form ){
+    return axios.post('/api/anggotaCu/storeProduk/' + id, form);
+  },
+
   edit: function( id ){
     return axios.get('/api/anggotaCu/edit/' + id);
   },
@@ -36,12 +40,20 @@ export default {
     return axios.post('/api/anggotaCu/updateCu/' + id, form);
   },
 
+  updateProduk: function ( id, form ){
+    return axios.post('/api/anggotaCu/updateProduk/' + id, form);
+  },
+
   destroy: function( id ){
     return axios.delete('/api/anggotaCu/' + id);
   },
   
   destroyCu: function( id ){
     return axios.delete('/api/anggotaCuCu/' + id);
+  },
+
+  destroyProduk: function( id ){
+    return axios.delete('/api/anggotaProdukCu/' + id);
   },
 
   uploadExcel: function ( form ){

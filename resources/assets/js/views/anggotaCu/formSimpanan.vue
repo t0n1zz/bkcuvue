@@ -254,7 +254,12 @@
 						return o.id == id;
 					});
 				}
-				this.formSimpanan.cu.name = cu.name;
+
+				if(cu){
+					this.formSimpanan.cu.id = cu.id;
+					this.formSimpanan.cu.name = cu.name;
+				}
+
 				this.fetchProdukCu(id);
 			},
 			changeProdukCu(id){

@@ -110,7 +110,7 @@
 					<!-- produk -->
 					<ul class="nav nav-tabs nav-tabs-solid nav-justified rounded bg-light" v-if="itemDataStat == 'success'">
 						<li class="nav-item" v-for="cu in itemDataCu">
-							<a href="#" class="nav-link rounded-left" :class="{'active': tabName == cu.cu_id}" @click.prevent="changeTab(cu.cu_id)">
+							<a href="#" class="nav-link rounded-left" :class="{'active': tabName == cu.cu_id}" @click.prevent="changeTab(cu)">
 								<b>{{'Anggota CU ' + cu.cu.name}}</b> <br/> 
 								{{ 'No. BA: ' + cu.no_ba }} <br/> 
 								Sejak: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(itemData.tanggal_masuk)"></span>
@@ -198,6 +198,36 @@
 
 			<!-- tambah -->
 			<template slot="modal-body1">
+				<ul class="nav nav-tabs nav-tabs-solid nav-justified rounded bg-light">
+					<li class="nav-item">
+						<a href="#" class="nav-link rounded-left" :class="{'active': tabNameModal == 'simpanan'}" @click.prevent="changeTabModal('simpanan')">
+							Simpanan
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link rounded-left" :class="{'active': tabNameModal == 'pinjaman'}" @click.prevent="changeTabModal('pinjaman')">
+							Pinjaman
+						</a>
+					</li>
+				</ul>
+
+				<transition enter-active-class="animated fadeIn" mode="out-in">
+					<div v-show="tabNameModal == 'simpanan'">
+						<form-simpanan 
+							:mode="'create'"
+							@createSimpanan="createProduk"
+							@tutup="modalTutup"></form-simpanan>
+					</div>
+				</transition>
+
+				<transition enter-active-class="animated fadeIn" mode="out-in">
+					<div v-show="tabNameModal == 'pinjaman'">
+						<form-pinjaman 
+							:mode="'create'"
+							@createPinjaman="createProduk"
+							@tutup="modalTutup"></form-pinjaman>
+					</div>
+				</transition>
 
 			</template>
 
@@ -205,14 +235,14 @@
 			<template slot="modal-body2">
 				<form-simpanan 
 				:mode="'edit'"
-				:selected="selectedProduk.pivot"
-				@editSimpanan="editSimpanan"
+				:selected="itemDataProdukSelected[0]"
+				@editSimpanan="editProduk"
 				@tutup="modalTutup" v-if="tipeProduk == 'simpanan'"></form-simpanan>
 
 				<form-pinjaman 
 				:mode="'edit'"
-				:selected="selectedProduk.pivot"
-				@editPinjaman="editPinjaman"
+				:selected="itemDataProdukSelected[0]"
+				@editPinjaman="editProduk"
 				@tutup="modalTutup" v-if="tipeProduk == 'pinjaman'"></form-pinjaman>
 			</template>
 
@@ -264,7 +294,10 @@
 				isNew: false,
 				formProdukMode: '',
 				tipeProduk: '',
-				selectedCu: '',
+				selectedCu: {
+					id: '',
+					name: '',
+				},
 				selectedProduk: [],
 				cleaveOption: {
           date:{
@@ -304,6 +337,7 @@
 				selectedItemCu: '',
 				itemDataCu: [],
 				itemDataProduk: [],
+				itemDataProdukSelected: [],
 				itemDataCuStat: 'success',
 				modalShow: false,
 				modalState: '',
@@ -342,6 +376,8 @@
 
 						if(this.itemDataCu[0]){
 							this.tabName = this.itemDataCu[0].cu_id;
+							this.selectedCu.id = this.itemDataCu[0].cu_id;
+							this.selectedCu.name = this.itemDataCu[0].cu.name;
 						}
 					}
 
@@ -364,7 +400,8 @@
 				this.modalColor = '';
 
 				if (value === "success") {
-				this.modalTitle = this.updateResponse.message;
+					this.modalTitle = this.updateResponse.message;
+					this.cariData();
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
@@ -385,10 +422,11 @@
 				this.$store.commit(this.kelas + '/setDataStat','');
 			},
 			changeTab(value){
-				this.tabName = value;
+				this.tabName = value.cu_id;
 				this.tabName2 = 'produk_' + this.itemDataProduk[this.tabName][0].id;
 				this.selectedProduk = '';
-				this.selectedCu = value;
+				this.selectedCu.id = value.cu_id;
+				this.selectedCu.name = value.name;
 			},
 			changeTab2(value){
 				this.tabName2 = value;
@@ -414,22 +452,16 @@
 					this.tipeProduk = 'pinjaman';
 				}
 			},
-			createSimpanan(value){
-				this.modalTutup();
+			createProduk(value){
+				this.$store.dispatch(this.kelas + '/storeProduk', [this.itemData.id, value]);
 			},
-			editSimpanan(value){
-				this.modalTutup(); 
-			},
-			createPinjaman(value){
-				this.modalTutup();
-			},
-			editPinjaman(value){
-				this.modalTutup(); 
+			editProduk(value){
+				this.$store.dispatch(this.kelas + '/updateProduk', [this.itemData.id, value]);
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.state = state;
-				
+
 				if (state == 'hapus') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
@@ -451,10 +483,10 @@
 					produk_cu.id = this.selectedProduk.id;
 					produk_cu.name = this.selectedProduk.name;
 					datas = this.selectedProduk.pivot;
-					datas.cu = cu;
+					datas.cu = this.selectedCu;
 					datas.produk_cu = produk_cu;
 
-					this.selectedProduk.push(datas)
+					this.itemDataProdukSelected.push(datas);
 
 				}else if(state == 'tambah'){
 					this.modalState = 'normal1';
@@ -463,21 +495,12 @@
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formProdukMode = 'create';
+					this.tabNameModal = 'simpanan';
 				}
 			},
 			modalConfirmOk() {
-				this.modalShow = false;
-
-				if (this.state == 'hapusSimpanan') {
-					_.remove(this.itemDataSimpanan, {
-						index: this.selectedItemSimpanan.index
-					});
-					this.selectedItemSimpanan = '';
-				}else if (this.state == 'hapusPinjaman') {
-					_.remove(this.itemDataPinjaman, {
-						index: this.selectedItemPinjaman.index
-					});
-					this.selectedItemPinjaman = '';
+				if (this.state == 'hapus') {
+					this.$store.dispatch(this.kelas + '/destroyProduk', this.selectedProduk.id);
 				}
 			},
 			modalTutup() {
