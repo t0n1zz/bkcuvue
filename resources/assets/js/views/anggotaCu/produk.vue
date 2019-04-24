@@ -125,10 +125,10 @@
 								<div class="nav-tabs-responsive bg-light border-top" >
 									<ul class="nav nav-tabs nav-tabs-solid bg-light">
 										<li class="nav-item" v-for="produk in produks">
-											<a href="#" class="nav-link" :class="{'active': tabName2 == 'produk_' + produk.id}" @click.prevent="changeTab2('produk_' + produk.id)">
-												<b>{{ produk.name }}</b> <br/>
-												{{ 'Kode: ' + produk.kode_produk }} <br/>
-												{{ 'Tipe: ' + produk.tipe }}
+											<a href="#" class="nav-link" :class="{'active': tabName2 == 'produk_' + produk[0].id}" @click.prevent="changeTab2('produk_' + produk[0].id)">
+												<b>{{ produk[0].name }}</b> <br/>
+												{{ 'Kode: ' + produk[0].kode_produk }} <br/>
+												{{ 'Tipe: ' + produk[0].tipe }}
 											</a>
 										</li>
 									</ul>
@@ -159,24 +159,36 @@
 
 								<transition-group name="list2" tag="div" enter-active-class="animated fadeIn" mode="out-in">
 
-									<div class="table-responsive table-scrollable" style="max-height: 33rem;" v-for="produk in produks" v-bind:key="produk.id" v-show="tabName2 == 'produk_' + produk.id">
+									<div class="table-responsive table-scrollable" style="max-height: 33rem;" v-for="produk in produks" v-bind:key="produk[0].id" v-show="tabName2 == 'produk_' + produk[0].id">
 										<table class="table table-striped">
 											<thead class="bg-primary">
 												<tr class="text-nowarp">
 													<th>No.</th>
+													<th v-if="produk[0].tipe == 'Simpanan Pokok' || 	produk[0].tipe == 'Simpanan Wajib' ||produk[0].tipe == 'Simpanan Non Saham'">
+														No. Rekening
+													</th>
+													<th v-else>
+														No. SPP
+													</th>
 													<th>Saldo</th>
 													<th>Tanggal</th>
+													<th v-if="produk[0].tipe == 'Pinjaman Kapitalisasi' || produk[0].tipe == 'Pinjaman Umum' ||produk[0].tipe == 'Pinjaman Produktif'">
+														Lama Pinjaman
+													</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr v-for="(item, index) in produks"  v-if="item.name == produk.name" :class="{ 'bg-info': selectedProduk.index === index + 1 }" class="text-nowrap" @click="selectedProdukRow(index,item)">
+												<tr v-for="(item, index) in produk" :class="{ 'bg-info': selectedProduk.index === index + 1 }" class="text-nowrap" @click="selectedProdukRow(index,item)">
 													<td>{{ index + 1 }}</td>
+													<td><check-value :value="item.pivot.no_rek"></check-value></td>
 													<td><check-value :value="item.pivot.saldo" valueType="currency"></check-value></td>
 													<td><span v-if="item.pivot.tanggal" v-html="$options.filters.date(item.pivot.tanggal)"></span> <span v-else>-</span></td>
+													<td v-if="item.tipe == 'Pinjaman Kapitalisasi' || item.tipe == 'Pinjaman Umum' ||item.tipe == 'Pinjaman Produktif'"><check-value :value="item.pivot.lama_pinjaman"></check-value> bulan</td>
 												</tr>
 											</tbody>
 										</table>
 									</div>		
+
 								</transition-group>	
 
 							</div>
@@ -256,7 +268,6 @@
 	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
 	import {toMulipartedForm} from '../../helpers/form';
-	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formSimpanan from "./formSimpanan.vue";
@@ -271,7 +282,6 @@
 		components: {
 			pageHeader,
 			appModal,
-			appImageUpload,
 			message,
 			formSimpanan,
 			formPinjaman,
@@ -360,6 +370,9 @@
 			itemDataStat(value) {
 				if (value === "success") {
 
+					this.itemDataCu = [];
+					this.itemDataProduk = [];
+
 					// cu
 					if(this.itemData.anggota_cu){
 						var valData;
@@ -383,12 +396,20 @@
 
 					// produk cu
 					if(this.itemData.anggota_produk_cu){
-						this.itemDataProduk = _.groupBy(this.itemData.anggota_produk_cu, item => {
-							return _.get(item, 'id_cu', '');
+						var dataProduk = [];
+						dataProduk = _.groupBy(this.itemData.anggota_produk_cu, item => {
+							return item.id_cu;
 						});
 
+						this.itemDataProduk = _.forEach(dataProduk, function(value, key) {
+							dataProduk[key] = _.groupBy(dataProduk[key], function(item) {
+								return item.id;
+							});
+						});
+						
 						if(this.itemDataProduk[this.tabName]){
-							this.tabName2 = 'produk_' + this.itemDataProduk[this.tabName][0].id;
+							var key = Object.keys(this.itemDataProduk[this.tabName]);
+							this.tabName2 = 'produk_' + key[0];
 						}
 					}
 
@@ -456,7 +477,7 @@
 				this.$store.dispatch(this.kelas + '/storeProduk', [this.itemData.id, value]);
 			},
 			editProduk(value){
-				this.$store.dispatch(this.kelas + '/updateProduk', [this.itemData.id, value]);
+				this.$store.dispatch(this.kelas + '/updateProduk', [this.selectedProduk.pivot.id, value]);
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -486,6 +507,7 @@
 					datas.cu = this.selectedCu;
 					datas.produk_cu = produk_cu;
 
+					this.itemDataProdukSelected = [];
 					this.itemDataProdukSelected.push(datas);
 
 				}else if(state == 'tambah'){
@@ -500,14 +522,10 @@
 			},
 			modalConfirmOk() {
 				if (this.state == 'hapus') {
-					this.$store.dispatch(this.kelas + '/destroyProduk', this.selectedProduk.id);
+					this.$store.dispatch(this.kelas + '/destroyProduk', this.selectedProduk.pivot.id);
 				}
 			},
 			modalTutup() {
-				if (this.updateStat === 'success') {
-					this.back();
-				}
-
 				this.modalShow = false;
 			},
 			modalBackgroundClick() {

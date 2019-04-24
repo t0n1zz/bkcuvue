@@ -334,6 +334,23 @@ export const anggotaCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+    destroyProduk( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.destroyProduk( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
     destroyDraft( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 

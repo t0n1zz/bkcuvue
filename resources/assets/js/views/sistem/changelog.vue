@@ -10,15 +10,40 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.0 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#309">Version 3.1.0 <small class="text-muted"> / 26 April 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="310" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan dan integrasi dengan JALINAN
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur mengelola data anggota CU perorangan yang terdiri dari identitas, simpanan dan pinjaman yang terintegrasi dengan fitur data produk CU</li>
+                      <li>Penambahan fitur proses klaim JALINAN yang terintegrasi dengan data anggota CU Perorangan</li>
+                      <li>Perbaikan pada dashboard dalam penyajian data</li>
+                      <li>Perbaikan bug dan peningkatan performa keseluruhan aplikasi</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.0 -->
+
               <!-- Version 3.0.9 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#309">Version 3.0.9 <small class="text-muted"> / 20 Februari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#309">Version 3.0.9 <small class="text-muted"> / 20 Februari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="309" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="309" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan di beberapa bagian dan penambahan fitur pelaporan error/
                     <br/><br/>

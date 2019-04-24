@@ -72,6 +72,34 @@
 				</div>
 			</div>
 
+			<!-- no.rek -->
+			<div class="col-md-12">
+				<div class="form-group" :class="{'has-error' : errors.has('formSimpanan.no_rek')}">
+
+					<!-- title -->
+					<h5 :class="{ 'text-danger' : errors.has('formSimpanan.no_rek')}">
+						<i class="icon-cross2" v-if="errors.has('formSimpanan.no_rek')"></i>
+						No. Rekening:
+					</h5>
+
+					<!-- text -->
+					<cleave 
+						name="no_rek"
+						v-model="formSimpanan.no_rek" 
+						class="form-control" 
+						:options="cleaveOption.number12"
+						placeholder="Silahkan masukkan jumlah no. rekening"
+						v-validate="'required'" data-vv-as="No. Rekening" ></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formSimpanan.no_rek')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formSimpanan.no_rek') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
+
 			<!-- saldo -->
 			<div class="col-md-12">
 				<div class="form-group" :class="{'has-error' : errors.has('formSimpanan.saldo')}">
@@ -199,6 +227,19 @@
             numeralDecimalMark: ',',
             delimiter: '.'
 					},
+					number12: {
+            numeral: true,
+            numeralIntegerScale: 12,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
+					number4: {
+            numeral: true,
+            numeralIntegerScale: 4,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
 					date:{
             date: true,
             datePattern: ['Y','m','d'],

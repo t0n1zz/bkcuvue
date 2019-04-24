@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>VERSION 3.0.9</span>
+							<span>VERSION 3.1.0</span>
 						</router-link>
 					</span>
 				</span>
@@ -394,9 +394,14 @@
 
 						<div class="dropdown-menu">
 
-							<!-- tambah diklat pus -->
+							<!-- tambah anggota cu -->
 							<router-link :to="{ name:'anggotaCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_anggota_cu']">
 								<i class="icon-plus22"></i> Tambah Anggota CU
+							</router-link>
+
+							<!-- tambah klaim jalinan -->
+							<router-link :to="{ name:'jalinanKlaimCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_anggota_cu']">
+								<i class="icon-plus22"></i> Tambah Klaim JALINAN
 							</router-link>
 
 							<!-- divider -->
@@ -436,6 +441,37 @@
 								<i class="icon-wallet"></i> Saldo
 							</router-link>
 
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'anggota_cu_klaim'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('anggota_cu_klaim')">
+									<i class="icon-accessibility2"></i> Klaim JALINAN
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu_klaim'}">
+
+									<router-link :to="{ name: 'jalinanKlaimCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="cu in modelCu">
+										<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'jalinanKlaimCU', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu']  && currentUser.id_cu != 0">
+								<i class="icon-accessibility2"></i> Klaim JALINAN
+							</router-link>
+							
 						</div>
 					</li>
 

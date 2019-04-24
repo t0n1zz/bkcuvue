@@ -512,6 +512,7 @@
 						<tr :class="{ 'bg-info': selectedItemSimpanan.index === props.index + 1 }" class="text-nowrap" @click="selectedSimpananRow(props.index,props.item)" v-if="props.item">
 							<td>{{ props.index + 1 }}</td>
 							<td><check-value :value="props.item.cu.name"></check-value></td>
+							<td><check-value :value="props.item.no_rek"></check-value></td>
 							<td><check-value :value="props.item.produk_cu.name"></check-value></td>
 							<td><check-value :value="props.item.saldo" valueType="currency"></check-value></td>
 							<td><span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span> <span v-else>-</span></td>
@@ -555,9 +556,11 @@
 						<tr :class="{ 'bg-info': selectedItemPinjaman.index === props.index + 1}" class="text-nowrap" @click="selectedPinjamanRow(props.index, props.item)" v-if="props.item">
 							<td>{{ props.index + 1 }}</td>
 							<td><check-value :value="props.item.cu.name"></check-value></td>
+							<td><check-value :value="props.item.no_rek"></check-value></td>
 							<td><check-value :value="props.item.produk_cu.name"></check-value></td>
 							<td><check-value :value="props.item.saldo" valueType="currency"></check-value></td>
 							<td><span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span> <span v-else>-</span></td>
+							<td><check-value :value="props.item.lama_pinjaman"></check-value></td>
 						</tr>
 					</template>	
 				</data-table>
@@ -566,7 +569,7 @@
 
 			<!-- form info -->
 			<form-info></form-info>
-			<br />
+			<br/>
 
 			<!-- form button -->
 			<div class="card card-body">
@@ -706,6 +709,7 @@
 				columnDataSimpanan:[
 					{ title: 'No.' },
 					{ title: 'CU' },
+					{ title: 'No. Rekening' },
 					{ title: 'Simpanan' },
 					{ title: 'Saldo' },
 					{ title: 'Tanggal' },
@@ -717,9 +721,11 @@
 				columnDataPinjaman:[
 					{ title: 'No.' },
 					{ title: 'CU' },
+					{ title: 'No. SPP' },
 					{ title: 'Pinjaman' },
 					{ title: 'Saldo' },
 					{ title: 'Tanggal' },
+					{ title: 'Lama Pinjaman' },
 				],
 				modalShow: false,
 				modalState: '',

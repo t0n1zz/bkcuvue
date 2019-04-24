@@ -107,37 +107,37 @@
 											<span v-else-if="content.status === 500">
 												<b>ERROR 500:</b> Kesalahan pada backend
 											</span>
-											<span v-else>
+											<!-- <span v-else>
 												<span v-if="content.message">{{ content.message }}</span>
 												<span v-else>{{ content }}</span>
-											</span>
+											</span> -->
 										</div>
 										<br/> 
 
 										<!-- error detail -->
-										<div v-if="content && showDetail">
-											<hr/>
+										<div v-if="content">
+											<!-- <hr/> -->
 											
-											<pre class="pre-scrollable language-markup content-group text-left" v-if="content.data"><code>{{ content.data }}</code></pre>
+											<!-- <pre class="pre-scrollable language-markup content-group text-left" v-if="content.data"><code>{{ content.data }}</code></pre> -->
 
-											<pre class="pre-scrollable language-markup content-group text-left" v-else><code>{{ content }}</code></pre>
+											<pre class="pre-scrollable language-markup content-group text-left"><code>{{ content }}</code></pre>
 
 											<br/>
 										</div>
 
 										<!-- error detail button -->
-										<button class="btn btn-danger btn-block" @click="detail">
+										<!-- <button class="btn btn-danger btn-block" @click="detail">
 											<span v-if="showDetail">TUTUP DETAIL ERROR</span>
 											<span v-else>BUKA DETAIL ERROR</span>
-										</button>
+										</button> -->
 
-										<hr>
+										<!-- <hr> -->
 
 										<div class=" d-none d-sm-block">
-											<button type="button" class="btn btn-light" @click="failOk">{{ button }}</button>
+											<button type="button" class="btn btn-light" @click="failOk">Tutup</button>
 										</div>
 										<div class="d-block d-sm-none">
-											<button type="button" class="btn btn-light btn-block" @click="failOk">{{ button }}</button>
+											<button type="button" class="btn btn-light btn-block" @click="failOk">Tutup</button>
 										</div>
 									</div>
 

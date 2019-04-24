@@ -39,6 +39,8 @@ import mitraLembaga_form from './views/mitraLembaga/form.vue';
 import anggotaCu from './views/anggotaCu/index.vue';
 import anggotaCu_form from './views/anggotaCu/form.vue';
 import anggotaCu_produk from './views/anggotaCu/produk.vue';
+import jalinanKlaim from './views/jalinanKlaim/index.vue';
+import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
 import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
@@ -312,6 +314,20 @@ const routes = [
 		name: 'anggotaCuProduk', 
 		components: { default: anggotaCu_produk, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true }},
+
+	// JALINAN
+	{ path: '/jalinan/klaim/cu/:cu',
+		name: 'jalinanKlaimCu', 
+		components: { default: jalinanKlaim, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/jalinan/klaim',
+		name: 'jalinanKlaim', 
+		components: { default: jalinanKlaim, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinan/klaim/create',
+		name: 'jalinanKlaimCreate', 
+		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'create' }},
 
 	// laporan cu
 	// bkcu default route

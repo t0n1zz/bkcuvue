@@ -128,6 +128,33 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+									<!-- jalinan -->
+									<div class="col-md-8">
+										<div class="form-group" :class="{'has-error' : errors.has('form.jalinan')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.jalinan')}">
+												<i class="icon-cross2" v-if="errors.has('form.jalinan')"></i>
+												Dilindungi JALINAN?
+											</h5>
+
+											<!-- select -->
+											<select name="jalinan" data-width="100%" class="form-control" v-model="form.jalinan" :disabled="isDisabledName">
+												<option disabled value="">Silahkan pilih apakah simpanan ini dilindungi JALINAN</option>
+												<option value="1">Iya, dilindungi JALINAN</option>
+												<option value="0">Tidak dilindungi JALINAN</option>
+											</select>
+
+											<!-- error message -->
+											<br/>
+											<small class="text-muted text-danger" v-if="errors.has('form.jalinan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.jalinan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
+										</div>
+									</div>
 	
 									<!-- keterangan -->
 									<div class="col-md-12">
@@ -383,11 +410,14 @@
 			changeTipe(value){
 				if(value == 'Simpanan Pokok'){
 					this.form.name = 'Simpanan Pokok';
+					this.form.jalinan = 1;
 					this.isDisabledName = true;
 				}else if(value == 'Simpanan Wajib'){
 					this.form.name = 'Simpanan Wajib';
+					this.form.jalinan = 1;
 					this.isDisabledName = true;
 				}else{
+					this.form.jalinan = '';
 					this.form.name = '';
 					this.isDisabledName = false;
 				}

@@ -45,6 +45,33 @@
 				</span>
 			</div>
 
+			<!-- no.spp -->
+			<div class="col-md-12">
+				<div class="form-group" :class="{'has-error' : errors.has('formPinjaman.no_rek')}">
+
+					<!-- title -->
+					<h5 :class="{ 'text-danger' : errors.has('formPinjaman.no_rek')}">
+						<i class="icon-cross2" v-if="errors.has('formPinjaman.no_rek')"></i>
+						No. SPP:
+					</h5>
+
+					<!-- text -->
+					<cleave 
+						name="no_rek"
+						v-model="formPinjaman.no_rek" 
+						class="form-control" 
+						:options="cleaveOption.number12"
+						placeholder="Silahkan masukkan jumlah no. spp"
+						v-validate="'required'" data-vv-as="No. SPP" ></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formPinjaman.no_rek')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formPinjaman.no_rek') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
 
 			<!-- produk cu -->
 			<div class="col-md-12">
@@ -128,6 +155,34 @@
 				</div>
 			</div>
 
+			<!-- lama pinjaman -->
+			<div class="col-md-12">
+				<div class="form-group" :class="{'has-error' : errors.has('formPinjaman.lama_pinjaman')}">
+
+					<!-- title -->
+					<h5 :class="{ 'text-danger' : errors.has('formPinjaman.lama_pinjaman')}">
+						<i class="icon-cross2" v-if="errors.has('formPinjaman.lama_pinjaman')"></i>
+						Lama Pinjaman (bulan):
+					</h5>
+
+					<!-- text -->
+					<cleave 
+						name="lama_pinjaman"
+						v-model="formPinjaman.lama_pinjaman" 
+						class="form-control" 
+						:options="cleaveOption.number4"
+						placeholder="Silahkan masukkan lama pinjaman"
+						v-validate="'required'" data-vv-as="Saldo" ></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formPinjaman.lama_pinjaman')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formPinjaman.lama_pinjaman') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
+
 		</div>
 
 		<!-- divider -->
@@ -200,6 +255,19 @@
             numeralDecimalMark: ',',
             delimiter: '.'
 					},
+					number12: {
+            numeral: true,
+            numeralIntegerScale: 12,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
+					number4: {
+            numeral: true,
+            numeralIntegerScale: 4,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
 					date:{
             date: true,
             datePattern: ['Y','m','d'],

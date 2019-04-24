@@ -2,11 +2,12 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use File;
 use Image;
-use Auth;
 use App\AnggotaCu;
 use App\AnggotaCuCu;
+use App\AnggotaCuKlaim;
 use App\Support\Helper;
 use App\AnggotaProdukCu;
 use Illuminate\Http\Request;
@@ -39,12 +40,32 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function indexKlaim()
+	{
+		$table_data = AnggotaCuKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 	public function create()
 	{
 		return response()
 			->json([
 					'form' => AnggotaCu::initialize(),
 					'rules' => AnggotaCu::$rules,
+					'option' => []
+			]);
+	}
+
+	public function createKlaim()
+	{
+		return response()
+			->json([
+					'form' => AnggotaCuKlaim::initialize(),
+					'rules' => AnggotaCuKlaim::$rules,
 					'option' => []
 			]);
 	}
@@ -87,10 +108,13 @@ class AnggotaCuController extends Controller{
 
 	public function storeProduk(Request $request, $id)
 	{
+		// return response()->json($id);
+
 		AnggotaProdukCu::create([
 			'anggota_cu_id' => $id,
-			'produk_cu_id' => $request->produk_cu->id,
+			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
+			'no_rek' => $request->no_rek,
 			'tanggal' => $request->tanggal,
 			'lama_pinjaman' => $request->lama_pinjaman,
 		]);
@@ -102,10 +126,32 @@ class AnggotaCuController extends Controller{
 			]);	
 	}
 
+	public function storeKlaim(Request $request, $id)
+	{
+		AnggotaCuKlaim::create($request->all());
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Klaim anggota CU berhasil ditambah'
+			]);	
+	}
+
 
 	public function edit($id)
 	{
 		$kelas = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
+
+		return response()
+			->json([
+					'form' => $kelas,
+					'option' => []
+			]);
+	}
+
+	public function editKlaim($id)
+	{
+		$kelas = AnggotaCuKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->findOrFail($id);
 
 		return response()
 			->json([
@@ -155,8 +201,9 @@ class AnggotaCuController extends Controller{
 		$kelas = AnggotaProdukCu::findOrFail($id);
 
 		$kelas->update([
-			'produk_cu_id' => $request->produk_cu->id,
+			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
+			'no_rek' => $request->no_rek,
 			'tanggal' => $request->tanggal,
 			'lama_pinjaman' => $request->lama_pinjaman,
 		]);	
@@ -178,6 +225,55 @@ class AnggotaCuController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => 'Produk anggota berhasil diubah'
+			]);
+	}
+
+	public function updateKlaim(Request $request, $id)
+	{
+		$kelas = AnggotaCuKlaim::findOrFail($id);
+
+		$kelas->update($request->all());	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Klaim anggota CU berhasil diubah'
+			]);
+	}
+
+	public function updateKlaimStatus(Request $request, $id)
+	{
+		$kelas = AnggotaCuKlaim::findOrFail($id);
+
+		$kelas->status_klaim = $request->status_klaim;
+
+		$anggota_cu_id = $kelas->anggota_cu_id;
+		$tipe = $kelas->tipe;
+
+		if($kelas->status_klaim == 1){
+			$message = "Klaim JALINAN dicairkan";
+		}else if($kelas->status_klaim == 2){
+			$message = "Klaim JALINAN ditolak";
+		}else if($kelas->status_klaim == 0){
+			$message = "Klaim pending";
+		}
+
+		$kelas->update();
+
+		$kelas2 = AnggotaCu::findOrFail($anggota_cu_id);
+
+		if($request->status_klaim == 1){
+			$kelas2->status_jalinan = $tipe;
+		}else{
+			$kelas2->status_jalinan = '';
+		}
+
+		$kelas2->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $message
 			]);
 	}
 
@@ -216,6 +312,18 @@ class AnggotaCuController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => 'Produk anggota CU berhasil dihapus'
+			]);
+	}
+
+	public function destroyKlaim($id)
+	{
+		$kelas = AnggotaCuKlaim::findOrFail($id);
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' => 'Klaim anggota CU berhasil dihapus'
 			]);
 	}
 
@@ -269,7 +377,9 @@ class AnggotaCuController extends Controller{
 				$produkCuArray[$produk['produk_cu']['id']] = [
 					'produk_cu_id' => $produk['produk_cu']['id'],
 					'saldo' => $produk['saldo'],
-					'tanggal' => $produk['tanggal']
+					'no_rek' => $produk['no_rek'],
+					'tanggal' => $produk['tanggal'],
+					'lama_pinjaman' => $produk['lama_pinjaman'],
 				];
 			}
 

@@ -333,6 +333,26 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCuDraft/count', 'AnggotaCuDraftController@count');
     });
 
+    // anggota cu klaim
+    Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
+        Route::get('/jalinanKlaim', 'JalinanKlaimController@index');
+        Route::get('/jalinanKlaim/indexCu/{id}', 'JalinanKlaimController@indexCu'); 
+        Route::get('/jalinanKlaim/count', 'JalinanKlaimController@count');
+        Route::get('/jalinanKlaim/history', 'JalinanKlaimController@history');
+        Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
+    });
+    Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
+        Route::get('/jalinanKlaim/create', 'JalinanKlaimController@create');
+        Route::post('/jalinanKlaim/store', 'JalinanKlaimController@store');
+    });
+    Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
+        Route::get('/jalinanKlaim/edit/{id}', 'JalinanKlaimController@edit');
+        Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {
+        Route::delete('/jalinanKlaim/{id}', 'JalinanKlaimController@destroy');
+    });
+
     //laporan cu
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {
         Route::get('/laporanCu', 'LaporanCuController@index');
