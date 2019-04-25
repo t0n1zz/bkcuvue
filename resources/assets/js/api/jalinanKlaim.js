@@ -1,11 +1,11 @@
 export default {
   
-  index: function( p ){
-    return axios.get('/api/jalinanKlaim' ,{params: p});
+  index: function( p, status ){
+    return axios.get('/api/jalinanKlaim/status/' + status ,{params: p});
   },
 
-  indexCu: function( p, id ){
-    return axios.get('/api/jalinanKlaim/indexCu/' + id, {params: p});
+  indexCu: function( p, id, status ){
+    return axios.get('/api/jalinanKlaim/indexCu/' + id + '/status/' + status, {params: p});
   },
 
   create: function(){
@@ -22,6 +22,10 @@ export default {
 
   update: function ( id, form ){
     return axios.post('/api/jalinanKlaim/update/' + id, form);
+  },
+
+  updateStatus: function ( id, form ){
+    return axios.post('/api/jalinanKlaim/updateStatus/' + id, form);
   },
 
   destroy: function( id ){

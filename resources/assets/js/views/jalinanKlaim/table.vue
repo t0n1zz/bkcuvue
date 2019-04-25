@@ -8,18 +8,23 @@
       <template slot="button-desktop">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && status == 0">  
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && status == 0" :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
+        <!-- status klaim -->
+        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_anggota_cu']"
+          :disabled="!selectedItem.id">
+          <i class="icon-loop4"></i> Status Klaim
+        </button>
+
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
+        <button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && status == 0"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
@@ -30,18 +35,24 @@
       <template slot="button-mobile">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && status == 0">
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && status == 0"
+          :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
+        <!-- status -->
+        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_anggota_cu']"
+          :disabled="!selectedItem.id">
+          <i class="icon-loop4"></i> Status Klaim
+        </button>
+
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
+        <button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && status == 0"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
@@ -55,86 +66,69 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
           <td v-if="!columnData[1].hide">
-						<check-value :value="props.item.nik"></check-value>
+						<check-value :value="props.item.anggota_cu.nik"></check-value>
 					</td>
           <td v-if="!columnData[2].hide">
-						<check-value :value="props.item.name"></check-value>
+						<check-value :value="props.item.anggota_cu.name"></check-value>
 					</td>
-          <td v-if="!columnData[3].hide">
-						<span v-for="anggota_cu in props.item.anggota_cu" v-if="props.item.anggota_cu">
+          <td v-if="!columnData[3].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[4].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[5].hide">
+						<span v-for="anggota_cu in props.item.anggota_cu_cu" v-if="props.item.anggota_cu_cu">
               <span v-if="$route.params.cu != 'semua'">
-                <span v-if="$route.params.cu == anggota_cu.id">
-                  {{ anggota_cu.pivot.no_ba }}
+                <span v-if="$route.params.cu == anggota_cu.cu_id">
+                  {{ anggota_cu.no_ba }}
                 </span>
               </span>
-              <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
+              <label v-else class="badge badge-primary ml-1">{{ anggota_cu.cu.name }} - {{ anggota_cu.no_ba }}</label>
             </span>
             <span v-else>-</span>
 					</td>
-					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.lembaga"></check-value>
+          <td v-if="!columnData[6].hide">
+						<span v-for="anggota_cu in props.item.anggota_cu_cu" v-if="props.item.anggota_cu_cu">
+              <span v-if="$route.params.cu != 'semua'">
+                <span v-if="$route.params.cu == anggota_cu.cu_id">
+                  {{ anggota_cu.tanggal_masuk }}
+                </span>
+              </span>
+              <label v-else class="badge badge-primary ml-1">{{ anggota_cu.cu.name }} - {{ anggota_cu.tanggal_masuk }}</label>
+            </span>
+            <span v-else>-</span>
 					</td>
-					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.jabatan"></check-value>
+          <td v-if="!columnData[7].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
+          <td v-if="!columnData[8].hide">
+            <span v-html="$options.filters.statusJalinan(props.item.tipe)"></span>
 					</td>
-					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.pendidikan"></check-value>
+          <td v-if="!columnData[9].hide">
+						<check-value :value="props.item.kategori_penyakit"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.email"></check-value>
-					</td>
-					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.hp"></check-value>
-					</td>
-					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.kontak"></check-value>
-					</td>
-					<td v-if="!columnData[10].hide">
-						<check-value :value="props.item.kelamin"></check-value>
+          <td v-if="!columnData[10].hide">
+						<check-value :value="props.item.keterangan_mati"></check-value>
 					</td>
           <td v-if="!columnData[11].hide">
-						<check-value :value="props.item.alih_waris"></check-value>
+						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.darah"></check-value>
+          <td v-if="!columnData[12].hide">
+						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!columnData[13].hide">
-						<check-value :value="props.item.tinggi"></check-value>
+						<check-value :value="props.item.anggota_cu.regencies.name" v-if="props.item.anggota_cu.regencies"></check-value>
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!columnData[14].hide">
-						<check-value :value="props.item.agama"></check-value>
+						<check-value :value="props.item.anggota_cu.districts.name" v-if="props.item.anggota_cu.districts"></check-value>
+						<span v-else>-</span>	
 					</td>
 					<td v-if="!columnData[15].hide">
-						<check-value :value="props.item.status"></check-value>
-					</td>
-					<td v-if="!columnData[16].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
-					</td>
-					<td v-if="!columnData[17].hide">
-						<check-value :value="props.item.tempat_lahir"></check-value>
-					</td>
-          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
-					</td>
-					<td v-if="!columnData[19].hide">
-						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
+						<check-value :value="props.item.anggota_cu.villages.name" v-if="props.item.anggota_cu.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[20].hide">
-						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
-						<span v-else>-</span>	
+          <td v-if="!columnData[16].hide">
+						<check-value :value="props.item.anggota_cu.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
-						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
-						<span v-else>-</span>	
-					</td>
-					<td v-if="!columnData[22].hide">
-						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
-						<span v-else>-</span>	
-					</td>
-					<td v-if="!columnData[23].hide">
-						<check-value :value="props.item.alamat"></check-value>
-					</td>
-					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[17].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[18].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -144,8 +138,21 @@
     </data-viewer>
 
     <!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent"
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" :color="modalColor" 
       @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+
+      <!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- status -->
+			<template slot="modal-body1">
+				<form-status :kelas="kelas" :id="selectedItem.id" :status="selectedItem.status_klaim"
+        :keterangan="selectedItem.keterangan_batal"
+				@tutup="modalTutup"></form-status>
+			</template>
+
     </app-modal>
 
   </div>
@@ -160,20 +167,22 @@
   import appModal from "../../components/modal";
   import collapseButton from "../../components/collapseButton.vue";
   import checkValue from "../../components/checkValue.vue";
+  import formStatus from "./formStatus.vue";
 
   export default {
     components: {
       DataViewer,
       appModal,
       collapseButton,
-      checkValue
+      checkValue,
+      formStatus
     },
-    props: ["title", "kelas"],
+    props: ["title", "kelas", "status","itemData","itemDataStat"],
     data() {
       return {
         selectedItem: [],
         query: {
-          order_column: "name",
+          order_column: "created_at",
           order_direction: "asc",
           filter_match: "and",
           limit: 10,
@@ -204,16 +213,8 @@
             filterDefault: true
           },
           {
-						title: 'CU',
-						name: 'anggota_cu.cu.name',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-          {
-            title: 'No. BA',
-            name: 'anggota_cu.no_ba',
+            title: 'Umur',
+            name: 'umur',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -222,7 +223,7 @@
           },
           {
             title: 'Tgl. Lahir',
-            name: 'tanggal_lahir',
+            name: 'anggota_cu.tanggal_lahir',
             tipe: 'datetime',
             sort: true,
             hide: false,
@@ -230,8 +231,17 @@
             filter: true,
           },
           {
+            title: 'No. BA',
+            name: 'anggota_cu_cu.no_ba',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
             title: 'Tgl. Jadi Anggota',
-            name: 'tanggal_masuk',
+            name: 'anggota_cu_cu.tanggal_masuk',
             tipe: 'datetime',
             sort: true,
             hide: false,
@@ -248,14 +258,6 @@
             filter: true,
           },
           {
-						title: 'Umur',
-						name: 'umur',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-          },
-          {
 						title: 'Tipe',
 						name: 'tipe',
 						sort: true,
@@ -265,7 +267,7 @@
           },
           {
 						title: 'Kategori Penyakit',
-						name: 'penyakit',
+						name: 'kategori_penyakit',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -289,7 +291,7 @@
           },
           {
             title: 'Provinsi',
-            name: 'provinces.name',
+            name: 'anggota_cu.provinces.name',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -298,7 +300,7 @@
           },
           {
             title: 'Kabupaten',
-            name: 'regencies.name',
+            name: 'anggota_cu.regencies.name',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -307,7 +309,7 @@
           },
           {
             title: 'Kecamatan',
-            name: 'districts.name',
+            name: 'anggota_cu.districts.name',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -316,7 +318,7 @@
           },
           {
             title: 'Kelurahan',
-            name: 'villages.name',
+            name: 'anggota_cu.villages.name',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -354,6 +356,7 @@
         state: '',
         modalShow: false,
         modalState: "",
+        modalColor: "",
         modalTitle: "",
         modalContent: "",
         modalButton: ""
@@ -386,9 +389,11 @@
     methods: {
       fetch(params) {
         if(this.$route.params.cu == 'semua'){
-					this.$store.dispatch(this.kelas + '/indexKlaim', params);
+          this.$store.dispatch(this.kelas + '/index' + this.status, params);
+          this.excelDownloadUrl = this.kelas + '/status/' + this.status;
 				}else{
-					this.$store.dispatch(this.kelas + '/indexKlaimCu', [params,this.$route.params.cu]);
+          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params,this.$route.params.cu]);
+          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status;
 				}
       },
       selectedRow(item) {
@@ -402,27 +407,18 @@
           }
         });
       },
-      lihatSaldo(id) {
-        this.$router.push({
-          name: this.kelas + "Saldo",
-          params: {
-            id: id
-          }
-        });
-      },
-      modalConfirmOpen(state, isMobile, itemMobile) {
+      modalOpen(state, isMobile, itemMobile) {
         this.modalShow = true;
-        this.modalState = "confirm-tutup";
         this.state = state;
 
-        if (isMobile) {
-          this.selectedItem = itemMobile;
-        }
-
         if (state == "hapus") {
-          this.modalTitle =
-            "Hapus " + this.title + " " + this.selectedItem.name + " ini?";
+          this.modalState = "confirm-tutup";
+          this.modalTitle = "Hapus " + this.title + " " + this.selectedItem.anggota_cu.name + " ini?";
           this.modalButton = "Iya, Hapus";
+        }else if(state == "status"){
+          this.modalState = 'normal1';
+					this.modalTitle = 'Ubah status klaim ' + this.title + ' ' + this.selectedItem.anggota_cu.name + ' ini?';
+					this.modalColor = 'bg-primary';
         }
       },
       modalTutup() {
@@ -436,9 +432,7 @@
       }
     },
     computed: {
-      ...mapGetters("anggotaCu", {
-        itemData: "dataS",
-        itemDataStat: "dataStatS",
+      ...mapGetters("jalinanKlaim", {
         updateMessage: "update",
         updateStat: "updateStat"
       }),

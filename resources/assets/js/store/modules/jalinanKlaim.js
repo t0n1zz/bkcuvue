@@ -7,11 +7,15 @@ export const jalinanKlaim = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    dataS1: [], //collection
+    dataS2: [], //collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
     dataStat: '',
     dataStatS: '',
+    dataStatS1: '',
+    dataStatS2: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -25,11 +29,15 @@ export const jalinanKlaim = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataS1: state => state.dataS1,
+    dataS2: state => state.dataS2,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataStatS1: state => state.dataStatS1,
+    dataStatS2: state => state.dataStatS2,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -44,7 +52,7 @@ export const jalinanKlaim = {
     index( { commit }, p ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.index( p )
+      JalinanKlaimAPI.index( p, 0 )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -54,25 +62,85 @@ export const jalinanKlaim = {
           commit('setDataStatS', 'fail');
         });
     },
+    index1( { commit }, p ){
+      commit('setDataStatS1', 'loading');
+      
+      JalinanKlaimAPI.index( p, 1 )
+        .then( function( response ){
+          commit('setDataS1', response.data.model );
+          commit('setDataStatS1', 'success');
+        })
+        .catch( error => {
+          commit('setDataS1', error.response);
+          commit('setDataStatS1', 'fail');
+        });
+    },
+    index2( { commit }, p ){
+      commit('setDataStatS2', 'loading');
+      
+      JalinanKlaimAPI.index( p, 2 )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
+
+    // load by cu
+    indexCu( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, id, 0 )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+    indexCu1( { commit }, [p, id] ){
+      commit('setDataStatS1', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, id, 1 )
+        .then( function( response ){
+          commit('setDataS1', response.data.model);
+          commit('setDataStatS1', 'success');
+        })
+        .catch( error => {
+          commit('setDataS1', error.response);
+          commit('setDataStatS1', 'fail');
+        });
+    },
+    indexCu2( { commit }, [p, id] ){
+      commit('setDataStatS2', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, id, 2 )
+        .then( function( response ){
+          commit('setDataS2', response.data.model);
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
 
     cariData( {commit}, nik ){
-      commit('setDataStat', 'loading');
+      commit('setDataStatS', 'loading');
       
       JalinanKlaimAPI.cariData( nik )
         .then( function( response ){
-          if(response.data.model){
-            commit('setData', response.data.model);
-            commit('setDataStat', 'success');
-          }else{
-            commit('setData', response.data.form);
-            commit('setRules', response.data.rules);
-            commit('setOptions', response.data.options)
-            commit('setDataStat', 'fail');
-          }
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
         })
         .catch(error => {
-          commit('setData', error.response);
-          commit('setDataStat', 'fail');
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
         });
     },
 
@@ -152,6 +220,24 @@ export const jalinanKlaim = {
         });
     },
 
+    updateStatus( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateStatus( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     restore( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
@@ -217,6 +303,12 @@ export const jalinanKlaim = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setDataS1 ( state, data ){
+      state.dataS1 = data;
+    },
+    setDataS2 ( state, data ){
+      state.dataS2 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -231,6 +323,12 @@ export const jalinanKlaim = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatS1( state, status ){
+      state.dataStatS1 = status;
+    },
+    setDataStatS2( state, status ){
+      state.dataStatS2 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

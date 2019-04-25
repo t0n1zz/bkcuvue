@@ -388,7 +388,7 @@
 					<!-- anggota cu -->
 					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_anggota_cu'] || currentUser.can['index_anggota_cu']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-users4 mr-2"></i>
+							<i class="icon-man-woman mr-2"></i>
 							Anggota CU
 						</a>
 
@@ -411,7 +411,7 @@
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'anggota_cu'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('anggota_cu')">
-									<i class="icon-users4"></i> Anggota CU
+									<i class="icon-man-woman"></i> Anggota CU
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu'}">
 
@@ -433,7 +433,7 @@
 
 							<!-- if cu account -->
 							<router-link :to="{ name: 'anggotaCuCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0">
-								<i class="icon-users4"></i> Anggota CU
+								<i class="icon-man-woman"></i> Anggota CU
 							</router-link>
 
 							<!-- if cu account -->
@@ -468,7 +468,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'jalinanKlaimCU', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu']  && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu']  && currentUser.id_cu != 0">
 								<i class="icon-accessibility2"></i> Klaim JALINAN
 							</router-link>
 							

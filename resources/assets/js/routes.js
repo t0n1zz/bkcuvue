@@ -328,6 +328,10 @@ const routes = [
 		name: 'jalinanKlaimCreate', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'create' }},
+	{ path: '/jalinan/klaim/edit/:id',
+		name: 'jalinanKlaimEdit', 
+		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' }},	
 
 	// laporan cu
 	// bkcu default route

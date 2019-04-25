@@ -11,22 +11,52 @@
 		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
+					<div class="content">
 
-					<!-- message -->
-					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
-					</message>
+						<!-- message -->
+						<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
+						</message>
 
-					<!-- select data -->
-					<select-cu 
-						:kelas="kelas"
-						:path="selectCuPath"
-						:isPus="false"
-						v-if="currentUser.id_cu == 0"></select-cu>
+						<!-- select data -->
+						<select-cu 
+							:kelas="kelas"
+							:path="selectCuPath"
+							:isPus="false"
+							v-if="currentUser.id_cu == 0"></select-cu>
 
-					<!-- table data -->
-					<table-data 
-						:title="title" 
-						:kelas="kelas"></table-data>
+						<!-- table data -->
+						<div class="nav-tabs-responsive mb-3">
+							<ul class="nav nav-tabs nav-tabs-solid bg-light">
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'menunggu'}" @click.prevent="changeTab('menunggu')"><i class="icon-checkbox-unchecked mr-2"></i> Menunggu</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'dicairkan'}" @click.prevent="changeTab('dicairkan')"><i class="icon-checkbox-checked mr-2"></i> Dicairkan</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'ditolak'}" @click.prevent="changeTab('ditolak')"><i class="icon-cancel-square mr-2"></i> Ditolak</a>
+								</li>
+							</ul>
+						</div>	
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'menunggu'">
+							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''"></table-data>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
+							<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'ditolak'" v-if="isDitolak">
+							<table-data :title="title" :kelas="kelas" :itemData="itemData2" :itemDataStat="itemDataStat2" :status="'2'"></table-data>
+							</div>
+						</transition>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -54,7 +84,10 @@
 				kelas: 'jalinanKlaim',
 				titleDesc: 'Mengelola klaim JALINAN',
 				titleIcon: 'icon-accessibility2',
-				selectCuPath: 'anggotaCuCu',
+				selectCuPath: 'jalinanKlaimCu',
+				tabName: 'menunggu',
+				isDicairkan: false,
+				isDitolak: false
 			}
 		},
 		created(){
@@ -72,6 +105,15 @@
 						}
 					}
 				}
+			},
+			changeTab(value) {
+				this.tabName = value;
+				if (value == 'dicairkan' && !this.isDicairkan) {
+					this.isDicairkan = true
+				}
+				if (value == 'ditolak' && !this.isDitolak) {
+					this.isDitolak = true
+				}
 			}
 		},
 		computed: {
@@ -80,7 +122,11 @@
 			}),
 			...mapGetters('jalinanKlaim',{
 				itemData: 'dataS',
-				itemDataStat: 'dataStatS'
+				itemData1: 'dataS1',
+				itemData2: 'dataS2',
+				itemDataStat: 'dataStatS',
+				itemDataStat1: 'dataStatS1',
+				itemDataStat2: 'dataStatS2'
 			}),
 		}
 	}

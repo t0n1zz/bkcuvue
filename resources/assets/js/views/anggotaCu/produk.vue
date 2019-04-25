@@ -17,48 +17,11 @@
 					</message>
 
 					<!-- main panel -->
-
 					<!-- cari data -->
-					<div class="card card-body">	
-							<div class="row">
-								<div class="col-12">
-									<h6>
-										Silahkan masukkan NIK anggota CU
-									</h6>
-								</div>
-								<div class="col-12 pb-2">
-									<!-- text -->
-									<cleave 
-										name="nik"
-										v-model="nik" 
-										class="form-control" 
-										:options="cleaveOption.number16"
-										placeholder="Silahkan masukkan no KTP" :disabled="isNew"></cleave>
-								</div>
+					<cari-data :itemDataStat="itemDataStat" @cariData="cariData" @resetData="resetData" @back="back"></cari-data>
 
-								<div class="col-4">
-									<div class="row">
-										<div class="col-6 pb-2">
-											<button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
-										</div>
-										<div class="col-6 pb-2" v-if="itemDataStat != ''">
-											<button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
-										</div>
-									</div>
-								</div>
 
-								<!-- loading -->
-								<div class="col-12" v-if="itemDataStat == 'loading'">
-									<hr/>
-									<div class="progress">
-										<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-											<span class="sr-only">100% Complete</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
+					
 					<!-- data not exist -->
 					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">
 						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO
@@ -67,8 +30,14 @@
 
 					<!-- data exist -->
 					<!-- identitas -->
-					<div class="card" v-if="itemDataStat == 'success'">
-						<div class="card-body">
+					<div v-if="itemDataStat == 'success'">
+
+						<div class="alert bg-danger text-white alert-styled-left" v-if="itemData.status_jalinan == 1 ||itemData.status_jalinan == 2">
+							<span class="font-weight-semibold">Anggota ini sudah dinyatakan <b v-html="$options.filters.statusJalinan(itemData.status_jalinan)"></b>, maka tidak bisa dilakukan penambahan, pengubahan dan penghapusan data produk.
+							</span>
+						</div>
+
+						<div class="card card-body">
 							<div class="row">
 								<div class="col-sm-4">
 									<ul class="list list-unstyled mb-0">
@@ -83,6 +52,7 @@
 								</div>
 								<div class="col-sm-4">
 									<ul class="list list-unstyled mb-0">
+										<li><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
 										<li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
 										<li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
 										<li><b>Status:</b> {{ itemData.status}}</li>
@@ -137,7 +107,7 @@
 								<div class="card-body pb-2">
 									<div class="row">
 
-										<div class="col-md-12">
+										<div class="col-md-12" v-if="itemData.status_jalinan != 1 && itemData.status_jalinan != 2">
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
 												<i class="icon-plus22"></i> Tambah
@@ -277,6 +247,7 @@
 	import checkValue from "../../components/checkValue.vue";
 	import infoIcon from "../../components/infoIcon.vue";
 	import countWidget from '../../components/countWidget.vue';
+	import cariData from "../../components/cariData.vue";
 
 	export default {
 		components: {
@@ -289,7 +260,8 @@
 			dataTable,
 			checkValue,
 			infoIcon,
-			countWidget
+			countWidget,
+			cariData
 		},
 		data() {
 			return {
@@ -297,7 +269,6 @@
 				titleDesc: 'Mengelola data saldo anggota cu',
 				titleIcon: 'icon-wallet',
 				kelas: 'anggotaCu',
-				nik: '',
 				tabName: 'nik',
 				tabName2: '',
 				tabNameModal: '',
@@ -430,13 +401,10 @@
 			}
 		},
 		methods: {
-			cariData(){
-				this.isNew = true;
-				this.$store.dispatch(this.kelas + '/cariData', this.nik);
+			cariData(nik){
+				this.$store.dispatch(this.kelas + '/cariData', nik);
 			},
 			resetData(){
-				this.nik = '';
-				this.isNew = false;
 				this.itemDataCu = [];
 				this.itemDataProduk = [];
 				this.$store.commit(this.kelas + '/setData',{});
@@ -478,6 +446,13 @@
 			},
 			editProduk(value){
 				this.$store.dispatch(this.kelas + '/updateProduk', [this.selectedProduk.pivot.id, value]);
+			},
+			back(){
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;

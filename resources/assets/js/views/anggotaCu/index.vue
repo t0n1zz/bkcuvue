@@ -11,22 +11,25 @@
 		<div class="page-container">
 			<div class="page-content">
 				<div class="content-wrapper">
+					<div class="content">
 
-					<!-- message -->
-					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
-					</message>
+						<!-- message -->
+						<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
+						</message>
 
-					<!-- select data -->
-					<select-cu 
-						:kelas="kelas"
-						:path="selectCuPath"
-						:isPus="false"
-						v-if="currentUser.id_cu == 0"></select-cu>
+						<!-- select data -->
+						<select-cu 
+							:kelas="kelas"
+							:path="selectCuPath"
+							:isPus="false"
+							v-if="currentUser.id_cu == 0"></select-cu>
 
-					<!-- table data -->
-					<table-data 
-						:title="title" 
-						:kelas="kelas"></table-data>
+						<!-- table data -->
+						<table-data 
+							:title="title" 
+							:kelas="kelas"></table-data>
+
+					</div>	
 				</div>
 			</div>
 		</div>
@@ -53,7 +56,7 @@
 				title: 'Anggota CU',
 				kelas: 'anggotaCu',
 				titleDesc: 'Mengelola anggota CU',
-				titleIcon: 'icon-users4',
+				titleIcon: 'icon-man-woman',
 				selectCuPath: 'anggotaCuCu',
 			}
 		},

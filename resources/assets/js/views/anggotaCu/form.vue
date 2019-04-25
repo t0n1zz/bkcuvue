@@ -12,47 +12,8 @@
 					<!-- create -->
 					<div v-if="$route.meta.mode == 'create'">
 
-						<!-- check nik -->
-						<div class="card card-body">	
-							<div class="row">
-								<div class="col-12">
-									<h6>
-										Silahkan masukkan NIK anggota CU untuk memastikan apakah data anggota CU dengan NIK tersebut sudah terdaftar di SIMO
-									</h6>
-								</div>
-								<div class="col-12 pb-2">
-									<!-- text -->
-									<cleave 
-										name="nik"
-										v-model="nik" 
-										class="form-control" 
-										:options="cleaveOption.number16"
-										placeholder="Silahkan masukkan no KTP" :disabled="isNew"></cleave>
-								</div>
-
-								<div class="col-4">
-									<div class="row">
-										<div class="col-6 pb-2">
-											<button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
-										</div>
-										<div class="col-6 pb-2" v-if="itemDataStat != ''">
-											<button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
-										</div>
-									</div>
-									
-								</div>
-
-								<!-- loading -->
-								<div class="col-12" v-if="itemDataStat == 'loading'">
-									<hr/>
-									<div class="progress">
-										<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-											<span class="sr-only">100% Complete</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<!-- cari data -->
+						<cari-data :itemDataStat="itemDataStat" @cariData="cariData" @resetData="resetData" @back="back"></cari-data>
 
 						<!-- data not exist -->
 						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
@@ -63,9 +24,17 @@
 						<form-create v-if="itemDataStat == 'fail'" :nik="nik" :mode="'create_new'"></form-create>
 
 						<!-- data exist -->
-						<div class="alert bg-warning text-white alert-styled-left " v-if="itemDataStat == 'success'">
-							<span class="font-weight-semibold">NIK sudah terdaftar di SIMO. Apabila ingin menambahkan anggota tersebut menjadi anggota cu maka silahkan tambahkan no. ba dan tgl. jadi anggota. 
-							</span>
+						<div v-if="itemDataStat == 'success'">
+							
+							<div class="alert bg-danger text-white alert-styled-left " v-if="itemData.status_jalinan == 1 ||itemData.status_jalinan == 2">
+								<span class="font-weight-semibold" >Anggota ini sudah dinyatakan <b v-html="$options.filters.statusJalinan(itemData.status_jalinan)"></b>, maka tidak bisa dilakukan penambahan, pengubahan dan penghapusan data produk.
+								</span>
+							</div>
+
+							<div class="alert bg-warning text-white alert-styled-left" v-else>
+								<span class="font-weight-semibold">NIK sudah terdaftar di SIMO. Apabila ingin menambahkan anggota tersebut menjadi anggota cu maka silahkan tambahkan no. ba dan tgl. jadi anggota. 
+								</span>
+							</div>
 						</div>
 
 						<form-create v-if="itemDataStat == 'success'" :mode="'create_old'"></form-create>
@@ -89,13 +58,15 @@
 	import anggotaCuAPI from '../../api/anggotaCu.js';
 	import Cleave from 'vue-cleave-component';
 	import formCreate from "./create.vue";
+	import cariData from "../../components/cariData.vue";
 
 	export default {
 		components: {
 			pageHeader,
 			appModal,
 			formCreate,
-			Cleave
+			Cleave,
+			cariData
 		},
 		data() {
 			return {
@@ -104,7 +75,6 @@
 				titleIcon: '',
 				kelas: 'anggotaCu',
 				level2Title: 'Anggota CU',
-				isNew: false,
 				nik: '',
 				isEdit: false,
 				cleaveOption: {
@@ -132,9 +102,9 @@
 			}
 		},
 		methods: {
-			cariData(){
-				this.isNew = true;
-				this.$store.dispatch(this.kelas + '/cariData', this.nik);
+			cariData(nik){
+				this.nik = nik;
+				this.$store.dispatch(this.kelas + '/cariData', nik);
 			},
 			showUbahData(){
 				this.isEdit = true;
@@ -143,8 +113,6 @@
 				this.isEdit = false;
 			},
 			resetData(){
-				this.nik = '';
-				this.isNew = false;
 				this.$store.commit(this.kelas + '/setData',{});
 				this.$store.commit(this.kelas + '/setDataStat','');
 			},

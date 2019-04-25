@@ -29,4 +29,9 @@ class AnggotaCuCu extends Model {
         ];
     }
 
+    public function cu()
+    {
+        return $this->belongsTo('App\Cu','cu_id','id');
+    }
+
 }

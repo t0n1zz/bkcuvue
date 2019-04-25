@@ -15,9 +15,9 @@ class JalinanKlaimController extends Controller{
 
 	protected $message = "Klaim JALINAN";
 
-	public function index()
+	public function index($status)
 	{
-		$table_data = JalinanKlaim::with('anggota_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->advancedFilter();
+		$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->advancedFilter();
 
 		return response()
 			->json([
@@ -25,9 +25,9 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function indexCu($id)
+	public function indexCu($id, $status)
 	{
-		$table_data = JalinanKlaim::with('anggota_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
+		$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($id){ 
 			$query->where('cu_id',$id); 
 		})->advancedFilter();
 
@@ -48,7 +48,7 @@ class JalinanKlaimController extends Controller{
 	}
 
 
-	public function store(Request $request, $id)
+	public function store(Request $request)
 	{
 		JalinanKlaim::create($request->all());
 		
@@ -61,7 +61,9 @@ class JalinanKlaimController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->findOrFail($id);
+		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
+			$query->where('nik',$id); 
+		})->first();
 
 		return response()
 			->json([
@@ -87,7 +89,7 @@ class JalinanKlaimController extends Controller{
 	{
 		$kelas = JalinanKlaim::findOrFail($id);
 
-		$kelas->status_klaim = $request->status_klaim;
+		$kelas->status_klaim = $request->status;
 
 		$anggota_cu_id = $kelas->anggota_cu_id;
 		$tipe = $kelas->tipe;
@@ -97,17 +99,17 @@ class JalinanKlaimController extends Controller{
 		}else if($kelas->status_klaim == 2){
 			$message = "Klaim JALINAN ditolak";
 		}else if($kelas->status_klaim == 0){
-			$message = "Klaim pending";
+			$message = "Klaim JALINAN menunggu";
 		}
 
 		$kelas->update();
 
 		$kelas2 = AnggotaCu::findOrFail($anggota_cu_id);
 
-		if($request->status_klaim == 1){
+		if($request->status == 1){
 			$kelas2->status_jalinan = $tipe;
 		}else{
-			$kelas2->status_jalinan = '';
+			$kelas2->status_jalinan = 0;
 		}
 
 		$kelas2->update();

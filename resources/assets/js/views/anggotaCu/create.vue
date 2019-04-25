@@ -445,7 +445,7 @@
 				<div class="card-body pb-2">
 					<div class="row">
 
-						<div class="col-md-12">
+						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahCu')">
 								<i class="icon-plus22"></i> Tambah
@@ -487,7 +487,7 @@
 				<div class="card-body pb-2">
 					<div class="row">
 
-						<div class="col-md-12">
+						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahSimpanan')">
 								<i class="icon-plus22"></i> Tambah
@@ -531,7 +531,7 @@
 				<div class="card-body pb-2">
 					<div class="row">
 
-						<div class="col-md-12">
+						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPinjaman')">
 								<i class="icon-plus22"></i> Tambah
@@ -572,7 +572,7 @@
 			<br/>
 
 			<!-- form button -->
-			<div class="card card-body">
+			<div class="card card-body" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 				<form-button :cancelState="'methods'" :formValidation="'form'" @cancelClick="back"></form-button>
 			</div>
 

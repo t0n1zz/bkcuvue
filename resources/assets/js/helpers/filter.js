@@ -89,6 +89,13 @@ Vue.filter('statusPeserta', function(value){
 		return '<span class="badge badge-danger">BATAL</span>';
 	}
 });
+Vue.filter('statusJalinan', function(value){
+	if(value == 1){
+		return '<span class="badge badge-warning">CACAT</span>';
+	}else if(value == 2){
+		return '<span class="badge badge-danger">MENINGGAL</span>';
+	}
+});
 Vue.filter('tipeProdukCu', function(value){
 	if(value == 'Simpanan Pokok'){
 		return '<span class="badge badge-info">Simpanan Pokok</span>';
@@ -153,4 +160,15 @@ Vue.filter('round', function(value, decimals) {
 
 	value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 	return value;
+});
+Vue.filter('age', function(dateString) {
+	var today = new Date();
+	var birthDate = new Date(dateString);
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+	{
+			age--;
+	}
+	return age;
 });
