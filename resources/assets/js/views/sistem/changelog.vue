@@ -20,14 +20,15 @@
 
                 <div id="310" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan dan integrasi dengan JALINAN untuk proses klaim dan perhitungan iuran.
+                    <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan Puskopdit BKCU Kalimantan untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. 
+                    <br/><br/> 
+                    Pada versi ini juga terdapat integrasi dengan JALINAN untuk proses klaim dengan data anggota CU perorangan dan data produk CU yang diperkenalkan pada versi sebelumnya. Dengan begitu klaim JALINAN diharapkan akan lebih akurat. Dan terdapat pondasi dasar untuk integrasi perhitungan iuran JALINAN.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Penambahan fitur mengelola data anggota CU perorangan yang terdiri dari identitas, simpanan dan pinjaman yang terintegrasi dengan fitur data produk CU</li>
                       <li>Penambahan fitur proses klaim JALINAN yang terintegrasi dengan data anggota CU Perorangan</li>
-                      <li>Penambahan fitur proses iuran JALINAN yang terintegrasi dengan data anggota CU Perorangan</li>
                       <li>Perbaikan pada dashboard dalam penyajian data</li>
                       <li>Perbaikan bug dan peningkatan performa keseluruhan aplikasi</li>
                     </ul>

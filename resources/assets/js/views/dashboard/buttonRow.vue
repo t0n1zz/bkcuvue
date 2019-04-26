@@ -31,6 +31,21 @@
       <count-widget :title="'Tempat'" :color="'bg-purple-400'" :icon="'icon-location4'"></count-widget>
     </div>
 
+		<!-- anggota cu -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_anggota_cu']" @click.prevent="goTo(anggotaCuWidgetRoute)">
+      <count-widget :title="'Anggota CU'" :color="'bg-success-400'" :icon="'icon-man-woman'"></count-widget>
+    </div>
+
+		<!-- anggota cu saldo -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_saldo']" @click.prevent="goTo(saldoWidgetRoute)">
+      <count-widget :title="'Saldo Anggota CU'" :color="'bg-blue-400'" :icon="'icon-wallet'"></count-widget>
+    </div>
+
+		<!-- jalinan klaim -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_jalinan_klaim']" @click.prevent="goTo(jalinanKlaimWidgetRoute)">
+      <count-widget :title="'Klaim JALINAN'" :color="'bg-warning-400'" :icon="'icon-accessibility2'"></count-widget>
+    </div>
+
     <!-- cu -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_cu']" @click.prevent="goTo(cuWidgetRoute)">
       <count-widget :title="'CU'" :color="'bg-green-400'" :icon="'icon-office'"></count-widget>
@@ -94,6 +109,9 @@
 				artikelPenulisWidgetRoute: {},
 				pengumumanWidgetRoute: {},
 				diklatBKCUWidgetRoute: {},
+				anggotaCuWidgetRoute: {},
+				saldoWidgetRoute: {},
+				jalinanKlaimWidgetRoute: {},
 				cuWidgetRoute: {},
 				tpWidgetRoute: {},
 				produkCuWidgetRoute: {},
@@ -116,6 +134,7 @@
 				this.artikelKategoriWidgetRoute = { name: 'artikelKategoriCu', params:{cu: this.currentUser.id_cu} };
 				this.pengumumanWidgetRoute = { name: 'pengumumanCu', params:{cu: this.currentUser.id_cu} };
 				this.diklatBKCUWidgetRoute = { name: 'diklatBKCU', params:{periode: this.momentYear()} };
+				this.saldoWidgetRoute = { name: 'saldo' };
 				this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu, tingkat:'semua'} };
 				this.laporanGerakanWidgetRoute = { name: 'laporanGerakan' };
 				this.mitraPerseoranganWidgetRoute = { name: 'mitraOrang' };
@@ -123,12 +142,16 @@
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 
 				if(this.currentUser.id_cu != 0){
+					this.anggotaCuWidgetRoute = { name: 'anggotaCUCU', params:{cu: this.currentUser.id_cu} };
+					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: this.currentUser.id_cu} };
 					this.cuWidgetRoute = { name: 'cuProfile', params:{id: this.currentUser.id_cu}   };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
+					this.anggotaCuWidgetRoute = { name: 'anggotaCUCU', params:{cu: 'semua'} };
+					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: 'semua'} };
 					this.cuWidgetRoute = { name: 'cu' };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };

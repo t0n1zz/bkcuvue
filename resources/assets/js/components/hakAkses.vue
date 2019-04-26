@@ -324,6 +324,123 @@
 						]
 					},
 					{
+						name: 'Anggota CU',
+						icon: 'icon-man-woman',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_anggota_cu',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_anggota_cu',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_anggota_cu',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_anggota_cu',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Anggota CU'
+							},
+						]
+					},
+					{
+						name: 'Saldo',
+						icon: 'icon-wallet',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_saldo',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Saldo'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_saldo',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Saldo'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_saldo',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Saldo'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_saldo',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Saldo'
+							},
+						]
+					},
+					{
+						name: 'Klaim JALINAN',
+						icon: 'icon-accessibility2',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_jalinan_klaim',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Klaim JALINAN'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_jalinan_klaim',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Klaim JALINAN'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_jalinan_klaim',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Klaim JALINAN'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_jalinan_klaim',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Klaim JALINAN'
+							}
+						]
+					},
+					{
 						name: 'CU',
 						icon: 'icon-office',
 						secondRow: true,
@@ -554,53 +671,6 @@
 								tipe: 'bkcu',
 								value: false,
 								group: 'Lembaga Mitra'
-							}
-						]
-					},
-					{
-						name: 'Anggota CU',
-						icon: 'icon-stats-growth',
-						secondRow: true,
-						tipe: 'all',
-						permission: [{
-								name: 'Lihat',
-								key: 'index_anggota_cu',
-								icon: 'icon-eye',
-								tipe: 'all',
-								value: false,
-								group: 'Anggota CU'
-							},
-							{
-								name: 'Tambah',
-								key: 'create_anggota_cu',
-								icon: 'icon-plus3',
-								tipe: 'all',
-								value: false,
-								group: 'Anggota CU'
-							},
-							{
-								name: 'Ubah',
-								key: 'update_anggota_cu',
-								icon: 'icon-pencil',
-								tipe: 'all',
-								value: false,
-								group: 'Anggota CU'
-							},
-							{
-								name: 'Hapus',
-								key: 'destroy_anggota_cu',
-								icon: 'icon-bin2',
-								tipe: 'all',
-								value: false,
-								group: 'Anggota CU'
-							},
-							{
-								name: 'Upload',
-								key: 'upload_anggota_cu',
-								icon: 'icon-file-upload',
-								tipe: 'all',
-								value: false,
-								group: 'Anggota CU'
 							}
 						]
 					},
@@ -863,6 +933,21 @@
 						'index_error_log',
 						'destroy_error_log',
 
+						'index_anggota_cu',
+						'create_anggota_cu',
+						'update_anggota_cu',
+						'destroy_anggota_cu',
+
+						'index_saldo',
+						'create_saldo',
+						'update_saldo',
+						'destroy_saldo',
+
+						'index_jalinan_klaim',
+						'create_jalinan_klaim',
+						'update_jalinan_klaim',
+						'destroy_jalinan_klaim',
+						
 						'index_cu',
 						'create_cu',
 						'update_cu',
@@ -948,6 +1033,21 @@
 						'update_pengumuman',
 						'destroy_pengumuman',
 
+						'index_anggota_cu',
+						'create_anggota_cu',
+						'update_anggota_cu',
+						'destroy_anggota_cu',
+
+						'index_saldo',
+						'create_saldo',
+						'update_saldo',
+						'destroy_saldo',
+
+						'index_jalinan_klaim',
+						'create_jalinan_klaim',
+						'update_jalinan_klaim',
+						'destroy_jalinan_klaim',
+
 						'index_cu',
 						'update_cu',
 
@@ -988,6 +1088,9 @@
 						'index_artikel_penulis',
 						'index_artikel_kategori',
 						'index_pengumuman',
+						'index_anggota_cu',
+						'index_saldo',
+						'index_jalinan_klaim',
 						'index_cu',
 						'index_tp',
 						'index_aktivis',
@@ -998,6 +1101,9 @@
 						'diskusi_laporan_cu',
 						'index_laporan_tp',
 						'diskusi_laporan_tp',
+						'index_mitra_orang',
+						'index_mitra_lembaga',
+						'index_saran'
 					],
 					laporan: [
 						'index_laporan_cu',
@@ -1019,6 +1125,11 @@
 						'create_tempat',
 						'update_tempat',
 						'destroy_tempat',
+
+						'index_anggota_cu',
+						'create_anggota_cu',
+						'update_anggota_cu',
+						'destroy_anggota_cu',
 
 						'index_cu',
 						'create_cu',
@@ -1051,6 +1162,11 @@
 						'destroy_produk_cu',
 					],
 					organisasiCU: [
+						'index_anggota_cu',
+						'create_anggota_cu',
+						'update_anggota_cu',
+						'destroy_anggota_cu',
+
 						'index_cu',
 						'update_cu',
 
@@ -1058,6 +1174,11 @@
 						'create_tp',
 						'update_tp',
 						'destroy_tp',
+
+						'index_anggota_cu',
+						'create_anggota_cu',
+						'update_anggota_cu',
+						'destroy_anggota_cu',
 
 						'index_aktivis',
 						'create_aktivis',

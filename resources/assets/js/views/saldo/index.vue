@@ -18,7 +18,7 @@
 
 					<!-- main panel -->
 					<!-- cari data -->
-					<cari-data :itemDataStat="itemDataStat" @cariData="cariData" @resetData="resetData" @back="back"></cari-data>
+					<cari-data :itemDataStat="itemDataStat" :isBack="false" @cariData="cariData" @resetData="resetData"></cari-data>
 
 
 					
@@ -109,16 +109,16 @@
 
 										<div class="col-md-12" v-if="itemData.status_jalinan != 1 && itemData.status_jalinan != 2">
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')" v-if="currentUser.can && currentUser.can['create_saldo']">
 												<i class="icon-plus22"></i> Tambah
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-											:disabled="!selectedProduk.index">
+											:disabled="!selectedProduk.index" v-if="currentUser.can && currentUser.can['update_saldo']">
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedProduk.index">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedProduk.index" v-if="currentUser.can && currentUser.can['destroy_saldo']">
 												<i class="icon-bin2"></i> Hapus
 											</button>
 
@@ -240,8 +240,8 @@
 	import {toMulipartedForm} from '../../helpers/form';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
-	import formSimpanan from "./formSimpanan.vue";
-	import formPinjaman from "./formPinjaman.vue";
+	import formSimpanan from "../anggotaCu/formSimpanan.vue";
+	import formPinjaman from "../anggotaCu/formPinjaman.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
 	import checkValue from "../../components/checkValue.vue";
@@ -446,13 +446,6 @@
 			},
 			editProduk(value){
 				this.$store.dispatch(this.kelas + '/updateProduk', [this.selectedProduk.pivot.id, value]);
-			},
-			back(){
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
-				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
-				}
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;

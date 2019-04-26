@@ -55,6 +55,21 @@ class UserController extends Controller
 		'index_error_log',
 		'destroy_error_log',
 
+		'index_anggota_cu',
+		'create_anggota_cu',
+		'update_anggota_cu',
+		'destroy_anggota_cu',
+
+		'index_saldo',
+		'create_saldo',
+		'update_saldo',
+		'destroy_saldo',
+
+		'index_jalinan_klaim',
+		'create_jalinan_klaim',
+		'update_jalinan_klaim',
+		'destroy_jalinan_klaim',
+
 		'index_cu',
 		'create_cu',
 		'update_cu',
@@ -94,12 +109,6 @@ class UserController extends Controller
 		'create_tempat',
 		'update_tempat',
 		'destroy_tempat',
-
-		// 'index_anggota_cu',
-		// 'create_anggota_cu',
-		// 'update_anggota_cu',
-		// 'destroy_anggota_cu',
-		// 'upload_anggota_cu',
 
 		'index_laporan_cu',
 		'create_laporan_cu',

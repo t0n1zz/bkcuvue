@@ -17,7 +17,7 @@
 					</message>
 
 					<!-- cari data -->
-					<cari-data :itemDataStat="itemDataStat" @cariData="cariData" @resetData="resetData" @back="back" v-if="!isEdit"></cari-data>
+					<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @resetData="resetData" @back="back" v-if="!isEdit"></cari-data>
 
 					<!-- data not exist -->
 					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">

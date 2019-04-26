@@ -19,7 +19,7 @@
       <div class="col-12 d-none d-md-block">
         <button class="btn btn-primary" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
         <button class="btn btn-warning" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
-        <button class="btn btn-light" @click.prevent="back"><i class="icon-arrow-left13"></i> Batal</button>
+        <button class="btn btn-light" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
       </div>
 
       <div class="col-12 pb-2 d-block d-md-none">
@@ -29,7 +29,7 @@
         <button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
       </div>
       <div class="col-12 pb-2 d-block d-md-none">
-        <button class="btn btn-light btn-block" @click.prevent="back"><i class="icon-arrow-left13"></i> Batal</button>
+        <button class="btn btn-light btn-block" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
       </div>
 
       <!-- loading -->
@@ -54,6 +54,7 @@
 		},
     props: {
       itemDataStat: '',
+      isBack: true
     },
     data(){
       return {

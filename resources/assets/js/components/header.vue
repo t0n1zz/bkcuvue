@@ -386,7 +386,7 @@
 					</li>
 
 					<!-- anggota cu -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_anggota_cu'] || currentUser.can['index_anggota_cu']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_anggota_cu'] || currentUser.can['create_saldo'] || currentUser.can['create_jalinan_klaim'] || currentUser.can['index_anggota_cu'] || currentUser.can['index_saldo'] || currentUser.can['index_jalinan_klaim']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-man-woman mr-2"></i>
 							Anggota CU
@@ -400,7 +400,7 @@
 							</router-link>
 
 							<!-- tambah klaim jalinan -->
-							<router-link :to="{ name:'jalinanKlaimCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_anggota_cu']">
+							<router-link :to="{ name:'jalinanKlaimCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_jalinan_klaim']">
 								<i class="icon-plus22"></i> Tambah Klaim JALINAN
 							</router-link>
 
@@ -437,7 +437,7 @@
 							</router-link>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'anggotaCuProduk'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu']">
+							<router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
 								<i class="icon-wallet"></i> Saldo
 							</router-link>
 
@@ -445,11 +445,11 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'anggota_cu_klaim'}">
-								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('anggota_cu_klaim')">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'jalinan_klaim'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('jalinan_klaim')">
 									<i class="icon-accessibility2"></i> Klaim JALINAN
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu_klaim'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'jalinan_klaim'}">
 
 									<router-link :to="{ name: 'jalinanKlaimCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -468,7 +468,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu']  && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu != 0">
 								<i class="icon-accessibility2"></i> Klaim JALINAN
 							</router-link>
 							

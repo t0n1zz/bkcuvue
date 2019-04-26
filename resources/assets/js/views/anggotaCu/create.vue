@@ -489,16 +489,16 @@
 
 						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahSimpanan')">
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahSimpanan')" v-if="currentUser.can && currentUser.can['create_saldo']">
 								<i class="icon-plus22"></i> Tambah
 							</button>
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahSimpanan')"
-							:disabled="!selectedItemSimpanan.index">
+							:disabled="!selectedItemSimpanan.index" v-if="currentUser.can && currentUser.can['update _saldo']">
 								<i class="icon-pencil5"></i> Ubah
 							</button>
 
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusSimpanan')" :disabled="!selectedItemSimpanan.index">
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusSimpanan')" :disabled="!selectedItemSimpanan.index" v-if="currentUser.can && currentUser.can['destroy_saldo']">
 								<i class="icon-bin2"></i> Hapus
 							</button>
 
@@ -533,16 +533,16 @@
 
 						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPinjaman')">
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPinjaman')" v-if="currentUser.can && currentUser.can['create_saldo']">
 								<i class="icon-plus22"></i> Tambah
 							</button>
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPinjaman')"
-							:disabled="!selectedItemPinjaman.index">
+							:disabled="!selectedItemPinjaman.index" v-if="currentUser.can && currentUser.can['update_saldo']">
 								<i class="icon-pencil5"></i> Ubah
 							</button>
 
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPinjaman')" :disabled="!selectedItemPinjaman.index">
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPinjaman')" :disabled="!selectedItemPinjaman.index" v-if="currentUser.can && currentUser.can['destroy_saldo']">
 								<i class="icon-bin2"></i> Hapus
 							</button>
 

@@ -38,7 +38,7 @@ import mitraLembaga from './views/mitraLembaga/index.vue';
 import mitraLembaga_form from './views/mitraLembaga/form.vue';
 import anggotaCu from './views/anggotaCu/index.vue';
 import anggotaCu_form from './views/anggotaCu/form.vue';
-import anggotaCu_produk from './views/anggotaCu/produk.vue';
+import saldo from './views/saldo/index.vue';
 import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
 import produkCu from './views/produkCu/index.vue';
@@ -309,10 +309,12 @@ const routes = [
 	{ path: '/anggotaCu/edit/:id',
 		name: 'anggotaCuEdit', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit' } },	
-	{ path: '/anggotaCu/produk',
-		name: 'anggotaCuProduk', 
-		components: { default: anggotaCu_produk, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'edit' } },
+		
+	// saldo	
+	{ path: '/saldo',
+		name: 'saldo', 
+		components: { default: saldo, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true }},
 
 	// JALINAN

@@ -13,7 +13,7 @@
 					<div v-if="$route.meta.mode == 'create'">
 
 						<!-- cari data -->
-						<cari-data :itemDataStat="itemDataStat" @cariData="cariData" @resetData="resetData" @back="back"></cari-data>
+						<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @resetData="resetData" @back="back"></cari-data>
 
 						<!-- data not exist -->
 						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
