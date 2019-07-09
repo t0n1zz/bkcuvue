@@ -47,7 +47,7 @@ class LaporanTpDraftAllImport implements ToModel, WithHeadingRow, WithBatchInser
             'piutang_lalai_12bulan' => $row['piutang_lalai_lebih_dari_12_bulan'],
             'dcr' => $row['dcr'],
             'dcu' => $row['dcu'],
-            'iuran_gedung' => $row['iuran_gedung'],
+            'dana_gedung' => $row['dana_gedung'],
             'donasi' => $row['donasi'],
             'bjs_saham' => $row['bjs_saham'],
             'beban_penyisihan_dcr' => $row['beban_penyisihan_dcr'],

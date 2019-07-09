@@ -51,7 +51,7 @@ class LaporanTpHelper{
 		return '
 		@total_anggota := IFNULL(laporan_tp.l_biasa, 0) + IFNULL(laporan_tp.l_lbiasa,0) + IFNULL(laporan_tp.P_biasa,0) + IFNULL(laporan_tp.P_lbiasa,0) as total_anggota,
 
-		@piutang_bersih := IFNULL(laporan_tp.dcr,0) + IFNULL(laporan_tp.dcu,0) + IFNULL(laporan_tp.iuran_gedung,0) + IFNULL(laporan_tp.donasi,0) + IFNULL(laporan_tp.shu_lalu,0) as piutang_bersih,	
+		@piutang_bersih := IFNULL(laporan_tp.dcr,0) + IFNULL(laporan_tp.dcu,0) + IFNULL(laporan_tp.dana_gedung,0) + IFNULL(laporan_tp.donasi,0) + IFNULL(laporan_tp.shu_lalu,0) as piutang_bersih,	
 
 		@rata_saham := (((IFNULL(laporan_tp.simpanan_saham_des,0) + IFNULL(laporan_tp.simpanan_saham,0))/2) / MONTH(laporan_tp.periode) ) * 12 as rata_saham,
 

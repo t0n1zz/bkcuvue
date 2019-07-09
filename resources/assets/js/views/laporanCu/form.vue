@@ -627,7 +627,7 @@
 
 											<!-- text -->
 											<cleave 
-												v-model="form.iuran_gedung" 
+												v-model="form.dana_gedung" 
 												class="form-control" 
 												:options="cleaveOption.numeric"
 												placeholder="Silahkan masukkan jumlah dana gedung"></cleave>

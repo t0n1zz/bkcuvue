@@ -40,7 +40,7 @@ class LaporanCuHelper{
 		sum(piutang_lalai_12bulan) as piutang_lalai_12bulan,
 		sum(dcr) as dcr,
 		sum(dcu) as dcu,
-		sum(iuran_gedung) as iuran_gedung,
+		sum(dana_gedung) as dana_gedung,
 		sum(donasi) as donasi,
 		sum(bjs_saham) as bjs_saham,
 		sum(beban_penyisihan_dcr) as beban_penyisihan_dcr, 
@@ -62,7 +62,7 @@ class LaporanCuHelper{
 		return '
 		@total_anggota := IFNULL(laporan_cu.l_biasa, 0) + IFNULL(laporan_cu.l_lbiasa,0) + IFNULL(laporan_cu.P_biasa,0) + IFNULL(laporan_cu.P_lbiasa,0) as total_anggota,
 
-		@piutang_bersih := IFNULL(laporan_cu.dcr,0) + IFNULL(laporan_cu.dcu,0) + IFNULL(laporan_cu.iuran_gedung,0) + IFNULL(laporan_cu.donasi,0) + IFNULL(laporan_cu.shu_lalu,0) as piutang_bersih,	
+		@piutang_bersih := IFNULL(laporan_cu.dcr,0) + IFNULL(laporan_cu.dcu,0) + IFNULL(laporan_cu.dana_gedung,0) + IFNULL(laporan_cu.donasi,0) + IFNULL(laporan_cu.shu_lalu,0) as piutang_bersih,	
 
 		@rata_saham := (((IFNULL(laporan_cu.simpanan_saham_des,0) + IFNULL(laporan_cu.simpanan_saham,0))/2) / MONTH(laporan_cu.periode) ) * 12 as rata_saham,
 

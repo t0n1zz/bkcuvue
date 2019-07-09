@@ -139,7 +139,7 @@
 							<check-value :value="props.item.dcu" valueType="currency"></check-value>
 						</td>
 						<td>
-							<check-value :value="props.item.iuran_gedung" valueType="currency"></check-value>
+							<check-value :value="props.item.dana_gedung" valueType="currency"></check-value>
 						</td>
 						<td>
 							<check-value :value="props.item.donasi" valueType="currency"></check-value>
@@ -554,8 +554,8 @@ export default {
           filter: true
         },
         {//35
-          title: "Iuran Gedung",
-          name: "iuran_gedung",
+          title: "Dana Gedung",
+          name: "dana_gedung",
           tipe: "numeric",
           sort: true,
           hide: false,

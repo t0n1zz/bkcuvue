@@ -164,7 +164,7 @@
 										<check-value :value="props.item.dcu" valueType="currency"></check-value>
 									</td>
 									<td>
-										<check-value :value="props.item.iuran_gedung" valueType="currency"></check-value>
+										<check-value :value="props.item.dana_gedung" valueType="currency"></check-value>
 									</td>
 									<td>
 										<check-value :value="props.item.donasi" valueType="currency"></check-value>

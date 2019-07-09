@@ -400,8 +400,8 @@ export const laporanCu = {
         filter: true
       },
       {//36
-        title: "Iuran Gedung",
-        name: "iuran_gedung",
+        title: "Dana Gedung",
+        name: "dana_gedung",
         tipe: "numeric",
         sort: true,
         hide: false,

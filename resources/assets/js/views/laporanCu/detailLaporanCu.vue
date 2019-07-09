@@ -629,19 +629,19 @@
 							</div>	
 						</div>	
 						<div class="col-sm-3">
-							<div @click.prevent="modalBuka('Iuran Gedung', 'iuran_gedung', itemData.iuran_gedung, itemData.periode, itemDataBefore.iuran_gedung, itemDataBefore.periode, grafikData.data, [{title:'Iuran Gedung',key:'iuran_gedung',value:itemData.iuran_gedung}])" 
+							<div @click.prevent="modalBuka('Iuran Gedung', 'dana_gedung', itemData.dana_gedung, itemData.periode, itemDataBefore.dana_gedung, itemDataBefore.periode, grafikData.data, [{title:'Iuran Gedung',key:'dana_gedung',value:itemData.dana_gedung}])" 
 							style="cursor:pointer;" v-if="itemDataBefore">
 								<widget-data
 									title="iuran gedung"
-									:itemData="itemData.iuran_gedung"
-									:itemDataBefore="itemDataBefore.iuran_gedung"
+									:itemData="itemData.dana_gedung"
+									:itemDataBefore="itemDataBefore.dana_gedung"
 									></widget-data>
 							</div>
-							<div @click.prevent="modalBuka('Iuran Gedung', 'iuran_gedung', itemData.iuran_gedung, itemData.periode, '0', '', grafikData.data, [{title:'Iuran Gedung',key:'iuran_gedung',value:itemData.iuran_gedung}])" 
+							<div @click.prevent="modalBuka('Iuran Gedung', 'dana_gedung', itemData.dana_gedung, itemData.periode, '0', '', grafikData.data, [{title:'Iuran Gedung',key:'dana_gedung',value:itemData.dana_gedung}])" 
 							style="cursor:pointer;" v-else>	
 								<widget-data
 									title="iuran gedung"
-									:itemData="itemData.iuran_gedung"
+									:itemData="itemData.dana_gedung"
 									:itemDataBefore="'0'"
 									></widget-data>	
 							</div>	
