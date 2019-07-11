@@ -175,7 +175,7 @@
     
     <div class="row common-height">
 
-      <div class="col-lg-4 dark col-padding ohidden" style="background-color: #282828;">
+      <div class="col-lg-3 dark col-padding ohidden" style="background-color: #282828;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Misi</h3>
           <p style="line-height: 1.8;">Memastikan Keberlanjutan Gerakan Credit Union Melalui Tata Kelola Yang Sehat dan Terintegrasi Untuk Meningkatkan Kualitas Anggota</p>
@@ -183,7 +183,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 dark col-padding ohidden" style="background-color: #34495e;">
+      <div class="col-lg-3 dark col-padding ohidden" style="background-color: #34495e;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Visi</h3>
           <p style="line-height: 1.8;">Menjadi Gerakan Credit Union Nusantara Berbasis Komunitas Yang Terintegrasi, Tangguh Dan Berkelanjutan</p>
@@ -191,11 +191,19 @@
         </div>
       </div>
 
-      <div class="col-lg-4 dark col-padding ohidden" style="background-color: #e74c3c;">
+      <div class="col-lg-3 dark col-padding ohidden" style="background-color: #e74c3c;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Nilai-Nilai Inti</h3>
-          <p style="line-height: 1.8;"><strong>Setia</strong> dalam <strong>Kesatuan</strong>, <strong>Memberdayakan</strong> secara <strong>Unggul</strong> dan <strong>Inovatif</strong> dengan <strong>Integritas</strong> tinggi serta berperilaku <strong>Ramah Lingkungan</strong></p>
+          <p style="line-height: 1.8;">SETIA dalam KESATUAN, MEMBERDAYAKAN secara UNGGUL dan INOVATIF dengan INTEGRITAS tinggi serta berperilaku RAMAH LINGKUNGAN</p>
           <i class="icon-settings bgicon"></i>
+        </div>
+      </div>
+
+      <div class="col-lg-3 dark col-padding ohidden" style="background-color: #9c1b1b;">
+        <div>
+          <h3 class="uppercase" style="font-weight: 600;">Kebijakkan Mutu</h3>
+          <p style="line-height: 1.8;">Kami Berkomitmen Untuk Menjadi Mitra Credit Union yang Berkualitas dengan Perbaikan Berkesinambungan dan Mematuhi Peraturan Perundangan untuk Mencapai Kepuasan Anggota dan <i>Stakeholder</i>.</p>
+          <i class="icon-line2-fire bgicon"></i>
         </div>
       </div>
 

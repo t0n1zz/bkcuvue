@@ -15,7 +15,7 @@ class ManajemenBKCUCountComposer
             
         $manajemenBKCUCount = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
         ->whereHas('pekerjaan', function($query) use ($id,$tipe){
-            $query->whereIn('tingkat',[6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
+            $query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
             ->where(function($q){
                 $q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'));
             });

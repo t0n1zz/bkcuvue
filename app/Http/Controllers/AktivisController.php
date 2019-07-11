@@ -35,7 +35,7 @@ class AktivisController extends Controller{
 		}elseif($tingkat == 'manajemen'){
 
 			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-				$query->whereIn('tipe',[1,3])->whereIn('tingkat',[6,7,8,9])
+				$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])
 				->where(function($q){
 					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
 				});
@@ -98,7 +98,7 @@ class AktivisController extends Controller{
 		}elseif($tingkat == 'manajemen'){
 			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 			->whereHas('pekerjaan', function($query) use ($id,$tipe){
-				$query->whereIn('tingkat',[6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
+				$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
 				->where(function($q){
 					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
 				});
