@@ -24,17 +24,17 @@ class MitraLembaga extends Model {
     }
     
     protected $fillable = [
-        'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at'    
+        'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at','bidang'    
     ];
 
     protected $allowedFilters = [
-        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at',
+        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at','bidang',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
 
     protected $orderable = [
-        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at',
+        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at','bidang',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
@@ -43,7 +43,7 @@ class MitraLembaga extends Model {
     {
         return [
             'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'name' => '', 'gambar' => '',
-            'badan_hukum' => '','npwp' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => ''
+            'badan_hukum' => '','npwp' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => '', 'bidang' => ''
         ];
     }
 

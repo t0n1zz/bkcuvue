@@ -13,7 +13,7 @@ class LaporanTpHelper{
 		$periode = $request->periode;
 
 		$laporantp = LaporanTp::whereHas('Tp',function($query) use ($id_cu){
-			$query->where('Tp.id_cu',$id_cu);
+			$query->where('id_cu',$id_cu);
 		})->where('periode',$periode)->get();
 
 		$konsolidasi = [];

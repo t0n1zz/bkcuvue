@@ -55,6 +55,27 @@
 										</div>
 									</div>
 
+																		<!-- bidang -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.bidang')}">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.bidang')}">
+												<i class="icon-cross2" v-if="errors.has('form.bidang')"></i>
+												Bidang:</h6>
+
+											<!-- text -->
+											<input type="text" name="bidang" class="form-control" placeholder="Silahkan masukkan bidang" v-validate="'required'"
+											 data-vv-as="Bidang" v-model="form.bidang">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.bidang')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.bidang') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
 									<!-- badan hukum -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.badan_hukum')}">
@@ -86,6 +107,8 @@
 											<small class="text-muted">&nbsp;</small>	
 										</div>
 									</div>
+
+
 									
 								</div>
 							</div>
