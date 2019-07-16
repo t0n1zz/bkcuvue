@@ -10,6 +10,30 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#311">Version 3.1.1 <small class="text-muted"> / 16 Juli 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="311" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Perbaikan bug pada perhitungan laporan PEARLS dan penambahan field baru untuk mitra
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug dana gedung yang tidak muncul di pengubahan data PEARLS utk E9</li>
+                      <li>Perbaikan bug pada saat menambahkan laporan TP</li>
+                      <li>Penambahan field bidang untuk mitra perseorangan dan lembaga</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.1 -->
+
               <!-- Version 3.1.0 -->
               <div class="card">
                 <div class="card-header">
@@ -18,7 +42,7 @@
                   </h5>
                 </div>
 
-                <div id="310" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="310" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan Puskopdit BKCU Kalimantan untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. 
                     <br/><br/> 

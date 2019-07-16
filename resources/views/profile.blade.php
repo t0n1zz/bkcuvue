@@ -223,7 +223,7 @@
 @stop
 
 @section('js')
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kJmqYT0ClNQjXeW6HZtftdUPuPEz8DU"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP') }}"></script>
 <script src="{{ URL::asset('js/public/jquery.gmap.js') }}"></script>
 <script>
 $('#google-map4').gMap({
