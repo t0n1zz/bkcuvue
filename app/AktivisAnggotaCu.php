@@ -15,17 +15,17 @@ class AktivisAnggotaCu extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'id_aktivis','name','no_ba'
+        'id_aktivis','name','no_ba','id_cu'
     ];
 
     protected $filter = [
-        'name','no_ba','created_at','updated_at'
+        'name','no_ba','id_cu','created_at','updated_at'
     ];
 
     public static function initialize()
     {
         return [
-             'name' => '','no_ba' => ''
+             'id_cu' => '', 'name' => '','no_ba' => ''
         ];
     }
 

@@ -37,9 +37,9 @@
     </div>
 
 		<!-- anggota cu saldo -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_saldo']" @click.prevent="goTo(saldoWidgetRoute)">
+    <!-- <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_saldo']" @click.prevent="goTo(saldoWidgetRoute)">
       <count-widget :title="'Saldo Anggota CU'" :color="'bg-blue-400'" :icon="'icon-wallet'"></count-widget>
-    </div>
+    </div> -->
 
 		<!-- jalinan klaim -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_jalinan_klaim']" @click.prevent="goTo(jalinanKlaimWidgetRoute)">
@@ -142,7 +142,7 @@
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 
 				if(this.currentUser.id_cu != 0){
-					this.anggotaCuWidgetRoute = { name: 'anggotaCUCU', params:{cu: this.currentUser.id_cu} };
+					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu} };
 					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: this.currentUser.id_cu} };
 					this.cuWidgetRoute = { name: 'cuProfile', params:{id: this.currentUser.id_cu}   };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
@@ -150,7 +150,7 @@
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
-					this.anggotaCuWidgetRoute = { name: 'anggotaCUCU', params:{cu: 'semua'} };
+					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua'} };
 					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: 'semua'} };
 					this.cuWidgetRoute = { name: 'cu' };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };

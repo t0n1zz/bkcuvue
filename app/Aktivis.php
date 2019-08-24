@@ -17,7 +17,6 @@ class Aktivis extends Model {
     public static $rules = [
         'nik'=>'required',
         'name'=>'required',
-        'email' =>  'email'
     ];
     
     protected $fillable = [
@@ -42,7 +41,7 @@ class Aktivis extends Model {
             'nim' => '','nim_cu' => '','nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','gambar'=> '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => ''
         ];
     }
-
+    
     public function pendidikan(){
         return $this->hasOne('App\AktivisPendidikan','id_aktivis','id');
     }

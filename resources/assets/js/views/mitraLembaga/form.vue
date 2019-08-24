@@ -55,7 +55,7 @@
 										</div>
 									</div>
 
-																		<!-- bidang -->
+									<!-- bidang -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.bidang')}">
 
@@ -108,7 +108,37 @@
 										</div>
 									</div>
 
+									<!-- penanggungjawab -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.penanggungjawab')}">
 
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.penanggungjawab')}">
+												<i class="icon-cross2" v-if="errors.has('form.penanggungjawab')"></i>
+												Penanggung Jawab:</h5>
+
+											<!-- text -->
+											<input type="text" name="penanggungjawab" class="form-control" placeholder="Silahkan masukkan penanggung jawab"  v-model="form.penanggungjawab">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
+									<!-- bentuk_kerjasama -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.bentuk_kerjasama')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.bentuk_kerjasama')}">
+												<i class="icon-cross2" v-if="errors.has('form.bentuk_kerjasama')"></i>
+												Bentuk Kerjasama:</h5>
+
+											<!-- text -->
+											<input type="text" name="bentuk_kerjasama" class="form-control" placeholder="Silahkan masukkan bentuk kerjasama"  v-model="form.bentuk_kerjasama">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
 									
 								</div>
 							</div>

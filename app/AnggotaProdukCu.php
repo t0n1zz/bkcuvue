@@ -29,4 +29,9 @@ class AnggotaProdukCu extends Model {
         ];
     }
 
+    public function produk_cu()
+    {
+        return $this->belongsTo('App\ProdukCU','produk_cu_id','id')->select('id','name','id_cu');
+    }
+
 }

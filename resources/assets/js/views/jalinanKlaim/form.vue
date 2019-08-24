@@ -272,12 +272,9 @@
 	import {mapGetters} from 'vuex';
 	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
-	import {toMulipartedForm} from '../../helpers/form';
-	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import Cleave from 'vue-cleave-component';
-	import dataTable from '../../components/datatable.vue';
 	import checkValue from "../../components/checkValue.vue";
 	import infoIcon from "../../components/infoIcon.vue";
 	import countWidget from '../../components/countWidget.vue';
@@ -289,10 +286,8 @@
 		components: {
 			pageHeader,
 			appModal,
-			appImageUpload,
 			message,
 			Cleave,
-			dataTable,
 			checkValue,
 			infoIcon,
 			countWidget,
@@ -372,6 +367,10 @@
 				this.title = 'Tambah Klaim JALINAN';
 				this.titleDesc = 'Menambah Klaim JALINAN';
 				this.titleIcon = 'icon-plus3';
+				if(this.$route.meta.mode === 'createNIK'){
+					this.cariData(this.$route.params.nik)
+					this.isEdit = true;
+				}
 			}
 		},
 		watch: {
@@ -394,7 +393,6 @@
 							this.itemDataCu.push(datas);
 						}
 					}
-
 					// get form
 					this.fetch();
 				}
@@ -406,7 +404,6 @@
 
 				if (value === "success") {
 					this.modalTitle = this.updateResponse.message;
-					this.cariData();
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
@@ -490,8 +487,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('jalinanKlaim', {
-				itemData: 'dataS',
-				itemDataStat: 'dataStatS',
+				itemData: 'data2',
+				itemDataStat: 'dataStat2',
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',

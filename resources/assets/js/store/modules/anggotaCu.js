@@ -6,12 +6,14 @@ export const anggotaCu = {
 
   // state
   state: {
-    data: {}, //single data
-    dataS: [], //collection
+    data: {}, //single data //single data
+    dataS: [],
+    dataProduk: [],//collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
     dataStat: '',
+    dataProdukStat: '',
     dataStatS: '',
     dataDeletedStatS: '',
     countStat: '',
@@ -26,10 +28,12 @@ export const anggotaCu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataProduk: state => state.dataProduk,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
+    dataProdukStat: state => state.dataProdukStat,
     dataStatS: state => state.dataStatS,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
@@ -86,6 +90,20 @@ export const anggotaCu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexProduk( { commit }, [id, cu] ){
+      commit('setDataProdukStat', 'loading');
+      
+      AnggotaCuAPI.indexProduk( id, cu )
+        .then( function( response ){
+          commit('setDataProduk', response.data.model );
+          commit('setDataProdukStat', 'success');
+        })
+        .catch( error => {
+          commit('setDataProduk', error.response);
+          commit('setDataProdukStat', 'fail');
         });
     },
 
@@ -317,10 +335,10 @@ export const anggotaCu = {
     },
 
     // destroy data
-    destroy( {commit, state, dispatch}, id ){
+    destroy( {commit, state, dispatch}, [id, cu] ){
       commit('setUpdateStat', 'loading');
 
-      AnggotaCuAPI.destroy( id )
+      AnggotaCuAPI.destroy( id, cu )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -447,6 +465,9 @@ export const anggotaCu = {
     setData ( state, data ){
       state.data = data;
     },
+    setDataProduk ( state, data ){
+      state.dataProduk = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
@@ -461,6 +482,9 @@ export const anggotaCu = {
     },
     setDataStat( state, status ){
       state.dataStat = status;
+    },
+    setDataProdukStat( state, status ){
+      state.dataProdukStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;

@@ -55,7 +55,7 @@ class ProdukCu extends Model {
         ];
     }
         
-    public function Cu()
+    public function cu()
     {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
     }

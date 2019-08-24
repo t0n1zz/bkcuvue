@@ -16,11 +16,14 @@ use App\Imports\AnggotaCuNewDraftImport;
 
 class AnggotaCuController extends Controller{
 
+	protected $imagepath = 'images/anggotaCu/';
+	protected $width = 300;
+	protected $height = 200;
 	protected $message = "Anggota CU";
 
 	public function index()
 	{
-		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
+		$table_data = AnggotaCu::with('anggota_cu','status_jalinan','Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([
@@ -30,9 +33,26 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
+		$table_data = AnggotaCu::with('anggota_cu','status_jalinan','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
 			$query->where('cu_id',$id); 
 		})->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexProduk($id, $cu)
+	{
+		if($cu != 'semua'){
+			$table_data = AnggotaProdukCu::with('produk_cu.cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
+				$query->where('id_cu',$cu); 
+			})->get();
+		}else{
+			$table_data = AnggotaProdukCu::with('produk_cu.cu')->where('anggota_cu_id', $id)->get();
+		}
+		
 
 		return response()
 			->json([
@@ -76,11 +96,17 @@ class AnggotaCuController extends Controller{
 
 		$name = $request->name;
 
-		$kelas = AnggotaCu::create($request->all());
+		if(!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+		else
+			$fileName = '';	
 
+		$kelas = AnggotaCu::create($request->except('gambar') + [
+			'gambar' => $fileName
+		]);
+		
 		$this->syncCu($request, $kelas);
-
-		$this->syncProdukCu($request, $kelas);
+		// $this->syncProdukCu($request, $kelas);
 		
 		return response()
 			->json([
@@ -140,7 +166,7 @@ class AnggotaCuController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
+		$kelas = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 			->json([
@@ -166,15 +192,18 @@ class AnggotaCuController extends Controller{
 
 		$name = $request->name;
 
+		if(!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+		else
+			$fileName = '';
+
 		$kelas = AnggotaCu::findOrFail($id);
 
-		$kelas->update($request->all());	
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $fileName
+		]);	
 
 		$this->syncCu($request, $kelas);
-
-		if($request->simpanan || $request->pinjaman){
-			$this->syncProdukCu($request, $kelas);
-		}
 
 		return response()
 			->json([
@@ -277,17 +306,32 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
-	public function destroy($id)
+	public function destroy($id, $cu)
 	{
 		$kelas = AnggotaCu::findOrFail($id);
+		$kelasAnggotaCU = AnggotaCuCu::where('anggota_cu_id',$id)->get();
+
 		$name = $kelas->name;
 
-		$kelas->delete();
+		if($kelasAnggotaCU->count() > 1){
+			AnggotaCuCu::where('anggota_cu_id', $id)->where('cu_id',$cu)->delete();
+			AnggotaProdukCu::with('produk_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
+				$query->where('id_cu',$cu); 
+			})->delete();
+		}else{
+			if(!empty($kelas->gambar)){
+				File::delete($this->imagepath . $kelas->gambar . '.jpg');
+				File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+			}
+			AnggotaCuCu::where('anggota_cu_id', $id)->delete();
+			AnggotaProdukCu::where('anggota_cu_id', $id)->delete();
+			$kelas->delete();
+		}
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
+				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
 
@@ -334,7 +378,7 @@ class AnggotaCuController extends Controller{
 
 			foreach($request->cu as $cu){
 				$cuArray[$cu['no_ba']] = [
-					'cu_id' => $cu['cu']['id'],
+					'cu_id' => $cu['cu_id'],
 					'no_ba' => $cu['no_ba'],
 					'tanggal_masuk' => $cu['tanggal_masuk']
 				];	
@@ -362,7 +406,6 @@ class AnggotaCuController extends Controller{
 					'tanggal_masuk' => $request->tanggal_masuk
 				]);
 			}
-			
 		}
 	}
 
@@ -426,7 +469,7 @@ class AnggotaCuController extends Controller{
 				'model' => $history
 			]);
 	}
-	
+
 	public function cariData($nik)
 	{
 		$table_data = AnggotaCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();

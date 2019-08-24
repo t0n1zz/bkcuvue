@@ -324,8 +324,13 @@ class AktivisController extends Controller{
 		}	
 
 		// anggota cu, pendidikan, organisasi, pekerjaan
-		$this->saveAnggotaCu($request,$kelas->id);
-		$this->savePendidikan($request,$kelas->id);
+		if($request->anggota_cu['name'] != '' && $request->anggota_cu['no_ba'] != ''){
+			$this->saveAnggotaCu($request,$kelas->id);
+		}
+
+		if($request->pendidikan['tingkat'] != ''){
+			$this->savePendidikan($request,$kelas->id);
+		}
  
 		if($request->organisasi['aktif'] == 'Ya'){
 			$this->saveOrganisasi($request,$kelas->id);
@@ -626,8 +631,8 @@ class AktivisController extends Controller{
 		$name = $kelas->name;
 
 		if(!empty($kelas->gambar)){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
+			File::delete($this->imagepath . $kelas->gambar . '.jpg');
+			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
 		}
 
 		$kelas->delete();

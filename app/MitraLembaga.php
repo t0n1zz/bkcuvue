@@ -24,17 +24,17 @@ class MitraLembaga extends Model {
     }
     
     protected $fillable = [
-        'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at','bidang'    
+        'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','alamat','pos','telp','hp','website','email','created_at','updated_at','deleted_at','bidang','npwp','penanggungjawab','bentuk_kerjasama'    
     ];
 
     protected $allowedFilters = [
-        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at','bidang',
+        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at','bidang','penanggungjawab','bentuk_kerjasama', 
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
 
     protected $orderable = [
-        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at','bidang',
+        'id','name','name_legal','badan_hukum','npwp','alamat','pos','telp','hp','website','email','created_at','updated_at','bidang','penanggungjawab','bentuk_kerjasama',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];

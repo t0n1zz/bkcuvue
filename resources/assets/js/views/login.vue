@@ -103,7 +103,7 @@
 			}
 		},
 		methods: {
-			submit() {
+		submit() {
 				this.message.show = false;
 				this.$validator.validateAll().then((result) => {
 					if(result){

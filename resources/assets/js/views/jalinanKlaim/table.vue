@@ -378,7 +378,6 @@
         if (value === "success") {
           this.modalTitle = this.updateMessage.message;
           this.modalContent = "";
-          this.fetch();
         } else if (value === "fail") {
           this.modalContent = this.updateMessage;
         } else {

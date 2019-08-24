@@ -17,6 +17,18 @@
 
 					<div class="row">
 
+						<!-- foto -->
+						<div class="col-md-12">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Foto:</h6>
+
+								<!-- imageupload -->
+								<app-image-upload :image_loc="'/images/aktivis/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+							</div>
+						</div>  
+
 						<!-- nik -->
 						<div class="col-md-4">
 							<div class="form-group" :class="{'has-error' : errors.has('form.nik')}">
@@ -111,6 +123,55 @@
 							</div>
 						</div>
 
+						<!-- tanggal lahir -->
+						<div class="col-md-4">
+							<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_lahir')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_lahir')}">
+									<i class="icon-cross2" v-if="errors.has('form.tanggal_lahir')"></i>
+									Tgl. Lahir: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+
+								<!-- input -->
+								<cleave 
+									name="tanggal_lahir"
+									v-model="form.tanggal_lahir" 
+									class="form-control" 
+									:raw="false" 
+									:options="cleaveOption.date" 
+									v-validate="'required'"
+									data-vv-as="Tanggal Lahir"
+									placeholder="Silahkan masukkan tgl. lahir"></cleave>
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_lahir')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_lahir') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>	
+
+							</div>
+						</div>
+
+						<!-- tempat lahir -->
+						<div class="col-md-4">
+							<div class="form-group" :class="{'has-error' : errors.has('form.tempat_lahir')}">
+
+								<!-- title -->
+								<h6 :class="{ 'text-danger' : errors.has('form.tempat_lahir')}">
+									<i class="icon-cross2" v-if="errors.has('form.tempat_lahir')"></i>Tempat Lahir:</h6>
+
+								<!-- text -->
+								<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir" v-validate="'required'" data-vv-as="Tempat Lahir">
+
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.tempat_lahir')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tempat_lahir') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
+
+							</div>
+						</div>
+
 						<!-- darah -->
 						<div class="col-md-4">
 							<div class="form-group">
@@ -165,33 +226,6 @@
 							</div>
 						</div>
 
-						<!-- tanggal lahir -->
-						<div class="col-md-4">
-							<div class="form-group">
-
-								<!-- title -->
-								<h6>Tgl. Lahir: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
-
-								<!-- input -->
-								<cleave name="tanggal_lahir" v-model="form.tanggal_lahir" class="form-control" :raw="false" :options="cleaveOption.date"
-									placeholder="Silahkan masukkan tgl. lahir"></cleave>
-
-							</div>
-						</div>
-
-						<!-- tempat lahir -->
-						<div class="col-md-4">
-							<div class="form-group">
-
-								<!-- title -->
-								<h6>Tempat Lahir:</h6>
-
-								<!-- text -->
-								<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir">
-
-							</div>
-						</div>
-
 						<!-- status -->
 						<div class="col-md-4">
 							<div class="form-group">
@@ -211,8 +245,20 @@
 
 							</div>
 						</div>
+						
+					</div>
 
-						<!-- lembaga -->
+				</div>
+			</div>
+
+			<!-- riwayat -->
+			<div class="card">
+				<div class="card-header bg-white">
+					<h5 class="card-title">2. Riwayat</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+
 						<div class="col-md-4">
 							<div class="form-group">
 
@@ -221,45 +267,108 @@
 
 								<!-- text -->
 								<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan lembaga" v-model="form.lembaga">
+
 							</div>
 						</div>
 
-						<!-- jabatan -->
 						<div class="col-md-4">
 							<div class="form-group">
 
 								<!-- title -->
 								<h6>Jabatan:</h6>
 
-								<!-- text -->
-								<input type="text" name="jabatan" class="form-control" placeholder="Silahkan masukkan jabatan" v-model="form.jabatan">
+								<!-- select -->
+								<select class="form-control" name="jabatan" v-model="form.jabatan" data-width="100%">
+									<option disabled value="">Silahkan pilih jabatan</option>
+									<option value="5">Senior Manajer (General Manager, CEO, Deputy)</option>
+									<option value="6">Manajer</option>
+									<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
+									<option value="8">Staf</option>
+									<option value="9">Kontrak</option>
+								</select>
+
 							</div>
 						</div>
 
-						<!-- pendidikan -->
 						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Rata-rata Penghasilan Perbulan:</h6>
+
+								<!-- select -->
+								<select class="form-control" name="penghasilan" v-model="form.penghasilan" data-width="100%">
+									<option disabled value="">Silahkan pilih tingkat penghasilan</option>
+									<option value="1"> kurang dari 1 juta </option>
+									<option value="2"> 1 - 5 juta </option>
+									<option value="3"> 5 - 15 juta </option>
+									<option value="4"> diatas 15 juta </option>
+								</select>
+
+							</div>
+						</div>
+
+						<div class="col-sm-6">
 							<div class="form-group">
 
 								<!-- title -->
 								<h6>Pendidikan:</h6>
 
+								<!-- select -->
+								<select class="form-control" name="pendidikan" v-model="form.pendidikan" data-width="100%">
+									<option disabled value="">Silahkan pilih tingkat pendidikan</option>
+									<option value="SD">SD</option>
+									<option value="SMP">SMP</option>
+									<option value="SMA/SMK">SMA/SMK</option>
+									<option value="D1">D1</option>
+									<option value="D2">D2</option>
+									<option value="D3">D3</option>
+									<option value="D4">D4</option>
+									<option value="S1">S1</option>
+									<option value="S2">S2</option>
+									<option value="S3">S3</option>
+									<option value="Lain-lain">Lain-lain</option>
+								</select>
+
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Organisasi: <info-icon :message="'Silahkan isi dengan jabatan dan tempat/nama organisasi jika anda ikut dalam sebuah organisasi'"></info-icon></h6>
+
 								<!-- text -->
-								<input type="text" name="pendidikan" class="form-control" placeholder="Silahkan masukkan pendidikan" v-model="form.pendidikan">
+								<input type="text" name="organisasi" class="form-control" placeholder="Silahkan masukkan organisasi" v-model="form.organisasi">
 
 							</div>
 						</div>
 
+					</div>
+				</div>
+			</div>
+
+			<!-- lokasi -->
+			<div class="card">
+				<div class="card-header bg-white">
+					<h5 class="card-title">3. Alamat & Kontak</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+							
 						<!-- Provinsi -->
 						<div class="col-md-4">
 							<div class="form-group">
 
 								<!-- title -->
-								<h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
+									<i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i>
 									Provinsi:
 								</h6>
 
 								<!-- select -->
-								<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" :disabled="modelProvinces.length == 0" @change="changeProvinces($event.target.value)">
+								<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length == 0" @change="changeProvinces($event.target.value)">
 									<option disabled value="">
 										<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih provinsi</span>
@@ -267,18 +376,26 @@
 									<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
 								</select>
 
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.id_provinces')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_provinces') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
 						</div>
 
 						<!-- kabupaten -->
 						<div class="col-md-4">
-							<div class="form-group">
+							<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
 
 								<!-- title -->
-								<h6>Kabupaten:</h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
+									<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
+									Kabupaten: 
+								</h6>
 
 								<!-- select -->
-								<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+								<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 									<option disabled value="">
 										<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih kabupaten</span>
@@ -286,18 +403,26 @@
 									<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
 								</select>
 
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regencies') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
 						</div>
 
 						<!-- kecamatan -->
 						<div class="col-md-4">
-							<div class="form-group">
+							<div class="form-group" :class="{'has-error' : errors.has('form.id_districts')}">
 
 								<!-- title -->
-								<h6>Kecamatan:</h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.id_districts')}">
+									<i class="icon-cross2" v-if="errors.has('form.id_districts')"></i>
+									Kecamatan:
+								</h6>
 
 								<!-- select -->
-								<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+								<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
 									<option disabled value="">
 										<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih kecamatan</span>
@@ -305,15 +430,23 @@
 									<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
 								</select>
 
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.id_regency')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regency') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
 						</div>
 
 						<!-- kelurahan -->
 						<div class="col-md-4">
-							<div class="form-group">
+							<div class="form-group" :class="{'has-error' : errors.has('form.id_villages')}">
 
 								<!-- title -->
-								<h6>Kelurahan:</h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.id_villages')}">
+									<i class="icon-cross2" v-if="errors.has('form.id_villages')"></i>
+									Kelurahan:
+								</h6>
 
 								<!-- select -->
 								<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
@@ -324,19 +457,31 @@
 									<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
 								</select>
 
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.id_villages')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_villages') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
 						</div>
 
 						<!-- alamat -->
 						<div class="col-md-8">
-							<div class="form-group">
+							<div class="form-group" :class="{'has-error' : errors.has('form.alamat')}">
 
 								<!-- title -->
-								<h6>Alamat:</h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.alamat')}">
+									<i class="icon-cross2" v-if="errors.has('form.alamat')"></i>
+									Alamat:</h6>
 
 								<!-- text -->
-								<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-model="form.alamat">
+								<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat">
 
+								<!-- error message -->
+								<small class="text-muted text-danger" v-if="errors.has('form.alamat')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.alamat') }}
+								</small>
+								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
 						</div>
 
@@ -391,7 +536,7 @@
 
 							</div>
 						</div>
-						
+
 					</div>
 
 				</div>
@@ -400,7 +545,7 @@
 			<!-- if cu -->
 			<div class="card" v-if="currentUser && currentUser.id_cu != 0">
 				<div class="card-header bg-white">
-					<h5 class="card-title">2. CU</h5>
+					<h5 class="card-title">4. CU</h5>
 				</div>
 				<div class="card-body">
 					
@@ -408,27 +553,43 @@
 						
 							<!-- no_ba -->
 							<div class="col-md-6">
-								<div class="form-group">
+								<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
 
 									<!-- title -->
-									<h6>No. BA:</h6>
+									<h6 :class="{ 'text-danger' : errors.has('form.no_ba')}">
+									<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
+									No. BA:</h6>
 
 									<!-- text -->
-									<input type="text" name="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-model="form.no_ba">
+									<input type="text" name="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-validate="'required'" data-vv-as="No. BA" v-model="form.no_ba">
+
+									<!-- error message -->
+									<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
+										<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
+									</small>
+									<small class="text-muted" v-else>&nbsp;</small>
 
 								</div>
 							</div>
 
 							<!-- tanggal_masuk -->
 							<div class="col-md-6">
-								<div class="form-group">
+								<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
 
 									<!-- title -->
-									<h6>Tgl. Jadi Anggota: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+									<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
+									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
+									Tgl. Jadi Anggota: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 									<!-- text -->
-									<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date"
+									<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota" :options="cleaveOption.date"
 									placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+
+									<!-- error message -->
+									<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
+										<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_masuk') }}
+									</small>
+									<small class="text-muted" v-else>&nbsp;</small>
 
 								</div>
 							</div>
@@ -440,7 +601,7 @@
 			<!-- if bkcu -->
 			<div class="card" v-if="currentUser && currentUser.id_cu == 0">
 				<div class="card-header bg-white">
-					<h5 class="card-title">2. CU</h5>
+					<h5 class="card-title">4. CU</h5>
 				</div>
 				<div class="card-body pb-2">
 					<div class="row">
@@ -469,98 +630,9 @@
 					<template slot="item-desktop" slot-scope="props">
 						<tr :class="{ 'bg-info': selectedItemCu.index === props.index + 1 }" class="text-nowrap" @click="selectedCuRow(props.index,props.item)" v-if="props.item">
 							<td>{{ props.index + 1 }}</td>
-							<td><check-value :value="props.item.cu.name"></check-value></td>
+							<td><check-value :value="props.item.cu_name"></check-value></td>
 							<td><check-value :value="props.item.no_ba"></check-value></td>
 							<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
-						</tr>
-					</template>	
-				</data-table>
-
-			</div>
-
-			<!-- simpanan -->
-			<div class="card" v-if="mode != 'edit'">
-				<div class="card-header bg-white">
-					<h5 class="card-title" v-if="currentUser && currentUser.id_cu == 0">3. Simpanan</h5>
-					<h5 class="card-title" v-else>3. Simpanan</h5>
-				</div>
-				<div class="card-body pb-2">
-					<div class="row">
-
-						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahSimpanan')" v-if="currentUser.can && currentUser.can['create_saldo']">
-								<i class="icon-plus22"></i> Tambah
-							</button>
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahSimpanan')"
-							:disabled="!selectedItemSimpanan.index" v-if="currentUser.can && currentUser.can['update _saldo']">
-								<i class="icon-pencil5"></i> Ubah
-							</button>
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusSimpanan')" :disabled="!selectedItemSimpanan.index" v-if="currentUser.can && currentUser.can['destroy_saldo']">
-								<i class="icon-bin2"></i> Hapus
-							</button>
-
-						</div>
-
-					</div>		
-				</div>
-
-				<data-table :items="itemDataSimpanan" :columnData="columnDataSimpanan" :itemDataStat="itemDataSimpananStat">
-					<template slot="item-desktop" slot-scope="props">
-						<tr :class="{ 'bg-info': selectedItemSimpanan.index === props.index + 1 }" class="text-nowrap" @click="selectedSimpananRow(props.index,props.item)" v-if="props.item">
-							<td>{{ props.index + 1 }}</td>
-							<td><check-value :value="props.item.cu.name"></check-value></td>
-							<td><check-value :value="props.item.no_rek"></check-value></td>
-							<td><check-value :value="props.item.produk_cu.name"></check-value></td>
-							<td><check-value :value="props.item.saldo" valueType="currency"></check-value></td>
-							<td><span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span> <span v-else>-</span></td>
-						</tr>
-					</template>	
-				</data-table>
-
-			</div>
-
-			<!-- pinjaman -->
-			<div class="card" v-if="mode != 'edit'">
-				<div class="card-header bg-white">
-					<h5 class="card-title" v-if="currentUser && currentUser.id_cu == 0">4. Pinjaman</h5>
-					<h5 class="card-title" v-else>4. Pinjaman</h5>
-				</div>
-				<div class="card-body pb-2">
-					<div class="row">
-
-						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPinjaman')" v-if="currentUser.can && currentUser.can['create_saldo']">
-								<i class="icon-plus22"></i> Tambah
-							</button>
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPinjaman')"
-							:disabled="!selectedItemPinjaman.index" v-if="currentUser.can && currentUser.can['update_saldo']">
-								<i class="icon-pencil5"></i> Ubah
-							</button>
-
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPinjaman')" :disabled="!selectedItemPinjaman.index" v-if="currentUser.can && currentUser.can['destroy_saldo']">
-								<i class="icon-bin2"></i> Hapus
-							</button>
-
-						</div>
-
-					</div>		
-				</div>
-
-				<data-table :items="itemDataPinjaman" :columnData="columnDataPinjaman" :itemDataStat="itemDataPinjamanStat">
-					<template slot="item-desktop" slot-scope="props">
-						<tr :class="{ 'bg-info': selectedItemPinjaman.index === props.index + 1}" class="text-nowrap" @click="selectedPinjamanRow(props.index, props.item)" v-if="props.item">
-							<td>{{ props.index + 1 }}</td>
-							<td><check-value :value="props.item.cu.name"></check-value></td>
-							<td><check-value :value="props.item.no_rek"></check-value></td>
-							<td><check-value :value="props.item.produk_cu.name"></check-value></td>
-							<td><check-value :value="props.item.saldo" valueType="currency"></check-value></td>
-							<td><span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span> <span v-else>-</span></td>
-							<td><check-value :value="props.item.lama_pinjaman"></check-value></td>
 						</tr>
 					</template>	
 				</data-table>
@@ -587,26 +659,6 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah simpanan -->
-			<template slot="modal-body1">
-				<form-simpanan 
-				:mode="formSimpananMode"
-				:selected="selectedItemSimpanan"
-				@createSimpanan="createSimpanan"
-				@editSimpanan="editSimpanan"
-				@tutup="modalTutup"></form-simpanan>
-			</template>
-
-			<!-- tambah pinjaman -->
-			<template slot="modal-body2">
-				<form-pinjaman 
-				:mode="formPinjamanMode"
-				:selected="selectedItemPinjaman"
-				@createPinjaman="createPinjaman"
-				@editPinjaman="editPinjaman"
-				@tutup="modalTutup"></form-pinjaman>
-			</template>
-
 			<!-- tambah cu -->
 			<template slot="modal-body3">
 				<form-cu 
@@ -630,8 +682,6 @@
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formCu from "./formCu.vue";
-	import formSimpanan from "./formSimpanan.vue";
-	import formPinjaman from "./formPinjaman.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
@@ -646,13 +696,12 @@
 			appImageUpload,
 			message,
 			formCu,
-			formSimpanan,
-			formPinjaman,
 			formButton,
 			formInfo,
 			Cleave,
 			dataTable,
 			checkValue,
+			appImageUpload,
 			infoIcon
 		},
 		data() {
@@ -702,31 +751,6 @@
 					{ title: 'No. BA' },
 					{ title: 'Tgl. Jadi Anggota' },
 				],
-				formSimpananMode: '',
-				selectedItemSimpanan: '',
-				itemDataSimpanan: [],
-				itemDataSimpananStat: 'success',
-				columnDataSimpanan:[
-					{ title: 'No.' },
-					{ title: 'CU' },
-					{ title: 'No. Rekening' },
-					{ title: 'Simpanan' },
-					{ title: 'Saldo' },
-					{ title: 'Tanggal' },
-				],
-				formPinjamanMode: '',
-				selectedItemPinjaman: '',
-				itemDataPinjaman: [],
-				itemDataPinjamanStat: 'success',
-				columnDataPinjaman:[
-					{ title: 'No.' },
-					{ title: 'CU' },
-					{ title: 'No. SPP' },
-					{ title: 'Pinjaman' },
-					{ title: 'Saldo' },
-					{ title: 'Tanggal' },
-					{ title: 'Lama Pinjaman' },
-				],
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -743,22 +767,17 @@
 			}
 			
 			this.form.id_cu = this.currentUser.id_cu;
-
 			this.$store.dispatch('provinces/get');
-			if(this.form.id_provinces){
-				this.changeProvinces(this.form.id_provinces);
-			}
-			if(this.form.id_regencies){
-				this.changeRegencies(this.form.id_regencies);
-			}
-			if(this.form.id_districts){
-				this.changeDistricts(this.form.id_districts);
-			}
-
-			this.fetchProduk();
-			this.fetchCu();
+			this.fetch();
 		},
 		watch: {
+			formStat(value){
+				if(value == 'success'){
+					if(this.mode == 'edit' || this.mode == 'createEdit'){
+						this.fetchCu();
+					}
+				}
+			},
 			updateStat(value) {
 				this.modalShow = true;
 				this.modalState = value;
@@ -773,45 +792,15 @@
 			}
 		},
 		methods: {
-			fetchProduk() {
+			fetch() {
 				if(this.mode == 'create_new'){
 					this.form.nik = this.nik;
 				}else if(this.mode == 'create_old'){
+					this.fetchCu();
+				}
 
-					// produk cu
-					this.itemDataSimpanan = [];
-					this.itemDataPinjaman = [];
-					var valDataProduk;
-
-					if(this.form.anggota_produk_cu){
-						for(valDataProduk of this.form.anggota_produk_cu){
-							var datas = {};
-							var cu = {};
-							var produk_cu = {};
-
-							if(this.currentUser.id_cu == 0){
-								let data = _.find(this.modelCu,{'id':valDataProduk.id_cu});
-								cu.id = data.id;
-								cu.name = data.name;
-							}else{
-								cu.id = this.currentUser.cu.id;
-								cu.name = this.currentUser.cu.name;
-							}
-							
-							produk_cu.id = valDataProduk.id;
-							produk_cu.name = valDataProduk.name;
-							datas = valDataProduk.pivot;
-							datas.cu = cu;
-							datas.produk_cu = produk_cu;
-							
-							if(valDataProduk.tipe == 'Simpanan Pokok' || 	valDataProduk.tipe == 'Simpanan Wajib' ||valDataProduk.tipe == 'Simpanan Non Saham'){
-								this.itemDataSimpanan.push(datas);
-							}else if(valDataProduk.tipe == 'Pinjaman Kapitalisasi' || valDataProduk.tipe == 'Pinjaman Umum' ||valDataProduk.tipe == 'Pinjaman Produktif'){
-								this.itemDataPinjaman.push(datas);
-							}
-
-						}
-					}
+				if(this.mode == 'edit' || this.mode == 'createEdit'){
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				}
 			},
 			fetchCu(){
@@ -839,6 +828,16 @@
 						this.form.tanggal_masuk = data.pivot.tanggal_masuk;
 					}
 				}
+
+				if(this.form.id_provinces){
+					this.changeProvinces(this.form.id_provinces);
+				}
+				if(this.form.id_regencies){
+					this.changeRegencies(this.form.id_regencies);
+				}
+				if(this.form.id_districts){
+					this.changeDistricts(this.form.id_districts);
+				}
 			},
 			createCu(value){
 				this.itemDataCu.push(value);
@@ -851,49 +850,20 @@
 				this.itemDataCu.push(value);
 				this.modalTutup(); 
 			},
-			createSimpanan(value){
-				this.itemDataSimpanan.push(value);
-				this.selectedItemSimpanan = '';
-				this.modalTutup();
-			},
-			editSimpanan(value){
-				_.remove(this.itemDataSimpanan, {
-						index: value.index
-				});
-				this.itemDataSimpanan.push(value);
-				this.selectedItemSimpanan = '';
-				this.modalTutup(); 
-			},
-			createPinjaman(value){
-				this.itemDataPinjaman.push(value);
-				this.selectedItemPinjaman = '';
-				this.modalTutup();
-			},
-			editPinjaman(value){
-				_.remove(this.itemDataPinjaman, {
-						index: value.index
-				});
-				this.itemDataPinjaman.push(value);
-				this.selectedItemPinjaman = '';
-				this.modalTutup(); 
-			},
 			save() {
-				this.form.simpanan = this.itemDataSimpanan;
-				this.form.pinjaman = this.itemDataPinjaman;
-
 				if(this.currentUser.id_cu == 0){
 					this.form.cu = this.itemDataCu;
 				}else{
 					this.form.id_cu = this.currentUser.id_cu;
 				}
 
-				const formData = this.form;
+				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.mode == 'create_new'){
 							this.$store.dispatch(this.kelas + '/store', formData);
 						}else if(this.mode == 'create_old'){
-							this.$store.dispatch(this.kelas + '/update', [this.itemData.id,formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.form.id,formData]);
 						}else if(this.mode == 'edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id,formData]);
 						}
@@ -924,14 +894,6 @@
 				this.selectedItemCu = item;
 				this.selectedItemCu.index = index + 1;
 			},
-			selectedSimpananRow(index,item){
-				this.selectedItemSimpanan = item;
-				this.selectedItemSimpanan.index = index + 1;
-			},
-			selectedPinjamanRow(index,item){
-				this.selectedItemPinjaman = item;
-				this.selectedItemPinjaman.index = index + 1;
-			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.state = state;
@@ -956,46 +918,6 @@
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formCuMode = 'create';
-				}else if (state == 'hapusSimpanan') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Simpanan ' + this.selectedItemSimpanan.produk_cu.name + ' ?';
-					this.modalButton = 'Iya, Hapus';
-					this.modalSize = '';
-				}else if(state == 'ubahSimpanan'){
-					this.modalState = 'normal1';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Simpanan';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formSimpananMode = 'edit';
-				}else if(state == 'tambahSimpanan'){
-					this.modalState = 'normal1';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Simpanan';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formSimpananMode = 'create';
-				}else if (state == 'hapusPinjaman') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Pinjaman ' + this.selectedItemPinjaman.produk_cu.name + ' ?';
-					this.modalButton = 'Iya, Hapus';
-					this.modalSize = '';
-				}else if(state == 'ubahPinjaman'){
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Pinjaman';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formPinjamanMode = 'edit';
-				}else if(state == 'tambahPinjaman'){
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Pinjaman';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formPinjamanMode = 'create';
 				}
 			},
 			modalConfirmOk() {
@@ -1005,21 +927,23 @@
 					_.remove(this.itemDataCu, {
 						index: this.selectedItemCu.index
 					});
-				}else if (this.state == 'hapusSimpanan') {
-					_.remove(this.itemDataSimpanan, {
-						index: this.selectedItemSimpanan.index
-					});
-					this.selectedItemSimpanan = '';
-				}else if (this.state == 'hapusPinjaman') {
-					_.remove(this.itemDataPinjaman, {
-						index: this.selectedItemPinjaman.index
-					});
-					this.selectedItemPinjaman = '';
 				}
 			},
 			modalTutup() {
-				if (this.updateStat === 'success') {
-					this.back();
+				if (this.updateStat === 'success') {				
+					if(this.mode == 'create_new' || this.mode == 'create_old'){
+						let idcu = '';
+						if(this.currentUser.id_cu != 0){
+							idcu = this.currentUser.id_cu;
+						}else{
+							idcu = 'semua';
+						}
+						this.$router.push({ name: this.kelas + "ProdukCreate",params: {id: this.updateResponse.id, cu: idcu }});
+					}else{
+						this.back();
+					}
+
+					this.$store.dispatch(this.kelas + '/resetUpdateStat');
 				}
 
 				this.modalShow = false;

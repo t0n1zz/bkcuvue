@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>VERSION 3.1.1</span>
+							<span>VERSION 3.1.2</span>
 						</router-link>
 					</span>
 				</span>
@@ -437,9 +437,9 @@
 							</router-link>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
+							<!-- <router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
 								<i class="icon-wallet"></i> Saldo
-							</router-link>
+							</router-link> -->
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 

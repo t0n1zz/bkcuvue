@@ -10,6 +10,30 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.2 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#312">Version 3.1.2 <small class="text-muted"> / 24 Agustus 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="312" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Perbaikan bug pada anggota cu, klaim JALINAN dan aktivis
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug di anggota CU</li>
+                      <li>Perbaikan bug di klaim JALINAN</li>
+                      <li>Perbaikan bug di aktivis </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.2 -->
+
               <!-- Version 3.1.1 -->
               <div class="card">
                 <div class="card-header">
@@ -18,7 +42,7 @@
                   </h5>
                 </div>
 
-                <div id="311" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="311" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Perbaikan bug pada perhitungan laporan PEARLS dan penambahan field baru untuk mitra
                     <br/><br/>

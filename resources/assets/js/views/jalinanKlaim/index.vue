@@ -47,13 +47,13 @@
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
-							<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'ditolak'" v-if="isDitolak">
-							<table-data :title="title" :kelas="kelas" :itemData="itemData2" :itemDataStat="itemDataStat2" :status="'2'"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData2" :itemDataStat="itemDataStat2" :status="'2'"></table-data>
 							</div>
 						</transition>
 					</div>

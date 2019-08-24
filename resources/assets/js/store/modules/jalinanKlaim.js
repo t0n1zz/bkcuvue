@@ -6,6 +6,7 @@ export const jalinanKlaim = {
   // state
   state: {
     data: {}, //single data
+    data2: {}, //single data
     dataS: [], //collection
     dataS1: [], //collection
     dataS2: [], //collection
@@ -13,6 +14,7 @@ export const jalinanKlaim = {
     count: {},
     headerDataS: [],
     dataStat: '',
+    dataStat2: '',
     dataStatS: '',
     dataStatS1: '',
     dataStatS2: '',
@@ -28,6 +30,7 @@ export const jalinanKlaim = {
   // getters
   getters: {
     data: state => state.data,
+    data2: state => state.data2,
     dataS: state => state.dataS,
     dataS1: state => state.dataS1,
     dataS2: state => state.dataS2,
@@ -35,6 +38,7 @@ export const jalinanKlaim = {
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
+    dataStat2: state => state.dataStat2,
     dataStatS: state => state.dataStatS,
     dataStatS1: state => state.dataStatS1,
     dataStatS2: state => state.dataStatS2,
@@ -131,16 +135,16 @@ export const jalinanKlaim = {
     },
 
     cariData( {commit}, nik ){
-      commit('setDataStatS', 'loading');
+      commit('setDataStat2', 'loading');
       
       JalinanKlaimAPI.cariData( nik )
         .then( function( response ){
-          commit('setDataS', response.data.model);
-          commit('setDataStatS', 'success');
+          commit('setData2', response.data.model);
+          commit('setDataStat2', 'success');
         })
         .catch(error => {
-          commit('setDataS', error.response);
-          commit('setDataStatS', 'fail');
+          commit('setData2', error.response);
+          commit('setDataStat2', 'fail');
         });
     },
 
@@ -300,6 +304,9 @@ export const jalinanKlaim = {
     setData ( state, data ){
       state.data = data;
     },
+    setData2 ( state, data ){
+      state.data2 = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
@@ -320,6 +327,9 @@ export const jalinanKlaim = {
     },
     setDataStat( state, status ){
       state.dataStat = status;
+    },
+    setDataStat2( state, status ){
+      state.dataStat2 = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;

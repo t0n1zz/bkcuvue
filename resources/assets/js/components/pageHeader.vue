@@ -23,6 +23,11 @@
 						<a href="#" class="breadcrumb-item" @click.prevent="level2Back()">{{ level2Title }}</a>
 						<span class="breadcrumb-item active">{{ title }}</span>
 					</div>
+
+					<!-- level custom -->
+					<div class="breadcrumb" v-if="level === 3">
+						<slot name="breadcrumb"></slot>
+					</div>	
 				</div>
 			</div>
 		</div>

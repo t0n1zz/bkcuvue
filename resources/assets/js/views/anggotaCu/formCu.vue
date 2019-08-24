@@ -10,16 +10,16 @@
 
 			<!-- cu -->
 			<div class="col-md-12" v-if="currentUser.id_cu === 0">
-				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.cu.id')}">
+				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.cu_id')}">
 
 					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formDataCu.cu.id')}">
-						<i class="icon-cross2" v-if="errors.has('formDataCu.cu.id')"></i>
+					<h5 :class="{ 'text-danger' : errors.has('formDataCu.cu_id')}">
+						<i class="icon-cross2" v-if="errors.has('formDataCu.cu_id')"></i>
 						CU:
 					</h5>
 
 					<!-- select -->
-					<select class="form-control" name="cu_id" v-model="formDataCu.cu.id" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+					<select class="form-control" name="cu_id" v-model="formDataCu.cu_id" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 						<option disabled value="0">
 							<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih CU</span>
@@ -28,8 +28,8 @@
 					</select>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('formDataCu.cu.id')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('formDataCu.cu.id') }}
+					<small class="text-muted text-danger" v-if="errors.has('formDataCu.cu_id')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formDataCu.cu_id') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
@@ -90,13 +90,13 @@
 			<button type="button" class="btn btn-light" @click.prevent="tutup">
 				<i class="icon-cross"></i> Tutup</button>
 
-			<button type="submit" class="btn btn-primary" :disabled="formDataCu.cu.id == ''">
+			<button type="submit" class="btn btn-primary" :disabled="formDataCu.cu_id == ''">
 				<i class="icon-floppy-disk"></i> Simpan</button>
 		</div>  
 
 		<!-- tombol mobile-->
 		<div class="d-block d-md-none">
-			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formDataCu.cu.id == ''">
+			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formDataCu.cu_id == ''">
 				<i class="icon-floppy-disk"></i> Simpan</button>
 
 			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
@@ -130,10 +130,8 @@
 				formDataCu:{
 					no_ba: '',
 					tanggal_masuk: '',
-					cu:{
-						id: 0,
-						name: ''
-					}
+					cu_id: 0,
+					cu_name: '',
 				},
 				modelProdukCu: [],
 				modelProdukCuStat: '',
@@ -184,7 +182,7 @@
 						return o.id == id;
 					});
 				}
-				this.formDataCu.cu.name = cu.name;
+				this.formDataCu.cu_name = cu.name;
 			},
 			fetchCU(){
 				if(this.modelCuStat != 'success'){

@@ -24,7 +24,7 @@ class MitraOrang extends Model {
     }
     
     protected $fillable = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','jabatan','pendidikan','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces','bidang'
+        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','jabatan','pendidikan','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces','bidang','npwp'
     ];
 
     protected $allowedFilters = [

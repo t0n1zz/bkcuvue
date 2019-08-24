@@ -968,6 +968,7 @@
 			},
 			modalTutup() {
  				if(this.updateStat == 'success' && this.state == ''){
+					this.$store.dispatch(this.kelas + '/resetUpdateStat');
 					this.back();
 				}
 				this.modalShow = false;

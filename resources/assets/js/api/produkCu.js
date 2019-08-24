@@ -8,6 +8,10 @@ export default {
     return axios.get('/api/produkcu/indexCu/' + id, {params: p});
   },
 
+  getCu: function( id ){
+    return axios.get('/api/produkcu/getCu/' + id);
+  },
+
   getSimpananCu: function( id ){
     return axios.get('/api/produkcu/getSimpananCu/' + id);
   },

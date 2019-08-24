@@ -38,6 +38,7 @@ import mitraLembaga from './views/mitraLembaga/index.vue';
 import mitraLembaga_form from './views/mitraLembaga/form.vue';
 import anggotaCu from './views/anggotaCu/index.vue';
 import anggotaCu_form from './views/anggotaCu/form.vue';
+import anggotaCu_produk from './views/anggotaCu/produk.vue';
 import saldo from './views/saldo/index.vue';
 import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
@@ -306,10 +307,22 @@ const routes = [
 		name: 'anggotaCuCreate', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'create' }},
+	{ path: '/anggotaCu/create/:id',
+		name: 'anggotaCuCreateEdit', 
+		components: { default: anggotaCu_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'createEdit' }},	
 	{ path: '/anggotaCu/edit/:id',
 		name: 'anggotaCuEdit', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/anggotaCu/produk/create/:id/cu/:cu',
+		name: 'anggotaCuProdukCreate', 
+		components: { default: anggotaCu_produk, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'create' }},		
+	{ path: '/anggotaCu/produk/edit/:id/cu/:cu',
+		name: 'anggotaCuProdukEdit', 
+		components: { default: anggotaCu_produk, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},		
 		
 	// saldo	
 	{ path: '/saldo',
@@ -322,14 +335,14 @@ const routes = [
 		name: 'jalinanKlaimCu', 
 		components: { default: jalinanKlaim, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'cu' }},
-	{ path: '/jalinan/klaim',
-		name: 'jalinanKlaim', 
-		components: { default: jalinanKlaim, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true }},
 	{ path: '/jalinan/klaim/create',
 		name: 'jalinanKlaimCreate', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'create' }},
+	{ path: '/jalinan/klaim/create/nik/:nik',
+		name: 'jalinanKlaimCreateNIK', 
+		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'createNIK' }},	
 	{ path: '/jalinan/klaim/edit/:id',
 		name: 'jalinanKlaimEdit', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 

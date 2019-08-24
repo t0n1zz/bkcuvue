@@ -151,6 +151,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // produk
+    Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
     Route::get('/produkcu/getSimpananCu/{id}', 'ProdukCuController@getSimpananCu');
     Route::get('/produkcu/getPinjamanCu/{id}', 'ProdukCuController@getPinjamanCu');
     Route::group(['middleware' => ['permission:index_produk_cu']], function () {
@@ -296,6 +297,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
         Route::get('/anggotaCu', 'AnggotaCuController@index');
         Route::get('/anggotaCu/indexCu/{id}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaCuController@indexProduk'); 
         Route::get('/anggotaCu/count', 'AnggotaCuController@count');
         Route::get('/anggotaCu/history', 'AnggotaCuController@history');
         Route::get('/anggotaCu/cariData/{nik}', 'AnggotaCuController@cariData');
@@ -315,7 +317,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {
-        Route::delete('/anggotaCu/{id}', 'AnggotaCuController@destroy');
+        Route::delete('/anggotaCu/{id}/cu/{cu}', 'AnggotaCuController@destroy');
         Route::delete('/anggotaCuCu/{id}', 'AnggotaCuController@destroyCu');
         Route::delete('/anggotaProdukCu/{id}', 'AnggotaCuController@destroyProduk');
     });

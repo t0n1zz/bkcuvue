@@ -8,6 +8,10 @@ export default {
     return axios.get('/api/anggotaCu/indexCu/' + id, {params: p});
   },
 
+  indexProduk: function( id, cu ){
+    return axios.get('/api/anggotaCu/indexProduk/' + id + '/cu/' + cu);
+  },
+
   detail: function( id ){
     return axios.get('/api/anggotaCu/detail/' + id);
   },
@@ -44,8 +48,8 @@ export default {
     return axios.post('/api/anggotaCu/updateProduk/' + id, form);
   },
 
-  destroy: function( id ){
-    return axios.delete('/api/anggotaCu/' + id);
+  destroy: function( id, cu ){
+    return axios.delete('/api/anggotaCu/' + id + '/cu/' + cu);
   },
   
   destroyCu: function( id ){

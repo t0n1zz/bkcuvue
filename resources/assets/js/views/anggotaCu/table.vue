@@ -2,20 +2,26 @@
   <div>
 
     <!-- main panel -->
-    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUploads="excelUploads" @fetch="fetch">
+    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
       <!-- button desktop -->
       <template slot="button-desktop">
 
         <!-- tambah -->
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
-          <i class="icon-plus3"></i> Tambah Anggota CU
+          <i class="icon-plus3"></i> Tambah
         </router-link>
 
-        <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
+        <!-- ubah identitas -->
+        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
+        </button>
+
+        <!-- ubah produk -->
+        <button @click.prevent="ubahData(selectedItem.id,'produk')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
+          :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Produk
         </button>
 
         <!-- TODO:: ganti akses ke index_anggota_cu_saldo -->
@@ -25,11 +31,16 @@
           <i class="icon-wallet"></i> Lihat Saldo
         </button> -->
 
+        <!-- klaim jalinan -->
+        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim']" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
+          <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
+        </button>
+
         <!-- hapus -->
-        <!-- <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
+          :disabled="!selectedItem.id || this.currentUser.id_cu == 0">
           <i class="icon-bin2"></i> Hapus
-        </button> -->
+        </button>
 
       </template>
 
@@ -38,7 +49,7 @@
 
         <!-- tambah -->
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
-          <i class="icon-plus3"></i> Tambah Anggota CU
+          <i class="icon-plus3"></i> Tambah
         </router-link>
 
         <!-- ubah-->
@@ -54,11 +65,16 @@
           <i class="icon-wallet"></i> Lihat Saldo
         </button> -->
 
+        <!-- klaim jalinan -->
+        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim']" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
+          <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
+        </button>
+
         <!-- hapus -->
-        <!-- <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
+          :disabled="!selectedItem.id || this.currentUser.id_cu == 0">
           <i class="icon-bin2"></i> Hapus
-        </button> -->
+        </button>
 
       </template>
 
@@ -85,70 +101,80 @@
             </span>
             <span v-else>-</span>
 					</td>
-					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.lembaga"></check-value>
+          <td v-if="!columnData[4].hide">
+            <span v-if="props.item.status_jalinan">
+						  <label class="badge badge-warning ml-1">
+                DIAJUKAN
+              </label>
+            </span>
+            <span v-else>
+              -
+            </span>
 					</td>
 					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.jabatan"></check-value>
+						<check-value :value="props.item.lembaga"></check-value>
 					</td>
 					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.pendidikan"></check-value>
+						<check-value :value="props.item.jabatan"></check-value>
 					</td>
 					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.email"></check-value>
+						<check-value :value="props.item.pendidikan"></check-value>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.hp"></check-value>
+						<check-value :value="props.item.email"></check-value>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.kontak"></check-value>
+						<check-value :value="props.item.hp"></check-value>
 					</td>
 					<td v-if="!columnData[10].hide">
+						<check-value :value="props.item.kontak"></check-value>
+					</td>
+					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-          <td v-if="!columnData[11].hide">
+          <td v-if="!columnData[12].hide">
 						<check-value :value="props.item.alih_waris"></check-value>
 					</td>
-					<td v-if="!columnData[12].hide">
+					<td v-if="!columnData[13].hide">
 						<check-value :value="props.item.darah"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.tinggi"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.agama"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.status"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
 					</td>
-					<td v-if="!columnData[17].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
+          <td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
 					</td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[26].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -241,6 +267,15 @@
             hide: false,
             disable: false,
             filter: true,
+          },
+          {
+            title: 'JALINAN',
+            name: 'jalinan',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
           },
           {
             title: 'Lembaga',
@@ -487,13 +522,30 @@
       selectedRow(item) {
         this.selectedItem = item;
       },
-      ubahData(id) {
-        this.$router.push({
-          name: this.kelas + "Edit",
-          params: {
-            id: id
-          }
-        });
+      ubahData(id,type) {
+        if(type == 'identitas'){
+          this.$router.push({
+            name: this.kelas + "Edit",
+            params: {
+              id: id
+            }
+          });
+        }else if(type == 'produk'){
+          this.$router.push({
+            name: this.kelas + "ProdukEdit",
+            params: {
+              id: id,
+              cu: this.$route.params.cu,
+            }
+          });
+        }else if(type == 'jalinan'){
+          this.$router.push({
+            name: "jalinanKlaimCreateNIK",
+            params: {
+              nik: id
+            }
+          });
+        }
       },
       lihatSaldo(id) {
         this.$router.push({
@@ -524,7 +576,11 @@
       },
       modalConfirmOk() {
         if (this.state == "hapus") {
-          this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
+          if(this.$route.params.cu != 'semua'){
+            this.$store.dispatch(this.kelas + "/destroy", [this.selectedItem.id, this.$route.params.cu]);
+          }else{
+
+          }
         }
       }
     },

@@ -44,6 +44,9 @@
 					<!-- edit -->
 					<form-create v-if="$route.meta.mode == 'edit'" :mode="'edit'"></form-create>
 
+					<!-- createedit -->
+					<form-create v-if="$route.meta.mode == 'createEdit'" :mode="'createEdit'"></form-create>
+
 				</div>
 			</div>
 		</div>

@@ -122,6 +122,7 @@
 					<small class="text-muted">Kosongkan apabila masih menjalani pendidikan / belum mengetahui tanggal selesai pendidikan</small>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </template>

@@ -216,6 +216,22 @@
 										</div>
 									</div>
 
+									<!-- npwp -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.npwp')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.npwp')}">
+												<i class="icon-cross2" v-if="errors.has('form.npwp')"></i>
+												NPWP (nomor pokok wajib pajak):</h5>
+
+											<!-- text -->
+											<input type="text" name="npwp" class="form-control" placeholder="Silahkan masukkan NPWP"  v-model="form.npwp">
+
+											<small class="text-muted">&nbsp;</small>	
+										</div>
+									</div>
+
 									<!-- lembaga -->
 									<div class="col-md-4">
 										<div class="form-group">
