@@ -48,7 +48,7 @@ class JalinanKlaim extends Model {
 
     public function anggota_cu()
     {
-        return $this->belongsTo('App\AnggotaCU','anggota_cu_id','id');
+        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id');
     }
 
     public function anggota_cu_cu()

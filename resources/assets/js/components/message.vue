@@ -25,32 +25,28 @@
 					<!-- error status -->
 					<div v-if="errorData">
 						<span v-if="errorData.status === 404">
-							<b v-if="showDebug">ERROR 404:</b> Data tidak ditemukan, silahkan coba lagi
+							<b v-if="showDebug">ERROR 404</b>
 						</span>
 						<span v-else-if="errorData.status === 419">
-							<b v-if="showDebug">ERROR 419:</b> Kesalahan sesi, silahkan refresh halaman ini
+							<b v-if="showDebug">ERROR 419</b>
 						</span>
 						<span v-else-if="errorData.status === 422">
-							<b v-if="showDebug">ERROR 422:</b> Username atau password anda salah
+							<b v-if="showDebug">ERROR 422</b>
 						</span>
 						<span v-else-if="errorData.status === 500">
-							<b v-if="showDebug">ERROR 500:</b> {{ errorData.data.message }}
+							<b v-if="showDebug">ERROR 500</b>
 						</span>
 						<span v-else>
-						 {{ errorData }}
+						 <b>ERROR</b>
 						</span>
 
 						<!-- debug -->
 						<div v-if="showDebug">
 							<hr/>
-							<pre class="pre-scrollable language-markup content-group text-left pb-2" v-if="showDetail"><code v-html="errorData.data"></code></pre>
-							<hr v-if="showDetail" />
-
-							<!-- debug button -->
-							<button class="btn btn-light btn-block text-left" @click="detail">
-								<span v-if="showDetail">TUTUP DETAIL ERROR</span>
-								<span v-else>BUKA DETAIL ERROR</span>
-							</button>
+							<pre class="pre-scrollable language-markup content-group text-left pb-2">
+								<code v-if="errorData.data" v-html="errorData.data.message"></code>
+								<code v-if="errorData.message" v-html="errorData.message"></code>
+							</pre>
 						</div>
 					</div>
 					

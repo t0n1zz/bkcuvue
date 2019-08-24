@@ -28,7 +28,7 @@
 		<div class="card" v-if="formPanitia.aktivis_id">
 			<div class="card-header bg-info text-white header-elements-inline">
 				<h6 class="card-title">{{ formPanitia.name }}</h6>
-				<div class="header-elements">
+				<div class="header-elements" v-if="mode != 'edit'">
 					<button type="button" class="btn btn-danger" @click.prevent="deleteSelected"><i class="icon-cross2 mr-2"></i> Batal</button>
 				</div>
 			</div>
@@ -336,7 +336,7 @@
 		},
 		created(){
 			if(this.mode == 'edit'){
-				this.form = this.selected;
+				this.formPanitia = Object.assign({}, this.selected);
 			}
 		},
 		methods: {

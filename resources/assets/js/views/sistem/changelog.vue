@@ -20,14 +20,18 @@
 
                 <div id="312" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Perbaikan bug pada anggota cu, klaim JALINAN dan aktivis
+                    <p class="mb-3">Update versi ini lebih kepada perbaikan bug-bug yang ada pada fitur-fitur yang sudah ada serta peningkatan pengalaman penoperasian pada beberapa bagian.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Perbaikan bug di anggota CU</li>
-                      <li>Perbaikan bug di klaim JALINAN</li>
-                      <li>Perbaikan bug di aktivis </li>
+                      <li>Perbaikan bug di penambahan anggota CU dan produk anggota CU </li>
+                      <li>Perbaikan bug di penambahan klaim JALINAN </li>
+                      <li>Perbaikan bug di penambahan data aktivis baru </li>
+                      <li>Perbaikan bug di pengubahan data panitia/fasilitator pada bagian diklat </li>
+                      <li>Perbaikan bug di isi kolom laporan PEARLS yang tidak sesuai dengan judul kolom </li>
+                      <li>Perbaikan bug pada perhitungan jumlah anggota perorang dalam gerakan yang disajikan di halaman publik website BKCU Kalimantan </li>
+                      <li>Mengubah cara penyajian informasi error kepada user yang lebih mudah dimengerti </li>
                     </ul>
                   </div>
                 </div>

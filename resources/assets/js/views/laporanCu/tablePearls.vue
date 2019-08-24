@@ -65,74 +65,74 @@
 							:props="props.item"
 						></item-pearls>
 					</td>
-          <td v-if="!columnData[12].hide" @click.prevent="modelKatexOpen(props.item,'e7')" style="cursor:pointer;">
+          <td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'e7')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e7'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[13].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
+					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'e9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'e9'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[14].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
+					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'a1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a1'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[15].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
+					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'a2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'a2'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[16].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
+					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'r7')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r7'"
 							:props="props.item"
 						></item-pearls>	
 					</td>
-					<td v-if="!columnData[17].hide" @click.prevent="modelKatexOpen(props.item,'r9')" style="cursor:pointer;">
+					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'r9')" style="cursor:pointer;">
 						<item-pearls
 							:type="'r9'"
 							:props="props.item"
 						></item-pearls>	
 					</td>
-					<td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
+					<td v-if="!columnData[19].hide" @click.prevent="modelKatexOpen(props.item,'l1')" style="cursor:pointer;">
 						<item-pearls
 							:type="'l1'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-          <td v-if="!columnData[18].hide" @click.prevent="modelKatexOpen(props.item,'l2')" style="cursor:pointer;">
+          <td v-if="!columnData[20].hide" @click.prevent="modelKatexOpen(props.item,'l2')" style="cursor:pointer;">
 						<item-pearls
 							:type="'l2'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[19].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
+					<td v-if="!columnData[21].hide" @click.prevent="modelKatexOpen(props.item,'s10')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s10'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[20].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
+					<td v-if="!columnData[22].hide" @click.prevent="modelKatexOpen(props.item,'s11')" style="cursor:pointer;">
 						<item-pearls
 							:type="'s11'"
 							:props="props.item"
 						></item-pearls>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.harga_pasar/100" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.laju_inflasi/100" valueType="percentage"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[26].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
