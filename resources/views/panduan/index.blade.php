@@ -12,5 +12,13 @@
   @include('panduan.artikelPenulis')
   @include('panduan.pengumuman')
   @include('panduan.diklatBKCU')
+  @include('panduan.anggotaCu')
+  @include('panduan.klaimJALINAN')
   @include('panduan.profilCU')
+  @include('panduan.tpkp')
+  @include('panduan.produk')
+  @include('panduan.aktivis')
+  @include('panduan.laporanGerakan')
+  @include('panduan.laporanPerkembangan')
+  @include('panduan.user')
 @stop

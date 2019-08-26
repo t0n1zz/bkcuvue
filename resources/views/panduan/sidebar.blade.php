@@ -57,8 +57,32 @@
           {{-- diklat BKCU --}}
           <li class="nav-item"><a href="#diklatBKCU" class="nav-link">11. Diklat BKCU</a></li>
 
+          {{-- anggota CU --}}
+          <li class="nav-item"><a href="#anggotaCU" class="nav-link">12. Anggota CU</a></li>
+
+          {{-- Klaim Jalinan --}}
+          <li class="nav-item"><a href="#klaimJALINAN" class="nav-link">13. Klaim JALINAN</a></li>
+
           {{-- Profil CU --}}
-          <li class="nav-item"><a href="#profilCU" class="nav-link">12. Profil CU</a></li>
+          <li class="nav-item"><a href="#profilCU" class="nav-link">14. Profil CU</a></li>
+
+          {{-- TP/KP --}}
+          <li class="nav-item"><a href="#tpkp" class="nav-link">15. TP/KP</a></li>
+
+          {{-- Produk & Pelayanan --}}
+          <li class="nav-item"><a href="#produk" class="nav-link">16. Produk & Pelayanan</a></li>
+
+          {{-- Aktivis --}}
+          <li class="nav-item"><a href="#aktivis" class="nav-link">17. Aktivis</a></li>
+
+          {{-- laporan gerakan --}}
+          <li class="nav-item"><a href="#laporanGerakan" class="nav-link">18. Laporan Statistik Gerakan</a></li>
+
+          {{-- laporan perkembangan --}}
+          <li class="nav-item"><a href="#laporanPerkembangan" class="nav-link">19. Laporan Perkembangan CU</a></li>
+
+          {{-- User --}}
+          <li class="nav-item"><a href="#user" class="nav-link">20. User</a></li>
 
           {{-- divider --}}
           <li class="nav-item-divider"></li>

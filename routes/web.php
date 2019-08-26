@@ -61,8 +61,6 @@ $appSubRoutes = function() {
 
 Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
 
-
-
 // admins
 Route::get('/admins/{vue?}', function () {
     return view('admins');
