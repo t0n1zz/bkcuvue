@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>VERSION 3.1.2</span>
+							<span>VERSION 3.1.3</span>
 						</router-link>
 					</span>
 				</span>

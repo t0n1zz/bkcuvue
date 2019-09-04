@@ -118,10 +118,12 @@
 
 											<span>
 												<span v-if="content.message">
-													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}</pre>
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}
+													</pre>
 												</span>
 												<span v-if="content.data">
-													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}</pre>
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}
+													</pre>
 												</span>
 											</span>
 										</div>

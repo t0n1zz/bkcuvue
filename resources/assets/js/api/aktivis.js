@@ -1,7 +1,7 @@
 export default {
   
-  index: function( p, tingkat ){
-    return axios.get('/api/aktivis/index/' + tingkat ,{params: p});
+  index: function( p, tingkat, status ){
+    return axios.get('/api/aktivis/index/' + tingkat + '/' + status ,{params: p});
   },
 
   indexTingkat: function( p ){
@@ -12,8 +12,8 @@ export default {
     return axios.get('/api/aktivis/indexLembaga' ,{params: p});
   },
 
-  indexCu: function( p, id, tingkat ){
-    return axios.get('/api/aktivis/indexCu/' + id + '/' + tingkat, {params: p});
+  indexCu: function( p, id, tingkat, status ){
+    return axios.get('/api/aktivis/indexCu/' + id + '/' + tingkat + '/' + status, {params: p});
   },
 
   indexPekerjaan: function( id ){
@@ -26,6 +26,10 @@ export default {
 
   indexOrganisasi: function( id ){
     return axios.get('/api/aktivis/indexOrganisasi/' + id);
+  },
+
+  indexDiklat: function( id ){
+    return axios.get('/api/aktivis/indexDiklat/' + id);
   },
 
   indexKeluarga: function( id ){
@@ -52,6 +56,10 @@ export default {
     return axios.get('/api/aktivis/createOrganisasi');
   },
 
+  createDiklat: function(){
+    return axios.get('/api/aktivis/createDiklat');
+  },
+
   createKeluarga: function(){
     return axios.get('/api/aktivis/createKeluarga');
   },
@@ -76,6 +84,10 @@ export default {
     return axios.post('/api/aktivis/saveOrganisasi/' + id, form);
   },
 
+  saveDiklat: function ( id, form ){
+    return axios.post('/api/aktivis/saveDiklat/' + id, form);
+  },
+
   saveKeluarga: function ( id, form ){
     return axios.post('/api/aktivis/saveKeluarga/' + id, form);
   },
@@ -84,12 +96,12 @@ export default {
     return axios.post('/api/aktivis/saveAnggotaCu/' + id, form);
   },
   
-  editIdentitas: function( id ){
-    return axios.get('/api/aktivis/editIdentitas/' + id);
+  edit: function( id ){
+    return axios.get('/api/aktivis/edit/' + id);
   },
 
-  updateIdentitas: function ( id, form ){
-    return axios.post('/api/aktivis/updateIdentitas/' + id, form);
+  update: function ( id, form ){
+    return axios.post('/api/aktivis/update/' + id, form);
   },
 
   destroy: function( id ){
@@ -106,6 +118,10 @@ export default {
 
   destroyOrganisasi: function( id ){
     return axios.delete('/api/aktivis/organisasi/' + id);
+  },
+  
+  destroyDiklat: function( id ){
+    return axios.delete('/api/aktivis/diklat/' + id);
   },
 
   destroyKeluarga: function( id ){

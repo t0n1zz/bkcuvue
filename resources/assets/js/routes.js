@@ -32,6 +32,7 @@ import tp_form from './views/tp/form.vue';
 import aktivis from './views/aktivis/index.vue';
 import aktivis_form from './views/aktivis/form.vue';
 import aktivis_edit from './views/aktivis/edit.vue';
+import aktivis_riwayat from './views/aktivis/riwayat.vue';
 import mitraOrang from './views/mitraOrang/index.vue';
 import mitraOrang_form from './views/mitraOrang/form.vue';
 import mitraLembaga from './views/mitraLembaga/index.vue';
@@ -265,6 +266,14 @@ const routes = [
 		name: 'aktivisEdit', 
 		components: { default: aktivis_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'edit' }},
+	{ path: '/aktivis/riwayat/create/:id/cu/:cu',
+		name: 'aktivisRiwayatCreate', 
+		components: { default: aktivis_riwayat, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'create' }},		
+	{ path: '/aktivis/riwayat/edit/:id/cu/:cu',
+		name: 'aktivisRiwayatEdit', 
+		components: { default: aktivis_riwayat, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},		
 
 	// mitra perseorangan
 	{ path: '/mitraOrang',

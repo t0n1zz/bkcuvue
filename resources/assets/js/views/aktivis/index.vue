@@ -23,10 +23,38 @@
 						:isPus="true"
 						:itemDataStat="itemDataStat"></select-data>
 
+					<div class="nav-tabs-responsive mb-3">
+						<ul class="nav nav-tabs nav-tabs-solid bg-light">
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktif'}" @click.prevent="changeTab('aktif')"><i class="icon-checkbox-checked mr-2"></i> AKTIVIS AKTIF</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'tidakAktif'}" @click.prevent="changeTab('tidakAktif')"><i class="icon-cancel-square mr-2"></i> AKTIVIS TIDAK AKTIF</a>
+							</li>
+						</ul>
+					</div>	
+
 					<!-- table data -->
-					<table-data 
-						:title="title" 
-						:kelas="kelas"></table-data>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'aktif'">
+							<table-data 
+								:title="title" 
+								:kelas="kelas"
+								:status="'aktif'"
+								:itemData="itemData" :itemDataStat="itemDataStat"></table-data>
+						</div>
+					</transition>	
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'tidakAktif'" v-if="isTidakAktif">
+							<table-data 
+								:title="title" 
+								:kelas="kelas"
+								:status="'tidakAktif'"
+								:itemData="itemData2" :itemDataStat="itemDataStat2"></table-data>
+						</div>
+					</transition>	
+
 				</div>
 			</div>
 		</div>
@@ -55,6 +83,8 @@
 				titleDesc: 'Mengelola data Aktivis CU',
 				titleIcon: 'icon-user-tie',
 				selectCuPath: 'aktivisCu',
+				tabName: 'aktif',
+				isTidakAktif: false,
 			}
 		},
 		created(){
@@ -72,6 +102,12 @@
 						}
 					}
 				}
+			},
+			changeTab(value) {
+				this.tabName = value;
+				if (value == 'tidakAktif' && !this.isTidakAktif) {
+					this.isTidakAktif = true
+				}
 			}
 		},
 		computed: {
@@ -80,7 +116,9 @@
 			}),
 			...mapGetters('aktivis',{
 				itemData: 'dataS',
-				itemDataStat: 'dataStatS'
+				itemData2: 'dataS2',
+				itemDataStat: 'dataStatS',
+				itemDataStat2: 'dataStatS2'
 			}),
 		}
 	}

@@ -23,8 +23,21 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
+					<!-- identitas -->
+					<div class="card">
+						<div class="card-header bg-white">
+							<h5 class="card-title">Identitas</h5>
+						</div>
+						<div class="card-body">
+							<identitas :itemData="form"></identitas>
+						</div>
+					</div>
+
 					<!-- produk -->
 					<div class="card">
+						<div class="card-header bg-white">
+							<h5 class="card-title">Produk</h5>
+						</div>
 						<div class="card-body pb-2">
 							<div class="row">
 
@@ -131,6 +144,7 @@
 	import formInfo from "../../components/formInfo.vue";
 	import formProduk from "./formProduk.vue";
 	import checkValue from '../../components/checkValue.vue';
+	import identitas from "../../components/identitas.vue";
 
 	export default {
 		components: {
@@ -142,7 +156,8 @@
 			formInfo,
 			formButton,
 			formProduk,
-			checkValue
+			checkValue,
+			identitas
 		},
 		data() {
 			return {
@@ -198,6 +213,7 @@
 		methods: {
 			fetch(){
 				this.$store.dispatch(this.kelas + '/indexProduk',[this.$route.params.id, this.$route.params.cu]);
+				this.$store.dispatch(this.kelas + '/edit',this.$route.params.id, this.$route.params.cu);
 			},
 			back(){
 				if(this.currentUser.id_cu != 0){
@@ -268,7 +284,9 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('anggotaCu',{
+				form: 'data',
 				itemData: 'dataProduk',
+				formDataStat: 'dataStat',
 				itemDataStat: 'dataProdukStat',
 				updateResponse: 'update',
 				updateStat: 'updateStat'

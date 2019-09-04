@@ -19,12 +19,12 @@
 					</h5>
 
 					<!-- select -->
-					<select class="form-control" name="cu_id" v-model="formProduk.cu.id" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="formStateCU.length === 0">
+					<select class="form-control" name="cu_id" v-model="formProduk.cu.id" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCu.length === 0">
 						<option disabled value="0">
-							<span v-if="formStateCUStat === 'loading'">Mohon tunggu...</span>
+							<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih CU</span>
 						</option>
-						<option v-for="cu in formStateCU" :value="cu.id">{{cu.name}}</option>
+						<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
 					</select>
 
 					<!-- error message -->
@@ -48,7 +48,7 @@
 					<h5 :class="{ 'text-danger' : errors.has('formProduk.produk_cu.id')}">
 						<i class="icon-cross2" v-if="errors.has('formProduk.produk_cu.id')"></i>
 						Produk CU: <info-icon :message="'Apabila jenis produk yang ingin anda pilih tidak ada, pastikan anda sudah menambahkan data produk di menu Tambah Produk & Pelayanan'"></info-icon>
-					</h5>
+				</h5>
 
 					<!-- select -->
 					<select class="form-control" name="produk_cu_id" v-model="formProduk.produk_cu.id" data-width="100%" @change="changeProdukCu($event.target.value)" v-validate="'required'" data-vv-as="Produk CU" :disabled="formStateProdukCu.length === 0">
@@ -183,8 +183,8 @@
 		<!-- divider -->
 		<hr>
 		
+		<!-- button -->
 		<!-- tombol desktop-->
-
 		<div class="text-center d-none d-md-block">
 			<button type="button" class="btn btn-light" @click.prevent="tutup">
 				<i class="icon-cross"></i> Tutup</button>
@@ -232,7 +232,6 @@
 		},
 		data() {
 			return {
-				title: '',
 				kelas: 'anggotaCu',
 				tipeProduk: '',
 				formProduk:{
@@ -289,7 +288,7 @@
 			this.fetchCU();
 
 			if(this.formState == 'edit'){
-				if(this.formStateCUStat == 'success'){
+				if(this.modelCuStat == 'success'){
 					this.formProduk = this.selected;
 				}
 
@@ -305,7 +304,7 @@
 			}
 		},
 		watch: {
-			formStateCUStat(value){
+			modelCuStat(value){
 				if(value === "success"){
 					if(this.formState == 'edit'){
 						this.formProduk = this.selected;
@@ -331,7 +330,7 @@
 			changeCu(id){
 				let cu;
 				if(id != 0){
-					cu = _.find(this.formStateCU, function(o){
+					cu = _.find(this.modelCu, function(o){
 						return o.id == id;
 					});
 				}
@@ -405,8 +404,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('cu',{
-				formStateCU: 'headerDataS',
-				formStateCUStat: 'headerDataStatS',
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),

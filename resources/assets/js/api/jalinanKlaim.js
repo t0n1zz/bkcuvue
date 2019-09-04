@@ -40,4 +40,8 @@ export default {
     return axios.get('/api/jalinanKlaim/cariData/' + nik);
   },
 
+  cekData: function( id ){
+    return axios.get('/api/jalinanKlaim/cekData/' + id);
+  },
+
 }

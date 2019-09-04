@@ -5,6 +5,8 @@ import { getLocalUser } from "./auth";
 export function initialize(store, router) {
     
   router.beforeEach((to, from, next) => {
+		window.scrollTo(0, 0);
+		
 		const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 		const currentUser = store.state.auth.currentUser;
 
@@ -18,7 +20,6 @@ export function initialize(store, router) {
 		if(to.path == '/login' && currentUser) {
 				return next('/');
 		} 
-
 		next();
 	});
   

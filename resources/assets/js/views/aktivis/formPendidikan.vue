@@ -1,19 +1,20 @@
 <template>
 	<div>
+	<form @submit.prevent="save" data-vv-scope="form">	
 		<div class="row">
 
 			<!-- tingkat -->
 			<div class="col-sm-12">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.tingkat')}">
+				<div class="form-group" :class="{'has-error' : errors.has('form.tingkat')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pendidikan.tingkat')}">
-						<i class="icon-cross2" v-if="errors.has('form.pendidikan.tingkat')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.tingkat')}">
+						<i class="icon-cross2" v-if="errors.has('form.tingkat')"></i>
 						Tingkat:
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="pendidikan_tingkat" v-model="form.pendidikan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
+					<select class="form-control" name="tingkat" v-model="form.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
 						<option disabled value="">Silahkan pilih tingkat pendidikan</option>
 						<option value="SD">SD</option>
 						<option value="SMP">SMP</option>
@@ -29,66 +30,66 @@
 					</select>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pendidikan.tingkat')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pendidikan.tingkat') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.tingkat')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.tingkat') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- jurusan -->
-			<div class="col-sm-12" v-if="form.pendidikan.tingkat != '' &&  form.pendidikan.tingkat != 'SD' && form.pendidikan.tingkat != 'SMP'">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.name')}">
+			<div class="col-sm-12" v-if="form.tingkat != '' &&  form.tingkat != 'SD' && form.tingkat != 'SMP'">
+				<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pendidikan.name')}">
-						<i class="icon-cross2" v-if="errors.has('form.pendidikan.name')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.name')}">
+						<i class="icon-cross2" v-if="errors.has('form.name')"></i>
 						Jurusan:</h6>
 
 					<!-- text -->
-					<input type="text" name="jurusan" class="form-control" placeholder="Silahkan masukkan jurusan" v-validate="'required|min:5'" data-vv-as="Jurusan pendidikan" v-model="form.pendidikan.name">
+					<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan jurusan" v-validate="'required'" data-vv-as="Jurusan pendidikan" v-model="form.name">
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pendidikan.name')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pendidikan.name') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tempat -->
-			<div class="col-sm-12" v-if="form.pendidikan.tingkat != ''">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.tempat')}">
+			<div class="col-sm-12" v-if="form.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.tempat')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pendidikan.tempat')}">
-						<i class="icon-cross2" v-if="errors.has('form.pendidikan.tempat')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.tempat')}">
+						<i class="icon-cross2" v-if="errors.has('form.tempat')"></i>
 						Tempat:</h6>
 
 					<!-- text -->
-					<input type="text" name="pendidikan_tempat" class="form-control" placeholder="Silahkan masukkan tempat pendidikan" v-validate="'required|min:5'" data-vv-as="Tempat pendidikan" v-model="form.pendidikan.tempat">
+					<input type="text" name="tempat" class="form-control" placeholder="Silahkan masukkan tempat pendidikan" v-validate="'required|min:5'" data-vv-as="Tempat pendidikan" v-model="form.tempat">
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pendidikan.tempat')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pendidikan.tempat') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.tempat')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.tempat') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tanggal mulai -->
-			<div class="col-sm-6" v-if="form.pendidikan.tingkat != ''">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan.mulai')}">
+			<div class="col-sm-6" v-if="form.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.mulai')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pendidikan.mulai')}">
-						<i class="icon-cross2" v-if="errors.has('form.pendidikan.mulai')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.mulai')}">
+						<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
 						Tgl. Mulai:</h6>
 
 					<!-- input -->
 					<cleave 
-						name="pendidikan_mulai"
-						v-model="form.pendidikan.mulai" 
+						name="mulai"
+						v-model="form.mulai" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
@@ -96,15 +97,15 @@
 						v-validate="'required'" data-vv-as="Tgl. mulai pendidikan"></cleave>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pendidikan.mulai')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pendidikan.mulai') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.mulai') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tanggal selesai -->
-			<div class="col-sm-6" v-if="form.pendidikan.tingkat != ''">
+			<div class="col-sm-6" v-if="form.tingkat != ''">
 				<div class="form-group">
 
 					<!-- title -->
@@ -112,8 +113,8 @@
 
 					<!-- input -->
 					<cleave 
-						name="pendidikan_selesai"
-						v-model="form.pendidikan.selesai" 
+						name="selesai"
+						v-model="form.selesai" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
@@ -124,6 +125,29 @@
 			</div>
 			
 		</div>
+		<!-- divider -->
+		<hr>
+
+		<!-- button -->
+		<!-- tombol desktop-->
+		<div class="text-center d-none d-md-block">
+			<button type="button" class="btn btn-light" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+
+			<button type="submit" class="btn btn-primary" :disabled="form.tingkat == ''">
+				<i class="icon-floppy-disk"></i> Simpan</button>
+		</div>  
+
+		<!-- tombol mobile-->
+		<div class="d-block d-md-none">
+
+			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="form.tingkat == ''">
+				<i class="icon-floppy-disk"></i> Simpan</button>
+
+			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+		</div> 
+	</form>	
 	</div>
 </template>
 
@@ -132,12 +156,20 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['form'],
+		props:['formState','selected'],
 		components: {
 			Cleave
 		},
 		data() {
 			return {
+				kelas: 'aktivis',
+				form: {
+					tingkat: '',
+					name: '',
+					tempat: '',
+					mulai: '',
+					selesai: '',
+				},
 				cleaveOption: {
           date:{
             date: true,
@@ -167,13 +199,27 @@
         }
 			}
 		},
-		methods: {
+		created(){
+			if(this.formState == 'edit pendidikan'){
+				this.form = this.selected;
+			}
 		},
-		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
-			}),
+		methods: {
+			save(){
+				let formData = {};
+				formData.pendidikan = this.form;
+				this.$validator.validateAll('form').then((result) => {
+					if (result) {
+						this.$store.dispatch(this.kelas + '/savePendidikan', [this.$route.params.id, formData]);
+						this.submited = false;
+					}else{
+						this.submited = true;
+					}	
+				});	
+			},
+			tutup(){
+				this.$emit('tutup');
+			}
 		}
 	}
 </script>

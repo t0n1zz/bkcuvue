@@ -15,7 +15,7 @@ class AktivisAnggotaCu extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'id_aktivis','name','no_ba','id_cu'
+        'id_aktivis','name','no_ba','id_cu','tangggal_masuk'
     ];
 
     protected $filter = [
@@ -25,7 +25,7 @@ class AktivisAnggotaCu extends Model {
     public static function initialize()
     {
         return [
-             'id_cu' => '', 'name' => '','no_ba' => ''
+             'id_cu' => '','no_ba' => '', 'tanggal_masuk' => '',
         ];
     }
 

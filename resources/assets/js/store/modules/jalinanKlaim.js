@@ -148,6 +148,20 @@ export const jalinanKlaim = {
         });
     },
 
+    cekData( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      JalinanKlaimAPI.cekData( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // create page
     create( {commit} ){
       commit('setDataStat', 'loading');

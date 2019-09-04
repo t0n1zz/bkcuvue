@@ -2,28 +2,35 @@
 	<div>
 		<div class="row">
 		
-			<!-- name -->
-			<div class="col-sm-12">
-				<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.cu_name')}">
+			<!-- cu -->
+			<div class="col-md-4" v-if="currentUser.id_cu == 0">
+				<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.id_cu')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu.cu_name')}">
-						<i class="icon-cross2" v-if="errors.has('form.anggota_cu.cu_name')"></i>
-						Nama CU</h6>
+					<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu.id_cu')}">
+						<i class="icon-cross2" v-if="errors.has('form.anggota_cu.id_cu')"></i>
+						CU:
+					</h6>
 
-					<!-- text -->
-					<input type="text" name="anggota_cu_name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama CU" v-model="form.anggota_cu.name">
+					<!-- select -->
+					<select class="form-control" name="id_cu" v-model="form.anggota_cu.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCu.length == 0">
+						<option disabled value="">
+							<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
+							<span v-else>Silahkan pilih CU</span>
+						</option>
+						<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
+					</select>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.cu_name')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.cu_name') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.id_cu')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.id_cu') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- no_ba -->
-			<div class="col-sm-12">
+			<div class="col-md-4">
 				<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.no_ba')}">
 
 					<!-- title -->
@@ -42,6 +49,28 @@
 				</div>
 			</div>
 
+			<!-- tanggal_masuk -->
+			<div class="col-md-4">
+				<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu.tanggal_masuk')}">
+
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu.tanggal_masuk')}">
+					<i class="icon-cross2" v-if="errors.has('form.anggota_cu.tanggal_masuk')"></i>
+					Tgl. Jadi Anggota: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+
+					<!-- text -->
+					<cleave name="tanggal_masuk" v-model="form.anggota_cu.tanggal_masuk" class="form-control" :raw="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota" :options="cleaveOption.date"
+					placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.tanggal_masuk')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu.tanggal_masuk') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+
+				</div>
+			</div>
+
 		</div>
 
 	</div>
@@ -50,11 +79,13 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
+	import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
-		props:['form','modelCu'],
+		props:['form','modelCu','modelCuStat'],
 		components: {
-			Cleave
+			Cleave,
+			infoIcon
 		},
 		data() {
 			return {
@@ -90,9 +121,8 @@
 		methods: {
 		},
 		computed: {
-			...mapGetters('user',{
-				profile: 'profile',
-				profileStat: 'profileStat'
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
 			}),
 		}
 	}

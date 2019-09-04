@@ -72,7 +72,7 @@
 
         <!-- hapus -->
         <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
-          :disabled="!selectedItem.id || this.currentUser.id_cu == 0">
+          :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
 
@@ -85,12 +85,16 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
           <td v-if="!columnData[1].hide">
-						<check-value :value="props.item.nik"></check-value>
+						<img :src="'/images/anggotaCu/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image_man.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
           <td v-if="!columnData[2].hide">
-						<check-value :value="props.item.name"></check-value>
+						<check-value :value="props.item.nik"></check-value>
 					</td>
           <td v-if="!columnData[3].hide">
+						<check-value :value="props.item.name"></check-value>
+					</td>
+          <td v-if="!columnData[4].hide">
 						<span v-for="anggota_cu in props.item.anggota_cu" v-if="props.item.anggota_cu">
               <span v-if="$route.params.cu != 'semua'">
                 <span v-if="$route.params.cu == anggota_cu.id">
@@ -101,7 +105,7 @@
             </span>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[4].hide">
+          <td v-if="!columnData[5].hide">
             <span v-if="props.item.status_jalinan">
 						  <label class="badge badge-warning ml-1">
                 DIAJUKAN
@@ -111,70 +115,70 @@
               -
             </span>
 					</td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.lembaga"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.jabatan"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[8].hide">
 						<check-value :value="props.item.pendidikan"></check-value>
 					</td>
-					<td v-if="!columnData[8].hide">
+					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.email"></check-value>
 					</td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.kontak"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
+					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-          <td v-if="!columnData[12].hide">
+          <td v-if="!columnData[13].hide">
 						<check-value :value="props.item.alih_waris"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.darah"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.tinggi"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.agama"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.status"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
 					</td>
-					<td v-if="!columnData[18].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-          <td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
+          <td v-if="!columnData[20].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[26].hide">
+					<td v-if="!columnData[26].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[27].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -236,10 +240,16 @@
             button: 'Upload Anggota CU'
           },
         ],
-        columnData: [{
+        columnData: [
+          {
             title: 'No.',
             name: 'No.',
           },
+          {
+						title: 'Foto',
+						name: 'gambar',
+						hide: false,
+					},
           {
             title: 'No. KTP',
             name: 'nik',

@@ -11,16 +11,23 @@ class KegiatanPeserta extends Model {
     protected $table = 'kegiatan_peserta';
 
     protected $fillable = [
-        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at',''
+        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga'
     ];
 
     protected $allowedFilters = [
-        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status'
+        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga'
     ];
 
     protected $orderable = [
-        'name_nametag','name_sertifikat','datang','pulang','status'
+        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga'
     ];
+
+    public static function initialize()
+    {
+        return [
+            'name' => '','tempat' => '','lembaga' => '','datang' => '','pulang' => '',
+        ];
+    }
     
     public function aktivis()
     {

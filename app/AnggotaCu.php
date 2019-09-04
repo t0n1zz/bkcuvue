@@ -17,7 +17,7 @@ class AnggotaCu extends Model {
     
     public static $rules = [
         'name' => 'required',
-        'nik' => 'required',
+        'nik'=> 'sometimes|required|unique:anggota_cu',
     ];
 
     public static function boot()
@@ -26,7 +26,7 @@ class AnggotaCu extends Model {
     }
     
     protected $fillable = [
-        'nik','name','alih_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces',
+        'nik','name','alih_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces','gambar'
     ];
 
     protected $allowedFilters = [
@@ -42,7 +42,7 @@ class AnggotaCu extends Model {
     public static function initialize()
     {
         return [
-            'nik' => '','name' => '','alih_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','penghasilan' => '', 'pendidikan' => '','organisasi' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => ''
+            'nik' => '','name' => '','alih_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','penghasilan' => '', 'pendidikan' => '','organisasi' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '','gambar'=> ''
         ];
     }
 

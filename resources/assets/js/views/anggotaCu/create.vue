@@ -8,8 +8,18 @@
 		<!-- main panel -->
 		<form @submit.prevent="save" data-vv-scope="form">
 
+				<!-- if create_old -->
+			<div class="card" v-if="mode == 'create_old'">
+				<div class="card-header bg-white">
+					<h5 class="card-title">Identitas</h5>
+				</div>
+				<div class="card-body">
+					<identitas :itemData="form"></identitas>
+				</div>
+			</div>
+
 			<!-- identitas -->
-			<div class="card">
+			<div class="card" v-if="mode == 'create_new'">
 				<div class="card-header bg-white">
 					<h5 class="card-title">1. Identitas Anggota</h5>
 				</div>
@@ -25,7 +35,7 @@
 								<h6>Foto:</h6>
 
 								<!-- imageupload -->
-								<app-image-upload :image_loc="'/images/aktivis/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+								<app-image-upload :image_loc="'/images/anggotaCu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 							</div>
 						</div>  
 
@@ -252,7 +262,7 @@
 			</div>
 
 			<!-- riwayat -->
-			<div class="card">
+			<div class="card" v-if="mode == 'create_new'">
 				<div class="card-header bg-white">
 					<h5 class="card-title">2. Riwayat</h5>
 				</div>
@@ -350,7 +360,7 @@
 			</div>
 
 			<!-- lokasi -->
-			<div class="card">
+			<div class="card" v-if="mode == 'create_new'">
 				<div class="card-header bg-white">
 					<h5 class="card-title">3. Alamat & Kontak</h5>
 				</div>
@@ -645,7 +655,12 @@
 
 			<!-- form button -->
 			<div class="card card-body" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
-				<form-button :cancelState="'methods'" :formValidation="'form'" @cancelClick="back"></form-button>
+				<form-button 
+				:cancelState="'methods'" 
+				:formValidation="'form'" 
+				:confirmIcon="confirmIcon"
+				:confirmTitle="confirmTitle"
+				@cancelClick="back"></form-button>
 			</div>
 
 		</form>
@@ -688,6 +703,7 @@
 	import dataTable from '../../components/datatable.vue';
 	import checkValue from "../../components/checkValue.vue";
 	import infoIcon from "../../components/infoIcon.vue";
+	import identitas from "../../components/identitas.vue";
 
 	export default {
 		props: ['mode','nik'],
@@ -702,11 +718,14 @@
 			dataTable,
 			checkValue,
 			appImageUpload,
-			infoIcon
+			infoIcon,
+			identitas
 		},
 		data() {
 			return {
 				kelas: 'anggotaCu',
+				confirmIcon: 'icon-arrow-right14',
+				confirmTitle: 'Lanjut ke produk',
 				cleaveOption: {
           date:{
             date: true,
@@ -760,6 +779,11 @@
 			}
 		},
 		created() {
+			if(this.mode == 'edit'){
+				this.confirmIcon = 'icon-floppy-disk';
+				this.confirmTitle = 'Simpan';
+			}
+
 			if (this.currentUser.id_cu == 0) {
 				if (this.modelCuStat != 'success') {
 					this.$store.dispatch('cu/getHeader');

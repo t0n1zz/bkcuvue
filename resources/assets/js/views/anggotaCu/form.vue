@@ -79,7 +79,6 @@
 				kelas: 'anggotaCu',
 				level2Title: 'Anggota CU',
 				nik: '',
-				isEdit: false,
 				cleaveOption: {
           number16: {
             numeral: true,
@@ -108,12 +107,6 @@
 			cariData(nik){
 				this.nik = nik;
 				this.$store.dispatch(this.kelas + '/cariData', nik);
-			},
-			showUbahData(){
-				this.isEdit = true;
-			},
-			hideUbahData(){
-				this.isEdit = false;
 			},
 			resetData(){
 				this.$store.commit(this.kelas + '/setData',{});

@@ -15,8 +15,8 @@ class Aktivis extends Model {
     protected static $logOnlyDirty = true;
 
     public static $rules = [
-        'nik'=>'required',
-        'name'=>'required',
+        'name' => 'required',
+        'nik'=> 'sometimes|required|unique:aktivis',
     ];
     
     protected $fillable = [
@@ -66,16 +66,24 @@ class Aktivis extends Model {
         return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1)->latest();
     }
 
+    public function pekerjaan_tidak_aktif(){
+        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai','!=',null)->Where('selesai','<',date('Y-m-d'))->Where('sekarang','!=',1)->latest();
+    }
+
     public function keluarga(){
         return $this->hasMany('App\AktivisKeluarga','id_aktivis','id');
     }
 
-    public function anggotacu(){
+    public function anggota_cu(){
         return $this->hasMany('App\AktivisAnggotaCU','id_aktivis','id');
     }
 
     public function organisasi(){
         return $this->hasMany('App\AktivisOrganisasi','id_aktivis','id');
+    }
+
+    public function diklat(){
+        return $this->hasMany('App\KegiatanPeserta','aktivis_id','id');
     }
 
     public function Provinces()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use File;
 use Image;
+use Validator;
 use App\Aktivis;
 use App\Support\Helper;
 use App\AktivisKeluarga;
@@ -11,6 +12,7 @@ use App\AktivisAnggotaCu;
 use App\AktivisPekerjaan;
 use App\AktivisOrganisasi;
 use App\AktivisPendidikan;
+use App\KegiatanPeserta;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
@@ -21,25 +23,42 @@ class AktivisController extends Controller{
 	protected $height = 200;
 	protected $message = 'Aktivis CU';
 
-	public function index($tingkat)
+	public function index($tingkat, $status)
 	{
 
 		if($tingkat == 'semua'){
 			
-			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-				$query->whereIn('tipe',[1,3])->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-				});
-			})->advancedFilter();
+			if($status == 'aktif'){
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])->where(function($q){
+						$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+					});
+				})->advancedFilter();
+			}else{
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])->where(function($q){
+						$q->where('selesai','!=',null)->orWhere('selesai','<',date('Y-m-d'))->orWhere('sekarang',0);
+					});
+				})->advancedFilter();
+			}
 
 		}elseif($tingkat == 'manajemen'){
 
-			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-				$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])
-				->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-				});
-			})->advancedFilter();
+			if($status == 'aktif'){
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])
+					->where(function($q){
+						$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+					});
+				})->advancedFilter();
+			}else{
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])
+					->where(function($q){
+						$q->where('selesai','!=',null)->orWhere('selesai','<',date('Y-m-d'))->orWhere('sekarang',0);
+					});
+				})->advancedFilter();
+			}
 
 		}else{
 			$param_tingkat = '';
@@ -64,21 +83,28 @@ class AktivisController extends Controller{
 				$param_tingkat = 9;
 			}
 
-			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
-				$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-				});
-			})->advancedFilter();
+			if($status == 'aktif'){
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
+					$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where(function($q){
+						$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+					});
+				})->advancedFilter();
+			}else{
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
+					$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where(function($q){
+						$q->where('selesai','!=',null)->orWhere('selesai','<',date('Y-m-d'))->orWhere('sekarang',0);
+					});
+				})->advancedFilter();
+			}
 		}
 	
-
 		return response()
 		->json([
 			'model' => $table_data
 		]);
 	}
 
-	public function indexCu($id, $tingkat)
+	public function indexCu($id, $tingkat, $status)
 	{
 		if($id == 0){
 			$tipe = 3;
@@ -88,21 +114,45 @@ class AktivisController extends Controller{
 		}
 
 		if($tingkat == 'semua'){
-			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
-			->whereHas('pekerjaan', function($query) use ($id,$tipe){
-				$query->where('tipe',$tipe)->where('id_tempat',$id)
-				->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-				});
-			})->advancedFilter();
+
+			if($status == 'aktif'){
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				->whereHas('pekerjaan', function($query) use ($id,$tipe){
+					$query->where('tipe',$tipe)->where('id_tempat',$id)
+					->where(function($q){
+						$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+					});
+				})->advancedFilter();
+			}else{
+				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				->whereHas('pekerjaan', function($query) use ($id,$tipe){
+					$query->where('tipe',$tipe)->where('id_tempat',$id)
+					->where(function($q){
+						$q->where('selesai','!=',null)->Where('selesai','<',date('Y-m-d'))->Where('sekarang','!=',1);
+					});
+				})->advancedFilter();
+			}
+
 		}elseif($tingkat == 'manajemen'){
-			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
-			->whereHas('pekerjaan', function($query) use ($id,$tipe){
-				$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
-				->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-				});
-			})->advancedFilter();
+
+			if($status == 'aktif'){
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				->whereHas('pekerjaan', function($query) use ($id,$tipe){
+					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
+					->where(function($q){
+						$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+					});
+				})->advancedFilter();
+			}else{
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				->whereHas('pekerjaan', function($query) use ($id,$tipe){
+					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
+					->where(function($q){
+						$q->where('selesai','!=',null)->orWhere('selesai','<',date('Y-m-d'))->orWhere('sekarang',0);
+					});
+				})->advancedFilter();
+			}
+
 		}else{
 			$param_tingkat = '';
 
@@ -126,13 +176,24 @@ class AktivisController extends Controller{
 				$param_tingkat = 9;
 			}
 
-			$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
-			->whereHas('pekerjaan', function($query) use ($id,$tipe, $param_tingkat){
-				$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)
-				->where(function($q){
-					$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-				});
-			})->advancedFilter();
+			if($status == 'aktif'){
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				->whereHas('pekerjaan', function($query) use ($id,$tipe, $param_tingkat){
+					$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)
+					->where(function($q){
+						$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+					});
+				})->advancedFilter();
+			}else{
+				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				->whereHas('pekerjaan', function($query) use ($id,$tipe, $param_tingkat){
+					$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)
+					->where(function($q){
+						$q->where('selesai','!=',null)->orWhere('selesai','<',date('Y-m-d'))->orWhere('sekarang',0);
+					});
+				})->advancedFilter();
+			}
+
 		}
 
 		return response()
@@ -213,15 +274,23 @@ class AktivisController extends Controller{
 			]);
 	}
 
+	public function indexDiklat($id)
+	{
+		$table_data = KegiatanPeserta::with('kegiatan.Provinces')->where('aktivis_id',$id)->orderBy('datang','desc')->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
 
 	public function create()
 	{
 		$form = Aktivis::initialize();
-		$form['pendidikan'] = AktivisPendidikan::initialize();
 		$form['pekerjaan'] = AktivisPekerjaan::initialize();
 		$form['keluarga'] = ['ayah' => '', 'ibu' => ''];
 		$form['anggota_cu'] = AktivisAnggotaCu::initialize();
-		$form['organisasi'] = AktivisOrganisasi::initialize();
 
 		return response()
 			->json([
@@ -254,6 +323,16 @@ class AktivisController extends Controller{
 	public function createOrganisasi()
 	{
 		$form['organisasi'] = AktivisOrganisasi::initialize();
+
+		return response()
+			->json([
+					'form' => $form
+			]);
+	}
+
+	public function createDiklat()
+	{
+		$form['diklat'] = KegiatanPeserta::initialize();
 
 		return response()
 			->json([
@@ -309,33 +388,38 @@ class AktivisController extends Controller{
 		$anak = $request->anak;
 
 		if(!empty($ayah))
-			$this->saveKeluarga($request,$kelas->id,'Ayah',$ayah);
+			$this->saveKeluarga(null,$kelas->id,'Ayah',$ayah);
 		
 		if(!empty($ibu))
-			$this->saveKeluarga($request,$kelas->id,'Ibu',$ibu);
+			$this->saveKeluarga(null,$kelas->id,'Ibu',$ibu);
 
 		if(!empty($pasangan))
-			$this->saveKeluarga($request,$kelas->id,'Pasangan',$pasangan);	
+			$this->saveKeluarga(null,$kelas->id,'Pasangan',$pasangan);	
 
 		if(!empty($anak)){
 			foreach($anak as $a){
-				$this->saveKeluarga($request,$kelas->id,'Anak',$a['value']);
+				$this->saveKeluarga(null,$kelas->id,'Anak',$a['name']);
 			}
 		}	
 
-		// anggota cu, pendidikan, organisasi, pekerjaan
-		if($request->anggota_cu['name'] != '' && $request->anggota_cu['no_ba'] != ''){
-			$this->saveAnggotaCu($request,$kelas->id);
-		}
+		if(!empty($request->anak)){
+			foreach($request->anak as $a){
+				$anak_name = array_key_exists('name', $a) ? $a['name'] : null;
+				$this->saveKeluarga(null,$kelas->id,'Anak',$anak_name);
+			}
+		}	
 
-		if($request->pendidikan['tingkat'] != ''){
-			$this->savePendidikan($request,$kelas->id);
-		}
- 
-		if($request->organisasi['aktif'] == 'Ya'){
-			$this->saveOrganisasi($request,$kelas->id);
-		}
+		if(!empty($request->anggota_cu)){
+			foreach($request->anggota_cu as $a){
+				$anggota_cu_id_cu = array_key_exists('id_cu', $a) ? $a['id_cu'] : null;
+				$anggota_cu_name = array_key_exists('name', $a) ? $a['name'] : null;
+				$anggota_cu_no_ba = array_key_exists('no_ba', $a) ? $a['no_ba'] : null;
+				$anggota_cu_tanggal_masuk = array_key_exists('tanggal_masuk', $a) ? $a['tanggal_masuk'] : null;
 
+				$this->saveAnggotaCu(null,$kelas->id,$anggota_cu_id_cu,$anggota_cu_name,$anggota_cu_no_ba,$anggota_cu_tanggal_masuk);
+			}
+		}
+		
 		$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
 
 		// nim
@@ -361,14 +445,16 @@ class AktivisController extends Controller{
 
 		return response()
 			->json([
+
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah'
+				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
+				'id' => $kelas->id
 			]);
 	}
 
-	public function editIdentitas($id)
+	public function edit($id)
 	{
-		$kelas = Aktivis::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
+		$kelas = Aktivis::with('Villages','Districts','Regencies','Provinces','anggota_cu','keluarga')->findOrFail($id);
 
 		return response()
 				->json([
@@ -377,9 +463,11 @@ class AktivisController extends Controller{
 				]);
 	}
 
-	public function updateIdentitas(Request $request, $id)
+	public function update(Request $request, $id)
 	{
-		$this->validate($request,Aktivis::$rules);
+		$rules = Aktivis::$rules;
+		$rules['nik'] = $rules['nik'] . ',id,' . $id;
+		$validationCertificate  = Validator::make($request->all(), $rules); 
 
 		$name = $request->name;
 
@@ -395,10 +483,68 @@ class AktivisController extends Controller{
 			'gambar' => $fileName
 		]);
 
+		if(!empty($request->ayah)){
+			$ayah_id = array_key_exists('id', $request->ayah) ? $request->ayah['id'] : null;
+			$ayah_name = array_key_exists('name', $request->ayah) ? $request->ayah['name'] : null;
+			$this->saveKeluarga($ayah_id,$id,'Ayah', $ayah_name);
+		}
+
+		if(!empty($request->ibu)){
+			$ibu_id = array_key_exists('id', $request->ibu) ? $request->ibu['id'] : null;
+			$ibu_name = array_key_exists('name', $request->ibu) ? $request->ibu['name'] : null;
+			$this->saveKeluarga($ibu_id,$id,'Ibu', $ibu_name);
+		}
+
+		if(!empty($request->pasangan)){
+			$pasangan_id = array_key_exists('id', $request->pasangan) ? $request->pasangan['id'] : null;
+			$pasangan_name = array_key_exists('name', $request->pasangan) ? $request->pasangan['name'] : null;
+			$this->saveKeluarga($pasangan_id,$id,'Pasangan', $pasangan_name);
+		}
+
+		if(!empty($request->anak)){
+			foreach($request->anak as $a){
+				$anak_id = array_key_exists('id', $a) ? $a['id'] : null;
+				$anak_name = array_key_exists('name', $a) ? $a['name'] : null;
+				$this->saveKeluarga($anak_id,$id,'Anak',$anak_name);
+			}
+		}	
+
+		if(!empty($request->anggota_cu)){
+			if(is_array($request->anggota_cu)){
+				foreach($request->anggota_cu as $a){
+					$anggota_cu_id = array_key_exists('id', $a) ? $a['id'] : null;
+					$anggota_cu_id_cu = array_key_exists('id_cu', $a) ? $a['id_cu'] : null;
+					$anggota_cu_name = array_key_exists('name', $a) ? $a['name'] : null;
+					$anggota_cu_no_ba = array_key_exists('no_ba', $a) ? $a['no_ba'] : null;
+					$anggota_cu_tanggal_masuk = array_key_exists('tanggal_masuk', $a) ? $a['tanggal_masuk'] : null;
+	
+					$this->saveAnggotaCu($anggota_cu_id,$id,$anggota_cu_id_cu,$anggota_cu_name,$anggota_cu_no_ba,$anggota_cu_tanggal_masuk);
+				}
+			}else{
+				$anggota = $request->anggota_cu;
+				$this->saveAnggotaCu($anggota->id,$id,$anggota->id_cu,$anggota->name,$anggota->no_ba,$anggota->tanggal_masuk);
+			}
+		}
+
+		if(!empty($request->anak_removed)){
+			foreach($request->anak_removed as $a){
+				$anak_id = array_key_exists('id', $a) ? $a['id'] : null;
+				$this->destroyKeluarga($anak_id);
+			}
+		}	
+
+		if(!empty($request->anggota_cu_removed)){
+			foreach($request->anggota_cu_removed as $a){
+				$anggota_cu_id = array_key_exists('id', $a) ? $a['id'] : null;
+				$this->destroyAnggotaCu($anggota_cu_id);
+			}
+		}	
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				'message' => $this->message. ' ' .$name. ' berhasil diubah',
+				'id' => $id
 			]);
 	}
 
@@ -475,9 +621,9 @@ class AktivisController extends Controller{
 	public function savePendidikan(Request $request, $id)
 	{
 		if(array_key_exists('id', $request->pendidikan)){
-				$kelas = AktivisPendidikan::findOrFail($request->pendidikan['id']);
+			$kelas = AktivisPendidikan::findOrFail($request->pendidikan['id']);
 		}else{
-				$kelas = new AktivisPendidikan();
+			$kelas = new AktivisPendidikan();
 		}
 
 		if(!empty($id)){
@@ -512,9 +658,9 @@ class AktivisController extends Controller{
 	public function saveOrganisasi(Request $request, $id)
 	{
 		if(array_key_exists('id', $request->organisasi)){
-				$kelas = AktivisOrganisasi::findOrFail($request->organisasi['id']);
+			$kelas = AktivisOrganisasi::findOrFail($request->organisasi['id']);
 		}else{
-				$kelas = new AktivisOrganisasi();
+			$kelas = new AktivisOrganisasi();
 		}
 
 		if(!empty($id)){
@@ -546,82 +692,78 @@ class AktivisController extends Controller{
 		}
 	}
 
-	public function saveKeluarga(Request $request, $id, $tipe = '', $name = '')
+	public function saveDiklat(Request $request, $id)
 	{
-
-		if(array_key_exists('id', $request->keluarga)){
-			$kelas = AktivisKeluarga::findOrFail($request->keluarga['id']);
+		if(array_key_exists('id', $request->diklat)){
+			$kelas = KegiatanPeserta::findOrFail($request->diklat['id']);
 		}else{
-			$kelas = new AktivisKeluarga();
-		}
-
-		if(!empty($tipe)){
-			$kelas->tipe = $tipe;
-		}else{
-			$kelas->tipe = $request->keluarga['tipe'];
+			$kelas = new KegiatanPeserta();
 		}
 
 		if(!empty($id)){
-			$kelas->id_aktivis = $id;
+			$kelas->aktivis_id = $id;
 		}else{
-			$kelas->id_aktivis = $request->id_aktivis;
+			$kelas->aktivis_id = $request->id_aktivis;
 		}
 
-		if(!empty($name)){
-			$kelas->name = $name;
-		}else{
-			$kelas->name = $request->keluarga['name'];
-		}
+		$kelas->kegiatan_id = 0;
+		$kelas->name = $request->diklat['name'];
+		$kelas->tempat = $request->diklat['tempat'];
+		$kelas->lembaga = $request->diklat['lembaga'];
+		$kelas->datang = $request->diklat['datang'];
+		$kelas->pulang = $request->diklat['pulang'];
 
 		$kelas->save();
 
-		if(array_key_exists('id', $request->keluarga)){
+		if(array_key_exists('id', $request->diklat)){
 			return response()
 			->json([
 				'saved' => true,
-				'message' => 'Keluarga berhasil diubah'
+				'message' => 'Diklat berhasil diubah'
 			]);
 		}else{
 			return response()
 			->json([
 				'saved' => true,
-				'message' => 'Keluarga berhasil ditambah'
+				'message' => 'Diklat berhasil ditambah'
 			]);
 		}
 	}
 
-	public function saveAnggotaCu(Request $request, $id)
+	public function saveKeluarga($id, $id_aktivis, $tipe = '', $name = '')
 	{
-		if(array_key_exists('id', $request->anggota_cu)){
-				$kelas = AktivisAnggotaCu::findOrFail($request->anggota_cu['id']);
+		if($id){
+			$kelas = AktivisKeluarga::findOrFail($id);
 		}else{
-				$kelas = new AktivisAnggotaCu();
-		}
-		
-		if(!empty($id)){
-			$kelas->id_aktivis = $id;
-		}else{
-			$kelas->id_aktivis = $request->id_aktivis;
+			$kelas = new AktivisKeluarga();
 		}
 
-		$kelas->name = $request->anggota_cu['name'];
-		$kelas->no_ba = $request->anggota_cu['no_ba'];
-
+		$kelas->tipe = $tipe;
+		$kelas->id_aktivis = $id_aktivis;
+		$kelas->name = $name;
 		$kelas->save();
+	}
 
-		if(array_key_exists('id', $request->anggota_cu)){
-			return response()
-			->json([
-				'saved' => true,
-				'message' => 'Anggota CU berhasil diubah'
-			]);
+	public function saveAnggotaCu($id, $id_aktivis, $id_cu, $name, $no_ba, $tanggal_masuk)
+	{
+		if($id){
+			$kelas = AktivisAnggotaCu::findOrFail($id);
 		}else{
-			return response()
-			->json([
-				'saved' => true,
-				'message' => 'Anggota CU berhasil ditambah'
-			]);
+			$kelas = new AktivisAnggotaCu();
 		}
+
+		if($id_cu == 0){
+			$kelas->name = $name;
+			$kelas->id_cu = 0;
+		}else{
+			$kelas->id_cu = $id_cu;
+			$kelas->name = null;
+		}
+
+		$kelas->id_aktivis = $id_aktivis;
+		$kelas->no_ba = $no_ba;
+		$kelas->tanggal_masuk = $tanggal_masuk;
+		$kelas->save();
 	}
 
 
@@ -683,26 +825,25 @@ class AktivisController extends Controller{
 			]);
 	}
 
-	public function destroyKeluarga($id)
+	public function destroyDiklat($id)
 	{
-		AktivisKeluarga::where('id',$id)->delete();
+		KegiatanPeserta::where('id',$id)->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Keluarga berhasil dihapus'
+				'message' => 'Riwayat diklat berhasil dihapus'
 			]);
+	}
+
+	public function destroyKeluarga($id)
+	{
+		AktivisKeluarga::where('id',$id)->delete();
 	}
 
 	public function destroyAnggotaCu($id)
 	{
 		AktivisAnggotaCu::where('id',$id)->delete();
-
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => 'Anggota CU berhasil dihapus'
-			]);
 	}
 
 	public function count()
@@ -710,11 +851,11 @@ class AktivisController extends Controller{
 		$id = \Auth::user()->id_cu;
 
 		if($id == 0){
-				$table_data = Aktivis::count();
+			$table_data = Aktivis::count();
 		}else{
-				$table_data = Aktivis::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
-						$query->where('id_tempat',$id);
-				})->count();
+			$table_data = Aktivis::with('pekerjaan_aktif')->whereHas('pekerjaan',function($query) use($id){
+					$query->where('id_tempat',$id);
+			})->count();
 		}
 		
 		return response()
@@ -744,11 +885,15 @@ class AktivisController extends Controller{
 	
 	public function cariData($nik)
 	{
-		$table_data = Aktivis::where('nik',$nik)->first();
+		$table_data = Aktivis::with('Villages','Districts','Regencies','Provinces','anggota_cu','keluarga')->where('nik',$nik)->first();
 
-		return response()
-		->json([
-			'model' => $table_data
-		]);
+		if($table_data){
+			return response()
+			->json([
+				'model' => $table_data
+			]);
+		}else{
+			return $this->create();
+		}
 	}
 }

@@ -5,6 +5,7 @@ use DB;
 use Auth;
 use File;
 use Image;
+use Validator;
 use App\AnggotaCu;
 use App\AnggotaCuCu;
 use App\AnggotaCuKlaim;
@@ -53,7 +54,6 @@ class AnggotaCuController extends Controller{
 			$table_data = AnggotaProdukCu::with('produk_cu.cu')->where('anggota_cu_id', $id)->get();
 		}
 		
-
 		return response()
 			->json([
 				'model' => $table_data
@@ -188,7 +188,9 @@ class AnggotaCuController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, AnggotaCu::$rules);
+		$rules = AnggotaCu::$rules;
+		$rules['nik'] = $rules['nik'] . ',id,' . $id;
+		$validationCertificate  = Validator::make($request->all(), $rules); 
 
 		$name = $request->name;
 

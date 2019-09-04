@@ -180,4 +180,18 @@ class JalinanKlaimController extends Controller{
 			]);
 		}
 	}
+
+	public function cekData($id){
+		$kelas = JalinanKlaim::where('anggota_cu_id', $id)->first();
+		
+		if($kelas){
+			return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
+		}else{
+			return $this->create();
+		}
+	}
 }

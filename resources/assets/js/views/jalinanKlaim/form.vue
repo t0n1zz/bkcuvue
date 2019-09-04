@@ -27,44 +27,14 @@
 
 					<!-- data exist -->
 					<div v-if="itemDataStat == 'success'">
-
+						
 						<!-- identitas -->
-						<div class="card card-body">
-							<div class="row">
-								<div class="col-sm-4">
-									<ul class="list list-unstyled mb-0">
-										<li><b>Nama:</b> {{ itemData.name}}</li>
-										<li><b>No. KTP:</b> {{ itemData.nik}}</li>
-										<li><b>Nama Alih Waris:</b> {{ itemData.alih_waris}}</li>
-										<li><b>Gender:</b> {{ itemData.kelamin}}</li>
-										<li><b>Tinggi:</b> {{ itemData.tinggi}}</li>
-										<li><b>Agama:</b> {{ itemData.agama}}</li>
-										<li><b>Darah:</b> {{ itemData.darah}}</li>
-									</ul>
-								</div>
-								<div class="col-sm-4">
-									<ul class="list list-unstyled mb-0">
-										<li><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
-										<li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
-										<li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
-										<li><b>Status:</b> {{ itemData.status}}</li>
-										<li><b>Lembaga:</b> {{ itemData.lembaga}}</li>
-										<li><b>Jabatan:</b> {{ itemData.jabatan}}</li>
-										<li><b>Pendidikan:</b> {{ itemData.pendidikan}}</li>
-										<li><b>Email:</b> {{ itemData.email}}</li>
-									</ul>
-								</div>
-								<div class="col-sm-4">
-									<ul class="list list-unstyled mb-0">
-										<li><b>Provinsi:</b> {{ itemData.provinces ? itemData.provinces.name : ''}}</li>
-										<li><b>Kabupaten:</b> {{ itemData.regencies ? itemData.regencies.name : ''}}</li>
-										<li><b>Kecamatan:</b> {{ itemData.districts ? itemData.districts.name : ''}}</li>
-										<li><b>Kelurahan:</b> {{ itemData.villages ? itemData.villages.name : ''}}</li>
-										<li><b>Alamat:</b> {{ itemData.alamat}}</li>
-										<li><b>No. Hp:</b> {{ itemData.hp}}</li>
-										<li><b>Kontak Lainnya:</b> {{ itemData.kontak}}</li>
-									</ul>
-								</div>
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">Identitas</h5>
+							</div>
+							<div class="card-body">
+								<identitas :itemData="itemData"></identitas>
 							</div>
 						</div>
 
@@ -281,6 +251,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import cariData from "../../components/cariData.vue";
+	import identitas from "../../components/identitas.vue";
 
 	export default {
 		components: {
@@ -293,7 +264,8 @@
 			countWidget,
 			formButton,
 			formInfo,
-			cariData
+			cariData,
+			identitas
 		},
 		data() {
 			return {
@@ -419,14 +391,14 @@
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 					this.isEdit = true;
 				} else {
-					this.$store.dispatch(this.kelas + '/create');
+					this.$store.dispatch(this.kelas + '/cekData', this.itemData.id);
 				}
 			},
 			resetData(){
 				this.itemDataCu = [];
 				this.itemDataProduk = [];
-				this.$store.commit(this.kelas + '/setDataS',{});
-				this.$store.commit(this.kelas + '/setDataStatS','');
+				this.$store.commit(this.kelas + '/setData2',{});
+				this.$store.commit(this.kelas + '/setDataStat2','');
 			},
 			classCu(){
 				if(this.currentUser.id_cu == 0){
@@ -437,10 +409,12 @@
 			},
 			save() {
 				this.form.anggota_cu_id = this.itemData.id;
-				this.form.status_klaim = '0';
+				if(!this.form.id){
+					this.form.status_klaim = '0';
+				}
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
+						if(this.form.id){
 							this.$store.dispatch(this.kelas + '/update', [this.form.id, this.form]);
 						}else{
 							this.$store.dispatch(this.kelas + '/store', this.form);

@@ -1,19 +1,20 @@
 <template>
 	<div>
+	<form @submit.prevent="save" data-vv-scope="form">
 		<div class="row">
 
 			<!-- CU -->
 			<div class="col-sm-12" v-if="currentUser.id_cu == 0">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.id_tempat')}">
+				<div class="form-group" :class="{'has-error' : errors.has('form.id_tempat')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.id_tempat')}">
-						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.id_tempat')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.id_tempat')}">
+						<i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i>
 						Tempat:
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="id_tempat" v-model="form.pekerjaan.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
+					<select class="form-control" name="id_tempat" v-model="form.id_tempat" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="modelCu.length == 0" @change="changeLembagaPekerjaan($event.target.value)">
 						<option disabled value="">
 							<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih tempat bekerja</span>
@@ -24,28 +25,28 @@
 					</select>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.id_tempat')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.id_tempat') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tempat') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tempat -->
-			<div class="col-sm-12" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.lembaga_lain')}">
+			<div class="col-sm-12" v-if="form && form.id_tempat == 'lain'">
+				<div class="form-group" :class="{'has-error' : errors.has('form.lembaga_lain')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.lembaga_lain')}">
-						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.lembaga_lain')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.lembaga_lain')}">
+						<i class="icon-cross2" v-if="errors.has('form.lembaga_lain')"></i>
 						Lembaga:</h6>
 
 					<!-- text -->
-					<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga" v-validate="'required|min:5'" data-vv-as="Lembaga" v-model="form.pekerjaan.lembaga_lain">
+					<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga" v-validate="'required|min:5'" data-vv-as="Lembaga" v-model="form.lembaga_lain">
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
@@ -53,21 +54,21 @@
 
 			<!-- tingkat -->
 			<div class="col-sm-12">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.tingkat')}">
+				<div class="form-group" :class="{'has-error' : errors.has('form.tingkat')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.tingkat')}">
-						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.tingkat')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.tingkat')}">
+						<i class="icon-cross2" v-if="errors.has('form.tingkat')"></i>
 						Tingkat:
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
+					<select class="form-control" name="pekerjaan_tingkat" v-model="form.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
 						<option disabled value="">Silahkan pilih tingkat pekerjaan</option>
-						<option value="1" v-if="form.pekerjaan.id_tempat != 'lain'">Pengurus</option>
-						<option value="2" v-if="form.pekerjaan.id_tempat != 'lain'">Pengawas</option>
-						<option value="3" v-if="form.pekerjaan.id_tempat != 'lain'">Komite</option>
-						<option value="4" v-if="form.pekerjaan.id_tempat != 'lain'">Penasihat</option>
+						<option value="1" v-if="form.id_tempat != 'lain'">Pengurus</option>
+						<option value="2" v-if="form.id_tempat != 'lain'">Pengawas</option>
+						<option value="3" v-if="form.id_tempat != 'lain'">Komite</option>
+						<option value="4" v-if="form.id_tempat != 'lain'">Penasihat</option>
 						<option value="5">Senior Manajer (General Manager, CEO, Deputy)</option>
 						<option value="6">Manajer</option>
 						<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
@@ -76,35 +77,35 @@
 					</select>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.tingkat')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.tingkat') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.tingkat')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.tingkat') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- jabatan -->
-			<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
+			<div class="col-sm-6" v-if="form.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.name')}">
-						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.name')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.name')}">
+						<i class="icon-cross2" v-if="errors.has('form.name')"></i>
 						Jabatan:</h6>
 
 					<!-- text -->
-					<input type="text" name="jabatan" class="form-control" placeholder="Silahkan masukkan nama jabatan" v-validate="'required|min:5'" data-vv-as="Jabatan pekerjaan" v-model="form.pekerjaan.name">
+					<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama jabatan" v-validate="'required'" data-vv-as="Jabatan pekerjaan" v-model="form.name">
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tp -->
-			<div class="col-sm-6" v-if="form.pekerjaan.tipe == 1 && form.pekerjaan.tingkat != 'Komite' && form.pekerjaan.tingkat != 'Pengawas' && form.pekerjaan.tingkat != 'Pengurus' && form.pekerjaan.tingkat != ''">
+			<div class="col-sm-6" v-if="form.tipe == 1 && form.tingkat != '1' && form.tingkat != '2' && form.tingkat != '3' && form.tingkat != '4' && form.tingkat != ''">
 				<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
 
 					<!-- title -->
@@ -132,18 +133,18 @@
 			</div>
 
 			<!-- tanggal mulai -->
-			<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
-				<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.mulai')}">
+			<div class="col-sm-6" v-if="form.tingkat != ''">
+				<div class="form-group" :class="{'has-error' : errors.has('form.mulai')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.mulai')}">
-						<i class="icon-cross2" v-if="errors.has('form.pekerjaan.mulai')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.mulai')}">
+						<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
 						Tgl. Mulai:</h6>
 
 					<!-- input -->
 					<cleave 
 						name="pekerjaan_mulai"
-						v-model="form.pekerjaan.mulai" 
+						v-model="form.mulai" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
@@ -151,15 +152,15 @@
 						v-validate="'required'" data-vv-as="Tgl. mulai pekerjaan"></cleave>
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.mulai')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.mulai') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.mulai') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
 			<!-- tanggal selesai -->
-			<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
+			<div class="col-sm-6" v-if="form.tingkat != ''">
 				<div class="form-group">
 
 					<!-- title -->
@@ -168,7 +169,7 @@
 					<!-- input -->
 					<cleave 
 						name="pekerjaan_selesai"
-						v-model="form.pekerjaan.selesai" 
+						v-model="form.selesai" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
@@ -179,6 +180,30 @@
 			</div>
 
 		</div>	
+
+		<!-- divider -->
+		<hr>
+
+		<!-- button -->
+		<!-- tombol desktop-->
+		<div class="text-center d-none d-md-block">
+			<button type="button" class="btn btn-light" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+
+			<button type="submit" class="btn btn-primary" :disabled="form.tingkat == ''">
+				<i class="icon-floppy-disk"></i> Simpan</button>
+		</div>  
+
+		<!-- tombol mobile-->
+		<div class="d-block d-md-none">
+
+			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="form.tingkat == ''">
+				<i class="icon-floppy-disk"></i> Simpan</button>
+
+			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+		</div> 
+	</form>
 	</div>
 </template>
 
@@ -187,12 +212,28 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['form','modelCu','modelTp','modelCuStat'],
+		props:['formState','selected'],
 		components: {
 			Cleave
 		},
 		data() {
 			return {
+				kelas: 'aktivis',
+				form:{
+					anggota_id: '',
+					id_tempat: '',
+					id_tp: '',
+					tipe: '',
+					lembaga_lain:'',
+					name:'',
+					tingkat:'',
+					mulai:'',
+					selesai:'',
+					cu: {
+						id: 0,
+						name: ''
+					}
+				},
 				cleaveOption: {
           date:{
             date: true,
@@ -224,25 +265,59 @@
 		},
 		created(){
 			if(this.currentUser.id_cu != 0){
-				this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
+				this.form.id_tempat = this.currentUser.id_cu;
 				this.changeLembagaPekerjaan(this.currentUser.id_cu);
+			}else{
+				this.fetchCU();
+			}
+
+			if(this.formState == 'edit pekerjaan'){
+				this.form = this.selected;
 			}
 		},
 		methods: {
+			fetchCU(){
+				if(this.formStateCuStat != 'success'){
+					this.$store.dispatch('cu/getHeader');
+				}
+			},
 			changeLembagaPekerjaan(value){
 				if(value == 0){
-					this.form.pekerjaan.tipe = 3;
+					this.form.tipe = 3;
 				}else if(value == 'lain'){
-					this.form.pekerjaan.tipe = 2;
+					this.form.tipe = 2;
 				}else{
-					this.form.pekerjaan.tipe = 1;
+					this.form.tipe = 1;
 					this.$store.dispatch('tp/getCu',value);
 				}
+			},
+			save(){
+				let formData = {};
+				formData.pekerjaan = this.form;
+				this.$validator.validateAll('form').then((result) => {
+					if (result) {
+						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.$route.params.id, formData]);
+						this.submited = false;
+					}else{
+						this.submited = true;
+					}	
+				});	
+			},
+			tutup(){
+				this.$emit('tutup');
 			}
 		},
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
+			}),
+			...mapGetters('cu',{
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 		}
 	}
