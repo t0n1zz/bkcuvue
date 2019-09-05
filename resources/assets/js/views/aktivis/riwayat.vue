@@ -23,6 +23,15 @@
 					<message v-if="itemDataStatPekerjaan === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemDataPekerjaan">
 					</message>
 
+					<div class="card">
+						<div class="card-header bg-white">
+							<h5 class="card-title">Identitas</h5>
+						</div>
+						<div class="card-body">
+							<identitas :itemData="form"></identitas>
+						</div>
+					</div>
+
 					<!-- pekerjaan -->
 					<div class="card">
 						<div class="card-header bg-white">
@@ -62,12 +71,13 @@
 									<td v-html="$options.filters.checkTingkatAktivis(props.item.tingkat )"></td>
 									<td>
 										<span v-if="props.item.tipe == 1">
-											<span v-if="props.item.cu">{{ props.item.cu.name }}</span>
+											<span v-if="props.item.cu"> {{ props.item.cu.name }}</span>
 											<span v-if="props.item.tp">| {{ props.item.tp.name }}</span>
 										</span>
 										<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
 										<span v-else>Puskopdit BKCU Kalimantan</span>
 									</td>
+									<td><check-value :value="props.item.keterangan_tidak_aktif"></check-value></td>
 									<td v-html="$options.filters.date(props.item.mulai)"></td>
 									<td>
 										<span v-if="props.item.selesai">
@@ -117,9 +127,9 @@
 							<template slot="item-desktop" slot-scope="props">
 								<tr :class="{ 'bg-info': selectedItemPendidikan.id === props.item.id }" class="text-nowrap" @click="selectedRowPendidikan(props.item)" v-if="props.item">
 									<td>{{ props.index + 1 }}</td>
-									<td>{{ props.item.name }}</td>
-									<td>{{ props.item.tingkat }}</td>
-									<td>{{ props.item.tempat }}</td>
+									<td><check-value :value="props.item.name"></check-value></td>
+									<td><check-value :value="props.item.tingkat"></check-value></td>
+									<td><check-value :value="props.item.tempat"></check-value></td>
 									<td v-html="$options.filters.date(props.item.mulai)"></td>
 									<td>
 										<span v-if="props.item.selesai">
@@ -170,11 +180,11 @@
 								<tr :class="{ 'bg-info': selectedItemOrganisasi.id === props.item.id }" class="text-nowrap" @click="selectedRowOrganisasi(props.item)" v-if="props.item">
 									<td>{{ props.index + 1 }}</td>
 									<td>
-										{{ props.item.name }} 
+										<check-value :value="props.item.name"></check-value>
 										<span class="badge bg-blue-400 align-self-center ml-auto" v-if="props.item.selesai == null || props.item.selesai > moment().format('YYYY-MM-DD')">MASIH AKTIF</span>
 									</td>
-									<td>{{ props.item.jabatan }}</td>
-									<td>{{ props.item.tempat }}</td>
+									<td><check-value :value="props.item.jabatan"></check-value></td>
+									<td><check-value :value="props.item.tempat"></check-value>{{ props.item.tempat }}</td>
 									<td v-html="$options.filters.date(props.item.mulai)"></td>
 									<td>
 										<span v-if="props.item.selesai">
@@ -336,6 +346,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import checkValue from '../../components/checkValue.vue';
+	import identitas from "../../components/identitas.vue";
 
 	export default {
 		components: {
@@ -350,7 +361,8 @@
 			formPendidikan,
 			formOrganisasi,
 			formDiklat,
-			checkValue
+			checkValue,
+			identitas
 		},
 		data() {
 			return {
@@ -374,6 +386,7 @@
 					{ title: 'Nama' },
 					{ title: 'Tingkat' },
 					{ title: 'Tempat' },
+					{ title: 'Keterangan' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
 				],
@@ -436,6 +449,7 @@
     },
 		methods: {
 			fetch(){
+				this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);
 				this.$store.dispatch(this.kelas + '/indexPekerjaan',[this.$route.params.id, this.$route.params.cu]);
 				this.$store.dispatch(this.kelas + '/indexPendidikan',[this.$route.params.id, this.$route.params.cu]);
 				this.$store.dispatch(this.kelas + '/indexOrganisasi',[this.$route.params.id, this.$route.params.cu]);
@@ -524,6 +538,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('aktivis',{
+				form: 'data',
+				formStat: 'dataStat',
 				itemDataPekerjaan: 'dataS1',
 				itemDataPendidikan: 'dataS2',
 				itemDataOrganisasi: 'dataS3',

@@ -636,13 +636,26 @@
 								<!-- input -->
 								<cleave 
 									name="pekerjaan_selesai"
-									v-model="form.pekerjaan.selesai" 
+									v-model="selesai" 
 									class="form-control" 
 									:raw="false" 
 									:options="cleaveOption.date" 
 									placeholder="Silahkan masukkan tgl. selesai"></cleave>
 
 								<small class="text-muted">Kosongkan apabila masih bekerja / tidak memiliki periode selesai</small>
+							</div>
+						</div>
+
+						<!-- keterangan -->
+						<div class="col-sm-12" v-if="isSelesai">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Keterangan Tidak Aktif:</h6>
+
+								<!-- text -->
+								<input type="text" name="keterangan_tidak_aktif" class="form-control" placeholder="Silahkan masukkan keterangan tidak aktif" v-model="form.pekerjaan.keterangan_tidak_aktif">
+
 							</div>
 						</div>
 
@@ -710,6 +723,8 @@
 				confirmIcon: 'icon-arrow-right14',
 				confirmTitle: 'Lanjut ke riwayat',
 				canEditIdentitas: true,
+				selesai: '',
+				isSelesai: false,
 				cleaveOption: {
           date:{
             date: true,
@@ -794,6 +809,15 @@
 					}
 				}
 			},
+			selesai: function(value){
+				let now = moment().format('Y-MM-DD');
+				if(value < now){
+					this.isSelesai = true;
+				}else{
+					this.isSelesai = false;
+				}
+				this.form.pekerjaan.selesai = value;
+			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -848,6 +872,8 @@
 				if(this.form.anggota_cu){
 					this.formCU = this.form.anggota_cu;
 				}
+
+				this.selesai = this.form.pekerjaan.selesai;
 			},
 			save() {
 				this.form.anak = this.formAnak;

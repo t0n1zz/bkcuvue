@@ -15,17 +15,17 @@ class AktivisPekerjaan extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'id_aktivis','id_tempat','id_tp','lembaga_lain','tipe','name','tingkat','mulai','selesai'
+        'id_aktivis','id_tempat','id_tp','lembaga_lain','tipe','name','tingkat','mulai','selesai','keterangan_tidak_aktif'
     ];
 
     protected $filter = [
-        'id_tempat','id_tp','tipe','name','tingkat','mulai','selesai','created_at','updated_at'
+        'id_tempat','id_tp','tipe','name','tingkat','mulai','selesai','created_at','updated_at','keterangan_tidak_aktif'
     ];
 
     public static function initialize()
     {
         return [
-            'id_tempat' => '','id_tp' => '','tipe' => '','lembaga_lain' => '','name' => '','tingkat' => '','mulai' => '','selesai' => ''
+            'id_tempat' => '','id_tp' => '','tipe' => '','lembaga_lain' => '','name' => '','tingkat' => '','mulai' => '','selesai' => '', 'keterangan_tidak_aktif' => ''
         ];
     }
 

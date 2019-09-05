@@ -169,13 +169,26 @@
 					<!-- input -->
 					<cleave 
 						name="pekerjaan_selesai"
-						v-model="form.selesai" 
+						v-model="selesai" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
 						placeholder="Silahkan masukkan tgl. selesai"></cleave>
 
 					<small class="text-muted">Kosongkan apabila masih bekerja / tidak memiliki periode selesai</small>
+				</div>
+			</div>
+
+			<!-- keterangan -->
+			<div class="col-sm-12" v-if="isSelesai">
+				<div class="form-group">
+
+					<!-- title -->
+					<h6>Keterangan Tidak Aktif:</h6>
+
+					<!-- text -->
+					<input type="text" name="keterangan_tidak_aktif" class="form-control" placeholder="Silahkan masukkan keterangan tidak aktif" v-model="form.keterangan_tidak_aktif">
+
 				</div>
 			</div>
 
@@ -234,6 +247,8 @@
 						name: ''
 					}
 				},
+				selesai: '',
+				isSelesai: false,
 				cleaveOption: {
           date:{
             date: true,
@@ -273,6 +288,18 @@
 
 			if(this.formState == 'edit pekerjaan'){
 				this.form = this.selected;
+				this.selesai = this.selected.selesai;
+			}
+		},
+		watch: {
+			selesai: function(value){
+				let now = moment().format('Y-MM-DD');
+				if(value < now){
+					this.isSelesai = true;
+				}else{
+					this.isSelesai = false;
+				}
+				this.form.selesai = value;
 			}
 		},
 		methods: {
