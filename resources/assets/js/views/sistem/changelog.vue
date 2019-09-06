@@ -14,20 +14,22 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#313">Version 3.1.3 <small class="text-muted"> / 4 September 2019</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#313">Version 3.1.3 <small class="text-muted"> / 6 September 2019</small></a>
                   </h5>
                 </div>
 
                 <div id="313" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi fokus pada peningkatan pada data aktivis
+                    <p class="mb-3">Update versi fokus pada peningkatan pada data aktivis, anggota CU dan klaim JALINAN
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Peningkatan pengalaman penambahan data aktivis</li>
-                      <li>Penambahan riwayat diklat pada data aktivis</li>
+                      <li>Penambahan riwayat diklat secara input manual dan pada data aktivis</li>
+                      <li>Riwayat diklat terkoneksi dengan data diklat pada SIMO (khusus untuk aktivis yang mendaftar diklat di SIMO)</li>
                       <li>Memunculkan foto anggota CU pada tabel</li>
+                      <li>Memperbaiki beberapa bug pada proses klaim JALINAN</li>
                     </ul>
                   </div>
                 </div>

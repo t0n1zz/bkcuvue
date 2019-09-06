@@ -67,7 +67,7 @@ class Aktivis extends Model {
     }
 
     public function pekerjaan_tidak_aktif(){
-        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->Where('selesai','<',date('Y-m-d'))->latest();
+        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif')->latest();
     }
 
     public function keluarga(){
@@ -75,7 +75,7 @@ class Aktivis extends Model {
     }
 
     public function anggota_cu(){
-        return $this->hasMany('App\AktivisAnggotaCU','id_aktivis','id');
+        return $this->hasMany('App\AktivisAnggotaCu','id_aktivis','id');
     }
 
     public function organisasi(){

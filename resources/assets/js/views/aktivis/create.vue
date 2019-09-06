@@ -19,7 +19,7 @@
 				<div class="card-body">
 					<identitas :itemData="form"></identitas>
 				</div>
-				<div class="card-footer bg-white d-flext">
+				<div class="card-footer bg-white d-flex">
 					<button type="button" class="btn btn-light btn-block" @click.prevent="ubahCanEdit()"> <i class="icon-pencil5"></i> Edit Identitas</button>
 				</div>
 			</div>
@@ -799,6 +799,7 @@
 					
 					if(this.mode == 'edit' || this.mode == 'create_old'){
 						this.loadData();
+						this.changeAlamat();
 					}else if(this.mode == 'create_new'){
 						this.form.nik = this.nik;
 					}
@@ -873,7 +874,9 @@
 					this.formCU = this.form.anggota_cu;
 				}
 
-				this.selesai = this.form.pekerjaan.selesai;
+				if(this.mode == 'create_new'){
+					this.selesai = this.form.pekerjaan.selesai;
+				}
 			},
 			save() {
 				this.form.anak = this.formAnak;
@@ -935,10 +938,13 @@
 				}else{
 					this.canEditIdentitas = true;
 					this.loadData();
-					this.changeProvinces(this.form.id_provinces);
-					this.changeRegencies(this.form.id_regencies);
-					this.changeDistricts(this.form.id_districts);
+					this.changeAlamat();
 				}
+			},
+			changeAlamat(){
+				this.changeProvinces(this.form.id_provinces);
+				this.changeRegencies(this.form.id_regencies);
+				this.changeDistricts(this.form.id_districts);
 			},
 			back(){
 				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});

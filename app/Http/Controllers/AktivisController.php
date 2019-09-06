@@ -36,9 +36,7 @@ class AktivisController extends Controller{
 				})->advancedFilter();
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->where(function($q){
-						$q->Where('selesai','<',date('Y-m-d'));
-					});
+					$query->whereIn('tipe',[1,3])->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif');
 				})->advancedFilter();
 			}
 
@@ -53,10 +51,7 @@ class AktivisController extends Controller{
 				})->advancedFilter();
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])
-					->where(function($q){
-						$q->Where('selesai','<',date('Y-m-d'));
-					});
+					$query->whereIn('tipe',[1,3])->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif');
 				})->advancedFilter();
 			}
 
@@ -91,9 +86,7 @@ class AktivisController extends Controller{
 				})->advancedFilter();
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
-					$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where(function($q){
-						$q->Where('selesai','<',date('Y-m-d'));
-					});
+					$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif');
 				})->advancedFilter();
 			}
 		}
@@ -126,10 +119,7 @@ class AktivisController extends Controller{
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
-					$query->where('tipe',$tipe)->where('id_tempat',$id)
-					->where(function($q){
-						$q->Where('selesai','<',date('Y-m-d'));
-					});
+					$query->where('tipe',$tipe)->where('id_tempat',$id)->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif');
 				})->advancedFilter();
 			}
 
@@ -146,10 +136,7 @@ class AktivisController extends Controller{
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
-					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
-					->where(function($q){
-						$q->Where('selesai','<',date('Y-m-d'));
-					});
+					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif');
 				})->advancedFilter();
 			}
 
@@ -187,10 +174,7 @@ class AktivisController extends Controller{
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe, $param_tingkat){
-					$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)
-					->where(function($q){
-						$q->Where('selesai','<',date('Y-m-d'));
-					});
+					$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif');
 				})->advancedFilter();
 			}
 
