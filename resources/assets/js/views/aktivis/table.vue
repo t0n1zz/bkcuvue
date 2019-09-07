@@ -72,7 +72,10 @@
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.nik"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide && !columnData[6].disable">
+					<td v-if="!columnData[6].hide">
+						<check-value :value="props.item.npwp"></check-value>
+					</td>
+					<td v-if="!columnData[7].hide && !columnData[7].disable">
 						<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
 							<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
 							<span v-else>-</span>
@@ -86,13 +89,13 @@
 						</span>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[7].hide && !columnData[7].disable && props.item.pekerjaan_aktif.tingkat" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
+					<td v-if="!columnData[8].hide && !columnData[8].disable && props.item.pekerjaan_aktif.tingkat" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
 					</td>
-					<td v-if="!columnData[8].hide && !columnData[8].disable">
+					<td v-if="!columnData[9].hide && !columnData[9].disable">
 						<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[9].hide && !columnData[9].disable">
+					<td v-if="!columnData[10].hide && !columnData[10].disable">
 						<span v-if="props.item.pekerjaan_tidak_aktif && props.item.pekerjaan_tidak_aktif.tipe == 1">
 							<check-value :value="props.item.pekerjaan_tidak_aktif.cu.name" v-if="props.item.pekerjaan_tidak_aktif.cu"></check-value>
 							<span v-else>-</span>
@@ -106,73 +109,73 @@
 						</span>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[10].hide && !columnData[10].disable">
+					<td v-if="!columnData[11].hide && !columnData[11].disable">
 					<check-value :value="props.item.pekerjaan_tidak_aktif.keterangan_tidak_aktif" v-if="props.item.pekerjaan_tidak_aktif"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[11].hide && !columnData[11].disable" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_tidak_aktif.tingkat)"></td>
-					<td v-if="!columnData[12].hide && !columnData[12].disable">
+					<td v-if="!columnData[12].hide && !columnData[12].disable" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_tidak_aktif.tingkat)"></td>
+					<td v-if="!columnData[13].hide && !columnData[13].disable">
 						<check-value :value="props.item.pekerjaan_tidak_aktif.name" v-if="props.item.pekerjaan_tidak_aktif"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[14].hide">
 					<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.pendidikan_tertinggi.name" v-if="props.item.pendidikan_tertinggi"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.email"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.kontak"></check-value>
 					</td>
-					<td v-if="!columnData[18].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.darah"></check-value>
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.tinggi"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.agama"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.status"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[24].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
 					</td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide && !columnData[25].disable">
+					<td v-if="!columnData[26].hide && !columnData[26].disable">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[26].hide && !columnData[26].disable">
+					<td v-if="!columnData[27].hide && !columnData[27].disable">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[27].hide && !columnData[27].disable">
+					<td v-if="!columnData[28].hide && !columnData[28].disable">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[28].hide && !columnData[28].disable">
+					<td v-if="!columnData[29].hide && !columnData[29].disable">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[29].hide">
+					<td v-if="!columnData[30].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[30].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[31].hide">
+					<td v-if="!columnData[31].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[32].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -254,6 +257,15 @@
 					{
 						title: 'No. KTP',
 						name: 'nik',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'NPWP',
+						name: 'npwp',
 						tipe: 'string',
 						sort: true,
 						hide: false,
@@ -550,35 +562,35 @@
 			},
 			disableColumnCu(status){
 				if(this.status == 'aktif'){
-					this.columnData[6].disable = status;
-				}else{
-					this.columnData[9].disable = status;
-				}
-			},
-			disableColumnTingkat(status){
-				if(this.status == 'aktif'){
 					this.columnData[7].disable = status;
 				}else{
 					this.columnData[10].disable = status;
 				}
 			},
+			disableColumnTingkat(status){
+				if(this.status == 'aktif'){
+					this.columnData[8].disable = status;
+				}else{
+					this.columnData[11].disable = status;
+				}
+			},
 			disableColumnStatus(){
 				if(this.status == 'aktif'){
-					this.columnData[6].disable = false;
 					this.columnData[7].disable = false;
 					this.columnData[8].disable = false;
-					this.columnData[9].disable = true;
+					this.columnData[9].disable = false;
 					this.columnData[10].disable = true;
 					this.columnData[11].disable = true;
 					this.columnData[12].disable = true;
+					this.columnData[13].disable = true;
 				}else{
-					this.columnData[6].disable = true;
 					this.columnData[7].disable = true;
 					this.columnData[8].disable = true;
-					this.columnData[9].disable = false;
+					this.columnData[9].disable = true;
 					this.columnData[10].disable = false;
 					this.columnData[11].disable = false;
 					this.columnData[12].disable = false;
+					this.columnData[13].disable = false;
 				}
 			},
 			selectedRow(item){

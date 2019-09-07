@@ -36,6 +36,9 @@
 								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'ditolak'}" @click.prevent="changeTab('ditolak')"><i class="icon-cancel-square mr-2"></i> Ditolak</a>
 								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'tidakSesuai'}" @click.prevent="changeTab('tidakSesuai')"><i class="icon-checkbox-partial mr-2"></i> Tidak Sesuai</a>
+								</li>
 							</ul>
 						</div>	
 
@@ -56,6 +59,13 @@
 								<table-data :title="title" :kelas="kelas" :itemData="itemData2" :itemDataStat="itemDataStat2" :status="'2'"></table-data>
 							</div>
 						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'tidakSesuai'" v-if="isTidakSesuai">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
+							</div>
+						</transition>
+
 					</div>
 				</div>
 			</div>
@@ -87,7 +97,8 @@
 				selectCuPath: 'jalinanKlaimCu',
 				tabName: 'menunggu',
 				isDicairkan: false,
-				isDitolak: false
+				isDitolak: false,
+				isTidakSesuai: false
 			}
 		},
 		created(){
@@ -114,6 +125,9 @@
 				if (value == 'ditolak' && !this.isDitolak) {
 					this.isDitolak = true
 				}
+				if (value == 'tidakSesuai' && !this.isTidakSesuai) {
+					this.isTidakSesuai = true
+				}
 			}
 		},
 		computed: {
@@ -124,9 +138,11 @@
 				itemData: 'dataS',
 				itemData1: 'dataS1',
 				itemData2: 'dataS2',
+				itemData3: 'dataS3',
 				itemDataStat: 'dataStatS',
 				itemDataStat1: 'dataStatS1',
-				itemDataStat2: 'dataStatS2'
+				itemDataStat2: 'dataStatS2',
+				itemDataStat3: 'dataStatS3',
 			}),
 		}
 	}

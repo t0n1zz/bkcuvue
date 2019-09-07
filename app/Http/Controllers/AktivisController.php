@@ -260,7 +260,7 @@ class AktivisController extends Controller{
 
 	public function indexDiklat($id)
 	{
-		$table_data = KegiatanPeserta::with('kegiatan.Provinces')->where('aktivis_id',$id)->orderBy('datang','desc')->get();
+		$table_data = KegiatanPeserta::with('kegiatan.Provinces','kegiatan.panitia_dalam', 'kegiatan.panitia_luar')->where('aktivis_id',$id)->orderBy('datang','desc')->get();
 
 		return response()
 			->json([
@@ -696,6 +696,7 @@ class AktivisController extends Controller{
 		$kelas->name = $request->diklat['name'];
 		$kelas->tempat = $request->diklat['tempat'];
 		$kelas->lembaga = $request->diklat['lembaga'];
+		$kelas->fasilitator = $request->diklat['fasilitator'];
 		$kelas->datang = $request->diklat['datang'];
 		$kelas->pulang = $request->diklat['pulang'];
 

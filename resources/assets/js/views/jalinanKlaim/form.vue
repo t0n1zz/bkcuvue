@@ -107,7 +107,7 @@
 												<!-- title -->
 												<h6 :class="{ 'text-danger' : errors.has('form.kategori_penyakit')}">
 													<i class="icon-cross2" v-if="errors.has('form.kategori_penyakit')"></i>
-													Kategori Penyakit:
+													Kategori Penyakit/Penyebab:
 												</h6>
 
 												<!-- select -->
@@ -186,11 +186,62 @@
 											<div class="form-group">
 
 												<!-- title -->
-												<h6>Keterangan Lain:</h6>
+												<h6 :class="{ 'text-danger' : errors.has('form.tanggal_mati')}">
+													<i class="icon-cross2" v-if="errors.has('form.tanggal_mati')"></i>
+													Keterangan Lain:
+												</h6>
 
 												<!-- text -->
 												<input type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan lain" v-model="form.keterangan">
 
+											</div>
+										</div>
+
+										<!-- TUNAS -->
+										<div class="col-md-6">
+											<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
+
+												<!-- title -->
+												<h5>Nilai pengajuan klaim TUNAS</h5>
+
+												<!-- text -->
+												<cleave 
+													name="tunas_diajukan"
+													v-model="form.tunas_diajukan" 
+													class="form-control" 
+													:options="cleaveOption.numeric"
+													placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS"
+													v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS"></cleave>
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.tunas_diajukan')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.tunas_diajukan') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>		
+											</div>
+										</div>
+
+										<!-- LINTANG -->
+										<div class="col-md-6">
+											<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
+
+												<!-- title -->
+												<h5>Nilai pengajuan klaim LINTANG</h5>
+
+												<!-- text -->
+												<cleave 
+													name="lintang_diajukan"
+													v-model="form.lintang_diajukan" 
+													class="form-control" 
+													:options="cleaveOption.numeric"
+													placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG"
+													v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG"></cleave>
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.lintang_diajukan')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.lintang_diajukan') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>		
 											</div>
 										</div>
 

@@ -96,10 +96,19 @@ class JalinanKlaimController extends Controller{
 
 		if($kelas->status_klaim == 1){
 			$message = "Klaim JALINAN dicairkan";
-		}else if($kelas->status_klaim == 2){
+			$kelas->keterangan_klaim = $request->keterangan_klaim;
+			$kelas->tunas_disetujui = $request->tunas_disetujui;
+			$kelas->lintang_disetujui = $request->lintang_disetujui;
+		}else if($kelas->status_klaim == 2 || $kelas->status_klaim == 3){
 			$message = "Klaim JALINAN ditolak";
+			$kelas->keterangan_klaim = $request->keterangan_klaim;
+			$kelas->tunas_disetujui = NULL;
+			$kelas->lintang_disetujui = NULL;
 		}else if($kelas->status_klaim == 0){
 			$message = "Klaim JALINAN menunggu";
+			$kelas->keterangan_klaim = NULL;
+			$kelas->tunas_disetujui = NULL;
+			$kelas->lintang_disetujui = NULL;
 		}
 
 		$kelas->update();

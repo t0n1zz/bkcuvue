@@ -92,6 +92,25 @@
 
 							</div>
 						</div>
+						
+						<!-- npwp -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>
+									NPWP:</h6>
+
+								<!-- text -->
+								<cleave 
+									name="nik"
+									v-model="form.npwp" 
+									class="form-control" 
+									:options="cleaveOption.number24"
+									placeholder="Silahkan masukkan npwp"></cleave>
+
+							</div>
+						</div>
 
 						<!-- name -->
 						<div class="col-md-4">
@@ -731,6 +750,13 @@
             datePattern: ['Y','m','d'],
             delimiter: '-'
 					},
+					number24: {
+            numeral: true,
+            numeralIntegerScale: 24,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},
 					number16: {
             numeral: true,
             numeralIntegerScale: 16,
@@ -897,9 +923,15 @@
 				}
 
 				if(this.mode == 'edit' || (this.mode == 'create_old' && this.canEditIdentitas)){
-					this.form.ayah.name = this.form.keluarga.ayah;
-					this.form.ibu.name = this.form.keluarga.ibu;
-					this.form.pasangan.name = this.form.keluarga.pasangan;
+					if(this.form.ayah){
+						this.form.ayah.name = this.form.keluarga.ayah;
+					}
+					if(this.form.ibu){
+						this.form.ibu.name = this.form.keluarga.ibu;
+					}
+					if(this.form.pasangan){
+						this.form.pasangan.name = this.form.keluarga.pasangan;
+					}
 				}
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);

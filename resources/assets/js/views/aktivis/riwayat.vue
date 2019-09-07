@@ -221,6 +221,11 @@
 										<i class="icon-pencil5"></i> Ubah
 									</button>
 
+									<button class="btn btn-light mb-1" @click.prevent="update('diklat')"
+									:disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
+										<i class="icon-pencil5"></i> Lihat Diklat
+									</button>
+
 									<button class="btn btn-light mb-1" @click="destroy('diklat')" :disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
 										<i class="icon-bin2"></i> Hapus
 									</button>
@@ -239,7 +244,7 @@
 											<span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari data diklat BKCU di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus'">Terintegrasi</span>
 										</span>
 										<span v-else-if="props.item.kegiatan_id == 0">
-											<span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat BKCU di SIMO'">Lokal</span>
+											<span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat BKCU di SIMO'">Manual</span>
 										</span>
 										<span v-else>-</span>
 									</td>
@@ -270,12 +275,33 @@
 										</span>
 										<span v-else>-</span>
 									</td>
+									<td>
+										<span v-if="props.item.kegiatan_id != 0">
+											<span v-for="panitiaD in props.item.kegiatan.panitia_dalam">
+												<span v-if="panitiaD.pivot.peran == 'fasilitator'">{{ panitiaD.name + ', ' }}</span>
+											</span>
+											<span v-for="panitiaL in props.item.kegiatan.panitia_luar">
+												<span v-if="panitiaL.pivot.peran == 'fasilitator'">{{ panitiaL.name + ', ' }}</span>
+											</span>
+										</span>
+										<span v-else-if="props.item.kegiatan_id == 0">
+											{{ props.item.fasilitator }}
+										</span>
+										<span v-else>-</span>
+									</td>
 									<td v-html="$options.filters.date(props.item.datang)"></td>
 									<td v-html="$options.filters.date(props.item.pulang)"></td>
 								</tr>
 							</template>	
 						</data-table>
-
+						
+						<div class="row">
+							<div class="col-sm-12">
+								<hr/>
+								<p class="text-muted pl-2 pr-2">* Tipe yang dimaksud disini adalah pembeda antara informasi riwayat diklat yang diinput. Tipe manual berarti riwayat diklat di input secara manual oleh pengguna, sedangkan tipe terintegrasi berarti diklat tersebut adalah diklat yg muncul karena sudah mendaftar diklat melalui SIMO</p>
+							</div>
+						</div>
+						
 					</div>
 
 					<!-- form button -->
@@ -398,20 +424,21 @@
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
 				],
-				columnDataDiklat:[
-					{ title: 'No.' },
-					{ title: 'Tipe' },
-					{ title: 'Nama' },
-					{ title: 'Tempat' },
-					{ title: 'Lembaga' },
-					{ title: 'Mulai' },
-					{ title: 'Selesai' },
-				],
 				columnDataOrganisasi:[
 					{ title: 'No.' },
 					{ title: 'Nama' },
 					{ title: 'Jabatan' },
 					{ title: 'Tempat' },
+					{ title: 'Mulai' },
+					{ title: 'Selesai' },
+				],
+				columnDataDiklat:[
+					{ title: 'No.' },
+					{ title: 'Tipe*' },
+					{ title: 'Nama' },
+					{ title: 'Tempat' },
+					{ title: 'Lembaga' },
+					{ title: 'Fasilitator' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
 				],

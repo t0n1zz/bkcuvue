@@ -4,7 +4,7 @@
 		<div class="row">
 
 			<!-- name -->
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 					<!-- title -->
@@ -24,7 +24,7 @@
 			</div>
 
 			<!-- tempat -->
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<div class="form-group" :class="{'has-error' : errors.has('form.tempat')}">
 
 					<!-- title -->
@@ -44,7 +44,7 @@
 			</div>
 
 			<!-- lembaga -->
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 				<div class="form-group" :class="{'has-error' : errors.has('form.lembaga')}">
 
 					<!-- title -->
@@ -60,6 +60,18 @@
 						<i class="icon-arrow-small-right"></i> {{ errors.first('form.lembaga') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group">
+
+					<!-- title -->
+					<h6>Nama fasilitator:</h6>
+
+					<!-- text -->
+					<input type="text" name="fasilitator" class="form-control" placeholder="Silahkan masukkan nama fasilitator penyelenggara diklat" v-model="form.fasilitator">
+
 				</div>
 			</div>
 

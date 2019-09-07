@@ -20,7 +20,7 @@
         <!-- status klaim -->
         <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim']"
           :disabled="!selectedItem.id">
-          <i class="icon-loop4"></i> Status Klaim
+          <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
         <!-- hapus -->
@@ -65,15 +65,13 @@
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
-          <td v-if="!columnData[1].hide">
-						<check-value :value="props.item.anggota_cu.nik"></check-value>
+          <td v-if="!columnData[1].hide && !columnData[1].disable">
+						<check-value :value="props.item.keterangan_klaim"></check-value>
 					</td>
           <td v-if="!columnData[2].hide">
-						<check-value :value="props.item.anggota_cu.name"></check-value>
+						<check-value :value="props.item.anggota_cu.nik"></check-value>
 					</td>
-          <td v-if="!columnData[3].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[4].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[5].hide">
+          <td v-if="!columnData[3].hide">
 						<span v-for="anggota_cu in props.item.anggota_cu_cu" v-if="props.item.anggota_cu_cu">
               <span v-if="$route.params.cu != 'semua'">
                 <span v-if="$route.params.cu == anggota_cu.cu_id">
@@ -84,7 +82,33 @@
             </span>
             <span v-else>-</span>
 					</td>
+          <td v-if="!columnData[4].hide">
+						<check-value :value="props.item.anggota_cu.name"></check-value>
+					</td>
+          <td v-if="!columnData[5].hide">
+            <span v-html="$options.filters.statusJalinan(props.item.tipe)"></span>
+					</td>
           <td v-if="!columnData[6].hide">
+						<check-value :value="props.item.kategori_penyakit"></check-value>
+					</td>
+          <td v-if="!columnData[7].hide">
+						<check-value :value="props.item.keterangan_mati"></check-value>
+					</td>
+          <td v-if="!columnData[8].hide">
+						<check-value :value="props.item.tunas_diajukan" valueType="currency"></check-value>
+					</td>
+           <td v-if="!columnData[9].hide">
+						<check-value :value="props.item.lintang_diajukan" valueType="currency"></check-value>
+					</td>
+          <td v-if="!columnData[10].hide && !columnData[10].disable">
+            <check-value :value="props.item.tunas_disetujui" valueType="currency"></check-value>
+					</td>
+           <td v-if="!columnData[11].hide && !columnData[11].disable">
+            <check-value :value="props.item.lintang_disetujui" valueType="currency"></check-value>
+					</td>
+          <td v-if="!columnData[12].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
+          <td v-if="!columnData[13].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[14].hide">
 						<span v-for="anggota_cu in props.item.anggota_cu_cu" v-if="props.item.anggota_cu_cu">
               <span v-if="$route.params.cu != 'semua'">
                 <span v-if="$route.params.cu == anggota_cu.cu_id">
@@ -95,40 +119,31 @@
             </span>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[7].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
-          <td v-if="!columnData[8].hide">
-            <span v-html="$options.filters.statusJalinan(props.item.tipe)"></span>
-					</td>
-          <td v-if="!columnData[9].hide">
-						<check-value :value="props.item.kategori_penyakit"></check-value>
-					</td>
-          <td v-if="!columnData[10].hide">
-						<check-value :value="props.item.keterangan_mati"></check-value>
-					</td>
-          <td v-if="!columnData[11].hide">
+          <td v-if="!columnData[15].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[16].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-          <td v-if="!columnData[12].hide">
+          <td v-if="!columnData[17].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.anggota_cu.regencies.name" v-if="props.item.anggota_cu.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.anggota_cu.districts.name" v-if="props.item.anggota_cu.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.anggota_cu.villages.name" v-if="props.item.anggota_cu.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-          <td v-if="!columnData[16].hide">
+          <td v-if="!columnData[21].hide">
 						<check-value :value="props.item.anggota_cu.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[18].hide">
+					<td v-if="!columnData[22].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[23].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -138,7 +153,7 @@
     </data-viewer>
 
     <!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" :color="modalColor" 
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :button="modalButton" :content="modalContent" :color="modalColor" 
       @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
       <!-- title -->
@@ -148,8 +163,7 @@
 
 			<!-- status -->
 			<template slot="modal-body1">
-				<form-status :kelas="kelas" :id="selectedItem.id" :status="selectedItem.status_klaim"
-        :keterangan="selectedItem.keterangan_batal"
+				<form-status :kelas="kelas" :selected="selectedItem"
 				@tutup="modalTutup"></form-status>
 			</template>
 
@@ -194,37 +208,17 @@
             name: 'No.',
           },
           {
+						title: 'Keterangan',
+						name: 'keterangan_klaim',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+          },
+          {
             title: 'No. KTP',
             name: 'anggota_cu.nik',
             tipe: 'string',
-            sort: true,
-            hide: false,
-            disable: false,
-            filter: true,
-          },
-          {
-            title: 'Nama',
-            name: 'anggota_cu.name',
-            tipe: 'string',
-            sort: true,
-            hide: false,
-            disable: false,
-            filter: true,
-            filterDefault: true
-          },
-          {
-            title: 'Umur',
-            name: 'umur',
-            tipe: 'string',
-            sort: false,
-            hide: false,
-            disable: false,
-            filter: false,
-          },
-          {
-            title: 'Tgl. Lahir',
-            name: 'anggota_cu.tanggal_lahir',
-            tipe: 'datetime',
             sort: true,
             hide: false,
             disable: false,
@@ -240,22 +234,14 @@
             filter: false,
           },
           {
-            title: 'Tgl. Jadi Anggota',
-            name: 'anggota_cu_cu.tanggal_masuk',
-            tipe: 'datetime',
+            title: 'Nama',
+            name: 'anggota_cu.name',
+            tipe: 'string',
             sort: true,
             hide: false,
             disable: false,
             filter: true,
-          },
-          {
-            title: 'Tgl. Cacat/Meninggal',
-            name: 'tanggal_mati',
-            tipe: 'datetime',
-            sort: true,
-            hide: false,
-            disable: false,
-            filter: true,
+            filterDefault: true
           },
           {
 						title: 'Tipe',
@@ -280,6 +266,78 @@
 						hide: false,
 						disable: false,
 						filter: true,
+          },
+          {
+            title: 'TUNAS diajukan',
+            name: 'tunas_diajukan',
+            tipe: 'numeric',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'LINTANG diajukan',
+            name: 'lintang_diajukan',
+            tipe: 'numeric',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'TUNAS disetujui',
+            name: 'tunas_disetujui',
+            tipe: 'numeric',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'LINTANG disetujui',
+            name: 'lintang_disetujui',
+            tipe: 'numeric',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'Tgl. Cacat/Meninggal',
+            name: 'tanggal_mati',
+            tipe: 'datetime',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'Tgl. Lahir',
+            name: 'anggota_cu.tanggal_lahir',
+            tipe: 'datetime',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'Tgl. Jadi Anggota',
+            name: 'anggota_cu_cu.tanggal_masuk',
+            tipe: 'datetime',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'Umur',
+            name: 'umur',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
           },
           {
 						title: 'Keterangan Lain',
@@ -357,12 +415,26 @@
         modalShow: false,
         modalState: "",
         modalColor: "",
+        modalSize: "",
         modalTitle: "",
         modalContent: "",
         modalButton: ""
       };
     },
     created() {
+      if(this.status == 1){
+        this.columnData[10].disable = false;
+        this.columnData[11].disable = false;
+      }else if(this.status == 2 || this.status == 3){
+        this.columnData[1].disable = false;
+        this.columnData[10].disable = true;
+        this.columnData[11].disable = true;
+      }else{
+        this.columnData[1].disable = true;
+        this.columnData[10].disable = true;
+        this.columnData[11].disable = true;
+      }
+      
       this.fetch(this.query);
     },
     watch: {
@@ -378,6 +450,7 @@
         if (value === "success") {
           this.modalTitle = this.updateMessage.message;
           this.modalContent = "";
+          this.fetch(this.query);
         } else if (value === "fail") {
           this.modalContent = this.updateMessage;
         } else {
@@ -414,10 +487,12 @@
           this.modalState = "confirm-tutup";
           this.modalTitle = "Hapus " + this.title + " " + this.selectedItem.anggota_cu.name + " ini?";
           this.modalButton = "Iya, Hapus";
+          this.modalSize = "'";
         }else if(state == "status"){
           this.modalState = 'normal1';
-					this.modalTitle = 'Ubah status klaim ' + this.title + ' ' + this.selectedItem.anggota_cu.name + ' ini?';
-					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Analisis klaim ' + this.title + ' ' + this.selectedItem.anggota_cu.name + ' ini?';
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-full";
         }
       },
       modalTutup() {

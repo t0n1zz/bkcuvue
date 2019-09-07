@@ -20,21 +20,23 @@ class JalinanKlaim extends Model {
         'tipe' => 'required',
         'kategori_penyakit' => 'required',
         'tanggal_mati' => 'required',
-        'status_klaim' => 'required'
+        'status_klaim' => 'required',
+        'tunas_diajukan' => 'required',
+        'tunas_disetujui' => 'required'
     ];
 
     protected $fillable = [
-        'anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim'
+        'anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui'
     ];
 
     protected $allowedFilters = [
-        'id','anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at',
+        'id','anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui',
         
         'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
     ];
 
     protected $orderable = [
-        'id','anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at',
+        'id','anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui',
 
         'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
     ];
@@ -42,7 +44,7 @@ class JalinanKlaim extends Model {
     public static function initialize()
     {
         return [
-            'anggota_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => ''
+            'anggota_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '',
         ];
     }
 

@@ -10,6 +10,7 @@ export const jalinanKlaim = {
     dataS: [], //collection
     dataS1: [], //collection
     dataS2: [], //collection
+    dataS3: [], //collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
@@ -18,6 +19,7 @@ export const jalinanKlaim = {
     dataStatS: '',
     dataStatS1: '',
     dataStatS2: '',
+    dataStatS3: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -34,6 +36,7 @@ export const jalinanKlaim = {
     dataS: state => state.dataS,
     dataS1: state => state.dataS1,
     dataS2: state => state.dataS2,
+    dataS3: state => state.dataS3,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
@@ -42,6 +45,7 @@ export const jalinanKlaim = {
     dataStatS: state => state.dataStatS,
     dataStatS1: state => state.dataStatS1,
     dataStatS2: state => state.dataStatS2,
+    dataStatS3: state => state.dataStatS3,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -92,6 +96,19 @@ export const jalinanKlaim = {
           commit('setDataStatS2', 'fail');
         });
     },
+    index3( { commit }, p ){
+      commit('setDataStatS3', 'loading');
+      
+      JalinanKlaimAPI.index( p, 3 )
+        .then( function( response ){
+          commit('setDataS3', response.data.model );
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
+        });
+    },
 
     // load by cu
     indexCu( { commit }, [p, id] ){
@@ -131,6 +148,19 @@ export const jalinanKlaim = {
         .catch( error => {
           commit('setDataS2', error.response);
           commit('setDataStatS2', 'fail');
+        });
+    },
+    indexCu3( { commit }, [p, id] ){
+      commit('setDataStatS3', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, id, 3 )
+        .then( function( response ){
+          commit('setDataS3', response.data.model);
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
         });
     },
 
@@ -330,6 +360,9 @@ export const jalinanKlaim = {
     setDataS2 ( state, data ){
       state.dataS2 = data;
     },
+    setDataS3 ( state, data ){
+      state.dataS3 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -353,6 +386,9 @@ export const jalinanKlaim = {
     },
     setDataStatS2( state, status ){
       state.dataStatS2 = status;
+    },
+    setDataStatS3( state, status ){
+      state.dataStatS3 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

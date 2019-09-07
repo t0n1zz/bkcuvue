@@ -65,6 +65,25 @@
 							</div>
 						</div>
 
+						<!-- npwp -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>
+									NPWP:</h6>
+
+								<!-- text -->
+								<cleave 
+									name="nik"
+									v-model="form.npwp" 
+									class="form-control" 
+									:options="cleaveOption.number24"
+									placeholder="Silahkan masukkan npwp"></cleave>
+
+							</div>
+						</div>
+
 						<!-- name -->
 						<div class="col-md-4">
 							<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -731,6 +750,13 @@
             date: true,
             datePattern: ['Y','m','d'],
             delimiter: '-'
+					},
+					number24: {
+            numeral: true,
+            numeralIntegerScale: 24,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
 					},
 					number16: {
             numeral: true,

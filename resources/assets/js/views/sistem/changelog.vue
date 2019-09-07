@@ -26,6 +26,7 @@
 
                     <ul class="list">
                       <li>Peningkatan pengalaman penambahan data aktivis</li>
+                      <li>Penambahan bagian aktivis tidak aktif/bekerja yang mengakomodir informasi aktivis yang sudah mengundurkan diri, berhenti, pensiun dan meninggal</li>
                       <li>Penambahan riwayat diklat secara input manual dan pada data aktivis</li>
                       <li>Riwayat diklat terkoneksi dengan data diklat pada SIMO (khusus untuk aktivis yang mendaftar diklat di SIMO)</li>
                       <li>Memunculkan foto anggota CU pada tabel</li>
