@@ -210,7 +210,8 @@ class AnggotaCuController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				'message' => $this->message. ' ' .$name. ' berhasil diubah',
+				'id' => $kelas->id
 			]);
 	}
 

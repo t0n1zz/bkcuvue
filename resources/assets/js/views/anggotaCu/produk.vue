@@ -104,7 +104,7 @@
 							:cancelTitle="'kembali'" 
 							@confirmClick="back" 
 							@cancelClick="kembali" 
-							v-if="$route.meta.mode == 'create'"></form-button>
+							v-if="$route.meta.mode == 'create' || $route.meta.mode == 'createJalinan' "></form-button>
 						<form-button 
 							:isSingleButton="true"
 							:cancelState="'methods'"
@@ -216,15 +216,21 @@
 				this.$store.dispatch(this.kelas + '/edit',this.$route.params.id, this.$route.params.cu);
 			},
 			back(){
-				if(this.currentUser.id_cu != 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				if(this.$route.meta.mode == 'createJalinan'){
+					this.$router.push({name: 'jalinanKlaimCreateNik', params:{nik: this.form.nik}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+					if(this.currentUser.id_cu != 0){
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					}else{
+						this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+					}
 				}
 			},
 			kembali(){
 				if(this.$route.meta.mode == 'create'){
 					this.$router.push({name: this.kelas + 'CreateEdit', params:{id: this.$route.params.id}});	
+				}else if(this.$route.meta.mode == 'createJalinan'){
+					this.$router.push({name: this.kelas + 'CreateJalinanEdit', params:{id: this.$route.params.id}});	
 				}else{
 					this.back();
 				}

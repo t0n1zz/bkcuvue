@@ -55,7 +55,7 @@ class JalinanKlaim extends Model {
 
     public function anggota_cu_cu()
     {
-        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id');
+        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','anggota_cu_id');
     }
 
 }

@@ -7,6 +7,8 @@
 		<form @submit.prevent="save" data-vv-scope="formStatus">
 
       <div class="row">
+
+        <!-- identitas -->
         <div class="col-md-6">
           <div class="card">
             <div class="card-header bg-white">
@@ -18,6 +20,7 @@
           </div>
         </div>
 
+        <!-- klaim -->
         <div class="col-md-6">
           <div class="card">
             <div class="card-header bg-white">
@@ -47,8 +50,10 @@
                       <b>Tanggal Cacat/Meninggal:</b> <br/>
                       <span v-html="$options.filters.date(selectedData.tanggal_mati)"></span>
                     </li>
-                  </ul>
-                  <ul class="list list-unstyled mb-0">
+                    <li>
+                      <b>Tanggal Buat:</b> <br/>
+                      <span v-html="$options.filters.dateTime(selectedData.created_at)"></span>
+                    </li>
                     <li>
                       <b>Nilai pengajuan klaim TUNAS:</b> <br/>
                       <check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value> 
@@ -63,28 +68,29 @@
             </div>
           </div>
         </div>
-      </div>
-     
-      <!-- status -->
-      <div class="form-group">
 
-        <!-- title -->
-        <h5>Status Klaim:</h5>
+        <!-- status -->
+        <div class="col-md-12">
+          
+          <div class="form-group">
 
-        <!-- select -->
-        <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
-          <option disabled value="">Silahkan pilih status klaim</option>
-          <option value="0">Menunggu</option>
-          <option value="1">Dicairkan</option>
-          <option value="2">Ditolak</option>
-          <option value="3">Tidak Sesuai</option>
-        </select>
+            <!-- title -->
+            <h5>Status Klaim:</h5>
 
-      </div>
+            <!-- select -->
+            <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
+              <option disabled value="">Silahkan pilih status klaim</option>
+              <option value="0">Menunggu</option>
+              <option value="1">Dicairkan</option>
+              <option value="2">Ditolak</option>
+              <option value="3">Tidak Sesuai</option>
+            </select>
 
-      <div class="row" v-if="formStatus.status == '1'">
+          </div>
+        </div>
+
         <!-- TUNAS -->
-        <div class="col-md-6">
+        <div class="col-md-6" v-if="formStatus.status == '1'">
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 
             <!-- title -->
@@ -109,7 +115,7 @@
         </div>
 
         <!-- LINTANG -->
-        <div class="col-md-6">
+        <div class="col-md-6" v-if="formStatus.status == '1'">
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
 
             <!-- title -->
@@ -132,27 +138,31 @@
             <small class="text-muted" v-else>&nbsp;</small>		
           </div>
         </div>
+
+        <!-- keterangan -->
+        <div class="col-md-12"  v-if="formStatus.status != 0"> 
+          <div class="form-group" :class="{'has-error' : errors.has('formStatus.keterangan_klaim')}">
+
+            <!-- title -->
+            <h5 :class="{ 'text-danger' : errors.has('formStatus.keterangan_klaim')}">
+              <i class="icon-cross2" v-if="errors.has('formStatus.keterangan_klaim')"></i>Keterangan:
+            </h5>
+
+            <!-- textarea -->
+            <textarea rows="5" type="text" name="keterangan_klaim" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan_klaim"></textarea>
+
+            <!-- error message -->
+            <small class="text-muted text-danger" v-if="errors.has('formStatus.keterangan_klaim')">
+              <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.keterangan_klaim') }}
+            </small>
+            <small class="text-muted" v-else>&nbsp;
+            </small>
+          </div>
+
+        </div>
+
       </div>
-
-      <!-- keterangan batal -->
-      <div class="form-group" :class="{'has-error' : errors.has('formStatus.keterangan_klaim')}" v-if="formStatus.status != 0">
-
-        <!-- title -->
-        <h5 :class="{ 'text-danger' : errors.has('formStatus.keterangan_klaim')}">
-          <i class="icon-cross2" v-if="errors.has('formStatus.keterangan_klaim')"></i>Keterangan:
-        </h5>
-
-        <!-- textarea -->
-        <textarea rows="5" type="text" name="keterangan_klaim" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan_klaim"></textarea>
-
-        <!-- error message -->
-        <small class="text-muted text-danger" v-if="errors.has('formStatus.keterangan_klaim')">
-          <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.keterangan_klaim') }}
-        </small>
-        <small class="text-muted" v-else>&nbsp;
-        </small>
-      </div>
-
+     
       <!-- divider -->
       <hr>
       
@@ -253,7 +263,7 @@
 		computed: {
 			...mapGetters('auth', {
 				currentUser: 'currentUser'
-			}),
+      }),
 		}
 	}
 </script>

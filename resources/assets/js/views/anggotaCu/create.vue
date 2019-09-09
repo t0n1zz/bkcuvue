@@ -19,9 +19,9 @@
 			</div>
 
 			<!-- identitas -->
-			<div class="card" v-if="mode == 'create_new'">
+			<div class="card" v-if="mode != 'create_old'">
 				<div class="card-header bg-white">
-					<h5 class="card-title">1. Identitas Anggota</h5>
+					<h5 class="card-title">Identitas Anggota</h5>
 				</div>
 				<div class="card-body">
 
@@ -55,7 +55,15 @@
 									class="form-control" 
 									:options="cleaveOption.number16"
 									placeholder="Silahkan masukkan no KTP"
-									v-validate="'required'" data-vv-as="No. KTP" readonly></cleave>
+									v-validate="'required'" data-vv-as="No. KTP" readonly v-if="mode == 'create_new'"></cleave>
+
+								<cleave 
+									name="nik"
+									v-model="form.nik" 
+									class="form-control" 
+									:options="cleaveOption.number16"
+									placeholder="Silahkan masukkan no KTP"
+									v-validate="'required'" data-vv-as="No. KTP" v-else></cleave>	
 								
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.nik')">
@@ -281,9 +289,9 @@
 			</div>
 
 			<!-- riwayat -->
-			<div class="card" v-if="mode == 'create_new'">
+			<div class="card" v-if="mode != 'create_old'">
 				<div class="card-header bg-white">
-					<h5 class="card-title">2. Riwayat</h5>
+					<h5 class="card-title">Riwayat</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -379,9 +387,9 @@
 			</div>
 
 			<!-- lokasi -->
-			<div class="card" v-if="mode == 'create_new'">
+			<div class="card" v-if="mode != 'create_old'">
 				<div class="card-header bg-white">
-					<h5 class="card-title">3. Alamat & Kontak</h5>
+					<h5 class="card-title">Alamat & Kontak</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -574,7 +582,7 @@
 			<!-- if cu -->
 			<div class="card" v-if="currentUser && currentUser.id_cu != 0">
 				<div class="card-header bg-white">
-					<h5 class="card-title">4. CU</h5>
+					<h5 class="card-title">CU</h5>
 				</div>
 				<div class="card-body">
 					
@@ -630,7 +638,7 @@
 			<!-- if bkcu -->
 			<div class="card" v-if="currentUser && currentUser.id_cu == 0">
 				<div class="card-header bg-white">
-					<h5 class="card-title">4. CU</h5>
+					<h5 class="card-title">CU</h5>
 				</div>
 				<div class="card-body pb-2">
 					<div class="row">
@@ -823,8 +831,12 @@
 		watch: {
 			formStat(value){
 				if(value == 'success'){
-					if(this.mode == 'edit' || this.mode == 'createEdit'){
+					if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit'){
 						this.fetchCu();
+					}
+					
+					if(this.mode == 'create_jalinan'){
+						this.form.nik = this.$route.params.nik;
 					}
 				}
 			},
@@ -845,11 +857,13 @@
 			fetch() {
 				if(this.mode == 'create_new'){
 					this.form.nik = this.nik;
+				}else if(this.mode == 'create_jalinan'){
+					this.$store.dispatch(this.kelas + '/create');
 				}else if(this.mode == 'create_old'){
 					this.fetchCu();
 				}
 
-				if(this.mode == 'edit' || this.mode == 'createEdit'){
+				if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit'){
 					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				}
 			},
@@ -910,11 +924,11 @@
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.mode == 'create_new'){
+						if(this.mode == 'create_new' || this.mode == 'create_jalinan'){
 							this.$store.dispatch(this.kelas + '/store', formData);
-						}else if(this.mode == 'create_old'){
+						}else if(this.mode == 'create_old' || this.mode == 'create_edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.form.id,formData]);
-						}else if(this.mode == 'edit'){
+						}else if(this.mode == 'edit' ){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id,formData]);
 						}
 						this.submited = false;
@@ -981,7 +995,7 @@
 			},
 			modalTutup() {
 				if (this.updateStat === 'success') {				
-					if(this.mode == 'create_new' || this.mode == 'create_old'){
+					if(this.mode == 'create_new' || this.mode == 'create_old' || this.mode == 'create_edit'){
 						let idcu = '';
 						if(this.currentUser.id_cu != 0){
 							idcu = this.currentUser.id_cu;
@@ -989,6 +1003,14 @@
 							idcu = 'semua';
 						}
 						this.$router.push({ name: this.kelas + "ProdukCreate",params: {id: this.updateResponse.id, cu: idcu }});
+					}else if(this.mode == 'create_jalinan' || this.mode == 'create_jalinan_edit'){
+						let idcu = '';
+						if(this.currentUser.id_cu != 0){
+							idcu = this.currentUser.id_cu;
+						}else{
+							idcu = 'semua';
+						}
+						this.$router.push({ name: this.kelas + "ProdukCreateJalinan",params: {id: this.updateResponse.id, cu: idcu }});
 					}else{
 						this.back();
 					}

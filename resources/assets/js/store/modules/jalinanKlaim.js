@@ -169,8 +169,15 @@ export const jalinanKlaim = {
       
       JalinanKlaimAPI.cariData( nik )
         .then( function( response ){
-          commit('setData2', response.data.model);
-          commit('setDataStat2', 'success');
+          if(response.data.model){
+            commit('setData2', response.data.model);
+            commit('setDataStat2', 'success');
+          }else{
+            commit('setData2', response.data.form);
+            commit('setRules', response.data.rules);
+            commit('setOptions', response.data.options)
+            commit('setDataStat2', 'fail');
+          }
         })
         .catch(error => {
           commit('setData2', error.response);

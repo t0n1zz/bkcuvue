@@ -2,10 +2,7 @@
 	<div>
 
 		<!-- Page header -->
-		<page-header 
-		:title="title" 
-		:titleDesc="titleDesc" 
-		:titleIcon="titleIcon"></page-header>
+		<page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon" :level="2" :level2Title="level2Title" :level2Route="kelas" @level2Back="back()"></page-header>
 		
 		<!-- page container -->
 		<div class="page-content pt-0">
@@ -21,12 +18,21 @@
 
 					<!-- data not exist -->
 					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">
-						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO
+						<span class="font-weight-semibold" v-if="currentUser.can['create_anggota_cu']">NIK anggota CU tidak terdaftar di SIMO, silahkan menambahkan terlebih dahulu data anggota dengan menekan tombol tambah anggota CU dibawah.
+						</span>
+						<span v-else>
+							NIK anggota CU tidak terdaftar di SIMO, silahkan meminta user yang memiliki akses untuk menambah anggota CU untuk menambahkan terlebih dahulu data anggota atau meminta akses untuk menambah anggota CU kepada user lain yang bisa mengelola data user.
 						</span>
 					</div>
 
+					<div class="card card-body" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
+						<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik}}" class="btn btn-light">
+							<i class="icon-plus22"></i> Tambah Anggota CU
+						</router-link>
+					</div>
+
 					<!-- data exist -->
-					<div v-if="itemDataStat == 'success'">
+					<div v-if="itemDataStat == 'success' && itemData">
 						
 						<!-- identitas -->
 						<div class="card">
@@ -320,11 +326,13 @@
 		},
 		data() {
 			return {
-				title: 'Klaim JALINAN',
+				title: 'Tambah Klaim JALINAN',
 				titleDesc: 'Menambah klaim JALINAN',
 				titleIcon: 'icon-plus3',
+				level2Title: 'Klaim JALINAN',
 				kelas: 'jalinanKlaim',
 				isEdit: false,
+				nik: '',
 				cleaveOption: {
           date:{
             date: true,
@@ -398,26 +406,29 @@
 		},
 		watch: {
 			itemDataStat(value) {
-				if (value === "success") {
+				if (value == "success") {
 					this.itemDataCu = [];
 					this.itemDataProduk = [];
 
 					// cu
-					if(this.itemData.anggota_cu){
-						var valData;
-						for(valData of this.itemData.anggota_cu){
-							var datas = {};
-							var cu = {};
-							cu.name = valData.name;
-							cu.id = valData.id;
-
-							datas = valData.pivot;
-							datas.cu = cu;
-							this.itemDataCu.push(datas);
+					if(this.itemData){
+						if(this.itemData.anggota_cu){
+							var valData;
+							for(valData of this.itemData.anggota_cu){
+								var datas = {};
+								var cu = {};
+								cu.name = valData.name;
+								cu.id = valData.id;
+	
+								datas = valData.pivot;
+								datas.cu = cu;
+								this.itemDataCu.push(datas);
+							}
 						}
+						// get form
+						this.fetch();
 					}
-					// get form
-					this.fetch();
+
 				}
 			},
 			updateStat(value) {
@@ -435,6 +446,7 @@
 		},
 		methods: {
 			cariData(nik){
+				this.nik = nik;
 				this.$store.dispatch(this.kelas + '/cariData', nik);
 			},
 			fetch(){

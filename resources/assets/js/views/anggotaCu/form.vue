@@ -20,7 +20,8 @@
 							<span class="font-weight-semibold">NIK tidak terdaftar di SIMO, maka silahkan menambahkan data anggota CU baru.
 							</span>
 						</div>
-
+						
+						<!-- create new -->
 						<form-create v-if="itemDataStat == 'fail'" :nik="nik" :mode="'create_new'"></form-create>
 
 						<!-- data exist -->
@@ -37,6 +38,7 @@
 							</div>
 						</div>
 
+						<!-- create old -->
 						<form-create v-if="itemDataStat == 'success'" :mode="'create_old'"></form-create>
 						
 					</div>
@@ -44,8 +46,14 @@
 					<!-- edit -->
 					<form-create v-if="$route.meta.mode == 'edit'" :mode="'edit'"></form-create>
 
-					<!-- createedit -->
-					<form-create v-if="$route.meta.mode == 'createEdit'" :mode="'createEdit'"></form-create>
+					<!-- create edit -->
+					<form-create v-if="$route.meta.mode == 'createEdit'" :mode="'create_edit'"></form-create>
+
+					<!-- create jalinan -->
+					<form-create v-if="$route.meta.mode == 'createJalinan'" :mode="'create_jalinan'"></form-create>
+
+					<!-- create edit jalinan -->
+					<form-create v-if="$route.meta.mode == 'createJalinanEdit'" :mode="'create_jalinan_edit'"></form-create>
 
 				</div>
 			</div>
