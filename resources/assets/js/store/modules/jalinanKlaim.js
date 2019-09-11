@@ -238,10 +238,10 @@ export const jalinanKlaim = {
     },
 
     // edit page
-    edit( {commit}, id ){
+    edit( {commit}, [nik, cu] ){
       commit('setDataStat', 'loading');
       
-      JalinanKlaimAPI.edit( id )
+      JalinanKlaimAPI.edit( nik, cu )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);

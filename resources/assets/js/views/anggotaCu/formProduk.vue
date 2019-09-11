@@ -56,7 +56,7 @@
 							<span v-if="formStateProdukCuStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih Produk CU</span>
 						</option>
-						<option v-for="produk in formStateProdukCu" :value="produk.id">{{produk.name}}</option>
+						<option v-for="produk in formStateProdukCu" :value="produk.id">{{produk.name}} | {{produk.tipe}}</option>
 					</select>
 
 					<!-- error message -->
@@ -310,8 +310,9 @@
 						this.formProduk = this.selected;
 
 						if(this.currentUser.id_cu == 0){
-							this.changeCu(this.formProduk.cu.id);
+							this.changeCu(this.formProduk.produk_cu.id_cu);
 						}
+						this.changeProdukCu(this.formProduk.produk_cu_id);
 					}
 
 					if(this.currentUser.id_cu != 0){
@@ -322,24 +323,28 @@
 						this.fetchProdukCu(this.currentUser.cu.id);
 					}
 
-					this.changeProdukCu(this.formProduk.produk_cu_id);
 				}
 			},
+			formStateProdukCuStat(value){
+				if(value == "success"){
+					this.changeProdukCu(this.formProduk.produk_cu_id);
+				}
+			}
 		},
 		methods: {
 			changeCu(id){
 				let cu;
+
 				if(id != 0){
 					cu = _.find(this.modelCu, function(o){
 						return o.id == id;
 					});
-				}
 
-				if(cu){
-					this.formProduk.cu.id = cu.id;
-					this.formProduk.cu.name = cu.name;
+					if(cu){
+						this.formProduk.cu = cu;
+					}
+					this.fetchProdukCu(id);
 				}
-				this.fetchProdukCu(id);
 			},
 			changeProdukCu(id){
 				let produk_cu;

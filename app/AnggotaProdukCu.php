@@ -31,7 +31,7 @@ class AnggotaProdukCu extends Model {
 
     public function produk_cu()
     {
-        return $this->belongsTo('App\ProdukCu','produk_cu_id','id')->select('id','name','id_cu');
+        return $this->belongsTo('App\ProdukCu','produk_cu_id','id')->select('id','name','id_cu','tipe');
     }
 
 }

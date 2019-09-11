@@ -16,8 +16,8 @@ export default {
     return axios.post('/api/jalinanKlaim/store', form);
   },
 
-  edit: function( id ){
-    return axios.get('/api/jalinanKlaim/edit/' + id);
+  edit: function( nik, cu ){
+    return axios.get('/api/jalinanKlaim/edit/' + nik + '/cu/' + cu);
   },
 
   update: function ( id, form ){

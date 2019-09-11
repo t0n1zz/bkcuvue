@@ -172,3 +172,14 @@ Vue.filter('age', function(dateString) {
 	}
 	return age;
 });
+Vue.filter('ageDiff', function(date1, date2) {
+	var today = new Date(date1);
+	var birthDate = new Date(date2);
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+	{
+			age--;
+	}
+	return age;
+});

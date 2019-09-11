@@ -26,17 +26,17 @@ class JalinanKlaim extends Model {
     ];
 
     protected $fillable = [
-        'anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui'
+        'anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan',
     ];
 
     protected $allowedFilters = [
-        'id','anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui',
+        'id','anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan',
         
         'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
     ];
 
     protected $orderable = [
-        'id','anggota_cu_id','tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui',
+        'id','anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan',
 
         'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
     ];
@@ -44,7 +44,7 @@ class JalinanKlaim extends Model {
     public static function initialize()
     {
         return [
-            'anggota_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '',
+            'anggota_cu_id' => '', 'anggota_cu_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '','tanggal_pencairan' => ''
         ];
     }
 
@@ -55,7 +55,7 @@ class JalinanKlaim extends Model {
 
     public function anggota_cu_cu()
     {
-        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','anggota_cu_id');
+        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id');
     }
 
 }

@@ -13,7 +13,7 @@
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0" :disabled="!selectedItem.anggota_cu">
+        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0" :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
@@ -40,7 +40,7 @@
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0"
+        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0"
           :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
         </button>
@@ -72,78 +72,60 @@
 						<check-value :value="props.item.anggota_cu.nik"></check-value>
 					</td>
           <td v-if="!columnData[3].hide">
-						<span v-for="anggota_cu in props.item.anggota_cu_cu" v-if="props.item.anggota_cu_cu">
-              <span v-if="$route.params.cu != 'semua'">
-                <span v-if="$route.params.cu == anggota_cu.cu_id">
-                  {{ anggota_cu.no_ba }}
-                </span>
-              </span>
-              <label v-else class="badge badge-primary ml-1">{{ anggota_cu.cu.name }} - {{ anggota_cu.no_ba }}</label>
-            </span>
-            <span v-else>-</span>
+            <check-value :value="props.item.anggota_cu_cu.no_ba" v-if="props.item.anggota_cu_cu"></check-value>
 					</td>
-          <td v-if="!columnData[4].hide">
-						<check-value :value="props.item.anggota_cu.name"></check-value>
+          <td v-if="!columnData[4].hide && !columnData[4].disable">
+            <check-value :value="props.item.anggota_cu_cu.cu.name" v-if="props.item.anggota_cu_cu.cu"></check-value>
 					</td>
           <td v-if="!columnData[5].hide">
-            <span v-html="$options.filters.statusJalinan(props.item.tipe)"></span>
+						<check-value :value="props.item.anggota_cu.name"></check-value>
 					</td>
           <td v-if="!columnData[6].hide">
-						<check-value :value="props.item.kategori_penyakit"></check-value>
+            <label class="badge badge-warning ml-1">
+              <check-value :value="props.item.tipe"></check-value>
+            </label>
 					</td>
           <td v-if="!columnData[7].hide">
-						<check-value :value="props.item.keterangan_mati"></check-value>
+						<check-value :value="props.item.kategori_penyakit"></check-value>
 					</td>
           <td v-if="!columnData[8].hide">
+						<check-value :value="props.item.keterangan_mati"></check-value>
+					</td>
+          <td v-if="!columnData[9].hide">
 						<check-value :value="props.item.tunas_diajukan" valueType="currency"></check-value>
 					</td>
-           <td v-if="!columnData[9].hide">
+           <td v-if="!columnData[10].hide">
 						<check-value :value="props.item.lintang_diajukan" valueType="currency"></check-value>
 					</td>
-          <td v-if="!columnData[10].hide && !columnData[10].disable">
+          <td v-if="!columnData[11].hide && !columnData[11].disable">
             <check-value :value="props.item.tunas_disetujui" valueType="currency"></check-value>
 					</td>
-           <td v-if="!columnData[11].hide && !columnData[11].disable">
+           <td v-if="!columnData[12].hide && !columnData[12].disable">
             <check-value :value="props.item.lintang_disetujui" valueType="currency"></check-value>
 					</td>
-          <td v-if="!columnData[12].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
-          <td v-if="!columnData[13].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[14].hide">
-						<span v-for="anggota_cu in props.item.anggota_cu_cu" v-if="props.item.anggota_cu_cu">
-              <span v-if="$route.params.cu != 'semua'">
-                <span v-if="$route.params.cu == anggota_cu.cu_id">
-                  {{ anggota_cu.tanggal_masuk }}
-                </span>
-              </span>
-              <label v-else class="badge badge-primary ml-1">{{ anggota_cu.cu.name }} - {{ anggota_cu.tanggal_masuk }}</label>
-            </span>
-            <span v-else>-</span>
-					</td>
-          <td v-if="!columnData[15].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[16].hide">
+          <td v-if="!columnData[13].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
+          <td v-if="!columnData[14].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[15].hide" v-html="$options.filters.date(props.item.anggota_cu_cu.tanggal_masuk)" class="text-nowrap"></td>
+          <td v-if="!columnData[16].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[17].hide" v-html="$options.filters.ageDiff(props.item.anggota_cu_cu.tanggal_masuk,props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[18].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-          <td v-if="!columnData[17].hide">
+          <td v-if="!columnData[19].hide">
+						<check-value :value="props.item.anggota_cu.alih_waris"></check-value>
+					</td>
+          <td v-if="!columnData[20].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
-						<span v-else>-</span>	
-					</td>
-					<td v-if="!columnData[18].hide">
-						<check-value :value="props.item.anggota_cu.regencies.name" v-if="props.item.anggota_cu.regencies"></check-value>
-						<span v-else>-</span>	
-					</td>
-					<td v-if="!columnData[19].hide">
-						<check-value :value="props.item.anggota_cu.districts.name" v-if="props.item.anggota_cu.districts"></check-value>
-						<span v-else>-</span>	
-					</td>
-					<td v-if="!columnData[20].hide">
-						<check-value :value="props.item.anggota_cu.villages.name" v-if="props.item.anggota_cu.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
           <td v-if="!columnData[21].hide">
 						<check-value :value="props.item.anggota_cu.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[23].hide">
+          <td v-if="!columnData[22].hide">
+						<check-value :value="props.item.anggota_cu.hp"></check-value>
+					</td>
+					<td v-if="!columnData[23].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[24].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -210,6 +192,7 @@
           {
 						title: 'Keterangan',
 						name: 'keterangan_klaim',
+            tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -231,6 +214,15 @@
             sort: false,
             hide: false,
             disable: false,
+            filter: true,
+          },
+          {
+            title: 'CU',
+            name: 'anggota_cu_cu.cu.name',
+            tipe: 'string',
+            sort: true,
+            hide: false,
+            disable: false,
             filter: false,
           },
           {
@@ -246,6 +238,7 @@
           {
 						title: 'Tipe',
 						name: 'tipe',
+            tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -254,6 +247,7 @@
           {
 						title: 'Kategori Penyakit',
 						name: 'kategori_penyakit',
+            tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -262,6 +256,7 @@
           {
 						title: 'Keterangan Cacat/Meninggal',
 						name: 'keterangan_mati',
+            tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -331,8 +326,17 @@
             filter: true,
           },
           {
-            title: 'Umur',
-            name: 'umur',
+            title: 'Usia Saat Ini',
+            name: 'usia',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
+            title: 'Usia Ketika Masuk CU',
+            name: 'usia_cu',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -342,6 +346,16 @@
           {
 						title: 'Keterangan Lain',
 						name: 'keterangan',
+            tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+          },
+          {
+						title: 'Alih Waris',
+						name: 'anggota_cu.alih_waris',
+            tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -357,35 +371,17 @@
             filter: true,
           },
           {
-            title: 'Kabupaten',
-            name: 'anggota_cu.regencies.name',
-            tipe: 'string',
-            sort: false,
-            hide: false,
-            disable: false,
-            filter: true,
-          },
-          {
-            title: 'Kecamatan',
-            name: 'anggota_cu.districts.name',
-            tipe: 'string',
-            sort: false,
-            hide: false,
-            disable: false,
-            filter: true,
-          },
-          {
-            title: 'Kelurahan',
-            name: 'anggota_cu.villages.name',
-            tipe: 'string',
-            sort: false,
-            hide: false,
-            disable: false,
-            filter: true,
-          },
-          {
             title: 'Alamat',
-            name: 'alamat',
+            name: 'anggota_cu.alamat',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'Hp',
+            name: 'anggota_cu.hp',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -423,16 +419,16 @@
     },
     created() {
       if(this.status == 1){
-        this.columnData[10].disable = false;
         this.columnData[11].disable = false;
+        this.columnData[12].disable = false;
       }else if(this.status == 2 || this.status == 3){
         this.columnData[1].disable = false;
-        this.columnData[10].disable = true;
         this.columnData[11].disable = true;
+        this.columnData[12].disable = true;
       }else{
         this.columnData[1].disable = true;
-        this.columnData[10].disable = true;
         this.columnData[11].disable = true;
+        this.columnData[12].disable = true;
       }
       
       this.fetch(this.query);
@@ -463,19 +459,22 @@
         if(this.$route.params.cu == 'semua'){
           this.$store.dispatch(this.kelas + '/index' + this.status, params);
           this.excelDownloadUrl = this.kelas + '/status/' + this.status;
+          this.columnData[4].disable = false;
 				}else{
           this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params,this.$route.params.cu]);
           this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status;
+          this.columnData[4].disable = true;
 				}
       },
       selectedRow(item) {
         this.selectedItem = item;
       },
-      ubahData(id) {
+      ubahData(nik, cu) {
         this.$router.push({
           name: this.kelas + "Edit",
           params: {
-            id: id
+            nik: nik,
+            cu: cu
           }
         });
       },

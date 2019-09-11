@@ -131,7 +131,10 @@
 					no_ba: '',
 					tanggal_masuk: '',
 					cu_id: 0,
-					cu_name: '',
+					cu: {
+						id: '',
+						name: '',
+					}
 				},
 				modelProdukCu: [],
 				modelProdukCuStat: '',
@@ -182,7 +185,8 @@
 						return o.id == id;
 					});
 				}
-				this.formDataCu.cu_name = cu.name;
+				this.formDataCu.cu.id = cu.id;
+				this.formDataCu.cu.name = cu.name;
 			},
 			fetchCU(){
 				if(this.modelCuStat != 'success'){

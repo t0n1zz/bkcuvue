@@ -667,7 +667,10 @@
 					<template slot="item-desktop" slot-scope="props">
 						<tr :class="{ 'bg-info': selectedItemCu.index === props.index + 1 }" class="text-nowrap" @click="selectedCuRow(props.index,props.item)" v-if="props.item">
 							<td>{{ props.index + 1 }}</td>
-							<td><check-value :value="props.item.cu_name"></check-value></td>
+							<td>
+								<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+								<span v-else>-</span>
+							</td>
 							<td><check-value :value="props.item.no_ba"></check-value></td>
 							<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
 						</tr>

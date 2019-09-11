@@ -44,228 +44,228 @@
 							</div>
 						</div>
 
-						<!-- mati -->
-						<div class="col-12 alert bg-danger text-white alert-styled-left" v-if="itemData.status_jalinan == 1 ||itemData.status_jalinan == 2">
-							<span class="font-weight-semibold">Anggota ini sudah dinyatakan <b v-html="$options.filters.statusJalinan(itemData.status_jalinan)"></b>, maka tidak bisa dilakukan penambahan, pengubahan dan penghapusan data produk.
+						<!-- status kehidupan -->
+						<div class="col-12 alert bg-info text-white alert-styled-left" v-if="itemData.status_jalinan > 0">
+							<span class="font-weight-semibold">Anggota ini sudah dinyatakan <b v-html="$options.filters.statusJalinan(itemData.status_jalinan)"></b>
 							</span>
 						</div>
 
-						<!-- hidup -->
-						<div v-else>
+						<!-- form -->
+						<form @submit.prevent="save" data-vv-scope="form">
+							<div class="card card-body">
+								<div class="row">
+									
+									<!-- check cu -->
+									<div class="col-sm-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu_cu_id')}">
 
-							<!-- cu -->
-							<div class="row">
-								<div :class="{'col-6': itemDataCu.length > 1, 'col-12': itemDataCu.length < 2}" v-for="cu in itemDataCu">
-									<div class="card card-body has-bg-image bg-green-400" >
-										<div class="media">
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu_cu_id')}">
+												<i class="icon-cross2" v-if="errors.has('form.anggota_cu_cu_id')"></i>
+												Silahkan memilih informasi keanggotaan CU:
+											</h6>
 
-											<div class="media-body">
-												<h3 class="mb-0" >{{'Anggota CU ' + cu.cu.name}}</h3>
-												<span class="text-uppercase font-size-xs">
-													{{ 'No. BA: ' + cu.no_ba }} <br/> 
-													Sejak: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(itemData.tanggal_masuk)"></span>
-												</span>
-											</div>
+											<!-- select -->
+											<select class="form-control" name="anggota_cu_cu_id" v-model="anggota_cu_cu_id" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="itemDataCu.length == 0" @change="changeCu($event.target.value)">
+												<option disabled value="">
+													<span v-if="itemDataCuStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih keanggotaan CU</span>
+												</option>
+												<option v-for="cu in itemDataCu" :value="cu.id">CU {{cu.cu.name}} | No. BA: {{ cu.no_ba }} | Tanggal Jadi Anggota: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(cu.tanggal_masuk)"></span></option>
+											</select>
 
-											<div class="ml-3 align-self-center">
-												<i class="icon-3x opacity-75 icon-office"></i>
-											</div>
-											
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu_cu_id')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu_cu_id') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+									<!-- tipe  -->
+									<div class="col-md-4" v-if="formStat == 'success'">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.tipe')}">
+												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
+												Tipe:
+											</h6>
+
+											<!-- select -->
+											<select class="form-control" name="tipe" v-model="form.tipe" data-width="100%" v-validate="'required'" data-vv-as="Tipe">
+												<option disabled value="">Silahkan pilih tipe</option>
+												<option value="cacat">Cacat</option>
+												<option value="meninggal">Meninggal</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- kategori penyakit -->
+									<div class="col-md-4" v-if="formStat == 'success'">
+										<div class="form-group" :class="{'has-error' : errors.has('form.kategori_penyakit')}">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.kategori_penyakit')}">
+												<i class="icon-cross2" v-if="errors.has('form.kategori_penyakit')"></i>
+												Kategori Penyakit/Penyebab:
+											</h6>
+
+											<!-- select -->
+											<select class="form-control" name="kategori_penyakit" v-model="form.kategori_penyakit" data-width="100%" v-validate="'required'" data-vv-as="Kategori penyakit">
+												<option disabled value="">Silahkan pilih kategori penyakit</option>
+												<option value="serangga">Serangga</option>
+												<option value="kanker">Kanker</option>
+												<option value="tumor">Tumor</option>
+												<option value="jantung">Jantung</option>
+												<option value="paru-paru">Paru-paru</option>
+												<option value="hati">Hati</option>
+												<option value="ginjal">Ginjal</option>
+												<option value="kelainan Saraf">Kelainan Saraf</option>
+												<option value="gangguan Mental">Gangguan Mental</option>
+												<option value="pencernaan">Pencernaan</option>
+												<option value="kecelakaan">Kecelakaan</option>
+												<option value="bunuh Diri">Bunuh Diri</option>
+												<option value="bencana Alam">Bencana Alam</option>
+												<option value="stroke">Stroke</option>
+												<option value="diabetes">Diabetes</option>
+												<option value="komplikasi">Komplikasi</option>
+												<option value="lain-lain">Lain-lain</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.kategori_penyakit')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kategori_penyakit') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- tanggal cacat/mati -->
+									<div class="col-md-4" v-if="formStat == 'success'">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_mati')}">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.tanggal_mati')}">
+												<i class="icon-cross2" v-if="errors.has('form.tanggal_mati')"></i>
+												Tgl. Cacat/Meninggal: 
+												<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+											</h6>
+
+											<!-- input -->
+											<cleave 
+												name="tanggal_mati"
+												v-model="form.tanggal_mati" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
+												placeholder="Silahkan masukkan tgl. cacat/meninggal"
+												v-validate="'required'" data-vv-as="Tgl. cacat/meninggal"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tanggal_mati')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_mati') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>	
+
+										</div>
+									</div>
+
+									<!-- keterangan mati -->
+									<div class="col-md-6" v-if="formStat == 'success'">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6>Keterangan Cacat/Meninggal:</h6>
+
+											<!-- text -->
+											<input type="text" name="keterangan_mati" class="form-control" placeholder="Silahkan masukkan keterangan cacat/meninggal" v-model="form.keterangan_mati">
+										</div>
+									</div>
+
+									<!-- keterangan -->
+									<div class="col-md-6" v-if="formStat == 'success'">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.tanggal_mati')}">
+												<i class="icon-cross2" v-if="errors.has('form.tanggal_mati')"></i>
+												Keterangan Lain:
+											</h6>
+
+											<!-- text -->
+											<input type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan lain" v-model="form.keterangan">
+
+										</div>
+									</div>
+
+									<!-- TUNAS -->
+									<div class="col-md-6" v-if="formStat == 'success'">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
+
+											<!-- title -->
+											<h5>Nilai pengajuan klaim TUNAS</h5>
+
+											<!-- text -->
+											<cleave 
+												name="tunas_diajukan"
+												v-model="form.tunas_diajukan" 
+												class="form-control" 
+												:options="cleaveOption.numeric"
+												placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS"
+												v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tunas_diajukan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tunas_diajukan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>		
+										</div>
+									</div>
+
+									<!-- LINTANG -->
+									<div class="col-md-6" v-if="formStat == 'success'">
+										<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
+
+											<!-- title -->
+											<h5>Nilai pengajuan klaim LINTANG</h5>
+
+											<!-- text -->
+											<cleave 
+												name="lintang_diajukan"
+												v-model="form.lintang_diajukan" 
+												class="form-control" 
+												:options="cleaveOption.numeric"
+												placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG"
+												v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.lintang_diajukan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.lintang_diajukan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>		
+										</div>
+									</div>
+
 								</div>
 							</div>
 
-							<!-- form -->
-							<form @submit.prevent="save" data-vv-scope="form">
-								<div class="card card-body">
-									<div class="row">
+							<!-- form info -->
+							<form-info></form-info>
 
-										<!-- tipe  -->
-										<div class="col-md-4">
-											<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
+							<!-- form button -->
+							<div class="card card-body">
+								<form-button :cancelState="'methods'" :formValidation="'form'" @cancelClick="back"></form-button>
+							</div>
 
-												<!-- title -->
-												<h6 :class="{ 'text-danger' : errors.has('form.tipe')}">
-													<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
-													Tipe:
-												</h6>
-
-												<!-- select -->
-												<select class="form-control" name="tipe" v-model="form.tipe" data-width="100%" v-validate="'required'" data-vv-as="Gender">
-													<option disabled value="">Silahkan pilih tipe</option>
-													<option value="1">Cacat</option>
-													<option value="2">Meninggal</option>
-												</select>
-
-												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;</small>
-											</div>
-										</div>
-
-										<!-- kategori penyakit -->
-										<div class="col-md-4">
-											<div class="form-group" :class="{'has-error' : errors.has('form.kategori_penyakit')}">
-
-												<!-- title -->
-												<h6 :class="{ 'text-danger' : errors.has('form.kategori_penyakit')}">
-													<i class="icon-cross2" v-if="errors.has('form.kategori_penyakit')"></i>
-													Kategori Penyakit/Penyebab:
-												</h6>
-
-												<!-- select -->
-												<select class="form-control" name="kategori_penyakit" v-model="form.kategori_penyakit" data-width="100%" v-validate="'required'" data-vv-as="Gender">
-													<option disabled value="">Silahkan pilih kategori penyakit</option>
-													<option value="Serangga">Serangga</option>
-													<option value="Kanker">Kanker</option>
-													<option value="Tumor">Tumor</option>
-													<option value="Jantung">Jantung</option>
-													<option value="Paru-paru">Paru-paru</option>
-													<option value="Hati">Hati</option>
-													<option value="Ginjal">Ginjal</option>
-													<option value="Kelainan Saraf">Kelainan Saraf</option>
-													<option value="Gangguan Mental">Gangguan Mental</option>
-													<option value="Pencernaan">Pencernaan</option>
-													<option value="Kecelakaan">Kecelakaan</option>
-													<option value="Bunuh Diri">Bunuh Diri</option>
-													<option value="Bencana Alam">Bencana Alam</option>
-													<option value="Stroke">Stroke</option>
-													<option value="Diabetes">Diabetes</option>
-													<option value="Komplikasi">Komplikasi</option>
-												</select>
-
-												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.kategori_penyakit')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.kategori_penyakit') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;</small>
-											</div>
-										</div>
-
-										<!-- tanggal cacat/mati -->
-										<div class="col-md-4">
-											<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_mati')}">
-
-												<!-- title -->
-												<h6 :class="{ 'text-danger' : errors.has('form.tanggal_mati')}">
-													<i class="icon-cross2" v-if="errors.has('form.tanggal_mati')"></i>
-													Tgl. Cacat/Meninggal: 
-													<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
-												</h6>
-
-												<!-- input -->
-												<cleave 
-													name="tanggal_mati"
-													v-model="form.tanggal_mati" 
-													class="form-control" 
-													:raw="false" 
-													:options="cleaveOption.date" 
-													placeholder="Silahkan masukkan tgl. cacat/meninggal"
-													v-validate="'required'" data-vv-as="Tgl. cacat/meninggal"></cleave>
-
-												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.tanggal_mati')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_mati') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;</small>	
-
-											</div>
-										</div>
-
-										<!-- keterangan mati -->
-										<div class="col-md-6">
-											<div class="form-group">
-
-												<!-- title -->
-												<h6>Keterangan Cacat/Meninggal:</h6>
-
-												<!-- text -->
-												<input type="text" name="keterangan_mati" class="form-control" placeholder="Silahkan masukkan keterangan cacat/meninggal" v-model="form.keterangan_mati">
-											</div>
-										</div>
-
-										<!-- keterangan -->
-										<div class="col-md-6">
-											<div class="form-group">
-
-												<!-- title -->
-												<h6 :class="{ 'text-danger' : errors.has('form.tanggal_mati')}">
-													<i class="icon-cross2" v-if="errors.has('form.tanggal_mati')"></i>
-													Keterangan Lain:
-												</h6>
-
-												<!-- text -->
-												<input type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan lain" v-model="form.keterangan">
-
-											</div>
-										</div>
-
-										<!-- TUNAS -->
-										<div class="col-md-6">
-											<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
-
-												<!-- title -->
-												<h5>Nilai pengajuan klaim TUNAS</h5>
-
-												<!-- text -->
-												<cleave 
-													name="tunas_diajukan"
-													v-model="form.tunas_diajukan" 
-													class="form-control" 
-													:options="cleaveOption.numeric"
-													placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS"
-													v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS"></cleave>
-
-												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.tunas_diajukan')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.tunas_diajukan') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;</small>		
-											</div>
-										</div>
-
-										<!-- LINTANG -->
-										<div class="col-md-6">
-											<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
-
-												<!-- title -->
-												<h5>Nilai pengajuan klaim LINTANG</h5>
-
-												<!-- text -->
-												<cleave 
-													name="lintang_diajukan"
-													v-model="form.lintang_diajukan" 
-													class="form-control" 
-													:options="cleaveOption.numeric"
-													placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG"
-													v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG"></cleave>
-
-												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.lintang_diajukan')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.lintang_diajukan') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;</small>		
-											</div>
-										</div>
-
-									</div>
-								</div>
-
-								<!-- form info -->
-								<form-info></form-info>
-
-								<!-- form button -->
-								<div class="card card-body">
-									<form-button :cancelState="'methods'" :formValidation="'form'" @cancelClick="back"></form-button>
-								</div>
-
-							</form>
-
-						</div>
-						
+						</form>
+					
 					</div>
 					
 				</div>
@@ -333,6 +333,7 @@
 				kelas: 'jalinanKlaim',
 				isEdit: false,
 				nik: '',
+				anggota_cu_cu_id: '',
 				cleaveOption: {
           date:{
             date: true,
@@ -380,31 +381,19 @@
 			}
 		},
 		created() {
-			this.resetData();
-
 			if (this.currentUser.id_cu == 0) {
 				if (this.modelCuStat != 'success') {
 					this.$store.dispatch('cu/getHeader');
 				}
 			}
 
-			if(this.$route.meta.mode === 'edit'){
-				this.title = 'Ubah Klaim JALINAN';
-				this.titleDesc = 'Mengubah klaim JALINAN';
-				this.titleIcon = 'icon-pencil5';
-
-				this.cariData(this.$route.params.id);
-			} else {
-				this.title = 'Tambah Klaim JALINAN';
-				this.titleDesc = 'Menambah Klaim JALINAN';
-				this.titleIcon = 'icon-plus3';
-				if(this.$route.meta.mode === 'createNIK'){
-					this.cariData(this.$route.params.nik)
-					this.isEdit = true;
-				}
-			}
+			this.fetch();
 		},
 		watch: {
+			// check route changes
+			'$route' (to, from){
+				this.fetch();
+			},
 			itemDataStat(value) {
 				if (value == "success") {
 					this.itemDataCu = [];
@@ -426,7 +415,7 @@
 							}
 						}
 						// get form
-						this.fetch();
+						this.fetchForm();
 					}
 
 				}
@@ -450,12 +439,42 @@
 				this.$store.dispatch(this.kelas + '/cariData', nik);
 			},
 			fetch(){
+				this.resetData();
+
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.isEdit = true;
+					this.title = 'Ubah Klaim JALINAN';
+					this.titleDesc = 'Mengubah klaim JALINAN';
+					this.titleIcon = 'icon-pencil5';
+
+					this.cariData(this.$route.params.nik);
 				} else {
-					this.$store.dispatch(this.kelas + '/cekData', this.itemData.id);
+					this.title = 'Tambah Klaim JALINAN';
+					this.titleDesc = 'Menambah Klaim JALINAN';
+					this.titleIcon = 'icon-plus3';
+					this.isEdit = false;
+					
+					if(this.$route.meta.mode === 'createNIK'){
+						this.cariData(this.$route.params.nik)
+						this.isEdit = true;
+					}
 				}
+			},
+			fetchForm(){
+				if(this.$route.meta.mode === 'edit'){
+					this.$store.dispatch(this.kelas + '/edit',[this.$route.params.nik,this.$route.params.cu]);	
+					this.isEdit = true;
+					this.anggota_cu_cu_id = this.$route.params.cu;
+				}
+			},
+			changeCu(value){
+				let _nik = '';
+				if(this.$route.meta.mode === 'edit'){
+					_nik = this.$route.params.nik;
+				}else{
+					_nik = this.nik;
+				}
+
+				this.$store.dispatch(this.kelas + '/edit',[_nik,value]);
 			},
 			resetData(){
 				this.itemDataCu = [];
@@ -472,9 +491,12 @@
 			},
 			save() {
 				this.form.anggota_cu_id = this.itemData.id;
+				this.form.anggota_cu_cu_id = this.anggota_cu_cu_id;
+
 				if(!this.form.id){
 					this.form.status_klaim = '0';
 				}
+				
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.form.id){

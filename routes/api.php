@@ -352,7 +352,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/jalinanKlaim/store', 'JalinanKlaimController@store');
     });
     Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
-        Route::get('/jalinanKlaim/edit/{id}', 'JalinanKlaimController@edit');
+        Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}', 'JalinanKlaimController@edit');
         Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
         Route::post('/jalinanKlaim/updateStatus/{id}', 'JalinanKlaimController@updateStatus');
     });

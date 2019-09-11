@@ -80,6 +80,10 @@
 										<span v-else>-</span>
 									</td>
 									<td>
+										<check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
+										<span v-else>-</span>
+									</td>
+									<td>
 										<check-value :value="props.item.saldo" valueType="currency"></check-value>
 									</td>
 									<td>
@@ -174,6 +178,7 @@
 					{ title: 'No. Rek' },
 					{ title: 'CU' },
 					{ title: 'Nama' },
+					{ title: 'Jenis' },
 					{ title: 'Saldo Awal' },
 					{ title: 'Lama Pinjaman' },
 					{ title: 'Tgl. Buat' },

@@ -24,7 +24,7 @@ class AnggotaCuController extends Controller{
 
 	public function index()
 	{
-		$table_data = AnggotaCu::with('anggota_cu','status_jalinan','Villages','Districts','Regencies','Provinces')->advancedFilter();
+		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([
@@ -34,7 +34,7 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = AnggotaCu::with('anggota_cu','status_jalinan','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
+		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
 			$query->where('cu_id',$id); 
 		})->advancedFilter();
 
@@ -191,7 +191,6 @@ class AnggotaCuController extends Controller{
 		$rules = AnggotaCu::$rules;
 		$rules['nik'] = $rules['nik'] . ',id,' . $id;
 		$validationCertificate  = Validator::make($request->all(), $rules); 
-
 		$name = $request->name;
 
 		if(!empty($request->gambar))
@@ -205,7 +204,7 @@ class AnggotaCuController extends Controller{
 			'gambar' => $fileName
 		]);	
 
-		$this->syncCu($request, $kelas);
+		$cuArray = $this->syncCu($request, $kelas);
 
 		return response()
 			->json([
@@ -377,16 +376,20 @@ class AnggotaCuController extends Controller{
 	private function syncCu($request, $kelas)
 	{
 		if($request->cu){
+			$cus = $request->cu;
+			unset($cus['id']);
+			unset($cus['name']);
+
 			$cuArray = array();
 
-			foreach($request->cu as $cu){
+			foreach($cus as $cu){
 				$cuArray[$cu['no_ba']] = [
 					'cu_id' => $cu['cu_id'],
 					'no_ba' => $cu['no_ba'],
 					'tanggal_masuk' => $cu['tanggal_masuk']
-				];	
+				];
 			}
-
+			// return $cuArray;
 			$kelas->anggota_cu()->sync($cuArray);
 		}
 		

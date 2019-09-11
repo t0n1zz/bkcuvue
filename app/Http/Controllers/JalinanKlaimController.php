@@ -50,7 +50,9 @@ class JalinanKlaimController extends Controller{
 
 	public function store(Request $request)
 	{
-		JalinanKlaim::create($request->all());
+		$kelas = JalinanKlaim::create($request->all());
+
+		$this->updateStatusAnggotaCu($request->anggota_cu_id, $request->tipe);
 		
 		return response()
 			->json([
@@ -59,24 +61,32 @@ class JalinanKlaimController extends Controller{
 			]);	
 	}
 
-	public function edit($id)
+	public function edit($nik, $cu)
 	{
-		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
-			$query->where('nik',$id); 
+		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('anggota_cu_cu_id', $cu)->whereHas('anggota_cu', function($query) use ($nik){ 
+			$query->where('nik',$nik); 
 		})->first();
 
-		return response()
-			->json([
-					'form' => $kelas,
-					'option' => []
-			]);
+		if($kelas){
+			return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
+		}else{
+			return $this->create();
+		}
 	}
 
 	public function update(Request $request, $id)
 	{
 		$kelas = JalinanKlaim::findOrFail($id);
 
+		$anggota_cu_id = $kelas->anggota_cu_id;
+
 		$kelas->update($request->all());	
+
+		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe);
 
 		return response()
 			->json([
@@ -95,34 +105,29 @@ class JalinanKlaimController extends Controller{
 		$tipe = $kelas->tipe;
 
 		if($kelas->status_klaim == 1){
-			$message = "Klaim JALINAN dicairkan";
+			$message = "Klaim JALINAN disetujui";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = $request->tunas_disetujui;
 			$kelas->lintang_disetujui = $request->lintang_disetujui;
+			$kelas->tanggal_disetujui = $request->tanggal_disetujui;
 		}else if($kelas->status_klaim == 2 || $kelas->status_klaim == 3){
 			$message = "Klaim JALINAN ditolak";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
+			$kelas->tanggal_disetujui = NULL;
 		}else if($kelas->status_klaim == 0){
 			$message = "Klaim JALINAN menunggu";
 			$kelas->keterangan_klaim = NULL;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
+			$kelas->tanggal_disetujui = NULL;
 		}
 
 		$kelas->update();
 
-		$kelas2 = AnggotaCu::findOrFail($anggota_cu_id);
-
-		if($request->status == 1){
-			$kelas2->status_jalinan = $tipe;
-		}else{
-			$kelas2->status_jalinan = 0;
-		}
-
-		$kelas2->update();
-
+		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe);
+	
 		return response()
 			->json([
 				'saved' => true,
@@ -130,10 +135,20 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
+	public function updateStatusAnggotaCu($id, $status){
+		$kelas = AnggotaCu::findOrFail($id);
+		$kelas->status_jalinan = $status;
+		$kelas->update();
+	}
+
 	public function destroy($id)
 	{
 		$kelas = JalinanKlaim::findOrFail($id);
+		$anggota_cu_id = $kelas->anggota_cu_id;
+
 		$kelas->delete();
+
+		$this->updateStatusAnggotaCu($anggota_cu_id, NULL);
 
 		return response()
 			->json([

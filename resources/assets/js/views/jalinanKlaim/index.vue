@@ -31,13 +31,13 @@
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'menunggu'}" @click.prevent="changeTab('menunggu')"><i class="icon-checkbox-unchecked mr-2"></i> Menunggu</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link" :class="{'active' : tabName == 'dicairkan'}" @click.prevent="changeTab('dicairkan')"><i class="icon-checkbox-checked mr-2"></i> Dicairkan</a>
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'tidakSesuai'}" @click.prevent="changeTab('tidakSesuai')"><i class="icon-checkbox-partial mr-2"></i> Tidak Sesuai</a>
 								</li>
 								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'ditolak'}" @click.prevent="changeTab('ditolak')"><i class="icon-cancel-square mr-2"></i> Ditolak</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link" :class="{'active' : tabName == 'tidakSesuai'}" @click.prevent="changeTab('tidakSesuai')"><i class="icon-checkbox-partial mr-2"></i> Tidak Sesuai</a>
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'disetujui'}" @click.prevent="changeTab('disetujui')"><i class="icon-checkbox-checked mr-2"></i> Disetujui</a>
 								</li>
 							</ul>
 						</div>	
@@ -49,8 +49,8 @@
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
+							<div v-show="tabName == 'tidakSesuai'" v-if="isTidakSesuai">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
 							</div>
 						</transition>
 
@@ -61,10 +61,14 @@
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'tidakSesuai'" v-if="isTidakSesuai">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
+							<div v-show="tabName == 'disetujui'" v-if="isDisetujui">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
 							</div>
 						</transition>
+
+						
+
+						
 
 					</div>
 				</div>
@@ -96,7 +100,7 @@
 				titleIcon: 'icon-accessibility2',
 				selectCuPath: 'jalinanKlaimCu',
 				tabName: 'menunggu',
-				isDicairkan: false,
+				isDisetujui: false,
 				isDitolak: false,
 				isTidakSesuai: false
 			}
@@ -119,8 +123,8 @@
 			},
 			changeTab(value) {
 				this.tabName = value;
-				if (value == 'dicairkan' && !this.isDicairkan) {
-					this.isDicairkan = true
+				if (value == 'disetujui' && !this.isDisetujui) {
+					this.isDisetujui = true
 				}
 				if (value == 'ditolak' && !this.isDitolak) {
 					this.isDitolak = true

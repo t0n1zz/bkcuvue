@@ -368,7 +368,7 @@ const routes = [
 		name: 'jalinanKlaimCreateNIK', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'createNIK' }},	
-	{ path: '/jalinan/klaim/edit/:id',
+	{ path: '/jalinan/klaim/edit/:nik/cu/:cu',
 		name: 'jalinanKlaimEdit', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' }},	

@@ -109,14 +109,9 @@
             <span v-else>-</span>
 					</td>
           <td v-if="!columnData[6].hide">
-            <span v-if="props.item.status_jalinan">
-						  <label class="badge badge-warning ml-1">
-                DIAJUKAN
-              </label>
-            </span>
-            <span v-else>
-              -
-            </span>
+            <label class="badge badge-warning ml-1">
+              <check-value :value="props.item.status_jalinan"></check-value>
+            </label> 
 					</td>
 					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.lembaga"></check-value>

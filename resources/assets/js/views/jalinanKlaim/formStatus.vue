@@ -1,11 +1,11 @@
 <template>
 	<div>
+
 		<!-- message -->
 		<message v-if="errors.any('formStatus') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 		</message>
 
 		<form @submit.prevent="save" data-vv-scope="formStatus">
-
       <div class="row">
 
         <!-- identitas -->
@@ -32,7 +32,9 @@
                   <ul class="list list-unstyled mb-0">
                     <li>
                       <b>Jenis Klaim:</b> <br/>
-                      <span v-html="$options.filters.statusJalinan(selectedData.tipe)"></span>
+                      <label class="badge badge-warning ml-1">
+                        <check-value :value="selectedData.tipe"></check-value>
+                      </label>
                     </li>
                     <li>
                       <b>Kategori Penyakit/Penyebab:</b> <br/>
@@ -51,22 +53,121 @@
                       <span v-html="$options.filters.date(selectedData.tanggal_mati)"></span>
                     </li>
                     <li>
-                      <b>Tanggal Buat:</b> <br/>
+                      <b>Tanggal Buat / Pengajuan:</b> <br/>
                       <span v-html="$options.filters.dateTime(selectedData.created_at)"></span>
                     </li>
                     <li>
-                      <b>Nilai pengajuan klaim TUNAS:</b> <br/>
-                      <check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value> 
-                    </li>
-                    <li>
-                      <b>Nilai pengajuan klaim LINTANG:</b> <br/>
-                      <check-value :value="selectedData.tunas_lintang" valueType="currency"></check-value> 
+                      <b>Tanggal Ubah :</b> <br/>
+                      <span v-html="$options.filters.dateTime(selectedData.updated_at)"></span>
                     </li>
                   </ul>
+                </div>
+
+                <div class="col-sm-12">
+                  <hr/>
+                </div>
+                <!-- tunas -->
+                <div class="col-sm-6">
+                  <div class="card card-body mb-1">
+                     <div class="media">
+                      <div class="media-body">
+                        <h3 class="mb-0" ><check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value></h3>
+                        <span class="text-uppercase">
+                          nilai pengajuan klaim tunas
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- lintang -->
+                <div class="col-sm-6">
+                  <div class="card card-body mb-1">
+                     <div class="media">
+                      <div class="media-body">
+                        <h3 class="mb-0" ><check-value :value="selectedData.lintang_diajukan" valueType="currency"></check-value></h3>
+                        <span class="text-uppercase">
+                          nilai pengajuan klaim lintang
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- data cu -->
+        <div class="col-md-3">
+          <!-- cu -->
+          <div class="card card-body bg-blue-400" >
+            <div class="media">
+              <div class="media-body">
+                <h3 class="mb-0" >{{'Anggota CU ' + selectedData.anggota_cu_cu.cu.name}}</h3>
+                <span class="text-uppercase">
+                  {{ 'No. BA: ' + selectedData.anggota_cu_cu.no_ba }} 
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- usia masuk -->
+          <div class="card card-body bg-teal-400" >
+            <div class="media">
+              <div class="media-body">
+                <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                <span class="text-uppercase">
+                  Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
+                </span>
+              </div>   
+            </div>
+          </div>
+
+        </div>
+
+        <!-- data produk -->
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header bg-white">
+              <h5 class="card-title">Daftar Produk</h5>
+            </div>
+            <data-table :items="itemData" :columnData="columnData" :itemDataStat="itemDataStat">
+              <template slot="item-desktop" slot-scope="props">
+                <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+                  <td>{{ props.index + 1 }}</td>
+                  <td>
+                    <check-value :value="props.item.no_rek"></check-value>
+                  </td>
+                  <td>
+                    <check-value :value="props.item.produk_cu.name" v-if="props.item.produk_cu"></check-value>
+                    <span v-else>-</span>
+                  </td>
+                  <td>
+                    <check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
+                    <span v-else>-</span>
+                  </td>
+                  <td>
+                    <check-value :value="props.item.saldo" valueType="currency"></check-value>
+                  </td>
+                  <td>
+                    <check-value :value="props.item.lama_pinjaman"></check-value>
+                  </td>
+                  <td>
+                    <span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
+                    <span v-else>-</span>
+                  </td>
+                   <td>
+                    <span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)"></span>
+                    <span v-else>-</span>
+                  </td>
+                </tr>
+              </template>	
+            </data-table>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <hr/>
         </div>
 
         <!-- status -->
@@ -81,7 +182,7 @@
             <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
               <option disabled value="">Silahkan pilih status klaim</option>
               <option value="0">Menunggu</option>
-              <option value="1">Dicairkan</option>
+              <option value="1">Disetujui</option>
               <option value="2">Ditolak</option>
               <option value="3">Tidak Sesuai</option>
             </select>
@@ -89,13 +190,54 @@
           </div>
         </div>
 
+        <!-- tanggal pencairan -->
+        <div class="col-md-12" v-if="formStatus.status == '1'">
+          <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
+
+            <!-- title -->
+            <h6 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
+              <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
+              Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+
+            <!-- input -->
+            <cleave 
+              name="tanggal_pencairan"
+              v-model="formStatus.tanggal_pencairan" 
+              class="form-control" 
+              :raw="false" 
+              :options="cleaveOption.date" 
+              v-validate="'required'"
+              data-vv-as="Tanggal Pencairan"
+              placeholder="Silahkan masukkan tgl. pencairan"></cleave>
+
+            <!-- error message -->
+            <small class="text-muted text-danger" v-if="errors.has('formStatus.tanggal_pencairan')">
+              <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tanggal_pencairan') }}
+            </small>
+            <small class="text-muted" v-else>&nbsp;</small>	
+
+          </div>
+        </div>
+
         <!-- TUNAS -->
         <div class="col-md-6" v-if="formStatus.status == '1'">
+        
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 
             <!-- title -->
             <h5 :class="{ 'text-danger' : errors.has('formStatus.tunas_disetujui')}">
           <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan klaim TUNAS yang disetujui</h5>
+
+            <div class="card card-body" :class="{'bg-blue-400': selisihTunas == 0, 'bg-danger-400': selisihTunas < 0, 'bg-brown-400': selisihTunas > 0}">
+              <div class="media">
+                <div class="media-body">
+                  <h3 class="mb-0">
+                    <check-value :value="selisihTunas" valueType="currency"></check-value> 	
+                  </h3>
+                  <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
+                </div>
+              </div>
+            </div>
 
             <!-- text -->
             <cleave 
@@ -110,17 +252,29 @@
             <small class="text-muted text-danger" v-if="errors.has('formStatus.tunas_disetujui')">
               <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tunas_disetujui') }}
             </small>
-            <small class="text-muted" v-else>&nbsp;</small>		
+            <small class="text-muted" v-else>&nbsp;</small>	
           </div>
         </div>
 
         <!-- LINTANG -->
         <div class="col-md-6" v-if="formStatus.status == '1'">
-          <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
+          
 
+          <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
             <!-- title -->
             <h5 :class="{ 'text-danger' : errors.has('formStatus.lintang_disetujui')}">
-          <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
+            <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
+
+            <div class="card card-body" :class="{'bg-blue-400': selisihLintang == 0, 'bg-danger-400': selisihLintang < 0, 'bg-brown-400': selisihLintang > 0}">
+              <div class="media">
+                <div class="media-body">
+                  <h3 class="mb-0">
+                    <check-value :value="selisihLintang" valueType="currency"></check-value> 	
+                  </h3>
+                  <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
+                </div>
+              </div>
+            </div>
 
             <!-- text -->
             <cleave 
@@ -149,7 +303,7 @@
             </h5>
 
             <!-- textarea -->
-            <textarea rows="5" type="text" name="keterangan_klaim" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan_klaim"></textarea>
+            <textarea rows="3" type="text" name="keterangan_klaim" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan_klaim"></textarea>
 
             <!-- error message -->
             <small class="text-muted text-danger" v-if="errors.has('formStatus.keterangan_klaim')">
@@ -162,9 +316,6 @@
         </div>
 
       </div>
-     
-      <!-- divider -->
-      <hr>
       
       <!-- tombol desktop-->
       <div class="text-center d-none d-md-block">
@@ -177,11 +328,11 @@
 
       <!-- tombol mobile-->
       <div class="d-block d-md-none">
-        <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
-          <i class="icon-cross"></i> Tutup</button>
-
         <button type="submit" class="btn btn-primary btn-block pb-2">
           <i class="icon-floppy-disk"></i> Simpan</button>
+
+        <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+          <i class="icon-cross"></i> Tutup</button>
       </div> 
     </form>	
 
@@ -195,6 +346,8 @@
   import formInfo from "../../components/formInfo.vue";
   import identitas from "../../components/identitas.vue";
   import checkValue from "../../components/checkValue.vue";
+  import dataTable from '../../components/datatable.vue';
+  import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
 		props: ['kelas','selected'],
@@ -204,6 +357,8 @@
       identitas,
       checkValue,
       Cleave, 
+      dataTable,
+      infoIcon,
 		},
 		data() {
 			return {
@@ -222,8 +377,24 @@
             numeralDecimalScale: 2,
             numeralDecimalMark: ',',
             delimiter: '.'
-          }
-				},
+          },
+          date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+					},
+        },
+        selectedItem: {},
+        columnData:[
+					{ title: 'No.' },
+					{ title: 'No. Rek' },
+					{ title: 'Nama' },
+					{ title: 'Jenis' },
+					{ title: 'Saldo Awal' },
+					{ title: 'Lama Pinjaman' },
+					{ title: 'Tgl. Buat' },
+					{ title: 'Usia Saat Membuka' },
+				],
         penjelasanStatus: '',
 				submited: false,
 			}
@@ -233,7 +404,8 @@
 			this.formStatus.status = this.selectedData.status_klaim;
 			this.formStatus.keterangan_klaim = this.selectedData.keterangan_klaim;
 			this.formStatus.tunas_disetujui = this.selectedData.tunas_disetujui;
-			this.formStatus.lintang_disetujui = this.selectedData.lintang_disetujui;
+      this.formStatus.lintang_disetujui = this.selectedData.lintang_disetujui;
+      this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.selectedData.anggota_cu_cu.cu_id]);
 		},
 		watch: {
 		},
@@ -264,6 +436,22 @@
 			...mapGetters('auth', {
 				currentUser: 'currentUser'
       }),
+      ...mapGetters('anggotaCu',{
+				itemData: 'dataProduk',
+				itemDataStat: 'dataProdukStat',
+			}),
+      selisihTunas: function () {
+        // `this` points to the vm instance
+        return this.formStatus.tunas_disetujui - this.selectedData.tunas_diajukan
+      },
+      selisihLintang: function () {
+        // `this` points to the vm instance
+        return this.formStatus.lintang_disetujui - this.selectedData.lintang_diajukan
+      },
+      usiaMasukCU: function () {
+        // `this` points to the vm instance
+        return this.formStatus.lintang_disetujui - this.selectedData.lintang_diajukan
+      }
 		}
 	}
 </script>
