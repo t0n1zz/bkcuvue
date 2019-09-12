@@ -42,7 +42,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama:</h5>
+												Nama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" v-if="currentUser.id_cu == 0">
@@ -64,7 +64,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name_legal')}">
 												<i class="icon-cross2" v-if="errors.has('form.name_legal')"></i>
-												Nama Legal: <small class="text-muted"><i>nama yang terdaftar secara hukum contoh: KSP xxx</i></small></h5>
+												Nama Legal: <small class="text-muted"><i>nama yang terdaftar secara hukum contoh: KSP xxx</i></small> <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="name_legal" class="form-control" placeholder="Silahkan masukkan nama legal" v-model="form.name_legal">
@@ -84,7 +84,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.no_ba')}">
 												<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
-												No. BA:</h5>
+												No. BA: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<cleave 
@@ -209,7 +209,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.app')}">
 												<i class="icon-cross2" v-if="errors.has('form.app')"></i>
-												Aplikasi Keuangan Utama:</h5>
+												Aplikasi Keuangan Utama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
@@ -229,7 +229,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
 												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri:</h5>
+												Tgl. Berdiri: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<cleave 
@@ -256,7 +256,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
 												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
-												Tgl. Bergabung:</h5>
+												Tgl. Bergabung: <wajib-badge></wajib-badge></h5>
 
 											<!-- input  -->
 											<cleave 
@@ -295,7 +295,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i>
-												Provinsi:
+												Provinsi: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -322,7 +322,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
-												Kabupaten:
+												Kabupaten: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -349,7 +349,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_districts')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_districts')"></i>
-												Kecamatan:
+												Kecamatan: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -376,7 +376,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_villages')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_villages')"></i>
-												Kelurahan:
+												Kelurahan: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -403,7 +403,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.alamat')}">
 												<i class="icon-cross2" v-if="errors.has('form.alamat')"></i>
-												Alamat:</h5>
+												Alamat: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat">
@@ -674,6 +674,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -684,6 +685,7 @@
 			formButton,
 			formInfo,
 			Cleave,
+			wajibBadge,
 		},
 		data() {
 			return {

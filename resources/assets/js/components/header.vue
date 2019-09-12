@@ -471,6 +471,11 @@
 							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu != 0">
 								<i class="icon-accessibility2"></i> Klaim JALINAN
 							</router-link>
+
+							<!-- if bkcu account -->
+							<router-link :to="{ name: 'jalinanCair' }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu == 0">
+								<i class="icon-square-down"></i> Pencairan JALINAN
+							</router-link>
 							
 						</div>
 					</li>

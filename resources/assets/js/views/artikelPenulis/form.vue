@@ -39,7 +39,7 @@
 												<!-- title -->
 												<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 													<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-													Nama:</h5>
+													Nama: <wajib-badge></wajib-badge></h5>
 
 												<!-- text -->
 												<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama penulis artikel" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
@@ -59,7 +59,7 @@
 												<!-- title -->
 												<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
 													<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-													CU:
+													CU: <wajib-badge></wajib-badge>
 												</h5>
 
 												<!-- select -->
@@ -130,6 +130,7 @@
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -139,6 +140,7 @@
 			message,
 			formButton,
 			formInfo,
+			wajibBadge
 		},
 		data() {
 			return {

@@ -182,9 +182,9 @@
             <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
               <option disabled value="">Silahkan pilih status klaim</option>
               <option value="0">Menunggu</option>
-              <option value="1">Disetujui</option>
+              <option value="1">Tidak Sesuai</option>
               <option value="2">Ditolak</option>
-              <option value="3">Tidak Sesuai</option>
+              <option value="3">Disetujui</option>
             </select>
 
           </div>

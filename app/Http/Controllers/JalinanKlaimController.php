@@ -37,6 +37,31 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
+	public function indexCair($tanggal_pencairan)
+	{
+		$table_data = DB::table('jalinan_klaim')
+		->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
+		->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
+		->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
+		->select('cu.no_ba','cu.name as cu_name','anggota_cu_cu.cu_id',
+			DB::raw('COUNT(case when status_klaim="3" then 1 end) AS status_klaim_setuju'), 
+			DB::raw('COUNT(case when status_klaim="4" then 1 end) AS status_klaim_cair'), 
+			DB::raw('COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria'), 
+			DB::raw('COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita'), 
+			DB::raw('SUM(tunas_disetujui) AS tunas_disetujui'), 
+			DB::raw('SUM(lintang_disetujui) AS lintang_disetujui'),
+			DB::raw('SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui')
+		)
+		->where('tanggal_pencairan', $tanggal_pencairan)
+		->groupBy('anggota_cu_cu.cu_id')
+		->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 	public function create()
 	{
 		return response()
@@ -104,24 +129,24 @@ class JalinanKlaimController extends Controller{
 		$anggota_cu_id = $kelas->anggota_cu_id;
 		$tipe = $kelas->tipe;
 
-		if($kelas->status_klaim == 1){
-			$message = "Klaim JALINAN disetujui";
-			$kelas->keterangan_klaim = $request->keterangan_klaim;
-			$kelas->tunas_disetujui = $request->tunas_disetujui;
-			$kelas->lintang_disetujui = $request->lintang_disetujui;
-			$kelas->tanggal_disetujui = $request->tanggal_disetujui;
-		}else if($kelas->status_klaim == 2 || $kelas->status_klaim == 3){
+		if($kelas->status_klaim == 1 || $kelas->status_klaim == 2){
 			$message = "Klaim JALINAN ditolak";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
-			$kelas->tanggal_disetujui = NULL;
+			$kelas->tanggal_pencairan = NULL;
+		}else if($kelas->status_klaim == 3){
+			$message = "Klaim JALINAN disetujui";
+			$kelas->keterangan_klaim = $request->keterangan_klaim;
+			$kelas->tunas_disetujui = $request->tunas_disetujui;
+			$kelas->lintang_disetujui = $request->lintang_disetujui;
+			$kelas->tanggal_pencairan = $request->tanggal_pencairan;
 		}else if($kelas->status_klaim == 0){
 			$message = "Klaim JALINAN menunggu";
 			$kelas->keterangan_klaim = NULL;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
-			$kelas->tanggal_disetujui = NULL;
+			$kelas->tanggal_pencairan = NULL;
 		}
 
 		$kelas->update();
@@ -217,5 +242,15 @@ class JalinanKlaimController extends Controller{
 		}else{
 			return $this->create();
 		}
+	}
+
+	public function getPencairan()
+	{
+		$table_data = JalinanKlaim::whereNotNull('tanggal_pencairan')->select('tanggal_pencairan')->distinct()->orderBy('tanggal_pencairan','DESC')->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 }

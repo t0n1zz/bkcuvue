@@ -414,6 +414,9 @@
             <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
             </button>
+            <button type="button" class="btn btn-light btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+              <i class="icon-sync"></i>
+            </button>
           </div>
 
           <div class="col-md-12 d-block d-sm-none">
@@ -422,6 +425,9 @@
             </button>
             <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
+            </button>
+            <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+              <i class="icon-sync"></i> Reload
             </button>
           </div>
 

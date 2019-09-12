@@ -5,7 +5,7 @@
     <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
       <!-- button desktop -->
-      <template slot="button-desktop">
+      <template slot="button-desktop" v-if="!isSimple">
 
         <!-- tambah -->
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && status == 0">  
@@ -32,7 +32,7 @@
       </template>
 
       <!-- button mobile -->
-      <template slot="button-mobile">
+      <template slot="button-mobile" v-if="!isSimple">
 
         <!-- tambah -->
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && status == 0">
@@ -75,7 +75,7 @@
             <check-value :value="props.item.anggota_cu_cu.no_ba" v-if="props.item.anggota_cu_cu"></check-value>
 					</td>
           <td v-if="!columnData[4].hide && !columnData[4].disable">
-            <check-value :value="props.item.anggota_cu_cu.cu.name" v-if="props.item.anggota_cu_cu.cu"></check-value>
+            <check-value :value="props.item.anggota_cu_cu.cu.name" v-if="props.item.anggota_cu_cu"></check-value>
 					</td>
           <td v-if="!columnData[5].hide">
 						<check-value :value="props.item.anggota_cu.name"></check-value>
@@ -112,20 +112,23 @@
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
           <td v-if="!columnData[19].hide">
-						<check-value :value="props.item.anggota_cu.alih_waris"></check-value>
+						<check-value :value="props.item.anggota_cu.kelamin"></check-value>
 					</td>
           <td v-if="!columnData[20].hide">
+						<check-value :value="props.item.anggota_cu.alih_waris"></check-value>
+					</td>
+          <td v-if="!columnData[21].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-          <td v-if="!columnData[21].hide">
+          <td v-if="!columnData[22].hide">
 						<check-value :value="props.item.anggota_cu.alamat"></check-value>
 					</td>
-          <td v-if="!columnData[22].hide">
+          <td v-if="!columnData[23].hide">
 						<check-value :value="props.item.anggota_cu.hp"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[25].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -136,7 +139,7 @@
 
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :button="modalButton" :content="modalContent" :color="modalColor" 
-      @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+      @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup" v-if="!isSimple">
 
       <!-- title -->
 			<template slot="modal-title">
@@ -173,7 +176,7 @@
       checkValue,
       formStatus
     },
-    props: ["title", "kelas", "status","itemData","itemDataStat"],
+    props: ["title", "kelas", "status","itemData","itemDataStat","isSimple"],
     data() {
       return {
         selectedItem: [],
@@ -353,6 +356,15 @@
 						filter: true,
           },
           {
+						title: 'Gender',
+						name: 'anggota_cu.kelamin',
+            tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+          },
+          {
 						title: 'Alih Waris',
 						name: 'anggota_cu.alih_waris',
             tipe: 'string',
@@ -418,13 +430,13 @@
       };
     },
     created() {
-      if(this.status == 1){
-        this.columnData[11].disable = false;
-        this.columnData[12].disable = false;
-      }else if(this.status == 2 || this.status == 3){
+      if(this.status == 1 || this.status == 2){
         this.columnData[1].disable = false;
         this.columnData[11].disable = true;
         this.columnData[12].disable = true;
+      }else if(this.status == 3){
+        this.columnData[11].disable = false;
+        this.columnData[12].disable = false;
       }else{
         this.columnData[1].disable = true;
         this.columnData[11].disable = true;
@@ -489,7 +501,7 @@
           this.modalSize = "'";
         }else if(state == "status"){
           this.modalState = 'normal1';
-					this.modalTitle = 'Analisis klaim ' + this.title + ' ' + this.selectedItem.anggota_cu.name + ' ini?';
+					this.modalTitle = 'Analisis ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
         }

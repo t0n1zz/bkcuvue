@@ -34,4 +34,9 @@ class AnggotaCuCu extends Model {
         return $this->belongsTo('App\Cu','cu_id','id');
     }
 
+    public function jalinanKlaim()
+    {
+        return $this->belongsTo('App\JalinanKlaim','id','anggota_cu_cu_id');
+    }
+
 }

@@ -39,6 +39,12 @@
 								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'disetujui'}" @click.prevent="changeTab('disetujui')"><i class="icon-checkbox-checked mr-2"></i> Disetujui</a>
 								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'dicairkan'}" @click.prevent="changeTab('dicairkan')"><i class="icon-square-down mr-2"></i> Dicairkan</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'selesai'}" @click.prevent="changeTab('selesai')"><i class="icon-square mr-2"></i> Selesai</a>
+								</li>
 							</ul>
 						</div>	
 
@@ -50,7 +56,7 @@
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'tidakSesuai'" v-if="isTidakSesuai">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
 							</div>
 						</transition>
 
@@ -62,13 +68,9 @@
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'disetujui'" v-if="isDisetujui">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
 							</div>
 						</transition>
-
-						
-
-						
 
 					</div>
 				</div>

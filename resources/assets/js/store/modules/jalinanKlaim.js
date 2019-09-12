@@ -7,6 +7,7 @@ export const jalinanKlaim = {
   state: {
     data: {}, //single data
     data2: {}, //single data
+    periode: {}, //single data
     dataS: [], //collection
     dataS1: [], //collection
     dataS2: [], //collection
@@ -16,6 +17,7 @@ export const jalinanKlaim = {
     headerDataS: [],
     dataStat: '',
     dataStat2: '',
+    periodeStat: '',
     dataStatS: '',
     dataStatS1: '',
     dataStatS2: '',
@@ -33,6 +35,7 @@ export const jalinanKlaim = {
   getters: {
     data: state => state.data,
     data2: state => state.data2,
+    periode: state => state.periode,
     dataS: state => state.dataS,
     dataS1: state => state.dataS1,
     dataS2: state => state.dataS2,
@@ -42,6 +45,7 @@ export const jalinanKlaim = {
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
+    periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     dataStatS1: state => state.dataStatS1,
     dataStatS2: state => state.dataStatS2,
@@ -161,6 +165,35 @@ export const jalinanKlaim = {
         .catch( error => {
           commit('setDataS3', error.response);
           commit('setDataStatS3', 'fail');
+        });
+    },
+
+    indexCair( { commit }, tanggal ){
+      commit('setDataStatS', 'loading');
+      
+      JalinanKlaimAPI.indexCair( tanggal )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    // load collection of periode
+    getPencairan( {commit} ){
+      commit('setPeriodeStat', 'loading');
+      
+      JalinanKlaimAPI.getPencairan()
+        .then( function( response ){
+          commit('setPeriode', response.data.model);
+          commit('setPeriodeStat', 'success');
+        })
+        .catch(error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
         });
     },
 
@@ -358,6 +391,9 @@ export const jalinanKlaim = {
     setData2 ( state, data ){
       state.data2 = data;
     },
+    setPeriode ( state, data ){
+      state.periode = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
@@ -384,6 +420,9 @@ export const jalinanKlaim = {
     },
     setDataStat2( state, status ){
       state.dataStat2 = status;
+    },
+    setPeriodeStat( state, status ){
+      state.periodeStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;

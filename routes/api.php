@@ -339,24 +339,26 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCuDraft/count', 'AnggotaCuDraftController@count');
     });
 
-    // anggota cu klaim
-    Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
+    // jalinan klaim
+    Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/status/{status}', 'JalinanKlaimController@index');
         Route::get('/jalinanKlaim/indexCu/{id}/status/{status}', 'JalinanKlaimController@indexCu'); 
         Route::get('/jalinanKlaim/count', 'JalinanKlaimController@count');
         Route::get('/jalinanKlaim/history', 'JalinanKlaimController@history');
         Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
+        Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
+        Route::get('/jalinanKlaim/indexCair/{tanggal_pencairan}', 'JalinanKlaimController@indexCair');
     });
-    Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
+    Route::group(['middleware' => ['permission:create_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/create', 'JalinanKlaimController@create');
         Route::post('/jalinanKlaim/store', 'JalinanKlaimController@store');
     });
-    Route::group(['middleware' => ['permission:update_anggota_cu']], function () {
+    Route::group(['middleware' => ['permission:update_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}', 'JalinanKlaimController@edit');
         Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
         Route::post('/jalinanKlaim/updateStatus/{id}', 'JalinanKlaimController@updateStatus');
     });
-    Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {
+    Route::group(['middleware' => ['permission:destroy_jalinan_klaim']], function () {
         Route::delete('/jalinanKlaim/{id}', 'JalinanKlaimController@destroy');
     });
     Route::get('/jalinanKlaim/cekData/{id}', 'JalinanKlaimController@cekData');

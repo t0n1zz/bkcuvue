@@ -28,7 +28,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Judul:</h5>
+												Judul: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'" data-vv-as="Judul" v-model="form.name">
@@ -48,7 +48,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-												CU:
+												CU: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -76,7 +76,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_artikel_penulis')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_artikel_penulis')"></i>
-												Penulis:
+												Penulis: <wajib-badge></wajib-badge>
 											</h5>
 
 											<div class="input-group">
@@ -117,7 +117,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_artikel_kategori')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_artikel_kategori')"></i>
-												Kategori:
+												Kategori: <wajib-badge></wajib-badge>
 											</h5>
 
 											<div class="input-group">
@@ -184,11 +184,11 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.utamakan')}">
 												<i class="icon-cross2" v-if="errors.has('form.utamakan')"></i>
-												Utamakan:
+												Utamakan: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
-											<select name="utamakan" data-width="100%" class="form-control" v-model="form.utamakan">
+											<select name="utamakan" data-width="100%" class="form-control" v-model="form.utamakan" v-validate="'required'" data-vv-as="utamakan">
 												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="1">Jadikan artikel utama</option>
 												<option value="0">Tidak jadikan artikel utama</option>
@@ -297,6 +297,7 @@
 	import formPenulis from "./formPenulis.vue";
 	import { getLocalUser } from "../../helpers/auth";
 	import { url_config } from '../../helpers/url.js';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -307,7 +308,8 @@
 			formButton,
 			formInfo,
 			formKategori,
-			formPenulis
+			formPenulis,
+			wajibBadge
 		},
 		data() {
 			return {

@@ -30,7 +30,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.kode_diklat')}">
 												<i class="icon-cross2" v-if="errors.has('form.kode_diklat')"></i>
-												Kode Diklat:</h5>
+												Kode Diklat: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="kode_diklat" class="form-control" placeholder="Silahkan masukkan kode diklat" v-validate="'required|min:5'" data-vv-as="Kode Diklat" v-model="form.kode_diklat">
@@ -51,7 +51,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama:</h5>
+												Nama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
@@ -71,7 +71,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
 												<i class="icon-cross2" v-if="errors.has('form.periode')"></i>
-												Periode: <info-icon :message="'Format: tahun. Contoh: 2019'"></info-icon></h5>
+												Periode: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun. Contoh: 2019'"></info-icon></h5>
 
 											<!-- input -->
 											<cleave 
@@ -98,7 +98,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.mulai')}">
 												<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
-												Tgl. Mulai: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Mulai: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input -->
 											<cleave 
@@ -125,7 +125,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.selesai')}">
 												<i class="icon-cross2" v-if="errors.has('form.selesai')"></i>
-												Tgl. Selesai: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Selesai: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input  -->
 											<cleave 
@@ -152,7 +152,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.durasi')}">
 												<i class="icon-cross2" v-if="errors.has('form.durasi')"></i>
-												Durasi: <small>jam</small></h5>
+												Durasi: <small>jam</small> <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<cleave 
@@ -179,7 +179,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.peserta_min')}">
 												<i class="icon-cross2" v-if="errors.has('form.peserta_min')"></i>
-												Peserta Min:</h5>
+												Peserta Min: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<cleave 
@@ -206,7 +206,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.peserta_max')}">
 												<i class="icon-cross2" v-if="errors.has('form.peserta_max')"></i>
-												Peserta Max:</h5>
+												Peserta Max: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<cleave 
@@ -233,7 +233,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.peserta_max_cu')}">
 												<i class="icon-cross2" v-if="errors.has('form.peserta_max_cu')"></i>
-												Peserta Max Per CU:</h5>
+												Peserta Max Per CU: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<cleave 
@@ -259,7 +259,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Sasaran Peserta:</h5>
+											<h5>Sasaran Peserta: <wajib-badge></wajib-badge></h5>
 
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
@@ -338,7 +338,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i>
-												Provinsi:
+												Provinsi: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -365,7 +365,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
-												Kabupaten:
+												Kabupaten: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -392,7 +392,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_tempat')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i>
-												Tempat:
+												Tempat: <wajib-badge></wajib-badge>
 											</h5>
 
 											<div class="input-group">
@@ -544,7 +544,7 @@
 						<!-- panitia & fasilitator -->
 						<div class="card">
 							<div class="card-header bg-white">
-								<h5 class="card-title">4. Panitia & Fasilitator</h5>
+								<h5 class="card-title">4. Panitia & Fasilitator <wajib-badge></wajib-badge></h5>
 							</div>
 							<div class="card-body pb-2">
 								<div class="row">
@@ -641,6 +641,7 @@
 	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
 	import infoIcon from "../../components/infoIcon.vue";
+	import wajibBadge from "../../components/wajibBadge.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
@@ -662,7 +663,8 @@
 			formTempat,
 			Cleave,
 			dataTable,
-			infoIcon
+			infoIcon,
+			wajibBadge
 		},
 		data() {
 			return {

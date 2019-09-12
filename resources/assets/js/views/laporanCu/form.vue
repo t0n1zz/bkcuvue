@@ -48,7 +48,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-												CU:
+												CU: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -72,7 +72,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_tp')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
-												TP:
+												TP: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -101,7 +101,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
 												<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
-												Periode: 
+												Periode: <wajib-badge></wajib-badge>
 												<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
 											</h5>
 
@@ -855,6 +855,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -865,7 +866,8 @@
 			formButton,
 			formInfo,
 			Cleave,
-			infoIcon
+			infoIcon,
+			wajibBadge
 		},
 		data() {
 			return {

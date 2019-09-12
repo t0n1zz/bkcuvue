@@ -26,7 +26,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama:
+												Nama: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- text -->
@@ -52,7 +52,7 @@
 											</h5>
 
 											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'required|email'" data-vv-as="Email" v-model="form.email">
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'email'" data-vv-as="Email" v-model="form.email">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.email')">
@@ -70,7 +70,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.username')}">
 												<i class="icon-cross2" v-if="errors.has('form.username')"></i>
-												Username:
+												Username: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- text -->
@@ -92,7 +92,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.password')}">
 												<i class="icon-cross2" v-if="errors.has('form.password')"></i>
-												Password:
+												Password: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- text -->
@@ -114,7 +114,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.passwordConfirm')}">
 												<i class="icon-cross2" v-if="errors.has('form.passwordConfirm')"></i>
-												Konfirmasi Password:
+												Konfirmasi Password: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- text -->
@@ -218,6 +218,7 @@
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -228,6 +229,7 @@
 			message,
 			formButton,
 			formInfo,
+			wajibBadge
 		},
 		data() {
 			return {

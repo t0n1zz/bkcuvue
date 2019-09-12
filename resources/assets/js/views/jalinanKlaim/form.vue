@@ -25,11 +25,9 @@
 						</span>
 					</div>
 
-					<div class="card card-body" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
-						<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik}}" class="btn btn-light">
-							<i class="icon-plus22"></i> Tambah Anggota CU
-						</router-link>
-					</div>
+					<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik}}" class="btn btn-light" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
+						<i class="icon-plus22"></i> Tambah Anggota CU
+					</router-link>
 
 					<!-- data exist -->
 					<div v-if="itemDataStat == 'success' && itemData">
@@ -62,7 +60,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu_cu_id')}">
 												<i class="icon-cross2" v-if="errors.has('form.anggota_cu_cu_id')"></i>
-												Silahkan memilih informasi keanggotaan CU:
+												Silahkan memilih informasi keanggotaan CU: <wajib-badge></wajib-badge>
 											</h6>
 
 											<!-- select -->
@@ -89,7 +87,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.tipe')}">
 												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
-												Tipe:
+												Tipe: <wajib-badge></wajib-badge>
 											</h6>
 
 											<!-- select -->
@@ -114,7 +112,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.kategori_penyakit')}">
 												<i class="icon-cross2" v-if="errors.has('form.kategori_penyakit')"></i>
-												Kategori Penyakit/Penyebab:
+												Kategori Penyakit/Penyebab: <wajib-badge></wajib-badge>
 											</h6>
 
 											<!-- select -->
@@ -154,7 +152,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.tanggal_mati')}">
 												<i class="icon-cross2" v-if="errors.has('form.tanggal_mati')"></i>
-												Tgl. Cacat/Meninggal: 
+												Tgl. Cacat/Meninggal: <wajib-badge></wajib-badge>
 												<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
 											</h6>
 
@@ -210,7 +208,7 @@
 										<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
 
 											<!-- title -->
-											<h5>Nilai pengajuan klaim TUNAS</h5>
+											<h5>Nilai pengajuan klaim TUNAS <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<cleave 
@@ -234,7 +232,7 @@
 										<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
 
 											<!-- title -->
-											<h5>Nilai pengajuan klaim LINTANG</h5>
+											<h5>Nilai pengajuan klaim LINTANG <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<cleave 
@@ -304,6 +302,7 @@
 	import Cleave from 'vue-cleave-component';
 	import checkValue from "../../components/checkValue.vue";
 	import infoIcon from "../../components/infoIcon.vue";
+	import wajibBadge from "../../components/wajibBadge.vue";
 	import countWidget from '../../components/countWidget.vue';
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
@@ -318,6 +317,7 @@
 			Cleave,
 			checkValue,
 			infoIcon,
+			wajibBadge,
 			countWidget,
 			formButton,
 			formInfo,

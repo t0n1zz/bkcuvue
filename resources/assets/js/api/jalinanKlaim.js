@@ -8,6 +8,14 @@ export default {
     return axios.get('/api/jalinanKlaim/indexCu/' + id + '/status/' + status, {params: p});
   },
 
+  indexCair: function( tanggal){
+    return axios.get('/api/jalinanKlaim/indexCair/' + tanggal);
+  },
+
+  getPencairan: function(){
+    return axios.get('/api/jalinanKlaim/getPencairan');
+  },
+
   create: function(){
     return axios.get('/api/jalinanKlaim/create');
   },

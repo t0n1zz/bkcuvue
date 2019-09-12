@@ -39,7 +39,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-												CU:
+												CU: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -66,7 +66,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.tipe')}">
 												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
-												Tipe Produk:
+												Tipe Produk: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
@@ -95,7 +95,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.kode_produk')}">
 												<i class="icon-cross2" v-if="errors.has('form.kode_produk')"></i>
-												Kode Produk & Pelayanan:</h5>
+												Kode Produk & Pelayanan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="kode_produk" class="form-control" placeholder="Silahkan masukkan kode produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Kode Produk dan Pelayanan" v-model="form.kode_produk">	
@@ -116,7 +116,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama:</h5>
+												Nama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
 											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" :disabled="isDisabledName">
@@ -264,6 +264,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -273,7 +274,8 @@
 			message,
 			formButton,
 			formInfo,
-			Cleave
+			Cleave,
+			wajibBadge
 		},
 		data() {
 			return {

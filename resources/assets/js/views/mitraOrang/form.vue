@@ -54,7 +54,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama:</h6>
+												Nama: <wajib-badge></wajib-badge></h6>
 
 											<!-- text -->
 											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required|min:5'"
@@ -75,7 +75,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.kelamin')}">
 												<i class="icon-cross2" v-if="errors.has('form.kelamin')"></i>
-												Gender:
+												Gender: <wajib-badge></wajib-badge>
 											</h6>
 
 											<!-- select -->
@@ -202,7 +202,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.bidang')}">
 												<i class="icon-cross2" v-if="errors.has('form.bidang')"></i>
-												Bidang:</h6>
+												Bidang: <wajib-badge></wajib-badge></h6>
 
 											<!-- text -->
 											<input type="text" name="bidang" class="form-control" placeholder="Silahkan masukkan bidang" v-validate="'required'"
@@ -275,7 +275,7 @@
 
 											<!-- title -->
 											<h6>
-												Provinsi:
+												Provinsi: <wajib-badge></wajib-badge>
 											</h6>
 
 											<!-- select -->
@@ -295,7 +295,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Kabupaten:</h6>
+											<h6>Kabupaten: <wajib-badge></wajib-badge></h6>
 
 											<!-- select -->
 											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
@@ -314,7 +314,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Kecamatan:</h6>
+											<h6>Kecamatan: <wajib-badge></wajib-badge></h6>
 
 											<!-- select -->
 											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
@@ -333,7 +333,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Kelurahan:</h6>
+											<h6>Kelurahan: <wajib-badge></wajib-badge></h6>
 
 											<!-- select -->
 											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
@@ -454,6 +454,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -464,7 +465,8 @@
 			formButton,
 			formInfo,
 			Cleave,
-			infoIcon
+			infoIcon,
+			wajibBadge
 		},
 		data() {
 			return {
