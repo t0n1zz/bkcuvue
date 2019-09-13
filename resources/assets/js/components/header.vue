@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>VERSION 3.1.3</span>
+							<span>VERSION 3.1.4</span>
 						</router-link>
 					</span>
 				</span>
@@ -476,6 +476,19 @@
 							<router-link :to="{ name: 'jalinanCair' }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu == 0">
 								<i class="icon-square-down"></i> Pencairan JALINAN
 							</router-link>
+
+							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporan_jalinan_klaim')">
+									<i class="icon-archive"></i> Laporan Klaim JALINAN
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
+
+									<router-link :to="{ name: 'jalinanLaporanKlaimCair' }" class="dropdown-item" active-class="active" exact >
+										Pencairan
+									</router-link>
+
+								</div>
+							</div>
 							
 						</div>
 					</li>

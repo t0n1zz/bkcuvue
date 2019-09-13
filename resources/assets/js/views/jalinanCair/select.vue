@@ -7,7 +7,7 @@
 
 					<!-- tanggal pencairan -->
 					<div class="col-sm-12">
-						<div class="input-group" v-if="this.currentUser.id_cu === 0">
+						<div class="input-group">
 							<span class="input-group-prepend">
 								<span class="input-group-text">Pilih Tanggal Pencairan</span>
 							</span>
@@ -51,23 +51,23 @@
 		},
 		watch: {
 			'$route' (to, from){
+				this.pencairan = '';
 				this.fetchPencairan();
 			},
 			modelPencairanStat(value){
 				if(value == "success"){
 					if(this.$route.meta.mode == 'cair'){
-						this.pencairan = this.$route.params.tanggal;
+						this.pencairan = this.$route.params.awal;
 					}
 				}
 			},
     },
 		methods: {
-			fetchPencairan(){
-				this.$store.dispatch('jalinanKlaim/getPencairan');
+			fetchPencairan(value){
+				this.$store.dispatch('jalinanKlaim/getPencairan', value);
 			},
 			changePencairan(value){
-				this.$router.push({name: 'jalinanCairTanggal', params:{tanggal: value, cu: 'semua'} });
-			
+				this.$router.push({name: 'jalinanCairTanggal', params:{awal: value, cu: 'semua'} });
 			},
 		},
 		computed: {

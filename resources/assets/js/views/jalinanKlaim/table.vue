@@ -48,7 +48,7 @@
         <!-- status -->
         <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim']"
           :disabled="!selectedItem.id">
-          <i class="icon-loop4"></i> Status Klaim
+          <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
         <!-- hapus -->
@@ -106,29 +106,30 @@
           <td v-if="!columnData[13].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
           <td v-if="!columnData[14].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
           <td v-if="!columnData[15].hide" v-html="$options.filters.date(props.item.anggota_cu_cu.tanggal_masuk)" class="text-nowrap"></td>
-          <td v-if="!columnData[16].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[17].hide" v-html="$options.filters.ageDiff(props.item.anggota_cu_cu.tanggal_masuk,props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[18].hide">
+           <td v-if="!columnData[16].hide && !columnData[16].disable" v-html="$options.filters.date(props.item.tanggal_pencairan)" class="text-nowrap"></td>
+          <td v-if="!columnData[17].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[18].hide" v-html="$options.filters.ageDiff(props.item.anggota_cu_cu.tanggal_masuk,props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
+          <td v-if="!columnData[19].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-          <td v-if="!columnData[19].hide">
+          <td v-if="!columnData[20].hide">
 						<check-value :value="props.item.anggota_cu.kelamin"></check-value>
 					</td>
-          <td v-if="!columnData[20].hide">
+          <td v-if="!columnData[21].hide">
 						<check-value :value="props.item.anggota_cu.alih_waris"></check-value>
 					</td>
-          <td v-if="!columnData[21].hide">
+          <td v-if="!columnData[22].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-          <td v-if="!columnData[22].hide">
+          <td v-if="!columnData[23].hide">
 						<check-value :value="props.item.anggota_cu.alamat"></check-value>
 					</td>
-          <td v-if="!columnData[23].hide">
+          <td v-if="!columnData[24].hide">
 						<check-value :value="props.item.anggota_cu.hp"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[26].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -329,6 +330,15 @@
             filter: true,
           },
           {
+            title: 'Tgl. Pencairan',
+            name: 'tanggal_pencairan',
+            tipe: 'datetime',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
             title: 'Usia Saat Ini',
             name: 'usia',
             tipe: 'string',
@@ -434,13 +444,17 @@
         this.columnData[1].disable = false;
         this.columnData[11].disable = true;
         this.columnData[12].disable = true;
-      }else if(this.status == 3){
+        this.columnData[16].disable = true;
+      }else if(this.status == 3 || this.status == 4 || this.status == 5){
         this.columnData[11].disable = false;
         this.columnData[12].disable = false;
+        this.columnData[12].disable = false;
+        this.columnData[16].disable = false;
       }else{
         this.columnData[1].disable = true;
         this.columnData[11].disable = true;
         this.columnData[12].disable = true;
+        this.columnData[16].disable = true;
       }
       
       this.fetch(this.query);
@@ -469,14 +483,14 @@
     methods: {
       fetch(params) {
         if(this.$route.params.cu == 'semua'){
-          this.$store.dispatch(this.kelas + '/index' + this.status, params);
+          this.$store.dispatch(this.kelas + '/index' + this.status, [params, this.$route.params.awal, this.$route.params.akhir]);
           this.excelDownloadUrl = this.kelas + '/status/' + this.status;
           this.columnData[4].disable = false;
-				}else{
-          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params,this.$route.params.cu]);
+        }else{
+          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.awal, this.$route.params.akhir]);
           this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status;
           this.columnData[4].disable = true;
-				}
+        }
       },
       selectedRow(item) {
         this.selectedItem = item;

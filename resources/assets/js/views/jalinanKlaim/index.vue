@@ -50,7 +50,7 @@
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'menunggu'">
-							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''"></table-data>
+							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
 							</div>
 						</transition>
 
@@ -69,6 +69,18 @@
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'disetujui'" v-if="isDisetujui">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData4" :itemDataStat="itemDataStat4" :status="'4'"></table-data>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'selesai'" v-if="isSelesai">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'"></table-data>
 							</div>
 						</transition>
 
@@ -102,9 +114,11 @@
 				titleIcon: 'icon-accessibility2',
 				selectCuPath: 'jalinanKlaimCu',
 				tabName: 'menunggu',
-				isDisetujui: false,
 				isDitolak: false,
-				isTidakSesuai: false
+				isTidakSesuai: false,
+				isDisetujui: false,
+				isDicairkan: false,
+				isSelesai: false,
 			}
 		},
 		created(){
@@ -134,6 +148,12 @@
 				if (value == 'tidakSesuai' && !this.isTidakSesuai) {
 					this.isTidakSesuai = true
 				}
+				if (value == 'dicairkan' && !this.isDicairkan) {
+					this.isDicairkan = true
+				}
+				if (value == 'selesai' && !this.isSelesai) {
+					this.isSelesai = true
+				}
 			}
 		},
 		computed: {
@@ -145,10 +165,14 @@
 				itemData1: 'dataS1',
 				itemData2: 'dataS2',
 				itemData3: 'dataS3',
+				itemData4: 'dataS4',
+				itemData5: 'dataS5',
 				itemDataStat: 'dataStatS',
 				itemDataStat1: 'dataStatS1',
 				itemDataStat2: 'dataStatS2',
 				itemDataStat3: 'dataStatS3',
+				itemDataStat4: 'dataStatS4',
+				itemDataStat5: 'dataStatS5',
 			}),
 		}
 	}

@@ -44,6 +44,7 @@ import saldo from './views/saldo/index.vue';
 import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
 import jalinanCair from './views/jalinanCair/index.vue';
+import jalinanLaporan_KlaimCair from './views/jalinanLaporan/cair.vue';
 import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
@@ -379,10 +380,20 @@ const routes = [
 		name: 'jalinanCair', 
 		components: { default: jalinanCair, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
-	{ path: '/jalinan/cair/:tanggal/cu/:cu',
+	{ path: '/jalinan/cair/:awal/cu/:cu',
 		name: 'jalinanCairTanggal', 
 		components: { default: jalinanCair, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true , mode:'cair' }},			
+		meta: { requiresAuth: true , mode:'cair' }},
+		
+	// JALINAN LAPORAN
+	{ path: '/jalinan/laporan/klaim/cair',
+		name: 'jalinanLaporanKlaimCair', 
+		components: { default: jalinanLaporan_KlaimCair, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinan/laporan/klaim/cair/:awal/:akhir/cu/:cu',
+		name: 'jalinanLaporanKlaimCairTanggal', 
+		components: { default: jalinanLaporan_KlaimCair, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true , mode:'laporan' }},
 
 	// laporan cu
 	// bkcu default route

@@ -20,18 +20,18 @@
 						<!-- select data -->
 						<select-data></select-data>
 
-						<table-cair :itemData="itemData" :itemDataStat="itemDataStat" v-if="$route.meta.mode == 'cair'" @bukaData="bukaData"></table-cair>
+						<table-cair :title="'Pencairan Klaim'"  :itemData="itemData" :itemDataStat="itemDataStat" v-if="$route.meta.mode == 'cair'" @bukaData="bukaData"></table-cair>
 						
 						<div v-if="$route.meta.mode == 'cair'">
 							<hr/>
 							<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail('semua')">
-								<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka data klaim JALINAN</span>
+								<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data klaim JALINAN</span>
 								<span v-else><i class="icon-eye-blocked"></i> Tutup data klaim JALINAN</span>
 							</button>
 							<hr/>
 						</div>
 
-						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'" :isSimple="true" v-if="isShowDetail"></table-data>
+						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
 
 					</div>
 				</div>
@@ -84,17 +84,14 @@
 				}
 			},
 			bukaData(value){
-				this.$router.push({name: 'jalinanCairTanggal', params:{tanggal: this.$route.params.tanggal, cu: value} });
+				this.$router.push({name: 'jalinanCairTanggal', params:{awal: this.$route.params.awal, cu: value} });
 				this.isShowDetail = true;
 			},
 			showDetail(value){
 				if(this.isShowDetail){
 					this.isShowDetail = false;
 				}else{
-					if(value != 'semua'){
-						this.bukaData(value);
-					}
-					this.isShowDetail = true;
+					this.bukaData(value);
 				}
 			}
 		},

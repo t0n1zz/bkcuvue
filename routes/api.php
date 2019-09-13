@@ -341,13 +341,14 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     // jalinan klaim
     Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
-        Route::get('/jalinanKlaim/status/{status}', 'JalinanKlaimController@index');
-        Route::get('/jalinanKlaim/indexCu/{id}/status/{status}', 'JalinanKlaimController@indexCu'); 
+        Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
+        Route::get('/jalinanKlaim/indexCu/{id}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
         Route::get('/jalinanKlaim/count', 'JalinanKlaimController@count');
         Route::get('/jalinanKlaim/history', 'JalinanKlaimController@history');
         Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
         Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
         Route::get('/jalinanKlaim/indexCair/{tanggal_pencairan}', 'JalinanKlaimController@indexCair');
+        Route::get('/jalinanKlaim/indexLaporanCair/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCair');
     });
     Route::group(['middleware' => ['permission:create_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/create', 'JalinanKlaimController@create');
@@ -357,6 +358,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}', 'JalinanKlaimController@edit');
         Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
         Route::post('/jalinanKlaim/updateStatus/{id}', 'JalinanKlaimController@updateStatus');
+        Route::post('/jalinanKlaim/updateCair/{id}/{awal}/{akhir}', 'JalinanKlaimController@updateCair');
+        Route::post('/jalinanKlaim/updateCairBatal/{id}/{awal}/{akhir}', 'JalinanKlaimController@updateCairBatal');
+        Route::post('/jalinanKlaim/updateCairAll/{awal}/{akhir}', 'JalinanKlaimController@updateCairAll');
     });
     Route::group(['middleware' => ['permission:destroy_jalinan_klaim']], function () {
         Route::delete('/jalinanKlaim/{id}', 'JalinanKlaimController@destroy');

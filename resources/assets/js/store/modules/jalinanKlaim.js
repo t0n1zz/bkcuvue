@@ -12,6 +12,8 @@ export const jalinanKlaim = {
     dataS1: [], //collection
     dataS2: [], //collection
     dataS3: [], //collection
+    dataS4: [], //collection
+    dataS5: [], //collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
@@ -22,6 +24,8 @@ export const jalinanKlaim = {
     dataStatS1: '',
     dataStatS2: '',
     dataStatS3: '',
+    dataStatS4: '',
+    dataStatS5: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -40,6 +44,8 @@ export const jalinanKlaim = {
     dataS1: state => state.dataS1,
     dataS2: state => state.dataS2,
     dataS3: state => state.dataS3,
+    dataS4: state => state.dataS4,
+    dataS5: state => state.dataS5,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
@@ -50,6 +56,8 @@ export const jalinanKlaim = {
     dataStatS1: state => state.dataStatS1,
     dataStatS2: state => state.dataStatS2,
     dataStatS3: state => state.dataStatS3,
+    dataStatS4: state => state.dataStatS4,
+    dataStatS5: state => state.dataStatS5,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -61,10 +69,10 @@ export const jalinanKlaim = {
 
   actions: {
     //load collection with params
-    index( { commit }, p ){
+    index( { commit }, [p, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.index( p, 0 )
+      JalinanKlaimAPI.index( p, 0, awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -74,10 +82,10 @@ export const jalinanKlaim = {
           commit('setDataStatS', 'fail');
         });
     },
-    index1( { commit }, p ){
+    index1( { commit }, [p, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      JalinanKlaimAPI.index( p, 1 )
+      JalinanKlaimAPI.index( p, 1, awal, akhir )
         .then( function( response ){
           commit('setDataS1', response.data.model );
           commit('setDataStatS1', 'success');
@@ -87,10 +95,10 @@ export const jalinanKlaim = {
           commit('setDataStatS1', 'fail');
         });
     },
-    index2( { commit }, p ){
+    index2( { commit }, [p, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      JalinanKlaimAPI.index( p, 2 )
+      JalinanKlaimAPI.index( p, 2, awal, akhir )
         .then( function( response ){
           commit('setDataS2', response.data.model );
           commit('setDataStatS2', 'success');
@@ -100,10 +108,10 @@ export const jalinanKlaim = {
           commit('setDataStatS2', 'fail');
         });
     },
-    index3( { commit }, p ){
+    index3( { commit }, [p, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      JalinanKlaimAPI.index( p, 3 )
+      JalinanKlaimAPI.index( p, 3, awal, akhir )
         .then( function( response ){
           commit('setDataS3', response.data.model );
           commit('setDataStatS3', 'success');
@@ -113,12 +121,38 @@ export const jalinanKlaim = {
           commit('setDataStatS3', 'fail');
         });
     },
+    index4( { commit }, [p, awal, akhir] ){
+      commit('setDataStatS4', 'loading');
+      
+      JalinanKlaimAPI.index( p, 4, awal, akhir )
+        .then( function( response ){
+          commit('setDataS4', response.data.model );
+          commit('setDataStatS4', 'success');
+        })
+        .catch( error => {
+          commit('setDataS4', error.response);
+          commit('setDataStatS4', 'fail');
+        });
+    },
+    index5( { commit }, [p, awal, akhir] ){
+      commit('setDataStatS5', 'loading');
+      
+      JalinanKlaimAPI.index( p, 5, awal, akhir )
+        .then( function( response ){
+          commit('setDataS5', response.data.model );
+          commit('setDataStatS5', 'success');
+        })
+        .catch( error => {
+          commit('setDataS5', error.response);
+          commit('setDataStatS5', 'fail');
+        });
+    },
 
     // load by cu
-    indexCu( { commit }, [p, id] ){
+    indexCu( { commit }, [p, id, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 0 )
+      JalinanKlaimAPI.indexCu( p, id, 0, awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -128,10 +162,10 @@ export const jalinanKlaim = {
           commit('setDataStatS', 'fail');
         });
     },
-    indexCu1( { commit }, [p, id] ){
+    indexCu1( { commit }, [p, id, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 1 )
+      JalinanKlaimAPI.indexCu( p, id, 1, awal, akhir )
         .then( function( response ){
           commit('setDataS1', response.data.model);
           commit('setDataStatS1', 'success');
@@ -141,10 +175,10 @@ export const jalinanKlaim = {
           commit('setDataStatS1', 'fail');
         });
     },
-    indexCu2( { commit }, [p, id] ){
+    indexCu2( { commit }, [p, id, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 2 )
+      JalinanKlaimAPI.indexCu( p, id, 2, awal, akhir )
         .then( function( response ){
           commit('setDataS2', response.data.model);
           commit('setDataStatS2', 'success');
@@ -154,10 +188,10 @@ export const jalinanKlaim = {
           commit('setDataStatS2', 'fail');
         });
     },
-    indexCu3( { commit }, [p, id] ){
+    indexCu3( { commit }, [p, id, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 3 )
+      JalinanKlaimAPI.indexCu( p, id, 3, awal, akhir )
         .then( function( response ){
           commit('setDataS3', response.data.model);
           commit('setDataStatS3', 'success');
@@ -167,11 +201,51 @@ export const jalinanKlaim = {
           commit('setDataStatS3', 'fail');
         });
     },
+    indexCu4( { commit }, [p, id, awal, akhir] ){
+      commit('setDataStatS4', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, id, 4, awal, akhir )
+        .then( function( response ){
+          commit('setDataS4', response.data.model);
+          commit('setDataStatS4', 'success');
+        })
+        .catch( error => {
+          commit('setDataS4', error.response);
+          commit('setDataStatS4', 'fail');
+        });
+    },
+    indexCu5( { commit }, [p, id, awal, akhir] ){
+      commit('setDataStatS5', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, id, 5, awal, akhir )
+        .then( function( response ){
+          commit('setDataS5', response.data.model);
+          commit('setDataStatS5', 'success');
+        })
+        .catch( error => {
+          commit('setDataS5', error.response);
+          commit('setDataStatS5', 'fail');
+        });
+    },
 
     indexCair( { commit }, tanggal ){
       commit('setDataStatS', 'loading');
       
       JalinanKlaimAPI.indexCair( tanggal )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexLaporanCair( { commit }, [awal, akhir] ){
+      commit('setDataStatS', 'loading');
+      
+      JalinanKlaimAPI.indexLaporanCair( awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -326,6 +400,60 @@ export const jalinanKlaim = {
         });
     },
 
+    updateCair( {commit, state, dispatch}, [id, awal, akhir] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateCair( id, awal, akhir )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateCairBatal( {commit, state, dispatch}, [id, awal, akhir] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateCairBatal( id, awal, akhir )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateCairAll( {commit, state, dispatch}, [ awal, akhir ] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateCairAll( awal, akhir )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     restore( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
@@ -406,6 +534,12 @@ export const jalinanKlaim = {
     setDataS3 ( state, data ){
       state.dataS3 = data;
     },
+    setDataS4 ( state, data ){
+      state.dataS4 = data;
+    },
+    setDataS5 ( state, data ){
+      state.dataS5 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -435,6 +569,12 @@ export const jalinanKlaim = {
     },
     setDataStatS3( state, status ){
       state.dataStatS3 = status;
+    },
+    setDataStatS4( state, status ){
+      state.dataStatS4 = status;
+    },
+    setDataStatS5( state, status ){
+      state.dataStatS5 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

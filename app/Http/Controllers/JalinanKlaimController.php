@@ -15,9 +15,15 @@ class JalinanKlaimController extends Controller{
 
 	protected $message = "Klaim JALINAN";
 
-	public function index($status)
+	public function index($status, $awal, $akhir)
 	{
-		$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->advancedFilter();
+		if($awal != 'undefined' && $akhir != 'undefined'){
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->advancedFilter();
+		}else if($awal != 'undefined'){
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->advancedFilter();
+		}else{
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->advancedFilter();
+		}
 
 		return response()
 			->json([
@@ -25,11 +31,21 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function indexCu($id, $status)
+	public function indexCu($id, $status, $awal, $akhir)
 	{
-		$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($id){ 
-			$query->where('cu_id',$id); 
-		})->advancedFilter();
+		if($awal != 'undefined' && $akhir != 'undefined'){
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			})->advancedFilter();
+		}else if($awal != 'undefined'){
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			})->advancedFilter();
+		}else{
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			})->advancedFilter();
+		}
 
 		return response()
 			->json([
@@ -48,6 +64,8 @@ class JalinanKlaimController extends Controller{
 			DB::raw('COUNT(case when status_klaim="4" then 1 end) AS status_klaim_cair'), 
 			DB::raw('COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria'), 
 			DB::raw('COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita'), 
+			DB::raw('COUNT(case when tipe="meninggal" then 1 end) AS meninggal'), 
+			DB::raw('COUNT(case when tipe="cacat" then 1 end) AS cacat'), 
 			DB::raw('SUM(tunas_disetujui) AS tunas_disetujui'), 
 			DB::raw('SUM(lintang_disetujui) AS lintang_disetujui'),
 			DB::raw('SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui')
@@ -61,6 +79,35 @@ class JalinanKlaimController extends Controller{
 				'model' => $table_data
 			]);
 	}
+
+	public function indexLaporanCair($awal, $akhir)
+	{
+		$table_data = DB::table('jalinan_klaim')
+		->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
+		->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
+		->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
+		->select('cu.no_ba','cu.name as cu_name','anggota_cu_cu.cu_id',
+			DB::raw('COUNT(case when status_klaim="3" then 1 end) AS status_klaim_setuju'), 
+			DB::raw('COUNT(case when status_klaim="4" then 1 end) AS status_klaim_cair'), 
+			DB::raw('COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria'), 
+			DB::raw('COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita'), 
+			DB::raw('COUNT(case when tipe="meninggal" then 1 end) AS meninggal'), 
+			DB::raw('COUNT(case when tipe="cacat" then 1 end) AS cacat'), 
+			DB::raw('SUM(tunas_disetujui) AS tunas_disetujui'), 
+			DB::raw('SUM(lintang_disetujui) AS lintang_disetujui'),
+			DB::raw('SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui')
+		)
+		->where('status_klaim','>=',4)
+		->whereBetween('tanggal_pencairan',[$awal, $akhir])
+		->groupBy('anggota_cu_cu.cu_id')
+		->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 
 	public function create()
 	{
@@ -166,6 +213,60 @@ class JalinanKlaimController extends Controller{
 		$kelas->update();
 	}
 
+	public function UpdateCair($id, $awal, $akhir){
+		if($awal != 'undefined' && $akhir != 'undefined'){
+			$kelas = JalinanKlaim::with('anggota_cu_cu')->where('status_klaim',3)->whereBetween('tanggal_pencairan',[$awal, $akhir])->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			});	
+		}else{
+			$kelas = JalinanKlaim::with('anggota_cu_cu')->where('status_klaim',3)->where('tanggal_pencairan',$awal)->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			});	
+		}
+
+		$kelas->update(['status_klaim' => 4]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' berhasil dicairkan'
+			]);
+	}
+
+	public function UpdateCairBatal($id, $awal, $akhir){
+		if($awal != 'undefined' && $akhir != 'undefined'){
+			$kelas = JalinanKlaim::with('anggota_cu_cu')->where('status_klaim',4)->whereBetween('tanggal_pencairan',[$awal, $akhir])->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			});	
+		}else{
+			$kelas = JalinanKlaim::with('anggota_cu_cu')->where('status_klaim',4)->where('tanggal_pencairan',$awal)->whereHas('anggota_cu_cu', function($query) use ($id){ 
+				$query->where('cu_id',$id); 
+			});	
+		}
+
+		$kelas->update(['status_klaim' => 3]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' berhasil dicairkan'
+			]);
+	}
+
+	public function UpdateCairAll($awal, $akhir){
+		if($awal != 'undefined' && $akhir != 'undefined'){
+			$kelas = JalinanKlaim::where('status_klaim',3)->whereBetween('tanggal_pencairan',[$awal, $akhir])->update(['status_klaim' => 4]);	
+		}else{
+			$kelas = JalinanKlaim::where('status_klaim',3)->where('tanggal_pencairan',$awal)->update(['status_klaim' => 4]);	
+		}
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' berhasil dicairkan'
+			]);
+	}
+
 	public function destroy($id)
 	{
 		$kelas = JalinanKlaim::findOrFail($id);
@@ -246,7 +347,7 @@ class JalinanKlaimController extends Controller{
 
 	public function getPencairan()
 	{
-		$table_data = JalinanKlaim::whereNotNull('tanggal_pencairan')->select('tanggal_pencairan')->distinct()->orderBy('tanggal_pencairan','DESC')->get();
+		$table_data = JalinanKlaim::where('status_klaim',3)->select('tanggal_pencairan')->distinct()->orderBy('tanggal_pencairan','DESC')->get();
 
 		return response()
 		->json([

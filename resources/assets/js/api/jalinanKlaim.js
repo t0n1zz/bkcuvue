@@ -1,15 +1,19 @@
 export default {
   
-  index: function( p, status ){
-    return axios.get('/api/jalinanKlaim/status/' + status ,{params: p});
+  index: function( p, status, awal, akhir ){
+    return axios.get('/api/jalinanKlaim/status/' + status + '/' + awal + '/' + akhir,{params: p});
   },
 
-  indexCu: function( p, id, status ){
-    return axios.get('/api/jalinanKlaim/indexCu/' + id + '/status/' + status, {params: p});
+  indexCu: function( p, id, status, awal, akhir  ){
+    return axios.get('/api/jalinanKlaim/indexCu/' + id + '/status/' + status + '/' + awal + '/' + akhir, {params: p});
   },
 
   indexCair: function( tanggal){
     return axios.get('/api/jalinanKlaim/indexCair/' + tanggal);
+  },
+
+  indexLaporanCair: function( awal, akhir){
+    return axios.get('/api/jalinanKlaim/indexLaporanCair/' + awal + '/' + akhir);
   },
 
   getPencairan: function(){
@@ -34,6 +38,18 @@ export default {
 
   updateStatus: function ( id, form ){
     return axios.post('/api/jalinanKlaim/updateStatus/' + id, form);
+  },
+
+  updateCair: function ( id, awal, akhir ){
+    return axios.post('/api/jalinanKlaim/updateCair/' + id + '/' + awal + '/' + akhir);
+  },
+
+  updateCairBatal: function ( id, awal, akhir ){
+    return axios.post('/api/jalinanKlaim/updateCairBatal/' + id + '/' + awal + '/' + akhir);
+  },
+
+  updateCairAll: function ( awal, akhir ){
+    return axios.post('/api/jalinanKlaim/updateCairAll/' + awal + '/' + akhir);
   },
 
   destroy: function( id ){
