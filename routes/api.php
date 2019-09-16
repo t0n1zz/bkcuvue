@@ -342,20 +342,23 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // jalinan klaim
     Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
-        Route::get('/jalinanKlaim/indexCu/{id}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
+        Route::get('/jalinanKlaim/indexCu/{cu}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
         Route::get('/jalinanKlaim/count', 'JalinanKlaimController@count');
         Route::get('/jalinanKlaim/history', 'JalinanKlaimController@history');
         Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
         Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
         Route::get('/jalinanKlaim/indexCair/{tanggal_pencairan}', 'JalinanKlaimController@indexCair');
         Route::get('/jalinanKlaim/indexLaporanCair/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCair');
+        Route::get('/jalinanKlaim/indexLaporanPenyebab/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanPenyebab');
+        Route::get('/jalinanKlaim/indexLaporanUsia/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanUsia');
+        Route::get('/jalinanKlaim/indexLaporanLama/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanLama');
     });
     Route::group(['middleware' => ['permission:create_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/create', 'JalinanKlaimController@create');
         Route::post('/jalinanKlaim/store', 'JalinanKlaimController@store');
     });
     Route::group(['middleware' => ['permission:update_jalinan_klaim']], function () {
-        Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}', 'JalinanKlaimController@edit');
+        Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}/tipe/{tipe}', 'JalinanKlaimController@edit');
         Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
         Route::post('/jalinanKlaim/updateStatus/{id}', 'JalinanKlaimController@updateStatus');
         Route::post('/jalinanKlaim/updateCair/{id}/{awal}/{akhir}', 'JalinanKlaimController@updateCair');

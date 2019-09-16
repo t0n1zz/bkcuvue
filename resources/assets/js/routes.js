@@ -45,6 +45,9 @@ import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
 import jalinanCair from './views/jalinanCair/index.vue';
 import jalinanLaporan_KlaimCair from './views/jalinanLaporan/cair.vue';
+import jalinanLaporan_KlaimPenyebab from './views/jalinanLaporan/penyebab.vue';
+import jalinanLaporan_KlaimUsia from './views/jalinanLaporan/usia.vue';
+import jalinanLaporan_KlaimLama from './views/jalinanLaporan/lama.vue';
 import produkCu from './views/produkCu/index.vue';
 import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
@@ -370,7 +373,7 @@ const routes = [
 		name: 'jalinanKlaimCreateNIK', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'createNIK' }},	
-	{ path: '/jalinan/klaim/edit/:nik/cu/:cu',
+	{ path: '/jalinan/klaim/edit/:nik/cu/:cu/tipe/:tipe',
 		name: 'jalinanKlaimEdit', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' }},	
@@ -393,6 +396,30 @@ const routes = [
 	{ path: '/jalinan/laporan/klaim/cair/:awal/:akhir/cu/:cu',
 		name: 'jalinanLaporanKlaimCairTanggal', 
 		components: { default: jalinanLaporan_KlaimCair, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true , mode:'laporan' }},
+	{ path: '/jalinan/laporan/klaim/penyebab',
+		name: 'jalinanLaporanKlaimPenyebab', 
+		components: { default: jalinanLaporan_KlaimPenyebab, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinan/laporan/klaim/penyebab/:awal/:akhir/cu/:cu',
+		name: 'jalinanLaporanKlaimPenyebabTanggal', 
+		components: { default: jalinanLaporan_KlaimPenyebab, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true , mode:'laporan' }},
+	{ path: '/jalinan/laporan/klaim/usia',
+		name: 'jalinanLaporanKlaimUsia', 
+		components: { default: jalinanLaporan_KlaimUsia, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinan/laporan/klaim/usia/:awal/:akhir/cu/:cu',
+		name: 'jalinanLaporanKlaimUsiaTanggal', 
+		components: { default: jalinanLaporan_KlaimUsia, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true , mode:'laporan' }},
+	{ path: '/jalinan/laporan/klaim/lama',
+		name: 'jalinanLaporanKlaimLama', 
+		components: { default: jalinanLaporan_KlaimLama, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinan/laporan/klaim/lama/:awal/:akhir/cu/:cu',
+		name: 'jalinanLaporanKlaimLamaTanggal', 
+		components: { default: jalinanLaporan_KlaimLama, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true , mode:'laporan' }},
 
 	// laporan cu

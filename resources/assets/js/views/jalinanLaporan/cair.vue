@@ -73,9 +73,9 @@
 		},
 		data() {
 			return {
-				title: 'Laporan Harian Pencairan JALINAN ',
-				titleDesc: 'Mengelola laporan harian pencairan JALINAN',
-				titleIcon: 'icon-square-down',
+				title: 'Laporan Pencairan JALINAN ',
+				titleDesc: 'Mengelola laporan pencairan JALINAN',
+				titleIcon: 'icon-archive',
         kelas: 'jalinanKlaim',
         tabName: 'dicairkan',
         isSelesai: false,

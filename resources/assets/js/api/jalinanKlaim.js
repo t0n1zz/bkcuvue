@@ -4,8 +4,8 @@ export default {
     return axios.get('/api/jalinanKlaim/status/' + status + '/' + awal + '/' + akhir,{params: p});
   },
 
-  indexCu: function( p, id, status, awal, akhir  ){
-    return axios.get('/api/jalinanKlaim/indexCu/' + id + '/status/' + status + '/' + awal + '/' + akhir, {params: p});
+  indexCu: function( p, cu, status, awal, akhir  ){
+    return axios.get('/api/jalinanKlaim/indexCu/' + cu + '/status/' + status + '/' + awal + '/' + akhir, {params: p});
   },
 
   indexCair: function( tanggal){
@@ -14,6 +14,18 @@ export default {
 
   indexLaporanCair: function( awal, akhir){
     return axios.get('/api/jalinanKlaim/indexLaporanCair/' + awal + '/' + akhir);
+  },
+
+  indexLaporanPenyebab: function( awal, akhir, cu){
+    return axios.get('/api/jalinanKlaim/indexLaporanPenyebab/' + awal + '/' + akhir + '/' + cu);
+  },
+
+  indexLaporanUsia: function( awal, akhir, cu){
+    return axios.get('/api/jalinanKlaim/indexLaporanUsia/' + awal + '/' + akhir + '/' + cu);
+  },
+
+  indexLaporanLama: function( awal, akhir, cu){
+    return axios.get('/api/jalinanKlaim/indexLaporanLama/' + awal + '/' + akhir + '/' + cu);
   },
 
   getPencairan: function(){
@@ -28,8 +40,8 @@ export default {
     return axios.post('/api/jalinanKlaim/store', form);
   },
 
-  edit: function( nik, cu ){
-    return axios.get('/api/jalinanKlaim/edit/' + nik + '/cu/' + cu);
+  edit: function( nik, cu, tipe ){
+    return axios.get('/api/jalinanKlaim/edit/' + nik + '/cu/' + cu + '/tipe/' + tipe);
   },
 
   update: function ( id, form ){

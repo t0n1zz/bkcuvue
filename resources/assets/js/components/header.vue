@@ -477,14 +477,26 @@
 								<i class="icon-square-down"></i> Pencairan JALINAN
 							</router-link>
 
-							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim']" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporan_jalinan_klaim')">
 									<i class="icon-archive"></i> Laporan Klaim JALINAN
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
 
-									<router-link :to="{ name: 'jalinanLaporanKlaimCair' }" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'jalinanLaporanKlaimCair' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
 										Pencairan
+									</router-link>
+
+									<router-link :to="{ name: 'jalinanLaporanKlaimPenyebab' }" class="dropdown-item" active-class="active" exact >
+										Penyebab
+									</router-link>
+
+									<router-link :to="{ name: 'jalinanLaporanKlaimUsia' }" class="dropdown-item" active-class="active" exact >
+										Usia Anggota
+									</router-link>
+
+									<router-link :to="{ name: 'jalinanLaporanKlaimLama' }" class="dropdown-item" active-class="active" exact >
+										Lama Menjadi Anggota
 									</router-link>
 
 								</div>

@@ -8,17 +8,17 @@
       <template slot="button-desktop" v-if="!isSimple">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && status == 0">  
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && status == 0">
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0" :disabled="!selectedItem.anggota_cu">
+        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0" :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
         <!-- status klaim -->
-        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim']"
+        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
           :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
@@ -40,13 +40,13 @@
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0"
+        <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0"
           :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
         <!-- status -->
-        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim']"
+        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
           :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
@@ -484,23 +484,24 @@
       fetch(params) {
         if(this.$route.params.cu == 'semua'){
           this.$store.dispatch(this.kelas + '/index' + this.status, [params, this.$route.params.awal, this.$route.params.akhir]);
-          this.excelDownloadUrl = this.kelas + '/status/' + this.status;
+          this.excelDownloadUrl = this.kelas + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           this.columnData[4].disable = false;
         }else{
           this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.awal, this.$route.params.akhir]);
-          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status;
+          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           this.columnData[4].disable = true;
         }
       },
       selectedRow(item) {
         this.selectedItem = item;
       },
-      ubahData(nik, cu) {
+      ubahData(nik, cu, tipe) {
         this.$router.push({
           name: this.kelas + "Edit",
           params: {
             nik: nik,
-            cu: cu
+            cu: cu,
+            tipe: tipe
           }
         });
       },

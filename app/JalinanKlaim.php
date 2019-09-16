@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use DB;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use App\Support\FilterPaginateOrder;
@@ -50,12 +51,12 @@ class JalinanKlaim extends Model {
 
     public function anggota_cu()
     {
-        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id');
+        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) AS usia'));
     }
 
     public function anggota_cu_cu()
     {
-        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id');
+        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(YEAR, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
     }
 
 }

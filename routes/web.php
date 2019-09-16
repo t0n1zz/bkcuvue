@@ -68,6 +68,41 @@ Route::get('/admins/{vue?}', function () {
 
 // test route
 Route::get('/testroute', function () {
+	// $table_data = DB::table('jalinan_klaim')
+	// ->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
+	// ->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
+	// ->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
+	// ->join('anggota_produk_cu', 'anggota_produk_cu.anggota_cu_id', '=', 'jalinan_klaim.anggota_cu_id')
+	// ->join('produk_cu', 'produk_cu.id', '=', 'anggota_produk_cu.produk_cu_id')
+	// ->select(DB::raw('
+	// 	MAX(cu.no_ba) as no_ba,
+	// 	MAX(cu.name) as cu_name,
+	// 	MAX(anggota_cu_cu.cu_id) as cu_id,
+	// 	max(anggota_cu.tanggal_lahir) as tanggal_lahir,
+	// 	Max(jalinan_klaim.created_at) as created_at,
+	// 	COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
+	// 	COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
+	// '))->addSelect(DB::raw('
+	// 	CASE
+	// 		WHEN SUM() < 1000000 THEN "< 1 Juta"
+	// 	END as kategori,
+	// 	COUNT(*) as total
+	// '))
+	// ->where('status_klaim','>=',4)
+	// ->groupBy('kategori')
+	// ->get();
+
+	$from = \Carbon\Carbon::now()->subYears(30)->format('Y-m-d');
+	$to = \Carbon\Carbon::now()->subYears(20)->format('Y-m-d');
+
+	$table_data = \App\JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($from, $to){ 
+		$query->whereBetween('tanggal_lahir',[$from, $to]);
+	})->get();
+
+	return response()
+		->json([
+			'model' => $table_data
+		]);
 
 		// create permission
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_saldo']);

@@ -25,7 +25,7 @@
 						</span>
 					</div>
 
-					<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik}}" class="btn btn-light" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
+					<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik}}" class="btn btn-light btn-lg btn-block" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
 						<i class="icon-plus22"></i> Tambah Anggota CU
 					</router-link>
 
@@ -54,17 +54,15 @@
 								<div class="row">
 									
 									<!-- check cu -->
-									<div class="col-sm-12">
-										<div class="form-group" :class="{'has-error' : errors.has('form.anggota_cu_cu_id')}">
+									<div class="col-sm-5">
+										<div class="input-group">
 
-											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu_cu_id')}">
-												<i class="icon-cross2" v-if="errors.has('form.anggota_cu_cu_id')"></i>
-												Silahkan memilih informasi keanggotaan CU: <wajib-badge></wajib-badge>
-											</h6>
+											<span class="input-group-prepend">
+												<span class="input-group-text">Keanggotaan CU</span>
+											</span>
 
 											<!-- select -->
-											<select class="form-control" name="anggota_cu_cu_id" v-model="anggota_cu_cu_id" data-width="100%" v-validate="'required'" data-vv-as="Tempat pekerjaan" :disabled="itemDataCu.length == 0" @change="changeCu($event.target.value)">
+											<select class="form-control" name="anggota_cu_cu_id" v-model="anggota_cu_cu_id" data-width="100%"  :disabled="itemDataCu.length == 0">
 												<option disabled value="">
 													<span v-if="itemDataCuStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih keanggotaan CU</span>
@@ -72,41 +70,35 @@
 												<option v-for="cu in itemDataCu" :value="cu.id">CU {{cu.cu.name}} | No. BA: {{ cu.no_ba }} | Tanggal Jadi Anggota: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(cu.tanggal_masuk)"></span></option>
 											</select>
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu_cu_id')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.anggota_cu_cu_id') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
-									<!-- tipe  -->
-									<div class="col-md-4" v-if="formStat == 'success'">
-										<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
+									<!-- check tipe  -->
+									<div class="col-md-5">
+										<div class="input-group">
 
-											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.tipe')}">
-												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
-												Tipe: <wajib-badge></wajib-badge>
-											</h6>
+											<span class="input-group-prepend">
+												<span class="input-group-text">Tipe</span>
+											</span>
 
 											<!-- select -->
-											<select class="form-control" name="tipe" v-model="form.tipe" data-width="100%" v-validate="'required'" data-vv-as="Tipe">
+											<select class="form-control" name="tipe" v-model="tipe"  @change="changeTipe($event.target.value)">
 												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="cacat">Cacat</option>
 												<option value="meninggal">Meninggal</option>
 											</select>
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
+									<div class="col-md-2">
+										<button type="button" class="btn btn-light btn-block" @click.prevent="cekData()">Cek Data</button>
+									</div>
+
+									<div class="col-md-12" v-if="formStat == 'success'"><hr/></div>
+
 									<!-- kategori penyakit -->
-									<div class="col-md-4" v-if="formStat == 'success'">
+									<div class="col-md-3" v-if="formStat == 'success'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kategori_penyakit')}">
 
 											<!-- title -->
@@ -118,21 +110,23 @@
 											<!-- select -->
 											<select class="form-control" name="kategori_penyakit" v-model="form.kategori_penyakit" data-width="100%" v-validate="'required'" data-vv-as="Kategori penyakit">
 												<option disabled value="">Silahkan pilih kategori penyakit</option>
-												<option value="serangga">Serangga</option>
-												<option value="kanker">Kanker</option>
-												<option value="tumor">Tumor</option>
-												<option value="jantung">Jantung</option>
-												<option value="paru-paru">Paru-paru</option>
-												<option value="hati">Hati</option>
+												<option value="asma">Asma</option>
+												<option value="demam berdarah">Demam Berdarah</option>
+												<option value="diabetes melitus">Diabetes Melitus</option>
+												<option value="diare">Diare</option>
 												<option value="ginjal">Ginjal</option>
-												<option value="kelainan Saraf">Kelainan Saraf</option>
-												<option value="gangguan Mental">Gangguan Mental</option>
-												<option value="pencernaan">Pencernaan</option>
-												<option value="kecelakaan">Kecelakaan</option>
-												<option value="bunuh Diri">Bunuh Diri</option>
-												<option value="bencana Alam">Bencana Alam</option>
+												<option value="hepatitis">Hepatitis</option>
+												<option value="hipertensi">Hipertensi</option>
+												<option value="jantung">Jantung</option>
+												<option value="kanker">Kanker</option>
+												<option value="liver">Liver</option>
+												<option value="maag">Maag</option>
+												<option value="paru-paru">Paru-paru</option>
 												<option value="stroke">Stroke</option>
-												<option value="diabetes">Diabetes</option>
+												<option value="tbc">TBC</option>
+												<option value="tumor">Tumor</option>
+												<option value="malaria">Malaria</option>
+												<option value="kecelakaan">Kecelakaan</option>
 												<option value="komplikasi">Komplikasi</option>
 												<option value="lain-lain">Lain-lain</option>
 											</select>
@@ -146,7 +140,7 @@
 									</div>
 
 									<!-- tanggal cacat/mati -->
-									<div class="col-md-4" v-if="formStat == 'success'">
+									<div class="col-md-3" v-if="formStat == 'success'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_mati')}">
 
 											<!-- title -->
@@ -176,7 +170,7 @@
 									</div>
 
 									<!-- keterangan mati -->
-									<div class="col-md-6" v-if="formStat == 'success'">
+									<div class="col-md-3" v-if="formStat == 'success'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -188,7 +182,7 @@
 									</div>
 
 									<!-- keterangan -->
-									<div class="col-md-6" v-if="formStat == 'success'">
+									<div class="col-md-3" v-if="formStat == 'success'">
 										<div class="form-group">
 
 											<!-- title -->
@@ -204,7 +198,7 @@
 									</div>
 
 									<!-- TUNAS -->
-									<div class="col-md-6" v-if="formStat == 'success'">
+									<div class="col-md-6" v-if="formStat == 'success' && tipe != 'cacat'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
 
 											<!-- title -->
@@ -334,6 +328,7 @@
 				isEdit: false,
 				nik: '',
 				anggota_cu_cu_id: '',
+				tipe: '',
 				cleaveOption: {
           date:{
             date: true,
@@ -461,20 +456,25 @@
 			},
 			fetchForm(){
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',[this.$route.params.nik,this.$route.params.cu]);	
+					this.$store.dispatch(this.kelas + '/edit',[this.$route.params.nik,this.$route.params.cu,this.$route.params.tipe]);	
 					this.isEdit = true;
 					this.anggota_cu_cu_id = this.$route.params.cu;
+					this.tipe = this.$route.params.tipe;
 				}
 			},
-			changeCu(value){
+			changeTipe(value){
+				if(value == 'cacat'){
+					this.form.tunas_diajukan = 0;
+				}
+			},
+			cekData(){
 				let _nik = '';
 				if(this.$route.meta.mode === 'edit'){
 					_nik = this.$route.params.nik;
 				}else{
 					_nik = this.nik;
 				}
-
-				this.$store.dispatch(this.kelas + '/edit',[_nik,value]);
+				this.$store.dispatch(this.kelas + '/edit',[_nik,this.anggota_cu_cu_id, this.tipe]);
 			},
 			resetData(){
 				this.itemDataCu = [];
@@ -492,6 +492,7 @@
 			save() {
 				this.form.anggota_cu_id = this.itemData.id;
 				this.form.anggota_cu_cu_id = this.anggota_cu_cu_id;
+				this.form.tipe = this.tipe;
 
 				if(!this.form.id){
 					this.form.status_klaim = '0';

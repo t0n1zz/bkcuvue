@@ -67,7 +67,7 @@
                   <hr/>
                 </div>
                 <!-- tunas -->
-                <div class="col-sm-6">
+                <div class="col-sm-6" v-if="selectedData.tipe != 'cacat'">
                   <div class="card card-body mb-1">
                      <div class="media">
                       <div class="media-body">
@@ -220,7 +220,7 @@
         </div>
 
         <!-- TUNAS -->
-        <div class="col-md-6" v-if="formStatus.status == '3'">
+        <div class="col-md-6" v-if="formStatus.status == '3' && selectedData.tipe != 'cacat'">
         
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 

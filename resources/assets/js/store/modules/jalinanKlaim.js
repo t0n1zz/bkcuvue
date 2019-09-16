@@ -149,10 +149,10 @@ export const jalinanKlaim = {
     },
 
     // load by cu
-    indexCu( { commit }, [p, id, awal, akhir] ){
+    indexCu( { commit }, [p, cu, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 0, awal, akhir )
+      JalinanKlaimAPI.indexCu( p, cu, 0, awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -162,10 +162,10 @@ export const jalinanKlaim = {
           commit('setDataStatS', 'fail');
         });
     },
-    indexCu1( { commit }, [p, id, awal, akhir] ){
+    indexCu1( { commit }, [p, cu, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 1, awal, akhir )
+      JalinanKlaimAPI.indexCu( p, cu, 1, awal, akhir )
         .then( function( response ){
           commit('setDataS1', response.data.model);
           commit('setDataStatS1', 'success');
@@ -175,10 +175,10 @@ export const jalinanKlaim = {
           commit('setDataStatS1', 'fail');
         });
     },
-    indexCu2( { commit }, [p, id, awal, akhir] ){
+    indexCu2( { commit }, [p, cu, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 2, awal, akhir )
+      JalinanKlaimAPI.indexCu( p, cu, 2, awal, akhir )
         .then( function( response ){
           commit('setDataS2', response.data.model);
           commit('setDataStatS2', 'success');
@@ -188,10 +188,10 @@ export const jalinanKlaim = {
           commit('setDataStatS2', 'fail');
         });
     },
-    indexCu3( { commit }, [p, id, awal, akhir] ){
+    indexCu3( { commit }, [p, cu, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 3, awal, akhir )
+      JalinanKlaimAPI.indexCu( p, cu, 3, awal, akhir )
         .then( function( response ){
           commit('setDataS3', response.data.model);
           commit('setDataStatS3', 'success');
@@ -201,10 +201,10 @@ export const jalinanKlaim = {
           commit('setDataStatS3', 'fail');
         });
     },
-    indexCu4( { commit }, [p, id, awal, akhir] ){
+    indexCu4( { commit }, [p, cu, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 4, awal, akhir )
+      JalinanKlaimAPI.indexCu( p, cu, 4, awal, akhir )
         .then( function( response ){
           commit('setDataS4', response.data.model);
           commit('setDataStatS4', 'success');
@@ -214,10 +214,10 @@ export const jalinanKlaim = {
           commit('setDataStatS4', 'fail');
         });
     },
-    indexCu5( { commit }, [p, id, awal, akhir] ){
+    indexCu5( { commit }, [p, cu, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
-      JalinanKlaimAPI.indexCu( p, id, 5, awal, akhir )
+      JalinanKlaimAPI.indexCu( p, cu, 5, awal, akhir )
         .then( function( response ){
           commit('setDataS5', response.data.model);
           commit('setDataStatS5', 'success');
@@ -246,6 +246,48 @@ export const jalinanKlaim = {
       commit('setDataStatS', 'loading');
       
       JalinanKlaimAPI.indexLaporanCair( awal, akhir )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexLaporanPenyebab( { commit }, [awal, akhir, cu] ){
+      commit('setDataStatS', 'loading');
+      
+      JalinanKlaimAPI.indexLaporanPenyebab( awal, akhir, cu )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexLaporanUsia( { commit }, [awal, akhir, cu] ){
+      commit('setDataStatS', 'loading');
+      
+      JalinanKlaimAPI.indexLaporanUsia( awal, akhir, cu )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexLaporanLama( { commit }, [awal, akhir, cu] ){
+      commit('setDataStatS', 'loading');
+      
+      JalinanKlaimAPI.indexLaporanLama( awal, akhir, cu )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -345,10 +387,10 @@ export const jalinanKlaim = {
     },
 
     // edit page
-    edit( {commit}, [nik, cu] ){
+    edit( {commit}, [nik, cu, tipe] ){
       commit('setDataStat', 'loading');
       
-      JalinanKlaimAPI.edit( nik, cu )
+      JalinanKlaimAPI.edit( nik, cu, tipe )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
