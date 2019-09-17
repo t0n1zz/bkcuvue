@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use File;
+use Date;
 use Image;
 use App\Cu;
 use App\Support\Helper;
@@ -55,7 +56,16 @@ class CuController extends Controller{
 				'model' => $table_data
 			]);
 	}
-  
+	
+	public function getBirthday()
+	{
+		$table_data = Cu::whereRaw('DATE_FORMAT(ultah, "%d-%m") = DATE_FORMAT(CURDATE(), "%d-%m")')->select('id','name','ultah', DB::raw('TIMESTAMPDIFF(YEAR, ultah, CURDATE()) AS usia'))->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
   
   public function getPus($id)
 	{

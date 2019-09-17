@@ -10,6 +10,36 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.4 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="314" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada fitur klaim JALINAN
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Peningkatan pengalaman penambahan data klaim JALINAN</li>
+                      <li>Menambah fitur analisa klaim JALINAN</li>
+                      <li>Menambah fitur pencairan klaim JALINAN</li>
+                      <li>Menambah laporan pencairan klaim JALINAN</li>
+                      <li>Menambah laporan klaim JALINAN berdasarkan penyebab</li>
+                      <li>Menambah laporan klaim JALINAN berdasarkan usia</li>
+                      <li>Menambah laporan klaim JALINAN berdasarkan lama menjadi anggota</li>
+                      <li>Memperbaiki beberapa bug pada proses klaim JALINAN</li>
+                      <li>Menambah bagian berita pada halaman Dashboard</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.4 -->
+
               <!-- Version 3.1.3 -->
               <div class="card">
                 <div class="card-header">
@@ -18,9 +48,9 @@
                   </h5>
                 </div>
 
-                <div id="313" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="313" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi fokus pada peningkatan pada data aktivis, anggota CU dan klaim JALINAN
+                    <p class="mb-3">Update versi ini fokus pada peningkatan pada data aktivis, anggota CU dan klaim JALINAN
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 

@@ -128,6 +128,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:destroy_cu']], function () {
         Route::delete('/cu/{id}', 'CuController@destroy');
     });
+    Route::get('/cu/getBirthday', 'CuController@getBirthday');
 
     // tp
     Route::get('/tp/getCu/{id}', 'TpController@getCu');

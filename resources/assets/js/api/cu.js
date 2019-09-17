@@ -16,6 +16,10 @@ export default {
     return axios.get('/api/cu/getHeader');
   },
 
+  getBirthday: function(){
+    return axios.get('/api/cu/getBirthday');
+  },
+
   getPus: function( id ){
     return axios.get('/api/cu/getPus/' + id);
   },

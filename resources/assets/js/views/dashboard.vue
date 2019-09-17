@@ -14,6 +14,9 @@
 <div class="page-content pt-0">
 	<div class="content-wrapper">
 
+		<!-- news carousel -->
+	 	<news-slider></news-slider>
+
 		<!-- button row -->
 		<button-row></button-row>
 
@@ -38,8 +41,6 @@
 				<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
 				
 			</div>
-
-			
 		
 		</div>
 
@@ -47,8 +48,9 @@
 </div>
 <!-- page container -->
 </div></template>
-<script type="text/javascript">
+<script>
 	import { mapGetters } from 'vuex';
+	import newsSlider from './dashboard/newsSlider.vue';
 	import buttonRow from './dashboard/buttonRow.vue';
 	import diklatBkcuWidget from './dashboard/diklatBKCUWidget.vue';
 	import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
@@ -59,6 +61,7 @@
 
 	export default{
 		components: {
+			newsSlider,
 			buttonRow,
 			diklatBkcuWidget,
 			pesertaDiklatBkcuWidget,
@@ -67,16 +70,10 @@
 			historyOrganisasiWidget,
 			countOrganisasiWidget,
 		},
-		data(){
-			return{
-			}
-		},
-		created(){
-		},
-		watch: {
-		},
-		methods:{
-		},
+		data(){return{}},
+		created(){},
+		watch: {},
+		methods:{},
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
