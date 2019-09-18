@@ -26,6 +26,10 @@ class UserController extends Controller
 		'terbitkan_artikel',
 		'utamakan_artikel',
 
+		'create_artikel_simo',
+		'update_artikel_simo',
+		'destroy_artikel_simo',
+
 		'index_user',
 		'create_user',
 		'update_user',
@@ -69,6 +73,8 @@ class UserController extends Controller
 		'create_jalinan_klaim',
 		'update_jalinan_klaim',
 		'destroy_jalinan_klaim',
+		'laporan_jalinan_klaim',
+		'pencairan_jalinan_klaim',
 
 		'index_cu',
 		'create_cu',

@@ -369,8 +369,6 @@ class AktivisController extends Controller{
 			$pasangan = $request->keluarga['pasangan'];
 		}
 
-		$anak = $request->anak;
-
 		if(!empty($ayah))
 			$this->saveKeluarga(null,$kelas->id,'Ayah',$ayah);
 		
@@ -379,12 +377,6 @@ class AktivisController extends Controller{
 
 		if(!empty($pasangan))
 			$this->saveKeluarga(null,$kelas->id,'Pasangan',$pasangan);	
-
-		if(!empty($anak)){
-			foreach($anak as $a){
-				$this->saveKeluarga(null,$kelas->id,'Anak',$a['name']);
-			}
-		}	
 
 		if(!empty($request->anak)){
 			foreach($request->anak as $a){
@@ -728,7 +720,10 @@ class AktivisController extends Controller{
 		$kelas->tipe = $tipe;
 		$kelas->id_aktivis = $id_aktivis;
 		$kelas->name = $name;
-		$kelas->save();
+		
+		if($kelas->name != null || $kelas->name != ''){
+			$kelas->save();
+		}
 	}
 
 	public function saveAnggotaCu($id, $id_aktivis, $id_cu, $name, $no_ba, $tanggal_masuk)

@@ -11,7 +11,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <title>SIMO</title>
+    <title>SIMO - Sistem Informasi Manajemen Organisasi</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- icon-->
     <link rel="icon" href="{{asset('images/logo.png')}}" sizes="16x16">

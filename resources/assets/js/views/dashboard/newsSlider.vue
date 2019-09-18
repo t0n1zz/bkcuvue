@@ -43,6 +43,7 @@
   import { Hooper, Slide, Navigation as HooperNavigation, Pagination as HooperPagination } from 'hooper';
 	import 'hooper/dist/hooper.css';
 	import CUAPI from '../../api/cu';
+	import ARTIKELSIMOAPI from '../../api/artikelSimo';
   
 	export default{
 		components: {
@@ -55,12 +56,14 @@
 			return{
 				birthdayData: [],
 				birthdayDataStat: '',
+				newsData: [],
+				newsDataStat: '',
 				slideData: [],
 				sliderItem: [
 					{
 						name: 'welcome',
 						title: 'Selamat Datang Di SIMO',
-						content: '<h5 class="d-none d-md-block">Sebuah aplikasi yang menyimpan dan mengolah data CU dalam gerakan Puskopdit BKCU Kalimantan.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
+						content: '<h5 class="d-none d-md-block">Sistem Informasi Manajemen Organisasi yang menyimpan dan mengolah data CU dalam gerakan Puskopdit BKCU Kalimantan.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
 						isButton: true,
 						buttonUrl: 'https://puskopditbkcukalimantan.org/panduan',
 						buttonTitle: '<i class="icon-book mr-2"></i>Panduan',
@@ -69,6 +72,7 @@
 							'background-position': 'center',
 							'background-repeat': 'no-repeat',
 							'background-size': 'cover',
+							'color': '#FFFFFF',
 						}
 					},
 				],
@@ -80,20 +84,32 @@
 		watch: {
 			birthdayDataStat(value){
 				if(value == 'success'){
-					let item = {
-						name: 'birthday',
-						title: 'Selamat Ulang Tahun Kepada',
-						content: 'Semoga semakin maju berkembang dan bertumbuh bersama anggota',
-						cu: [],
-						style: {
-							'background-image': 'url("/images/birthday.jpg")',
-							'background-position': 'center',
-							'background-repeat': 'no-repeat',
-							'background-size': 'cover',
-						}
-					};
-					item.cu = this.birthdayData;
-					this.sliderItem.push(item);
+					if(this.birthdayData.length > 0){
+						let item = {
+							name: 'birthday',
+							title: 'Selamat Ulang Tahun Kepada',
+							content: 'Semoga semakin maju berkembang dan bertumbuh bersama anggota',
+							cu: [],
+							style: {
+								'background-image': 'url("/images/birthday.jpg")',
+								'background-position': 'center',
+								'background-repeat': 'no-repeat',
+								'background-size': 'cover',
+								'color': '#FFFFFF',
+							}
+						};
+						item.cu = this.birthdayData;
+						this.sliderItem.push(item);
+					}
+					this.getNews();
+				}
+			},
+			newsDataStat(value){
+				if(value == 'success'){
+					var valData;
+					for(valData of this.newsData){
+						this.addNewsSlide(valData.name,valData.ringkasan,valData.gambar);
+					}
 				}
 			}
 		},
@@ -110,6 +126,33 @@
 					this.birthdayData = error.response;
           this.birthdayDataStat = 'fail';
         });
+			},
+			getNews(){
+				this.newsDataStat = 'loading';
+
+				ARTIKELSIMOAPI.get()
+        .then((response) => {
+					this.newsData = response.data.model;
+          this.newsDataStat = 'success';
+        })
+        .catch( error => {
+					this.newsData = error.response;
+          this.newsDataStat = 'fail';
+        });
+			},
+			addNewsSlide(title,content,image){
+				let item = {
+					name: 'news',
+					title: title,
+					content: content,
+					style: {
+						'background-image': 'url("/images/artikel_simo/'+ image +'.jpg")',
+						'background-position': 'center',
+						'background-repeat': 'no-repeat',
+						'background-size': 'cover',
+					}
+				};
+				this.sliderItem.push(item);
 			}
 		},
 		computed: {
@@ -122,12 +165,12 @@
 
 <style>
 	.slideStyle {
-		color: rgb(255, 251, 251);
 		padding-top: 3em;
 		padding-left: 2em;
 		padding-right: 2em;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
+		border-radius: 10px;
 	}
 </style>

@@ -3,8 +3,7 @@
 <div class="page-header">
 	<div class="page-header-content header-elements-md-inline">
 		<div class="page-title d-flex">
-			<h4><i class="icon-screen3 mr-2"></i> <span class="font-weight-semibold">Dashboard</span>
-			<small class="d-block text-muted">Selamat Datang {{ currentUser.name }}</small>
+			<h4><i class="icon-screen3 mr-2"></i> <span class="font-weight-semibold">Dashboard</span><small>Halo <span class="font-weight-semibold">{{ currentUser.name }}</span>! Apa kabarnya hari ini?</small>
 			</h4>
 		</div>
 	</div>
@@ -13,7 +12,7 @@
 <!-- page container -->
 <div class="page-content pt-0">
 	<div class="content-wrapper">
-
+		
 		<!-- news carousel -->
 	 	<news-slider></news-slider>
 
@@ -29,7 +28,6 @@
 				<history-organisasi-widget v-if="currentUser.id_cu == 0"></history-organisasi-widget>
 
 				<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
-
 			</div>
 
 			<!-- peserta diklat -->
@@ -39,7 +37,6 @@
 				<count-organisasi-widget></count-organisasi-widget>
 
 				<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
-				
 			</div>
 		
 		</div>

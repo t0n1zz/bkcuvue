@@ -121,10 +121,10 @@ class ArtikelController extends Controller{
 			$fileName = '';
 
 		// processing summernote content	
-		if(!empty($request->content))	
-			$content = Helper::dom_processing($request,public_path($this->imagepath));
-		else
-			$content = '';	
+		// if(!empty($request->content))	
+		// 	$content = Helper::dom_processing($request,public_path($this->imagepath));
+		// else
+		// 	$content = '';	
 
 		$kelas->update($request->except('gambar','content') + [
 			'gambar' => $fileName, 'content' => $content

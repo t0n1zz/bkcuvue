@@ -22,7 +22,7 @@
 
 						<table-kelompok :title="title" :itemData="itemData" :itemDataStat="itemDataStat" :url="url" v-if="$route.meta.mode == 'laporan'" @bukaData="bukaData"></table-kelompok>
 
-            <hr/>
+            <!-- <hr/>
 
             <div class="nav-tabs-responsive mb-3" v-if="$route.meta.mode == 'laporan'">
 							<ul class="nav nav-tabs nav-tabs-solid bg-light">
@@ -45,7 +45,7 @@
 							<div v-show="tabName == 'selesai'" v-if="isSelesai && $route.meta.mode == 'laporan'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'" :isSimple="true"></table-data>
 							</div>
-						</transition>
+						</transition> -->
 
 					</div>
 				</div>

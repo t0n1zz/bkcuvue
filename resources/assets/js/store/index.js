@@ -8,6 +8,7 @@ import { global } from './modules/global';
 import { artikel } from './modules/artikel';
 import { artikelKategori } from './modules/artikelKategori';
 import { artikelPenulis } from './modules/artikelPenulis';
+import { artikelSimo } from './modules/artikelSimo';
 import { pengumuman } from './modules/pengumuman';
 import { cu } from './modules/cu';
 import { tp } from './modules/tp';
@@ -42,6 +43,7 @@ export default new Vuex.Store({
 		 artikel,
 		 artikelKategori,
 		 artikelPenulis,
+		 artikelSimo,
 		 pengumuman,
 		 cu,
 		 tp,

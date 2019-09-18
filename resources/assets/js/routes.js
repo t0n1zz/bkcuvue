@@ -14,6 +14,8 @@ import artikelPenulis from './views/artikelPenulis/index.vue';
 import artikelPenulis_form from './views/artikelPenulis/form.vue';
 import artikelKategori from './views/artikelKategori/index.vue';
 import artikelKategori_form from './views/artikelKategori/form.vue';
+import artikelSimo from './views/artikelSimo/index.vue';
+import artikelSimo_form from './views/artikelSimo/form.vue';
 import laporanCu from './views/laporanCu/index.vue';
 import laporanCu_form from './views/laporanCu/form.vue';
 import laporanCu_detail from './views/laporanCu/detail.vue';
@@ -175,6 +177,20 @@ const routes = [
 	{ path: '/artikelPenulis/edit/:id',
 		name: 'artikelPenulisEdit', 
 		components: { default: artikelPenulis_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+
+	// artikel simo
+	{ path: '/artikelSimo',
+		name: 'artikelSimo', 
+		components: { default: artikelSimo, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth:true }},
+	{ path: '/artikelSimo/create',
+		name: 'artikelSimoCreate', 
+		components: { default: artikelSimo_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/artikelSimo/edit/:id',
+		name: 'artikelSimoEdit', 
+		components: { default: artikelSimo_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
 	
 	// diklat 

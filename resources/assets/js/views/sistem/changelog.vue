@@ -15,7 +15,7 @@
                 <div class="card-header">
                   <h5 class="card-title">
                     <a data-toggle="collapse" class="text-default" href="#314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
-                  </h5>
+              </h5>
                 </div>
 
                 <div id="314" class="collapse show" data-parent="#accordion-control-right" style="">
@@ -33,7 +33,7 @@
                       <li>Menambah laporan klaim JALINAN berdasarkan usia</li>
                       <li>Menambah laporan klaim JALINAN berdasarkan lama menjadi anggota</li>
                       <li>Memperbaiki beberapa bug pada proses klaim JALINAN</li>
-                      <li>Menambah bagian berita pada halaman Dashboard</li>
+                      <li>Menambah bagian berita dan ucapan ulang tahun CU pada halaman Dashboard</li>
                     </ul>
                   </div>
                 </div>

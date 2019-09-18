@@ -316,7 +316,7 @@ export const jalinanKlaim = {
     cariData( {commit}, nik ){
       commit('setDataStat2', 'loading');
       
-      JalinanKlaimAPI.cariData( nik )
+    JalinanKlaimAPI.cariData( nik )
         .then( function( response ){
           if(response.data.model){
             commit('setData2', response.data.model);

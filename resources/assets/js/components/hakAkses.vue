@@ -129,6 +129,38 @@
 						]
 					},
 					{
+						name: 'Artikel SIMO',
+						icon: 'icon-newspaper',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [
+							{
+								name: 'Tambah',
+								key: 'create_artikel_simo',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Artikel SIMO'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_artikel_simo',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Artikel SIMO'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_artikel_simo',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Artikel SIMO'
+							},
+						]
+					},
+					{
 						name: 'Kategori Artikel',
 						icon: 'icon-grid6',
 						secondRow: true,
@@ -434,6 +466,22 @@
 								name: 'Hapus',
 								key: 'destroy_jalinan_klaim',
 								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Klaim JALINAN'
+							},
+							{
+								name: 'Pencairan',
+								key: 'pencairan_jalinan_klaim',
+								icon: 'icon-square-down',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Klaim JALINAN'
+							},
+							{
+								name: 'Laporan',
+								key: 'laporan_jalinan_klaim',
+								icon: 'icon-archive',
 								tipe: 'all',
 								value: false,
 								group: 'Klaim JALINAN'
@@ -904,6 +952,10 @@
 						'terbitkan_artikel',
 						'utamakan_artikel',
 
+						'create_artikel_simo',
+						'update_artikel_simo',
+						'destroy_artikel_simo',
+
 						'index_user',
 						'create_user',
 						'update_user',
@@ -947,6 +999,8 @@
 						'create_jalinan_klaim',
 						'update_jalinan_klaim',
 						'destroy_jalinan_klaim',
+						'laporan_jalinan_klaim',
+						'pencairan_jalinan_klaim',
 						
 						'index_cu',
 						'create_cu',
@@ -1047,6 +1101,7 @@
 						'create_jalinan_klaim',
 						'update_jalinan_klaim',
 						'destroy_jalinan_klaim',
+						'laporan_jalinan_klaim',
 
 						'index_cu',
 						'update_cu',
@@ -1091,6 +1146,7 @@
 						'index_anggota_cu',
 						'index_saldo',
 						'index_jalinan_klaim',
+						'laporan_jalinan_klaim',
 						'index_cu',
 						'index_tp',
 						'index_aktivis',
@@ -1244,7 +1300,14 @@
 						'create_pengumuman',
 						'update_pengumuman',
 						'destroy_pengumuman',
-					]
+					],
+					jalinan:[
+						'index_jalinan_klaim',
+						'create_jalinan_klaim',
+						'update_jalinan_klaim',
+						'destroy_jalinan_klaim',
+						'laporan_jalinan_klaim',
+					],
 				}
 			}
 		},

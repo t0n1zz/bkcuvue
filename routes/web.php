@@ -92,24 +92,24 @@ Route::get('/testroute', function () {
 	// ->groupBy('kategori')
 	// ->get();
 
-	$from = \Carbon\Carbon::now()->subYears(30)->format('Y-m-d');
-	$to = \Carbon\Carbon::now()->subYears(20)->format('Y-m-d');
+	// $from = \Carbon\Carbon::now()->subYears(30)->format('Y-m-d');
+	// $to = \Carbon\Carbon::now()->subYears(20)->format('Y-m-d');
 
-	$table_data = \App\JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($from, $to){ 
-		$query->whereBetween('tanggal_lahir',[$from, $to]);
-	})->get();
+	// $table_data = \App\JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($from, $to){ 
+	// 	$query->whereBetween('tanggal_lahir',[$from, $to]);
+	// })->get();
 
-	return response()
-		->json([
-			'model' => $table_data
-		]);
+	// return response()
+	// 	->json([
+	// 		'model' => $table_data
+	// 	]);
 
 		// create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_saldo']);
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_saldo']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_saldo']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_saldo']);
-		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'upload_error_log']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_artikel_simo']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_artikel_simo']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_artikel_simo']);
+		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'laporan_jalinan_klaim']);
+		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'pencairan_jalinan_klaim']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();
