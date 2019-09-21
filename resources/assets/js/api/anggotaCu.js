@@ -4,8 +4,16 @@ export default {
     return axios.get('/api/anggotaCu' ,{params: p});
   },
 
+  indexKeluar: function( p ){
+    return axios.get('/api/anggotaCu/keluar' ,{params: p});
+  },
+
   indexCu: function( p, id ){
     return axios.get('/api/anggotaCu/indexCu/' + id, {params: p});
+  },
+
+  indexCuKeluar: function( p, id ){
+    return axios.get('/api/anggotaCu/indexCuKeluar/' + id, {params: p});
   },
 
   indexProduk: function( id, cu ){
@@ -46,6 +54,10 @@ export default {
 
   updateProduk: function ( id, form ){
     return axios.post('/api/anggotaCu/updateProduk/' + id, form);
+  },
+
+  updateKeluar: function ( id, form ){
+    return axios.post('/api/anggotaCu/updateKeluar/' + id, form);
   },
 
   destroy: function( id, cu ){

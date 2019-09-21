@@ -19,7 +19,7 @@
 				<span class="navbar-text ml-md-3 mr-md-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
-							<span>VERSION 3.1.4</span>
+							<span>VERSION {{ clientVersion }}</span>
 						</router-link>
 					</span>
 				</span>
@@ -856,6 +856,8 @@
 			</div>
 		</div>
 
+		<version-alert :clientVersion="clientVersion"></version-alert>
+
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :button="modalButton" :color="modalColor" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
@@ -886,15 +888,18 @@
 	import formSaran from "../views/saran/form.vue";
 	import appModal from './modal';
 	import formLogin from './loginForm';
+	import versionAlert from './versionAlert';
 
 	export default {
 		components: {
 			formSaran,
 			appModal,
-			formLogin
+			formLogin,
+			versionAlert
 		},
 		data(){
 			return{
+				clientVersion: '3.1.4',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				laporanCuDraftCount: [],

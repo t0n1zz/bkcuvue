@@ -57,7 +57,7 @@
 				</div>
 			</div>
 
-			<!-- tanggal masuk -->
+			<!-- tanggal_masuk -->
 			<div class="col-md-12">
 				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.tanggal_masuk')}">
 
@@ -77,6 +77,19 @@
 					</small>
 					<small class="text-muted" v-else>&nbsp;
 					</small>
+				</div>
+			</div>
+
+			<!-- keterangan_masuk -->
+			<div class="col-md-12">
+				<div class="form-group" >
+
+					<!-- title -->
+					<h6>Keterangan Jadi Anggota:</h6>
+
+					<!-- text -->
+					<input type="text" name="keterangan_masuk" class="form-control" placeholder="Silahkan masukkan keterangan masuk" v-model="formDataCu.keterangan_masuk">
+					
 				</div>
 			</div>
 
@@ -130,6 +143,7 @@
 				formDataCu:{
 					no_ba: '',
 					tanggal_masuk: '',
+					keterangan_masuk: '',
 					cu_id: 0,
 					cu: {
 						id: '',

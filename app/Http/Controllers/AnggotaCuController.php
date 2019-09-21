@@ -24,7 +24,21 @@ class AnggotaCuController extends Controller{
 
 	public function index()
 	{
-		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
+		$table_data = AnggotaCu::with('anggota_cu_not_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query){ 
+			$query->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		})->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexKeluar()
+	{
+		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query){ 
+			$query->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
+		})->advancedFilter();
 
 		return response()
 		->json([
@@ -34,8 +48,20 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = AnggotaCu::with('anggota_cu','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu', function($query) use ($id){ 
-			$query->where('cu_id',$id); 
+		$table_data = AnggotaCu::with('anggota_cu_not_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($id){ 
+			$query->where('cu_id',$id)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		})->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCuKeluar($id)
+	{
+		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($id){ 
+			$query->where('cu_id',$id)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 		})->advancedFilter();
 
 		return response()
@@ -214,6 +240,22 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function updateKeluar(Request $request, $id)
+	{
+		$kelas = AnggotaCuCu::findOrFail($id);
+
+		$kelas->update([
+			'tanggal_keluar' => $request->tanggal_keluar,
+			'keterangan_keluar' => $request->keterangan_keluar,
+		]);	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Anggota CU berhasil keluar'
+			]);
+	}
+
 	public function updateCu(Request $request, $id)
 	{
 		$kelas = AnggotaCuCu::findOrFail($id);
@@ -386,7 +428,8 @@ class AnggotaCuController extends Controller{
 				$cuArray[$cu['no_ba']] = [
 					'cu_id' => $cu['cu_id'],
 					'no_ba' => $cu['no_ba'],
-					'tanggal_masuk' => $cu['tanggal_masuk']
+					'tanggal_masuk' => $cu['tanggal_masuk'],
+					'keterangan_masuk' => $cu['keterangan_masuk']
 				];
 			}
 			// return $cuArray;
@@ -402,14 +445,16 @@ class AnggotaCuController extends Controller{
 					'anggota_cu_id' => $kelas->id,
 					'cu_id' => $request->id_cu,
 					'no_ba' => $request->no_ba,
-					'tanggal_masuk' => $request->tanggal_masuk
+					'tanggal_masuk' => $request->tanggal_masuk,
+					'keterangan_masuk' => $request->keterangan_masuk,
 				]);
 			}else{
 				AnggotaCuCu::create([
 					'anggota_cu_id' => $kelas->id,
 					'cu_id' => $request->id_cu,
 					'no_ba' => $request->no_ba,
-					'tanggal_masuk' => $request->tanggal_masuk
+					'tanggal_masuk' => $request->tanggal_masuk,
+					'keterangan_masuk' => $request->keterangan_masuk
 				]);
 			}
 		}

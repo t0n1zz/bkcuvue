@@ -367,10 +367,10 @@
 		methods: {
 			fetch(params){
 				if(this.currentUser.id_cu == 0){
-					this.$store.dispatch('aktivis/index', [params,'semua']);
+					this.$store.dispatch('aktivis/index', [params,'semua','aktif']);
 					this.disableColumnCu(false);
 				}else{
-					this.$store.dispatch('aktivis/indexCu', [params,this.currentUser.id_cu,'semua'])
+					this.$store.dispatch('aktivis/indexCu', [params,this.currentUser.id_cu,'semua','aktif'])
 					this.disableColumnCu(true);
 				}
 			},

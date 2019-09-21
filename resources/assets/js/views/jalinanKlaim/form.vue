@@ -42,17 +42,12 @@
 							</div>
 						</div>
 
-						<!-- status kehidupan -->
-						<div class="col-12 alert bg-info text-white alert-styled-left" v-if="itemData.status_jalinan > 0">
-							<span class="font-weight-semibold">Anggota ini sudah dinyatakan <b v-html="$options.filters.statusJalinan(itemData.status_jalinan)"></b>
-							</span>
-						</div>
-
 						<!-- form -->
 						<form @submit.prevent="save" data-vv-scope="form">
+
+							<!-- check data -->
 							<div class="card card-body">
 								<div class="row">
-									
 									<!-- check cu -->
 									<div class="col-sm-5">
 										<div class="input-group">
@@ -94,11 +89,54 @@
 									<div class="col-md-2">
 										<button type="button" class="btn btn-light btn-block" @click.prevent="cekData()">Cek Data</button>
 									</div>
+								</div>
+							</div>
 
-									<div class="col-md-12" v-if="formStat == 'success'"><hr/></div>
+							<!-- data produk -->
+							<div class="card" v-if="dataProdukStat == 'success'">
+								<div class="card-header bg-white">
+									<h5 class="card-title">Daftar Produk</h5>
+								</div>
+								<data-table :items="dataProduk" :columnData="columnData" :itemDataStat="dataProdukStat">
+									<template slot="item-desktop" slot-scope="props">
+										<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+											<td>{{ props.index + 1 }}</td>
+											<td>
+												<check-value :value="props.item.no_rek"></check-value>
+											</td>
+											<td>
+												<check-value :value="props.item.produk_cu.name" v-if="props.item.produk_cu"></check-value>
+												<span v-else>-</span>
+											</td>
+											<td>
+												<check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
+												<span v-else>-</span>
+											</td>
+											<td>
+												<check-value :value="props.item.saldo" valueType="currency"></check-value>
+											</td>
+											<td>
+												<check-value :value="props.item.lama_pinjaman"></check-value>
+											</td>
+											<td>
+												<span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
+												<span v-else>-</span>
+											</td>
+											<td>
+												<span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)"></span>
+												<span v-else>-</span>
+											</td>
+										</tr>
+									</template>	
+								</data-table>
+							</div>
+
+							<!-- klaim jalinan -->
+							<div class="card card-body" v-if="formStat == 'success'">
+								<div class="row">
 
 									<!-- kategori penyakit -->
-									<div class="col-md-3" v-if="formStat == 'success'">
+									<div class="col-md-3">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kategori_penyakit')}">
 
 											<!-- title -->
@@ -140,7 +178,7 @@
 									</div>
 
 									<!-- tanggal cacat/mati -->
-									<div class="col-md-3" v-if="formStat == 'success'">
+									<div class="col-md-3">
 										<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_mati')}">
 
 											<!-- title -->
@@ -170,7 +208,7 @@
 									</div>
 
 									<!-- keterangan mati -->
-									<div class="col-md-3" v-if="formStat == 'success'">
+									<div class="col-md-3">
 										<div class="form-group">
 
 											<!-- title -->
@@ -182,7 +220,7 @@
 									</div>
 
 									<!-- keterangan -->
-									<div class="col-md-3" v-if="formStat == 'success'">
+									<div class="col-md-3">
 										<div class="form-group">
 
 											<!-- title -->
@@ -222,7 +260,7 @@
 									</div>
 
 									<!-- LINTANG -->
-									<div class="col-md-6" v-if="formStat == 'success'">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
 
 											<!-- title -->
@@ -302,6 +340,7 @@
 	import formInfo from "../../components/formInfo.vue";
 	import cariData from "../../components/cariData.vue";
 	import identitas from "../../components/identitas.vue";
+	import dataTable from '../../components/datatable.vue';
 
 	export default {
 		components: {
@@ -316,7 +355,8 @@
 			formButton,
 			formInfo,
 			cariData,
-			identitas
+			identitas,
+			dataTable,
 		},
 		data() {
 			return {
@@ -363,6 +403,17 @@
             delimiter: '.'
           }
 				},
+				selectedItem: {},
+        columnData:[
+					{ title: 'No.' },
+					{ title: 'No. Rek' },
+					{ title: 'Nama' },
+					{ title: 'Jenis' },
+					{ title: 'Saldo Awal' },
+					{ title: 'Lama Pinjaman' },
+					{ title: 'Tgl. Buat' },
+					{ title: 'Usia Saat Membuka' },
+				],
 				selectedItemCu: '',
 				itemDataCu: [],
 				itemDataProduk: [],
@@ -475,6 +526,7 @@
 					_nik = this.nik;
 				}
 				this.$store.dispatch(this.kelas + '/edit',[_nik,this.anggota_cu_cu_id, this.tipe]);
+				this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.anggota_cu_cu_id]);
 			},
 			resetData(){
 				this.itemDataCu = [];
@@ -555,6 +607,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('anggotaCu',{
+				dataProduk: 'dataProduk',
+				dataProdukStat: 'dataProdukStat',
 			}),
 			...mapGetters('cu',{
 				modelCu: 'headerDataS',

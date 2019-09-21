@@ -8,6 +8,7 @@ export const anggotaCu = {
   state: {
     data: {}, //single data //single data
     dataS: [],
+    dataS2: [],
     dataProduk: [],//collection
     dataDeletedS: [], //collection
     count: {},
@@ -15,6 +16,7 @@ export const anggotaCu = {
     dataStat: '',
     dataProdukStat: '',
     dataStatS: '',
+    dataStatS2: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -28,6 +30,7 @@ export const anggotaCu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataS2: state => state.dataS2,
     dataProduk: state => state.dataProduk,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
@@ -35,6 +38,7 @@ export const anggotaCu = {
     dataStat: state => state.dataStat,
     dataProdukStat: state => state.dataProdukStat,
     dataStatS: state => state.dataStatS,
+    dataStatS2: state => state.dataStatS2,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -59,6 +63,19 @@ export const anggotaCu = {
           commit('setDataStatS', 'fail');
         });
     },
+    indexKeluar( { commit }, p ){
+      commit('setDataStatS2', 'loading');
+      
+      AnggotaCuAPI.indexKeluar( p )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
 
     indexCu( {commit}, [p, id] ){
       commit('setDataStatS', 'loading');
@@ -76,6 +93,24 @@ export const anggotaCu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    }, 
+    indexCuKeluar( {commit}, [p, id] ){
+      commit('setDataStatS2', 'loading');
+      
+      AnggotaCuAPI.indexCuKeluar( p, id )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setDataS2', response.data.model );
+            commit('setDataStatS2', 'success');
+          }else{
+            commit('setDataS2', response );
+            commit('setDataStatS2', 'fail');
+          }
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
         });
     }, 
 
@@ -297,6 +332,24 @@ export const anggotaCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+
+    updateKeluar( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.updateKeluar( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
     
     updateDraft( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
@@ -471,6 +524,9 @@ export const anggotaCu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setDataS2 ( state, data ){
+      state.dataS2 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -488,6 +544,9 @@ export const anggotaCu = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatS2( state, status ){
+      state.dataStatS2 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

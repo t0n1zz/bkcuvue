@@ -16,6 +16,15 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::get('/userId', 'AuthController@userId');
     // Route::get('/profile', 'AuthController@profile');
 
+    // system
+    Route::get('/system', function(){
+        $table_data = DB::table('system')->first();
+        return response()
+            ->json([
+                'model' => $table_data
+            ]); 
+    });
+
     // user
     Route::get('/user/getActivity/{id}', 'UserController@getActivity');
     Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
@@ -320,7 +329,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // anggota cu
     Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
         Route::get('/anggotaCu', 'AnggotaCuController@index');
+        Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
         Route::get('/anggotaCu/indexCu/{id}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/indexCuKeluar/{id}', 'AnggotaCuController@indexCuKeluar'); 
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaCuController@indexProduk'); 
         Route::get('/anggotaCu/count', 'AnggotaCuController@count');
         Route::get('/anggotaCu/history', 'AnggotaCuController@history');
@@ -338,6 +349,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/anggotaCu/update/{id}', 'AnggotaCuController@update');
         Route::post('/anggotaCu/updateCu/{id}', 'AnggotaCuController@updateCu');
         Route::post('/anggotaCu/updateProduk/{id}', 'AnggotaCuController@updateProduk');
+        Route::post('/anggotaCu/updateKeluar/{id}', 'AnggotaCuController@updateKeluar');
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {

@@ -817,6 +817,18 @@
 				this.canEditIdentitas = false;
 			}
 
+			if(this.mode == 'create_new'){
+				if(this.currentUser.id_cu == 0){
+					if(this.form.pekerjaan.tipe == 0){
+						this.form.pekerjaan.tipe = 3;
+					}
+				}else{
+					this.form.anggota_cu.id_cu = this.currentUser.id_cu;
+					this.form.pekerjaan.tipe = 1;
+					this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
+				}
+			}
+
 			this.form.id_cu = this.currentUser.id_cu;
 			this.$store.dispatch('provinces/get');
 			this.fetch();

@@ -34,6 +34,7 @@
                       <li>Menambah laporan klaim JALINAN berdasarkan lama menjadi anggota</li>
                       <li>Memperbaiki beberapa bug pada proses klaim JALINAN</li>
                       <li>Menambah bagian berita dan ucapan ulang tahun CU pada halaman Dashboard</li>
+                      <li>Memperbaiki bug data aktivis tidak muncul pada saat mendaftar diklat</li>
                     </ul>
                   </div>
                 </div>

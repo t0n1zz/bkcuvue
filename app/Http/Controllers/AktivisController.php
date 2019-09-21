@@ -5,6 +5,7 @@ use DB;
 use File;
 use Image;
 use Validator;
+use DateTime;
 use App\Aktivis;
 use App\Support\Helper;
 use App\AktivisKeluarga;
@@ -25,7 +26,6 @@ class AktivisController extends Controller{
 
 	public function index($tingkat, $status)
 	{
-
 		if($tingkat == 'semua'){
 			
 			if($status == 'aktif'){
@@ -360,6 +360,29 @@ class AktivisController extends Controller{
 		$kelas = Aktivis::create($request->except('gambar','nim') + [
 			'gambar' => $fileName
 		]);
+		
+		$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
+
+		// nim
+		$no_bkcu = sprintf("%'.03d", 15); //999
+		$no_cu = sprintf("%'.03d", $pekerjaan[1]); //999
+		$no_id = sprintf("%'.06d", $kelas->id); //999999
+
+		// cek nim
+		$cek_nim = $no_bkcu . $pekerjaan[0] . $no_cu;
+		$cekdata = Aktivis::where('nim','LIKE','%'.$cek_nim.'%')->select('nim')->orderBy('nim','desc')->first();
+
+		if(!empty($cekdata)){
+				$nim_baru = sprintf("%'.06d",ltrim(substr($cekdata->nim,7,6),'0')+1);
+		}else{
+				$nim_baru = sprintf("%'.06d", 1);
+		}
+
+		// save nim
+		$nim = $no_bkcu . $pekerjaan[0] . $no_cu  . $nim_baru;
+		$kelas2 = Aktivis::find($kelas->id);
+		$kelas2->nim = $nim;
+		$kelas2->save();
 
 		// keluarga
 		$ayah = $request->keluarga['ayah'];
@@ -395,29 +418,6 @@ class AktivisController extends Controller{
 				$this->saveAnggotaCu(null,$kelas->id,$anggota_cu_id_cu,$anggota_cu_name,$anggota_cu_no_ba,$anggota_cu_tanggal_masuk);
 			}
 		}
-		
-		$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
-
-		// nim
-		$no_bkcu = sprintf("%'.03d", 15); //999
-		$no_cu = sprintf("%'.03d", $pekerjaan[1]); //999
-		$no_id = sprintf("%'.06d", $kelas->id); //999999
-
-		// cek nim
-		$cek_nim = $no_bkcu . $pekerjaan[0] . $no_cu;
-		$cekdata = Aktivis::where('nim','LIKE','%'.$cek_nim.'%')->select('nim')->orderBy('nim','desc')->first();
-
-		if(!empty($cekdata)){
-				$nim_baru = sprintf("%'.06d",ltrim(substr($cekdata->nim,7,6),'0')+1);
-		}else{
-				$nim_baru = sprintf("%'.06d", 1);
-		}
-
-		// save nim
-		$nim = $no_bkcu . $pekerjaan[0] . $no_cu  . $nim_baru;
-		$kelas2 = Aktivis::find($kelas->id);
-		$kelas2->nim = $nim;
-		$kelas2->save();
 
 		return response()
 			->json([
@@ -571,8 +571,14 @@ class AktivisController extends Controller{
 		$kelas->name = $request->pekerjaan['name'];
 		$kelas->tingkat = $request->pekerjaan['tingkat'];
 		$kelas->id_tp = $request->pekerjaan['id_tp'];
-		$kelas->mulai = $request->pekerjaan['mulai'];
-		$kelas->selesai = $request->pekerjaan['selesai'];
+
+		if($this->validateDate($request->pekerjaan['mulai'])){
+			$kelas->mulai = $request->pekerjaan['mulai'];
+		}
+		if($this->validateDate($request->pekerjaan['selesai'])){
+			$kelas->selesai = $request->pekerjaan['selesai'];
+		}
+
 		$kelas->keterangan_tidak_aktif = $request->pekerjaan['keterangan_tidak_aktif'];
 
 		$kelas->save();
@@ -594,6 +600,13 @@ class AktivisController extends Controller{
 				]);
 			}
 		}
+	}
+
+	public function validateDate($date, $format = 'Y-m-d')
+	{
+			$d = DateTime::createFromFormat($format, $date);
+			// The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+			return $d && $d->format($format) === $date;
 	}
 
 	public function savePendidikan(Request $request, $id)
@@ -744,7 +757,9 @@ class AktivisController extends Controller{
 
 		$kelas->id_aktivis = $id_aktivis;
 		$kelas->no_ba = $no_ba;
-		$kelas->tanggal_masuk = $tanggal_masuk;
+		if($this->validateDate($tanggal_masuk)){
+			$kelas->tanggal_masuk = $tanggal_masuk;
+		}
 		$kelas->save();
 	}
 

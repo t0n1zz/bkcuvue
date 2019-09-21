@@ -15,17 +15,17 @@ class AnggotaCuCu extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'anggota_cu_id','cu_id','no_ba', 'tanggal_masuk'
+        'anggota_cu_id','cu_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar'
     ];
 
     protected $filter = [
-        'anggota_cu_id','cu_id','no_ba','tanggal_masuk','created_at','updated_at'
+        'anggota_cu_id','cu_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar'
     ];
 
     public static function initialize()
     {
         return [
-            'anggota_cu_id' => '','cu_id' => '','no_ba' => '','tanggal_masuk' => ''
+            'anggota_cu_id' => '','cu_id' => '','no_ba' => '','tanggal_masuk' => '','keterangan_masuk' => '', 'tanggal_keluar' => '', 'keterangan_keluar' => ''
         ];
     }
 
