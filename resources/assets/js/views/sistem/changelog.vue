@@ -10,15 +10,42 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#315">Version 3.1.5 <small class="text-muted"> / 23 September 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="315" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada perbaikan beberapa bug
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan informasi data produk pada saat menambah klaim JALINAN</li>
+                      <li>Perbaikan informasi jabatan pada identitas anggota CU</li>
+                      <li>Perbaikan input tanggal yang menyebabkan format tanggal salah</li>
+                      <li>Menambah fitur untuk mengeluarkan anggota / mendata anggota keluar</li>
+                      <li>Menambah pemberitahuan apabila versi SIMO yang dijalankan di CLIENT tidak sesuai dengan versi yang ada di SERVER agar segera melakukan Hard Reload agar mendapatkan versi terbaru</li>
+                      <li>Menambah informasi error menjadi lebih mudah untuk dimengerti</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.5 -->
+
               <!-- Version 3.1.4 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
                     <a data-toggle="collapse" class="text-default" href="#314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
-              </h5>
+                  </h5>
                 </div>
 
-                <div id="314" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="314" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada fitur klaim JALINAN
                     <br/><br/>

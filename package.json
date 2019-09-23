@@ -31,7 +31,7 @@
         "vee-validate": "^2.1.5",
         "vue-chartjs": "^3.4.0",
         "vue-ckeditor5": "^0.3.1",
-        "vue-cleave-component": "^1.0.3",
+        "vue-cleave-component": "^2.1.3",
         "vue-context-menu": "^2.0.6",
         "vue-echarts": "^3.1.3",
         "vue-echarts-v3": "^1.0.19",

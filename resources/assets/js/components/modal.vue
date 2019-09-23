@@ -118,14 +118,25 @@
 
 											<span>
 												<span v-if="content.message">
-													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}
+													<pre class="pre-scrollable language-markup content-group text-left">
+														{{ content.message }} 
+														<span v-if="content.error">
+															<br/> 
+															{{ content.error }}
+														</span>
 													</pre>
 												</span>
 												<span v-if="content.data">
-													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}
+													<pre class="pre-scrollable language-markup content-group text-left">
+														{{ content.data.message }}
+														<span v-if="content.data.error">
+															<br/> 
+															{{ content.data.error }}
+														</span>
 													</pre>
 												</span>
 											</span>
+											
 										</div>
 										<br/> 
 

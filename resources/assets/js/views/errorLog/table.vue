@@ -69,16 +69,16 @@
 				<!-- error message -->
 				<div>
 					<span v-if="selectedItem.status == 404">
-						<b>ERROR 404:</b> Data tidak ditemukan, silahkan coba lagi
+						<b>ERROR 404:</b>
 					</span>
 					<span v-else-if="selectedItem.status == 419">
-						<b>ERROR 419:</b> Kesalahan sesi, silahkan refresh halaman ini
+						<b>ERROR 419:</b>
 					</span>
 					<span v-else-if="selectedItem.status ==  422">
-						<b>ERROR 422:</b> Username atau password anda salah
+						<b>ERROR 422:</b>
 					</span>
 					<span v-else-if="selectedItem.status == 500">
-						<b>ERROR 500:</b> Kesalahan pada backend
+						<b>ERROR 500:</b>
 					</span>
 				</div>
 				<br/> 

@@ -8,7 +8,7 @@
 		</div>
 
 		<!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" :color="modalColor" :size="'modal-lg'"@backgroundClick="modalTutup">
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" :color="modalColor" :size="'modal-lg'" @backgroundClick="modalTutup">
 
 			<!-- keluar -->
 			<template slot="modal-body1">

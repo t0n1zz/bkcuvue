@@ -441,6 +441,24 @@ export const jalinanKlaim = {
           commit('setUpdateStat', 'fail');
         });
     },
+    
+    updateSelesai( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateSelesai( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
 
     updateCair( {commit, state, dispatch}, [id, awal, akhir] ){
       commit('setUpdateStat', 'loading');

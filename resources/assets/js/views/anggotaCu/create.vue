@@ -345,7 +345,25 @@
 							</div>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Rata-rata Pengeluaran Perbulan:</h6>
+
+								<!-- select -->
+								<select class="form-control" name="pengeluaran" v-model="form.pengeluaran" data-width="100%">
+									<option disabled value="">Silahkan pilih tingkat pengeluaran</option>
+									<option value="1"> kurang dari 1 juta </option>
+									<option value="2"> 1 - 5 juta </option>
+									<option value="3"> 5 - 15 juta </option>
+									<option value="4"> diatas 15 juta </option>
+								</select>
+
+							</div>
+						</div>
+
+						<div class="col-sm-4">
 							<div class="form-group">
 
 								<!-- title -->
@@ -370,7 +388,7 @@
 							</div>
 						</div>
 						
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group">
 
 								<!-- title -->
@@ -776,7 +794,7 @@
 				cleaveOption: {
           date:{
             date: true,
-            datePattern: ['Y','m','d'],
+            datePattern: ['Y', 'm', 'd'],
             delimiter: '-'
 					},
 					number24: {

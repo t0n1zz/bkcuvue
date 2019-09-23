@@ -899,7 +899,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.1.4',
+				clientVersion: '3.1.5',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				laporanCuDraftCount: [],

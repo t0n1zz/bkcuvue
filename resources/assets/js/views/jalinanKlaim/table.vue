@@ -23,6 +23,17 @@
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
+        <!-- selesai -->
+        <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && (status == 4 || status == 5)"
+          :disabled="!selectedItem.id">
+          <span v-if="status == '4'">
+            <i class="icon-square"></i> Selesai Klaim
+          </span>
+          <span v-else>
+            <i class="icon-blocked"></i> Batal Selesai Klaim
+          </span>
+        </button>
+
         <!-- hapus -->
         <button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_klaim'] && status == 0"
           :disabled="!selectedItem.id">
@@ -49,6 +60,17 @@
         <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
           :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
+        </button>
+
+        <!-- selesai -->
+        <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && ( status == 4 || status == 5)"
+          :disabled="!selectedItem.id">
+          <span v-if="status == '4'">
+            <i class="icon-square"></i> Selesai Klaim
+          </span>
+          <span v-else>
+            <i class="icon-blocked"></i> Batal Selesai Klaim
+          </span>
         </button>
 
         <!-- hapus -->
@@ -511,7 +533,7 @@
 
         if (state == "hapus") {
           this.modalState = "confirm-tutup";
-          this.modalTitle = "Hapus " + this.title + " " + this.selectedItem.anggota_cu.name + " ini?";
+          this.modalTitle = "Hapus " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
           this.modalButton = "Iya, Hapus";
           this.modalSize = "'";
         }else if(state == "status"){
@@ -519,6 +541,16 @@
 					this.modalTitle = 'Analisis ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
+        }else if (state == "selesai") {
+          this.modalState = "confirm-tutup";
+          if(this.status == '4'){
+            this.modalTitle = "Selesaikan " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
+            this.modalButton = "Iya, Selesaikan";
+          }else{
+            this.modalTitle = "Batal selesaikan " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
+            this.modalButton = "Iya, batalkan";
+          }
+          this.modalSize = "'";
         }
       },
       modalTutup() {
@@ -528,6 +560,8 @@
       modalConfirmOk() {
         if (this.state == "hapus") {
           this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
+        }else if(this.state == 'selesai'){
+          this.$store.dispatch(this.kelas + "/updateSelesai", this.selectedItem.id);
         }
       }
     },

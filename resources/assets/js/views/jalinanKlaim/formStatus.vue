@@ -391,7 +391,7 @@
 					{ title: 'Nama' },
 					{ title: 'Jenis' },
 					{ title: 'Saldo Awal' },
-					{ title: 'Lama Pinjaman' },
+					{ title: 'Lama Pinjaman (Bulan)' },
 					{ title: 'Tgl. Buat' },
 					{ title: 'Usia Saat Membuka' },
 				],
@@ -410,6 +410,9 @@
 		watch: {
 		},
 		methods: {
+      selectedRow(item) {
+        this.selectedItem = item;
+      },
       save(){
         if(this.formStatus != '1'){
           this.tunas_disetujui = '';

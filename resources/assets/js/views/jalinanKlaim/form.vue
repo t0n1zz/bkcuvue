@@ -62,7 +62,7 @@
 													<span v-if="itemDataCuStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih keanggotaan CU</span>
 												</option>
-												<option v-for="cu in itemDataCu" :value="cu.id">CU {{cu.cu.name}} | No. BA: {{ cu.no_ba }} | Tanggal Jadi Anggota: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(cu.tanggal_masuk)"></span></option>
+												<option v-for="(cu,index) in itemDataCu" :value="cu.cu_id" :key="index">CU {{cu.cu.name}} | No. BA: {{ cu.no_ba }} | Tanggal Jadi Anggota: <span v-if="cu.tanggal_masuk" v-html="$options.filters.date(cu.tanggal_masuk)"></span></option>
 											</select>
 
 										</div>
@@ -123,7 +123,7 @@
 												<span v-else>-</span>
 											</td>
 											<td>
-												<span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)"></span>
+												<span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal, itemData.tanggal_lahir)"></span>
 												<span v-else>-</span>
 											</td>
 										</tr>
@@ -410,7 +410,7 @@
 					{ title: 'Nama' },
 					{ title: 'Jenis' },
 					{ title: 'Saldo Awal' },
-					{ title: 'Lama Pinjaman' },
+					{ title: 'Lama Pinjaman (Bulan)' },
 					{ title: 'Tgl. Buat' },
 					{ title: 'Usia Saat Membuka' },
 				],
@@ -484,6 +484,9 @@
 				this.nik = nik;
 				this.$store.dispatch(this.kelas + '/cariData', nik);
 			},
+			selectedRow(item) {
+        this.selectedItem = item;
+      },
 			fetch(){
 				this.resetData();
 
@@ -526,7 +529,7 @@
 					_nik = this.nik;
 				}
 				this.$store.dispatch(this.kelas + '/edit',[_nik,this.anggota_cu_cu_id, this.tipe]);
-				this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.anggota_cu_cu_id]);
+				this.$store.dispatch('anggotaCu/indexProduk',[this.itemData.id, this.anggota_cu_cu_id]);
 			},
 			resetData(){
 				this.itemDataCu = [];

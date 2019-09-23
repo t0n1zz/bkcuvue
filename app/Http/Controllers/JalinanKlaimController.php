@@ -426,6 +426,27 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
+	public function updateSelesai(Request $request, $id)
+	{
+		$kelas = JalinanKlaim::findOrFail($id);
+
+		if($kelas->status_klaim == '4'){
+			$kelas->status_klaim = '5';
+			$message = "Klaim JALINAN selesai";
+		}else{
+			$kelas->status_klaim = '4';
+			$message = "Klaim JALINAN batal diselesaikan";
+		}
+
+		$kelas->update();
+	
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $message
+			]);
+	}
+
 	public function updateStatusAnggotaCu($id, $status){
 		$kelas = AnggotaCu::findOrFail($id);
 		$kelas->status_jalinan = $status;

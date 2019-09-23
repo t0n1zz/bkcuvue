@@ -26,7 +26,7 @@
             <li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
             <li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
             <li><b>Lembaga:</b> {{ itemData.lembaga}}</li>
-            <li><b>Jabatan:</b> {{ itemData.jabatan}}</li>
+            <li><b>Jabatan:</b> {{ $options.filters.checkTingkatAktivis(itemData.jabatan) }}</li>
             <li><b>Pendidikan:</b> {{ itemData.pendidikan}}</li>
             <li><b>Email:</b> {{ itemData.email}}</li>
             <li><b>No. Hp:</b> {{ itemData.hp}}</li>
