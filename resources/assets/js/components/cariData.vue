@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <h6>
-          Silahkan masukkan NIK anggota CU
+          Silahkan masukkan No. KTP
         </h6>
       </div>
       <div class="col-12 pb-2">

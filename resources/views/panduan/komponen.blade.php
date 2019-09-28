@@ -28,6 +28,13 @@
       Sedangkan bagian kedua dari header adalah navigasi menu yang berguna untuk membuka halaman-halaman lain pada aplikasi ini.
     </p>
 
+    <div class="mb-3 text-center">
+      <img src="{{ asset('images/panduan/komponen-version-alert.png') }}" class="img-thumbnail" alt="">
+    </div>
+    <p>
+      Terkadang akan terjadi perbedaan versi aplikasi SIMO antara di komputer dengan server yang mungkin akan mengakibatkan terjadinya error pada pengoperasian, maka apabila hal itu terjadi akan muncul pemberitahuan dan penjelasan mengenai cara untuk melakukan <a href="#login">Hard Reload</a>
+    </p>
+
     {{-- notifikasi --}}
     <hr/>
     <h6 id="komponen-notifikasi">B. Notifikasi</h6>

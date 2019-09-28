@@ -26,7 +26,7 @@ class AnggotaCuController extends Controller{
 	{
 		$table_data = AnggotaCu::with('anggota_cu_not_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query){ 
 			$query->whereNull('anggota_cu_cu.tanggal_keluar'); 
-		})->advancedFilter();
+		})->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL)->advancedFilter();
 
 		return response()
 		->json([
@@ -38,7 +38,17 @@ class AnggotaCuController extends Controller{
 	{
 		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query){ 
 			$query->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
-		})->advancedFilter();
+		})->where('status_jalinan','!=','meninggal')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexMeninggal()
+	{
+		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->where('status_jalinan','meninggal')->advancedFilter();
 
 		return response()
 		->json([
@@ -50,7 +60,7 @@ class AnggotaCuController extends Controller{
 	{
 		$table_data = AnggotaCu::with('anggota_cu_not_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($id){ 
 			$query->where('cu_id',$id)->whereNull('anggota_cu_cu.tanggal_keluar'); 
-		})->advancedFilter();
+		})->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL)->advancedFilter();
 
 		return response()
 			->json([
@@ -62,7 +72,19 @@ class AnggotaCuController extends Controller{
 	{
 		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($id){ 
 			$query->where('cu_id',$id)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
-		})->advancedFilter();
+		})->where('status_jalinan','!=','meninggal')->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCuMeninggal($id)
+	{
+		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($id){ 
+			$query->where('cu_id',$id); 
+		})->where('status_jalinan','meninggal')->advancedFilter();
 
 		return response()
 			->json([
@@ -253,6 +275,22 @@ class AnggotaCuController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => 'Anggota CU berhasil keluar'
+			]);
+	}
+
+	public function updateBatalKeluar($id)
+	{
+		$kelas = AnggotaCuCu::findOrFail($id);
+
+		$kelas->update([
+			'tanggal_keluar' => '',
+			'keterangan_keluar' => '',
+		]);	
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Anggota CU berhasil batal keluar'
 			]);
 	}
 

@@ -8,12 +8,20 @@ export default {
     return axios.get('/api/anggotaCu/keluar' ,{params: p});
   },
 
+  indexMeninggal: function( p ){
+    return axios.get('/api/anggotaCu/indexMeninggal' ,{params: p});
+  },
+
   indexCu: function( p, id ){
     return axios.get('/api/anggotaCu/indexCu/' + id, {params: p});
   },
 
   indexCuKeluar: function( p, id ){
     return axios.get('/api/anggotaCu/indexCuKeluar/' + id, {params: p});
+  },
+
+  indexCuMeninggal: function( p, id ){
+    return axios.get('/api/anggotaCu/indexCuMeninggal/' + id, {params: p});
   },
 
   indexProduk: function( id, cu ){
@@ -58,6 +66,10 @@ export default {
 
   updateKeluar: function ( id, form ){
     return axios.post('/api/anggotaCu/updateKeluar/' + id, form);
+  },
+
+  updateBatalKeluar: function ( id ){
+    return axios.post('/api/anggotaCu/updateBatalKeluar/' + id);
   },
 
   destroy: function( id, cu ){

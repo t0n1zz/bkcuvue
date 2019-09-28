@@ -568,7 +568,13 @@ export const jalinanKlaim = {
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
-    }
+    },
+    resetForm( {commit} ){
+      commit('setData', {});
+      commit('setRules', []);
+      commit('setOptions', [])
+      commit('setDataStat', '');
+    },
   },
 
   // mutations

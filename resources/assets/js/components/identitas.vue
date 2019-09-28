@@ -17,7 +17,8 @@
             <li><b>Tinggi:</b> {{ itemData.tinggi}}</li>
             <li><b>Agama:</b> {{ itemData.agama}}</li>
             <li><b>Darah:</b> {{ itemData.darah}}</li>
-            <li><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
+            <li v-if="itemData.tanggal_meninggal == null"><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
+            <li v-else><b>Usia Saat Meninggal:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.ageDiff(itemData.tanggal_meninggal, itemData.tanggal_lahir)"></span></li>
             <li><b>Status:</b> {{ itemData.status}}</li>
           </ul>
         </div>
@@ -40,7 +41,6 @@
             <li><b>Kecamatan:</b> {{ itemData.districts ? itemData.districts.name : ''}}</li>
             <li><b>Kelurahan:</b> {{ itemData.villages ? itemData.villages.name : ''}}</li>
             <li><b>Alamat:</b> {{ itemData.alamat}}</li>
-            
           </ul>
         </div>
       </div>

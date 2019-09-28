@@ -30,40 +30,36 @@
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'edit'">
-							<div class="card-group-control card-group-control-right" id="accordion-control-right2">
+
 							<!-- foto -->
 							<form @submit.prevent="saveFoto" enctype="multipart/form-data">
 								<div class="card">
 
 									<div class="card-header bg-white">
-										<h6 class="card-title">	
-											<a data-toggle="collapse" class="text-default" href="#foto">Foto</a>
-										</h6>
+										<h6 class="card-title">Ubah Foto</h6>
 									</div>
 
-									<div id="foto" class="collapse show" data-parent="#accordion-control-right2" style="">
-										<div class="card-body">
-											<div class="form-group">
+									<div class="card-body">
+										<div class="form-group">
 
-												<!-- imageupload -->
-												<app-image-upload :image_loc="'/images/user/'" :image_temp="formFoto.gambar" v-model="formFoto.gambar"></app-image-upload>
-											</div>
-
-											<!-- form info -->
-											<form-info></form-info>	
-
-											<div class="text-center d-none d-md-block">
-												<button type="submit" class="btn btn-primary">
-													<i class="icon-floppy-disk"></i> Simpan</button>
-											</div>  
-
-											<!-- tombol mobile-->
-											<div class="d-block d-md-none">
-												<button type="submit" class="btn btn-primary btn-block pb-2">
-													<i class="icon-floppy-disk"></i> Simpan</button>
-											</div> 
-
+											<!-- imageupload -->
+											<app-image-upload :image_loc="'/images/user/'" :image_temp="formFoto.gambar" v-model="formFoto.gambar"></app-image-upload>
 										</div>
+
+										<!-- form info -->
+										<form-info></form-info>	
+
+										<div class="text-center d-none d-md-block">
+											<button type="submit" class="btn btn-primary">
+												<i class="icon-floppy-disk"></i> Simpan</button>
+										</div>  
+
+										<!-- tombol mobile-->
+										<div class="d-block d-md-none">
+											<button type="submit" class="btn btn-primary btn-block pb-2">
+												<i class="icon-floppy-disk"></i> Simpan</button>
+										</div> 
+
 									</div>
 
 								</div>
@@ -74,74 +70,70 @@
 								<div class="card">
 
 									<div class="card-header bg-white">
-										<h6 class="card-title">	
-											<a data-toggle="collapse" class="collapsed text-default" href="#identitas">Identitas</a>
-										</h6>
+										<h6 class="card-title">Ubah Identitas</h6>
 									</div>
 
-									<div id="identitas" class="collapse" data-parent="#accordion-control-right2" style="">
-										<div class="card-body">
-											
-											<div class="row">
-												<div class="col-lg-6">
-													<!-- name -->
-													<div class="form-group" :class="{'has-error' : errors.has('formIdentitas.name')}">
+									<div class="card-body">
+										
+										<div class="row">
+											<div class="col-lg-6">
+												<!-- name -->
+												<div class="form-group" :class="{'has-error' : errors.has('formIdentitas.name')}">
 
-														<!-- title -->
-														<h6 :class="{ 'text-danger' : errors.has('formIdentitas.name')}">
-															<i class="icon-cross2" v-if="errors.has('formIdentitas.name')"></i>
-															Nama:
-														</h6>
+													<!-- title -->
+													<h6 :class="{ 'text-danger' : errors.has('formIdentitas.name')}">
+														<i class="icon-cross2" v-if="errors.has('formIdentitas.name')"></i>
+														Nama:
+													</h6>
 
-														<!-- text -->
-														<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama user" v-validate="'required|min:5'" data-vv-as="Nama" v-model="formIdentitas.name">
+													<!-- text -->
+													<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama user" v-validate="'required|min:5'" data-vv-as="Nama" v-model="formIdentitas.name">
 
-														<!-- error message -->
-														<small class="text-muted text-danger" v-if="errors.has('formIdentitas.name')">
-															<i class="icon-arrow-small-right"></i> {{ errors.first('formIdentitas.name') }}
-														</small>
-														<small class="text-muted" v-else>&nbsp;
-														</small>
-													</div>
-												</div>
-												<div class="col-lg-6">
-													<!-- email -->
-													<div class="form-group" :class="{'has-error' : errors.has('formIdentitas.email')}">
-
-														<!-- title -->
-														<h6 :class="{ 'text-danger' : errors.has('formIdentitas.email')}">
-															<i class="icon-cross2" v-if="errors.has('formIdentitas.email')"></i>
-															Email:
-														</h6>
-
-														<!-- text -->
-														<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'required|email'" data-vv-as="Email" v-model="formIdentitas.email">
-
-														<!-- error message -->
-														<small class="text-muted text-danger" v-if="errors.has('formIdentitas.email')">
-															<i class="icon-arrow-small-right"></i> {{ errors.first('formIdentitas.email') }}
-														</small>
-														<small class="text-muted" v-else>&nbsp;
-														</small>
-													</div>
+													<!-- error message -->
+													<small class="text-muted text-danger" v-if="errors.has('formIdentitas.name')">
+														<i class="icon-arrow-small-right"></i> {{ errors.first('formIdentitas.name') }}
+													</small>
+													<small class="text-muted" v-else>&nbsp;
+													</small>
 												</div>
 											</div>
+											<div class="col-lg-6">
+												<!-- email -->
+												<div class="form-group" :class="{'has-error' : errors.has('formIdentitas.email')}">
 
-											<!-- form info -->
-											<form-info></form-info>	
+													<!-- title -->
+													<h6 :class="{ 'text-danger' : errors.has('formIdentitas.email')}">
+														<i class="icon-cross2" v-if="errors.has('formIdentitas.email')"></i>
+														Email:
+													</h6>
 
-											<div class="text-center d-none d-md-block">
-												<button type="submit" class="btn btn-primary">
-													<i class="icon-floppy-disk"></i> Simpan</button>
-											</div>  
+													<!-- text -->
+													<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'required|email'" data-vv-as="Email" v-model="formIdentitas.email">
 
-											<!-- tombol mobile-->
-											<div class="d-block d-md-none">
-												<button type="submit" class="btn btn-primary btn-block pb-2">
-													<i class="icon-floppy-disk"></i> Simpan</button>
-											</div> 
-
+													<!-- error message -->
+													<small class="text-muted text-danger" v-if="errors.has('formIdentitas.email')">
+														<i class="icon-arrow-small-right"></i> {{ errors.first('formIdentitas.email') }}
+													</small>
+													<small class="text-muted" v-else>&nbsp;
+													</small>
+												</div>
+											</div>
 										</div>
+
+										<!-- form info -->
+										<form-info></form-info>	
+
+										<div class="text-center d-none d-md-block">
+											<button type="submit" class="btn btn-primary">
+												<i class="icon-floppy-disk"></i> Simpan</button>
+										</div>  
+
+										<!-- tombol mobile-->
+										<div class="d-block d-md-none">
+											<button type="submit" class="btn btn-primary btn-block pb-2">
+												<i class="icon-floppy-disk"></i> Simpan</button>
+										</div> 
+
 									</div>
 
 								</div>
@@ -152,100 +144,93 @@
 								<div class="card">
 
 								<div class="card-header bg-white">
-										<h6 class="card-title">	
-											<a data-toggle="collapse" class="collapsed text-default" href="#password">Ubah Password</a>
-										</h6>
+										<h6 class="card-title">Ubah Password</h6>
 									</div>
 
-									<div id="password" class="collapse" data-parent="#accordion-control-right2" style="">
-										<div class="card-body">
-											
-											<div class="row">
-												<div class="col-lg-12">
-													<!-- password sekarang -->
-													<div class="form-group" :class="{'has-error' : errors.has('formPassword.password_old')}">
+									<div class="card-body">
+										
+										<div class="row">
+											<div class="col-lg-12">
+												<!-- password sekarang -->
+												<div class="form-group" :class="{'has-error' : errors.has('formPassword.password_old')}">
 
-														<!-- title -->
-														<h6 :class="{ 'text-danger' : errors.has('formPassword.password_old')}">
-															<i class="icon-cross2" v-if="errors.has('formPassword.password_old')"></i>
-															Password Saat Ini:
-														</h6>
+													<!-- title -->
+													<h6 :class="{ 'text-danger' : errors.has('formPassword.password_old')}">
+														<i class="icon-cross2" v-if="errors.has('formPassword.password_old')"></i>
+														Password Saat Ini:
+													</h6>
 
-														<!-- text -->
-														<input type="password" name="password_old" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" data-vv-as="Password Lama" v-model="formPassword.password_old">
+													<!-- text -->
+													<input type="password" name="password_old" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" data-vv-as="Password Lama" v-model="formPassword.password_old">
 
-														<!-- error message -->
-														<small class="text-muted text-danger" v-if="errors.has('formPassword.password_old')">
-															<i class="icon-arrow-small-right"></i> {{ errors.first('formPassword.password_old') }}
-														</small>
-														<small class="text-muted" v-else>&nbsp;
-														</small>
-													</div>
-												</div>
-												<div class="col-lg-6">
-													<!-- password -->
-													<div class="form-group" :class="{'has-error' : errors.has('formPassword.password')}">
-
-														<!-- title -->
-														<h6 :class="{ 'text-danger' : errors.has('formPassword.password')}">
-															<i class="icon-cross2" v-if="errors.has('formPassword.password')"></i>
-															Password Baru:
-														</h6>
-
-														<!-- text -->
-														<input type="password" name="password" ref="password"  class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" v-model="formPassword.password">
-
-														<!-- error message -->
-														<small class="text-muted text-danger" v-if="errors.has('formPassword.password')">
-															<i class="icon-arrow-small-right"></i> {{ errors.first('formPassword.password') }}
-														</small>
-														<small class="text-muted" v-else>&nbsp;
-														</small>
-													</div>
-												</div>
-												<div class="col-lg-6">
-													<!-- password konfirmasi -->
-													<div class="form-group" :class="{'has-error' : errors.has('formPassword.passwordConfirm')}">
-
-														<!-- title -->
-														<h6 :class="{ 'text-danger' : errors.has('formPassword.passwordConfirm')}">
-															<i class="icon-cross2" v-if="errors.has('formPassword.passwordConfirm')"></i>
-															Konfirmasi Password:
-														</h6>
-
-														<!-- text -->
-														<input type="password" name="passwordConfirm" class="form-control" placeholder="Silahkan masukkan password konfirmasi" v-validate="'required|confirmed:password'" data-vv-as="password" v-model="formPassword.password_confirm">
-
-														<!-- error message -->
-														<small class="text-muted text-danger" v-if="errors.has('formPassword.passwordConfirm')">
-															<i class="icon-arrow-small-right"></i> {{ errors.first('formPassword.passwordConfirm') }}
-														</small>
-														<small class="text-muted" v-else>&nbsp;</small>
-													</div>
+													<!-- error message -->
+													<small class="text-muted text-danger" v-if="errors.has('formPassword.password_old')">
+														<i class="icon-arrow-small-right"></i> {{ errors.first('formPassword.password_old') }}
+													</small>
+													<small class="text-muted" v-else>&nbsp;
+													</small>
 												</div>
 											</div>
+											<div class="col-lg-6">
+												<!-- password -->
+												<div class="form-group" :class="{'has-error' : errors.has('formPassword.password')}">
 
-											<!-- form info -->
-											<form-info></form-info>	
+													<!-- title -->
+													<h6 :class="{ 'text-danger' : errors.has('formPassword.password')}">
+														<i class="icon-cross2" v-if="errors.has('formPassword.password')"></i>
+														Password Baru:
+													</h6>
 
-											<div class="text-center d-none d-md-block">
-												<button type="submit" class="btn btn-primary">
-													<i class="icon-floppy-disk"></i> Simpan</button>
-											</div>  
+													<!-- text -->
+													<input type="password" name="password" ref="password"  class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" v-model="formPassword.password">
 
-											<!-- tombol mobile-->
-											<div class="d-block d-md-none">
-												<button type="submit" class="btn btn-primary btn-block pb-2">
-													<i class="icon-floppy-disk"></i> Simpan</button>
-											</div> 
+													<!-- error message -->
+													<small class="text-muted text-danger" v-if="errors.has('formPassword.password')">
+														<i class="icon-arrow-small-right"></i> {{ errors.first('formPassword.password') }}
+													</small>
+													<small class="text-muted" v-else>&nbsp;
+													</small>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<!-- password konfirmasi -->
+												<div class="form-group" :class="{'has-error' : errors.has('formPassword.passwordConfirm')}">
 
+													<!-- title -->
+													<h6 :class="{ 'text-danger' : errors.has('formPassword.passwordConfirm')}">
+														<i class="icon-cross2" v-if="errors.has('formPassword.passwordConfirm')"></i>
+														Konfirmasi Password:
+													</h6>
+
+													<!-- text -->
+													<input type="password" name="passwordConfirm" class="form-control" placeholder="Silahkan masukkan password konfirmasi" v-validate="'required|confirmed:password'" data-vv-as="password" v-model="formPassword.password_confirm">
+
+													<!-- error message -->
+													<small class="text-muted text-danger" v-if="errors.has('formPassword.passwordConfirm')">
+														<i class="icon-arrow-small-right"></i> {{ errors.first('formPassword.passwordConfirm') }}
+													</small>
+													<small class="text-muted" v-else>&nbsp;</small>
+												</div>
+											</div>
 										</div>
-									</div>
 
+										<!-- form info -->
+										<form-info></form-info>	
+
+										<div class="text-center d-none d-md-block">
+											<button type="submit" class="btn btn-primary">
+												<i class="icon-floppy-disk"></i> Simpan</button>
+										</div>  
+
+										<!-- tombol mobile-->
+										<div class="d-block d-md-none">
+											<button type="submit" class="btn btn-primary btn-block pb-2">
+												<i class="icon-floppy-disk"></i> Simpan</button>
+										</div> 
+
+									</div>
 								</div>
 							</form>
-
-							</div>
 
 						</div>
 					</transition>

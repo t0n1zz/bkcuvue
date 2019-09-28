@@ -35,6 +35,8 @@ import aktivis from './views/aktivis/index.vue';
 import aktivis_form from './views/aktivis/form.vue';
 import aktivis_edit from './views/aktivis/edit.vue';
 import aktivis_riwayat from './views/aktivis/riwayat.vue';
+import asetTetap from './views/asetTetap/index.vue';
+import asetTetap_form from './views/asetTetap/form.vue';
 import mitraOrang from './views/mitraOrang/index.vue';
 import mitraOrang_form from './views/mitraOrang/form.vue';
 import mitraLembaga from './views/mitraLembaga/index.vue';
@@ -294,7 +296,22 @@ const routes = [
 	{ path: '/aktivis/riwayat/edit/:id/cu/:cu',
 		name: 'aktivisRiwayatEdit', 
 		components: { default: aktivis_riwayat, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true, mode:'edit' }},		
+		meta: { requiresAuth: true, mode:'edit' }},	
+		
+	// aset tetap
+	{ path: '/asetTetap',
+		name: 'asetTetap', 
+		components: { default: asetTetap, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/asetTetap/create',
+		name: 'asetTetapCreate', 
+		components: { default: asetTetap_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/asetTetap/edit/:id',
+		name: 'asetTetapEdit', 
+		components: { default: asetTetap_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
+
 
 	// mitra perseorangan
 	{ path: '/mitraOrang',

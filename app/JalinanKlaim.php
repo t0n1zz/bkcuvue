@@ -9,6 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class JalinanKlaim extends Model {
 
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, FilterPaginateOrder, LogsActivity;
 
     protected $table = 'jalinan_klaim';
@@ -51,12 +52,12 @@ class JalinanKlaim extends Model {
 
     public function anggota_cu()
     {
-        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) AS usia'));
+        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) AS usia, TIMESTAMPDIFF(YEAR, tanggal_lahir, tanggal_meninggal) AS usia_meninggal, TIMESTAMPDIFF(YEAR, tanggal_lahir, tanggal_cacat) AS usia_cacat'));
     }
 
     public function anggota_cu_cu()
     {
-        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(YEAR, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
+        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(MONTH, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
     }
 
 }

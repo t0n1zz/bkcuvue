@@ -288,6 +288,25 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/aktivis/{id}', 'AktivisController@destroy');
     });
 
+    //aset tetap
+    Route::get('/asetTetap/cariData/{kode}', 'AsetTetapController@cariData');
+    Route::group(['middleware' => ['permission:index_artikel_kategori']], function () {
+        Route::get('/asetTetap', 'AsetTetapController@index');
+        Route::get('/asetTetap/history', 'AsetTetapController@history');
+    });
+    Route::group(['middleware' => ['permission:create_artikel_kategori']], function () {
+        Route::get('/asetTetap/create', 'AsetTetapController@create');
+        Route::post('/asetTetap/store', 'AsetTetapController@store');
+    });
+    Route::group(['middleware' => ['permission:update_artikel_kategori']], function () {
+        Route::get('/asetTetap/edit/{id}', 'AsetTetapController@edit');
+        Route::post('/asetTetap/update/{id}', 'AsetTetapController@update');
+        Route::post('/asetTetap/updateKondisi/{id}', 'AsetTetapController@updateKondisi');
+    });
+    Route::group(['middleware' => ['permission:destroy_artikel_kategori']], function () {
+        Route::delete('/asetTetap/{id}', 'AsetTetapController@destroy');
+    });
+
     // mitra perserorangan
     Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
         Route::get('/mitraOrang', 'MitraOrangController@index');
@@ -330,8 +349,10 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
         Route::get('/anggotaCu', 'AnggotaCuController@index');
         Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
+        Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
         Route::get('/anggotaCu/indexCu/{id}', 'AnggotaCuController@indexCu'); 
         Route::get('/anggotaCu/indexCuKeluar/{id}', 'AnggotaCuController@indexCuKeluar'); 
+        Route::get('/anggotaCu/indexCuMeninggal/{id}', 'AnggotaCuController@indexCuMeninggal'); 
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaCuController@indexProduk'); 
         Route::get('/anggotaCu/count', 'AnggotaCuController@count');
         Route::get('/anggotaCu/history', 'AnggotaCuController@history');
@@ -350,6 +371,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/anggotaCu/updateCu/{id}', 'AnggotaCuController@updateCu');
         Route::post('/anggotaCu/updateProduk/{id}', 'AnggotaCuController@updateProduk');
         Route::post('/anggotaCu/updateKeluar/{id}', 'AnggotaCuController@updateKeluar');
+        Route::post('/anggotaCu/updateBatalKeluar/{id}', 'AnggotaCuController@updateBatalKeluar');
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_anggota_cu']], function () {

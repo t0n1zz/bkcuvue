@@ -32,7 +32,7 @@
                   <ul class="list list-unstyled mb-0">
                     <li>
                       <b>Jenis Klaim:</b> <br/>
-                      <label class="badge badge-warning ml-1">
+                      <label class="badge badge-warning ml-1 font-size-lg">
                         <check-value :value="selectedData.tipe"></check-value>
                       </label>
                     </li>
@@ -99,19 +99,24 @@
 
         <!-- data cu -->
         <div class="col-md-3">
+
           <!-- cu -->
           <div class="card card-body bg-blue-400" >
             <div class="media">
               <div class="media-body">
                 <h3 class="mb-0" >{{'Anggota CU ' + selectedData.anggota_cu_cu.cu.name}}</h3>
                 <span class="text-uppercase">
+                  {{ 'Nama: ' + selectedData.anggota_cu.name }} 
+                  <br/>
                   {{ 'No. BA: ' + selectedData.anggota_cu_cu.no_ba }} 
+                  <br/>
+                  {{ 'Lama Menjadi Anggota: ' + selectedData.anggota_cu_cu.lama_menjadi_anggota  + ' bulan'}} 
                 </span>
               </div>
             </div>
-          </div>
+          </div> 
 
-          <!-- usia masuk -->
+          <!-- usia -->
           <div class="card card-body bg-teal-400" >
             <div class="media">
               <div class="media-body">
@@ -119,6 +124,20 @@
                 <span class="text-uppercase">
                   Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
                 </span>
+                <div v-if="selectedData.tipe == 'cacat'">
+                  <hr/>
+                  <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                  <span class="text-uppercase">
+                    Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
+                  </span>
+                </div>
+                <div v-else-if="selectedData.tipe == 'meninggal'">
+                  <hr/>
+                  <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                  <span class="text-uppercase">
+                    Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
+                  </span>
+                </div>
               </div>   
             </div>
           </div>
@@ -157,7 +176,11 @@
                     <span v-else>-</span>
                   </td>
                    <td>
-                    <span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)"></span>
+                    <span v-if="props.item.tanggal">
+                      <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_meninggal)"></span>
+                      <span v-else-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_cacat)"></span>
+                      <span v-else>-</span>
+                    </span>
                     <span v-else>-</span>
                   </td>
                 </tr>
@@ -166,12 +189,10 @@
           </div>
         </div>
 
-        <div class="col-md-12">
-          <hr/>
-        </div>
+        <div class="col-md-12"><hr/></div>
 
         <!-- status -->
-        <div class="col-md-12">
+        <div class="col-md-12" v-if="tipe == 'analisis'">
           
           <div class="form-group">
 
@@ -182,16 +203,16 @@
             <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
               <option disabled value="">Silahkan pilih status klaim</option>
               <option value="0">Menunggu</option>
-              <option value="1">Tidak Sesuai</option>
+              <option value="1">Dokumen Tidak Lengkap</option>
               <option value="2">Ditolak</option>
               <option value="3">Disetujui</option>
             </select>
 
           </div>
         </div>
-
+        
         <!-- tanggal pencairan -->
-        <div class="col-md-12" v-if="formStatus.status == '3'">
+        <div class="col-md-12" v-if="formStatus.status == '3' || tipe == 'selesai'">
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
 
             <!-- title -->
@@ -206,6 +227,7 @@
               class="form-control" 
               :raw="false" 
               :options="cleaveOption.date" 
+              :readonly="tipe == 'selesai'"
               v-validate="'required'"
               data-vv-as="Tanggal Pencairan"
               placeholder="Silahkan masukkan tgl. pencairan"></cleave>
@@ -220,7 +242,7 @@
         </div>
 
         <!-- TUNAS -->
-        <div class="col-md-6" v-if="formStatus.status == '3' && selectedData.tipe != 'cacat'">
+        <div class="col-md-6" v-if="(formStatus.status == '3' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
         
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 
@@ -232,6 +254,7 @@
               <div class="media">
                 <div class="media-body">
                   <h3 class="mb-0">
+                    <i v-if="selisihTunas > 0" class="icon-plus3"></i>
                     <check-value :value="selisihTunas" valueType="currency"></check-value> 	
                   </h3>
                   <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
@@ -245,6 +268,7 @@
               v-model="formStatus.tunas_disetujui" 
               class="form-control" 
               :options="cleaveOption.numeric"
+              :readonly="tipe == 'selesai'"
               placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui"
               v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS yang disetujui"></cleave>
 
@@ -257,7 +281,7 @@
         </div>
 
         <!-- LINTANG -->
-        <div class="col-md-6" v-if="formStatus.status == '3'">
+        <div class="col-md-6" v-if="formStatus.status == '3' || tipe == 'selesai'">
           
 
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
@@ -269,6 +293,7 @@
               <div class="media">
                 <div class="media-body">
                   <h3 class="mb-0">
+                     <i v-if="selisihLintang > 0" class="icon-plus3"></i>
                     <check-value :value="selisihLintang" valueType="currency"></check-value> 	
                   </h3>
                   <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
@@ -282,6 +307,7 @@
               v-model="formStatus.lintang_disetujui" 
               class="form-control" 
               :options="cleaveOption.numeric"
+              :readonly="tipe == 'selesai'"
               placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui"
               v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG yang disetujui"></cleave>
 
@@ -295,27 +321,26 @@
 
         <!-- keterangan -->
         <div class="col-md-12"  v-if="formStatus.status != 0"> 
-          <div class="form-group" :class="{'has-error' : errors.has('formStatus.keterangan_klaim')}">
+          <div class="form-group">
 
             <!-- title -->
-            <h5 :class="{ 'text-danger' : errors.has('formStatus.keterangan_klaim')}">
-              <i class="icon-cross2" v-if="errors.has('formStatus.keterangan_klaim')"></i>Keterangan:
+            <h5>
+              Keterangan:
             </h5>
 
             <!-- textarea -->
-            <textarea rows="3" type="text" name="keterangan_klaim" class="form-control" placeholder="Silahkan masukkan keterangan " v-validate="'required|min:5'" data-vv-as="Keterangan" v-model="formStatus.keterangan_klaim"></textarea>
-
-            <!-- error message -->
-            <small class="text-muted text-danger" v-if="errors.has('formStatus.keterangan_klaim')">
-              <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.keterangan_klaim') }}
-            </small>
-            <small class="text-muted" v-else>&nbsp;
-            </small>
+            <textarea rows="3" 
+            type="text" 
+            name="keterangan_klaim" 
+            class="form-control" 
+            :readonly="tipe == 'selesai'"
+            placeholder="Silahkan masukkan keterangan " v-model="formStatus.keterangan_klaim"></textarea>
           </div>
 
         </div>
 
       </div>
+      
       
       <!-- tombol desktop-->
       <div class="text-center d-none d-md-block">
@@ -323,13 +348,35 @@
           <i class="icon-cross"></i> Tutup</button>
 
         <button type="submit" class="btn btn-primary">
-          <i class="icon-floppy-disk"></i> Simpan</button>
+          <span v-if="tipe == 'selesai'">
+            <span v-if="formStatus.status == 4">
+              <i class="icon-checkmark4"></i> Selesai
+            </span>
+            <span v-else>
+              <i class="icon-blocked"></i> Batal Selesai
+            </span>
+          </span>
+          <span v-else>
+            <i class="icon-floppy-disk"></i> Simpan
+          </span>
+        </button>
       </div>  
 
       <!-- tombol mobile-->
       <div class="d-block d-md-none">
         <button type="submit" class="btn btn-primary btn-block pb-2">
-          <i class="icon-floppy-disk"></i> Simpan</button>
+          <span v-if="tipe == 'selesai'">
+            <span v-if="formStatus.status == 4">
+              <i class="icon-checkmark4"></i> Selesai
+            </span>
+            <span v-else>
+              <i class="icon-blocked"></i> Batal Selesai
+            </span>
+          </span>
+          <span v-else>
+            <i class="icon-floppy-disk"></i> Simpan
+          </span>
+        </button>
 
         <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
           <i class="icon-cross"></i> Tutup</button>
@@ -350,7 +397,7 @@
   import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
-		props: ['kelas','selected'],
+		props: ['kelas','selected','tipe'],
 		components: {
 			formInfo,
       message,
@@ -365,10 +412,12 @@
         title: '',
         selectedData: {},
 				formStatus: {
+          cu_id: '',
 					status: '',
           keterangan_klaim: '',
           tunas_disetujui: '',
           lintang_disetujui: '',
+          tanggal_pencairan: '',
         },
         cleaveOption: {
           numeric: {
@@ -405,6 +454,8 @@
 			this.formStatus.keterangan_klaim = this.selectedData.keterangan_klaim;
 			this.formStatus.tunas_disetujui = this.selectedData.tunas_disetujui;
       this.formStatus.lintang_disetujui = this.selectedData.lintang_disetujui;
+      this.formStatus.tanggal_pencairan = this.selectedData.tanggal_pencairan;
+      this.formStatus.cu_id = this.selectedData.anggota_cu_cu.cu_id;
       this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.selectedData.anggota_cu_cu.cu_id]);
 		},
 		watch: {
@@ -423,13 +474,17 @@
           this.keterangan_klaim = '';
         }
 
-				this.$validator.validateAll('formStatus').then((result) => {
-          if (result) {
-            this.$store.dispatch(this.kelas + '/updateStatus', [this.selected.id, this.formStatus]);
-          }else{
-						this.submited = true;
-          }
-				});
+        if(this.tipe == 'selesai'){
+          this.$store.dispatch(this.kelas + "/updateSelesai", this.selected.id);
+        }else{
+          this.$validator.validateAll('formStatus').then((result) => {
+            if (result) {
+              this.$store.dispatch(this.kelas + '/updateStatus', [this.selected.id, this.formStatus]);
+            }else{
+              this.submited = true;
+            }
+          });
+        }
       },
 			tutup() {
 				this.$emit('tutup');

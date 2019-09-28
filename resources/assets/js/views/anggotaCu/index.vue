@@ -33,6 +33,9 @@
 								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'keluar'}" @click.prevent="changeTab('keluar')"><i class="icon-exit2 mr-2"></i> Sudah Keluar</a>
 								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-person mr-2"></i> Sudah Meninggal</a>
+								</li>
 							</ul>
 						</div>
 
@@ -55,6 +58,17 @@
 									:tipe="'keluar'"
 									:itemData="itemData2"
 									:itemDataStat="itemDataStat2"></table-data>
+							</div>
+						</transition>	
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'meninggal'" v-if="isMeninggal">
+								<table-data 
+									:title="title" 
+									:kelas="kelas"
+									:tipe="'meninggal'"
+									:itemData="itemData3"
+									:itemDataStat="itemDataStat3"></table-data>
 							</div>
 						</transition>	
 
@@ -89,6 +103,7 @@
 				selectCuPath: 'anggotaCuCu',
 				tabName: 'masih',
 				isKeluar: false,
+				isMeninggal: false,
 			}
 		},
 		created(){
@@ -112,6 +127,9 @@
 				if (value == 'keluar' && !this.isKeluar) {
 					this.isKeluar = true
 				}
+				if (value == 'meninggal' && !this.isMeninggal) {
+					this.isMeninggal = true
+				}
 			}
 		},
 		computed: {
@@ -122,7 +140,9 @@
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				itemData2: 'dataS2',
-				itemDataStat2: 'dataStatS2'
+				itemDataStat2: 'dataStatS2',
+				itemData3: 'dataS3',
+				itemDataStat3: 'dataStatS3',
 			}),
 		}
 	}

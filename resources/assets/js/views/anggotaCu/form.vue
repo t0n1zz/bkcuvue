@@ -17,7 +17,7 @@
 
 						<!-- data not exist -->
 						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
-							<span class="font-weight-semibold">NIK tidak terdaftar di SIMO, maka silahkan menambahkan data anggota CU baru.
+							<span class="font-weight-semibold">No. KTP tidak terdaftar di SIMO, maka silahkan menambahkan data anggota CU baru.
 							</span>
 						</div>
 						
@@ -33,7 +33,7 @@
 							</div>
 
 							<div class="alert bg-warning text-white alert-styled-left" v-else>
-								<span class="font-weight-semibold">NIK sudah terdaftar di SIMO. Apabila ingin menambahkan anggota tersebut menjadi anggota cu maka silahkan tambahkan no. ba dan tgl. jadi anggota. 
+								<span class="font-weight-semibold">No. KTP sudah terdaftar di SIMO. Apabila ingin menambahkan anggota tersebut menjadi anggota cu maka silahkan tambahkan no. ba dan tgl. jadi anggota. 
 								</span>
 							</div>
 						</div>

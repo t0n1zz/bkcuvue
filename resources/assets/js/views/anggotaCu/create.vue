@@ -83,7 +83,7 @@
 
 								<!-- text -->
 								<cleave 
-									name="nik"
+									name="npwp"
 									v-model="form.npwp" 
 									class="form-control" 
 									:options="cleaveOption.number24"
@@ -334,14 +334,11 @@
 								<h6>Rata-rata Penghasilan Perbulan:</h6>
 
 								<!-- select -->
-								<select class="form-control" name="penghasilan" v-model="form.penghasilan" data-width="100%">
-									<option disabled value="">Silahkan pilih tingkat penghasilan</option>
-									<option value="1"> kurang dari 1 juta </option>
-									<option value="2"> 1 - 5 juta </option>
-									<option value="3"> 5 - 15 juta </option>
-									<option value="4"> diatas 15 juta </option>
-								</select>
-
+								<cleave 
+									v-model="form.penghasilan" 
+									class="form-control" 
+									:options="cleaveOption.numeric"
+									placeholder="Silahkan masukkan rata-rata pengeluaran"></cleave>
 							</div>
 						</div>
 
@@ -352,13 +349,11 @@
 								<h6>Rata-rata Pengeluaran Perbulan:</h6>
 
 								<!-- select -->
-								<select class="form-control" name="pengeluaran" v-model="form.pengeluaran" data-width="100%">
-									<option disabled value="">Silahkan pilih tingkat pengeluaran</option>
-									<option value="1"> kurang dari 1 juta </option>
-									<option value="2"> 1 - 5 juta </option>
-									<option value="3"> 5 - 15 juta </option>
-									<option value="4"> diatas 15 juta </option>
-								</select>
+								<cleave 
+									v-model="form.pengeluaran" 
+									class="form-control" 
+									:options="cleaveOption.numeric"
+									placeholder="Silahkan masukkan rata-rata pengeluaran"></cleave>
 
 							</div>
 						</div>
@@ -830,7 +825,7 @@
             numeralDecimalScale: 2,
             numeralDecimalMark: ',',
             delimiter: '.'
-          }
+          },
 				},
 				formCuMode: '',
 				selectedItemCu: '',

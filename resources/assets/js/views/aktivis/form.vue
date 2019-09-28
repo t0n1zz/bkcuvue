@@ -16,7 +16,7 @@
 						<!-- data not exist -->
 						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
 							<span class="font-weight-semibold">
-								NIK tidak terdaftar di SIMO, maka silahkan menambahkan data aktivis baru.
+								No. KTP tidak terdaftar di SIMO, maka silahkan menambahkan data aktivis baru.
 							</span>
 						</div>
 
@@ -26,7 +26,7 @@
 						<div v-if="itemDataStat == 'success'">
 
 							<div class="alert bg-danger text-white alert-styled-left">
-								<span class="font-weight-semibold">NIK sudah terdaftar di SIMO, maka silahkan melakukan pengubahan. Apabila anda ingin menambahkan pekerjaannya di CU anda maka silahkan ke bagian riwayat pekerjaan untuk menambahkan pekerjaannya.
+								<span class="font-weight-semibold">No. KTP sudah terdaftar di SIMO, maka silahkan melakukan pengubahan. Apabila anda ingin menambahkan pekerjaannya di CU anda maka silahkan ke bagian riwayat pekerjaan untuk menambahkan pekerjaannya.
 								</span>
 							</div>
 

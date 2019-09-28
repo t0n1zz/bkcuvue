@@ -120,18 +120,16 @@
 												<span v-if="content.message">
 													<pre class="pre-scrollable language-markup content-group text-left">
 														{{ content.message }} 
-														<span v-if="content.error">
-															<br/> 
-															{{ content.error }}
+														<span v-if="content.errors">
+															{{ content.errors }}
 														</span>
 													</pre>
 												</span>
 												<span v-if="content.data">
 													<pre class="pre-scrollable language-markup content-group text-left">
 														{{ content.data.message }}
-														<span v-if="content.data.error">
-															<br/> 
-															{{ content.data.error }}
+														<span v-if="content.data.errors">
+															{{ content.data.errors }}
 														</span>
 													</pre>
 												</span>
@@ -314,9 +312,11 @@
 				let form = {};
 
 				form.id_user = this.currentUser.id;
-				form.status = content.status;
+				if(content && content.status){
+					form.status = content.status;
+				}
 
-				if(content.data){
+				if(content && content.data){
 					form.content = JSON.stringify(content.data);
 				}else{
 					form.content = JSON.stringify(content);

@@ -9,6 +9,7 @@ export const anggotaCu = {
     data: {}, //single data //single data
     dataS: [],
     dataS2: [],
+    dataS3: [],
     dataProduk: [],//collection
     dataDeletedS: [], //collection
     count: {},
@@ -17,6 +18,7 @@ export const anggotaCu = {
     dataProdukStat: '',
     dataStatS: '',
     dataStatS2: '',
+    dataStatS3: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -31,6 +33,7 @@ export const anggotaCu = {
     data: state => state.data,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
+    dataS3: state => state.dataS3,
     dataProduk: state => state.dataProduk,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
@@ -39,6 +42,7 @@ export const anggotaCu = {
     dataProdukStat: state => state.dataProdukStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
+    dataStatS3: state => state.dataStatS3,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -76,6 +80,19 @@ export const anggotaCu = {
           commit('setDataStatS2', 'fail');
         });
     },
+    indexMeninggal( { commit }, p ){
+      commit('setDataStatS3', 'loading');
+      
+      AnggotaCuAPI.indexMeninggal( p )
+        .then( function( response ){
+          commit('setDataS3', response.data.model );
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
+        });
+    },
 
     indexCu( {commit}, [p, id] ){
       commit('setDataStatS', 'loading');
@@ -111,6 +128,24 @@ export const anggotaCu = {
         .catch( error => {
           commit('setDataS2', error.response);
           commit('setDataStatS2', 'fail');
+        });
+    }, 
+    indexCuMeninggal( {commit}, [p, id] ){
+      commit('setDataStatS3', 'loading');
+      
+      AnggotaCuAPI.indexCuMeninggal( p, id )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setDataS3', response.data.model );
+            commit('setDataStatS3', 'success');
+          }else{
+            commit('setDataS3', response );
+            commit('setDataStatS3', 'fail');
+          }
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
         });
     }, 
 
@@ -350,6 +385,24 @@ export const anggotaCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+
+    updateBatalKeluar( {commit, state, dispatch}, id){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.updateBatalKeluar( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
     
     updateDraft( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
@@ -510,6 +563,10 @@ export const anggotaCu = {
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
+    },
+    resetDataProduk( {commit} ){
+      commit('setDataProduk', []);
+      commit('setDataProdukStat', '');
     }
   },
 
@@ -526,6 +583,9 @@ export const anggotaCu = {
     },
     setDataS2 ( state, data ){
       state.dataS2 = data;
+    },
+    setDataS3 ( state, data ){
+      state.dataS3 = data;
     },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
@@ -547,6 +607,9 @@ export const anggotaCu = {
     },
     setDataStatS2( state, status ){
       state.dataStatS2 = status;
+    },
+    setDataStatS3( state, status ){
+      state.dataStatS3 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

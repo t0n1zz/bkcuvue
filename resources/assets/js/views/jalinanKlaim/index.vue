@@ -31,7 +31,7 @@
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'menunggu'}" @click.prevent="changeTab('menunggu')"><i class="icon-checkbox-unchecked mr-2"></i> Menunggu</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link" :class="{'active' : tabName == 'tidakSesuai'}" @click.prevent="changeTab('tidakSesuai')"><i class="icon-checkbox-partial mr-2"></i> Tidak Sesuai</a>
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'tidakLengkap'}" @click.prevent="changeTab('tidakLengkap')"><i class="icon-checkbox-partial mr-2"></i> Dokumen Tidak Lengkap</a>
 								</li>
 								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'ditolak'}" @click.prevent="changeTab('ditolak')"><i class="icon-cancel-square mr-2"></i> Ditolak</a>
@@ -55,7 +55,7 @@
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'tidakSesuai'" v-if="isTidakSesuai">
+							<div v-show="tabName == 'tidakLengkap'" v-if="isTidakSesuai">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
 							</div>
 						</transition>
@@ -145,7 +145,7 @@
 				if (value == 'ditolak' && !this.isDitolak) {
 					this.isDitolak = true
 				}
-				if (value == 'tidakSesuai' && !this.isTidakSesuai) {
+				if (value == 'tidakLengkap' && !this.isTidakSesuai) {
 					this.isTidakSesuai = true
 				}
 				if (value == 'dicairkan' && !this.isDicairkan) {

@@ -98,7 +98,7 @@
 												Kode Produk & Pelayanan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="kode_produk" class="form-control" placeholder="Silahkan masukkan kode produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Kode Produk dan Pelayanan" v-model="form.kode_produk">	
+											<input type="text" name="kode_produk" class="form-control" placeholder="Silahkan masukkan kode produk dan pelayanan" v-validate="'required'" data-vv-as="Kode Produk dan Pelayanan" v-model="form.kode_produk">	
 											
 
 											<!-- error message -->
@@ -119,7 +119,7 @@
 												Nama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama produk dan pelayanan" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" :disabled="isDisabledName">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama produk dan pelayanan" v-validate="'required'" data-vv-as="Nama" v-model="form.name" :disabled="isDisabledName">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">

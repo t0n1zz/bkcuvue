@@ -82,7 +82,7 @@
 						name="no_rek"
 						v-model="formProduk.no_rek" 
 						class="form-control" 
-						:options="cleaveOption.number12"
+						:options="cleaveOption.number30"
 						placeholder="Silahkan masukkan jumlah no. rekening"
 						v-validate="'required'" data-vv-as="No. Rekening" ></cleave>
 
@@ -258,9 +258,9 @@
             numeralDecimalMark: ',',
             delimiter: '.'
 					},
-					number12: {
+					number30: {
             numeral: true,
-            numeralIntegerScale: 12,
+            numeralIntegerScale: 30,
             numeralDecimalScale: 0,
 						stripLeadingZeroes: false,
 						delimiter: ''

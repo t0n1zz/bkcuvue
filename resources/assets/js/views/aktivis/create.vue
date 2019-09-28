@@ -935,7 +935,7 @@
 						this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
 					}
 				}
-
+				
 				if(this.mode == 'edit' || (this.mode == 'create_old' && this.canEditIdentitas)){
 					if(this.form.ayah){
 						this.form.ayah.name = this.form.keluarga.ayah;

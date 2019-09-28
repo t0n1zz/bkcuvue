@@ -8,7 +8,7 @@
       <template slot="button-desktop">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && tipe == 'masih'">
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
@@ -25,20 +25,19 @@
         </button>
 
         <!-- klaim jalinan -->
-        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim']  && tipe == 'masih'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
+        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe != 'keluar'" :disabled="!selectedItem.nik">
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
         </button>
 
         <!-- anggota keluar -->
-        <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
           <i class="icon-exit2"></i> 
           <span v-if="tipe == 'masih'">Anggota Keluar</span>
           <span v-else>Batal Keluarkan Anggota</span>
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
@@ -49,7 +48,7 @@
       <template slot="button-mobile">
 
         <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu']">
+        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && tipe == 'masih'">
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
@@ -66,19 +65,19 @@
         </button>
 
         <!-- klaim jalinan -->
-        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
+        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe != 'keluar'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
         </button>
 
         <!-- anggota keluar -->
-        <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
+        <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']  && tipe != 'meninggal'"
           :disabled="!selectedItem.id">
           <span v-if="tipe == 'masih'">Anggota Keluar</span>
           <span v-else>Batal Keluarkan Anggota</span>
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
@@ -109,28 +108,29 @@
               <span v-for="(anggota_cu,index) in props.item.anggota_cu_not_keluar" :key="index">
                 <span v-if="$route.params.cu != 'semua'">
                   <span v-if="$route.params.cu == anggota_cu.id">
-                    {{ anggota_cu.pivot.no_ba }}
+                    {{ anggota_cu.no_ba }}
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
+                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.no_ba }}</label>
               </span>
             </span>
             <span v-else-if="props.item.anggota_cu_keluar">
               <span v-for="(anggota_cu,index) in props.item.anggota_cu_keluar" :key="index">
                 <span v-if="$route.params.cu != 'semua'">
                   <span v-if="$route.params.cu == anggota_cu.id">
-                    {{ anggota_cu.pivot.no_ba }}
+                    {{ anggota_cu.no_ba }}
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
+                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.no_ba }}</label>
               </span>
             </span>
             <span v-else>-</span>
 					</td>
           <td v-if="!columnData[6].hide">
-            <label class="badge badge-warning ml-1">
+            <label class="badge badge-warning ml-1" v-if="props.item.status_jalinan">
               <check-value :value="props.item.status_jalinan"></check-value>
             </label> 
+            <span v-else>-</span>
 					</td>
 					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.lembaga"></check-value>
@@ -223,20 +223,11 @@
           <br/>
 
           <div v-if="tipe == 'masih'">
-            <div class=" d-none d-sm-block">
-              <button type="button" class="btn btn-light" @click="modalTutup">
+            <button type="button" class="btn btn-primary btn-block pb-1" @click="selectCU(cu)" v-for="(cu, index) in selectedItem.anggota_cu_not_keluar" :key="index">
+              {{ 'CU ' + cu.name + ' | ' + 'No. BA: ' + cu.pivot.no_ba }}
+            </button>
+            <button type="button" class="btn btn-light btn-block" @click="modalTutup">
                 <i class="icon-cross"></i> Tutup</button>
-              <button type="button" class="btn btn-primary ml-1" @click="selectCU(cu)" v-for="(cu, index) in selectedItem.anggota_cu_not_keluar" :key="index">
-                {{ 'CU ' + cu.name + ' | ' + 'No. BA: ' + cu.pivot.no_ba }}
-              </button>
-            </div>
-            <div class="d-block d-sm-none">
-              <button type="button" class="btn btn-primary btn-block pb-1" @click="selectCU(cu)" v-for="(cu, index) in selectedItem.anggota_cu_not_keluar" :key="index">>
-                {{ 'CU ' + cu.name + ' | ' + 'No. BA: ' + cu.pivot.no_ba }}
-              </button>
-              <button type="button" class="btn btn-light btn-block" @click="modalTutup">
-                  <i class="icon-cross"></i> Tutup</button>
-            </div>
           </div>
           <div v-else>
             <div class=" d-none d-sm-block">
@@ -357,7 +348,7 @@
             title: 'No. BA',
             name: 'cu.name',
             tipe: 'string',
-            sort: true,
+            sort: false,
             hide: false,
             disable: false,
             filter: true,
@@ -609,18 +600,23 @@
           if(this.tipe == 'masih'){
             this.$store.dispatch(this.kelas + '/index', params);
             this.excelDownloadUrl = this.kelas;
-          }else{
+          }else if(this.tipe == 'keluar'){
             this.$store.dispatch(this.kelas + '/indexKeluar', params);
             this.excelDownloadUrl = this.kelas + '/keluar';
+          }else{
+            this.$store.dispatch(this.kelas + '/indexMeninggal', params);
+            this.excelDownloadUrl = this.kelas + '/indexMeninggal';
           }
-					
 				}else{
           if(this.tipe == 'masih'){
             this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
             this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
-          }else{
+          }else if(this.tipe == 'keluar'){
             this.$store.dispatch(this.kelas + '/indexCuKeluar', [params,this.$route.params.cu]);
             this.excelDownloadUrl = this.kelas + '/indexCuKeluar/' + this.$route.params.cu;
+          }else{
+            this.$store.dispatch(this.kelas + '/indexCuMeninggal', [params,this.$route.params.cu]);
+            this.excelDownloadUrl = this.kelas + '/indexCuMeninggal/' + this.$route.params.cu;
           }
 				}
         this.excelDownloadUrl = this.kelas;
@@ -683,18 +679,20 @@
           this.modalTitle =
             "Hapus " + this.title + " " + this.selectedItem.name + " ini?";
           this.modalButton = "Iya, Hapus";
-        }else if(state == 'keluar' && this.selectedItem.anggota_cu.length > 1){
+        }else if(state == 'keluar' && this.selectedItem.anggota_cu_not_keluar && this.selectedItem.anggota_cu_not_keluar.length > 1){
           this.modalState = 'normal1';
 					this.modalTitle = 'anggota atas nama: ' + this.selectedItem.name + ' memiliki keanggota di beberapa CU, silahkan pilih di CU mana ia akan keluar';
-        }else if(state == 'keluar'  && this.selectedItem.anggota_cu.length < 2){
+        }else if(state == 'keluar' && this.selectedItem.anggota_cu_not_keluar  && this.selectedItem.anggota_cu_not_keluar.length < 2){
           this.modalState = 'normal2';
           this.modalColor = 'bg-primary';
           this.modalTitle = 'Keluarkan anggota atas nama: ' + this.selectedItem.name + ' ?';
-          if(this.tipe == 'masih'){
-            this.anggota_cu = this.selectedItem.anggota_cu_not_keluar[0];
-          }else{
-            this.anggota_cu = this.selectedItem.anggota_cu_keluar[0];
-          }
+          this.anggota_cu = this.selectedItem.anggota_cu_not_keluar[0];
+        }else if(state == 'keluar' && this.selectedItem.anggota_cu_keluar  && this.selectedItem.anggota_cu_keluar.length < 2){
+          this.modalState = 'confirm-tutup';
+          this.modalColor = 'bg-primary';
+          this.modalTitle = 'Batal keluarkan anggota atas nama: ' + this.selectedItem.name + ' ?';
+          this.modalButton = "Iya, Batalkan";
+          this.anggota_cu = this.selectedItem.anggota_cu_keluar[0];
         }
       },
       modalTutup() {
@@ -705,9 +703,9 @@
         if (this.state == "hapus") {
           if(this.$route.params.cu != 'semua'){
             this.$store.dispatch(this.kelas + "/destroy", [this.selectedItem.id, this.$route.params.cu]);
-          }else{
-
           }
+        }else if(this.state == "keluar"){
+          this.$store.dispatch(this.kelas + "/updateBatalKeluar", this.selectedItem.id);
         }
       }
     },

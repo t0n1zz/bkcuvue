@@ -73,7 +73,7 @@
 		},
 		data() {
 			return {
-				title: 'Laporan Pencairan JALINAN ',
+				title: 'Laporan Pencairan JALINAN Per-CU',
 				titleDesc: 'Mengelola laporan pencairan JALINAN',
 				titleIcon: 'icon-archive',
         kelas: 'jalinanKlaim',

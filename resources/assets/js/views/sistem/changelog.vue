@@ -10,6 +10,34 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.6 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#316">Version 3.1.6 <small class="text-muted"> / 28 September 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="316" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU dan Klaim JALINAN.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan informasi usia dan nama pada panel analisa klaim</li>
+                      <li>Penambahan informasi klaim pada panel selesai klaim</li>
+                      <li>Penambahan kategori anggota CU yang meninggal</li>
+                      <li>Perbaikan pada form penambahan klaim JALINAN yang tidak menampilkan data produk dengan benar</li>
+                      <li>Menggabungkan menu tambah pada masing-masing bagian menjadi 1 sub-menu</li>
+                      <li>Penambahan waktu time-out aplikasi menjadi 12 jam</li>
+                      <li>Pengubahan tampilan form pada profil user</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.6 -->
+
               <!-- Version 3.1.5 -->
               <div class="card">
                 <div class="card-header">
@@ -18,7 +46,7 @@
                   </h5>
                 </div>
 
-                <div id="315" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="315" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada perbaikan beberapa bug
                     <br/><br/>

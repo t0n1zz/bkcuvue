@@ -183,3 +183,19 @@ Vue.filter('ageDiff', function(date1, date2) {
 	}
 	return age;
 });
+
+Vue.filter('statusJalinan', function(value){
+	if(value == 0){
+		return 'menunggu';
+	}else if(value == 1){
+		return 'dokumen tidak lengkap';
+	}else if(value == 2){
+		return 'ditolak';
+	}else if(value == 3){
+		return 'disetujui';
+	}else if(value == 4){
+		return 'dicairkan';
+	}else if(value == 5){
+		return 'selesai';
+	}
+});

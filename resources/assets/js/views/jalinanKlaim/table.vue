@@ -18,7 +18,7 @@
         </button>
 
         <!-- status klaim -->
-        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
+        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
           :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
@@ -27,7 +27,7 @@
         <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && (status == 4 || status == 5)"
           :disabled="!selectedItem.id">
           <span v-if="status == '4'">
-            <i class="icon-square"></i> Selesai Klaim
+            <i class="icon-checkmark4"></i> Selesai Klaim
           </span>
           <span v-else>
             <i class="icon-blocked"></i> Batal Selesai Klaim
@@ -57,7 +57,7 @@
         </button>
 
         <!-- status -->
-        <button @click.prevent="modalOpen('status')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
+        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 4 && status != 5"
           :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
@@ -66,7 +66,7 @@
         <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && ( status == 4 || status == 5)"
           :disabled="!selectedItem.id">
           <span v-if="status == '4'">
-            <i class="icon-square"></i> Selesai Klaim
+            <i class="icon-checkmark4"></i> Selesai Klaim
           </span>
           <span v-else>
             <i class="icon-blocked"></i> Batal Selesai Klaim
@@ -91,16 +91,20 @@
 						<check-value :value="props.item.keterangan_klaim"></check-value>
 					</td>
           <td v-if="!columnData[2].hide">
-						<check-value :value="props.item.anggota_cu.nik"></check-value>
+						<check-value :value="props.item.anggota_cu.nik" v-if="props.item.anggota_cu"></check-value>
+            <span v-else>-</span>
 					</td>
           <td v-if="!columnData[3].hide">
             <check-value :value="props.item.anggota_cu_cu.no_ba" v-if="props.item.anggota_cu_cu"></check-value>
+            <span v-else>-</span>
 					</td>
           <td v-if="!columnData[4].hide && !columnData[4].disable">
             <check-value :value="props.item.anggota_cu_cu.cu.name" v-if="props.item.anggota_cu_cu"></check-value>
+            <span v-else>-</span>
 					</td>
           <td v-if="!columnData[5].hide">
-						<check-value :value="props.item.anggota_cu.name"></check-value>
+						<check-value :value="props.item.anggota_cu.name" v-if="props.item.anggota_cu"></check-value>
+            <span v-else>-</span>
 					</td>
           <td v-if="!columnData[6].hide">
             <label class="badge badge-warning ml-1">
@@ -129,29 +133,39 @@
           <td v-if="!columnData[14].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
           <td v-if="!columnData[15].hide" v-html="$options.filters.date(props.item.anggota_cu_cu.tanggal_masuk)" class="text-nowrap"></td>
            <td v-if="!columnData[16].hide && !columnData[16].disable" v-html="$options.filters.date(props.item.tanggal_pencairan)" class="text-nowrap"></td>
-          <td v-if="!columnData[17].hide" v-html="$options.filters.age(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[18].hide" v-html="$options.filters.ageDiff(props.item.anggota_cu_cu.tanggal_masuk,props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[19].hide">
+          <td v-if="!columnData[17].hide" class="text-nowrap">
+            <check-value :value="props.item.anggota_cu.usia_meninggal" v-if="props.item.anggota_cu"></check-value>
+            <span v-else>-</span>
+          </td>
+          <td v-if="!columnData[18].hide" class="text-nowrap">
+            <check-value :value="props.item.anggota_cu.usia_cacat" v-if="props.item.anggota_cu"></check-value>
+            <span v-else>-</span>
+          </td>
+          <td v-if="!columnData[19].hide" class="text-nowrap">
+            <check-value :value="props.item.anggota_cu_cu.lama_menjadi_anggota" v-if="props.item.anggota_cu_cu"></check-value>
+            <span v-else>-</span>
+          </td>
+          <td v-if="!columnData[20].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-          <td v-if="!columnData[20].hide">
+          <td v-if="!columnData[21].hide">
 						<check-value :value="props.item.anggota_cu.kelamin"></check-value>
 					</td>
-          <td v-if="!columnData[21].hide">
+          <td v-if="!columnData[22].hide">
 						<check-value :value="props.item.anggota_cu.alih_waris"></check-value>
 					</td>
-          <td v-if="!columnData[22].hide">
+          <td v-if="!columnData[23].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-          <td v-if="!columnData[23].hide">
+          <td v-if="!columnData[24].hide">
 						<check-value :value="props.item.anggota_cu.alamat"></check-value>
 					</td>
-          <td v-if="!columnData[24].hide">
+          <td v-if="!columnData[25].hide">
 						<check-value :value="props.item.anggota_cu.hp"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[26].hide">
+					<td v-if="!columnData[26].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[27].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -171,7 +185,7 @@
 
 			<!-- status -->
 			<template slot="modal-body1">
-				<form-status :kelas="kelas" :selected="selectedItem"
+				<form-status :kelas="kelas" :selected="selectedItem" :tipe="state"
 				@tutup="modalTutup"></form-status>
 			</template>
 
@@ -361,8 +375,8 @@
             filter: true,
           },
           {
-            title: 'Usia Saat Ini',
-            name: 'usia',
+            title: 'Usia Meninggal',
+            name: 'anggota_cu.usia_meninggal',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -370,8 +384,17 @@
             filter: false,
           },
           {
-            title: 'Usia Ketika Masuk CU',
-            name: 'usia_cu',
+            title: 'Usia Cacat',
+            name: 'anggota_cu.usia_cacat',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
+            title: 'Lama Menjadi Anggota (BULAN)',
+            name: 'anggota_cu_cu.lama_menjadi_anggota',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -536,21 +559,20 @@
           this.modalTitle = "Hapus " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
           this.modalButton = "Iya, Hapus";
           this.modalSize = "'";
-        }else if(state == "status"){
+        }else if(state == "analisis"){
           this.modalState = 'normal1';
 					this.modalTitle = 'Analisis ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
         }else if (state == "selesai") {
-          this.modalState = "confirm-tutup";
+          this.modalState = "normal1";
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-full";
           if(this.status == '4'){
             this.modalTitle = "Selesaikan " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
-            this.modalButton = "Iya, Selesaikan";
           }else{
             this.modalTitle = "Batal selesaikan " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
-            this.modalButton = "Iya, batalkan";
           }
-          this.modalSize = "'";
         }
       },
       modalTutup() {
