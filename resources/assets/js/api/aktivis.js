@@ -40,6 +40,10 @@ export default {
     return axios.get('/api/aktivis/indexAnggotaCu/' + id);
   },
 
+  get: function( id ){
+    return axios.get('/api/aktivis/get/' + id);
+  },
+
   create: function(){
     return axios.get('/api/aktivis/create');
   },

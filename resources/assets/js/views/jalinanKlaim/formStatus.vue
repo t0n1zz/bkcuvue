@@ -176,10 +176,7 @@
                     <span v-else>-</span>
                   </td>
                    <td>
-                    <span v-if="props.item.tanggal">
-                      <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_meninggal)"></span>
-                      <span v-else-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_cacat)"></span>
-                      <span v-else>-</span>
+                    <span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)">
                     </span>
                     <span v-else>-</span>
                   </td>

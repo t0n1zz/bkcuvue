@@ -241,13 +241,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // aktivis
+    Route::get('/aktivis/get/{id}', 'AktivisController@get');
     Route::group(['middleware' => ['permission:index_aktivis']], function () {
         Route::get('/aktivis/index/{tingkat}/{status}', 'AktivisController@index');
         Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
         Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
-        Route::get('/aktivis/get', 'AktivisController@get');
         Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
-        Route::get('/aktivis/getCu/{id}', 'AktivisController@getCu');
         Route::get('/aktivis/count', 'AktivisController@count');
         Route::get('/aktivis/history', 'AktivisController@history');
     });
@@ -290,21 +289,55 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     //aset tetap
     Route::get('/asetTetap/cariData/{kode}', 'AsetTetapController@cariData');
-    Route::group(['middleware' => ['permission:index_artikel_kategori']], function () {
+    Route::group(['middleware' => ['permission:index_aset_tetap']], function () {
         Route::get('/asetTetap', 'AsetTetapController@index');
         Route::get('/asetTetap/history', 'AsetTetapController@history');
     });
-    Route::group(['middleware' => ['permission:create_artikel_kategori']], function () {
+    Route::group(['middleware' => ['permission:create_aset_tetap']], function () {
         Route::get('/asetTetap/create', 'AsetTetapController@create');
         Route::post('/asetTetap/store', 'AsetTetapController@store');
     });
-    Route::group(['middleware' => ['permission:update_artikel_kategori']], function () {
+    Route::group(['middleware' => ['permission:update_aset_tetap']], function () {
         Route::get('/asetTetap/edit/{id}', 'AsetTetapController@edit');
         Route::post('/asetTetap/update/{id}', 'AsetTetapController@update');
         Route::post('/asetTetap/updateKondisi/{id}', 'AsetTetapController@updateKondisi');
     });
-    Route::group(['middleware' => ['permission:destroy_artikel_kategori']], function () {
+    Route::group(['middleware' => ['permission:destroy_aset_tetap']], function () {
         Route::delete('/asetTetap/{id}', 'AsetTetapController@destroy');
+    });
+
+    //aset tetap jenis
+    Route::get('/asetTetapJenis/get', 'AsetTetapJenisController@get');
+    Route::group(['middleware' => ['permission:index_aset_tetap_jenis']], function () {
+        Route::get('/asetTetapJenis', 'AsetTetapJenisController@index');
+    });
+    Route::group(['middleware' => ['permission:create_aset_tetap_jenis']], function () {
+        Route::get('/asetTetapJenis/create', 'AsetTetapJenisController@create');
+        Route::post('/asetTetapJenis/store', 'AsetTetapJenisController@store');
+    });
+    Route::group(['middleware' => ['permission:update_aset_tetap_jenis']], function () {
+        Route::get('/asetTetapJenis/edit/{id}', 'AsetTetapJenisController@edit');
+        Route::post('/asetTetapJenis/update/{id}', 'AsetTetapJenisController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_aset_tetap_jenis']], function () {
+        Route::delete('/asetTetapJenis/{id}', 'AsetTetapJenisController@destroy');
+    });
+
+    //aset tetap lokasi
+    Route::get('/asetTetapLokasi/get', 'AsetTetapLokasiController@get');
+    Route::group(['middleware' => ['permission:index_aset_tetap_lokasi']], function () {
+        Route::get('/asetTetapLokasi', 'AsetTetapLokasiController@index');
+    });
+    Route::group(['middleware' => ['permission:create_aset_tetap_lokasi']], function () {
+        Route::get('/asetTetapLokasi/create', 'AsetTetapLokasiController@create');
+        Route::post('/asetTetapLokasi/store', 'AsetTetapLokasiController@store');
+    });
+    Route::group(['middleware' => ['permission:update_aset_tetap_lokasi']], function () {
+        Route::get('/asetTetapLokasi/edit/{id}', 'AsetTetapLokasiController@edit');
+        Route::post('/asetTetapLokasi/update/{id}', 'AsetTetapLokasiController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_aset_tetap_lokasi']], function () {
+        Route::delete('/asetTetapLokasi/{id}', 'AsetTetapLokasiController@destroy');
     });
 
     // mitra perserorangan

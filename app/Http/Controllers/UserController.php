@@ -91,6 +91,21 @@ class UserController extends Controller
 		'update_aktivis',
 		'destroy_aktivis',
 
+		'index_aset_tetap',
+		'create_aset_tetap',
+		'update_aset_tetap',
+		'destroy_aset_tetap',
+
+		'index_aset_tetap_jenis',
+		'create_aset_tetap_jenis',
+		'update_aset_tetap_jenis',
+		'destroy_aset_tetap_jenis',
+
+		'index_aset_tetap_lokasi',
+		'create_aset_tetap_lokasi',
+		'update_aset_tetap_lokasi',
+		'destroy_aset_tetap_lokasi',
+
 		'index_mitra_orang',
 		'create_mitra_orang',
 		'update_mitra_orang',

@@ -22,6 +22,8 @@ import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
 import { aktivis } from './modules/aktivis';
 import { asetTetap } from './modules/asetTetap';
+import { asetTetapJenis } from './modules/asetTetapJenis';
+import { asetTetapLokasi } from './modules/asetTetapLokasi';
 import { mitraOrang } from './modules/mitraOrang';
 import { mitraLembaga } from './modules/mitraLembaga';
 import { anggotaCu } from './modules/anggotaCu';
@@ -58,6 +60,8 @@ export default new Vuex.Store({
 		 laporanTp,
 		 aktivis,
 		 asetTetap,
+		 asetTetapJenis,
+		 asetTetapLokasi,
 		 mitraOrang,
 		 mitraLembaga,
 		 anggotaCu,

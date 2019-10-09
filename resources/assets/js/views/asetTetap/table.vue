@@ -9,17 +9,26 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_artikel_penulis']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_aset_tetap']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
+				<button @click.prevent="modalOpen('lokasi')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah Lokasi
+				</button>
+
+				<!-- detail-->
+				<button @click.prevent="modalOpen('detail')" class="btn btn-light mb-1" :disabled="!selectedItem.id">
+					<i class="icon-stack2"></i> Detail
+				</button>
+
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
@@ -29,17 +38,26 @@
 			<template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_artikel_penulis']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_aset_tetap']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
+				<button @click.prevent="modalOpen('lokasi')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah Lokasi
+				</button>
+				
+				<!-- detail -->
+				<button @click.prevent="modalOpen('detail')" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id">
+					<i class="icon-stack2"></i> Detail
+				</button>
+
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 				
@@ -53,7 +71,7 @@
 					</td>
 					<td v-if="!columnData[1].hide">
 						<img :src="'/images/asetTetap/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-						<img :src="'/images/no_image_man.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+						<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.kode"></check-value>
@@ -62,7 +80,7 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.jenis"></check-value>
+						<check-value :value="props.item.jenis.name" v-if="props.item.jenis"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.merk"></check-value>
@@ -71,16 +89,27 @@
 						<check-value :value="props.item.tipe"></check-value>
 					</td>
 					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.kondisi"></check-value>
+						<check-value :value="props.item.lokasi.name" v-if="props.item.lokasi"></check-value>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.lokasi"></check-value>
-					</td>
-					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.aktivis.name" v-if="props.item.aktivis"></check-value>
 					</td>
-					<td v-if="!columnData[10].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[9].hide" v-html="$options.filters.date(props.item.tanggal)">
+					</td>
+					<td v-if="!columnData[10].hide">
+						<check-value :value="props.item.pembeli.name" v-if="props.item.pembeli"></check-value>
+					</td>
 					<td v-if="!columnData[11].hide">
+						<check-value :value="props.item.harga" valueType="currency"></check-value>
+					</td>
+					<td v-if="!columnData[12].hide">
+						<check-value :value="props.item.has_aset_count" valueType="currency"></check-value>
+					</td>
+					<td v-if="!columnData[13].hide">
+						<check-value :value="props.item.kondisi"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[15].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -155,7 +184,7 @@
 					},
 					{
 						title: 'Jenis',
-						name: 'jenis',
+						name: 'jenis.name',
 						tipe: 'string',
 						sort: true,
 						hide: false,
@@ -181,28 +210,64 @@
 						filter: true,
 					},
 					{
-						title: 'Kondisi',
-						name: 'kondisi',
-						tipe: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-					{
 						title: 'Lokasi',
-						name: 'lokasi',
+						name: 'lokasi.name',
 						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
-					},
+					},		
 					{
 						title: 'Penanggungjawab',
 						name: 'aktivis.name',
 						tipe: 'string',
 						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Beli',
+						name: 'tanggal',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Pembeli',
+						name: 'pembeli.name',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Harga',
+						name: 'harga',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Sub',
+						name: 'has_aset_count',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Kondisi',
+						name: 'kondisi',
+						tipe: 'string',
+						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
@@ -269,7 +334,7 @@
 			ubahData(id, id_cu) {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 			},
-			modalConfirmOpen(state, isMobile, itemMobile) {
+			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalState = 'confirm-tutup';
 				this.state = state;
@@ -281,6 +346,10 @@
 				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
+				} else if (state == 'lokasi'){
+
+				} else if (state == 'detail'){
+					
 				}
 			},
 			modalTutup() {

@@ -17,6 +17,15 @@ class AsetTetap extends Model {
     public static $rules = [
         'name' => 'required',
         'kode'=> 'sometimes|required|unique:aset_tetap',
+        'aset_tetap_jenis_id' => 'required',
+        'aset_tetap_lokasi_id' => 'required',
+        'aktivis_id' => 'required',
+        'aktivis_id_pembeli' => 'required',
+        'merk' => 'required',
+        'tipe' => 'required',
+        'kondisi' => 'required',
+        'tanggal' => 'required',
+        'harga' => 'required',
     ];
 
     public static function boot()
@@ -25,33 +34,53 @@ class AsetTetap extends Model {
     }
     
     protected $fillable = [
-        'aktivis_id','kode','name','jenis','merk','tipe','lokasi','kondisi','gambar'
+        'aset_id','aktivis_id','kode','name','aset_tetap_jenis_id','merk','tipe','aset_tetap_lokasi_id','kondisi','gambar','aktivis_id_pembeli','tanggal','harga','keterangan'
     ];
 
     protected $allowedFilters = [
-        'aktivis_id','kode','name','jenis','merk','tipe','lokasi','kondisi','gambar','created_at','updated_at',
+        'aset_id','aktivis_id','kode','name','aset_tetap_jenis_id','merk','tipe','aset_tetap_lokasi_id','kondisi','gambar','created_at','updated_at','aktivis_id_pembeli','tanggal','harga','keterangan',
         
-        'aktivs.name'
+        'aktivs.name','jenis.name','lokasi.name','pembeli.name'
     ];
 
     protected $orderable = [
-        'aktivis_id','kode','name','jenis','merk','tipe','lokasi','kondisi','gambar','created_at','updated_at',
+        'aset_id','aktivis_id','kode','name','aset_tetap_jenis_id','merk','tipe','aset_tetap_lokasi_id','kondisi','gambar','created_at','updated_at','aktivis_id_pembeli','tanggal','harga','keterangan',
     ];
 
     public static function initialize()
     {
         return [
-            'aktivis_id' => '','kode' => '','name' => '','jenis' => '','merk' => '','tipe' => '','lokasi' => '','kondisi' => '','gambar' => ''
+            'aset_id' =>'', 'aktivis_id' => '','kode' => '','name' => '','aset_tetap_jenis_id' => '','merk' => '','tipe' => '','aset_tetap_lokasi_id' => '','kondisi' => '','gambar' => '','aktivis_id_pembeli' => '','tanggal' => '','harga' => '','keterangan' => '',
         ];
     }
-		
+
+    public function aset()
+    {
+        return $this->belongsTo('App\AsetTetap','aset_id','id');
+    }
+
+    public function hasAset()
+    {
+        return $this->hasMany('App\AsetTetap','aset_id','id');
+    }
+
     public function aktivis()
     {
         return $this->belongsTo('App\Aktivis','aktivis_id','id');
     }
 
-    public function asetTetapJenis()
+    public function pembeli()
+    {
+        return $this->belongsTo('App\Aktivis','aktivis_id_pembeli','id');
+    }
+
+    public function jenis()
     {
         return $this->belongsTo('App\AsetTetapJenis','aset_tetap_jenis_id','id');
+    }
+
+    public function lokasi()
+    {
+        return $this->belongsTo('App\AsetTetapLokasi','aset_tetap_lokasi_id','id');
     }
 }

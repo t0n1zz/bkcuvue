@@ -59,8 +59,10 @@ class AnggotaCuController extends Controller{
 	public function indexCu($id)
 	{
 		$table_data = AnggotaCu::with('anggota_cu_not_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($id){ 
-			$query->where('cu_id',$id)->whereNull('anggota_cu_cu.tanggal_keluar'); 
-		})->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL)->advancedFilter();
+			$query->where('anggota_cu_cu.cu_id',$id)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		})->where(function($query){
+			$query->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL);
+		})->advancedFilter();
 
 		return response()
 			->json([
@@ -71,7 +73,7 @@ class AnggotaCuController extends Controller{
 	public function indexCuKeluar($id)
 	{
 		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($id){ 
-			$query->where('cu_id',$id)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
+			$query->where('anggota_cu_cu.cu_id',$id)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 		})->where('status_jalinan','!=','meninggal')->advancedFilter();
 
 		return response()
@@ -83,7 +85,7 @@ class AnggotaCuController extends Controller{
 	public function indexCuMeninggal($id)
 	{
 		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($id){ 
-			$query->where('cu_id',$id); 
+			$query->where('anggota_cu_cu.cu_id',$id); 
 		})->where('status_jalinan','meninggal')->advancedFilter();
 
 		return response()

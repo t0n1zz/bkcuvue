@@ -555,7 +555,7 @@
 											TP/KP
 										</router-link>
 
-										<!-- tambah aktivis -->
+										<!-- tambah produk -->
 										<router-link :to="{ name:'produkCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_produk_cu']">
 											Produk & Pelayanan
 										</router-link>
@@ -563,6 +563,21 @@
 										<!-- tambah aktivis -->
 										<router-link :to="{ name:'aktivisCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aktivis']">
 											Aktivis
+										</router-link>
+
+										<!-- tambah aset tetap -->
+										<router-link :to="{ name:'asetTetapCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aset_tetap']">
+											Aset Tetap
+										</router-link>
+
+										<!-- tambah jenis aset tetap -->
+										<router-link :to="{ name:'asetTetapJenisCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aset_tetap_jenis']">
+											Jenis Aset Tetap
+										</router-link>
+
+										<!-- tambah lokasi aset tetap -->
+										<router-link :to="{ name:'asetTetapLokasiCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aset_tetap_lokasi']">
+											Lokasi Aset Tetap
 										</router-link>
 										
 										<!-- tambah mitra -->
@@ -708,15 +723,29 @@
 							</div>
 						
 							<!-- divider -->
-							<!-- <div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']"></div> 
 
-							<router-link :to="{ name: 'asetTetap'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_produk_cu'] && currentUser.id_cu == 0">
-								<i class="icon-drawer3"></i> Aset Tetap
-							</router-link>
+							<div class="dropdown-submenu" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']" :class="{'show' : dropdownMenu == 'aset'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('aset')">
+									<i class="icon-drawer3"></i> Arsip
+								</a>
 
-							<router-link :to="{ name: 'asetTetap'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_produk_cu'] && currentUser.id_cu == 0">
-								<i class="icon-cabinet"></i> Jenis Aset Tetap
-							</router-link> -->
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'aset'}">
+
+									<router-link :to="{ name: 'asetTetap'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap'] && currentUser.id_cu == 0">
+										Aset Tetap
+									</router-link>
+
+									<router-link :to="{ name: 'asetTetapJenis'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap_jenis'] && currentUser.id_cu == 0">
+										Jenis Aset Tetap
+									</router-link>
+
+									<router-link :to="{ name: 'asetTetapLokasi'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap_lokasi'] && currentUser.id_cu == 0">
+										Lokasi Aset Tetap
+									</router-link>
+
+								</div>
+							</div>	
 
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 

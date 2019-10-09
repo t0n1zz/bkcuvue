@@ -82,11 +82,10 @@ Route::get('/testroute', function () {
 	// 	]);
 
 		// create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_artikel_simo']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_artikel_simo']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_artikel_simo']);
-		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'laporan_jalinan_klaim']);
-		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'pencairan_jalinan_klaim']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_aset_tetap']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_aset_tetap']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_aset_tetap']); 
+		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_aset_tetap']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

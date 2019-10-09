@@ -108,20 +108,20 @@
               <span v-for="(anggota_cu,index) in props.item.anggota_cu_not_keluar" :key="index">
                 <span v-if="$route.params.cu != 'semua'">
                   <span v-if="$route.params.cu == anggota_cu.id">
-                    {{ anggota_cu.no_ba }}
+                    {{ anggota_cu.pivot.no_ba }}
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.no_ba }}</label>
+                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
               </span>
             </span>
             <span v-else-if="props.item.anggota_cu_keluar">
               <span v-for="(anggota_cu,index) in props.item.anggota_cu_keluar" :key="index">
                 <span v-if="$route.params.cu != 'semua'">
                   <span v-if="$route.params.cu == anggota_cu.id">
-                    {{ anggota_cu.no_ba }}
+                    {{ anggota_cu.pivot.no_ba }}
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.no_ba }}</label>
+                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
               </span>
             </span>
             <span v-else>-</span>

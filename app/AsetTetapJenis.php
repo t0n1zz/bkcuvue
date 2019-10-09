@@ -4,11 +4,10 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class AsetTetapJenis extends Model {
     
-    use Dataviewer, LogsActivity, Sluggable;
+    use Dataviewer, LogsActivity;
 
     protected $table = 'aset_tetap_jenis';
 
@@ -16,23 +15,22 @@ class AsetTetapJenis extends Model {
     protected static $logOnlyDirty = true;
     
     public static $rules = [
-        'name' => 'required',
-        'deskripsi' => 'required|min:5'
+        'name' => 'required'
     ];
     
-    protected $fillable = ['name','deskripsi'];
+    protected $fillable = ['name','keterangan'];
 
     protected $allowedFilters = [
-        'id','name','deskripsi','created_at','updated_at','has_aset_tetap_count'
+        'id','name','keterangan','created_at','updated_at','has_aset_tetap_count'
     ];
 
     protected $orderable = [
-        'id','name','deskripsi','created_at','updated_at','has_aset_tetap_count'
+        'id','name','keterangan','created_at','updated_at','has_aset_tetap_count'
     ];
 
     public static function initialize(){
         return [
-            'name' => '', 'deskripsi' => ''
+            'name' => '', 'keterangan' => ''
         ];
     }
 

@@ -268,6 +268,29 @@ class AktivisController extends Controller{
 			]);
 	}
 
+	public function get($id)
+	{
+		if($id == 0){
+			$tipe = 3;
+			$id = 1;
+		}else{
+			$tipe = 1;
+		}
+
+		$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+		->whereHas('pekerjaan', function($query) use ($id,$tipe){
+			$query->where('tipe',$tipe)->where('id_tempat',$id)
+			->where(function($q){
+				$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
+			});
+		})->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 
 	public function create()
 	{
@@ -579,7 +602,9 @@ class AktivisController extends Controller{
 			$kelas->selesai = $request->pekerjaan['selesai'];
 		}
 
-		$kelas->keterangan_tidak_aktif = $request->pekerjaan['keterangan_tidak_aktif'];
+		if(!empty($request->pekerjaan['keterangan_tidak_aktif'])){
+			$kelas->keterangan_tidak_aktif = $request->pekerjaan['keterangan_tidak_aktif'];
+		}
 
 		$kelas->save();
 

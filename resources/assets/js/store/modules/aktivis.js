@@ -130,8 +130,6 @@ export const aktivis = {
         });
     },
 
- 
-
     // load by pekerjaan
     indexPekerjaan( {commit}, id ){
       commit('setDataStatS1', 'loading');
@@ -214,6 +212,20 @@ export const aktivis = {
       aktivisAPI.indexAnggotaCu( id )
         .then( function( response ){
           commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    get( { commit }, id){
+      commit('setDataStatS', 'loading');
+      
+      aktivisAPI.get( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
         })
         .catch( error => {

@@ -645,6 +645,123 @@
 						]
 					},
 					{
+						name: 'Aset Tetap',
+						icon: 'icon-drawer3',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_aset_tetap',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Aset Tetap'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_aset_tetap',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Aset Tetap'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_aset_tetap',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Aset Tetap'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_aset_tetap',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Aset Tetap'
+							}
+						]
+					},
+					{
+						name: 'Jenis Aset Tetap',
+						icon: 'icon-drawer3',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_aset_tetap_jenis',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Aset Tetap'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_aset_tetap_jenis',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Aset Tetap'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_aset_tetap_jenis',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Aset Tetap'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_aset_tetap_jenis',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Aset Tetap'
+							}
+						]
+					},
+					{
+						name: 'Lokasi Aset Tetap',
+						icon: 'icon-drawer3',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_aset_tetap_lokasi',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Lokasi Aset Tetap'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_aset_tetap_lokasi',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Lokasi Aset Tetap'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_aset_tetap_lokasi',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Lokasi Aset Tetap'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_aset_tetap_lokasi',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Lokasi Aset Tetap'
+							}
+						]
+					},
+					{
 						name: 'Mitra Perseorangan',
 						icon: 'icon-briefcase',
 						secondRow: true,
@@ -1017,6 +1134,21 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_aset_tetap',
+						'create_aset_tetap',
+						'update_aset_tetap',
+						'destroy_aset_tetap',
+
+						'index_aset_tetap_jenis',
+						'create_aset_tetap_jenis',
+						'update_aset_tetap_jenis',
+						'destroy_aset_tetap_jenis',
+
+						'index_aset_tetap_lokasi',
+						'create_aset_tetap_lokasi',
+						'update_aset_tetap_lokasi',
+						'destroy_aset_tetap_lokasi',
+
 						'index_mitra_orang',
 						'create_mitra_orang',
 						'update_mitra_orang',
@@ -1201,6 +1333,21 @@
 						'create_aktivis',
 						'update_aktivis',
 						'destroy_aktivis',
+
+						'index_aset_tetap',
+						'create_aset_tetap',
+						'update_aset_tetap',
+						'destroy_aset_tetap',
+
+						'index_aset_tetap_jenis',
+						'create_aset_tetap_jenis',
+						'update_aset_tetap_jenis',
+						'destroy_aset_tetap_jenis',
+
+						'index_aset_tetap_lokasi',
+						'create_aset_tetap_lokasi',
+						'update_aset_tetap_lokasi',
+						'destroy_aset_tetap_lokasi',
 
 						'index_mitra_orang',
 						'create_mitra_orang',

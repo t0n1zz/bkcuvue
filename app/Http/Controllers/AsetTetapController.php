@@ -20,7 +20,7 @@ class AsetTetapController extends Controller{
 
 	public function index()
 	{
-		$table_data = AsetTetap::with('aktivis')->advancedFilter();
+		$table_data = AsetTetap::with('aktivis','jenis','lokasi','pembeli')->withCount('hasAset')->advancedFilter();
 
 		return response()
 		->json([
@@ -64,7 +64,7 @@ class AsetTetapController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = AsetTetap::findOrFail($id);
+		$kelas = AsetTetap::with('aset')->findOrFail($id);
 
 		return response()
 			->json([

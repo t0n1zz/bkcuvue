@@ -32,7 +32,6 @@ class User extends Authenticatable implements JWTSubject
 
     public static $rules = [
         'name' => 'required|min:5',
-        'email' => 'required|email',
         'username' => 'required|min:5',
         'password' => 'required|min:5',
     ];
