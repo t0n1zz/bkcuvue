@@ -20,7 +20,29 @@ class AsetTetapController extends Controller{
 
 	public function index()
 	{
-		$table_data = AsetTetap::with('aktivis','jenis','lokasi','pembeli')->withCount('hasAset')->advancedFilter();
+		$table_data = AsetTetap::with('aktivis','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
+			$q->select(DB::raw('sum(harga)'));
+		}])->advancedFilter();
+
+		foreach($table_data as $datas){
+			$datas->total_harga = $datas->harga + $datas->harga_sub;
+		}
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSub($id)
+	{
+		$table_data = AsetTetap::with('aktivis','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
+			$q->select(DB::raw('sum(harga)'));
+		}])->where('aset_id',$id)->advancedFilter();
+
+		foreach($table_data as $datas){
+			$datas->total_harga = $datas->harga + $datas->harga_sub;
+		}
 
 		return response()
 		->json([
@@ -116,7 +138,7 @@ class AsetTetapController extends Controller{
 
 	public function destroy($id, $cu)
 	{
-		$kelas = AsetTetap::findOrFail($id);
+		$kelas = AsetTetap::with('hasAset')->findOrFail($id);
 
 		$name = $kelas->name;
 
@@ -124,6 +146,14 @@ class AsetTetapController extends Controller{
 			File::delete($this->imagepath . $kelas->gambar . '.jpg');
 			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
 		}
+
+		if($kelas->hasAset){
+			foreach($kelas->hasAset as $data){
+				$data->aset_id = 0;
+				$data->update();
+			}
+		}
+
 		$kelas->delete();
 
 		return response()

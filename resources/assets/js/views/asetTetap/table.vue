@@ -22,6 +22,10 @@
 					<i class="icon-pencil5"></i> Ubah Lokasi
 				</button>
 
+				<button @click.prevent="modalOpen('kondisi')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah Kondisi
+				</button>
+
 				<!-- detail-->
 				<button @click.prevent="modalOpen('detail')" class="btn btn-light mb-1" :disabled="!selectedItem.id">
 					<i class="icon-stack2"></i> Detail
@@ -49,6 +53,10 @@
 
 				<button @click.prevent="modalOpen('lokasi')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah Lokasi
+				</button>
+
+				<button @click.prevent="modalOpen('kondisi')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_aset_tetap']" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah Kondisi
 				</button>
 				
 				<!-- detail -->
@@ -100,16 +108,22 @@
 						<check-value :value="props.item.pembeli.name" v-if="props.item.pembeli"></check-value>
 					</td>
 					<td v-if="!columnData[11].hide">
-						<check-value :value="props.item.harga" valueType="currency"></check-value>
-					</td>
-					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.has_aset_count" valueType="currency"></check-value>
 					</td>
+					<td v-if="!columnData[12].hide">
+						<check-value :value="props.item.harga" valueType="currency"></check-value>
+					</td>
 					<td v-if="!columnData[13].hide">
+						<check-value :value="props.item.harga_sub" valueType="currency"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide">
+						<check-value :value="props.item.total_harga" valueType="currency"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.kondisi"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[16].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -119,7 +133,19 @@
 		</data-viewer>
 					
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :color="modalColor" :size="modalSize" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<template slot="modal-body1">
+        <form-lokasi :kelas="kelas" :selectedItem="selectedItem" @tutup="modalTutup" v-if="state == 'lokasi'"></form-lokasi>
+        <form-kondisi :kelas="kelas" :selectedItem="selectedItem" @tutup="modalTutup" v-else-if="state == 'kondisi'"></form-kondisi>
+        <detail :kelas="kelas" :selectedItem="selectedItem" @tutup="modalTutup" v-else-if="state == 'detail'"></detail>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -130,12 +156,18 @@
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
+	import formLokasi from "./formLokasi.vue";
+	import formKondisi from "./formKondisi.vue";
+	import detail from "./detail.vue";
 
 	export default {
 		components: {
 			DataViewer,
 			appModal,
-			checkValue
+			checkValue,
+			formLokasi,
+			formKondisi,
+			detail
 		},
 		props:['title','kelas'],
 		data() {
@@ -246,7 +278,16 @@
 						filter: true,
 					},
 					{
-						title: 'Harga',
+						title: 'Sub',
+						name: 'has_aset_count',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Harga Induk',
 						name: 'harga',
 						tipe: 'numeric',
 						sort: true,
@@ -255,8 +296,17 @@
 						filter: true,
 					},
 					{
-						title: 'Sub',
-						name: 'has_aset_count',
+						title: 'Harga Sub',
+						name: 'harga_sub',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Total Harga',
+						name: 'total_harga',
 						tipe: 'numeric',
 						sort: true,
 						hide: false,
@@ -295,7 +345,9 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
-				modalButton: ''
+				modalButton: '',
+				modalColor: '',
+				modalSize:'',
 			}
 		},
 		created(){
@@ -315,7 +367,7 @@
 				if(value === "success"){
 					this.modalTitle = this.updateMessage.message;
 					this.modalContent = '';
-					this.fetch();
+					this.fetch(this.query);
 				}else if(value === "fail"){
 					this.modalContent = this.updateMessage;
 				}else{
@@ -336,7 +388,6 @@
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
-				this.modalState = 'confirm-tutup';
 				this.state = state;
 
 				if(isMobile){
@@ -345,11 +396,24 @@
 
 				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
+					this.modalState = "confirm-tutup";
 					this.modalButton = 'Iya, Hapus';
+					this.modalSize = "''";
 				} else if (state == 'lokasi'){
-
+					this.modalTitle = 'Ubah lokasi aset dengan nama ' + this.selectedItem.name + ' ?';
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "''";
+				} else if (state == 'kondisi'){
+					this.modalTitle = 'Ubah kondisi aset dengan nama ' + this.selectedItem.name + ' ?';
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "''";
 				} else if (state == 'detail'){
-					
+					this.modalTitle = 'Detail aset dengan nama ' + this.selectedItem.name;
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "modal-lg";
 				}
 			},
 			modalTutup() {

@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/asetTetap' , {params: p});
   },
   
+  indexSub: function( p, id ){
+    return axios.get('/api/asetTetap/indexSub/' + id , {params: p});
+  },
+  
   create: function(){
     return axios.get('/api/asetTetap/create');
   },

@@ -558,7 +558,7 @@
           this.modalState = "confirm-tutup";
           this.modalTitle = "Hapus " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
           this.modalButton = "Iya, Hapus";
-          this.modalSize = "'";
+          this.modalSize = "''";
         }else if(state == "analisis"){
           this.modalState = 'normal1';
 					this.modalTitle = 'Analisis ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;

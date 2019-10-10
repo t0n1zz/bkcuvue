@@ -988,7 +988,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.1.6',
+				clientVersion: '3.1.7',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				laporanCuDraftCount: [],

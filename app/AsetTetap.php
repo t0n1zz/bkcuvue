@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use DB;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;

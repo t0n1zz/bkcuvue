@@ -39,7 +39,7 @@
 								</div>
 
 								<!-- aset card -->
-								<div class="card" v-if="selectedItem != []">
+								<div class="card" v-if="form.aset_id != ''">
 									<div class="card-header bg-info text-white header-elements-inline">
 										<h6 class="card-title">Induk Aset</h6>
 										<div class="header-elements">
@@ -47,40 +47,7 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<div class="media flex-column flex-sm-row mt-0 mb-3">
-											<div class="mr-sm-3 mb-2 mb-sm-0">
-												<div class="card-img-actions">
-														<img :src="'/images/asetTetap/' + selectedItem.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="selectedItem.gambar" >
-														<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
-												</div>
-											</div>
-
-											<div class="media-body">
-												<div class="row">
-													<div class="col-sm-6">
-														<ul class="list list-unstyled mb-0">
-															<li><b>Kode:</b> <check-value :value="selectedItem.kode"></check-value></li>
-															<li><b>Nama:</b> <check-value :value="selectedItem.name"></check-value></li>
-															<li><b>Jenis</b> <check-value :value="selectedItem.jenis.name" v-if="selectedItem.jenis"></check-value><span v-else>-</span></li>
-															<li><b>Merk:</b> <check-value :value="selectedItem.merk"></check-value></li>
-															<li><b>Tipe:</b> <check-value :value="selectedItem.tipe"></check-value></li>
-															<li><b>Lokasi:</b> <check-value :value="selectedItem.lokasi.name" v-if="selectedItem.lokasi"></check-value><span v-else>-</span></li>
-														</ul>
-													</div>
-													<div class="col-sm-6">
-														<ul class="list list-unstyled mb-0">
-															<li><b>Penanggungjawab:</b> <check-value :value="selectedItem.aktivis.name" v-if="selectedItem.aktivis"></check-value><span v-else>-</span></li>
-															<li><b>Tgl. Beli:</b> <span v-html="$options.filters.date(selectedItem.tanggal)"></span></li>
-															<li><b>Pembeli:</b> <check-value :value="selectedItem.pembeli.name" v-if="selectedItem.pembeli"></check-value><span v-else>-</span></li>
-															<li><b>Harga:</b> <check-value :value="selectedItem.harga" valueType="currency"></check-value></li>
-															<li><b>Sub:</b> <check-value :value="selectedItem.has_aset_count" valueType="currency"></check-value></li>
-															<li><b>Kondisi:</b> <check-value :value="selectedItem.kondisi"></check-value></li>
-														</ul>
-													</div>
-												</div>
-												
-											</div>
-										</div>
+										<card-data :itemData="selectedItem"></card-data>
 									</div>
 								</div>
 
@@ -136,7 +103,6 @@
 									</template>
 
 								</data-viewer>
-
 
 								<!-- form -->
 								<div class="row" v-if="isInduk">
@@ -529,6 +495,7 @@
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import formJenis from "../asetTetapJenis/form.vue";
 	import formLokasi from "../asetTetapLokasi/form.vue";
+	import cardData from "./card.vue";
 	import DataViewer from '../../components/dataviewer2.vue';
 	import checkValue from '../../components/checkValue.vue';
 
@@ -546,7 +513,8 @@
 			formLokasi,
 			DataViewer,
 			infoIcon,
-			checkValue
+			checkValue,
+			cardData
 		},
 		data() {
 			return {
@@ -577,7 +545,7 @@
             delimiter: '.'
 					},
 				},
-				selectedItem: [],
+				selectedItem: {},
 				query: {
 					order_column: "name",
 					order_direction: "asc",
@@ -626,9 +594,13 @@
 		watch: {
 			formStat(value){
 				if(value == 'success'){
-					if(this.$route.meta.mode === 'edit' && this.form.aset){
-						this.isInduk = "false";
-						this.selectedItem = this.form.aset;
+					if(this.$route.meta.mode === 'edit'){
+						if(this.form.aset){
+							this.isInduk = "false";
+							this.selectedItem = this.form.aset;
+						}else{
+							this.isInduk = "true";
+						}
 					}
 				}
 			},

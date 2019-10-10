@@ -7,8 +7,10 @@ export const asetTetap = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    dataS2: [], //collection
     dataStat: '',
     dataStatS: '',
+    dataStatS2: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -19,8 +21,10 @@ export const asetTetap = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataS2: state => state.dataS2,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataStatS2: state => state.dataStatS2,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -40,6 +44,20 @@ export const asetTetap = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexSub( { commit }, [p, id] ){
+      commit('setDataStatS2', 'loading');
+      
+      AsetTetapAPI.indexSub( p, id )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
         });
     },
 
@@ -180,6 +198,10 @@ export const asetTetap = {
     },
 
     // reset
+    resetDataS2( {commit} ){
+      commit('setDataS2', []);
+      commit('setDataStatS2', '');
+    },
     resetDataStat( {commit} ){
       commit('setDataStat', '');
     },
@@ -196,11 +218,17 @@ export const asetTetap = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setDataS2 ( state, data ){
+      state.dataS2 = data;
+    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatS2( state, status ){
+      state.dataStatS2 = status;
     },
     setUpdate ( state, data ){
       state.update = data;

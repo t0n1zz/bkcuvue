@@ -291,6 +291,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/asetTetap/cariData/{kode}', 'AsetTetapController@cariData');
     Route::group(['middleware' => ['permission:index_aset_tetap']], function () {
         Route::get('/asetTetap', 'AsetTetapController@index');
+        Route::get('/asetTetap/indexSub/{id}', 'AsetTetapController@indexSub');
         Route::get('/asetTetap/history', 'AsetTetapController@history');
     });
     Route::group(['middleware' => ['permission:create_aset_tetap']], function () {
@@ -300,7 +301,6 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:update_aset_tetap']], function () {
         Route::get('/asetTetap/edit/{id}', 'AsetTetapController@edit');
         Route::post('/asetTetap/update/{id}', 'AsetTetapController@update');
-        Route::post('/asetTetap/updateKondisi/{id}', 'AsetTetapController@updateKondisi');
     });
     Route::group(['middleware' => ['permission:destroy_aset_tetap']], function () {
         Route::delete('/asetTetap/{id}', 'AsetTetapController@destroy');
