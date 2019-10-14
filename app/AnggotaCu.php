@@ -46,6 +46,18 @@ class AnggotaCu extends Model {
         ];
     }
 
+    public function anggota_cu_cu(){
+        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id');
+    }
+
+    public function anggota_cu_cu_not_keluar(){
+        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id')->whereNull('tanggal_keluar');
+    }
+
+    public function anggota_cu_cu_keluar(){
+        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id')->whereNotNull('tanggal_keluar');
+    }
+
     public function anggota_cu(){
         $id = Auth::user()->getIdCu();
 
@@ -60,9 +72,9 @@ class AnggotaCu extends Model {
         $id = Auth::user()->getIdCu();
 
         if($id == 0){
-            return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','cu_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->whereNull('tanggal_keluar')->withTimestamps();
+            return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','cu_id','tp_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->whereNull('tanggal_keluar')->select('cu.id','cu.name','anggota_cu_cu.*')->withTimestamps();
         }else{
-            return $this->belongsToMany('App\Cu','anggota_cu_cu')->where('cu.id',$id)->withPivot('id','cu_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->whereNull('tanggal_keluar')->withTimestamps();
+            return $this->belongsToMany('App\Cu','anggota_cu_cu')->where('cu.id',$id)->withPivot('id','cu_id','tp_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->select('cu.id','cu.name','anggota_cu_cu.*')->whereNull('tanggal_keluar')->withTimestamps();
         }
     }
 
@@ -70,9 +82,9 @@ class AnggotaCu extends Model {
         $id = Auth::user()->getIdCu();
 
         if($id == 0){
-            return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','cu_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->whereNotNull('tanggal_keluar')->withTimestamps();
+            return $this->belongsToMany('App\Cu','anggota_cu_cu')->withPivot('id','cu_id','tp_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->whereNotNull('tanggal_keluar')->select('cu.id','cu.name','anggota_cu_cu.*')->withTimestamps();
         }else{
-            return $this->belongsToMany('App\Cu','anggota_cu_cu')->where('cu.id',$id)->withPivot('id','cu_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->whereNotNull('tanggal_keluar')->withTimestamps();
+            return $this->belongsToMany('App\Cu','anggota_cu_cu')->where('cu.id',$id)->withPivot('id','cu_id','tp_id','no_ba','tanggal_masuk','tanggal_keluar','keterangan_masuk','keterangan_keluar')->select('cu.id','cu.name','anggota_cu_cu.*')->whereNotNull('tanggal_keluar')->withTimestamps();
         }
     }
 

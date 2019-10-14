@@ -36,6 +36,7 @@
         </div>
         <div class="col-sm-4">
           <ul class="list list-unstyled mb-0">
+            <li v-if="itemData.anggota_cu_cu"><b>Asal TP/KP:</b> {{itemData.anggota_cu_cu[0].tp  ? itemData.anggota_cu_cu[0].tp.name : ''}}</li>
             <li><b>Provinsi:</b> {{ itemData.provinces ? itemData.provinces.name : ''}}</li>
             <li><b>Kabupaten:</b> {{ itemData.regencies ? itemData.regencies.name : ''}}</li>
             <li><b>Kecamatan:</b> {{ itemData.districts ? itemData.districts.name : ''}}</li>

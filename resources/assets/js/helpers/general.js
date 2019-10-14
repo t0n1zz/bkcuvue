@@ -23,7 +23,7 @@ export function initialize(store, router) {
 		next();
 	});
   
-  axios.interceptors.response.use((response) => {
+  axios.interceptors.response.use(response => {
 		if(store.state.auth.isLoggedIn){
 			const currentTime = new Date().getTime() / 1000;
 			const user = getLocalUser();
@@ -69,7 +69,7 @@ export function initialize(store, router) {
 		}else{
 			return response;
 		}  
-  }, (error) => {
+  }, error => {
 		if (error.response.status == 401) {
 			store.dispatch('auth/logout');
 
@@ -77,8 +77,8 @@ export function initialize(store, router) {
 				path:'/login',
 				query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
 			});
+			
 		}
-
 		return Promise.reject(error);
   });
 

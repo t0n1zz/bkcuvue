@@ -57,12 +57,12 @@
 											</span>
 
 											<!-- select -->
-											<select class="form-control" name="anggota_cu_cu_id" v-model="anggota_cu_cu_id" data-width="100%" :disabled="itemDataCu.length == 0 || $route.meta.mode == 'edit'" @change="changeCU($event.target.value)">
+											<select class="form-control" name="anggota_cu_cu_id" v-model="anggota_cu_cu_id" data-width="100%" :disabled="itemData.anggota_cu_cu.length == 0 || $route.meta.mode == 'edit'" @change="changeCU($event.target.value)">
 												<option disabled value="">
-													<span v-if="itemDataCuStat === 'loading'">Mohon tunggu...</span>
+													<span v-if="itemData === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih keanggotaan CU</span>
 												</option>
-												<option v-for="(anggota_cu_cu,index) in itemDataCu" :value="anggota_cu_cu.id" :key="index">CU {{anggota_cu_cu.cu.name}} | No. BA: {{ anggota_cu_cu.no_ba }} | Tanggal Jadi Anggota: <span v-if="anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(anggota_cu_cu.tanggal_masuk)"></span></option>
+												<option v-for="(anggota_cu_cu,index) in itemData.anggota_cu_cu" :value="anggota_cu_cu.id" :key="index">CU {{anggota_cu_cu.cu.name}} {{anggota_cu_cu.tp ? ' | ' + anggota_cu_cu.tp.name : ''}} | No. BA: {{ anggota_cu_cu.no_ba }} | Tanggal Jadi Anggota: <span v-if="anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(anggota_cu_cu.tanggal_masuk)"></span></option>
 											</select>
 
 										</div>
@@ -475,17 +475,10 @@
 
 					// cu
 					if(this.itemData){
-						if(this.itemData.anggota_cu){
+						if(this.itemData.anggota_cu_cu){
 							var valData;
-							for(valData of this.itemData.anggota_cu){
-								var datas = {};
-								var cu = {};
-								cu.name = valData.name;
-								cu.id = valData.id;
-	
-								datas = valData.pivot;
-								datas.cu = cu;
-								this.itemDataCu.push(datas);
+							for(valData of this.itemData.anggota_cu_cu){
+								this.itemDataCu.push(valData);
 							}
 						}
 						// get form

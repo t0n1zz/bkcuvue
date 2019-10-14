@@ -37,7 +37,7 @@ Vue.use(VueCkeditor.plugin, options);
 window.moment = moment; // handling date formating
 window.moment.locale('id'); // handling date formating locale
 window.axios = Axios; // handling http post
-window.api = new Api(); // handling axios api
+// window.api = new Api(); // handling axios api
 
 const router = new VueRouter({
   base: '/admins',

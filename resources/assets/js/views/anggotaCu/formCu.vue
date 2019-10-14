@@ -9,13 +9,13 @@
 		<div class="row">
 
 			<!-- cu -->
-			<div class="col-md-12" v-if="currentUser.id_cu === 0">
+			<div class="col-md-6" v-if="currentUser.id_cu === 0">
 				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.cu_id')}">
 
 					<!-- title -->
 					<h5 :class="{ 'text-danger' : errors.has('formDataCu.cu_id')}">
 						<i class="icon-cross2" v-if="errors.has('formDataCu.cu_id')"></i>
-						CU:
+						CU: <wajib-badge></wajib-badge>
 					</h5>
 
 					<!-- select -->
@@ -35,14 +35,41 @@
 				</div>
 			</div>
 
+			<!-- tp -->
+			<div class="col-md-6">
+				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.tp_id')}">
+
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('formDataCu.tp_id')}">
+						<i class="icon-cross2" v-if="errors.has('formDataCu.tp_id')"></i>
+						TP/KP: <wajib-badge></wajib-badge>
+					</h6>
+
+					<!-- select -->
+					<select class="form-control" name="id_tp" v-model="formDataCu.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP" @change="changeTp($event.target.value)">
+						<option disabled value="">
+							<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
+							<span v-else>Silahkan pilih TP/KP</span>
+						</option>
+						<option v-for="tp in modelTp" :value="tp.id">{{tp.name}}</option>
+					</select>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formDataCu.tp_id')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formDataCu.tp_id') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
+			</div>
+
 			<!-- no_ba -->
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.no_ba')}">
 
 					<!-- title -->
 					<h5 :class="{ 'text-danger' : errors.has('formDataCu.no_ba')}">
 						<i class="icon-cross2" v-if="errors.has('formDataCu.no_ba')"></i>
-						No. BA:
+						No. BA: <wajib-badge></wajib-badge>
 					</h5>
 
 					<!-- text -->
@@ -58,13 +85,13 @@
 			</div>
 
 			<!-- tanggal_masuk -->
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.tanggal_masuk')}">
 
 					<!-- title -->
 					<h5 :class="{ 'text-danger' : errors.has('formDataCu.tanggal_masuk')}">
 						<i class="icon-cross2" v-if="errors.has('formDataCu.tanggal_masuk')"></i>
-						Tgl. Jadi Anggota:
+						Tgl. Jadi Anggota: <wajib-badge></wajib-badge>
 					</h5>
 
 					<!-- text -->
@@ -128,13 +155,15 @@
 	import Message from "../../components/message.vue";
 	import Cleave from 'vue-cleave-component';
 	import produkCuAPI from '../../api/produkCu.js';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		props: ['mode','selected'],
 		components: {
 			checkValue,
 			Message,
-			Cleave
+			Cleave,
+			wajibBadge
 		},
 		data() {
 			return {
@@ -145,10 +174,15 @@
 					tanggal_masuk: '',
 					keterangan_masuk: '',
 					cu_id: 0,
+					tp_id: '',
 					cu: {
 						id: '',
 						name: '',
-					}
+					},
+					tp: {
+						id: '',
+						name: '',
+					},
 				},
 				modelProdukCu: [],
 				modelProdukCuStat: '',
@@ -175,10 +209,9 @@
 		},
 		created(){
 			this.fetchCU();
-
 			if(this.mode == 'edit'){
 				if(this.modelCUStat == 'success'){
-					this.formDataCu = this.selected;
+					this.formDataCu = Object.assign({},this.selected);
 				}
 			}
 		},
@@ -186,7 +219,8 @@
 			modelCUStat(value){
 				if(value === "success"){
 					if(this.mode == 'edit'){
-						this.formDataCu = this.selected;
+						this.formDataCu = Object.assign({},this.selected);
+						this.fetchTp(this.formDataCu.cu_id);
 					}
 				}
 			},
@@ -201,6 +235,25 @@
 				}
 				this.formDataCu.cu.id = cu.id;
 				this.formDataCu.cu.name = cu.name;
+				
+				this.fetchTp(cu.id);
+			},
+			changeTp(id){
+				let tp;
+				if(id != 0){
+					tp = _.find(this.modelTp, function(o){
+						return o.id == id;
+					});
+				}
+				if(this.formDataCu.tp != null){
+					this.formDataCu.tp.id = tp.id;
+					this.formDataCu.tp.name = tp.name;
+				}else{
+					var tpdata = {};
+					tpdata.id = tp.id;
+					tpdata.name = tp.name;
+					this.formDataCu.tp = tpdata;
+				}
 			},
 			fetchCU(){
 				if(this.modelCuStat != 'success'){
@@ -209,6 +262,9 @@
 					this.idCu = this.$route.params.cu;
 					this.tingkat = this.$route.params.tingkat;
 				}
+			},
+			fetchTp(value){
+				this.$store.dispatch('tp/getCu',value);
 			},
 			save(){
 				this.$validator.validateAll('formDataCu').then((result) => {
@@ -239,6 +295,10 @@
 				modelCUStat: 'headerDataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 		}
 	}

@@ -19,58 +19,14 @@
 								
 								<div class="row">
 
-									<!-- name -->
-									<div class="col-md-6">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama: <wajib-badge></wajib-badge>
-											</h5>
-
-											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama user" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;
-											</small>
-										</div>
-									</div>
-
-									<!-- email -->
-									<div class="col-md-6">
-										<div class="form-group" :class="{'has-error' : errors.has('form.email')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.email')}">
-												<i class="icon-cross2" v-if="errors.has('form.email')"></i>
-												Email:
-											</h5>
-
-											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'email'" data-vv-as="Email" v-model="form.email">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.email')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.email') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;
-											</small>
-										</div>
-									</div>
-
 									<!-- username -->
-									<div class="col-md-6" v-if="this.$route.meta.mode != 'edit'">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.username')}">
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.username')}">
 												<i class="icon-cross2" v-if="errors.has('form.username')"></i>
-												Username: <wajib-badge></wajib-badge>
+												Username: <wajib-badge></wajib-badge> <small><i>format: namapanggilan-namacu</i></small> 
 											</h5>
 
 											<!-- text -->
@@ -86,7 +42,7 @@
 									</div>
 
 									<!-- password -->
-									<div class="col-md-6" v-if="this.$route.meta.mode !== 'edit'">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.password')}">
 
 											<!-- title -->
@@ -108,7 +64,7 @@
 									</div>
 
 									<!-- password konfirmasi -->
-									<div class="col-md-6" v-if="this.$route.meta.mode !== 'edit'">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.passwordConfirm')}">
 
 											<!-- title -->
@@ -128,51 +84,98 @@
 										</div>
 									</div>
 
-									<!-- tipe -->
-									<div class="col-md-12" v-if="currentUser.id_cu == 0 && $route.meta.mode != 'edit'">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.tipe')}">
-												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
-												Tipe:
-											</h5>
-
-											<!-- select -->
-											<select name="CU" data-width="100%" class="form-control" v-model="roleTipe">
-												<option disabled value="">Silahkan pilih tipe</option>
-												<option value="bkcu">User BKCU</option>
-												<option value="cu">User CU</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;
-											</small>
-
-										</div>
-									</div>
-
 									<!-- select CU -->
-									<div class="col-md-12" v-if="currentUser.id_cu == 0 && roleTipe == 'cu'">
+									<div class="col-md-12" v-if="currentUser.id_cu == 0">
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>CU:</h5>
+											<h5>Tipe:</h5>
 
 											<!-- select -->
-											<select name="cu" data-width="100%" class="form-control" v-model="form.id_cu">
-												<option disabled value="0">Silahkan pilih CU</option>
+											<select name="cu" data-width="100%" class="form-control" v-model="form.id_cu" @change="changeCU($event.target.value)">
+												<option disabled value="">Silahkan pilih CU</option>
+												<option value="0">Puskopdit BKCU Kalimantan</option>
 												<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
 											</select>
 
 										</div>
 									</div>
 
+									<!-- aktivis -->
+									<div class="col-md-12" v-if="form.id_cu != '' && formStat == 'success'">
+										<h5>Data Aktivis User:</h5>
+
+										<identitas v-if="form.id_aktivis != ''" :itemData="form.aktivis" @deleteSelected="deleteSelected"></identitas>
+
+										<!-- peserta -->
+										<data-viewer :title="'Aktivis'" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetchAktivis" :isDasar="'true'" :isNoButtonRow="'true'" v-else>
+
+											<!-- item  -->
+											<template slot="item-desktop" slot-scope="props">
+												<tr class="text-nowrap cursor-pointer" @click="selectedRow(props.item)">
+													<td>
+														{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
+													</td>
+													<td>
+														<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+														<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+													</td>
+													<td>
+														<check-value :value="props.item.name"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.kelamin"></check-value>
+													</td>
+													<td v-if="!columnData[4].disable">
+														<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
+															<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
+															<span v-else>-</span>
+														</span>
+														<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
+															<check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
+															<span v-else>-</span>
+														</span>
+														<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
+															Puskopdit BKCU Kalimantan
+														</span>
+														<span v-else>-</span>
+													</td>
+													<td  v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
+													</td>
+													<td>
+														<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td>
+														<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td>
+														<check-value :value="props.item.pendidikan_tertinggi.name" v-if="props.item.pendidikan_tertinggi"></check-value>
+														<span v-else>-</span>
+													</td>
+													<td v-html="$options.filters.date(props.item.tanggal_lahir)">
+													</td>
+													<td>
+														<check-value :value="props.item.tempat_lahir"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.tinggi"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.agama"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.status"></check-value>
+													</td>
+												</tr>
+											</template>
+
+										</data-viewer>
+									</div>
+
 									<!-- hak-akses -->
-									<div class="col-md-12" v-if="this.$route.meta.mode !== 'edit' && roleTipe == 'bkcu' || this.$route.meta.mode !== 'edit' && roleTipe == 'cu'">
+									<div class="col-md-12" v-if="form.id_aktivis != '' && formStat == 'success'">
 										<br/>
 										<!-- title -->
 										<h5>Hak Akses:</h5>
@@ -219,6 +222,9 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import DataViewer from '../../components/dataviewer2.vue';
+	import checkValue from '../../components/checkValue.vue';
+	import identitas from './identitas.vue';
 
 	export default {
 		components: {
@@ -229,7 +235,10 @@
 			message,
 			formButton,
 			formInfo,
-			wajibBadge
+			wajibBadge,
+			DataViewer,
+			checkValue,
+			identitas
 		},
 		data() {
 			return {
@@ -239,6 +248,39 @@
 				level2Title: 'User',
 				kelas: 'user',
 				roleTipe:'',
+				selectedItem: [],
+				query: {
+					order_column: "name",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 10,
+					page: 1
+				},
+				columnData: [
+					{ title: 'No.' },
+					{ title: 'Foto' },
+					{
+						title: 'Nama',
+						name: 'name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true
+					},
+					{ title: 'Gender' },
+					{ title: 'CU',disable: false },
+					{ title: 'Tingkat' },
+					{ title: 'Jabatan' },
+					{ title: 'Pendidikan'},
+					{ title: 'Jurusan' },
+					{ title: 'Tgl. Lahir' },
+					{ title: 'Tempat Lahir' },
+					{ title: 'Tinggi' },
+					{ title: 'Agama' },
+					{ title: 'Status Pernikahan' },
+				],
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -250,30 +292,13 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
-		created(){
-			if(this.$route.meta.mode != 'edit'){
-				if(this.currentUser.id_cu == 0){
-					this.roleTipe = 'bkcu';
-				} else {
-					this.roleTipe = 'cu';
-				}
-			}
-		},
+		created(){},
 		watch: {
 			formStat(value){
 				if(value == 'success'){
-					if(this.$route.meta.mode == 'edit'){
-						if(this.form.id_cu == 0){
-							this.roleTipe = 'bkcu';
-						} else if(this.form.id_cu != 0){
-							this.roleTipe = 'cu';
-						}
-						this.checkUser('update_user',this.form.id_cu);
-					}else{
-						if(this.currentUser.id_cu == 0){
-							this.roleTipe = 'bkcu';
-						} else {
-							this.roleTipe = 'cu';
+					if(this.modelCuStat != 'success'){
+						if(this.modelCuStat != 'success'){
+							this.$store.dispatch('cu/getHeader');
 						}
 					}
 				}
@@ -290,31 +315,33 @@
 					this.modalContent = this.updateResponse;
 				}
 			},
-			roleTipe(value){
-				if(value == 'cu'){
-					if(this.modelCuStat != "success"){
-						if(this.modelCuStat != 'success'){
-							this.$store.dispatch('cu/getHeader');
-						}
-					}
-				}else{
-					this.form.id_cu = '0';
-				}
-			}
     },
 		methods: {
+			fetch(){
+				this.$store.dispatch(this.kelas + '/create');
+			},
+			fetchAktivis(params){
+				this.$store.dispatch('aktivis/indexCu', [params,this.form.id_cu,'semua','aktif'])
+				this.disableColumnCu(true);
+			},
+			changeCU(value){
+				this.fetchAktivis(this.query);
+			},
+			disableColumnCu(value){
+				this.columnData[4].disable = value;
+			},
+			selectedRow(item){
+				this.selectedItem = item;
+				this.form.id_aktivis = item.id;
+				this.form.aktivis = item;
+			},
+			deleteSelected(){
+				this.selectedItem = [];
+				this.form.id_aktivis = '';
+				this.form.aktivis = {};
+			},
 			hakForm(value){
 				this.form.permission = value;
-			},
-			fetch(){
-				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Ubah User';
-					this.titleDesc = 'Mengubah user';
-					this.titleIcon = 'icon-pencil5';
-				} else {
-					this.$store.dispatch(this.kelas + '/create');
-				}
 			},
 			changeRole(id){
 				this.$store.dispatch('loadRolePermission',id);
@@ -332,19 +359,13 @@
 				}
 			},
 			save() {
-				if(this.$route.meta.mode != 'edit'){
-					if(this.currentUser.id_cu != 0){
-						this.form.id_cu = this.currentUser.id_cu;
-					}
+				if(this.currentUser.id_cu != 0){
+					this.form.id_cu = this.currentUser.id_cu;
 				}
 
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
-						}else{
-							this.$store.dispatch(this.kelas + '/store', this.form);
-						}
+						this.$store.dispatch(this.kelas + '/store', this.form);
 						this.submited = false;
 					}else{
 						window.scrollTo(0, 0);
@@ -353,11 +374,7 @@
 				});
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
-				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
-				}
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 			},
 			modalTutup() {
 				this.modalShow = false;
@@ -375,16 +392,6 @@
 					this.modalShow = false
 				}
 			},
-			modalOpen_Penulis(){
-				this.formPenulis.id_cu = this.form.id_cu;
-
-				this.modalShow = true;
-				this.modalState = 'normal2';
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah penulis artikel';
-				this.formPenulis.name = '';
-				this.formPenulis.deskripsi = '';
-			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			}
@@ -400,6 +407,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('aktivis',{
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS'
 			}),
 			...mapGetters('cu',{
 				modelCu: 'headerDataS',

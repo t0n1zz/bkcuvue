@@ -439,7 +439,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu'}">
 
-									<router-link :to="{ name: 'anggotaCuCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'anggotaCuCu', params:{cu:'semua', tp:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
 
@@ -447,7 +447,7 @@
 									<div class="dropdown-divider"></div> 
 
 									<template v-for="(cu,index) in modelCu">
-										<router-link :to="{ name: 'anggotaCuCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu" :key="index">
+										<router-link :to="{ name: 'anggotaCuCu', params:{cu: cu.id, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="cu" :key="index">
 											CU {{ cu.name }}
 										</router-link>
 									</template>
@@ -456,7 +456,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'anggotaCuCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'anggotaCuCu', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0">
 								<i class="icon-man-woman"></i> Anggota CU
 							</router-link>
 
@@ -874,7 +874,7 @@
 						<div class="dropdown-menu dropdown-menu-right">
 							
 							<!-- tambah -->
-							<div class="dropdown-submenu" v-if="currentUser && currentUser.can['create_user']">
+							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser && currentUser.can['create_user']">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahPengaturan')">
 									<i class="icon-plus22"></i> Tambah
 								</a>

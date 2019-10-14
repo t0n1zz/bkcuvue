@@ -148,7 +148,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('Cu','pus')->where('id','!=',1)->advancedFilter();
+			$table_data = User::with('cu','pus')->where('id','!=',1)->advancedFilter();
 			
     	return response()
 			->json([
@@ -158,7 +158,7 @@ class UserController extends Controller
 
 	public function indexCu($id)
 	{
-			$table_data = User::with('Cu','pus')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
+			$table_data = User::with('cu','aktivis','pus')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
 			
     	return response()
 			->json([
@@ -239,7 +239,7 @@ class UserController extends Controller
 
 	public function edit($id)
 	{
-		$kelas = User::with('Cu','pus','roles')->findOrFail($id);
+		$kelas = User::with('cu','aktivis','pus','roles')->findOrFail($id);
 		
 		return response()
 				->json([

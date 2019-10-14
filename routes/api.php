@@ -383,9 +383,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCu', 'AnggotaCuController@index');
         Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
         Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
-        Route::get('/anggotaCu/indexCu/{id}', 'AnggotaCuController@indexCu'); 
-        Route::get('/anggotaCu/indexCuKeluar/{id}', 'AnggotaCuController@indexCuKeluar'); 
-        Route::get('/anggotaCu/indexCuMeninggal/{id}', 'AnggotaCuController@indexCuMeninggal'); 
+        Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
+        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal'); 
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaCuController@indexProduk'); 
         Route::get('/anggotaCu/count', 'AnggotaCuController@count');
         Route::get('/anggotaCu/history', 'AnggotaCuController@history');

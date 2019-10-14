@@ -5,6 +5,7 @@
 		<div class="card d-print-none" >
 			<div class="card-body">  
 				<div class="row">
+					
 					<!-- cu -->
 					<div class="col-sm-5" v-if="this.currentUser.id_cu === 0">
 						<div class="input-group" v-if="this.currentUser.id_cu === 0">
@@ -29,6 +30,7 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- periode cu -->
 					<div class="col-sm-5" v-if="idCu == 'semua'">
 						<div class="input-group" v-if="this.currentUser.id_cu === 0">
@@ -52,6 +54,7 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- tp  -->
 					<div :class="classTp()" v-else>
 						<div class="input-group">

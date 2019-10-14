@@ -5,9 +5,6 @@
 		<div class="col-lg-12">
 				<div class="form-group">
 					
-					<!-- title -->
-					<h5>Peran:</h5>
-
 					<!-- select -->
 					<select name="peran" data-width="100%" class="form-control" @change="changePeran($event.target.value)" v-model="selectPeran">
 						<option disabled value="" selected>Silahkan pilih peran user</option>

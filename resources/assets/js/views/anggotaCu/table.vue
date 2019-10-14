@@ -104,24 +104,32 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
           <td v-if="!columnData[5].hide">
-            <span v-if="props.item.anggota_cu_not_keluar">
-              <span v-for="(anggota_cu,index) in props.item.anggota_cu_not_keluar" :key="index">
+            <span v-if="props.item.anggota_cu_cu_not_keluar">
+              <span v-for="(anggota_cu,index) in props.item.anggota_cu_cu_not_keluar" :key="index">
                 <span v-if="$route.params.cu != 'semua'">
-                  <span v-if="$route.params.cu == anggota_cu.id">
-                    {{ anggota_cu.pivot.no_ba }}
+                  <span v-if="$route.params.cu == anggota_cu.cu_id">
+                    <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.no_ba }}</span>
+                    <span v-else>{{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
+                <label v-else class="badge badge-primary ml-1">
+                  <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.cu.name }} - {{ anggota_cu.no_ba }}</span>
+                  <span v-else>{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>    
+                </label>
               </span>
             </span>
-            <span v-else-if="props.item.anggota_cu_keluar">
-              <span v-for="(anggota_cu,index) in props.item.anggota_cu_keluar" :key="index">
+            <span v-else-if="props.item.anggota_cu_cu_keluar">
+              <span v-for="(anggota_cu,index) in props.item.anggota_cu_cu_keluar" :key="index">
                 <span v-if="$route.params.cu != 'semua'">
-                  <span v-if="$route.params.cu == anggota_cu.id">
-                    {{ anggota_cu.pivot.no_ba }}
+                  <span v-if="$route.params.cu == anggota_cu.cu_id">
+                    <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.no_ba + ' | ' }}</span>
+                    <span v-else>{{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">{{ anggota_cu.name }} - {{ anggota_cu.pivot.no_ba }}</label>
+                <label v-else class="badge badge-primary ml-1">
+                  <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.no_ba }}</span>
+                  <span v-else>{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>    
+                </label>
               </span>
             </span>
             <span v-else>-</span>
@@ -346,7 +354,7 @@
           },
           {
             title: 'No. BA',
-            name: 'cu.name',
+            name: 'no_ba',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -609,14 +617,14 @@
           }
 				}else{
           if(this.tipe == 'masih'){
-            this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
-            this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+            this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu, this.$route.params.tp]);
+            this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp;
           }else if(this.tipe == 'keluar'){
-            this.$store.dispatch(this.kelas + '/indexCuKeluar', [params,this.$route.params.cu]);
-            this.excelDownloadUrl = this.kelas + '/indexCuKeluar/' + this.$route.params.cu;
+            this.$store.dispatch(this.kelas + '/indexCuKeluar', [params,this.$route.params.cu, this.$route.params.tp]);
+            this.excelDownloadUrl = this.kelas + '/indexCuKeluar/' + this.$route.params.cu + '/' + this.$route.params.tp;
           }else{
-            this.$store.dispatch(this.kelas + '/indexCuMeninggal', [params,this.$route.params.cu]);
-            this.excelDownloadUrl = this.kelas + '/indexCuMeninggal/' + this.$route.params.cu;
+            this.$store.dispatch(this.kelas + '/indexCuMeninggal', [params,this.$route.params.cu, this.$route.params.tp]);
+            this.excelDownloadUrl = this.kelas + '/indexCuMeninggal/' + this.$route.params.cu + '/' + this.$route.params.tp;
           }
 				}
         this.excelDownloadUrl = this.kelas;

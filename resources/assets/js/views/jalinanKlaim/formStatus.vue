@@ -199,10 +199,10 @@
             <!-- select -->
             <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
               <option disabled value="">Silahkan pilih status klaim</option>
-              <option value="0">Menunggu</option>
-              <option value="1">Dokumen Tidak Lengkap</option>
-              <option value="2">Ditolak</option>
-              <option value="3">Disetujui</option>
+              <option value="1">Menunggu</option>
+              <option value="2">Dokumen Tidak Lengkap</option>
+              <option value="3">Ditolak</option>
+              <option value="4">Disetujui</option>
             </select>
 
           </div>

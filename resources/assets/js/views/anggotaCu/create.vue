@@ -600,9 +600,36 @@
 				<div class="card-body">
 					
 						<div class="row">
-						
+							
+							<!-- tp -->
+							<div class="col-sm-4">
+								<div class="form-group" :class="{'has-error' : errors.has('form.tp_id')}">
+
+									<!-- title -->
+									<h6 :class="{ 'text-danger' : errors.has('form.tp_id')}">
+										<i class="icon-cross2" v-if="errors.has('form.tp_id')"></i>
+										TP/KP: <wajib-badge></wajib-badge>
+									</h6>
+
+									<!-- select -->
+									<select class="form-control" name="id_tp" v-model="form.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP">
+										<option disabled value="">
+											<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
+											<span v-else>Silahkan pilih TP/KP</span>
+										</option>
+										<option v-for="tp in modelTp" :value="tp.id">{{tp.name}}</option>
+									</select>
+
+									<!-- error message -->
+									<small class="text-muted text-danger" v-if="errors.has('form.tp_id')">
+										<i class="icon-arrow-small-right"></i> {{ errors.first('form.tp_id') }}
+									</small>
+									<small class="text-muted" v-else>&nbsp;</small>
+								</div>
+							</div>
+
 							<!-- no_ba -->
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
 
 									<!-- title -->
@@ -623,7 +650,7 @@
 							</div>
 
 							<!-- tanggal_masuk -->
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
 
 									<!-- title -->
@@ -699,7 +726,12 @@
 								<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
 								<span v-else>-</span>
 							</td>
+							<td>
+								<check-value :value="props.item.tp.name" v-if="props.item.tp"></check-value>
+								<span v-else>-</span>
+							</td>
 							<td><check-value :value="props.item.no_ba"></check-value></td>
+							<td><check-value :value="props.item.keterangan_masuk"></check-value></td>
 							<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
 						</tr>
 					</template>	
@@ -834,7 +866,9 @@
 				columnDataCu:[
 					{ title: 'No.' },
 					{ title: 'CU' },
+					{ title: 'TP/KP' },
 					{ title: 'No. BA' },
+					{ title: 'Keterangan' },
 					{ title: 'Tgl. Jadi Anggota' },
 				],
 				modalShow: false,
@@ -855,6 +889,9 @@
 				if (this.modelCuStat != 'success') {
 					this.$store.dispatch('cu/getHeader');
 				}
+			}else{
+				this.fetchTp(this.currentUser.id_cu);
+				
 			}
 			
 			this.form.id_cu = this.currentUser.id_cu;
@@ -866,11 +903,15 @@
 				if(value == 'success'){
 					if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit'){
 						this.fetchCu();
+					}else{
+						this.form.tp_id == '';
 					}
 					
 					if(this.mode == 'create_jalinan'){
 						this.form.nik = this.$route.params.nik;
 					}
+				}else if(value == 'fail'){
+					this.form.tp_id == '';
 				}
 			},
 			updateStat(value) {
@@ -905,24 +946,19 @@
 					this.itemDataCu = [];
 					var valData;
 
-					if(this.form.anggota_cu){
-						for(valData of this.form.anggota_cu){
-							var datas = {};
-							var cu = {};
-							cu.name = valData.name;
-							cu.id = valData.id;
-
-							datas = valData.pivot;
-							datas.cu = cu;
-							this.itemDataCu.push(datas);
+					if(this.form.anggota_cu_cu){
+						for(valData of this.form.anggota_cu_cu){
+							this.itemDataCu.push(valData);
 						}
 					}
 				}else{
-					let data = _.find(this.form.anggota_cu,{'id':this.currentUser.id_cu});
+					let data = _.find(this.form.anggota_cu_cu,{'cu_id':this.currentUser.id_cu});
 
 					if(data){
-						this.form.no_ba = data.pivot.no_ba;
-						this.form.tanggal_masuk = data.pivot.tanggal_masuk;
+						this.form.tp_id = data.tp_id;
+						this.form.no_ba = data.no_ba;
+						this.form.tanggal_masuk = data.tanggal_masuk;
+						this.form.keterangan_masuk = data.keterangan_masuk;
 					}
 				}
 
@@ -935,6 +971,9 @@
 				if(this.form.id_districts){
 					this.changeDistricts(this.form.id_districts);
 				}
+			},
+			fetchTp(value){
+				this.$store.dispatch('tp/getCu',value);
 			},
 			createCu(value){
 				this.itemDataCu.push(value);
@@ -949,7 +988,7 @@
 			},
 			save() {
 				if(this.currentUser.id_cu == 0){
-					this.form.cu = this.itemDataCu;
+					this.form.anggota_cu_cu = this.itemDataCu;
 				}else{
 					this.form.id_cu = this.currentUser.id_cu;
 				}
@@ -982,9 +1021,9 @@
 			},
 			back() {
 				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua'}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua', tp: 'semua'}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
 				}
 			},
 			selectedCuRow(index,item){
@@ -1047,7 +1086,6 @@
 					}else{
 						this.back();
 					}
-
 					this.$store.dispatch(this.kelas + '/resetUpdateStat');
 				}
 
@@ -1078,6 +1116,10 @@
 			...mapGetters('cu',{
 				modelCu: 'headerDataS',
 				modelCuStat: 'headerDataStatS',
+			}),
+			...mapGetters('tp',{
+				modelTp: 'dataS',
+				modelTpStat: 'dataStatS',
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

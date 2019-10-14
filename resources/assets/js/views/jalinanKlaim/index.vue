@@ -28,6 +28,9 @@
 						<div class="nav-tabs-responsive mb-3">
 							<ul class="nav nav-tabs nav-tabs-solid bg-light">
 								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'verifikasi'}" @click.prevent="changeTab('verifikasi')"><i class="icon-file-eye mr-2"></i> Verifikasi CU</a>
+								</li>
+								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'menunggu'}" @click.prevent="changeTab('menunggu')"><i class="icon-checkbox-unchecked mr-2"></i> Menunggu</a>
 								</li>
 								<li class="nav-item">
@@ -46,41 +49,47 @@
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'selesai'}" @click.prevent="changeTab('selesai')"><i class="icon-square mr-2"></i> Selesai</a>
 								</li>
 							</ul>
-						</div>	
+						</div>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'verifikasi'">
+							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
+							</div>
+						</transition>	
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'menunggu'">
-							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
+							<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'" :isSimple="false"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'tidakLengkap'" v-if="isTidakSesuai">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'"></table-data>
-							</div>
-						</transition>
-
-						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'ditolak'" v-if="isDitolak">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData2" :itemDataStat="itemDataStat2" :status="'2'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'disetujui'" v-if="isDisetujui">
+							<div v-show="tabName == 'ditolak'" v-if="isDitolak">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
+							<div v-show="tabName == 'disetujui'" v-if="isDisetujui">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData4" :itemDataStat="itemDataStat4" :status="'4'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'selesai'" v-if="isSelesai">
+							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'"></table-data>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'selesai'" v-if="isSelesai">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData6" :itemDataStat="itemDataStat6" :status="'6'"></table-data>
 							</div>
 						</transition>
 
@@ -167,12 +176,14 @@
 				itemData3: 'dataS3',
 				itemData4: 'dataS4',
 				itemData5: 'dataS5',
+				itemData6: 'dataS6',
 				itemDataStat: 'dataStatS',
 				itemDataStat1: 'dataStatS1',
 				itemDataStat2: 'dataStatS2',
 				itemDataStat3: 'dataStatS3',
 				itemDataStat4: 'dataStatS4',
 				itemDataStat5: 'dataStatS5',
+				itemDataStat6: 'dataStatS6',
 			}),
 		}
 	}

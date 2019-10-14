@@ -158,7 +158,7 @@
 	import checkValue from '../../components/checkValue.vue';
 	import formLokasi from "./formLokasi.vue";
 	import formKondisi from "./formKondisi.vue";
-	import detail from "./detail.vue";
+	import detail from "./formDetail.vue";
 
 	export default {
 		components: {

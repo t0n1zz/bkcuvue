@@ -364,7 +364,7 @@ const routes = [
 		meta: { requiresAuth: true, mode:'edit' } },
 
 	// anggota cu
-	{ path: '/anggotaCu/cu/:cu',
+	{ path: '/anggotaCu/cu/:cu/:tp',
 		name: 'anggotaCuCu', 
 		components: { default: anggotaCu, 'header': header, 'footer': footer  }, 
 		meta: { requiresAuth: true, mode:'cu' }},

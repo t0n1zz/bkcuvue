@@ -13,29 +13,29 @@
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-          <i class="icon-pencil5"></i> Ubah
+        <button @click.prevent="modalOpen('tipe')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Tipe
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
 
         <!-- reset password -->
-        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light mb-1"  v-if="currentUser.can && currentUser.can['reset_password']"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('resetPassword')" class="btn btn-light mb-1"  v-if="currentUser.can && currentUser.can['reset_password']"  :disabled="!selectedItem.id">
           <i class="icon-history"></i> Reset Password
         </button>
 
         <!-- aktifkan -->             
-        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['status_' + kelas]"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('updateStatus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['status_' + kelas]"  :disabled="!selectedItem.id">
           <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
           <span v-else-if="selectedItem.status == 0">Aktifkan</span>
           <span v-else>Status</span>
         </button> 
 
         <!-- hak akses -->
-        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light mb-1"  v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('akses')" class="btn btn-light mb-1"  v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-key"></i> Hak Akses
         </button>
 
@@ -55,29 +55,29 @@
         </router-link>
 
         <!-- ubah-->
-        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('tipe')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
 
         <!-- reset password -->
-        <button @click.prevent="modalConfirmOpen('resetPassword')" class="btn btn-light btn-block mb-1"  v-if="currentUser.can && currentUser.can['reset_password']"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('resetPassword')" class="btn btn-light btn-block mb-1"  v-if="currentUser.can && currentUser.can['reset_password']"  :disabled="!selectedItem.id">
           <i class="icon-history"></i> Reset Password
         </button>
 
         <!-- aktifkan -->             
-        <button @click.prevent="modalConfirmOpen('updateStatus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['status_' + kelas]"  :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('updateStatus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['status_' + kelas]"  :disabled="!selectedItem.id">
           <i class="icon-user-check"></i> <span v-if="selectedItem.status == 1">Tidak Aktifkan</span>
           <span v-else-if="selectedItem.status == 0">Aktifkan</span>
           <span v-else>Status</span>
         </button> 
 
         <!-- hak akses -->
-        <button @click.prevent="modalHakAksesOpen()" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('akses')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['hak_akses_' + kelas]" :disabled="!selectedItem.id">
           <i class="icon-key"></i> Hak Akses
         </button>
 
@@ -139,7 +139,7 @@
           <button class="btn btn-light" @click="modalTutup">
             <i class="icon-cross"></i> Tutup</button>
 
-          <button type="submit" class="btn btn-primary" @click="modalHakAksesSave">
+          <button type="submit" class="btn btn-primary" @click="modalConfirmOk">
             <i class="icon-floppy-disk"></i> Simpan</button>
         </div>  
 
@@ -148,7 +148,36 @@
           <button class="btn btn-light btn-block pb-2" @click="modalTutup">
             <i class="icon-cross"></i> Tutup</button>
 
-          <button type="submit" class="btn btn-primary btn-block pb-2" @click="modalHakAksesSave">
+          <button type="submit" class="btn btn-primary btn-block pb-2" @click="modalConfirmOk">
+            <i class="icon-floppy-disk"></i> Simpan</button>
+        </div> 
+
+			</template>
+
+      <!-- aktivis -->
+			<template slot="modal-body2">
+
+				<!-- hak-akses -->
+        <identitas :itemData="selectedItem.aktivis"></identitas>
+
+				<!-- divider -->
+				<hr>
+        
+        <!-- tombol desktop-->
+        <div class="text-center d-none d-md-block">
+          <button class="btn btn-light" @click="modalTutup">
+            <i class="icon-cross"></i> Tutup</button>
+
+          <button type="submit" class="btn btn-primary" @click="modalConfirmOk">
+            <i class="icon-floppy-disk"></i> Simpan</button>
+        </div>  
+
+        <!-- tombol mobile-->
+        <div class="d-block d-md-none">
+          <button class="btn btn-light btn-block pb-2" @click="modalTutup">
+            <i class="icon-cross"></i> Tutup</button>
+
+          <button type="submit" class="btn btn-primary btn-block pb-2" @click="modalConfirmOk">
             <i class="icon-floppy-disk"></i> Simpan</button>
         </div> 
 
@@ -165,12 +194,14 @@ import moment from 'moment';
 import DataViewer from '../../components/dataviewer2.vue';
 import appModal from '../../components/modal';
 import hakAksesForm from "../../components/hakAkses.vue";
+import identitas from "./identitas.vue";
   
 export default {
   components: {
     DataViewer,
     appModal,
-    hakAksesForm
+    hakAksesForm,
+    identitas
   },
   props:['title','kelas'],
   data(){
@@ -268,6 +299,7 @@ export default {
       ],
       tipeUser: '',
       modalHakAksesForm: [],
+      state: '',
       modalShow: false,
       modalState: '',
       modalColor: '',
@@ -342,22 +374,24 @@ export default {
     hakForm(value){
       this.modalHakAksesForm = value;
     },
-    modalConfirmOpen(source, isMobile, itemMobile) {
+    modalOpen(state) {
       this.modalShow = true;
-      this.modalState = 'confirm-tutup';
-      this.source = source;
+      
+      this.state = state;
 
-      if(isMobile){
-        this.selectedItem = itemMobile;
-      }
-
-      if (source == 'hapus') {
+      if (state == 'hapus') {
+        this.modalSize = '';
+        this.modalState = 'confirm-tutup';
         this.modalTitle = 'Hapus ' + this.kelas + ' dengan username ' + this.selectedItem.username + '?';
         this.modalButton = 'Iya, Hapus';
-      } else if (source == 'resetPassword') {
+      } else if (state == 'resetPassword') {
+        this.modalSize = '';
+        this.modalState = 'confirm-tutup';
         this.modalTitle = 'Reset password user  ' + this.selectedItem.username + ' ini?';
         this.modalButton = 'Iya, reset password';
-      } else if (source == 'updateStatus') {
+      } else if (state == 'updateStatus') {
+        this.modalSize = '';
+        this.modalState = 'confirm-tutup';
         if (this.selectedItem.status == 0) {
           this.modalTitle = 'Aktifkan user  ' + this.selectedItem.username + ' ini?';
           this.modalButton = 'Iya, aktifkan';
@@ -365,29 +399,23 @@ export default {
           this.modalTitle = 'Non-aktifkan user  ' + this.selectedItem.username + ' ini?';
           this.modalButton = 'Iya, non-aktifkan';
         }
+      } else if (state == 'tipe'){
+        this.modalColor = 'bg-primary';
+        this.modalTitle = 'Hak Akses User'
+        this.modalState = 'normal2';
+        this.modalSize = 'modal-lg';
+      } else if (state == 'akses'){
+        this.modalColor = 'bg-primary';
+        this.modalTitle = 'Hak Akses User'
+        this.modalState = 'normal1';
+        this.modalSize = 'modal-full';
+        if(this.selectedItem.id_cu == 0){
+          this.tipeUser = 'bkcu';
+        }else{
+          this.tipeUser = 'cu';
+        }
+        this.$store.dispatch(this.kelas + '/editHakAkses', this.selectedItem.id);
       }
-    },
-    modalHakAksesOpen(isMobile,itemMobile){
-      this.modalShow = true;
-      this.modalColor = 'bg-primary';
-      this.modalTitle = 'Hak Akses User'
-      this.modalState = 'normal1';
-      this.modalSize = 'modal-full';
-
-      if(isMobile){
-        this.selectedItem = itemMobile;
-      }
-
-      if(this.selectedItem.id_cu == 0){
-        this.tipeUser = 'bkcu';
-      }else{
-        this.tipeUser = 'cu';
-      }
-
-      this.$store.dispatch(this.kelas + '/editHakAkses', this.selectedItem.id);
-    },
-    modalHakAksesSave(){
-      this.$store.dispatch(this.kelas + '/updateHakAkses', [this.selectedItem.id, this.modalHakAksesForm]);
     },
     modalTutup() {
       this.modalShow = false;
@@ -398,13 +426,14 @@ export default {
       this.$store.dispatch(this.kelas + '/resetUpdateStat');
     },
     modalConfirmOk() {
-      var vm = this;
-      if (vm.source == 'hapus') {
+      if (this.state == 'hapus') {
         this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
-      } else if (vm.source == "resetPassword"){
+      } else if (this.state == "resetPassword"){
         this.$store.dispatch(this.kelas + '/updateResetPassword', this.selectedItem.id);
-      } else if (vm.source == "updateStatus"){
+      } else if (this.state == "updateStatus"){
         this.$store.dispatch(this.kelas + '/updateStatus', this.selectedItem.id);
+      } else if (this.state == ' akses'){
+        this.$store.dispatch(this.kelas + '/updateHakAkses', [this.selectedItem.id, this.modalHakAksesForm]);
       }
     }
   },

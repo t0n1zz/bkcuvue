@@ -94,10 +94,10 @@ export const anggotaCu = {
         });
     },
 
-    indexCu( {commit}, [p, id] ){
+    indexCu( {commit}, [p, cu, tp] ){
       commit('setDataStatS', 'loading');
       
-      AnggotaCuAPI.indexCu( p, id )
+      AnggotaCuAPI.indexCu( p, cu, tp )
         .then( function( response ){
           if(response.data.model){
             commit('setDataS', response.data.model );
@@ -112,10 +112,11 @@ export const anggotaCu = {
           commit('setDataStatS', 'fail');
         });
     }, 
-    indexCuKeluar( {commit}, [p, id] ){
+
+    indexCuKeluar( {commit}, [p, cu, tp] ){
       commit('setDataStatS2', 'loading');
       
-      AnggotaCuAPI.indexCuKeluar( p, id )
+      AnggotaCuAPI.indexCuKeluar( p, cu, tp )
         .then( function( response ){
           if(response.data.model){
             commit('setDataS2', response.data.model );
@@ -130,10 +131,11 @@ export const anggotaCu = {
           commit('setDataStatS2', 'fail');
         });
     }, 
-    indexCuMeninggal( {commit}, [p, id] ){
+
+    indexCuMeninggal( {commit}, [p, cu, tp] ){
       commit('setDataStatS3', 'loading');
       
-      AnggotaCuAPI.indexCuMeninggal( p, id )
+      AnggotaCuAPI.indexCuMeninggal( p, cu, tp )
         .then( function( response ){
           if(response.data.model){
             commit('setDataS3', response.data.model );

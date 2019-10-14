@@ -12,16 +12,16 @@ export default {
     return axios.get('/api/anggotaCu/indexMeninggal' ,{params: p});
   },
 
-  indexCu: function( p, id ){
-    return axios.get('/api/anggotaCu/indexCu/' + id, {params: p});
+  indexCu: function( p, cu, tp ){
+    return axios.get('/api/anggotaCu/indexCu/' + cu + '/' + tp, {params: p});
   },
 
-  indexCuKeluar: function( p, id ){
-    return axios.get('/api/anggotaCu/indexCuKeluar/' + id, {params: p});
+  indexCuKeluar: function( p, cu, tp ){
+    return axios.get('/api/anggotaCu/indexCuKeluar/' + cu + '/' + tp, {params: p});
   },
 
-  indexCuMeninggal: function( p, id ){
-    return axios.get('/api/anggotaCu/indexCuMeninggal/' + id, {params: p});
+  indexCuMeninggal: function( p, cu, tp ){
+    return axios.get('/api/anggotaCu/indexCuMeninggal/' + cu + '/' + tp, {params: p});
   },
 
   indexProduk: function( id, cu ){

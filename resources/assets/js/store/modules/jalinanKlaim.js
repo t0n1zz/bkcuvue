@@ -14,6 +14,7 @@ export const jalinanKlaim = {
     dataS3: [], //collection
     dataS4: [], //collection
     dataS5: [], //collection
+    dataS6: [], //collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
@@ -26,6 +27,7 @@ export const jalinanKlaim = {
     dataStatS3: '',
     dataStatS4: '',
     dataStatS5: '',
+    dataStatS6: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -46,6 +48,7 @@ export const jalinanKlaim = {
     dataS3: state => state.dataS3,
     dataS4: state => state.dataS4,
     dataS5: state => state.dataS5,
+    dataS6: state => state.dataS6,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
@@ -58,6 +61,7 @@ export const jalinanKlaim = {
     dataStatS3: state => state.dataStatS3,
     dataStatS4: state => state.dataStatS4,
     dataStatS5: state => state.dataStatS5,
+    dataStatS6: state => state.dataStatS6,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -147,6 +151,19 @@ export const jalinanKlaim = {
           commit('setDataStatS5', 'fail');
         });
     },
+    index6( { commit }, [p, awal, akhir] ){
+      commit('setDataStatS6', 'loading');
+      
+      JalinanKlaimAPI.index( p, 6, awal, akhir )
+        .then( function( response ){
+          commit('setDataS6', response.data.model );
+          commit('setDataStatS6', 'success');
+        })
+        .catch( error => {
+          commit('setDataS6', error.response);
+          commit('setDataStatS6', 'fail');
+        });
+    },
 
     // load by cu
     indexCu( { commit }, [p, cu, awal, akhir] ){
@@ -225,6 +242,19 @@ export const jalinanKlaim = {
         .catch( error => {
           commit('setDataS5', error.response);
           commit('setDataStatS5', 'fail');
+        });
+    },
+    indexCu6( { commit }, [p, cu, awal, akhir] ){
+      commit('setDataStatS6', 'loading');
+      
+      JalinanKlaimAPI.indexCu( p, cu, 6, awal, akhir )
+        .then( function( response ){
+          commit('setDataS6', response.data.model);
+          commit('setDataStatS6', 'success');
+        })
+        .catch( error => {
+          commit('setDataS6', error.response);
+          commit('setDataStatS6', 'fail');
         });
     },
 

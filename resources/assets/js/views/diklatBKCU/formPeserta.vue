@@ -272,7 +272,6 @@
 			return {
 				title: '',
 				kelas: 'aktivis',
-				selectedItem: [],
 				tingkatArray: [],
 				formPeserta:{
 					aktivis_id: '',
@@ -284,27 +283,13 @@
 					datang: '',
 					pulang: ''
 				},
+				selectedItem: [],
 				query: {
 					order_column: "name",
 					order_direction: "asc",
 					filter_match: "and",
 					limit: 5,
 					page: 1
-				},
-				cleaveOption: {
-          date:{
-            date: true,
-            datePattern: ['Y','m','d'],
-            delimiter: '-'
-					},
-					year:{
-            date: true,
-            datePattern: ['Y'],
-          },
-				},
-				message: {
-					show: false,
-					content: ''
 				},
 				columnData: [
 					{ title: 'No.' },
@@ -331,6 +316,22 @@
 					{ title: 'Agama' },
 					{ title: 'Status Pernikahan' },
 				],
+				cleaveOption: {
+          date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+					},
+					year:{
+            date: true,
+            datePattern: ['Y'],
+          },
+				},
+				message: {
+					show: false,
+					content: ''
+				},
+				
 				submited: false,
 			}
 		},

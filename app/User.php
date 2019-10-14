@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = 'users';
     protected $guard_name = 'api';
-    protected static $logAttributes = ['id_pus','id_cu','name', 'email', 'username','status','gambar'];
+    protected static $logAttributes = ['id_pus','id_cu','id_aktivis','name', 'email', 'username','status','gambar'];
     protected static $ignoreChangedAttributes = ['login','updated_at'];
     protected static $logOnlyDirty = true;
     
@@ -31,27 +31,29 @@ class User extends Authenticatable implements JWTSubject
     protected $appends = ['can'];
 
     public static $rules = [
-        'name' => 'required|min:5',
+        'id_pus' => 'required',
+        'id_cu' => 'required',
+        'id_aktivis' => 'required',
         'username' => 'required|min:5',
         'password' => 'required|min:5',
     ];
 
     protected $fillable = [
-        'id_pus','id_cu','name','email','username', 'password','gambar','status','login'
+        'id_pus','id_cu','id_aktivis','name','email','username', 'password','gambar','status','login'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at','login'
+        'id','id_cu','id_pus','id_aktivis','name','email','username','gambar','status','created_at','updated_at','login'
     ];
 
     protected $orderable = [
-        'id','id_cu','id_pus','name','email','username','gambar','status','created_at','updated_at','login'
+        'id','id_cu','id_pus','id_aktivis','name','email','username','gambar','status','created_at','updated_at','login'
     ];
 
     public static function initialize()
     {
         return [
-            'id_cu' => '0' , 'id_pus' => '1', 'name' => '','email' => '', 'username' => '', 'status' => '1', 'gambar' => ''
+            'id_aktivis' => '' ,'id_cu' => '', 'id_pus' => '1', 'name' => '','email' => '', 'username' => '', 'status' => '1', 'gambar' => ''
         ];
     }
 
@@ -91,12 +93,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->id_cu;
     }
 
-    public function Pus(){
+    public function pus(){
         return $this->belongsTo('App\Pus','id_pus','id')->select('id','name');
     }
 
-    public function Cu(){
+    public function cu(){
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
+    }
+
+    public function aktivis(){
+        return $this->belongsTo('App\Aktivis','id_aktivis','id');
     }
 
     public function Role(){
