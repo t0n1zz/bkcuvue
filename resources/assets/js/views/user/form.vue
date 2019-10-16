@@ -296,8 +296,13 @@
 		watch: {
 			formStat(value){
 				if(value == 'success'){
-					if(this.modelCuStat != 'success'){
-						this.$store.dispatch('cu/getHeader');
+					if(this.currentUser.id_cu != 0){
+						this.form.id_cu = this.currentUser.id_cu;
+						this.changeCU(this.currentUser.id_cu);
+					}else{
+						if(this.modelCuStat != 'success'){
+							this.$store.dispatch('cu/getHeader');
+						}
 					}
 				}
 			},
@@ -362,10 +367,7 @@
 				}
 			},
 			save() {
-				if(this.currentUser.id_cu != 0){
-					this.form.id_cu = this.currentUser.id_cu;
-				}
-
+				
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						this.$store.dispatch(this.kelas + '/store', this.form);

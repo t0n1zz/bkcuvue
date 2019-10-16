@@ -714,7 +714,7 @@
 				if(value === "success"){
 					this.modalTitle = this.updateJenisResponse.message;
 					this.fetchGolongan();
-					this.form.aset_tetap_jenis_golongan = this.updateJenisResponse.id;
+					this.form.aset_tetap_jenis_golongan_id = this.updateJenisResponse.id;
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateJenisResponse.message;
@@ -727,7 +727,7 @@
 				if(value === "success"){
 					this.modalTitle = this.updateJenisResponse.message;
 					this.changeGolongan(this.form.aset_tetap_golongan_id);
-					this.form.aset_tetap_jenis_kelompok = this.updateJenisResponse.id;
+					this.form.aset_tetap_jenis_kelompok_id = this.updateJenisResponse.id;
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateJenisResponse.message;

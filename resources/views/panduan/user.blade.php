@@ -25,7 +25,7 @@
 
     <ol>
       <li><strong>Tambah</strong> untuk menambah user baru</li>
-      <li><strong>Ubah</strong> untuk mengubah user yang sudah dipilih pada tabel</li>
+      <li><strong>Ubah Data Aktivis</strong> untuk mengubah data aktivis yang terhubung pada user yang sudah dipilih pada tabel</li>
       <li><strong>Hapus</strong> untuk menghapus user yang sudah dipilih pada tabel</li>
       <li><strong>Reset Password</strong> untuk reset password user yang sudah dipilih pada tabel</li>
       <li><strong>Status</strong> untuk mengubah status user (aktif/nonaktif) yang sudah dipilih pada tabel</li>
@@ -39,7 +39,7 @@
       <img src="{{ asset('images/panduan/user-tambah.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Untuk menambah user pengguna mesti menekan tombol tambah pada halaman user ataupun menekan tombol tambah user pada menu diatas. Kemudian mengisi semua bagian yang ada sesuai dengan penjelasannya dan ketika sudah selesai maka menekan tombol simpan untuk menyimpan semua data yang telah diisi.
+        Untuk menambah user pengguna mesti menekan tombol tambah pada halaman user ataupun menekan tombol tambah user pada menu diatas. Kemudian mengisi semua bagian yang ada sesuai dengan penjelasannya, memilih data aktivis sesuai dengan user yang akan menggunakan aplikasi SIMO dan ketika sudah selesai maka menekan tombol simpan untuk menyimpan semua data yang telah diisi.
     </p>
 
     <p>
