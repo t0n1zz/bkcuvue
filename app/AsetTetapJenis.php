@@ -15,22 +15,27 @@ class AsetTetapJenis extends Model {
     protected static $logOnlyDirty = true;
     
     public static $rules = [
-        'name' => 'required'
+        'aset_tetap_kelompok_id' => 'required',
+        'kode'=> 'sometimes|required|unique:aset_tetap_jenis',
+        'name' => 'required',
+
     ];
     
-    protected $fillable = ['name','keterangan'];
+    protected $fillable = ['aset_tetap_kelompok_id','kode','name','keterangan'];
 
     protected $allowedFilters = [
-        'id','name','keterangan','created_at','updated_at','has_aset_tetap_count'
+        'id','aset_tetap_kelompok_id','kode','name','keterangan','created_at','updated_at','has_aset_tetap_count',
+
+        'kelompok.name'
     ];
 
     protected $orderable = [
-        'id','name','keterangan','created_at','updated_at','has_aset_tetap_count'
+        'id','aset_tetap_kelompok_id','kode','name','keterangan','created_at','updated_at','has_aset_tetap_count'
     ];
 
     public static function initialize(){
         return [
-            'name' => '', 'keterangan' => ''
+            'aset_tetap_kelompok_id' => '','kode' => '', 'name' => '', 'keterangan' => ''
         ];
     }
 

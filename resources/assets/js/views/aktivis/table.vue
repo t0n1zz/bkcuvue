@@ -13,12 +13,12 @@
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
-				<!-- ubah-->
+				<!-- ubah identitas -->
 				<button @click.prevent="ubah(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah Identitas
 				</button>
 
-				<!-- ubah-->
+				<!-- ubah riwayat -->
 				<button @click.prevent="ubah(selectedItem.id,'riwayat')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah Riwayat
 				</button>
@@ -38,9 +38,14 @@
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
-				<!-- ubah-->
-				<button @click.prevent="ubah(selectedItem.id)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
+				<!-- ubah identitas -->
+				<button @click.prevent="ubah(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah Identitas
+				</button>
+
+				<!-- ubah riwayat -->
+				<button @click.prevent="ubah(selectedItem.id,'riwayat')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+					<i class="icon-pencil5"></i> Ubah Riwayat
 				</button>
 
 				<!-- hapus -->

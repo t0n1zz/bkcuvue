@@ -104,7 +104,7 @@
 
 								</data-viewer>
 
-								<!-- form -->
+								<!-- form 1 -->
 								<div class="row" v-if="isInduk">
 
 									<!-- divider -->
@@ -121,7 +121,128 @@
 											<app-image-upload :image_loc="'/images/asetTetap/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div> 
+	
+									<!-- golongan -->
+									<div class="col-md-4">
+										<div class="form-group">
 
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.aset_tetap_golongan_id')}">
+												<i class="icon-cross2" v-if="errors.has('form.aset_tetap_golongan_id')"></i>
+												Golongan: <wajib-badge></wajib-badge>
+											</h6>
+
+											<div class="input-group">
+
+												<!-- select -->
+													<select class="form-control" name="golongan" v-model="form.aset_tetap_golongan_id" data-width="100%" v-validate="'required'" data-vv-as="Golongan" :disabled="modelGolongan.length == 0" @change="changeGolongan($event.target.value)">
+													<option disabled value="">
+														<span v-if="modelGolonganStat === 'loading'">Mohon tunggu...</span>
+														<span v-else>Silahkan pilih golongan</span>
+													</option>
+													<option v-for="datas in modelGolongan" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
+												</select>
+
+												<!-- button -->
+												<div class="input-group-append" v-if="currentUser.can && currentUser.can['create_aset_tetap_jenis']">
+													<button type="button" class="btn btn-light" @click="modalOpen('golongan')">
+														<i class="icon-plus22"></i>
+													</button>
+												</div>
+
+											</div>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.aset_tetap_jenis_id')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.aset_tetap_jenis_id') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- kelompok -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.aset_tetap_kelompok_id')}">
+												<i class="icon-cross2" v-if="errors.has('form.aset_tetap_kelompok_id')"></i>
+												Kelompok: <wajib-badge></wajib-badge>
+											</h6>
+
+											<div class="input-group">
+
+												<!-- select -->
+													<select class="form-control" name="kelompok" v-model="form.aset_tetap_kelompok_id" data-width="100%" v-validate="'required'" data-vv-as="Kelompok" :disabled="modelKelompok.length == 0" @change="changeKelompok($event.target.value)">
+													<option disabled value="">
+														<span v-if="modelKelompokStat === 'loading'">Mohon tunggu...</span>
+														<span v-else>Silahkan pilih kelompok</span>
+													</option>
+													<option v-for="datas in modelKelompok" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
+												</select>
+
+												<!-- button -->
+												<div class="input-group-append" v-if="currentUser.can && currentUser.can['create_aset_tetap_jenis']">
+													<button type="button" class="btn btn-light" @click="modalOpen('kelompok')">
+														<i class="icon-plus22"></i>
+													</button>
+												</div>
+
+											</div>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.aset_tetap_jenis_id')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.aset_tetap_jenis_id') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- jenis -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.aset_tetap_jenis_id')}">
+												<i class="icon-cross2" v-if="errors.has('form.aset_tetap_jenis_id')"></i>
+												Jenis: <wajib-badge></wajib-badge>
+											</h6>
+
+											<div class="input-group">
+
+												<!-- select -->
+													<select class="form-control" name="jenis" v-model="form.aset_tetap_jenis_id" data-width="100%" v-validate="'required'" data-vv-as="Jenis" :disabled="modelJenis.length == 0" @change="changeJenis()">
+													<option disabled value="">
+														<span v-if="modelJenisStat === 'loading'">Mohon tunggu...</span>
+														<span v-else>Silahkan pilih jenis</span>
+													</option>
+													<option v-for="datas in modelJenis" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
+												</select>
+
+												<!-- button -->
+												<div class="input-group-append" v-if="currentUser.can && currentUser.can['create_aset_tetap_jenis']">
+													<button type="button" class="btn btn-light" @click="modalOpen('jenis')">
+														<i class="icon-plus22"></i>
+													</button>
+												</div>
+
+											</div>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.aset_tetap_jenis_id')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.aset_tetap_jenis_id') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<div class="col-md-12"><hr/></div>
+
+								</div>
+
+								<!-- form 2  -->
+								<div class="row" v-if="form.aset_tetap_jenis_id != ''">
+										
 									<!-- kode -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode')}">
@@ -163,44 +284,6 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- jenis -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h6 :class="{ 'text-danger' : errors.has('form.aset_tetap_jenis_id')}">
-												<i class="icon-cross2" v-if="errors.has('form.aset_tetap_jenis_id')"></i>
-												Jenis: <wajib-badge></wajib-badge>
-											</h6>
-
-											<div class="input-group">
-
-												<!-- select -->
-													<select class="form-control" name="jenis" v-model="form.aset_tetap_jenis_id" data-width="100%" v-validate="'required'" data-vv-as="Jenis" :disabled="modelJenis.length == 0">
-													<option disabled value="">
-														<span v-if="modelJenisStat === 'loading'">Mohon tunggu...</span>
-														<span v-else>Silahkan pilih jenis</span>
-													</option>
-													<option v-for="datas in modelJenis" :value="datas.id" v-if="datas">{{datas.name}}</option>
-												</select>
-
-												<!-- button -->
-												<div class="input-group-append" v-if="currentUser.can && currentUser.can['create_aset_tetap_jenis']">
-													<button type="button" class="btn btn-light" @click="modalOpen('jenis')">
-														<i class="icon-plus22"></i>
-													</button>
-												</div>
-
-											</div>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.aset_tetap_jenis_id')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.aset_tetap_jenis_id') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -474,6 +557,8 @@
 			<!-- tambah penulis -->
 			<template slot="modal-body1">
 				<form-jenis :kelas="'asetTetapJenis'" :mode="'tambah'" @tutup="modalTutup" v-if="state == 'jenis'"></form-jenis>
+				<form-kelompok :kelas="'asetTetapKelompok'" :mode="'tambah'" @tutup="modalTutup" v-else-if="state == 'kelompok'"></form-kelompok>
+				<form-golongan :kelas="'asetTetapGolongan'" :mode="'tambah'" @tutup="modalTutup" v-else-if="state == 'golongan'"></form-golongan>
 				<form-lokasi :kelas="'asetTetapLokasi'" :mode="'tambah'" @tutup="modalTutup" v-else></form-lokasi>
 			</template>
 		</app-modal>
@@ -493,6 +578,8 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import formGolongan from "../asetTetapGolongan/form.vue";
+	import formKelompok from "../asetTetapKelompok/form.vue";
 	import formJenis from "../asetTetapJenis/form.vue";
 	import formLokasi from "../asetTetapLokasi/form.vue";
 	import cardData from "./card.vue";
@@ -509,6 +596,8 @@
 			formButton,
 			formInfo,
 			wajibBadge,
+			formGolongan,
+			formKelompok,
 			formJenis,
 			formLokasi,
 			DataViewer,
@@ -601,6 +690,8 @@
 						}else{
 							this.isInduk = "true";
 						}
+						this.changeGolongan(this.form.aset_tetap_golongan_id);
+						this.changeKelompok(this.form.aset_tetap_kelompok_id);
 					}
 				}
 			},
@@ -616,13 +707,39 @@
 					this.modalContent = this.updateResponse;
 				}
 			},
+			updateGolonganStat(value){
+				this.modalState = value;
+				this.modalColor = '';
+
+				if(value === "success"){
+					this.modalTitle = this.updateJenisResponse.message;
+					this.fetchGolongan();
+					this.form.aset_tetap_jenis_golongan = this.updateJenisResponse.id;
+				}else{
+					this.modalTitle = 'Oops terjadi kesalahan :(';
+					this.modalContent = this.updateJenisResponse.message;
+				}
+			},
+			updateKelompokStat(value){
+				this.modalState = value;
+				this.modalColor = '';
+
+				if(value === "success"){
+					this.modalTitle = this.updateJenisResponse.message;
+					this.changeGolongan(this.form.aset_tetap_golongan_id);
+					this.form.aset_tetap_jenis_kelompok = this.updateJenisResponse.id;
+				}else{
+					this.modalTitle = 'Oops terjadi kesalahan :(';
+					this.modalContent = this.updateJenisResponse.message;
+				}
+			},
 			updateJenisStat(value){
 				this.modalState = value;
 				this.modalColor = '';
 
 				if(value === "success"){
 					this.modalTitle = this.updateJenisResponse.message;
-					this.fetchJenis();
+					this.changeKelompok(this.form.aset_tetap_kelompok_id);
 					this.form.aset_tetap_jenis_id = this.updateJenisResponse.id;
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -656,13 +773,13 @@
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}
-				this.fetchJenis();
+				this.fetchGolongan();
 				this.fetchLokasi();
 				this.fetchPenanggungjawab();
 			},
-			fetchJenis(){
-				this.$store.dispatch('asetTetapJenis/resetDataS');
-				this.$store.dispatch('asetTetapJenis/get');
+			fetchGolongan(){
+				this.$store.dispatch('asetTetapGolongan/resetDataS');
+				this.$store.dispatch('asetTetapGolongan/get');
 			},
 			fetchLokasi(){
 				this.$store.dispatch('asetTetapLokasi/resetDataS');
@@ -693,6 +810,24 @@
 					if(this.itemDataStat != 'success')
 						this.fetchAset(this.query);
 				}
+			},
+			changeGolongan(id){
+				this.$store.dispatch('asetTetapKelompok/resetDataS');
+				this.$store.dispatch('asetTetapKelompok/get', id);
+			},
+			changeKelompok(id){
+				this.$store.dispatch('asetTetapJenis/resetDataS');
+				this.$store.dispatch('asetTetapJenis/get', id);
+			},
+			changeJenis(){
+				let _golongan = '';
+				let _kelompok = '';
+				let _jenis = '';
+				_golongan = _.find(this.modelGolongan,{'id': this.form.aset_tetap_golongan_id});
+				_kelompok = _.find(this.modelKelompok,{'id': this.form.aset_tetap_kelompok_id});
+				_jenis = _.find(this.modelJenis,{'id': this.form.aset_tetap_jenis_id});
+				
+				this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -767,6 +902,18 @@
 				modelJenisStat: 'dataStatS',
 				updateJenisResponse: 'update',
 				updateJenisStat: 'updateStat',
+			}),
+			...mapGetters('asetTetapKelompok',{
+				modelKelompok: 'dataS',
+				modelKelompokStat: 'dataStatS',
+				updateKelompokResponse: 'update',
+				updateKelompokStat: 'updateStat',
+			}),
+			...mapGetters('asetTetapGolongan',{
+				modelGolongan: 'dataS',
+				modelGolonganStat: 'dataStatS',
+				updateGolonganResponse: 'update',
+				updateGolonganStat: 'updateStat',
 			}),
 			...mapGetters('asetTetapLokasi',{
 				modelLokasi: 'dataS',

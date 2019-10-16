@@ -43,8 +43,16 @@
 
 				<div class="card-body">
 					<div class="row">
-						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser === permission.tipe || permission.tipe ==='all'">
-							<div class="form-check">
+						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser == permission.tipe || permission.tipe == 'all' || permission.tipe == 'bkcu approve'">
+							<div v-if="permission.tipe == 'bkcu approve'">
+								<div class="form-check" v-if="currentUser.id_cu == 0">
+									<label style="cursor:pointer;">
+										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
+										<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
+									</label>
+								</div>
+							</div>
+							<div class="form-check" v-else>
 								<label style="cursor:pointer;">
 									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
 									<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
@@ -63,6 +71,7 @@
 
 <script>
 	import _ from 'lodash';
+	import { mapGetters } from 'vuex';
 	export default {
 		props: ['tipeUser','form','dataStat'],
 		data() {
@@ -482,6 +491,30 @@
 								tipe: 'all',
 								value: false,
 								group: 'Klaim JALINAN'
+							},
+							{
+								name: 'Verifikasi Pengurus',
+								key: 'verifikasi_pengurus_jalinan_klaim',
+								icon: 'icon-file-eye',
+								tipe: 'bkcu approve',
+								value: false,
+								group: ''
+							},
+							{
+								name: 'Verifikasi Pengawas',
+								key: 'verifikasi_pengawas_jalinan_klaim',
+								icon: 'icon-file-eye',
+								tipe: 'bkcu approve',
+								value: false,
+								group: ''
+							},
+							{
+								name: 'Verifikasi Manajemen',
+								key: 'verifikasi_manajemen_jalinan_klaim',
+								icon: 'icon-file-eye',
+								tipe: 'bkcu approve',
+								value: false,
+								group: ''
 							}
 						]
 					},
@@ -1575,6 +1608,11 @@
 				}
 				this.emitData(this.hakForm);
 			}
+		},
+		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 		}
 	}
 </script>

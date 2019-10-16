@@ -740,6 +740,14 @@
 										Jenis Aset Tetap
 									</router-link>
 
+									<router-link :to="{ name: 'asetTetapKelompok'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap_jenis'] && currentUser.id_cu == 0">
+										Kelompok Aset Tetap
+									</router-link>
+
+									<router-link :to="{ name: 'asetTetapGolongan'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap_jenis'] && currentUser.id_cu == 0">
+										Golongan Aset Tetap
+									</router-link>
+
 									<router-link :to="{ name: 'asetTetapLokasi'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap_lokasi'] && currentUser.id_cu == 0">
 										Lokasi Aset Tetap
 									</router-link>

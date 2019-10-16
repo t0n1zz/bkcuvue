@@ -62,10 +62,10 @@ export const asetTetapJenis = {
         });
     },
 
-    get( { commit } ){
+    get( { commit }, id ){
       commit('setDataStatS', 'loading');
       
-      AsetTetapJenisAPI.get()
+      AsetTetapJenisAPI.get( id )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

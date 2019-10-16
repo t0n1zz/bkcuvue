@@ -75,6 +75,9 @@ class UserController extends Controller
 		'destroy_jalinan_klaim',
 		'laporan_jalinan_klaim',
 		'pencairan_jalinan_klaim',
+		'verifikasi_pengurus_jalinan_klaim',
+		'verifikasi_pengawas_jalinan_klaim',
+		'verifikasi_manajemen_jalinan_klaim',
 
 		'index_cu',
 		'create_cu',
@@ -148,7 +151,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('cu','pus')->where('id','!=',1)->advancedFilter();
+			$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->advancedFilter();
 			
     	return response()
 			->json([
@@ -158,7 +161,7 @@ class UserController extends Controller
 
 	public function indexCu($id)
 	{
-			$table_data = User::with('cu','aktivis','pus')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
+			$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
 			
     	return response()
 			->json([

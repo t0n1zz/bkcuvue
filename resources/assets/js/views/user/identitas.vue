@@ -3,7 +3,7 @@
     <div class="card-header bg-info text-white header-elements-inline">
       <h6 class="card-title">{{ itemData.name }}</h6>
       <div class="header-elements">
-        <button type="button" class="btn btn-danger" @click.prevent="deleteSelected()">
+        <button type="button" class="btn btn-danger" @click.prevent="deleteSelected">
           <i class="icon-cross2 mr-2"></i> Batal
         </button>
       </div>
@@ -53,31 +53,31 @@
             </div>
             <div class="col-sm-6">
               <ul class="list list-unstyled mb-0">
-                <li v-if="itemData.pekerjaan_aktif.tipe == 1">
+                <li v-if="itemData.pekerjaan_aktif && itemData.pekerjaan_aktif.tipe == 1">
                   <b>CU:</b>
                   {{ itemData.pekerjaan_aktif.cu.name}}
                 </li>
-                <li v-else-if="itemData.pekerjaan_aktif.tipe == 2">
+                <li v-else-if="itemData.pekerjaan_aktif && itemData.pekerjaan_aktif.tipe == 2">
                   <b>Lembaga:</b>
                   {{ itemData.pekerjaan_aktif.lembaga_lain.name}}
                 </li>
-                <li v-else-if="itemData.pekerjaan_aktif.tipe == 3">
+                <li v-else-if="itemData.pekerjaan_aktif && itemData.pekerjaan_aktif.tipe == 3">
                   <b>Lembaga:</b> Puskopdit BKCU Kalimantan
                 </li>
                 <li>
                   <b>Tingkat:</b>
-                  {{ itemData.pekerjaan_aktif.tingkat ? $options.filters.checkTingkatAktivis(itemData.pekerjaan_aktif.tingkat) : ''}}
+                  {{ itemData.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(itemData.pekerjaan_aktif.tingkat) : ''}}
                 </li>
                 <li>
                   <b>Jabatan:</b>
-                  {{ itemData.pekerjaan_aktif.name ? itemData.pekerjaan_aktif.name : ''}}
+                  {{ itemData.pekerjaan_aktif ? itemData.pekerjaan_aktif.name : ''}}
                 </li>
                 <li>
                   <b>Pendidikan:</b>
                   {{
-                  itemData.pendidikan_tertinggi.tingkat ? itemData.pendidikan_tertinggi.tingkat : ''
+                  itemData.pendidikan_tertinggi ? itemData.pendidikan_tertinggi.tingkat : ''
                   + ' ' +
-                  itemData.pendidikan_tertinggi.name ? itemData.pendidikan_tertinggi.name : ''}}
+                  itemData.pendidikan_tertinggi ? itemData.pendidikan_tertinggi.name : ''}}
                 </li>
               </ul>
             </div>

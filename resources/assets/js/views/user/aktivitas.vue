@@ -20,14 +20,15 @@
 						<div class="card-body">
 							<div class="media flex-column flex-sm-row mt-0 mb-3">
 								<div class="mr-sm-3 mb-2 mb-sm-0">
-									<img :src="'/images/user/' + itemData.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="itemData.gambar" >
+									<img :src="'/images/aktivis/' + itemData.aktivis.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="itemData.aktivis" >
 									<img :src="'/images/no_image_man.jpg'" class="img-fluid img-preview rounded" v-else>
 								</div>
 
 								<div class="media-body">
 									<ul class="list list-unstyled mb-0">
-										<li><b>Nama:</b> {{ itemData.name}}</li>
-										<li><b>Email:</b> {{ itemData.email}}</li>
+										<li><b>Username:</b> {{ itemData.username }}</li>
+										<li><b>Nama:</b> {{ itemData.aktivis? itemData.aktivis.name : '-' }}</li>
+										<li><b>Email:</b> {{ itemData.aktivis? itemData.aktivis.email : '-' }}</li>
 										<li><b>Login:</b> <span v-html="$options.filters.dateTime(itemData.login)"></span></li>
 										<li><b>Tgl. Buat:</b> <span v-html="$options.filters.dateTime(itemData.created_at)"></span></li>
 										<li><b>Tgl. Ubah:</b> <span v-html="$options.filters.dateTime(itemData.updated_at)"></span></li>

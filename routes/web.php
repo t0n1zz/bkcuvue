@@ -82,9 +82,9 @@ Route::get('/testroute', function () {
 		// 	]);
 
 		// create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_aset_tetap']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_aset_tetap']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_aset_tetap']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_pengurus_jalinan_klaim']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_pengawas_jalinan_klaim']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_manajemen_jalinan_klaim']); 
 		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_aset_tetap']);
 		
 		// give permission

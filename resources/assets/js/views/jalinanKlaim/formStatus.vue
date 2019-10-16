@@ -338,7 +338,24 @@
 
       </div>
       
-      
+      <!-- info -->
+      <div v-if="tipe == 'verifikasi'">
+        <div class="alert bg-info alert-styled-left">
+          <h6>Dengan menekan tombol verifikasi dibawah maka anda telah melakukan pemeriksaan dan menyetujui pengajuan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+        </div>
+      </div>
+      <div v-else-if="tipe == 'selesai'">
+        <div class="alert bg-info alert-styled-left">
+          <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada alih waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+        </div>
+      </div>
+      <div v-else>
+        <div class="alert bg-info alert-styled-left">
+          <h6>Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</h6>
+        </div>
+      </div>
+
+
       <!-- tombol desktop-->
       <div class="text-center d-none d-md-block">
         <button class="btn btn-light" @click.prevent="tutup">
@@ -352,6 +369,9 @@
             <span v-else>
               <i class="icon-blocked"></i> Batal Selesai
             </span>
+          </span>
+          <span v-else-if="tipe == 'verifikasi'">
+            <i class="icon-file-check"></i> Verifikasi
           </span>
           <span v-else>
             <i class="icon-floppy-disk"></i> Simpan
@@ -369,6 +389,9 @@
             <span v-else>
               <i class="icon-blocked"></i> Batal Selesai
             </span>
+          </span>
+          <span v-else-if="tipe == 'verifikasi'">
+            <i class="icon-file-check"></i> Verifikasi
           </span>
           <span v-else>
             <i class="icon-floppy-disk"></i> Simpan
@@ -473,6 +496,8 @@
 
         if(this.tipe == 'selesai'){
           this.$store.dispatch(this.kelas + "/updateSelesai", this.selected.id);
+        }else if(this.tipe == 'verifikasi'){
+          this.$store.dispatch(this.kelas + "/updateVerifikasi", [this.selected.id, this.currentUser]);
         }else{
           this.$validator.validateAll('formStatus').then((result) => {
             if (result) {

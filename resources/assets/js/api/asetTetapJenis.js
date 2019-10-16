@@ -4,8 +4,8 @@ export default {
     return axios.get('/api/asetTetapJenis' , {params: p});
   },
 
-  get: function(){
-    return axios.get('/api/asetTetapJenis/get');
+  get: function(id){
+    return axios.get('/api/asetTetapJenis/get/' + id);
   },
   
   create: function(){

@@ -93,7 +93,7 @@ class Authcontroller extends Controller
     protected function respondWithToken($token)
     {
         $id = auth('api')->user()->getId();
-        $kelas = User::with('pus','cu')->findOrFail($id);
+        $kelas = User::with('pus','cu','aktivis.pekerjaan_aktif.cu')->findOrFail($id);
         
         return response()->json([
             'access_token' => $token,

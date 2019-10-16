@@ -88,42 +88,48 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.jenis.name" v-if="props.item.jenis"></check-value>
+						<check-value :value="props.item.golongan.name" v-if="props.item.golongan"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.merk"></check-value>
+						<check-value :value="props.item.kelompok.name" v-if="props.item.kelompok"></check-value>
 					</td>
 					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.tipe"></check-value>
+						<check-value :value="props.item.jenis.name" v-if="props.item.jenis"></check-value>
 					</td>
 					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.lokasi.name" v-if="props.item.lokasi"></check-value>
+						<check-value :value="props.item.merk"></check-value>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.aktivis.name" v-if="props.item.aktivis"></check-value>
+						<check-value :value="props.item.tipe"></check-value>
 					</td>
-					<td v-if="!columnData[9].hide" v-html="$options.filters.date(props.item.tanggal)">
+					<td v-if="!columnData[9].hide">
+						<check-value :value="props.item.lokasi.name" v-if="props.item.lokasi"></check-value>
 					</td>
 					<td v-if="!columnData[10].hide">
-						<check-value :value="props.item.pembeli.name" v-if="props.item.pembeli"></check-value>
+						<check-value :value="props.item.aktivis.name" v-if="props.item.aktivis"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
-						<check-value :value="props.item.has_aset_count" valueType="currency"></check-value>
+					<td v-if="!columnData[11].hide" v-html="$options.filters.date(props.item.tanggal)">
 					</td>
 					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.harga" valueType="currency"></check-value>
+						<check-value :value="props.item.pembeli.name" v-if="props.item.pembeli"></check-value>
 					</td>
 					<td v-if="!columnData[13].hide">
+						<check-value :value="props.item.has_aset_count" valueType="currency"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide">
+						<check-value :value="props.item.harga" valueType="currency"></check-value>
+					</td>
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.harga_sub" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.total_harga" valueType="currency"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.kondisi"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[18].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[19].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -213,6 +219,24 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
+					},
+					{
+						title: 'Golongan',
+						name: 'golongan.name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Kelompok',
+						name: 'kelompok.name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Jenis',

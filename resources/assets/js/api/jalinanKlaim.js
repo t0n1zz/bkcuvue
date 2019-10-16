@@ -56,6 +56,10 @@ export default {
     return axios.post('/api/jalinanKlaim/updateSelesai/' + id);
   },
 
+  updateVerifikasi: function ( id, user ){
+    return axios.post('/api/jalinanKlaim/updateVerifikasi/' + id, user);
+  },
+
   updateCair: function ( id, awal, akhir ){
     return axios.post('/api/jalinanKlaim/updateCair/' + id + '/' + awal + '/' + akhir);
   },

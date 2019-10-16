@@ -490,6 +490,24 @@ export const jalinanKlaim = {
         });
     },
 
+    updateVerifikasi( {commit, state, dispatch}, [id, user] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateVerifikasi( id, user )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     updateCair( {commit, state, dispatch}, [id, awal, akhir] ){
       commit('setUpdateStat', 'loading');
 
@@ -636,6 +654,9 @@ export const jalinanKlaim = {
     setDataS5 ( state, data ){
       state.dataS5 = data;
     },
+    setDataS6 ( state, data ){
+      state.dataS6 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -671,6 +692,9 @@ export const jalinanKlaim = {
     },
     setDataStatS5( state, status ){
       state.dataStatS5 = status;
+    },
+    setDataStatS6( state, status ){
+      state.dataStatS6 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

@@ -10,15 +10,43 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.7 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#317">Version 3.1.7 <small class="text-muted"> / 16 Oktober 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="317" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU, Klaim JALINAN dan penambahan fitur baru untuk pengelolaan aset tetap lembaga, mengabungkan informasi data aktivis dengan user.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur verifikasi pengajuan Klaim JALINAN oleh pengurus, pengawas dan manajemen</li>
+                      <li>Penambahan fitur data aktivis pada user</li>
+                      <li>Penambahan informasi asal TP/KP pada Anggota CU dan Klaim JALINAN</li>
+                      <li>Penambahan pengelolaan aset tetap untuk lembaga</li>
+                      <li>Perbaikan bug tampilan pada Klaim JALINAN</li>
+                      <li>Perbaikan bug tampilan pada User</li>
+                      <li>Perbaikan bug tampilan pada Anggota CU</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.7 -->
+
               <!-- Version 3.1.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#316">Version 3.1.6 <small class="text-muted"> / 28 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#316">Version 3.1.6 <small class="text-muted"> / 28 September 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="316" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="316" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU dan Klaim JALINAN.
                     <br/><br/>
@@ -42,7 +70,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#315">Version 3.1.5 <small class="text-muted"> / 23 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#315">Version 3.1.5 <small class="text-muted"> / 23 September 2019</small></a>
                   </h5>
                 </div>
 
@@ -69,7 +97,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
                   </h5>
                 </div>
 
@@ -100,7 +128,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#313">Version 3.1.3 <small class="text-muted"> / 6 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#313">Version 3.1.3 <small class="text-muted"> / 6 September 2019</small></a>
                   </h5>
                 </div>
 
@@ -127,7 +155,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#312">Version 3.1.2 <small class="text-muted"> / 24 Agustus 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#312">Version 3.1.2 <small class="text-muted"> / 24 Agustus 2019</small></a>
                   </h5>
                 </div>
 
@@ -179,7 +207,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#310">Version 3.1.0 <small class="text-muted"> / 26 April 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#310">Version 3.1.0 <small class="text-muted"> / 26 April 2019</small></a>
                   </h5>
                 </div>
 

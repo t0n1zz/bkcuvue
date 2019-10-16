@@ -38,6 +38,10 @@ import asetTetap from './views/asetTetap/index.vue';
 import asetTetap_form from './views/asetTetap/form.vue';
 import asetTetapJenis from './views/asetTetapJenis/index.vue';
 import asetTetapJenis_form from './views/asetTetapJenis/create.vue';
+import asetTetapKelompok from './views/asetTetapKelompok/index.vue';
+import asetTetapKelompok_form from './views/asetTetapKelompok/create.vue';
+import asetTetapGolongan from './views/asetTetapGolongan/index.vue';
+import asetTetapGolongan_form from './views/asetTetapGolongan/create.vue';
 import asetTetapLokasi from './views/asetTetapLokasi/index.vue';
 import asetTetapLokasi_form from './views/asetTetapLokasi/create.vue';
 import mitraOrang from './views/mitraOrang/index.vue';
@@ -324,6 +328,27 @@ const routes = [
 		name: 'asetTetapJenisCreate', 
 		components: { default: asetTetapJenis_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
+
+	// aset tetap kelompok
+	{ path: '/asetTetapKelompok',
+		name: 'asetTetapKelompok', 
+		components: { default: asetTetapKelompok, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/asetTetapKelompok/create',
+		name: 'asetTetapKelompokCreate', 
+		components: { default: asetTetapKelompok_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+
+	// aset tetap golongan
+	{ path: '/asetTetapGolongan',
+		name: 'asetTetapGolongan', 
+		components: { default: asetTetapGolongan, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/asetTetapGolongan/create',
+		name: 'asetTetapGolonganCreate', 
+		components: { default: asetTetapGolongan_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+
 
 	// aset tetap lokasi
 	{ path: '/asetTetapLokasi',

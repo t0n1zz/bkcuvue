@@ -20,7 +20,7 @@ class AsetTetapController extends Controller{
 
 	public function index()
 	{
-		$table_data = AsetTetap::with('aktivis','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
+		$table_data = AsetTetap::with('aktivis','golongan','kelompok','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
 			$q->select(DB::raw('sum(harga)'));
 		}])->advancedFilter();
 
@@ -36,7 +36,7 @@ class AsetTetapController extends Controller{
 
 	public function indexSub($id)
 	{
-		$table_data = AsetTetap::with('aktivis','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
+		$table_data = AsetTetap::with('aktivis','golongan','kelompok','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
 			$q->select(DB::raw('sum(harga)'));
 		}])->where('aset_id',$id)->advancedFilter();
 

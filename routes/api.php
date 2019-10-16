@@ -307,19 +307,33 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     //aset tetap jenis
-    Route::get('/asetTetapJenis/get', 'AsetTetapJenisController@get');
+    Route::get('/asetTetapGolongan/get', 'AsetTetapGolonganController@get');
+    Route::get('/asetTetapKelompok/get/{id}', 'AsetTetapKelompokController@get');
+    Route::get('/asetTetapJenis/get/{id}', 'AsetTetapJenisController@get');
     Route::group(['middleware' => ['permission:index_aset_tetap_jenis']], function () {
+        Route::get('/asetTetapGolongan', 'AsetTetapGolonganController@index');
+        Route::get('/asetTetapKelompok', 'AsetTetapKelompokController@index');
         Route::get('/asetTetapJenis', 'AsetTetapJenisController@index');
     });
     Route::group(['middleware' => ['permission:create_aset_tetap_jenis']], function () {
+        Route::get('/asetTetapGolongan/create', 'AsetTetapGolonganController@create');
+        Route::get('/asetTetapKelompok/create', 'AsetTetapKelompokController@create');
         Route::get('/asetTetapJenis/create', 'AsetTetapJenisController@create');
+        Route::post('/asetTetapGolongan/store', 'AsetTetapGolonganController@store');
+        Route::post('/asetTetapKelompok/store', 'AsetTetapKelompokController@store');
         Route::post('/asetTetapJenis/store', 'AsetTetapJenisController@store');
     });
     Route::group(['middleware' => ['permission:update_aset_tetap_jenis']], function () {
+        Route::get('/asetTetapGolongan/edit/{id}', 'AsetTetapGolonganController@edit');
+        Route::get('/asetTetapKelompok/edit/{id}', 'AsetTetapKelompokController@edit');
         Route::get('/asetTetapJenis/edit/{id}', 'AsetTetapJenisController@edit');
+        Route::post('/asetTetapGolongan/update/{id}', 'AsetTetapGolonganController@update');
+        Route::post('/asetTetapKelompok/update/{id}', 'AsetTetapKelompokController@update');
         Route::post('/asetTetapJenis/update/{id}', 'AsetTetapJenisController@update');
     });
     Route::group(['middleware' => ['permission:destroy_aset_tetap_jenis']], function () {
+        Route::delete('/asetTetapGolongan/{id}', 'AsetTetapGolonganController@destroy');
+        Route::delete('/asetTetapKelompok/{id}', 'AsetTetapKelompokController@destroy');
         Route::delete('/asetTetapJenis/{id}', 'AsetTetapJenisController@destroy');
     });
 
@@ -426,6 +440,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // jalinan klaim
+    Route::get('/jalinanKlaim/cekData/{id}', 'JalinanKlaimController@cekData');
+    Route::post('/jalinanKlaim/updateVerifikasi/{id}', 'JalinanKlaimController@updateVerifikasi');
     Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
         Route::get('/jalinanKlaim/indexCu/{cu}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
@@ -459,7 +475,6 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/jalinanKlaim/indexLaporanUsia/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanUsia');
         Route::get('/jalinanKlaim/indexLaporanLama/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanLama');
     });
-    Route::get('/jalinanKlaim/cekData/{id}', 'JalinanKlaimController@cekData');
 
     //laporan cu
     Route::group(['middleware' => ['permission:index_laporan_cu']], function () {

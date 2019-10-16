@@ -43,7 +43,7 @@
 			return {
 				title: 'Jenis Aset Tetap',
 				kelas: 'asetTetapJenis',
-				titleDesc: 'Mengelola datat jenis aset tetap',
+				titleDesc: 'Mengelola data jenis aset tetap',
 				titleIcon: 'icon-grid6',
 			}
 		},

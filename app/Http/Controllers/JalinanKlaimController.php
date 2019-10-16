@@ -595,6 +595,31 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
+	public function updateVerifikasi(Request $request, $id)
+	{
+		$kelas = JalinanKlaim::findOrFail($id);
+
+		if($request->can['verifikasi_pengurus_jalinan_klaim']){
+			$kelas->verifikasi_pengurus = $request->id;
+		}else if($request->can['verifikasi_pengawas_jalinan_klaim']){
+			$kelas->verifikasi_pengawas = $request->id;
+		}else if($request->can['verifikasi_manajemen_jalinan_klaim']){
+			$kelas->verifikasi_manajemen = $request->id;
+		}
+
+		if(!empty($kelas->verifikasi_pengurus) && !empty($kelas->verifikasi_pengawas) && !empty($kelas->verifikasi_manajemen)){
+			$kelas->status_klaim = '1';
+		}
+
+		$kelas->update();
+	
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' berhasil diverifikasi'
+			]);
+	}
+
 	public function updateStatusAnggotaCu($id, $tipe, $tanggal, $isEdit = false){
 		$kelas = AnggotaCu::findOrFail($id);
 		$kelas->status_jalinan = $tipe;

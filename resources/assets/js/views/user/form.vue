@@ -107,7 +107,7 @@
 
 										<identitas v-if="form.id_aktivis != ''" :itemData="form.aktivis" @deleteSelected="deleteSelected"></identitas>
 
-										<!-- peserta -->
+										<!-- data aktivis -->
 										<data-viewer :title="'Aktivis'" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetchAktivis" :isDasar="'true'" :isNoButtonRow="'true'" v-else>
 
 											<!-- item  -->
@@ -180,7 +180,7 @@
 										<!-- title -->
 										<h5>Hak Akses:</h5>
 
-										<hak-akses :tipeUser="roleTipe" @hakForm="hakForm"></hak-akses>
+										<hak-akses :tipeUser="tipeUser" @hakForm="hakForm"></hak-akses>
 									</div>
 								</div>
 
@@ -247,7 +247,7 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'User',
 				kelas: 'user',
-				roleTipe:'',
+				tipeUser:'',
 				selectedItem: [],
 				query: {
 					order_column: "name",
@@ -297,9 +297,7 @@
 			formStat(value){
 				if(value == 'success'){
 					if(this.modelCuStat != 'success'){
-						if(this.modelCuStat != 'success'){
-							this.$store.dispatch('cu/getHeader');
-						}
+						this.$store.dispatch('cu/getHeader');
 					}
 				}
 			},
@@ -326,6 +324,11 @@
 			},
 			changeCU(value){
 				this.fetchAktivis(this.query);
+				if(value == 0){
+					this.tipeUser = 'bkcu';
+				}else{
+					this.tipeUser = 'cu';
+				}
 			},
 			disableColumnCu(value){
 				this.columnData[4].disable = value;

@@ -24,9 +24,9 @@ class AsetTetapJenisController extends Controller{
 		]);
 	}
 
-	public function get()
+	public function get($id)
 	{
-		$table_data = AsetTetapJenis::select('id','name')->orderby('name','asc')->get();
+		$table_data = AsetTetapJenis::where('aset_tetap_kelompok_id',$id)->select('id','kode','aset_tetap_kelompok_id','name')->orderby('name','asc')->get();
 
 		return response()
 		->json([
@@ -74,7 +74,9 @@ class AsetTetapJenisController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, AsetTetapJenis::$rules);
+		$rules = AsetTetapJenis::$rules;
+		$rules['kode'] = $rules['kode'] . ',id,' . $id;
+		$validationCertificate  = Validator::make($request->all(), $rules); 
 
 		$name = $request->name;
 

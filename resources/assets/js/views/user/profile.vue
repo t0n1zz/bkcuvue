@@ -18,7 +18,7 @@
 					<div class="nav-tabs-responsive">
 						<ul class="nav nav-tabs nav-tabs-solid bg-light">
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'edit'}" @click.prevent="changeTab('edit')"><i class="icon-user mr-2"></i> Foto & Password</a>
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'edit'}" @click.prevent="changeTab('edit')"><i class="icon-user mr-2"></i> Password</a>
 							</li>
 							<li class="nav-item">
 								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktivitas'}" @click.prevent="changeTab('aktivitas')"><i class="icon-eye2 mr-2"></i> Aktivitas</a>
@@ -30,114 +30,6 @@
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'edit'">
-
-							<!-- foto -->
-							<form @submit.prevent="saveFoto" enctype="multipart/form-data">
-								<div class="card">
-
-									<div class="card-header bg-white">
-										<h6 class="card-title">Ubah Foto</h6>
-									</div>
-
-									<div class="card-body">
-										<div class="form-group">
-
-											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/user/'" :image_temp="formFoto.gambar" v-model="formFoto.gambar"></app-image-upload>
-										</div>
-
-										<!-- form info -->
-										<form-info></form-info>	
-
-										<div class="text-center d-none d-md-block">
-											<button type="submit" class="btn btn-primary">
-												<i class="icon-floppy-disk"></i> Simpan</button>
-										</div>  
-
-										<!-- tombol mobile-->
-										<div class="d-block d-md-none">
-											<button type="submit" class="btn btn-primary btn-block pb-2">
-												<i class="icon-floppy-disk"></i> Simpan</button>
-										</div> 
-
-									</div>
-
-								</div>
-							</form>
-
-							<!-- identitas -->
-							<form @submit.prevent="saveIdentitas" data-vv-scope="formIdentitas">
-								<div class="card">
-
-									<div class="card-header bg-white">
-										<h6 class="card-title">Ubah Identitas</h6>
-									</div>
-
-									<div class="card-body">
-										
-										<div class="row">
-											<div class="col-lg-6">
-												<!-- name -->
-												<div class="form-group" :class="{'has-error' : errors.has('formIdentitas.name')}">
-
-													<!-- title -->
-													<h6 :class="{ 'text-danger' : errors.has('formIdentitas.name')}">
-														<i class="icon-cross2" v-if="errors.has('formIdentitas.name')"></i>
-														Nama:
-													</h6>
-
-													<!-- text -->
-													<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama user" v-validate="'required|min:5'" data-vv-as="Nama" v-model="formIdentitas.name">
-
-													<!-- error message -->
-													<small class="text-muted text-danger" v-if="errors.has('formIdentitas.name')">
-														<i class="icon-arrow-small-right"></i> {{ errors.first('formIdentitas.name') }}
-													</small>
-													<small class="text-muted" v-else>&nbsp;
-													</small>
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<!-- email -->
-												<div class="form-group" :class="{'has-error' : errors.has('formIdentitas.email')}">
-
-													<!-- title -->
-													<h6 :class="{ 'text-danger' : errors.has('formIdentitas.email')}">
-														<i class="icon-cross2" v-if="errors.has('formIdentitas.email')"></i>
-														Email:
-													</h6>
-
-													<!-- text -->
-													<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan email yang valid" v-validate="'required|email'" data-vv-as="Email" v-model="formIdentitas.email">
-
-													<!-- error message -->
-													<small class="text-muted text-danger" v-if="errors.has('formIdentitas.email')">
-														<i class="icon-arrow-small-right"></i> {{ errors.first('formIdentitas.email') }}
-													</small>
-													<small class="text-muted" v-else>&nbsp;
-													</small>
-												</div>
-											</div>
-										</div>
-
-										<!-- form info -->
-										<form-info></form-info>	
-
-										<div class="text-center d-none d-md-block">
-											<button type="submit" class="btn btn-primary">
-												<i class="icon-floppy-disk"></i> Simpan</button>
-										</div>  
-
-										<!-- tombol mobile-->
-										<div class="d-block d-md-none">
-											<button type="submit" class="btn btn-primary btn-block pb-2">
-												<i class="icon-floppy-disk"></i> Simpan</button>
-										</div> 
-
-									</div>
-
-								</div>
-							</form>
 
 							<!-- password -->
 							<form @submit.prevent="savePassword" data-vv-scope="formPassword">

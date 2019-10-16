@@ -27,7 +27,7 @@
 						<!-- table data -->
 						<div class="nav-tabs-responsive mb-3">
 							<ul class="nav nav-tabs nav-tabs-solid bg-light">
-								<li class="nav-item">
+							<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'verifikasi'}" @click.prevent="changeTab('verifikasi')"><i class="icon-file-eye mr-2"></i> Verifikasi CU</a>
 								</li>
 								<li class="nav-item">
@@ -132,6 +132,11 @@
 		},
 		created(){
 			this.checkUser('index_anggota_cu',this.$route.params.cu);
+			if(this.currentUser.id_cu == 0){
+				this.tabName = 'menunggu';
+			}else{
+				this.tabName = 'verifikasi'
+			}
 		},
 		methods: {
 			checkUser(permission,id_cu){

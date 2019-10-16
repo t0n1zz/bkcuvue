@@ -52,14 +52,21 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.name"></check-value>
+						<check-value :value="props.item.kode"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide">
+						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td v-if="!columnData[3].hide">
+						<check-value :value="props.item.kelompok.name" v-if="props.item.kelompok"></check-value>
+						<span v-else>-</span>
+					</td>
+					<td v-if="!columnData[4].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide">{{props.item.has_aset_tetap_count}}</td>
-					<td v-if="!columnData[4].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[5].hide">{{props.item.has_aset_tetap_count}}</td>
+					<td v-if="!columnData[6].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[7].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -121,6 +128,15 @@
 						disable: false
 					},
 					{
+						title: 'Kode',
+						name: 'kode',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
 						title: 'Nama',
 						name: 'name',
 						tipe: 'string',
@@ -129,6 +145,15 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
+					},
+					{
+						title: 'Kelompok',
+						name: 'kelompok.name',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Keterangan',
