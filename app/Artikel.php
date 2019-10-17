@@ -62,7 +62,7 @@ class Artikel extends Model {
 
     public function penulis()
     {
-        return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id')->select('id','slug','name');
+        return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id');
     }
 
     public function Cu()

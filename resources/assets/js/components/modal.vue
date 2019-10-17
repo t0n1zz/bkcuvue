@@ -118,23 +118,15 @@
 
 											<span>
 												<span v-if="content.message">
-													<pre class="pre-scrollable language-markup content-group text-left">
-														{{ content.message }} 
-														<span v-if="content.errors">
-															{{ content.errors }}
-														</span>
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}<br/><span v-if="content.errors"><span v-for="errors in content.errors"><span v-for="e in errors">{{ e }} <br/></span></span></span>
 													</pre>
 												</span>
 												<span v-if="content.data">
-													<pre class="pre-scrollable language-markup content-group text-left">
-														{{ content.data.message }}
-														<span v-if="content.data.errors">
-															{{ content.data.errors }}
-														</span>
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}<br/><span v-if="content.data.errors"><span v-for="errors in content.data.errors"><span v-for="e in errors">{{ e }} <br/></span></span></span>
 													</pre>
 												</span>
 											</span>
-											
+				
 										</div>
 										<br/> 
 

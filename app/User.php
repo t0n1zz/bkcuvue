@@ -34,7 +34,7 @@ class User extends Authenticatable implements JWTSubject
         'id_pus' => 'required',
         'id_cu' => 'required',
         'id_aktivis' => 'required',
-        'username' => 'required|min:5',
+        'username' => 'sometimes|required|unique:users',
         'password' => 'required|min:5',
     ];
 

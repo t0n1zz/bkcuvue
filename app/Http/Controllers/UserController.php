@@ -203,41 +203,40 @@ class UserController extends Controller
 
 	public function store(Request $request)
 	{
+			// validate request
+			$this->validate($request,User::$rules);
 
-		// validate request
-		$this->validate($request,User::$rules);
+			$username = $request->username;
+			$password = $request->password;
+			$passwordConfirm = $request->passwordConfirm;
 
-		$username = $request->username;
-		$password = $request->password;
-		$passwordConfirm = $request->passwordConfirm;
+			//check data
+			$this->checkData($request);
 
-		//check data
-		$this->checkData($request);
+			// processing single image upload
+			if(!empty($request->gambar))
+				$fileName = Helper::image_processing($this->imagepath,'300','200',$request,'');
+			else
+				$fileName = '';
 
-		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,'');
-		else
-			$fileName = '';
+			//password encryption	
+			$password = Hash::make($password);
 
-		//password encryption	
-		$password = Hash::make($password);
-
-		// save user
-		$kelas = User::create($request->except('gambar','password','status','id_pus') + [
-			'gambar' => $fileName, 
-			'password' => $password, 
-			'status' => 1,
-			'id_pus' => 1
-		]);
-
-		$this->hakAksesSave($request->permission,$kelas);
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => 'User ' .$username. ' berhasil ditambah'
+			// save user
+			$kelas = User::create($request->except('gambar','password','status','id_pus') + [
+				'gambar' => $fileName, 
+				'password' => $password, 
+				'status' => 1,
+				'id_pus' => 1
 			]);
+
+			$this->hakAksesSave($request->permission,$kelas);
+
+			return response()
+				->json([
+					'saved' => true,
+					'message' => 'User ' .$username. ' berhasil ditambah'
+				]);
 	}
 
 	public function edit($id)

@@ -138,10 +138,15 @@
 
 					<!-- user -->
 					<li class="nav-item dropdown dropdown-user">
-						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown" v-if="currentUser.aktivis == null">
 							<img :src="'/images/user/' + currentUser.gambar + '.jpg'" alt="user image" class="rounded-circle" v-if="currentUser && currentUser.gambar" width="36" height="36">
 							<img src="/images/no_image_man.jpg" alt="user image" class="rounded-circle" width="36" height="36" v-else>
 							<span>{{ currentUser ? currentUser.name : "" }}</span>
+						</a>
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown" v-else>
+							<img :src="'/images/aktivis/' + currentUser.aktivis.gambar + '.jpg'" alt="user image" class="rounded-circle" v-if="currentUser && currentUser.aktivis.gambar" width="36" height="36">
+							<img src="/images/no_image_man.jpg" alt="user image" class="rounded-circle" width="36" height="36" v-else>
+							<span>{{ currentUser.aktivis ? currentUser.aktivis.name : "" }}</span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">

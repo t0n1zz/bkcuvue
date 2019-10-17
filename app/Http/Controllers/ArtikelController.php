@@ -126,8 +126,8 @@ class ArtikelController extends Controller{
 		// else
 		// 	$content = '';	
 
-		$kelas->update($request->except('gambar','content') + [
-			'gambar' => $fileName, 'content' => $content
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $fileName
 		]);
 
 		return response()

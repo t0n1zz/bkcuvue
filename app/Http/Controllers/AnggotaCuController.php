@@ -150,28 +150,38 @@ class AnggotaCuController extends Controller{
 
 	public function store(Request $request)
 	{
-		$this->validate($request,AnggotaCu::$rules);
+		try{
+			$this->validate($request,AnggotaCu::$rules);
 
-		$name = $request->name;
+			$name = $request->name;
 
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
-		else
-			$fileName = '';	
+			if(!empty($request->gambar))
+				$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			else
+				$fileName = '';	
 
-		$kelas = AnggotaCu::create($request->except('gambar') + [
-			'gambar' => $fileName
-		]);
-		
-		$this->syncCu($request, $kelas);
-		// $this->syncProdukCu($request, $kelas);
-		
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
-				'id' => $kelas->id
-			]);	
+			$kelas = AnggotaCu::create($request->except('gambar') + [
+				'gambar' => $fileName
+			]);
+			
+			$this->syncCu($request, $kelas);
+			// $this->syncProdukCu($request, $kelas);
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' ' .$name. ' berhasil ditambah',
+					'id' => $kelas->id
+				]);	
+		} catch (\Exception $e){
+			$errorCode = $e->errorInfo[1];
+			if($errorCode == 1062){
+				abort(500, 'No. KTP sudah pernah terdaftar sebelumnya, silahkan periksa kembali.');
+			}else{
+				
+				abort(500, $e->getMessage());
+			}
+		}
 	}
 
 	public function storeCu(Request $request, $id)

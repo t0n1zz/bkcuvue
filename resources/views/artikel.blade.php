@@ -74,7 +74,7 @@
                 <li><i class="icon-line-grid"></i>{{"-"}}</li> 
               @endif
             @endif
-            @if($tipe != 'pe nulis')
+            @if($tipe != 'penulis')
               @if($item->penulis)
                 <li><a href="{{ route('artikel.penulis',$item->penulis->slug) }}"><i class="icon-user"></i>{{ $item->penulis->name }}</a></li>
               @else 
