@@ -150,6 +150,7 @@ class AnggotaCuController extends Controller{
 
 	public function store(Request $request)
 	{
+		\DB::beginTransaction(); 
 		try{
 			$this->validate($request,AnggotaCu::$rules);
 
@@ -166,7 +167,9 @@ class AnggotaCuController extends Controller{
 			
 			$this->syncCu($request, $kelas);
 			// $this->syncProdukCu($request, $kelas);
-			
+
+			\DB::commit();
+
 			return response()
 				->json([
 					'saved' => true,
@@ -174,13 +177,8 @@ class AnggotaCuController extends Controller{
 					'id' => $kelas->id
 				]);	
 		} catch (\Exception $e){
-			$errorCode = $e->errorInfo[1];
-			if($errorCode == 1062){
-				abort(500, 'No. KTP sudah pernah terdaftar sebelumnya, silahkan periksa kembali.');
-			}else{
-				
-				abort(500, $e->getMessage());
-			}
+			\DB::rollBack();
+			abort(500, $e->getMessage());
 		}
 	}
 

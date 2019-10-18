@@ -100,12 +100,13 @@
         <!-- data cu -->
         <div class="col-md-3">
 
+          <h5>Informasi Pendukung:</h5>
           <!-- cu -->
           <div class="card card-body bg-blue-400" >
             <div class="media">
               <div class="media-body">
                 <h3 class="mb-0" >{{'Anggota CU ' + selectedData.anggota_cu_cu.cu.name}}</h3>
-                <span class="text-uppercase">
+                <span>
                   {{ 'Nama: ' + selectedData.anggota_cu.name }} 
                   <br/>
                   {{ 'No. BA: ' + selectedData.anggota_cu_cu.no_ba }} 
@@ -121,20 +122,20 @@
             <div class="media">
               <div class="media-body">
                 <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
-                <span class="text-uppercase">
+                <span>
                   Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
                 </span>
                 <div v-if="selectedData.tipe == 'cacat'">
                   <hr/>
                   <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
-                  <span class="text-uppercase">
+                  <span>
                     Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
                   </span>
                 </div>
                 <div v-else-if="selectedData.tipe == 'meninggal'">
                   <hr/>
                   <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
-                  <span class="text-uppercase">
+                  <span>
                     Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
                   </span>
                 </div>
@@ -187,6 +188,80 @@
         </div>
 
         <div class="col-md-12"><hr/></div>
+
+        <div class="col-md-12 row" v-if="tipe == 'analisis' || tipe == 'selesai'">
+          <div class="col-md-12"><h5>Verifikasi CU:</h5></div>
+          <!-- veriifkasi pengurus -->
+          <div class="col-md-4">
+            <div class="card card-body bg-green-800" >
+              <div class="media">
+                <div class="media-body">
+                 <h3 class="mb-0" >Verifikasi Pengurus</h3>
+                  <span>
+                    <b>Username:</b> {{ selectedData.verifikasi_pengurus ? selectedData.verifikasi_pengurus.username : '-' }} 
+                    <br/>
+                    <b>Nama:</b> {{ selectedData.verifikasi_pengurus && selectedData.verifikasi_pengurus.aktivis ? selectedData.verifikasi_pengurus.aktivis.name : '-' }}
+                    <br/>
+                    <b>Tingkat/Jabatan:</b>
+                    {{ selectedData.verifikasi_pengurus && selectedData.verifikasi_pengurus.aktivis && selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif.tingkat) : '' }} /
+                    {{ selectedData.verifikasi_pengurus && selectedData.verifikasi_pengurus.aktivis && selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif.name : '' }}
+                  </span>
+                 <hr/>
+                  <h5 class="mb-1" >Verifikator yang dipilih</h5>
+                  <span v-for="vr in modelPengurus"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+          <!-- veriifkasi pengawas -->
+          <div class="col-md-4">
+            <div class="card card-body bg-green-800" >
+              <div class="media">
+                <div class="media-body">
+                 <h3 class="mb-0" >Verifikasi Pengawas</h3>
+                  <span>
+                    <b>Username:</b> {{ selectedData.verifikasi_pengawas ? selectedData.verifikasi_pengawas.username : '-' }} 
+                    <br/>
+                    <b>Nama:</b> {{ selectedData.verifikasi_pengawas && selectedData.verifikasi_pengawas.aktivis ? selectedData.verifikasi_pengawas.aktivis.name : '-' }}
+                    <br/>
+                    <b>Tingkat/Jabatan:</b>
+                    {{ selectedData.verifikasi_pengawas && selectedData.verifikasi_pengawas.aktivis && selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif.tingkat) : '' }} /
+                    {{ selectedData.verifikasi_pengawas && selectedData.verifikasi_pengawas.aktivis && selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif.name : '' }}
+                  </span>
+                  <hr/>
+                  <h5 class="mb-1" >Verifikator yang dipilih</h5>
+                  <span v-for="vr in modelPengawas"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+          <!-- veriifkasi manajemen -->
+          <div class="col-md-4">
+            <div class="card card-body bg-green-800" >
+              <div class="media">
+                <div class="media-body">
+                  <h3 class="mb-0" >Verifikasi Manajemen</h3>
+                  <span>
+                    <b>Username:</b> {{ selectedData.verifikasi_manajemen ? selectedData.verifikasi_manajemen.username : '-' }} 
+                    <br/>
+                    <b>Nama:</b> {{ selectedData.verifikasi_manajemen && selectedData.verifikasi_manajemen.aktivis ? selectedData.verifikasi_manajemen.aktivis.name : '-' }}
+                    <br/>
+                    <b>Tingkat/Jabatan:</b>
+                    {{ selectedData.verifikasi_manajemen && selectedData.verifikasi_manajemen.aktivis && selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif.tingkat) : '' }} /
+                    {{ selectedData.verifikasi_manajemen && selectedData.verifikasi_manajemen.aktivis && selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif ? selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif.name : '' }}
+                  </span>
+                  <hr/>
+                  <h5 class="mb-1" >Verifikator yang dipilih</h5>
+                  <span v-for="vr in modelManajemen"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+          <div class="col-md-12"><hr/></div>
+        </div>
 
         <!-- status -->
         <div class="col-md-12" v-if="tipe == 'analisis'">
@@ -477,6 +552,7 @@
       this.formStatus.tanggal_pencairan = this.selectedData.tanggal_pencairan;
       this.formStatus.cu_id = this.selectedData.anggota_cu_cu.cu_id;
       this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.selectedData.anggota_cu_cu.cu_id]);
+      this.$store.dispatch('user/indexCuPermission',this.selectedData.anggota_cu_cu.cu_id);
 		},
 		watch: {
 		},
@@ -519,7 +595,15 @@
       ...mapGetters('anggotaCu',{
 				itemData: 'dataProduk',
 				itemDataStat: 'dataProdukStat',
-			}),
+      }),
+      ...mapGetters('user', {
+				modelPengurus: "dataS1",
+				modelPengawas: "dataS2",
+				modelManajemen: "dataS3",
+        modelPengurusStat: "dataStatS1",
+        modelPengawasStat: "dataStatS2",
+        modelManajemenStat: "dataStatS3",
+      }),
       selisihTunas: function () {
         // `this` points to the vm instance
         return this.formStatus.tunas_disetujui - this.selectedData.tunas_diajukan

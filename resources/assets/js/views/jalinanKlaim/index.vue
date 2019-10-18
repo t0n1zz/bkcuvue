@@ -53,6 +53,41 @@
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'verifikasi'">
+								<div class="row" v-if="$route.params.cu != 'semua' && modelPengurusStat == 'success'">
+									<!-- verifikasi pengurus -->
+									<div class="col-md-4">
+										<div class="card card-body bg-green-800" >
+											<div class="media">
+												<div class="media-body">
+													<h5 class="mb-1" >Verifikator Pengurus</h5>
+													<span v-for="vr in modelPengurus"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
+												</div>
+											</div>
+										</div> 
+									</div>
+									<!-- verifikasi pengawas -->
+									<div class="col-md-4">
+										<div class="card card-body bg-green-800" >
+											<div class="media">
+												<div class="media-body">
+													<h5 class="mb-1" >Verifikator Pengawas</h5>
+													<span v-for="vr in modelPengawas"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
+												</div>
+											</div>
+										</div> 
+									</div>
+									<!-- verifikasi manajemen -->
+									<div class="col-md-4">
+										<div class="card card-body bg-green-800" >
+											<div class="media">
+												<div class="media-body">
+													<h5 class="mb-1" >Verifikator Manajemen</h5>
+													<span v-for="vr in modelManajemen"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
+												</div>
+											</div>
+										</div> 
+									</div>
+								</div>
 							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
 							</div>
 						</transition>	
@@ -174,6 +209,14 @@
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
+			...mapGetters('user', {
+				modelPengurus: "dataS1",
+				modelPengawas: "dataS2",
+				modelManajemen: "dataS3",
+        modelPengurusStat: "dataStatS1",
+        modelPengawasStat: "dataStatS2",
+        modelManajemenStat: "dataStatS3",
+      }),
 			...mapGetters('jalinanKlaim',{
 				itemData: 'dataS',
 				itemData1: 'dataS1',

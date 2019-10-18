@@ -30,6 +30,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
     Route::post('/user/updateFoto/{id}', 'UserController@updateFoto');
     Route::post('/user/updateIdentitas/{id}', 'UserController@updateIdentitas');
+    Route::get('/user/indexCuPermission/{id}', 'UserController@indexCuPermission');
 
     Route::group(['middleware' => ['permission:index_user']], function () {
         Route::get('/user', 'UserController@index');

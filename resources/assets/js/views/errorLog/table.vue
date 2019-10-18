@@ -45,12 +45,16 @@
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.status"></check-value>
+						<check-value :value="props.item.user.cu.name" v-if="props.item.user && props.item.user.cu"></check-value>
+						<span v-else>Puskopdit BKCU Kalimantan</span>
 					</td>
 					<td v-if="!columnData[3].hide">
+						<check-value :value="props.item.status"></check-value>
+					</td>
+					<td v-if="!columnData[4].hide">
 						{{props.item.content.substring(0,100)}}...
 					</td>
-					<td v-if="!columnData[4].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 				</tr>
 			</template>
 
@@ -140,6 +144,15 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
+					},
+					{
+						title: 'Lembaga',
+						name: 'user.id_cu',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Status',

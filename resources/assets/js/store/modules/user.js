@@ -11,9 +11,15 @@ export const user = {
     markNotifStat:'',
     data: {}, //single data
     dataS: [], //collection
+    dataS1: [], //collection
+    dataS2: [], //collection
+    dataS3: [], //collection
     count: {},
     dataStat: '',
     dataStatS: '',
+    dataStatS1: '',
+    dataStatS2: '',
+    dataStatS3: '',
     countStat: '',
     update: [], //update data
     updateStat: '',
@@ -29,9 +35,15 @@ export const user = {
     markNotifStat: state => state.markNotifStat,
     data: state => state.data,
     dataS: state => state.dataS,
+    dataS1: state => state.dataS1,
+    dataS2: state => state.dataS2,
+    dataS3: state => state.dataS3,
     count: state => state.count,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataStatS1: state => state.dataStatS1,
+    dataStatS2: state => state.dataStatS2,
+    dataStatS3: state => state.dataStatS3,
     countStat: state => state.countStat,
     update: state => state.update,
     updateStat: state => state.updateStat,
@@ -68,6 +80,30 @@ export const user = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexCuPermission( { commit }, id ){
+      commit('setDataStatS1', 'loading');
+      commit('setDataStatS2', 'loading');
+      commit('setDataStatS3', 'loading');
+      
+      UserAPI.indexCuPermission( id )
+        .then( function( response ){
+          commit('setDataS1', response.data.model1);
+          commit('setDataS2', response.data.model2);
+          commit('setDataS3', response.data.model3);
+          commit('setDataStatS1', 'success');
+          commit('setDataStatS2', 'success');
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS1', error.response);
+          commit('setDataS2', error.response);
+          commit('setDataS3', error.response);
+          commit('setDataStatS1', 'fail');
+          commit('setDataStatS2', 'fail');
+          commit('setDataStatS3', 'fail');
         });
     },
 
@@ -412,6 +448,15 @@ export const user = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setDataS1 ( state, data ){
+      state.dataS1 = data;
+    },
+    setDataS2 ( state, data ){
+      state.dataS2 = data;
+    },
+    setDataS3 ( state, data ){
+      state.dataS3 = data;
+    },
     setCount ( state, data ){
       state.count = data;
     },
@@ -420,6 +465,15 @@ export const user = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatS1( state, status ){
+      state.dataStatS1 = status;
+    },
+    setDataStatS2( state, status ){
+      state.dataStatS2 = status;
+    },
+    setDataStatS3( state, status ){
+      state.dataStatS3 = status;
     },
     setCountStat( state, status ){
       state.countStat = status;

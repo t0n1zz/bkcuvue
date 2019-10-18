@@ -10,15 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.1.8 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#318">Version 3.1.8 <small class="text-muted"> / 18 Oktober 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="318" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada perbaikan di bagian aktivis, penambahan tampilan pada form analisis klaim JALINAN, perubahan tampilan pada daftar produk dan pelayanan CU dan perubahan pada informasi user
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan informasi user yang melakukan verifikasi pada masing-masing klaim JALINAN pada form analisis klaim JALINAN</li>
+                      <li>Perubahan tampilan daftar produk dan pelayanan CU menjadi lebih ringkas</li>
+                      <li>Perubahan user yang sudah menngikuti data aktivis yang tersambung pada masing-masing user</li>
+                      <li>Perbaikan bug informasi TP pada aktivis tidak muncul ketika menginput data aktivis</li>
+                      <li>Perbaikan pada informasi TP ketika melakukan export excel data CU</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.7 -->
+
               <!-- Version 3.1.7 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#317">Version 3.1.7 <small class="text-muted"> / 16 Oktober 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#317">Version 3.1.7 <small class="text-muted"> / 16 Oktober 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="317" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="317" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU, Klaim JALINAN dan penambahan fitur baru untuk pengelolaan aset tetap lembaga, mengabungkan informasi data aktivis dengan user.
                     <br/><br/>

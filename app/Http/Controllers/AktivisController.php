@@ -369,86 +369,93 @@ class AktivisController extends Controller{
 
 	public function store(Request $request)
 	{
-		$this->validate($request,Aktivis::$rules);
+		\DB::beginTransaction(); 
+		try{
+			$this->validate($request,Aktivis::$rules);
 
-		$name = $request->name;
+			$name = $request->name;
 
-		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
-		else
-			$fileName = '';	
-		
-		// identitas	
-		$kelas = Aktivis::create($request->except('gambar','nim') + [
-			'gambar' => $fileName
-		]);
-		
-		$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
-
-		// nim
-		$no_bkcu = sprintf("%'.03d", 15); //999
-		$no_cu = sprintf("%'.03d", $pekerjaan[1]); //999
-		$no_id = sprintf("%'.06d", $kelas->id); //999999
-
-		// cek nim
-		$cek_nim = $no_bkcu . $pekerjaan[0] . $no_cu;
-		$cekdata = Aktivis::where('nim','LIKE','%'.$cek_nim.'%')->select('nim')->orderBy('nim','desc')->first();
-
-		if(!empty($cekdata)){
-				$nim_baru = sprintf("%'.06d",ltrim(substr($cekdata->nim,7,6),'0')+1);
-		}else{
-				$nim_baru = sprintf("%'.06d", 1);
-		}
-
-		// save nim
-		$nim = $no_bkcu . $pekerjaan[0] . $no_cu  . $nim_baru;
-		$kelas2 = Aktivis::find($kelas->id);
-		$kelas2->nim = $nim;
-		$kelas2->save();
-
-		// keluarga
-		$ayah = $request->keluarga['ayah'];
-		$ibu = $request->keluarga['ibu'];
-
-		if(array_key_exists('pasangan',$request->keluarga)){
-			$pasangan = $request->keluarga['pasangan'];
-		}
-
-		if(!empty($ayah))
-			$this->saveKeluarga(null,$kelas->id,'Ayah',$ayah);
-		
-		if(!empty($ibu))
-			$this->saveKeluarga(null,$kelas->id,'Ibu',$ibu);
-
-		if(!empty($pasangan))
-			$this->saveKeluarga(null,$kelas->id,'Pasangan',$pasangan);	
-
-		if(!empty($request->anak)){
-			foreach($request->anak as $a){
-				$anak_name = array_key_exists('name', $a) ? $a['name'] : null;
-				$this->saveKeluarga(null,$kelas->id,'Anak',$anak_name);
-			}
-		}	
-
-		if(!empty($request->anggota_cu)){
-			foreach($request->anggota_cu as $a){
-				$anggota_cu_id_cu = array_key_exists('id_cu', $a) ? $a['id_cu'] : null;
-				$anggota_cu_name = array_key_exists('name', $a) ? $a['name'] : null;
-				$anggota_cu_no_ba = array_key_exists('no_ba', $a) ? $a['no_ba'] : null;
-				$anggota_cu_tanggal_masuk = array_key_exists('tanggal_masuk', $a) ? $a['tanggal_masuk'] : null;
-
-				$this->saveAnggotaCu(null,$kelas->id,$anggota_cu_id_cu,$anggota_cu_name,$anggota_cu_no_ba,$anggota_cu_tanggal_masuk);
-			}
-		}
-
-		return response()
-			->json([
-
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
-				'id' => $kelas->id
+			// processing single image upload
+			if(!empty($request->gambar))
+				$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			else
+				$fileName = '';	
+			
+			// identitas	
+			$kelas = Aktivis::create($request->except('gambar','nim') + [
+				'gambar' => $fileName
 			]);
+			
+			$pekerjaan = $this->savePekerjaan($request,$kelas->id,true);
+
+			// nim
+			$no_bkcu = sprintf("%'.03d", 15); //999
+			$no_cu = sprintf("%'.03d", $pekerjaan[1]); //999
+			$no_id = sprintf("%'.06d", $kelas->id); //999999
+
+			// cek nim
+			$cek_nim = $no_bkcu . $pekerjaan[0] . $no_cu;
+			$cekdata = Aktivis::where('nim','LIKE','%'.$cek_nim.'%')->select('nim')->orderBy('nim','desc')->first();
+
+			if(!empty($cekdata)){
+					$nim_baru = sprintf("%'.06d",ltrim(substr($cekdata->nim,7,6),'0')+1);
+			}else{
+					$nim_baru = sprintf("%'.06d", 1);
+			}
+
+			// save nim
+			$nim = $no_bkcu . $pekerjaan[0] . $no_cu  . $nim_baru;
+			$kelas2 = Aktivis::find($kelas->id);
+			$kelas2->nim = $nim;
+			$kelas2->save();
+
+			// keluarga
+			$ayah = $request->keluarga['ayah'];
+			$ibu = $request->keluarga['ibu'];
+
+			if(array_key_exists('pasangan',$request->keluarga)){
+				$pasangan = $request->keluarga['pasangan'];
+			}
+
+			if(!empty($ayah))
+				$this->saveKeluarga(null,$kelas->id,'Ayah',$ayah);
+			
+			if(!empty($ibu))
+				$this->saveKeluarga(null,$kelas->id,'Ibu',$ibu);
+
+			if(!empty($pasangan))
+				$this->saveKeluarga(null,$kelas->id,'Pasangan',$pasangan);	
+
+			if(!empty($request->anak)){
+				foreach($request->anak as $a){
+					$anak_name = array_key_exists('name', $a) ? $a['name'] : null;
+					$this->saveKeluarga(null,$kelas->id,'Anak',$anak_name);
+				}
+			}	
+
+			if(!empty($request->anggota_cu)){
+				foreach($request->anggota_cu as $a){
+					$anggota_cu_id_cu = array_key_exists('id_cu', $a) ? $a['id_cu'] : null;
+					$anggota_cu_name = array_key_exists('name', $a) ? $a['name'] : null;
+					$anggota_cu_no_ba = array_key_exists('no_ba', $a) ? $a['no_ba'] : null;
+					$anggota_cu_tanggal_masuk = array_key_exists('tanggal_masuk', $a) ? $a['tanggal_masuk'] : null;
+
+					$this->saveAnggotaCu(null,$kelas->id,$anggota_cu_id_cu,$anggota_cu_name,$anggota_cu_no_ba,$anggota_cu_tanggal_masuk);
+				}
+			}
+			
+			\DB::commit();
+			return response()
+				->json([
+
+					'saved' => true,
+					'message' => $this->message. ' ' .$name. ' berhasil ditambah',
+					'id' => $kelas->id
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}
 	}
 
 	public function edit($id)

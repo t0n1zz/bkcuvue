@@ -26,7 +26,7 @@
 
 			<!-- item mobile -->
 			<template slot="item-mobile" slot-scope="props">
-				<div class="col-12">
+				<div class="col-md-6">
 
 					<div class="card border-left-3 rounded-left-0" :class="[gridColor(props.item.tipe)]">
 						<div class="card-header bg-light header-elements-inline">

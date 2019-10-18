@@ -216,7 +216,7 @@ export default {
         },
         {
           title: "Jmlh TP/KP",
-          name: "has_tp_cu_count",
+          name: "has_tp_count",
           tipe: "numeric",
           sort: true,
           hide: false,

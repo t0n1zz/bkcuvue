@@ -631,6 +631,7 @@
           this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.awal, this.$route.params.akhir]);
           this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           this.columnData[4].disable = true;
+          this.$store.dispatch('user/indexCuPermission',this.$route.params.cu);
         }
       },
       selectedRow(item) {

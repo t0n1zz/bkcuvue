@@ -68,7 +68,7 @@ Route::get('/admins/{vue?}', function () {
 
 // test route
 Route::get('/testroute', function () {
-
+	// $kelas = App\User::permission('verifikasi_manajemen_jalinan_klaim')->get();
 		// $from = \Carbon\Carbon::now()->subYears(30)->format('Y-m-d');
 		// $to = \Carbon\Carbon::now()->subYears(20)->format('Y-m-d');
 

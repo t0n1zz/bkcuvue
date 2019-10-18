@@ -832,23 +832,11 @@
 			this.form.id_cu = this.currentUser.id_cu;
 			this.$store.dispatch('provinces/get');
 			this.fetch();
+			this.fetchMode();
 		},
 		watch: {
 			formStat(value){
-				if(value == "success"){
-					
-					if(this.mode == 'edit' || this.mode == 'create_old'){
-						this.loadData();
-						this.changeAlamat();
-					}else if(this.mode == 'create_new'){
-						this.form.nik = this.nik;
-					}
-
-					if(this.currentUser.id_cu != 0 && this.mode == 'create_new'){
-						this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
-						this.changeLembagaPekerjaan(this.currentUser.id_cu);
-					}
-				}
+				this.fetchMode();
 			},
 			selesai: function(value){
 				let now = moment().format('Y-MM-DD');
@@ -880,10 +868,23 @@
 
 				if(this.mode == 'edit' || this.mode == 'createEdit'){
 					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
-				}
+				} 
 
 				if(this.modelCuStat != 'success'){
 					this.$store.dispatch('cu/getHeader');
+				}
+			},
+			fetchMode(){
+				if(this.mode == 'edit' || this.mode == 'create_old'){
+					this.loadData();
+					this.changeAlamat();
+				}else if(this.mode == 'create_new'){
+					this.form.nik = this.nik;
+				}
+				
+				if(this.currentUser.id_cu != 0 && this.mode == 'create_new'){
+					this.form.pekerjaan.id_tempat = this.currentUser.id_cu;
+					this.changeLembagaPekerjaan(this.currentUser.id_cu);
 				}
 			},
 			loadData(){
@@ -975,7 +976,7 @@
 					this.form.pekerjaan.tipe = 2;
 				}else{
 					this.form.pekerjaan.tipe = 1;
-					this.$store.dispatch('tp/getCu',value);
+					this.$store.dispatch('tp/getCu',this.currentUser.id_cu);
 				}
 			},
 			ubahCanEdit(){

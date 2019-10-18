@@ -173,7 +173,7 @@
               :src="'/images/aktivis/' + props.item.aktivis.gambar + '.jpg'"
               class="img-rounded img-fluid wmin-sm"
               width="40"
-              v-if="props.item.aktivis"
+              v-if="props.item.aktivis && props.item.gambar"
             />
             <img
               :src="'/images/no_image_man.jpg'"

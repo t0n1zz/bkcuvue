@@ -28,25 +28,25 @@ class JalinanKlaim extends Model {
     ];
 
     protected $fillable = [
-        'anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan',
+        'anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan','verifikasi_pengurus','verifikasi_pengawas','verifikasi_manajemen'
     ];
 
     protected $allowedFilters = [
         'id','anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan',
         
-        'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
+        'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk','verifikasi_pengurus.name','verifikasi_pengawas.name','verifikasi_manajemen.name'
     ];
 
     protected $orderable = [
         'id','anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan',
 
-        'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
+        'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk','verifikasi_pengurus.name','verifikasi_pengawas.name','verifikasi_manajemen.name',
     ];
 
     public static function initialize()
     {
         return [
-            'anggota_cu_id' => '', 'anggota_cu_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '','tanggal_pencairan' => ''
+            'anggota_cu_id' => '', 'anggota_cu_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '','tanggal_pencairan' => '','verifikasi_pengurus' => '','verifikasi_pengawas' => '','verifikasi_manajemen' => ''
         ];
     }
 
@@ -58,6 +58,21 @@ class JalinanKlaim extends Model {
     public function anggota_cu_cu()
     {
         return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(MONTH, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
+    }
+
+    public function verifikasi_pengurus()
+    {
+        return $this->belongsTo('App\User','verifikasi_pengurus','id')->select('id','id_aktivis','username','name');
+    }
+
+    public function verifikasi_pengawas()
+    {
+        return $this->belongsTo('App\User','verifikasi_pengawas','id')->select('id','id_aktivis','username','name');
+    }
+
+    public function verifikasi_manajemen()
+    {
+        return $this->belongsTo('App\User','verifikasi_manajemen','id')->select('id','id_aktivis','username','name');
     }
 
 }

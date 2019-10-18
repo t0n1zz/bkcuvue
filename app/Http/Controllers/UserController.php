@@ -169,6 +169,20 @@ class UserController extends Controller
 			]);
 	}
 
+	public function indexCuPermission($id)
+	{
+			$table_data1 = User::with('aktivis')->where('id_cu',$id)->permission('verifikasi_pengurus_jalinan_klaim')->get();
+			$table_data2 = User::with('aktivis')->where('id_cu',$id)->permission('verifikasi_pengawas_jalinan_klaim')->get();
+			$table_data3 = User::with('aktivis')->where('id_cu',$id)->permission('verifikasi_manajemen_jalinan_klaim')->get();
+			
+    	return response()
+			->json([
+				'model1' => $table_data1,
+				'model2' => $table_data2,
+				'model3' => $table_data3,
+			]);
+	}
+
 	public function getActivity($id)
 	{
 		$user = User::findOrFail($id);
