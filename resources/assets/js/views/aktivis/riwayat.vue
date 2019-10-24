@@ -372,7 +372,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import checkValue from '../../components/checkValue.vue';
-	import identitas from "../../components/identitas.vue";
+	import identitas from "../../components/identitas2.vue";
 
 	export default {
 		components: {

@@ -2,7 +2,7 @@
   <div>
 
     <!-- main panel -->
-    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
+    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUploads="excelUploads"  @fetch="fetch">
 
       <!-- button desktop -->
       <template slot="button-desktop">
@@ -299,13 +299,6 @@
         },
         excelDownloadUrl: '',
         excelUploads:[
-          {
-            enabled: true,
-            url: 'anggotaCu/uploadExcelNew',
-            format_url: 'formatAnggotaCuBaru.xlsx',
-            next_page_route: 'AnggotaCuDraft',
-            button: 'Upload Anggota CU Baru'
-          },
           {
             enabled: true,
             url: 'anggotaCu/uploadExcel',

@@ -148,8 +148,8 @@
 								<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'"
 									data-vv-as="Gender">
 									<option disabled value="">Silahkan pilih gender</option>
-									<option value="Pria">Pria</option>
-									<option value="Wanita">Wanita</option>
+									<option value="PRIA">Pria</option>
+									<option value="WANITA">Wanita</option>
 								</select>
 
 								<!-- error message -->
@@ -252,12 +252,13 @@
 								<!-- select -->
 								<select class="form-control" name="agama" v-model="form.agama" data-width="100%">
 									<option disabled value="">Silahkan pilih agama</option>
-									<option value="Buddha">Buddha</option>
-									<option value="Hindu">Hindu</option>
-									<option value="Islam">Islam</option>
-									<option value="Khatolik">Khatolik</option>
-									<option value="Kong Hu Cu">Kong Hu Cu</option>
-									<option value="Protestan">Protestan</option>
+									<option value="BUDDHA">Buddha</option>
+									<option value="HINDU">Hindu</option>
+									<option value="ISLAM">Islam</option>
+									<option value="KHATOLIK">Khatolik</option>
+									<option value="KONG HU CU">Kong Hu Cu</option>
+									<option value="PROTESTAN">Protestan</option>
+									<option value="LAIN-LAIN">Lain-lain</option>
 								</select>
 
 							</div>
@@ -275,9 +276,9 @@
 								<!-- select -->
 								<select class="form-control" name="status" v-model="form.status" data-width="100%">
 									<option disabled value="">Silahkan pilih status pernikahan</option>
-									<option value="Belum menikah">Belum menikah</option>
-									<option value="Menikah">Menikah</option>
-									<option value="Janda/Duda">Janda/Duda</option>
+									<option value="BELUM MENIKAH">Belum menikah</option>
+									<option value="MENIKAH">Menikah</option>
+									<option value="JANDA/DUDA">Janda/Duda</option>
 								</select>
 
 							</div>
@@ -515,6 +516,44 @@
 							</div>
 						</div>
 
+						<!-- RT -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>RT:</h6>
+
+								<!-- text -->
+								<cleave 
+									v-model="form.rt" 
+									class="form-control" 
+									:options="cleaveOption.number3"
+									placeholder="Silahkan masukkan no rt"></cleave>
+
+								<!-- error message -->
+								<small class="text-muted">&nbsp;</small>	
+							</div>
+						</div>
+
+						<!-- RW -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>RW:</h6>
+
+								<!-- text -->
+								<cleave 
+									v-model="form.rw" 
+									class="form-control" 
+									:options="cleaveOption.number3"
+									placeholder="Silahkan masukkan no rw"></cleave>
+
+								<!-- error message -->
+								<small class="text-muted">&nbsp;</small>	
+							</div>
+						</div>
+
 						<!-- alamat -->
 						<div class="col-md-8">
 							<div class="form-group" :class="{'has-error' : errors.has('form.alamat')}">
@@ -638,7 +677,13 @@
 									No. BA: <wajib-badge></wajib-badge></h6>
 
 									<!-- text -->
-									<input type="text" name="no_ba" class="form-control" placeholder="Silahkan masukkan no ba" v-validate="'required'" data-vv-as="No. BA" v-model="form.no_ba">
+									<cleave 
+									name="no_ba"
+									v-model="form.no_ba" 
+									class="form-control" 
+									:options="cleaveOption.number16"
+									placeholder="Silahkan masukkan no buku anggota"
+									v-validate="'required'" data-vv-as="No. Buku Anggota"></cleave>
 
 									<!-- error message -->
 									<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">

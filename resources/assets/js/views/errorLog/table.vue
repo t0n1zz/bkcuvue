@@ -41,7 +41,8 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.user.name" v-if="props.item.user"></check-value>
+						<check-value :value="props.item.user.aktivis.name" v-if="props.item.user && props.item.user.aktivis"></check-value>
+						<check-value :value="props.item.user.name" v-else-if="props.item.user"></check-value>
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[2].hide">

@@ -12,7 +12,7 @@ class ErrorLogController extends Controller{
 
 	public function index()
 	{
-			$table_data = ErrorLog::with('user.cu')->advancedFilter();
+			$table_data = ErrorLog::with('user.cu',' user.aktivis')->advancedFilter();
 
     	return response()
 			->json([

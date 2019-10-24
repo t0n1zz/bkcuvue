@@ -52,7 +52,7 @@
 											<div class="media-body">
 												<div class="media-title">
 													<span class="font-weight-semibold">
-														<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}}
+														<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}}
 													</span>
 													<span class="font-size-xs">
 														[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
@@ -84,7 +84,7 @@
 											<div class="media-body">
 												<div class="media-title">
 													<span class="font-weight-semibold">
-														<i class="icon-graduation2"></i> {{notif.user.name}}
+														<i class="icon-graduation2"></i> {{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}}
 													</span>
 
 													<span class="font-size-xs" v-if="notif.user.cu">

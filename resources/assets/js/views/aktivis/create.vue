@@ -720,7 +720,7 @@
 	import Cleave from 'vue-cleave-component';
 	import aktivisAPI from '../../api/aktivis.js';
 	import appImageUpload from '../../components/ImageUpload.vue';
-	import identitas from "../../components/identitas.vue";
+	import identitas from "../../components/identitas2.vue";
 	
 	export default {
 		props: ['mode','nik'],

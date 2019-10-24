@@ -11,12 +11,12 @@
       <div class="row">
         <div class="col-sm-4">
           <ul class="list list-unstyled mb-0">
-            <li><b>No. KTP:</b> {{ itemData.nik}}</li>
-            <li><b>Nama:</b> {{ itemData.name}}</li>
-            <li><b>Gender:</b> {{ itemData.kelamin}}</li>
-            <li><b>Tinggi:</b> {{ itemData.tinggi}}</li>
-            <li><b>Agama:</b> {{ itemData.agama}}</li>
-            <li><b>Darah:</b> {{ itemData.darah}}</li>
+            <li><b>No. KTP:</b> {{itemData.nik}}</li>
+            <li><b>Nama:</b> {{itemData.name}}</li>
+            <li><b>Gender:</b> {{itemData.kelamin}}</li>
+            <li><b>Tinggi:</b> {{itemData.tinggi}}</li>
+            <li><b>Agama:</b> {{itemData.agama}}</li>
+            <li><b>Gol. Darah:</b> {{itemData.darah}}</li>
             <li v-if="itemData.tanggal_meninggal == null"><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
             <li v-else><b>Usia Saat Meninggal:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.ageDiff(itemData.tanggal_meninggal, itemData.tanggal_lahir)"></span></li>
             <li><b>Status:</b> {{ itemData.status}}</li>

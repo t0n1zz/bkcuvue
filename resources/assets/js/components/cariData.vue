@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col-12">
         <h6>
-          Silahkan masukkan No. KTP
+          Silahkan masukkan No. KTP / Nomor Induk Kependudukan (NIK)*
+          <br/>
+          <span class="badge bg-danger-400 align-self-center ml-auto">*pastikan nomor yang dimasukan adalah nomor yang valid!</span> 
         </h6>
       </div>
       <div class="col-12 pb-2">
@@ -13,7 +15,7 @@
           v-model="nik" 
           class="form-control" 
           :options="cleaveOption.number16"
-          placeholder="Silahkan masukkan no KTP" :disabled="isNew"></cleave>
+          placeholder="Silahkan masukkan no. KTP / Nomor Induk Kependudukan (NIK)" :disabled="isNew"></cleave>
       </div>
 
       <div class="col-12 d-none d-md-block">

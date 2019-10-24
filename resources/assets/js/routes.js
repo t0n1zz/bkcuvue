@@ -51,6 +51,8 @@ import mitraLembaga_form from './views/mitraLembaga/form.vue';
 import anggotaCu from './views/anggotaCu/index.vue';
 import anggotaCu_form from './views/anggotaCu/form.vue';
 import anggotaCu_produk from './views/anggotaCu/produk.vue';
+import anggotaCuDraft from './views/anggotaCuDraft/index.vue';
+import anggotaCuDraft_form from './views/anggotaCuDraft/form.vue';
 import saldo from './views/saldo/index.vue';
 import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
@@ -429,6 +431,20 @@ const routes = [
 		name: 'anggotaCuProdukEdit', 
 		components: { default: anggotaCu_produk, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'edit' }},		
+
+	// anggota cu
+	{ path: '/anggotaCuDraft/cu/:cu/:tp',
+		name: 'anggotaCuCuDraft', 
+		components: { default: anggotaCuDraft, 'header': header, 'footer': footer  }, 
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/anggotaCuDraft',
+		name: 'anggotaCuDraft', 
+		components: { default: anggotaCuDraft, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
+	{ path: '/anggotaCuDraft/edit/:id',
+		name: 'anggotaCuDraftEdit', 
+		components: { default: anggotaCuDraft_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },	
 		
 	// saldo	
 	{ path: '/saldo',

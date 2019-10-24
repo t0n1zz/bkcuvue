@@ -10,15 +10,40 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+               <!-- Version 3.1.9 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#319">Version 3.1.9 <small class="text-muted"> / 27 Oktober 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="319" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada perbaikan di bagian anggota CU, user, aktivis
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan pada menampilkan data anggota CU di bagian sudah keluar dan sudah meninggal</li>
+                      <li>Perubahan pada bagian input No. BA yang hanya memperbolehkan menginput angka saja</li>
+                      <li>Perbaikan foto user yang tidak muncul</li>
+                      <li>Perbaikan bug tampilan pada informasi jabatan, pendidikan dan organisasi pada bagian aktivis</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.1.9 -->
+
               <!-- Version 3.1.8 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#318">Version 3.1.8 <small class="text-muted"> / 18 Oktober 2019</small></a>
+                    <a data-toggle="collapse" class="colapsed text-default" href="#318">Version 3.1.8 <small class="text-muted"> / 18 Oktober 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="318" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="318" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada perbaikan di bagian aktivis, penambahan tampilan pada form analisis klaim JALINAN, perubahan tampilan pada daftar produk dan pelayanan CU dan perubahan pada informasi user
                     <br/><br/>
@@ -34,7 +59,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /version 3.1.7 -->
+              <!-- /version 3.1.8 -->
 
               <!-- Version 3.1.7 -->
               <div class="card">

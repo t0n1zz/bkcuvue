@@ -73,7 +73,14 @@
 					</h5>
 
 					<!-- text -->
-					<input type="text" name="anggota_no_ba" class="form-control" placeholder="Silahkan masukkan no. BA anggota CU" v-validate="'required'" data-vv-as="No. BA Anggota CU" v-model="formDataCu.no_ba">
+					<cleave 
+						name="anggota_no_ba"
+						v-model="formDataCu.no_ba" 
+						class="form-control" 
+						:options="cleaveOption.number16"
+						placeholder="Silahkan masukkan no buku anggota"
+						v-validate="'required'" data-vv-as="No. Buku Anggota"></cleave>
+
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formDataCu.no_ba')">
@@ -199,6 +206,13 @@
             numeralDecimalMark: ',',
             delimiter: '.'
 					},
+					number16: {
+            numeral: true,
+            numeralIntegerScale: 16,
+            numeralDecimalScale: 0,
+						stripLeadingZeroes: false,
+						delimiter: ''
+					},s
 				},
 				message: {
 					show: false,

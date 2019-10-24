@@ -101,7 +101,7 @@
 
 											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-weight-semibold">
-													<i class="icon-graduation2"></i> {{notif.user.name}} <br/>
+													<i class="icon-graduation2"></i> {{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}} <br/>
 												</span>
 												<span class="font-size-xs" v-if="notif.user.cu">
 													[ CU {{notif.user.cu.name}} ]
@@ -1001,7 +1001,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.1.8',
+				clientVersion: '3.1.9',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				laporanCuDraftCount: [],

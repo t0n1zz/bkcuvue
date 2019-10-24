@@ -10,10 +10,12 @@ use App\AnggotaCu;
 use App\AnggotaCuCu;
 use App\AnggotaCuKlaim;
 use App\Support\Helper;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\HeadingRowImport;
 use App\AnggotaProdukCu;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
-use App\Imports\AnggotaCuNewDraftImport;
+use App\Imports\AnggotaCuDraftImport;
 
 class AnggotaCuController extends Controller{
 
@@ -77,7 +79,7 @@ class AnggotaCuController extends Controller{
 	public function indexCuKeluar($cu, $tp)
 	{
 		$table_data = AnggotaCu::with('anggota_cu_cu_keluar.cu','anggota_cu_cu_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($cu, $tp){ 
-			if($tp != 'undefined'){
+			if($tp != 'semua'){
 				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 			}else{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
@@ -90,10 +92,14 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
-	public function indexCuMeninggal($id)
+	public function indexCuMeninggal($cu, $tp)
 	{
-		$table_data = AnggotaCu::with('anggota_cu_keluar','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($id){ 
-			$query->where('anggota_cu_cu.cu_id',$id); 
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
+			if($tp != 'semua'){
+				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar');
+			}else{
+				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar');  
+			}
 		})->where('status_jalinan','meninggal')->advancedFilter();
 
 		return response()
@@ -540,9 +546,9 @@ class AnggotaCuController extends Controller{
 		}
 	}
 
-	public function uploadExcelNew(Request $request)
+	public function uploadExcel(Request $request)
 	{
-		Excel::import(new AnggotaCuNewDraftImport, request()->file('file'));
+		Excel::import(new AnggotaCuDraftImport, request()->file('file'));
 
 		return response()
 			->json([
