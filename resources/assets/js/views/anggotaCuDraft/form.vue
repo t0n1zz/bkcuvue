@@ -39,7 +39,7 @@
 				title: '',
 				titleDesc: '',
 				titleIcon: '',
-				kelas: 'anggotaCuDraft',
+				kelas: 'anggotaCu',
 				level2Title: 'Anggota CU Draft',
 				nik: '',
 				cleaveOption: {
@@ -55,22 +55,11 @@
 		},
 		created() {
 			this.resetData();
-
-			if(this.$route.meta.mode === 'edit'){
-				this.title = 'Ubah ' + this.level2Title;
-				this.titleDesc = 'Mengubah ' + this.level2Title;
-				this.titleIcon = 'icon-pencil5';
-			}else{
-				this.title = 'Tambah ' + this.level2Title;
-				this.titleDesc = 'Menambah ' + this.level2Title;
-				this.titleIcon = 'icon-plus3';
-			}
+			this.title = 'Ubah ' + this.level2Title + ' [DRAFT]';
+			this.titleDesc = 'Mengubah ' + this.level2Title + ' [DRAFT]';
+			this.titleIcon = 'icon-pencil5';
 		},
 		methods: {
-			cariData(nik){
-				this.nik = nik;
-				this.$store.dispatch(this.kelas + '/cariData', nik);
-			},
 			resetData(){
 				this.$store.commit(this.kelas + '/setData',{});
 				this.$store.commit(this.kelas + '/setDataStat','');

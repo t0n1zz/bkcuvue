@@ -60,17 +60,17 @@ class JalinanKlaim extends Model {
         return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(MONTH, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
     }
 
-    public function verifikasi_pengurus()
+    public function verifikasi_pengurus_data()
     {
         return $this->belongsTo('App\User','verifikasi_pengurus','id')->select('id','id_aktivis','username','name');
     }
 
-    public function verifikasi_pengawas()
+    public function verifikasi_pengawas_data()
     {
         return $this->belongsTo('App\User','verifikasi_pengawas','id')->select('id','id_aktivis','username','name');
     }
 
-    public function verifikasi_manajemen()
+    public function verifikasi_manajemen_data()
     {
         return $this->belongsTo('App\User','verifikasi_manajemen','id')->select('id','id_aktivis','username','name');
     }

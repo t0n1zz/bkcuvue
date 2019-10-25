@@ -8,7 +8,6 @@
 		<!-- main panel -->
 		<form @submit.prevent="save" data-vv-scope="form">
 
-
 			<!-- identitas -->
 			<div class="card">
 				<div class="card-header bg-white">
@@ -127,8 +126,8 @@
 								<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'"
 									data-vv-as="Gender">
 									<option disabled value="">Silahkan pilih gender</option>
-									<option value="PRIA">Pria</option>
-									<option value="WANITA">Wanita</option>
+									<option value="LAKI-LAKI">Laki-laki</option>
+									<option value="PEREMPUAN">Perempuan</option>
 								</select>
 
 								<!-- error message -->
@@ -611,7 +610,7 @@
 			</div>
 
 			<!-- if cu -->
-			<div class="card">
+			<div class="card" v-if="currentUser && currentUser.id_cu != 0">
 				<div class="card-header bg-white">
 					<h5 class="card-title">CU</h5>
 				</div>
@@ -714,6 +713,55 @@
 				</div>
 			</div>
 
+			<!-- if bkcu -->
+			<div class="card" v-if="currentUser && currentUser.id_cu == 0">
+				<div class="card-header bg-white">
+					<h5 class="card-title">CU <wajib-badge></wajib-badge></h5>
+				</div>
+				<div class="card-body pb-2">
+					<div class="row">
+
+						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
+
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahCu')">
+								<i class="icon-plus22"></i> Tambah
+							</button>
+
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahCu')"
+							:disabled="!selectedItemCu.index">
+								<i class="icon-pencil5"></i> Ubah
+							</button>
+
+							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusCu')" :disabled="!selectedItemCu.index">
+								<i class="icon-bin2"></i> Hapus
+							</button>
+
+						</div>
+
+					</div>		
+				</div>
+
+				<data-table :items="itemDataCu" :columnData="columnDataCu" :itemDataStat="itemDataCuStat">
+					<template slot="item-desktop" slot-scope="props">
+						<tr :class="{ 'bg-info': selectedItemCu.index === props.index + 1 }" class="text-nowrap" @click="selectedCuRow(props.index,props.item)" v-if="props.item">
+							<td>{{ props.index + 1 }}</td>
+							<td>
+								<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+								<span v-else>-</span>
+							</td>
+							<td>
+								<check-value :value="props.item.tp.name" v-if="props.item.tp"></check-value>
+								<span v-else>-</span>
+							</td>
+							<td><check-value :value="props.item.no_ba"></check-value></td>
+							<td><check-value :value="props.item.keterangan_masuk"></check-value></td>
+							<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
+						</tr>
+					</template>	
+				</data-table>
+
+			</div>
+
 			<!-- form info -->
 			<form-info></form-info>
 			<br/>
@@ -729,6 +777,27 @@
 			</div>
 
 		</form>
+
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor"
+		 @batal="modalTutup" @confirmOk="modalConfirmOk" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalBackgroundClick">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- tambah cu -->
+			<template slot="modal-body3">
+				<form-cu 
+				:mode="formCuMode"
+				:selected="selectedItemCu"
+				@createCu="createCu"
+				@editCu="editCu"
+				@tutup="modalTutup"></form-cu>
+			</template>
+
+		</app-modal>
 
 	</div>
 </template>
@@ -751,7 +820,7 @@
 	import identitas from "../../components/identitas.vue";
 
 	export default {
-		props: ['mode'],
+		props: ['mode','nik'],
 		components: {
 			appModal,
 			appImageUpload,
@@ -834,9 +903,18 @@
 			}
 		},
 		created() {
-			this.confirmIcon = 'icon-floppy-disk';
-			this.confirmTitle = 'Simpan';
+			if(this.mode == 'edit'){
+				this.confirmIcon = 'icon-floppy-disk';
+				this.confirmTitle = 'Simpan';
+			}
 
+			if (this.currentUser.id_cu == 0) {
+				if (this.modelCuStat != 'success') {
+					this.$store.dispatch('cu/getHeader');
+				}
+			}else{
+				this.fetchTp(this.currentUser.id_cu);
+			}
 			
 			this.$store.dispatch('provinces/get');
 			this.fetch();
@@ -845,7 +923,6 @@
 			formStat(value){
 				if(value == 'success'){
 					this.fetchCu();
-					this.fetchTp(this.form.anggota_cu_cu.cu_id);
 				}
 			},
 			updateStat(value) {
@@ -863,16 +940,29 @@
 		},
 		methods: {
 			fetch() {
-				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+				if(this.mode == 'edit'){
+					this.$store.dispatch(this.kelas + '/editDraft', this.$route.params.id);
+				}
 			},
 			fetchCu(){
-				let data = _.find(this.form.anggota_cu_cu,{'cu_id':this.form.anggota_cu_cu.cu_id});
+				if(this.currentUser.id_cu == 0){
+					this.itemDataCu = [];
+					var valData;
 
-				if(data){
-					this.form.tp_id = data.tp_id;
-					this.form.no_ba = data.no_ba;
-					this.form.tanggal_masuk = data.tanggal_masuk;
-					this.form.keterangan_masuk = data.keterangan_masuk;
+					if(this.form.anggota_cu_cu){
+						for(valData of this.form.anggota_cu_cu){
+							this.itemDataCu.push(valData);
+						}
+					}
+				}else{
+					let data = _.find(this.form.anggota_cu_cu,{'cu_id':this.currentUser.id_cu});
+
+					if(data){
+						this.form.tp_id = data.tp_id;
+						this.form.no_ba = data.no_ba;
+						this.form.tanggal_masuk = data.tanggal_masuk;
+						this.form.keterangan_masuk = data.keterangan_masuk;
+					}
 				}
 
 				if(this.form.id_provinces){
@@ -888,11 +978,27 @@
 			fetchTp(value){
 				this.$store.dispatch('tp/getCu',value);
 			},
+			createCu(value){
+				this.itemDataCu.push(value);
+				this.modalTutup();
+			},
+			editCu(value){
+				_.remove(this.itemDataCu, {
+						index: value.index
+				});
+				this.itemDataCu.push(value);
+				this.modalTutup(); 
+			},
 			save() {
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
+				if(this.currentUser.id_cu == 0){
+					this.form.anggota_cu_cu = this.itemDataCu;
+				}else{
+					this.form.id_cu = this.currentUser.id_cu;
+				}
+
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/update', [this.$route.params.id,formData]);
+						this.$store.dispatch(this.kelas + '/updateDraft', [this.$route.params.id,this.form]);
 						this.submited = false;
 					} else {
 						window.scrollTo(0, 0);
@@ -910,16 +1016,57 @@
 				this.$store.dispatch('villages/getDistricts', id);
 			},
 			back() {
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.anggota_cu_cu.cu_id, tp: 'semua'}});
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'CuDraft', params:{cu: 'semua', tp: 'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'CuDraft', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
+				}
 			},
 			selectedCuRow(index,item){
 				this.selectedItemCu = item;
 				this.selectedItemCu.index = index + 1;
 			},
+			modalOpen(state, isMobile, itemMobile) {
+				this.modalShow = true;
+				this.state = state;
+				
+				if (state == 'hapusCu') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus CU ' + this.selectedItemCu.cu.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+					this.modalSize = '';
+				}else if(state == 'ubahCu'){
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah CU';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formCuMode = 'edit';
+				}else if(state == 'tambahCu'){
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah CU';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formCuMode = 'create';
+				}
+			},
 			modalConfirmOk() {
 				this.modalShow = false;
+
+				if (this.state == 'hapusCu') {
+					_.remove(this.itemDataCu, {
+						index: this.selectedItemCu.index
+					});
+				}
 			},
 			modalTutup() {
+				if (this.updateStat === 'success') {				
+						this.back();
+					this.$store.dispatch(this.kelas + '/resetUpdateStat');
+				}
+
 				this.modalShow = false;
 			},
 			modalBackgroundClick() {
@@ -936,7 +1083,7 @@
 			...mapGetters('auth', {
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('anggotaCuDraft', {
+			...mapGetters('anggotaCu', {
 				form: 'data',
 				formStat: 'dataStat',
 				rules: 'rules',

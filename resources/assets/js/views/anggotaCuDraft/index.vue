@@ -53,9 +53,9 @@
 		},
 		data() {
 			return {
-				title: 'Anggota CU Draft',
-				kelas: 'anggotaCuDraft',
-				titleDesc: 'Mengelola anggota CU Draft',
+				title: 'Anggota CU [DRAFT]',
+				kelas: 'anggotaCu',
+				titleDesc: 'Mengelola anggota CU [DRAFT]',
 				titleIcon: 'icon-man-woman',
 				selectCuPath: 'anggotaCuCuDraft',
 			}
@@ -81,7 +81,7 @@
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('anggotaCuDraft',{
+			...mapGetters('anggotaCu',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 			}),

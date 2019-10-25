@@ -465,6 +465,17 @@
 								<i class="icon-man-woman"></i> Anggota CU
 							</router-link>
 
+							<!-- anggota cu draft -->
+							<!-- if bkcu account -->
+							<router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+								<i class="icon-man-woman"></i> Anggota CU [DRAFT]
+							</router-link>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+								<i class="icon-man-woman"></i> Anggota CU [DRAFT]
+							</router-link>
+
 							<!-- if cu account -->
 							<!-- <router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
 								<i class="icon-wallet"></i> Saldo
@@ -1004,6 +1015,8 @@
 				clientVersion: '3.1.9',
 				dropdownMenu: '',
 				dropdownMenu2: '',
+				anggotaCuDraftCount: [],
+				anggotaCuDraftCountStat: '',
 				laporanCuDraftCount: [],
 				laporanCuDraftCountStat: '',
 				laporanTpDraftCount: [],
@@ -1021,6 +1034,7 @@
 			this.fetchTp();
 			this.fetchCu();
 			this.fetchNotif();
+			this.fetchAnggotaCuDraft();
 			this.fetchLaporanCuDraft();
 			this.fetchLaporanTpDraft();
 		},
@@ -1122,6 +1136,28 @@
 					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
 				}
 				this.$store.dispatch('notification/markRead',notif.id);
+			},
+			fetchAnggotaCuDraft(){
+				let cu = '';
+				let tp = 'semua';
+
+				if(this.currentUser.id_cu == 0){
+					cu = 'semua';
+				}else{
+					cu = this.currentUser.id_cu;
+				}
+
+				if(this.currentUser.can['index_anggota_cu']){
+					axios.get('/api/anggotaCuDraft/count/' + cu + '/' + tp)
+						.then(response => {
+							this.anggotaCuDraftCount = response.data.model;
+							this.anggotaCuDraftCountStat = 'success';
+						})
+						.catch(error => {
+							this.anggotaCuDraftCount = error.response;
+							this.anggotaCuDraftCountStat = 'fail';
+						});
+				}
 			},
 			fetchLaporanCuDraft(){
 				if(this.currentUser.can['upload_laporan_cu']){

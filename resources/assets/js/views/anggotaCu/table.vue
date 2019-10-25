@@ -303,7 +303,8 @@
             enabled: true,
             url: 'anggotaCu/uploadExcel',
             format_url: 'formatAnggotaCu.xlsx',
-            next_page_route: 'AnggotaCuDraft',
+            next_page_route: 'anggotaCuCuDraft',
+            params: {cu:'semua', tp: 'semua'},
             button: 'Upload Anggota CU'
           },
         ],

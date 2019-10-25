@@ -3,9 +3,12 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Validator;
 use App\Cu;
 use App\AnggotaCu;
+use App\AnggotaCuCu;
 use App\AnggotaCuDraft;
+use App\AnggotaCuCuDraft;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
 
@@ -13,16 +16,20 @@ class AnggotaCuDraftController extends Controller{
 
 	protected $message = 'Anggota CU';
 
-	public function index()
+	public function index($cu, $tp)
 	{
-		$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($cu, $tp){ 
-			if($tp != 'semua'){
-				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp);
-			}else{
-				$query->where('anggota_cu_cu.cu_id',$cu);
-			}
-		})->advancedFilter();
-
+		if($cu == 'semua'){
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->advancedFilter();
+		}else{
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($cu, $tp){ 
+				if($tp != 'semua'){
+					$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp);
+				}else{
+					$query->where('anggota_cu_cu.cu_id',$cu);
+				}
+			})->advancedFilter();
+		}
+		
 		return response()
 		->json([
 			'model' => $table_data
@@ -31,62 +38,114 @@ class AnggotaCuDraftController extends Controller{
 
 	public function store($id)
 	{
-		$kelas = AnggotaCuDraft::findOrFail($id);
-		$data = $kelas->toArray();
+		\DB::beginTransaction(); 
+		try{
+			$kelas = AnggotaCuDraft::findOrFail($id);
+			$kelas2 = AnggotaCuCuDraft::where('anggota_cu_draft_id', $id);
 
-		$kelas2 = AnggotaCu::insert($data);
+			$data = $kelas->toArray();
+			$data2 = $kelas2->get()->toArray();
 
-		$kelas->delete();
-		
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
-			]);
+			unset($data['id']);
+			unset($data2['id']);
+
+			$kelas3 = AnggotaCu::create($data);
+
+			$data2 = array_map(function($dat) use ($kelas3) {
+					return array(
+							'anggota_cu_id' => $kelas3->id,
+							'cu_id' => $dat['cu_id'],
+							'tp_id' => $dat['tp_id'],
+							'no_ba' => $dat['no_ba'],
+							'tanggal_masuk' => $dat['tanggal_masuk'],
+							'tanggal_keluar' => $dat['tanggal_keluar'],
+							'keterangan_masuk' => $dat['keterangan_masuk'],
+							'keterangan_keluar' => $dat['keterangan_keluar'],
+							'created_at' => $dat['created_at'],
+							'updated_at' => $dat['updated_at'],
+					);
+			}, $data2);
+			
+			$kelas4 = AnggotaCuCu::insert($data2);
+
+			$kelas->delete();
+			$kelas2->delete();
+			
+			\DB::commit();
+
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' berhasil ditambah'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}		
 	}
 
 
-	public function storeAll()
+	public function storeAll($cu)
 	{
-		$id = \Auth::user()->id;
-
-		$kelas = AnggotaCuDraft::where('id_user',$id);
-		$laporan = $kelas->get()->toArray();
-		$cu = Cu::select('id','no_ba')->get()->toArray();
-
-		$merged = collect($laporan)->map(function ($value) use ($cu) {
-				foreach($cu as $array){
-						if($value["no_ba"] == $array["no_ba"]){
-							$value["id_cu"] = $array["id"];
-						}
-				}
-				return $value;
-		});
-
-		foreach ($merged as $key => $value) {
-			unset($value['id']);
-			unset($value['id_user']);
-			$merged[$key] = $value;
-
-			if (!isset($value['id_cu'])) {
-				unset($merged[$key]);
+		\DB::beginTransaction(); 
+		try{
+			if($cu == 'semua'){
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar');
+			}else{
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
+					$query->where('anggota_cu_cu.cu_id',$cu);
+				});
 			}
-		};   
 
-		$kelas2 = AnggotaCu::insert($merged->toArray());
+			foreach($kelas->get() as $item){
+				$kelas2 = AnggotaCuCuDraft::where('anggota_cu_draft_id', $item->id);
 
-		$kelas->delete();
-		
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
-			]);
+				$data = $item->toArray(); 
+				$data2 = $kelas2->get()->toArray(); 
+
+				unset($data['id']);
+				unset($data2['id']);
+
+				$kelas3 = AnggotaCu::create($data);
+
+				$data2 = array_map(function($dat) use ($kelas3) {
+						return array(
+								'anggota_cu_id' => $kelas3->id,
+								'cu_id' => $dat['cu_id'],
+								'tp_id' => $dat['tp_id'],
+								'no_ba' => $dat['no_ba'],
+								'tanggal_masuk' => $dat['tanggal_masuk'],
+								'tanggal_keluar' => $dat['tanggal_keluar'],
+								'keterangan_masuk' => $dat['keterangan_masuk'],
+								'keterangan_keluar' => $dat['keterangan_keluar'],
+								'created_at' => $dat['created_at'],
+								'updated_at' => $dat['updated_at'],
+						);
+				}, $data2);
+
+				$kelas4 = AnggotaCuCu::insert($data2);
+				
+				$kelas2->delete();
+			}
+
+			$kelas->delete();
+			
+			\DB::commit();
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' berhasil ditambah'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}		
 	}
 	
 	public function edit($id)
 	{
-		$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->findOrFail($id);
+		$kelas = AnggotaCuDraft::with('anggota_cu_cu.cu','anggota_cu_cu.tp','Villages','Districts','Regencies','Provinces')->findOrFail($id);
 
 		return response()
 				->json([
@@ -97,60 +156,145 @@ class AnggotaCuDraftController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request,AnggotaCuDraft::$rules);
+		\DB::beginTransaction(); 
+		try{
+			$rules = AnggotaCu::$rules;
+			$rules['nik'] = $rules['nik'] . ',id,' . $id;
+			$validationCertificate  = Validator::make($request->all(), $rules); 
+			$name = $request->name;
 
-		$name = $request->name;
+			$kelas = AnggotaCuDraft::findOrFail($id);
+			// dd($request->all());
+			$kelas->update($request->all());
 
-		$kelas = AnggotaCuDraft::findOrFail($id);
+			$cuArray = $this->syncCu($request, $kelas);
+			
+			\DB::commit();
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}
+	}
 
-		$kelas->update($request->except(['id_cu','id_tp']));
+	private function syncCu($request, $kelas)
+	{
+		if($request->anggota_cu_cu){
+			$cus = $request->anggota_cu_cu;
+			unset($cus['id']);
+			unset($cus['name']);
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
-			]);
+			$cuArray = array();
+
+			foreach($cus as $cu){
+				$cuArray[$cu['no_ba']] = [
+					'cu_id' => array_key_exists('cu_id', $cu) ? $cu['cu_id'] : null,
+					'tp_id' => array_key_exists('tp_id', $cu) ? $cu['tp_id'] : null,
+					'no_ba' => array_key_exists('no_ba', $cu) ? $cu['no_ba'] : null,
+					'tanggal_masuk' => array_key_exists('tanggal_masuk', $cu) ? $cu['tanggal_masuk'] : null,
+					'keterangan_masuk' => array_key_exists('keterangan_masuk', $cu) ? $cu['keterangan_masuk'] : null
+				];
+			}
+
+			$kelas->anggota_cu()->sync($cuArray);
+		}
+		
+		if($request->id_cu){
+			$kelasCu = AnggotaCuCuDraft::where('anggota_cu_draft_id',$kelas->id)->first();
+
+			if($kelasCu){
+				$kelasCu = AnggotaCuCuDraft::where('anggota_cu_draft_id',$kelas->id);
+				$kelasCu->update([
+					'anggota_cu_draft_id' => $kelas->id,
+					'cu_id' => $request->id_cu,
+					'tp_id' => $request->tp_id,
+					'no_ba' => $request->no_ba,
+					'tanggal_masuk' => $request->tanggal_masuk,
+					'keterangan_masuk' => $request->keterangan_masuk,
+				]);
+			}else{
+				AnggotaCuCuDraft::create([
+					'anggota_cu_draft_id' => $kelas->id,
+					'cu_id' => $request->id_cu,
+					'tp_id' => $request->tp_id,
+					'no_ba' => $request->no_ba,
+					'tanggal_masuk' => $request->tanggal_masuk,
+					'keterangan_masuk' => $request->keterangan_masuk
+				]);
+			}
+		}
 	}
 
 	public function destroy($id)
 	{
-		$kelas = AnggotaCuDraft::findOrFail($id);
-		$name = $kelas->name;
+		\DB::beginTransaction(); 
+		try{
+			$kelas = AnggotaCuDraft::findOrFail($id);
+			$name = $kelas->name;
 
-		$kelas->delete();
+			$kelas->delete();
+			AnggotaCuCu::where('anggota_cu_id', $id)->delete();
 
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
-			]);
-	}
+			\DB::commit();
 
-	public function destroyAll()
-	{
-		$id = \Auth::user()->id;	
-		$kelas = AnggotaCuDraft::where('id_user',$id);
-
-		$kelas->delete();
-
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => $this->message. ' berhasil dihapus'
-			]);
-	}
-
-	public function count()
-	{
-			$id = \Auth::user()->id;
-
-			$table_data = AnggotaCuDraft::where('id_user',$id)->count();
-			
 			return response()
-			->json([
-					'model' => $table_data
-			]);
+				->json([
+					'deleted' => true,
+					'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}	
 	}
 
+	public function destroyAll($cu)
+	{
+		\DB::beginTransaction(); 
+		try{
+			if($cu == 'semua'){
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar');
+			}else{
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
+					$query->where('anggota_cu_cu.cu_id',$cu);
+				});
+			}
+			$kelas->delete();
+
+			$kelas2 = AnggotaCuDraft::where('cu_id',$cu);
+			$kelas2->delete();
+			\DB::commit();
+
+			return response()
+				->json([
+					'deleted' => true,
+					'message' => $this->message. ' berhasil dihapus'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}	
+	}
+
+	public function count($cu)
+	{
+		if($cu == 'semua'){
+			$table_data = AnggotaCuDraft::count();
+		}else{
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
+				$query->where('anggota_cu_cu.cu_id',$cu);
+			})->count();
+		}
+		
+		return response()
+		->json([
+				'model' => $table_data
+		]);
+	}
 
 }

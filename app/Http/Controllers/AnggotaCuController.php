@@ -260,30 +260,38 @@ class AnggotaCuController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$rules = AnggotaCu::$rules;
-		$rules['nik'] = $rules['nik'] . ',id,' . $id;
-		$validationCertificate  = Validator::make($request->all(), $rules); 
-		$name = $request->name;
+		\DB::beginTransaction(); 
+		try{
+			$rules = AnggotaCu::$rules;
+			$rules['nik'] = $rules['nik'] . ',id,' . $id;
+			$validationCertificate  = Validator::make($request->all(), $rules); 
+			$name = $request->name;
 
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
-		else
-			$fileName = '';
+			if(!empty($request->gambar))
+				$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			else
+				$fileName = '';
 
-		$kelas = AnggotaCu::findOrFail($id);
+			$kelas = AnggotaCu::findOrFail($id);
+			// dd($request->all());
+			$kelas->update($request->except('gambar') + [
+				'gambar' => $fileName
+			]);	
 
-		$kelas->update($request->except('gambar') + [
-			'gambar' => $fileName
-		]);	
+			$cuArray = $this->syncCu($request, $kelas);
 
-		$cuArray = $this->syncCu($request, $kelas);
+			\DB::commit();
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah',
-				'id' => $kelas->id
-			]);
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' ' .$name. ' berhasil diubah',
+					'id' => $kelas->id
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}	
 	}
 
 	public function updateKeluar(Request $request, $id)
@@ -500,10 +508,10 @@ class AnggotaCuController extends Controller{
 		}
 		
 		if($request->id_cu){
-			$kelasCu = AnggotaCuCU::where('anggota_cu_id',$kelas->id)->first();
+			$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->first();
 
 			if($kelasCu){
-				$kelasCu = AnggotaCuCU::where('anggota_cu_id',$kelas->id);
+				$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id);
 				$kelasCu->update([
 					'anggota_cu_id' => $kelas->id,
 					'cu_id' => $request->id_cu,

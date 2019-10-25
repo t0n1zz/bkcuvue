@@ -382,7 +382,7 @@
 					this.$store.dispatch(this.kelas + "/destroyDraft", this.selectedItem.id);
 				}else if (this.state == "hapus_semua") {
 					this.$store.dispatch(this.kelas + "/destroyDraftAll");
-				}else if (this.state == "simpan") {
+				}else if (this.state == "simpan_semua") {
 					this.$store.dispatch(this.kelas + "/storeDraftAll");
 				}
 			}

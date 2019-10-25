@@ -1,15 +1,15 @@
 export default {
   
-  index: function(){
-    return axios.get('/api/anggotaCuDraft/');
+  index: function(p, cu, tp){
+    return axios.get('/api/anggotaCuDraft/index/' + cu + '/' + tp, {params: p});
   },
 
   store: function ( id ){
     return axios.post('/api/anggotaCuDraft/store/' + id);
   },
 
-  storeAll: function (){
-    return axios.post('/api/anggotaCuDraft/storeAll');
+  storeAll: function ( cu ){
+    return axios.post('/api/anggotaCuDraft/storeAll/' + cu);
   },
 
   edit: function( id ){
@@ -24,7 +24,7 @@ export default {
     return axios.delete('/api/anggotaCuDraft/destroy/' + id);
   },
 
-  destroyAll: function(){
-    return axios.delete('/api/anggotaCuDraft/destroyAll');
+  destroyAll: function( cu ){
+    return axios.delete('/api/anggotaCuDraft/destroyAll/' + cu);
   },
 }

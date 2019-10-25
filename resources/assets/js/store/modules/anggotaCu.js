@@ -151,10 +151,10 @@ export const anggotaCu = {
         });
     }, 
 
-    indexCuDraft( { commit }, id ){
+    indexCuDraft( { commit }, [cu, tp] ){
       commit('setDataStatS', 'loading');
       
-      AnggotaCuDraftAPI.index( id )
+      AnggotaCuDraftAPI.index( cu, tp )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -165,10 +165,10 @@ export const anggotaCu = {
         });
     },
 
-    indexProduk( { commit }, [id, cu] ){
+    indexProduk( { commit }, [p, id, cu] ){
       commit('setDataProdukStat', 'loading');
       
-      AnggotaCuAPI.indexProduk( id, cu )
+      AnggotaCuAPI.indexProduk( p, id, cu )
         .then( function( response ){
           commit('setDataProduk', response.data.model );
           commit('setDataProdukStat', 'success');
@@ -281,6 +281,23 @@ export const anggotaCu = {
       commit('setUpdateStat', 'loading');
 
       AnggotaCuDraftAPI.store( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+          commit('setUpdate', response.data);
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    storeDraftAll( {commit, state, dispatch}, cu ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuDraftAPI.storeAll( cu )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdateStat', 'success');
@@ -494,10 +511,10 @@ export const anggotaCu = {
           commit('setUpdateStat', 'fail');
         });
     },
-    destroyDraftAll( {commit, state, dispatch} ){
+    destroyDraftAll( {commit, state, dispatch}, cu ){
       commit('setUpdateStat', 'loading');
 
-      AnggotaCuDraftAPI.destroyAll()
+      AnggotaCuDraftAPI.destroyAll( cu )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -552,6 +569,20 @@ export const anggotaCu = {
       commit('setCountStat', 'loading');
       
       AnggotaCuAPI.count()
+        .then( function( response ){
+          commit('setCount', response.data.model );
+          commit('setCountStat', 'success');
+        })
+        .catch( error => {
+          commit('setCount', error.response);
+          commit('setCountStat', 'fail');
+        });
+    },
+
+    countDraft( { commit } ){
+      commit('setCountStat', 'loading');
+      
+      AnggotaCuDraftAPI.count()
         .then( function( response ){
           commit('setCount', response.data.model );
           commit('setCountStat', 'success');

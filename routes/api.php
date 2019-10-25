@@ -430,14 +430,14 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:upload_anggota_cu']], function () {
         Route::post('/anggotaCu/uploadExcelNew', 'AnggotaCuController@uploadExcelNew');
         Route::post('/anggotaCu/uploadExcel', 'AnggotaCuController@uploadExcel');
-        Route::get('/anggotaCuDraft', 'AnggotaCuDraftController@index');
+        Route::get('/anggotaCuDraft/index/{cu}/{tp}', 'AnggotaCuDraftController@index');
         Route::post('/anggotaCuDraft/store/{id}', 'AnggotaCuDraftController@store');
-        Route::post('/anggotaCuDraft/storeAll', 'AnggotaCuDraftController@storeAll');
+        Route::post('/anggotaCuDraft/storeAll/{cu}', 'AnggotaCuDraftController@storeAll');
         Route::get('/anggotaCuDraft/edit/{id}', 'AnggotaCuDraftController@edit');
         Route::post('/anggotaCuDraft/update/{id}', 'AnggotaCuDraftController@update');
         Route::delete('/anggotaCuDraft/destroy/{id}', 'AnggotaCuDraftController@destroy');
         Route::delete('/anggotaCuDraft/destroyAll', 'AnggotaCuDraftController@destroyAll');
-        Route::get('/anggotaCuDraft/count', 'AnggotaCuDraftController@count');
+        Route::get('/anggotaCuDraft/count/{cu}/{tp}', 'AnggotaCuDraftController@count');
     });
 
     // jalinan klaim

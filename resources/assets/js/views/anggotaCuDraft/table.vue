@@ -7,16 +7,31 @@
       <!-- button desktop -->
       <template slot="button-desktop">
 
+        <!-- simpan semua -->
+        <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light mb-1" :disabled="itemData.length == 0">
+          <i class="icon-floppy-disk"></i> Simpan Semua
+        </button>
+
+        <!-- simpan-->
+        <button @click.prevent="modalConfirmOpen('simpan')" class="btn btn-light mb-1" :disabled="!selectedItem.id">
+          <i class="icon-floppy-disk"></i> Simpan
+        </button>
+
         <!-- ubah identitas -->
-        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']  && tipe == 'masih'"
+        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
+        </button>
+
+        <!-- hapus semua -->
+        <button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon mb-1" :disabled="itemData.length == 0">
+          <i class="icon-bin2"></i> Hapus Semua
         </button>
 
       </template>
@@ -24,16 +39,31 @@
       <!-- button mobile -->
       <template slot="button-mobile">
 
+        <!-- simpan semua-->
+        <button @click.prevent="modalConfirmOpen('simpan_semua')"  class="btn btn-light btn-block" :disabled="itemData.length == 0">
+          <i class="icon-floppy-disk"></i>Simpan Semua
+        </button>
+
+        <!-- simpan-->
+        <button @click.prevent="modalConfirmOpen('simpan')" class="btn btn-light btn-block" :disabled="!selectedItem.id">
+          <i class="icon-floppy-disk"></i> Simpan
+        </button>
+
         <!-- ubah identitas-->
-        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
+        <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>
 
         <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
+        </button>
+
+        <!-- hapus semua -->
+        <button @click.prevent="modalConfirmOpen('hapus_semua')" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemData.length == 0">
+          <i class="icon-bin2"></i> Hapus Semua
         </button>
 
       </template>
@@ -62,10 +92,10 @@
                     <span v-else>{{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>
                   </span>
                 </span>
-                <label v-else class="badge badge-primary ml-1">
+                <span>
                   <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.cu.name }} - {{ anggota_cu.no_ba }}</span>
                   <span v-else>{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>    
-                </label>
+                </span>
               </span>
             </span>
             <span v-else>-</span>
@@ -456,24 +486,13 @@
     },
     methods: {
       fetch(params) {
-        if(this.$route.params.cu == 'semua'){
-          this.$store.dispatch(this.kelas + '/index', params);
-				}else{
-          this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu, this.$route.params.tp]);
-				}
+        this.$store.dispatch(this.kelas + '/indexCuDraft', [params, this.$route.params.cu, this.$route.params.tp]);
       },
       selectedRow(item) {
         this.selectedItem = item;
       },
-      ubahData(id,type) {
-        if(type == 'identitas'){
-          this.$router.push({
-            name: this.kelas + "Edit",
-            params: {
-              id: id
-            }
-          });
-        }
+      ubahData(id) {
+        this.$router.push({name: this.kelas + "DraftEdit",params: {id: id}});
       },
       modalConfirmOpen(state, isMobile, itemMobile) {
         this.modalShow = true;
@@ -484,25 +503,41 @@
           this.selectedItem = itemMobile;
         }
 
-        if (state == "hapus") {
+        if (state == "simpan") {
+					this.modalTitle ="Simpan " + this.title + " ini?";
+					this.modalButton = "Iya, Simpan";
+				}else if (state == "simpan_semua") {
+					this.modalTitle =
+						"Simpan semua " + this.title + " ini?";
+					this.modalButton = "Iya, Simpan";
+				}else if (state == "hapus") {
           this.modalState = "confirm-tutup";
           this.modalTitle =
             "Hapus " + this.title + " " + this.selectedItem.name + " ini?";
           this.modalButton = "Iya, Hapus";
-        }
+        }else if (state == "hapus_semua") {
+					this.modalTitle ="Hapus semua" + this.title + " ini?";
+					this.modalButton = "Iya, Hapus";
+				}
       },
       modalTutup() {
         this.modalShow = false;
         this.$store.dispatch(this.kelas + "/resetUpdateStat");
       },
       modalConfirmOk() {
-        if (this.state == "hapus") {
-          this.$store.dispatch(this.kelas + "/destroy", [this.selectedItem.id, this.$route.params.cu]);
-        }
+        if (this.state == "simpan") {
+					this.$store.dispatch(this.kelas + "/storeDraft", this.selectedItem.id);
+				}else if (this.state == "hapus") {
+          this.$store.dispatch(this.kelas + "/destroyDraft", [this.selectedItem.id, this.$route.params.cu]);
+        }else if (this.state == "hapus_semua") {
+					this.$store.dispatch(this.kelas + "/destroyDraftAll", this.$route.params.cu);
+				}else if (this.state == "simpan_semua") {
+					this.$store.dispatch(this.kelas + "/storeDraftAll", this.$route.params.cu);
+				}
       }
     },
     computed: {
-      ...mapGetters("anggotaCuDraft", {
+      ...mapGetters("anggotaCu", {
         updateMessage: "update",
         updateStat: "updateStat"
       }),

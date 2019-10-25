@@ -70,7 +70,6 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
             $tp = Tp::where('no_tp', $row['kode_tp'])->select('id','no_tp')->first();
 
             $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
-
             $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
 
             if(!$anggotaCu && !$anggotaCuDraft){
@@ -107,27 +106,15 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                 }
             }
 
-            if($anggotaCu || $anggotaCuDraft){
-                $anggota_cu_id = $anggotaCu ? $anggotaCu->id :  $anggotaCuDraft->id;
-
-                if($anggotaCu){
-                    $anggotaCuCu = AnggotaCuCu::where('anggota_cu_id',$anggotaCu->id)->where('cu_id',$cu->id)->select('id','anggota_cu_id','cu_id')->first();
-                }
-
-                if($anggotaCuDraft){
-                    $anggotaCuCuDraft = AnggotaCuCuDraft::where('anggota_cu_id',$anggotaCuDraft->id)->where('cu_id',$cu->id)->select('id','anggota_cu_id','cu_id')->first();
-                }
-                
-                if(!$anggotaCu && !$anggotaCuDraft){
-                    AnggotaCuCuDraft::create([
-                        'anggota_cu_id' => $anggota_cu_id,
-                        'cu_id' => $cu->id,
-                        'tp_id' => $tp->id,
-                        'no_ba' => $row['no_ba'],
-                        'tanggal_masuk' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']),
-                        'keterangan_masuk' => $row['keterangan_jadi_anggota'],
-                    ]);
-                }
+            if($anggotaCu){
+                AnggotaCuCuDraft::create([
+                    'anggota_cu_draft_id' => $anggotaCu->id,
+                    'cu_id' => $cu->id,
+                    'tp_id' => $tp->id,
+                    'no_ba' => $row['no_ba'],
+                    'tanggal_masuk' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']),
+                    'keterangan_masuk' => $row['keterangan_jadi_anggota'],
+                ]);
             }
             
             return $anggotaCu;

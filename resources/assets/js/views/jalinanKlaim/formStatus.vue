@@ -198,13 +198,13 @@
                 <div class="media-body">
                  <h3 class="mb-0" >Verifikasi Pengurus</h3>
                   <span>
-                    <b>Username:</b> {{ selectedData.verifikasi_pengurus ? selectedData.verifikasi_pengurus.username : '-' }} 
+                    <b>Username:</b> {{ selectedData.verifikasi_pengurus_data ? selectedData.verifikasi_pengurus_data.username : '-' }} 
                     <br/>
-                    <b>Nama:</b> {{ selectedData.verifikasi_pengurus && selectedData.verifikasi_pengurus.aktivis ? selectedData.verifikasi_pengurus.aktivis.name : '-' }}
+                    <b>Nama:</b> {{ selectedData.verifikasi_pengurus_data && selectedData.verifikasi_pengurus_data.aktivis ? selectedData.verifikasi_pengurus_data.aktivis.name : '-' }}
                     <br/>
                     <b>Tingkat/Jabatan:</b>
-                    {{ selectedData.verifikasi_pengurus && selectedData.verifikasi_pengurus.aktivis && selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif.tingkat) : '' }} /
-                    {{ selectedData.verifikasi_pengurus && selectedData.verifikasi_pengurus.aktivis && selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengurus.aktivis.pekerjaan_aktif.name : '' }}
+                    {{ selectedData.verifikasi_pengurus_data && selectedData.verifikasi_pengurus_data.aktivis && selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif.tingkat) : '' }} /
+                    {{ selectedData.verifikasi_pengurus_data && selectedData.verifikasi_pengurus_data.aktivis && selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif.name : '' }}
                   </span>
                  <hr/>
                   <h5 class="mb-1" >Verifikator yang dipilih</h5>
@@ -221,13 +221,13 @@
                 <div class="media-body">
                  <h3 class="mb-0" >Verifikasi Pengawas</h3>
                   <span>
-                    <b>Username:</b> {{ selectedData.verifikasi_pengawas ? selectedData.verifikasi_pengawas.username : '-' }} 
+                    <b>Username:</b> {{ selectedData.verifikasi_pengawas_data ? selectedData.verifikasi_pengawas_data.username : '-' }} 
                     <br/>
-                    <b>Nama:</b> {{ selectedData.verifikasi_pengawas && selectedData.verifikasi_pengawas.aktivis ? selectedData.verifikasi_pengawas.aktivis.name : '-' }}
+                    <b>Nama:</b> {{ selectedData.verifikasi_pengawas_data && selectedData.verifikasi_pengawas_data.aktivis ? selectedData.verifikasi_pengawas_data.aktivis.name : '-' }}
                     <br/>
                     <b>Tingkat/Jabatan:</b>
-                    {{ selectedData.verifikasi_pengawas && selectedData.verifikasi_pengawas.aktivis && selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif.tingkat) : '' }} /
-                    {{ selectedData.verifikasi_pengawas && selectedData.verifikasi_pengawas.aktivis && selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengawas.aktivis.pekerjaan_aktif.name : '' }}
+                    {{ selectedData.verifikasi_pengawas_data && selectedData.verifikasi_pengawas_data.aktivis && selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif.tingkat) : '' }} /
+                    {{ selectedData.verifikasi_pengawas_data && selectedData.verifikasi_pengawas_data.aktivis && selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif.name : '' }}
                   </span>
                   <hr/>
                   <h5 class="mb-1" >Verifikator yang dipilih</h5>
@@ -244,13 +244,13 @@
                 <div class="media-body">
                   <h3 class="mb-0" >Verifikasi Manajemen</h3>
                   <span>
-                    <b>Username:</b> {{ selectedData.verifikasi_manajemen ? selectedData.verifikasi_manajemen.username : '-' }} 
+                    <b>Username:</b> {{ selectedData.verifikasi_manajemen_data ? selectedData.verifikasi_manajemen_data.username : '-' }} 
                     <br/>
-                    <b>Nama:</b> {{ selectedData.verifikasi_manajemen && selectedData.verifikasi_manajemen.aktivis ? selectedData.verifikasi_manajemen.aktivis.name : '-' }}
+                    <b>Nama:</b> {{ selectedData.verifikasi_manajemen_data && selectedData.verifikasi_manajemen_data.aktivis ? selectedData.verifikasi_manajemen_data.aktivis.name : '-' }}
                     <br/>
                     <b>Tingkat/Jabatan:</b>
-                    {{ selectedData.verifikasi_manajemen && selectedData.verifikasi_manajemen.aktivis && selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif.tingkat) : '' }} /
-                    {{ selectedData.verifikasi_manajemen && selectedData.verifikasi_manajemen.aktivis && selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif ? selectedData.verifikasi_manajemen.aktivis.pekerjaan_aktif.name : '' }}
+                    {{ selectedData.verifikasi_manajemen_data && selectedData.verifikasi_manajemen_data.aktivis && selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif.tingkat) : '' }} /
+                    {{ selectedData.verifikasi_manajemen_data && selectedData.verifikasi_manajemen_data.aktivis && selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif ? selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif.name : '' }}
                   </span>
                   <hr/>
                   <h5 class="mb-1" >Verifikator yang dipilih</h5>

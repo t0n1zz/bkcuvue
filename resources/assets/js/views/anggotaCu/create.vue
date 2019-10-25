@@ -148,8 +148,8 @@
 								<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'"
 									data-vv-as="Gender">
 									<option disabled value="">Silahkan pilih gender</option>
-									<option value="PRIA">Pria</option>
-									<option value="WANITA">Wanita</option>
+									<option value="LAKI-LAKI">Laki-laki</option>
+									<option value="PEREMPUAN">Perempuan</option>
 								</select>
 
 								<!-- error message -->

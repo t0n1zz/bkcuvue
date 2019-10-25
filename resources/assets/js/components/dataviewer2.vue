@@ -1383,7 +1383,11 @@
       },
       modalTutup() {
         if(this.updateStat === 'success'){
-					this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route});
+          if(this.excelUploads[this.excelUploadIndex].params){
+            this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route, params: this.excelUploads[this.excelUploadIndex].params});
+          }else{
+            this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route});
+          }
         }
         
         this.modalShow = false;

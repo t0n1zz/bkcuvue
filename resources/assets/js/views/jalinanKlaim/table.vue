@@ -181,8 +181,8 @@
             <check-value :value="props.item.lintang_disetujui" valueType="currency"></check-value>
 					</td>
           <td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
-          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.anggota_cu.tanggal_lahir)" class="text-nowrap"></td>
-          <td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.anggota_cu_cu.tanggal_masuk)" class="text-nowrap"></td>
+          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.anggota_cu ? props.item.anggota_cu.tanggal_lahir : '')" class="text-nowrap"></td>
+          <td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.anggota_cu_cu? props.item.anggota_cu_cu.tanggal_masuk : '')" class="text-nowrap"></td>
            <td v-if="!columnData[20].hide && !columnData[20].disable" v-html="$options.filters.date(props.item.tanggal_pencairan)" class="text-nowrap"></td>
           <td v-if="!columnData[21].hide" class="text-nowrap">
             <check-value :value="props.item.anggota_cu.usia_meninggal" v-if="props.item.anggota_cu"></check-value>
