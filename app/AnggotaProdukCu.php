@@ -15,17 +15,17 @@ class AnggotaProdukCu extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'no_rek','anggota_cu_id','produk_cu_id','saldo','tanggal','lama_pinjaman'
+        'no_rek','anggota_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','tujuan'
     ];
 
     protected $filter = [
-        'no_rek','anggota_cu_id','produk_cu_id','saldo','tanggal','lama_pinjaman','created_at','updated_at'
+        'no_rek','anggota_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','tujuan','created_at','updated_at'
     ];
 
     public static function initialize()
     {
         return [
-            'no_rek' => '','anggota_cu_id' => '','produk_cu_id' => '','saldo' => '','name' => '','no_ba' => '','lama_pinjaman' => ''
+            'no_rek' => '','anggota_cu_id' => '','produk_cu_id' => '','saldo' => '','name' => '','no_ba' => '','lama_pinjaman' => '','tanggal_target' => '','tujuan' => ''
         ];
     }
 

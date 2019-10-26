@@ -82,7 +82,7 @@ Route::get('/testroute', function () {
 		// 	]);
 
 		// create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_pengurus_jalinan_klaim']); 
+    Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'upload_anggota_cu']); 
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_pengawas_jalinan_klaim']); 
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_manajemen_jalinan_klaim']); 
 		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_aset_tetap']);

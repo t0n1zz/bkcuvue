@@ -13,6 +13,7 @@ use App\Support\Helper;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use App\AnggotaProdukCu;
+use App\AnggotaProdukCuTransaksi;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 use App\Imports\AnggotaCuDraftImport;
@@ -206,17 +207,23 @@ class AnggotaCuController extends Controller{
 
 	public function storeProduk(Request $request, $id)
 	{
-		// return response()->json($id);
-
-		AnggotaProdukCu::create([
+		$kelas = AnggotaProdukCu::create([
 			'anggota_cu_id' => $id,
 			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
 			'no_rek' => $request->no_rek,
 			'tanggal' => $request->tanggal,
+			'tanggal_target' => $request->tanggal_target,
 			'lama_pinjaman' => $request->lama_pinjaman,
+			'tujuan' => $request->tujuan,
 		]);
-		
+
+		AnggotaProdukCuTransaksi::create([
+			'anggota_produk_cu_id' => $kelas->id,
+			'saldo' => $request->saldo,
+			'tanggal' => $request->tanggal,
+		]);
+
 		return response()
 			->json([
 				'saved' => true,
@@ -343,13 +350,23 @@ class AnggotaCuController extends Controller{
 	{
 		$kelas = AnggotaProdukCu::findOrFail($id);
 
+		$selisih_saldo = $request->saldo - $kelas->saldo;
+
 		$kelas->update([
 			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
 			'no_rek' => $request->no_rek,
 			'tanggal' => $request->tanggal,
+			'tanggal_target' => $request->tanggal_target,
 			'lama_pinjaman' => $request->lama_pinjaman,
+			'tujuan' => $request->tujuan,
 		]);	
+
+		AnggotaProdukCuTransaksi::create([
+			'anggota_produk_cu_id' => $kelas->id,
+			'saldo' => $selisih_saldo,
+			'tanggal' => $kelas->updated_at,
+		]);
 
 		return response()
 			->json([

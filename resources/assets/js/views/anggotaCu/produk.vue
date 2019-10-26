@@ -93,6 +93,13 @@
 										<span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
 										<span v-else>-</span>
 									</td>
+									<td>
+										<span v-if="props.item.tanggal_target" v-html="$options.filters.date(props.item.tanggal_target)"></span>
+										<span v-else>-</span>
+									</td>
+									<td>
+										<check-value :value="props.item.tujuan"></check-value>
+									</td>
 								</tr>
 							</template>	
 						</data-table>
@@ -180,8 +187,10 @@
 					{ title: 'Nama' },
 					{ title: 'Jenis' },
 					{ title: 'Saldo Awal' },
-					{ title: 'Lama Pinjaman' },
+					{ title: 'Lama Pinjaman (BLN)' },
 					{ title: 'Tgl. Buat' },
+					{ title: 'Tgl. Target' },
+					{ title: 'Tujuan' },
 				],
 				cancelTitle: 'Tutup',
 				cancelIcon: 'icon-cross',

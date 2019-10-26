@@ -61,7 +61,7 @@
 			}
 		},
 		created(){
-			this.checkUser('index_anggota_cu',this.$route.params.cu);
+			this.checkUser('upload_anggota_cu',this.$route.params.cu);
 		},
 		methods: {
 			checkUser(permission,id_cu){

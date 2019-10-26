@@ -398,6 +398,14 @@
 								value: false,
 								group: 'Anggota CU'
 							},
+							{
+								name: 'Upload',
+								key: 'upload_anggota_cu',
+								icon: 'icon-file-upload',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Anggota CU'
+							},
 						]
 					},
 					{
@@ -1136,6 +1144,7 @@
 						'create_anggota_cu',
 						'update_anggota_cu',
 						'destroy_anggota_cu',
+						'upload_anggota_cu',
 
 						'index_saldo',
 						'create_saldo',
@@ -1348,6 +1357,7 @@
 						'create_anggota_cu',
 						'update_anggota_cu',
 						'destroy_anggota_cu',
+						'upload_anggota_cu',
 
 						'index_cu',
 						'create_cu',
@@ -1479,6 +1489,8 @@
 						'destroy_pengumuman',
 					],
 					jalinan:[
+						'index_anggota_cu',
+						'index_produk_cu',
 						'index_jalinan_klaim',
 						'create_jalinan_klaim',
 						'update_jalinan_klaim',

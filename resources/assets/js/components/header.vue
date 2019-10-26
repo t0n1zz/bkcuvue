@@ -467,12 +467,12 @@
 
 							<!-- anggota cu draft -->
 							<!-- if bkcu account -->
-							<router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+							<router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
 								<i class="icon-man-woman"></i> Anggota CU [DRAFT]
 							</router-link>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+							<router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
 								<i class="icon-man-woman"></i> Anggota CU [DRAFT]
 							</router-link>
 
@@ -1147,7 +1147,7 @@
 					cu = this.currentUser.id_cu;
 				}
 
-				if(this.currentUser.can['index_anggota_cu']){
+				if(this.currentUser.can['upload_anggota_cu']){
 					axios.get('/api/anggotaCuDraft/count/' + cu + '/' + tp)
 						.then(response => {
 							this.anggotaCuDraftCount = response.data.model;

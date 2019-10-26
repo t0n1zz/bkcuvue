@@ -13,7 +13,7 @@
         </router-link>
 
         <!-- ubah identitas -->
-        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']  && tipe == 'masih'"
+        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>
@@ -25,7 +25,7 @@
         </button>
 
         <!-- klaim jalinan -->
-        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe != 'keluar'" :disabled="!selectedItem.nik">
+        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.nik">
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
         </button>
 
@@ -53,7 +53,7 @@
         </router-link>
 
         <!-- ubah identitas-->
-        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
+        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>
@@ -65,7 +65,7 @@
         </button>
 
         <!-- klaim jalinan -->
-        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe != 'keluar'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
+        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
         </button>
 
