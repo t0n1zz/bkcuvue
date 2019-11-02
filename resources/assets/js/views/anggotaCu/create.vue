@@ -73,6 +73,24 @@
 							</div>
 						</div>
 
+						<!-- kk -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>No. KK:</h6>
+
+								<!-- text -->
+								<cleave 
+									name="kk"
+									v-model="form.kk" 
+									class="form-control" 
+									:options="cleaveOption.number16"
+									placeholder="Silahkan masukkan no KK"></cleave>
+
+							</div>
+						</div>
+
 						<!-- npwp -->
 						<div class="col-md-4">
 							<div class="form-group">
@@ -131,6 +149,19 @@
 									<i class="icon-arrow-small-right"></i> {{ errors.first('form.alih_waris') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
+							</div>
+						</div>
+
+						<!-- nama ibu -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Nama Ibu: </h6>
+
+								<!-- text -->
+								<input type="text" name="nama_ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-model="form.nama_ibu">
+
 							</div>
 						</div>
 
@@ -205,6 +236,25 @@
 									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tempat_lahir') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
+
+							</div>
+						</div>
+
+						<!-- suku -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Suku: </h6>
+
+								<!-- select -->
+								<select class="form-control" name="suku" v-model="form.suku" data-width="100%" :disabled="modelSuku.length == 0">
+									<option disabled value="">
+										<span v-if="modelSukuStat === 'loading'">Mohon tunggu...</span>
+										<span v-else>Silahkan pilih suku</span>
+									</option>
+									<option v-for="suku in modelSuku" :value="suku.name">{{suku.name}}</option>
+								</select>
 
 							</div>
 						</div>
@@ -328,6 +378,25 @@
 							</div>
 						</div>
 
+						<!-- pekerjaan -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Pekerjaan: </h6>
+
+								<!-- select -->
+								<select class="form-control" name="pekerjaan" v-model="form.pekerjaan" data-width="100%" :disabled="modelPekerjaan.length == 0">
+									<option disabled value="">
+										<span v-if="modelPekerjaanStat === 'loading'">Mohon tunggu...</span>
+										<span v-else>Silahkan pilih pekerjaan</span>
+									</option>
+									<option v-for="pekerjaan in modelPekerjaan" :value="pekerjaan.name">{{pekerjaan.name}}</option>
+								</select>
+
+							</div>
+						</div>
+
 						<div class="col-md-4">
 							<div class="form-group">
 
@@ -368,6 +437,7 @@
 								<!-- select -->
 								<select class="form-control" name="pendidikan" v-model="form.pendidikan" data-width="100%">
 									<option disabled value="">Silahkan pilih tingkat pendidikan</option>
+									<option value="TK">TK</option>
 									<option value="SD">SD</option>
 									<option value="SMP">SMP</option>
 									<option value="SMA/SMK">SMA/SMK</option>
@@ -378,7 +448,7 @@
 									<option value="S1">S1</option>
 									<option value="S2">S2</option>
 									<option value="S3">S3</option>
-									<option value="Lain-lain">Lain-lain</option>
+									<option value="LAIN-LAIN">Lain-lain</option>
 								</select>
 
 							</div>
@@ -516,31 +586,12 @@
 							</div>
 						</div>
 
-						<!-- RT -->
-						<div class="col-md-4">
-							<div class="form-group">
-
-								<!-- title -->
-								<h6>RT:</h6>
-
-								<!-- text -->
-								<cleave 
-									v-model="form.rt" 
-									class="form-control" 
-									:options="cleaveOption.number3"
-									placeholder="Silahkan masukkan no rt"></cleave>
-
-								<!-- error message -->
-								<small class="text-muted">&nbsp;</small>	
-							</div>
-						</div>
-
 						<!-- RW -->
 						<div class="col-md-4">
 							<div class="form-group">
 
 								<!-- title -->
-								<h6>RW:</h6>
+								<h6>No. RW:</h6>
 
 								<!-- text -->
 								<cleave 
@@ -548,6 +599,25 @@
 									class="form-control" 
 									:options="cleaveOption.number3"
 									placeholder="Silahkan masukkan no rw"></cleave>
+
+								<!-- error message -->
+								<small class="text-muted">&nbsp;</small>	
+							</div>
+						</div>
+
+						<!-- RT -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>No. RT:</h6>
+
+								<!-- text -->
+								<cleave 
+									v-model="form.rt" 
+									class="form-control" 
+									:options="cleaveOption.number3"
+									placeholder="Silahkan masukkan no rt"></cleave>
 
 								<!-- error message -->
 								<small class="text-muted">&nbsp;</small>	
@@ -940,6 +1010,8 @@
 			}
 			
 			this.form.id_cu = this.currentUser.id_cu;
+			this.$store.dispatch('pekerjaan/get');
+			this.$store.dispatch('suku/get');
 			this.$store.dispatch('provinces/get');
 			this.fetch();
 		},
@@ -1165,6 +1237,14 @@
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
+			}),
+			...mapGetters('pekerjaan',{
+				modelPekerjaan: 'dataS',
+				modelPekerjaanStat: 'dataStatS'
+			}),
+			...mapGetters('suku',{
+				modelSuku: 'dataS',
+				modelSukuStat: 'dataStatS'
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

@@ -10,15 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.0 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#320">Version 3.2.0 <small class="text-muted"> / - - 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="320" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada...
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Menambah informasi no. KK, nama ibu, suku, dan pekerjaan pada form anggota CU</li>
+                      <li>Perbaikan bug download excel semua data anggota CU tidak memunculkan sesuai CU tapi semua CU</li>
+                      <li>Perbaikan bug download excel anggota CU kolom No. BA dan tanggal jadi anggota</li>
+                      <li>Perbaikan bug download excel anggota CU dan aktivis kolom No. KTP digit terakhir hilang</li>
+                      <li>Perbaikan bug tampilan persentase laju inflasi dan harga pasar</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.0 -->
+
               <!-- Version 3.1.9 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#319">Version 3.1.9 <small class="text-muted"> / 26 Oktober 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#319">Version 3.1.9 <small class="text-muted"> / 26 Oktober 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="319" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="319" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada perbaikan di bagian anggota CU, user, aktivis dan klaim jalinan
                     <br/><br/>
@@ -237,7 +263,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#311">Version 3.1.1 <small class="text-muted"> / 16 Juli 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#311">Version 3.1.1 <small class="text-muted"> / 16 Juli 2019</small></a>
                   </h5>
                 </div>
 

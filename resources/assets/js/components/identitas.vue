@@ -12,7 +12,9 @@
         <div class="col-sm-4">
           <ul class="list list-unstyled mb-0">
             <li><b>No. KTP:</b> {{itemData.nik}}</li>
+            <li><b>No. KK:</b> {{itemData.kk}}</li>
             <li><b>Nama:</b> {{itemData.name}}</li>
+            <li><b>Suku:</b> {{itemData.suku}}</li>
             <li><b>Gender:</b> {{itemData.kelamin}}</li>
             <li><b>Tinggi:</b> {{itemData.tinggi}}</li>
             <li><b>Agama:</b> {{itemData.agama}}</li>
@@ -26,8 +28,10 @@
           <ul class="list list-unstyled mb-0">
             <li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
             <li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
+            <li><b>Nama Ibu:</b> {{ itemData.nama_ibu}}</li>
             <li><b>Lembaga:</b> {{ itemData.lembaga}}</li>
             <li><b>Jabatan:</b> {{ $options.filters.checkTingkatAktivis(itemData.jabatan) }}</li>
+            <li><b>Pekerjaan:</b> {{ itemData.pekerjaan}}</li>
             <li><b>Pendidikan:</b> {{ itemData.pendidikan}}</li>
             <li><b>Email:</b> {{ itemData.email}}</li>
             <li><b>No. Hp:</b> {{ itemData.hp}}</li>

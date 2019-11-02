@@ -79,8 +79,8 @@
 											<!-- select -->
 											<select class="form-control" name="tipe" v-model="tipe" @change="changeTipe($event.target.value)">
 												<option disabled value="">Silahkan pilih tipe</option>
-												<option value="cacat">Cacat</option>
-												<option value="meninggal">Meninggal</option>
+												<option value="CACAT">Cacat</option>
+												<option value="MENINGGAL">Meninggal</option>
 											</select>
 
 										</div>

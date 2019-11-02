@@ -13,6 +13,8 @@ import { pengumuman } from './modules/pengumuman';
 import { cu } from './modules/cu';
 import { tp } from './modules/tp';
 import { pus } from './modules/pus';
+import { pekerjaan } from './modules/pekerjaan';
+import { suku } from './modules/suku';
 import { provinces } from './modules/provinces';
 import { regencies } from './modules/regencies';
 import { districts } from './modules/districts';
@@ -53,6 +55,8 @@ export default new Vuex.Store({
 		 cu,
 		 tp,
 		 pus,
+		 pekerjaan,
+		 suku,
 		 provinces,
 		 regencies,
 		 districts,

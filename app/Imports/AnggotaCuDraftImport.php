@@ -102,6 +102,10 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                         'penghasilan' => $row['rata_rata_penghasilan_perbulan'],
                         'pengeluaran' => $row['rata_rata_pengeluaran_perbulan'],
                         'alih_waris' => $row['alih_waris'],
+                        'pekerjaan' => strtoupper($row['pekerjaan']),
+                        'suku' => strtoupper($row['suku']),
+                        'nama_ibu' => $row['nama_ibu'],
+                        'kk' => $row['kk']
                     ]);
                 }
             }

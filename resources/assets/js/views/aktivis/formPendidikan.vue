@@ -16,6 +16,7 @@
 					<!-- select -->
 					<select class="form-control" name="tingkat" v-model="form.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
 						<option disabled value="">Silahkan pilih tingkat pendidikan</option>
+						<option value="TK">TK</option>
 						<option value="SD">SD</option>
 						<option value="SMP">SMP</option>
 						<option value="SMA/SMK">SMA/SMK</option>
@@ -26,7 +27,7 @@
 						<option value="S1">S1</option>
 						<option value="S2">S2</option>
 						<option value="S3">S3</option>
-						<option value="Lain-lain">Lain-lain</option>
+						<option value="LAIN-LAIN">Lain-lain</option>
 					</select>
 
 					<!-- error message -->

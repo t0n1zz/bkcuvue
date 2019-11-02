@@ -221,10 +221,10 @@
 						<check-value :value="props.item.rata_aset" valueType="currency"></check-value>
 					</td>
 					<td v-if="!columnData[46].hide">
-						<check-value :value="props.item.laju_inflasi" valueType="percentage"></check-value>
+						<check-value :value="props.item.laju_inflasi / 100" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[47].hide">
-						<check-value :value="props.item.harga_pasar" valueType="percentage"></check-value>
+						<check-value :value="props.item.harga_pasar / 100" valueType="percentage"></check-value>
 					</td>
 					<td v-if="!columnData[48].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[49].hide">

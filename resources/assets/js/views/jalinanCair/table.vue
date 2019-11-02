@@ -106,10 +106,10 @@
               <check-value :value="props.item.cu_name"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.pria" valueType="currency"></check-value>
+              <check-value :value="props.item.laki-laki" valueType="currency"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.wanita" valueType="currency"></check-value>
+              <check-value :value="props.item.perempuan" valueType="currency"></check-value>
             </td>
             <td>
               <check-value :value="props.item.meninggal" valueType="currency"></check-value>
@@ -172,9 +172,9 @@
         <div class="card card-body bg-brown-400" >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0"><check-value :value="sumData.pria" valueType="currency"></check-value></h3>
+              <h3 class="mb-0"><check-value :value="sumData.lakilaki" valueType="currency"></check-value></h3>
               <span class="text-uppercase">
-                Jumlah Pria
+                jumlah laki-laki
               </span>
             </div>
             <div class="ml-3 align-self-center">
@@ -184,14 +184,14 @@
         </div>
       </div>
 
-      <!-- wanita -->
+      <!-- perempuan -->
       <div class="col-lg-3 col-md-3">
         <div class="card card-body bg-pink-400" >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0"><check-value :value="sumData.wanita" valueType="currency"></check-value></h3>
+              <h3 class="mb-0"><check-value :value="sumData.perempuan" valueType="currency"></check-value></h3>
               <span class="text-uppercase">
-                Jumlah Wanita
+                jumlah perempuan
               </span>
             </div>
             <div class="ml-3 align-self-center">
@@ -272,8 +272,8 @@
           { title: 'Status' },
           { title: 'No. BA' },
           { title: 'CU' },
-          { title: 'Pria' },
-          { title: 'Wanita' },
+          { title: 'Laki-Laki' },
+          { title: 'Perempuan' },
           { title: 'Meninggal' },
           { title: 'Cacat' },
           { title: 'Tunas Disetujui' },
@@ -287,8 +287,8 @@
             cu: 'cu_name',
             status_klaim_cair: 'status_klaim_cair',
             status_klaim_setuju: 'status_klaim_setuju',
-            pria: 'pria',
-            wanita: 'wanita',
+            lakilaki: 'lakilaki',
+            perempuan: 'perempuan',
             meninggal: 'meninggal',
             cacat: 'cacat',
             tunas_disetujui: 'tunas_disetujui',
@@ -339,8 +339,8 @@
           }
 
           this.sumData.cu = _.size(itemData);
-          this.sumData.pria = _.sumBy(itemData,'pria');
-          this.sumData.wanita = _.sumBy(itemData,'wanita');
+          this.sumData.lakilaki = _.sumBy(itemData,'lakilaki');
+          this.sumData.perempuan = _.sumBy(itemData,'perempuan');
           this.sumData.cacat = _.sumBy(itemData,'cacat');
           this.sumData.meninggal = _.sumBy(itemData,'meninggal');
           this.sumData.tot_disetujui = _.sumBy(itemData,'tot_disetujui');

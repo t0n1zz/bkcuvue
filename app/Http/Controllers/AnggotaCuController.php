@@ -31,6 +31,8 @@ class AnggotaCuController extends Controller{
 			$query->whereNull('anggota_cu_cu.tanggal_keluar'); 
 		})->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL)->advancedFilter();
 
+		$table_data = $this->formatQuery($table_data);
+
 		return response()
 		->json([
 			'model' => $table_data
@@ -43,6 +45,8 @@ class AnggotaCuController extends Controller{
 			$query->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 		})->where('status_jalinan','!=','meninggal')->advancedFilter();
 
+		$table_data = $this->formatKeluarQuery($table_data);
+
 		return response()
 		->json([
 			'model' => $table_data
@@ -52,6 +56,8 @@ class AnggotaCuController extends Controller{
 	public function indexMeninggal()
 	{
 		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->where('status_jalinan','meninggal')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -71,6 +77,8 @@ class AnggotaCuController extends Controller{
 			$query->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL);
 		})->advancedFilter();
 
+		$table_data = $this->formatCuQuery($table_data, $tp);
+
 		return response()
 			->json([
 				'model' => $table_data
@@ -87,6 +95,8 @@ class AnggotaCuController extends Controller{
 			}
 		})->where('status_jalinan','!=','meninggal')->advancedFilter();
 
+		$table_data = $this->formatCuKeluarQuery($table_data, $tp);
+
 		return response()
 			->json([
 				'model' => $table_data
@@ -102,11 +112,79 @@ class AnggotaCuController extends Controller{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar');  
 			}
 		})->where('status_jalinan','meninggal')->advancedFilter();
+		
+		$table_data = $this->formatCuQuery($table_data, $tp);
 
 		return response()
 			->json([
 				'model' => $table_data
 			]);
+	}
+
+	public function formatQuery($table_data){
+		foreach($table_data as $t){
+			$t->nik = $t->nik ? $t->nik . "​ " : '';
+			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			$t->no_ba = '';
+			$t->tanggal_masuk = '';
+			foreach($t->anggota_cu_cu_not_keluar as $ta){
+				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
+				$t->no_ba .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->no_ba. ', ';
+				$t->tanggal_masuk .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->tanggal_masuk. ', ';
+			}
+		};
+
+		return $table_data;
+	}
+
+	public function formatKeluarQuery($table_data){
+		foreach($table_data as $t){
+			$t->nik = $t->nik ? $t->nik . "​ " : '';
+			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			$t->no_ba = '';
+			$t->tanggal_masuk = '';
+			foreach($t->anggota_cu_cu_keluar as $ta){
+				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
+				$t->no_ba .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->no_ba. ', ';
+				$t->tanggal_masuk .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->tanggal_masuk. ', ';
+			}
+		};
+
+		return $table_data;
+	}
+
+	public function formatCuQuery($table_data, $tp){
+		foreach($table_data as $t){
+			$t->nik = $t->nik ? $t->nik . "​ " : '';
+			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			if($tp != 'semua'){
+				$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
+				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+			}else{
+				$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name. ', ' : '';
+				$t->no_ba = $tp_name .$t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
+				$t->tanggal_masuk = $tp_name .$t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+			}
+		};
+
+		return $table_data;
+	}
+
+	public function formatCuKeluarQuery($table_data, $tp){
+		foreach($table_data as $t){
+			$t->nik = $t->nik ? $t->nik . "​ " : '';
+			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			if($tp != 'semua'){
+				$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
+				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
+			}else{
+				$tp_name = $t->anggota_cu_cu_keluar[0]->tp ? $t->anggota_cu_cu_keluar[0]->tp->name. ', ' : '';
+				$t->no_ba = $tp_name .$t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
+				$t->tanggal_masuk = $tp_name .$t->anggota_cu_cu_keluar[0]->tanggal_masuk;
+			}
+		};
+
+		return $table_data;
 	}
 
 	public function indexProduk($id, $cu)

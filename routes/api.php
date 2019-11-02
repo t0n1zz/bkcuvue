@@ -625,6 +625,24 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::post('/tempat/update/{id}', 'TempatController@update');
     Route::delete('/tempat/{id}', 'TempatController@destroy');
 
+    //pekerjaan
+    Route::get('/pekerjaan', 'PekerjaanController@index');
+    Route::get('/pekerjaan/get', 'PekerjaanController@get');
+    Route::get('/pekerjaan/create', 'PekerjaanController@create');
+    Route::get('/pekerjaan/edit/{id}', 'PekerjaanController@edit');
+    Route::post('/pekerjaan/store', 'PekerjaanController@store');
+    Route::post('/pekerjaan/update/{id}', 'PekerjaanController@update');
+    Route::delete('/pekerjaan/{id}', 'PekerjaanController@destroy');
+
+    //suku
+    Route::get('/suku', 'SukuController@index');
+    Route::get('/suku/get', 'SukuController@get');
+    Route::get('/suku/create', 'SukuController@create');
+    Route::get('/suku/edit/{id}', 'SukuController@edit');
+    Route::post('/suku/store', 'SukuController@store');
+    Route::post('/suku/update/{id}', 'SukuController@update');
+    Route::delete('/suku/{id}', 'SukuController@destroy');
+
     //provinces
     Route::get('/provinces', 'ProvincesController@index');
     Route::get('/provinces/get', 'ProvincesController@get');

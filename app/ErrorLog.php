@@ -36,6 +36,6 @@ class ErrorLog extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User','id_user','id')->select('id','id_cu','name');
+        return $this->belongsTo('App\User','id_user','id')->select('id','id_aktivis','id_cu','name');
     }
 }

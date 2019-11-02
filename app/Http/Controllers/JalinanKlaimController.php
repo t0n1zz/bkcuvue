@@ -96,10 +96,10 @@ class JalinanKlaimController extends Controller{
 		MAX(anggota_cu_cu.cu_id) as cu_id,
 		COUNT(CASE WHEN status_klaim="4" THEN 1 END) AS status_klaim_setuju, 
 		COUNT(CASE WHEN status_klaim="5" THEN 1 WHEN status_klaim="6" THEN 1 END) AS status_klaim_cair, 
-		COUNT(CASE WHEN anggota_cu.kelamin="Pria" THEN 1 END) AS pria, 
-		COUNT(CASE WHEN anggota_cu.kelamin="Wanita" THEN 1 END) AS wanita, 
-		COUNT(CASE WHEN tipe="meninggal" THEN 1 END) AS meninggal, 
-		COUNT(CASE WHEN tipe="cacat" THEN 1 END) AS cacat, 
+		COUNT(CASE WHEN anggota_cu.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
+		COUNT(CASE WHEN anggota_cu.kelamin="PEREMPUAN" THEN 1 END) AS perempuan, 
+		COUNT(CASE WHEN tipe="MENINGGAL" THEN 1 END) AS meninggal, 
+		COUNT(CASE WHEN tipe="CACAT" THEN 1 END) AS cacat, 
 		SUM(tunas_disetujui) AS tunas_disetujui, 
 		SUM(lintang_disetujui) AS lintang_disetujui,
 		SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui';
@@ -114,10 +114,10 @@ class JalinanKlaimController extends Controller{
 				COUNT(cu.no_ba) as cu,
 				MAX(jalinan_klaim.created_at) as created_at,
 				MAX(kategori_penyakit) as kategori,
-				COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
-				COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
-				COUNT(case when tipe="meninggal" then 1 end) AS meninggal, 
-				COUNT(case when tipe="cacat" then 1 end) AS cacat, 
+				COUNT(case when anggota_cu.kelamin="LAKI-LAKI" then 1 end) AS lakilaki, 
+				COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
+				COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
+				COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
 				COUNT(*) as total'))	
 			->where('status_klaim','>=',5)
 			->whereBetween('tanggal_pencairan',[$awal, $akhir])
@@ -134,10 +134,10 @@ class JalinanKlaimController extends Controller{
 				COUNT(cu.no_ba) as cu,
 				MAX(jalinan_klaim.created_at) as created_at,
 				MAX(kategori_penyakit) as kategori,
-				COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
-				COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
-				COUNT(case when tipe="meninggal" then 1 end) AS meninggal, 
-				COUNT(case when tipe="cacat" then 1 end) AS cacat, 
+				COUNT(case when anggota_cu.kelamin="LAKI-LAKI" then 1 end) AS lakilaki, 
+				COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
+				COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
+				COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
 				COUNT(*) as total'))	
 			->where('status_klaim','>=',5)
 			->whereBetween('tanggal_pencairan',[$awal, $akhir])
@@ -173,10 +173,10 @@ class JalinanKlaimController extends Controller{
 				COUNT(cu.no_ba) as cu,
 				MAX(anggota_cu.tanggal_lahir) as tanggal_lahir,
 				MAX(jalinan_klaim.created_at) as created_at,
-				COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
-				COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
-				COUNT(case when tipe="meninggal" then 1 end) AS meninggal, 
-				COUNT(case when tipe="cacat" then 1 end) AS cacat, 
+				COUNT(case when anggota_cu.kelamin="LAKI-LAKI" then 1 end) AS lakilaki, 
+				COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
+				COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
+				COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
 				TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia
 			'))->addSelect(DB::raw('
 				CASE
@@ -208,10 +208,10 @@ class JalinanKlaimController extends Controller{
 					COUNT(cu.no_ba) as cu,
 					MAX(anggota_cu.tanggal_lahir) as tanggal_lahir,
 					MAX(jalinan_klaim.created_at) as created_at,
-					COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
-					COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
-					COUNT(case when tipe="meninggal" then 1 end) AS meninggal, 
-					COUNT(case when tipe="cacat" then 1 end) AS cacat, 
+					COUNT(case when anggota_cu.kelamin="LAKI-LAKI" then 1 end) AS lakilaki, 
+					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
+					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
+					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
 					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia
 				'))->addSelect(DB::raw('
 					CASE
@@ -267,10 +267,10 @@ class JalinanKlaimController extends Controller{
 					COUNT(cu.no_ba) as cu,
 					max(anggota_cu.tanggal_lahir) as tanggal_lahir,
 					Max(jalinan_klaim.created_at) as created_at,
-					COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
-					COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
-					COUNT(case when tipe="meninggal" then 1 end) AS meninggal, 
-					COUNT(case when tipe="cacat" then 1 end) AS cacat, 
+					COUNT(case when anggota_cu.kelamin="LAKI-LAKI" then 1 end) AS lakilaki, 
+					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
+					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
+					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
 					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia,
 					TIMESTAMPDIFF(YEAR, max(anggota_cu_cu.tanggal_masuk), CURDATE()) AS lama_menjadi_anggota
 				'))->addSelect(DB::raw('
@@ -299,10 +299,10 @@ class JalinanKlaimController extends Controller{
 					COUNT(cu.no_ba) as cu,
 					max(anggota_cu.tanggal_lahir) as tanggal_lahir,
 					Max(jalinan_klaim.created_at) as created_at,
-					COUNT(case when anggota_cu.kelamin="Pria" then 1 end) AS pria, 
-					COUNT(case when anggota_cu.kelamin="Wanita" then 1 end) AS wanita,
-					COUNT(case when tipe="meninggal" then 1 end) AS meninggal, 
-					COUNT(case when tipe="cacat" then 1 end) AS cacat, 
+					COUNT(case when anggota_cu.kelamin="LAKI-LAKI" then 1 end) AS lakilaki, 
+					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
+					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
+					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
 					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia,
 					TIMESTAMPDIFF(YEAR, max(anggota_cu_cu.tanggal_masuk), CURDATE()) AS lama_menjadi_anggota
 				'))->addSelect(DB::raw('
@@ -337,8 +337,8 @@ class JalinanKlaimController extends Controller{
 			->join('produk_cu', 'produk_cu.id', '=', 'anggota_produk_cu.anggota_cu_id')
 			->select(DB::raw('
 				MAX(anggota_cu_cu.cu_id) as cu_id,
-				MAX(CASE WHEN anggota_cu.kelamin="Pria" THEN 1 END) AS pria, 
-				MAX(CASE WHEN anggota_cu.kelamin="Wanita" THEN 1 END) AS wanita,
+				MAX(CASE WHEN anggota_cu.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
+				MAX(CASE WHEN anggota_cu.kelamin="PEREMPUAN" THEN 1 END) AS perempuan,
 				SUM(CASE WHEN anggota_produk_cu.lama_pinjaman IS NULL THEN anggota_produk_cu.saldo END) AS saldo
 			'))->addSelect(DB::raw('
 				CASE
@@ -358,29 +358,29 @@ class JalinanKlaimController extends Controller{
 
 		$table_data2 = [
 			'< 1 Juta' => [
-				'kategori' => '< 1 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+				'kategori' => '< 1 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 			],
 			'> 1 s.d. 10 Juta' => [
-				'kategori' => '> 1 s.d. 10 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+				'kategori' => '> 1 s.d. 10 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 			],
 			'> 10 s.d. 20 Juta' => [
-				'kategori' => '> 10 s.d. 20 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+				'kategori' => '> 10 s.d. 20 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 			],
 			'> 20 s.d. 30 Juta' => [
-				'kategori' => '> 20 s.d. 30 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+				'kategori' => '> 20 s.d. 30 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 			],
 			'> 40 s.d. 50 Juta' => [
-				'kategori' => '> 40 s.d. 50 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+				'kategori' => '> 40 s.d. 50 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 			]
 		];
 
 		foreach($table_data as $t){
 			foreach($table_data2 as $key => $t2){
 				if($t->kategori == $key){
-					if($t->pria > 0){
-						$table_data2[$key]['pria'] =+ 1;
-					}else if($t->wanita > 0){
-						$table_data2[$key]['wanita'] =+ 1;
+					if($t->lakilaki > 0){
+						$table_data2[$key]['lakilaki'] =+ 1;
+					}else if($t->perempuan > 0){
+						$table_data2[$key]['perempuan'] =+ 1;
 					}
 					$table_data2[$key]['total'] =+ 1;
 					$table_data2[$key]['saldo'] =+ $t->saldo;
@@ -402,8 +402,8 @@ class JalinanKlaimController extends Controller{
 			->join('anggota_produk_cu', 'anggota_produk_cu.anggota_cu_id', '=', 'jalinan_klaim.anggota_cu_id')
 			->select(DB::raw('
 				MAX(anggota_cu_cu.cu_id) as cu_id,
-				MAX(CASE WHEN anggota_cu.kelamin="Pria" THEN 1 END) AS pria, 
-				MAX(CASE WHEN anggota_cu.kelamin="Wanita" THEN 1 END) AS wanita,
+				MAX(CASE WHEN anggota_cu.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
+				MAX(CASE WHEN anggota_cu.kelamin="PEREMPUAN" THEN 1 END) AS perempuan,
 				SUM(CASE WHEN anggota_produk_cu.lama_pinjaman IS NOT NULL THEN anggota_produk_cu.saldo END) AS saldo
 			'))->addSelect(DB::raw('
 				CASE
@@ -422,29 +422,29 @@ class JalinanKlaimController extends Controller{
 
 			$table_data2 = [
 				'< 1 Juta' => [
-					'kategori' => '< 1 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+					'kategori' => '< 1 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 				],
 				'> 1 s.d. 10 Juta' => [
-					'kategori' => '> 1 s.d. 10 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+					'kategori' => '> 1 s.d. 10 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 				],
 				'> 10 s.d. 20 Juta' => [
-					'kategori' => '> 10 s.d. 20 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+					'kategori' => '> 10 s.d. 20 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 				],
 				'> 20 s.d. 30 Juta' => [
-					'kategori' => '> 20 s.d. 30 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+					'kategori' => '> 20 s.d. 30 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 				],
 				'> 40 s.d. 50 Juta' => [
-					'kategori' => '> 40 s.d. 50 Juta','pria' => 0,'wanita' => 0,'total' => 0,'saldo' => 0
+					'kategori' => '> 40 s.d. 50 Juta','lakilaki' => 0,'perempuan' => 0,'total' => 0,'saldo' => 0
 				]
 			];
 
 			foreach($table_data as $t){
 				foreach($table_data2 as $key => $t2){
 					if($t->kategori == $key){
-						if($t->pria > 0){
-							$table_data2[$key]['pria'] =+ 1;
-						}else if($t->wanita > 0){
-							$table_data2[$key]['wanita'] =+ 1;
+						if($t->lakilaki > 0){
+							$table_data2[$key]['lakilaki'] =+ 1;
+						}else if($t->perempuan > 0){
+							$table_data2[$key]['perempuan'] =+ 1;
 						}
 						$table_data2[$key]['total'] =+ 1;
 						$table_data2[$key]['saldo'] =+ $t->saldo;
@@ -624,14 +624,14 @@ class JalinanKlaimController extends Controller{
 		$kelas = AnggotaCu::findOrFail($id);
 		$kelas->status_jalinan = $tipe;
 
-		if($tipe == 'meninggal'){
+		if($tipe == 'MENINGGAL'){
 			$kelas->tanggal_meninggal = $tanggal;
 			if($isEdit){
 				if($kelas->tanggal_cacat == $tanggal){
 					$kelas->tanggal_cacat = NULL;
 				}
 			}
-		}else if($tipe == 'cacat'){
+		}else if($tipe == 'CACAT'){
 			$kelas->tanggal_cacat = $tanggal;
 			if($isEdit){
 				if($kelas->tanggal_meninggal == $tanggal){
@@ -704,7 +704,7 @@ class JalinanKlaimController extends Controller{
 
 		$kelas->delete();
 
-		$this->updateStatusAnggotaCu($anggota_cu_id, NULL);
+		$this->updateStatusAnggotaCu($anggota_cu_id, NULL, NULL);
 
 		return response()
 			->json([
@@ -777,7 +777,7 @@ class JalinanKlaimController extends Controller{
 
 	public function getPencairan()
 	{
-		$table_data = JalinanKlaim::where('status_klaim',3)->select('tanggal_pencairan')->distinct()->orderBy('tanggal_pencairan','DESC')->get();
+		$table_data = JalinanKlaim::where('status_klaim',4)->select('tanggal_pencairan')->distinct()->orderBy('tanggal_pencairan','DESC')->get();
 
 		return response()
 		->json([

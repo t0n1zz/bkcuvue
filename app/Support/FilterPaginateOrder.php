@@ -34,7 +34,6 @@ trait FilterPaginateOrder {
         ]);
 
         if($v->fails()) {
-
             //for debug
             // dd($v->messages());
         }

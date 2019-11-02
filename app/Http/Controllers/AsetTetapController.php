@@ -25,8 +25,10 @@ class AsetTetapController extends Controller{
 		}])->advancedFilter();
 
 		foreach($table_data as $datas){
+			$datas->kode = $datas->kode ? $datas->kode . "​ " : '';
 			$datas->total_harga = $datas->harga + $datas->harga_sub;
 		}
+
 
 		return response()
 		->json([
@@ -41,6 +43,7 @@ class AsetTetapController extends Controller{
 		}])->where('aset_id',$id)->advancedFilter();
 
 		foreach($table_data as $datas){
+			$datas->kode = $datas->kode ? $datas->kode . "​ " : '';
 			$datas->total_harga = $datas->harga + $datas->harga_sub;
 		}
 

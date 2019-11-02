@@ -90,6 +90,12 @@ class AktivisController extends Controller{
 				})->advancedFilter();
 			}
 		}
+
+		foreach($table_data as $t){
+			$t->nik = 'No. KTP: ' . $t->nik;
+			$t->nik = 'NIM: ' . $t->nim;
+			$t->npwp = 'NPWP: ' . $t->npwp;
+		}
 	
 		return response()
 		->json([
@@ -180,6 +186,12 @@ class AktivisController extends Controller{
 
 		}
 
+		foreach($table_data as $t){
+			$t->nik = 'No. KTP: ' . $t->nik;
+			$t->nik = 'NIM: ' . $t->nim;
+			$t->npwp = 'NPWP: ' . $t->npwp;
+		}
+
 		return response()
 		->json([
 			'model' => $table_data
@@ -191,6 +203,7 @@ class AktivisController extends Controller{
 		$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use($request){
 			$query->whereIn('tingkat',$request)->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
 		})->advancedFilter();
+		
 
 		return response()
 		->json([

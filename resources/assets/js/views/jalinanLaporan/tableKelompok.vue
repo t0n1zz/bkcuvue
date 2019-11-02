@@ -65,10 +65,10 @@
               <check-value :value="props.item.cu" valueType="currency"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.pria" valueType="currency"></check-value>
+              <check-value :value="props.item.lakilaki" valueType="currency"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.wanita" valueType="currency"></check-value>
+              <check-value :value="props.item.perempuan" valueType="currency"></check-value>
             </td>
             <td>
               <check-value :value="props.item.meninggal" valueType="currency"></check-value>
@@ -86,14 +86,14 @@
     </div>
     
     <div class="row">
-      <!-- pria -->
+      <!-- lakilaki -->
       <div class="col-lg-3 col-md-3">
         <div class="card card-body bg-brown-400" >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0"><check-value :value="sumData.pria" valueType="currency"></check-value></h3>
+              <h3 class="mb-0"><check-value :value="sumData.lakilaki" valueType="currency"></check-value></h3>
               <span class="text-uppercase">
-                Jumlah Pria
+                Jumlah laki-laki
               </span>
             </div>
             <div class="ml-3 align-self-center">
@@ -103,14 +103,14 @@
         </div>
       </div>
 
-      <!-- wanita -->
+      <!-- perempuan -->
       <div class="col-lg-3 col-md-3">
         <div class="card card-body bg-pink-400" >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0"><check-value :value="sumData.wanita" valueType="currency"></check-value></h3>
+              <h3 class="mb-0"><check-value :value="sumData.perempuan" valueType="currency"></check-value></h3>
               <span class="text-uppercase">
-                Jumlah Wanita
+                Jumlah perempuan
               </span>
             </div>
             <div class="ml-3 align-self-center">
@@ -271,8 +271,8 @@
           if(this.$route.params.cu == 'semua'){
             this.sumData.cu = _.sumBy(itemData, 'cu');
           }
-          this.sumData.pria = _.sumBy(itemData,'pria');
-          this.sumData.wanita = _.sumBy(itemData,'wanita');
+          this.sumData.lakilaki = _.sumBy(itemData,'lakilaki');
+          this.sumData.perempuan = _.sumBy(itemData,'perempuan');
           this.sumData.cacat = _.sumBy(itemData,'cacat');
           this.sumData.meninggal = _.sumBy(itemData,'meninggal');
           this.sumData.total = _.sumBy(itemData,'total');
@@ -299,8 +299,8 @@
           this.columnData = [ 
             { title: 'No.' },
             { title: 'Kategori' },
-            { title: 'Pria' },
-            { title: 'Wanita' },
+            { title: 'Laki-laki' },
+            { title: 'Perempuan' },
             { title: 'Meninggal' },
             { title: 'Cacat' },
             { title: 'Total' },
@@ -310,8 +310,8 @@
             { title: 'No.' },
             { title: 'Kategori' },
             { title: 'CU' },
-            { title: 'Pria' },
-            { title: 'Wanita' },
+            { title: 'Laki-laki' },
+            { title: 'Perempuan' },
             { title: 'Meninggal' },
             { title: 'Cacat' },
             { title: 'Total' },

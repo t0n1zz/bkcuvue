@@ -284,7 +284,7 @@
         </div>
         
         <!-- tanggal pencairan -->
-        <div class="col-md-12" v-if="formStatus.status == '3' || tipe == 'selesai'">
+        <div class="col-md-12" v-if="formStatus.status == '4' || tipe == 'selesai'">
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
 
             <!-- title -->
@@ -314,7 +314,7 @@
         </div>
 
         <!-- TUNAS -->
-        <div class="col-md-6" v-if="(formStatus.status == '3' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
+        <div class="col-md-6" v-if="(formStatus.status == '4' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
         
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 
@@ -353,7 +353,7 @@
         </div>
 
         <!-- LINTANG -->
-        <div class="col-md-6" v-if="formStatus.status == '3' || tipe == 'selesai'">
+        <div class="col-md-6" v-if="formStatus.status == '4' || tipe == 'selesai'">
           
 
           <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">

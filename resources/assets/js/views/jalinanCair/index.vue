@@ -31,7 +31,7 @@
 							<hr/>
 						</div>
 
-						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
+						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'4'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
 
 					</div>
 				</div>

@@ -69,6 +69,14 @@
 				},
 			}
 		},
+		mounted() {
+      document.addEventListener("keydown", (e) => {
+        if (e.keyCode == 13) {
+          if(this.nik != '')
+            this.cariData();
+        }
+      });
+    },
 		watch: {
       itemDataStat(value){
         if(value === "success"){

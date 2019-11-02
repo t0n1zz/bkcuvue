@@ -38,7 +38,7 @@
             <transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'dicairkan'"  v-if="$route.meta.mode == 'laporan'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData4" :itemDataStat="itemDataStat4" :status="'4'" :isSimple="true"></table-data>
-							</div>
+						</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">

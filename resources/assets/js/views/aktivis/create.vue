@@ -145,8 +145,8 @@
 								<!-- select -->
 								<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'" data-vv-as="Gender">
 									<option disabled value="">Silahkan pilih gender</option>
-									<option value="Pria">Pria</option>
-									<option value="Wanita">Wanita</option>
+									<option value="LAKI-LAKI">Laki-laki</option>
+									<option value="PEREMPUAN">Perempuan</option>
 								</select>
 
 								<!-- error message -->
@@ -258,12 +258,13 @@
 								<!-- select -->
 								<select class="form-control" name="agama" v-model="form.agama" data-width="100%">
 									<option disabled value="">Silahkan pilih agama</option>
-									<option value="Buddha">Buddha</option>
-									<option value="Hindu">Hindu</option>
-									<option value="Islam">Islam</option>
-									<option value="Khatolik">Khatolik</option>
-									<option value="Kong Hu Cu">Kong Hu Cu</option>
-									<option value="Protestan">Protestan</option>
+									<option value="BUDDHA">Buddha</option>
+									<option value="HINDU">Hindu</option>
+									<option value="ISLAM">Islam</option>
+									<option value="KHATOLIK">Khatolik</option>
+									<option value="KONG HU CU">Kong Hu Cu</option>
+									<option value="PROTESTAN">Protestan</option>
+									<option value="LAIN-LAIN">Lain-lain</option>
 								</select>
 
 							</div>
@@ -333,16 +334,16 @@
 								<!-- select -->
 								<select class="form-control" name="status" v-model="form.status" data-width="100%">
 									<option disabled value="">Silahkan pilih status pernikahan</option>
-									<option value="Belum menikah">Belum menikah</option>
-									<option value="Menikah">Menikah</option>
-									<option value="Janda/Duda">Janda/Duda</option>
+									<option value="BELUM MENIKAH">Belum menikah</option>
+									<option value="MENIKAH">Menikah</option>
+									<option value="JANDA/DUDA">Janda/Duda</option>
 								</select>
 
 							</div>
 						</div>
 
 						<!-- pasangan -->
-						<div class="col-md-4" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'">
+						<div class="col-md-4" v-if="form.status == 'MENIKAH' || form.status == 'Duda/Janda'">
 							<div class="form-group">
 
 								<!-- title -->
@@ -357,7 +358,7 @@
 						</div>
 						
 						<!-- anak -->
-						<div class="col-md-4" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'" v-for="(anak,index) in formAnak">
+						<div class="col-md-4" v-if="form.status == 'MENIKAH' || form.status == 'Duda/Janda'" v-for="(anak,index) in formAnak">
 							<div class="form-group">
 
 								<!-- title -->
@@ -379,7 +380,7 @@
 						</div>
 
 						<!-- punya anak -->
-						<div class="col-md-12" v-if="form.status == 'Menikah' || form.status == 'Duda/Janda'">
+						<div class="col-md-12" v-if="form.status == 'MENIKAH' || form.status == 'JANDA/DUDA'">
 							<button class="btn btn-light btn-block" @click.prevent="addAnak()"><i class="icon-plus3"></i> 
 								<span v-if="formAnak.length == 0">Punya Anak</span>
 								<span v-else>Tambah Anak</span>
