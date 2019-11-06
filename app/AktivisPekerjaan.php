@@ -34,15 +34,15 @@ class AktivisPekerjaan extends Model {
     }
 
     public function lembaga(){
-        return $this->belongsTo('App\Lembaga','id_tempat','id')->select(array('id','name'));
+        return $this->belongsTo('App\Lembaga','id_tempat','id')->select('id','name');
     }
 
     public function cu(){
-        return $this->belongsTo('App\Cu','id_tempat','id')->select(array('id','no_ba','name'))->withTrashed();
+        return $this->belongsTo('App\Cu','id_tempat','id')->select('id','no_ba','name')->withTrashed();
     }
 
     public function tp(){
-        return $this->belongsTo('App\Tp','id_tp','id')->select(array('id','name'))->withTrashed();
+        return $this->belongsTo('App\Tp','id_tp','id')->select('id','name')->withTrashed();
     }
 
 }

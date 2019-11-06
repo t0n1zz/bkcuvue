@@ -102,7 +102,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function aktivis(){
-        return $this->belongsTo('App\Aktivis','id_aktivis','id');
+        return $this->belongsTo('App\Aktivis','id_aktivis','id')->select('id','name','gambar');
     }
 
     public function Role(){

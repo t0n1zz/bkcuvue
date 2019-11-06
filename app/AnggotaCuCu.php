@@ -36,12 +36,12 @@ class AnggotaCuCu extends Model {
 
     public function cu()
     {
-        return $this->belongsTo('App\Cu','cu_id','id');
+        return $this->belongsTo('App\Cu','cu_id','id')->select('id','no_ba','name');
     }
 
     public function tp()
     {
-        return $this->belongsTo('App\Tp','tp_id','id');
+        return $this->belongsTo('App\Tp','tp_id','id')->select('id','no_tp','name');
     }
 
     public function jalinanKlaim()

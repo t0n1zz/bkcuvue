@@ -112,6 +112,19 @@
 							</div>
 						</div>
 
+						<!-- nama ibu -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Nama Ibu: </h6>
+
+								<!-- text -->
+								<input type="text" name="nama_ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-model="form.nama_ibu">
+
+							</div>
+						</div>
+
 						<!-- gender -->
 						<div class="col-md-4">
 							<div class="form-group" :class="{'has-error' : errors.has('form.kelamin')}">
@@ -183,6 +196,25 @@
 									<i class="icon-arrow-small-right"></i> {{ errors.first('form.tempat_lahir') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
+
+							</div>
+						</div>
+
+						<!-- suku -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Suku: </h6>
+
+								<!-- select -->
+								<select class="form-control" name="suku" v-model="form.suku" data-width="100%" :disabled="modelSuku.length == 0">
+									<option disabled value="">
+										<span v-if="modelSukuStat === 'loading'">Mohon tunggu...</span>
+										<span v-else>Silahkan pilih suku</span>
+									</option>
+									<option v-for="suku in modelSuku" :value="suku.name">{{suku.name}}</option>
+								</select>
 
 							</div>
 						</div>
@@ -296,11 +328,30 @@
 								<!-- select -->
 								<select class="form-control" name="jabatan" v-model="form.jabatan" data-width="100%">
 									<option disabled value="">Silahkan pilih jabatan</option>
-									<option value="5">Senior Manajer (General Manager, CEO, Deputy)</option>
-									<option value="6">Manajer</option>
-									<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
-									<option value="8">Staf</option>
-									<option value="9">Kontrak</option>
+									<option value="SENIOR MANAJER">Senior Manajer (General Manager, CEO, Deputy)</option>
+									<option value="MANAJER">Manajer</option>
+									<option value="SUPERVISOR">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
+									<option value="STAF">Staf</option>
+									<option value="KONTRAK">Kontrak</option>
+								</select>
+
+							</div>
+						</div>
+
+						<!-- pekerjaan -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Pekerjaan: </h6>
+
+								<!-- select -->
+								<select class="form-control" name="pekerjaan" v-model="form.pekerjaan" data-width="100%" :disabled="modelPekerjaan.length == 0">
+									<option disabled value="">
+										<span v-if="modelPekerjaanStat === 'loading'">Mohon tunggu...</span>
+										<span v-else>Silahkan pilih pekerjaan</span>
+									</option>
+									<option v-for="pekerjaan in modelPekerjaan" :value="pekerjaan.name">{{pekerjaan.name}}</option>
 								</select>
 
 							</div>
@@ -916,6 +967,8 @@
 				this.fetchTp(this.currentUser.id_cu);
 			}
 			
+			this.$store.dispatch('pekerjaan/get');
+			this.$store.dispatch('suku/get');
 			this.$store.dispatch('provinces/get');
 			this.fetch();
 		},
@@ -1098,6 +1151,14 @@
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
+			}),
+			...mapGetters('pekerjaan',{
+				modelPekerjaan: 'dataS',
+				modelPekerjaanStat: 'dataStatS'
+			}),
+			...mapGetters('suku',{
+				modelSuku: 'dataS',
+				modelSukuStat: 'dataStatS'
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

@@ -27,6 +27,11 @@ class JalinanKlaimController extends Controller{
 			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->advancedFilter();
 		}
 
+		foreach($table_data as $t){
+			$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+			$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+		}
+
 		return response()
 			->json([
 				'model' => $table_data
@@ -47,6 +52,11 @@ class JalinanKlaimController extends Controller{
 			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 				$query->where('cu_id',$cu); 
 			})->advancedFilter();
+		}
+
+		foreach($table_data as $t){
+			$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+			$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
 		}
 
 		return response()

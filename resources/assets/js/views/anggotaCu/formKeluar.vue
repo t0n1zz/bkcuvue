@@ -2,9 +2,9 @@
 	<div>
 		<div class="card card-body text-center">
 			<ul class="list-inline list-inline-consensed mb-0 font-size-lg">
-				<li class="list-inline-item"><b>CU:</b> {{ anggota_cu.name }}</li>
-				<li class="list-inline-item"><b>No. BA:</b> {{ anggota_cu.pivot.no_ba }}</li>
-				<li class="list-inline-item"><b>Tgl. Masuk:</b> {{ $options.filters.date(anggota_cu.pivot.tanggal_masuk) }}</li>
+				<li class="list-inline-item"><b>CU:</b> {{ anggota_cu.cu ? anggota_cu.cu.name : "-" }}</li>
+				<li class="list-inline-item"><b>No. BA:</b> {{ anggota_cu.no_ba }}</li>
+				<li class="list-inline-item"><b>Tgl. Masuk:</b> {{ $options.filters.date(anggota_cu.tanggal_masuk) }}</li>
 			</ul>
 		</div>
 
@@ -130,7 +130,7 @@
 			save(){
 				this.$validator.validateAll('formDataCu').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/updateKeluar',[this.anggota_cu.pivot.id, this.formDataCu]);
+						this.$store.dispatch(this.kelas + '/updateKeluar',[this.anggota_cu.id, this.formDataCu]);
 					}else{
 						this.submited = true;
 					}	

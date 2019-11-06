@@ -18,9 +18,7 @@
 
 					<!-- main panel -->
 					<!-- cari data -->
-					<cari-data :itemDataStat="itemDataStat" :isBack="false" @cariData="cariData" @resetData="resetData"></cari-data>
-
-
+					<cari-data :itemDataStat="itemDataStat" :isBack="false" @cariDataKTP="cariDataKTP" @cariDataBA="cariDataBA" @resetData="resetData"></cari-data>
 					
 					<!-- data not exist -->
 					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">
@@ -32,47 +30,17 @@
 					<!-- identitas -->
 					<div v-if="itemDataStat == 'success'">
 
-						<div class="alert bg-danger text-white alert-styled-left" v-if="itemData.status_jalinan == 1 ||itemData.status_jalinan == 2">
+						<div class="alert bg-danger text-white alert-styled-left" v-if="itemData.status_jalinan == 'MENINGGAL'">
 							<span class="font-weight-semibold">Anggota ini sudah dinyatakan <b v-html="$options.filters.statusJalinan(itemData.status_jalinan)"></b>, maka tidak bisa dilakukan penambahan, pengubahan dan penghapusan data produk.
 							</span>
 						</div>
 
-						<div class="card card-body">
-							<div class="row">
-								<div class="col-sm-4">
-									<ul class="list list-unstyled mb-0">
-										<li><b>Nama:</b> {{ itemData.name}}</li>
-										<li><b>No. KTP:</b> {{ itemData.nik}}</li>
-										<li><b>Nama Alih Waris:</b> {{ itemData.alih_waris}}</li>
-										<li><b>Gender:</b> {{ itemData.kelamin}}</li>
-										<li><b>Tinggi:</b> {{ itemData.tinggi}}</li>
-										<li><b>Agama:</b> {{ itemData.agama}}</li>
-										<li><b>Darah:</b> {{ itemData.darah}}</li>
-									</ul>
-								</div>
-								<div class="col-sm-4">
-									<ul class="list list-unstyled mb-0">
-										<li><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
-										<li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
-										<li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
-										<li><b>Status:</b> {{ itemData.status}}</li>
-										<li><b>Lembaga:</b> {{ itemData.lembaga}}</li>
-										<li><b>Jabatan:</b> {{ itemData.jabatan}}</li>
-										<li><b>Pendidikan:</b> {{ itemData.pendidikan}}</li>
-										<li><b>Email:</b> {{ itemData.email}}</li>
-									</ul>
-								</div>
-								<div class="col-sm-4">
-									<ul class="list list-unstyled mb-0">
-										<li><b>Provinsi:</b> {{ itemData.provinces ? itemData.provinces.name : ''}}</li>
-										<li><b>Kabupaten:</b> {{ itemData.regencies ? itemData.regencies.name : ''}}</li>
-										<li><b>Kecamatan:</b> {{ itemData.districts ? itemData.districts.name : ''}}</li>
-										<li><b>Kelurahan:</b> {{ itemData.villages ? itemData.villages.name : ''}}</li>
-										<li><b>Alamat:</b> {{ itemData.alamat}}</li>
-										<li><b>No. Hp:</b> {{ itemData.hp}}</li>
-										<li><b>Kontak Lainnya:</b> {{ itemData.kontak}}</li>
-									</ul>
-								</div>
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">Identitas</h5>
+							</div>
+							<div class="card-body">
+								<identitas :itemData="itemData"></identitas>
 							</div>
 						</div>
 					</div>
@@ -89,77 +57,23 @@
 					</ul>
 
 					<transition-group name="list" tag="div" enter-active-class="animated fadeIn" mode="out-in">
-						<div class="card" v-for="cu in itemDataCu" v-bind:key="cu.cu_id" v-show="tabName == cu.cu_id">
+						<div v-for="cu in itemDataCu" v-bind:key="cu.cu_id" v-show="tabName == cu.cu_id">
 							<div v-for="(produks,index) in itemDataProduk" v-if="index == cu.cu_id">
 
 								<div class="nav-tabs-responsive bg-light border-top" >
 									<ul class="nav nav-tabs nav-tabs-solid bg-light">
 										<li class="nav-item" v-for="produk in produks">
-											<a href="#" class="nav-link" :class="{'active': tabName2 == 'produk_' + produk[0].id}" @click.prevent="changeTab2('produk_' + produk[0].id)">
+											<a href="#" class="nav-link" :class="{'active': tabName2 == produk[0].id}" @click.prevent="changeTab2(produk[0].id)">
 												<b>{{ produk[0].name }}</b> <br/>
-												{{ 'Kode: ' + produk[0].kode_produk }} <br/>
-												{{ 'Tipe: ' + produk[0].tipe }}
+												<b>Kode:</b> {{ produk[0].kode_produk }} <br/>
+												<b>Tipe:</b> {{ produk[0].tipe }} <br/>
+												<b v-if="produk[0].tipe == 'Simpanan Pokok' || 	produk[0].tipe == 'Simpanan Wajib' ||produk[0].tipe == 'Simpanan Non Saham'">No. Rek:</b>
+												<b v-else>No. SPP:</b> {{ produk[0].pivot.no_rek }} <br/>
+												<b>Saldo:</b> <check-value :value="produk[0].pivot.saldo" valueType="currency"></check-value> <br/>
 											</a>
 										</li>
 									</ul>
 								</div>
-
-								<div class="card-body pb-2">
-									<div class="row">
-
-										<div class="col-md-12" v-if="itemData.status_jalinan != 1 && itemData.status_jalinan != 2">
-
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')" v-if="currentUser.can && currentUser.can['create_saldo']">
-												<i class="icon-plus22"></i> Tambah
-											</button>
-
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-											:disabled="!selectedProduk.index" v-if="currentUser.can && currentUser.can['update_saldo']">
-												<i class="icon-pencil5"></i> Ubah
-											</button>
-
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedProduk.index" v-if="currentUser.can && currentUser.can['destroy_saldo']">
-												<i class="icon-bin2"></i> Hapus
-											</button>
-
-										</div>
-
-									</div>		
-								</div>
-
-								<transition-group name="list2" tag="div" enter-active-class="animated fadeIn" mode="out-in">
-
-									<div class="table-responsive table-scrollable" style="max-height: 33rem;" v-for="produk in produks" v-bind:key="produk[0].id" v-show="tabName2 == 'produk_' + produk[0].id">
-										<table class="table table-striped">
-											<thead class="bg-primary">
-												<tr class="text-nowarp">
-													<th>No.</th>
-													<th v-if="produk[0].tipe == 'Simpanan Pokok' || 	produk[0].tipe == 'Simpanan Wajib' ||produk[0].tipe == 'Simpanan Non Saham'">
-														No. Rekening
-													</th>
-													<th v-else>
-														No. SPP
-													</th>
-													<th>Saldo</th>
-													<th>Tanggal</th>
-													<th v-if="produk[0].tipe == 'Pinjaman Kapitalisasi' || produk[0].tipe == 'Pinjaman Umum' ||produk[0].tipe == 'Pinjaman Produktif'">
-														Lama Pinjaman
-													</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr v-for="(item, index) in produk" :class="{ 'bg-info': selectedProduk.index === index + 1 }" class="text-nowrap" @click="selectedProdukRow(index,item)">
-													<td>{{ index + 1 }}</td>
-													<td><check-value :value="item.pivot.no_rek"></check-value></td>
-													<td><check-value :value="item.pivot.saldo" valueType="currency"></check-value></td>
-													<td><span v-if="item.pivot.tanggal" v-html="$options.filters.date(item.pivot.tanggal)"></span> <span v-else>-</span></td>
-													<td v-if="item.tipe == 'Pinjaman Kapitalisasi' || item.tipe == 'Pinjaman Umum' ||item.tipe == 'Pinjaman Produktif'"><check-value :value="item.pivot.lama_pinjaman"></check-value> bulan</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>		
-
-								</transition-group>	
 
 							</div>
 						</div>
@@ -247,7 +161,8 @@
 	import checkValue from "../../components/checkValue.vue";
 	import infoIcon from "../../components/infoIcon.vue";
 	import countWidget from '../../components/countWidget.vue';
-	import cariData from "../../components/cariData.vue";
+	import cariData from "./cariData.vue";
+	import identitas from "../../components/identitas.vue";
 
 	export default {
 		components: {
@@ -261,14 +176,15 @@
 			checkValue,
 			infoIcon,
 			countWidget,
-			cariData
+			cariData,
+			identitas
 		},
 		data() {
 			return {
-				title: 'Saldo',
-				titleDesc: 'Mengelola data saldo anggota cu',
+				title: 'Simpanan & Pinjaman',
+				titleDesc: 'Mengelola data simpanan & pinjaman anggota CU',
 				titleIcon: 'icon-wallet',
-				kelas: 'anggotaCu',
+				kelas: 'anggotaProdukCu',
 				tabName: 'nik',
 				tabName2: '',
 				tabNameModal: '',
@@ -345,16 +261,15 @@
 					this.itemDataProduk = [];
 
 					// cu
-					if(this.itemData.anggota_cu){
+					if(this.itemData.anggota_cu_cu){
 						var valData;
-						for(valData of this.itemData.anggota_cu){
+						for(valData of this.itemData.anggota_cu_cu){
 							var datas = {};
 							var cu = {};
-							cu.name = valData.name;
+							cu.name = valData.cu.name;
 							cu.id = valData.id;
 
-							datas = valData.pivot;
-							datas.cu = cu;
+							datas = valData;
 							this.itemDataCu.push(datas);
 						}
 
@@ -401,8 +316,11 @@
 			}
 		},
 		methods: {
-			cariData(nik){
-				this.$store.dispatch(this.kelas + '/cariData', nik);
+			cariDataKTP(value){
+				this.$store.dispatch(this.kelas + '/cariDataKTP', value);
+			},
+			cariDataBA(value){
+				this.$store.dispatch(this.kelas + '/cariDataBA', value);
 			},
 			resetData(){
 				this.itemDataCu = [];

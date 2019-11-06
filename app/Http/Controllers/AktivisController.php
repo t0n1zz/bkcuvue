@@ -92,9 +92,9 @@ class AktivisController extends Controller{
 		}
 
 		foreach($table_data as $t){
-			$t->nik = 'No. KTP: ' . $t->nik;
-			$t->nik = 'NIM: ' . $t->nim;
-			$t->npwp = 'NPWP: ' . $t->npwp;
+			$t->nik = $t->nik . " ";
+			$t->nik = $t->nim . " ";
+			$t->npwp = $t->npwp . " ";
 		}
 	
 		return response()
@@ -187,9 +187,9 @@ class AktivisController extends Controller{
 		}
 
 		foreach($table_data as $t){
-			$t->nik = 'No. KTP: ' . $t->nik;
-			$t->nik = 'NIM: ' . $t->nim;
-			$t->npwp = 'NPWP: ' . $t->npwp;
+			$t->nik = $t->nik . " ";
+			$t->nik = $t->nim . " ";
+			$t->npwp = $t->npwp . " ";
 		}
 
 		return response()

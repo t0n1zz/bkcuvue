@@ -476,10 +476,10 @@
 								<i class="icon-man-woman"></i> Anggota CU [DRAFT]
 							</router-link>
 
-							<!-- if cu account -->
-							<!-- <router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
-								<i class="icon-wallet"></i> Saldo
-							</router-link> -->
+							<!-- saldo  -->
+							<router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
+								<i class="icon-wallet"></i> Simpanan & Pinjaman
+							</router-link>
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 

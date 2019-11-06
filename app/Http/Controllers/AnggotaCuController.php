@@ -29,7 +29,9 @@ class AnggotaCuController extends Controller{
 	{
 		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query){ 
 			$query->whereNull('anggota_cu_cu.tanggal_keluar'); 
-		})->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL)->advancedFilter();
+		})->where(function($query){
+			$query->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL);
+		})->advancedFilter();
 
 		$table_data = $this->formatQuery($table_data);
 
@@ -41,9 +43,11 @@ class AnggotaCuController extends Controller{
 
 	public function indexKeluar()
 	{
-		$table_data = AnggotaCu::with('anggota_cu_cu_keluar.cu'.'anggota_cu_cu_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_keluar', function($query){ 
+		$table_data = AnggotaCu::with('anggota_cu_cu_keluar.cu','anggota_cu_cu_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query){ 
 			$query->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
-		})->where('status_jalinan','!=','meninggal')->advancedFilter();
+		})->where(function($query){
+			$query->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL);
+		})->advancedFilter();
 
 		$table_data = $this->formatKeluarQuery($table_data);
 
@@ -93,7 +97,9 @@ class AnggotaCuController extends Controller{
 			}else{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 			}
-		})->where('status_jalinan','!=','meninggal')->advancedFilter();
+		})->where(function($query){
+			$query->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL);
+		})->advancedFilter();
 
 		$table_data = $this->formatCuKeluarQuery($table_data, $tp);
 
@@ -196,6 +202,16 @@ class AnggotaCuController extends Controller{
 		}else{
 			$table_data = AnggotaProdukCu::with('produk_cu.cu')->where('anggota_cu_id', $id)->get();
 		}
+		
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexProdukSaldo($id)
+	{
+		$table_data = AnggotaProdukCuTransaksi::where('anggota_produk_cu_id', $id)->advancedFilter();
 		
 		return response()
 			->json([

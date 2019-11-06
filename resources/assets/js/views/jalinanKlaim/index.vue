@@ -52,48 +52,39 @@
 						</div>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'verifikasi'">
-								<div class="row" v-if="$route.params.cu != 'semua' && modelPengurusStat == 'success'">
+							<div v-show="tabName == 'verifikasi'" v-if="isVerifikasi">
+								<div class="row" v-if="$route.params.cu != 'semua'">
 									<!-- verifikasi pengurus -->
 									<div class="col-md-4">
-										<div class="card card-body bg-green-800" >
-											<div class="media">
-												<div class="media-body">
-													<h5 class="mb-1" >Verifikator Pengurus</h5>
-													<span v-for="vr in modelPengurus"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
-												</div>
-											</div>
-										</div> 
+										<verifikator 
+										:isSingle="false"
+										:title="'Verifikator Pengurus'" 
+										:itemData="modelPengurus" 
+										:itemDataStat="modelPengurusStat"></verifikator>
 									</div>
 									<!-- verifikasi pengawas -->
 									<div class="col-md-4">
-										<div class="card card-body bg-green-800" >
-											<div class="media">
-												<div class="media-body">
-													<h5 class="mb-1" >Verifikator Pengawas</h5>
-													<span v-for="vr in modelPengawas"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
-												</div>
-											</div>
-										</div> 
+										<verifikator 
+										:isSingle="false"
+										:title="'Verifikator Pengawas'" 
+										:itemData="modelPengawas" 
+										:itemDataStat="modelPengawasStat"></verifikator>
 									</div>
 									<!-- verifikasi manajemen -->
 									<div class="col-md-4">
-										<div class="card card-body bg-green-800" >
-											<div class="media">
-												<div class="media-body">
-													<h5 class="mb-1" >Verifikator Manajemen</h5>
-													<span v-for="vr in modelManajemen"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
-												</div>
-											</div>
-										</div> 
+										<verifikator 
+										:isSingle="false"
+										:title="'Verifikator Manajemen'" 
+										:itemData="modelManajemen" 
+										:itemDataStat="modelManajemenStat"></verifikator>
 									</div>
 								</div>
-							<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
 							</div>
 						</transition>	
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'menunggu'">
+							<div v-show="tabName == 'menunggu'" v-if="isMenunggu">
 							<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'" :isSimple="false"></table-data>
 							</div>
 						</transition>
@@ -142,13 +133,15 @@
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
 	import selectCu from "../../components/selectCu.vue";
+	import verifikator from "./verifikator.vue";
 	
 	export default {
 		components: {
 			pageHeader,
 			tableData,
 			message,
-			selectCu
+			selectCu,
+			verifikator
 		},
 		data() {
 			return {
@@ -158,7 +151,9 @@
 				titleIcon: 'icon-accessibility2',
 				selectCuPath: 'jalinanKlaimCu',
 				tabName: 'menunggu',
+				isMenunggu: false,
 				isDitolak: false,
+				isVerifikasi: false,
 				isTidakSesuai: false,
 				isDisetujui: false,
 				isDicairkan: false,
@@ -168,9 +163,9 @@
 		created(){
 			this.checkUser('index_anggota_cu',this.$route.params.cu);
 			if(this.currentUser.id_cu == 0){
-				this.tabName = 'menunggu';
+				this.changeTab('menunggu');
 			}else{
-				this.tabName = 'verifikasi'
+				this.changeTab('verifikasi');
 			}
 		},
 		methods: {
@@ -193,6 +188,12 @@
 				}
 				if (value == 'ditolak' && !this.isDitolak) {
 					this.isDitolak = true
+				}
+				if (value == 'menunggu' && !this.isMenunggu) {
+					this.isMenunggu = true
+				}
+				if (value == 'verifikasi' && !this.isVerifikasi) {
+					this.isVerifikasi = true
 				}
 				if (value == 'tidakLengkap' && !this.isTidakSesuai) {
 					this.isTidakSesuai = true

@@ -368,11 +368,11 @@
 								<!-- select -->
 								<select class="form-control" name="jabatan" v-model="form.jabatan" data-width="100%">
 									<option disabled value="">Silahkan pilih jabatan</option>
-									<option value="5">Senior Manajer (General Manager, CEO, Deputy)</option>
-									<option value="6">Manajer</option>
-									<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
-									<option value="8">Staf</option>
-									<option value="9">Kontrak</option>
+									<option value="SENIOR MANAJER">Senior Manajer (General Manager, CEO, Deputy)</option>
+									<option value="MANAJER">Manajer</option>
+									<option value="SUPERVISOR">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
+									<option value="STAF">Staf</option>
+									<option value="KONTRAK">Kontrak</option>
 								</select>
 
 							</div>

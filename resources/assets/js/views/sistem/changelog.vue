@@ -14,18 +14,22 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#320">Version 3.2.0 <small class="text-muted"> / - - 2019</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#320">Version 3.2.0 <small class="text-muted"> / 8 November 2019</small></a>
                   </h5>
                 </div>
 
                 <div id="320" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada...
+                    <p class="mb-3">Update versi ini fokus pada perbaikan beberapa bug pada download excel dan peningkatan performa
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
+                      <li>Menambah fitur auto reload file terbaru dari server apabila terdapat update dan menambahkan tombol hard reload apabila fitur auto reload gagal berfungsi.</li>
                       <li>Menambah informasi no. KK, nama ibu, suku, dan pekerjaan pada form anggota CU</li>
+                      <li>Mengubah tampilan informasi verifikator klaim JALINAN </li>
+                      <li>Optimalisasi pengambilan data klaim JALINAN dan data anggota CU ke server menjadi lebih ringkas dan cepat </li>
+                      <li>Perbaikan bug pada tombol anggota keluar</li>
                       <li>Perbaikan bug download excel semua data anggota CU tidak memunculkan sesuai CU tapi semua CU</li>
                       <li>Perbaikan bug download excel anggota CU kolom No. BA dan tanggal jadi anggota</li>
                       <li>Perbaikan bug download excel anggota CU dan aktivis kolom No. KTP digit terakhir hilang</li>

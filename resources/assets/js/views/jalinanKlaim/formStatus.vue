@@ -187,81 +187,52 @@
           </div>
         </div>
 
-        <div class="col-md-12"><hr/></div>
-
         <div class="col-md-12 row" v-if="tipe == 'analisis' || tipe == 'selesai'">
-          <div class="col-md-12"><h5>Verifikasi CU:</h5></div>
           <!-- veriifkasi pengurus -->
           <div class="col-md-4">
-            <div class="card card-body bg-green-800" >
-              <div class="media">
-                <div class="media-body">
-                 <h3 class="mb-0" >Verifikasi Pengurus</h3>
-                  <span>
-                    <b>Username:</b> {{ selectedData.verifikasi_pengurus_data ? selectedData.verifikasi_pengurus_data.username : '-' }} 
-                    <br/>
-                    <b>Nama:</b> {{ selectedData.verifikasi_pengurus_data && selectedData.verifikasi_pengurus_data.aktivis ? selectedData.verifikasi_pengurus_data.aktivis.name : '-' }}
-                    <br/>
-                    <b>Tingkat/Jabatan:</b>
-                    {{ selectedData.verifikasi_pengurus_data && selectedData.verifikasi_pengurus_data.aktivis && selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif.tingkat) : '' }} /
-                    {{ selectedData.verifikasi_pengurus_data && selectedData.verifikasi_pengurus_data.aktivis && selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengurus_data.aktivis.pekerjaan_aktif.name : '' }}
-                  </span>
-                 <hr/>
-                  <h5 class="mb-1" >Verifikator yang dipilih</h5>
-                  <span v-for="vr in modelPengurus"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
-                </div>
-              </div>
-            </div> 
+            <verifikator 
+              :isSingle="true"
+              :title="'Verifikator Pengurus'" 
+              :itemData="selectedData.verifikasi_pengurus_data" 
+              :itemDataStat="'success'"></verifikator>
+            <verifikator 
+              :isSingle="false"
+              :title="'Verifikator yang dipilih'" 
+              :itemData="modelPengurus" 
+              :itemDataStat="modelPengurusStat"></verifikator>  
           </div>
 
           <!-- veriifkasi pengawas -->
           <div class="col-md-4">
-            <div class="card card-body bg-green-800" >
-              <div class="media">
-                <div class="media-body">
-                 <h3 class="mb-0" >Verifikasi Pengawas</h3>
-                  <span>
-                    <b>Username:</b> {{ selectedData.verifikasi_pengawas_data ? selectedData.verifikasi_pengawas_data.username : '-' }} 
-                    <br/>
-                    <b>Nama:</b> {{ selectedData.verifikasi_pengawas_data && selectedData.verifikasi_pengawas_data.aktivis ? selectedData.verifikasi_pengawas_data.aktivis.name : '-' }}
-                    <br/>
-                    <b>Tingkat/Jabatan:</b>
-                    {{ selectedData.verifikasi_pengawas_data && selectedData.verifikasi_pengawas_data.aktivis && selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif.tingkat) : '' }} /
-                    {{ selectedData.verifikasi_pengawas_data && selectedData.verifikasi_pengawas_data.aktivis && selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif ? selectedData.verifikasi_pengawas_data.aktivis.pekerjaan_aktif.name : '' }}
-                  </span>
-                  <hr/>
-                  <h5 class="mb-1" >Verifikator yang dipilih</h5>
-                  <span v-for="vr in modelPengawas"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
-                </div>
-              </div>
-            </div> 
+            <verifikator 
+              :isSingle="true"
+              :title="'Verifikator Pengawas'" 
+              :itemData="selectedData.verifikasi_pengawas_data" 
+              :itemDataStat="'success'"></verifikator>
+            <verifikator 
+              :isSingle="false"
+              :title="'Verifikator yang dipilih'" 
+              :itemData="modelPengawas"
+              :itemDataStat="modelPengawasStat"></verifikator>  
           </div>
 
           <!-- veriifkasi manajemen -->
           <div class="col-md-4">
-            <div class="card card-body bg-green-800" >
-              <div class="media">
-                <div class="media-body">
-                  <h3 class="mb-0" >Verifikasi Manajemen</h3>
-                  <span>
-                    <b>Username:</b> {{ selectedData.verifikasi_manajemen_data ? selectedData.verifikasi_manajemen_data.username : '-' }} 
-                    <br/>
-                    <b>Nama:</b> {{ selectedData.verifikasi_manajemen_data && selectedData.verifikasi_manajemen_data.aktivis ? selectedData.verifikasi_manajemen_data.aktivis.name : '-' }}
-                    <br/>
-                    <b>Tingkat/Jabatan:</b>
-                    {{ selectedData.verifikasi_manajemen_data && selectedData.verifikasi_manajemen_data.aktivis && selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif ? $options.filters.checkTingkatAktivis(selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif.tingkat) : '' }} /
-                    {{ selectedData.verifikasi_manajemen_data && selectedData.verifikasi_manajemen_data.aktivis && selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif ? selectedData.verifikasi_manajemen_data.aktivis.pekerjaan_aktif.name : '' }}
-                  </span>
-                  <hr/>
-                  <h5 class="mb-1" >Verifikator yang dipilih</h5>
-                  <span v-for="vr in modelManajemen"><i class="icon-primitive-dot"></i> <b>Nama:</b> {{ vr.aktivis ? vr.aktivis.name : '-'}} | <b>Username:</b> {{ vr.username }} <br/></span>
-                </div>
-              </div>
-            </div> 
+            <verifikator 
+              :isSingle="true"
+              :title="'Verifikator Manajemen'" 
+              :itemData="selectedData.verifikasi_manajemen_data" 
+              :itemDataStat="'success'"></verifikator>
+            <verifikator 
+              :isSingle="false"
+              :title="'Verifikator yang dipilih'" 
+              :itemData="modelManajemen"
+              :itemDataStat="modelManajemenStat"></verifikator>  
           </div>
 
-          <div class="col-md-12"><hr/></div>
         </div>
+        
+        <div class="col-md-12"><hr/></div>
 
         <!-- status -->
         <div class="col-md-12" v-if="tipe == 'analisis'">
@@ -490,6 +461,7 @@
   import checkValue from "../../components/checkValue.vue";
   import dataTable from '../../components/datatable.vue';
   import infoIcon from "../../components/infoIcon.vue";
+  import verifikator from "./verifikator.vue";
 
 	export default {
 		props: ['kelas','selected','tipe'],
@@ -501,6 +473,7 @@
       Cleave, 
       dataTable,
       infoIcon,
+      verifikator
 		},
 		data() {
 			return {

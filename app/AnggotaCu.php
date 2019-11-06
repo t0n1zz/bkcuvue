@@ -92,9 +92,9 @@ class AnggotaCu extends Model {
         $id = Auth::user()->getIdCu();
 
         if($id == 0){
-            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
+            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
         }else{
-            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->where('id_cu',$id)->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
+            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->where('id_cu',$id)->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
         }
     }
 
