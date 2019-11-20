@@ -12,19 +12,17 @@ class NotificationController extends Controller
 
   public function get()
 	{
-		$id = auth('api')->user()->getId();
-		$kelas = User::findOrFail($id);
+		// $id = auth('api')->user()->getId();
+		// $kelas = User::findOrFail($id);
 		$notification = collect();
-		$unreadNotification = count($kelas->unreadNotifications);
+		$unreadNotification = auth('api')->user()->unreadNotifications->take(6)->count();
 
-		$i = 0;
-		foreach ($kelas->notifications as $notif) {
+		foreach (auth('api')->user()->notifications->take(5) as $notif) {
 			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','name')->first();
 			
 			$n = collect($notif);
 			$n->put('user',$username);
 			$notification->push($n);
-			if (++$i == 15) break;
 		}
 
 		return response()

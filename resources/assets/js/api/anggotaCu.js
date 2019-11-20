@@ -96,11 +96,11 @@ export default {
     return axios.get('/api/anggotaCu/history');
   },
 
-  cariData: function( nik ){
-    return axios.get('/api/anggotaCu/cariData/' + nik);
+  cariDataKTP: function( nik ){
+    return axios.get('/api/anggotaCu/cariDataKTP/' + nik);
   },
 
-  cariData2: function( idCu, noba ){
-    return axios.get('/api/anggotaCu/cariData2/cu/' + idCu + '/noba/' + noba);
+  cariDataBA: function( id, ba ){
+    return axios.get('/api/anggotaCu/cariDataBA/' + id + '/' + ba);
   },
 }

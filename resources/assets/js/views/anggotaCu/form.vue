@@ -114,7 +114,7 @@
 		methods: {
 			cariData(nik){
 				this.nik = nik;
-				this.$store.dispatch(this.kelas + '/cariData', nik);
+				this.$store.dispatch(this.kelas + '/cariDataKTP', nik);
 			},
 			resetData(){
 				this.$store.commit(this.kelas + '/setData',{});

@@ -10,7 +10,7 @@
 			<div class="form-group">
 
 				<!-- title -->
-				<h5>Foto:</h5>
+				<h5>Fotosss:</h5>
 
 				<!-- imageupload -->
 				<app-image-upload :image_loc="'/images/artikel/'" v-model="form.gambar"></app-image-upload>

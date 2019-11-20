@@ -5,6 +5,7 @@
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
 			<!-- button desktop -->
+
 			<template slot="button-desktop">
 
 				<!-- tambah -->
@@ -13,7 +14,8 @@
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]"
+			  :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
@@ -38,11 +40,12 @@
 
 			<!-- button mobile -->
 			<template slot="button-mobile">
-
+				
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
+
 
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">

@@ -75,64 +75,118 @@
 						<check-value :value="props.item.has_tp_count"></check-value>
 					</td>
 					<td v-if="!columnData[6].hide">
+						<check-value :value="props.item.has_manajemen_count"></check-value>
+					</td>
+					<td v-if="!columnData[7].hide">
+						<check-value :value="props.item.has_pengurus_count"></check-value>
+					</td>
+					<td v-if="!columnData[8].hide">
+						<check-value :value="props.item.has_pengawas_count"></check-value>
+					</td>
+					<td v-if="!columnData[9].hide">
+						<check-value :value="props.item.has_komite_count"></check-value>
+					</td>
+					<td v-if="!columnData[10].hide">
+						<check-value :value="props.item.has_penasihat_count"></check-value>
+					</td>
+					<td v-if="!columnData[11].hide">
+						<check-value :value="props.item.has_senior_manajer_count"></check-value>
+					</td>
+					<td v-if="!columnData[12].hide">
+						<check-value :value="props.item.has_manajer_count"></check-value>
+					</td>
+					<td v-if="!columnData[13].hide">
+						<check-value :value="props.item.has_supervisor_count"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide">
+						<check-value :value="props.item.has_staf_count"></check-value>
+					</td>
+					<td v-if="!columnData[15].hide">
+						<check-value :value="props.item.has_kontrak_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_aktivis_tidak_aktif_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_simpanan_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_pinjaman_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_simpanan_jalinan_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_pinjaman_jalinan_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_user_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_artikel_count"></check-value>
+					</td>
+					<td v-if="!columnData[16].hide">
+						<check-value :value="props.item.has_anggota_cu_count"></check-value>
+					</td>
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.badan_hukum"></check-value>
 					</td>
-          <td v-if="!columnData[7].hide">
+          <td v-if="!columnData[18].hide">
 						<check-value :value="props.item.npwp"></check-value>
 					</td>
-          <td v-if="!columnData[8].hide">
+          <td v-if="!columnData[19].hide">
 						<check-value :value="props.item.nik"></check-value>
 					</td>
-          <td v-if="!columnData[9].hide">
+          <td v-if="!columnData[20].hide">
 						<check-value :value="props.item.situ"></check-value>
 					</td>
-          <td v-if="!columnData[10].hide">
+          <td v-if="!columnData[21].hide">
 						<check-value :value="props.item.siusp"></check-value>
 					</td>
-          <td v-if="!columnData[11].hide">
+          <td v-if="!columnData[22].hide">
 						<check-value :value="props.item.izin_operasional"></check-value>
 					</td>
-					<td v-if="!columnData[12].hide && !columnData[12].disable">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[13].hide && !columnData[13].disable">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[14].hide && !columnData[14].disable">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[15].hide && !columnData[15].disable">
+					<td v-if="!columnData[26].hide">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[27].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide">
+					<td v-if="!columnData[28].hide">
 						<check-value :value="props.item.app"></check-value>
 					</td>
-					<td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.ultah)"></td>
-					<td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[29].hide" v-html="$options.filters.date(props.item.ultah)"></td>
+					<td v-if="!columnData[30].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
+					<td v-if="!columnData[31].hide">
 						<check-value :value="props.item.website"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[32].hide">
 						<check-value :value="props.item.email"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[33].hide">
 						<check-value :value="props.item.telp"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[34].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[35].hide">
 						<check-value :value="props.item.pos"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
-					<td v-if="!columnData[26].hide">
+					<td v-if="!columnData[36].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
+					<td v-if="!columnData[37].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -217,6 +271,168 @@ export default {
         {
           title: "Jmlh TP/KP",
           name: "has_tp_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Manajemen",
+          name: "has_manajemen_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Pengurus",
+          name: "has_pengurus_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Pengawas",
+          name: "has_pengawas_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Komite",
+          name: "has_komite_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Penasihat",
+          name: "has_penasihat_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Senior Manajer",
+          name: "has_senior_manajer_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Manajer",
+          name: "has_manajer_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Supervisor",
+          name: "has_supervisor_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Staf",
+          name: "has_staf_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Kontrak",
+          name: "has_kontrak_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Aktivis Tidak Aktif",
+          name: "has_aktivis_tidak_aktif_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Simpanan",
+          name: "has_simpanan_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Pinjaman",
+          name: "has_pinjaman_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Simpanan JALINAN",
+          name: "has_simpanan_jalinan_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Pinjaman JALINAN",
+          name: "has_pinjaman_jalinan_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh User SIMO",
+          name: "has_user_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Artikel",
+          name: "has_artikel_count",
+          tipe: "numeric",
+          sort: true,
+          hide: false,
+          disable: false,
+          filter: true
+        },
+        {
+          title: "Jmlh Anggota CU",
+          name: "has_anggota_cu_count",
           tipe: "numeric",
           sort: true,
           hide: false,

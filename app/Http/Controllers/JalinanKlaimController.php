@@ -29,7 +29,7 @@ class JalinanKlaimController extends Controller{
 
 		foreach($table_data as $t){
 			$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
-			$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+			// $t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
 		}
 
 		return response()

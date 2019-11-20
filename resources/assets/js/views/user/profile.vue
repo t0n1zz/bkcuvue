@@ -18,10 +18,16 @@
 					<div class="nav-tabs-responsive">
 						<ul class="nav nav-tabs nav-tabs-solid bg-light">
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'edit'}" @click.prevent="changeTab('edit')"><i class="icon-user mr-2"></i> Password</a>
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'password'}" @click.prevent="changeTab('password')"><i class="icon-pencil5 mr-2"></i> Ubah Password</a>
+							</li>
+							<li class="nav-item" v-if="currentUser.id_aktivis">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-pencil5 mr-2"></i> Ubah Identitas</a>
+							</li>
+							<li class="nav-item" v-if="currentUser.id_aktivis">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayat'}" @click.prevent="changeTab('riwayat')"><i class="icon-pencil5 mr-2"></i> Ubah Riwayat</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktivitas'}" @click.prevent="changeTab('aktivitas')"><i class="icon-eye2 mr-2"></i> Aktivitas</a>
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktivitas'}" @click.prevent="changeTab('aktivitas')"><i class="icon-eye2 mr-2"></i> Lihat Aktivitas</a>
 							</li>
 						</ul>
 					</div>
@@ -29,7 +35,7 @@
 					<br/>
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'edit'">
+						<div v-show="tabName == 'password'">
 
 							<!-- password -->
 							<form @submit.prevent="savePassword" data-vv-scope="formPassword">
@@ -128,7 +134,23 @@
 					</transition>
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'aktivitas'">
+						<div v-if="tabName == 'identitas'">
+
+							<form-identitas :mode="'edit_profile'" :id_aktivis="currentUser.id_aktivis"></form-identitas>
+							
+						</div>
+					</transition>
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-if="tabName == 'riwayat'">
+
+							<form-riwayat :mode="'edit_profile'" :id_aktivis="currentUser.id_aktivis" :id_cu="currentUser.id_cu"></form-riwayat>
+							
+						</div>
+					</transition>
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-if="tabName == 'aktivitas'">
 
 							<aktivitas :activity="activity" :activityStat="activityStat" @fetchAktivitas="fetchAktivitas"></aktivitas>
 							
@@ -161,6 +183,8 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import aktivitas from "./_component/aktivitas";
+	import formIdentitas from "../aktivis/create";	
+	import formRiwayat from "../aktivis/riwayatContent";	
 	
 	export default {
 		name: 'UserIndex',
@@ -172,7 +196,9 @@
 			appImageUpload,
 			formInfo,
 			formButton,
-			aktivitas
+			aktivitas,
+			formIdentitas,
+			formRiwayat
 		},
 		data() {
 			return {
@@ -181,7 +207,7 @@
 				titleDesc: 'Mengelola data profile',
 				titleIcon: 'icon-user',
 				selectCuPath: 'userCu',
-				tabName: 'edit',
+				tabName: 'password',
 				isAktivitas: false,
 				formPassword: {},
 				formIdentitas: {},

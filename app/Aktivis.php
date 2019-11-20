@@ -63,11 +63,11 @@ class Aktivis extends Model {
     }
 
     public function pekerjaan_aktif(){
-        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1)->latest();
+        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('status',1)->latest();
     }
 
     public function pekerjaan_tidak_aktif(){
-        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('selesai','<',date('Y-m-d'))->whereNotNull('selesai')->whereNotNull('keterangan_tidak_aktif')->latest();
+        return $this->hasOne('App\AktivisPekerjaan','id_aktivis','id')->where('status',3)->latest();
     }
 
     public function keluarga(){

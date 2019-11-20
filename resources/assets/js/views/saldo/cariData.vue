@@ -1,7 +1,29 @@
 <template>
   <div class="card card-body">	
     <div class="row">
-      <div class="col-lg-3 pb-2">
+      <div class="col-lg-12 pb-2">
+        <div class="input-group" v-if="this.currentUser.id_cu === 0">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Pilih CU</span>
+						</div>
+
+						<!-- select -->
+						<select class="form-control" name="idCu" v-model="idCu" data-width="100%" :disabled="modelCuStat === 'loading'">
+							<option disabled value="0">Silahkan pilih CU</option>
+							<slot></slot>
+							<option disabled value="">----------------</option>
+							<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
+						</select>
+
+						<!-- reload cu -->
+						<div class="input-group-append">
+							<button class="btn btn-light" @click="fetchCU" :disabled="modelCuStat === 'loading'">
+								<i class="icon-sync" :class="{'spinner' : modelCuStat === 'loading'}"></i>
+							</button>
+						</div>
+					</div>
+      </div>
+      <div class="col-lg-3 pb-2" v-if="idCu != 0">
         <!-- text -->
         <div class="input-group">
           <div class="input-group-prepend">
@@ -15,7 +37,7 @@
           </select>
         </div>
       </div>
-      <div class="col-lg-9 pb-2">
+      <div class="col-lg-9 pb-2" v-if="idCu != 0">
         <!-- text -->
         <div class="input-group">
           <div class="input-group-prepend">
@@ -31,14 +53,14 @@
         </div>
       </div>
 
-      <div class="col-12 d-none d-md-block">
+      <div class="col-12 d-none d-md-block" v-if="idCu != 0">
         <button class="btn btn-primary" @click.prevent="cariData"  :disabled="pencarian == ''"><i class="icon-search4"></i> Cari</button>
         <button class="btn btn-warning" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
         <button class="btn btn-light" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
       </div>
 
-      <div class="col-12 pb-2 d-block d-md-none">
-        <button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
+      <div class="col-12 pb-2 d-block d-md-none" v-if="idCu != 0">
+        <button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="pencarian == ''"><i class="icon-search4"></i> Cari</button>
       </div>
       <div class="col-12 pb-2 d-block d-md-none" v-if="itemDataStat != ''">
         <button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
@@ -61,6 +83,7 @@
 </template>
 
 <script type="text/javascript">
+  import { mapGetters } from 'vuex';
   import Cleave from 'vue-cleave-component';
 
   export default {
@@ -73,6 +96,7 @@
     },
     data(){
       return {
+        idCu: '',
         jenis:'BA',
         pencarian: '',
         placeholder: 'Silahkan masukkan no. BA Anggota',
@@ -88,6 +112,11 @@
         }
       }
     },
+    created(){
+			if(this.currentUser.id_pus !== undefined){
+				this.fetchCU();
+			}	
+		},
     mounted() {
       document.addEventListener("keydown", (e) => {
         if (e.keyCode == 13) {
@@ -96,13 +125,31 @@
         }
       });
     },
+    watch: {
+			'$route' (to, from){
+				// check current page meta
+				this.fetchCU();
+			},
+			modelCuStat(value){
+				if(value === "success"){
+					this.idCu = this.currentUser.id_cu;
+				}
+			},
+    },
     methods: {
+      fetchCU(){
+				if(this.modelCu.length == 0){
+					this.$store.dispatch('cu/getHeader', this.currentUser.id_pus);
+				}else{
+					this.idCu =  this.currentUser.id_cu;
+				}
+			},
       cariData(){
         this.isNew = true;
         if(this.jenis == 'KTP'){
           this.$emit('cariDataKTP', this.pencarian);
         }else{
-          this.$emit('cariDataBA', this.pencarian);
+          this.$emit('cariDataBA', this.idCu, this.pencarian);
         }
       },
       changeJenis(value){
@@ -121,6 +168,17 @@
       back(){
         this.$emit('back');
       }
-    }
+    },
+    computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
+			...mapGetters('cu',{
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
+			}),
+		}
   }
 </script>

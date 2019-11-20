@@ -22,7 +22,7 @@
 					
 					<!-- data not exist -->
 					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">
-						<span class="font-weight-semibold">NIK tidak terdaftar di SIMO
+						<span class="font-weight-semibold">Anggota tidak terdaftar di SIMO
 						</span>
 					</div>
 
@@ -78,6 +78,8 @@
 							</div>
 						</div>
 					</transition-group>
+
+					
  
 				</div>
 			</div>
@@ -184,7 +186,7 @@
 				title: 'Simpanan & Pinjaman',
 				titleDesc: 'Mengelola data simpanan & pinjaman anggota CU',
 				titleIcon: 'icon-wallet',
-				kelas: 'anggotaProdukCu',
+				kelas: 'anggotaCu',
 				tabName: 'nik',
 				tabName2: '',
 				tabNameModal: '',
@@ -319,8 +321,8 @@
 			cariDataKTP(value){
 				this.$store.dispatch(this.kelas + '/cariDataKTP', value);
 			},
-			cariDataBA(value){
-				this.$store.dispatch(this.kelas + '/cariDataBA', value);
+			cariDataBA(id, value){
+				this.$store.dispatch(this.kelas + '/cariDataBA', [id, value]);
 			},
 			resetData(){
 				this.itemDataCu = [];

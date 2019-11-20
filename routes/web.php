@@ -51,7 +51,6 @@ $appSubRoutes = function() {
 	Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat.cu','uses' => 'PublicCuController@artikelLihat'));
 	Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori.cu','uses' => 'PublicCuController@artikelKategori'));
 	Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis.cu','uses' => 'PublicCuController@artikelPenulis'));
-
 	// tp
 	Route::get('/tp',array( 'as' => 'tp','uses' => 'PublicCuController@tp'));
 
@@ -82,7 +81,7 @@ Route::get('/testroute', function () {
 		// 	]);
 
 		// create permission
-    Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'upload_anggota_cu']); 
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_jarvi']); 
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_pengawas_jalinan_klaim']); 
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_manajemen_jalinan_klaim']); 
 		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_aset_tetap']);

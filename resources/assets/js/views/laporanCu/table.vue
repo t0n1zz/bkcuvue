@@ -47,6 +47,16 @@
 					<i class="icon-stack2"></i> Detail
 				</button>
 
+				<!-- table draft konsolidasi -->
+				<router-link :to="{ name: 'laporanCuDraft' }" class="btn btn-light btn-icon mb-1" v-if="currentUser.can['upload_laporan_cu'] && laporanCuDraftCountStat == 'success' && laporanCuDraftCount > 0">
+					<i class="icon-table2"></i> Laporan Statistik CU [DRAFT]
+				</router-link>
+
+				<!-- table draft tp -->
+				<router-link :to="{ name: 'laporanTpDraft' }" class="btn btn-light btn-icon mb-1" v-if="currentUser.can['upload_laporan_tp'] && laporanTpDraftCountStat == 'success' && laporanTpDraftCount > 0">
+					<i class="icon-table2"></i> Laporan Statistik TP/KP [DRAFT]
+				</router-link>
+
 			</template>
 
       <template slot="button-mobile">
@@ -70,6 +80,16 @@
 				<button @click.prevent="detailData(selectedItem.id,selectedItem.tp)" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_laporan_cu']" :disabled="!selectedItem.id">
 					<i class="icon-stack2"></i> Detail
 				</button>
+
+				<!-- table draft konsolidasi -->
+				<router-link :to="{ name: 'laporanCuDraft' }" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can['upload_laporan_cu'] && laporanCuDraftCountStat == 'success' && laporanCuDraftCount > 0">
+					<i class="icon-table2"></i> Laporan Statistik CU [DRAFT]
+				</router-link>
+
+				<!-- table draft tp -->
+				<router-link :to="{ name: 'laporanTpDraft' }" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can['upload_laporan_tp'] && laporanTpDraftCountStat == 'success' && laporanTpDraftCount > 0">
+					<i class="icon-table2"></i> Laporan Statistik TP/KP [DRAFT]
+				</router-link>
 
 			</template>
 
@@ -314,6 +334,10 @@ export default {
 					button: 'Upload Laporan Tp'
 				}
 			],
+			laporanCuDraftCount: [],
+			laporanCuDraftCountStat: '',
+			laporanTpDraftCount: [],
+			laporanTpDraftCountStat: '',
 			periode: '',
 			selectedItem: [],
 			state: '',
@@ -455,6 +479,32 @@ export default {
 				this.excelDownloadUrl = this.kelas;
       }
     },
+		fetchLaporanCuDraft(){
+			if(this.currentUser.can['upload_laporan_cu']){
+				axios.get('/api/laporanCuDraft/count')
+					.then(response => {
+						this.laporanCuDraftCount = response.data.model;
+						this.laporanCuDraftCountStat = 'success';
+					})
+					.catch(error => {
+						this.laporanCuDraftCount = error.response;
+						this.laporanCuDraftCountStat = 'fail';
+					});
+			}
+		},
+		fetchLaporanTpDraft(){
+			if(this.currentUser.can['upload_laporan_tp']){
+				axios.get('/api/laporanTpDraft/count')
+					.then(response => {
+						this.laporanTpDraftCount = response.data.model;
+						this.laporanTpDraftCountStat = 'success';
+					})
+					.catch(error => {
+						this.laporanTpDraftCount = error.response;
+						this.laporanTpDraftCountStat = 'fail';
+					});
+			}
+		},
     checkProfile() {
       if (this.currentUser.id_cu != 0) {
         if ( this.$route.meta.mode == "cu" || this.$route.meta.mode == "cuPeriode") {

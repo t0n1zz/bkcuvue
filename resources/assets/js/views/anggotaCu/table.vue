@@ -42,6 +42,16 @@
           <i class="icon-bin2"></i> Hapus
         </button>
 
+        <!-- table draft bkcu -->
+        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="btn btn-light btn-icon mb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+          <i class="icon-table2"></i> Anggota CU [DRAFT]
+        </router-link>
+
+        <!-- table draft cu -->
+        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="btn btn-light btn-icon mb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+          <i class="icon-table2"></i> Anggota CU [DRAFT]
+        </router-link>
+
       </template>
 
       <!-- button mobile -->
@@ -81,6 +91,16 @@
           :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
+
+        <!-- table draft bkcu -->
+        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+          <i class="icon-table2"></i> Anggota CU [DRAFT]
+        </router-link>
+
+        <!-- table draft cu -->
+        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+          <i class="icon-table2"></i> Anggota CU [DRAFT]
+        </router-link>
 
       </template>
 
@@ -371,10 +391,10 @@
             title: 'No. BA',
             name: 'no_ba',
             tipe: 'string',
-            sort: true,
+            sort: false,
             hide: false,
             disable: false,
-            filter: true,
+            filter: false,
           },
           {
             title: 'JALINAN',
@@ -647,6 +667,8 @@
             filter: true,
           }
         ],
+        anggotaCuDraftCount: [],
+				anggotaCuDraftCountStat: '',
         state: '',
         modalShow: false,
         modalState: "",
@@ -704,8 +726,31 @@
             this.$store.dispatch(this.kelas + '/indexCuMeninggal', [params,this.$route.params.cu, this.$route.params.tp]);
             this.excelDownloadUrl = this.kelas + '/indexCuMeninggal/' + this.$route.params.cu + '/' + this.$route.params.tp;
           }
-				}
+        }
+        this.fetchAnggotaCuDraft();
       },
+      fetchAnggotaCuDraft(){
+				let cu = '';
+				let tp = 'semua';
+
+				if(this.currentUser.id_cu == 0){
+					cu = 'semua';
+				}else{
+					cu = this.currentUser.id_cu;
+				}
+
+				if(this.currentUser.can['upload_anggota_cu']){
+					axios.get('/api/anggotaCuDraft/count/' + cu + '/' + tp)
+						.then(response => {
+							this.anggotaCuDraftCount = response.data.model;
+							this.anggotaCuDraftCountStat = 'success';
+						})
+						.catch(error => {
+							this.anggotaCuDraftCount = error.response;
+							this.anggotaCuDraftCountStat = 'fail';
+						});
+				}
+			},
       selectedRow(item) {
         this.selectedItem = item;
       },

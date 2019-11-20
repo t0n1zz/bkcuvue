@@ -6,6 +6,7 @@ export function initialize(store, router) {
     
   router.beforeEach((to, from, next) => {
 		window.scrollTo(0, 0);
+		document.body.classList.remove("modal-open");
 		
 		const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 		const currentUser = store.state.auth.currentUser;
@@ -77,7 +78,6 @@ export function initialize(store, router) {
 				path:'/login',
 				query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
 			});
-			
 		}
 		return Promise.reject(error);
   });

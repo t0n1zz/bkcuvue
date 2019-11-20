@@ -36,6 +36,7 @@ export const artikel = {
     index( { commit }, p ){
       commit('setDataStatS', 'loading');
       
+      
       ArtikelAPI.index( p )
         .then( function( response ){
           commit('setDataS', response.data.model );

@@ -32,7 +32,7 @@
 				</div>
 			</div>
 
-			<!-- tempat -->
+			<!-- lembaga lain -->
 			<div class="col-sm-12" v-if="form && form.id_tempat == 'lain'">
 				<div class="form-group" :class="{'has-error' : errors.has('form.lembaga_lain')}">
 
@@ -52,8 +52,29 @@
 				</div>
 			</div>
 
+			<!-- status -->
+			<div class="col-md-12" v-if="form.id_tempat != ''">
+				<div class="form-group">
+
+					<!-- title -->
+					<h5>
+						Pilih status pekerjaan:
+					</h5>
+
+					<!-- select -->
+					<select name="status" data-width="100%" class="form-control" v-model="form.status">
+						<option disabled value="">Silahkan pilih status pekerjaan</option>
+						<option value="1">Pekerjaan saat ini dan masih bekerja</option>
+						<option value="2">Riwayat pekerjaan sebelumnya</option>
+						<option value="3">Pekerjaan terakhir dan tidak bekerja lagi</option>
+					</select>
+
+					<small class="text-muted">&nbsp;</small>
+				</div>
+			</div>
+
 			<!-- tingkat -->
-			<div class="col-sm-12">
+			<div class="col-sm-12" v-if="form.status != ''">
 				<div class="form-group" :class="{'has-error' : errors.has('form.tingkat')}">
 
 					<!-- title -->
@@ -133,7 +154,7 @@
 			</div>
 
 			<!-- tanggal mulai -->
-			<div class="col-sm-6" v-if="form.tingkat != ''">
+			<div class="col-sm-12" v-if="form.tingkat != ''">
 				<div class="form-group" :class="{'has-error' : errors.has('form.mulai')}">
 
 					<!-- title -->
@@ -160,7 +181,7 @@
 			</div>
 
 			<!-- tanggal selesai -->
-			<div class="col-sm-6" v-if="form.tingkat != ''">
+			<div class="col-sm-12" v-if="form.status != '' && form.tingkat != '' &&form.status != '1'">
 				<div class="form-group">
 
 					<!-- title -->
@@ -169,25 +190,25 @@
 					<!-- input -->
 					<cleave 
 						name="pekerjaan_selesai"
-						v-model="selesai" 
+						v-model="form.selesai" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
 						placeholder="Silahkan masukkan tgl. selesai"></cleave>
 
-					<small class="text-muted">Kosongkan apabila masih bekerja / tidak memiliki periode selesai</small>
+					<small class="text-muted">&nbsp;</small>	
 				</div>
 			</div>
 
 			<!-- keterangan -->
-			<div class="col-sm-12" v-if="isSelesai">
+			<div class="col-sm-12" v-if="form.status != '' && form.tingkat != '' && form.status == '3'">
 				<div class="form-group">
 
 					<!-- title -->
-					<h6>Keterangan Tidak Aktif:</h6>
+					<h6>Keterangan Tidak Bekerja:</h6>
 
 					<!-- text -->
-					<input type="text" name="keterangan_tidak_aktif" class="form-control" placeholder="Silahkan masukkan keterangan tidak aktif" v-model="form.keterangan_tidak_aktif">
+					<input type="text" name="keterangan_tidak_aktif" class="form-control" placeholder="Silahkan masukkan keterangan tidak bekerja" v-model="form.keterangan_tidak_aktif">
 
 				</div>
 			</div>
@@ -225,7 +246,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['formState','selected'],
+		props:['formState','selected','id_aktivis'],
 		components: {
 			Cleave
 		},
@@ -245,10 +266,9 @@
 					cu: {
 						id: 0,
 						name: ''
-					}
+					},
+					status: ''
 				},
-				selesai: '',
-				isSelesai: false,
 				cleaveOption: {
           date:{
             date: true,
@@ -288,18 +308,6 @@
 
 			if(this.formState == 'edit pekerjaan'){
 				this.form = this.selected;
-				this.selesai = this.selected.selesai;
-			}
-		},
-		watch: {
-			selesai: function(value){
-				let now = moment().format('Y-MM-DD');
-				if(value < now){
-					this.isSelesai = true;
-				}else{
-					this.isSelesai = false;
-				}
-				this.form.selesai = value;
 			}
 		},
 		methods: {
@@ -323,7 +331,7 @@
 				formData.pekerjaan = this.form;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.$route.params.id, formData]);
+						this.$store.dispatch(this.kelas + '/savePekerjaan', [this.id_aktivis, formData]);
 						this.submited = false;
 					}else{
 						this.submited = true;

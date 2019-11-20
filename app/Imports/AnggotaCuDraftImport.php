@@ -18,7 +18,6 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-
 class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
     /**
@@ -28,38 +27,54 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
     */
     public function model(array $row)
     {
-        $provinces = '';
-        $regencies = '';
-        $districts = '';
-        $villages = '';
-        $jabatan = '';
-        $ktp = preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']);
+        if($row['ktp'] != ''){
+            $provinces = '';
+            $regencies = '';
+            $districts = '';
+            $villages = '';
+            $jabatan = '';
+            $ktp = preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']);
+            $rt = preg_replace('/[^A-Za-z0-9]/', '',$row['rt']);
+            $rw = preg_replace('/[^A-Za-z0-9]/', '',$row['rw']);
+            $gender = strtoupper($row['gender']);
+            $status_pernikahan = strtoupper($row['status_pernikahan']);
 
-        if($row['provinsi']){
-            $provinces = Provinces::where('name','like', '%' .strtoupper($row['provinsi']). '%')->first();
-            $provinces = $provinces->id;
-        }
-        if($row['kabupaten']){
-            $regencies = Regencies::where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
-            $regencies = $regencies->id;
-        }
-        if($row['kecamatan']){
-            $districts = Districts::where('name','like', '%' .strtoupper($row['kecamatan']). '%')->first();
-            $districts = $districts->id;
-        }
-        if($row['kelurahan']){
-            $villages = Villages::where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first();
-            $villages = $villages->id;
-        }
+            if($row['provinsi']){
+                $provinces = Provinces::where('name','like', '%' .strtoupper($row['provinsi']). '%')->first();
+                $provinces = $provinces ? $provinces->id : '';
+            }
+            if($row['kabupaten']){
+                $regencies = Regencies::where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
+                $regencies = $regencies ? $regencies->id : '';
+            }
+            if($row['kecamatan']){
+                $districts = Districts::where('name','like', '%' .strtoupper($row['kecamatan']). '%')->first();
+                $districts = $districts ? $districts->id : '';
+            }
+            if($row['kelurahan']){
+                $villages = Villages::where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first();
+                $villages = $villages ? $villages->id : '';
+            }
 
-        $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
-        $tp = Tp::where('no_tp', $row['kode_tp'])->select('id','no_tp')->first();
+            if($gender == 'L'){
+                $gender = 'LAKI-LAKI';
+            }else if($gender == 'P'){
+                $gender = 'PEREMPUAN';
+            }
 
-        $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
-        $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
+            if($status_pernikahan == 'KW'){
+                $status_pernikahan = 'MENIKAH';
+            }else if($status_pernikahan == 'TK'){
+                $status_pernikahan = 'BELUM MENIKAH';
+            }
 
-        if(!$anggotaCu && !$anggotaCuDraft){
-            if($row['nama']){
+            $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+            $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
+
+            $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
+            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
+
+            if(!$anggotaCu && !$anggotaCuDraft){
                 $anggotaCu = AnggotaCuDraft::create([
                     'name' => $row['nama'],
                     'id_provinces' => $provinces,
@@ -70,12 +85,12 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                     'npwp' => $row['npwp'],
                     'tempat_lahir' => $row['tempat_lahir'],
                     'tanggal_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_lahir']),
-                    'kelamin' => strtoupper($row['gender']),
+                    'kelamin' => $gender,
                     'agama' => strtoupper($row['agama']),
-                    'status' => strtoupper($row['status_pernikahan']),
+                    'status' => $status_pernikahan,
                     'alamat' => $row['alamat'],
-                    'rt' => $row['rt'],
-                    'rw' => $row['rw'],
+                    'rt' => $rt,
+                    'rw' => $rw,
                     'kontak' => $row['kontak_lain'],
                     'darah' => strtoupper($row['golongan_darah']),
                     'tinggi' => $row['tinggi'],
@@ -94,42 +109,29 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                     'kk' => $row['kk']
                 ]);
             }
-        }
 
-        if($anggotaCu){
-            AnggotaCuCuDraft::create([
-                'anggota_cu_draft_id' => $anggotaCu->id,
-                'cu_id' => $cu->id,
-                'tp_id' => $tp->id,
-                'no_ba' => $row['no_ba'],
-                'tanggal_masuk' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']),
-                'keterangan_masuk' => $row['keterangan_jadi_anggota'],
-            ]);
-        }
-        
-        return $anggotaCu;
-
-        // $produks = ProdukCu::where('id_cu',$cu->id_cu)->get();
-
-        // foreach($produks as $produk){
-        //     if(array_key_exists($produk->name, $row)){
-        //         AnggotaProdukCuDraft::create([
-        //             'anggota_cu_id' => $kelas->id,
-        //             'produk_cu_id' => $produk_id,
-        //             'saldo' => $row[$produk->name],
-        //             'tanggal' => $row[$produk->name . ' tanggal']
-        //         ]);
-        //     }
-        // }
+            if($anggotaCu){
+                AnggotaCuCuDraft::create([
+                    'anggota_cu_draft_id' => $anggotaCu->id,
+                    'cu_id' => $cu->id,
+                    'tp_id' => $tp->id,
+                    'no_ba' => $row['no_ba'],
+                    'tanggal_masuk' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']),
+                    'keterangan_masuk' => $row['keterangan_jadi_anggota'],
+                ]);
+            }
+            
+            return $anggotaCu;
+        }   
     }
 
     public function batchSize(): int
     {
-        return 1000;
+        return 50000;
     }
     
     public function chunkSize(): int
     {
-        return 1000;
+        return 50000;
     }
 }

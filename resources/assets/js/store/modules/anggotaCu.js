@@ -179,10 +179,10 @@ export const anggotaCu = {
         });
     },
 
-    cariData( {commit}, nik ){
+    cariDataKTP( {commit}, nik ){
       commit('setDataStat', 'loading');
       
-      AnggotaCuAPI.cariData( nik )
+      AnggotaCuAPI.cariDataKTP( nik )
         .then( function( response ){
           if(response.data.model){
             commit('setData', response.data.model);
@@ -200,10 +200,10 @@ export const anggotaCu = {
         });
     },
 
-    cariData2( {commit}, [ idCu, noba ] ){
+    cariDataBA( {commit}, [ id, ba ] ){
       commit('setDataStat', 'loading');
       
-      AnggotaCuAPI.cariData2( idCu, noba )
+      AnggotaCuAPI.cariDataBA( id, ba )
         .then( function( response ){
           if(response.data.model){
             commit('setData', response.data.model);

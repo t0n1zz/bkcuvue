@@ -305,7 +305,7 @@
 									<option value="BUDDHA">Buddha</option>
 									<option value="HINDU">Hindu</option>
 									<option value="ISLAM">Islam</option>
-									<option value="KHATOLIK">Khatolik</option>
+									<option value="KATOLIK">Katolik</option>
 									<option value="KONG HU CU">Kong Hu Cu</option>
 									<option value="PROTESTAN">Protestan</option>
 									<option value="LAIN-LAIN">Lain-lain</option>
@@ -801,6 +801,8 @@
 								</div>
 							</div>
 
+							<div class="col-sm-12"><hr/></div>
+
 						</div>
 				</div>
 			</div>
@@ -895,9 +897,9 @@
 </template>
 
 <script>
-	import {mapGetters} from 'vuex';
 	import _ from 'lodash';
-	import {toMulipartedForm} from '../../helpers/form';
+	import { mapGetters } from 'vuex';
+	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";

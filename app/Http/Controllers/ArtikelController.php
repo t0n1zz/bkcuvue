@@ -124,8 +124,7 @@ class ArtikelController extends Controller{
 		// if(!empty($request->content))	
 		// 	$content = Helper::dom_processing($request,public_path($this->imagepath));
 		// else
-		// 	$content = '';	
-
+		// 	$content = '';
 		$kelas->update($request->except('gambar') + [
 			'gambar' => $fileName
 		]);

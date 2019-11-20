@@ -261,7 +261,7 @@
 									<option value="BUDDHA">Buddha</option>
 									<option value="HINDU">Hindu</option>
 									<option value="ISLAM">Islam</option>
-									<option value="KHATOLIK">Khatolik</option>
+									<option value="KATOLIK">Katolik</option>
 									<option value="KONG HU CU">Kong Hu Cu</option>
 									<option value="PROTESTAN">Protestan</option>
 									<option value="LAIN-LAIN">Lain-lain</option>
@@ -485,7 +485,7 @@
 			<!-- pekerjaan -->
 			<div class="card" v-if="mode == 'create_new'">
 				<div class="card-header bg-white">
-					<h5 class="card-title">Jabatan Saat Ini / Terakhir</h5>
+					<h5 class="card-title">Jabatan Saat Ini / Terakhir  <wajib-badge></wajib-badge></h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -507,7 +507,6 @@
 										<span v-else>Silahkan pilih tempat bekerja</span>
 									</option>
 									<option value="0">Puskopdit BKCU Kalimantan</option>
-									<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
 									<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
 								</select>
 
@@ -519,34 +518,35 @@
 							</div>
 						</div>
 
-						<!-- tempat -->
-						<div class="col-sm-12" v-if="form.pekerjaan && form.pekerjaan.id_tempat == 'lain'">
-							<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.lembaga_lain')}">
+						<!-- status -->
+						<div class="col-md-12" v-if="form.pekerjaan.id_tempat != ''">
+							<div class="form-group">
 
 								<!-- title -->
-								<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.lembaga_lain')}">
-									<i class="icon-cross2" v-if="errors.has('form.pekerjaan.lembaga_lain')"></i>
-									Lembaga: <wajib-badge></wajib-badge></h6>
+								<h5>
+									Pilih status pekerjaan:
+								</h5>
 
-								<!-- text -->
-								<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga" v-validate="'required|min:5'" data-vv-as="Lembaga" v-model="form.pekerjaan.lembaga_lain">
+								<!-- select -->
+								<select name="status" data-width="100%" class="form-control" v-model="form.pekerjaan.status">
+									<option disabled value="">Silahkan pilih status pekerjaan</option>
+									<option value="1">Pekerjaan saat ini dan masih bekerja</option>
+									<option value="2">Riwayat pekerjaan sebelumnya</option>
+									<option value="3">Pekerjaan terakhir dan tidak bekerja lagi</option>
+								</select>
 
-								<!-- error message -->
-								<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.name')">
-									<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan.name') }}
-								</small>
-								<small class="text-muted" v-else>&nbsp;</small>
+								<small class="text-muted">&nbsp;</small>
 							</div>
 						</div>
 
 						<!-- tingkat -->
-						<div class="col-sm-12">
+						<div class="col-sm-12" v-if="form.pekerjaan.status != ''">
 							<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.tingkat')}">
 
 								<!-- title -->
 								<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.tingkat')}">
 									<i class="icon-cross2" v-if="errors.has('form.pekerjaan.tingkat')"></i>
-									Tingkat: <wajib-badge></wajib-badge>
+									Tingkat:
 								</h6>
 
 								<!-- select -->
@@ -620,7 +620,7 @@
 						</div>
 
 						<!-- tanggal mulai -->
-						<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
+						<div class="col-sm-12" v-if="form.pekerjaan.tingkat != ''">
 							<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.mulai')}">
 
 								<!-- title -->
@@ -647,7 +647,7 @@
 						</div>
 
 						<!-- tanggal selesai -->
-						<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
+						<div class="col-sm-12" v-if="form.pekerjaan.status != '' && form.pekerjaan.tingkat != '' &&form.pekerjaan.status != '1'">
 							<div class="form-group">
 
 								<!-- title -->
@@ -656,7 +656,7 @@
 								<!-- input -->
 								<cleave 
 									name="pekerjaan_selesai"
-									v-model="selesai" 
+									v-model="form.pekerjaan.selesai" 
 									class="form-control" 
 									:raw="false" 
 									:options="cleaveOption.date" 
@@ -667,14 +667,14 @@
 						</div>
 
 						<!-- keterangan -->
-						<div class="col-sm-12" v-if="isSelesai">
+						<div class="col-sm-12" v-if="form.pekerjaan.status != '' && form.pekerjaan.tingkat != '' && form.pekerjaan.status == '3'">
 							<div class="form-group">
 
 								<!-- title -->
-								<h6>Keterangan Tidak Aktif:</h6>
+								<h6>Keterangan Tidak Bekerja:</h6>
 
 								<!-- text -->
-								<input type="text" name="keterangan_tidak_aktif" class="form-control" placeholder="Silahkan masukkan keterangan tidak aktif" v-model="form.pekerjaan.keterangan_tidak_aktif">
+								<input type="text" name="keterangan_tidak_aktif" class="form-control" placeholder="Silahkan masukkan keterangan tidak bekerja" v-model="form.pekerjaan.keterangan_tidak_aktif">
 
 							</div>
 						</div>
@@ -690,11 +690,16 @@
 			<!-- form button -->
 			<div class="card card-body">
 				<form-button
+					:cancelState="''"
+					:formValidation="'form'"
+					:confirmIcon="confirmIcon"
+					:confirmTitle="confirmTitle" v-if="mode == 'edit_profile'"></form-button>
+				<form-button
 					:cancelState="'methods'"
 					:formValidation="'form'"
 					:confirmIcon="confirmIcon"
 					:confirmTitle="confirmTitle"
-					@cancelClick="back"></form-button>
+					@cancelClick="back" v-else></form-button>
 			</div>
 
 		</form>
@@ -724,7 +729,7 @@
 	import identitas from "../../components/identitas2.vue";
 	
 	export default {
-		props: ['mode','nik'],
+		props: ['mode','nik','id_aktivis'],
 		components: {
 			appModal,
 			message,
@@ -745,8 +750,6 @@
 				confirmIcon: 'icon-arrow-right14',
 				confirmTitle: 'Lanjut ke riwayat',
 				canEditIdentitas: true,
-				selesai: '',
-				isSelesai: false,
 				cleaveOption: {
           date:{
             date: true,
@@ -811,7 +814,7 @@
 				}
 			}
 
-			if(this.mode == 'edit'){
+			if(this.mode == 'edit' || this.mode == 'edit_profile'){
 				this.confirmIcon = 'icon-floppy-disk';
 				this.confirmTitle = 'Simpan';
 			}else if(this.mode == 'create_old'){
@@ -839,15 +842,6 @@
 			formStat(value){
 				this.fetchMode();
 			},
-			selesai: function(value){
-				let now = moment().format('Y-MM-DD');
-				if(value < now){
-					this.isSelesai = true;
-				}else{
-					this.isSelesai = false;
-				}
-				this.form.pekerjaan.selesai = value;
-			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -871,12 +865,16 @@
 					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				} 
 
+				if(this.mode == 'edit_profile'){
+					this.$store.dispatch(this.kelas + '/edit', this.id_aktivis);
+				} 
+
 				if(this.modelCuStat != 'success'){
 					this.$store.dispatch('cu/getHeader');
 				}
 			},
 			fetchMode(){
-				if(this.mode == 'edit' || this.mode == 'create_old'){
+				if(this.mode == 'edit' || this.mode == 'edit_profile' || this.mode == 'create_old'){
 					this.loadData();
 					this.changeAlamat();
 				}else if(this.mode == 'create_new'){
@@ -915,10 +913,6 @@
 				if(this.form.anggota_cu){
 					this.formCU = this.form.anggota_cu;
 				}
-
-				if(this.mode == 'create_new'){
-					this.selesai = this.form.pekerjaan.selesai;
-				}
 			},
 			save() {
 				this.form.anak = this.formAnak;
@@ -938,7 +932,7 @@
 					}
 				}
 				
-				if(this.mode == 'edit' || (this.mode == 'create_old' && this.canEditIdentitas)){
+				if(this.mode == 'edit' || this.mode == 'edit_profile' || (this.mode == 'create_old' && this.canEditIdentitas)){
 					if(this.form.ayah){
 						this.form.ayah.name = this.form.keluarga.ayah;
 					}
@@ -995,7 +989,9 @@
 				this.changeDistricts(this.form.id_districts);
 			},
 			back(){
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
+				if(this.mode != 'edit_profile'){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tingkat: 'semua'}});
+				}
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -1029,7 +1025,11 @@
 					}else{
 						idcu = 'semua';
 					}
-					if(this.mode != 'edit'){
+
+					if(this.mode == 'edit_profile'){
+						window.scrollTo(0, 0);
+						// do nothing
+					}else if(this.mode != 'edit'){
 						this.$router.push({ name: this.kelas + "RiwayatCreate",params: {id: this.updateResponse.id, cu: idcu }});
 					}else{
 						this.back();

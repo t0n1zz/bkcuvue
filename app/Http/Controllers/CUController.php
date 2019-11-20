@@ -19,7 +19,27 @@ class CuController extends Controller{
 
 	public function index()
 	{
-		$table_data = Cu::with('Villages','Districts','Regencies','Provinces')->withCount('hasTp')->advancedFilter();
+		$table_data = Cu::with('Villages','Districts','Regencies','Provinces')
+		->withCount('hasTp')
+		->withCount('hasManajemen')
+		->withCount('hasPengurus')
+		->withCount('hasPengawas')
+		->withCount('hasKomite')
+		->withCount('hasPenasihat')
+		->withCount('hasSeniorManajer')
+		->withCount('hasManajer')
+		->withCount('hasSupervisor')
+		->withCount('hasStaf')
+		->withCount('hasKontrak')
+		->withCount('hasAktivisTidakAktif')
+		->withCount('hasSimpanan')
+		->withCount('hasPinjaman')
+		->withCount('hasSimpananJalinan')
+		->withCount('hasPinjamanJalinan')
+		->withCount('hasUser')
+		->withCount('hasArtikel')
+		->withCount('hasAnggotaCu')
+		->advancedFilter();
 
 		return response()
 		->json([
@@ -29,7 +49,27 @@ class CuController extends Controller{
 
 	public function indexDeleted()
 	{
-		$table_data = Cu::onlyTrashed()->with('Villages','Districts','Regencies','Provinces')->withCount('hasTp')->advancedFilter();
+		$table_data = Cu::onlyTrashed()->with('Villages','Districts','Regencies','Provinces')
+		->withCount('hasTp')
+		->withCount('hasSimpanan')
+		->withCount('hasPinjaman')
+		->withCount('hasSimpananJalinan')
+		->withCount('hasPinjamanJalinan')
+		->withCount('hasManajemen')
+		->withCount('hasPengurus')
+		->withCount('hasPengawas')
+		->withCount('hasKomite')
+		->withCount('hasPenasihat')
+		->withCount('hasSeniorManajer')
+		->withCount('hasManajer')
+		->withCount('hasSupervisor')
+		->withCount('hasStaf')
+		->withCount('hasKontrak')
+		->withCount('hasAktivisTidakAktif')
+		->withCount('hasUser')
+		->withCount('hasArtikel')
+		->withCount('hasAnggotaCu')
+		->advancedFilter();
 
 		return response()
 		->json([
@@ -201,6 +241,7 @@ class CuController extends Controller{
 		return response()
 			->json([
 				'model' => $history
+				// 'model' => []
 			]);
   }
 }

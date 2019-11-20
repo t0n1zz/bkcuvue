@@ -26,7 +26,7 @@
 					<table-data 
 						:title="title" 
 						:kelas="kelas"></table-data>
-						
+
 				</div>
 			</div>
 		</div>

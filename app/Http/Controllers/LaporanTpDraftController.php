@@ -185,7 +185,8 @@ class LaporanTpDraftController extends Controller{
 			
 			return response()
 			->json([
-					'model' => $table_data
+					// 'model' => $table_data
+					'model' => ''
 			]);
 	}
 

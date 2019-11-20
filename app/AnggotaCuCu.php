@@ -15,17 +15,17 @@ class AnggotaCuCu extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'anggota_cu_id','cu_id','tp_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar'
+        'anggota_cu_id','cu_id','tp_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name'
     ];
 
     protected $filter = [
-        'anggota_cu_id','cu_id','tp_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar'
+        'anggota_cu_id','cu_id','tp_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name'
     ];
 
     public static function initialize()
     {
         return [
-            'anggota_cu_id' => '','cu_id' => '','tp_id' => '','no_ba' => '','tanggal_masuk' => '','keterangan_masuk' => '', 'tanggal_keluar' => '', 'keterangan_keluar' => ''
+            'anggota_cu_id' => '','cu_id' => '','tp_id' => '','no_ba' => '','tanggal_masuk' => '','keterangan_masuk' => '', 'tanggal_keluar' => '', 'keterangan_keluar' => '','referral_nik' => '','referral_ba' => '','referral_name' => ''
         ];
     }
 

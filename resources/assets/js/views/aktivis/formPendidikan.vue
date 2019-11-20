@@ -157,7 +157,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props:['formState','selected'],
+		props:['formState','selected','id_aktivis'],
 		components: {
 			Cleave
 		},
@@ -211,7 +211,7 @@
 				formData.pendidikan = this.form;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/savePendidikan', [this.$route.params.id, formData]);
+						this.$store.dispatch(this.kelas + '/savePendidikan', [this.id_aktivis, formData]);
 						this.submited = false;
 					}else{
 						this.submited = true;
