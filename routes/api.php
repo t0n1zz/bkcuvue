@@ -17,13 +17,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::get('/profile', 'AuthController@profile');
 
     // system
-    Route::get('/system', function(){
-        $table_data = DB::table('system')->first();
-        return response()
-            ->json([
-                'model' => $table_data
-            ]); 
-    });
+    Route::get('/system/version', 'SystemController@version');
 
     // user
     Route::get('/user/getActivity/{id}', 'UserController@getActivity');
@@ -244,45 +238,46 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     // aktivis
     Route::get('/aktivis/get/{id}', 'AktivisController@get');
     Route::get('/aktivis/history', 'AktivisController@history');
+    Route::get('/aktivis/cariData/{nik}', 'AktivisController@cariData');
+    Route::get('/aktivis/count', 'AktivisController@count');
+    Route::get('/aktivis/edit/{id}', 'AktivisController@edit');
+    Route::post('/aktivis/update/{id}', 'AktivisController@update');
+    Route::get('/aktivis/indexPekerjaan/{id}', 'AktivisController@indexPekerjaan');
+    Route::get('/aktivis/indexPendidikan/{id}', 'AktivisController@indexPendidikan');
+    Route::get('/aktivis/indexAnggotaCu/{id}', 'AktivisController@indexAnggotaCu');
+    Route::get('/aktivis/indexKeluarga/{id}', 'AktivisController@indexKeluarga');
+    Route::get('/aktivis/indexOrganisasi/{id}', 'AktivisController@indexOrganisasi');
+    Route::get('/aktivis/indexDiklat/{id}', 'AktivisController@indexDiklat');
+    Route::get('/aktivis/createPekerjaan', 'AktivisController@createPekerjaan');
+    Route::get('/aktivis/createPendidikan', 'AktivisController@createPendidikan');
+    Route::get('/aktivis/createOrganisasi', 'AktivisController@createOrganisasi');
+    Route::get('/aktivis/createDiklat', 'AktivisController@createDiklat');
+    Route::get('/aktivis/createKeluarga', 'AktivisController@createKeluarga');
+    Route::get('/aktivis/createAnggotaCu', 'AktivisController@createAnggotaCu');
+    Route::post('/aktivis/savePekerjaan/{id}', 'AktivisController@savePekerjaan');
+    Route::post('/aktivis/savePendidikan/{id}', 'AktivisController@savePendidikan');
+    Route::post('/aktivis/saveOrganisasi/{id}', 'AktivisController@saveOrganisasi');
+    Route::post('/aktivis/saveDiklat/{id}', 'AktivisController@saveDiklat');
+    Route::post('/aktivis/saveKeluarga/{id}', 'AktivisController@saveKeluarga');
+    Route::post('/aktivis/saveAnggotaCu/{id}', 'AktivisController@saveAnggotaCu');
+    Route::delete('/aktivis/pekerjaan/{id}', 'AktivisController@destroyPekerjaan');
+    Route::delete('/aktivis/pendidikan/{id}', 'AktivisController@destroyPendidikan');
+    Route::delete('/aktivis/organisasi/{id}', 'AktivisController@destroyOrganisasi');
+    Route::delete('/aktivis/diklat/{id}', 'AktivisController@destroyDiklat');
+    Route::delete('/aktivis/keluarga/{id}', 'AktivisController@destroyKeluarga');
+    Route::delete('/aktivis/anggotaCu/{id}', 'AktivisController@destroyAnggotaCu');
     Route::group(['middleware' => ['permission:index_aktivis']], function () {
         Route::get('/aktivis/index/{tingkat}/{status}', 'AktivisController@index');
         Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
         Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
         Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
-        Route::get('/aktivis/count', 'AktivisController@count');
     });
     Route::group(['middleware' => ['permission:create_aktivis']], function () {
         Route::get('/aktivis/create', 'AktivisController@create');
         Route::post('/aktivis/store', 'AktivisController@store');
-        Route::get('/aktivis/cariData/{nik}', 'AktivisController@cariData');
     });
     Route::group(['middleware' => ['permission:update_aktivis']], function () {
-        Route::get('/aktivis/edit/{id}', 'AktivisController@edit');
-        Route::post('/aktivis/update/{id}', 'AktivisController@update');
-        Route::get('/aktivis/indexPekerjaan/{id}', 'AktivisController@indexPekerjaan');
-        Route::get('/aktivis/indexPendidikan/{id}', 'AktivisController@indexPendidikan');
-        Route::get('/aktivis/indexAnggotaCu/{id}', 'AktivisController@indexAnggotaCu');
-        Route::get('/aktivis/indexKeluarga/{id}', 'AktivisController@indexKeluarga');
-        Route::get('/aktivis/indexOrganisasi/{id}', 'AktivisController@indexOrganisasi');
-        Route::get('/aktivis/indexDiklat/{id}', 'AktivisController@indexDiklat');
-        Route::get('/aktivis/createPekerjaan', 'AktivisController@createPekerjaan');
-        Route::get('/aktivis/createPendidikan', 'AktivisController@createPendidikan');
-        Route::get('/aktivis/createOrganisasi', 'AktivisController@createOrganisasi');
-        Route::get('/aktivis/createDiklat', 'AktivisController@createDiklat');
-        Route::get('/aktivis/createKeluarga', 'AktivisController@createKeluarga');
-        Route::get('/aktivis/createAnggotaCu', 'AktivisController@createAnggotaCu');
-        Route::post('/aktivis/savePekerjaan/{id}', 'AktivisController@savePekerjaan');
-        Route::post('/aktivis/savePendidikan/{id}', 'AktivisController@savePendidikan');
-        Route::post('/aktivis/saveOrganisasi/{id}', 'AktivisController@saveOrganisasi');
-        Route::post('/aktivis/saveDiklat/{id}', 'AktivisController@saveDiklat');
-        Route::post('/aktivis/saveKeluarga/{id}', 'AktivisController@saveKeluarga');
-        Route::post('/aktivis/saveAnggotaCu/{id}', 'AktivisController@saveAnggotaCu');
-        Route::delete('/aktivis/pekerjaan/{id}', 'AktivisController@destroyPekerjaan');
-        Route::delete('/aktivis/pendidikan/{id}', 'AktivisController@destroyPendidikan');
-        Route::delete('/aktivis/organisasi/{id}', 'AktivisController@destroyOrganisasi');
-        Route::delete('/aktivis/diklat/{id}', 'AktivisController@destroyDiklat');
-        Route::delete('/aktivis/keluarga/{id}', 'AktivisController@destroyKeluarga');
-        Route::delete('/aktivis/anggotaCu/{id}', 'AktivisController@destroyAnggotaCu');
+        // nothing
     });
     Route::group(['middleware' => ['permission:destroy_aktivis']], function () {
         Route::delete('/aktivis/{id}', 'AktivisController@destroy');
@@ -394,6 +389,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
 
     // anggota cu
+    Route::get('/anggotaCu/systemNIK', 'AnggotaCuController@systemNIK');
     Route::get('/anggotaCu/history', 'AnggotaCuController@history');
     Route::get('/anggotaCu/count', 'AnggotaCuController@count');
     Route::get('/anggotaCu/cariDataKTP/{nik}', 'AnggotaCuController@cariDataKTP');

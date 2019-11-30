@@ -273,6 +273,7 @@
 				title: '',
 				kelas: 'aktivis',
 				tingkatArray: [],
+				tingkatName: [],
 				formPeserta:{
 					aktivis_id: '',
 					kegiatan_id: '',
@@ -362,6 +363,9 @@
 				for(i = 0; i < this.tingkat.length; i++){
 					this.tingkatArray.push(this.tingkat[i].id);
 				}
+				for(i = 0; i < this.tingkat.length; i++){
+					this.tingkatName.push(this.tingkat[i].name);
+				}
 				this.fetch(this.query);
 			}
 		},
@@ -410,7 +414,8 @@
 					this.message.show = false;
 				}else{
 					this.message.show = true;
-					this.message.content = "Maaf peserta ini tidak memenuhi persyaratan sasaran peserta";
+
+					this.message.content = "Maaf peserta diklat ini harus dari tingkat " + this.tingkatName;
 					this.selectedItem = '';
 				}
 			},

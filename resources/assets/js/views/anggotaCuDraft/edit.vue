@@ -91,22 +91,22 @@
 							</div>
 						</div>
 
-						<!-- alih waris -->
+						<!-- ahli waris -->
 						<div class="col-md-4">
-							<div class="form-group" :class="{'has-error' : errors.has('form.alih_waris')}">
+							<div class="form-group" :class="{'has-error' : errors.has('form.ahli_waris')}">
 
 								<!-- title -->
-								<h6 :class="{ 'text-danger' : errors.has('form.alih_waris')}">
-									<i class="icon-cross2" v-if="errors.has('form.alih_waris')"></i>
-									Nama Alih Waris: <wajib-badge></wajib-badge></h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.ahli_waris')}">
+									<i class="icon-cross2" v-if="errors.has('form.ahli_waris')"></i>
+									Nama Ahli Waris: <wajib-badge></wajib-badge></h6>
 
 								<!-- text -->
-								<input type="text" name="alih_waris" class="form-control" placeholder="Silahkan masukkan nama alih waris" v-validate="'required'"
-									data-vv-as="Nama alih waris" v-model="form.alih_waris">
+								<input type="text" name="ahli_waris" class="form-control" placeholder="Silahkan masukkan nama ahli waris" v-validate="'required'"
+									data-vv-as="Nama ahli waris" v-model="form.ahli_waris">
 
 								<!-- error message -->
-								<small class="text-muted text-danger" v-if="errors.has('form.alih_waris')">
-									<i class="icon-arrow-small-right"></i> {{ errors.first('form.alih_waris') }}
+								<small class="text-muted text-danger" v-if="errors.has('form.ahli_waris')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.ahli_waris') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
 							</div>

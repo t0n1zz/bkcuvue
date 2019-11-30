@@ -37,7 +37,7 @@
 							<b v-if="showDebug">ERROR 500</b>
 						</span>
 						<span v-else>
-						 <b>ERROR</b>
+						 <b>{{ errorData }}</b>
 						</span>
 
 						<!-- debug -->

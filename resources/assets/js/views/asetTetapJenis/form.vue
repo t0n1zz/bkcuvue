@@ -59,7 +59,7 @@
 							<select class="form-control" name="jenis" v-model="formModal.aset_tetap_kelompok_id" data-width="100%" v-validate="'required'" data-vv-as="Jenis" :disabled="modelKelompok.length == 0">
 							<option disabled value="">
 								<span v-if="modelKelompokStat === 'loading'">Mohon tunggu...</span>
-								<span v-else>Silahkan pilih golongan</span>
+								<span v-else>Silahkan pilih kelompok</span>
 							</option>
 							<option v-for="datas in modelKelompok" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
 						</select>

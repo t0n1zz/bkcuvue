@@ -23,7 +23,7 @@
         Selanjutnya adalah bagian ditolak yang merupakan bagian dimana pengajuan ditolak oleh staf JALINAN BKCU Kalimantan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, Kemudian apabila pengajuan disetujui maka akan muncul dibagian disetujui dan tinggal menunggu proses pencairan saja oleh bagian SPD BKCU Kalimantan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span> 
         
         <br/> <br/>
-        dan apabila sudah dicairkan maka akan pindah ke bagian Dicairkan dan kemudian apabila dari CU sudah menyerahkan hasil pencairan klaim beserta semua dokumen pendukung kepada alih waris anggota atau yang bersangkutan maka bisa menekan tombol selesai pada klaim tersebut <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">6</span> dan otomatis pengajuan yang sudah selesai akan pindah ke bagian selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">7</span>
+        dan apabila sudah dicairkan maka akan pindah ke bagian Dicairkan dan kemudian apabila dari CU sudah menyerahkan hasil pencairan klaim beserta semua dokumen pendukung kepada ahli waris anggota atau yang bersangkutan maka bisa menekan tombol selesai pada klaim tersebut <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">6</span> dan otomatis pengajuan yang sudah selesai akan pindah ke bagian selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">7</span>
 
         <br/> <br/>
         Kemudian pada ada halaman ini pengguna dapat menambah klaim JALINAN <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>,

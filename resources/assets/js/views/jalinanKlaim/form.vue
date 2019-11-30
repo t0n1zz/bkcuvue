@@ -14,7 +14,7 @@
 					</message>
 
 					<!-- cari data -->
-					<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @resetData="resetData" @back="back" v-if="!isEdit"></cari-data>
+					<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @changeStatusNIK="changeStatusNIK" @nikNew="nikNew" @resetData="resetData" @back="back" v-if="!isEdit"></cari-data>
 
 					<!-- data not exist -->
 					<div class="alert bg-danger text-white alert-styled-left " v-if="itemDataStat == 'fail'">
@@ -25,7 +25,7 @@
 						</span>
 					</div>
 
-					<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik}}" class="btn btn-light btn-lg btn-block" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
+					<router-link type="button" :to="{name:'anggotaCuCreateJalinan', params:{nik: nik, statusNIK: statusNIK}}" class="btn btn-light btn-lg btn-block" v-if="itemDataStat == 'fail' && currentUser.can['create_anggota_cu']">
 						<i class="icon-plus22"></i> Tambah Anggota CU
 					</router-link>
 
@@ -320,7 +320,6 @@
 								</div>
 							</div>
 
-
 						</form>
 					
 					</div>
@@ -365,7 +364,7 @@
 	import countWidget from '../../components/countWidget.vue';
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
-	import cariData from "../../components/cariData.vue";
+	import cariData from "../anggotaCu/cariData";
 	import identitas from "../../components/identitas.vue";
 	import dataTable from '../../components/datatable.vue';
 
@@ -394,6 +393,7 @@
 				kelas: 'jalinanKlaim',
 				isEdit: false,
 				nik: '',
+				statusNIK: 'tidak',
 				anggota_cu_cu_id: '',
 				cu_id: '',
 				tipe: '',
@@ -504,6 +504,15 @@
 			cariData(nik){
 				this.nik = nik;
 				this.$store.dispatch(this.kelas + '/cariData', nik);
+			},
+			changeStatusNIK(value){
+				this.nik == '';
+				this.statusNIK = value;
+				this.$store.dispatch(this.kelas + '/resetData');
+			},
+			nikNew(value){
+				this.nik = value;
+				this.$store.dispatch(this.kelas + '/cariData', value);
 			},
 			selectedRow(item) {
         this.selectedItem = item;

@@ -87,7 +87,7 @@ class AktivisController extends Controller{
 
 		foreach($table_data as $t){
 			$t->nik = $t->nik . " ";
-			$t->nik = $t->nim . " ";
+			$t->nim_cu = $t->nim_cu . " ";
 			$t->npwp = $t->npwp . " ";
 		}
 	
@@ -176,7 +176,7 @@ class AktivisController extends Controller{
 
 		foreach($table_data as $t){
 			$t->nik = $t->nik . " ";
-			$t->nik = $t->nim . " ";
+			$t->nim_cu = $t->nim_cu . " ";
 			$t->npwp = $t->npwp . " ";
 		}
 

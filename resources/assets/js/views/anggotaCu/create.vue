@@ -8,7 +8,7 @@
 		<!-- main panel -->
 		<form @submit.prevent="save" data-vv-scope="form">
 
-				<!-- if create_old -->
+			<!-- if create_old -->
 			<div class="card" v-if="mode == 'create_old'">
 				<div class="card-header bg-white">
 					<h5 class="card-title">Identitas</h5>
@@ -55,15 +55,7 @@
 									class="form-control" 
 									:options="cleaveOption.number16"
 									placeholder="Silahkan masukkan no KTP"
-									v-validate="'required'" data-vv-as="No. KTP" readonly v-if="mode == 'create_new'"></cleave>
-
-								<cleave 
-									name="nik"
-									v-model="form.nik" 
-									class="form-control" 
-									:options="cleaveOption.number16"
-									placeholder="Silahkan masukkan no KTP"
-									v-validate="'required'" data-vv-as="No. KTP" v-else></cleave>	
+									v-validate="'required'" data-vv-as="No. KTP" readonly></cleave>
 								
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.nik')">
@@ -131,22 +123,22 @@
 							</div>
 						</div>
 
-						<!-- alih waris -->
+						<!-- ahli waris -->
 						<div class="col-md-4">
-							<div class="form-group" :class="{'has-error' : errors.has('form.alih_waris')}">
+							<div class="form-group" :class="{'has-error' : errors.has('form.ahli_waris')}">
 
 								<!-- title -->
-								<h6 :class="{ 'text-danger' : errors.has('form.alih_waris')}">
-									<i class="icon-cross2" v-if="errors.has('form.alih_waris')"></i>
-									Nama Alih Waris: <wajib-badge></wajib-badge></h6>
+								<h6 :class="{ 'text-danger' : errors.has('form.ahli_waris')}">
+									<i class="icon-cross2" v-if="errors.has('form.ahli_waris')"></i>
+									Nama Ahli Waris: <wajib-badge></wajib-badge></h6>
 
 								<!-- text -->
-								<input type="text" name="alih_waris" class="form-control" placeholder="Silahkan masukkan nama alih waris" v-validate="'required'"
-									data-vv-as="Nama alih waris" v-model="form.alih_waris">
+								<input type="text" name="ahli_waris" class="form-control" placeholder="Silahkan masukkan nama ahli waris" v-validate="'required'"
+									data-vv-as="Nama ahli waris" v-model="form.ahli_waris">
 
 								<!-- error message -->
-								<small class="text-muted text-danger" v-if="errors.has('form.alih_waris')">
-									<i class="icon-arrow-small-right"></i> {{ errors.first('form.alih_waris') }}
+								<small class="text-muted text-danger" v-if="errors.has('form.ahli_waris')">
+									<i class="icon-arrow-small-right"></i> {{ errors.first('form.ahli_waris') }}
 								</small>
 								<small class="text-muted" v-else>&nbsp;</small>
 							</div>
@@ -914,7 +906,7 @@
 	import identitas from "../../components/identitas.vue";
 
 	export default {
-		props: ['mode','nik'],
+		props: ['mode','nik','statusNIK'],
 		components: {
 			appModal,
 			appImageUpload,
@@ -1028,6 +1020,7 @@
 					
 					if(this.mode == 'create_jalinan'){
 						this.form.nik = this.$route.params.nik;
+						this.form.statusNIK = this.$route.params.statusNIK;
 					}
 				}else if(value == 'fail'){
 					this.form.tp_id == '';
@@ -1110,6 +1103,10 @@
 					this.form.anggota_cu_cu = this.itemDataCu;
 				}else{
 					this.form.id_cu = this.currentUser.id_cu;
+				}
+
+				if(this.mode != 'create_jalinan'){
+					this.form.statusNIK = this.statusNIK;
 				}
 
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);

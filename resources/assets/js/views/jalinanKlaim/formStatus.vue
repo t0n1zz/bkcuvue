@@ -134,7 +134,7 @@
                 </div>
                 <div v-else-if="selectedData.tipe == 'meninggal'">
                   <hr/>
-                  <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                  <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
                   <span>
                     Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
                   </span>
@@ -392,7 +392,7 @@
       </div>
       <div v-else-if="tipe == 'selesai'">
         <div class="alert bg-info alert-styled-left">
-          <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada alih waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+          <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
         </div>
       </div>
       <div v-else>

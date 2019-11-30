@@ -133,7 +133,7 @@
 							<!-- peserta -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-show="tabName == 'peserta'">
-									<data-viewer :title="'peserta'" :itemData="itemData" :columnData="columnData" :itemDataStat="itemDataStat" :query="query" @fetch="fetchPeserta" :excelDownloadUrl="excelDownloadUrl" :isDasar="'true'" :isNoKolom="isNoKolom" :isNoExcel="isNoExcel">
+									<data-viewer :title="'peserta'" :itemData="itemData" :columnData="columnData" :itemDataStat="itemDataStat" :query="query" @fetch="fetchPeserta" :excelDownloadUrl="excelDownloadUrl" :isDasar="'true'" :isNoKolom="isNoKolom" :isNoExcel="isNoExcel" :isDisable="isDisableTablePeserta">
 
 										<!-- if bkcu -->
 										<template slot="button-desktop" v-if="currentUser.id_cu == 0">
@@ -521,6 +521,7 @@
 				tabName: 'info',
 				isPeserta: false,
 				tempatData: '',
+				isDisableTablePeserta: false,
 				formPesertaBatal: {
 					keterangan: ''
 				},
@@ -862,6 +863,7 @@
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.state = state;
+				this.isDisableTablePeserta = true;
 
 				if (isMobile) {
 					this.selectedItem = itemMobile;
@@ -954,6 +956,7 @@
 					this.back();
 				}
 				
+				this.isDisableTablePeserta = false;
 				this.modalShow = false;
 			},
 			modalBackgroundClick() {
@@ -964,6 +967,7 @@
 				} else {
 					this.modalShow = false
 				}
+				this.isDisableTablePeserta = false;
 			},
 			momentYear() {
 				return moment().year();

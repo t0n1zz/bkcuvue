@@ -594,6 +594,10 @@ export const anggotaCu = {
     },
 
     // reset
+    resetData( {commit} ){
+      commit('setData', {});
+      commit('setDataStat', '');
+    },
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     },

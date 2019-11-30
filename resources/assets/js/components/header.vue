@@ -64,11 +64,14 @@
 
 						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350" v-if="unreadNotificationStat == 'success'">
 							<div class="dropdown-content-header" v-if="unreadNotification > 0">
-								<span class="font-weight-semibold">Terdapat {{unreadNotification}} pemberitahuan</span>
+								<a href="#" class="text-default" @click.prevent="fetchNotif()" v-tooltip:right="'Refresh'"><i class="icon-sync"></i></a>
+								<span class="font-weight-semibold">TERDAPAT {{unreadNotification}} PEMBERITAHUAN</span>
 								<a href="#" class="text-default" @click.prevent="markAllNotifRead()" v-tooltip:right="'Tandai sudah dibaca'"><i class="icon-checkbox-checked"></i></a>
 							</div>
 							<div class="dropdown-content-header" v-else>
-								<span class="font-weight-semibold">Tidak ada pemberitahuan <span v-if="notification && notification.length> 0">baru</span></span>
+								<a href="#" class="text-default" @click.prevent="fetchNotif()" v-tooltip:right="'Refresh'"><i class="icon-sync"></i></a>
+								<span class="font-weight-semibold">TIDAK ADA PEMBERITAHUAN <span v-if="notification && notification.length> 0">BARU</span></span>
+								<a href="#" class="text-default" disabled><i class="icon-checkbox-checked"></i></a>
 							</div>
 
 							<div class="dropdown-content-body dropdown-scrollable">
@@ -80,7 +83,9 @@
 
 											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-weight-semibold">
-													<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.name}} <br/>
+													<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> 
+													{{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}}
+													<br/>
 												</span>
 												<span class="font-size-xs">
 													[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
@@ -997,6 +1002,7 @@
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				state: '',
+				timer: '',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -1009,12 +1015,17 @@
 			this.fetchTp();
 			this.fetchCu();
 			this.fetchNotif();
+			this.timer = setInterval(() => {
+				this.fetchNotif();
+			}, 900000);
 		},
+		beforeDestroy () {
+      clearInterval(this.timer)
+    },
 		watch: {
 			'$route' (to, from){
 				this.fetchTp();
 				this.fetchCu();
-				this.fetchNotif();
 			},
 			isTokenExpired(value){ 
 				if(value == true){

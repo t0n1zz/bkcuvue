@@ -407,7 +407,7 @@ const routes = [
 		name: 'anggotaCuCreateEdit', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'createEdit' }},	
-	{ path: '/anggotaCu/createjalinan/:nik',
+	{ path: '/anggotaCu/createjalinan/:nik/:statusNIK',
 		name: 'anggotaCuCreateJalinan', 
 		components: { default: anggotaCu_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'createJalinan' }},

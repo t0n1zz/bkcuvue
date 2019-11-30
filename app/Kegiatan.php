@@ -17,7 +17,7 @@ class Kegiatan extends Model {
     
     public static $rules = [
         'id_tempat' => 'required',
-        'name' => 'required|between:3,50'
+        'name' => 'required'
     ];
     
     protected $fillable = [

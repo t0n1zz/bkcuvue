@@ -131,7 +131,7 @@
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
           <td v-if="!columnData[15].hide">
-						<check-value :value="props.item.alih_waris"></check-value>
+						<check-value :value="props.item.ahli_waris"></check-value>
 					</td>
            <td v-if="!columnData[16].hide">
 						<check-value :value="props.item.nama_ibu"></check-value>
@@ -365,7 +365,7 @@
           },
           {
             title: 'Alih Waris',
-            name: 'alih_waris',
+            name: 'ahli_waris',
             tipe: 'string',
             sort: true,
             hide: false,

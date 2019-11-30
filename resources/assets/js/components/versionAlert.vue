@@ -140,7 +140,7 @@
 			methods: {
 				get(){
 					this.serverVersionStat = 'loading';
-					axios.get('/api/system')
+					axios.get('/api/system/version')
 					.then((response) => {
 						this.serverVersion = response.data.model.version;
 						this.serverVersionStat = 'success';

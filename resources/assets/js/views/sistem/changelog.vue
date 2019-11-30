@@ -26,7 +26,10 @@
 
                     <ul class="list">
                       <li>Menambah fitur auto reload file terbaru dari server apabila terdapat update dan menambahkan tombol hard reload apabila fitur auto reload gagal berfungsi.</li>
+                      <li>Menambah fitur untuk membuatkan NIK sementara kepada anggota CU yang tidak bisa ditemukan/punya NIK lagi agar tetap bisa menginput data untuk anggota CU dan klaim JALINAN</li>
                       <li>Menambah informasi jumlah aktivis pertingkatan (manajemen, pengurus, dsb) pada bagian CU</li>
+                      <li>Menambah tombol refresh pada bagian notifikasi untuk mendapatkan notifikasi terbaru sesuai keinginan</li>
+                      <li>Mengubah cara mengambil data notifikasi dari setiap perpindahan halaman menjadi setiap 15 menit</li>
                       <li>Menambah fitur di profile masing-masing user untuk bisa mengubah data identitas dan riwayat sendiri</li>
                       <li>Menambah informasi no. KK, nama ibu, suku, dan pekerjaan pada form anggota CU</li>
                       <li>Mengubah tampilan informasi verifikator klaim JALINAN </li>
@@ -41,6 +44,8 @@
                       <li>Perbaikan bug tampilan persentase laju inflasi dan harga pasar</li>
                       <li>Perbaikan bug pada saat menambah diskusi untuk laporan TP</li>
                       <li>Perbaikan bug pada saat membuka dialog box dan menekan tombol back di browser maka tidak bisa scroll halamannya</li>
+                      <li>Perbaikan bug pada penambahan kode jenis aset tetap dan kelompok aset tetap</li>
+                      <li>Perbaikan bug pada searching di detail diklat BKCU</li>
                     </ul>
                   </div>
                 </div>

@@ -964,7 +964,7 @@
   import FileSaver from 'file-saver';
 
   export default {
-    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUploads','dataview','tableClass','isDasar','isNoKolom','isNoExcel','isNoButtonRow'],
+    props: ['title', 'columnData', 'itemData', 'itemDataStat','isUploadExcel', 'query', 'excelDownloadUrl','excelUploads','dataview','tableClass','isDasar','isNoKolom','isNoExcel','isNoButtonRow','isDisable'],
     components: {
       jsonExcel,
       appModal,
@@ -1013,9 +1013,11 @@
     },
     mounted() {
       document.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) {
-          if(this.filterCandidates.length > 0 && this.itemDataStat === 'success')
-            this.applyFilter();
+        if(this.isDisable != true){
+          if (e.keyCode == 13) {
+            if(this.filterCandidates.length > 0 && this.itemDataStat === 'success')
+              this.applyFilter();
+          }
         }
       });
     },

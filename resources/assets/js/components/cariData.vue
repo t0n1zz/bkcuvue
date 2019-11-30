@@ -18,19 +18,18 @@
           placeholder="Silahkan masukkan no. KTP / Nomor Induk Kependudukan (NIK)" :disabled="isNew"></cleave>
       </div>
 
-      <div class="col-12 d-none d-md-block">
+      <div class="col-md-7 col-lg-9 pb-2 d-none d-sm-block">
         <button class="btn btn-primary" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
         <button class="btn btn-warning" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
+      </div>
+
+      <div class="col-md-5 col-lg-3 text-right d-none d-sm-block">
         <button class="btn btn-light" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
       </div>
 
       <div class="col-12 pb-2 d-block d-md-none">
         <button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
-      </div>
-      <div class="col-12 pb-2 d-block d-md-none" v-if="itemDataStat != ''">
-        <button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
-      </div>
-      <div class="col-12 pb-2 d-block d-md-none">
+        <button class="btn btn-warning btn-block mb-1" @click.prevent="resetData"><i class="icon-reset" v-if="itemDataStat != ''"></i> Reset pencarian</button>
         <button class="btn btn-light btn-block" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
       </div>
 

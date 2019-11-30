@@ -203,7 +203,7 @@
 						<check-value :value="props.item.anggota_cu.kelamin"></check-value>
 					</td>
           <td v-if="!columnData[26].hide">
-						<check-value :value="props.item.anggota_cu.alih_waris"></check-value>
+						<check-value :value="props.item.anggota_cu.ahli_waris"></check-value>
 					</td>
           <td v-if="!columnData[27].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
@@ -290,7 +290,7 @@
 						filter: true,
           },
           {
-            title: 'No. KTP',
+            title: 'No. KTP / NIK',
             name: 'anggota_cu.nik',
             tipe: 'string',
             sort: true,
@@ -508,7 +508,7 @@
           },
           {
 						title: 'Alih Waris',
-						name: 'anggota_cu.alih_waris',
+						name: 'anggota_cu.ahli_waris',
             tipe: 'string',
 						sort: false,
 						hide: false,

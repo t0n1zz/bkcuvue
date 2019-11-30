@@ -6,6 +6,7 @@ use Auth;
 use File;
 use Image;
 use Validator;
+use App\System;
 use App\AnggotaCu;
 use App\AnggotaCuCu;
 use App\AnggotaCuKlaim;
@@ -262,12 +263,16 @@ class AnggotaCuController extends Controller{
 			else
 				$fileName = '';	
 
-			$kelas = AnggotaCu::create($request->except('gambar') + [
+			$kelas = AnggotaCu::create($request->except('gambar','statusNIK') + [
 				'gambar' => $fileName
 			]);
 			
 			$this->syncCu($request, $kelas);
 			// $this->syncProdukCu($request, $kelas);
+
+			if($request->statusNIK == 'tidak'){
+				$this->updateSystemNIK($request->nik);
+			}
 
 			\DB::commit();
 
@@ -531,6 +536,14 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function updateSystemNIK($nik)
+  {
+		$kelas = System::findOrFail(1);
+		$val = $nik + 1;
+		$kelas->nik = str_pad($val,16,"0",STR_PAD_LEFT);
+		$kelas->update();
+  }
+
 	public function destroy($id, $cu)
 	{
 		$kelas = AnggotaCu::findOrFail($id);
@@ -615,7 +628,7 @@ class AnggotaCuController extends Controller{
 				];
 			}
 			// return $cuArray;
-			$kelas->anggota_cu()->sync($cuArray);
+			$kelas->anggota_cu()->syncWithoutDetaching($cuArray);
 		}
 		
 		if($request->id_cu){
@@ -704,6 +717,15 @@ class AnggotaCuController extends Controller{
 				'model' => $history
 			]);
 	}
+
+	public function systemNIK()
+  {
+    $table_data = System::select('nik')->first();
+    return response()
+        ->json([
+            'model' => $table_data
+        ]); 
+  }
 
 	public function cariDataKTP($nik)
 	{

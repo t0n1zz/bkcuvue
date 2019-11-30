@@ -191,7 +191,7 @@
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
           <td v-if="!columnData[17].hide">
-						<check-value :value="props.item.alih_waris"></check-value>
+						<check-value :value="props.item.ahli_waris"></check-value>
 					</td>
           <td v-if="!columnData[18].hide">
 						<check-value :value="props.item.nama_ibu"></check-value>
@@ -216,7 +216,9 @@
 					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-          <td v-if="!columnData[26].hide" v-html="$options.filters.date(props.item.tanggal_masuk)">
+          <td v-if="!columnData[26].hide">
+            <span v-if="tipe != 'keluar'" v-html="$options.filters.date(props.item.anggota_cu_cu_not_keluar.tanggal_masuk)"></span>
+            <span v-else v-html="$options.filters.date(props.item.anggota_cu_cu_keluar.tanggal_masuk)"></span>
 					</td>
 					<td v-if="!columnData[27].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
@@ -360,7 +362,7 @@
 						hide: false,
 					},
           {
-            title: 'No. KTP',
+            title: 'No. KTP / NIK',
             name: 'nik',
             tipe: 'string',
             sort: true,
@@ -496,8 +498,8 @@
             filter: true,
           },
           {
-            title: 'Alih Waris',
-            name: 'alih_waris',
+            title: 'Ahli Waris',
+            name: 'ahli_waris',
             tipe: 'string',
             sort: true,
             hide: false,

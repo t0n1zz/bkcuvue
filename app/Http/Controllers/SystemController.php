@@ -6,6 +6,7 @@ use Auth;
 use App\Cu;
 use App\Tp;
 use Response;
+use App\System;
 use App\Aktivis;
 use App\ProdukCu;
 use App\MitraOrang;
@@ -14,7 +15,16 @@ use Illuminate\Http\Request;
 
 class SystemController extends Controller
 {
-    
+
+  public function version()
+  {
+    $table_data = System::select('version')->first();
+    return response()
+        ->json([
+            'model' => $table_data
+        ]); 
+  }
+
   public function download_file($filename)
   {
     $destinationPath = public_path() . "/files/";

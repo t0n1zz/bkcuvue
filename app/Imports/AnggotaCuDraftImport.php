@@ -33,6 +33,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
             $districts = '';
             $villages = '';
             $jabatan = '';
+            $ahli_waris = '';
             $ktp = preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']);
             $rt = preg_replace('/[^A-Za-z0-9]/', '',$row['rt']);
             $rw = preg_replace('/[^A-Za-z0-9]/', '',$row['rw']);
@@ -66,6 +67,12 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                 $status_pernikahan = 'MENIKAH';
             }else if($status_pernikahan == 'TK'){
                 $status_pernikahan = 'BELUM MENIKAH';
+            }
+
+            if($row['alih_waris']){
+                $ahli_waris = $row['alih_waris'];
+            }else if($row['ahli_waris']){
+                $ahli_waris = $row['ahli_waris'];
             }
 
             $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
@@ -102,7 +109,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                     'organisasi' => $row['organisasi'],
                     'penghasilan' => $row['rata_rata_penghasilan_perbulan'],
                     'pengeluaran' => $row['rata_rata_pengeluaran_perbulan'],
-                    'alih_waris' => $row['alih_waris'],
+                    'ahli_waris' => $ahli_waris,
                     'pekerjaan' => strtoupper($row['pekerjaan']),
                     'suku' => strtoupper($row['suku']),
                     'nama_ibu' => $row['nama_ibu'],

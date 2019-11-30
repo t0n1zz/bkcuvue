@@ -16,7 +16,7 @@ class AsetTetapJenis extends Model {
     
     public static $rules = [
         'aset_tetap_kelompok_id' => 'required',
-        'kode'=> 'sometimes|required|unique:aset_tetap_jenis',
+        'kode'=> 'sometimes|required',
         'name' => 'required',
 
     ];

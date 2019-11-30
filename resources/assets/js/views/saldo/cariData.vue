@@ -56,19 +56,12 @@
       <div class="col-12 d-none d-md-block" v-if="idCu != 0">
         <button class="btn btn-primary" @click.prevent="cariData"  :disabled="pencarian == ''"><i class="icon-search4"></i> Cari</button>
         <button class="btn btn-warning" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
-        <button class="btn btn-light" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
       </div>
 
       <div class="col-12 pb-2 d-block d-md-none" v-if="idCu != 0">
-        <button class="btn btn-primary btn-block" @click.prevent="cariData"  :disabled="pencarian == ''"><i class="icon-search4"></i> Cari</button>
+        <button class="btn btn-primary btn-block mb-1" @click.prevent="cariData"  :disabled="pencarian == ''"><i class="icon-search4"></i> Cari</button>
+        <button class="btn btn-warning btn-block" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
       </div>
-      <div class="col-12 pb-2 d-block d-md-none" v-if="itemDataStat != ''">
-        <button class="btn btn-warning btn-block" @click.prevent="resetData"><i class="icon-reset"></i> Reset pencarian</button>
-      </div>
-      <div class="col-12 pb-2 d-block d-md-none">
-        <button class="btn btn-light btn-block" @click.prevent="back" v-if="isBack"><i class="icon-arrow-left13"></i> Batal</button>
-      </div>
-
       <!-- loading -->
       <div class="col-12" v-if="itemDataStat == 'loading'">
         <hr/>

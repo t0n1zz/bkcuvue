@@ -12,8 +12,9 @@
 					<!-- create -->
 					<div v-if="$route.meta.mode == 'create'">
 
+						  
 						<!-- cari data -->
-						<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @resetData="resetData" @back="back"></cari-data>
+						<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @changeStatusNIK="changeStatusNIK" @nikNew="nikNew" @resetData="resetData" @back="back"></cari-data>
 
 						<!-- data not exist -->
 						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
@@ -22,7 +23,7 @@
 						</div>
 						
 						<!-- create new -->
-						<form-create v-if="itemDataStat == 'fail'" :nik="nik" :mode="'create_new'"></form-create>
+						<form-create v-if="itemDataStat == 'fail'" :nik="nik" :statusNIK="statusNIK" :mode="'create_new'"></form-create>
 
 						<!-- data exist -->
 						<div v-if="itemDataStat == 'success'">
@@ -69,7 +70,7 @@
 	import anggotaCuAPI from '../../api/anggotaCu.js';
 	import Cleave from 'vue-cleave-component';
 	import formCreate from "./create.vue";
-	import cariData from "../../components/cariData.vue";
+	import cariData from "./cariData.vue";
 
 	export default {
 		components: {
@@ -87,6 +88,7 @@
 				kelas: 'anggotaCu',
 				level2Title: 'Anggota CU',
 				nik: '',
+				statusNIK: 'tidak',
 				cleaveOption: {
           number16: {
             numeral: true,
@@ -115,6 +117,15 @@
 			cariData(nik){
 				this.nik = nik;
 				this.$store.dispatch(this.kelas + '/cariDataKTP', nik);
+			},
+			changeStatusNIK(value){
+				this.nik == '';
+				this.statusNIK = value;
+				this.$store.dispatch(this.kelas + '/resetData');
+			},
+			nikNew(value){
+				this.nik = value;
+				this.$store.dispatch(this.kelas + '/cariDataKTP', value);
 			},
 			resetData(){
 				this.$store.commit(this.kelas + '/setData',{});

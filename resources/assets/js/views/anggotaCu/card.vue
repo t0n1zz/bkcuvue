@@ -4,7 +4,7 @@
       <ul class="list list-unstyled mb-0">
         <li><b>No. KTP:</b> {{ form.nik}}</li>
         <li><b>Nama:</b> {{ form.name}}</li>
-        <li><b>Nama Alih Waris:</b> {{ form.alih_waris}}</li>
+        <li><b>Nama Ahli Waris:</b> {{ form.ahli_waris}}</li>
         <li><b>Gender:</b> {{ form.kelamin}}</li>
         <li><b>Tempat Lahir:</b> {{ form.tempat_lahir}}</li>
         <li><b>Tgl. Lahir:</b> <span v-html="$options.filters.date(form.tanggal_lahir)"></span></li>

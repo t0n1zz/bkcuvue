@@ -614,6 +614,10 @@ export const jalinanKlaim = {
     },
 
     // reset
+    resetData( {commit} ){
+      commit('setData', {});
+      commit('setDataStat', '');
+    },
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     },
