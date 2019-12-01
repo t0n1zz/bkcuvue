@@ -220,7 +220,9 @@
 													</span>
 													<span v-else>-</span>
 												</td>
-												<td v-if="props.item.aktivis && !columnData[11].hide" v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)">
+												<td v-if="props.item.aktivis && !columnData[11].hide" >
+													<span v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)" v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tingkat"></span>
+													<span v-else>-</span>
 												</td>
 												<td v-if="props.item.aktivis && !columnData[12].hide">
 													<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>

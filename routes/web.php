@@ -32,10 +32,8 @@ $appRoutes = function() {
 	Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
 	Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
 
-	Route::get('panduan',array('as' => 'panduan', function()
-	{
-			return view('panduan.index');
-	}));
+	// panduan
+	Route::get('panduan',array( 'as' => 'panduan','uses' => 'PublicController@panduan'));
 };
 
 Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);

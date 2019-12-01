@@ -14,7 +14,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#320">Version 3.2.0 <small class="text-muted"> / 22 November 2019</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#320">Version 3.2.0 <small class="text-muted"> / 1 Desember 2019</small></a>
                   </h5>
                 </div>
 
@@ -46,6 +46,8 @@
                       <li>Perbaikan bug pada saat membuka dialog box dan menekan tombol back di browser maka tidak bisa scroll halamannya</li>
                       <li>Perbaikan bug pada penambahan kode jenis aset tetap dan kelompok aset tetap</li>
                       <li>Perbaikan bug pada searching di detail diklat BKCU</li>
+                      <li>Perbaikan bug user tidak otomatis terkirim ke halaman login</li>
+                      <li>Perbaikan bug gambar user error</li>
                     </ul>
                   </div>
                 </div>

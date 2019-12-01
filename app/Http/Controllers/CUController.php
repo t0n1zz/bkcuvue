@@ -229,7 +229,7 @@ class CuController extends Controller{
   {
 		$time = \Carbon\Carbon::now()->subMonths(6);
 		
-    $table_data = Revision::with('revisionable')->where('revisionable_type','App\Cu')->where('created_at','>=',$time)->orderBy('created_at','desc')->get();
+    $table_data = Revision::with('revisionable')->where('revisionable_type','App\Cu')->where('created_at','>=',$time)->orderBy('created_at','desc')->take(5);
 
     $history = collect();		
 		foreach($table_data as $hs){

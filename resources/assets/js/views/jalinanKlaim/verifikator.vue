@@ -17,11 +17,11 @@
           <div class="mr-sm-3 mb-2 mb-sm-0">
             <div class="card-img-actions">
               <img
-                :src="'/images/aktivis/' + itemData.gambar + '.jpg'"
-                class="img-fluid img-preview rounded"
-                v-if="itemData.gambar"
+                :src="'/images/aktivis/' + itemData.aktivis.gambar + 'n.jpg'"
+                class="img-fluid img-preview img-rounded"
+                v-if="itemData.aktivis && itemData.aktivis.gambar"
               />
-              <img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else />
+              <img :src="'/images/no_image_man.jpg'" class="img-fluid img-preview img-rounded" v-else />
             </div>
           </div>
           <div class="media-body">
@@ -43,11 +43,11 @@
           <div class="mr-sm-3 mb-2 mb-sm-0">
             <div class="card-img-actions">
               <img
-                :src="'/images/aktivis/' + vr.gambar + '.jpg'"
-                class="img-fluid img-preview rounded"
-                v-if="vr.gambar"
+                :src="'/images/aktivis/' + vr.aktivis.gambar + 'n.jpg'"
+                class="img-fluid img-preview img-rounded"
+                v-if="vr.aktivis && vr.aktivis.gambar"
               />
-              <img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else />
+              <img :src="'/images/no_image_man.jpg'" class="img-fluid img-preview img-rounded" v-else />
             </div>
           </div>
           <div class="media-body">

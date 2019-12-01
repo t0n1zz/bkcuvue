@@ -471,9 +471,9 @@
 							</router-link>
 
 							<!-- saldo  -->
-							<router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
+							<!-- <router-link :to="{ name: 'saldo'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_saldo']">
 								<i class="icon-wallet"></i> Simpanan & Pinjaman
-							</router-link>
+							</router-link> -->
 
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
@@ -998,7 +998,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.1.9',
+				clientVersion: '3.2.0',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				state: '',

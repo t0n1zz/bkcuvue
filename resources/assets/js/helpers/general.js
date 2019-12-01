@@ -23,6 +23,10 @@ export function initialize(store, router) {
 		} 
 		next();
 	});
+
+	if (store.state.auth.currentUser) {
+		setAuthorization(store.state.auth.currentUser.token);
+  }
   
   axios.interceptors.response.use(response => {
 		if(store.state.auth.isLoggedIn){
@@ -74,20 +78,17 @@ export function initialize(store, router) {
 		if (error.response.status == 401) {
 			store.dispatch('auth/logout');
 
-			router.push({
-				path:'/login',
-				query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
-			});
+			router.push('/login');
+			// router.push({
+			// 	path:'/login',
+			// 	query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
+			// });
 		}
-		console.log(error);
-		console.log(error.response);
-		console.log(error.response.status);
+
 		return Promise.reject(error);
   });
 
-  if (store.state.auth.currentUser) {
-		setAuthorization(store.state.auth.currentUser.token);
-  }
+  
 }
 
 export function setAuthorization(token) {

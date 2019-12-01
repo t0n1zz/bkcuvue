@@ -39,6 +39,11 @@ class PublicController extends Controller
         return view('index', compact('artikelsUtama','artikelsBKCUNew','artikelsCUNew','cus'));
     }
 
+    public function panduan()
+    {
+        return view('panduan.index');
+    }
+
     public function artikel()
     {
         $title = 'Semua Kategori';
