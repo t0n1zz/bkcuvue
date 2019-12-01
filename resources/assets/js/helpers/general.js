@@ -79,6 +79,9 @@ export function initialize(store, router) {
 				query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
 			});
 		}
+		console.log(error);
+		console.log(error.response);
+		console.log(error.response.status);
 		return Promise.reject(error);
   });
 

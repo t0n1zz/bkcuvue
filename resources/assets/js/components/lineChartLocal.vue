@@ -45,6 +45,7 @@
 <script>
 import Vue from "vue";
 import _ from "lodash";
+import IEcharts from 'vue-echarts-v3/src/full.js';
 import ECharts from "vue-echarts";
 import appModal from "../components/modal";
 
