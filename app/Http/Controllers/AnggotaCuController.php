@@ -136,8 +136,8 @@ class AnggotaCuController extends Controller{
 			$t->tanggal_masuk = '';
 			foreach($t->anggota_cu_cu_not_keluar as $ta){
 				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
-				$t->no_ba .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->no_ba. ', ';
-				$t->tanggal_masuk .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->tanggal_masuk. ', ';
+				$t->no_ba .= ' CU ' . $ta->cu->name. ': ' .$ta->no_ba;
+				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
 			}
 		};
 
@@ -152,8 +152,8 @@ class AnggotaCuController extends Controller{
 			$t->tanggal_masuk = '';
 			foreach($t->anggota_cu_cu_keluar as $ta){
 				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
-				$t->no_ba .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->no_ba. ', ';
-				$t->tanggal_masuk .= ' CU: ' . $ta->cu->name. ', No. BA: ' .$ta->tanggal_masuk. ', ';
+				$t->no_ba .= ' CU ' . $ta->cu->name. ': ' .$ta->no_ba;
+				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
 			}
 		};
 
@@ -168,9 +168,9 @@ class AnggotaCuController extends Controller{
 				$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
 				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
 			}else{
-				$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name. ', ' : '';
-				$t->no_ba = $tp_name .$t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
-				$t->tanggal_masuk = $tp_name .$t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+				$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name : '';
+				$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
+				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
 			}
 		};
 
@@ -185,9 +185,9 @@ class AnggotaCuController extends Controller{
 				$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
 				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
 			}else{
-				$tp_name = $t->anggota_cu_cu_keluar[0]->tp ? $t->anggota_cu_cu_keluar[0]->tp->name. ', ' : '';
-				$t->no_ba = $tp_name .$t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
-				$t->tanggal_masuk = $tp_name .$t->anggota_cu_cu_keluar[0]->tanggal_masuk;
+				$tp_name = $t->anggota_cu_cu_keluar[0]->tp ? $t->anggota_cu_cu_keluar[0]->tp->name : '';
+				$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
+				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
 			}
 		};
 

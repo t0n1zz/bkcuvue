@@ -124,35 +124,7 @@
             <check-value :value="props.item.name"></check-value>
           </td>
           <td v-if="!columnData[5].hide">
-            <span v-if="props.item.anggota_cu_cu_not_keluar">
-              <span v-for="(anggota_cu,index) in props.item.anggota_cu_cu_not_keluar" :key="index">
-                <span v-if="$route.params.cu != 'semua'">
-                  <span v-if="$route.params.cu == anggota_cu.cu_id">
-                    <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.no_ba }}</span>
-                    <span v-else>{{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>
-                  </span>
-                </span>
-                <label v-else class="badge badge-primary ml-1">
-                  <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.cu.name }} - {{ anggota_cu.no_ba }}</span>
-                  <span v-else>{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>    
-                </label>
-              </span>
-            </span>
-            <span v-else-if="props.item.anggota_cu_cu_keluar">
-              <span v-for="(anggota_cu,index) in props.item.anggota_cu_cu_keluar" :key="index">
-                <span v-if="$route.params.cu != 'semua'">
-                  <span v-if="$route.params.cu == anggota_cu.cu_id">
-                    <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.no_ba + ' | ' }}</span>
-                    <span v-else>{{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>
-                  </span>
-                </span>
-                <label v-else class="badge badge-primary ml-1">
-                  <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.no_ba }}</span>
-                  <span v-else>{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>    
-                </label>
-              </span>
-            </span>
-            <span v-else>-</span>
+            <check-value :value="props.item.no_ba"></check-value>
 					</td>
           <td v-if="!columnData[6].hide">
             <label class="badge badge-warning ml-1" v-if="props.item.status_jalinan">
@@ -217,8 +189,7 @@
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
           <td v-if="!columnData[26].hide">
-            <span v-if="tipe != 'keluar'" v-html="$options.filters.date(props.item.anggota_cu_cu_not_keluar.tanggal_masuk)"></span>
-            <span v-else v-html="$options.filters.date(props.item.anggota_cu_cu_keluar.tanggal_masuk)"></span>
+            <span v-html="$options.filters.date(props.item.tanggal_masuk)"></span>
 					</td>
 					<td v-if="!columnData[27].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>

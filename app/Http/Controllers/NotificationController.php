@@ -18,7 +18,7 @@ class NotificationController extends Controller
 		$unreadNotification = auth('api')->user()->unreadNotifications->take(6)->count();
 
 		foreach (auth('api')->user()->notifications->take(5) as $notif) {
-			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','name')->first();
+			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','id_aktivis','name')->first();
 			
 			$n = collect($notif);
 			$n->put('user',$username);
@@ -41,7 +41,7 @@ class NotificationController extends Controller
 
 		$i = 0;
 		foreach ($kelas->notifications as $notif) {
-			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','name')->first();
+			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','id_aktivis','name')->first();
 			
 			$n = collect($notif);
 			$n->put('user',$username);

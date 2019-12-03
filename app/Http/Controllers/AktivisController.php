@@ -278,12 +278,10 @@ class AktivisController extends Controller{
 			$tipe = 1;
 		}
 
-		$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+		$table_data = Aktivis::with('pekerjaan_aktif')
 		->whereHas('pekerjaan', function($query) use ($id,$tipe){
 			$query->where('tipe',$tipe)->where('id_tempat',$id)
-			->where(function($q){
-				$q->where('selesai',null)->orWhere('selesai','>',date('Y-m-d'))->orWhere('sekarang',1);
-			});
+			->where('status',1);
 		})->get();
 
 		return response()

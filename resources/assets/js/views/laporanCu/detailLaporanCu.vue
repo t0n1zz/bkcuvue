@@ -190,6 +190,7 @@
 									title="aset masalah"
 									:itemData="itemData.aset_masalah"
 									:itemDataBefore="itemDataBefore.aset_masalah"
+									:isOpposite="true"
 									></widget-data>
 							</div>	
 							<div @click.prevent="modalBuka('Aset Masalah', 'aset_masalah', itemData.aset_masalah, itemData.periode, '0', '', grafikData.data, [{title:'Aset Masalah',key:'aset_masalah',value:itemData.aset_masalah}])" 
@@ -198,6 +199,7 @@
 									title="aset masalah"
 									:itemData="itemData.aset_masalah"
 									:itemDataBefore="'0'"
+									:isOpposite="true"
 									></widget-data>	
 							</div>		
 						</div>

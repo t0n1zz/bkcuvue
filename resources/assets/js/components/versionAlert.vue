@@ -128,15 +128,6 @@
 			created(){
 				this.get();
 			},
-			watch: {
-				serverVersionStat(value){
-					if(value == "success"){
-						if(this.clientVersion != this.serverVersion){
-							this.reloadPage();
-						}
-					}
-				}
-			},
 			methods: {
 				get(){
 					this.serverVersionStat = 'loading';
@@ -144,6 +135,11 @@
 					.then((response) => {
 						this.serverVersion = response.data.model.version;
 						this.serverVersionStat = 'success';
+
+						// auto update
+						if(this.clientVersion != this.serverVersion){
+							this.reloadPage();
+						}
 					})
 					.catch(error => {
 						console.log(error);

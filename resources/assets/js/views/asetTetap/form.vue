@@ -437,7 +437,7 @@
 											</h6>
 
 											<!-- select -->
-											<select class="form-control" name="penanggungjawab" v-model="form.aktivis_id_pembeli" data-width="100%" v-validate="'required'" data-vv-as="Penangungjawab" :disabled="modelAktivis.length == 0">
+											<select class="form-control" name="pembeli" v-model="form.aktivis_id_pembeli" data-width="100%" v-validate="'required'" data-vv-as="Pembeli" :disabled="modelAktivis.length == 0">
 												<option disabled value="">
 													<span v-if="modelAktivisStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih pembeli</span>
@@ -775,7 +775,7 @@
 				}
 				this.fetchGolongan();
 				this.fetchLokasi();
-				this.fetchPenanggungjawab();
+				this.fetchAktivis();
 			},
 			fetchGolongan(){
 				this.$store.dispatch('asetTetapGolongan/resetDataS');
@@ -785,7 +785,7 @@
 				this.$store.dispatch('asetTetapLokasi/resetDataS');
 				this.$store.dispatch('asetTetapLokasi/get');
 			},
-			fetchPenanggungjawab(){
+			fetchAktivis(){
 				this.$store.dispatch('aktivis/resetDataS');
 				this.$store.dispatch('aktivis/get', 0);
 			},

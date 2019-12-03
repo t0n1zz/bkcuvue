@@ -355,7 +355,7 @@
 				}
 			},
 			fetchDalam(params){
-				this.$store.dispatch('aktivis/index', [params,'semua']);
+				this.$store.dispatch('aktivis/index', [params,'semua','aktif']);
 			},
 			fetchLuar(params){
 				this.$store.dispatch('mitraOrang/index');
