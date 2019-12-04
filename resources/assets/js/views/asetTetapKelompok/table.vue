@@ -58,15 +58,19 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.golongan.name" v-if="props.item.golongan"></check-value>
+						<check-value :value="props.item.golongan.kode" v-if="props.item.golongan"></check-value>
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.golongan.name" v-if="props.item.golongan"></check-value>
+						<span v-else>-</span>
+					</td>
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
-					<td v-if="!columnData[5].hide">{{props.item.has_aset_tetap_jenis_count}}</td>
-					<td v-if="!columnData[6].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[6].hide">{{props.item.has_aset_tetap_jenis_count}}</td>
+					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -76,7 +80,7 @@
 		</data-viewer>
 					
 		<!-- modal -->
-		<app-modal :show="modalShow" :color="modalColor" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :color="modalColor" :state="modalState" :title="modalTitle" :content="modalContent" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
 			<!-- title -->
 			<template slot="modal-title">
@@ -147,7 +151,16 @@
 						filterDefault: true
 					},
 					{
-						title: 'Golongan',
+						title: 'Kode Golongan',
+						name: 'golongan.kode',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Nama Golongan',
 						name: 'golongan.name',
 						tipe: 'string',
 						sort: false,
@@ -195,6 +208,7 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
+				modalContent:'',
 				modalButton: '',
 				modalColor: ''
 			}

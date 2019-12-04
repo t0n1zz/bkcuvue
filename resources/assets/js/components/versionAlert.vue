@@ -137,9 +137,9 @@
 						this.serverVersionStat = 'success';
 
 						// auto update
-						if(this.clientVersion != this.serverVersion){
-							this.reloadPage();
-						}
+						// if(this.clientVersion != this.serverVersion){
+						// 	this.reloadPage();
+						// }
 					})
 					.catch(error => {
 						console.log(error);

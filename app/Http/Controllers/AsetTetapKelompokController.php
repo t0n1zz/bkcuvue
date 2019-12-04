@@ -6,6 +6,7 @@ use Auth;
 use File;
 use Image;
 use Validator;
+use App\AsetTetapGolongan;
 use App\AsetTetapKelompok;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
@@ -16,12 +17,12 @@ class AsetTetapKelompokController extends Controller{
 
 	public function index()
 	{
-		$table_data = AsetTetapKelompok::advancedFilter();
-
+		$table_data = AsetTetapKelompok::with('golongan')->advancedFilter();
+		
 		return response()
 		->json([
 			'model' => $table_data
-		]);
+		]); 
 	}
 
 	public function get($id)
@@ -46,6 +47,13 @@ class AsetTetapKelompokController extends Controller{
 
 	public function store(Request $request)
 	{
+		if($request->aset_tetap_golongan_id){
+			$table_data = AsetTetapGolongan::where('id',$request->aset_tetap_golongan_id)->select('id','kode')->first();
+			$kode_golongan = $table_data->kode;
+			$kode_unik = $table_data->kode . $request->kode;
+			$request->request->add(['kode_unik' => $kode_unik]);
+		}
+
 		$this->validate($request,AsetTetapKelompok::$rules);
 
 		$name = $request->name;
@@ -74,8 +82,15 @@ class AsetTetapKelompokController extends Controller{
 
 	public function update(Request $request, $id)
 	{
+		if($request->aset_tetap_golongan_id){
+			$table_data = AsetTetapGolongan::where('id',$request->aset_tetap_golongan_id)->select('id','kode')->first();
+			$kode_golongan = $table_data->kode;
+			$kode_unik = $table_data->kode . $request->kode;
+			$request->request->add(['kode_unik' => $kode_unik]);
+		}
+
 		$rules = AsetTetapKelompok::$rules;
-		$rules['kode'] = $rules['kode'] . ',id,' . $id;
+		$rules['kode_unik'] = $rules['kode_unik'] . ',id,' . $id;
 		$validationCertificate  = Validator::make($request->all(), $rules); 
 
 		$name = $request->name;

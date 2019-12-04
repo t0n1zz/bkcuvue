@@ -139,7 +139,7 @@
 		</data-viewer>
 					
 		<!-- modal -->
-		<app-modal :show="modalShow" :color="modalColor" :size="modalSize" :state="modalState" :title="modalTitle" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :color="modalColor" :size="modalSize" :state="modalState" :title="modalTitle"  :content="modalContent" :button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
 			<!-- title -->
 			<template slot="modal-title">
@@ -369,6 +369,7 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
+				modalContent:'',
 				modalButton: '',
 				modalColor: '',
 				modalSize:'',
