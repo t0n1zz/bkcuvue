@@ -2,16 +2,17 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class ArtikelPenulis extends Model {
+class ArtikelPenulis extends BaseEloquent {
 
-    use Dataviewer, LogsActivity, Sluggable;
+    use Dataviewer, LogsActivity, Sluggable, SoftDeletes;
     
     protected $table = 'artikel_penulis';
-
+    protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
     

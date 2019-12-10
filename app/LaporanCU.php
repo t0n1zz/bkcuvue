@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class LaporanCu extends Model {
+class LaporanCu extends BaseEloquent {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes;
@@ -16,8 +16,8 @@ class LaporanCu extends Model {
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
     protected $revisionEnabled = true;
-    protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
-    protected $historyLimit = 500; //Maintain a maximum of 500 changes at any point of time, while cleaning up old revisions.
+    protected $revisionCleanup = true;
+    protected $historyLimit = 500;
 
     public static $rules = [
         'id_cu' => 'required',

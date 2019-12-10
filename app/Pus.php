@@ -3,7 +3,7 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 
-class Pus extends Model {
+class Pus extends BaseEloquent {
     
     protected $table = 'pus';
     

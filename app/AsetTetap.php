@@ -3,15 +3,16 @@ namespace App;
 
 use DB;
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AsetTetap extends Model {
+class AsetTetap extends BaseEloquent {
     
-    use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'aset_tetap';
+    protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
     
@@ -43,7 +44,7 @@ class AsetTetap extends Model {
     protected $allowedFilters = [
         'aset_id','aktivis_id','kode','name','aset_tetap_golongan_id','aset_tetap_kelompok_id','aset_tetap_jenis_id','merk','tipe','aset_tetap_lokasi_id','kondisi','gambar','created_at','updated_at','aktivis_id_pembeli','tanggal','harga','keterangan',
         
-        'aktivs.name','golongan.name','kelompok.name','jenis.name','lokasi.name','pembeli.name'
+        'aktivis.name','golongan.name','kelompok.name','jenis.name','lokasi.name','pembeli.name'
     ];
 
     protected $orderable = [

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Pengumuman extends Model
+class Pengumuman extends BaseEloquent
 {
     use Dataviewer, LogsActivity;
 

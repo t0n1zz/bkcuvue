@@ -2,17 +2,19 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Aktivis extends Model {
+class Aktivis extends BaseEloquent {
 
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'aktivis';
 
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
+    protected $dates = ['deleted_at'];
 
     public static $rules = [
         'name' => 'required',

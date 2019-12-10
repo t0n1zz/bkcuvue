@@ -2,15 +2,16 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
-use App\Support\FilterPaginateOrder;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AnggotaProdukCuSaldo extends Model {
+class AnggotaProdukCuSaldo extends BaseEloquent {
 
-    use FilterPaginateOrder, LogsActivity;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'anggota_produk_cu_saldo';
-
+    protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
 

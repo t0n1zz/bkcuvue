@@ -6,7 +6,7 @@ use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Kegiatan extends Model {
+class Kegiatan extends BaseEloquent {
     
     use Dataviewer, LogsActivity, SoftDeletes;
 

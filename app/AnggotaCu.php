@@ -3,15 +3,16 @@ namespace App;
 
 use Auth;
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AnggotaCu extends Model {
+class AnggotaCu extends BaseEloquent {
     
-    use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'anggota_cu';
+    protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
     

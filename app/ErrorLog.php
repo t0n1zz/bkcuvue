@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 
-class ErrorLog extends Model
+class ErrorLog extends BaseEloquent
 {
     use Dataviewer;
 

@@ -2,15 +2,16 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AsetTetapJenis extends Model {
+class AsetTetapJenis extends BaseEloquent {
     
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'aset_tetap_jenis';
-
+    protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
     
@@ -19,7 +20,6 @@ class AsetTetapJenis extends Model {
         'kode'=> 'sometimes|required',
         'kode_unik' => 'sometimes|required|unique:aset_tetap_jenis',
         'name' => 'required',
-
     ];
     
     protected $fillable = ['aset_tetap_kelompok_id','kode','kode_unik','name','keterangan'];

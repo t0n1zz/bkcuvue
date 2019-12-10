@@ -10,6 +10,7 @@ use App\AsetTetap;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 use App\Imports\AsetTetapNewDraftImport;
+use Carbon\Carbon;
 
 class AsetTetapController extends Controller{
 
@@ -28,7 +29,6 @@ class AsetTetapController extends Controller{
 			$datas->kode = $datas->kode ? $datas->kode . "​ " : '';
 			$datas->total_harga = $datas->harga + $datas->harga_sub;
 		}
-
 
 		return response()
 		->json([

@@ -4,7 +4,7 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 
-class KegiatanPeserta extends Model {
+class KegiatanPeserta extends BaseEloquent {
 
     use Dataviewer;
 

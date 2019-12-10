@@ -3,19 +3,22 @@ namespace App;
 
 use DB;
 use illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
-use App\Support\FilterPaginateOrder;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class JalinanKlaim extends Model {
+class JalinanKlaim extends BaseEloquent {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, FilterPaginateOrder, LogsActivity;
+    use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'jalinan_klaim';
-
+    protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true;
+    protected $historyLimit = 500;
 
     public static $rules = [
         'anggota_cu_id' => 'required',
@@ -26,6 +29,15 @@ class JalinanKlaim extends Model {
         'tunas_diajukan' => 'required',
         'tunas_disetujui' => 'required'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $dontKeepRevisionOf = array(
+        'deleted_at'
+    );
 
     protected $fillable = [
         'anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan','verifikasi_pengurus','verifikasi_pengawas','verifikasi_manajemen'

@@ -4,7 +4,7 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class LaporanTpDiskusi extends Model {
+class LaporanTpDiskusi extends BaseEloquent {
     
     use LogsActivity;
     

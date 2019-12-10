@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 
-class Saran extends Model
+class Saran extends BaseEloquent
 {
     use Dataviewer;
 

@@ -233,7 +233,7 @@
 						title: 'Kelompok',
 						name: 'kelompok.name',
 						tipe: 'string',
-						sort: true,
+						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,

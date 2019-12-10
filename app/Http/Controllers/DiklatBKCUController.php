@@ -38,7 +38,6 @@ class DiklatBKCUController extends Controller{
 		]);
 	}
 
-
 	public function indexBaru()
 	{
 		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
@@ -264,24 +263,24 @@ class DiklatBKCUController extends Controller{
 	public function storePeserta(Request $request, $id)
 	{
 		// check interval
-		$id_cu = Auth::user()->getIdCu();
-		$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
-			$query->where('id', $id_cu);
-		})->orderBy('created_at','desc')->first();
-		$time = \Carbon\Carbon::now();
+		// $id_cu = Auth::user()->getIdCu();
+		// $dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
+		// 	$query->where('id', $id_cu);
+		// })->orderBy('created_at','desc')->first();
+		// $time = \Carbon\Carbon::now();
 
 		// save data
 		$kelas = KegiatanPeserta::create($request->except('status','kegiatan_id') + [ 'kegiatan_id' => $id, 'status' => 1 ]);
 
 		// send notif if interval different is more than 2 hours
-		if($dataPeserta){
-			$diff = $time->diffInHours($dataPeserta->created_at);
-			if($diff > 2){
-				NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
-			}
-		}else{
-			NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
-		}
+		// if($dataPeserta){
+		// 	$diff = $time->diffInHours($dataPeserta->created_at);
+		// 	if($diff > 2){
+		// 		NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
+		// 	}
+		// }else{
+			// NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
+		// }
 		
 		return response()
 			->json([

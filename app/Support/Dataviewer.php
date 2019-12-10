@@ -5,10 +5,23 @@ use Illuminate\Validation\ValidationException;
 
 trait Dataviewer {
 
-    public function scopeAdvancedFilter($query)
+    public function scopeAdvancedFilter($query, $columns = [])
     {
-        return $this->process($query, request()->all())
-            ->orderBy(
+        // return $this->process($query, request()->all())
+        //     ->orderBy(
+        //         request('order_column', 'created_at'),
+        //         request('order_direction', 'desc')
+        //     )
+        //     ->paginate(request('limit', 10));
+
+        $result = $this->process($query, request()->all());
+
+        if (count($columns) > 0) {
+            $result = $result->select($columns);
+        }
+
+        return $result
+		->orderBy(
                 request('order_column', 'created_at'),
                 request('order_direction', 'desc')
             )
