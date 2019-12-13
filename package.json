@@ -27,6 +27,7 @@
         "hooper": "^0.3.4",
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.24.0",
+        "node-sass": "^4.13.0",
         "v-tooltip": "^2.0.2",
         "vee-validate": "^2.2.15",
         "vue-ckeditor5": "^0.3.1",

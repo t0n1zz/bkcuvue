@@ -106,7 +106,7 @@
               <check-value :value="props.item.cu_name"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.laki-laki" valueType="currency"></check-value>
+              <check-value :value="props.item.lakilaki" valueType="currency"></check-value>
             </td>
             <td>
               <check-value :value="props.item.perempuan" valueType="currency"></check-value>

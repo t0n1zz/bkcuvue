@@ -28,7 +28,7 @@ class AnggotaCuController extends Controller{
 
 	public function index()
 	{
-		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query){ 
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query){ 
 			$query->whereNull('anggota_cu_cu.tanggal_keluar'); 
 		})->where(function($query){
 			$query->where('status_jalinan','!=','meninggal')->orWhere('status_jalinan', NULL);

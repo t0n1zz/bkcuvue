@@ -432,7 +432,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCuDraft/edit/{id}', 'AnggotaCuDraftController@edit');
         Route::post('/anggotaCuDraft/update/{id}', 'AnggotaCuDraftController@update');
         Route::delete('/anggotaCuDraft/destroy/{id}', 'AnggotaCuDraftController@destroy');
-        Route::delete('/anggotaCuDraft/destroyAll', 'AnggotaCuDraftController@destroyAll');
+        Route::delete('/anggotaCuDraft/destroyAll/{cu}', 'AnggotaCuDraftController@destroyAll');
         Route::get('/anggotaCuDraft/count/{cu}/{tp}', 'AnggotaCuDraftController@count');
     });
 

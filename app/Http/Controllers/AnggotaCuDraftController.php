@@ -29,11 +29,29 @@ class AnggotaCuDraftController extends Controller{
 				}
 			})->advancedFilter();
 		}
+
+		$table_data = $this->formatQuery($table_data);
 		
 		return response()
 		->json([
 			'model' => $table_data
 		]);
+	}
+
+	public function formatQuery($table_data){
+		foreach($table_data as $t){
+			$t->nik = $t->nik ? $t->nik . "​ " : '';
+			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			$t->no_ba = '';
+			$t->tanggal_masuk = '';
+			foreach($t->anggota_cu_cu_not_keluar as $ta){
+				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
+				$t->no_ba .= ' CU ' . $ta->cu->name. ': ' .$ta->no_ba;
+				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
+			}
+		};
+
+		return $table_data;
 	}
 
 	public function store($id)
@@ -266,7 +284,7 @@ class AnggotaCuDraftController extends Controller{
 			}
 			$kelas->delete();
 
-			$kelas2 = AnggotaCuDraft::where('cu_id',$cu);
+			$kelas2 = AnggotaCuCuDraft::where('cu_id',$cu);
 			$kelas2->delete();
 			\DB::commit();
 

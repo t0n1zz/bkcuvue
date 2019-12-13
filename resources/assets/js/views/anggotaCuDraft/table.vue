@@ -84,21 +84,7 @@
 						<check-value :value="props.item.name"></check-value>
 					</td>
           <td v-if="!columnData[4].hide">
-            <span v-if="props.item.anggota_cu_cu_not_keluar">
-              <span v-for="(anggota_cu,index) in props.item.anggota_cu_cu_not_keluar" :key="index">
-                <span v-if="$route.params.cu != 'semua'">
-                  <span v-if="$route.params.cu == anggota_cu.cu_id">
-                    <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.no_ba }}</span>
-                    <span v-else>{{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>
-                  </span>
-                </span>
-                <span>
-                  <span v-if="$route.params.tp != 'semua'">{{ anggota_cu.cu.name }} - {{ anggota_cu.no_ba }}</span>
-                  <span v-else>{{ anggota_cu.cu.name + ' | ' }} {{ anggota_cu.tp ? anggota_cu.tp.name + ' | ' : '' }} {{ anggota_cu.no_ba }}</span>    
-                </span>
-              </span>
-            </span>
-            <span v-else>-</span>
+            <check-value :value="props.item.no_ba"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.lembaga"></check-value>

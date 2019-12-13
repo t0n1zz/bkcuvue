@@ -98,8 +98,8 @@ class CuController extends Controller{
 	}
 	
 	public function getBirthday()
-	{
-		$table_data = Cu::whereRaw('DATE_FORMAT(ultah, "%d-%m") = DATE_FORMAT(CURDATE(), "%d-%m")')->select('id','name','ultah', DB::raw('TIMESTAMPDIFF(YEAR, ultah, CURDATE()) AS usia'))->get();
+	{		
+		$table_data = Cu::whereRaw('DATE_FORMAT(ultah, "%d-%m") = DATE_FORMAT(CURDATE(), "%d-%m")')->select('id','name','ultah', DB::raw('TIMESTAMPDIFF(YEAR, ultah, CURDATE()) AS usia'))->dontRemember()->get();
 
 		return response()
 			->json([

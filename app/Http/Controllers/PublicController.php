@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use SEO;
 use App\Cu;
 use Response;
