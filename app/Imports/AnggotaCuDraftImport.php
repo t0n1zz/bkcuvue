@@ -20,45 +20,53 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
+class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading, ShouldQueue
 {
 
     public function model(array $row)
     {
-        $ktp = '';
-        $provinces = '';
-        $regencies = '';
-        $districts = '';
-        $villages = '';
-        $jabatan = '';
-        $alih_waris = '';
-        $rt = preg_replace('/[^A-Za-z0-9]/', '',$row['rt']);
-        $rw = preg_replace('/[^A-Za-z0-9]/', '',$row['rw']);
-        $gender = strtoupper($row['gender']);
-        $status_pernikahan = strtoupper($row['status_pernikahan']);
+        $gender = array_key_exists('gender', $row) ? strtoupper($row['gender']) : '';
+        $status_pernikahan = array_key_exists('status_pernikahan', $row) ? strtoupper($row['status_pernikahan']) : '';
 
-        if($row['ktp']){
-            $ktp = $row['ktp'];
+        if(array_key_exists('ktp', $row) && $row['ktp']){
+            $ktp = preg_replace('/\s+/', ' ',$row['ktp']);
+
+            $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
+            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
         }else{
-            $kelas_ktp = System::select('nik')->first();
+            $kelas_ktp = System::findOrFail(1);
             $ktp = $kelas_ktp->nik;
+            $val = $ktp + 1;
+            $kelas_ktp->nik = str_pad($val,16,"0",STR_PAD_LEFT);
+            $kelas_ktp->update();
+
+            $anggotaCu = null;
+            $anggotaCuDraft = null;
         }
 
-        if($row['provinsi']){
+        if(array_key_exists('provinsi', $row) && $row['provinsi']){
             $provinces = Provinces::where('name','like', '%' .strtoupper($row['provinsi']). '%')->first();
             $provinces = $provinces ? $provinces->id : '';
+        }else{
+            $provinces = '';
         }
-        if($row['kabupaten']){
+        if(array_key_exists('kabupaten', $row) && $row['kabupaten']){
             $regencies = Regencies::where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
             $regencies = $regencies ? $regencies->id : '';
+        }else{
+            $regencies = '';
         }
-        if($row['kecamatan']){
+        if(array_key_exists('kecamatan', $row) && $row['kecamatan']){
             $districts = Districts::where('name','like', '%' .strtoupper($row['kecamatan']). '%')->first();
             $districts = $districts ? $districts->id : '';
+        }else{
+            $districts = '';
         }
-        if($row['kelurahan']){
+        if(array_key_exists('kelurahan', $row) && $row['kelurahan']){
             $villages = Villages::where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first();
             $villages = $villages ? $villages->id : '';
+        }else{
+            $villages = '';
         }
 
         if($gender == 'L'){
@@ -73,82 +81,64 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
             $status_pernikahan = 'BELUM MENIKAH';
         }
 
-        if($row['alih_waris']){
-            $alih_waris = $row['alih_waris'];
-        }else if($row['alih_waris']){
-            $alih_waris = $row['alih_waris'];
-        }
-
-        $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
-        $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
-
-        if($row['ktp']){
-            $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
-            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
-        }
-
         if(!$anggotaCu && !$anggotaCuDraft){
             $anggotaCu = AnggotaCuDraft::create([
-                'name' => $row['nama'] ? $row['nama'] : '',
+                'name' => array_key_exists('nama', $row) ? $row['nama'] : '',
                 'id_provinces' => $provinces,
                 'id_regencies' => $regencies,
                 'id_districts' => $districts,
                 'id_villages' => $villages,
                 'nik' => $ktp,
-                'npwp' => $row['npwp'] ? $row['npwp'] : '',
-                'tempat_lahir' => $row['tempat_lahir'] ? $row['tempat_lahir'] : '',
-                'tanggal_lahir' => $row['tanggal_lahir'] ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_lahir']) : '',
+                'npwp' => array_key_exists('npwp', $row) ? $row['npwp'] : '',
+                'tempat_lahir' => array_key_exists('tempat_lahir', $row)? $row['tempat_lahir'] : '',
+                'tanggal_lahir' => array_key_exists('tanggal_lahir', $row) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_lahir']) : '',
                 'kelamin' => $gender,
-                'agama' => $row['agama'] ? strtoupper($row['agama']) : '',
+                'agama' => array_key_exists('agama', $row) ? strtoupper($row['agama']) : '',
                 'status' => $status_pernikahan,
-                'alamat' => $row['alamat'] ? $row['alamat'] : '',
-                'rt' => $rt,
-                'rw' => $rw,
-                'kontak' => $row['kontak_lain'] ? $row['kontak_lain'] : '' ,
-                'darah' => strtoupper($row['golongan_darah']),
-                'tinggi' => $row['tinggi'] ? $row['tinggi'] : '',
-                'email' => $row['email'] ? $row['email'] : '',
-                'hp' => $row['hp'] ? preg_replace('/\s+/', '',$row['hp']) : '',
-                'pendidikan' => $row['pendidikan'] ? strtoupper($row['pendidikan']) : '',
-                'lembaga' => $row['tempat_kerja'] ? $row['tempat_kerja'] : '',
-                'jabatan' => $row['jabatan'] ? strtoupper($row['jabatan']) : '',
-                'organisasi' => $row['organisasi'] ? $row['organisasi'] : '',
-                'alih_waris' => $alih_waris,
-                'pekerjaan' => $row['pekerjaan'] ? strtoupper($row['pekerjaan']) : '',
-                'penghasilan' => $row['rata_rata_penghasilan_perbulan'] ? strtoupper($row['rata_rata_penghasilan_perbulan']) : 0,
-                'pengeluaran' => $row['rata_rata_pengeluaran_perbulan'] ? strtoupper($row['rata_rata_pengeluaran_perbulan']) : 0,
-                'suku' => $row['suku'] ? strtoupper($row['suku']) : '',
-                'nama_ibu' => $row['nama_ibu'] ? $row['nama_ibu'] : '',
-                'kk' => $row['kk'] ? $row['kk'] : ''
+                'alamat' => array_key_exists('alamat', $row)? $row['alamat'] : '',
+                'rt' => array_key_exists('rt', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['rt']) : '',
+                'rw' => array_key_exists('rw', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['rw']) : '',
+                'kontak' => array_key_exists('kontak_lain', $row) ? $row['kontak_lain'] : '' ,
+                'darah' => array_key_exists('golongan_darah', $row) ? strtoupper($row['golongan_darah']) : '',
+                'tinggi' => array_key_exists('tinggi', $row) ? $row['tinggi'] : '',
+                'email' => array_key_exists('email', $row) ? $row['email'] : '',
+                'hp' => array_key_exists('hp', $row) ? preg_replace('/\s+/', '',$row['hp']) : '',
+                'pendidikan' => array_key_exists('pendidikan', $row) ? strtoupper($row['pendidikan']) : '',
+                'lembaga' => array_key_exists('tempat_kerja', $row) ? $row['tempat_kerja'] : '',
+                'jabatan' => array_key_exists('jabatan', $row) ? strtoupper($row['jabatan']) : '',
+                'organisasi' => array_key_exists('organisasi', $row) ? $row['organisasi'] : '',
+                'ahli_waris' => array_key_exists('ahli_waris', $row) ? $row['organisasi'] : '',
+                'pekerjaan' => array_key_exists('pekerjaan', $row) ? strtoupper($row['pekerjaan']) : '',
+                'penghasilan' => array_key_exists('rata_rata_penghasilan_perbulan', $row) ? $row['rata_rata_penghasilan_perbulan'] : 0,
+                'pengeluaran' => array_key_exists('rata_rata_pengeluaran_perbulan', $row) ? $row['rata_rata_pengeluaran_perbulan'] : 0,
+                'suku' => array_key_exists('suku', $row) ? strtoupper($row['suku']) : '',
+                'nama_ibu' => array_key_exists('nama_ibu', $row) ? $row['nama_ibu'] : '',
+                'kk' => array_key_exists('kk', $row) ? $row['kk'] : ''
             ]);
         }
 
         if($anggotaCu){
+            $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+            $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
+
             AnggotaCuCuDraft::create([
                 'anggota_cu_draft_id' => $anggotaCu->id,
                 'cu_id' => $cu->id,
                 'tp_id' => $tp->id,
-                'no_ba' => $row['no_ba'] ? $row['no_ba'] : '',
-                'tanggal_masuk' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']),
-                'keterangan_masuk' => $row['keterangan_jadi_anggota'],
+                'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
+                'tanggal_masuk' => array_key_exists('tanggal_jadi_anggota', $row) ?\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']) : '',
+                'keterangan_masuk' => array_key_exists('keterangan_jadi_anggota', $row) ? $row['keterangan_jadi_anggota'] : '',
             ]);
         }
-
-        if(!$row['ktp']){
-            $val = $ktp + 1;
-            $kelas_ktp->nik = str_pad($val,16,"0",STR_PAD_LEFT);
-            $kelas_ktp->update();
-        }
-        
-    }
-
-    public function batchSize(): int
-    {
-        return 100;
     }
     
     public function chunkSize(): int
     {
-        return 100;
+        return 1000;
+    }
+
+    public function headingRow(): int
+    {
+        return 1;
     }
 }
