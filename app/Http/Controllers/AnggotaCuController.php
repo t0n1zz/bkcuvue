@@ -135,8 +135,9 @@ class AnggotaCuController extends Controller{
 			$t->no_ba = '';
 			$t->tanggal_masuk = '';
 			foreach($t->anggota_cu_cu_not_keluar as $ta){
-				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
-				$t->no_ba .= ' CU ' . $ta->cu->name. ': ' .$ta->no_ba;
+				$tp_name = $ta->tp ? ' | ' . $ta->tp->name : '';
+				$cu_name = $ta->cu ? $ta->cu->name : '';
+				$t->no_ba .= $cu_name . $tp_name . ' : ' .$ta->no_ba;
 				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
 			}
 		};
@@ -151,8 +152,9 @@ class AnggotaCuController extends Controller{
 			$t->no_ba = '';
 			$t->tanggal_masuk = '';
 			foreach($t->anggota_cu_cu_keluar as $ta){
-				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
-				$t->no_ba .= ' CU ' . $ta->cu->name. ': ' .$ta->no_ba;
+				$tp_name = $ta->tp ? ' | ' . $ta->tp->name : '';
+				$cu_name = $ta->cu ? $ta->cu->name : '';
+				$t->no_ba .= $cu_name . $tp_name . ' : ' .$ta->no_ba;
 				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
 			}
 		};
@@ -169,7 +171,7 @@ class AnggotaCuController extends Controller{
 				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
 			}else{
 				$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name : '';
-				$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
+				$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_not_keluar[0]->no_ba;
 				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
 			}
 		};
@@ -186,7 +188,7 @@ class AnggotaCuController extends Controller{
 				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
 			}else{
 				$tp_name = $t->anggota_cu_cu_keluar[0]->tp ? $t->anggota_cu_cu_keluar[0]->tp->name : '';
-				$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
+				$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_not_keluar[0]->no_ba;
 				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
 			}
 		};
@@ -613,22 +615,29 @@ class AnggotaCuController extends Controller{
 	{
 		if($request->anggota_cu_cu){
 			$cus = $request->anggota_cu_cu;
-			unset($cus['id']);
-			unset($cus['name']);
-
-			$cuArray = array();
-
+			
 			foreach($cus as $cu){
-				$cuArray[$cu['no_ba']] = [
-					'cu_id' => array_key_exists('cu_id', $cu) ? $cu['cu_id'] : null,
-					'tp_id' => array_key_exists('tp_id', $cu) ? $cu['tp_id'] : null,
-					'no_ba' => array_key_exists('no_ba', $cu) ? $cu['no_ba'] : null,
-					'tanggal_masuk' => array_key_exists('tanggal_masuk', $cu) ? $cu['tanggal_masuk'] : null,
-					'keterangan_masuk' => array_key_exists('keterangan_masuk', $cu) ? $cu['keterangan_masuk'] : null
-				];
+				if(array_key_exists('id', $cu)){
+					$kelasCu = AnggotaCuCu::findOrFail($cu['id']);
+					$kelasCu->update([
+						'anggota_cu_id' => $kelas->id,
+						'cu_id' => array_key_exists('cu_id', $cu) ? $cu['cu_id'] : null,
+						'tp_id' => array_key_exists('tp_id', $cu) ? $cu['tp_id'] : null,
+						'no_ba' => array_key_exists('no_ba', $cu) ? $cu['no_ba'] : null,
+						'tanggal_masuk' => array_key_exists('tanggal_masuk', $cu) ? $cu['tanggal_masuk'] : null,
+						'keterangan_masuk' => array_key_exists('keterangan_masuk', $cu) ? $cu['keterangan_masuk'] : null
+					]);
+				}else{
+					AnggotaCuCu::create([
+						'anggota_cu_id' => $kelas->id,
+						'cu_id' => array_key_exists('cu_id', $cu) ? $cu['cu_id'] : null,
+						'tp_id' => array_key_exists('tp_id', $cu) ? $cu['tp_id'] : null,
+						'no_ba' => array_key_exists('no_ba', $cu) ? $cu['no_ba'] : null,
+						'tanggal_masuk' => array_key_exists('tanggal_masuk', $cu) ? $cu['tanggal_masuk'] : null,
+						'keterangan_masuk' => array_key_exists('keterangan_masuk', $cu) ? $cu['keterangan_masuk'] : null
+					]);
+				}
 			}
-			// return $cuArray;
-			$kelas->anggota_cu()->syncWithoutDetaching($cuArray);
 		}
 		
 		if($request->id_cu){

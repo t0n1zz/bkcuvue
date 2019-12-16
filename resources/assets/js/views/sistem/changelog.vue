@@ -10,15 +10,40 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
-               <!-- Version 3.2.1 -->
+              <!-- Version 3.2.2 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#321">Version 3.2.1 <small class="text-muted"> / 3 Desember 2019</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#322">Version 3.2.2 <small class="text-muted"> / 18 Desember 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="321" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="322" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini memperbaiki beberapa bug tampilan data
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug pada menampilkan data detail laporan CU untuk akun aset bermasalah</li>
+                      <li>Perbaikan bug pada menampilkan data anggota</li>
+                      <li>Perbaikan bug pada menampilkan data pembeli dan penanggungjawab di aset tetap</li>
+                      <li>Perbaikan bug pada menampilkan data panitia dalam gerakan untuk diklat</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.2 -->
+
+              <!-- Version 3.2.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#321">Version 3.2.1 <small class="text-muted"> / 3 Desember 2019</small></a>
+                  </h5>
+                </div>
+
+                <div id="321" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperbaiki beberapa bug tampilan data
                     <br/><br/>

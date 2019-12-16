@@ -21,11 +21,11 @@ class AnggotaCuDraftController extends Controller{
 		if($cu == 'semua'){
 			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->advancedFilter();
 		}else{
-			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($cu, $tp){ 
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
 				if($tp != 'semua'){
-					$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp);
+					$query->where('anggota_cu_cu_draft.cu_id',$cu)->where('anggota_cu_cu_draft.tp_id',$tp);
 				}else{
-					$query->where('anggota_cu_cu.cu_id',$cu);
+					$query->where('anggota_cu_cu_draft.cu_id',$cu);
 				}
 			})->advancedFilter();
 		}
@@ -45,8 +45,9 @@ class AnggotaCuDraftController extends Controller{
 			$t->no_ba = '';
 			$t->tanggal_masuk = '';
 			foreach($t->anggota_cu_cu_not_keluar as $ta){
-				$tp_name = $ta->tp ? $ta->tp->name. ', ' : '';
-				$t->no_ba .= ' CU ' . $ta->cu->name. ': ' .$ta->no_ba;
+				$tp_name = $ta->tp ? ' | ' . $ta->tp->name : '';
+				$cu_name = $ta->cu ? $ta->cu->name : '';
+				$t->no_ba .= $cu_name . $tp_name . ' : ' .$ta->no_ba;
 				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
 			}
 		};

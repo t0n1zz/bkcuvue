@@ -32,6 +32,10 @@ export default {
     return axios.get('/api/jalinanKlaim/getPencairan');
   },
 
+  getVerifikator: function( verifikator_pengurus,verifikator_pengawas, verifikator_manajemen ){
+    return axios.get('/api/jalinanKlaim/getVerifikator/' + verifikator_pengurus + '/' + verifikator_pengawas + '/' + verifikator_manajemen);
+  },
+
   create: function(){
     return axios.get('/api/jalinanKlaim/create');
   },

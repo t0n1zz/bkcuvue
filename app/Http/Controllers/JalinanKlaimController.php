@@ -5,6 +5,7 @@ use DB;
 use Auth;
 use File;
 use Image;
+use App\User;
 use App\AnggotaCu;
 use App\JalinanKlaim;
 use App\JalinanKlaimStatus;
@@ -19,16 +20,20 @@ class JalinanKlaimController extends Controller{
 	public function index($status, $awal, $akhir)
 	{
 		if($awal != 'undefined' && $akhir != 'undefined'){
-			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)
 			->advancedFilter();
 		}else if($awal != 'undefined'){
-			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->advancedFilter();
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->advancedFilter();
 		}else{
-			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('status_klaim',$status)->advancedFilter();
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('status_klaim',$status)->advancedFilter();
 		}
 
 		foreach($table_data as $t){
-			$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+			// $t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+
+			// $tanggal_masuk = $t->anggota_cu_cu ? \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk) : '';
+			// $tanggal_meninggal = $t->anggota_cu ? \Carbon\Carbon::parse($t->anggota_cu->tanggal_meninggal) : '';
+			// $t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
 			// $t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
 		}
 
@@ -41,15 +46,15 @@ class JalinanKlaimController extends Controller{
 	public function indexCu($cu, $status, $awal, $akhir)
 	{
 		if($awal != 'undefined' && $akhir != 'undefined'){
-			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 				$query->where('cu_id',$cu); 
 			})->advancedFilter();
 		}else if($awal != 'undefined'){
-			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 				$query->where('cu_id',$cu); 
 			})->advancedFilter();
 		}else{
-			$table_data = JalinanKlaim::with('anggota_cu','verifikasi_pengurus_data.aktivis.pekerjaan_aktif','verifikasi_pengawas_data.aktivis.pekerjaan_aktif','verifikasi_manajemen_data.aktivis.pekerjaan_aktif','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 				$query->where('cu_id',$cu); 
 			})->advancedFilter();
 		}
@@ -57,6 +62,10 @@ class JalinanKlaimController extends Controller{
 		foreach($table_data as $t){
 			$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
 			$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+
+			$tanggal_masuk = \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk);
+			$tanggal_meninggal = \Carbon\Carbon::parse($t->anggota_cu->tanggal_meninggal);
+			$t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
 		}
 
 		return response()
@@ -467,6 +476,19 @@ class JalinanKlaimController extends Controller{
 			'model' => $table_data2
 		]);
 	} 
+
+	public function getVerifikator($verifikator_pengurus, $verifikator_pengawas, $verifikator_manajemen){
+		$table_data1 = User::with('aktivis.pekerjaan_aktif')->where('id',$verifikator_pengurus)->first();
+		$table_data2 = User::with('aktivis.pekerjaan_aktif')->where('id',$verifikator_pengawas)->first();
+		$table_data3 = User::with('aktivis.pekerjaan_aktif')->where('id',$verifikator_manajemen)->first();
+		
+		return response()
+		->json([
+			'model1' => $table_data1,
+			'model2' => $table_data2,
+			'model3' => $table_data3
+		]);
+	}
 
 	public function create()
 	{

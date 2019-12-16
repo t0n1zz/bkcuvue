@@ -440,6 +440,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/jalinanKlaim/count', 'JalinanKlaimController@count');
     Route::get('/jalinanKlaim/history', 'JalinanKlaimController@history');
     Route::get('/jalinanKlaim/cekData/{id}', 'JalinanKlaimController@cekData');
+    Route::get('/jalinanKlaim/getVerifikator/{verifikator_pengurus}/{verifikator_pengawas}/{verifikator_manajemen}', 'JalinanKlaimController@getVerifikator');
     Route::post('/jalinanKlaim/updateVerifikasi/{id}', 'JalinanKlaimController@updateVerifikasi');
     Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');

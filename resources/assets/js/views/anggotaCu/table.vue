@@ -747,7 +747,7 @@
           this.$router.push({
             name: "jalinanKlaimCreateNIK",
             params: {
-              nik: id
+              nik: id.replace(/\s/g,"").replace(/[^\x00-\x7F]/g, "")
             }
           });
         }

@@ -17,8 +17,14 @@ class AnggotaCu extends BaseEloquent {
     protected static $logOnlyDirty = true;
     
     public static $rules = [
-        'name' => 'required',
         'nik'=> 'sometimes|required|unique:anggota_cu',
+        'name' => 'required',
+        'ahli_waris' => 'required',
+        'kelamin' => 'required',
+        'tanggal_lahir' => 'required',
+        'tempat_lahir' => 'required',
+        'id_provinces' => 'required',
+        'alamat' => 'required',
     ];
 
     public static function boot()

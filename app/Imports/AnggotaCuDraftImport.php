@@ -136,9 +136,4 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
     {
         return 1000;
     }
-
-    public function headingRow(): int
-    {
-        return 1;
-    }
 }

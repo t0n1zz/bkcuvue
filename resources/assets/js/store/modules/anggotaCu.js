@@ -151,10 +151,10 @@ export const anggotaCu = {
         });
     }, 
 
-    indexCuDraft( { commit }, [cu, tp] ){
+    indexCuDraft( { commit }, [p, cu, tp] ){
       commit('setDataStatS', 'loading');
       
-      AnggotaCuDraftAPI.index( cu, tp )
+      AnggotaCuDraftAPI.index( p, cu, tp )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');

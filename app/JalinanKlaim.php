@@ -69,6 +69,7 @@ class JalinanKlaim extends BaseEloquent {
 
     public function anggota_cu_cu()
     {
+        // todo: bukan curdate tapi tanggal meninggal
         return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(MONTH, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
     }
 

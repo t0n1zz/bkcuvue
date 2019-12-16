@@ -15,6 +15,9 @@ export const jalinanKlaim = {
     dataS4: [], //collection
     dataS5: [], //collection
     dataS6: [], //collection
+    dataVeri1: [], //collection
+    dataVeri2: [], //collection
+    dataVeri3: [], //collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
@@ -28,6 +31,7 @@ export const jalinanKlaim = {
     dataStatS4: '',
     dataStatS5: '',
     dataStatS6: '',
+    dataStatVeri: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -49,6 +53,9 @@ export const jalinanKlaim = {
     dataS4: state => state.dataS4,
     dataS5: state => state.dataS5,
     dataS6: state => state.dataS6,
+    dataVeri1: state => state.dataVeri1,
+    dataVeri2: state => state.dataVeri2,
+    dataVeri3: state => state.dataVeri3,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
@@ -62,6 +69,7 @@ export const jalinanKlaim = {
     dataStatS4: state => state.dataStatS4,
     dataStatS5: state => state.dataStatS5,
     dataStatS6: state => state.dataStatS6,
+    dataStatVeri: state => state.dataStatVeri,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -328,7 +336,22 @@ export const jalinanKlaim = {
         });
     },
 
-    // load collection of periode
+    getVerifikator( {commit}, [verifikator_pengurus, verifikator_pengawas, verifikator_manajemen] ){
+      commit('setDataStatVeri', 'loading');
+      
+      JalinanKlaimAPI.getVerifikator( verifikator_pengurus, verifikator_pengawas, verifikator_manajemen )
+        .then( function( response ){
+          commit('setDataVeri1', response.data.model1);
+          commit('setDataVeri2', response.data.model2);
+          commit('setDataVeri3', response.data.model3);
+          commit('setDataStatVeri', 'success');
+        })
+        .catch(error => {
+          commit('setPeriode', error.response);
+          commit('setDataStatVeri', 'fail');
+        });
+    },
+
     getPencairan( {commit} ){
       commit('setPeriodeStat', 'loading');
       
@@ -661,6 +684,15 @@ export const jalinanKlaim = {
     setDataS6 ( state, data ){
       state.dataS6 = data;
     },
+    setDataVeri1 ( state, data ){
+      state.dataVeri1 = data;
+    },
+    setDataVeri2 ( state, data ){
+      state.dataVeri2 = data;
+    },
+    setDataVeri3 ( state, data ){
+      state.dataVeri3 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -699,6 +731,9 @@ export const jalinanKlaim = {
     },
     setDataStatS6( state, status ){
       state.dataStatS6 = status;
+    },
+    setDataStatVeri( state, status ){
+      state.dataStatVeri = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

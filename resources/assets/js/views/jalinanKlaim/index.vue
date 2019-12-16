@@ -26,7 +26,7 @@
 
 						<!-- table data -->
 						<div class="nav-tabs-responsive mb-3">
-							<ul class="nav nav-tabs nav-tabs-solid bg-light">
+							<ul class="nav nav-tabs nav-tabs-solid  bg-light">
 							<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'verifikasi'}" @click.prevent="changeTab('verifikasi')"><i class="icon-file-eye mr-2"></i> Verifikasi CU</a>
 								</li>

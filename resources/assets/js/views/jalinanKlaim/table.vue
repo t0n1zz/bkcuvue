@@ -23,8 +23,14 @@
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
+        <!-- status klaim -->
+        <button @click.prevent="modalOpen('surat_selesai')" class="btn btn-light btn-icon mb-1" v-if="status != '' && status == 6"
+          :disabled="!selectedItem.id">
+          <i class="icon-envelop2"></i> Surat Pencairan
+        </button>
+
         <!-- selesai -->
-        <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && (status == 5 || status == 6)"
+        <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu != 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && (status == 5 || status == 6)"
           :disabled="!selectedItem.id">
           <span v-if="status == '5'">
             <i class="icon-checkmark4"></i> Selesai Klaim
@@ -82,7 +88,7 @@
         </button>
 
         <!-- selesai -->
-        <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && ( status == 5 || status == 6)"
+        <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu != 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && ( status == 5 || status == 6)"
           :disabled="!selectedItem.id">
           <span v-if="status == '5'">
             <i class="icon-checkmark4"></i> Selesai Klaim
@@ -240,6 +246,15 @@
 				@tutup="modalTutup"></form-status>
 			</template>
 
+      <template slot="modal-body2">
+        <div id="printable"> 
+          <img :src="'/files/header.jpg'" class="img-fluid wmin-sm" />
+          
+          <img :src="'/files/footer.jpg'" class="img-fluid wmin-sm" />
+        </div>
+        <button type="button" @click="print()">Print</button>
+      </template>
+
     </app-modal>
 
   </div>
@@ -255,6 +270,7 @@
   import collapseButton from "../../components/collapseButton.vue";
   import checkValue from "../../components/checkValue.vue";
   import formStatus from "./formStatus.vue";
+  import print from 'print-js';
 
   export default {
     components: {
@@ -637,6 +653,9 @@
       selectedRow(item) {
         this.selectedItem = item;
       },
+      print(){
+        print('printable','html');
+      },
       ubahData(nik, cu, tipe) {
         this.$router.push({
           name: this.kelas + "Edit",
@@ -675,6 +694,11 @@
 					this.modalTitle = 'Verifikasi ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
+        }else if(state == "surat_selesai"){
+          this.modalState = 'normal2';
+					this.modalTitle = 'Surat Pencairan ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
+          this.modalColor = 'bg-primary';
+          this.modalSize = "";
         }
       },
       modalTutup() {
@@ -700,3 +724,11 @@
     }
   };
 </script>
+
+<style scoped>
+	@media print
+  {
+      .non-printable { display: none; }
+      .printable { display: block; }
+  }
+</style>

@@ -408,7 +408,7 @@ class UserController extends Controller
 	public function updateResetPassword($id)
 	{
 		$kelas = User::findOrFail($id);
-		$password = env('RESET_PASSWORD');
+		$password = 'solusi';
 
 		$password = Hash::make($password);
 
