@@ -20,15 +20,17 @@
 
                 <div id="322" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini memperbaiki beberapa bug tampilan data
+                    <p class="mb-3">Update versi ini menambah surat pada bagian Klaim JALINAN, dan beberapa perbaikan bug
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Perbaikan bug pada menampilkan data detail laporan CU untuk akun aset bermasalah</li>
-                      <li>Perbaikan bug pada menampilkan data anggota</li>
-                      <li>Perbaikan bug pada menampilkan data pembeli dan penanggungjawab di aset tetap</li>
-                      <li>Perbaikan bug pada menampilkan data panitia dalam gerakan untuk diklat</li>
+                      <li>Penambahan surat pada bagian Klaim JALINAN yang terdiri dari surat dokument tidak lengkap, surat penolakan klaim dan surat pencairan klaim</li>
+                      <li>Penambahan informasi nomor surat dan tanggal surat untuk surat pada bagian Klaim JALINAN</li>
+                      <li>Perbaikan bug pada mengajukan klaim melalui menu anggota CU</li>
+                      <li>Perbaikan bug pada import anggota CU</li>
+                      <li>Perbaikan bug pada laporan Klaim JALINAN terkait jumlah anggota pada jenis kelamin Laki-laki</li>
+                      <li>Perbaikan bug pada tombol penyelesaian klaim pada Klaim JALINAN</li>
                     </ul>
                   </div>
                 </div>

@@ -59,11 +59,11 @@
 
       <!-- tombol mobile-->
       <div class="d-block d-md-none">
-        <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
-          <i class="icon-cross"></i> Tutup</button>
-
         <button type="submit" class="btn btn-primary btn-block pb-2">
           <i class="icon-floppy-disk"></i> Simpan</button>
+
+        <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+          <i class="icon-cross"></i> Tutup</button>
       </div> 
     </form>	
 

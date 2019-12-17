@@ -15,6 +15,7 @@ import VueKatex from 'vue-katex';
 import VTooltip from 'v-tooltip';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import VueCkeditor from 'vue-ckeditor5';
+import VueHtmlToPaper from 'vue-html-to-paper';
 
 Validator.localize('id', id); //localization
 Vue.use(VueRouter);
@@ -32,7 +33,23 @@ const options = {
   name: 'ckeditor'
 }
 
+// ckeditor plugin
 Vue.use(VueCkeditor.plugin, options);
+
+// print plugin
+const printOpt = {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
+};
+Vue.use(VueHtmlToPaper, printOpt);
 
 window.moment = moment; // handling date formating
 window.moment.locale('id'); // handling date formating locale

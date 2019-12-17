@@ -151,7 +151,7 @@
 									</div>
 
 									<!-- form klaim jalinan -->
-									<div class="card" >
+									<div class="card">
 										<div class="card-header bg-white">
 											<h5 class="card-title">Form Klaim</h5>
 										</div>
@@ -310,6 +310,124 @@
 										</div>
 									</div>
 
+									<!-- dokumen -->
+									<div class="card">
+										<div class="card-header bg-white">
+											<h5 class="card-title">Dokumen</h5>
+										</div>
+										<div class="card-body">
+											
+											<!-- nav -->
+											<div class="nav-tabs-responsive mb-3">
+												<ul class="nav nav-tabs nav-tabs-solid  bg-light">
+													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-file-eye mr-2"></i> Keterangan meninggal dunia</a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'ktp'}" @click.prevent="changeTab('ktp')"><i class="icon-checkbox-unchecked mr-2"></i> Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) </a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'pinjaman'}" @click.prevent="changeTab('pinjaman')"><i class="icon-files-empty mr-2"></i> Permohonan dan perjanjian pinjaman</a>
+													</li>
+												</ul>
+											</div>
+
+											<transition enter-active-class="animated fadeIn" mode="out-in">
+												<div v-show="tabName == 'meninggal'">
+													<div class="form-group">
+														<!-- title -->
+														<h5>Keterangan meninggal dunia:</h5>
+
+														<!-- imageupload -->
+														<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_meninggal" v-model="form.dokumen_meninggal"></app-image-upload>
+													</div>
+												</div>
+											</transition>
+
+											<transition enter-active-class="animated fadeIn" mode="out-in">
+												<div v-show="tabName == 'ktp'">
+													<div class="form-group">
+														<!-- title -->
+														<h5>Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) :</h5>
+
+														<!-- imageupload -->
+														<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_ktp" v-model="form.dokumen_ktp"></app-image-upload>
+													</div>
+												</div>
+											</transition>
+
+											<transition enter-active-class="animated fadeIn" mode="out-in">
+												<div v-show="tabName == 'pinjaman'">
+													<div class="row">
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Dokumen Pinjaman 1:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_pinjaman_1" v-model="form.dokumen_pinjaman_1"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Dokumen Pinjaman 2:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_pinjaman_2" v-model="form.dokumen_pinjaman_2"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Dokumen Pinjaman 3:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_pinjaman_3" v-model="form.dokumen_pinjaman_3"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Dokumen Pinjaman 4:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_pinjaman_4" v-model="form.dokumen_pinjaman_4"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Dokumen Pinjaman 5:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_pinjaman_5" v-model="form.dokumen_pinjaman_5"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Dokumen Pinjaman 6:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_pinjaman_6" v-model="form.dokumen_pinjaman_6"></app-image-upload>
+															</div>
+														</div>
+
+													</div>
+
+												</div>
+											</transition>
+
+										</div>
+									</div>
+
 									<!-- form info -->
 									<form-info></form-info>
 
@@ -367,6 +485,7 @@
 	import cariData from "../anggotaCu/cariData";
 	import identitas from "../../components/identitas.vue";
 	import dataTable from '../../components/datatable.vue';
+	import appImageUpload from '../../components/ImageUpload.vue';
 
 	export default {
 		components: {
@@ -383,6 +502,7 @@
 			cariData,
 			identitas,
 			dataTable,
+			appImageUpload,
 		},
 		data() {
 			return {
@@ -397,6 +517,7 @@
 				anggota_cu_cu_id: '',
 				cu_id: '',
 				tipe: '',
+				tabName: 'meninggal',
 				cleaveOption: {
           date:{
             date: true,
@@ -516,7 +637,10 @@
 			},
 			selectedRow(item) {
         this.selectedItem = item;
-      },
+			},
+			changeTab(value) {
+				this.tabName = value;
+			},
 			fetch(){
 				this.resetData();
 
@@ -595,12 +719,13 @@
 					this.form.status_klaim = '0';
 				}
 				
+				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.form.id){
-							this.$store.dispatch(this.kelas + '/update', [this.form.id, this.form]);
+							this.$store.dispatch(this.kelas + '/update', [this.form.id, this.formData]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', this.form);
+							this.$store.dispatch(this.kelas + '/store', this.formData);
 						}
 						this.submited = false;
 					}else{

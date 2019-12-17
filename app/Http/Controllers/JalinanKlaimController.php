@@ -566,6 +566,8 @@ class JalinanKlaimController extends Controller{
 
 		$anggota_cu_id = $kelas->anggota_cu_id;
 		$tipe = $kelas->tipe;
+		$kelas->surat_nomor = $request->surat_nomor;
+		$kelas->surat_tanggal = $request->surat_tanggal;
 
 		if($kelas->status_klaim == 1){
 			$message = "Klaim JALINAN menunggu";

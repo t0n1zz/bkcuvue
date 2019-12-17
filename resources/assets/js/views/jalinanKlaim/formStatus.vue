@@ -234,9 +234,9 @@
             <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
 
               <!-- title -->
-              <h6 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
+              <h5 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
                 <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
-                Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+                Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
               <!-- input -->
               <cleave 
@@ -355,6 +355,37 @@
               placeholder="Silahkan masukkan keterangan " v-model="formStatus.keterangan_klaim"></textarea>
             </div>
 
+          </div>
+
+          <div class="col-md-6" v-if="formStatus.status != 0">
+             <div class="form-group">
+
+              <!-- title -->
+              <h5>
+                Nomor Surat:
+              </h5>
+
+              <!-- input -->
+              <input type="text" name="surat_nomor" class="form-control" placeholder="Silahkan masukkan nomor surat" v-model="formStatus.surat_nomor">
+            </div>
+          </div>
+
+          <div class="col-md-6" v-if="formStatus.status != 0">
+             <div class="form-group">
+
+              <!-- title -->
+              <h5>
+                Tgl. Surat: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+
+              <!-- input -->
+              <cleave 
+                name="surat_tanggal"
+                v-model="formStatus.surat_tanggal" 
+                class="form-control" 
+                :raw="false" 
+                :options="cleaveOption.date" 
+                placeholder="Silahkan masukkan tgl. surat"></cleave>
+            </div>
           </div>
 
         </div>

@@ -23,10 +23,22 @@
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
-        <!-- status klaim -->
-        <button @click.prevent="modalOpen('surat_selesai')" class="btn btn-light btn-icon mb-1" v-if="status != '' && status == 6"
+        <!-- surat cair -->
+        <button @click.prevent="modalOpen('surat_cair')" class="btn btn-light btn-icon mb-1" v-if="status != '' &&  ( status == 5 || status == 6 )"
           :disabled="!selectedItem.id">
           <i class="icon-envelop2"></i> Surat Pencairan
+        </button>
+
+        <!-- surat tolak -->
+        <button @click.prevent="modalOpen('surat_tolak')" class="btn btn-light btn-icon mb-1" v-if="status != '' &&  status == 3"
+          :disabled="!selectedItem.id">
+          <i class="icon-envelop2"></i> Surat Penolakan
+        </button>
+
+        <!-- surat kurang -->
+        <button @click.prevent="modalOpen('surat_kurang')" class="btn btn-light btn-icon mb-1" v-if="status != '' &&  status == 2"
+          :disabled="!selectedItem.id">
+          <i class="icon-envelop2"></i> Surat Dokumen Tidak Lengkap
         </button>
 
         <!-- selesai -->
@@ -85,6 +97,24 @@
         <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6"
           :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
+        </button>
+
+         <!-- surat cair -->
+        <button @click.prevent="modalOpen('surat_cair')" class="btn btn-light btn-icon btn-block pb-1" v-if="status != '' &&  ( status == 5 || status == 6 )"
+          :disabled="!selectedItem.id">
+          <i class="icon-envelop2"></i> Surat Pencairan
+        </button>
+
+        <!-- surat tolak -->
+        <button @click.prevent="modalOpen('surat_tolak')" class="btn btn-light btn-icon btn-block pb-1" v-if="status != '' &&  status == 3"
+          :disabled="!selectedItem.id">
+          <i class="icon-envelop2"></i> Surat Penolakan
+        </button>
+
+        <!-- surat kurang -->
+        <button @click.prevent="modalOpen('surat_kurang')" class="btn btn-light btn-icon btn-block pb-1" v-if="status != '' &&  status == 2"
+          :disabled="!selectedItem.id">
+          <i class="icon-envelop2"></i> Surat Dokumen Tidak Lengkap
         </button>
 
         <!-- selesai -->
@@ -247,12 +277,7 @@
 			</template>
 
       <template slot="modal-body2">
-        <div id="printable"> 
-          <img :src="'/files/header.jpg'" class="img-fluid wmin-sm" />
-          
-          <img :src="'/files/footer.jpg'" class="img-fluid wmin-sm" />
-        </div>
-        <button type="button" @click="print()">Print</button>
+        <surat :selectedItem="selectedItem" :tipe="tipeSurat" @tutup="modalTutup"></surat>
       </template>
 
     </app-modal>
@@ -261,16 +286,15 @@
 </template>
 
 <script>
+  import Vue from "vue";
   import _ from "lodash";
-  import {
-    mapGetters
-  } from "vuex";
+  import { mapGetters } from "vuex";
   import DataViewer from "../../components/dataviewer2.vue";
   import appModal from "../../components/modal";
   import collapseButton from "../../components/collapseButton.vue";
   import checkValue from "../../components/checkValue.vue";
   import formStatus from "./formStatus.vue";
-  import print from 'print-js';
+  import surat from "./surat.vue";
 
   export default {
     components: {
@@ -278,12 +302,14 @@
       appModal,
       collapseButton,
       checkValue,
-      formStatus
+      formStatus,
+      surat
     },
     props: ["title", "kelas", "status","itemData","itemDataStat","isSimple"],
     data() {
       return {
         selectedItem: [],
+        tipeSurat: '',
         query: {
           order_column: "created_at",
           order_direction: "asc",
@@ -291,6 +317,10 @@
           limit: 10,
           page: 1
         },
+        provinces: '',
+        regencies: '',
+        districts: '',
+        villages: '',
         excelDownloadUrl: '',
         columnData: [{
             title: 'No.',
@@ -653,9 +683,7 @@
       selectedRow(item) {
         this.selectedItem = item;
       },
-      print(){
-        print('printable','html');
-      },
+      
       ubahData(nik, cu, tipe) {
         this.$router.push({
           name: this.kelas + "Edit",
@@ -694,11 +722,24 @@
 					this.modalTitle = 'Verifikasi ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
-        }else if(state == "surat_selesai"){
+        }else if(state == "surat_cair"){
           this.modalState = 'normal2';
 					this.modalTitle = 'Surat Pencairan ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
-          this.modalSize = "";
+          this.modalSize = "modal-lg";
+          this.tipeSurat = 'cair'
+        }else if(state == "surat_tolak"){
+          this.modalState = 'normal2';
+					this.modalTitle = 'Surat Penolakan ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-lg";
+          this.tipeSurat = 'tolak'
+        }else if(state == "surat_kurang"){
+          this.modalState = 'normal2';
+					this.modalTitle = 'Surat Pernyataan dokumen ' + this.title + ' tidak lengkap atas nama: ' + this.selectedItem.anggota_cu.name;
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-lg";
+          this.tipeSurat = 'kurang'
         }
       },
       modalTutup() {
@@ -720,15 +761,8 @@
       }),
       ...mapGetters("auth", {
         currentUser: "currentUser"
-      })
+      }),
+      
     }
   };
 </script>
-
-<style scoped>
-	@media print
-  {
-      .non-printable { display: none; }
-      .printable { display: block; }
-  }
-</style>
