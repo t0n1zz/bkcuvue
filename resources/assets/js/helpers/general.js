@@ -7,6 +7,8 @@ export function initialize(store, router) {
   router.beforeEach((to, from, next) => {
 		window.scrollTo(0, 0);
 		document.body.classList.remove("modal-open");
+
+		store.commit('auth/setRedirect', from.fullPath);
 		
 		const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 		const currentUser = store.state.auth.currentUser;
@@ -49,10 +51,7 @@ export function initialize(store, router) {
 						store.dispatch('auth/loginFailed');
 						store.dispatch('auth/logout');
 
-						router.push({
-							path:'/login',
-							query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
-						});
+						router.push('/login/redirect');
 
 						return Promise.reject(error);
 					}
@@ -61,10 +60,7 @@ export function initialize(store, router) {
 					store.dispatch('auth/loginFailed');
 					store.dispatch('auth/logout');
 
-					router.push({
-						path:'/login',
-						query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
-					});
+					router.push('/login/redirect');
 					
 					return Promise.reject(error);
 				});
@@ -77,12 +73,7 @@ export function initialize(store, router) {
   }, error => {
 		if (error.response.status == 401) {
 			store.dispatch('auth/logout');
-
-			router.push('/login');
-			// router.push({
-			// 	path:'/login',
-			// 	query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
-			// });
+			router.push('/login/redirect');
 		}
 
 		return Promise.reject(error);

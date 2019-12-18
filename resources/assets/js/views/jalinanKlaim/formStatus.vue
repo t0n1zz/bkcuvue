@@ -11,17 +11,17 @@
           <a href="#" class="nav-link" :class="{'active' : tabName == 'verifikator'}" @click.prevent="changeTab('verifikator')"><i class="icon-file-check mr-2"></i> Verifikator</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i class="icon-file-eye mr-2"></i> Dokumen</a>
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i class="icon-stack mr-2"></i> Dokumen</a>
         </li>
       </ul>
     </div>
     <!-- navbar -->
 
-    <form @submit.prevent="save" data-vv-scope="formStatus">
+    
     <!-- pengajuan -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'pengajuan'">
-
+        <form @submit.prevent="save" data-vv-scope="formStatus">
         <!-- message -->
         <message v-if="errors.any('formStatus') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
         </message>
@@ -390,6 +390,70 @@
 
         </div>
 
+        <!-- info -->
+        <div v-if="tipe == 'verifikasi'">
+          <div class="alert bg-info alert-styled-left">
+            <h6>Dengan menekan tombol verifikasi dibawah maka anda telah melakukan pemeriksaan dan menyetujui pengajuan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+          </div>
+        </div>
+        <div v-else-if="tipe == 'selesai'">
+          <div class="alert bg-info alert-styled-left">
+            <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+          </div>
+        </div>
+        <div v-else>
+          <div class="alert bg-info alert-styled-left">
+            <h6>Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</h6>
+          </div>
+        </div>
+
+        <!-- tombol desktop-->
+        <div class="text-center d-none d-md-block">
+          <button class="btn btn-light" @click.prevent="tutup">
+            <i class="icon-cross"></i> Tutup</button>
+
+          <button type="submit" class="btn btn-primary">
+            <span v-if="tipe == 'selesai'">
+              <span v-if="formStatus.status == 5">
+                <i class="icon-checkmark4"></i> Selesai
+              </span>
+              <span v-else>
+                <i class="icon-blocked"></i> Batal Selesai
+              </span>
+            </span>
+            <span v-else-if="tipe == 'verifikasi'">
+              <i class="icon-file-check"></i> Verifikasi
+            </span>
+            <span v-else>
+              <i class="icon-floppy-disk"></i> Simpan
+            </span>
+          </button>
+        </div>  
+
+        <!-- tombol mobile-->
+        <div class="d-block d-md-none">
+          <button type="submit" class="btn btn-primary btn-block pb-2">
+            <span v-if="tipe == 'selesai'">
+              <span v-if="formStatus.status == 4">
+                <i class="icon-checkmark4"></i> Selesai
+              </span>
+              <span v-else>
+                <i class="icon-blocked"></i> Batal Selesai
+              </span>
+            </span>
+            <span v-else-if="tipe == 'verifikasi'">
+              <i class="icon-file-check"></i> Verifikasi
+            </span>
+            <span v-else>
+              <i class="icon-floppy-disk"></i> Simpan
+            </span>
+          </button>
+
+          <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+            <i class="icon-cross"></i> Tutup</button>
+        </div> 
+
+        </form>
 			</div>
     </transition>
     <!-- pengajuan -->
@@ -443,6 +507,18 @@
 
         </div>
 
+        <!-- tombol desktop-->
+        <div class="text-center d-none d-md-block">
+          <button class="btn btn-light" @click.prevent="tutup">
+            <i class="icon-cross"></i> Tutup</button>
+        </div>  
+
+        <!-- tombol mobile-->
+        <div class="d-block d-md-none">
+          <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+            <i class="icon-cross"></i> Tutup</button>
+        </div> 
+
       </div>
     </transition>
     <!-- verifikator -->
@@ -450,74 +526,87 @@
     <!-- dokumen -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
       <div v-show="tabName == 'dokumen'" v-if="isDokumen">
+
+        <div class="nav-tabs-responsive mb-3">
+          <ul class="nav nav-tabs nav-tabs-solid bg-light">
+          <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'meninggal'}" @click.prevent="changeTabDokumen('meninggal')"><i class="icon-person mr-2"></i> Keterangan Meninggal Dunia</a>
+            </li>
+            <li class="nav-item" v-if="selected.status_klaim != 0">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'ktp'}" @click.prevent="changeTabDokumen('ktp')"><i class="icon-vcard mr-2"></i> Identitas Diri</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_1'}" @click.prevent="changeTabDokumen('pinjaman_1')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_2'}" @click.prevent="changeTabDokumen('pinjaman_2')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 2</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_3'}" @click.prevent="changeTabDokumen('pinjaman_3')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 3</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_4'}" @click.prevent="changeTabDokumen('pinjaman_4')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 4</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_5'}" @click.prevent="changeTabDokumen('pinjaman_5')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 5</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_6'}" @click.prevent="changeTabDokumen('pinjaman_6')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 6</a>
+            </li>
+          </ul>
+        </div>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'meninggal'">
+            <dokumen :image="selected.dokumen_meninggal" :name="'dokumen_meninggal'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'ktp'">
+            <dokumen :image="selected.dokumen_ktp" :name="'dokumen_ktp'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'pinjaman_1'">
+            <dokumen :image="selected.dokumen_pinjaman_1" :name="'dokumen_pinjaman_1'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'pinjaman_2'">
+            <dokumen :image="selected.dokumen_pinjaman_2" :name="'dokumen_pinjaman_2'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'pinjaman_3'">
+            <dokumen :image="selected.dokumen_pinjaman_3" :name="'dokumen_pinjaman_3'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'pinjaman_4'">
+            <dokumen :image="selected.dokumen_pinjaman_4" :name="'dokumen_pinjaman_4'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'pinjaman_5'">
+            <dokumen :image="selected.dokumen_pinjaman_5" :name="'dokumen_pinjaman_5'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'pinjaman_6'">
+            <dokumen :image="selected.dokumen_pinjaman_6" :name="'dokumen_pinjaman_6'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
       </div>
     </transition>
     <!-- dokumen -->
-
-    <!-- info -->
-    <div v-if="tipe == 'verifikasi'">
-      <div class="alert bg-info alert-styled-left">
-        <h6>Dengan menekan tombol verifikasi dibawah maka anda telah melakukan pemeriksaan dan menyetujui pengajuan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
-      </div>
-    </div>
-    <div v-else-if="tipe == 'selesai'">
-      <div class="alert bg-info alert-styled-left">
-        <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
-      </div>
-    </div>
-    <div v-else>
-      <div class="alert bg-info alert-styled-left">
-        <h6>Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</h6>
-      </div>
-    </div>
-
-    <!-- tombol desktop-->
-    <div class="text-center d-none d-md-block">
-      <button class="btn btn-light" @click.prevent="tutup">
-        <i class="icon-cross"></i> Tutup</button>
-
-      <button type="submit" class="btn btn-primary">
-        <span v-if="tipe == 'selesai'">
-          <span v-if="formStatus.status == 5">
-            <i class="icon-checkmark4"></i> Selesai
-          </span>
-          <span v-else>
-            <i class="icon-blocked"></i> Batal Selesai
-          </span>
-        </span>
-        <span v-else-if="tipe == 'verifikasi'">
-          <i class="icon-file-check"></i> Verifikasi
-        </span>
-        <span v-else>
-          <i class="icon-floppy-disk"></i> Simpan
-        </span>
-      </button>
-    </div>  
-
-    <!-- tombol mobile-->
-    <div class="d-block d-md-none">
-      <button type="submit" class="btn btn-primary btn-block pb-2">
-        <span v-if="tipe == 'selesai'">
-          <span v-if="formStatus.status == 4">
-            <i class="icon-checkmark4"></i> Selesai
-          </span>
-          <span v-else>
-            <i class="icon-blocked"></i> Batal Selesai
-          </span>
-        </span>
-        <span v-else-if="tipe == 'verifikasi'">
-          <i class="icon-file-check"></i> Verifikasi
-        </span>
-        <span v-else>
-          <i class="icon-floppy-disk"></i> Simpan
-        </span>
-      </button>
-
-      <button class="btn btn-light btn-block pb-2" @click.prevent="tutup">
-        <i class="icon-cross"></i> Tutup</button>
-    </div> 
-
-    </form>	
 
 	</div>
 </template>
@@ -532,6 +621,7 @@
   import dataTable from '../../components/datatable.vue';
   import infoIcon from "../../components/infoIcon.vue";
   import verifikator from "./verifikator.vue";
+  import dokumen from "./dokumen.vue";
 
 	export default {
 		props: ['kelas','selected','tipe'],
@@ -543,12 +633,14 @@
       Cleave, 
       dataTable,
       infoIcon,
-      verifikator
+      verifikator,
+      dokumen
 		},
 		data() {
 			return {
         title: '',
         tabName: 'pengajuan',
+        tabNameDokumen: 'meninggal',
         isVerifikator: false,
         isDokumen: false,
         selectedData: {},
@@ -614,6 +706,9 @@
 				if (value == 'dokumen' && !this.isDokumen) {
           this.isDokumen = true
         }
+      },
+      changeTabDokumen(value) {
+				this.tabNameDokumen = value;
       },
       fetchVerifikator(){
         // get verifikator yang dipilih

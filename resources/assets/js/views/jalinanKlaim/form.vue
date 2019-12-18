@@ -321,13 +321,13 @@
 											<div class="nav-tabs-responsive mb-3">
 												<ul class="nav nav-tabs nav-tabs-solid  bg-light">
 													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
-														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-file-eye mr-2"></i> Keterangan meninggal dunia</a>
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-person mr-2"></i> Keterangan meninggal dunia</a>
 													</li>
 													<li class="nav-item">
-														<a href="#" class="nav-link" :class="{'active' : tabName == 'ktp'}" @click.prevent="changeTab('ktp')"><i class="icon-checkbox-unchecked mr-2"></i> Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) </a>
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'ktp'}" @click.prevent="changeTab('ktp')"><i class="icon-vcard mr-2"></i> Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) </a>
 													</li>
 													<li class="nav-item">
-														<a href="#" class="nav-link" :class="{'active' : tabName == 'pinjaman'}" @click.prevent="changeTab('pinjaman')"><i class="icon-files-empty mr-2"></i> Permohonan dan perjanjian pinjaman</a>
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'pinjaman'}" @click.prevent="changeTab('pinjaman')"><i class="icon-clipboard3 mr-2"></i> Permohonan dan perjanjian pinjaman</a>
 													</li>
 												</ul>
 											</div>
@@ -486,6 +486,7 @@
 	import identitas from "../../components/identitas.vue";
 	import dataTable from '../../components/datatable.vue';
 	import appImageUpload from '../../components/ImageUpload.vue';
+	import { toMulipartedForm } from '../../helpers/form';
 
 	export default {
 		components: {
@@ -723,9 +724,9 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.form.id){
-							this.$store.dispatch(this.kelas + '/update', [this.form.id, this.formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.form.id, formData]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', this.formData);
+							this.$store.dispatch(this.kelas + '/store', formData);
 						}
 						this.submited = false;
 					}else{

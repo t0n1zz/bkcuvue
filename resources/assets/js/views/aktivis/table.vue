@@ -19,8 +19,13 @@
 				</button>
 
 				<!-- ubah riwayat -->
-				<button @click.prevent="ubah(selectedItem.id,'riwayat')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah Riwayat
+				<button @click.prevent="ubah(selectedItem.id,'riwayat')" class="btn btn-light btn-icon mb-1"  :disabled="!selectedItem.id">
+					<span v-if="currentUser.can && currentUser.can['update_' + kelas]">
+						<i class="icon-pencil5"></i> Ubah Riwayat
+					</span>
+					<span v-else>
+						<i class="icon-profile"></i> Riwayat
+					</span>	
 				</button>
 
 				<!-- hapus -->

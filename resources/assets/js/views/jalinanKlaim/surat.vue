@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="row justify-content-between ml-3 mr-3">
             <div class="col-7">
-              <dl class="row">
+              <dl class="row mt-4">
                 <dt class="col-sm-2 mb-0" v-if="selectedItem.surat_nomor">Nomor</dt>
                 <dd class="col-sm-10 mb-0" v-if="selectedItem.surat_nomor">: {{ selectedItem.surat_nomor }}</dd>
 
@@ -22,7 +22,9 @@
             </div>
             <div class="col-5 text-right">
               <ul class="list list-unstyled mb-0">
-                <li>FM-JLN-18/Rev00/02.01.2019</li>
+                <li v-if="tipe == 'cair'"><small>FM-JLN-18/Rev00/02.01.2019</small></li>
+                <li v-else-if="tipe == 'kurang'"><small>FM-JLN-02/Rev00/02.01.2019</small></li>
+                <li v-else-if="tipe == 'tolak'"><small>FM-JLN-01/Rev00/02.01.2019</small></li>
                 <li class="mt-0" v-html="$options.filters.dateMonth(this.selectedItem.surat_tanggal)"></li>
               </ul>
             </div>
@@ -139,20 +141,20 @@
                 <li>General Manager,</li>
               </ul>
 
-              <img :src="'/files/ttdErowin.png'" class="img-fluid wmin-sm" />
+              <img :src="'/files/ttdErowin.png'" class="img-fluid wmin-sm" width="200"/>
 
               <ul class="list list-unstyled mb-0">
                 <li><b>Erowin, S. Hut.</b></li>
                 <li>Nim.19781217 200408 1 011</li>
               </ul>
-            </div>
+            </div> 
             <div class="col-6 text-right">
               <ul class="list list-unstyled mb-0">
                 <li>&nbsp;</li>
                 <li>Manajer Pelayanan Keuangan,</li>
               </ul>
 
-              <img :src="'/files/ttdKus.png'" class="img-fluid wmin-sm" />
+              <img :src="'/files/ttdKus.png'" class="img-fluid wmin-sm" width="200" />
 
               <ul class="list list-unstyled mb-0">
                 <li><b>Dominikus Dakota H., S.Hut</b></li>

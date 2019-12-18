@@ -553,7 +553,7 @@
             title: 'Tgl. Jadi Anggota',
             name: 'tanggal_masuk',
             tipe: 'datetime',
-            sort: true,
+            sort: false,
             hide: false,
             disable: false,
             filter: true,

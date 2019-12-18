@@ -35,50 +35,8 @@
 										</div>
 									</div>  
 
-									<!-- name -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama: <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" v-if="currentUser.id_cu == 0">
-
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" v-else readonly>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- name -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name_legal')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name_legal')}">
-												<i class="icon-cross2" v-if="errors.has('form.name_legal')"></i>
-												Nama Legal: <small class="text-muted"><i>nama yang terdaftar secara hukum contoh: KSP xxx</i></small> <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="name_legal" class="form-control" placeholder="Silahkan masukkan nama legal" v-model="form.name_legal">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name_legal')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name_legal') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
 									<!-- no_ba -->
-									<div class="col-md-4">
+									<div class="col-md-2">
 										<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
 
 											<!-- title -->
@@ -93,9 +51,7 @@
 												class="form-control" 
 												:options="cleaveOption.number3"
 												placeholder="Silahkan masukkan no ba."
-												v-validate="'required'" data-vv-as="No. BA" v-if="currentUser.id_cu == 0"></cleave>
-
-											<input type="text" class="form-control" name="no_ba" v-model="form.no_ba" v-else  readonly/>
+												v-validate="'required'" data-vv-as="No. BA" :readonly="currentUser.id_cu != 0" ></cleave>
 											
 
 											<!-- error message -->
@@ -106,6 +62,47 @@
 										</div>
 									</div>
 
+									<!-- name -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
+												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
+												Nama: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama CU" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name" :readonly="currentUser.id_cu != 0" >
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.name')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- name -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.name_legal')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.name_legal')}">
+												<i class="icon-cross2" v-if="errors.has('form.name_legal')"></i>
+												Nama Legal: <wajib-badge></wajib-badge> <info-icon class="text-right" :message="'nama yang terdaftar secara hukum contoh: KSP xxx'"></info-icon></h5>
+
+											<!-- text -->
+											<input type="text" name="name_legal" class="form-control" placeholder="Silahkan masukkan nama legal" v-model="form.name_legal" >
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.name_legal')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name_legal') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									
 									<!-- badan hukum -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.badan_hukum')}">
@@ -116,7 +113,7 @@
 												Badan Hukum:</h5>
 
 											<!-- text -->
-											<input type="text" name="badan_hukum" class="form-control" placeholder="Silahkan masukkan nama CU"  v-model="form.badan_hukum">
+											<input type="text" name="badan_hukum" class="form-control" placeholder="Silahkan masukkan nama CU"  v-model="form.badan_hukum" >
 
 											<small class="text-muted">&nbsp;</small>	
 										</div>
@@ -132,7 +129,7 @@
 												NPWP (nomor pokok wajib pajak):</h5>
 
 											<!-- text -->
-											<input type="text" name="npwp" class="form-control" placeholder="Silahkan masukkan NPWP"  v-model="form.npwp">
+											<input type="text" name="npwp" class="form-control" placeholder="Silahkan masukkan NPWP"  v-model="form.npwp" >
 
 											<small class="text-muted">&nbsp;</small>	
 										</div>
@@ -148,7 +145,7 @@
 												NIK (nomor induk koperasi):</h5>
 
 											<!-- text -->
-											<input type="text" name="NIK" class="form-control" placeholder="Silahkan masukkan NIK"  v-model="form.nik">
+											<input type="text" name="NIK" class="form-control" placeholder="Silahkan masukkan NIK"  v-model="form.nik" >
 
 											<small class="text-muted">&nbsp;</small>	
 										</div>
@@ -164,7 +161,7 @@
 												SITU (surat izin tempat usaha):</h5>
 
 											<!-- text -->
-											<input type="text" name="SITU" class="form-control" placeholder="Silahkan masukkan SITU"  v-model="form.situ">
+											<input type="text" name="SITU" class="form-control" placeholder="Silahkan masukkan SITU"  v-model="form.situ" >
 
 											<small class="text-muted">&nbsp;</small>	
 										</div>
@@ -180,7 +177,7 @@
 												SIUSP (surat izin usaha simpan pinjam):</h5>
 
 											<!-- text -->
-											<input type="text" name="SIUSP" class="form-control" placeholder="Silahkan masukkan SIUSP"  v-model="form.siusp">
+											<input type="text" name="SIUSP" class="form-control" placeholder="Silahkan masukkan SIUSP"  v-model="form.siusp" >
 
 											<small class="text-muted">&nbsp;</small>	
 										</div>
@@ -196,7 +193,7 @@
 												Izin Operasional:</h5>
 
 											<!-- text -->
-											<input type="text" name="izinOp" class="form-control" placeholder="Silahkan masukkan izin operasional"  v-model="form.izinOp">
+											<input type="text" name="izinOp" class="form-control" placeholder="Silahkan masukkan izin operasional"  v-model="form.izinOp" >
 
 											<small class="text-muted">&nbsp;</small>	
 										</div>
@@ -212,7 +209,7 @@
 												Aplikasi Keuangan Utama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required'" data-vv-as="Aplikasi keuangan utama" v-model="form.app">
+											<input type="text" name="app" class="form-control" placeholder="Silahkan masukkan nama aplikasi keuangan utama" v-validate="'required'" data-vv-as="Aplikasi keuangan utama" v-model="form.app" >
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.app')">
@@ -229,7 +226,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
 												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri: <wajib-badge></wajib-badge></h5>
+												Tgl. Berdiri: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input -->
 											<cleave 
@@ -239,7 +236,7 @@
 												:raw="false" 
 												:options="cleaveOption.date" 
 												placeholder="Silahkan masukkan tgl. berdiri"
-												v-validate="'required'" data-vv-as="Tgl. berdiri"></cleave>
+												v-validate="'required'" data-vv-as="Tgl. berdiri" ></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
@@ -256,7 +253,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
 												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
-												Tgl. Bergabung: <wajib-badge></wajib-badge></h5>
+												Tgl. Bergabung: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input  -->
 											<cleave 
@@ -266,7 +263,7 @@
 												:raw="false" 
 												:options="cleaveOption.date" 
 												placeholder="Silahkan masukkan tgl. bergabung"
-												v-validate="'required'" data-vv-as="Tgl. bergabung"></cleave>
+												v-validate="'required'" data-vv-as="Tgl. bergabung" ></cleave>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
@@ -299,7 +296,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
+											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0 || !currentUser.can['update_' + kelas]" @change="changeProvinces($event.target.value)">
 												<option disabled value="">
 													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih provinsi</span>
@@ -326,7 +323,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%"  data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%"  data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0 || !currentUser.can['update_' + kelas]">
 												<option disabled value="">
 													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
@@ -353,7 +350,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" data-vv-as="Kecamatan" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" data-vv-as="Kecamatan" :disabled="modelDistricts.length === 0 || !currentUser.can['update_' + kelas]" @change="changeDistricts($event.target.value)">
 												<option disabled value="">
 													<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kecamatan</span>
@@ -380,7 +377,7 @@
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%"  data-vv-as="Kelurahan" :disabled="modelVillages.length === 0">
+											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%"  data-vv-as="Kelurahan" :disabled="modelVillages.length === 0 || !currentUser.can['update_' + kelas]">
 												<option disabled value="">
 													<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
 													<span v-else>Silahkan pilih kelurahan</span>
@@ -406,7 +403,7 @@
 												Alamat: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat">
+											<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat" >
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.alamat')">
@@ -442,7 +439,8 @@
 												v-model="form.telp" 
 												class="form-control" 
 												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no telp"></cleave>
+												placeholder="Silahkan masukkan no telp"
+												></cleave>
 
 											<!-- error message -->
 											<small class="text-muted">&nbsp;</small>	
@@ -463,7 +461,8 @@
 												v-model="form.hp" 
 												class="form-control" 
 												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan no hp"></cleave>
+												placeholder="Silahkan masukkan no hp"
+												></cleave>
 
 											<!-- error message -->
 											<small class="text-muted">&nbsp;</small>	
@@ -484,7 +483,8 @@
 												v-model="form.pos" 
 												class="form-control" 
 												:options="cleaveOption.number12"
-												placeholder="Silahkan masukkan kode pos"></cleave>
+												placeholder="Silahkan masukkan kode pos"
+												></cleave>
 
 											<!-- error message -->
 											<small class="text-muted">&nbsp;</small>	
@@ -501,7 +501,7 @@
 												E-mail:</h5>
 
 											<!-- text -->
-											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-model="form.email">
+											<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat e-mail" v-model="form.email" >
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.email')">
@@ -521,7 +521,7 @@
 												Website:</h5>
 
 											<!-- text -->
-											<input type="text" name="website" class="form-control" placeholder="Silahkan masukkan alamat website" v-model="form.website" v-validate="'url'" data-vv-as="Website">
+											<input type="text" name="website" class="form-control" placeholder="Silahkan masukkan alamat website" v-model="form.website" v-validate="'url'" data-vv-as="Website" >
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.website')">
@@ -551,7 +551,7 @@
 											<h5>Misi:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.misi"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.misi" ></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -565,7 +565,7 @@
 											<h5>Visi:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.visi"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.visi" ></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -579,7 +579,7 @@
 											<h5>Nilai-nilai Inti:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.nilai"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.nilai" ></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -593,7 +593,7 @@
 											<h5>Slogan:</h5>
 
 											<!-- textarea -->
-											<input type="text" name="slogan" class="form-control" placeholder="Silahkan masukkan slogan" v-model="form.slogan">
+											<input type="text" name="slogan" class="form-control" placeholder="Silahkan masukkan slogan" v-model="form.slogan" >
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -607,7 +607,7 @@
 											<h5>Sejarah:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" :config="ckeditorNoImageConfig"  v-model="form.sejarah"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig"  v-model="form.sejarah" ></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -621,7 +621,7 @@
 											<h5>Deskripsi:</h5>
 
 											<!-- textarea -->
-											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.deskripsi"></ckeditor>
+											<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.deskripsi" ></ckeditor>
 
 											<small class="text-muted">&nbsp;</small>
 										</div>
@@ -675,6 +675,7 @@
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import infoIcon from "../../components/infoIcon.vue";
 
 	export default {
 		components: {
@@ -686,6 +687,7 @@
 			formInfo,
 			Cleave,
 			wajibBadge,
+			infoIcon
 		},
 		data() {
 			return {

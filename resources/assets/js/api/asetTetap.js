@@ -7,6 +7,10 @@ export default {
   indexSub: function( p, id ){
     return axios.get('/api/asetTetap/indexSub/' + id , {params: p});
   },
+
+  get: function( kode ){
+    return axios.get('/api/asetTetap/get/' + kode);
+  },
   
   create: function(){
     return axios.get('/api/asetTetap/create');

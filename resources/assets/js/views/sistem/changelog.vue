@@ -20,14 +20,18 @@
 
                 <div id="322" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini menambah surat pada bagian Klaim JALINAN, dan beberapa perbaikan bug
+                    <p class="mb-3">Update versi ini menambah surat pada Klaim JALINAN, upload dokumen pada Klaim JALINAN, QR Code pada Aset Tetap dan perbaikan beberapa bug.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
+                      <li>Penambahan upload dokumen untuk memenuhi kebutuhan pengajuan Klaim JALINAN</li>
                       <li>Penambahan surat pada bagian Klaim JALINAN yang terdiri dari surat dokument tidak lengkap, surat penolakan klaim dan surat pencairan klaim</li>
                       <li>Penambahan informasi nomor surat dan tanggal surat untuk surat pada bagian Klaim JALINAN</li>
+                      <li>Penambahan fitur ketika logout otomatis maka akan kembali ke halaman terakhir yang dibuka sebelum.</li>
+                      <li>Penambahan fitur membuat QR Code untuk aset tetap.</li>
                       <li>Perbaikan bug pada mengajukan klaim melalui menu anggota CU</li>
+                      <li>Perbaikan bug error navigasi pada anggota CU</li>
                       <li>Perbaikan bug pada import anggota CU</li>
                       <li>Perbaikan bug pada laporan Klaim JALINAN terkait jumlah anggota pada jenis kelamin Laki-laki</li>
                       <li>Perbaikan bug pada tombol penyelesaian klaim pada Klaim JALINAN</li>

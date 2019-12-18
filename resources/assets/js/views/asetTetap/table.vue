@@ -31,6 +31,11 @@
 					<i class="icon-stack2"></i> Detail
 				</button>
 
+				<!-- qr code -->
+				<button @click.prevent="modalOpen('qrCode')" class="btn btn-light mb-1" :disabled="!selectedItem.id">
+					<i class="icon-qrcode"></i> Buat QR Code
+				</button>
+
 				<!-- hapus -->
 				<button @click.prevent="modalOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
@@ -62,6 +67,11 @@
 				<!-- detail -->
 				<button @click.prevent="modalOpen('detail')" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id">
 					<i class="icon-stack2"></i> Detail
+				</button>
+
+				<!-- qr code -->
+				<button @click.prevent="modalOpen('qrCode')" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id">
+					<i class="icon-qrcode"></i> Buat QR Code
 				</button>
 
 				<!-- hapus -->
@@ -149,7 +159,11 @@
 			<template slot="modal-body1">
         <form-lokasi :kelas="kelas" :selectedItem="selectedItem" @tutup="modalTutup" v-if="state == 'lokasi'"></form-lokasi>
         <form-kondisi :kelas="kelas" :selectedItem="selectedItem" @tutup="modalTutup" v-else-if="state == 'kondisi'"></form-kondisi>
-        <detail :kelas="kelas" :selectedItem="selectedItem" @tutup="modalTutup" v-else-if="state == 'detail'"></detail>
+        <formDetail :kelas="kelas" :selectedItem="selectedItem" :isModal="true" @tutup="modalTutup" v-else-if="state == 'detail'"></formDetail>
+			</template>
+
+			<template slot=modal-body2>
+				<qr-code :selectedItem="selectedItem" @tutup="modalTutup"></qr-code>
 			</template>
 
 		</app-modal>
@@ -164,7 +178,8 @@
 	import checkValue from '../../components/checkValue.vue';
 	import formLokasi from "./formLokasi.vue";
 	import formKondisi from "./formKondisi.vue";
-	import detail from "./formDetail.vue";
+	import formDetail from "./formDetail.vue";
+	import qrCode from './qrCode.vue';
 
 	export default {
 		components: {
@@ -173,12 +188,14 @@
 			checkValue,
 			formLokasi,
 			formKondisi,
-			detail
+			formDetail,
+			qrCode
 		},
 		props:['title','kelas'],
 		data() {
 			return {
 				selectedItem: [],
+				tabName: 'qrBig',
 				query: {
 					order_column: "name",
 					order_direction: "asc",
@@ -439,6 +456,11 @@
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalSize = "modal-lg";
+				} else if (state == 'qrCode'){
+					this.modalTitle = 'QR Code untuk aset dengan nama ' + this.selectedItem.name;
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "";
 				}
 			},
 			modalTutup() {

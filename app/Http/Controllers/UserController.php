@@ -230,7 +230,7 @@ class UserController extends Controller
 
 			// processing single image upload
 			if(!empty($request->gambar))
-				$fileName = Helper::image_processing($this->imagepath,'300','200',$request,'');
+				$fileName = Helper::image_processing($this->imagepath,'300','200',$request->gambar,'', $username);
 			else
 				$fileName = '';
 
@@ -285,7 +285,7 @@ class UserController extends Controller
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request->gambar, $kelas->gambar, $username);
 		else
 			$fileName = '';
 
@@ -346,7 +346,7 @@ class UserController extends Controller
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,'300','200',$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,'300','200',$request->gambar,$kelas->gambar,$username);
 		else
 			$fileName = '';
 

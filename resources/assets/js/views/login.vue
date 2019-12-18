@@ -80,7 +80,8 @@
 	</div>
 </template>
 
-<script type="text/javascript">
+<script>
+	import { mapGetters } from 'vuex';
 	import { login } from "../helpers/auth.js";
 	import Token from '../helpers/token.js';
 	import Message from "../components/message.vue";
@@ -103,7 +104,7 @@
 			}
 		},
 		methods: {
-		submit() {
+			submit() {
 				this.message.show = false;
 				this.$validator.validateAll().then((result) => {
 					if(result){
@@ -118,7 +119,11 @@
 
 									let self = this;
 									setTimeout(function(){
+										if(self.$route.name == 'loginRedirect'){
+											self.$router.push(self.redirect);
+										}else{
 											self.$router.push(self.$router.history.current.query.redirect || '/');
+										}
 									}, 300);
 
 									// const token = Token.payload(res.access_token);
@@ -142,6 +147,11 @@
 					}
 				});
 			},
+		},
+		computed: {
+			...mapGetters('auth', {
+				redirect: 'redirect'
+      }),
 		}
 	}
 </script>

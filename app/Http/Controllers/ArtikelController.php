@@ -22,7 +22,7 @@ class ArtikelController extends Controller{
 				'(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name,
 				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
 				(SELECT name FROM artikel_penulis WHERE artikel.id_artikel_penulis = artikel_penulis.id) as penulis_name'
-			))->advancedFilter(['id','n']);
+			))->advancedFilter();
 
     	return response()
 			->json([
@@ -64,7 +64,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,'',$name);
 		else
 			$fileName = '';
 
@@ -116,7 +116,7 @@ class ArtikelController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
 		else
 			$fileName = '';
 
@@ -200,7 +200,7 @@ class ArtikelController extends Controller{
 	public function upload(Request $request)
 	{
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,'', $request->name);
 		else
 			$fileName = '';
 

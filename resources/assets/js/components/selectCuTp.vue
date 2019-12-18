@@ -87,13 +87,11 @@
 			modelCuStat(value){
 				if(value === "success"){
 					this.cu_id = this.$route.params.cu;
-					this.changeCU(this.cu_id);
 				}
 			},
 			modelTpStat(value){
 				if(value === "success"){
 					this.tp_id = this.$route.params.tp;
-					this.changeTp(this.tp_id);
 				}
 			},
     },

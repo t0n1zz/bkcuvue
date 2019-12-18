@@ -53,7 +53,7 @@ class ArtikelSimoController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height, $request->gambar,'', $name);
 		else
 			$fileName = '';	
 		
@@ -99,7 +99,7 @@ class ArtikelSimoController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height, $request->gambar, $kelas->gambar, $name);
 		else
 			$fileName = '';
 
@@ -157,7 +157,7 @@ class ArtikelSimoController extends Controller{
 	public function upload(Request $request)
 	{
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,'', $request->name);
 		else
 			$fileName = '';
 

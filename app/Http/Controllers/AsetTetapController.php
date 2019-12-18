@@ -53,6 +53,18 @@ class AsetTetapController extends Controller{
 		]);
 	}
 
+	public function get($kode)
+	{
+		$table_data = AsetTetap::with('aktivis','golongan','kelompok','jenis','lokasi','pembeli')->withCount(['hasAset','hasAset as harga_sub' => function($q) {
+			$q->select(DB::raw('sum(harga)'));
+		}])->where('kode',$kode)->first();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
 	public function create()
 	{
 		return response()
@@ -70,7 +82,7 @@ class AsetTetapController extends Controller{
 		$name = $request->name;
 
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,'', $name);
 		else
 			$fileName = '';	
 
@@ -106,7 +118,7 @@ class AsetTetapController extends Controller{
 		$name = $request->name;
 
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
 		else
 			$fileName = '';
 

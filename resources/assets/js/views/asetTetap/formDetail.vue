@@ -68,13 +68,13 @@
 		<hr>
 		
 		<!-- tombol desktop-->
-		<div class="text-center d-none d-md-block">
+		<div class="text-center d-none d-md-block" v-if="isModal">
 			<button type="button" class="btn btn-light" @click.prevent="tutup">
 				<i class="icon-cross"></i> Tutup</button>
 		</div>  
 
 		<!-- tombol mobile-->
-		<div class="d-block d-md-none">
+		<div class="d-block d-md-none" v-if="isModal">
 			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
 				<i class="icon-cross"></i> Tutup</button>
 		</div>
@@ -94,7 +94,7 @@
 	import cardData from "./card.vue";
 
 	export default {
-		props: ['kelas','selectedItem'],
+		props: ['kelas','selectedItem','selectedItemStat','isModal'],
 		components: {
 			checkValue,
 			Message,
@@ -166,7 +166,9 @@
 			}
 		},
 		created(){
-			this.fetch(this.query);
+			if(this.isModal){
+				this.fetch(this.query);
+			}
 			this.formData = Object.assign({},this.selectedItem);
 		},
 		watch: {
@@ -175,6 +177,11 @@
 					this.formData = Object.assign({},this.selectedItem);
 				}
 			},
+			selectedItemStat(value){
+				if(value === 'success' && !this.isModal){
+					this.fetch(this.query);
+				}
+			}
 		},
 		methods: {
 			save(){

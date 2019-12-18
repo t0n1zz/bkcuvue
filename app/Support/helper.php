@@ -10,39 +10,39 @@ use Illuminate\Http\Request;
 
 class Helper{
 
-	public static function image_processing($imagepath, $thumb_width, $thumb_height, $request, $kelas)
+	public static function image_processing($imagepath, $thumb_width, $thumb_height, $request, $kelas, $name)
 	{
 		$path = public_path($imagepath);
 
-		if(!empty($kelas) && $request->gambar == "no_image"){// no image
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
+		if(!empty($kelas) && $request == "no_image"){// no image
+			File::delete($path . $kelas . '.jpg');
+			File::delete($path . $kelas . 'n.jpg');
 			$formatedName = '';
 		}else{
 
 			// validate image request
-			$validator = Validator::make($request->all(), [
-				'gambar' => 'image|mimes:jpeg,png,jpg'
-			]);
+			// $validator = Validator::make($request, [
+			// 	'gambar' => 'image|mimes:jpeg,png,jpg'
+			// ]);
 
-			if ($validator->fails()) {
-				if(!empty($request->gambar)){
-					return $request->gambar;
-				}else{
-					$formatedName = '';
-					return $formatedName;
-				}
-			}
+			// if ($validator->fails()) {
+			// 	if(!empty($request)){
+			// 		return $request;
+			// 	}else{
+			// 		$formatedName = '';
+			// 		return $formatedName;
+			// 	}
+			// }
 			
-			if(!empty($kelas) && $request->gambar != ''){ //change image
-				File::delete($path . $kelas->gambar . '.jpg');
-				File::delete($path . $kelas->gambar . 'n.jpg');
+			if($kelas != '' && $request != ''){ //change image
+				File::delete($path . $kelas . '.jpg');
+				File::delete($path . $kelas . 'n.jpg');
 			}
 
-			$imageData = $request->gambar;
+			$imageData = $request;
 			list($width, $height) = getimagesize($imageData);
 
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid();
 			
 			$fileName =  $formatedName. '.jpg';
 			$fileName2 =  $formatedName. 'n.jpg';

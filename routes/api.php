@@ -285,7 +285,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     //aset tetap
     Route::get('/asetTetap/history', 'AsetTetapController@history');
-    Route::get('/asetTetap/cariData/{kode}', 'AsetTetapController@cariData');
+    Route::get('/asetTetap/get/{kode}', 'AsetTetapController@get');
     Route::group(['middleware' => ['permission:index_aset_tetap']], function () {
         Route::get('/asetTetap', 'AsetTetapController@index');
         Route::get('/asetTetap/indexSub/{id}', 'AsetTetapController@indexSub');

@@ -101,6 +101,20 @@ export const asetTetap = {
         });
     },
 
+    get( {commit}, kode ){
+      commit('setDataStat', 'loading');
+      
+      AsetTetapAPI.get( kode )
+        .then( function( response ){
+          commit('setData', response.data.model);
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+
     //store data
     store( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
@@ -198,6 +212,10 @@ export const asetTetap = {
     },
 
     // reset
+    resetData( {commit} ){
+      commit('setData', {});
+      commit('setDataStat', '');
+    },
     resetDataS2( {commit} ){
       commit('setDataS2', []);
       commit('setDataStatS2', '');

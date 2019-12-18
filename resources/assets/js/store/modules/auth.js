@@ -16,6 +16,7 @@ export const auth = {
     unreadNotification:'',
     markNotifStat:'',
     tokenExp: null,
+    redirect: '/',
   },
 
   getters: {
@@ -28,6 +29,7 @@ export const auth = {
     unreadNotification: state => state.unreadNotification,
     markNotifStat: state => state.markNotifStat,
     tokenExp: state => state.tokenExp,
+    redirect: state => state.redirect,
   },
 
   actions: {
@@ -84,6 +86,9 @@ export const auth = {
     },
     setTokenExp( state, data ){
       state.tokenExp = data;
+    },
+    setRedirect( state, data ){
+      state.redirect = data;
     },
   } 
 }

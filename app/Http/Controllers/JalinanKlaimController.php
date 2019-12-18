@@ -15,7 +15,10 @@ use Venturecraft\Revisionable\Revision;
 
 class JalinanKlaimController extends Controller{
 
+	protected $imagepath = 'images/jalinan/';
 	protected $message = "Klaim JALINAN";
+	protected $width = 300;
+	protected $height = 424;
 
 	public function index($status, $awal, $akhir)
 	{
@@ -503,7 +506,58 @@ class JalinanKlaimController extends Controller{
 
 	public function store(Request $request)
 	{
-		$kelas = JalinanKlaim::create($request->all());
+		$name = $request->anggota_cu_id;
+
+		if(!empty($request->dokumen_meninggal))
+			$dokumen_meninggal = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_meninggal,'',$name);
+		else
+			$dokumen_meninggal = '';
+		
+		if(!empty($request->dokumen_ktp))
+			$dokumen_ktp = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_ktp,'',$name);
+		else
+			$dokumen_ktp = '';
+
+		if(!empty($request->dokumen_pinjaman_1))
+			$dokumen_pinjaman_1 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,'',$name);
+		else
+			$dokumen_pinjaman_1 = '';
+
+		if(!empty($request->dokumen_pinjaman_2))
+			$dokumen_pinjaman_2 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,'',$name);
+		else
+			$dokumen_pinjaman_2 = '';
+
+		if(!empty($request->dokumen_pinjaman_3))
+			$dokumen_pinjaman_3 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,'',$name);
+		else
+			$dokumen_pinjaman_3 = '';
+
+		if(!empty($request->dokumen_pinjaman_4))
+			$dokumen_pinjaman_4 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,'',$name);
+		else
+			$dokumen_pinjaman_4 = '';
+
+		if(!empty($request->dokumen_pinjaman_5))
+			$dokumen_pinjaman_5 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,'',$name);
+		else
+			$dokumen_pinjaman_5 = '';
+
+		if(!empty($request->dokumen_pinjaman_6))
+			$dokumen_pinjaman_6 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,'',$name);
+		else
+			$dokumen_pinjaman_6 = '';
+
+		$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6') + [
+			'dokumen_ktp' => $dokumen_ktp,
+			'dokumen_meninggal' => $dokumen_meninggal,
+			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
+			'dokumen_pinjaman_2' => $dokumen_pinjaman_2,
+			'dokumen_pinjaman_3' => $dokumen_pinjaman_3,
+			'dokumen_pinjaman_4' => $dokumen_pinjaman_4,
+			'dokumen_pinjaman_5' => $dokumen_pinjaman_5,
+			'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
+		]);
 
 		$this->updateStatusAnggotaCu($request->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 
@@ -547,7 +601,56 @@ class JalinanKlaimController extends Controller{
 
 		$anggota_cu_id = $kelas->anggota_cu_id;
 
-		$kelas->update($request->all());	
+		if(!empty($request->dokumen_meninggal))
+			$dokumen_meninggal = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_meninggal,$kelas->dokumen_meninggal,$anggota_cu_id);
+		else
+			$dokumen_meninggal = '';
+		
+		if(!empty($request->dokumen_ktp))
+			$dokumen_ktp = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_ktp,$kelas->dokumen_ktp,$anggota_cu_id);
+		else
+			$dokumen_ktp = '';
+
+		if(!empty($request->dokumen_pinjaman_1))
+			$dokumen_pinjaman_1 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,$kelas->dokumen_pinjaman_1,$anggota_cu_id);
+		else
+			$dokumen_pinjaman_1 = '';
+
+		if(!empty($request->dokumen_pinjaman_2))
+			$dokumen_pinjaman_2 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,$kelas->dokumen_pinjaman_2,$anggota_cu_id);
+		else
+			$dokumen_pinjaman_2 = '';
+
+		if(!empty($request->dokumen_pinjaman_3))
+			$dokumen_pinjaman_3 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,$kelas->dokumen_pinjaman_3,$anggota_cu_id);
+		else
+			$dokumen_pinjaman_3 = '';
+
+		if(!empty($request->dokumen_pinjaman_4))
+			$dokumen_pinjaman_4 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,$kelas->dokumen_pinjaman_4,$anggota_cu_id);
+		else
+			$dokumen_pinjaman_4 = '';
+
+		if(!empty($request->dokumen_pinjaman_5))
+			$dokumen_pinjaman_5 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,$kelas->dokumen_pinjaman_5,$anggota_cu_id);
+		else
+			$dokumen_pinjaman_5 = '';
+
+		if(!empty($request->dokumen_pinjaman_6))
+			$dokumen_pinjaman_6 = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,$kelas->dokumen_pinjaman_6,$anggota_cu_id);
+		else
+			$dokumen_pinjaman_6 = '';
+
+		$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6') + [
+			'dokumen_ktp' => $dokumen_ktp,
+			'dokumen_meninggal' => $dokumen_meninggal,
+			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
+			'dokumen_pinjaman_2' => $dokumen_pinjaman_2,
+			'dokumen_pinjaman_3' => $dokumen_pinjaman_3,
+			'dokumen_pinjaman_4' => $dokumen_pinjaman_4,
+			'dokumen_pinjaman_5' => $dokumen_pinjaman_5,
+			'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
+		]);	
 
 		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati, true);
 
@@ -818,4 +921,5 @@ class JalinanKlaimController extends Controller{
 			'model' => $table_data
 		]);
 	}
+	
 }

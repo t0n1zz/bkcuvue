@@ -36,6 +36,7 @@ import aktivis_form from './views/aktivis/form.vue';
 import aktivis_riwayat from './views/aktivis/riwayat.vue';
 import asetTetap from './views/asetTetap/index.vue';
 import asetTetap_form from './views/asetTetap/form.vue';
+import asetTetap_detail from './views/asetTetap/detail.vue';
 import asetTetapJenis from './views/asetTetapJenis/index.vue';
 import asetTetapJenis_form from './views/asetTetapJenis/create.vue';
 import asetTetapKelompok from './views/asetTetapKelompok/index.vue';
@@ -73,6 +74,10 @@ const routes = [
 	// login
 	{ path: '/login',
 		name: 'login', 
+		components: { default: login },
+		meta: { notLoggedIn: true }},
+	{ path: '/login/redirect',
+		name: 'loginRedirect', 
 		components: { default: login },
 		meta: { notLoggedIn: true }},
 	
@@ -312,6 +317,10 @@ const routes = [
 		name: 'asetTetap', 
 		components: { default: asetTetap, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true, mode:'cu' }},
+		{ path: '/asetTetap/detail/:kode',
+		name: 'asetTetapDetail', 
+		components: { default: asetTetap_detail, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},	
 	{ path: '/asetTetap/create',
 		name: 'asetTetapCreate', 
 		components: { default: asetTetap_form, 'header': header, 'footer': footer },
