@@ -87,7 +87,7 @@
 		},
 		methods: {
 			cari(awal, akhir, cu){
-        this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: awal, akhir: akhir, cu: cu} });
+        this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: awal, akhir: akhir, cu: cu, tp: 'semua'} });
 			},
 			checkUser(permission,id_cu){
 				if(this.currentUser){
@@ -102,7 +102,7 @@
 				}
       },
       bukaData(value){
-				this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: this.$route.params.awal, akhir: this.$route.params.akhir,  cu: value} });
+				this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: this.$route.params.awal, akhir: this.$route.params.akhir,  cu: value, tp: 'semua'} });
 			},
       changeTab(value) {
 				this.tabName = value;

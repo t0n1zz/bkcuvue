@@ -87,7 +87,7 @@
 		},
 		methods: {
 			cari(awal, akhir, cu){
-        this.$router.push({name: 'jalinanLaporanKlaimLamaTanggal', params:{awal: awal, akhir: akhir, cu: cu} });
+        this.$router.push({name: 'jalinanLaporanKlaimLamaTanggal', params:{awal: awal, akhir: akhir, cu: cu, tp: 'semua'} });
 			},
 			checkUser(permission,id_cu){
 				if(this.currentUser){

@@ -31,7 +31,7 @@
 							<hr/>
 						</div>
 
-						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'4'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
+						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemDataKlaim" :itemDataStat="itemDataStatKlaim" :status="'4'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
 
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 				}
 			},
 			bukaData(value){
-				this.$router.push({name: 'jalinanCairTanggal', params:{awal: this.$route.params.awal, cu: value} });
+				this.$router.push({name: 'jalinanCairTanggal', params:{awal: this.$route.params.awal, cu: value, tp: 'semua'} });
 				this.isShowDetail = true;
 			},
 			showDetail(value){
@@ -101,9 +101,9 @@
 			}),
 			...mapGetters('jalinanKlaim',{
 				itemData: 'dataS',
-				itemData3: 'dataS3',
+				itemDataKlaim: 'dataS4',
 				itemDataStat: 'dataStatS',
-				itemDataStat3: 'dataStatS3',
+				itemDataStatKlaim: 'dataStatS4',
 			}),
 		}
 	}

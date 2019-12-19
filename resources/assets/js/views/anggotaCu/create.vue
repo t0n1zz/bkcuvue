@@ -680,6 +680,19 @@
 							<div class="form-group">
 
 								<!-- title -->
+								<h6>Kontak Ahli Waris:</h6>
+
+								<!-- text -->
+								<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak ahli waris" v-model="form.kontak_ahli_waris">
+
+							</div>
+						</div>
+
+						<!-- kontak -->
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<!-- title -->
 								<h6>Kontak Lainnya:</h6>
 
 								<!-- text -->

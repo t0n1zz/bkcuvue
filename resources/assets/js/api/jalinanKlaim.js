@@ -4,8 +4,8 @@ export default {
     return axios.get('/api/jalinanKlaim/status/' + status + '/' + awal + '/' + akhir,{params: p});
   },
 
-  indexCu: function( p, cu, status, awal, akhir  ){
-    return axios.get('/api/jalinanKlaim/indexCu/' + cu + '/status/' + status + '/' + awal + '/' + akhir, {params: p});
+  indexCu: function( p, cu, tp, status, awal, akhir  ){
+    return axios.get('/api/jalinanKlaim/indexCu/' + cu + '/tp/' + tp + '/status/' + status + '/' + awal + '/' + akhir, {params: p});
   },
 
   indexCair: function( tanggal){

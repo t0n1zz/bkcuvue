@@ -18,14 +18,12 @@
         </button>
 
         <!-- status klaim -->
-        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6" :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
         <!-- surat cair -->
-        <button @click.prevent="modalOpen('surat_cair')" class="btn btn-light btn-icon mb-1" v-if="status != '' &&  ( status == 5 || status == 6 )"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('surat_cair')" class="btn btn-light btn-icon mb-1" v-if="status != '' &&  ( status == 5 || status == 6 )" :disabled="!selectedItem.id">
           <i class="icon-envelop2"></i> Surat Pencairan
         </button>
 
@@ -72,8 +70,7 @@
         </span>
         
         <!-- hapus -->
-        <button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_klaim'] && status == 0"
-          :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_klaim'] && status == 0" :disabled="!selectedItem.id">
           <i class="icon-bin2"></i> Hapus
         </button>
 
@@ -674,8 +671,8 @@
           this.excelDownloadUrl = this.kelas + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           this.columnData[4].disable = false;
         }else{
-          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.awal, this.$route.params.akhir]);
-          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
+          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.tp, this.$route.params.awal, this.$route.params.akhir]);
+          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           this.columnData[4].disable = true;
           this.$store.dispatch('user/indexCuPermission',this.$route.params.cu);
         }

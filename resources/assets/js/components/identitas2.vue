@@ -26,8 +26,11 @@
           <ul class="list list-unstyled mb-0">
             <li><b>Tgl. Lahir:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span></li>
             <li><b>Tempat Lahir:</b> {{ itemData.tempat_lahir}}</li>
+            <li><b>Nama Ibu:</b> {{ itemData.nama_ibu}}</li>
+            <li><b>Nama Ahli Waris:</b> {{ itemData.ahli_waris}}</li>
             <li><b>Email:</b> {{ itemData.email}}</li>
             <li><b>No. Hp:</b> {{ itemData.hp}}</li>
+            <li><b>Kontak Ahli Waris:</b> {{ itemData.kontak_ahli_waris}}</li>	
             <li><b>Kontak Lainnya:</b> {{ itemData.kontak}}</li>	
           </ul>
         </div>

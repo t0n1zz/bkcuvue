@@ -29,10 +29,10 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
         $status_pernikahan = array_key_exists('status_pernikahan', $row) ? strtoupper($row['status_pernikahan']) : '';
 
         if(array_key_exists('ktp', $row) && $row['ktp']){
-            $ktp = preg_replace('/\s+/', ' ',$row['ktp']);
+            $ktp = preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']);
 
-            $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
-            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
+            $anggotaCu = AnggotaCu::where('nik',$ktp)->where('name', $row['nama'])->select('id','nik','name')->first();
+            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->where('name', $row['nama'])->select('id','nik','name')->first();
         }else{
             $kelas_ktp = System::findOrFail(1);
             $ktp = $kelas_ktp->nik;
@@ -40,8 +40,8 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
             $kelas_ktp->nik = str_pad($val,16,"0",STR_PAD_LEFT);
             $kelas_ktp->update();
 
-            $anggotaCu = null;
-            $anggotaCuDraft = null;
+            $anggotaCu = AnggotaCu::where('name', $row['nama'])->select('id','nik','name')->first();
+            $anggotaCuDraft = AnggotaCuDraft::where('name', $row['nama'])->select('id','nik','name')->first();
         }
 
         if(array_key_exists('provinsi', $row) && $row['provinsi']){
@@ -134,6 +134,6 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
     
     public function chunkSize(): int
     {
-        return 1000;
+        return 4000;
     }
 }

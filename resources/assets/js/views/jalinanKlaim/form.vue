@@ -320,11 +320,11 @@
 											<!-- nav -->
 											<div class="nav-tabs-responsive mb-3">
 												<ul class="nav nav-tabs nav-tabs-solid  bg-light">
-													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
-														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-person mr-2"></i> Keterangan meninggal dunia</a>
-													</li>
 													<li class="nav-item">
 														<a href="#" class="nav-link" :class="{'active' : tabName == 'ktp'}" @click.prevent="changeTab('ktp')"><i class="icon-vcard mr-2"></i> Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) </a>
+													</li>
+													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-person mr-2"></i> Keterangan meninggal dunia</a>
 													</li>
 													<li class="nav-item">
 														<a href="#" class="nav-link" :class="{'active' : tabName == 'pinjaman'}" @click.prevent="changeTab('pinjaman')"><i class="icon-clipboard3 mr-2"></i> Permohonan dan perjanjian pinjaman</a>
@@ -518,7 +518,7 @@
 				anggota_cu_cu_id: '',
 				cu_id: '',
 				tipe: '',
-				tabName: 'meninggal',
+				tabName: 'ktp',
 				cleaveOption: {
           date:{
             date: true,

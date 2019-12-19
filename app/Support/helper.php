@@ -14,7 +14,7 @@ class Helper{
 	{
 		$path = public_path($imagepath);
 
-		if(!empty($kelas) && $request == "no_image"){// no image
+		if($kelas != '' && $request == "no_image"){// no image
 			File::delete($path . $kelas . '.jpg');
 			File::delete($path . $kelas . 'n.jpg');
 			$formatedName = '';
@@ -33,8 +33,14 @@ class Helper{
 			// 		return $formatedName;
 			// 	}
 			// }
+
+			// no image change
+			if($kelas == $request){
+				return $request;
+			}
 			
-			if($kelas != '' && $request != ''){ //change image
+			// delete old image
+			if($kelas != '' && $request != ''){ 
 				File::delete($path . $kelas . '.jpg');
 				File::delete($path . $kelas . 'n.jpg');
 			}

@@ -143,7 +143,7 @@
 
 				if(this.currentUser.id_cu != 0){
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
-					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: this.currentUser.id_cu} };
+					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: this.currentUser.id_cu, tp:'semua'} };
 					this.cuWidgetRoute = { name: 'cuProfile', params:{id: this.currentUser.id_cu}   };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
@@ -151,7 +151,7 @@
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
-					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: 'semua'} };
+					this.jalinanKlaimWidgetRoute = { name: 'jalinanKlaimCu', params:{cu: 'semua', tp: 'semua'} };
 					this.cuWidgetRoute = { name: 'cu' };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };

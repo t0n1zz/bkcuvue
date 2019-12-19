@@ -77,16 +77,23 @@
 		created(){
 			if(this.currentUser.id_pus !== undefined){
 				this.fetchCU();
+				if(this.modelCuStat == 'success'){
+					this.fetchTp();
+				}
 			}	
 		},
 		watch: {
 			'$route' (to, from){
 				// check current page meta
 				this.fetchCU();
+				if(this.modelCuStat == 'success'){
+					this.fetchTp();
+				}
 			},
 			modelCuStat(value){
 				if(value === "success"){
 					this.cu_id = this.$route.params.cu;
+					this.fetchTp();
 				}
 			},
 			modelTpStat(value){
@@ -104,10 +111,10 @@
 				}
 			},
 			fetchTp(){
-				this.changeCU(this.cu_id);
+				this.$store.dispatch('tp/getCu',this.cu_id);
 			},
 			changeCU(value){
-				this.$store.dispatch('tp/getCu',value);
+				this.fetchTp();
 				if(this.$route.params.tp != 'semua'){
 					this.$router.push({name: this.path, params:{cu: this.cu_id, tp: this.$route.params.tp} });
 				}else{

@@ -61,6 +61,7 @@ class AnggotaCuDraftController extends Controller{
 		try{
 			$kelas = AnggotaCuDraft::findOrFail($id);
 			$kelas2 = AnggotaCuCuDraft::where('anggota_cu_draft_id', $id);
+			$kelas->nik = preg_replace('/[^A-Za-z0-9]/', '',$kelas->nik);
 
 			$data = $kelas->toArray();
 			$data2 = $kelas2->get()->toArray();
@@ -114,6 +115,7 @@ class AnggotaCuDraftController extends Controller{
 				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
 					$query->where('anggota_cu_cu.cu_id',$cu);
 				});
+				$kelas->nik = preg_replace('/[^A-Za-z0-9]/', '',$kelas->nik);
 			}
 
 			foreach($kelas->get() as $item){

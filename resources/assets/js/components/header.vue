@@ -485,7 +485,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'jalinan_klaim'}">
 
-									<router-link :to="{ name: 'jalinanKlaimCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'jalinanKlaimCu', params:{cu:'semua', tp:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
 
@@ -493,7 +493,7 @@
 									<div class="dropdown-divider"></div> 
 
 									<template v-for="(cu, index) in modelCu">
-										<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu" :key="index">
+										<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: cu.id, tp:'semua'} }" class="dropdown-item" active-class="active" exact v-if="cu" :key="index">
 											CU {{ cu.name }}
 										</router-link>
 									</template>
@@ -502,7 +502,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu, tp:'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu != 0">
 								<i class="icon-accessibility2"></i> Klaim JALINAN
 							</router-link>
 
@@ -998,7 +998,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.2.1',
+				clientVersion: '3.2.2',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				state: '',

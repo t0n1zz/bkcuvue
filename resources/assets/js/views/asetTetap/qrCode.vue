@@ -21,7 +21,7 @@
 						<div>
 							<ul class="list list-unstyled mb-0">
 								<li class="mt-0"><b style="font-size: 30px;"><span style="color:red;">Puskopdit</span></b></li>
-								<li class="mt-0"><b style="font-size: 30px;"><span style="color:blue;">BKCU Kalimantan</span></b></li>
+								<li class="mt-0"><b style="font-size: 30px;"><span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
 								<li class="mt-0"><b style="font-size: 24px;">Kode: {{ selectedItem.kode }}</b></li>
 							</ul>	
 						</div>
@@ -37,7 +37,7 @@
 						<div>
 							<qrcode-vue :value="qrValue" :size="'150'" :renderAs="'svg'" level="M"></qrcode-vue>
 							<ul class="list list-unstyled mb-0 mt-1">
-								<li class="mt-0 mb-0"><b style="font-size: 12px;"><span style="color:red;">Puskopdit</span> <span style="color:blue;">BKCU Kalimantan</span></b></li>
+								<li class="mt-0 mb-0"><b style="font-size: 10px;"><span style="color:red;">Puskopdit</span> <span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
 								<li class="mt-0"><b style="font-size: 12px;">Kode: {{ selectedItem.kode }}</b></li>
 							</ul>	
 						</div>
@@ -106,7 +106,7 @@
 					this.output = await this.$html2canvas(this.$refs.qrSmall, options);
 				}
 				
-				FileSaver.saveAs(this.output, this.selectedItem.name);
+				FileSaver.saveAs(this.output, this.selectedItem.kode);
 			},
 			tutup(){
 				this.$emit('tutup');

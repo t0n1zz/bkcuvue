@@ -14,7 +14,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#322">Version 3.2.2 <small class="text-muted"> / 18 Desember 2019</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#322">Version 3.2.2 <small class="text-muted"> / 19 Desember 2019</small></a>
                   </h5>
                 </div>
 
@@ -26,6 +26,7 @@
 
                     <ul class="list">
                       <li>Penambahan upload dokumen untuk memenuhi kebutuhan pengajuan Klaim JALINAN</li>
+                      <li>Penambahan pemilahan data klaim berdasarkan TP</li>
                       <li>Penambahan surat pada bagian Klaim JALINAN yang terdiri dari surat dokument tidak lengkap, surat penolakan klaim dan surat pencairan klaim</li>
                       <li>Penambahan informasi nomor surat dan tanggal surat untuk surat pada bagian Klaim JALINAN</li>
                       <li>Penambahan fitur ketika logout otomatis maka akan kembali ke halaman terakhir yang dibuka sebelum.</li>

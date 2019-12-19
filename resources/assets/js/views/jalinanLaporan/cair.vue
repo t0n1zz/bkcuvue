@@ -37,13 +37,13 @@
 
             <transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'dicairkan'"  v-if="$route.meta.mode == 'laporan'">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData4" :itemDataStat="itemDataStat4" :status="'4'" :isSimple="true"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'" :isSimple="true"></table-data>
 						</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'selesai'" v-if="isSelesai && $route.meta.mode == 'laporan'">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'" :isSimple="true"></table-data>
+								<table-data :title="title" :kelas="kelas" :itemData="itemData6" :itemDataStat="itemDataStat6" :status="'6'" :isSimple="true"></table-data>
 							</div>
 						</transition>
 
@@ -86,7 +86,7 @@
 		},
 		methods: {
 			cari(awal, akhir){
-        this.$router.push({name: 'jalinanLaporanKlaimCairTanggal', params:{awal: awal, akhir: akhir, cu: 'semua'} });
+        this.$router.push({name: 'jalinanLaporanKlaimCairTanggal', params:{awal: awal, akhir: akhir, cu: 'semua', tp: 'semua'} });
 			},
 			checkUser(permission,id_cu){
 				if(this.currentUser){
@@ -101,7 +101,7 @@
 				}
       },
       bukaData(value){
-				this.$router.push({name: 'jalinanLaporanKlaimCairTanggal', params:{awal: this.$route.params.awal, akhir: this.$route.params.akhir,  cu: value} });
+				this.$router.push({name: 'jalinanLaporanKlaimCairTanggal', params:{awal: this.$route.params.awal, akhir: this.$route.params.akhir,  cu: value, tp:'semua'} });
 			},
       changeTab(value) {
 				this.tabName = value;
@@ -116,11 +116,11 @@
 			}),
 			...mapGetters('jalinanKlaim',{
         itemData: 'dataS',
-        itemData4: 'dataS4',
         itemData5: 'dataS5',
+        itemData6: 'dataS6',
         itemDataStat: 'dataStatS',
-        itemDataStat4: 'dataStatS4',
         itemDataStat5: 'dataStatS5',
+        itemDataStat6: 'dataStatS6',
 			}),
 		}
 	}

@@ -18,11 +18,10 @@
 						</message>
 
 						<!-- select data -->
-						<select-cu 
+						<select-cu-tp 
 							:kelas="kelas"
 							:path="selectCuPath"
-							:isPus="false"
-							v-if="currentUser.id_cu == 0"></select-cu>
+							:isPus="false"></select-cu-tp>
 
 						<!-- table data -->
 						<div class="nav-tabs-responsive mb-3">
@@ -132,7 +131,7 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
-	import selectCu from "../../components/selectCu.vue";
+	import selectCuTp from "../../components/selectCuTp.vue";
 	import verifikator from "./verifikator.vue";
 	
 	export default {
@@ -140,7 +139,7 @@
 			pageHeader,
 			tableData,
 			message,
-			selectCu,
+			selectCuTp,
 			verifikator
 		},
 		data() {
