@@ -12,7 +12,6 @@ class CustomQueryBuilder {
                 $this->makeFilter($query, $filter);
             }
         }
-
         return $query;
     }
 

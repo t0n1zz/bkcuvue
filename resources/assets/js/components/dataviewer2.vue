@@ -167,6 +167,7 @@
                         <option>15</option>
                         <option>25</option>
                         <option>50</option>
+                        <option>100</option>
                       </select>
                     </div> 
                   </div>

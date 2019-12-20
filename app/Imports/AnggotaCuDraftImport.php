@@ -20,19 +20,32 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading, ShouldQueue
+class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
 
     public function model(array $row)
     {
         $gender = array_key_exists('gender', $row) ? strtoupper($row['gender']) : '';
         $status_pernikahan = array_key_exists('status_pernikahan', $row) ? strtoupper($row['status_pernikahan']) : '';
+        $ktp = array_key_exists('ktp', $row)? preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']) : '';
+        $no_ba = array_key_exists('no_ba', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['no_ba']) : '';
 
-        if(array_key_exists('ktp', $row) && $row['ktp']){
-            $ktp = preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']);
+        if($gender == 'L'){
+            $gender = 'LAKI-LAKI';
+        }else if($gender == 'P'){
+            $gender = 'PEREMPUAN';
+        }
 
-            $anggotaCu = AnggotaCu::where('nik',$ktp)->where('name', $row['nama'])->select('id','nik','name')->first();
-            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->where('name', $row['nama'])->select('id','nik','name')->first();
+        if($status_pernikahan == 'KW'){
+            $status_pernikahan = 'MENIKAH';
+        }else if($status_pernikahan == 'TK'){
+            $status_pernikahan = 'BELUM MENIKAH';
+        }
+
+        // check nik / ktp
+        if($ktp != ''){
+            $anggotaCu = AnggotaCu::where('nik',$ktp)->select('id','nik')->first();
+            $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik')->first();
         }else{
             $kelas_ktp = System::findOrFail(1);
             $ktp = $kelas_ktp->nik;
@@ -40,8 +53,8 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
             $kelas_ktp->nik = str_pad($val,16,"0",STR_PAD_LEFT);
             $kelas_ktp->update();
 
-            $anggotaCu = AnggotaCu::where('name', $row['nama'])->select('id','nik','name')->first();
-            $anggotaCuDraft = AnggotaCuDraft::where('name', $row['nama'])->select('id','nik','name')->first();
+            $anggotaCu = null;
+            $anggotaCuDraft = null;
         }
 
         if(array_key_exists('provinsi', $row) && $row['provinsi']){
@@ -69,20 +82,30 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
             $villages = '';
         }
 
-        if($gender == 'L'){
-            $gender = 'LAKI-LAKI';
-        }else if($gender == 'P'){
-            $gender = 'PEREMPUAN';
+        // old data exist
+        if($anggotaCu){
+            // check for no_ba
+            $anggotaCuCu = AnggotaCuCu::where('no_ba',$no_ba)->select('id','no_ba')->first();
+
+            // no old no_ba exist
+            if(!$anggotaCuCu){
+                $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+                $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
+
+                AnggotaCuCuDraft::create([
+                    'anggota_cu_id' => $anggotaCu->id,
+                    'cu_id' => $cu->id,
+                    'tp_id' => $tp->id,
+                    'no_ba' => $no_ba,
+                    'tanggal_masuk' => array_key_exists('tanggal_jadi_anggota', $row) ?\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']) : '',
+                    'keterangan_masuk' => array_key_exists('keterangan_jadi_anggota', $row) ? $row['keterangan_jadi_anggota'] : '',
+                ]);
+            }
         }
 
-        if($status_pernikahan == 'KW'){
-            $status_pernikahan = 'MENIKAH';
-        }else if($status_pernikahan == 'TK'){
-            $status_pernikahan = 'BELUM MENIKAH';
-        }
-
+        // no old data exist
         if(!$anggotaCu && !$anggotaCuDraft){
-            $anggotaCu = AnggotaCuDraft::create([
+            $anggotaCuDraft = AnggotaCuDraft::create([
                 'name' => array_key_exists('nama', $row) ? $row['nama'] : '',
                 'id_provinces' => $provinces,
                 'id_regencies' => $regencies,
@@ -115,25 +138,32 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
                 'nama_ibu' => array_key_exists('nama_ibu', $row) ? $row['nama_ibu'] : '',
                 'kk' => array_key_exists('kk', $row) ? $row['kk'] : ''
             ]);
+
+            if($anggotaCuDraft){
+                $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+                $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
+    
+                AnggotaCuCuDraft::create([
+                    'anggota_cu_draft_id' => $anggotaCuDraft->id,
+                    'cu_id' => $cu->id,
+                    'tp_id' => $tp->id,
+                    'no_ba' => $no_ba,
+                    'tanggal_masuk' => array_key_exists('tanggal_jadi_anggota', $row) ?\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']) : '',
+                    'keterangan_masuk' => array_key_exists('keterangan_jadi_anggota', $row) ? $row['keterangan_jadi_anggota'] : '',
+                ]);
+            }
         }
 
-        if($anggotaCu){
-            $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
-            $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
-
-            AnggotaCuCuDraft::create([
-                'anggota_cu_draft_id' => $anggotaCu->id,
-                'cu_id' => $cu->id,
-                'tp_id' => $tp->id,
-                'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
-                'tanggal_masuk' => array_key_exists('tanggal_jadi_anggota', $row) ?\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']) : '',
-                'keterangan_masuk' => array_key_exists('keterangan_jadi_anggota', $row) ? $row['keterangan_jadi_anggota'] : '',
-            ]);
-        }
+        
+    }
+    
+    public function batchSize(): int
+    {
+        return 5000;
     }
     
     public function chunkSize(): int
     {
-        return 4000;
+        return 5000;
     }
 }
