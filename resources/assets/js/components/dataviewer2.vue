@@ -153,7 +153,7 @@
               </div>
 
               <!-- entri & order -->
-              <div class="col-md-6 col-lg-4 text-right">
+              <div class="col-md-7 col-lg-4 text-right">
                 <div class="row">
 
                   <!-- entri -->

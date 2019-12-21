@@ -53,7 +53,8 @@ class JalinanKlaim extends BaseEloquent {
     protected $orderable = [
         'id','anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','created_at','updated_at','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan','surat_nomor','surat_tanggal',
 
-        'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk','verifikasi_pengurus.name','verifikasi_pengawas.name','verifikasi_manajemen.name',
+        'anggota_cu.nik','anggota_cu.name','anggota_cu.tanggal_lahir','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk',
+        'verifikasi_pengurus.name','verifikasi_pengawas.name','verifikasi_manajemen.name',
     ];
 
     public static function initialize()

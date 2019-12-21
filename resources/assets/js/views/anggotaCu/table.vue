@@ -362,12 +362,13 @@
           },
           {
             title: 'No. BA',
-            name: 'no_ba',
+            name: 'anggota_cu_cu.no_ba',
+            excelName: 'no_ba',
             tipe: 'string',
             sort: false,
             hide: false,
             disable: false,
-            filter: false,
+            filter: true,
           },
           {
             title: 'JALINAN',
@@ -551,7 +552,8 @@
           },
           {
             title: 'Tgl. Jadi Anggota',
-            name: 'tanggal_masuk',
+            name: 'anggota_cu_cu.tanggal_masuk',
+            excelName: 'tanggal_masuk',
             tipe: 'datetime',
             sort: false,
             hide: false,
