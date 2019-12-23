@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<form @submit.prevent="save" data-vv-scope="formPeserta">
+		<form @submit.prevent="checkPeserta" data-vv-scope="formPeserta">
 
 		<div class="alert bg-info text-white alert-styled-left alert-dismissible">
 			<span class="font-weight-semibold">Sasaran peserta untuk diklat ini adalah untuk tingkat: 
@@ -369,6 +369,19 @@
 				this.fetch(this.query);
 			}
 		},
+		watch:{
+			pesertaDataStat(value){
+				if(value == 'success'){
+					if(this.pesertaData){
+						this.message.show = true;
+						this.message.content = "Maaf peserta ini sudah terdaftar di diklat ini";
+						this.selectedItem = '';
+					}else{
+						this.save();
+					}
+				}
+			}
+		},
 		methods: {
 			fetch(params){
 				if(this.currentUser.id_cu == 0){
@@ -419,6 +432,9 @@
 					this.selectedItem = '';
 				}
 			},
+			checkPeserta(){
+				this.$store.dispatch('diklatBKCU/updatePeserta', [this.kegiatan_id, this.formPeserta.aktivis_id]);
+			},
 			save(){
 				this.$validator.validateAll('formPeserta').then((result) => {
 					if (result) {
@@ -442,6 +458,10 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
+			}),
+			...mapGetters('diklatBKCU',{
+				pesertaData: 'data',
+				pesertaDataStat: 'dataStat'
 			}),
 			...mapGetters('aktivis',{
 				itemData: 'dataS',

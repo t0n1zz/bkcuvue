@@ -217,6 +217,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/diklatBKCU/indexPesertaBerjalan/{id}', 'DiklatBKCUController@indexPesertaBerjalan');
         Route::get('/diklatBKCU/indexPesertaBatal/{id}', 'DiklatBKCUController@indexPesertaBatal');
         Route::get('/diklatBKCU/indexPesertaCu/{id}/cu/{cu}', 'DiklatBKCUController@indexPesertaCu');
+        Route::post('/diklatBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'DiklatBKCUController@checkPeserta');
         Route::post('/diklatBKCU/storePeserta/{id}', 'DiklatBKCUController@storePeserta');
         Route::post('/diklatBKCU/updatePeserta/{id}', 'DiklatBKCUController@updatePeserta');
         Route::delete('/diklatBKCU/destroyPeserta/{id}', 'DiklatBKCUController@destroyPeserta');

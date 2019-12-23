@@ -48,6 +48,10 @@ export default {
     return axios.get('/api/diklatBKCU/indexPesertaCu/' + id + '/cu/' + cu  , {params: p});
   },
 
+  checkPeserta: function( kegiatan_id, aktivis_id ){
+    return axios.get('/api/diklatBKCU/checkPeserta/' + kegiatan_id + '/' + aktivis_id);
+  },
+
   getPeriode: function(){
     return axios.get('/api/diklatBKCU/getPeriode');
   },

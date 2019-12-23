@@ -93,6 +93,20 @@ export const diklatBKCU = {
         });
     },
 
+    checkPeserta( { commit }, [kegiatan_id, aktivis_id] ){
+      commit('setPeriodeStat', 'loading');
+      
+      DIKLATBKCUAPI.checkPeserta(kegiatan_id, aktivis_id)
+        .then( function( response ){
+          commit('setPeriode', response.data.model );
+          commit('setPeriodeStat', 'success');
+        })
+        .catch( error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
+        });
+    },
+
     getPeriode( { commit } ){
       commit('setPeriodeStat', 'loading');
       

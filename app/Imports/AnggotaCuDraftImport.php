@@ -64,19 +64,31 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
             $provinces = '';
         }
         if(array_key_exists('kabupaten', $row) && $row['kabupaten']){
-            $regencies = Regencies::where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
+            if($provinces != ''){
+                $regencies = Regencies::where('provinces_id',$provinces)->where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
+            }else{
+                $regencies = Regencies::where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
+            }
             $regencies = $regencies ? $regencies->id : '';
         }else{
             $regencies = '';
         }
         if(array_key_exists('kecamatan', $row) && $row['kecamatan']){
-            $districts = Districts::where('name','like', '%' .strtoupper($row['kecamatan']). '%')->first();
+            if($regencies != ''){
+                $districts = Districts::where('regency_id',$regencies)->where('name','like', '%' .strtoupper($row['kecamatan']). '%')->first();
+            }else{
+                $districts = Districts::where('name','like', '%' .strtoupper($row['kecamatan']). '%')->first();
+            }
             $districts = $districts ? $districts->id : '';
         }else{
             $districts = '';
         }
         if(array_key_exists('kelurahan', $row) && $row['kelurahan']){
-            $villages = Villages::where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first();
+            if($districts != ''){
+                $villages = Villages::where('district_id',$districts)->where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first();
+            }else{
+                $villages = Villages::where('name','like', '%' .strtoupper($row['kelurahan']). '%')->first(); 
+            }
             $villages = $villages ? $villages->id : '';
         }else{
             $villages = '';
