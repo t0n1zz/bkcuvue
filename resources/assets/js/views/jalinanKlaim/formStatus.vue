@@ -651,6 +651,8 @@
           tunas_disetujui: '',
           lintang_disetujui: '',
           tanggal_pencairan: '',
+          surat_tanggal: '',
+          surat_nomor: ''
         },
         cleaveOption: {
           numeric: {
@@ -688,6 +690,8 @@
 			this.formStatus.tunas_disetujui = this.selectedData.tunas_disetujui;
       this.formStatus.lintang_disetujui = this.selectedData.lintang_disetujui;
       this.formStatus.tanggal_pencairan = this.selectedData.tanggal_pencairan;
+      this.formStatus.surat_tanggal = this.selectedData.surat_tanggal;
+      this.formStatus.surat_nomor = this.selectedData.surat_nomor;
       this.formStatus.cu_id = this.selectedData.anggota_cu_cu.cu_id;
       this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.selectedData.anggota_cu_cu.cu_id]); 
 		},

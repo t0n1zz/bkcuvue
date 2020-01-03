@@ -32,12 +32,17 @@ class JalinanKlaimController extends Controller{
 		}
 
 		foreach($table_data as $t){
-			// $t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+			if($t->anggota_cu){
+				$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+			}
 
-			// $tanggal_masuk = $t->anggota_cu_cu ? \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk) : '';
-			// $tanggal_meninggal = $t->anggota_cu ? \Carbon\Carbon::parse($t->anggota_cu->tanggal_meninggal) : '';
-			// $t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
-			// $t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+			$tanggal_masuk = $t->anggota_cu_cu ? \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk) : '';
+			$tanggal_meninggal = $t->anggota_cu ? \Carbon\Carbon::parse($t->anggota_cu->tanggal_meninggal) : '';
+
+			if($t->anggota_cu_cu){
+				$t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
+				$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+			}
 		}
 
 		return response()
@@ -75,12 +80,17 @@ class JalinanKlaimController extends Controller{
 		}
 
 		foreach($table_data as $t){
-			$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
-			$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+			if($t->anggota_cu){
+				$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+			}
 
 			$tanggal_masuk = \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk);
 			$tanggal_meninggal = \Carbon\Carbon::parse($t->anggota_cu->tanggal_meninggal);
-			$t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
+
+			if($t->anggota_cu_cu){
+				$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+				$t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
+			}	
 		}
 
 		return response()
@@ -664,7 +674,7 @@ class JalinanKlaimController extends Controller{
 			'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
 		]);	
 
-		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati, true);
+		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
 
 		return response()
 			->json([
@@ -769,24 +779,24 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function updateStatusAnggotaCu($id, $tipe, $tanggal, $isEdit = false){
+	public function updateStatusAnggotaCu($id, $tipe, $tanggal){
 		$kelas = AnggotaCu::findOrFail($id);
 		$kelas->status_jalinan = $tipe;
 
 		if($tipe == 'MENINGGAL'){
 			$kelas->tanggal_meninggal = $tanggal;
-			if($isEdit){
-				if($kelas->tanggal_cacat == $tanggal){
-					$kelas->tanggal_cacat = NULL;
-				}
-			}
+			// if($isEdit){
+			// 	if($kelas->tanggal_cacat == $tanggal){
+			// 		$kelas->tanggal_cacat = NULL;
+			// 	}
+			// }
 		}else if($tipe == 'CACAT'){
 			$kelas->tanggal_cacat = $tanggal;
-			if($isEdit){
-				if($kelas->tanggal_meninggal == $tanggal){
-					$kelas->tanggal_meninggal = NULL;
-				}
-			}
+			// if($isEdit){
+			// 	if($kelas->tanggal_meninggal == $tanggal){
+			// 		$kelas->tanggal_meninggal = NULL;
+			// 	}
+			// }
 		}
 		
 		$kelas->update();
