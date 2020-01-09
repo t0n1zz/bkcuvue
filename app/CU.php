@@ -7,7 +7,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Cu extends BaseEloquent {
+class Cu extends Model {
     
     use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes, Sluggable;
