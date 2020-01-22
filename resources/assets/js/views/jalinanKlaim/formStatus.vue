@@ -145,14 +145,14 @@
                   <span>
                     Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
                   </span>
-                  <div v-if="selectedData.tipe == 'cacat'">
+                  <div v-if="selectedData.tipe == 'CACAT'">
                     <hr/>
                     <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
                     <span>
                       Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
                     </span>
                   </div>
-                  <div v-else-if="selectedData.tipe == 'meninggal'">
+                  <div v-else-if="selectedData.tipe == 'MENINGGAL'">
                     <hr/>
                     <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
                     <span>

@@ -122,7 +122,7 @@ class DiklatBKCUController extends Controller{
 
 	public function indexPesertaTerdaftar($cu)
 	{
-		if($cu == 0){
+		if($cu == 0){ 
 			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','kegiatan')->where('status','2')->take(6)->get();
 
 			$countMenunggu = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('status','1')->count();

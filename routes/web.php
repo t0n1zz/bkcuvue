@@ -27,6 +27,9 @@ $appRoutes = function() {
     
 	// cu
 	Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));
+
+	// kegiatan
+	Route::get('/diklat',array( 'as' => 'diklat','uses' => 'PublicController@diklat'));
 	
 	// dokumen
 	Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));

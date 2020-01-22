@@ -26,8 +26,7 @@ class AktivisController extends Controller{
 
 	public function index($tingkat, $status)
 	{
-		if($tingkat == 'semua'){
-			
+		if($tingkat == 'semua'){	
 			if($status == 'aktif'){
 				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
 					$query->whereIn('tipe',[1,3])->where('status',1);
@@ -37,7 +36,6 @@ class AktivisController extends Controller{
 					$query->whereIn('tipe',[1,3])->where('status',3);
 				})->advancedFilter();
 			}
-
 		}elseif($tingkat == 'manajemen'){
 
 			if($status == 'aktif'){
@@ -615,6 +613,8 @@ class AktivisController extends Controller{
 
 		$kelas->save();
 
+		Aktivis::flushCache();
+
 		if($isReturnValue){
 			return array($no_tipe,$lembaga);
 		}else{
@@ -663,6 +663,8 @@ class AktivisController extends Controller{
 
 		$kelas->save();
 
+		Aktivis::flushCache();
+
 		if(array_key_exists('id', $request->pendidikan)){
 			return response()
 			->json([
@@ -699,6 +701,8 @@ class AktivisController extends Controller{
 		$kelas->selesai = $request->organisasi['selesai'];
 
 		$kelas->save();
+
+		Aktivis::flushCache();
 
 		if(array_key_exists('id', $request->organisasi)){
 			return response()
@@ -739,6 +743,8 @@ class AktivisController extends Controller{
 
 		$kelas->save();
 
+		Aktivis::flushCache();
+
 		if(array_key_exists('id', $request->diklat)){
 			return response()
 			->json([
@@ -768,6 +774,7 @@ class AktivisController extends Controller{
 		
 		if($kelas->name != null || $kelas->name != ''){
 			$kelas->save();
+			Aktivis::flushCache();
 		}
 	}
 
@@ -793,6 +800,7 @@ class AktivisController extends Controller{
 			$kelas->tanggal_masuk = $tanggal_masuk;
 		}
 		$kelas->save();
+		Aktivis::flushCache();
 	}
 
 
@@ -824,6 +832,7 @@ class AktivisController extends Controller{
 	public function destroyPekerjaan($id)
 	{
 		AktivisPekerjaan::where('id',$id)->delete();
+		Aktivis::flushCache();
 
 		return response()
 			->json([
@@ -835,6 +844,7 @@ class AktivisController extends Controller{
 	public function destroyPendidikan($id)
 	{
 		AktivisPendidikan::where('id',$id)->delete();
+		Aktivis::flushCache();
 
 		return response()
 			->json([
@@ -846,6 +856,7 @@ class AktivisController extends Controller{
 	public function destroyOrganisasi($id)
 	{
 		AktivisOrganisasi::where('id',$id)->delete();
+		Aktivis::flushCache();
 
 		return response()
 			->json([
@@ -857,6 +868,7 @@ class AktivisController extends Controller{
 	public function destroyDiklat($id)
 	{
 		KegiatanPeserta::where('id',$id)->delete();
+		Aktivis::flushCache();
 
 		return response()
 			->json([
@@ -868,11 +880,13 @@ class AktivisController extends Controller{
 	public function destroyKeluarga($id)
 	{
 		AktivisKeluarga::where('id',$id)->delete();
+		Aktivis::flushCache();
 	}
 
 	public function destroyAnggotaCu($id)
 	{
 		AktivisAnggotaCu::where('id',$id)->delete();
+		Aktivis::flushCache();
 	}
 
 	public function count()

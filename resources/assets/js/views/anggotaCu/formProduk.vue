@@ -48,7 +48,7 @@
 					<h5 :class="{ 'text-danger' : errors.has('formProduk.produk_cu.id')}">
 						<i class="icon-cross2" v-if="errors.has('formProduk.produk_cu.id')"></i>
 						Produk CU: <info-icon :message="'Apabila jenis produk yang ingin anda pilih tidak ada, pastikan anda sudah menambahkan data produk di menu Tambah Produk & Pelayanan'"></info-icon>
-				</h5>
+					</h5>
 
 					<!-- select -->
 					<select class="form-control" name="produk_cu_id" v-model="formProduk.produk_cu.id" data-width="100%" @change="changeProdukCu($event.target.value)" v-validate="'required'" data-vv-as="Produk CU" :disabled="formStateProdukCu.length === 0">
@@ -152,27 +152,21 @@
 
 			<!-- tanggal target -->
 			<div class="col-md-12"  v-if="tipeProduk != ''">
-				<div class="form-group" :class="{'has-error' : errors.has('formProduk.tanggal_target')}" v-if="tipeProduk != 'pinjaman'">
+				<div class="form-group" v-if="tipeProduk != 'pinjaman'">
 
 					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formProduk.tanggal_target')}"><i class="icon-cross2" v-if="errors.has('formProduk.tanggal_target')"></i> Tanggal Target: <info-icon :message="'Informasi mengenai kapan akan digunakan simpanan tersebut | Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+					<h5>Tanggal Target: <info-icon :message="'Informasi mengenai kapan akan digunakan simpanan tersebut | Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 					<!-- input -->
 					<cleave 
-						name="tanggal"
+						name="tanggal_target"
 						v-model="formProduk.tanggal_target" 
 						class="form-control" 
 						:raw="false" 
 						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tanggal target"
-						v-validate="'required'" data-vv-as="Tanggal Target"></cleave>
+						placeholder="Silahkan masukkan tanggal target"></cleave>
 
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('formProduk.tanggal_target')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('formProduk.tanggal_target') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;
-					</small>	
+					<small class="text-muted">&nbsp;</small>	
 
 				</div>
 			</div>

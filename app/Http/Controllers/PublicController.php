@@ -7,6 +7,7 @@ use SEO;
 use App\Cu;
 use Response;
 use App\Artikel;
+use App\Kegiatan;
 use App\Download;
 use App\ArtikelPenulis;
 use App\ArtikelKategori;
@@ -60,6 +61,22 @@ class PublicController extends Controller
         SEO::opengraph()->addProperty('type', 'articles');
 
         return view('artikel', compact('title','subtitle','tipe','artikels'));
+    }
+
+    public function diklat()
+    {
+        $title = 'Diklat';
+        $subtitle = 'Menampilkan Diklat';
+
+        $kegiatans = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->whereNotIn('status',[5,6])->get();
+
+        // seo
+        SEO::setTitle('Diklat - Puskopdit BKCU Kalimantan');
+        SEO::setDescription('Diklat Puskopdit BKCU Kalimantan');
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
+        return view('diklat', compact('title','subtitle','kegiatans'));
     }
 
     public function artikelKategori($slug)
