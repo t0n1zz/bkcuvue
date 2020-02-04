@@ -8,16 +8,20 @@ use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class AnggotaCu extends BaseEloquent {
-    
+
+    use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes;
 
     protected $table = 'anggota_cu';
     protected $dates = ['deleted_at'];
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true;
+    protected $historyLimit = 500;
     
     public static $rules = [
-        'nik'=> 'sometimes|required|unique:anggota_cu',
+        'nik'=> 'sometimes|required|unique:anggota_cu,deleted_at,NULL',
         'name' => 'required',
         'ahli_waris' => 'required',
         'kelamin' => 'required',
@@ -31,6 +35,10 @@ class AnggotaCu extends BaseEloquent {
     {
         parent::boot();
     }
+
+    protected $dontKeepRevisionOf = array(
+        'deleted_at'
+    );
     
     protected $fillable = [
         'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces','gambar','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris'

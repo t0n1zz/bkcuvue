@@ -63,22 +63,6 @@ class PublicController extends Controller
         return view('artikel', compact('title','subtitle','tipe','artikels'));
     }
 
-    public function diklat()
-    {
-        $title = 'Diklat';
-        $subtitle = 'Menampilkan Diklat';
-
-        $kegiatans = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->whereNotIn('status',[5,6])->get();
-
-        // seo
-        SEO::setTitle('Diklat - Puskopdit BKCU Kalimantan');
-        SEO::setDescription('Diklat Puskopdit BKCU Kalimantan');
-        SEO::opengraph()->setUrl(url()->full());
-        SEO::opengraph()->addProperty('type', 'articles');
-
-        return view('diklat', compact('title','subtitle','kegiatans'));
-    }
-
     public function artikelKategori($slug)
     {
         $kategori = ArtikelKategori::where('slug',$slug)->first();
@@ -180,6 +164,40 @@ class PublicController extends Controller
         SEO::opengraph()->addProperty('type', 'articles');
 
         return view('artikel', compact('title','subtitle','tipe','artikels'));
+    }
+
+
+    public function diklat($periode)
+    {
+        $title = 'Diklat ' . $periode;
+        $subtitle = 'Menampilkan Diklat tahun buku ' . $periode;
+
+        $kegiatans = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->where('periode',$periode)->whereIn('status',[1,2,3,4,5])->orderBy('mulai')->get();
+
+        // seo
+        SEO::setTitle('Diklat - Puskopdit BKCU Kalimantan');
+        SEO::setDescription('Diklat Puskopdit BKCU Kalimantan');
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
+        return view('diklat', compact('title','subtitle','kegiatans'));
+    }
+
+    public function diklatLihat($slug)
+    {
+        $diklat = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->whereIn('status',[1,2,3,4,5])->where('slug', $slug)->first();
+
+         // seo
+         SEO::setTitle($diklat->name. ' - Puskopdit BKCU Kalimantan');
+         SEO::setDescription(str_limit(strip_tags($diklat->keterangan),200));
+         SEO::opengraph()->setUrl(url()->full());
+         SEO::opengraph()->addProperty('type', 'articles');
+
+         if($diklat->gambar){
+            SEO::opengraph()->addImage(route('home') . '/images/diklat/' . $diklat->gambar. '.jpg');
+         }
+
+        return view('diklatLihat', compact('diklat'));
     }
 
     public function cu()

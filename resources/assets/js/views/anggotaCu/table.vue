@@ -13,7 +13,7 @@
         </router-link>
 
         <!-- ubah identitas -->
-        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
+        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Identitas
         </button>

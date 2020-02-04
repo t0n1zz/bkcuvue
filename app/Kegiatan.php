@@ -5,10 +5,11 @@ use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Kegiatan extends BaseEloquent {
     
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, Sluggable,  SoftDeletes;
 
     protected $table = 'kegiatan';
     protected static $logFillable = true;
@@ -19,9 +20,19 @@ class Kegiatan extends BaseEloquent {
         'id_tempat' => 'required',
         'name' => 'required'
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => true
+            ]
+        ];
+    }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar'
     ];
 
     protected $allowedFilters = [
@@ -38,7 +49,7 @@ class Kegiatan extends BaseEloquent {
     
     public static function initialize(){
         return [
-            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => ''
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => ''
         ];
     }
         

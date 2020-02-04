@@ -125,42 +125,39 @@
     <div class="fancy-title title-border">
       <h3>ARTIKEL CREDIT UNION</h3>
     </div>
-    @foreach($artikelsCUNew as $items)
-    <div class="col_one_third">
-
-      <div>
-
+    <div class="row">
+      @foreach($artikelsCUNew as $items)
         @foreach($items as $item)
-        <div class="spost clearfix">
-          <div class="entry-image">
-            <a href="{{ route('artikel.lihat',$item->slug) }}">
-            @if(!empty($item->gambar) && is_file($imagepath.$item->gambar."n.jpg"))
-              <img class="image_fade" src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt="Image">
-            @else
-              <img class="image_fade" src="{{ asset('images/image-articlen.jpg') }}" alt="Image">
-            @endif
-            </a>
-          </div>
-          <div class="entry-c">
-            <div class="entry-title">
-              <h4><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h4>
-            </div>
-            <ul class="entry-meta clearfix">
-              <li><i class="icon-building"></i>{{ $item->cu ? "CU " . $item->cu->name : "-" }}</li>
-              @if($item->kategori)
-                <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
-              @else 
-                <li><i class="icon-line-grid"></i>{{"-"}}</li> 
+        <div class="col-4">
+          <div class="spost clearfix">
+            <div class="entry-image">
+              <a href="{{ route('artikel.lihat',$item->slug) }}">
+              @if(!empty($item->gambar) && is_file($imagepath.$item->gambar."n.jpg"))
+                <img class="image_fade" src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt="Image">
+              @else
+                <img class="image_fade" src="{{ asset('images/image-articlen.jpg') }}" alt="Image">
               @endif
-            </ul>
+              </a>
+            </div>
+            <div class="entry-c">
+              <div class="entry-title">
+                <h4><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h4>
+              </div>
+              <ul class="entry-meta clearfix">
+                <li><i class="icon-building"></i>{{ $item->cu ? "CU " . $item->cu->name : "-" }}</li>
+                @if($item->kategori)
+                  <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
+                @else 
+                  <li><i class="icon-line-grid"></i>{{"-"}}</li> 
+                @endif
+              </ul>
+            </div>
           </div>
+          <br/><br/>
         </div>
         @endforeach
-
-      </div>
-
+      @endforeach
     </div>
-    @endforeach
   </div>
   @endif
 

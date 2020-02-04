@@ -17,9 +17,19 @@
           <i class="icon-pencil5"></i> Ubah
         </button>
 
+        <!-- koreksi-->
+        <button @click.prevent="modalOpen('koreksi')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 7" :disabled="!selectedItem.anggota_cu">
+          <i class="icon-paint-format"></i> Koreksi
+        </button>
+
         <!-- status klaim -->
-        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6" :disabled="!selectedItem.id">
+        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"  :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
+        </button>
+
+        <!-- koreksi-->
+        <button @click.prevent="modalOpen('koreksi_periksa')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 7" :disabled="!selectedItem.anggota_cu">
+          <i class="icon-paint-format"></i> Periksa Koreksi
         </button>
 
         <!-- surat cair -->
@@ -90,10 +100,19 @@
           <i class="icon-pencil5"></i> Ubah
         </button>
 
-        <!-- status -->
-        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6"
-          :disabled="!selectedItem.id">
+        <!-- koreksi-->
+        <button @click.prevent="modalOpen('koreksi')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 7" :disabled="!selectedItem.anggota_cu">
+          <i class="icon-paint-format"></i> Koreksi
+        </button>
+
+        <!-- status klaim -->
+        <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"  :disabled="!selectedItem.id">
           <i class="icon-loop4"></i> Analisis Klaim
+        </button>
+
+        <!-- koreksi-->
+        <button @click.prevent="modalOpen('koreksi_periksa')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 7" :disabled="!selectedItem.anggota_cu">
+          <i class="icon-paint-format"></i> Periksa Koreksi
         </button>
 
          <!-- surat cair -->

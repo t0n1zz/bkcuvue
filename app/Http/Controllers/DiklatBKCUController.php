@@ -14,7 +14,8 @@ use Auth;
 
 class DiklatBKCUController extends Controller{
 
-	protected $width = 200;
+	protected $imagepath = 'images/diklat/';
+	protected $width = 300;
 	protected $height = 200;
 	protected $message = "Diklat";
 
@@ -240,8 +241,14 @@ class DiklatBKCUController extends Controller{
 
 		$name = $request->name;
 
-		$kelas = Kegiatan::create($request->except('tipe','status') + [
-			'tipe' => 'diklat_bkcu', 'status' => '1'
+		// processing single image upload
+		if(!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,'',$name);
+		else
+			$fileName = '';
+
+		$kelas = Kegiatan::create($request->except('tipe','status','gambar') + [
+			'tipe' => 'diklat_bkcu', 'status' => '1', 'gambar' => $fileName
 		]);
 
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
@@ -320,8 +327,15 @@ class DiklatBKCUController extends Controller{
 
 		$kelas = Kegiatan::findOrFail($id);
 
-		$kelas->update($request->except('tipe') + [
-			'tipe' => 'diklat_bkcu'
+			// processing single image upload
+		if(!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
+		else
+			$fileName = '';
+
+		$kelas->update($request->except('tipe','gambar') + [
+			'tipe' => 'diklat_bkcu',
+			'gambar' => $fileName
 		]);
 		
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
@@ -428,6 +442,11 @@ class DiklatBKCUController extends Controller{
 	{
 		$kelas = Kegiatan::findOrFail($id);
 		$name = $kelas->name;
+
+		if(!empty($kelas->gambar)){
+			File::delete($this->imagepath . $kelas->gambar . '.jpg');
+			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+		}
 
 		$kelas->delete();
 

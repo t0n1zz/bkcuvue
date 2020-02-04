@@ -123,15 +123,15 @@ const routes = [
 
 	// saran
 	{ path: '/saran',
-	name: 'saran', 
-	components: { default: saran,'header': header, 'footer': footer },
-	meta: { requiresAuth: true }},
+		name: 'saran', 
+		components: { default: saran,'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
 
 	// errorLog
 	{ path: '/errorLog',
-	name: 'errorLog', 
-	components: { default: errorLog,'header': header, 'footer': footer },
-	meta: { requiresAuth: true }},
+		name: 'errorLog', 
+		components: { default: errorLog,'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
 
 	// pengumuman
 	{ path: '/pengumuman/cu/:cu',
@@ -165,7 +165,7 @@ const routes = [
 	{ path: '/artikel/edit/:id',
 		name: 'artikelEdit', 
 		components: { default: artikel_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit' } },
+		meta: { requiresAuth: true, mode:'edit' }},
 	
 	// artikel kategori
 	{ path: '/artikelKategori/cu/:cu',

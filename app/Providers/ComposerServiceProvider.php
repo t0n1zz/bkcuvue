@@ -19,6 +19,10 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         View::composer(
+            ['_layouts.header'], 'App\Http\ViewComposers\PeriodeDiklatComposer'
+        );
+
+        View::composer(
             ['_layouts.header','artikelLihat'], 'App\Http\ViewComposers\ArtikelKategoriBKCUComposer'
         );
 

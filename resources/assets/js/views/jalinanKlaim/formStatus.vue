@@ -117,6 +117,50 @@
             </div>
           </div>
 
+          <!-- data produk -->
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header bg-white">
+                <h5 class="card-title">Daftar Produk</h5>
+              </div>
+              <data-table :items="itemData" :columnData="columnData" :itemDataStat="itemDataStat">
+                <template slot="item-desktop" slot-scope="props">
+                  <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+                    <td>{{ props.index + 1 }}</td>
+                    <td>
+                      <check-value :value="props.item.no_rek"></check-value>
+                    </td>
+                    <td>
+                      <check-value :value="props.item.produk_cu.name" v-if="props.item.produk_cu"></check-value>
+                      <span v-else>-</span>
+                    </td>
+                    <td>
+                      <check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
+                      <span v-else>-</span>
+                    </td>
+                    <td>
+                      <check-value :value="props.item.saldo" valueType="currency"></check-value>
+                    </td>
+                    <td>
+                      <check-value :value="props.item.lama_pinjaman"></check-value>
+                    </td>
+                    <td>
+                      <span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
+                      <span v-else>-</span>
+                    </td>
+                    <td>
+                      <span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)">
+                      </span>
+                      <span v-else>-</span>
+                    </td>
+                  </tr>
+                </template>	
+              </data-table>
+            </div>
+          </div>
+
+          <div class="col-md-12"><hr/></div>
+
           <!-- data cu -->
           <div class="col-md-3">
 
@@ -165,226 +209,189 @@
 
           </div>
 
-          <!-- data produk -->
           <div class="col-md-9">
-            <div class="card">
-              <div class="card-header bg-white">
-                <h5 class="card-title">Daftar Produk</h5>
+            <div class="row">
+              <!-- status -->
+              <div class="col-md-12" v-if="tipe == 'analisis'">
+                
+                <div class="form-group">
+
+                  <!-- title -->
+                  <h5>Status Klaim:</h5>
+
+                  <!-- select -->
+                  <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
+                    <option disabled value="">Silahkan pilih status klaim</option>
+                    <option value="1">Menunggu</option>
+                    <option value="2">Dokumen Tidak Lengkap</option>
+                    <option value="3">Ditolak</option>
+                    <option value="4">Disetujui</option>
+                  </select>
+
+                </div>
               </div>
-              <data-table :items="itemData" :columnData="columnData" :itemDataStat="itemDataStat">
-                <template slot="item-desktop" slot-scope="props">
-                  <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
-                    <td>{{ props.index + 1 }}</td>
-                    <td>
-                      <check-value :value="props.item.no_rek"></check-value>
-                    </td>
-                    <td>
-                      <check-value :value="props.item.produk_cu.name" v-if="props.item.produk_cu"></check-value>
-                      <span v-else>-</span>
-                    </td>
-                    <td>
-                      <check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
-                      <span v-else>-</span>
-                    </td>
-                    <td>
-                      <check-value :value="props.item.saldo" valueType="currency"></check-value>
-                    </td>
-                    <td>
-                      <check-value :value="props.item.lama_pinjaman"></check-value>
-                    </td>
-                    <td>
-                      <span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
-                      <span v-else>-</span>
-                    </td>
-                    <td>
-                      <span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)">
-                      </span>
-                      <span v-else>-</span>
-                    </td>
-                  </tr>
-                </template>	
-              </data-table>
-            </div>
-          </div>
-          
-          <div class="col-md-12"><hr/></div>
+              
+              <!-- tanggal pencairan -->
+              <div class="col-md-12" v-if="formStatus.status == '4' || tipe == 'selesai'">
+                <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
 
-          <!-- status -->
-          <div class="col-md-12" v-if="tipe == 'analisis'">
-            
-            <div class="form-group">
+                  <!-- title -->
+                  <h5 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
+                    <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
+                    Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
-              <!-- title -->
-              <h5>Status Klaim:</h5>
+                  <!-- input -->
+                  <cleave 
+                    name="tanggal_pencairan"
+                    v-model="formStatus.tanggal_pencairan" 
+                    class="form-control" 
+                    :raw="false" 
+                    :options="cleaveOption.date" 
+                    :readonly="tipe == 'selesai'"
+                    v-validate="'required'"
+                    data-vv-as="Tanggal Pencairan"
+                    placeholder="Silahkan masukkan tgl. pencairan"></cleave>
 
-              <!-- select -->
-              <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
-                <option disabled value="">Silahkan pilih status klaim</option>
-                <option value="1">Menunggu</option>
-                <option value="2">Dokumen Tidak Lengkap</option>
-                <option value="3">Ditolak</option>
-                <option value="4">Disetujui</option>
-              </select>
+                  <!-- error message -->
+                  <small class="text-muted text-danger" v-if="errors.has('formStatus.tanggal_pencairan')">
+                    <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tanggal_pencairan') }}
+                  </small>
+                  <small class="text-muted" v-else>&nbsp;</small>	
 
-            </div>
-          </div>
-          
-          <!-- tanggal pencairan -->
-          <div class="col-md-12" v-if="formStatus.status == '4' || tipe == 'selesai'">
-            <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
-
-              <!-- title -->
-              <h5 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
-                <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
-                Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
-
-              <!-- input -->
-              <cleave 
-                name="tanggal_pencairan"
-                v-model="formStatus.tanggal_pencairan" 
-                class="form-control" 
-                :raw="false" 
-                :options="cleaveOption.date" 
-                :readonly="tipe == 'selesai'"
-                v-validate="'required'"
-                data-vv-as="Tanggal Pencairan"
-                placeholder="Silahkan masukkan tgl. pencairan"></cleave>
-
-              <!-- error message -->
-              <small class="text-muted text-danger" v-if="errors.has('formStatus.tanggal_pencairan')">
-                <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tanggal_pencairan') }}
-              </small>
-              <small class="text-muted" v-else>&nbsp;</small>	
-
-            </div>
-          </div>
-
-          <!-- TUNAS -->
-          <div class="col-md-6" v-if="(formStatus.status == '4' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
-          
-            <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
-
-              <!-- title -->
-              <h5 :class="{ 'text-danger' : errors.has('formStatus.tunas_disetujui')}">
-            <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan klaim TUNAS yang disetujui</h5>
-
-              <div class="card card-body" :class="{'bg-blue-400': selisihTunas == 0, 'bg-danger-400': selisihTunas < 0, 'bg-brown-400': selisihTunas > 0}">
-                <div class="media">
-                  <div class="media-body">
-                    <h3 class="mb-0">
-                      <i v-if="selisihTunas > 0" class="icon-plus3"></i>
-                      <check-value :value="selisihTunas" valueType="currency"></check-value> 	
-                    </h3>
-                    <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
-                  </div>
                 </div>
               </div>
 
-              <!-- text -->
-              <cleave 
-                name="tunas_disetujui"
-                v-model="formStatus.tunas_disetujui" 
-                class="form-control" 
-                :options="cleaveOption.numeric"
-                :readonly="tipe == 'selesai'"
-                placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui"
-                v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS yang disetujui"></cleave>
+              <!-- TUNAS -->
+              <div class="col-md-6" v-if="(formStatus.status == '4' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
+              
+                <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 
-              <!-- error message -->
-              <small class="text-muted text-danger" v-if="errors.has('formStatus.tunas_disetujui')">
-                <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tunas_disetujui') }}
-              </small>
-              <small class="text-muted" v-else>&nbsp;</small>	
-            </div>
-          </div>
+                  <!-- title -->
+                  <h5 :class="{ 'text-danger' : errors.has('formStatus.tunas_disetujui')}">
+                <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan klaim TUNAS yang disetujui</h5>
 
-          <!-- LINTANG -->
-          <div class="col-md-6" v-if="formStatus.status == '4' || tipe == 'selesai'">
-            
-
-            <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
-              <!-- title -->
-              <h5 :class="{ 'text-danger' : errors.has('formStatus.lintang_disetujui')}">
-              <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
-
-              <div class="card card-body" :class="{'bg-blue-400': selisihLintang == 0, 'bg-danger-400': selisihLintang < 0, 'bg-brown-400': selisihLintang > 0}">
-                <div class="media">
-                  <div class="media-body">
-                    <h3 class="mb-0">
-                      <i v-if="selisihLintang > 0" class="icon-plus3"></i>
-                      <check-value :value="selisihLintang" valueType="currency"></check-value> 	
-                    </h3>
-                    <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
+                  <div class="card card-body" :class="{'bg-blue-400': selisihTunas == 0, 'bg-danger-400': selisihTunas < 0, 'bg-brown-400': selisihTunas > 0}">
+                    <div class="media">
+                      <div class="media-body">
+                        <h3 class="mb-0">
+                          <i v-if="selisihTunas > 0" class="icon-plus3"></i>
+                          <check-value :value="selisihTunas" valueType="currency"></check-value> 	
+                        </h3>
+                        <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
+                      </div>
+                    </div>
                   </div>
+
+                  <!-- text -->
+                  <cleave 
+                    name="tunas_disetujui"
+                    v-model="formStatus.tunas_disetujui" 
+                    class="form-control" 
+                    :options="cleaveOption.numeric"
+                    :readonly="tipe == 'selesai'"
+                    placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui"
+                    v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS yang disetujui"></cleave>
+
+                  <!-- error message -->
+                  <small class="text-muted text-danger" v-if="errors.has('formStatus.tunas_disetujui')">
+                    <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tunas_disetujui') }}
+                  </small>
+                  <small class="text-muted" v-else>&nbsp;</small>	
                 </div>
               </div>
 
-              <!-- text -->
-              <cleave 
-                name="lintang_disetujui"
-                v-model="formStatus.lintang_disetujui" 
-                class="form-control" 
-                :options="cleaveOption.numeric"
-                :readonly="tipe == 'selesai'"
-                placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui"
-                v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG yang disetujui"></cleave>
+              <!-- LINTANG -->
+              <div class="col-md-6" v-if="formStatus.status == '4' || tipe == 'selesai'">
+                
 
-              <!-- error message -->
-              <small class="text-muted text-danger" v-if="errors.has('formStatus.lintang_disetujui')">
-                <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.lintang_disetujui') }}
-              </small>
-              <small class="text-muted" v-else>&nbsp;</small>		
-            </div>
-          </div>
+                <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
+                  <!-- title -->
+                  <h5 :class="{ 'text-danger' : errors.has('formStatus.lintang_disetujui')}">
+                  <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
 
-          <!-- keterangan -->
-          <div class="col-md-12"  v-if="formStatus.status != 0"> 
-            <div class="form-group">
+                  <div class="card card-body" :class="{'bg-blue-400': selisihLintang == 0, 'bg-danger-400': selisihLintang < 0, 'bg-brown-400': selisihLintang > 0}">
+                    <div class="media">
+                      <div class="media-body">
+                        <h3 class="mb-0">
+                          <i v-if="selisihLintang > 0" class="icon-plus3"></i>
+                          <check-value :value="selisihLintang" valueType="currency"></check-value> 	
+                        </h3>
+                        <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <!-- title -->
-              <h5>
-                Keterangan:
-              </h5>
+                  <!-- text -->
+                  <cleave 
+                    name="lintang_disetujui"
+                    v-model="formStatus.lintang_disetujui" 
+                    class="form-control" 
+                    :options="cleaveOption.numeric"
+                    :readonly="tipe == 'selesai'"
+                    placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui"
+                    v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG yang disetujui"></cleave>
 
-              <!-- textarea -->
-              <textarea rows="3" 
-              type="text" 
-              name="keterangan_klaim" 
-              class="form-control" 
-              :readonly="tipe == 'selesai'"
-              placeholder="Silahkan masukkan keterangan " v-model="formStatus.keterangan_klaim"></textarea>
-            </div>
+                  <!-- error message -->
+                  <small class="text-muted text-danger" v-if="errors.has('formStatus.lintang_disetujui')">
+                    <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.lintang_disetujui') }}
+                  </small>
+                  <small class="text-muted" v-else>&nbsp;</small>		
+                </div>
+              </div>
 
-          </div>
+              <!-- keterangan -->
+              <div class="col-md-12"  v-if="formStatus.status != 0"> 
+                <div class="form-group">
 
-          <div class="col-md-6" v-if="formStatus.status != 0">
-             <div class="form-group">
+                  <!-- title -->
+                  <h5>
+                    Keterangan:
+                  </h5>
 
-              <!-- title -->
-              <h5>
-                Nomor Surat:
-              </h5>
+                  <!-- textarea -->
+                  <textarea rows="3" 
+                  type="text" 
+                  name="keterangan_klaim" 
+                  class="form-control" 
+                  :readonly="tipe == 'selesai'"
+                  placeholder="Silahkan masukkan keterangan " v-model="formStatus.keterangan_klaim"></textarea>
+                </div>
 
-              <!-- input -->
-              <input type="text" name="surat_nomor" class="form-control" placeholder="Silahkan masukkan nomor surat" v-model="formStatus.surat_nomor">
-            </div>
-          </div>
+              </div>
 
-          <div class="col-md-6" v-if="formStatus.status != 0">
-             <div class="form-group">
+              <!-- nomor surat -->
+              <div class="col-md-6" v-if="formStatus.status != 0">
+                <div class="form-group">
 
-              <!-- title -->
-              <h5>
-                Tgl. Surat: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+                  <!-- title -->
+                  <h5>
+                    Nomor Surat:
+                  </h5>
 
-              <!-- input -->
-              <cleave 
-                name="surat_tanggal"
-                v-model="formStatus.surat_tanggal" 
-                class="form-control" 
-                :raw="false" 
-                :options="cleaveOption.date" 
-                placeholder="Silahkan masukkan tgl. surat"></cleave>
+                  <!-- input -->
+                  <input type="text" name="surat_nomor" class="form-control" placeholder="Silahkan masukkan nomor surat" v-model="formStatus.surat_nomor">
+                </div>
+              </div>
+
+              <!-- tanggal surat -->
+              <div class="col-md-6" v-if="formStatus.status != 0">
+                <div class="form-group">
+
+                  <!-- title -->
+                  <h5>
+                    Tgl. Surat: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+
+                  <!-- input -->
+                  <cleave 
+                    name="surat_tanggal"
+                    v-model="formStatus.surat_tanggal" 
+                    class="form-control" 
+                    :raw="false" 
+                    :options="cleaveOption.date" 
+                    placeholder="Silahkan masukkan tgl. surat"></cleave>
+                </div>
+              </div>
+
             </div>
           </div>
 

@@ -17,7 +17,7 @@
     <span>{{ $subtitle }}</span>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Artikel</li>
+      <li class="breadcrumb-item active" aria-current="page">Kegiatan</li>
       <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
     </ol>
   </div>
@@ -32,7 +32,8 @@
     <div class="container clearfix">
 
       <ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-        <li class="activeFilter"><a href="#" data-filter=".01">Januari</a></li>
+        <li class="activeFilter"><a href="#" data-filter="*">Semua</a></li>
+        <li><a href="#" data-filter=".01">Januari</a></li>
         <li><a href="#" data-filter=".02">Februari</a></li>
         <li><a href="#" data-filter=".03">Maret</a></li>
         <li><a href="#" data-filter=".04">April</a></li>
@@ -52,9 +53,15 @@
         @foreach($kegiatans as $item)
         <div class="portfolio-item nopadding {{ date('m', strtotime($item->mulai)) }} {{ date('m', strtotime($item->selesai)) }}">
           <div class="card" style="margin:5px;">
-            <div class="card-header inline-block">
+            <div class="card-header inline-block ">
               <h3 class="card-title">
-                {{ $item->name }}
+                @if($item->slug)
+                <a href="{{ route('diklat.lihat',$item->slug) }}" style="color:black">
+                  {{ $item->name }}
+                </a>
+                @else
+                  {{ $item->name }}
+                @endif
 							</h3>
 							<span class="text-muted">
                 Kode: {{ $item->kode_diklat }} / Durasi: {{ $item->durasi }} jam / Status: 
@@ -66,11 +73,13 @@
                   <span class="badge badge-secondary">PENDAFTARAN TUTUP</span>
                 @elseif($item->status == 4)  
                   <span class="badge badge-success"> BERJALAN</span>
+                @elseif($item->status == 5)  
+                  <span class="badge badge-primary"> TERLAKSANA</span>  
                 @endif  
               </span>
             </div>
             <div class="card-body">
-              {!! $item->keterangan !!}
+              {{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->keterangan),200) }}
 
               <hr/>
 

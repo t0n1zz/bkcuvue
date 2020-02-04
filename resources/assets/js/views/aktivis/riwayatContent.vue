@@ -19,7 +19,7 @@
 			<div class="card-header bg-white">
 				<h5 class="card-title">Pekerjaan</h5>
 			</div>
-			<div class="card-body pb-2" v-if="currentUser.can && currentUser.can['update_' + kelas]">
+			<div class="card-body pb-2">
 				<div class="row">
 
 					<div class="col-md-12">
@@ -84,7 +84,7 @@
 			<div class="card-header bg-white">
 				<h5 class="card-title">Pendidikan</h5>
 			</div>
-			<div class="card-body pb-2" v-if="currentUser.can && currentUser.can['update_' + kelas]">
+			<div class="card-body pb-2">
 				<div class="row">
 
 					<div class="col-md-12">
@@ -136,7 +136,7 @@
 			<div class="card-header bg-white">
 				<h5 class="card-title">Organisasi</h5>
 			</div>
-			<div class="card-body pb-2" v-if="currentUser.can && currentUser.can['update_' + kelas]">
+			<div class="card-body pb-2">
 				<div class="row">
 
 					<div class="col-md-12">
@@ -191,7 +191,7 @@
 			<div class="card-header bg-white">
 				<h5 class="card-title">Diklat</h5>
 			</div>
-			<div class="card-body pb-2" v-if="currentUser.can && currentUser.can['update_' + kelas]">
+			<div class="card-body pb-2">
 				<div class="row">
 
 					<div class="col-md-12">

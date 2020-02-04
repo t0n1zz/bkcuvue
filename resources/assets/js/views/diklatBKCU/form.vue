@@ -23,6 +23,19 @@
 							<div class="card-body">	
 								<div class="row">
 
+									<!-- gambar utama -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Gambar:</h5>
+
+											<!-- imageupload -->
+											<app-image-upload :image_loc="'/images/diklat/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+										</div>
+									</div>
+
+
 									<!-- kode -->
 									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_diklat')}">
@@ -643,6 +656,7 @@
 	import infoIcon from "../../components/infoIcon.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import { toMulipartedForm } from '../../helpers/form';
+	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
@@ -656,6 +670,7 @@
 		components: {
 			pageHeader,
 			appModal,
+			appImageUpload,
 			message,
 			formButton,
 			formInfo,

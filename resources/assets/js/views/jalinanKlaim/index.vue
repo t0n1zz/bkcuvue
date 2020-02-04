@@ -26,7 +26,7 @@
 						<!-- table data -->
 						<div class="nav-tabs-responsive mb-3">
 							<ul class="nav nav-tabs nav-tabs-solid  bg-light">
-							<li class="nav-item">
+								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'verifikasi'}" @click.prevent="changeTab('verifikasi')"><i class="icon-file-eye mr-2"></i> Verifikasi CU</a>
 								</li>
 								<li class="nav-item">
@@ -46,6 +46,9 @@
 								</li>
 								<li class="nav-item">
 									<a href="#" class="nav-link" :class="{'active' : tabName == 'selesai'}" @click.prevent="changeTab('selesai')"><i class="icon-square mr-2"></i> Selesai</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" :class="{'active' : tabName == 'koreksi'}" @click.prevent="changeTab('koreksi')"><i class="icon-paint-format mr-2"></i> Koreksi</a>
 								</li>
 							</ul>
 						</div>
@@ -80,7 +83,7 @@
 								</div>
 								<table-data :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat" :status="''" :isSimple="false"></table-data>
 							</div>
-						</transition>	
+						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
 							<div v-show="tabName == 'menunggu'" v-if="isMenunggu">
@@ -117,6 +120,12 @@
 								<table-data :title="title" :kelas="kelas" :itemData="itemData6" :itemDataStat="itemDataStat6" :status="'6'"></table-data>
 							</div>
 						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'koreksi'" v-if="isKoreksi">
+								<table-data :title="title" :kelas="kelas" :itemData="itemData7" :itemDataStat="itemDataStat7" :status="'7'"></table-data>
+							</div>
+						</transition>	
 
 					</div>
 				</div>
@@ -157,6 +166,7 @@
 				isDisetujui: false,
 				isDicairkan: false,
 				isSelesai: false,
+				isKoreksi: false,
 			}
 		},
 		created(){
@@ -203,6 +213,9 @@
 				if (value == 'selesai' && !this.isSelesai) {
 					this.isSelesai = true
 				}
+				if (value == 'koreksi' && !this.isKoreksi) {
+					this.isKoreksi = true
+				}
 			}
 		},
 		computed: {
@@ -225,6 +238,7 @@
 				itemData4: 'dataS4',
 				itemData5: 'dataS5',
 				itemData6: 'dataS6',
+				itemData7: 'dataS7',
 				itemDataStat: 'dataStatS',
 				itemDataStat1: 'dataStatS1',
 				itemDataStat2: 'dataStatS2',
@@ -232,6 +246,7 @@
 				itemDataStat4: 'dataStatS4',
 				itemDataStat5: 'dataStatS5',
 				itemDataStat6: 'dataStatS6',
+				itemDataStat7: 'dataStatS7',
 			}),
 		}
 	}

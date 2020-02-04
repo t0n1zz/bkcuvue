@@ -8,10 +8,17 @@
 
       <!-- Logo
       ============================================= -->
-      <div id="logo">
-        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoNew.png') }}"><img src="{{ asset('images/logoNew.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
-        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoNew.png') }}"><img src="{{ asset('images/logoNew.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
-      </div><!-- #logo end -->
+      <div id="logo" class="d-none d-sm-block">
+        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoD.png') }}"><img src="{{ asset('images/logoD.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoD.png') }}"><img src="{{ asset('images/logoD.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+      </div>
+
+      <div id="logo" class="d-block d-sm-none">
+        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoM.png') }}"><img src="{{ asset('images/logoM.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoM.png') }}"><img src="{{ asset('images/logoM.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+      </div>
+      
+      <!-- #logo end -->
 
       <!-- Primary Navigation
       ============================================= -->
@@ -29,6 +36,22 @@
               @foreach($artikelKategoriList as $item)
               <li class="{{ Request::is('/artikel'.$item->slug) ? 'current' : '' }}"><a href="{{ route('artikel.kategori',$item->slug) }}""><div>{{ $item->name }}</div></a></li>
               @endforeach
+            </ul>
+          </li>
+
+          <!-- kegiatan -->
+          <li class="{{ Request::is('/kegiatan*') ? 'current' : '' }}"><a href="#"><div>Kegiatan</div></a>
+            <ul>
+
+              <!-- diklat -->
+              <li class="{{ Request::is('/kegiatan/diklat*') ? 'current' : '' }}"><a href="#"><div>Diklat</div></a>
+                <ul>
+                  @foreach($periodeDiklatList as $items)
+                    <li><a href="{{ route('diklat',$items) }}"><div>{{ $items }}</div></a></li>
+                  @endforeach
+                </ul>
+              </li>
+              
             </ul>
           </li>
 

@@ -15,6 +15,7 @@ export const jalinanKlaim = {
     dataS4: [], //collection
     dataS5: [], //collection
     dataS6: [], //collection
+    dataS7: [], //collection
     dataVeri1: [], //collection
     dataVeri2: [], //collection
     dataVeri3: [], //collection
@@ -31,6 +32,7 @@ export const jalinanKlaim = {
     dataStatS4: '',
     dataStatS5: '',
     dataStatS6: '',
+    dataStatS7: '',
     dataStatVeri: '',
     dataDeletedStatS: '',
     countStat: '',
@@ -53,6 +55,7 @@ export const jalinanKlaim = {
     dataS4: state => state.dataS4,
     dataS5: state => state.dataS5,
     dataS6: state => state.dataS6,
+    dataS7: state => state.dataS7,
     dataVeri1: state => state.dataVeri1,
     dataVeri2: state => state.dataVeri2,
     dataVeri3: state => state.dataVeri3,
@@ -69,6 +72,7 @@ export const jalinanKlaim = {
     dataStatS4: state => state.dataStatS4,
     dataStatS5: state => state.dataStatS5,
     dataStatS6: state => state.dataStatS6,
+    dataStatS7: state => state.dataStatS7,
     dataStatVeri: state => state.dataStatVeri,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
@@ -170,6 +174,19 @@ export const jalinanKlaim = {
         .catch( error => {
           commit('setDataS6', error.response);
           commit('setDataStatS6', 'fail');
+        });
+    },
+    index7( { commit }, [p, awal, akhir] ){
+      commit('setDataStatS7', 'loading');
+      
+      JalinanKlaimAPI.index( p, 7, awal, akhir )
+        .then( function( response ){
+          commit('setDataS7', response.data.model );
+          commit('setDataStatS7', 'success');
+        })
+        .catch( error => {
+          commit('setDataS7', error.response);
+          commit('setDataStatS7', 'fail');
         });
     },
 
@@ -684,6 +701,9 @@ export const jalinanKlaim = {
     setDataS6 ( state, data ){
       state.dataS6 = data;
     },
+    setDataS7 ( state, data ){
+      state.dataS7 = data;
+    },
     setDataVeri1 ( state, data ){
       state.dataVeri1 = data;
     },
@@ -731,6 +751,9 @@ export const jalinanKlaim = {
     },
     setDataStatS6( state, status ){
       state.dataStatS6 = status;
+    },
+    setDataStatS7( state, status ){
+      state.dataStatS7 = status;
     },
     setDataStatVeri( state, status ){
       state.dataStatVeri = status;
