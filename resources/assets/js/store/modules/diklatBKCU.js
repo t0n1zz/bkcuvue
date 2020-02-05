@@ -5,11 +5,13 @@ export const diklatBKCU = {
 
   // state
   state: {
-    data: {}, //single data
+    data: {},
+    data2: {}, //single data
     dataS: [], //collection
     periode: [],
     count: {},
     dataStat: '',
+    dataStat2: '',
     periodeStat: '',
     dataStatS: '',
     countStat: '',
@@ -22,10 +24,12 @@ export const diklatBKCU = {
   // getters
   getters: {
     data: state => state.data,
+    data2: state => state.data2,
     dataS: state => state.dataS,
     periode: state => state.periode,
     count: state => state.count,
     dataStat: state => state.dataStat,
+    dataStat2: state => state.dataStat2,
     periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     countStat: state => state.countStat,
@@ -94,16 +98,16 @@ export const diklatBKCU = {
     },
 
     checkPeserta( { commit }, [kegiatan_id, aktivis_id] ){
-      commit('setPeriodeStat', 'loading');
+      commit('setDataStat2', 'loading');
       
       DIKLATBKCUAPI.checkPeserta(kegiatan_id, aktivis_id)
         .then( function( response ){
-          commit('setPeriode', response.data.model );
-          commit('setPeriodeStat', 'success');
+          commit('setData2', response.data.model );
+          commit('setDataStat2', 'success');
         })
         .catch( error => {
-          commit('setPeriode', error.response);
-          commit('setPeriodeStat', 'fail');
+          commit('setData2', error.response);
+          commit('setDataStat2', 'fail');
         });
     },
 
@@ -332,6 +336,9 @@ export const diklatBKCU = {
     setData ( state, data ){
       state.data = data;
     },
+    setData2 ( state, data ){
+      state.data2 = data;
+    },
     setPeriode ( state, data ){
       state.periode = data;
     },
@@ -343,6 +350,9 @@ export const diklatBKCU = {
     },
     setDataStat( state, status ){
       state.dataStat = status;
+    },
+    setDataStat2( state, status ){
+      state.dataStat2 = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;

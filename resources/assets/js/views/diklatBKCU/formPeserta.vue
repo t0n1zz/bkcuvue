@@ -221,7 +221,7 @@
 		</div>
 
 		<!-- message -->
-		<message v-if="errors.any('formPeserta') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
+		<message v-if="message.show" @close="messageClose" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
 		</message>
 
 		<!-- divider -->
@@ -370,12 +370,12 @@
 			}
 		},
 		watch:{
-			pesertaDataStat(value){
+			checkPesertaDataStat(value){
 				if(value == 'success'){
-					if(this.pesertaData){
+					if(this.checkPesertaData){
 						this.message.show = true;
 						this.message.content = "Maaf peserta ini sudah terdaftar di diklat ini";
-						this.selectedItem = '';
+						this.deleteSelected();
 					}else{
 						this.save();
 					}
@@ -397,6 +397,11 @@
 			},
 			deleteSelected(){
 				this.formPeserta.aktivis_id = '';
+				this.formPeserta.name_nametag = '';
+				this.formPeserta.name_sertifikat = '';
+				this.formPeserta.datang = '';
+				this.formPeserta.pulang = '';
+				this.formPeserta.keterangan = '';
 				this.selectedItem = [];
 			},
 			selectedRow(item){
@@ -433,7 +438,7 @@
 				}
 			},
 			checkPeserta(){
-				this.$store.dispatch('diklatBKCU/updatePeserta', [this.kegiatan_id, this.formPeserta.aktivis_id]);
+				this.$store.dispatch('diklatBKCU/checkPeserta', [this.kegiatan_id, this.formPeserta.aktivis_id]);
 			},
 			save(){
 				this.$validator.validateAll('formPeserta').then((result) => {
@@ -460,8 +465,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('diklatBKCU',{
-				pesertaData: 'data',
-				pesertaDataStat: 'dataStat'
+				checkPesertaData: 'data2',
+				checkPesertaDataStat: 'dataStat2'
 			}),
 			...mapGetters('aktivis',{
 				itemData: 'dataS',

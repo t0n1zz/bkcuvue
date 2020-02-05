@@ -42,17 +42,20 @@
               <img src="{{ asset($imagepath . $diklat->gambar . '.jpg') }}" alt="{{ $diklat->name }}">
               <hr/>
             @else
-             
             @endif
           </div>
 
-          <h3>1. Kerangka Acuan</h3>
-          {!! $diklat->keterangan !!}
+          @if($diklat->keterangan)
+            <h3>Kerangka Acuan</h3>
+            {!! $diklat->keterangan !!}
+          @endif
 
-          <h3>2. Jadwal</h3>
-          {!! $diklat->jadwal !!}
+          @if($diklat->jadwal)
+            <h3>Jadwal</h3>
+            {!! $diklat->jadwal !!}
+          @endif
 
-          <h3>3. Sasaran Peserta</h4>
+          <h3>Sasaran Peserta</h4>
           <div class="tagcloud clearfix">
             @foreach($diklat->sasaran as $sasaran)
               <a href="#">{{ $sasaran->name }}</a>
@@ -64,7 +67,7 @@
         <div class="col_one_fourth col_last">
 
           <div class="card events-meta mb-3">
-            <div class="card-header"><h5 class="mb-0">Event Info:</h5></div>
+            <div class="card-header"><h5 class="mb-0">Info Diklat:</h5></div>
             <div class="card-body">
               <ul class="iconlist nobottommargin">
                 <li>Mulai: <span class="text-muted">{{ date('d-m-Y', strtotime($diklat->mulai)) }}</span></li>
@@ -86,7 +89,7 @@
             <a href="#" class="btn btn-secondary btn-block btn-lg">PENDAFTARAN TUTUP</a>
           @elseif($diklat->status == 4)
             <a href="#" class="btn btn-success btn-block btn-lg">BERJALAN</a>  
-            @elseif($diklat->status == 5)
+          @elseif($diklat->status == 5)
             <a href="#" class="btn btn-primary btn-block btn-lg">TERLAKSANA</a>     
           @endif
 

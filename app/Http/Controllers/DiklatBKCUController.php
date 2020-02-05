@@ -206,7 +206,7 @@ class DiklatBKCUController extends Controller{
 
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
-		$table_data = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id'.$aktivis_id)->first();
+		$table_data = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
 
 		return response()
 		->json([
