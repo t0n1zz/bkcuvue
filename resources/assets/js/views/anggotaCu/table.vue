@@ -780,10 +780,16 @@
         }
 
         if (state == "hapus") {
-          this.modalState = "confirm-tutup";
-          this.modalTitle =
-            "Hapus " + this.title + " " + this.selectedItem.name + " ini?";
-          this.modalButton = "Iya, Hapus";
+          if(this.selectedItem.status_jalinan == null){
+            this.modalState = "confirm-tutup";
+            this.modalTitle =
+              "Hapus " + this.title + " " + this.selectedItem.name + " ini?";
+            this.modalButton = "Iya, Hapus";
+          }else{
+            this.modalState = "tutup";
+            this.modalTitle =
+              "Maaf " + this.title + " " + this.selectedItem.name + " tidak bisa dihapus karena memiliki riwayat klaim JALINAN, silahkan periksa kembali lagi.";
+          }
         }else if(state == 'keluar' && this.selectedItem.anggota_cu_cu_not_keluar && this.selectedItem.anggota_cu_cu_not_keluar.length > 1){
           this.modalState = 'normal1';
 					this.modalTitle = 'anggota atas nama: ' + this.selectedItem.name + ' memiliki keanggota di beberapa CU, silahkan pilih di CU mana ia akan keluar';
@@ -808,6 +814,8 @@
         if (this.state == "hapus") {
           if(this.$route.params.cu != 'semua'){
             this.$store.dispatch(this.kelas + "/destroy", [this.selectedItem.id, this.$route.params.cu]);
+          }else{
+            // todo: add selection delete
           }
         }else if(this.state == "keluar"){
           this.$store.dispatch(this.kelas + "/updateBatalKeluar", this.selectedItem.id);

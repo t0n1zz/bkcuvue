@@ -18,8 +18,9 @@
 									<!-- confirm batal -->
 									<div v-if="state === 'confirm-batal'" key="confirm-batal" class="text-center">
 										<span class="text-warning pb-3">
-											<i class="icon-exclamation" style="font-size: 5em"></i>
+											<i class="icon-question3" style="font-size: 5em"></i>
 										</span>
+										<br/><br/>
 										<h2>{{ title }}</h2>
 										<br>
 										<div class=" d-none d-sm-block">
@@ -54,8 +55,9 @@
 									<!-- confirm tutup -->
 									<div v-if="state === 'confirm-tutup'" key="confirm-tutup" class="text-center">
 										<span class="text-warning pb-3">
-											<i class="icon-exclamation" style="font-size: 5em"></i>
+											<i class="icon-question3" style="font-size: 5em"></i>
 										</span>
+										<br/><br/>
 										<h2>{{ title }}</h2>
 										<br>
 										<div class=" d-none d-sm-block">
@@ -67,6 +69,23 @@
 										<div class="d-block d-sm-none">
 											<button type="button" class="btn btn-warning btn-block" @click="confirmOk">
 													<i class="icon-checkmark5"></i> {{ button }}</button>
+											<button type="button" class="btn btn-light btn-block" @click="tutup">
+													<i class="icon-cross"></i> Tutup</button>
+										</div>
+									</div>
+
+									<!-- tutup -->
+									<div v-if="state === 'tutup'" key="tutup" class="text-center">
+										<span class="text-warning pb-3">
+											<i class="icon-exclamation" style="font-size: 5em"></i>
+										</span>
+										<h2>{{ title }}</h2>
+										<br>
+										<div class=" d-none d-sm-block">
+											<button type="button" class="btn btn-light" @click="tutup">
+												<i class="icon-cross"></i> Tutup</button>
+										</div>
+										<div class="d-block d-sm-none">
 											<button type="button" class="btn btn-light btn-block" @click="tutup">
 													<i class="icon-cross"></i> Tutup</button>
 										</div>

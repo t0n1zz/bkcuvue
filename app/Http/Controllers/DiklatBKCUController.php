@@ -413,9 +413,9 @@ class DiklatBKCUController extends Controller{
 
 			$id_cus = array_unique($id_cus);
 			
-			foreach($id_cus as $id_cu){
-				NotificationHelper::status_peserta_diklat_bkcu($id_cu, $id,'Diklat ' . $kelas->name  . '  ' . $status);
-			}
+			// foreach($id_cus as $id_cu){
+			// 	NotificationHelper::status_peserta_diklat_bkcu($id_cu, $id,'Diklat ' . $kelas->name  . '  ' . $status);
+			// }
 		}
 
 		return response()

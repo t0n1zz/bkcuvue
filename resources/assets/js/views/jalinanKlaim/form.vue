@@ -609,6 +609,19 @@
 
 				}
 			},
+			formStat(value){
+				if(value == 'success'){
+					if(this.$route.meta.mode == 'koreksi'){
+						if(this.form.status_klaim == 5 || this.form.status_klaim == 6){
+							this.form.id_koreksi = this.form.id;
+							this.form.status_klaim = 7;
+							this.form.id = '';
+						}else{
+							this.form.status_klaim = 1;
+						}
+					}
+				}
+			},
 			updateStat(value) {
 				this.modalShow = true;
 				this.modalState = value;
@@ -645,9 +658,15 @@
 			fetch(){
 				this.resetData();
 
-				if(this.$route.meta.mode === 'edit'){
+				if(this.$route.meta.mode == 'edit'){
 					this.title = 'Ubah Klaim JALINAN';
 					this.titleDesc = 'Mengubah klaim JALINAN';
+					this.titleIcon = 'icon-pencil5';
+
+					this.cariData(this.$route.params.nik);
+				} else if(this.$route.meta.mode == 'koreksi'){
+					this.title = 'Koreksi Klaim JALINAN';
+					this.titleDesc = 'Mengoreksi klaim JALINAN';
 					this.titleIcon = 'icon-pencil5';
 
 					this.cariData(this.$route.params.nik);
@@ -657,14 +676,14 @@
 					this.titleIcon = 'icon-plus3';
 					this.isEdit = false;
 					
-					if(this.$route.meta.mode === 'createNIK'){
+					if(this.$route.meta.mode == 'createNIK'){
 						this.cariData(this.$route.params.nik)
 						this.isEdit = true;
 					}
 				}
 			},
 			fetchForm(){
-				if(this.$route.meta.mode === 'edit'){
+				if(this.$route.meta.mode == 'edit' || this.$route.meta.mode == 'koreksi'){
 					this.$store.dispatch(this.kelas + '/edit',[this.$route.params.nik,this.$route.params.cu,this.$route.params.tipe]);	
 					this.isEdit = true;
 					this.anggota_cu_cu_id = this.$route.params.cu;
@@ -715,10 +734,6 @@
 				this.form.anggota_cu_cu_id = this.anggota_cu_cu_id;
 				this.form.tipe = this.tipe;
 				this.form.cu_id = this.cu_id;
-
-				if(!this.form.id){
-					this.form.status_klaim = '0';
-				}
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
@@ -737,7 +752,7 @@
 			},
 			back() {
 				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua', tp:'semua'}});
 				}else{
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}

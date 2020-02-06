@@ -22,7 +22,24 @@
 			<div class="card-body pb-2">
 				<div class="row">
 
-					<div class="col-md-12">
+					<div class="col-md-12" v-if="mode == 'edit_profile'">
+
+						<button class="btn btn-light mb-1" @click.prevent="create('pekerjaan')">
+							<i class="icon-plus22"></i> Tambah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('pekerjaan')"
+						:disabled="!selectedItemPekerjaan.id">
+							<i class="icon-pencil5"></i> Ubah
+						</button>
+
+						<button class="btn btn-light mb-1" @click="destroy('pekerjaan')" :disabled="!selectedItemPekerjaan.id">
+							<i class="icon-bin2"></i> Hapus
+						</button>
+
+					</div>
+
+					<div class="col-md-12" v-else-if="mode != 'edit_profile' && currentUser.can && currentUser.can['update_' + kelas]">
 
 						<button class="btn btn-light mb-1" @click.prevent="create('pekerjaan')">
 							<i class="icon-plus22"></i> Tambah
@@ -87,7 +104,24 @@
 			<div class="card-body pb-2">
 				<div class="row">
 
-					<div class="col-md-12">
+					<div class="col-md-12" v-if="mode == 'edit_profile'">
+
+						<button class="btn btn-light mb-1" @click.prevent="create('pendidikan')">
+							<i class="icon-plus22"></i> Tambah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('pendidikan')"
+						:disabled="!selectedItemPendidikan.id">
+							<i class="icon-pencil5"></i> Ubah
+						</button>
+
+						<button class="btn btn-light mb-1" @click="destroy('pendidikan')" :disabled="!selectedItemPendidikan.id">
+							<i class="icon-bin2"></i> Hapus
+						</button>
+
+					</div>
+
+					<div class="col-md-12" v-else-if="mode != 'edit_profile' && currentUser.can && currentUser.can['update_' + kelas]">
 
 						<button class="btn btn-light mb-1" @click.prevent="create('pendidikan')">
 							<i class="icon-plus22"></i> Tambah
@@ -139,7 +173,24 @@
 			<div class="card-body pb-2">
 				<div class="row">
 
-					<div class="col-md-12">
+					<div class="col-md-12" v-if="mode == 'edit_profile'">
+
+						<button class="btn btn-light mb-1" @click.prevent="create('organisasi')">
+							<i class="icon-plus22"></i> Tambah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('organisasi')"
+						:disabled="!selectedItemOrganisasi.id">
+							<i class="icon-pencil5"></i> Ubah
+						</button>
+
+						<button class="btn btn-light mb-1" @click="destroy('organisasi')" :disabled="!selectedItemOrganisasi.id">
+							<i class="icon-bin2"></i> Hapus
+						</button>
+
+					</div>
+
+					<div class="col-md-12" v-else-if="mode != 'edit_profile' && currentUser.can && currentUser.can['update_' + kelas]">
 
 						<button class="btn btn-light mb-1" @click.prevent="create('organisasi')">
 							<i class="icon-plus22"></i> Tambah
@@ -194,7 +245,29 @@
 			<div class="card-body pb-2">
 				<div class="row">
 
-					<div class="col-md-12">
+					<div class="col-md-12" v-if="mode == 'edit_profile'">
+
+						<button class="btn btn-light mb-1" @click.prevent="create('diklat')">
+							<i class="icon-plus22"></i> Tambah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('diklat')"
+						:disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
+							<i class="icon-pencil5"></i> Ubah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('diklat')"
+						:disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
+							<i class="icon-pencil5"></i> Lihat Diklat
+						</button>
+
+						<button class="btn btn-light mb-1" @click="destroy('diklat')" :disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
+							<i class="icon-bin2"></i> Hapus
+						</button>
+
+					</div>
+
+					<div class="col-md-12" v-else-if="mode != 'edit_profile' && currentUser.can && currentUser.can['update_' + kelas]">
 
 						<button class="btn btn-light mb-1" @click.prevent="create('diklat')">
 							<i class="icon-plus22"></i> Tambah
@@ -273,8 +346,14 @@
 							</span>
 							<span v-else>-</span>
 						</td>
-						<td v-html="$options.filters.date(props.item.datang)"></td>
-						<td v-html="$options.filters.date(props.item.pulang)"></td>
+						<td>
+							<span v-html="$options.filters.date(props.item.datang)" v-if="props.item.datang"></span>
+							<span v-else>-</span>
+						</td>
+						<td>
+							<span v-html="$options.filters.date(props.item.pulang)" v-if="props.item.pulang"></span>
+							<span v-else>-</span>
+						</td>
 					</tr>
 				</template>	
 			</data-table>

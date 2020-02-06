@@ -146,6 +146,10 @@
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+												<i class="icon-bin2"></i> Hapus
+											</button>
+
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('batal')" :disabled="!selectedItem.id || selectedItem.status != 1">
 												<i class="icon-bin2"></i> Tolak
 											</button>
@@ -165,7 +169,7 @@
 											:disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3" >
 												<i class="icon-pencil5"></i> Ubah
 											</button>
-
+											
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
 												<i class="icon-bin2"></i> Hapus
 											</button>

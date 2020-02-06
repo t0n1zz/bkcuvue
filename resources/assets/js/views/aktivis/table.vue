@@ -44,8 +44,13 @@
 				</router-link>
 
 				<!-- ubah identitas -->
-				<button @click.prevent="ubah(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah Identitas
+				<button @click.prevent="ubah(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block mb-1" :disabled="!selectedItem.id">
+					<span v-if="currentUser.can && currentUser.can['update_' + kelas]">
+						<i class="icon-pencil5"></i> Ubah Riwayat
+					</span>
+					<span v-else>
+						<i class="icon-profile"></i> Riwayat
+					</span>	
 				</button>
 
 				<!-- ubah riwayat -->

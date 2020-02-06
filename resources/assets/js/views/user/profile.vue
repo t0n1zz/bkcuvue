@@ -144,7 +144,10 @@
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-if="tabName == 'riwayat'">
 
-							<form-riwayat :mode="'edit_profile'" :id_aktivis="currentUser.id_aktivis" :id_cu="currentUser.id_cu"></form-riwayat>
+							<form-riwayat 
+								:mode="'edit_profile'" 
+								:id_aktivis="currentUser.id_aktivis" :id_cu="currentUser.id_cu"
+							></form-riwayat>
 							
 						</div>
 					</transition>

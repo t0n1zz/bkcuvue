@@ -10,15 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.3 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#323">Version 3.2.3 <small class="text-muted"> / 8 Februari 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="323" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini menambahkan assestment ACCESS Branding, monitoring CU, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan catalog diklat di website publik BKCU Kalimantan</li>
+                      <li>Penambahan fitur untuk memasukkan foto utama pada masing-masing diklat</li>
+                      <li>Perbaikan bug masih bisa menghapus data anggota yang sudah klaim JALINAN</li>
+                      <li>Perbaikan bug pada riwayat profil user yang tidak bisa diubah</li>
+                      <li>Perbaikan bug peserta yang sama bisa mendaftar 2 kali pada diklat BKCU</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.3 -->
+
               <!-- Version 3.2.2 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#322">Version 3.2.2 <small class="text-muted"> / 19 Desember 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#322">Version 3.2.2 <small class="text-muted"> / 19 Desember 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="322" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="322" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambah surat pada Klaim JALINAN, upload dokumen pada Klaim JALINAN, QR Code pada Aset Tetap dan perbaikan beberapa bug.
                     <br/><br/>

@@ -478,6 +478,10 @@ const routes = [
 		name: 'jalinanKlaimEdit', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' }},	
+		{ path: '/jalinan/klaim/koreksi/:nik/cu/:cu/tipe/:tipe',
+		name: 'jalinanKlaimKoreksi', 
+		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'koreksi' }},		
 
 	// JALINAN PENCAIRAN		
 	{ path: '/jalinan/cair',

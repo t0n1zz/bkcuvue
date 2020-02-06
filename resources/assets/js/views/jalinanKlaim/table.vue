@@ -18,7 +18,7 @@
         </button>
 
         <!-- koreksi-->
-        <button @click.prevent="modalOpen('koreksi')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 7" :disabled="!selectedItem.anggota_cu">
+        <button @click.prevent="koreksiData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 3 && status != 7" :disabled="!selectedItem.anggota_cu">
           <i class="icon-paint-format"></i> Koreksi
         </button>
 
@@ -101,7 +101,7 @@
         </button>
 
         <!-- koreksi-->
-        <button @click.prevent="modalOpen('koreksi')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 7" :disabled="!selectedItem.anggota_cu">
+        <button @click.prevent="koreksiData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 3 && status != 7" :disabled="!selectedItem.anggota_cu">
           <i class="icon-paint-format"></i> Koreksi
         </button>
 
@@ -178,6 +178,7 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
           <td v-if="!columnData[1].hide && !columnData[1].disable">
+            <label class="badge badge-warning ml-1" v-if="props.item.id_koreksi">KOREKSI</label>
 						<check-value :value="props.item.keterangan_klaim"></check-value>
 					</td>
           <td v-if="!columnData[2].hide">
@@ -642,7 +643,7 @@
         this.columnData[15].disable = true;
         this.columnData[16].disable = true;
         this.columnData[20].disable = true;
-      }else if(this.status == 4 || this.status == 5 || this.status == 6){
+      }else if(this.status == 4 || this.status == 5 || this.status == 6 || this.status == 7){
         this.columnData[1].disable = false;
         this.columnData[9].disable = true;
         this.columnData[10].disable = true;
@@ -699,10 +700,19 @@
       selectedRow(item) {
         this.selectedItem = item;
       },
-      
       ubahData(nik, cu, tipe) {
         this.$router.push({
           name: this.kelas + "Edit",
+          params: {
+            nik: nik,
+            cu: cu,
+            tipe: tipe
+          }
+        });
+      },
+      koreksiData(nik, cu, tipe) {
+        this.$router.push({
+          name: this.kelas + "Koreksi",
           params: {
             nik: nik,
             cu: cu,
