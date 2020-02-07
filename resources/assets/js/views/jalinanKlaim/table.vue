@@ -27,8 +27,8 @@
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
-        <!-- koreksi-->
-        <button @click.prevent="modalOpen('koreksi_periksa')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 7" :disabled="!selectedItem.anggota_cu">
+        <!-- periksa koreksi-->
+        <button @click.prevent="modalOpen('periksa_koreksi')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 7" :disabled="!selectedItem.anggota_cu">
           <i class="icon-paint-format"></i> Periksa Koreksi
         </button>
 
@@ -110,8 +110,8 @@
           <i class="icon-loop4"></i> Analisis Klaim
         </button>
 
-        <!-- koreksi-->
-        <button @click.prevent="modalOpen('koreksi_periksa')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 7" :disabled="!selectedItem.anggota_cu">
+        <!-- periksa koreksi-->
+        <button @click.prevent="modalOpen('periksa_koreksi')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 7" :disabled="!selectedItem.anggota_cu">
           <i class="icon-paint-format"></i> Periksa Koreksi
         </button>
 
@@ -293,9 +293,17 @@
 				@tutup="modalTutup"></form-status>
 			</template>
 
+      <!-- surat -->
       <template slot="modal-body2">
         <surat :selectedItem="selectedItem" :tipe="tipeSurat" @tutup="modalTutup"></surat>
       </template>
+
+      <!-- koreksi -->
+			<template slot="modal-body3">
+				<form-periksa-koreksi :kelas="kelas" :selected="selectedItem"
+				@tutup="modalTutup"></form-periksa-koreksi>
+			</template>
+
 
     </app-modal>
 
@@ -311,6 +319,7 @@
   import collapseButton from "../../components/collapseButton.vue";
   import checkValue from "../../components/checkValue.vue";
   import formStatus from "./formStatus.vue";
+  import formPeriksaKoreksi from "./formPeriksaKoreksi.vue";
   import surat from "./surat.vue";
 
   export default {
@@ -320,6 +329,7 @@
       collapseButton,
       checkValue,
       formStatus,
+      formPeriksaKoreksi,
       surat
     },
     props: ["title", "kelas", "status","itemData","itemDataStat","isSimple"],
@@ -766,6 +776,11 @@
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-lg";
           this.tipeSurat = 'kurang'
+        }else if(state == "periksa_koreksi"){
+          this.modalState = 'normal3';
+					this.modalTitle = 'Koreksi ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-full";
         }
       },
       modalTutup() {

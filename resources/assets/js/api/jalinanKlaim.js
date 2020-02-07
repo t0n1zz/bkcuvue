@@ -44,6 +44,10 @@ export default {
     return axios.post('/api/jalinanKlaim/store', form);
   },
 
+  getKlaim: function( id ){
+    return axios.get('/api/jalinanKlaim/getKlaim/' + id);
+  },
+
   edit: function( nik, cu, tipe ){
     return axios.get('/api/jalinanKlaim/edit/' + nik + '/cu/' + cu + '/tipe/' + tipe);
   },

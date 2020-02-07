@@ -106,6 +106,7 @@ class JalinanKlaimController extends Controller{
 		->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
 		->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
 		->select(DB::raw($this->queryCair()))
+		->whereNull('jalinan_klaim.deleted_at')
 		->where('tanggal_pencairan', $tanggal_pencairan)
 		->groupBy('anggota_cu_cu.cu_id')
 		->get();
@@ -123,6 +124,7 @@ class JalinanKlaimController extends Controller{
 		->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
 		->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
 		->select(DB::raw($this->queryCair()))
+		->whereNull('jalinan_klaim.deleted_at')
 		->where('status_klaim','>=',5)
 		->whereBetween('tanggal_pencairan',[$awal, $akhir])
 		->groupBy('anggota_cu_cu.cu_id')
@@ -644,6 +646,17 @@ class JalinanKlaimController extends Controller{
 		]);
 	}
 
+	public function getKlaim($id)
+	{
+		$kelas = JalinanKlaim::where('id',$id)->first();
+
+		return response()
+			->json([
+					'form' => $kelas,
+					'option' => []
+			]);
+	}
+
 	public function edit($nik, $cu, $tipe)
 	{
 		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('anggota_cu_cu_id', $cu)->where('tipe', $tipe)->whereNotIn('status_klaim',[2,3,4])->whereHas('anggota_cu', function($query) use ($nik){ 
@@ -737,6 +750,8 @@ class JalinanKlaimController extends Controller{
 		$tipe = $kelas->tipe;
 		$kelas->surat_nomor = $request->surat_nomor;
 		$kelas->surat_tanggal = $request->surat_tanggal;
+		$kelas->tunas_diajukan = $request->tunas_diajukan;
+		$kelas->lintang_diajukan = $request->lintang_diajukan;
 
 		if($kelas->status_klaim == 1){
 			$message = "Klaim JALINAN menunggu";

@@ -456,6 +456,24 @@ export const jalinanKlaim = {
         });
     },
 
+    getKlaim( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      JalinanKlaimAPI.getKlaim( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // edit page
     edit( {commit}, [nik, cu, tipe] ){
       commit('setDataStat', 'loading');

@@ -277,7 +277,7 @@
 				<form-kategori
 				:id_cu="id_cu"
 				@cancelClick="modalTutup"></form-kategori>
-			</template>]
+			</template>
 
 		</app-modal>
 

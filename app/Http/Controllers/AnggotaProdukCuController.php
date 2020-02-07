@@ -1,4 +1,4 @@
-h<?php
+<?php
 namespace App\Http\Controllers;
 
 use DB;

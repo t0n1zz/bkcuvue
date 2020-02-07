@@ -869,6 +869,57 @@
 						</div>
 					</li>
 
+					<!-- tata kelola -->
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['index_laporan_cu']">
+						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-microscope mr-2"></i>
+							Tata Kelola
+						</a>
+
+						<div class="dropdown-menu">
+
+							<!-- tambah -->
+							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser && currentUser.can['create_laporan_cu']">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahKeuangan')">
+									<i class="icon-plus22"></i> Tambah
+								</a>
+								<div class="dropdown-menu dropdown-scrollable " :class="{'show' : dropdownMenu == 'tambahKeuangan'}">
+									<!-- tambah assesment -->
+									<router-link :to="{ name:'assesmentAccessCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_laporan_cu']">
+										Self Assesment ACCESS
+									</router-link>
+								</div>
+							</div>		
+
+							<!-- divider -->
+							<div class="dropdown-divider"></div> 
+
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'laporanCu'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporanCu')">
+									<i class="icon-stats-bars2"></i> Self Assesment ACCESS
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporanCu'}">
+
+									<router-link :to="{ name: 'laporanCu' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu == '0'">
+										 Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'laporanCuCu',params: { cu: cu.id, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu == '0' && cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+						</div>
+					</li>
+
 				</ul>
 				
 				<!-- navbar right -->

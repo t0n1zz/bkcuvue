@@ -51,17 +51,17 @@
                   <div class="col-sm-6">
                     <ul class="list list-unstyled mb-0">
                       <li>
-                        <b>Jenis Klaim:</b> <br/>
+                        <b>Jenis klaim:</b> <br/>
                         <label class="badge badge-warning ml-1 font-size-lg">
                           <check-value :value="selectedData.tipe"></check-value>
                         </label>
                       </li>
                       <li>
-                        <b>Kategori Penyakit/Penyebab:</b> <br/>
+                        <b>Kategori penyakit/penyebab:</b> <br/>
                         <check-value :value="selectedData.kategori_penyakit"></check-value>
                       </li>
                       <li>
-                        <b>Keterangan Cacat/Meninggal:</b> <br/>
+                        <b>Keterangan cacat/meninggal:</b> <br/>
                         <check-value :value="selectedData.keterangan"></check-value> 
                       </li>
                     </ul>
@@ -69,15 +69,15 @@
                   <div class="col-sm-6">
                     <ul class="list list-unstyled mb-0">
                       <li>
-                        <b>Tanggal Cacat/Meninggal:</b> <br/>
+                        <b>Tanggal cacat/meninggal:</b> <br/>
                         <span v-html="$options.filters.date(selectedData.tanggal_mati)"></span>
                       </li>
                       <li>
-                        <b>Tanggal Buat / Pengajuan:</b> <br/>
+                        <b>Tanggal buat/pengajuan:</b> <br/>
                         <span v-html="$options.filters.dateTime(selectedData.created_at)"></span>
                       </li>
                       <li>
-                        <b>Tanggal Ubah :</b> <br/>
+                        <b>Tanggal ubah:</b> <br/>
                         <span v-html="$options.filters.dateTime(selectedData.updated_at)"></span>
                       </li>
                     </ul>

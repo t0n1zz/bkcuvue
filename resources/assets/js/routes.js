@@ -68,6 +68,7 @@ import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import user_aktivitas from './views/user/aktivitas.vue';
 import profile from './views/user/profile.vue';
+import assesmentAccess_form from './views/assesmentAccess/form.vue';
 
 const routes = [
 
@@ -526,6 +527,12 @@ const routes = [
 		name: 'jalinanLaporanKlaimLamaTanggal', 
 		components: { default: jalinanLaporan_KlaimLama, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true , mode:'laporan' }},
+
+	// assesment access
+	{ path: '/assesmentAccess/create',
+		name: 'assesmentAccessCreate', 
+		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
 
 	// laporan cu
 	// bkcu default route
