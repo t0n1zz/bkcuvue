@@ -11,92 +11,32 @@
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
-
-          <div class="card">
-            <div class="card-body">
-              <div class="form-group">
-									<label class="font-weight-semibold">P1 = Mengukur kemampuan CU menyediakan dana cadangan risiko atas piutang lalai > 12 bulan</label>
-
-                  <div class="card">
-                    <div class="card-header bg-white header-elements-inline">
-                      <h6 class="card-title">Poor (1)</h6>
-                      <div class="header-elements">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="unstyled-radio-left" checked="">
-                        </label>
-                      </div>
-                    </div>
-                    
-                    <div class="card-body">
-                      Kurang dari 50% perse-diaan DCR untuk kredit lalai di atas 12 bulan dan tidak dilakukan pemutihan tunggakan (charge-off)
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-header bg-white header-elements-inline">
-                      <h6 class="card-title">Fair (2)</h6>
-                      <div class="header-elements">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="unstyled-radio-left" checked="">
-                        </label>
-                      </div>
-                    </div>
-                    
-                    <div class="card-body">
-                      50-99% persediaan DCR untuk kredit lalai di atas 12 bulan dan tidak dilakukan pemutihan tunggakan (charge-off)
-                    </div>
-                  </div>
-
-								</div>
-            </div>
-            <div class="table-responsive table-scrollable" style="max-height: 33rem;">
-              <table class="table table-striped">
-                <thead class="bg-primary">
-                  <tr class="d-flex">
-                    <th class="col-1">No.</th>
-                    <th class="col-2">Aspek Penilaian</th>
-                    <th class="col-2">Poor (1)</th>
-                    <th class="col-2">Fair (2)</th>
-                    <th class="col-2">Good (3)</th>
-                    <th class="col-2">Excellent (4)</th>
-                    <th class="col-2">Nilai</th>
-                    <th class="col-2">Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="d-flex">
-                    <td class="col-1">1</td>
-                    <td class="col-1">
-                      
-                    </td>
-                    <td class="col-2">
-                      
-                    </td>
-                    <td class="col-2">
-                      
-                    </td>
-                    <td class="col-2">
-                      100% persediaan DCR untuk kredit lalai di atas 12 bulan dan pemutihan tunggakan (charge-off)setiap triwulan dalam setahun atau hanya kadang - kadang saja dilakukan.
-                    </td>
-                    <td class="col-2">
-                      100% persediaan DCR untuk kredit lalai di atas 12 bulan dan dilakukan pemutihan tunggakan (charge-off) setiap triwulan atau secara berkala dan konsisten
-                    </td>
-                    <td class="col-1">
-                      <select name="status" data-width="100%" class="form-control" v-model="form.status1a1">
-                        <option disabled value="">Silahkan pilih nilai</option>
-                        <option value="1">Poor (1)</option>
-                        <option value="2">Fair (2)</option>
-                        <option value="3">Good (3)</option>
-                        <option value="4">Excellent (4)</option>
-                      </select>
-                    </td>
-                    <td class="col-1"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+					
+					<div class="nav-tabs-responsive mb-3">
+						<ul class="nav nav-tabs nav-tabs-solid  bg-light">
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'p1'}" @click.prevent="changeTab('p1')">1. PERSPEKTIF KEUANGAN</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'p2'}" @click.prevent="changeTab('p2')">2. PERSPEKTIF ANGGOTA</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'p3'}" @click.prevent="changeTab('p3')">3. PERSPEKTIF BISNIS INTERNAL</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'p4'}" @click.prevent="changeTab('p4')">4. PERSPEKTIF PEMBELAJARAN</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'k'}" @click.prevent="changeTab('k')">5. KESIMPULAN</a>
+							</li>
+						</ul>
+					</div>		
           
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'p1'">
+							<form-p1 :form="form"></form-p1>
+						</div>
+					</transition>
 
 				</div>
 			</div>
@@ -126,6 +66,7 @@
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import formP1 from "./form_p1.vue";
 
 	export default {
 		components: {
@@ -134,6 +75,7 @@
 			message,
 			formButton,
 			formInfo,
+			formP1,
 		},
 		data() {
 			return {
@@ -142,13 +84,26 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'Artikel',
 				kelas: 'artikel',
+				tabName: 'p1',
+        form: {
+					p1a1_cu_penilaian: '',
+					p1a1_cu_keterangan: '',
+					p1a1_bkcu_penilaian: '',
+					p1a1_bkcu_keterangan: '',
+					p1a1_bkcu_rekomendasi: '',
+					p1a2_cu_penilaian: '',
+					p1a2_cu_keterangan: '',
+					p1a2_bkcu_penilaian: '',
+					p1a2_bkcu_keterangan: '',
+					p1a2_bkcu_rekomendasi: '',
+				},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
-        submited: false,
-        form: {},
+				submited: false,
+				
 			}
 		},
 		created(){
@@ -176,7 +131,9 @@
 			fetch(){
 
 			},
-
+			changeTab(value) {
+				this.tabName = value;
+			},
 			save() {
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
