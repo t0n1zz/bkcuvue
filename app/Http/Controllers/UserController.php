@@ -110,6 +110,11 @@ class UserController extends Controller
 		'update_aset_tetap_lokasi',
 		'destroy_aset_tetap_lokasi',
 
+		'index_assesment_access',
+		'create_assesment_access',
+		'update_assesment_access',
+		'destroy_assesment_access',
+
 		'index_mitra_orang',
 		'create_mitra_orang',
 		'update_mitra_orang',

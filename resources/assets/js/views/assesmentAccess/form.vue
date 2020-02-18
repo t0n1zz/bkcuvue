@@ -11,11 +11,83 @@
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
+
+					<div class="card card-body">
+						<div class="row">
+
+							<!-- cu -->
+							<div class="col-md-6" v-if="currentUser.id_cu === 0">
+								<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+
+									<!-- title -->
+									<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+										<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+										CU: <wajib-badge></wajib-badge>
+									</h5>
+
+									<!-- select -->
+									<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+										<option disabled value="0">Silahkan pilih CU</option>
+										<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+									</select>
+
+									<!-- error message -->
+									<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+										<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+									</small>
+									<small class="text-muted" v-else>&nbsp;</small>
+								</div>
+							</div>
+
+							<!-- periode -->
+							<div class="col-md-6">
+								<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
+
+									<!-- title -->
+									<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
+										<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
+										Periode: <wajib-badge></wajib-badge>
+										<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+									</h5>
+
+									<!-- input -->
+									<cleave 
+										name="periode"
+										v-model="form.periode" 
+										class="form-control" 
+										:raw="false" 
+										:options="cleaveOption.date" 
+										placeholder="Silahkan masukkan periode laporan"
+										v-validate="'required'" data-vv-as="Periode"></cleave>
+
+									<!-- error message -->
+									<small class="text-muted text-danger" v-if="errors.has('form.periode')">
+										<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
+									</small>
+									<small class="text-muted" v-else>&nbsp;</small>
+								</div>
+							</div>
+
+						</div>
+					</div>
 					
 					<div class="nav-tabs-responsive mb-3">
 						<ul class="nav nav-tabs nav-tabs-solid  bg-light">
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'p1'}" @click.prevent="changeTab('p1')">1. PERSPEKTIF KEUANGAN</a>
+								<div class="nav-link" :class="{'active' : tabName == 'p1'}">
+									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p1'}" @click.prevent="changeTab('p1')">1. PERSPEKTIF KEUANGAN</a>
+									<hr class="mt-1 mb-1" />
+									<ul class="list-inline mb-0">
+										<li>
+											Skor CU: {{ (form.p1a1_cu_penilaian + form.p1a2_cu_penilaian + form.p1b3_cu_penilaian + form.p1b4_cu_penilaian + form.p1b5_cu_penilaian + form.p1b6_cu_penilaian + form.p1b7_cu_penilaian + form.p1c8_cu_penilaian + form.p1c9_cu_penilaian + form.p1d10_cu_penilaian + form.p1d11_cu_penilaian + form.p1e12_cu_penilaian + form.p1f13_cu_penilaian + form.p1f14_cu_penilaian) / 1 }} 
+
+											/ Bobot Skor CU: {{ (((form.p1a1_cu_penilaian + form.p1a2_cu_penilaian + form.p1b3_cu_penilaian + form.p1b4_cu_penilaian + form.p1b5_cu_penilaian + form.p1b6_cu_penilaian + form.p1b7_cu_penilaian + form.p1c8_cu_penilaian + form.p1c9_cu_penilaian + form.p1d10_cu_penilaian + form.p1d11_cu_penilaian + form.p1e12_cu_penilaian + form.p1f13_cu_penilaian + form.p1f14_cu_penilaian)/56) * 40) | round(2) }} </li>
+										<li>
+											Skor BKCU: {{ (form.p1a1_bkcu_penilaian + form.p1a2_bkcu_penilaian + form.p1b3_bkcu_penilaian + form.p1b4_bkcu_penilaian + form.p1b5_bkcu_penilaian + form.p1b6_bkcu_penilaian + form.p1b7_bkcu_penilaian + form.p1c8_bkcu_penilaian + form.p1c9_bkcu_penilaian + form.p1d10_bkcu_penilaian + form.p1d11_bkcu_penilaian + form.p1e12_bkcu_penilaian + form.p1f13_bkcu_penilaian + form.p1f14_bkcu_penilaian) / 1 }} 
+
+											/ Bobot Skor BKCU: {{ (((form.p1a1_bkcu_penilaian + form.p1a2_bkcu_penilaian + form.p1b3_bkcu_penilaian + form.p1b4_bkcu_penilaian + form.p1b5_bkcu_penilaian + form.p1b6_bkcu_penilaian + form.p1b7_bkcu_penilaian + form.p1c8_bkcu_penilaian + form.p1c9_bkcu_penilaian + form.p1d10_bkcu_penilaian + form.p1d11_bkcu_penilaian + form.p1e12_bkcu_penilaian + form.p1f13_bkcu_penilaian + form.p1f14_bkcu_penilaian)/56) * 40) | round(2) }} </li>
+									</ul>	
+								</div>
 							</li>
 							<li class="nav-item">
 								<a href="#" class="nav-link" :class="{'active' : tabName == 'p2'}" @click.prevent="changeTab('p2')">2. PERSPEKTIF ANGGOTA</a>
@@ -34,7 +106,7 @@
           
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'p1'">
-							<form-p1 :form="form"></form-p1>
+							<form-p1 :form="form" :jumlahIndikator="'56'" :bobotSkor="'40'" :mode="$route.meta.mode" @next="changeTab('p2')"></form-p1>
 						</div>
 					</transition>
 
@@ -62,10 +134,13 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
+	import infoIcon from "../../components/infoIcon.vue";
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 	import formP1 from "./form_p1.vue";
 
 	export default {
@@ -75,43 +150,63 @@
 			message,
 			formButton,
 			formInfo,
+			Cleave,
+			infoIcon,
+			wajibBadge,
 			formP1,
 		},
 		data() {
 			return {
 				title: 'Self Assesment ACCESS Branding',
-				titleDesc: 'Menambah seft assesment ACCESS branding',
+				titleDesc: 'Menambah self assesment ACCESS branding',
 				titleIcon: 'icon-plus3',
-				level2Title: 'Artikel',
-				kelas: 'artikel',
+				level2Title: 'Assesment Access',
+				kelas: 'assesmentAccess',
 				tabName: 'p1',
-        form: {
-					p1a1_cu_penilaian: '',
-					p1a1_cu_keterangan: '',
-					p1a1_bkcu_penilaian: '',
-					p1a1_bkcu_keterangan: '',
-					p1a1_bkcu_rekomendasi: '',
-					p1a2_cu_penilaian: '',
-					p1a2_cu_keterangan: '',
-					p1a2_bkcu_penilaian: '',
-					p1a2_bkcu_keterangan: '',
-					p1a2_bkcu_rekomendasi: '',
-				},
+				cleaveOption: {
+          date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+          },
+          numeric: {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand',
+            numeralDecimalScale: 2,
+            numeralDecimalMark: ',',
+            delimiter: '.'
+					},
+					numeric2: {
+            numeral: true,
+            numeralIntegerScale: 2,
+            numeralDecimalScale: 2,
+            numeralDecimalMark: ',',
+            delimiter: '.'
+          }
+        },
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
 				submited: false,
-				
 			}
+		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => vm.fetch());
 		},
 		created(){
 		},
 		watch: {
+			// check route changes
+			'$route' (to, from){
+				this.fetch();
+			},
 			formStat(value){
-				if(value === "success"){
-
+				if (value === "success") {
+					if (this.$route.meta.mode !== 'edit') {
+						this.form.id_cu = this.currentUser.id_cu;
+					}
 				}
 			},
 			updateStat(value){
@@ -128,8 +223,18 @@
 			},
     },
 		methods: {
-			fetch(){
-
+			fetch() {
+				if (this.$route.meta.mode === 'edit') {
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+					this.title = 'Ubah self assesment Access branding';
+					this.titleDesc = 'Mengubah self assesment Access branding';
+					this.titleIcon = 'icon-pencil5';
+				} else {
+					this.title = 'Tambah self assesment Access branding';
+					this.titleDesc = 'Menambah self assesment Access branding';
+					this.titleIcon = 'icon-plus3';
+					this.$store.dispatch(this.kelas + '/create');
+				}
 			},
 			changeTab(value) {
 				this.tabName = value;
@@ -176,6 +281,18 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
+			}),
+			...mapGetters('assesmentAccess',{
+				form: 'data',
+				formStat: 'dataStat',
+				rules: 'rules',
+				options: 'options',
+				updateResponse: 'update',
+				updateStat: 'updateStat'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 			}),
 		}
 	}

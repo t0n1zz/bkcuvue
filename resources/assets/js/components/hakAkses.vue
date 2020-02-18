@@ -800,6 +800,45 @@
 						]
 					},
 					{
+						name: 'Assesment Access',
+						icon: 'icon-briefcase',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_assesment_access',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment Access'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_assesment_access',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment Access'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_assesment_access',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment Access'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_assesment_access',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment Access'
+							}
+						]
+					},
+					{
 						name: 'Mitra Perseorangan',
 						icon: 'icon-briefcase',
 						secondRow: true,
@@ -1188,6 +1227,11 @@
 						'update_aset_tetap_lokasi',
 						'destroy_aset_tetap_lokasi',
 
+						'index_assesment_access',
+						'create_assesment_access',
+						'update_assesment_access',
+						'destroy_assesment_access',
+						
 						'index_mitra_orang',
 						'create_mitra_orang',
 						'update_mitra_orang',
@@ -1287,6 +1331,11 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_assesment_access',
+						'create_assesment_access',
+						'update_assesment_access',
+						'destroy_assesment_access',
+
 						'index_produk_cu',
 						'create_produk_cu',
 						'update_produk_cu',
@@ -1328,6 +1377,7 @@
 						'diskusi_laporan_cu',
 						'index_laporan_tp',
 						'diskusi_laporan_tp',
+						'index_assesment_access',
 						'index_mitra_orang',
 						'index_mitra_lembaga',
 						'index_saran'

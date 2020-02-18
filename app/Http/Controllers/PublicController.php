@@ -155,8 +155,7 @@ class PublicController extends Controller
 
 		$queries['cari_column'] = 'name';
         $queries['cari'] = request('cari');
-        
-        $artikels = $artikels->paginate(8)->appends($queries);
+        3;
 
         SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
         SEO::setDescription($subtitle);
@@ -271,10 +270,10 @@ class PublicController extends Controller
 		// 	]);
 
 		// create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_jarvi']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_pengawas_jalinan_klaim']); 
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'verifikasi_manajemen_jalinan_klaim']); 
-		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_aset_tetap']);
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_assesment_access']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_assesment_access']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_assesment_access']); 
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_assesment_access']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

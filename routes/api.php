@@ -351,6 +351,25 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/asetTetapLokasi/{id}', 'AsetTetapLokasiController@destroy');
     });
 
+    // assesment Access
+    Route::get('/assesmentAccess/history', 'AssesmentAccessController@history');
+    Route::group(['middleware' => ['permission:index_assesment_access']], function () {
+        Route::get('/assesmentAccess', 'AssesmentAccessController@index');
+        Route::get('/assesmentAccess/count', 'AssesmentAccessController@count');
+    });
+    Route::group(['middleware' => ['permission:create_assesment_access']], function () {
+        Route::get('/assesmentAccess/create', 'AssesmentAccessController@create');
+        Route::post('/assesmentAccess/store', 'AssesmentAccessController@store');
+    });
+    Route::group(['middleware' => ['permission:update_assesment_access']], function () {
+        Route::get('/assesmentAccess/edit/{id}', 'AssesmentAccessController@edit');
+        Route::post('/assesmentAccess/update/{id}', 'AssesmentAccessController@update');
+        Route::post('/assesmentAccess/restore/{id}', 'AssesmentAccessController@restore');
+    });
+    Route::group(['middleware' => ['permission:destroy_assesment_access']], function () {
+        Route::delete('/assesmentAccess/{id}', 'AssesmentAccessController@destroy');
+    });
+
     // mitra perserorangan
     Route::get('/mitraOrang/history', 'MitraOrangController@history');
     Route::group(['middleware' => ['permission:index_mitra_orang']], function () {

@@ -54,7 +54,7 @@
 						</div>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'verifikasi'" v-if="isVerifikasi">
+							<div v-if="tabName == 'verifikasi'">
 								<div class="row" v-if="$route.params.cu != 'semua'">
 									<!-- verifikasi pengurus -->
 									<div class="col-md-4">
@@ -86,43 +86,43 @@
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'menunggu'" v-if="isMenunggu">
+							<div v-if="tabName == 'menunggu'">
 							<table-data :title="title" :kelas="kelas" :itemData="itemData1" :itemDataStat="itemDataStat1" :status="'1'" :isSimple="false"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'tidakLengkap'" v-if="isTidakSesuai">
+							<div v-if="tabName == 'tidakLengkap'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData2" :itemDataStat="itemDataStat2" :status="'2'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'ditolak'" v-if="isDitolak">
+							<div v-if="tabName == 'ditolak'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData3" :itemDataStat="itemDataStat3" :status="'3'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'disetujui'" v-if="isDisetujui">
+							<div v-if="tabName == 'disetujui'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData4" :itemDataStat="itemDataStat4" :status="'4'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'dicairkan'" v-if="isDicairkan">
+							<div v-if="tabName == 'dicairkan'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'selesai'" v-if="isSelesai">
+							<div v-if="tabName == 'selesai'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData6" :itemDataStat="itemDataStat6" :status="'6'"></table-data>
 							</div>
 						</transition>
 
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'koreksi'" v-if="isKoreksi">
+							<div v-if="tabName == 'koreksi'">
 								<table-data :title="title" :kelas="kelas" :itemData="itemData7" :itemDataStat="itemDataStat7" :status="'7'"></table-data>
 							</div>
 						</transition>	
@@ -159,14 +159,6 @@
 				titleIcon: 'icon-accessibility2',
 				selectCuPath: 'jalinanKlaimCu',
 				tabName: 'menunggu',
-				isMenunggu: false,
-				isDitolak: false,
-				isVerifikasi: false,
-				isTidakSesuai: false,
-				isDisetujui: false,
-				isDicairkan: false,
-				isSelesai: false,
-				isKoreksi: false,
 			}
 		},
 		created(){
@@ -192,30 +184,6 @@
 			},
 			changeTab(value) {
 				this.tabName = value;
-				if (value == 'disetujui' && !this.isDisetujui) {
-					this.isDisetujui = true
-				}
-				if (value == 'ditolak' && !this.isDitolak) {
-					this.isDitolak = true
-				}
-				if (value == 'menunggu' && !this.isMenunggu) {
-					this.isMenunggu = true
-				}
-				if (value == 'verifikasi' && !this.isVerifikasi) {
-					this.isVerifikasi = true
-				}
-				if (value == 'tidakLengkap' && !this.isTidakSesuai) {
-					this.isTidakSesuai = true
-				}
-				if (value == 'dicairkan' && !this.isDicairkan) {
-					this.isDicairkan = true
-				}
-				if (value == 'selesai' && !this.isSelesai) {
-					this.isSelesai = true
-				}
-				if (value == 'koreksi' && !this.isKoreksi) {
-					this.isKoreksi = true
-				}
 			}
 		},
 		computed: {
