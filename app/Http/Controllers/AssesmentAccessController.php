@@ -5,6 +5,10 @@ use DB;
 use File;
 use Image;
 use App\AssesmentAccess;
+use App\AssesmentAccessP1;
+use App\AssesmentAccessP2;
+use App\AssesmentAccessP3;
+use App\AssesmentAccessP4;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
@@ -14,7 +18,7 @@ class AssesmentAccessController extends Controller{
 
 	public function index()
 	{
-		$table_data = AssesmentAccess::with('cu')->advancedFilter();
+		$table_data = AssesmentAccess::with('cu','p1','p2','p3','p4')->advancedFilter();
 
 		return response()
 		->json([
@@ -24,9 +28,20 @@ class AssesmentAccessController extends Controller{
 
 	public function create()
 	{
+		$form = AssesmentAccess::initialize();
+		$p1 = AssesmentAccessP1::initialize();
+		$p2 = AssesmentAccessP2::initialize();
+		$p3 = AssesmentAccessP3::initialize();
+		$p4 = AssesmentAccessP4::initialize();
+
+		$form['p1'] = (object)$p1;
+		$form['p2'] = (object)$p2;
+		$form['p3'] = (object)$p3;
+		$form['p4'] = (object)$p4;
+
 		return response()
 			->json([
-					'form' => AssesmentAccess::initialize(),
+					'form' => $form,
 					'rules' => AssesmentAccess::$rules,
 					'option' => []
 			]);
@@ -38,7 +53,17 @@ class AssesmentAccessController extends Controller{
 
 		$periode = $request->periode;
 
-		$kelas = AssesmentAccess::create($request->all());
+		$kelasP1 = AssesmentAccessP1::create($request->p1);
+		$kelasP2 = AssesmentAccessP2::create($request->p2);
+		$kelasP3 = AssesmentAccessP3::create($request->p3);
+		$kelasP4 = AssesmentAccessP4::create($request->p4);
+
+		$kelas = AssesmentAccess::create($request->all() + [
+			'id_p1' => $kelasP1->id,
+			'id_p2' => $kelasP2->id,
+			'id_p3' => $kelasP3->id,
+			'id_p4' => $kelasP4->id,
+		]);
 		
 		return response()
 			->json([
@@ -50,7 +75,7 @@ class AssesmentAccessController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = AssesmentAccess::with('Cu')->findOrFail($id);
+		$kelas = AssesmentAccess::with('cu','p1','p2','p3','p4')->findOrFail($id);
 
 		return response()
 				->json([
@@ -66,8 +91,16 @@ class AssesmentAccessController extends Controller{
 		$periode = $request->periode;
 
 		$kelas = AssesmentAccess::findOrFail($id);
+		$kelasP1 = AssesmentAccessP1::findOrFail($kelas->id_p1);
+		$kelasP2 = AssesmentAccessP2::findOrFail($kelas->id_p2);
+		$kelasP3 = AssesmentAccessP3::findOrFail($kelas->id_p3);
+		$kelasP4 = AssesmentAccessP4::findOrFail($kelas->id_p4);
 
 		$kelas->update($request->all());	
+		$kelasP1->update($request->p1());	
+		$kelasP2->update($request->p2());	
+		$kelasP3->update($request->p3());	
+		$kelasP4->update($request->p4());	
 
 		return response()
 			->json([
@@ -79,9 +112,18 @@ class AssesmentAccessController extends Controller{
 	public function destroy($id)
 	{
 		$kelas = AssesmentAccess::findOrFail($id);
+		$kelasP1 = AssesmentAccessP1::findOrFail($kelas->id_p1);
+		$kelasP2 = AssesmentAccessP2::findOrFail($kelas->id_p2);
+		$kelasP3 = AssesmentAccessP3::findOrFail($kelas->id_p3);
+		$kelasP4 = AssesmentAccessP4::findOrFail($kelas->id_p4);
+
 		$periode = $kelas->periode;
 
 		$kelas->delete();
+		$kelasP1->delete();
+		$kelasP2->delete();
+		$kelasP3->delete();
+		$kelasP4->delete();
 
 		return response()
 			->json([

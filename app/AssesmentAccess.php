@@ -9,7 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class AssesmentAccess extends BaseEloquent {
     
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, SoftDeletes;
 
     protected $table = 'assesment_access';
     protected $dates = ['deleted_at'];
@@ -27,21 +27,8 @@ class AssesmentAccess extends BaseEloquent {
     }
     
     protected $fillable = [
-        'id_cu','periode','status',
-        'p1a1_cu_penilaian','p1a1_cu_keterangan','p1a1_bkcu_penilaian','p1a1_bkcu_keterangan','p1a1_bkcu_rekomendasi',
-        'p1a2_cu_penilaian','p1a2_cu_keterangan','p1a2_bkcu_penilaian','p1a2_bkcu_keterangan','p1a2_bkcu_rekomendasi',
-        'p1b3_cu_penilaian','p1b3_cu_keterangan','p1b3_bkcu_penilaian','p1b3_bkcu_keterangan','p1b3_bkcu_rekomendasi',
-        'p1b4_cu_penilaian','p1b4_cu_keterangan','p1b4_bkcu_penilaian','p1b4_bkcu_keterangan','p1b4_bkcu_rekomendasi',
-        'p1b5_cu_penilaian','p1b5_cu_keterangan','p1b5_bkcu_penilaian','p1b5_bkcu_keterangan','p1b5_bkcu_rekomendasi',
-        'p1b6_cu_penilaian','p1b6_cu_keterangan','p1b6_bkcu_penilaian','p1b6_bkcu_keterangan','p1b6_bkcu_rekomendasi',
-        'p1b7_cu_penilaian','p1b7_cu_keterangan','p1b7_bkcu_penilaian','p1b7_bkcu_keterangan','p1b7_bkcu_rekomendasi',
-        'p1c8_cu_penilaian','p1c8_cu_keterangan','p1c8_bkcu_penilaian','p1c8_bkcu_keterangan','p1c8_bkcu_rekomendasi',
-        'p1c9_cu_penilaian','p1c9_cu_keterangan','p1c9_bkcu_penilaian','p1c9_bkcu_keterangan','p1c9_bkcu_rekomendasi',
-        'p1d10_cu_penilaian','p1d10_cu_keterangan','p1d10_bkcu_penilaian','p1d10_bkcu_keterangan','p1d10_bkcu_rekomendasi',
-        'p1d11_cu_penilaian','p1d11_cu_keterangan','p1d11_bkcu_penilaian','p1d11_bkcu_keterangan','p1d11_bkcu_rekomendasi',
-        'p1e12_cu_penilaian','p1e12_cu_keterangan','p1e12_bkcu_penilaian','p1e12_bkcu_keterangan','p1e12_bkcu_rekomendasi',
-        'p1f13_cu_penilaian','p1f13_cu_keterangan','p1f13_bkcu_penilaian','p1f13_bkcu_keterangan','p1f13_bkcu_rekomendasi',
-        'p1f14_cu_penilaian','p1f14_cu_keterangan','p1f14_bkcu_penilaian','p1f14_bkcu_keterangan','p1f14_bkcu_rekomendasi',
+        'id_cu','periode','status','id_p1',
+        'id_p2','id_p3','id_p4'
     ];
 
     protected $allowedFilters = [
@@ -55,26 +42,33 @@ class AssesmentAccess extends BaseEloquent {
     public static function initialize()
     {
         return [
-            'id_cu' => '','periode' => '','status' => '',
-            'p1a1_cu_penilaian' => '','p1a1_cu_keterangan' => '','p1a1_bkcu_penilaian' => '','p1a1_bkcu_keterangan' => '','p1a1_bkcu_rekomendasi' => '',
-            'p1a2_cu_penilaian' => '','p1a2_cu_keterangan' => '','p1a2_bkcu_penilaian' => '','p1a2_bkcu_keterangan' => '','p1a2_bkcu_rekomendasi' => '',
-            'p1b3_cu_penilaian' => '','p1b3_cu_keterangan' => '','p1b3_bkcu_penilaian' => '','p1b3_bkcu_keterangan' => '','p1b3_bkcu_rekomendasi' => '',
-            'p1b4_cu_penilaian' => '','p1b4_cu_keterangan' => '','p1b4_bkcu_penilaian' => '','p1b4_bkcu_keterangan' => '','p1b4_bkcu_rekomendasi' => '',
-            'p1b5_cu_penilaian' => '','p1b5_cu_keterangan' => '','p1b5_bkcu_penilaian' => '','p1b5_bkcu_keterangan' => '','p1b5_bkcu_rekomendasi' => '',
-            'p1b6_cu_penilaian' => '','p1b6_cu_keterangan' => '','p1b6_bkcu_penilaian' => '','p1b6_bkcu_keterangan' => '','p1b6_bkcu_rekomendasi' => '',
-            'p1b7_cu_penilaian' => '','p1b7_cu_keterangan' => '','p1b7_bkcu_penilaian' => '','p1b7_bkcu_keterangan' => '','p1b7_bkcu_rekomendasi' => '',
-            'p1c8_cu_penilaian' => '','p1c8_cu_keterangan' => '','p1c8_bkcu_penilaian' => '','p1c8_bkcu_keterangan' => '','p1c8_bkcu_rekomendasi' => '',
-            'p1c9_cu_penilaian' => '','p1c9_cu_keterangan' => '','p1c9_bkcu_penilaian' => '','p1c9_bkcu_keterangan' => '','p1c9_bkcu_rekomendasi' => '',
-            'p1d10_cu_penilaian' => '','p1d10_cu_keterangan' => '','p1d10_bkcu_penilaian' => '','p1d10_bkcu_keterangan' => '','p1d10_bkcu_rekomendasi' => '',
-            'p1d11_cu_penilaian' => '','p1d11_cu_keterangan' => '','p1d11_bkcu_penilaian' => '','p1d11_bkcu_keterangan' => '','p1d11_bkcu_rekomendasi' => '',
-            'p1e12_cu_penilaian' => '','p1e12_cu_keterangan' => '','p1e12_bkcu_penilaian' => '','p1e12_bkcu_keterangan' => '','p1e12_bkcu_rekomendasi' => '',
-            'p1f13_cu_penilaian' => '','p1f13_cu_keterangan' => '','p1f13_bkcu_penilaian' => '','p1f13_bkcu_keterangan' => '','p1f13_bkcu_rekomendasi' => '',
-            'p1f14_cu_penilaian' => '','p1f14_cu_keterangan' => '','p1f14_bkcu_penilaian' => '','p1f14_bkcu_keterangan' => '','p1f14_bkcu_rekomendasi' => '',
+            'id_cu' => '','periode' => '','status' => '','id_p1' => '',
+            'id_p2' => '','id_p3' => '','id_p4' => '',
         ];
     }
 
     public function Cu()
     {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
+    }
+
+    public function p1()
+    {
+        return $this->belongsTo('App\AssesmentAccessP1','id_p1','id');
+    }
+
+    public function p2()
+    {
+        return $this->belongsTo('App\AssesmentAccessP2','id_p2','id');
+    }
+
+    public function p3()
+    {
+        return $this->belongsTo('App\AssesmentAccessP3','id_p3','id');
+    }
+
+    public function p4()
+    {
+        return $this->belongsTo('App\AssesmentAccessP4','id_p4','id');
     }
 }

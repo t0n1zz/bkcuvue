@@ -68,6 +68,7 @@ import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import user_aktivitas from './views/user/aktivitas.vue';
 import profile from './views/user/profile.vue';
+import assesmentAccess from './views/assesmentAccess/index.vue';
 import assesmentAccess_form from './views/assesmentAccess/form.vue';
 
 const routes = [
@@ -529,10 +530,26 @@ const routes = [
 		meta: { requiresAuth: true , mode:'laporan' }},
 
 	// assesment access
+	{ path: '/assesmentAccess/cu/:cu',
+		name: 'assesmentAccessCu', 
+		components: { default: assesmentAccess, 'header': header, 'footer': footer  }, 
+		meta: { requiresAuth: true, mode:'cu' }},	
 	{ path: '/assesmentAccess/create',
 		name: 'assesmentAccessCreate', 
 		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
+	{ path: '/assesmentAccess/edit/:id',
+		name: 'assesmentAccessEdit', 
+		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/assesmentAccess/penilaian/:id',
+		name: 'assesmentAccessPenilaian', 
+		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'penilaian' } },	
+	{ path: '/assesmentAccess/lihat/:id',
+		name: 'assesmentAccessLihat', 
+		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'lihat' } },	
 
 	// laporan cu
 	// bkcu default route

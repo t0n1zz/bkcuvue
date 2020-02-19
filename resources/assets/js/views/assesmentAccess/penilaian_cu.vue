@@ -6,8 +6,7 @@
 				<div class="card-header " :class="{'bg-primary text-white' : form == 1, 'bg-white' : form != 1}">
 					<h6 class="card-title">POOR (1)</h6>
 				</div>	
-				<div class="card-body">
-					{{ subtitle1 }}
+				<div class="card-body" v-html="subtitle1">
 				</div>
 			</div>
 		</div>
@@ -17,8 +16,7 @@
 				<div class="card-header " :class="{'bg-primary text-white' : form == 2, 'bg-white' : form != 2}">
 					<h6 class="card-title">FAIR (2)</h6>
 				</div>	
-				<div class="card-body">
-					{{ subtitle2 }}
+				<div class="card-body" v-html="subtitle2">
 				</div>
 			</div>
 		</div>
@@ -28,8 +26,7 @@
 				<div class="card-header " :class="{'bg-primary text-white' : form == 3, 'bg-white' : form != 3}">
 					<h6 class="card-title">GOOD (3)</h6>
 				</div>	
-				<div class="card-body">
-					{{ subtitle3 }}
+				<div class="card-body" v-html="subtitle3">
 				</div>
 			</div>
 		</div>
@@ -39,8 +36,7 @@
 				<div class="card-header " :class="{'bg-primary text-white' : form == 4, 'bg-white' : form != 4}">
 					<h6 class="card-title">EXCELLENT (4)</h6>
 				</div>	
-				<div class="card-body">
-					{{ subtitle4 }}
+				<div class="card-body" v-html="subtitle4">
 				</div>
 			</div>
 		</div>
@@ -51,11 +47,11 @@
 <script>
 	export default {
 		props: [
-			'form',
-			'subtitle1',
-			'subtitle2',
-			'subtitle3',
-			'subtitle4',
+				'form',
+				'subtitle1',
+				'subtitle2',
+				'subtitle3',
+				'subtitle4',
 			],
 		components: {
 		},
@@ -69,16 +65,24 @@
     },
 		methods: {
 			click1(){
-				this.$emit('click1');
+				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+					this.$emit('click1');
+				}
 			},
 			click2(){
-				this.$emit('click2');
+				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+					this.$emit('click2');
+				}	
 			},
 			click3(){
-				this.$emit('click3');
+				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+					this.$emit('click3');
+				}
 			},
 			click4(){
-				this.$emit('click4');
+				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+					this.$emit('click4');
+				}
 			}
 		},
 		computed: {
