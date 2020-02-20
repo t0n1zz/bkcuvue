@@ -67,50 +67,12 @@
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
 							<li>
-								Skor CU: {{ (
-									form.p3.p3a1_cu_penilaian +
-									form.p3.p3a2_cu_penilaian +
-									form.p3.p3a3_cu_penilaian +
-									form.p3.p3a4_cu_penilaian +
-									form.p3.p3a5_cu_penilaian +
-									form.p3.p3a6_cu_penilaian +
-									form.p3.p3a7_cu_penilaian +
-									form.p3.p3a8_cu_penilaian +
-									form.p3.p3a9_cu_penilaian) / 1 }} / 
-								
-								Bobot Skor CU: {{ (((
-									form.p3.p3a1_cu_penilaian +
-									form.p3.p3a2_cu_penilaian +
-									form.p3.p3a3_cu_penilaian +
-									form.p3.p3a4_cu_penilaian +
-									form.p3.p3a5_cu_penilaian +
-									form.p3.p3a6_cu_penilaian +
-									form.p3.p3a7_cu_penilaian +
-									form.p3.p3a8_cu_penilaian +
-									form.p3.p3a9_cu_penilaian)/jumlahIndikator) * bobotSkor) | round(2) }} 
+								Skor CU: {{ skorCUA }} / 
+								Bobot Skor CU: {{ bobotCUA }} 
 							</li>
 							<li>
-								Skor BKCU: {{ (
-									form.p3.p3a1_bkcu_penilaian +
-									form.p3.p3a2_bkcu_penilaian +
-									form.p3.p3a3_bkcu_penilaian +
-									form.p3.p3a4_bkcu_penilaian +
-									form.p3.p3a5_bkcu_penilaian +
-									form.p3.p3a6_bkcu_penilaian +
-									form.p3.p3a7_bkcu_penilaian +
-									form.p3.p3a8_bkcu_penilaian +
-									form.p3.p3a9_bkcu_penilaian) / 1 }} / 
-								
-								Bobot Skor BKCU: {{ (((
-									form.p3.p3a1_bkcu_penilaian +
-									form.p3.p3a2_bkcu_penilaian +
-									form.p3.p3a3_bkcu_penilaian +
-									form.p3.p3a4_bkcu_penilaian +
-									form.p3.p3a5_bkcu_penilaian +
-									form.p3.p3a6_bkcu_penilaian +
-									form.p3.p3a7_bkcu_penilaian +
-									form.p3.p3a8_bkcu_penilaian +
-									form.p3.p3a9_bkcu_penilaian)/jumlahIndikator) * bobotSkor) | round(2) }} 
+								Skor BKCU: {{ skorBKCUA }} / 	
+								Bobot Skor BKCU: {{ bobotBKCUA }} 
 							</li>
 						</ul>	
 					</div>
@@ -859,80 +821,12 @@
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
 							<li>
-								Skor CU: {{ (
-									form.p3.p3b10_cu_penilaian + 
-									form.p3.p3b11_cu_penilaian + 
-									form.p3.p3b12_cu_penilaian + 
-									form.p3.p3b13_cu_penilaian + 
-									form.p3.p3b14_cu_penilaian + 
-									form.p3.p3b15_cu_penilaian + 
-									form.p3.p3b16_cu_penilaian + 
-									form.p3.p3b17_cu_penilaian + 
-									form.p3.p3b18_cu_penilaian + 
-									form.p3.p3b19_cu_penilaian + 
-									form.p3.p3b20_cu_penilaian + 
-									form.p3.p3b21_cu_penilaian + 
-									form.p3.p3b22_cu_penilaian + 
-									form.p3.p3b23_cu_penilaian + 
-									form.p3.p3b24_cu_penilaian + 
-									form.p3.p3b25_cu_penilaian + 
-									form.p3.p3b26_cu_penilaian) / 1 }} / 
-								Bobot Skor CU: {{ (((
-									form.p3.p3b10_cu_penilaian + 
-									form.p3.p3b11_cu_penilaian + 
-									form.p3.p3b12_cu_penilaian + 
-									form.p3.p3b13_cu_penilaian + 
-									form.p3.p3b14_cu_penilaian + 
-									form.p3.p3b15_cu_penilaian + 
-									form.p3.p3b16_cu_penilaian + 
-									form.p3.p3b17_cu_penilaian + 
-									form.p3.p3b18_cu_penilaian + 
-									form.p3.p3b19_cu_penilaian + 
-									form.p3.p3b20_cu_penilaian + 
-									form.p3.p3b21_cu_penilaian + 
-									form.p3.p3b22_cu_penilaian + 
-									form.p3.p3b23_cu_penilaian + 
-									form.p3.p3b24_cu_penilaian + 
-									form.p3.p3b25_cu_penilaian + 
-									form.p3.p3b26_cu_penilaian)/jumlahIndikator) * bobotSkor) | round(2) }} 
+								Skor CU: {{ skorCUB }} / 
+								Bobot Skor CU: {{ bobotCUB }} 
 								</li>
 							<li>
-								Skor BKCU: {{ (
-									form.p3.p3b10_bkcu_penilaian + 
-									form.p3.p3b11_bkcu_penilaian + 
-									form.p3.p3b12_bkcu_penilaian + 
-									form.p3.p3b13_bkcu_penilaian + 
-									form.p3.p3b14_bkcu_penilaian + 
-									form.p3.p3b15_bkcu_penilaian + 
-									form.p3.p3b16_bkcu_penilaian + 
-									form.p3.p3b17_bkcu_penilaian + 
-									form.p3.p3b18_bkcu_penilaian + 
-									form.p3.p3b19_bkcu_penilaian + 
-									form.p3.p3b20_bkcu_penilaian + 
-									form.p3.p3b21_bkcu_penilaian + 
-									form.p3.p3b22_bkcu_penilaian + 
-									form.p3.p3b23_bkcu_penilaian + 
-									form.p3.p3b24_bkcu_penilaian + 
-									form.p3.p3b25_bkcu_penilaian + 
-									form.p3.p3b26_bkcu_penilaian) / 1 }} / 
-								Bobot Skor BKCU: {{ (((
-									form.p3.p3b10_bkcu_penilaian + 
-									form.p3.p3b11_bkcu_penilaian + 
-									form.p3.p3b12_bkcu_penilaian + 
-									form.p3.p3b13_bkcu_penilaian + 
-									form.p3.p3b14_bkcu_penilaian + 
-									form.p3.p3b15_bkcu_penilaian + 
-									form.p3.p3b16_bkcu_penilaian + 
-									form.p3.p3b17_bkcu_penilaian + 
-									form.p3.p3b18_bkcu_penilaian + 
-									form.p3.p3b19_bkcu_penilaian + 
-									form.p3.p3b20_bkcu_penilaian + 
-									form.p3.p3b21_bkcu_penilaian + 
-									form.p3.p3b22_bkcu_penilaian + 
-									form.p3.p3b23_bkcu_penilaian + 
-									form.p3.p3b24_bkcu_penilaian + 
-									form.p3.p3b25_bkcu_penilaian + 
-									form.p3.p3b26_bkcu_penilaian)/jumlahIndikator) * bobotSkor) | round(2) }} 
+								Skor BKCU: {{ skorBKCUB }} / 
+								Bobot Skor BKCU: {{ bobotBKCUB }} 
 							</li>
 						</ul>	
 					</div>
@@ -1110,7 +1004,7 @@
 		<!-- b12 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="tabName == 'semua' || form.p3.p3b12_cu_penilaian == tabName">
-			<div class="card border-warning" v-if="form.p3.p3a11_cu_penilaian != '' && form.p3.p3a11_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p3.p3b11_cu_penilaian != '' && form.p3.p3b11_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						12. Perumusan Misi Dengan Baik</h5>
@@ -2352,11 +2246,19 @@
 		</div>
 		</transition>
 		
+		<div class="card bg-danger card-body" v-if="form.p3.p3b26_cu_penilaian == '' && form.p3.p3b26_cu_keterangan == ''">
+			<h6 class="mb-0">Silahkan melengkapi indikator diatas untuk melanjutkan</h6>
+		</div>
+		
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="tabName == 'semua'">
 			<div class="card card-body" v-if="form.p3.p3b26_cu_penilaian != '' && form.p3.p3b26_cu_keterangan != ''">
 				<div class="text-center d-none d-md-block">
+					<button type="button" class="btn btn-light" @click.prevent="prev">
+						<i class="icon-arrow-left13"></i> Kembali
+					</button>
+
 					<button type="button" class="btn btn-primary" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
 					</button>
@@ -2364,6 +2266,10 @@
 				<div class="d-block d-md-none">
 					<button type="button" class="btn btn-primary btn-block" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
+					</button>
+
+					<button type="button" class="btn btn-light btn-block" @click.prevent="prev">
+						<i class="icon-arrow-left13"></i> Kembali
 					</button>
 				</div>
 			</div>
@@ -2396,10 +2302,156 @@
     },
 		methods: {
 			changeTab(value){
-				this.tabName = value;
+				if(this.$route.meta.mode == 'lihat'){
+					this.tabName = value;
+				}
 			},
 			next(){
 				this.$emit('next');
+			},
+			skorCUA(){
+				var jumlah = (
+					this.form.p3.p3a1_cu_penilaian +
+					this.form.p3.p3a2_cu_penilaian +
+					this.form.p3.p3a3_cu_penilaian +
+					this.form.p3.p3a4_cu_penilaian +
+					this.form.p3.p3a5_cu_penilaian +
+					this.form.p3.p3a6_cu_penilaian +
+					this.form.p3.p3a7_cu_penilaian +
+					this.form.p3.p3a8_cu_penilaian +
+					this.form.p3.p3a9_cu_penilaian) / 1;
+				this.$emit('skorCUA', jumlah);
+				return jumlah;
+			},
+			bobotCUA(){
+				var jumlah = this.$options.filters.round((((
+					this.form.p3.p3a1_cu_penilaian +
+					this.form.p3.p3a2_cu_penilaian +
+					this.form.p3.p3a3_cu_penilaian +
+					this.form.p3.p3a4_cu_penilaian +
+					this.form.p3.p3a5_cu_penilaian +
+					this.form.p3.p3a6_cu_penilaian +
+					this.form.p3.p3a7_cu_penilaian +
+					this.form.p3.p3a8_cu_penilaian +
+					this.form.p3.p3a9_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				this.$emit('bobotCUA', jumlah);
+				return jumlah;
+			},
+			skorBKCUA(){
+				var jumlah = (
+					this.form.p3.p3a1_cu_penilaian +
+					this.form.p3.p3a2_cu_penilaian +
+					this.form.p3.p3a3_cu_penilaian +
+					this.form.p3.p3a4_cu_penilaian +
+					this.form.p3.p3a5_cu_penilaian +
+					this.form.p3.p3a6_cu_penilaian +
+					this.form.p3.p3a7_cu_penilaian +
+					this.form.p3.p3a8_cu_penilaian +
+					this.form.p3.p3a9_cu_penilaian) / 1;
+				this.$emit('skorBKCUA', jumlah);
+				return jumlah;
+			},
+			bobotBKCUA(){
+				var jumlah = this.$options.filters.round((((
+					this.form.p3.p3a1_cu_penilaian +
+					this.form.p3.p3a2_cu_penilaian +
+					this.form.p3.p3a3_cu_penilaian +
+					this.form.p3.p3a4_cu_penilaian +
+					this.form.p3.p3a5_cu_penilaian +
+					this.form.p3.p3a6_cu_penilaian +
+					this.form.p3.p3a7_cu_penilaian +
+					this.form.p3.p3a8_cu_penilaian +
+					this.form.p3.p3a9_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				this.$emit('bobotBKCUA', jumlah);
+				return jumlah;
+			},
+			skorCUB(){
+				var jumlah = (
+					this.form.p3.p3b10_cu_penilaian + 
+					this.form.p3.p3b11_cu_penilaian + 
+					this.form.p3.p3b12_cu_penilaian + 
+					this.form.p3.p3b13_cu_penilaian + 
+					this.form.p3.p3b14_cu_penilaian + 
+					this.form.p3.p3b15_cu_penilaian + 
+					this.form.p3.p3b16_cu_penilaian + 
+					this.form.p3.p3b17_cu_penilaian + 
+					this.form.p3.p3b18_cu_penilaian + 
+					this.form.p3.p3b19_cu_penilaian + 
+					this.form.p3.p3b20_cu_penilaian + 
+					this.form.p3.p3b21_cu_penilaian + 
+					this.form.p3.p3b22_cu_penilaian + 
+					this.form.p3.p3b23_cu_penilaian + 
+					this.form.p3.p3b24_cu_penilaian + 
+					this.form.p3.p3b25_cu_penilaian + 
+					this.form.p3.p3b26_cu_penilaian) / 1;
+				this.$emit('skorCUB', jumlah);
+				return jumlah;
+			},
+			bobotCUB(){
+				var jumlah = this.$options.filters.round((((
+					this.form.p3.p3b10_cu_penilaian + 
+					this.form.p3.p3b11_cu_penilaian + 
+					this.form.p3.p3b12_cu_penilaian + 
+					this.form.p3.p3b13_cu_penilaian + 
+					this.form.p3.p3b14_cu_penilaian + 
+					this.form.p3.p3b15_cu_penilaian + 
+					this.form.p3.p3b16_cu_penilaian + 
+					this.form.p3.p3b17_cu_penilaian + 
+					this.form.p3.p3b18_cu_penilaian + 
+					this.form.p3.p3b19_cu_penilaian + 
+					this.form.p3.p3b20_cu_penilaian + 
+					this.form.p3.p3b21_cu_penilaian + 
+					this.form.p3.p3b22_cu_penilaian + 
+					this.form.p3.p3b23_cu_penilaian + 
+					this.form.p3.p3b24_cu_penilaian + 
+					this.form.p3.p3b25_cu_penilaian + 
+					this.form.p3.p3b26_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				this.$emit('bobotCUB', jumlah);
+				return jumlah;
+			},
+			skorBKCUB(){
+				var jumlah = (
+					this.form.p3.p3b10_bkcu_penilaian + 
+					this.form.p3.p3b11_bkcu_penilaian + 
+					this.form.p3.p3b12_bkcu_penilaian + 
+					this.form.p3.p3b13_bkcu_penilaian + 
+					this.form.p3.p3b14_bkcu_penilaian + 
+					this.form.p3.p3b15_bkcu_penilaian + 
+					this.form.p3.p3b16_bkcu_penilaian + 
+					this.form.p3.p3b17_bkcu_penilaian + 
+					this.form.p3.p3b18_bkcu_penilaian + 
+					this.form.p3.p3b19_bkcu_penilaian + 
+					this.form.p3.p3b20_bkcu_penilaian + 
+					this.form.p3.p3b21_bkcu_penilaian + 
+					this.form.p3.p3b22_bkcu_penilaian + 
+					this.form.p3.p3b23_bkcu_penilaian + 
+					this.form.p3.p3b24_bkcu_penilaian + 
+					this.form.p3.p3b25_bkcu_penilaian + 
+					this.form.p3.p3b26_bkcu_penilaian) / 1;
+				this.$emit('skorBKCUB', jumlah);
+				return jumlah;
+			},
+			bobotBKCUB(){
+				var jumlah = this.$options.filters.round((((
+					this.form.p3.p3b10_bkcu_penilaian + 
+					this.form.p3.p3b11_bkcu_penilaian + 
+					this.form.p3.p3b12_bkcu_penilaian + 
+					this.form.p3.p3b13_bkcu_penilaian + 
+					this.form.p3.p3b14_bkcu_penilaian + 
+					this.form.p3.p3b15_bkcu_penilaian + 
+					this.form.p3.p3b16_bkcu_penilaian + 
+					this.form.p3.p3b17_bkcu_penilaian + 
+					this.form.p3.p3b18_bkcu_penilaian + 
+					this.form.p3.p3b19_bkcu_penilaian + 
+					this.form.p3.p3b20_bkcu_penilaian + 
+					this.form.p3.p3b21_bkcu_penilaian + 
+					this.form.p3.p3b22_bkcu_penilaian + 
+					this.form.p3.p3b23_bkcu_penilaian + 
+					this.form.p3.p3b24_bkcu_penilaian + 
+					this.form.p3.p3b25_bkcu_penilaian + 
+					this.form.p3.p3b26_bkcu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				this.$emit('bobotBKCUB', jumlah);
+				return jumlah;
 			},
 			jumlahPenilaianCU(nilai){
 				var jumlah = 0;

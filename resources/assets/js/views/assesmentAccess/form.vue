@@ -79,70 +79,14 @@
 									<hr class="mt-1 mb-1" />
 									<ul class="list-inline mb-0">
 										<li>
-											Skor CU: {{ (
-												form.p1.p1a1_cu_penilaian + 
-												form.p1.p1a2_cu_penilaian + 
-												form.p1.p1b3_cu_penilaian + 
-												form.p1.p1b4_cu_penilaian + 
-												form.p1.p1b5_cu_penilaian + 
-												form.p1.p1b6_cu_penilaian + 
-												form.p1.p1b7_cu_penilaian + 
-												form.p1.p1c8_cu_penilaian + 
-												form.p1.p1c9_cu_penilaian + 
-												form.p1.p1d10_cu_penilaian + 
-												form.p1.p1d11_cu_penilaian + 
-												form.p1.p1e12_cu_penilaian + 
-												form.p1.p1f13_cu_penilaian + 
-												form.p1.p1f14_cu_penilaian) / 1 }} 
+											Skor CU: {{ nilaiSkorCUP1A + nilaiSkorCUP1B + nilaiSkorCUP1C + nilaiSkorCUP1D + nilaiSkorCUP1E + nilaiSkorCUP1F }} 
 
-											/ Bobot Skor CU: {{ (((
-												form.p1.p1a1_cu_penilaian + 
-												form.p1.p1a2_cu_penilaian + 
-												form.p1.p1b3_cu_penilaian + 
-												form.p1.p1b4_cu_penilaian + 
-												form.p1.p1b5_cu_penilaian + 
-												form.p1.p1b6_cu_penilaian + 
-												form.p1.p1b7_cu_penilaian + 
-												form.p1.p1c8_cu_penilaian + 
-												form.p1.p1c9_cu_penilaian + 
-												form.p1.p1d10_cu_penilaian + 
-												form.p1.p1d11_cu_penilaian + 
-												form.p1.p1e12_cu_penilaian + 
-												form.p1.p1f13_cu_penilaian + 
-												form.p1.p1f14_cu_penilaian)/56) * 40) | round(2) }} 
+											/ Bobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F) | round(2)  }} 
 										</li>
 										<li>
-											Skor BKCU: {{ (
-												form.p1.p1a1_bkcu_penilaian + 
-												form.p1.p1a2_bkcu_penilaian + 
-												form.p1.p1b3_bkcu_penilaian + 
-												form.p1.p1b4_bkcu_penilaian + 
-												form.p1.p1b5_bkcu_penilaian + 
-												form.p1.p1b6_bkcu_penilaian + 
-												form.p1.p1b7_bkcu_penilaian + 
-												form.p1.p1c8_bkcu_penilaian + 
-												form.p1.p1c9_bkcu_penilaian + 
-												form.p1.p1d10_bkcu_penilaian + 
-												form.p1.p1d11_bkcu_penilaian + 
-												form.p1.p1e12_bkcu_penilaian + 
-												form.p1.p1f13_bkcu_penilaian + 
-												form.p1.p1f14_bkcu_penilaian) / 1 }} 
+											Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F }} 
 
-											/ Bobot Skor BKCU: {{ (((
-												form.p1.p1a1_bkcu_penilaian + 
-												form.p1.p1a2_bkcu_penilaian + 
-												form.p1.p1b3_bkcu_penilaian + 
-												form.p1.p1b4_bkcu_penilaian + 
-												form.p1.p1b5_bkcu_penilaian + 
-												form.p1.p1b6_bkcu_penilaian + 
-												form.p1.p1b7_bkcu_penilaian + 
-												form.p1.p1c8_bkcu_penilaian + 
-												form.p1.p1c9_bkcu_penilaian + 
-												form.p1.p1d10_bkcu_penilaian + 
-												form.p1.p1d11_bkcu_penilaian + 
-												form.p1.p1e12_bkcu_penilaian + 
-												form.p1.p1f13_bkcu_penilaian + 
-												form.p1.p1f14_bkcu_penilaian)/56) * 40) | round(2) }} 
+											/ Bobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }} 
 										</li>
 									</ul>	
 								</div>
@@ -153,122 +97,10 @@
 									<hr class="mt-1 mb-1" />
 									<ul class="list-inline mb-0">
 										<li>
-											Skor CU: {{ (
-												form.p2.p2a1_cu_penilaian +
-												form.p2.p2a2_cu_penilaian +
-												form.p2.p2a3_cu_penilaian +
-												form.p2.p2a4_cu_penilaian +
-												form.p2.p2a5_cu_penilaian +
-												form.p2.p2a6_cu_penilaian +
-												form.p2.p2a7_cu_penilaian +
-												form.p2.p2a8_cu_penilaian +
-												form.p2.p2a9_cu_penilaian +
-												form.p2.p2a10_cu_penilaian +
-												form.p2.p2a11_cu_penilaian +
-												form.p2.p2b12_cu_penilaian + 
-												form.p2.p2b13_cu_penilaian + 
-												form.p2.p2b14_cu_penilaian + 
-												form.p2.p2b15_cu_penilaian + 
-												form.p2.p2b16_cu_penilaian + 
-												form.p2.p2b17_cu_penilaian + 
-												form.p2.p2b18_cu_penilaian + 
-												form.p2.p2b19_cu_penilaian + 
-												form.p2.p2b20_cu_penilaian + 
-												form.p2.p2b21_cu_penilaian + 
-												form.p2.p2b22_cu_penilaian + 
-												form.p2.p2b23_cu_penilaian + 
-												form.p2.p2b24_cu_penilaian + 
-												form.p2.p2b25_cu_penilaian + 
-												form.p2.p2b26_cu_penilaian + 
-												form.p2.p2b27_cu_penilaian) / 1 }} 
-
-											/ Bobot Skor CU: {{ (((
-												form.p2.p2a1_cu_penilaian +
-												form.p2.p2a2_cu_penilaian +
-												form.p2.p2a3_cu_penilaian +
-												form.p2.p2a4_cu_penilaian +
-												form.p2.p2a5_cu_penilaian +
-												form.p2.p2a6_cu_penilaian +
-												form.p2.p2a7_cu_penilaian +
-												form.p2.p2a8_cu_penilaian +
-												form.p2.p2a9_cu_penilaian +
-												form.p2.p2a10_cu_penilaian +
-												form.p2.p2a11_cu_penilaian +
-												form.p2.p2b12_cu_penilaian + 
-												form.p2.p2b13_cu_penilaian + 
-												form.p2.p2b14_cu_penilaian + 
-												form.p2.p2b15_cu_penilaian + 
-												form.p2.p2b16_cu_penilaian + 
-												form.p2.p2b17_cu_penilaian + 
-												form.p2.p2b18_cu_penilaian + 
-												form.p2.p2b19_cu_penilaian + 
-												form.p2.p2b20_cu_penilaian + 
-												form.p2.p2b21_cu_penilaian + 
-												form.p2.p2b22_cu_penilaian + 
-												form.p2.p2b23_cu_penilaian + 
-												form.p2.p2b24_cu_penilaian + 
-												form.p2.p2b25_cu_penilaian + 
-												form.p2.p2b26_cu_penilaian + 
-												form.p2.p2b27_cu_penilaian)/56) * 40) | round(2) }} 
+											Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }} 
 										</li>
 										<li>
-											Skor BKCU: {{ (
-												form.p2.p2a1_bkcu_penilaian +
-												form.p2.p2a2_bkcu_penilaian +
-												form.p2.p2a3_bkcu_penilaian +
-												form.p2.p2a4_bkcu_penilaian +
-												form.p2.p2a5_bkcu_penilaian +
-												form.p2.p2a6_bkcu_penilaian +
-												form.p2.p2a7_bkcu_penilaian +
-												form.p2.p2a8_bkcu_penilaian +
-												form.p2.p2a9_bkcu_penilaian +
-												form.p2.p2a10_bkcu_penilaian +
-												form.p2.p2a11_bkcu_penilaian +
-												form.p2.p2b12_bkcu_penilaian + 
-												form.p2.p2b13_bkcu_penilaian + 
-												form.p2.p2b14_bkcu_penilaian + 
-												form.p2.p2b15_bkcu_penilaian + 
-												form.p2.p2b16_bkcu_penilaian + 
-												form.p2.p2b17_bkcu_penilaian + 
-												form.p2.p2b18_bkcu_penilaian + 
-												form.p2.p2b19_bkcu_penilaian + 
-												form.p2.p2b20_bkcu_penilaian + 
-												form.p2.p2b21_bkcu_penilaian + 
-												form.p2.p2b22_bkcu_penilaian + 
-												form.p2.p2b23_bkcu_penilaian + 
-												form.p2.p2b24_bkcu_penilaian + 
-												form.p2.p2b25_bkcu_penilaian + 
-												form.p2.p2b26_bkcu_penilaian + 
-												form.p2.p2b27_bkcu_penilaian) / 1 }} 
-
-											/ Bobot Skor BKCU: {{ (((
-												form.p2.p2a1_bkcu_penilaian +
-												form.p2.p2a2_bkcu_penilaian +
-												form.p2.p2a3_bkcu_penilaian +
-												form.p2.p2a4_bkcu_penilaian +
-												form.p2.p2a5_bkcu_penilaian +
-												form.p2.p2a6_bkcu_penilaian +
-												form.p2.p2a7_bkcu_penilaian +
-												form.p2.p2a8_bkcu_penilaian +
-												form.p2.p2a9_bkcu_penilaian +
-												form.p2.p2a10_bkcu_penilaian +
-												form.p2.p2a11_bkcu_penilaian +
-												form.p2.p2b12_bkcu_penilaian + 
-												form.p2.p2b13_bkcu_penilaian + 
-												form.p2.p2b14_bkcu_penilaian + 
-												form.p2.p2b15_bkcu_penilaian + 
-												form.p2.p2b16_bkcu_penilaian + 
-												form.p2.p2b17_bkcu_penilaian + 
-												form.p2.p2b18_bkcu_penilaian + 
-												form.p2.p2b19_bkcu_penilaian + 
-												form.p2.p2b20_bkcu_penilaian + 
-												form.p2.p2b21_bkcu_penilaian + 
-												form.p2.p2b22_bkcu_penilaian + 
-												form.p2.p2b23_bkcu_penilaian + 
-												form.p2.p2b24_bkcu_penilaian + 
-												form.p2.p2b25_bkcu_penilaian + 
-												form.p2.p2b26_bkcu_penilaian + 
-												form.p2.p2b27_bkcu_penilaian)/56) * 40) | round(2) }} 
+											Skor BKCU: {{ nilaiBobotBKCUP2A + nilaiBobotBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }} 
 										</li>
 									</ul>	
 								</div>
@@ -279,146 +111,149 @@
 									<hr class="mt-1 mb-1" />
 									<ul class="list-inline mb-0">
 										<li>
-											Skor CU: {{ (
-												form.p3.p3a1_cu_penilaian +
-												form.p3.p3a2_cu_penilaian +
-												form.p3.p3a3_cu_penilaian +
-												form.p3.p3a4_cu_penilaian +
-												form.p3.p3a5_cu_penilaian +
-												form.p3.p3a6_cu_penilaian +
-												form.p3.p3a7_cu_penilaian +
-												form.p3.p3a8_cu_penilaian +
-												form.p3.p3a9_cu_penilaian +
-												form.p3.p3b10_cu_penilaian + 
-												form.p3.p3b11_cu_penilaian + 
-												form.p3.p3b12_cu_penilaian + 
-												form.p3.p3b13_cu_penilaian + 
-												form.p3.p3b14_cu_penilaian + 
-												form.p3.p3b15_cu_penilaian + 
-												form.p3.p3b16_cu_penilaian + 
-												form.p3.p3b17_cu_penilaian + 
-												form.p3.p3b18_cu_penilaian + 
-												form.p3.p3b19_cu_penilaian + 
-												form.p3.p3b20_cu_penilaian + 
-												form.p3.p3b21_cu_penilaian + 
-												form.p3.p3b22_cu_penilaian + 
-												form.p3.p3b23_cu_penilaian + 
-												form.p3.p3b24_cu_penilaian + 
-												form.p3.p3b25_cu_penilaian + 
-												form.p3.p3b26_cu_penilaian) / 1 }} 
-
-											/ Bobot Skor CU: {{ (((
-												form.p3.p3a1_cu_penilaian +
-												form.p3.p3a2_cu_penilaian +
-												form.p3.p3a3_cu_penilaian +
-												form.p3.p3a4_cu_penilaian +
-												form.p3.p3a5_cu_penilaian +
-												form.p3.p3a6_cu_penilaian +
-												form.p3.p3a7_cu_penilaian +
-												form.p3.p3a8_cu_penilaian +
-												form.p3.p3a9_cu_penilaian +
-												form.p3.p3b10_cu_penilaian +
-												form.p3.p3b11_cu_penilaian +
-												form.p3.p3b12_cu_penilaian + 
-												form.p3.p3b13_cu_penilaian + 
-												form.p3.p3b14_cu_penilaian + 
-												form.p3.p3b15_cu_penilaian + 
-												form.p3.p3b16_cu_penilaian + 
-												form.p3.p3b17_cu_penilaian + 
-												form.p3.p3b18_cu_penilaian + 
-												form.p3.p3b19_cu_penilaian + 
-												form.p3.p3b20_cu_penilaian + 
-												form.p3.p3b21_cu_penilaian + 
-												form.p3.p3b22_cu_penilaian + 
-												form.p3.p3b23_cu_penilaian + 
-												form.p3.p3b24_cu_penilaian + 
-												form.p3.p3b25_cu_penilaian + 
-												form.p3.p3b26_cu_penilaian)/56) * 40) | round(2) }} 
+											Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }} 
 										</li>
 										<li>
-											Skor BKCU: {{ (
-												form.p3.p3a1_bkcu_penilaian +
-												form.p3.p3a2_bkcu_penilaian +
-												form.p3.p3a3_bkcu_penilaian +
-												form.p3.p3a4_bkcu_penilaian +
-												form.p3.p3a5_bkcu_penilaian +
-												form.p3.p3a6_bkcu_penilaian +
-												form.p3.p3a7_bkcu_penilaian +
-												form.p3.p3a8_bkcu_penilaian +
-												form.p3.p3a9_bkcu_penilaian +
-												form.p3.p3b10_bkcu_penilaian +
-												form.p3.p3b11_bkcu_penilaian +
-												form.p3.p3b12_bkcu_penilaian + 
-												form.p3.p3b13_bkcu_penilaian + 
-												form.p3.p3b14_bkcu_penilaian + 
-												form.p3.p3b15_bkcu_penilaian + 
-												form.p3.p3b16_bkcu_penilaian + 
-												form.p3.p3b17_bkcu_penilaian + 
-												form.p3.p3b18_bkcu_penilaian + 
-												form.p3.p3b19_bkcu_penilaian + 
-												form.p3.p3b20_bkcu_penilaian + 
-												form.p3.p3b21_bkcu_penilaian + 
-												form.p3.p3b22_bkcu_penilaian + 
-												form.p3.p3b23_bkcu_penilaian + 
-												form.p3.p3b24_bkcu_penilaian + 
-												form.p3.p3b25_bkcu_penilaian + 
-												form.p3.p3b26_bkcu_penilaian) / 1 }} 
-
-											/ Bobot Skor BKCU: {{ (((
-												form.p3.p3a1_bkcu_penilaian +
-												form.p3.p3a2_bkcu_penilaian +
-												form.p3.p3a3_bkcu_penilaian +
-												form.p3.p3a4_bkcu_penilaian +
-												form.p3.p3a5_bkcu_penilaian +
-												form.p3.p3a6_bkcu_penilaian +
-												form.p3.p3a7_bkcu_penilaian +
-												form.p3.p3a8_bkcu_penilaian +
-												form.p3.p3a9_bkcu_penilaian +
-												form.p3.p3b10_bkcu_penilaian +
-												form.p3.p3b11_bkcu_penilaian +
-												form.p3.p3b12_bkcu_penilaian + 
-												form.p3.p3b13_bkcu_penilaian + 
-												form.p3.p3b14_bkcu_penilaian + 
-												form.p3.p3b15_bkcu_penilaian + 
-												form.p3.p3b16_bkcu_penilaian + 
-												form.p3.p3b17_bkcu_penilaian + 
-												form.p3.p3b18_bkcu_penilaian + 
-												form.p3.p3b19_bkcu_penilaian + 
-												form.p3.p3b20_bkcu_penilaian + 
-												form.p3.p3b21_bkcu_penilaian + 
-												form.p3.p3b22_bkcu_penilaian + 
-												form.p3.p3b23_bkcu_penilaian + 
-												form.p3.p3b24_bkcu_penilaian + 
-												form.p3.p3b25_bkcu_penilaian + 
-												form.p3.p3b26_bkcu_penilaian)/56) * 40) | round(2) }} 
+											Skor BKCU: {{ nilaiBobotBKCUP3A + nilaiBobotBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }} 
 										</li>
 									</ul>	
 								</div>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'p4'}" @click.prevent="changeTab('p4')">4. PERSPEKTIF PEMBELAJARAN</a>
+								<div class="nav-link" :class="{'active' : tabName == 'p4'}" @click.prevent="changeTab('p4')" style = "cursor:pointer">
+									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p4'}">4. PERSPEKTIF PEMBELAJARAN</a>
+									<hr class="mt-1 mb-1" />
+									<ul class="list-inline mb-0">
+										<li>
+											Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ nilaiBobotCUP4A + nilaiBobotCUP4B }} 
+										</li>
+										<li>
+											Skor BKCU: {{ nilaiBobotBKCUP4A + nilaiBobotBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }} 
+										</li>
+									</ul>	
+								</div>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'k'}" @click.prevent="changeTab('k')">5. KESIMPULAN</a>
+								<div class="nav-link" :class="{'active' : tabName == 'p5'}" @click.prevent="changeTab('p5')" style = "cursor:pointer">
+									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p5'}">5. SCORE CARD & KESIMPULAN</a>	
+									<hr class="mt-1 mb-1" />
+									<ul class="list-inline mb-0">
+										<li>
+											Total Skor CU: {{ nilaiSkorCUP1A + nilaiSkorCUP1B + nilaiSkorCUP1C + nilaiSkorCUP1D + nilaiSkorCUP1E + nilaiSkorCUP1F + nilaiSkorCUP2A + nilaiSkorCUP2B + nilaiSkorCUP3A + nilaiSkorCUP3B + nilaiSkorCUP4A + nilaiSkorCUP4B }} / 
+											
+											TotalBobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F + nilaiBobotCUP2A + nilaiBobotCUP2B + nilaiBobotCUP3A + nilaiBobotCUP3B + nilaiBobotCUP4A + nilaiBobotCUP4B) | round(2) }} 
+										</li>
+										<li>
+											Total Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F + nilaiSkorBKCUP2A + nilaiSkorBKCUP2B + nilaiSkorBKCUP3A + nilaiSkorBKCUP3B + nilaiSkorBKCUP4A + nilaiSkorBKCUP4B }} / 
+											
+											TotalBobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F + nilaiBobotBKCUP2A + nilaiBobotBKCUP2B + nilaiBobotBKCUP3A + nilaiBobotBKCUP3B + nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }} 
+										</li>
+									</ul>	
+								</div>
 							</li>
 						</ul>
 					</div>		
           
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'p1'">
-							<form-p1 :form="form" :jumlahIndikator="'56'" :bobotSkor="'40'" :mode="$route.meta.mode" @next="changeTab('p2')"></form-p1>
+							<form-p1 
+								v-if="formStat == 'success'"
+								:form="form" 
+								:jumlahIndikator="'56'" 
+								:bobotSkor="'40'" 
+								:mode="$route.meta.mode" 
+								@next="changeTab('p2')" 
+								@skorCUA="skorCUP1A"
+								@skorBKCUA="skorBKCUP1A"
+								@bobotCUA="bobotCUP1A"
+								@bobotBKCUA="bobotBKCUP1A"
+								@skorCUB="skorCUP1B"
+								@skorBKCUB="skorBKCUP1B"
+								@bobotCUB="bobotCUP1B"
+								@bobotBKCUB="bobotBKCUP1B"
+								@skorCUC="skorCUP1C"
+								@skorBKCUC="skorBKCUP1C"
+								@bobotCUC="bobotCUP1C"
+								@bobotBKCUC="bobotBKCUP1C"
+								@skorCUD="skorCUP1D"
+								@skorBKCUD="skorBKCUP1D"
+								@bobotCUD="bobotCUP1D"
+								@bobotBKCUD="bobotBKCUP1D"
+								@skorCUE="skorCUP1E"
+								@skorBKCUE="skorBKCUP1E"
+								@bobotCUE="bobotCUP1E"
+								@bobotBKCUE="bobotBKCUP1E"
+								@skorCUF="skorCUP1F"
+								@skorBKCUF="skorBKCUP1F"
+								@bobotCUF="bobotCUP1F"
+								@bobotBKCUF="bobotBKCUP1F"
+							></form-p1>
 						</div>
 					</transition>
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'p2'">
-							<form-p2 :form="form" :jumlahIndikator="'108'" :bobotSkor="'20'" :mode="$route.meta.mode" @next="changeTab('p3')"></form-p2>
+							<form-p2 
+								v-if="formStat == 'success'"
+								:form="form" 
+								:jumlahIndikator="'108'" 
+								:bobotSkor="'20'" 
+								:mode="$route.meta.mode" 
+								@prev="changeTab('p2')" 
+								@next="changeTab('p3')"
+								@skorCUA="skorCUP2A"
+								@skorBKCUA="skorBKCUP2A"
+								@bobotCUA="bobotCUP2A"
+								@bobotBKCUA="bobotBKCUP2A"
+								@skorCUB="skorCUP2B"
+								@skorBKCUB="skorBKCUP2B"
+								@bobotCUB="bobotCUP2B"
+								@bobotBKCUB="bobotBKCUP2B"
+							></form-p2>
 						</div>
 					</transition>
 
 					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'p3'">
-							<form-p3 :form="form" :jumlahIndikator="'104'" :bobotSkor="'20'" :mode="$route.meta.mode" @next="changeTab('p4')"></form-p3>
+							<form-p3 
+								v-if="formStat == 'success'"
+								:form="form" 
+								:jumlahIndikator="'104'" 
+								:bobotSkor="'20'" 
+								:mode="$route.meta.mode" 
+								@prev="changeTab('p3')" 
+								@next="changeTab('p4')"
+								@skorCUA="skorCUP3A"
+								@skorBKCUA="skorBKCUP3A"
+								@bobotCUA="bobotCUP3A"
+								@bobotBKCUA="bobotBKCUP3A"
+								@skorCUB="skorCUP3B"
+								@skorBKCUB="skorBKCUP3B"
+								@bobotCUB="bobotCUP3B"
+								@bobotBKCUB="bobotBKCUP3B"
+							></form-p3>
+						</div>
+					</transition>
+
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'p4'">
+							<form-p4 
+								v-if="formStat == 'success'"
+								:form="form" 
+								:jumlahIndikator="'80'" 
+								:bobotSkor="'20'" 
+								:mode="$route.meta.mode" 
+								@prev="changeTab('p3')" 
+								@next="changeTab('p5')"
+								@skorCUA="skorCUP4A"
+								@skorBKCUA="skorBKCUP4A"
+								@bobotCUA="bobotCUP4A"
+								@bobotBKCUA="bobotBKCUP4A"
+								@skorCUB="skorCUP4B"
+								@skorBKCUB="skorBKCUP4B"
+								@bobotCUB="bobotCUP4B"
+								@bobotBKCUB="bobotBKCUP4B"
+							></form-p4>
 						</div>
 					</transition>
 
@@ -456,6 +291,7 @@
 	import formP1 from "./form_p1.vue";
 	import formP2 from "./form_p2.vue";
 	import formP3 from "./form_p3.vue";
+	import formP4 from "./form_p4.vue";
 
 	export default {
 		components: {
@@ -470,6 +306,7 @@
 			formP1,
 			formP2,
 			formP3,
+			formP4,
 		},
 		data() {
 			return {
@@ -479,6 +316,62 @@
 				level2Title: 'Assesment Access',
 				kelas: 'assesmentAccess',
 				tabName: 'p1',
+				nilaiSkorCUP1A: 0,
+				nilaiBobotCUP1A: 0,
+				nilaiSkorBKCUP1A: 0,
+				nilaiBobotBKCUP1A: 0,
+				nilaiSkorCUP1B: 0,
+				nilaiBobotCUP1B: 0,
+				nilaiSkorBKCUP1B: 0,
+				nilaiBobotBKCUP1B: 0,
+				nilaiSkorCUP1C: 0,
+				nilaiBobotCUP1C: 0,
+				nilaiSkorBKCUP1C: 0,
+				nilaiBobotBKCUP1C: 0,
+				nilaiSkorCUP1D: 0,
+				nilaiBobotCUP1D: 0,
+				nilaiSkorBKCUP1D: 0,
+				nilaiBobotBKCUP1D: 0,
+				nilaiSkorCUP1E: 0,
+				nilaiBobotCUP1E: 0,
+				nilaiSkorBKCUP1E: 0,
+				nilaiBobotBKCUP1E: 0,
+				nilaiSkorCUP1F: 0,
+				nilaiBobotCUP1F: 0,
+				nilaiSkorBKCUP1F: 0,
+				nilaiBobotBKCUP1F: 0,
+				nilaiSkorCUP2A: 0,
+				nilaiBobotCUP2A: 0,
+				nilaiSkorBKCUP2A: 0,
+				nilaiBobotBKCUP2A: 0,
+				nilaiSkorCUP2B: 0,
+				nilaiBobotCUP2B: 0,
+				nilaiSkorBKCUP2B: 0,
+				nilaiBobotBKCUP2B: 0,
+				nilaiSkorCUP3A: 0,
+				nilaiBobotCUP3A: 0,
+				nilaiSkorBKCUP3A: 0,
+				nilaiBobotBKCUP3A: 0,
+				nilaiSkorCUP3B: 0,
+				nilaiBobotCUP3B: 0,
+				nilaiSkorBKCUP3B: 0,
+				nilaiBobotBKCUP3B: 0,
+				nilaiSkorCUP3A: 0,
+				nilaiBobotCUP3A: 0,
+				nilaiSkorBKCUP3A: 0,
+				nilaiBobotBKCUP3A: 0,
+				nilaiSkorCUP3B: 0,
+				nilaiBobotCUP3B: 0,
+				nilaiSkorBKCUP3B: 0,
+				nilaiBobotBKCUP3B: 0,
+				nilaiSkorCUP4A: 0,
+				nilaiBobotCUP4A: 0,
+				nilaiSkorBKCUP4A: 0,
+				nilaiBobotBKCUP4A: 0,
+				nilaiSkorCUP4B: 0,
+				nilaiBobotCUP4B: 0,
+				nilaiSkorBKCUP4B: 0,
+				nilaiBobotBKCUP4B: 0,
 				cleaveOption: {
           date:{
             date: true,
@@ -551,6 +444,158 @@
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}
+			},
+
+			// p1
+			skorCUP1A(value){
+				this.nilaiSkorCUP1A = value;
+			},
+			bobotCUP1A(value){
+				this.nilaiBobotCUP1A = value;
+			},
+			skorBKCUP1A(value){
+				this.nilaiSkorBKCUP1A = value;
+			},
+			bobotBKCUP1A(value){
+				this.nilaiBobotBKCUP1A = value;
+			},
+			skorCUP1B(value){
+				this.nilaiSkorCUP1B = value;
+			},
+			bobotCUP1B(value){
+				this.nilaiBobotCUP1B = value;
+			},
+			skorBKCUP1B(value){
+				this.nilaiSkorBKCUP1B = value;
+			},
+			bobotBKCUP1B(value){
+				this.nilaiBobotBKCUP1B = value;
+			},
+			skorCUP1C(value){
+				this.nilaiSkorCUP1C = value;
+			},
+			bobotCUP1C(value){
+				this.nilaiBobotCUP1C = value;
+			},
+			skorBKCUP1C(value){
+				this.nilaiSkorBKCUP1C = value;
+			},
+			bobotBKCUP1C(value){
+				this.nilaiBobotBKCUP1C = value;
+			},
+			skorCUP1D(value){
+				this.nilaiSkorCUP1D = value;
+			},
+			bobotCUP1D(value){
+				this.nilaiBobotCUP1D = value;
+			},
+			skorBKCUP1D(value){
+				this.nilaiSkorBKCUP1D = value;
+			},
+			bobotBKCUP1D(value){
+				this.nilaiBobotBKCUP1D = value;
+			},
+			skorCUP1E(value){
+				this.nilaiSkorCUP1E = value;
+			},
+			bobotCUP1E(value){
+				this.nilaiBobotCUP1E = value;
+			},
+			skorBKCUP1E(value){
+				this.nilaiSkorBKCUP1E = value;
+			},
+			bobotBKCUP1E(value){
+				this.nilaiBobotBKCUP1E = value;
+			},
+			skorCUP1F(value){
+				this.nilaiSkorCUP1F = value;
+			},
+			bobotCUP1F(value){
+				this.nilaiBobotCUP1F = value;
+			},
+			skorBKCUP1F(value){
+				this.nilaiSkorBKCUP1F = value;
+			},
+			bobotBKCUP1F(value){
+				this.nilaiBobotBKCUP1F = value;
+			},
+
+			// p2
+			skorCUP2A(value){
+				this.nilaiSkorCUP2A = value;
+			},
+			bobotCUP2A(value){
+				this.nilaiBobotCUP2A = value;
+			},
+			skorBKCUP2A(value){
+				this.nilaiSkorBKCUP2A = value;
+			},
+			bobotBKCUP2A(value){
+				this.nilaiBobotBKCUP2A = value;
+			},
+			skorCUP2B(value){
+				this.nilaiSkorCUP2B = value;
+			},
+			bobotCUP2B(value){
+				this.nilaiBobotCUP2B = value;
+			},
+			skorBKCUP2B(value){
+				this.nilaiSkorBKCUP2B = value;
+			},
+			bobotBKCUP2B(value){
+				this.nilaiBobotBKCUP2B = value;
+			},
+
+			// p3
+			skorCUP3A(value){
+				this.nilaiSkorCUP3A = value;
+			},
+			bobotCUP3A(value){
+				this.nilaiBobotCUP3A = value;
+			},
+			skorBKCUP3A(value){
+				this.nilaiSkorBKCUP3A = value;
+			},
+			bobotBKCUP3A(value){
+				this.nilaiBobotBKCUP3A = value;
+			},
+			skorCUP3B(value){
+				this.nilaiSkorCUP3B = value;
+			},
+			bobotCUP3B(value){
+				this.nilaiBobotCUP3B = value;
+			},
+			skorBKCUP3B(value){
+				this.nilaiSkorBKCUP3B = value;
+			},
+			bobotBKCUP3B(value){
+				this.nilaiBobotBKCUP3B = value;
+			},
+
+			// p4
+			skorCUP4A(value){
+				this.nilaiSkorCUP4A = value;
+			},
+			bobotCUP4A(value){
+				this.nilaiBobotCUP4A = value;
+			},
+			skorBKCUP4A(value){
+				this.nilaiSkorBKCUP4A = value;
+			},
+			bobotBKCUP4A(value){
+				this.nilaiBobotBKCUP4A = value;
+			},
+			skorCUP4B(value){
+				this.nilaiSkorCUP4B = value;
+			},
+			bobotCUP4B(value){
+				this.nilaiBobotCUP4B = value;
+			},
+			skorBKCUP4B(value){
+				this.nilaiSkorBKCUP4B = value;
+			},
+			bobotBKCUP4B(value){
+				this.nilaiBobotBKCUP4B = value;
 			},
 			changeTab(value) {
 				this.tabName = value;
