@@ -42,8 +42,7 @@ class AssesmentAccess extends BaseEloquent {
     public static function initialize()
     {
         return [
-            'id_cu' => '','periode' => '','status' => '','id_p1' => '',
-            'id_p2' => '','id_p3' => '','id_p4' => '',
+            'id_cu' => '','periode' => '','status' => ''
         ];
     }
 

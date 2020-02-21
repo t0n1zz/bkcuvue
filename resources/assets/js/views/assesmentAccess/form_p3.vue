@@ -67,12 +67,12 @@
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
 							<li>
-								Skor CU: {{ skorCUA }} / 
-								Bobot Skor CU: {{ bobotCUA }} 
+								Skor CU: {{ skorCUA() }} / 
+								Bobot Skor CU: {{ bobotCUA() }} 
 							</li>
 							<li>
-								Skor BKCU: {{ skorBKCUA }} / 	
-								Bobot Skor BKCU: {{ bobotBKCUA }} 
+								Skor BKCU: {{ skorBKCUA() }} / 	
+								Bobot Skor BKCU: {{ bobotBKCUA() }} 
 							</li>
 						</ul>	
 					</div>
@@ -821,12 +821,12 @@
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
 							<li>
-								Skor CU: {{ skorCUB }} / 
-								Bobot Skor CU: {{ bobotCUB }} 
+								Skor CU: {{ skorCUB() }} / 
+								Bobot Skor CU: {{ bobotCUB() }} 
 								</li>
 							<li>
-								Skor BKCU: {{ skorBKCUB }} / 
-								Bobot Skor BKCU: {{ bobotBKCUB }} 
+								Skor BKCU: {{ skorBKCUB() }} / 
+								Bobot Skor BKCU: {{ bobotBKCUB() }} 
 							</li>
 						</ul>	
 					</div>
@@ -1022,7 +1022,7 @@
 								@click2="form.p3.p3b12_cu_penilaian = 2" 
 								:subtitle2="'Misi tertulis kurang jelas dan tidak mendefinisikan alasan mengenai keberadaan CU'"
 								@click3="form.p3.p3b12_cu_penilaian = 3" 
-								:subtitle3="'<ul><li>• Misi tertulis jelas dan menjabarkan alasan  mengenai keberadaan yang mencerminkan nilai-nilai serta tujuan CU</li><li>Misi diketahui oleh semua orang.</li><li>Secara konsisten dirujuk sebagai dasar pengembangan pelayanan bagi anggota</li></ul>'"
+								:subtitle3="'<ul><li>Misi tertulis jelas dan menjabarkan alasan  mengenai keberadaan yang mencerminkan nilai-nilai serta tujuan CU</li><li>Misi diketahui oleh semua orang.</li><li>Secara konsisten dirujuk sebagai dasar pengembangan pelayanan bagi anggota</li></ul>'"
 								@click4="form.p3.p3b12_cu_penilaian = 4" 
 								:subtitle4="'<ul><li>Misi tertulis jelas dan menjabarkan alasan  mengenai keberadaan yang mencerminkan nilai-nilai serta tujuan CU</li><li>Ada kejelasan, Mendorong dan menggambarkan kenyataan </li><li>Misi diketahui oleh semua orang.</li><li>Secara konsisten dirujuk sebagai dasar pengembangan pelayanan bagi anggota</li><li>Dikomunikasikan dalam kegiatan promosi dan pemasaran</li></ul>'"
 							></penilaian_cu>
@@ -2099,7 +2099,7 @@
 								@click1="form.p3.p3b25_cu_penilaian = 1"
 								:subtitle1="'Gagal memenuhi peraturan minimal dengan pertimbangan mengenai persyaratan'"
 								@click2="form.p3.p3b25_cu_penilaian = 2" 
-								:subtitle2="'Pemenuhan pertimbangan persyaratan secara terbatas yang dilakukan oleh lembaga CU<ul></li></li>Pengumpulan pernyatan keuangan tahunan</li></li>Audit tahunan</li></ul>'"
+								:subtitle2="'Pemenuhan pertimbangan persyaratan secara terbatas yang dilakukan oleh lembaga CU <ul><li>Pengumpulan pernyatan keuangan tahunan</li><li>Audit tahunan</li></ul>'"
 								@click3="form.p3.p3b25_cu_penilaian = 3" 
 								:subtitle3="'Mengikuti semua persyaratan yang ditentukan oleh lembaga secara tepat waktu'"
 								@click4="form.p3.p3b25_cu_penilaian = 4" 
@@ -2246,10 +2246,6 @@
 		</div>
 		</transition>
 		
-		<div class="card bg-danger card-body" v-if="form.p3.p3b26_cu_penilaian == '' && form.p3.p3b26_cu_keterangan == ''">
-			<h6 class="mb-0">Silahkan melengkapi indikator diatas untuk melanjutkan</h6>
-		</div>
-		
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="tabName == 'semua'">
@@ -2339,29 +2335,29 @@
 			},
 			skorBKCUA(){
 				var jumlah = (
-					this.form.p3.p3a1_cu_penilaian +
-					this.form.p3.p3a2_cu_penilaian +
-					this.form.p3.p3a3_cu_penilaian +
-					this.form.p3.p3a4_cu_penilaian +
-					this.form.p3.p3a5_cu_penilaian +
-					this.form.p3.p3a6_cu_penilaian +
-					this.form.p3.p3a7_cu_penilaian +
-					this.form.p3.p3a8_cu_penilaian +
-					this.form.p3.p3a9_cu_penilaian) / 1;
+					this.form.p3.p3a1_bkcu_penilaian +
+					this.form.p3.p3a2_bkcu_penilaian +
+					this.form.p3.p3a3_bkcu_penilaian +
+					this.form.p3.p3a4_bkcu_penilaian +
+					this.form.p3.p3a5_bkcu_penilaian +
+					this.form.p3.p3a6_bkcu_penilaian +
+					this.form.p3.p3a7_bkcu_penilaian +
+					this.form.p3.p3a8_bkcu_penilaian +
+					this.form.p3.p3a9_bkcu_penilaian) / 1;
 				this.$emit('skorBKCUA', jumlah);
 				return jumlah;
 			},
 			bobotBKCUA(){
 				var jumlah = this.$options.filters.round((((
-					this.form.p3.p3a1_cu_penilaian +
-					this.form.p3.p3a2_cu_penilaian +
-					this.form.p3.p3a3_cu_penilaian +
-					this.form.p3.p3a4_cu_penilaian +
-					this.form.p3.p3a5_cu_penilaian +
-					this.form.p3.p3a6_cu_penilaian +
-					this.form.p3.p3a7_cu_penilaian +
-					this.form.p3.p3a8_cu_penilaian +
-					this.form.p3.p3a9_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+					this.form.p3.p3a1_bkcu_penilaian +
+					this.form.p3.p3a2_bkcu_penilaian +
+					this.form.p3.p3a3_bkcu_penilaian +
+					this.form.p3.p3a4_bkcu_penilaian +
+					this.form.p3.p3a5_bkcu_penilaian +
+					this.form.p3.p3a6_bkcu_penilaian +
+					this.form.p3.p3a7_bkcu_penilaian +
+					this.form.p3.p3a8_bkcu_penilaian +
+					this.form.p3.p3a9_bkcu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
 				this.$emit('bobotBKCUA', jumlah);
 				return jumlah;
 			},

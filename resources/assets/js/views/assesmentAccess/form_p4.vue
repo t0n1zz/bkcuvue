@@ -67,12 +67,12 @@
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
 							<li>
-								Skor CU: {{ skorCUA }} / 
-								Bobot Skor CU: {{ bobotCUA }} 
+								Skor CU: {{ skorCUA() }} / 
+								Bobot Skor CU: {{ bobotCUA() }} 
 							</li>
 							<li>
-								Skor BKCU: {{ skorBKCUA }} / 	
-								Bobot Skor BKCU: {{ bobotBKCUA }} 
+								Skor BKCU: {{ skorBKCUA() }} / 	
+								Bobot Skor BKCU: {{ bobotBKCUA() }} 
 							</li>
 						</ul>	
 					</div>
@@ -813,7 +813,7 @@
 		<!-- a10 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="tabName == 'semua' || form.p4.p4a10_cu_penilaian == tabName">
-			<div class="card border-info" v-if="form.p4.p4a8_cu_penilaian != '' && form.p4.p4a8_cu_keterangan != ''">
+			<div class="card border-info" v-if="form.p4.p4a9_cu_penilaian != '' && form.p4.p4a9_cu_keterangan != ''">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						10. Kesetaraan Gender Dalam Kepemimpinan</h5>
@@ -902,12 +902,12 @@
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
 							<li>
-								Skor CU: {{ skorCUB }} / 
-								Bobot Skor CU: {{ bobotCUB }} 
+								Skor CU: {{ skorCUB() }} / 
+								Bobot Skor CU: {{ bobotCUB() }} 
 								</li>
 							<li>
-								Skor BKCU: {{ skorBKCUB }} / 
-								Bobot Skor BKCU: {{ bobotBKCUB }} 
+								Skor BKCU: {{ skorBKCUB() }} / 
+								Bobot Skor BKCU: {{ bobotBKCUB() }} 
 							</li>
 						</ul>	
 					</div>
@@ -1352,7 +1352,7 @@
 								@click2="form.p4.p4b16_cu_penilaian = 2" 
 								:subtitle2="'Standart penilaian terbaik dilakukan dengan tidak  ada kaitan yg jelas terhadap pengakuan dan  penghargaan atas kerja'"
 								@click3="form.p4.p4b16_cu_penilaian = 3" 
-								:subtitle3="'<ul><li>• Proses standart penilaian kinerja yg menyeluruh dan diterapkan</li><li>Tujuan jelas untuk membantu staf menunjukkan kinerja terbaik dengan memberikan umpan balik pengakuan atas usha atau kinerja mengacu pada pedoman utk memenuhi kebutuhan staf</li></ul>'"
+								:subtitle3="'<ul><li>Proses standart penilaian kinerja yg menyeluruh dan diterapkan</li><li>Tujuan jelas untuk membantu staf menunjukkan kinerja terbaik dengan memberikan umpan balik pengakuan atas usha atau kinerja mengacu pada pedoman utk memenuhi kebutuhan staf</li></ul>'"
 								@click4="form.p4.p4b16_cu_penilaian = 4" 
 								:subtitle4="'Standar penilaian diterapkan sebagai best practise'"
 							></penilaian_cu>
@@ -1420,7 +1420,7 @@
 			<div class="card border-warning" v-if="form.p4.p4b16_cu_penilaian != '' && form.p4.p4b16_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
-						17. Budaya Jual (Sales Culture)</h5>
+						17. Kinerja sebagai nilai bersama</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -1684,9 +1684,9 @@
 								@click2="form.p4.p4b20_cu_penilaian = 2" 
 								:subtitle2="'Wawasan staf dikembangkan dari waktu ke waktu tetapi tidak secara berkala, tidak ada peraturan tertulis mengenai program pengembangan staf'"
 								@click3="form.p4.p4b20_cu_penilaian = 3" 
-								:subtitle3="'<ul><li>Wawasan staf dikembangkan dari waktu ke waktu melalui program-program pelatihan, pengarahan dan pengembangan bakat<li></li>Ada kebijakan tentang pengembangan kompetensi, termasuk pelatihan internal dan eksternal, rapat kerja, simposium dan seminar</li></ul>'"
+								:subtitle3="'<ul><li>Wawasan staf dikembangkan dari waktu ke waktu melalui program-program pelatihan, pengarahan dan pengembangan bakat</li><li>Ada kebijakan tentang pengembangan kompetensi, termasuk pelatihan internal dan eksternal, rapat kerja, simposium dan seminar</li></ul>'"
 								@click4="form.p4.p4b20_cu_penilaian = 4" 
-								:subtitle4="'<ul><li>• Wawasan staf dikembangkan secara terus menerus dan diperbaharui melalui program-program pelatihan, pengarahan dan pengembangan bakat</li><li>Ada kebijakan tentang pengembangan kompetensi secara proaktif, termasuk pelatihan internal dan eksternal, rapat kerja, simposium dan seminar</li><li>Selalu berupaya melaksanakan praktik terbaik dalam program pengembangan</li></ul>'"
+								:subtitle4="'<ul><li>Wawasan staf dikembangkan secara terus menerus dan diperbaharui melalui program-program pelatihan, pengarahan dan pengembangan bakat</li><li>Ada kebijakan tentang pengembangan kompetensi secara proaktif, termasuk pelatihan internal dan eksternal, rapat kerja, simposium dan seminar</li><li>Selalu berupaya melaksanakan praktik terbaik dalam program pengembangan</li></ul>'"
 							></penilaian_cu>
 							<!-- keterangan -->
 							<div class="form-group">
@@ -1745,10 +1745,6 @@
 			</div>
 		</div>
 		</transition>
-
-		<div class="card bg-danger card-body" v-if="form.p4.p4b20_cu_penilaian == '' && form.p4.p4b20_cu_keterangan == ''">
-			<h6 class="mb-0">Silahkan melengkapi indikator diatas untuk melanjutkan</h6>
-		</div>
 		
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
@@ -1844,31 +1840,31 @@
 			},
 			skorBKCUA(){
 				var jumlah = (
-					this.form.p4.p4a1_cu_penilaian +
-					this.form.p4.p4a2_cu_penilaian +
-					this.form.p4.p4a3_cu_penilaian +
-					this.form.p4.p4a4_cu_penilaian +
-					this.form.p4.p4a5_cu_penilaian +
-					this.form.p4.p4a6_cu_penilaian +
-					this.form.p4.p4a7_cu_penilaian +
-					this.form.p4.p4a8_cu_penilaian +
-					this.form.p4.p4a9_cu_penilaian +
-					this.form.p4.p4a10_cu_penilaian) / 1;
+					this.form.p4.p4a1_bkcu_penilaian +
+					this.form.p4.p4a2_bkcu_penilaian +
+					this.form.p4.p4a3_bkcu_penilaian +
+					this.form.p4.p4a4_bkcu_penilaian +
+					this.form.p4.p4a5_bkcu_penilaian +
+					this.form.p4.p4a6_bkcu_penilaian +
+					this.form.p4.p4a7_bkcu_penilaian +
+					this.form.p4.p4a8_bkcu_penilaian +
+					this.form.p4.p4a9_bkcu_penilaian +
+					this.form.p4.p4a10_bkcu_penilaian) / 1;
 				this.$emit('skorBKCUA', jumlah);
 				return jumlah;
 			},
 			bobotBKCUA(){
 				var jumlah = this.$options.filters.round((((
-					this.form.p4.p4a1_cu_penilaian +
-					this.form.p4.p4a2_cu_penilaian +
-					this.form.p4.p4a3_cu_penilaian +
-					this.form.p4.p4a4_cu_penilaian +
-					this.form.p4.p4a5_cu_penilaian +
-					this.form.p4.p4a6_cu_penilaian +
-					this.form.p4.p4a7_cu_penilaian +
-					this.form.p4.p4a8_cu_penilaian +
-					this.form.p4.p4a9_cu_penilaian +
-					this.form.p4.p4a10_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+					this.form.p4.p4a1_bkcu_penilaian +
+					this.form.p4.p4a2_bkcu_penilaian +
+					this.form.p4.p4a3_bkcu_penilaian +
+					this.form.p4.p4a4_bkcu_penilaian +
+					this.form.p4.p4a5_bkcu_penilaian +
+					this.form.p4.p4a6_bkcu_penilaian +
+					this.form.p4.p4a7_bkcu_penilaian +
+					this.form.p4.p4a8_bkcu_penilaian +
+					this.form.p4.p4a9_bkcu_penilaian +
+					this.form.p4.p4a10_bkcu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
 				this.$emit('bobotBKCUA', jumlah);
 				return jumlah;
 			},

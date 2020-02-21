@@ -11,6 +11,7 @@
         </span>
         <span v-else-if="valueType == 'currency'" style="display:inline-block">{{frontText}} {{ value | currency('',0,{ thousandsSeparator: '.'}) }}</span>
         <span v-else-if="valueType == 'percentage'" style="display:inline-block">{{frontText}} {{ value | percentage(2) }}</span>
+        <span v-else-if="valueType == 'decimal'" style="display:inline-block">{{frontText}} {{ value | round(2) }}</span>
         <span v-else style="display:inline-block">{{frontText}} {{value}}</span>
       </span>
       <span v-else style="display:inline-block">{{frontText}} {{empty}}</span>

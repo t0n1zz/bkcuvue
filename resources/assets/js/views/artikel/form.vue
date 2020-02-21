@@ -477,8 +477,8 @@
 				this.$store.dispatch('artikelKategori/getCu', id);
 			},
 			back(){
-				if(this.$route.meta.mode === 'edit' && this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
 				}else{
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}

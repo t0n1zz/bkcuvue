@@ -2241,7 +2241,7 @@
 		<!-- b27 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="tabName == 'semua' || form.p2.p2b27_cu_penilaian == tabName">
-			<div class="card border-warning" v-if="form.p2.p2b25_cu_penilaian != '' && form.p2.p2b25_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p2.p2b26_cu_penilaian != '' && form.p2.p2b26_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						27. Sistem Pelaporan Manajemen & Pusat Data</h5>
@@ -2320,10 +2320,6 @@
 			</div>
 		</div>
 		</transition>
-
-		<div class="card bg-danger card-body" v-if="form.p2.p2b27_cu_penilaian == '' && form.p2.p2b27_cu_keterangan == ''">
-			<h6 class="mb-0">Silahkan melengkapi indikator diatas untuk melanjutkan</h6>
-		</div>
 		
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
@@ -2421,33 +2417,33 @@
 			},
 			skorBKCUA(){
 				var jumlah = (
-					this.form.p2.p2a1_cu_penilaian +
-					this.form.p2.p2a2_cu_penilaian +
-					this.form.p2.p2a3_cu_penilaian +
-					this.form.p2.p2a4_cu_penilaian +
-					this.form.p2.p2a5_cu_penilaian +
-					this.form.p2.p2a6_cu_penilaian +
-					this.form.p2.p2a7_cu_penilaian +
-					this.form.p2.p2a8_cu_penilaian +
-					this.form.p2.p2a9_cu_penilaian +
-					this.form.p2.p2a10_cu_penilaian +
-					this.form.p2.p2a11_cu_penilaian) / 1;
+					this.form.p2.p2a1_bkcu_penilaian +
+					this.form.p2.p2a2_bkcu_penilaian +
+					this.form.p2.p2a3_bkcu_penilaian +
+					this.form.p2.p2a4_bkcu_penilaian +
+					this.form.p2.p2a5_bkcu_penilaian +
+					this.form.p2.p2a6_bkcu_penilaian +
+					this.form.p2.p2a7_bkcu_penilaian +
+					this.form.p2.p2a8_bkcu_penilaian +
+					this.form.p2.p2a9_bkcu_penilaian +
+					this.form.p2.p2a10_bkcu_penilaian +
+					this.form.p2.p2a11_bkcu_penilaian) / 1;
 				this.$emit('skorBKCUA', jumlah);
 				return jumlah;
 			},
 			bobotBKCUA(){
 				var jumlah = this.$options.filters.round((((
-					this.form.p2.p2a1_cu_penilaian +
-					this.form.p2.p2a2_cu_penilaian +
-					this.form.p2.p2a3_cu_penilaian +
-					this.form.p2.p2a4_cu_penilaian +
-					this.form.p2.p2a5_cu_penilaian +
-					this.form.p2.p2a6_cu_penilaian +
-					this.form.p2.p2a7_cu_penilaian +
-					this.form.p2.p2a8_cu_penilaian +
-					this.form.p2.p2a9_cu_penilaian +
-					this.form.p2.p2a10_cu_penilaian +
-					this.form.p2.p2a11_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+					this.form.p2.p2a1_bkcu_penilaian +
+					this.form.p2.p2a2_bkcu_penilaian +
+					this.form.p2.p2a3_bkcu_penilaian +
+					this.form.p2.p2a4_bkcu_penilaian +
+					this.form.p2.p2a5_bkcu_penilaian +
+					this.form.p2.p2a6_bkcu_penilaian +
+					this.form.p2.p2a7_bkcu_penilaian +
+					this.form.p2.p2a8_bkcu_penilaian +
+					this.form.p2.p2a9_bkcu_penilaian +
+					this.form.p2.p2a10_bkcu_penilaian +
+					this.form.p2.p2a11_bkcu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
 				this.$emit('bobotBKCUA', jumlah);
 				return jumlah;
 			},

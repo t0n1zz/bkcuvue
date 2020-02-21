@@ -12,250 +12,370 @@
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
 
-					<div class="card card-body">
-						<div class="row">
+					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 
-							<!-- cu -->
-							<div class="col-md-6" v-if="currentUser.id_cu === 0">
-								<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+						<div class="card card-body">
+							<div class="row">
 
-									<!-- title -->
-									<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
-										<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-										CU: <wajib-badge></wajib-badge>
-									</h5>
+								<!-- cu -->
+								<div class="col-md-6" v-if="currentUser.id_cu === 0">
+									<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
-									<!-- select -->
-									<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
-										<option disabled value="0">Silahkan pilih CU</option>
-										<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
-									</select>
+										<!-- title -->
+										<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+											<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+											CU: <wajib-badge></wajib-badge>
+										</h5>
 
-									<!-- error message -->
-									<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-										<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
-									</small>
-									<small class="text-muted" v-else>&nbsp;</small>
+										<!-- select -->
+										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+											<option disabled value="0">Silahkan pilih CU</option>
+											<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+										</select>
+
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
+									</div>
+								</div>
+
+								<!-- periode -->
+								<div class="col-md-6">
+									<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
+
+										<!-- title -->
+										<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
+											<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
+											Periode: <wajib-badge></wajib-badge>
+											<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+										</h5>
+
+										<!-- input -->
+										<cleave 
+											name="periode"
+											v-model="form.periode" 
+											class="form-control" 
+											:raw="false" 
+											:options="cleaveOption.date" 
+											placeholder="Silahkan masukkan periode laporan"
+											v-validate="'required'" data-vv-as="Periode"></cleave>
+
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.periode')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						
+						<div class="nav-tabs-responsive mb-3" v-if="form.periode != ''">
+							<ul class="nav nav-tabs nav-tabs-solid  bg-light">
+								<li class="nav-item">
+									<div class="nav-link" :class="{'active' : tabName == 'p1'}" @click.prevent="changeTab('p1')" style = "cursor:pointer">
+										<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p1'}">1. PERSPEKTIF KEUANGAN</a>
+										<hr class="mt-1 mb-1" />
+										<ul class="list-inline mb-0">
+											<li>
+												Skor CU: {{ nilaiSkorCUP1A + nilaiSkorCUP1B + nilaiSkorCUP1C + nilaiSkorCUP1D + nilaiSkorCUP1E + nilaiSkorCUP1F }} 
+
+												/ Bobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F) | round(2)  }} 
+											</li>
+											<li>
+												Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F }} 
+
+												/ Bobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }} 
+											</li>
+										</ul>	
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" :class="{'active' : tabName == 'p2'}" @click.prevent="changeTab('p2')" style = "cursor:pointer">
+										<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p2'}">2. PERSPEKTIF ANGGOTA/PELANGGAN</a>
+										<hr class="mt-1 mb-1" />
+										<ul class="list-inline mb-0">
+											<li>
+												Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }} 
+											</li>
+											<li>
+												Skor BKCU: {{ nilaiBobotBKCUP2A + nilaiBobotBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }} 
+											</li>
+										</ul>	
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" :class="{'active' : tabName == 'p3'}" @click.prevent="changeTab('p3')" style = "cursor:pointer">
+										<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p3'}">3. PERSPEKTIF BISNIS INTERNAL</a>
+										<hr class="mt-1 mb-1" />
+										<ul class="list-inline mb-0">
+											<li>
+												Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }} 
+											</li>
+											<li>
+												Skor BKCU: {{ nilaiBobotBKCUP3A + nilaiBobotBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }} 
+											</li>
+										</ul>	
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" :class="{'active' : tabName == 'p4'}" @click.prevent="changeTab('p4')" style = "cursor:pointer">
+										<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p4'}">4. PERSPEKTIF PEMBELAJARAN</a>
+										<hr class="mt-1 mb-1" />
+										<ul class="list-inline mb-0">
+											<li>
+												Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ nilaiBobotCUP4A + nilaiBobotCUP4B }} 
+											</li>
+											<li>
+												Skor BKCU: {{ nilaiBobotBKCUP4A + nilaiBobotBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }} 
+											</li>
+										</ul>	
+									</div>
+								</li>
+								<li class="nav-item">
+									<div class="nav-link" :class="{'active' : tabName == 'p5'}" @click.prevent="changeTab('p5')" style = "cursor:pointer">
+										<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p5'}">5. SCORE CARD & KESIMPULAN</a>	
+										<hr class="mt-1 mb-1" />
+										<ul class="list-inline mb-0">
+											<li>
+												Total Skor CU: {{ totalSkorCU() }} / 
+												
+												Total Bobot Skor CU: {{ totalBobotCU() }} 
+											</li>
+											<li>
+												Total Skor BKCU: {{ totalSkorBKCU() }} / 
+												
+												Total Bobot Skor BKCU: {{ totalBobotBKCU() }} 
+											</li>
+										</ul>	
+									</div>
+								</li>
+							</ul>
+						</div>		
+						
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-if="form.periode != ''" v-show="tabName == 'p1'">
+								<form-p1 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'56'" 
+									:bobotSkor="'40'" 
+									:mode="$route.meta.mode" 
+									@next="changeTab('p2')"
+									@prev="back" 
+									@skorCUA="skorCUP1A"
+									@skorBKCUA="skorBKCUP1A"
+									@bobotCUA="bobotCUP1A"
+									@bobotBKCUA="bobotBKCUP1A"
+									@skorCUB="skorCUP1B"
+									@skorBKCUB="skorBKCUP1B"
+									@bobotCUB="bobotCUP1B"
+									@bobotBKCUB="bobotBKCUP1B"
+									@skorCUC="skorCUP1C"
+									@skorBKCUC="skorBKCUP1C"
+									@bobotCUC="bobotCUP1C"
+									@bobotBKCUC="bobotBKCUP1C"
+									@skorCUD="skorCUP1D"
+									@skorBKCUD="skorBKCUP1D"
+									@bobotCUD="bobotCUP1D"
+									@bobotBKCUD="bobotBKCUP1D"
+									@skorCUE="skorCUP1E"
+									@skorBKCUE="skorBKCUP1E"
+									@bobotCUE="bobotCUP1E"
+									@bobotBKCUE="bobotBKCUP1E"
+									@skorCUF="skorCUP1F"
+									@skorBKCUF="skorBKCUP1F"
+									@bobotCUF="bobotCUP1F"
+									@bobotBKCUF="bobotBKCUP1F"
+								></form-p1>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'p2'">
+								<form-p2 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'108'" 
+									:bobotSkor="'20'" 
+									:mode="$route.meta.mode" 
+									@prev="changeTab('p2')" 
+									@next="changeTab('p3')"
+									@skorCUA="skorCUP2A"
+									@skorBKCUA="skorBKCUP2A"
+									@bobotCUA="bobotCUP2A"
+									@bobotBKCUA="bobotBKCUP2A"
+									@skorCUB="skorCUP2B"
+									@skorBKCUB="skorBKCUP2B"
+									@bobotCUB="bobotCUP2B"
+									@bobotBKCUB="bobotBKCUP2B"
+								></form-p2>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'p3'">
+								<form-p3 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'104'" 
+									:bobotSkor="'20'" 
+									:mode="$route.meta.mode" 
+									@prev="changeTab('p3')" 
+									@next="changeTab('p4')"
+									@skorCUA="skorCUP3A"
+									@skorBKCUA="skorBKCUP3A"
+									@bobotCUA="bobotCUP3A"
+									@bobotBKCUA="bobotBKCUP3A"
+									@skorCUB="skorCUP3B"
+									@skorBKCUB="skorBKCUP3B"
+									@bobotCUB="bobotCUP3B"
+									@bobotBKCUB="bobotBKCUP3B"
+								></form-p3>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'p4'">
+								<form-p4 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'80'" 
+									:bobotSkor="'20'" 
+									:mode="$route.meta.mode" 
+									@prev="changeTab('p3')" 
+									@next="changeTab('p5')"
+									@skorCUA="skorCUP4A"
+									@skorBKCUA="skorBKCUP4A"
+									@bobotCUA="bobotCUP4A"
+									@bobotBKCUA="bobotBKCUP4A"
+									@skorCUB="skorCUP4B"
+									@skorBKCUB="skorBKCUP4B"
+									@bobotCUB="bobotCUP4B"
+									@bobotBKCUB="bobotBKCUP4B"
+								></form-p4>
+							</div>
+						</transition>
+
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'p5'">
+								<score-p1 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'56'" 
+									:bobotSkor="'40'" 
+									:mode="$route.meta.mode" 
+									:nilaiSkorCUP1A = "nilaiSkorCUP1A"
+									:nilaiBobotCUP1A = "nilaiBobotCUP1A"
+									:nilaiSkorBKCUP1A = "nilaiSkorBKCUP1A"
+									:nilaiBobotBKCUP1A = "nilaiBobotBKCUP1A"
+									:nilaiSkorCUP1B = "nilaiSkorCUP1B"
+									:nilaiBobotCUP1B = "nilaiBobotCUP1B"
+									:nilaiSkorBKCUP1B = "nilaiSkorBKCUP1B"
+									:nilaiBobotBKCUP1B = "nilaiBobotBKCUP1B"
+									:nilaiSkorCUP1C = "nilaiSkorCUP1C"
+									:nilaiBobotCUP1C = "nilaiBobotCUP1C"
+									:nilaiSkorBKCUP1C = "nilaiSkorBKCUP1C"
+									:nilaiBobotBKCUP1C = "nilaiBobotBKCUP1C"
+									:nilaiSkorCUP1D = "nilaiSkorCUP1D"
+									:nilaiBobotCUP1D = "nilaiBobotCUP1D"
+									:nilaiSkorBKCUP1D = "nilaiSkorBKCUP1D"
+									:nilaiBobotBKCUP1D = "nilaiBobotBKCUP1D"
+									:nilaiSkorCUP1E = "nilaiSkorCUP1E"
+									:nilaiBobotCUP1E = "nilaiBobotCUP1E"
+									:nilaiSkorBKCUP1E = "nilaiSkorBKCUP1E"
+									:nilaiBobotBKCUP1E = "nilaiBobotBKCUP1E"
+									:nilaiSkorCUP1F = "nilaiSkorCUP1F"
+									:nilaiBobotCUP1F = "nilaiBobotCUP1F"
+									:nilaiSkorBKCUP1F = "nilaiSkorBKCUP1F"
+									:nilaiBobotBKCUP1F = "nilaiBobotBKCUP1F"
+								></score-p1>
+								<hr/>
+								<score-p2 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'108'" 
+									:bobotSkor="'20'"  
+									:mode="$route.meta.mode" 
+									:nilaiSkorCUP2A = "nilaiSkorCUP2A"
+									:nilaiBobotCUP2A = "nilaiBobotCUP2A"
+									:nilaiSkorBKCUP2A = "nilaiSkorBKCUP2A"
+									:nilaiBobotBKCUP2A = "nilaiBobotBKCUP2A"
+									:nilaiSkorCUP2B = "nilaiSkorCUP2B"
+									:nilaiBobotCUP2B = "nilaiBobotCUP2B"
+									:nilaiSkorBKCUP2B = "nilaiSkorBKCUP2B"
+									:nilaiBobotBKCUP2B = "nilaiBobotBKCUP2B"
+								></score-p2>
+								<hr/>
+								<score-p3 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'104'" 
+									:bobotSkor="'20'"  
+									:mode="$route.meta.mode" 
+									:nilaiSkorCUP3A = "nilaiSkorCUP3A"
+									:nilaiBobotCUP3A = "nilaiBobotCUP3A"
+									:nilaiSkorBKCUP3A = "nilaiSkorBKCUP3A"
+									:nilaiBobotBKCUP3A = "nilaiBobotBKCUP3A"
+									:nilaiSkorCUP3B = "nilaiSkorCUP3B"
+									:nilaiBobotCUP3B = "nilaiBobotCUP3B"
+									:nilaiSkorBKCUP3B = "nilaiSkorBKCUP3B"
+									:nilaiBobotBKCUP3B = "nilaiBobotBKCUP3B"
+								></score-p3>
+								<hr/>
+								<score-p4 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:jumlahIndikator="'80'" 
+									:bobotSkor="'20'"  
+									:mode="$route.meta.mode" 
+									:nilaiSkorCUP4A = "nilaiSkorCUP4A"
+									:nilaiBobotCUP4A = "nilaiBobotCUP4A"
+									:nilaiSkorBKCUP4A = "nilaiSkorBKCUP4A"
+									:nilaiBobotBKCUP4A = "nilaiBobotBKCUP4A"
+									:nilaiSkorCUP4B = "nilaiSkorCUP4B"
+									:nilaiBobotCUP4B = "nilaiBobotCUP4B"
+									:nilaiSkorBKCUP4B = "nilaiSkorBKCUP4B"
+									:nilaiBobotBKCUP4B = "nilaiBobotBKCUP4B"
+								></score-p4>
+								<hr/>
+								<kesimpulan 
+									v-if="formStat == 'success'"
+									:form="form" 
+									:mode="$route.meta.mode" 
+									:nilaiTotalSkorCU = "nilaiTotalSkorCU"
+									:nilaiTotalBobotCU = "nilaiTotalBobotCU"
+									:nilaiTotalSkorBKCU = "nilaiTotalSkorBKCU"
+									:nilaiTotalBobotBKCU = "nilaiTotalBobotBKCU"
+								></kesimpulan>
+								
+								<div class="card card-body" v-if="formStat == 'success' && (form.p4.p4b20_cu_penilaian != '' && form.p4.p4b20_cu_keterangan != '')">
+									<div class="text-center d-none d-md-block">
+										<button type="button" class="btn btn-light" @click.prevent="changeTab('p4')">
+											<i class="icon-arrow-left13"></i> Kembali
+										</button>
+
+										<button type="submit" class="btn btn-primary" v-if="$route.meta.mode != 'penilaian_bkcu' && $route.meta.mode != 'lihat'">
+											<i class="icon-floppy-disk"></i> Simpan
+										</button>
+									</div>
+									<div class="d-block d-md-none">
+										<button type="submit" class="btn btn-primary btn-block" v-if="$route.meta.mode != 'penilaian_bkcu' && $route.meta.mode != 'lihat'">
+											<i class="icon-floppy-disk"></i> Simpan
+										</button>
+
+										<button type="button" class="btn btn-light btn-block" @click.prevent="changeTab('p4')">
+											<i class="icon-arrow-left13"></i> Kembali
+										</button>
+									</div>
 								</div>
 							</div>
+						</transition>
 
-							<!-- periode -->
-							<div class="col-md-6">
-								<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
-
-									<!-- title -->
-									<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
-										<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
-										Periode: <wajib-badge></wajib-badge>
-										<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
-									</h5>
-
-									<!-- input -->
-									<cleave 
-										name="periode"
-										v-model="form.periode" 
-										class="form-control" 
-										:raw="false" 
-										:options="cleaveOption.date" 
-										placeholder="Silahkan masukkan periode laporan"
-										v-validate="'required'" data-vv-as="Periode"></cleave>
-
-									<!-- error message -->
-									<small class="text-muted text-danger" v-if="errors.has('form.periode')">
-										<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
-									</small>
-									<small class="text-muted" v-else>&nbsp;</small>
-								</div>
-							</div>
-
-						</div>
-					</div>
-					
-					<div class="nav-tabs-responsive mb-3">
-						<ul class="nav nav-tabs nav-tabs-solid  bg-light">
-							<li class="nav-item">
-								<div class="nav-link" :class="{'active' : tabName == 'p1'}" @click.prevent="changeTab('p1')" style = "cursor:pointer">
-									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p1'}">1. PERSPEKTIF KEUANGAN</a>
-									<hr class="mt-1 mb-1" />
-									<ul class="list-inline mb-0">
-										<li>
-											Skor CU: {{ nilaiSkorCUP1A + nilaiSkorCUP1B + nilaiSkorCUP1C + nilaiSkorCUP1D + nilaiSkorCUP1E + nilaiSkorCUP1F }} 
-
-											/ Bobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F) | round(2)  }} 
-										</li>
-										<li>
-											Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F }} 
-
-											/ Bobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }} 
-										</li>
-									</ul>	
-								</div>
-							</li>
-							<li class="nav-item">
-								<div class="nav-link" :class="{'active' : tabName == 'p2'}" @click.prevent="changeTab('p2')" style = "cursor:pointer">
-									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p2'}">2. PERSPEKTIF ANGGOTA/PELANGGAN</a>
-									<hr class="mt-1 mb-1" />
-									<ul class="list-inline mb-0">
-										<li>
-											Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }} 
-										</li>
-										<li>
-											Skor BKCU: {{ nilaiBobotBKCUP2A + nilaiBobotBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }} 
-										</li>
-									</ul>	
-								</div>
-							</li>
-							<li class="nav-item">
-								<div class="nav-link" :class="{'active' : tabName == 'p3'}" @click.prevent="changeTab('p3')" style = "cursor:pointer">
-									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p3'}">3. PERSPEKTIF BISNIS INTERNAL</a>
-									<hr class="mt-1 mb-1" />
-									<ul class="list-inline mb-0">
-										<li>
-											Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }} 
-										</li>
-										<li>
-											Skor BKCU: {{ nilaiBobotBKCUP3A + nilaiBobotBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }} 
-										</li>
-									</ul>	
-								</div>
-							</li>
-							<li class="nav-item">
-								<div class="nav-link" :class="{'active' : tabName == 'p4'}" @click.prevent="changeTab('p4')" style = "cursor:pointer">
-									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p4'}">4. PERSPEKTIF PEMBELAJARAN</a>
-									<hr class="mt-1 mb-1" />
-									<ul class="list-inline mb-0">
-										<li>
-											Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ nilaiBobotCUP4A + nilaiBobotCUP4B }} 
-										</li>
-										<li>
-											Skor BKCU: {{ nilaiBobotBKCUP4A + nilaiBobotBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }} 
-										</li>
-									</ul>	
-								</div>
-							</li>
-							<li class="nav-item">
-								<div class="nav-link" :class="{'active' : tabName == 'p5'}" @click.prevent="changeTab('p5')" style = "cursor:pointer">
-									<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p5'}">5. SCORE CARD & KESIMPULAN</a>	
-									<hr class="mt-1 mb-1" />
-									<ul class="list-inline mb-0">
-										<li>
-											Total Skor CU: {{ nilaiSkorCUP1A + nilaiSkorCUP1B + nilaiSkorCUP1C + nilaiSkorCUP1D + nilaiSkorCUP1E + nilaiSkorCUP1F + nilaiSkorCUP2A + nilaiSkorCUP2B + nilaiSkorCUP3A + nilaiSkorCUP3B + nilaiSkorCUP4A + nilaiSkorCUP4B }} / 
-											
-											TotalBobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F + nilaiBobotCUP2A + nilaiBobotCUP2B + nilaiBobotCUP3A + nilaiBobotCUP3B + nilaiBobotCUP4A + nilaiBobotCUP4B) | round(2) }} 
-										</li>
-										<li>
-											Total Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F + nilaiSkorBKCUP2A + nilaiSkorBKCUP2B + nilaiSkorBKCUP3A + nilaiSkorBKCUP3B + nilaiSkorBKCUP4A + nilaiSkorBKCUP4B }} / 
-											
-											TotalBobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F + nilaiBobotBKCUP2A + nilaiBobotBKCUP2B + nilaiBobotBKCUP3A + nilaiBobotBKCUP3B + nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }} 
-										</li>
-									</ul>	
-								</div>
-							</li>
-						</ul>
-					</div>		
-          
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'p1'">
-							<form-p1 
-								v-if="formStat == 'success'"
-								:form="form" 
-								:jumlahIndikator="'56'" 
-								:bobotSkor="'40'" 
-								:mode="$route.meta.mode" 
-								@next="changeTab('p2')" 
-								@skorCUA="skorCUP1A"
-								@skorBKCUA="skorBKCUP1A"
-								@bobotCUA="bobotCUP1A"
-								@bobotBKCUA="bobotBKCUP1A"
-								@skorCUB="skorCUP1B"
-								@skorBKCUB="skorBKCUP1B"
-								@bobotCUB="bobotCUP1B"
-								@bobotBKCUB="bobotBKCUP1B"
-								@skorCUC="skorCUP1C"
-								@skorBKCUC="skorBKCUP1C"
-								@bobotCUC="bobotCUP1C"
-								@bobotBKCUC="bobotBKCUP1C"
-								@skorCUD="skorCUP1D"
-								@skorBKCUD="skorBKCUP1D"
-								@bobotCUD="bobotCUP1D"
-								@bobotBKCUD="bobotBKCUP1D"
-								@skorCUE="skorCUP1E"
-								@skorBKCUE="skorBKCUP1E"
-								@bobotCUE="bobotCUP1E"
-								@bobotBKCUE="bobotBKCUP1E"
-								@skorCUF="skorCUP1F"
-								@skorBKCUF="skorBKCUP1F"
-								@bobotCUF="bobotCUP1F"
-								@bobotBKCUF="bobotBKCUP1F"
-							></form-p1>
-						</div>
-					</transition>
-
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'p2'">
-							<form-p2 
-								v-if="formStat == 'success'"
-								:form="form" 
-								:jumlahIndikator="'108'" 
-								:bobotSkor="'20'" 
-								:mode="$route.meta.mode" 
-								@prev="changeTab('p2')" 
-								@next="changeTab('p3')"
-								@skorCUA="skorCUP2A"
-								@skorBKCUA="skorBKCUP2A"
-								@bobotCUA="bobotCUP2A"
-								@bobotBKCUA="bobotBKCUP2A"
-								@skorCUB="skorCUP2B"
-								@skorBKCUB="skorBKCUP2B"
-								@bobotCUB="bobotCUP2B"
-								@bobotBKCUB="bobotBKCUP2B"
-							></form-p2>
-						</div>
-					</transition>
-
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'p3'">
-							<form-p3 
-								v-if="formStat == 'success'"
-								:form="form" 
-								:jumlahIndikator="'104'" 
-								:bobotSkor="'20'" 
-								:mode="$route.meta.mode" 
-								@prev="changeTab('p3')" 
-								@next="changeTab('p4')"
-								@skorCUA="skorCUP3A"
-								@skorBKCUA="skorBKCUP3A"
-								@bobotCUA="bobotCUP3A"
-								@bobotBKCUA="bobotBKCUP3A"
-								@skorCUB="skorCUP3B"
-								@skorBKCUB="skorBKCUP3B"
-								@bobotCUB="bobotCUP3B"
-								@bobotBKCUB="bobotBKCUP3B"
-							></form-p3>
-						</div>
-					</transition>
-
-					<transition enter-active-class="animated fadeIn" mode="out-in">
-						<div v-show="tabName == 'p4'">
-							<form-p4 
-								v-if="formStat == 'success'"
-								:form="form" 
-								:jumlahIndikator="'80'" 
-								:bobotSkor="'20'" 
-								:mode="$route.meta.mode" 
-								@prev="changeTab('p3')" 
-								@next="changeTab('p5')"
-								@skorCUA="skorCUP4A"
-								@skorBKCUA="skorBKCUP4A"
-								@bobotCUA="bobotCUP4A"
-								@bobotBKCUA="bobotBKCUP4A"
-								@skorCUB="skorCUP4B"
-								@skorBKCUB="skorBKCUP4B"
-								@bobotCUB="bobotCUP4B"
-								@bobotBKCUB="bobotBKCUP4B"
-							></form-p4>
-						</div>
-					</transition>
+					</form>
 
 				</div>
 			</div>
@@ -292,6 +412,11 @@
 	import formP2 from "./form_p2.vue";
 	import formP3 from "./form_p3.vue";
 	import formP4 from "./form_p4.vue";
+	import scoreP1 from "./score_p1.vue";
+	import scoreP2 from "./score_p2.vue";
+	import scoreP3 from "./score_p3.vue";
+	import scoreP4 from "./score_p4.vue";
+	import kesimpulan from "./kesimpulan.vue";
 
 	export default {
 		components: {
@@ -307,6 +432,11 @@
 			formP2,
 			formP3,
 			formP4,
+			scoreP1,
+			scoreP2,
+			scoreP3,
+			scoreP4,
+			kesimpulan,
 		},
 		data() {
 			return {
@@ -356,14 +486,6 @@
 				nilaiBobotCUP3B: 0,
 				nilaiSkorBKCUP3B: 0,
 				nilaiBobotBKCUP3B: 0,
-				nilaiSkorCUP3A: 0,
-				nilaiBobotCUP3A: 0,
-				nilaiSkorBKCUP3A: 0,
-				nilaiBobotBKCUP3A: 0,
-				nilaiSkorCUP3B: 0,
-				nilaiBobotCUP3B: 0,
-				nilaiSkorBKCUP3B: 0,
-				nilaiBobotBKCUP3B: 0,
 				nilaiSkorCUP4A: 0,
 				nilaiBobotCUP4A: 0,
 				nilaiSkorBKCUP4A: 0,
@@ -372,6 +494,10 @@
 				nilaiBobotCUP4B: 0,
 				nilaiSkorBKCUP4B: 0,
 				nilaiBobotBKCUP4B: 0,
+				nilaiTotalSkorCU: 0,
+				nilaiTotalBobotCU: 0,
+				nilaiTotalSkorBKCU: 0,
+				nilaiTotalBobotBKCU: 0,
 				cleaveOption: {
           date:{
             date: true,
@@ -445,7 +571,68 @@
 					this.$store.dispatch(this.kelas + '/create');
 				}
 			},
+			save() {
+				this.$validator.validateAll('form').then((result) => {
+					if (result) {
+						if(this.$route.meta.mode === 'edit'){
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
+						}else{
+							this.$store.dispatch(this.kelas + '/store', this.form);
+						}
+						this.submited = false;
+					}else{
+						window.scrollTo(0, 0);
+						this.submited = true;
+					}
+				});
+			},
+			back(){
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				}
+			},
+			modalTutup() {
+ 				if(this.updateStat === 'success'){
+					this.back();
+				}
 
+				this.modalShow = false;
+			},
+			modalBackgroundClick(){
+				if(this.modalState === 'success'){
+					this.modalTutup;
+				}else if(this.modalState === 'loading'){
+					// do nothing
+				}else{
+					this.modalShow = false
+				}
+			},
+			totalSkorCU(){
+				var jumlah = this.nilaiSkorCUP1A + this.nilaiSkorCUP1B + this.nilaiSkorCUP1C + this.nilaiSkorCUP1D + this.nilaiSkorCUP1E + this.nilaiSkorCUP1F + this.nilaiSkorCUP2A + this.nilaiSkorCUP2B + this.nilaiSkorCUP3A + this.nilaiSkorCUP3B + this.nilaiSkorCUP4A + this.nilaiSkorCUP4B;
+				
+				this.nilaiTotalSkorCU = jumlah;
+				return jumlah;
+			},
+			totalBobotCU(){
+				var jumlah = this.$options.filters.round(this.nilaiBobotCUP1A + this.nilaiBobotCUP1B + this.nilaiBobotCUP1C + this.nilaiBobotCUP1D + this.nilaiBobotCUP1E + this.nilaiBobotCUP1F + this.nilaiBobotCUP2A + this.nilaiBobotCUP2B + this.nilaiBobotCUP3A + this.nilaiBobotCUP3B + this.nilaiBobotCUP4A + this.nilaiBobotCUP4B);
+
+				this.nilaiTotalBobotCU = jumlah;
+				return jumlah;
+			},
+			totalSkorBKCU(){
+				var jumlah = this.nilaiSkorBKCUP1A + this.nilaiSkorBKCUP1B + this.nilaiSkorBKCUP1C + this.nilaiSkorBKCUP1D + this.nilaiSkorBKCUP1E + this.nilaiSkorBKCUP1F + this.nilaiSkorBKCUP2A + this.nilaiSkorBKCUP2B + this.nilaiSkorBKCUP3A + this.nilaiSkorBKCUP3B + this.nilaiSkorBKCUP4A + this.nilaiSkorBKCUP4B;
+
+				this.nilaiTotalSkorBKCU = jumlah;
+				return jumlah;
+			},
+			totalBobotBKCU(){
+				var jumlah = this.$options.filters.round(this.nilaiBobotBKCUP1A + this.nilaiBobotBKCUP1B + this.nilaiBobotBKCUP1C + this.nilaiBobotBKCUP1D + this.nilaiBobotBKCUP1E + this.nilaiBobotBKCUP1F + this.nilaiBobotBKCUP2A + this.nilaiBobotBKCUP2B + this.nilaiBobotBKCUP3A + this.nilaiBobotBKCUP3B + this.nilaiBobotBKCUP4A + this.nilaiBobotBKCUP4B);
+
+				this.nilaiTotalBobotBKCU = jumlah;
+				return jumlah;
+			},
 			// p1
 			skorCUP1A(value){
 				this.nilaiSkorCUP1A = value;
@@ -599,44 +786,6 @@
 			},
 			changeTab(value) {
 				this.tabName = value;
-			},
-			save() {
-				this.$validator.validateAll('form').then((result) => {
-					if (result) {
-						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
-						}else{
-							this.$store.dispatch(this.kelas + '/store', this.form);
-						}
-						this.submited = false;
-					}else{
-						window.scrollTo(0, 0);
-						this.submited = true;
-					}
-				});
-			},
-			back(){
-				if(this.$route.meta.mode === 'edit' && this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu}});
-				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
-				}
-			},
-			modalTutup() {
- 				if(this.updateStat === 'success'){
-					this.back();
-				}
-
-				this.modalShow = false;
-			},
-			modalBackgroundClick(){
-				if(this.modalState === 'success'){
-					this.modalTutup;
-				}else if(this.modalState === 'loading'){
-					// do nothing
-				}else{
-					this.modalShow = false
-				}
 			},
 		},
 		computed: {

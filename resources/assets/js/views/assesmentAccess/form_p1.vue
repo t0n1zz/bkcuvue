@@ -862,8 +862,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUD }} / Bobot Skor CU: {{ bobotCUD }} </li>
-							<li>Skor BKCU: {{ skorBKCUD }} / Bobot Skor BKCU: {{ bobotBKCUD }} </li>
+							<li>Skor CU: {{ skorCUD() }} / Bobot Skor CU: {{ bobotCUD() }} </li>
+							<li>Skor BKCU: {{ skorBKCUD() }} / Bobot Skor BKCU: {{ bobotBKCUD() }} </li>
 						</ul>	
 					</div>
 				</div>	
@@ -1047,8 +1047,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUE }} / Bobot Skor CU: {{ bobotCUE }} </li>
-							<li>Skor BKCU: {{ skorBKCUE }} / Bobot Skor BKCU: {{ bobotBKCUE }} </li>
+							<li>Skor CU: {{ skorCUE() }} / Bobot Skor CU: {{ bobotCUE() }} </li>
+							<li>Skor BKCU: {{ skorBKCUE() }} / Bobot Skor BKCU: {{ bobotBKCUE() }} </li>
 						</ul>	
 					</div>
 				</div>	
@@ -1062,7 +1062,7 @@
 			<div class="card border-danger" v-if="form.p1.p1d11_cu_penilaian != '' && form.p1.p1d11_cu_keterangan != ''">
 				<div class="card-header bg-danger text-white">
 					<h5 class="card-title">
-						12. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban< 30 hari</h5>
+						12. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -1149,8 +1149,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUF }} / Bobot Skor CU: {{ bobotCUF }} </li>
-							<li>Skor BKCU: {{ skorBKCUF }} / Bobot Skor BKCU: {{ bobotBKCUF }} </li>
+							<li>Skor CU: {{ skorCUF() }} / Bobot Skor CU: {{ bobotCUF() }} </li>
+							<li>Skor BKCU: {{ skorBKCUF() }} / Bobot Skor BKCU: {{ bobotBKCUF() }} </li>
 						</ul>	
 					</div>
 				</div>	
@@ -1324,9 +1324,9 @@
 		</div>
 		</transition>
 
-		<div class="card bg-danger card-body" v-if="form.p1.p1f14_cu_penilaian == '' && form.p1.p1f14_cu_keterangan == ''">
+		<!-- <div class="card bg-danger card-body" v-if="form.p1.p1f14_cu_penilaian == '' && form.p1.p1f14_cu_keterangan == ''">
 			<h6 class="mb-0">Silahkan melengkapi indikator diatas untuk melanjutkan</h6>
-		</div>
+		</div> -->
 		
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
@@ -1471,12 +1471,12 @@
 				return jumlah;
 			},
 			skorCUE(){
-				var jumlah = (form.p1.p1e12_cu_penilaian) / 1;
+				var jumlah = (this.form.p1.p1e12_cu_penilaian) / 1;
 				this.$emit('skorCUE', jumlah);
 				return jumlah;
 			},
 			bobotCUE(){
-				var jumlah = this.$options.filters.round((((form.p1.p1e12_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				var jumlah = this.$options.filters.round((((this.form.p1.p1e12_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
 				this.$emit('bobotCUE', jumlah);
 				return jumlah;
 			},

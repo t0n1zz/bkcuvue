@@ -35,7 +35,7 @@ class AssesmentAccessP4 extends BaseEloquent {
         'p4b16_cu_penilaian','p4b16_cu_keterangan','p4b16_bkcu_penilaian','p4b16_bkcu_keterangan','p4b16_bkcu_rekomendasi',
         'p4b17_cu_penilaian','p4b17_cu_keterangan','p4b17_bkcu_penilaian','p4b17_bkcu_keterangan','p4b17_bkcu_rekomendasi',
         'p4b18_cu_penilaian','p4b18_cu_keterangan','p4b18_bkcu_penilaian','p4b18_bkcu_keterangan','p4b18_bkcu_rekomendasi',
-        'p4b19_cu_penilaian','p4b19_cu_keterangan','p4b19_bkcu_penilaian','p4b19_bkcu_keterangan','p4b9_bkcu_rekomendasi',
+        'p4b19_cu_penilaian','p4b19_cu_keterangan','p4b19_bkcu_penilaian','p4b19_bkcu_keterangan','p4b19_bkcu_rekomendasi',
         'p4b20_cu_penilaian','p4b20_cu_keterangan','p4b20_bkcu_penilaian','p4b20_bkcu_keterangan','p4b20_bkcu_rekomendasi',
     ];
 
@@ -60,7 +60,7 @@ class AssesmentAccessP4 extends BaseEloquent {
             'p4b16_cu_penilaian' => '','p4b16_cu_keterangan' => '','p4b16_bkcu_penilaian' => '','p4b16_bkcu_keterangan' => '','p4b16_bkcu_rekomendasi' => '',
             'p4b17_cu_penilaian' => '','p4b17_cu_keterangan' => '','p4b17_bkcu_penilaian' => '','p4b17_bkcu_keterangan' => '','p4b17_bkcu_rekomendasi' => '',
             'p4b18_cu_penilaian' => '','p4b18_cu_keterangan' => '','p4b18_bkcu_penilaian' => '','p4b18_bkcu_keterangan' => '','p4b18_bkcu_rekomendasi' => '',
-            'p4b19_cu_penilaian' => '','p4b19_cu_keterangan' => '','p4b19_bkcu_penilaian' => '','p4b19_bkcu_keterangan' => '','p4b9_bkcu_rekomendasi' => '',
+            'p4b19_cu_penilaian' => '','p4b19_cu_keterangan' => '','p4b19_bkcu_penilaian' => '','p4b19_bkcu_keterangan' => '','p4b19_bkcu_rekomendasi' => '',
             'p4b20_cu_penilaian' => '','p4b20_cu_keterangan' => '','p4b20_bkcu_penilaian' => '','p4b20_bkcu_keterangan' => '','p4b20_bkcu_rekomendasi' => '',
         ];
     }
