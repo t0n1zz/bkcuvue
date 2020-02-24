@@ -355,6 +355,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/assesmentAccess/history', 'AssesmentAccessController@history');
     Route::group(['middleware' => ['permission:index_assesment_access']], function () {
         Route::get('/assesmentAccess', 'AssesmentAccessController@index');
+        Route::get('/assesmentAccess/indexCu/{id}', 'AssesmentAccessController@indexCu');
         Route::get('/assesmentAccess/count', 'AssesmentAccessController@count');
     });
     Route::group(['middleware' => ['permission:create_assesment_access']], function () {

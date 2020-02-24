@@ -30,7 +30,7 @@
 									<span v-else>MAAF SKOR ANDA BELUM CUKUP</span>
 								</td>
 								<td><check-value :value="nilaiTotalSkorCU" valueType="decimal"></check-value></td>
-								<td><check-value :value="nilaiBobotSkorCU" valueType="percentage"></check-value></td>
+								<td><check-value :value="nilaiTotalBobotCU" valueType="decimal"></check-value></td>
 							</tr>
 						</tbody>
 					</table>
@@ -61,7 +61,7 @@
 									<span v-else>MAAF SKOR ANDA BELUM CUKUP</span>
 								</td>
 								<td><check-value :value="nilaiTotalSkorBKCU" valueType="decimal"></check-value></td>
-								<td><check-value :value="nilaiBobotSkorBKCU" valueType="percentage"></check-value></td>
+								<td><check-value :value="nilaiTotalBobotBKCU" valueType="decimal"></check-value></td>
 							</tr>
 						</tbody>
 					</table>
@@ -83,22 +83,22 @@
 							<tr>
 								<td>PERUNGGU (BRONZE)</td>
 								<td>207 - 241</td>
-								<td>60 - 70%</td>
+								<td>60 - 70</td>
 							</tr>
 							<tr>
 								<td>PERAK (SILVER)</td>
 								<td>242 - 275</td>
-								<td>71 - 80%</td>
+								<td>71 - 80</td>
 							</tr>
 							<tr>
 								<td>EMAS (GOLD)</td>
 								<td>276 - 310</td>
-								<td>81 - 90%</td>
+								<td>81 - 90</td>
 							</tr>
 							<tr>
 								<td>PLATINA (PLATINUM)</td>
 								<td>Di atas 310</td>
-								<td>Di atas 90%</td>
+								<td>Di atas 90</td>
 							</tr>
 						</tbody>
 					</table>
@@ -117,7 +117,7 @@
 	import checkValue from "../../components/checkValue.vue";
 
 	export default {
-		props: ['form','mode','nilaiTotalSkorCU','nilaiBobotSkorCU','nilaiTotalSkorBKCU','nilaiBobotSkorBKCU'],
+		props: ['form','mode','nilaiTotalSkorCU','nilaiTotalBobotCU','nilaiTotalSkorBKCU','nilaiTotalBobotBKCU'],
 		components: {
 			checkValue
 		},

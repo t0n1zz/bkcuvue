@@ -61,8 +61,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUA() }} / Bobot Skor CU: {{ bobotCUA() }} </li>
-							<li>Skor BKCU: {{ skorCUA() }} / Bobot Skor BKCU: {{ bobotBKCUA() }} </li>
+							<li>Skor CU: {{ skorCUA() }} / Bobot Skor CU: {{ bobotCUA() }}%</li>
+							<li>Skor BKCU: {{ skorBKCUA() }} / Bobot Skor BKCU: {{ bobotBKCUA() }}%</li>
 						</ul>	
 					</div>
 				</div>
@@ -108,19 +108,19 @@
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1a1_bkcu_penilaian" 
 										@click1="form.p1.p1a1_bkcu_penilaian = 1"
 										@click2="form.p1.p1a1_bkcu_penilaian = 2" 
 										@click3="form.p1.p1a1_bkcu_penilaian = 3" 
 										@click4="form.p1.p1a1_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -189,19 +189,19 @@
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1a2_bkcu_penilaian" 
 										@click1="form.p1.p1a2_bkcu_penilaian = 1"
 										@click2="form.p1.p1a2_bkcu_penilaian = 2" 
 										@click3="form.p1.p1a2_bkcu_penilaian = 3" 
 										@click4="form.p1.p1a2_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -243,8 +243,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUB() }} / Bobot Skor CU: {{ bobotCUB() }} </li>
-							<li>Skor BKCU: {{ skorBKCUB() }} / Bobot Skor BKCU: {{ bobotBKCUB() }} </li>
+							<li>Skor CU: {{ skorCUB() }} / Bobot Skor CU: {{ bobotCUB() }}% </li>
+							<li>Skor BKCU: {{ skorBKCUB() }} / Bobot Skor BKCU: {{ bobotBKCUB() }}% </li>
 						</ul>	
 					</div>
 				</div>	
@@ -290,19 +290,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1b3_bkcu_penilaian" 
 										@click1="form.p1.p1b3_bkcu_penilaian = 1"
 										@click2="form.p1.p1b3_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b3_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b3_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -373,19 +373,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1b4_bkcu_penilaian" 
 										@click1="form.p1.p1b4_bkcu_penilaian = 1"
 										@click2="form.p1.p1b4_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b4_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b4_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -456,19 +456,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1b5_bkcu_penilaian" 
 										@click1="form.p1.p1b5_bkcu_penilaian = 1"
 										@click2="form.p1.p1b5_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b5_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b5_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -539,19 +539,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1b6_bkcu_penilaian" 
 										@click1="form.p1.p1b6_bkcu_penilaian = 1"
 										@click2="form.p1.p1b6_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b6_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b6_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -622,19 +622,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1b7_bkcu_penilaian" 
 										@click1="form.p1.p1b7_bkcu_penilaian = 1"
 										@click2="form.p1.p1b7_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b7_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b7_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -677,8 +677,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUC() }} / Bobot Skor CU: {{ bobotCUC() }} </li>
-							<li>Skor BKCU: {{ skorBKCUC() }} / Bobot Skor BKCU: {{ bobotBKCUC() }} </li>
+							<li>Skor CU: {{ skorCUC() }} / Bobot Skor CU: {{ bobotCUC() }}% </li>
+							<li>Skor BKCU: {{ skorBKCUC() }} / Bobot Skor BKCU: {{ bobotBKCUC() }}% </li>
 						</ul>	
 					</div>
 				</div>	
@@ -724,19 +724,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1c8_bkcu_penilaian" 
 										@click1="form.p1.p1c8_bkcu_penilaian = 1"
 										@click2="form.p1.p1c8_bkcu_penilaian = 2" 
 										@click3="form.p1.p1c8_bkcu_penilaian = 3" 
 										@click4="form.p1.p1c8_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -807,19 +807,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1c9_bkcu_penilaian" 
 										@click1="form.p1.p1c9_bkcu_penilaian = 1"
 										@click2="form.p1.p1c9_bkcu_penilaian = 2" 
 										@click3="form.p1.p1c9_bkcu_penilaian = 3" 
 										@click4="form.p1.p1c9_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -862,8 +862,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUD() }} / Bobot Skor CU: {{ bobotCUD() }} </li>
-							<li>Skor BKCU: {{ skorBKCUD() }} / Bobot Skor BKCU: {{ bobotBKCUD() }} </li>
+							<li>Skor CU: {{ skorCUD() }} / Bobot Skor CU: {{ bobotCUD() }}% </li>
+							<li>Skor BKCU: {{ skorBKCUD() }} / Bobot Skor BKCU: {{ bobotBKCUD() }}% </li>
 						</ul>	
 					</div>
 				</div>	
@@ -909,19 +909,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1d10_bkcu_penilaian" 
 										@click1="form.p1.p1d10_bkcu_penilaian = 1"
 										@click2="form.p1.p1d10_bkcu_penilaian = 2" 
 										@click3="form.p1.p1d10_bkcu_penilaian = 3" 
 										@click4="form.p1.p1d10_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -992,19 +992,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1d11_bkcu_penilaian" 
 										@click1="form.p1.p1d11_bkcu_penilaian = 1"
 										@click2="form.p1.p1d11_bkcu_penilaian = 2" 
 										@click3="form.p1.p1d11_bkcu_penilaian = 3" 
 										@click4="form.p1.p1d11_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1047,8 +1047,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUE() }} / Bobot Skor CU: {{ bobotCUE() }} </li>
-							<li>Skor BKCU: {{ skorBKCUE() }} / Bobot Skor BKCU: {{ bobotBKCUE() }} </li>
+							<li>Skor CU: {{ skorCUE() }} / Bobot Skor CU: {{ bobotCUE() }}% </li>
+							<li>Skor BKCU: {{ skorBKCUE() }} / Bobot Skor BKCU: {{ bobotBKCUE() }}% </li>
 						</ul>	
 					</div>
 				</div>	
@@ -1094,19 +1094,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1e12_bkcu_penilaian" 
 										@click1="form.p1.p1e12_bkcu_penilaian = 1"
 										@click2="form.p1.p1e12_bkcu_penilaian = 2" 
 										@click3="form.p1.p1e12_bkcu_penilaian = 3" 
 										@click4="form.p1.p1e12_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1149,8 +1149,8 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline mb-0 font-weight-bold">
-							<li>Skor CU: {{ skorCUF() }} / Bobot Skor CU: {{ bobotCUF() }} </li>
-							<li>Skor BKCU: {{ skorBKCUF() }} / Bobot Skor BKCU: {{ bobotBKCUF() }} </li>
+							<li>Skor CU: {{ skorCUF() }} / Bobot Skor CU: {{ bobotCUF() }}% </li>
+							<li>Skor BKCU: {{ skorBKCUF() }} / Bobot Skor BKCU: {{ bobotBKCUF() }}% </li>
 						</ul>	
 					</div>
 				</div>	
@@ -1196,19 +1196,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1f13_bkcu_penilaian" 
 										@click1="form.p1.p1f13_bkcu_penilaian = 1"
 										@click2="form.p1.p1f13_bkcu_penilaian = 2" 
 										@click3="form.p1.p1f13_bkcu_penilaian = 3" 
 										@click4="form.p1.p1f13_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1279,19 +1279,19 @@
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian' || mode == 'lihat' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian 
+									<penilaian_bkcu
 										:form="form.p1.p1f14_bkcu_penilaian" 
 										@click1="form.p1.p1f14_bkcu_penilaian = 1"
 										@click2="form.p1.p1f14_bkcu_penilaian = 2" 
 										@click3="form.p1.p1f14_bkcu_penilaian = 3" 
 										@click4="form.p1.p1f14_bkcu_penilaian = 4" 
-									></penilaian>
+									></penilaian_bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">

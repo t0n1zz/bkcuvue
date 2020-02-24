@@ -28,7 +28,7 @@
 										</h5>
 
 										<!-- select -->
-										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length == 0 || $route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'">
 											<option disabled value="0">Silahkan pilih CU</option>
 											<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 										</select>
@@ -60,7 +60,8 @@
 											:raw="false" 
 											:options="cleaveOption.date" 
 											placeholder="Silahkan masukkan periode laporan"
-											v-validate="'required'" data-vv-as="Periode"></cleave>
+											v-validate="'required'" data-vv-as="Periode"
+											:disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></cleave>
 
 										<!-- error message -->
 										<small class="text-muted text-danger" v-if="errors.has('form.periode')">
@@ -74,7 +75,7 @@
 						</div>
 						
 						<div class="nav-tabs-responsive mb-3" v-if="form.periode != ''">
-							<ul class="nav nav-tabs nav-tabs-solid  bg-light">
+							<ul class="nav nav-tabs nav-tabs-solid bg-light">
 								<li class="nav-item">
 									<div class="nav-link" :class="{'active' : tabName == 'p1'}" @click.prevent="changeTab('p1')" style = "cursor:pointer">
 										<a href="#" class="font-weight-bold" :class="{'text-white' : tabName == 'p1'}">1. PERSPEKTIF KEUANGAN</a>
@@ -83,12 +84,12 @@
 											<li>
 												Skor CU: {{ nilaiSkorCUP1A + nilaiSkorCUP1B + nilaiSkorCUP1C + nilaiSkorCUP1D + nilaiSkorCUP1E + nilaiSkorCUP1F }} 
 
-												/ Bobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F) | round(2)  }} 
+												/ Bobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F) | round(2)  }}%
 											</li>
 											<li>
 												Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F }} 
 
-												/ Bobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }} 
+												/ Bobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }}%
 											</li>
 										</ul>	
 									</div>
@@ -99,10 +100,10 @@
 										<hr class="mt-1 mb-1" />
 										<ul class="list-inline mb-0">
 											<li>
-												Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }} 
+												Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }}%
 											</li>
 											<li>
-												Skor BKCU: {{ nilaiBobotBKCUP2A + nilaiBobotBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }} 
+												Skor BKCU: {{ nilaiBobotBKCUP2A + nilaiBobotBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }}%
 											</li>
 										</ul>	
 									</div>
@@ -113,10 +114,10 @@
 										<hr class="mt-1 mb-1" />
 										<ul class="list-inline mb-0">
 											<li>
-												Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }} 
+												Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }}%
 											</li>
 											<li>
-												Skor BKCU: {{ nilaiBobotBKCUP3A + nilaiBobotBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }} 
+												Skor BKCU: {{ nilaiBobotBKCUP3A + nilaiBobotBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }}%
 											</li>
 										</ul>	
 									</div>
@@ -127,10 +128,10 @@
 										<hr class="mt-1 mb-1" />
 										<ul class="list-inline mb-0">
 											<li>
-												Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ nilaiBobotCUP4A + nilaiBobotCUP4B }} 
+												Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ (nilaiBobotCUP4A + nilaiBobotCUP4B) | round(2) }}%
 											</li>
 											<li>
-												Skor BKCU: {{ nilaiBobotBKCUP4A + nilaiBobotBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }} 
+												Skor BKCU: {{ nilaiBobotBKCUP4A + nilaiBobotBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }}%
 											</li>
 										</ul>	
 									</div>
@@ -143,12 +144,12 @@
 											<li>
 												Total Skor CU: {{ totalSkorCU() }} / 
 												
-												Total Bobot Skor CU: {{ totalBobotCU() }} 
+												Total Bobot Skor CU: {{ totalBobotCU() }}%
 											</li>
 											<li>
 												Total Skor BKCU: {{ totalSkorBKCU() }} / 
 												
-												Total Bobot Skor BKCU: {{ totalBobotBKCU() }} 
+												Total Bobot Skor BKCU: {{ totalBobotBKCU() }}%
 											</li>
 										</ul>	
 									</div>
@@ -358,12 +359,12 @@
 											<i class="icon-arrow-left13"></i> Kembali
 										</button>
 
-										<button type="submit" class="btn btn-primary" v-if="$route.meta.mode != 'penilaian_bkcu' && $route.meta.mode != 'lihat'">
+										<button type="submit" class="btn btn-primary" v-if="$route.meta.mode != 'lihat'">
 											<i class="icon-floppy-disk"></i> Simpan
 										</button>
 									</div>
 									<div class="d-block d-md-none">
-										<button type="submit" class="btn btn-primary btn-block" v-if="$route.meta.mode != 'penilaian_bkcu' && $route.meta.mode != 'lihat'">
+										<button type="submit" class="btn btn-primary btn-block" v-if="$route.meta.mode != 'lihat'">
 											<i class="icon-floppy-disk"></i> Simpan
 										</button>
 
@@ -539,12 +540,12 @@
 			},
 			formStat(value){
 				if (value === "success") {
-					if (this.$route.meta.mode !== 'edit') {
+					if (this.$route.meta.mode == 'create') {
 						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 			},
-			updateStat(value){
+		updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
 				this.modalColor = '';
@@ -559,11 +560,21 @@
     },
 		methods: {
 			fetch() {
-				if (this.$route.meta.mode === 'edit') {
+				if (this.$route.meta.mode == 'edit') {
 					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 					this.title = 'Ubah self assesment Access branding';
 					this.titleDesc = 'Mengubah self assesment Access branding';
 					this.titleIcon = 'icon-pencil5';
+				} else if (this.$route.meta.mode == 'penilaian_bkcu') {
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+					this.title = 'Penilaian self assesment Access branding';
+					this.titleDesc = 'Penilaian self assesment Access branding';
+					this.titleIcon = 'icon-law';
+				} else if (this.$route.meta.mode == 'lihat') {
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+					this.title = 'Melihat self assesment Access branding';
+					this.titleDesc = 'Melihat data self assesment Access branding';
+					this.titleIcon = 'icon-file-eye';
 				} else {
 					this.title = 'Tambah self assesment Access branding';
 					this.titleDesc = 'Menambah self assesment Access branding';
@@ -575,6 +586,9 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
+						}else if(this.$route.meta.mode === 'penilaian_bkcu'){
+							this.form.status == 'SUDAH DINILAI';
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else{
 							this.$store.dispatch(this.kelas + '/store', this.form);
@@ -616,7 +630,7 @@
 				return jumlah;
 			},
 			totalBobotCU(){
-				var jumlah = this.$options.filters.round(this.nilaiBobotCUP1A + this.nilaiBobotCUP1B + this.nilaiBobotCUP1C + this.nilaiBobotCUP1D + this.nilaiBobotCUP1E + this.nilaiBobotCUP1F + this.nilaiBobotCUP2A + this.nilaiBobotCUP2B + this.nilaiBobotCUP3A + this.nilaiBobotCUP3B + this.nilaiBobotCUP4A + this.nilaiBobotCUP4B);
+				var jumlah = this.$options.filters.round(this.nilaiBobotCUP1A + this.nilaiBobotCUP1B + this.nilaiBobotCUP1C + this.nilaiBobotCUP1D + this.nilaiBobotCUP1E + this.nilaiBobotCUP1F + this.nilaiBobotCUP2A + this.nilaiBobotCUP2B + this.nilaiBobotCUP3A + this.nilaiBobotCUP3B + this.nilaiBobotCUP4A + this.nilaiBobotCUP4B, 2);
 
 				this.nilaiTotalBobotCU = jumlah;
 				return jumlah;
@@ -628,7 +642,7 @@
 				return jumlah;
 			},
 			totalBobotBKCU(){
-				var jumlah = this.$options.filters.round(this.nilaiBobotBKCUP1A + this.nilaiBobotBKCUP1B + this.nilaiBobotBKCUP1C + this.nilaiBobotBKCUP1D + this.nilaiBobotBKCUP1E + this.nilaiBobotBKCUP1F + this.nilaiBobotBKCUP2A + this.nilaiBobotBKCUP2B + this.nilaiBobotBKCUP3A + this.nilaiBobotBKCUP3B + this.nilaiBobotBKCUP4A + this.nilaiBobotBKCUP4B);
+				var jumlah = this.$options.filters.round(this.nilaiBobotBKCUP1A + this.nilaiBobotBKCUP1B + this.nilaiBobotBKCUP1C + this.nilaiBobotBKCUP1D + this.nilaiBobotBKCUP1E + this.nilaiBobotBKCUP1F + this.nilaiBobotBKCUP2A + this.nilaiBobotBKCUP2B + this.nilaiBobotBKCUP3A + this.nilaiBobotBKCUP3B + this.nilaiBobotBKCUP4A + this.nilaiBobotBKCUP4B, 2);
 
 				this.nilaiTotalBobotBKCU = jumlah;
 				return jumlah;

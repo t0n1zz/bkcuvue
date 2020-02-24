@@ -55,6 +55,21 @@ export const assesmentAccess = {
         });
     },
 
+    // load by cu
+    indexCu( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      AssesmentAccessAPI.indexCu( p, id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // create page
     create( {commit} ){
       commit('setDataStat', 'loading');

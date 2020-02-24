@@ -14,19 +14,22 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#323">Version 3.2.3 <small class="text-muted"> / 8 Februari 2020</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#323">Version 3.2.3 <small class="text-muted"> / 24 Februari 2020</small></a>
                   </h5>
                 </div>
 
                 <div id="323" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini menambahkan assestment ACCESS Branding, monitoring CU, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN
+                    <p class="mb-3">Update versi ini menambahkan self assesment ACCESS Branding, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
+                      <li>Penambahan form pengisian self assesment ACCESS Branding untuk CU dan penilaian dari Puskopdit BKCU Kalimantan</li>
+                      <li>Penambahan fitur koreksi untuk Klaim JALINAN</li>
                       <li>Penambahan catalog diklat di website publik BKCU Kalimantan</li>
                       <li>Penambahan fitur untuk memasukkan foto utama pada masing-masing diklat</li>
+                      <li>Merubah menu Keuangan menjadi Tata Kelola</li>
                       <li>Perbaikan bug masih bisa menghapus data anggota yang sudah klaim JALINAN</li>
                       <li>Perbaikan bug pada riwayat profil user yang tidak bisa diubah</li>
                       <li>Perbaikan bug peserta yang sama bisa mendaftar 2 kali pada diklat BKCU</li>

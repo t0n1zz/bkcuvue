@@ -801,7 +801,7 @@
 					},
 					{
 						name: 'Assesment Access',
-						icon: 'icon-briefcase',
+						icon: 'icon-reading',
 						secondRow: true,
 						tipe: 'all',
 						permission: [{

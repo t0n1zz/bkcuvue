@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/assesmentAccess' , {params: p});
   },
 
+  indexCu: function( p, id ){
+    return axios.get('/api/assesmentAccess/indexCu/' + id, {params: p});
+  },
+
   create: function(){
     return axios.get('/api/assesmentAccess/create');
   },
