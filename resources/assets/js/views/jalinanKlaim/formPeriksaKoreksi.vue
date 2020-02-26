@@ -430,8 +430,8 @@
       },
       save(){
         this.formKoreksi.status = 1;
-        this.formKoreksi.tunas_diajukan = this.itemDataJalinan.tunas_diajukan - this.selectedData.tunas_diajukan;
-        this.formKoreksi.lintang_diajukan = this.itemDataJalinan.lintang_diajukan - this.selectedData.lintang_diajukan;
+        this.formKoreksi.tunas_diajukan = this.selectedData.tunas_diajukan - this.itemDataJalinan.tunas_diajukan;
+        this.formKoreksi.lintang_diajukan = this.selectedData.lintang_diajukan - this.itemDataJalinan.lintang_diajukan;
 
         this.$validator.validateAll('formKoreksi').then((result) => {
           if (result) {

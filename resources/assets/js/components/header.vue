@@ -871,7 +871,7 @@
 							</div>
 
 							<!-- divider -->
-							<div class="dropdown-divider"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_assesment_access']"></div> 
 
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_assesment_access'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'assesmentAccess'}">

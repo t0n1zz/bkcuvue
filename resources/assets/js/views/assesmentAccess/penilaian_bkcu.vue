@@ -45,22 +45,22 @@
     },
 		methods: {
 			click1(){
-				if(this.$route.meta.mode == 'penilaian_bkcu'){
+				if(this.$route.meta.mode == 'penilaianBkcu'){
 					this.$emit('click1');
 				}
 			},
 			click2(){
-				if(this.$route.meta.mode == 'penilaian_bkcu'){
+				if(this.$route.meta.mode == 'penilaianBkcu'){
 					this.$emit('click2');
 				}	
 			},
 			click3(){
-				if(this.$route.meta.mode == 'penilaian_bkcu'){
+				if(this.$route.meta.mode == 'penilaianBkcu'){
 					this.$emit('click3');
 				}
 			},
 			click4(){
-				if(this.$route.meta.mode == 'penilaian_bkcu'){
+				if(this.$route.meta.mode == 'penilaianBkcu'){
 					this.$emit('click4');
 				}
 			}

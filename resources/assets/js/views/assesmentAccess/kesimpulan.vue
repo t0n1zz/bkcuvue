@@ -19,7 +19,7 @@
 						<tbody>
 							<tr>
 								<td>
-									<span v-if="(nilaiTotalSkorCU > 207 && nilaiTotalSkorCU < 242) && (nilaiTotalBobotCU > 59 && nilaiTotalBobotCU < 71)"
+									<span v-if="(nilaiTotalSkorCU > 206 && nilaiTotalSkorCU < 242) && (nilaiTotalBobotCU > 59 && nilaiTotalBobotCU < 71)"
 									>PERUNGGU (BRONZE)</span>
 									<span v-else-if="(nilaiTotalSkorCU > 241 && nilaiTotalSkorCU < 274) && (nilaiTotalBobotCU > 70 && nilaiTotalBobotCU < 81)"
 									>PERAK (SILVER)</span>
@@ -50,7 +50,7 @@
 						<tbody>
 							<tr>
 								<td>
-									<span v-if="(nilaiTotalSkorBKCU > 207 && nilaiTotalSkorBKCU < 242) && (nilaiTotalBobotBKCU > 59 && nilaiTotalBobotBKCU < 71)"
+									<span v-if="(nilaiTotalSkorBKCU > 206 && nilaiTotalSkorBKCU < 242) && (nilaiTotalBobotBKCU > 59 && nilaiTotalBobotBKCU < 71)"
 									>PERUNGGU (BRONZE)</span>
 									<span v-else-if="(nilaiTotalSkorBKCU > 241 && nilaiTotalSkorBKCU < 274) && (nilaiTotalBobotBKCU > 70 && nilaiTotalBobotBKCU < 81)"
 									>PERAK (SILVER)</span>
@@ -74,7 +74,7 @@
 					<table class="table table-bordered">
 						<thead class="bg-danger">
 							<tr class="text-nowarp">
-								<th>BRANDING BKCU</th>
+								<th>BRANDING</th>
 								<th>NILAI</th>
 								<th>KESEPADANAN (%)</th>
 							</tr>

@@ -1,59 +1,17 @@
 <template>
 	<div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="card card-body has-bg-image" :class="{'bg-danger' : tabName == 'semua' || tabName == '1', 'bg-slate-300' : tabName != 'semua' && tabName != '1'}" @click="changeTab(1)" style = "cursor:pointer">
-					<div class="media">
-						<div class="media-body">
-							<h3 class="mb-0">CU: {{ jumlahPenilaianCU(1) }} / BKCU: {{ jumlahPenilaianBKCU(1) }}</h3>
-							<span class="text-uppercase font-size-xs">Jumlah penilaian Poor(1)</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card card-body has-bg-image" :class="{'bg-warning' : tabName == 'semua' || tabName == '2', 'bg-slate-300' : tabName != 'semua' && tabName != '2'}" @click="changeTab(2)" style = "cursor:pointer">
-					<div class="media">
-						<div class="media-body">
-							<h3 class="mb-0">CU: {{ jumlahPenilaianCU(2) }} / BKCU: {{ jumlahPenilaianBKCU(2) }}</h3>
-							<span class="text-uppercase font-size-xs">Jumlah penilaian Fair(2)</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card card-body has-bg-image" :class="{'bg-success' : tabName == 'semua' || tabName == '3', 'bg-slate-300' : tabName != 'semua' && tabName != '3'}" @click="changeTab(3)" style = "cursor:pointer">
-					<div class="media">
-						<div class="media-body">
-							<h3 class="mb-0">CU: {{ jumlahPenilaianCU(3) }} / BKCU: {{ jumlahPenilaianBKCU(3) }}</h3>
-							<span class="text-uppercase font-size-xs">Jumlah penilaian Good(3)</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card card-body has-bg-image" :class="{'bg-primary' : tabName == 'semua' || tabName == '4', 'bg-slate-300' : tabName != 'semua' && tabName != '4'}" @click="changeTab(4)" style = "cursor:pointer">
-					<div class="media">
-						<div class="media-body">
-							<h3 class="mb-0">CU: {{ jumlahPenilaianCU(4) }} / BKCU: {{ jumlahPenilaianBKCU(4) }}</h3>
-							<span class="text-uppercase font-size-xs">Jumlah penilaian Excellent(4)</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<transition enter-active-class="animated fadeIn" mode="out-in">
-				<div class="col-md-12" v-if="tabName != 'semua'">
-					<button type="button" class="btn btn-warning btn-block" @click.prevent="changeTab('semua')">
-						<i class="icon-reset"></i> Reset pencarian
-					</button>
-					<hr/>
-				</div>
-			</transition>
-		</div>
+		<form-filter 
+			:cuTabName="cuTabName" 
+			:bkcuTabName="bkcuTabName"
+			:jumlahPenilaianCU="jumlahPenilaianCU"
+			:jumlahPenilaianBKCU="jumlahPenilaianBKCU" 
+			@changeTabCU="changeTabCU" 
+			@changeTabBKCU="changeTabBKCU"
+		></form-filter>
 		
 		<!-- A section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
 			<div class="card card-body bg-info text-white"> 
 				<div class="row justify-content-between">
 					<div class="col-md-6">
@@ -72,7 +30,7 @@
 
 		<!-- a1 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1a1_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1a1_cu_penilaian == cuTabName || form.p1.p1a1_bkcu_penilaian == bkcuTabName">
 			<div class="card border-info">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
@@ -84,7 +42,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1a1_cu_penilaian" 
 								@click1="form.p1.p1a1_cu_penilaian = 1"
 								:subtitle1="'Kurang dari 50% persediaan DCR untuk kredit lalai di atas 12 bulan dan tidak dilakukan pemutihan tunggakan (charge-off)'"
@@ -94,7 +52,7 @@
 								:subtitle3="'100% persediaan DCR untuk kredit lalai di atas 12 bulan dan pemutihan tunggakan (charge-off)setiap triwulan dalam setahun atau hanya kadang - kadang saja dilakukan'"
 								@click4="form.p1.p1a1_cu_penilaian = 4" 
 								:subtitle4="'100% persediaan DCR untuk kredit lalai di atas 12 bulan dan dilakukan pemutihan tunggakan (charge-off) setiap triwulan atau secara berkala dan konsisten'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -104,23 +62,23 @@
 								name="p1a1_cu_keterangan" 
 								class="form-control"
 								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1a1_cu_keterangan"
-								:disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								:disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1a1_bkcu_penilaian" 
 										@click1="form.p1.p1a1_bkcu_penilaian = 1"
 										@click2="form.p1.p1a1_bkcu_penilaian = 2" 
 										@click3="form.p1.p1a1_bkcu_penilaian = 3" 
 										@click4="form.p1.p1a1_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -154,7 +112,7 @@
 
 		<!-- a2 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1a2_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1a2_cu_penilaian == cuTabName || form.p1.p1a2_bkcu_penilaian == bkcuTabName">
 			<div class="card border-info" v-if="form.p1.p1a1_cu_penilaian != '' && form.p1.p1a1_cu_keterangan != ''">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
@@ -166,7 +124,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1a2_cu_penilaian" 
 								@click1="form.p1.p1a2_cu_penilaian = 1"
 								:subtitle1="'Tidak ada persediaan DCR untuk kredit lalai 1-12 bulan dan tidak dilakukan pemutihan tunggakan (charge-off)'"
@@ -176,7 +134,7 @@
 								:subtitle3="'Tersedia 35% DCR untuk kredit lalai 1-12 bulan dan pemutihan tunggakan (charge-off)setiap triwulan dalam setahun atau hanya kadang - kadang saja dilakukan'"
 								@click4="form.p1.p1a2_cu_penilaian = 4" 
 								:subtitle4="'Tersedia 35% DCR untuk kredit lalai 1-12 bulan dan dilakukan pemutihan tunggakan (charge-off) setiap bulan secara berkala dan konsisten'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -185,23 +143,23 @@
 								type="text" 
 								name="p1a2_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1a2_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1a2_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1a2_bkcu_penilaian" 
 										@click1="form.p1.p1a2_bkcu_penilaian = 1"
 										@click2="form.p1.p1a2_bkcu_penilaian = 2" 
 										@click3="form.p1.p1a2_bkcu_penilaian = 3" 
 										@click4="form.p1.p1a2_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -235,7 +193,7 @@
 
 		<!-- B section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
 			<div class="card card-body bg-warning text-white" v-if="form.p1.p1a2_cu_penilaian != '' && form.p1.p1a2_cu_keterangan != ''">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
@@ -254,7 +212,7 @@
 
 		<!-- b3 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1b3_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b3_cu_penilaian == cuTabName || form.p1.p1b3_bkcu_penilaian == bkcuTabName">
 			<div class="card border-warning" v-if="form.p1.p1a2_cu_penilaian != '' && form.p1.p1a2_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
@@ -266,7 +224,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1b3_cu_penilaian" 
 								@click1="form.p1.p1b3_cu_penilaian = 1"
 								:subtitle1="'Kurang dari 50% total aset ; dan lebih dari 80% total aset'"
@@ -276,7 +234,7 @@
 								:subtitle3="'70-80% dari total aset'"
 								@click4="form.p1.p1b3_cu_penilaian = 4" 
 								:subtitle4="'70-80% dari total aset dan portofolio pinjaman beragam minimal 5 produk pinjaman'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -285,24 +243,24 @@
 								type="text" 
 								name="p1b3_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b3_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b3_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1b3_bkcu_penilaian" 
 										@click1="form.p1.p1b3_bkcu_penilaian = 1"
 										@click2="form.p1.p1b3_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b3_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b3_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -337,7 +295,7 @@
 
 		<!-- b4 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1b4_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b4_cu_penilaian == cuTabName || form.p1.p1b4_bkcu_penilaian == bkcuTabName">
 			<div class="card border-warning" v-if="form.p1.p1b3_cu_penilaian != '' && form.p1.p1b3_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
@@ -349,7 +307,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1b4_cu_penilaian" 
 								@click1="form.p1.p1b4_cu_penilaian = 1"
 								:subtitle1="'Kurang dari 50% total aset ; dan lebih dari 80% total aset'"
@@ -359,7 +317,7 @@
 								:subtitle3="'70-80% dari total aset'"
 								@click4="form.p1.p1b4_cu_penilaian = 4" 
 								:subtitle4="'70-80% dari total aset dan portofolio pinjaman beragam minimal 5 jenis simpanan'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -368,24 +326,24 @@
 								type="text" 
 								name="p1b4_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b4_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b4_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1b4_bkcu_penilaian" 
 										@click1="form.p1.p1b4_bkcu_penilaian = 1"
 										@click2="form.p1.p1b4_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b4_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b4_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -420,7 +378,7 @@
 
 		<!-- b5 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1b5_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b5_cu_penilaian == cuTabName || form.p1.p1b5_bkcu_penilaian == bkcuTabName">
 			<div class="card border-warning" v-if="form.p1.p1b4_cu_penilaian != '' && form.p1.p1b4_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
@@ -432,7 +390,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1b5_cu_penilaian" 
 								@click1="form.p1.p1b5_cu_penilaian = 1"
 								:subtitle1="'Di atas 30% dari total aset'"
@@ -442,7 +400,7 @@
 								:subtitle3="'1-19 % dari total aset'"
 								@click4="form.p1.p1b5_cu_penilaian = 4" 
 								:subtitle4="'0%'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -451,24 +409,24 @@
 								type="text" 
 								name="p1b5_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b5_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b5_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1b5_bkcu_penilaian" 
 										@click1="form.p1.p1b5_bkcu_penilaian = 1"
 										@click2="form.p1.p1b5_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b5_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b5_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -503,7 +461,7 @@
 
 		<!-- b6 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1b6_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b6_cu_penilaian == cuTabName || form.p1.p1b6_bkcu_penilaian == bkcuTabName">
 			<div class="card border-warning" v-if="form.p1.p1b5_cu_penilaian != '' && form.p1.p1b5_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
@@ -515,7 +473,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1b6_cu_penilaian" 
 								@click1="form.p1.p1b6_cu_penilaian = 1"
 								:subtitle1="'Di bawah 5% dari total aset'"
@@ -525,7 +483,7 @@
 								:subtitle3="'10% dari total aset '"
 								@click4="form.p1.p1b6_cu_penilaian = 4" 
 								:subtitle4="'Di atas 10% dari total aset tetapi tidak melampaui 20% dari total aset'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -534,24 +492,24 @@
 								type="text" 
 								name="p1b6_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b6_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b6_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1b6_bkcu_penilaian" 
 										@click1="form.p1.p1b6_bkcu_penilaian = 1"
 										@click2="form.p1.p1b6_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b6_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b6_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -586,7 +544,7 @@
 
 		<!-- b7 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1b7_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b7_cu_penilaian == cuTabName || form.p1.p1b7_bkcu_penilaian == bkcuTabName">
 			<div class="card border-warning" v-if="form.p1.p1b6_cu_penilaian != '' && form.p1.p1b6_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
@@ -598,7 +556,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1b7_cu_penilaian" 
 								@click1="form.p1.p1b7_cu_penilaian = 1"
 								:subtitle1="'Di bawah 4% dari total aset'"
@@ -608,7 +566,7 @@
 								:subtitle3="'10% dari total aset '"
 								@click4="form.p1.p1b7_cu_penilaian = 4" 
 								:subtitle4="'Di atas 10% dari total aset'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -617,24 +575,24 @@
 								type="text" 
 								name="p1b7_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b7_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b7_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1b7_bkcu_penilaian" 
 										@click1="form.p1.p1b7_bkcu_penilaian = 1"
 										@click2="form.p1.p1b7_bkcu_penilaian = 2" 
 										@click3="form.p1.p1b7_bkcu_penilaian = 3" 
 										@click4="form.p1.p1b7_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -669,7 +627,7 @@
 
 		<!-- C section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua')">
 			<div class="card card-body bg-success text-white" v-if="form.p1.p1b7_cu_penilaian != '' && form.p1.p1b7_cu_keterangan != ''">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
@@ -688,7 +646,7 @@
 
 		<!-- c8 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1c8_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1c8_cu_penilaian == cuTabName || form.p1.p1c8_bkcu_penilaian == bkcuTabName">
 			<div class="card border-success" v-if="form.p1.p1b7_cu_penilaian != '' && form.p1.p1b7_cu_keterangan != ''">
 				<div class="card-header bg-success text-white">
 					<h5 class="card-title">
@@ -700,7 +658,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1c8_cu_penilaian" 
 								@click1="form.p1.p1c8_cu_penilaian = 1"
 								:subtitle1="'Di atas 10% dari pinjaman beredar'"
@@ -710,7 +668,7 @@
 								:subtitle3="'≤  5% dari pinjaman beredar'"
 								@click4="form.p1.p1c8_cu_penilaian = 4" 
 								:subtitle4="'0%'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -719,24 +677,24 @@
 								type="text" 
 								name="p1c8_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1c8_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1c8_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1c8_bkcu_penilaian" 
 										@click1="form.p1.p1c8_bkcu_penilaian = 1"
 										@click2="form.p1.p1c8_bkcu_penilaian = 2" 
 										@click3="form.p1.p1c8_bkcu_penilaian = 3" 
 										@click4="form.p1.p1c8_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -771,7 +729,7 @@
 
 		<!-- c9 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1c9_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1c9_cu_penilaian == cuTabName || form.p1.p1c9_bkcu_penilaian == bkcuTabName">
 			<div class="card border-success" v-if="form.p1.p1c8_cu_penilaian != '' && form.p1.p1c8_cu_keterangan != ''">
 				<div class="card-header bg-success text-white">
 					<h5 class="card-title">
@@ -783,7 +741,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1c9_cu_penilaian" 
 								@click1="form.p1.p1c9_cu_penilaian = 1"
 								:subtitle1="'Di atas 10% dari total aset'"
@@ -793,7 +751,7 @@
 								:subtitle3="'5% dari total aset'"
 								@click4="form.p1.p1c9_cu_penilaian = 4" 
 								:subtitle4="'Di bawah 5% dari total aset'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -802,24 +760,24 @@
 								type="text" 
 								name="p1c9_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1c9_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1c9_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1c9_bkcu_penilaian" 
 										@click1="form.p1.p1c9_bkcu_penilaian = 1"
 										@click2="form.p1.p1c9_bkcu_penilaian = 2" 
 										@click3="form.p1.p1c9_bkcu_penilaian = 3" 
 										@click4="form.p1.p1c9_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -854,7 +812,7 @@
 
 		<!-- D section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua')">
 			<div class="card card-body bg-brown text-white" v-if="form.p1.p1c9_cu_penilaian != '' && form.p1.p1c9_cu_keterangan != ''">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
@@ -873,7 +831,7 @@
 
 		<!-- d10 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1d10_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1d10_cu_penilaian == cuTabName || form.p1.p1d10_bkcu_penilaian == bkcuTabName">
 			<div class="card border-brown" v-if="form.p1.p1c9_cu_penilaian != '' && form.p1.p1c9_cu_keterangan != ''">
 				<div class="card-header bg-brown text-white">
 					<h5 class="card-title">
@@ -885,7 +843,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1d10_cu_penilaian" 
 								@click1="form.p1.p1d10_cu_penilaian = 1"
 								:subtitle1="'Deviden anggota dibawah harga pasar'"
@@ -895,7 +853,7 @@
 								:subtitle3="'Deviden dibayar 1% lebih tinggi dari pasar'"
 								@click4="form.p1.p1d10_cu_penilaian = 4" 
 								:subtitle4="'Deviden dibayar setara bunga pasar'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -904,24 +862,24 @@
 								type="text" 
 								name="p1d10_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1d10_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1d10_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1d10_bkcu_penilaian" 
 										@click1="form.p1.p1d10_bkcu_penilaian = 1"
 										@click2="form.p1.p1d10_bkcu_penilaian = 2" 
 										@click3="form.p1.p1d10_bkcu_penilaian = 3" 
 										@click4="form.p1.p1d10_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -956,7 +914,7 @@
 
 		<!-- d11 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1d11_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1d11_cu_penilaian == cuTabName || form.p1.p1d11_bkcu_penilaian == bkcuTabName">
 			<div class="card border-brown" v-if="form.p1.p1d10_cu_penilaian != '' && form.p1.p1d10_cu_keterangan != ''">
 				<div class="card-header bg-brown text-white">
 					<h5 class="card-title">
@@ -968,7 +926,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1d11_cu_penilaian" 
 								@click1="form.p1.p1d11_cu_penilaian = 1"
 								:subtitle1="'Biaya Operasional dibawah 5% dari rata-rata aset dan staf tidak mampu melaksanakan kegiatan operasional'"
@@ -978,7 +936,7 @@
 								:subtitle3="'Biaya Operasional sebesar 5% dari rata-rata aset'"
 								@click4="form.p1.p1d11_cu_penilaian = 4" 
 								:subtitle4="'Biaya Operasional sebesar 5% dari rata-rata aset dengan jumlah staf yang memadai dan gaji kompetitif'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -987,24 +945,24 @@
 								type="text" 
 								name="p1d11_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1d11_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1d11_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1d11_bkcu_penilaian" 
 										@click1="form.p1.p1d11_bkcu_penilaian = 1"
 										@click2="form.p1.p1d11_bkcu_penilaian = 2" 
 										@click3="form.p1.p1d11_bkcu_penilaian = 3" 
 										@click4="form.p1.p1d11_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1039,7 +997,7 @@
 
 		<!-- E section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
 			<div class="card card-body bg-danger text-white" v-if="form.p1.p1d11_cu_penilaian != '' && form.p1.p1d11_cu_keterangan != ''">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
@@ -1058,7 +1016,7 @@
 
 		<!-- e12 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1e12_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1e12_cu_penilaian == cuTabName || form.p1.p1e12_bkcu_penilaian == bkcuTabName">
 			<div class="card border-danger" v-if="form.p1.p1d11_cu_penilaian != '' && form.p1.p1d11_cu_keterangan != ''">
 				<div class="card-header bg-danger text-white">
 					<h5 class="card-title">
@@ -1070,7 +1028,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1e12_cu_penilaian" 
 								@click1="form.p1.p1e12_cu_penilaian = 1"
 								:subtitle1="'Dibawah 10% dari simpanan non saham atau lebih dari 15%  simpanan non saham, dan jumlah tersebut melampaui 20% total aset'"
@@ -1080,7 +1038,7 @@
 								:subtitle3="'15% dari simpanan non saham tetapi tidak melampaui 20% dari total aset'"
 								@click4="form.p1.p1e12_cu_penilaian = 4" 
 								:subtitle4="'Diatas 15% dari simpanan non saham tetapi tidak melampaui 20% dari total aset'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -1089,24 +1047,24 @@
 								type="text" 
 								name="p1e12_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1e12_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1e12_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1e12_bkcu_penilaian" 
 										@click1="form.p1.p1e12_bkcu_penilaian = 1"
 										@click2="form.p1.p1e12_bkcu_penilaian = 2" 
 										@click3="form.p1.p1e12_bkcu_penilaian = 3" 
 										@click4="form.p1.p1e12_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1141,7 +1099,7 @@
 
 		<!-- F section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
 			<div class="card card-body bg-teal text-white" v-if="form.p1.p1e12_cu_penilaian != '' && form.p1.p1e12_cu_keterangan != ''">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
@@ -1160,7 +1118,7 @@
 
 		<!-- f13 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1f13_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1ff13_cu_penilaian == cuTabName || form.p1.p1ff13_bkcu_penilaian == bkcuTabName">
 			<div class="card border-teal" v-if="form.p1.p1e12_cu_penilaian != '' && form.p1.p1e12_cu_keterangan != ''">
 				<div class="card-header bg-teal text-white">
 					<h5 class="card-title">
@@ -1172,7 +1130,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1f13_cu_penilaian" 
 								@click1="form.p1.p1f13_cu_penilaian = 1"
 								:subtitle1="'Kurang dari 5%'"
@@ -1182,7 +1140,7 @@
 								:subtitle3="'12%'"
 								@click4="form.p1.p1f13_cu_penilaian = 4" 
 								:subtitle4="'Lebih dari 12%'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -1191,24 +1149,24 @@
 								type="text" 
 								name="p1f13_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1f13_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1f13_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1f13_bkcu_penilaian" 
 										@click1="form.p1.p1f13_bkcu_penilaian = 1"
 										@click2="form.p1.p1f13_bkcu_penilaian = 2" 
 										@click3="form.p1.p1f13_bkcu_penilaian = 3" 
 										@click4="form.p1.p1f13_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1243,7 +1201,7 @@
 
 		<!-- f14 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua' || form.p1.p1f14_cu_penilaian == tabName">
+		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1f14_cu_penilaian == cuTabName || form.p1.p1f14_bkcu_penilaian == bkcuTabName">
 			<div class="card border-teal" v-if="form.p1.p1f13_cu_penilaian != '' && form.p1.p1f13_cu_keterangan != ''">
 				<div class="card-header bg-teal text-white">
 					<h5 class="card-title">
@@ -1255,7 +1213,7 @@
 						<div class="col-md-12">
 							<h5>Penilaian CU:</h5>
 							<!-- penilaian -->
-							<penilaian_cu 
+							<penilaian-cu 
 								:form="form.p1.p1f14_cu_penilaian" 
 								@click1="form.p1.p1f14_cu_penilaian = 1"
 								:subtitle1="'Kurang dari tingkat inflasi'"
@@ -1265,7 +1223,7 @@
 								:subtitle3="'5-9% lebih tinggi dari tingkat inflasi'"
 								@click4="form.p1.p1f14_cu_penilaian = 4" 
 								:subtitle4="'Lebih dari 10% dibanding tingkat inflasi'"
-							></penilaian_cu>
+							></penilaian-cu>
 							<!-- keterangan -->
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
@@ -1274,24 +1232,24 @@
 								type="text" 
 								name="p1f14_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1f14_cu_keterangan" :disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1f14_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
 						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaian_bkcu' || mode == 'lihat' || mode == 'lihat'">
+						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat' || mode == 'lihat'">
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
 									<h5>Penilaian BKCU Kalimantan:</h5>
 									<!-- penilaian -->
-									<penilaian_bkcu
+									<penilaian-bkcu
 										:form="form.p1.p1f14_bkcu_penilaian" 
 										@click1="form.p1.p1f14_bkcu_penilaian = 1"
 										@click2="form.p1.p1f14_bkcu_penilaian = 2" 
 										@click3="form.p1.p1f14_bkcu_penilaian = 3" 
 										@click4="form.p1.p1f14_bkcu_penilaian = 4" 
-									></penilaian_bkcu>
+									></penilaian-bkcu>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -1330,7 +1288,7 @@
 		
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="tabName == 'semua'">
+		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
 			<div class="card card-body" v-if="form.p1.p1f14_cu_penilaian != '' && form.p1.p1f14_cu_keterangan != ''">
 				<div class="text-center d-none d-md-block">
 					<button type="button" class="btn btn-light" @click.prevent="prev">
@@ -1358,20 +1316,23 @@
 </template>
 
 <script>
-	import penilaian_cu from "./penilaian_cu.vue";
-	import penilaian_bkcu from "./penilaian_bkcu.vue";
+	import penilaianCu from "./penilaian_cu.vue";
+	import penilaianBkcu from "./penilaian_bkcu.vue";
+	import formFilter from "./form_filter.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		props: ['form','mode','jumlahIndikator','bobotSkor'],
 		components: {
-			penilaian_cu,
-			penilaian_bkcu,
+			penilaianCu,
+			penilaianBkcu,
+			formFilter,
 			wajibBadge
 		},
 		data() {
 			return {
-				tabName: 'semua',
+				cuTabName: 'semua',
+				bkcuTabName: 'semua',
 			}
 		},
 		created(){
@@ -1379,9 +1340,16 @@
 		watch: {
     },
 		methods: {
-			changeTab(value){
+			changeTabCU(value){
 				if(this.$route.meta.mode == 'lihat'){
-					this.tabName = value;
+					this.bkcuTabName = 'semua';
+					this.cuTabName = value;
+				}
+			},
+			changeTabBKCU(value){
+				if(this.$route.meta.mode == 'lihat'){
+					this.cuTabName = 'semua';
+					this.bkcuTabName = value;
 				}
 			},
 			next(){

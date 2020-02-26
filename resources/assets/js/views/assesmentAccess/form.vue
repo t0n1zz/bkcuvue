@@ -103,7 +103,7 @@
 												Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }}%
 											</li>
 											<li>
-												Skor BKCU: {{ nilaiBobotBKCUP2A + nilaiBobotBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }}%
+												Skor BKCU: {{ nilaiSkorBKCUP2A + nilaiSkorBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }}%
 											</li>
 										</ul>	
 									</div>
@@ -117,7 +117,7 @@
 												Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }}%
 											</li>
 											<li>
-												Skor BKCU: {{ nilaiBobotBKCUP3A + nilaiBobotBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }}%
+												Skor BKCU: {{ nilaiSkorBKCUP3A + nilaiSkorBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }}%
 											</li>
 										</ul>	
 									</div>
@@ -565,7 +565,7 @@
 					this.title = 'Ubah self assesment Access branding';
 					this.titleDesc = 'Mengubah self assesment Access branding';
 					this.titleIcon = 'icon-pencil5';
-				} else if (this.$route.meta.mode == 'penilaian_bkcu') {
+				} else if (this.$route.meta.mode == 'penilaianBkcu') {
 					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 					this.title = 'Penilaian self assesment Access branding';
 					this.titleDesc = 'Penilaian self assesment Access branding';
@@ -585,10 +585,10 @@
 			save() {
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
+						if(this.$route.meta.mode == 'edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
-						}else if(this.$route.meta.mode === 'penilaian_bkcu'){
-							this.form.status == 'SUDAH DINILAI';
+						}else if(this.$route.meta.mode == 'penilaianBkcu'){
+							this.form.status = 'SUDAH DINILAI';
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else{
 							this.$store.dispatch(this.kelas + '/store', this.form);

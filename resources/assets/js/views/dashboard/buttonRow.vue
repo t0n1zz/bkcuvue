@@ -86,6 +86,11 @@
       <count-widget :title="'Laporan Statistik Gerakan'" :color="'bg-grey-400'" :icon="'icon-stats-bars'"></count-widget>
     </div>
 
+		<!-- assesment access -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_assesment_access']" @click.prevent="goTo(assesmentAccessWidgetRoute)">
+      <count-widget :title="'Self Assesment Access'" :color="'bg-warning-400'" :icon="'icon-reading'"></count-widget>
+    </div>
+
     <!-- user -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_user']" @click.prevent="goTo(userWidgetRoute)">
       <count-widget :title="'User'" :color="'bg-primary-400'" :icon="'icon-users'"></count-widget>
@@ -122,6 +127,7 @@
 				userWidgetRoute: {},
 				laporanCUWidgetRoute: {},
 				laporanGerakanWidgetRoute: {},
+				assesmentAccessWidgetRoute: {},
 			}
 		},
 		created(){
@@ -148,6 +154,7 @@
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
+					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
@@ -156,6 +163,7 @@
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
+					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
 				}
 			},
 			goTo(route){

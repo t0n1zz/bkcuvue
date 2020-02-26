@@ -545,7 +545,7 @@ const routes = [
 	{ path: '/assesmentAccess/penilaian/:id',
 		name: 'assesmentAccessPenilaian', 
 		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true, mode:'penilaian_bkcu' } },	
+		meta: { requiresAuth: true, mode:'penilaianBkcu' } },	
 	{ path: '/assesmentAccess/lihat/:id',
 		name: 'assesmentAccessLihat', 
 		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
