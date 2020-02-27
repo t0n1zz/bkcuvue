@@ -82,6 +82,46 @@ class AssesmentAccessController extends Controller{
 		return $table_data;
 	}
 
+	public function formatSingleQuery($t){
+		$t->bobot_cu_p1 = 0;
+		$t->bobot_bkcu_p1 = 0;
+		$t->bobot_cu_p2 = 0;
+		$t->bobot_bkcu_p2 = 0;
+		$t->bobot_cu_p3 = 0;
+		$t->bobot_bkcu_p3 = 0;
+		$t->bobot_cu_p4 = 0;
+		$t->bobot_bkcu_p5 = 0;
+
+		if($t->p1){
+			$t->bobot_cu_p1 = round(($t->p1->skor_cu_p1 / 56) * 40 ,2);
+			$t->bobot_bkcu_p1 = round(($t->p1->skor_bkcu_p1 / 56) * 40 ,2);
+		}
+		if($t->p2){
+			$t->bobot_cu_p2 = round(($t->p2->skor_cu_p2 / 108) * 20 ,2);
+			$t->bobot_bkcu_p2 = round(($t->p2->skor_bkcu_p2 / 108) * 20 ,2);
+		}
+		if($t->p3){
+			$t->bobot_cu_p3 = round(($t->p3->skor_cu_p3 / 104) * 20 ,2);
+			$t->bobot_bkcu_p3 = round(($t->p3->skor_bkcu_p3 / 104) * 20 ,2);
+		}
+		if($t->p4){
+			$t->bobot_cu_p4 = round(($t->p4->skor_cu_p4 / 80) * 20 ,2);
+			$t->bobot_bkcu_p4 = round(($t->p4->skor_bkcu_p4 / 80) * 20 ,2);
+		}
+
+		$t->total_skor_cu = ($t->p1 ? $t->p1->skor_cu_p1 : 0) + 
+		($t->p2 ? $t->p2->skor_cu_p2 : 0) + ($t->p3 ? $t->p3->skor_cu_p3 : 0) + 
+		($t->p4 ? $t->p4->skor_cu_p4 : 0); 
+		$t->total_skor_bkcu = ($t->p1 ? $t->p1->skor_bkcu_p1 : 0) + 
+		($t->p2 ? $t->p2->skor_bkcu_p2 : 0) + ($t->p3 ? $t->p3->skor_bkcu_p3 : 0) + 
+		($t->p4 ?$t->p4->skor_bkcu_p4 : 0); 
+
+		$t->total_bobot_cu = round($t->bobot_cu_p1 + $t->bobot_cu_p2 + $t->bobot_cu_p3 + $t->bobot_cu_p4, 2); 
+		$t->total_bobot_bkcu = round($t->bobot_bkcu_p1 + $t->bobot_bkcu_p2 + $t->bobot_bkcu_p3 + $t->bobot_bkcu_p4, 2); 
+
+		return $t;
+	}
+
 	public function create()
 	{
 		$form = AssesmentAccess::initialize();
@@ -133,6 +173,8 @@ class AssesmentAccessController extends Controller{
 	public function edit($id)
 	{
 		$kelas = AssesmentAccess::with('cu','p1','p2','p3','p4')->findOrFail($id);
+
+		$kelas = $this->formatSingleQuery($kelas);
 
 		return response()
 				->json([

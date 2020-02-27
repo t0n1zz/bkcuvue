@@ -435,7 +435,7 @@
 
         this.$validator.validateAll('formKoreksi').then((result) => {
           if (result) {
-            this.$store.dispatch(this.kelas + '/updateStatus', [this.selected.id, this.formKoreksi]);
+            this.$store.dispatch(this.kelas + '/periksaKoreksi', [this.selected.id, this.formKoreksi]);
           }else{
             this.submited = true;
           }

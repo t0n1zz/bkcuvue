@@ -477,6 +477,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}/tipe/{tipe}', 'JalinanKlaimController@edit');
         Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
         Route::post('/jalinanKlaim/updateStatus/{id}', 'JalinanKlaimController@updateStatus');
+        Route::post('/jalinanKlaim/periksaKoreksi/{id}', 'JalinanKlaimController@periksaKoreksi');
         Route::post('/jalinanKlaim/updateSelesai/{id}', 'JalinanKlaimController@updateSelesai');
     });
     Route::group(['middleware' => ['permission:destroy_jalinan_klaim']], function () {

@@ -57,7 +57,7 @@ class AssesmentAccess extends BaseEloquent {
         ->select(DB::raw('*,
         (IFNULL(p1a1_cu_penilaian, 0) + IFNULL(p1a2_cu_penilaian, 0) + 
          IFNULL(p1b3_cu_penilaian, 0) + IFNULL(p1b4_cu_penilaian, 0) + 
-         IFNULL(p1b5_cu_penilaian, 0) + IFNULL(p1b6_cu_penilaian, 0) +
+         IFNULL(p1b5_cu_penilaian, 0) + 
          IFNULL(p1b7_cu_penilaian, 0) + IFNULL(p1c8_cu_penilaian, 0) +
          IFNULL(p1c9_cu_penilaian, 0) + IFNULL(p1d10_cu_penilaian, 0) +
          IFNULL(p1d11_cu_penilaian, 0) + IFNULL(p1e12_cu_penilaian, 0) +
@@ -65,7 +65,7 @@ class AssesmentAccess extends BaseEloquent {
         ) as skor_cu_p1,
         (IFNULL(p1a1_bkcu_penilaian, 0) + IFNULL(p1a2_bkcu_penilaian, 0) + 
          IFNULL(p1b3_bkcu_penilaian, 0) + IFNULL(p1b4_bkcu_penilaian, 0) + 
-         IFNULL(p1b5_bkcu_penilaian, 0) + IFNULL(p1b6_bkcu_penilaian, 0) +
+         IFNULL(p1b5_bkcu_penilaian, 0) + 
          IFNULL(p1b7_bkcu_penilaian, 0) + IFNULL(p1c8_bkcu_penilaian, 0) +
          IFNULL(p1c9_bkcu_penilaian, 0) + IFNULL(p1d10_bkcu_penilaian, 0) +
          IFNULL(p1d11_bkcu_penilaian, 0) + IFNULL(p1e12_bkcu_penilaian, 0) +

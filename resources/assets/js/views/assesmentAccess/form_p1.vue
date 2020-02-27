@@ -459,96 +459,14 @@
 		</div>
 		</transition>
 
-		<!-- b6 -->
-		<transition enter-active-class="animated fadeIn" mode="out-in">
-		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b6_cu_penilaian == cuTabName || form.p1.p1b6_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p1.p1b5_cu_penilaian != '' && form.p1.p1b5_cu_keterangan != ''">
-				<div class="card-header bg-warning text-white">
-					<h5 class="card-title">
-						6. E7 = Mengukur persentase total asset yang didanai dari simpanan saham</h5>
-				</div>
-				<div class="card-body">
-					<div class="row">
-						<!-- penilaian cu -->
-						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
-							<!-- penilaian -->
-							<penilaian-cu 
-								:form="form.p1.p1b6_cu_penilaian" 
-								@click1="form.p1.p1b6_cu_penilaian = 1"
-								:subtitle1="'Di bawah 5% dari total aset'"
-								@click2="form.p1.p1b6_cu_penilaian = 2" 
-								:subtitle2="'5-9% dari total aset'"
-								@click3="form.p1.p1b6_cu_penilaian = 3" 
-								:subtitle3="'10% dari total aset '"
-								@click4="form.p1.p1b6_cu_penilaian = 4" 
-								:subtitle4="'Di atas 10% dari total aset tetapi tidak melampaui 20% dari total aset'"
-							></penilaian-cu>
-							<!-- keterangan -->
-							<div class="form-group">
-								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
-								<!-- textarea -->
-								<textarea rows="3" 
-								type="text" 
-								name="p1b6_cu_keterangan" 
-								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b6_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
-							</div>
-						</div>
-
-						<!-- penilaian bkcu -->
-						<div class="col-md-12" v-if="mode == 'penilaianBkcu' || mode == 'lihat'">
-							<div class="row">
-								<div class="col-md-12"><hr/></div>
-								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
-									<!-- penilaian -->
-									<penilaian-bkcu
-										:form="form.p1.p1b6_bkcu_penilaian" 
-										@click1="form.p1.p1b6_bkcu_penilaian = 1"
-										@click2="form.p1.p1b6_bkcu_penilaian = 2" 
-										@click3="form.p1.p1b6_bkcu_penilaian = 3" 
-										@click4="form.p1.p1b6_bkcu_penilaian = 4" 
-									></penilaian-bkcu>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
-										<!-- textarea -->
-										<textarea rows="3" 
-										type="text" 
-										name="p1b6_bkcu_keterangan" 
-										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p1.p1b6_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
-										<!-- textarea -->
-										<textarea rows="3" 
-										type="text" 
-										name="p1b6_bkcu_rekomendasi" 
-										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p1.p1b6_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		</transition>
 
 		<!-- b7 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b7_cu_penilaian == cuTabName || form.p1.p1b7_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p1.p1b6_cu_penilaian != '' && form.p1.p1b6_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p1.p1b5_cu_penilaian != '' && form.p1.p1b5_cu_keterangan != ''">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
-						7. E9 = Mengukur level nyata dari modal lembaga setelah mengeluarkan penyisihan DCR untuk menutupi P1 & P2</h5>
+						6. E9 = Mengukur level nyata dari modal lembaga setelah mengeluarkan penyisihan DCR untuk menutupi P1 & P2</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -650,7 +568,7 @@
 			<div class="card border-success" v-if="form.p1.p1b7_cu_penilaian != '' && form.p1.p1b7_cu_keterangan != ''">
 				<div class="card-header bg-success text-white">
 					<h5 class="card-title">
-						8. A1 = Mengukur persentase total kelalaian piutang terhadap total piutang</h5>
+						7. A1 = Mengukur persentase total kelalaian piutang terhadap total piutang</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -733,7 +651,7 @@
 			<div class="card border-success" v-if="form.p1.p1c8_cu_penilaian != '' && form.p1.p1c8_cu_keterangan != ''">
 				<div class="card-header bg-success text-white">
 					<h5 class="card-title">
-						9. A2 = Mengukur total asset yang tidak menghasilkan income</h5>
+						8. A2 = Mengukur total asset yang tidak menghasilkan income</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -835,7 +753,7 @@
 			<div class="card border-brown" v-if="form.p1.p1c9_cu_penilaian != '' && form.p1.p1c9_cu_keterangan != ''">
 				<div class="card-header bg-brown text-white">
 					<h5 class="card-title">
-						10. R7 = Mengukur persentase pengembalian biaya atas simpanan saham</h5>
+						9. R7 = Mengukur persentase pengembalian biaya atas simpanan saham</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -918,7 +836,7 @@
 			<div class="card border-brown" v-if="form.p1.p1d10_cu_penilaian != '' && form.p1.p1d10_cu_keterangan != ''">
 				<div class="card-header bg-brown text-white">
 					<h5 class="card-title">
-						11. R9 = Mengukur persentase beban untuk mengelola semua asset</h5>
+						10. R9 = Mengukur persentase beban untuk mengelola semua asset</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -1020,7 +938,7 @@
 			<div class="card border-danger" v-if="form.p1.p1d11_cu_penilaian != '' && form.p1.p1d11_cu_keterangan != ''">
 				<div class="card-header bg-danger text-white">
 					<h5 class="card-title">
-						12. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari</h5>
+						11. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -1122,7 +1040,7 @@
 			<div class="card border-teal" v-if="form.p1.p1e12_cu_penilaian != '' && form.p1.p1e12_cu_keterangan != ''">
 				<div class="card-header bg-teal text-white">
 					<h5 class="card-title">
-						13. S10 = Mengukur persentase pertumbuhan anggota dari tahun ke tahun</h5>
+						12. S10 = Mengukur persentase pertumbuhan anggota dari tahun ke tahun</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -1205,7 +1123,7 @@
 			<div class="card border-teal" v-if="form.p1.p1f13_cu_penilaian != '' && form.p1.p1f13_cu_keterangan != ''">
 				<div class="card-header bg-teal text-white">
 					<h5 class="card-title">
-						14. S11 = Mengukur persentase pertumbuhan total  aset dari tahun ke tahun</h5>
+						13. S11 = Mengukur persentase pertumbuhan total  aset dari tahun ke tahun</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -1379,22 +1297,22 @@
 				return jumlah;
 			},
 			skorCUB(){
-				var jumlah = (this.form.p1.p1b3_cu_penilaian + this.form.p1.p1b4_cu_penilaian + this.form.p1.p1b5_cu_penilaian + this.form.p1.p1b6_cu_penilaian + this.form.p1.p1b7_cu_penilaian) / 1;
+				var jumlah = (this.form.p1.p1b3_cu_penilaian + this.form.p1.p1b4_cu_penilaian + this.form.p1.p1b5_cu_penilaian + this.form.p1.p1b7_cu_penilaian) / 1;
 				this.$emit('skorCUB', jumlah);
 				return jumlah;
 			},
 			bobotCUB(){
-				var jumlah = this.$options.filters.round((((this.form.p1.p1b3_cu_penilaian + this.form.p1.p1b4_cu_penilaian + this.form.p1.p1b5_cu_penilaian + this.form.p1.p1b6_cu_penilaian + this.form.p1.p1b7_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				var jumlah = this.$options.filters.round((((this.form.p1.p1b3_cu_penilaian + this.form.p1.p1b4_cu_penilaian + this.form.p1.p1b5_cu_penilaian + this.form.p1.p1b7_cu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
 				this.$emit('bobotCUB', jumlah);
 				return jumlah;
 			},
 			skorBKCUB(){
-				var jumlah = (this.form.p1.p1b3_bkcu_penilaian + this.form.p1.p1b4_bkcu_penilaian + this.form.p1.p1b5_bkcu_penilaian + this.form.p1.p1b6_bkcu_penilaian + this.form.p1.p1b7_bkcu_penilaian) / 1;
+				var jumlah = (this.form.p1.p1b3_bkcu_penilaian + this.form.p1.p1b4_bkcu_penilaian + this.form.p1.p1b5_bkcu_penilaian + this.form.p1.p1b7_bkcu_penilaian) / 1;
 				this.$emit('skorBKCUB', jumlah);
 				return jumlah;
 			},
 			bobotBKCUB(){
-				var jumlah = this.$options.filters.round((((this.form.p1.p1b3_bkcu_penilaian + this.form.p1.p1b4_bkcu_penilaian + this.form.p1.p1b5_bkcu_penilaian + this.form.p1.p1b6_bkcu_penilaian + this.form.p1.p1b7_bkcu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
+				var jumlah = this.$options.filters.round((((this.form.p1.p1b3_bkcu_penilaian + this.form.p1.p1b4_bkcu_penilaian + this.form.p1.p1b5_bkcu_penilaian + this.form.p1.p1b7_bkcu_penilaian) / this.jumlahIndikator) * this.bobotSkor),2);
 				this.$emit('bobotBKCUB', jumlah);
 				return jumlah;
 			},
@@ -1495,9 +1413,6 @@
 				if(this.form.p1.p1b5_cu_penilaian == value){
 					jumlah++;
 				}
-				if(this.form.p1.p1b6_cu_penilaian == value){
-					jumlah++;
-				}
 				if(this.form.p1.p1b7_cu_penilaian == value){
 					jumlah++;
 				}
@@ -1540,9 +1455,6 @@
 					jumlah++;
 				}
 				if(this.form.p1.p1b5_bkcu_penilaian == value){
-					jumlah++;
-				}
-				if(this.form.p1.p1b6_bkcu_penilaian == value){
 					jumlah++;
 				}
 				if(this.form.p1.p1b7_bkcu_penilaian == value){

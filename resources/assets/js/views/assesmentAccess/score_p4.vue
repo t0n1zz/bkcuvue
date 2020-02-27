@@ -81,9 +81,9 @@
 							<td><check-value :value="(form.p4.p4a5_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4a5_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4a5_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4a5_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a5_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a5_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>6. Komposisi dan Komitmen</td>
@@ -91,9 +91,9 @@
 							<td><check-value :value="(form.p4.p4a6_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4a6_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4a6_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4a6_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a6_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a6_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>7. Service delivery kepada anggota – Penarikan Simpanan</td>
@@ -101,9 +101,9 @@
 							<td><check-value :value="(form.p4.p4a7_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4a7_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4a7_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4a7_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a7_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a7_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>8. Tata Kelola</td>
@@ -111,9 +111,9 @@
 							<td><check-value :value="(form.p4.p4a8_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4a8_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4a8_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4a8_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a8_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a8_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>9. Evaluasi Kinerja</td>
@@ -121,9 +121,9 @@
 							<td><check-value :value="(form.p4.p4a9_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4a9_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4a9_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4a9_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a9_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a9_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>10. Kesetaraan Gender Dalam Kepemimpinan</td>
@@ -131,9 +131,9 @@
 							<td><check-value :value="(form.p4.p4a10_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4a10_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4a10_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4a1_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4a10_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a10_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4a10_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr class="bg-warning font-weight-bold">
 							<td>B. KEPUASAN STAF</td>
@@ -162,9 +162,9 @@
 							<td><check-value :value="(form.p4.p4b12_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b12_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b12_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b12_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b12_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b12_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>13. Kompensasi</td>
@@ -172,9 +172,9 @@
 							<td><check-value :value="(form.p4.p4b13_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b13_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b13_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b13_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b13_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b13_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>14. Pembagian Tingkatan Staf</td>
@@ -182,9 +182,9 @@
 							<td><check-value :value="(form.p4.p4b14_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b14_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b14_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b14_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b14_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b14_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr class="bg-slate font-weight-bold">
 							<td colspan="8">MANAJEMEN KINERJA</td>
@@ -195,9 +195,9 @@
 							<td><check-value :value="(form.p4.p4b15_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b15_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b15_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b15_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b15_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b15_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>16. Standar-standar penilaian</td>
@@ -205,9 +205,9 @@
 							<td><check-value :value="(form.p4.p4b16_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b16_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b16_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b16_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b16_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b16_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>17. Kinerja sebagai nilai bersama</td>
@@ -215,9 +215,9 @@
 							<td><check-value :value="(form.p4.p4b17_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b17_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b17_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b17_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b17_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b17_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>18. Kecakapan Tim</td>
@@ -225,9 +225,9 @@
 							<td><check-value :value="(form.p4.p4b18_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b18_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b18_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b18_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b18_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b18_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr class="bg-slate font-weight-bold">
 							<td colspan="8">MANAJEMEN WAWASAN</td>
@@ -238,9 +238,9 @@
 							<td><check-value :value="(form.p4.p4b19_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b19_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b19_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b19_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b19_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b19_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
 							<td>20. Program Pengembangan</td>
@@ -248,9 +248,9 @@
 							<td><check-value :value="(form.p4.p4b20_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
 							<td><check-value :value="form.p4.p4b20_bkcu_penilaian/1" valueType="currency"></check-value></td>
 							<td><check-value :value="(form.p4.p4b20_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="currency"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p4.p4b11_bkcu_rekomendasi"></check-value></td>
+							<td><check-value :value="form.p4.p4b20_cu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b20_bkcu_keterangan"></check-value></td>
+							<td><check-value :value="form.p4.p4b20_bkcu_rekomendasi"></check-value></td>
 						</tr>
 					</tbody>
 					<tfoot>

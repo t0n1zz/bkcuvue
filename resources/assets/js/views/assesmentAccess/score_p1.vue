@@ -94,17 +94,7 @@
 							<td><check-value :value="form.p1.p1b5_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
-							<td>6. E7 = Mengukur persentase total asset yang didanai dari simpanan saham</td>
-							<td><check-value :value="form.p1.p1b6_cu_penilaian/1" valueType="decimal"></check-value></td>
-							<td><check-value :value="(form.p1.p1b6_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
-							<td><check-value :value="form.p1.p1b6_bkcu_penilaian/1" valueType="decimal"></check-value></td>
-							<td><check-value :value="(form.p1.p1b6_bkcu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
-							<td><check-value :value="form.p1.p1b6_cu_keterangan"></check-value></td>
-							<td><check-value :value="form.p1.p1b6_bkcu_keterangan"></check-value></td>
-							<td><check-value :value="form.p1.p1b6_bkcu_rekomendasi"></check-value></td>
-						</tr>
-						<tr>
-							<td>7. E9 = Mengukur level nyata dari modal lembaga setelah mengeluarkan penyisihan DCR untuk menutupi P1 & P2</td>
+							<td>6. E9 = Mengukur level nyata dari modal lembaga setelah mengeluarkan penyisihan DCR untuk menutupi P1 & P2</td>
 							<td><check-value :value="form.p1.p1b7_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1b7_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1b7_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -122,7 +112,7 @@
 							<td colspan="3"></td>
 						</tr>
 						<tr>
-							<td>8. A1 = Mengukur persentase total kelalaian piutang terhadap total piutang</td>
+							<td>7. A1 = Mengukur persentase total kelalaian piutang terhadap total piutang</td>
 							<td><check-value :value="form.p1.p1c8_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1c8_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1c8_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -132,7 +122,7 @@
 							<td><check-value :value="form.p1.p1c8_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
-							<td>9. A2 = Mengukur total asset yang tidak menghasilkan income</td>
+							<td>8. A2 = Mengukur total asset yang tidak menghasilkan income</td>
 							<td><check-value :value="form.p1.p1c9_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1c9_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1c9_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -150,7 +140,7 @@
 							<td colspan="3"></td>
 						</tr>
 						<tr>
-							<td>10. R7 = Mengukur persentase pengembalian biaya atas simpanan saham</td>
+							<td>9. R7 = Mengukur persentase pengembalian biaya atas simpanan saham</td>
 							<td><check-value :value="form.p1.p1d10_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1d10_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1d10_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -160,7 +150,7 @@
 							<td><check-value :value="form.p1.p1d10_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
-							<td>11. R9 = Mengukur persentase beban untuk mengelola semua asset</td>
+							<td>10. R9 = Mengukur persentase beban untuk mengelola semua asset</td>
 							<td><check-value :value="form.p1.p1d11_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1d11_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1d11_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -178,7 +168,7 @@
 							<td colspan="3"></td>
 						</tr>
 						<tr>
-							<td>12. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari</td>
+							<td>11. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari</td>
 							<td><check-value :value="form.p1.p1e12_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1e12_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1e12_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -196,7 +186,7 @@
 							<td colspan="3"></td>
 						</tr>
 						<tr>
-							<td>13. S10 = Mengukur persentase pertumbuhan anggota dari tahun ke tahun</td>
+							<td>12. S10 = Mengukur persentase pertumbuhan anggota dari tahun ke tahun</td>
 							<td><check-value :value="form.p1.p1f13_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1f13_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1f13_bkcu_penilaian/1" valueType="decimal"></check-value></td>
@@ -206,7 +196,7 @@
 							<td><check-value :value="form.p1.p1f13_bkcu_rekomendasi"></check-value></td>
 						</tr>
 						<tr>
-							<td>14. S11 = Mengukur persentase pertumbuhan total  aset dari tahun ke tahun</td>
+							<td>13. S11 = Mengukur persentase pertumbuhan total  aset dari tahun ke tahun</td>
 							<td><check-value :value="form.p1.p1f14_cu_penilaian/1" valueType="decimal"></check-value></td>
 							<td><check-value :value="(form.p1.p1f14_cu_penilaian/jumlahIndikator)*bobotSkor" valueType="decimal"></check-value></td>
 							<td><check-value :value="form.p1.p1f14_bkcu_penilaian/1" valueType="decimal"></check-value></td>

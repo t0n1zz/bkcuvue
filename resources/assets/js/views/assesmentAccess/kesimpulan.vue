@@ -19,13 +19,13 @@
 						<tbody>
 							<tr>
 								<td>
-									<span v-if="(nilaiTotalSkorCU > 206 && nilaiTotalSkorCU < 242) && (nilaiTotalBobotCU > 59 && nilaiTotalBobotCU < 71)"
+									<span v-if="nilaiTotalBobotCU > 59 && nilaiTotalBobotCU < 71"
 									>PERUNGGU (BRONZE)</span>
-									<span v-else-if="(nilaiTotalSkorCU > 241 && nilaiTotalSkorCU < 274) && (nilaiTotalBobotCU > 70 && nilaiTotalBobotCU < 81)"
+									<span v-else-if="nilaiTotalBobotCU > 70 && nilaiTotalBobotCU < 81"
 									>PERAK (SILVER)</span>
-									<span v-else-if="(nilaiTotalSkorCU > 275 && nilaiTotalSkorCU < 311) && (nilaiTotalBobotCU > 81 && nilaiTotalBobotCU < 91)"
+									<span v-else-if="nilaiTotalBobotCU > 81 && nilaiTotalBobotCU < 91"
 									>EMAS (GOLD)</span>
-									<span v-else-if="nilaiTotalSkorCU > 310 && nilaiTotalBobotCU > 90"
+									<span v-else-if="nilaiTotalBobotCU > 90"
 									>PLATINA (PLATINUM)</span>
 									<span v-else>MAAF SKOR ANDA BELUM CUKUP</span>
 								</td>
@@ -50,13 +50,13 @@
 						<tbody>
 							<tr>
 								<td>
-									<span v-if="(nilaiTotalSkorBKCU > 206 && nilaiTotalSkorBKCU < 242) && (nilaiTotalBobotBKCU > 59 && nilaiTotalBobotBKCU < 71)"
+									<span v-if="nilaiTotalBobotBKCU > 59 && nilaiTotalBobotBKCU < 71"
 									>PERUNGGU (BRONZE)</span>
-									<span v-else-if="(nilaiTotalSkorBKCU > 241 && nilaiTotalSkorBKCU < 274) && (nilaiTotalBobotBKCU > 70 && nilaiTotalBobotBKCU < 81)"
+									<span v-else-if="nilaiTotalBobotBKCU > 70 && nilaiTotalBobotBKCU < 81"
 									>PERAK (SILVER)</span>
-									<span v-else-if="(nilaiTotalSkorBKCU > 275 && nilaiTotalSkorBKCU < 311) && (nilaiTotalBobotBKCU > 81 && nilaiTotalBobotBKCU < 91)"
+									<span v-else-if="nilaiTotalBobotBKCU > 81 && nilaiTotalBobotBKCU < 91"
 									>EMAS (GOLD)</span>
-									<span v-else-if="nilaiTotalSkorBKCU > 310 && nilaiTotalBobotBKCU > 90"
+									<span v-else-if="nilaiTotalBobotBKCU > 90"
 									>PLATINA (PLATINUM)</span>
 									<span v-else>MAAF SKOR ANDA BELUM CUKUP</span>
 								</td>

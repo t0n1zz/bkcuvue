@@ -750,8 +750,6 @@ class JalinanKlaimController extends Controller{
 		$tipe = $kelas->tipe;
 		$kelas->surat_nomor = $request->surat_nomor;
 		$kelas->surat_tanggal = $request->surat_tanggal;
-		$kelas->tunas_diajukan = $request->tunas_diajukan;
-		$kelas->lintang_diajukan = $request->lintang_diajukan;
 
 		if($kelas->status_klaim == 1){
 			$message = "Klaim JALINAN menunggu";
@@ -779,6 +777,29 @@ class JalinanKlaimController extends Controller{
 			$kelas->tanggal_pencairan = $request->tanggal_pencairan;
 		}
 		
+		$kelas->update();
+
+		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
+		
+		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
+	
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $message
+			]);
+	}
+
+	public function periksaKoreksi(Request $request, $id)
+	{
+		$kelas = JalinanKlaim::findOrFail($id);
+		$kelas->status = 1;
+		$kelas->tunas_diajukan = $request->tunas_diajukan;
+		$kelas->lintang_diajukan = $request->lintang_diajukan;
+		$kelas->tunas_disetujui = NULL;
+		$kelas->lintang_disetujui = NULL;
+		$kelas->tanggal_pencairan = NULL;
+
 		$kelas->update();
 
 		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
