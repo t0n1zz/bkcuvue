@@ -724,9 +724,9 @@
         this.$router.push({
           name: this.kelas + "Koreksi",
           params: {
-            nik: nik,
+            nik: nik.replace(/[\s\/]/g, ''),
             cu: cu,
-            tipe: tipe
+          tipe: tipe
           }
         });
       },

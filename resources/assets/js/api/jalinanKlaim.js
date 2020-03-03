@@ -40,7 +40,7 @@ export default {
     return axios.get('/api/jalinanKlaim/create');
   },
 
-  store: function ( form ){
+  storjalinae: function ( form ){
     return axios.post('/api/jalinanKlaim/store', form);
   },
 
@@ -54,6 +54,10 @@ export default {
 
   update: function ( id, form ){
     return axios.post('/api/jalinanKlaim/update/' + id, form);
+  },
+
+  periksaKoreksi: function ( id, form ){
+    return axios.post('/api/jalinanKlaim/periksaKoreksi/' + id, form);
   },
 
   updateStatus: function ( id, form ){

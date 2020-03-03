@@ -28,7 +28,7 @@
 										</h5>
 
 										<!-- select -->
-										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length == 0 || $route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'">
+										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changeCU($event.target.value)"  :disabled="modelCU.length == 0 || $route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'">
 											<option disabled value="0">Silahkan pilih CU</option>
 											<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 										</select>
@@ -42,32 +42,35 @@
 								</div>
 
 								<!-- periode -->
-								<div class="col-md-6">
+								<div :class="{'col-md-6' : currentUser.id_cu == 0, 'col-md-12' : currentUser.id_cu != 0}">
 									<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
 
 										<!-- title -->
 										<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
-											<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
-											Periode: <wajib-badge></wajib-badge>
-											<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+											<i class="icon-cross2" v-if="errors.has('form.periode')"></i>
+											Periode: <wajib-badge></wajib-badge> <info-icon :message="'Periode diambil dari laporan perkembangan CU'"></info-icon>
 										</h5>
 
-										<!-- input -->
-										<cleave 
-											name="periode"
-											v-model="form.periode" 
-											class="form-control" 
-											:raw="false" 
-											:options="cleaveOption.date" 
-											placeholder="Silahkan masukkan periode laporan"
-											v-validate="'required'" data-vv-as="Periode"
-											:disabled="$route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'"></cleave>
+										<!-- select -->
+										<select class="form-control" name="periode" v-model="form.id_laporan_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" @change="changePeriode($event.target.value)"  :disabled="modelPeriode.length == 0 || $route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat'">
+											<option disabled value="">
+												<span v-if="modelPeriodeStat == 'loading'">Mohon tunggu...</span>
+												<span v-else>Silahkan pilih periode</span>
+											</option>
+											<option v-for="periode in modelPeriode" :value="periode.id">{{periode.periode}}</option>
+										</select>
 
 										<!-- error message -->
 										<small class="text-muted text-danger" v-if="errors.has('form.periode')">
 											<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
 										</small>
 										<small class="text-muted" v-else>&nbsp;</small>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="alert bg-info alert-styled-left">
+										<h6>Periode mengacu pada periode pada laporan perkembangan CU yang diinputkan di SIMO, apabila anda tidak menemukan periode yang dimaksud maka silahkan cek ke menu laporan perkembangan CU dibawah menu Tata kelola.</h6>
 									</div>
 								</div>
 
@@ -165,6 +168,8 @@
 									:jumlahIndikator="'56'" 
 									:bobotSkor="'40'" 
 									:mode="$route.meta.mode" 
+									:itemData="modelPearls"
+									@reloadPearls="reloadPearls()"
 									@next="changeTab('p2')"
 									@prev="back" 
 									@skorCUA="skorCUP1A"
@@ -351,6 +356,8 @@
 									:nilaiTotalBobotCU = "nilaiTotalBobotCU"
 									:nilaiTotalSkorBKCU = "nilaiTotalSkorBKCU"
 									:nilaiTotalBobotBKCU = "nilaiTotalBobotBKCU"
+									:a1 ="modelPearls.a1 ? (modelPearls.a1 * 100) : 0"
+									:e9 ="modelPearls.e9 ?(modelPearls.e9 * 100) : 0"
 								></kesimpulan>
 								
 								<div class="card card-body" v-if="formStat == 'success' && (form.p4.p4b20_cu_penilaian != '' && form.p4.p4b20_cu_keterangan != '')">
@@ -541,7 +548,9 @@
 			formStat(value){
 				if (value === "success") {
 					if (this.$route.meta.mode == 'create') {
-						this.form.id_cu = this.currentUser.id_cu;
+						this.changeCU(this.currentUser.id_cu);
+					}else{
+						this.changeCU(this.form.id_cu);
 					}
 				}
 			},
@@ -581,6 +590,20 @@
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
 				}
+			},
+			changeCU(id){
+				this.form.id_cu = id;
+				this.$store.dispatch('laporanCu/getPeriodeCu', id);
+			},
+			changePeriode(id){
+				let _periode = '';
+				_periode = _.find(this.modelPeriode,{'id': parseInt(id, 10)});
+				this.form.id_laporan_cu = id;
+				this.form.periode = _periode.periode;
+				this.$store.dispatch('laporanCu/detailPearls', id);
+			},
+			reloadPearls(){
+				this.$store.dispatch('laporanCu/detailPearls', this.form.id_laporan_cu);
 			},
 			save() {
 				this.$validator.validateAll('form').then((result) => {
@@ -817,6 +840,12 @@
 			...mapGetters('cu',{
 				modelCU: 'headerDataS',
 				modelCUStat: 'headerDataStatS',
+			}),
+			...mapGetters('laporanCu',{
+				modelPeriode: 'periode',
+				modelPeriodeStat: 'periodeStat',
+				modelPearls: 'pearls',
+				modelPearlsStat: 'pearlsStat',
 			}),
 		}
 	}

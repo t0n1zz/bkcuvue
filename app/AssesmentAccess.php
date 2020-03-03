@@ -5,6 +5,7 @@ use DB;
 use illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
+use App\Support\LaporanCuHelper;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class AssesmentAccess extends BaseEloquent {
@@ -18,6 +19,7 @@ class AssesmentAccess extends BaseEloquent {
     
     public static $rules = [
         'id_cu' => 'required',
+        'id_laporan_cu' => 'required',
         'periode' => 'required',
     ];
 
@@ -27,28 +29,33 @@ class AssesmentAccess extends BaseEloquent {
     }
     
     protected $fillable = [
-        'id_cu','periode','status','id_p1',
+        'id_cu','id_laporan_cu','periode','status','id_p1',
         'id_p2','id_p3','id_p4'
     ];
 
     protected $allowedFilters = [
-        'id_cu','periode','status',
+        'id_cu','id_laporan_cu','periode','status',
     ];
 
     protected $orderable = [
-        'id_cu','periode','status',
+        'id_cu','id_laporan_cu','periode','status',
     ];
 
     public static function initialize()
     {
         return [
-            'id_cu' => '','periode' => '','status' => ''
+            'id_cu' => '','id_laporan_cu' => '','periode' => '','status' => ''
         ];
     }
 
     public function Cu()
     {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
+    }
+
+    public function LaporanCu()
+    {
+        return $this->belongsTo('App\LaporanCu','id_laporan_cu','id')->addSelect(['*',DB::raw(LaporanCuHelper::queryPEARLS())]);
     }
 
     public function p1()

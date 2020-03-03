@@ -10,15 +10,40 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.4 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#324">Version 3.2.4 <small class="text-muted"> / 5 Maret 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="324" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Merubah cara pengisian self assesment ACCESS Branding dimana pengisian periode harus sesuai dengan periode yang sudah ada pada laporan perkembangan CU</li>
+                      <li>Menyambungkan data self assesment ACCESS Branding dengan laporan perkembangan CU untuk informasi PEARLS</li>
+                      <li>Perbaikan bug pada koreksi Klaim JALINAN</li>
+                      <li>Perbaikan bug pada self assesment ACCESS Branding</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.4 -->
+
               <!-- Version 3.2.3 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#323">Version 3.2.3 <small class="text-muted"> / 24 Februari 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#323">Version 3.2.3 <small class="text-muted"> / 24 Februari 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="323" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="323" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambahkan self assesment ACCESS Branding, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN
                     <br/><br/>

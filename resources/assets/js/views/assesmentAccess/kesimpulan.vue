@@ -14,23 +14,49 @@
 								<th>BRANDING CU</th>
 								<th>NILAI</th>
 								<th>KESEPADANAN (%)</th>
+								<th>Kelalaian Pinjaman / A1 (%)</th>
+								<th>Modal Lembaga / E9 (%)</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>
-									<span v-if="nilaiTotalBobotCU > 59 && nilaiTotalBobotCU < 71"
-									>PERUNGGU (BRONZE)</span>
-									<span v-else-if="nilaiTotalBobotCU > 70 && nilaiTotalBobotCU < 81"
-									>PERAK (SILVER)</span>
-									<span v-else-if="nilaiTotalBobotCU > 81 && nilaiTotalBobotCU < 91"
-									>EMAS (GOLD)</span>
-									<span v-else-if="nilaiTotalBobotCU > 90"
-									>PLATINA (PLATINUM)</span>
-									<span v-else>MAAF SKOR ANDA BELUM CUKUP</span>
+									<span v-if="nilaiTotalBobotCU > 59 && nilaiTotalBobotCU < 71">
+										<span v-if="a1 < 10 && e9 >= 5">
+											PERUNGGU (BRONZE)
+										</span>
+										<span v-else>MAAF ANDA BELUM BISA MENDAPATKAN ACCESS BRANDING</span>
+									</span>
+									<span v-else-if="nilaiTotalBobotCU > 70 && nilaiTotalBobotCU < 81">
+										<span v-if="a1 < 7 && e9 >= 8">	
+											PERAK (SILVER)
+										</span>
+										<span v-else>
+											PERUNGGU (BRONZE)
+										</span>
+									</span>
+									<span v-else-if="nilaiTotalBobotCU > 81 && nilaiTotalBobotCU < 91">	
+										<span v-if="a1 < 5 && e9 >= 10">		
+											EMAS (GOLD)
+										</span>
+										<span v-else>
+											PERAK (SILVER)
+										</span>
+									</span>
+									<span v-else-if="nilaiTotalBobotCU > 90">
+										<span v-if="a1 = 0 && e9 > 10">		
+											PLATINA (PLATINUM)
+										</span>
+										<span v-else>
+											EMAS (GOLD)
+										</span>
+									</span>
+									<span v-else>MAAF ANDA BELUM BISA MENDAPATKAN ACCESS BRANDING</span>
 								</td>
 								<td><check-value :value="nilaiTotalSkorCU" valueType="decimal"></check-value></td>
 								<td><check-value :value="nilaiTotalBobotCU" valueType="decimal"></check-value></td>
+								<td><check-value :value="a1" valueType="decimal"></check-value></td>
+								<td><check-value :value="e9" valueType="decimal"></check-value></td>
 							</tr>
 						</tbody>
 					</table>
@@ -50,15 +76,37 @@
 						<tbody>
 							<tr>
 								<td>
-									<span v-if="nilaiTotalBobotBKCU > 59 && nilaiTotalBobotBKCU < 71"
-									>PERUNGGU (BRONZE)</span>
-									<span v-else-if="nilaiTotalBobotBKCU > 70 && nilaiTotalBobotBKCU < 81"
-									>PERAK (SILVER)</span>
-									<span v-else-if="nilaiTotalBobotBKCU > 81 && nilaiTotalBobotBKCU < 91"
-									>EMAS (GOLD)</span>
-									<span v-else-if="nilaiTotalBobotBKCU > 90"
-									>PLATINA (PLATINUM)</span>
-									<span v-else>MAAF SKOR ANDA BELUM CUKUP</span>
+									<span v-if="nilaiTotalBobotBKCU > 59 && nilaiTotalBobotBKCU < 71">
+										<span v-if="a1 < 10 && e9 >= 5">
+											PERUNGGU (BRONZE)
+										</span>
+										<span v-else>MAAF ANDA BELUM BISA MENDAPATKAN ACCESS BRANDING</span>
+									</span>
+									<span v-else-if="nilaiTotalBobotBKCU > 70 && nilaiTotalBobotBKCU < 81">
+										<span v-if="a1 < 7 && e9 >= 8">	
+											PERAK (SILVER)
+										</span>
+										<span v-else>
+											PERUNGGU (BRONZE)
+										</span>
+									</span>
+									<span v-else-if="nilaiTotalBobotBKCU > 81 && nilaiTotalBobotBKCU < 91">	
+										<span v-if="a1 < 5 && e9 >= 10">		
+											EMAS (GOLD)
+										</span>
+										<span v-else>
+											PERAK (SILVER)
+										</span>
+									</span>
+									<span v-else-if="nilaiTotalBobotBKCU > 90">
+										<span v-if="a1 = 0 && e9 > 10">		
+											PLATINA (PLATINUM)
+										</span>
+										<span v-else>
+											EMAS (GOLD)
+										</span>
+									</span>
+									<span v-else>MAAF ANDA BELUM BISA MENDAPATKAN ACCESS BRANDING</span>
 								</td>
 								<td><check-value :value="nilaiTotalSkorBKCU" valueType="decimal"></check-value></td>
 								<td><check-value :value="nilaiTotalBobotBKCU" valueType="decimal"></check-value></td>
@@ -77,6 +125,8 @@
 								<th>BRANDING</th>
 								<th>NILAI</th>
 								<th>KESEPADANAN (%)</th>
+								<th>Kelalaian Pinjaman / A1 (%)</th>
+								<th>Modal Lembaga / E9 (%)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,21 +134,29 @@
 								<td>PERUNGGU (BRONZE)</td>
 								<td>207 - 241</td>
 								<td>60 - 70</td>
+								<td>< 10</td>
+								<td>>= 5</td>
 							</tr>
 							<tr>
 								<td>PERAK (SILVER)</td>
 								<td>242 - 275</td>
 								<td>71 - 80</td>
+								<td>< 7</td>
+								<td>>= 8</td>
 							</tr>
 							<tr>
 								<td>EMAS (GOLD)</td>
 								<td>276 - 310</td>
 								<td>81 - 90</td>
+								<td>< 5</td>
+								<td>>= 10</td>
 							</tr>
 							<tr>
 								<td>PLATINA (PLATINUM)</td>
 								<td>Di atas 310</td>
 								<td>Di atas 90</td>
+								<td>0</td>
+								<td>> 10</td>
 							</tr>
 						</tbody>
 					</table>
@@ -117,7 +175,7 @@
 	import checkValue from "../../components/checkValue.vue";
 
 	export default {
-		props: ['form','mode','nilaiTotalSkorCU','nilaiTotalBobotCU','nilaiTotalSkorBKCU','nilaiTotalBobotBKCU'],
+		props: ['form','mode','nilaiTotalSkorCU','nilaiTotalBobotCU','nilaiTotalSkorBKCU','nilaiTotalBobotBKCU','a1','e9'],
 		components: {
 			checkValue
 		},
