@@ -170,7 +170,7 @@
               <td v-if="itemPearlsDataStat == 'success'">
                 <item-pearls
                   :type="column.name"
-                  :props="itemPearlsData.data[itemPearlsData.total-1]"
+                  :props="itemPearlsData.data[0]"
                 ></item-pearls>
               </td>
             </tr>

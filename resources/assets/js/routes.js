@@ -58,6 +58,7 @@ import saldo from './views/saldo/index.vue';
 import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
 import jalinanCair from './views/jalinanCair/index.vue';
+import jalinanLaporan_KlaimStatus from './views/jalinanLaporan/status.vue';
 import jalinanLaporan_KlaimCair from './views/jalinanLaporan/cair.vue';
 import jalinanLaporan_KlaimPenyebab from './views/jalinanLaporan/penyebab.vue';
 import jalinanLaporan_KlaimUsia from './views/jalinanLaporan/usia.vue';
@@ -496,6 +497,14 @@ const routes = [
 		meta: { requiresAuth: true , mode:'cair' }},
 		
 	// JALINAN LAPORAN
+	{ path: '/jalinan/laporan/klaim/status',
+		name: 'jalinanLaporanKlaimStatus', 
+		components: { default: jalinanLaporan_KlaimStatus, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinan/laporan/klaim/status/:status/:awal/:akhir/cu/:cu/:tp',
+		name: 'jalinanLaporanKlaimStatusTanggal', 
+		components: { default: jalinanLaporan_KlaimStatus, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true , mode:'laporan' }},	
 	{ path: '/jalinan/laporan/klaim/cair',
 		name: 'jalinanLaporanKlaimCair', 
 		components: { default: jalinanLaporan_KlaimCair, 'header': header, 'footer': footer },

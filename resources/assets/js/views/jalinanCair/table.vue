@@ -10,12 +10,12 @@
 
           <!-- button desktop  -->
           <div class="col-md-9 col-lg-9 pb-2 d-none d-sm-block">
-            <button class="btn btn-light mb-1" @click.prevent="modalOpen('cairAll')"  v-if="$route.meta.mode == 'cair'">
+            <button class="btn btn-light mb-1" @click.prevent="modalOpen('cairAll')"  >
               <i class="icon-checkbox-checked2"></i> Cairkan semua
             </button>
 
             <button class="btn btn-light mb-1" @click.prevent="modalOpen('cair')"
-            :disabled="!selectedItem.cu_id"  v-if="$route.meta.mode == 'cair'">
+            :disabled="!selectedItem.cu_id"  >
               <span v-if="selectedItem.status_klaim_cair > 0 && selectedItem.status_klaim_setuju == 0">
                 <i class="icon-cancel-square"></i> Batal Cairkan
               </span>
@@ -31,12 +31,12 @@
 
           <!-- button mobile -->
           <div class="col-md-12 pb-2 d-block d-sm-none">
-            <button class="btn btn-light btn-block pb-1" @click.prevent="cairkanSemua()"  v-if="$route.meta.mode == 'cair'">
+            <button class="btn btn-light btn-block pb-1" @click.prevent="cairkanSemua()"  >
               <i class="icon-checkbox-checked2"></i> Cairkan semua
             </button>
 
             <button class="btn btn-light btn-block pb-1" @click.prevent="modalOpen('cair')"
-            :disabled="!selectedItem.cu_id"  v-if="$route.meta.mode == 'cair'">
+            :disabled="!selectedItem.cu_id"  >
               <span v-if="selectedItem.status_klaim_cair > 0 && selectedItem.status_klaim_setuju == 0">
                 <i class="icon-cancel-square"></i> Batal Cairkan
               </span>
@@ -132,7 +132,9 @@
 
     </div>
     
+    <!-- sum widget -->
     <div class="row">
+
       <!-- cu -->
       <div class="col-lg-6 col-md-6">
         <div class="card card-body bg-blue-400" >
@@ -234,10 +236,8 @@
           </div>
         </div>
       </div>
-
-
       
-    </div>
+    </div>  
 
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :button="modalButton" :content="modalContent" :color="modalColor" 
@@ -254,7 +254,7 @@
   import dataTable from '../../components/datatable.vue';
   import appModal from '../../components/modal';
   import checkValue from '../../components/checkValue.vue';
-   import jsonExcel from 'vue-json-excel';
+  import jsonExcel from 'vue-json-excel';
 
   export default {
     components: {
@@ -306,6 +306,8 @@
           cu: 0,
           pria: 0,
           wanita: 0,
+          meninggal: 0,
+          cacat: 0,
           tot_disetujui: 0,
         },
         state: "",
@@ -332,11 +334,7 @@
           
           let itemData = [];
           
-          if(this.$route.meta.mode == 'cair'){
-            itemData = _.filter(this.itemData,function(o){ return o.status_klaim_setuju > 0});
-          }else if(this.$route.meta.mode == 'laporan'){
-            itemData = _.filter(this.itemData,function(o){ return o.status_klaim_cair > 0});
-          }
+          itemData = _.filter(this.itemData,function(o){ return o.status_klaim_setuju > 0});
 
           this.sumData.cu = _.size(itemData);
           this.sumData.lakilaki = _.sumBy(itemData,'lakilaki');
@@ -363,11 +361,7 @@
     },
     methods: {
       fetch(){
-        if(this.$route.meta.mode == 'cair'){
-          this.$store.dispatch('jalinanKlaim/indexCair', this.$route.params.awal );
-        }else if(this.$route.meta.mode == 'laporan'){
-          this.$store.dispatch('jalinanKlaim/indexLaporanCair', [this.$route.params.awal, this.$route.params.akhir] );
-        }
+        this.$store.dispatch('jalinanKlaim/indexCair', this.$route.params.awal );
       },
       selectedRow(item) {
         this.selectedItem = item;

@@ -678,7 +678,6 @@
 			'$route' (to, from){
 				this.fetch(this.query);
       },
-      
       updateStat(value) {
         this.modalState = value;
         this.modalButton = "Ok";

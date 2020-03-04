@@ -14,21 +14,25 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#324">Version 3.2.4 <small class="text-muted"> / 5 Maret 2020</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#324">Version 3.2.4 <small class="text-muted"> / 4 Maret 2020</small></a>
                   </h5>
                 </div>
 
                 <div id="324" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding
+                    <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding dan perubahan laporan pada Klaim JALINAN
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Merubah cara pengisian self assesment ACCESS Branding dimana pengisian periode harus sesuai dengan periode yang sudah ada pada laporan perkembangan CU</li>
                       <li>Menyambungkan data self assesment ACCESS Branding dengan laporan perkembangan CU untuk informasi PEARLS</li>
+                      <li>Merubah laporan klaim JALINAN pencairan per-cu menjadi laporan klaim berdasarkan status yang akan menampilkan laporan klaim JALINAN sesuai dengan status klaim pada saat tersebut </li>
+                      <li>Perbaikan bug pada penambahan klaim JALINAN</li>
                       <li>Perbaikan bug pada koreksi Klaim JALINAN</li>
                       <li>Perbaikan bug pada self assesment ACCESS Branding</li>
+                      <li>Perbaikan bug pada indikator PEARLS di R7</li>
+                      <li>Perbaikan bug pada tabel indikator PEARLS di dashboard</li>
                     </ul>
                   </div>
                 </div>

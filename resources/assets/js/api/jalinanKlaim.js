@@ -11,9 +11,9 @@ export default {
   indexCair: function( tanggal){
     return axios.get('/api/jalinanKlaim/indexCair/' + tanggal);
   },
-
-  indexLaporanCair: function( awal, akhir){
-    return axios.get('/api/jalinanKlaim/indexLaporanCair/' + awal + '/' + akhir);
+  
+  indexLaporanStatus: function( status, awal, akhir){
+    return axios.get('/api/jalinanKlaim/indexLaporanStatus/' + status + '/' + awal + '/' + akhir);
   },
 
   indexLaporanPenyebab: function( awal, akhir, cu){
@@ -32,6 +32,10 @@ export default {
     return axios.get('/api/jalinanKlaim/getPencairan');
   },
 
+  getStatus: function( status_klaim ){
+    return axios.get('/api/jalinanKlaim/getStatus/' + status_klaim);
+  },
+
   getVerifikator: function( verifikator_pengurus,verifikator_pengawas, verifikator_manajemen ){
     return axios.get('/api/jalinanKlaim/getVerifikator/' + verifikator_pengurus + '/' + verifikator_pengawas + '/' + verifikator_manajemen);
   },
@@ -40,7 +44,7 @@ export default {
     return axios.get('/api/jalinanKlaim/create');
   },
 
-  storjalinae: function ( form ){
+  store: function ( form ){
     return axios.post('/api/jalinanKlaim/store', form);
   },
 

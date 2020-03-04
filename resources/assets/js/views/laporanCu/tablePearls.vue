@@ -885,7 +885,7 @@ export default {
           {
             title: "Simpanan Saham Bulan Desember",
             key: "simpanan_saham_des",
-            value: itemData.aset
+            value: itemData.simpanan_saham_des
           },
           {
             title:

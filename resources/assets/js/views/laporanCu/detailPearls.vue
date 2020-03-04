@@ -260,7 +260,6 @@
 					<b>Total pinjaman lalai / total ipnjaman beredar</b>
 				</div>
 			</div>
-			
 		</div>
 
 		<div class="row">
@@ -465,7 +464,6 @@
 					<b>Pertumbuhan anggota</b>
 				</div>
 			</div>
-
 			<!-- s11 -->
 			<div class="col-sm-3">
 				<div class="card card-body" :class="{'bg-primary': itemData.s11 > (0.1 + itemData.laju_inflasi), 'bg-danger': itemData.s11 <= (0.1 + itemData.laju_inflasi)}" @click.prevent="modalBuka(itemData,'s11')" style="cursor:pointer;">

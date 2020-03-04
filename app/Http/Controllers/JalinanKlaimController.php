@@ -117,25 +117,6 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function indexLaporanCair($awal, $akhir)
-	{
-		$table_data = DB::table('jalinan_klaim')
-		->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
-		->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
-		->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
-		->select(DB::raw($this->queryCair()))
-		->whereNull('jalinan_klaim.deleted_at')
-		->where('status_klaim','>=',5)
-		->whereBetween('tanggal_pencairan',[$awal, $akhir])
-		->groupBy('anggota_cu_cu.cu_id')
-		->get();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
 	public function queryCair(){
 		return 'MAX(cu.no_ba) as no_ba,
 		MAX(cu.name) as cu_name,
@@ -146,9 +127,45 @@ class JalinanKlaimController extends Controller{
 		COUNT(CASE WHEN anggota_cu.kelamin="PEREMPUAN" THEN 1 END) AS perempuan, 
 		COUNT(CASE WHEN tipe="MENINGGAL" THEN 1 END) AS meninggal, 
 		COUNT(CASE WHEN tipe="CACAT" THEN 1 END) AS cacat, 
+		SUM(tunas_diajukan) AS tunas_diajukan, 
+		SUM(lintang_diajukan) AS lintang_diajukan,
+		SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
 		SUM(tunas_disetujui) AS tunas_disetujui, 
 		SUM(lintang_disetujui) AS lintang_disetujui,
 		SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui';
+	}
+
+	public function indexLaporanStatus($status, $awal, $akhir)
+	{
+		if($status == '4'){
+			$table_data = DB::table('jalinan_klaim')
+			->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
+			->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
+			->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
+			->select(DB::raw($this->queryCair()))
+			->whereNull('jalinan_klaim.deleted_at')
+			->where('status_klaim', $status)
+			->whereBetween('tanggal_pencairan',[$awal, $akhir])
+			->groupBy('anggota_cu_cu.cu_id')
+			->get();
+		}else{
+			$table_data = DB::table('jalinan_klaim')
+			->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
+			->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
+			->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
+			->select(DB::raw($this->queryCair()))
+			->whereNull('jalinan_klaim.deleted_at')
+			->where('status_klaim', $status)
+			->whereBetween('jalinan_klaim.created_at',[$awal, $akhir])
+			->groupBy('anggota_cu_cu.cu_id')
+			->get();
+		}
+		
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexLaporanPenyebab($awal, $akhir, $cu){
@@ -1017,6 +1034,16 @@ class JalinanKlaimController extends Controller{
 	public function getPencairan()
 	{
 		$table_data = JalinanKlaim::where('status_klaim',4)->select('tanggal_pencairan')->distinct()->orderBy('tanggal_pencairan','DESC')->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function getStatus($status_klaim)
+	{
+		$table_data = JalinanKlaim::where('status_klaim',$status_klaim)->select('created_at')->distinct()->orderBy('created_at','DESC')->get();
 
 		return response()
 		->json([

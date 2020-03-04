@@ -464,6 +464,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/jalinanKlaim/getKlaim/{id}', 'JalinanKlaimController@getKlaim');
     Route::get('/jalinanKlaim/getVerifikator/{verifikator_pengurus}/{verifikator_pengawas}/{verifikator_manajemen}', 'JalinanKlaimController@getVerifikator');
     Route::post('/jalinanKlaim/updateVerifikasi/{id}', 'JalinanKlaimController@updateVerifikasi');
+    Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
+    Route::get('/jalinanKlaim/getStatus/{status_klaim}', 'JalinanKlaimController@getStatus');
     Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
         Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
@@ -484,14 +486,13 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/jalinanKlaim/{id}', 'JalinanKlaimController@destroy');
     });
     Route::group(['middleware' => ['permission:pencairan_jalinan_klaim']], function () {
-        Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
         Route::get('/jalinanKlaim/indexCair/{tanggal_pencairan}', 'JalinanKlaimController@indexCair');
         Route::post('/jalinanKlaim/updateCair/{id}/{awal}/{akhir}', 'JalinanKlaimController@updateCair');
         Route::post('/jalinanKlaim/updateCairBatal/{id}/{awal}/{akhir}', 'JalinanKlaimController@updateCairBatal');
         Route::post('/jalinanKlaim/updateCairAll/{awal}/{akhir}', 'JalinanKlaimController@updateCairAll');
     });
     Route::group(['middleware' => ['permission:laporan_jalinan_klaim']], function () {
-        Route::get('/jalinanKlaim/indexLaporanCair/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCair');
+        Route::get('/jalinanKlaim/indexLaporanStatus/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanStatus');
         Route::get('/jalinanKlaim/indexLaporanPenyebab/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanPenyebab');
         Route::get('/jalinanKlaim/indexLaporanUsia/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanUsia');
         Route::get('/jalinanKlaim/indexLaporanLama/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanLama');

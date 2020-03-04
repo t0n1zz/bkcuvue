@@ -18,7 +18,7 @@
 							<div class="row">
 
 								<!-- cu -->
-								<div class="col-md-6" v-if="currentUser.id_cu === 0">
+								<div class="col-md-6" v-if="currentUser.id_cu == 0">
 									<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 										<!-- title -->

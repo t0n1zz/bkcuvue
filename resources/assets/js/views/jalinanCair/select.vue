@@ -67,7 +67,7 @@
 				this.$store.dispatch('jalinanKlaim/getPencairan', value);
 			},
 			changePencairan(value){
-				this.$router.push({name: 'jalinanCairTanggal', params:{awal: value, cu: 'semua'} });
+				this.$router.push({name: 'jalinanCairTanggal', params:{awal: value, cu: 'semua', tp: 'semua'} });
 			},
 		},
 		computed: {

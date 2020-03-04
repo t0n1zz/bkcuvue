@@ -3,7 +3,7 @@
 	<div class="page-content pt-2 pb-0" v-if="clientVersion != serverVersion">
 		<div class="content-wrapper pb-0 mb-0">
 			<div class="alert alert-warning alert-styled-left mb-0" >
-				<span class="font-weight-semibold">Warning!</span> Versi SIMO yang anda pakai saat ini [{{ clientVersion }}] bukanlah yang terbaru [{{ serverVersion }}] , silahkan melakukan <button type="button" class="btn btn-warning btn-sm" @click.prevent="reloadPage()"> <i class="icon-sync"></i> Hard Reload</button> agar semua fungsi dalam aplikasi berfungsi dengan normal.
+				<span class="font-weight-semibold">Warning!</span> Versi SIMO yang anda pakai saat ini [{{ clientVersion }}] bukanlah yang terbaru [{{ serverVersion }}] , silahkan melakukan <button type="button" class="btn btn-warning btn-sm" @click.prevent="modalConfirmOpen()"> <i class="icon-sync"></i> Hard Reload</button> agar semua fungsi dalam aplikasi berfungsi dengan normal.
 			</div>
 		</div>
 

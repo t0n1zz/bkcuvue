@@ -517,8 +517,8 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
 
-									<router-link :to="{ name: 'jalinanLaporanKlaimCair' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
-										Pencairan Per-CU
+									<router-link :to="{ name: 'jalinanLaporanKlaimStatus' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
+										Klaim Berdasarkan Status
 									</router-link>
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimPenyebab' }" class="dropdown-item" active-class="active" exact >
@@ -1033,7 +1033,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.2.3',
+				clientVersion: '3.2.4',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				state: '',

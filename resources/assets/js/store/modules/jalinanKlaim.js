@@ -297,10 +297,10 @@ export const jalinanKlaim = {
         });
     },
 
-    indexLaporanCair( { commit }, [awal, akhir] ){
+    indexLaporanStatus( { commit }, [status, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.indexLaporanCair( awal, akhir )
+      JalinanKlaimAPI.indexLaporanStatus( status, awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -373,6 +373,20 @@ export const jalinanKlaim = {
       commit('setPeriodeStat', 'loading');
       
       JalinanKlaimAPI.getPencairan()
+        .then( function( response ){
+          commit('setPeriode', response.data.model);
+          commit('setPeriodeStat', 'success');
+        })
+        .catch(error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
+        });
+    },
+
+    getStatus( {commit}, status_klaim ){
+      commit('setPeriodeStat', 'loading');
+      
+      JalinanKlaimAPI.getStatus( status_klaim )
         .then( function( response ){
           commit('setPeriode', response.data.model);
           commit('setPeriodeStat', 'success');
