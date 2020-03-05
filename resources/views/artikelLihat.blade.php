@@ -22,7 +22,7 @@
       @else
       <li class="breadcrumb-item">-</li>
       @endif
-      <li class="breadcrumb-item active" aria-current="page">{{ $artikel->name }}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ str_limit($artikel->name, 100) }}</li>
     </ol>
   </div>
 

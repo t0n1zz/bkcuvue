@@ -103,7 +103,7 @@
 				title: 'Laporan Statistik',
 				titlePearls: 'P.E.A.R.L.S',
 				kelas: 'laporanCu',
-				titleDesc: 'Mengelola data perkembangan CU',
+				titleDesc: 'Mengelola data statistik CU',
 				titleIcon: 'icon-stats-bars2',
 				selectCUPath: 'laporanCuCU',
 				tabName: 'table',
@@ -142,11 +142,11 @@
 					this.titleDesc = 'Mengelola data statistik CU';
 				} else if (this.$route.meta.mode == "cu") {
 					if (this.$route.params.tp == "konsolidasi") {
-						this.title = "Laporan Perkembangan CU";
-						this.titleDesc = 'Mengelola data perkembangan CU';
+						this.title = "Laporan Statistik CU";
+						this.titleDesc = 'Mengelola data statistik CU';
 					} else {
-						this.title = "Laporan Perkembangan TP/KP";
-						this.titleDesc = 'Mengelola data perkembangan TP/KP';
+						this.title = "Laporan Statistik TP/KP";
+						this.titleDesc = 'Mengelola data statistik TP/KP';
 					}
 				} else if (this.$route.meta.mode == "cuPeriode") {
 					this.title = "Laporan Statistik TP/KP";

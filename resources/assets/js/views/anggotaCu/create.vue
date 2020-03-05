@@ -1002,7 +1002,7 @@
 			}
 		},
 		created() {
-			if(this.mode == 'edit'){
+			if(this.mode == 'edit' || this.mode == 'edit_jalinan'){
 				this.confirmIcon = 'icon-floppy-disk';
 				this.confirmTitle = 'Simpan';
 			}
@@ -1025,7 +1025,7 @@
 		watch: {
 			formStat(value){
 				if(value == 'success'){
-					if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit'){
+					if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit' || this.mode == 'edit_jalinan'){
 						this.fetchCu();
 					}else{
 						this.form.tp_id == '';
@@ -1062,7 +1062,7 @@
 					this.fetchCu();
 				}
 
-				if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit'){
+				if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit' || this.mode == 'edit_jalinan'){
 					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				}
 			},
@@ -1127,7 +1127,7 @@
 					if (result) {
 						if(this.mode == 'create_new' || this.mode == 'create_jalinan'){
 							this.$store.dispatch(this.kelas + '/store', formData);
-						}else if(this.mode == 'create_old' || this.mode == 'create_edit'){
+						}else if(this.mode == 'create_old' || this.mode == 'create_edit' || this.mode == 'edit_jalinan'){
 							this.$store.dispatch(this.kelas + '/update', [this.form.id,formData]);
 						}else if(this.mode == 'edit' ){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id,formData]);
@@ -1149,10 +1149,18 @@
 				this.$store.dispatch('villages/getDistricts', id);
 			},
 			back() {
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua', tp: 'semua'}});
+				if(this.mode == 'edit_jalinan'){
+					if(this.currentUser.id_cu == 0){
+						this.$router.push({name: 'jalinanKlaimCu', params:{cu: 'semua', tp: 'semua'}});
+					}else{
+						this.$router.push({name: 'jalinanKlaimCu', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
+					}
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
+					if(this.currentUser.id_cu == 0){
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: 'semua', tp: 'semua'}});
+					}else{
+						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
+					}
 				}
 			},
 			selectedCuRow(index,item){

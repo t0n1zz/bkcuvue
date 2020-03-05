@@ -442,7 +442,15 @@ const routes = [
 	{ path: '/anggotaCu/produk/edit/:id/cu/:cu',
 		name: 'anggotaCuProdukEdit', 
 		components: { default: anggotaCu_produk, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true, mode:'edit' }},		
+		meta: { requiresAuth: true, mode:'edit' }},	
+	{ path: '/anggotaCu/edit/:id/jalinan',
+		name: 'anggotaCuEditJalinan', 
+		components: { default: anggotaCu_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'editJalinan' } },		
+	{ path: '/anggotaCu/produk/edit/:id/cu/:cu/jalinan',
+		name: 'anggotaCuProdukEditJalinan', 
+		components: { default: anggotaCu_produk, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'editJalinan' }},		
 
 	// anggota cu
 	{ path: '/anggotaCuDraft/cu/:cu/:tp',

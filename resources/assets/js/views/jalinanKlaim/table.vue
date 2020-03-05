@@ -17,6 +17,18 @@
           <i class="icon-pencil5"></i> Ubah
         </button>
 
+        <!-- ubah identitas -->
+        <button @click.prevent="ubahDataAnggota(selectedItem.anggota_cu_id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"
+          :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Identitas
+        </button>
+
+        <!-- ubah produk -->
+        <button @click.prevent="ubahDataAnggota(selectedItem.anggota_cu_id,'produk')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"
+          :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Produk
+        </button>
+
         <!-- koreksi-->
         <button @click.prevent="koreksiData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 3 && status != 7" :disabled="!selectedItem.anggota_cu">
           <i class="icon-paint-format"></i> Koreksi
@@ -98,6 +110,18 @@
         <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0"
           :disabled="!selectedItem.anggota_cu">
           <i class="icon-pencil5"></i> Ubah
+        </button>
+
+        <!-- ubah identitas -->
+        <button @click.prevent="ubahDataAnggota(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"
+          :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Identitas
+        </button>
+
+        <!-- ubah produk -->
+        <button @click.prevent="ubahDataAnggota(selectedItem.id,'produk')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"
+          :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Produk
         </button>
 
         <!-- koreksi-->
@@ -718,6 +742,24 @@
             tipe: tipe
           }
         });
+      },
+      ubahDataAnggota(id,type) {
+        if(type == 'identitas'){
+          this.$router.push({
+            name: "anggotaCuEditJalinan",
+            params: {
+              id: id
+            }
+          });
+        }else if(type == 'produk'){
+          this.$router.push({
+            name: "anggotaCuProdukEditJalinan",
+            params: {
+              id: id,
+              cu: this.$route.params.cu,
+            }
+          });
+        }
       },
       koreksiData(nik, cu, tipe) {
         this.$router.push({

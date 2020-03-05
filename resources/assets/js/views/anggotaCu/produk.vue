@@ -115,7 +115,7 @@
 							:cancelTitle="'kembali'" 
 							@confirmClick="back" 
 							@cancelClick="kembali" 
-							v-if="$route.meta.mode == 'create' || $route.meta.mode == 'createJalinan' "></form-button>
+							v-if="$route.meta.mode == 'create' || $route.meta.mode == 'createJalinan'"></form-button>
 						<form-button 
 							:isSingleButton="true"
 							:cancelState="'methods'"
@@ -232,6 +232,12 @@
 			back(){
 				if(this.$route.meta.mode == 'createJalinan'){
 					this.$router.push({name: 'jalinanKlaimCreateNik', params:{nik: this.form.nik}});
+				}if(this.$route.meta.mode == 'editJalinan'){
+					if(this.currentUser.id_cu == 0){
+						this.$router.push({name: 'jalinanKlaimCu', params:{cu: 'semua', tp: 'semua'}});
+					}else{
+						this.$router.push({name: 'jalinanKlaimCu', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
+					}
 				}else{
 					if(this.currentUser.id_cu != 0){
 						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});

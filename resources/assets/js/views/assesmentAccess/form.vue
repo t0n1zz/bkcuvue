@@ -70,7 +70,7 @@
 
 								<div class="col-md-12">
 									<div class="alert bg-info alert-styled-left">
-										<h6>Periode mengacu pada periode pada laporan perkembangan CU yang diinputkan di SIMO, apabila anda tidak menemukan periode yang dimaksud maka silahkan cek ke menu laporan perkembangan CU dibawah menu Tata kelola.</h6>
+										<h6>Periode mengacu pada periode pada laporan statistik CU yang diinputkan di SIMO, apabila anda tidak menemukan periode yang dimaksud maka silahkan cek ke menu laporan statistik CU dibawah menu Tata kelola.</h6>
 									</div>
 								</div>
 

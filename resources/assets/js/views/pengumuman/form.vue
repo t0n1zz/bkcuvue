@@ -17,7 +17,7 @@
 
 				<!-- textarea -->
 				<textarea rows="5" type="text" name="name" class="form-control" placeholder="Silahkan masukkan pengumuman di website anda"
-					v-validate="'required|min:5'" v-model="form.name"></textarea>
+					v-validate="'required|min:5|max:160'" v-model="form.name"></textarea>
 
 				<!-- error message -->
 				<small class="text-muted text-danger" v-if="errors.has('form.name')">
