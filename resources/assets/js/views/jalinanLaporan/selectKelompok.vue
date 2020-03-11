@@ -5,8 +5,9 @@
 			<div class="card-body">  
 				<div class="row">
 					
-					<div class="col-sm-10 mb-2">
-						<div class="input-group" v-if="this.currentUser.id_cu == 0 && isCu">
+					<!-- cu -->
+					<div class="col-sm-5 mb-2" v-if="this.currentUser.id_cu == 0">
+						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Pilih CU</span>
 							</div>
@@ -29,11 +30,31 @@
 						</div>
 					</div>
 
+					<!-- status -->
+					<div class="mb-2" :class="{'col-sm-5' : this.currentUser.id_cu == 0, 'col-sm-10' : this.currentUser.id_cu != 0}">
+						<div class="input-group">
+							<span class="input-group-prepend">
+								<span class="input-group-text">Pilih Status</span>
+							</span>
+
+							<!-- select -->
+							<select class="form-control" name="status" v-model="status" data-width="100%" @change="changeDetailTanggal($event.target.value)">
+								<option disabled value="">Silahkan pilih status</option>
+								<option value="1">Menunggu</option>
+								<option value="2">Dokumen Tidak Lengkap</option>
+								<option value="3">Ditolak</option>
+								<option value="4">Disetujui</option>
+								<option value="5">Dicairkan</option>
+								<option value="6">Selesai</option>
+							</select>
+						</div>
+					</div>
+
 					<!-- tanggal pencairan -->
 					<div class="col-sm-5">
 						<div class="input-group">
 							<span class="input-group-prepend">
-								<span class="input-group-text">Tanggal Awal</span>
+								<span class="input-group-text">Tanggal Awal {{ detailTanggal }}</span>
 							</span>
 
               <!-- input -->
@@ -51,7 +72,7 @@
           <div class="col-sm-5">
 						<div class="input-group">
 							<span class="input-group-prepend">
-								<span class="input-group-text">Tanggal Akhir</span>
+								<span class="input-group-text">Tanggal Akhir {{ detailTanggal }}</span>
 							</span>
 
               <!-- input -->
@@ -82,7 +103,6 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props: ['status','isCu'],
 		components: {
       Cleave, 
 		},
@@ -101,7 +121,9 @@
             datePattern: ['Y','m','d'],
             delimiter: '-'
 					},
-        },
+				},
+				status: '',
+				detailTanggal: 'Pengajuan',
         awal:'',
 				akhir:'',
 				idCu: '',
@@ -111,10 +133,14 @@
 			if(this.$route.meta.mode == 'laporan'){
 				this.awal = this.$route.params.awal;
 				this.akhir = this.$route.params.akhir;
+				this.status = this.$route.params.status;
 			}
 			if(this.currentUser.id_cu != 0){
 				this.idCu = this.currentUser.id_cu;
+			}else{
+				this.idCu = 'semua';
 			}
+			this.changeDetailTanggal(this.$route.params.status);
 		},
 		watch: {
 			'$route' (to, from){
@@ -122,11 +148,13 @@
 					this.awal = this.$route.params.awal;
 					this.akhir = this.$route.params.akhir;
 					this.idCu = this.$route.params.cu;
+					this.status = this.$route.params.status;
 				}
 
 				if(this.currentUser.id_cu == 0){
 					this.fetchCU();
 				}
+				this.changeDetailTanggal(this.$route.params.status);
 			},
 			modelCuStat(value){
 				if(value === "success"){
@@ -136,7 +164,7 @@
     },
 		methods: {
 			cari(){
-        this.$emit('cari', this.awal, this.akhir, this.idCu);
+        this.$emit('cari', this.awal, this.akhir, this.idCu, this.status);
 			},
 			fetchCU(){
 				if(this.modelCu.length == 0){
@@ -145,6 +173,13 @@
 					this.idCu = this.$route.params.cu;
 				}
 			},
+			changeDetailTanggal(value){
+				if(value == 5 || value == 6){
+					this.detailTanggal = 'Pencairan';
+				}else{
+					this.detailTanggal = 'Pengajuan';
+				}
+			}
 		},
 		computed: {
 			...mapGetters('auth',{

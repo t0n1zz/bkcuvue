@@ -21,16 +21,31 @@
 						<select-data @cari="cari"></select-data>
 						
             <div v-if="$route.meta.mode == 'laporan'">
-              <table-status :title="'Pencairan Klaim'"  :itemData="itemData" :itemDataStat="itemDataStat" @bukaData="bukaData"></table-status>
+              <table-status :title="'Klaim Per CU'"  :itemData="itemData" :itemDataStat="itemDataStat" @bukaData="bukaData" @lihatSemua="bukaData"></table-status>
 
               <hr/>
-              <button type="button" class="btn btn-light btn-block" @click.prevent="showDetail('semua')">
-                <span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data klaim JALINAN</span>
-                <span v-else><i class="icon-eye-blocked"></i> Tutup data klaim JALINAN</span>
-              </button>
+								<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail">
+									<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data klaim JALINAN</span>
+									<span v-else><i class="icon-eye-blocked"></i> Tutup data klaim JALINAN</span>
+								</button>
               <hr/>
 
-						  <table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemDataKlaim" :itemDataStat="itemDataStatKlaim" :status="'4'" :isSimple="true" v-if="isShowDetail"></table-data>
+							<div v-if="isShowDetail">
+
+						  	<table-data :title="'Klaim JALINAN Menunggu'" :kelas="kelas" :itemData="itemDataKlaim1" :itemDataStat="itemDataStatKlaim1" :status="'1'" :isSimple="true" v-if="status == '1'"></table-data>
+
+						  	<table-data :title="'Klaim JALINAN Dokumen Tidak Lengkap'" :kelas="kelas" :itemData="itemDataKlaim2" :itemDataStat="itemDataStatKlaim2" :status="'2'" :isSimple="true" v-if="status == '2'"></table-data>
+
+						  	<table-data :title="'Klaim JALINAN Ditolak'" :kelas="kelas" :itemData="itemDataKlaim3" :itemDataStat="itemDataStatKlaim3" :status="'3'" :isSimple="true" v-if="status == '3'"></table-data>
+
+						  	<table-data :title="'Klaim JALINAN Disetujui'" :kelas="kelas" :itemData="itemDataKlaim4" :itemDataStat="itemDataStatKlaim4" :status="'4'" :isSimple="true" v-if="status == '4'"></table-data>
+
+						  	<table-data :title="'Klaim JALINAN Dicairkan'" :kelas="kelas" :itemData="itemDataKlaim5" :itemDataStat="itemDataStatKlaim5" :status="'5'" :isSimple="true" v-if="status == '5'"></table-data>
+
+						  	<table-data :title="'Klaim JALINAN Selesai'" :kelas="kelas" :itemData="itemDataKlaim6" :itemDataStat="itemDataStatKlaim6" :status="'6'" :isSimple="true" v-if="status == '6'"></table-data>
+
+							</div>
+							
             </div>
 
 					</div>
@@ -59,20 +74,32 @@
 		},
 		data() {
 			return {
-				title: ' Laporan Klaim JALINAN Disetujui',
-				titleDesc: 'Mengelola Laporan Klaim JALINAN yang akan dicairkan',
+				title: ' Laporan Klaim JALINAN',
+				titleDesc: 'Mengelola Laporan Klaim JALINAN Berdasarkan Status',
 				titleIcon: 'icon-archive',
 				kelas: 'jalinanKlaim',
 				isShowDetail: false,
 				cu: '',
+				status: '',
 			}
 		},
 		created(){
 			this.checkUser('index_anggota_cu',this.$route.params.cu);
+			this.status = this.$route.params.status;
+		},
+		watch: {
+			'$route' (to, from){
+				// check current page meta
+				this.status = this.$route.params.status;
+			},
 		},
 		methods: {
+			fetch(cu, status, awal, akhir){
+				this.$router.push({name: 'jalinanLaporanKlaimStatusTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'status'} });
+			},
 			cari(awal, akhir, status){
-        this.$router.push({name: 'jalinanLaporanKlaimStatusTanggal', params:{awal: awal, akhir: akhir, status: status, cu: 'semua', tp: 'semua'} });
+				this.fetch('semua', status, awal, akhir);
+				this.isShowDetail = false;
 			},
 			checkUser(permission,id_cu){
 				if(this.currentUser){
@@ -84,17 +111,14 @@
 							this.$router.push('/notFound');
 						}
 					}
-				}
+			}
 			},
 			bukaData(value){
+				this.fetch(value, this.$route.params.status, this.$route.params.awal, this.$route.params.akhir);
 				this.isShowDetail = true;
 			},
-			showDetail(value){
-				if(this.isShowDetail){
-					this.isShowDetail = false;
-				}else{
-					this.bukaData(value);
-				}
+			showDetail(){
+				this.isShowDetail = !this.isShowDetail;
       },
 		},
 		computed: {
@@ -103,9 +127,21 @@
 			}),
 			...mapGetters('jalinanKlaim',{
 				itemData: 'dataS',
-				itemDataKlaim: 'dataS4',
 				itemDataStat: 'dataStatS',
-				itemDataStatKlaim: 'dataStatS4',
+				itemDataKlaim1: 'dataS1',
+				itemDataStatKlaim1: 'dataStatS1',
+				itemDataKlaim2: 'dataS2',
+				itemDataStatKlaim2: 'dataStatS2',
+				itemDataKlaim3: 'dataS3',
+				itemDataStatKlaim3: 'dataStatS3',
+				itemDataKlaim4: 'dataS4',
+				itemDataStatKlaim4: 'dataStatS4',
+				itemDataKlaim5: 'dataS5',
+				itemDataStatKlaim5: 'dataStatS5',
+				itemDataKlaim6: 'dataS6',
+				itemDataStatKlaim6: 'dataStatS6',
+				itemDataKlaim7: 'dataS7',
+				itemDataStatKlaim7: 'dataStatS7',
 			}),
 		}
 	}

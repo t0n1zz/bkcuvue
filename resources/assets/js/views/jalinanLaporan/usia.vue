@@ -59,7 +59,7 @@
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-  import selectData from "./select.vue";
+  import selectData from "./selectKelompok.vue";
   import tableData from "../jalinanKlaim/table.vue";
 	import tableKelompok from "./tableKelompok";
 	

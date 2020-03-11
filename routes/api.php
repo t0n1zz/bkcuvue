@@ -493,7 +493,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
     Route::group(['middleware' => ['permission:laporan_jalinan_klaim']], function () {
         Route::get('/jalinanKlaim/indexLaporanStatus/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanStatus');
-        Route::get('/jalinanKlaim/indexLaporanPenyebab/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanPenyebab');
+        Route::get('/jalinanKlaim/indexLaporanStatusDetail/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanStatusDetail');
+        Route::get('/jalinanKlaim/indexLaporanPenyebab/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebab');
+        Route::get('/jalinanKlaim/indexLaporanPenyebabDetail/{cu}/{status}/{kategori}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebabDetail'); 
         Route::get('/jalinanKlaim/indexLaporanUsia/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanUsia');
         Route::get('/jalinanKlaim/indexLaporanLama/{awal}/{akhir}/{cu}', 'JalinanKlaimController@indexLaporanLama');
     });

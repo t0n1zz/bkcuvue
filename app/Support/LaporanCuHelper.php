@@ -169,9 +169,9 @@ class LaporanCuHelper{
 		CASE WHEN
 			@rata_aset > 0
 		THEN
-			@e9 := (IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset 
+			@r9 := (IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / @rata_aset 
 		ELSE
-			@e9 := (IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / 0.01
+			@r9 := (IFNULL(laporan_cu.total_biaya,0) - IFNULL(laporan_cu.beban_penyisihan_dcr,0)) / 0.01
 		END as r9,
 
 		CASE WHEN

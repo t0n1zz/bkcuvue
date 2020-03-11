@@ -1003,14 +1003,14 @@ export default {
           this.modalKatex.form[1].title +
           "})}{\\text{Rata-rata Aset}(\\frac{\\text{" +
           this.modalKatex.form[2].title +
-          "} - \\text{" +
+          "} + \\text{" +
           this.modalKatex.form[3].title +
           "}}{\\text{2}})} \\times \\text{100} \\% <= \\text{5} \\% (\\text{IDEAL})";
 
         let katex2Content1 =
           "\\text{R9} = \\dfrac{\\text{" +
           this.formatCurrency(this.modalKatex.form[0].value) +
-          "} + \\text{" +
+          "} - \\text{" +
           this.formatCurrency(this.modalKatex.form[1].value) +
           "}}{\\frac{\\text{" +
           this.formatCurrency(this.modalKatex.form[2].value) +

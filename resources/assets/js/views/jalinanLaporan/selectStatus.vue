@@ -13,16 +13,14 @@
 							</span>
 
 							<!-- select -->
-							<select class="form-control" name="status" v-model="status" data-width="100%">
+							<select class="form-control" name="status" v-model="status" data-width="100%" @change="changeDetailTanggal($event.target.value)">
 								<option disabled value="">Silahkan pilih status</option>
-								<option value="0">Verifikasi CU</option>
 								<option value="1">Menunggu</option>
 								<option value="2">Dokumen Tidak Lengkap</option>
 								<option value="3">Ditolak</option>
 								<option value="4">Disetujui</option>
 								<option value="5">Dicairkan</option>
 								<option value="6">Selesai</option>
-								<option value="7">Koreksi</option>
 							</select>
 						</div>
 					</div>
@@ -31,7 +29,7 @@
 					<div class="col-sm-5">
 						<div class="input-group">
 							<span class="input-group-prepend">
-								<span class="input-group-text">Tanggal Awal</span>
+								<span class="input-group-text">Tanggal Awal {{ detailTanggal }}</span>
 							</span>
 
               <!-- input -->
@@ -49,7 +47,7 @@
           <div class="col-sm-5">
 						<div class="input-group">
 							<span class="input-group-prepend">
-								<span class="input-group-text">Tanggal Akhir</span>
+								<span class="input-group-text">Tanggal Akhir {{ detailTanggal }}</span>
 							</span>
 
               <!-- input -->
@@ -100,6 +98,7 @@
 					},
         },
 				status: '',
+				detailTanggal: 'Pengajuan',
 				awal:'',
 				akhir:'',
 			}
@@ -110,6 +109,7 @@
 				this.akhir = this.$route.params.akhir;
 				this.status = this.$route.params.status;
 			}
+			this.changeDetailTanggal(this.$route.params.status);
 		},
 		watch: {
 			'$route' (to, from){
@@ -118,12 +118,20 @@
 					this.akhir = this.$route.params.akhir;
 					this.status = this.$route.params.status;
 				}
+				this.changeDetailTanggal(this.$route.params.status);
 			},
     },
 		methods: {
 			cari(){
         this.$emit('cari', this.awal, this.akhir, this.status);
 			},
+			changeDetailTanggal(value){
+				if(value == 5 || value == 6){
+					this.detailTanggal = 'Pencairan';
+				}else{
+					this.detailTanggal = 'Pengajuan';
+				}
+			}
 		},
 		computed: {
 			...mapGetters('auth',{

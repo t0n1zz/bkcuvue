@@ -10,15 +10,23 @@
 
           <!-- button desktop  -->
           <div class="col-md-9 col-lg-9 pb-2 d-none d-sm-block">
-            <button class="btn btn-light mb-1" @click="bukaData(selectedItem.cu_id)" :disabled="!selectedItem.cu_id">
-              <i class="icon-eye"></i> Buka data klaim JALINAN
+            <button class="btn btn-light mb-1" @click.prevent="bukaData(selectedItem.kategori)" :disabled="!selectedItem.kategori">
+              <i class="icon-folder-open3"></i> Buka data klaim JALINAN
+            </button>
+
+            <button class="btn btn-light mb-1" @click.prevent="lihatSemua">
+              <i class="icon-eye"></i> Lihat semua data klaim JALINAN
             </button>
           </div>
 
           <!-- button mobile -->
           <div class="col-md-12 pb-2 d-block d-sm-none">
-            <button class="btn btn-light btn-block pb-1" @click="bukaData(selectedItem.cu_id)" :disabled="!selectedItem.cu_id">
-              <i class="icon-eye"></i> Buka data klaim JALINAN
+            <button class="btn btn-light btn-block pb-1" @click.prevent="bukaData(selectedItem.kategori)" :disabled="!selectedItem.kategori">
+              <i class="icon-folder-open3"></i> Buka data klaim JALINAN
+            </button>
+
+            <button class="btn btn-light btn-block pb-1" @click.prevent="lihatSemua">
+              <i class="icon-eye"></i> Lihat semua data klaim JALINAN
             </button>
           </div>
 
@@ -56,7 +64,7 @@
 
       <data-table :items="itemData" :columnData="columnData" :itemDataStat="itemDataStat">
         <template slot="item-desktop" slot-scope="props">
-          <tr :class="{ 'bg-info': selectedItem.no_ba === props.item.no_ba }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+          <tr :class="{ 'bg-info': selectedItem.kategori === props.item.kategori }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
             <td>{{ props.index + 1 }}</td>
             <td>
               <check-value :value="props.item.kategori"></check-value>
@@ -172,7 +180,7 @@
       </div>
 
       <!-- total -->
-      <div :class="{'col-sm-6' : $route.params.cu == 'semua','col-sm-12' : $route.params.cu != 'semua'}">
+      <div :class="{'col-lg-6 col-md-6' : $route.params.cu == 'semua','col-lg-12 col-md-12' : $route.params.cu != 'semua'}">
         <div class="card card-body bg-danger-400" >
           <div class="media">
             <div class="media-body">
@@ -190,12 +198,6 @@
       
     </div>
 
-    <!-- modal -->
-    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :button="modalButton" :content="modalContent" :color="modalColor" 
-      @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
-
-    </app-modal>
-
   </div>
 </template>
 
@@ -203,14 +205,12 @@
   import _ from 'lodash';
   import { mapGetters } from 'vuex';
   import dataTable from '../../components/datatable.vue';
-  import appModal from '../../components/modal';
   import checkValue from '../../components/checkValue.vue';
   import jsonExcel from 'vue-json-excel';
 
   export default {
     components: {
       dataTable,
-      appModal,
       checkValue,
       jsonExcel,
     },
@@ -245,13 +245,6 @@
           tot_disetujui: 0,
         },
         state: "",
-        modalShow: false,
-        modalState: "",
-        modalColor: "",
-        modalSize: "",
-        modalTitle: "",
-        modalContent: "",
-        modalButton: ""
       }
     },
     created(){
@@ -278,7 +271,7 @@
           this.sumData.total = _.sumBy(itemData,'total');
         }
       },
-       updateStat(value) {
+      updateStat(value) {
         this.modalState = value;
         this.modalButton = "Ok";
 
@@ -318,20 +311,18 @@
           ];
         }
 
-        this.$store.dispatch('jalinanKlaim/' + this.url, [this.$route.params.awal, this.$route.params.akhir, this.$route.params.cu] );
+        this.$store.dispatch('jalinanKlaim/' + this.url, [this.$route.params.status, this.$route.params.cu, this.$route.params.awal, this.$route.params.akhir] );
       },
       selectedRow(item) {
         this.selectedItem = item;
       },
-      modalOpen(state, isMobile, itemMobile) {
-      },
-      modalTutup() {
-      },
-      modalConfirmOk() {
-      },
       bukaData(value){
         this.$emit('bukaData', value);
-      }
+      },
+      lihatSemua(){
+        this.selectedItem = {};
+        this.$emit('lihatSemua','semua');
+      },
     },
     computed: {
       ...mapGetters("jalinanKlaim", {

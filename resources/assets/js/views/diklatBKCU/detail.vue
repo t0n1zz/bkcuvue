@@ -263,7 +263,7 @@
 												<td v-if="props.item.aktivis && !columnData[22].hide">
 													<check-value :value="props.item.aktivis.kontak"></check-value>
 												</td>
-												<td v-if="props.item.aktivis && !columnData[22].hide" v-html="$options.filters.dateTime(props.item.aktivis.created_at)">
+												<td v-if="props.item.aktivis && !columnData[22].hide" v-html="$options.filters.dateTime(props.item.created_at)">
 												</td>
 											</tr>
 										</template>	

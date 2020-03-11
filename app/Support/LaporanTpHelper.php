@@ -89,7 +89,7 @@ class LaporanTpHelper{
 
 		@e7_1 := IF(IFNULL(laporan_tp.simpanan_saham_des,0) = 0 && IFNULL(laporan_tp.simpanan_saham_lalu,0) != 0, @r7_2, @r7_1) as r7_1,
 
-		@e9 := (IFNULL(laporan_tp.total_biaya,0) - IFNULL(laporan_tp.beban_penyisihan_dcr,0)) / @rata_aset as r9,
+		@r9 := (IFNULL(laporan_tp.total_biaya,0) - IFNULL(laporan_tp.beban_penyisihan_dcr,0)) / @rata_aset as r9,
 
 		@l1 := (IFNULL(laporan_tp.investasi_likuid,0) + IFNULL(laporan_tp.aset_likuid_tidak_menghasilkan,0) - IFNULL(laporan_tp.hutang_tidak_berbiaya_30hari,0)) / @tot_nonsaham as l1,
 

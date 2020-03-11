@@ -16,9 +16,18 @@ export default {
     return axios.get('/api/jalinanKlaim/indexLaporanStatus/' + status + '/' + awal + '/' + akhir);
   },
 
-  indexLaporanPenyebab: function( awal, akhir, cu){
-    return axios.get('/api/jalinanKlaim/indexLaporanPenyebab/' + awal + '/' + akhir + '/' + cu);
+  indexLaporanStatusDetail: function( p, cu, status, awal, akhir  ){
+    return axios.get('/api/jalinanKlaim/indexLaporanStatusDetail/' + cu + '/' + status + '/' + awal + '/' + akhir, {params: p});
   },
+
+  indexLaporanPenyebab: function( status, cu, awal, akhir){
+    return axios.get('/api/jalinanKlaim/indexLaporanPenyebab/' + cu + '/' + status + '/' + awal + '/' + akhir);
+  },
+
+  indexLaporanPenyebabDetail: function( p, cu, status, kategori, awal, akhir ){
+    return axios.get('/api/jalinanKlaim/indexLaporanPenyebabDetail/' + cu +  '/' + status + '/' + kategori + '/' + awal + '/' + akhir , {params: p});
+  },
+
 
   indexLaporanUsia: function( awal, akhir, cu){
     return axios.get('/api/jalinanKlaim/indexLaporanUsia/' + awal + '/' + akhir + '/' + cu);

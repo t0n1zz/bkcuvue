@@ -518,19 +518,19 @@
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimStatus' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
-										Klaim Berdasarkan Status
+										Berdasarkan Status
 									</router-link>
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimPenyebab' }" class="dropdown-item" active-class="active" exact >
-										Pencairan Berdasarkan Penyebab
+										Berdasarkan Penyebab
 									</router-link>
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimUsia' }" class="dropdown-item" active-class="active" exact >
-										Pencairan Berdasarkan Usia Anggota
+										Berdasarkan Usia Anggota
 									</router-link>
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimLama' }" class="dropdown-item" active-class="active" exact >
-										Pencairan Berdasarkan Lama Menjadi Anggota
+										Berdasarkan Lama Menjadi Anggota
 									</router-link>
 
 								</div>

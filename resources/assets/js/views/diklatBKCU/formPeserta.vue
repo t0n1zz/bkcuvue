@@ -341,7 +341,9 @@
 				this.formPeserta = this.selected;
 				this.formPeserta.tingkat = this.selected.aktivis.pekerjaan_aktif.tingkat;
 				this.formPeserta.jabatan = this.selected.aktivis.pekerjaan_aktif.name;
-				this.formPeserta.pendidikan = this.selected.aktivis.pendidikan_tertinggi.tingkat + ' ' + this.selected.aktivis.pendidikan_tertinggi.name;
+				if(this.selected.aktivis.pendidikan_tertinggi){
+					this.formPeserta.pendidikan = this.selected.aktivis.pendidikan_tertinggi.tingkat + ' ' + this.selected.aktivis.pendidikan_tertinggi.name;
+				}
 				this.formPeserta.status = this.selected.aktivis.status;
 				this.formPeserta.kelamin = this.selected.aktivis.kelamin;
 				this.formPeserta.agama = this.selected.aktivis.agama;
@@ -412,12 +414,14 @@
 					this.formPeserta.aktivis_id = item.id;
 					this.formPeserta.kegiatan_id = this.kegiatan_id;
 					this.formPeserta.jabatan = item.pekerjaan_aktif.name;
-					this.formPeserta.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
+					if(item.pendidikan_tertinggi){
+						this.formPeserta.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
+					}
 					this.formPeserta.status = item.status;
 					this.formPeserta.kelamin = item.kelamin;
 					this.formPeserta.agama = item.agama;
 					this.formPeserta.tinggi = item.tinggi;
-					this.formPeserta.tanggat_lahir = item.tanggat_lahir;
+					this.formPeserta.tanggal_lahir = item.tanggal_lahir;
 					this.formPeserta.tempat_lahir = item.tempat_lahir;
 					this.formPeserta.name = item.name;
 					this.formPeserta.gambar = item.gambar;

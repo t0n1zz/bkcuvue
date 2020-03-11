@@ -12,7 +12,11 @@
           <div class="col-md-9 col-lg-9 pb-2 d-none d-sm-block">
 
             <button class="btn btn-light mb-1" @click="bukaData(selectedItem.cu_id)" :disabled="!selectedItem.cu_id">
-              <i class="icon-eye"></i> Buka data klaim JALINAN
+              <i class="icon-folder-open3"></i> Buka data klaim JALINAN
+            </button>
+
+            <button class="btn btn-light mb-1" @click="lihatSemua">
+              <i class="icon-eye"></i> Lihat semua data klaim JALINAN
             </button>
           </div>
 
@@ -20,7 +24,11 @@
           <div class="col-md-12 pb-2 d-block d-sm-none">
 
             <button class="btn btn-light btn-block pb-1" @click="bukaData(selectedItem.cu_id)" :disabled="!selectedItem.cu_id">
-              <i class="icon-eye"></i> Buka data klaim JALINAN
+              <i class="icon-folder-open3"></i> Buka data klaim JALINAN
+            </button>
+
+            <button class="btn btn-light btn-block pb-1" @click="lihatSemua">
+              <i class="icon-eye"></i> Lihat semua data klaim JALINAN
             </button>
 
           </div>
@@ -327,7 +335,11 @@
       },
       bukaData(value){
         this.$emit('bukaData', value);
-      }
+      },
+      lihatSemua(){
+        this.selectedItem = {};
+        this.$$emit('lihatSemua','semua');
+      },
     },
     computed: {
       ...mapGetters("jalinanKlaim", {

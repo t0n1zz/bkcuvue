@@ -374,13 +374,14 @@ class AnggotaCuController extends Controller{
 			$rules['nik'] = $rules['nik'] . ',id,' . $id;
 			$validationCertificate  = Validator::make($request->all(), $rules); 
 			$name = $request->name;
+			
+			$kelas = AnggotaCu::findOrFail($id);
 
 			if(!empty($request->gambar))
 				$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar,$name);
 			else
 				$fileName = '';
 
-			$kelas = AnggotaCu::findOrFail($id);
 			// dd($request->all());
 			$kelas->update($request->except('gambar') + [
 				'gambar' => $fileName
