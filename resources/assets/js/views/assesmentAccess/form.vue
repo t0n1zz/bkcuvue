@@ -551,6 +551,7 @@
 						this.changeCU(this.currentUser.id_cu);
 					}else{
 						this.changeCU(this.form.id_cu);
+						this.$store.dispatch('laporanCu/detailPearls', this.form.id_laporan_cu);
 					}
 				}
 			},

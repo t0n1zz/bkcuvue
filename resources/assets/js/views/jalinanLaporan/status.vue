@@ -75,7 +75,7 @@
 		data() {
 			return {
 				title: ' Laporan Klaim JALINAN',
-				titleDesc: 'Mengelola Laporan Klaim JALINAN Berdasarkan Status',
+				titleDesc: 'Mengelola Laporan Klaim JALINAN Berdasarkan CU',
 				titleIcon: 'icon-archive',
 				kelas: 'jalinanKlaim',
 				isShowDetail: false,

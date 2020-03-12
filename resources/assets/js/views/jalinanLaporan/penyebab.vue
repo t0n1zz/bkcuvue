@@ -76,8 +76,8 @@
 		},
 		data() {
 			return {
-				title: 'Laporan pencairan JALINAN',
-				titleDesc: 'Mengelola pencairan JALINAN berdasarkan penyebab',
+				title: 'Laporan Klaim JALINAN',
+				titleDesc: 'Mengelola Klaim JALINAN Berdasarkan Penyebab',
 				titleIcon: 'icon-archive',
 				kelas: 'jalinanKlaim',
         isShowDetail: false,

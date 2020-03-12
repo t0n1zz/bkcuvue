@@ -28,9 +28,8 @@ export default {
     return axios.get('/api/jalinanKlaim/indexLaporanPenyebabDetail/' + cu +  '/' + status + '/' + kategori + '/' + awal + '/' + akhir , {params: p});
   },
 
-
-  indexLaporanUsia: function( awal, akhir, cu){
-    return axios.get('/api/jalinanKlaim/indexLaporanUsia/' + awal + '/' + akhir + '/' + cu);
+  indexLaporanUsia: function( status, cu, awal, akhir){
+    return axios.get('/api/jalinanKlaim/indexLaporanUsia/' + cu + '/' + status + '/' + awal + '/' + akhir);
   },
 
   indexLaporanLama: function( awal, akhir, cu){

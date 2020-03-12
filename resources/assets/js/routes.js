@@ -525,7 +525,7 @@ const routes = [
 		name: 'jalinanLaporanKlaimUsia', 
 		components: { default: jalinanLaporan_KlaimUsia, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
-	{ path: '/jalinan/laporan/klaim/usia/:awal/:akhir/cu/:cu/:tp',
+	{ path: '/jalinan/laporan/klaim/usia/status/:status/cu/:cu/jenis/:jenis/kategori/:kategori/:awal/:akhir',
 		name: 'jalinanLaporanKlaimUsiaTanggal', 
 		components: { default: jalinanLaporan_KlaimUsia, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true , mode:'laporan' }},

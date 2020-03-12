@@ -91,10 +91,10 @@
               <check-value :value="props.item.tunas_diajukan" valueType="currency"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.tunas_disetujui" valueType="currency"></check-value>
+              <check-value :value="props.item.lintang_diajukan" valueType="currency"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.lintang_diajukan" valueType="currency"></check-value>
+              <check-value :value="props.item.tunas_disetujui" valueType="currency"></check-value>
             </td>
             <td>
               <check-value :value="props.item.lintang_disetujui" valueType="currency"></check-value>
@@ -264,8 +264,8 @@
           { title: 'Meninggal' },
           { title: 'Cacat' },
           { title: 'Tunas Diajukan' },
-          { title: 'Tunas Disetujui' },
           { title: 'Lintang Diajukan' },
+          { title: 'Tunas Disetujui' },
           { title: 'Lintang Disetujui' },
           { title: 'Total Diajukan' },
           { title: 'Total Disetujui' },
@@ -321,8 +321,8 @@
           this.sumData.perempuan = _.sumBy(this.itemData,'perempuan');
           this.sumData.cacat = _.sumBy(this.itemData,'cacat');
           this.sumData.meninggal = _.sumBy(this.itemData,'meninggal');
-          this.sumData.tot_disetujui = _.sumBy(this.itemData,'tot_disetujui');
           this.sumData.tot_diajukan = _.sumBy(this.itemData,'tot_diajukan');
+          this.sumData.tot_disetujui = _.sumBy(this.itemData,'tot_disetujui');
         }
       },
     },
@@ -338,7 +338,7 @@
       },
       lihatSemua(){
         this.selectedItem = {};
-        this.$$emit('lihatSemua','semua');
+        this.$emit('lihatSemua','semua');
       },
     },
     computed: {

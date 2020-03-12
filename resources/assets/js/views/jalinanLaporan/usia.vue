@@ -18,34 +18,37 @@
 						</message>
 
 						<!-- select data -->
-						<select-data :isCu="true" @cari="cari"></select-data>
+						<select-data @cari="cari"></select-data>
 
-						<table-kelompok :title="title" :itemData="itemData" :itemDataStat="itemDataStat" :url="url" v-if="$route.meta.mode == 'laporan'" @bukaData="bukaData"></table-kelompok>
+						<div v-if="$route.meta.mode == 'laporan'">
 
-            <!-- <hr/>
+							<table-kelompok :title="'Klaim Per Kategori'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url"  @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
 
-            <div class="nav-tabs-responsive mb-3" v-if="$route.meta.mode == 'laporan'">
-							<ul class="nav nav-tabs nav-tabs-solid bg-light">
-								<li class="nav-item">
-									<a href="#" class="nav-link" :class="{'active' : tabName == 'dicairkan'}" @click.prevent="changeTab('dicairkan')"><i class="icon-square-down mr-2"></i> Data Perorangan yang dicairkan</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link" :class="{'active' : tabName == 'selesai'}" @click.prevent="changeTab('selesai')"><i class="icon-square mr-2"></i> Data Perorangan yang selesai</a>
-								</li>
-							</ul>
-						</div>	
+             	<hr/>
+								<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail">
+									<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data klaim JALINAN</span>
+									<span v-else><i class="icon-eye-blocked"></i> Tutup data klaim JALINAN</span>
+								</button>
+							<hr/>
 
-            <transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'dicairkan'"  v-if="$route.meta.mode == 'laporan'">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData4" :itemDataStat="itemDataStat4" :status="'4'" :isSimple="true"></table-data>
+							<div v-if="isShowDetail">
+
+								<table-data :title="'Klaim JALINAN Menunggu'" :kelas="kelas" :itemData="itemDataKlaim1" :itemDataStat="itemDataStatKlaim1" :status="'1'" :isSimple="true" v-if="status == '1'"></table-data>
+
+								<table-data :title="'Klaim JALINAN Dokumen Tidak Lengkap'" :kelas="kelas" :itemData="itemDataKlaim2" :itemDataStat="itemDataStatKlaim2" :status="'2'" :isSimple="true" v-if="status == '2'"></table-data>
+
+								<table-data :title="'Klaim JALINAN Ditolak'" :kelas="kelas" :itemData="itemDataKlaim3" :itemDataStat="itemDataStatKlaim3" :status="'3'" :isSimple="true" v-if="status == '3'"></table-data>
+
+								<table-data :title="'Klaim JALINAN Disetujui'" :kelas="kelas" :itemData="itemDataKlaim4" :itemDataStat="itemDataStatKlaim4" :status="'4'" :isSimple="true" v-if="status == '4'"></table-data>
+
+								<table-data :title="'Klaim JALINAN Dicairkan'" :kelas="kelas" :itemData="itemDataKlaim5" :itemDataStat="itemDataStatKlaim5" :status="'5'" :isSimple="true" v-if="status == '5'"></table-data>
+
+								<table-data :title="'Klaim JALINAN Selesai'" :kelas="kelas" :itemData="itemDataKlaim6" :itemDataStat="itemDataStatKlaim6" :status="'6'" :isSimple="true" v-if="status == '6'"></table-data>
+
 							</div>
-						</transition>
 
-						<transition enter-active-class="animated fadeIn" mode="out-in">
-							<div v-show="tabName == 'selesai'" v-if="isSelesai && $route.meta.mode == 'laporan'">
-								<table-data :title="title" :kelas="kelas" :itemData="itemData5" :itemDataStat="itemDataStat5" :status="'5'" :isSimple="true"></table-data>
-							</div>
-						</transition> -->
+						</div>
+
 
 					</div>
 				</div>
@@ -73,21 +76,32 @@
 		},
 		data() {
 			return {
-				title: 'Laporan pencairan JALINAN berdasarkan usia',
-				titleDesc: 'Mengelola pencairan JALINAN berdasarkan usia',
+				title: 'Laporan Klaim JALINAN',
+				titleDesc: 'Mengelola Klaim JALINAN Berdasarkan Usia',
 				titleIcon: 'icon-archive',
-        kelas: 'jalinanKlaim',
-        tabName: 'dicairkan',
-				isSelesai: false,
+				kelas: 'jalinanKlaim',
+        isShowDetail: false,
 				url: 'indexLaporanUsia',
+				status: '',
 			}
 		},
 		created(){
 			this.checkUser('index_anggota_cu',this.$route.params.cu);
+			this.status = this.$route.params.status;
+		},
+		watch: {
+			'$route' (to, from){
+				// check current page meta
+				this.status = this.$route.params.status;
+			},
 		},
 		methods: {
-			cari(awal, akhir, cu){
-        this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: awal, akhir: akhir, cu: cu, tp: 'semua'} });
+			fetch(awal, akhir, cu, status, kategori){
+				this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'usia', kategori: kategori} });
+			},
+			cari(awal, akhir, cu, status){
+				this.fetch(awal, akhir, cu, status, 'semua');
+				this.isShowDetail = false;
 			},
 			checkUser(permission,id_cu){
 				if(this.currentUser){
@@ -102,14 +116,12 @@
 				}
       },
       bukaData(value){
-				this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: this.$route.params.awal, akhir: this.$route.params.akhir,  cu: value, tp: 'semua'} });
+				this.fetch(this.$route.params.awal, this.$route.params.akhir, this.$route.params.cu, this.$route.params.status, value);
+				this.isShowDetail = true;
 			},
-      changeTab(value) {
-				this.tabName = value;
-				if (value == 'selesai' && !this.isSelesai) {
-					this.isSelesai = true
-				}
-			},
+			showDetail(){
+				this.isShowDetail = !this.isShowDetail;
+      },
 		},
 		computed: {
 			...mapGetters('auth',{
@@ -117,11 +129,21 @@
 			}),
 			...mapGetters('jalinanKlaim',{
         itemData: 'dataS',
-        itemData4: 'dataS4',
-        itemData5: 'dataS5',
-        itemDataStat: 'dataStatS',
-        itemDataStat4: 'dataStatS4',
-        itemDataStat5: 'dataStatS5',
+				itemDataStat: 'dataStatS',
+				itemDataKlaim1: 'dataS1',
+				itemDataStatKlaim1: 'dataStatS1',
+				itemDataKlaim2: 'dataS2',
+				itemDataStatKlaim2: 'dataStatS2',
+				itemDataKlaim3: 'dataS3',
+				itemDataStatKlaim3: 'dataStatS3',
+				itemDataKlaim4: 'dataS4',
+				itemDataStatKlaim4: 'dataStatS4',
+				itemDataKlaim5: 'dataS5',
+				itemDataStatKlaim5: 'dataStatS5',
+				itemDataKlaim6: 'dataS6',
+				itemDataStatKlaim6: 'dataStatS6',
+				itemDataKlaim7: 'dataS7',
+				itemDataStatKlaim7: 'dataStatS7',
 			}),
 		}
 	}

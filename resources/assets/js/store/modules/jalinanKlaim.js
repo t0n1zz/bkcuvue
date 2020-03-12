@@ -98,7 +98,7 @@ export const jalinanKlaim = {
           commit('setDataStatS', 'fail');
         });
     },
-    index1( { commit }, [p, jenis, kategori, awal, akhir] ){
+    index1( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
       if(jenis == 'penyebab'){
@@ -133,7 +133,7 @@ export const jalinanKlaim = {
           });
       }
     },
-    index2( { commit }, [p, jenis, kategori, awal, akhir] ){
+    index2( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
       if(jenis == 'penyebab'){
@@ -168,7 +168,7 @@ export const jalinanKlaim = {
           });
       }
     },
-    index3( { commit }, [p, jenis, kategori, awal, akhir] ){
+    index3( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
       if(jenis == 'penyebab'){
@@ -203,7 +203,7 @@ export const jalinanKlaim = {
           });
       }
     },
-    index4( { commit }, [p, jenis, kategori, awal, akhir] ){
+    index4( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
       if(jenis == 'penyebab'){
@@ -238,7 +238,7 @@ export const jalinanKlaim = {
           });
       }
     },
-    index5( { commit }, [p, jenis, kategori, awal, akhir] ){
+    index5( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
       if(jenis == 'penyebab'){
@@ -273,7 +273,7 @@ export const jalinanKlaim = {
           });
       }
     },
-    index6( { commit }, [p, jenis, kategori, awal, akhir] ){
+    index6( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS6', 'loading');
       
       if(jenis == 'penyebab'){
@@ -371,7 +371,7 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu2( { commit }, [p, cu, tp, jenis, awal, akhir] ){
+    indexCu2( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
       if(jenis == 'status'){
@@ -396,7 +396,7 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu3( { commit }, [p, cu, tp, jenis, awal, akhir] ){
+    indexCu3( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
       if(jenis == 'status'){
@@ -421,7 +421,7 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu4( { commit }, [p, cu, tp, jenis, awal, akhir] ){
+    indexCu4( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
       if(jenis == 'status'){
@@ -446,7 +446,7 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu5( { commit }, [p, cu, tp, jenis, awal, akhir] ){
+    indexCu5( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
       if(jenis == 'status'){
@@ -471,7 +471,7 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu6( { commit }, [p, cu, tp, jenis, awal, akhir] ){
+    indexCu6( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
       commit('setDataStatS6', 'loading');
       
       if(jenis == 'status'){
@@ -552,10 +552,10 @@ export const jalinanKlaim = {
         });
     },
 
-    indexLaporanUsia( { commit }, [awal, akhir, cu] ){
+    indexLaporanUsia( { commit }, [status, cu, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.indexLaporanUsia( awal, akhir, cu )
+      JalinanKlaimAPI.indexLaporanUsia(status, cu, awal, akhir)
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

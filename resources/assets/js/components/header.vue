@@ -518,7 +518,7 @@
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimStatus' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
-										Berdasarkan Status
+										Berdasarkan CU
 									</router-link>
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimPenyebab' }" class="dropdown-item" active-class="active" exact >
@@ -851,7 +851,7 @@
 							<!-- if cu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu != '0'" :class="{'show' : dropdownMenu == 'laporanTp'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporanTp')">
-									<i class="icon-stats-growth"></i> Laporan Perkembangan CU
+									<i class="icon-stats-growth"></i> Laporan Statistik CU
 								</a>
 
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporanTp'}">
