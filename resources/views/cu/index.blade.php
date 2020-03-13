@@ -33,8 +33,8 @@
 
     <p>
       Kami merupakan <strong>Credit Union</strong> yang memberikan pelayanan di wilayah <strong>{{ $cu->provinces ? ucfirst($cu->provinces->name) : ""}}</strong>
-      @if(!empty($cu->bergabung))
-          @php $datejoin = new Date($cu->bergabung) @endphp
+      @if(!empty($cu->ultah))
+          @php $datejoin = new Date($cu->ultah) @endphp
           {{ 'sejak '.$datejoin->format('Y') }}
       @endif
       @if(!empty($cu->has_tp_count))

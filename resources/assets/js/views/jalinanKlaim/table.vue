@@ -720,7 +720,7 @@
     methods: {
       fetch(params) {
         if(this.$route.params.cu == 'semua'){
-          this.$store.dispatch(this.kelas + '/index' + this.status, [params, this.$route.params.jenis, this.$route.params.kategori, this.$route.params.awal, this.$route.params.akhir]);
+          this.$store.dispatch(this.kelas + '/index' + this.status, [params, this.$route.params.jenis, this.$route.params.kategori, this.$route.params.dari, this.$route.params.ke, this.$route.params.awal, this.$route.params.akhir]);
 
           if(this.$route.params.jenis == 'penyebab'){
             this.excelDownloadUrl = this.kelas + '/indexLaporanPenyebabDetail/semua/' + this.status  + '/' + this.$route.params.kategori + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;

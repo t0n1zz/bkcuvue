@@ -88,6 +88,9 @@
               <check-value :value="props.item.cacat" valueType="currency"></check-value>
             </td>
             <td>
+              <check-value :value="props.item.total" valueType="currency"></check-value>
+            </td>
+            <td>
               <check-value :value="props.item.tunas_diajukan" valueType="currency"></check-value>
             </td>
             <td>

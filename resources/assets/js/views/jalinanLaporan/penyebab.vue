@@ -18,11 +18,11 @@
 						</message>
 
 						<!-- select data -->
-						<select-data @cari="cari"></select-data>
+						<select-data :isCu="false" @cari="cari"></select-data>
 
 						<div v-if="$route.meta.mode == 'laporan'">
 
-							<table-kelompok :title="'Klaim Per Kategori'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url"  @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
+							<table-kelompok :title="'Klaim Per Kategori'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url" :isCu="false" @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
 
              	<hr/>
 								<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail">

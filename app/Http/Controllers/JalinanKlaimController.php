@@ -95,7 +95,7 @@ class JalinanKlaimController extends Controller{
 
 	public function queryCair(){
 		return 'MAX(cu.no_ba) as no_ba,
-		MAX(cu.name) as cu_name,
+		MAX(cu.name) as kategori,
 		MAX(anggota_cu_cu.cu_id) as cu_id,
 		COUNT(CASE WHEN status_klaim="4" THEN 1 END) AS status_klaim_setuju, 
 		COUNT(CASE WHEN status_klaim="5" THEN 1 WHEN status_klaim="6" THEN 1 END) AS status_klaim_cair, 
@@ -108,7 +108,8 @@ class JalinanKlaimController extends Controller{
 		SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
 		SUM(tunas_disetujui) AS tunas_disetujui, 
 		SUM(lintang_disetujui) AS lintang_disetujui,
-		SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui';
+		SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui,
+		COUNT(*) as total';
 	}
 
 	public function indexLaporanStatus($status, $awal, $akhir)
@@ -185,7 +186,13 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					COUNT(*) as total'))	
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui'))	
 				->where('status_klaim',$status)
 				->whereBetween('tanggal_pencairan',[$awal, $akhir])
 				->groupBy('kategori_penyakit')
@@ -202,7 +209,13 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					COUNT(*) as total'))	
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui'))	
 				->where('status_klaim',$status)
 				->whereBetween('jalinan_klaim.created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])
 				->groupBy('kategori_penyakit')
@@ -224,7 +237,13 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					COUNT(*) as total'))	
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui'))	
 				->where('status_klaim',$status)
 				->whereBetween('tanggal_pencairan',[$awal, $akhir])
 				->groupBy('kategori_penyakit')
@@ -244,7 +263,13 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					COUNT(*) as total'))	
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui'))	
 				->where('status_klaim',$status)
 				->whereBetween('jalinan_klaim.created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])
 				->groupBy('kategori_penyakit')

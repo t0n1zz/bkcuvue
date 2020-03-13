@@ -6,7 +6,7 @@
 				<div class="row">
 					
 					<!-- cu -->
-					<div class="col-sm-5 mb-2" v-if="this.currentUser.id_cu == 0">
+					<div class="col-sm-5 mb-2" v-if="this.currentUser.id_cu == 0 && !isCu">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Pilih CU</span>
@@ -31,7 +31,7 @@
 					</div>
 
 					<!-- status -->
-					<div class="mb-2" :class="{'col-sm-5' : this.currentUser.id_cu == 0, 'col-sm-10' : this.currentUser.id_cu != 0}">
+					<div class="mb-2" :class="{'col-sm-5' : this.currentUser.id_cu == 0, 'col-sm-10' : this.currentUser.id_cu != 0 , 'col-sm-10' : this.isCu}">
 						<div class="input-group">
 							<span class="input-group-prepend">
 								<span class="input-group-text">Pilih Status</span>
@@ -106,6 +106,7 @@
 		components: {
       Cleave, 
 		},
+		props: ["isCu"],
 		data(){
 			return {
 				cleaveOption: {

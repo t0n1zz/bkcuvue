@@ -524,7 +524,7 @@ export const jalinanKlaim = {
         });
     },
 
-    indexLaporanStatus( { commit }, [status, awal, akhir] ){
+    indexLaporanStatus( { commit }, [status, cu, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
       JalinanKlaimAPI.indexLaporanStatus( status, awal, akhir )

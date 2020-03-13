@@ -18,10 +18,10 @@
 						</message>
 
 						<!-- select data -->
-						<select-data @cari="cari"></select-data>
+						<select-data :isCu="true" @cari="cari"></select-data>
 						
             <div v-if="$route.meta.mode == 'laporan'">
-              <table-status :title="'Klaim Per CU'"  :itemData="itemData" :itemDataStat="itemDataStat" @bukaData="bukaData" @lihatSemua="bukaData"></table-status>
+              <table-kelompok :title="'Klaim Per CU'"  :itemData="itemData" :itemDataStat="itemDataStat" :url="url" :isCu="true" @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
 
               <hr/>
 								<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail">
@@ -60,8 +60,8 @@
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectData from "./selectStatus.vue";
-	import tableStatus from "./tableStatus";
+	import selectData from "./selectKelompok.vue";
+	import tableKelompok from "./tableKelompok";
 	import tableData from "../jalinanKlaim/table.vue";
 	
 	export default {
@@ -70,7 +70,7 @@
 			message,
 			selectData,
 			tableData,
-			tableStatus
+			tableKelompok
 		},
 		data() {
 			return {
@@ -79,7 +79,7 @@
 				titleIcon: 'icon-archive',
 				kelas: 'jalinanKlaim',
 				isShowDetail: false,
-				cu: '',
+				url: 'indexLaporanStatus',
 				status: '',
 			}
 		},
@@ -97,7 +97,7 @@
 			fetch(cu, status, awal, akhir){
 				this.$router.push({name: 'jalinanLaporanKlaimStatusTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'status'} });
 			},
-			cari(awal, akhir, status){
+			cari(awal, akhir, cu, status){
 				this.fetch('semua', status, awal, akhir);
 				this.isShowDetail = false;
 			},
@@ -111,7 +111,7 @@
 							this.$router.push('/notFound');
 						}
 					}
-			}
+				}
 			},
 			bukaData(value){
 				this.fetch(value, this.$route.params.status, this.$route.params.awal, this.$route.params.akhir);

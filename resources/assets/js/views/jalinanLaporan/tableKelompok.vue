@@ -69,9 +69,6 @@
             <td>
               <check-value :value="props.item.kategori"></check-value>
             </td>
-            <td v-if="$route.params.cu == 'semua'">
-              <check-value :value="props.item.cu" valueType="currency"></check-value>
-            </td>
             <td>
               <check-value :value="props.item.lakilaki" valueType="currency"></check-value>
             </td>
@@ -84,8 +81,29 @@
             <td>
               <check-value :value="props.item.cacat" valueType="currency"></check-value>
             </td>
+            <td v-if="$route.params.cu == 'semua' && !isCu">
+              <check-value :value="props.item.cu" valueType="currency"></check-value>
+            </td>
             <td>
               <check-value :value="props.item.total" valueType="currency"></check-value>
+            </td>
+            <td>
+              <check-value :value="props.item.tunas_diajukan" valueType="currency"></check-value>
+            </td>
+            <td>
+              <check-value :value="props.item.lintang_diajukan" valueType="currency"></check-value>
+            </td>
+            <td>
+              <check-value :value="props.item.tunas_disetujui" valueType="currency"></check-value>
+            </td>
+            <td>
+              <check-value :value="props.item.lintang_disetujui" valueType="currency"></check-value>
+            </td>
+            <td>
+              <check-value :value="props.item.tot_diajukan" valueType="currency"></check-value>
+            </td>
+            <td>
+              <check-value :value="props.item.tot_disetujui" valueType="currency"></check-value>
             </td>
           </tr>
         </template>	
@@ -163,7 +181,7 @@
       </div>
 
       <!-- cu -->
-      <div class="col-lg-6 col-md-6" v-if="$route.params.cu == 'semua'">
+      <div class="col-lg-3 col-md-3">
         <div class="card card-body bg-blue-400" >
           <div class="media">
             <div class="media-body">
@@ -180,7 +198,7 @@
       </div>
 
       <!-- total -->
-      <div :class="{'col-lg-6 col-md-6' : $route.params.cu == 'semua','col-lg-12 col-md-12' : $route.params.cu != 'semua'}">
+      <div  class="col-lg-3 col-md-3">
         <div class="card card-body bg-danger-400" >
           <div class="media">
             <div class="media-body">
@@ -195,6 +213,42 @@
           </div>
         </div>
       </div>
+
+      <!-- diajukan -->
+      <div class="col-lg-3 col-md-3">
+        <div class="card card-body bg-warning-400" >
+          <div class="media">
+            <div class="media-body">
+              <h3 class="mb-0"><check-value :value="sumData.tot_diajukan" valueType="currency"></check-value></h3>
+              <span class="text-uppercase">
+                Jumlah Diajukan
+              </span>
+            </div>
+            <div class="ml-3 align-self-center">
+              <i class="icon-square-up icon-3x opacity-75"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- pencairan -->
+      <div class="col-lg-3 col-md-3">
+        <div class="card card-body bg-green-400" >
+          <div class="media">
+            <div class="media-body">
+              <h3 class="mb-0"><check-value :value="sumData.tot_disetujui" valueType="currency"></check-value></h3>
+              <span class="text-uppercase">
+                Jumlah Disetujui
+              </span>
+            </div>
+            <div class="ml-3 align-self-center">
+              <i class="icon-square-down icon-3x opacity-75"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
       
     </div>
 
@@ -214,23 +268,14 @@
       checkValue,
       jsonExcel,
     },
-    props: ["title","itemData","itemDataStat","url"],
+    props: ["title","itemData","itemDataStat","url","isCu"],
     data(){
       return{
         selectedItem: {},
-        columnData: [
-         
-        ],
+        columnData: [],
         excel: {
           data: [],
-          fields: {
-            kategori:'kategori',
-            cu: 'cu',
-            pria: 'pria',
-            wanita: 'wanita',
-            meninggal: 'meninggal',
-            cacat: 'cacat',
-          },
+          fields: {},
           meta: [
             [{
               "key": "charset",
@@ -242,9 +287,11 @@
           cu: 0,
           pria: 0,
           wanita: 0,
+          meninggal: 0,
+          cacat: 0,
+          tot_diajukan: 0,
           tot_disetujui: 0,
         },
-        state: "",
       }
     },
     created(){
@@ -269,49 +316,146 @@
           this.sumData.cacat = _.sumBy(itemData,'cacat');
           this.sumData.meninggal = _.sumBy(itemData,'meninggal');
           this.sumData.total = _.sumBy(itemData,'total');
+          this.sumData.tot_diajukan = _.sumBy(this.itemData,'tot_diajukan');
+          this.sumData.tot_disetujui = _.sumBy(this.itemData,'tot_disetujui');
         }
       },
-      updateStat(value) {
-        this.modalState = value;
-        this.modalButton = "Ok";
-
-        if (value === "success") {
-          this.modalTitle = this.updateMessage.message;
-          this.modalContent = "";
-          this.fetch();
-        } else if (value === "fail") {
-          this.modalContent = this.updateMessage;
-        } else {
-          this.modalContent = "";
-        }
-      }
     },
     methods: {
       fetch(){
-        if(this.$route.params.cu != 'semua'){
-          this.columnData = [ 
-            { title: 'No.' },
-            { title: 'Kategori' },
-            { title: 'Laki-laki' },
-            { title: 'Perempuan' },
-            { title: 'Meninggal' },
-            { title: 'Cacat' },
-            { title: 'Total' },
-          ];
+        if(this.$route.params.cu == 'semua'){
+          if(this.isCu){
+            this.columnData = [ 
+              { title: 'No.' },
+              { title: 'Kategori' },
+              { title: 'Laki-laki' },
+              { title: 'Perempuan' },
+              { title: 'Meninggal' },
+              { title: 'Cacat' },
+              { title: 'Total Meninggal & Cacat' },
+              { title: 'Tunas Diajukan' },
+              { title: 'Lintang Diajukan' },
+              { title: 'Tunas Disetujui' },
+              { title: 'Lintang Disetujui' },
+              { title: 'Total Diajukan' },
+              { title: 'Total Disetujui' },
+            ];
+            this.fields = {
+              kategori:'kategori',
+              pria: 'pria',
+              wanita: 'wanita',
+              meninggal: 'meninggal',
+              cacat: 'cacat',
+              total:'total',
+              tunas_diajukan: 'tunas_diajukan',
+              lintang_diajukan: 'lintang_diajukan',
+              tunas_disetujui: 'tunas_disetujui',
+              lintang_disetujui: 'lintang_disetujui',
+              tot_diajukan: 'tot_diajukan',
+              tot_disetujui: 'tot_disetujui',
+            }
+          }else{
+            this.columnData = [ 
+              { title: 'No.' },
+              { title: 'Kategori' },
+              { title: 'Laki-laki' },
+              { title: 'Perempuan' },
+              { title: 'Meninggal' },
+              { title: 'Cacat' },
+              { title: 'Total Meninggal & Cacat' },
+              { title: 'Total CU' },
+              { title: 'Tunas Diajukan' },
+              { title: 'Lintang Diajukan' },
+              { title: 'Tunas Disetujui' },
+              { title: 'Lintang Disetujui' },
+              { title: 'Total Diajukan' },
+              { title: 'Total Disetujui' },
+            ];
+            this.fields = {
+              kategori:'kategori',
+              pria: 'pria',
+              wanita: 'wanita',
+              meninggal: 'meninggal',
+              cacat: 'cacat',
+              total:'total',
+              cu:'cu',
+              tunas_diajukan: 'tunas_diajukan',
+              lintang_diajukan: 'lintang_diajukan',
+              tunas_disetujui: 'tunas_disetujui',
+              lintang_disetujui: 'lintang_disetujui',
+              tot_diajukan: 'tot_diajukan',
+              tot_disetujui: 'tot_disetujui',
+            }
+          }
         }else{
-          this.columnData = [ 
-            { title: 'No.' },
-            { title: 'Kategori' },
-            { title: 'CU' },
-            { title: 'Laki-laki' },
-            { title: 'Perempuan' },
-            { title: 'Meninggal' },
-            { title: 'Cacat' },
-            { title: 'Total' },
-          ];
+          if(this.isCu){
+            this.columnData = [ 
+              { title: 'No.' },
+              { title: 'Kategori' },
+              { title: 'Laki-laki' },
+              { title: 'Perempuan' },
+              { title: 'Meninggal' },
+              { title: 'Cacat' },
+              { title: 'Total Meninggal & Cacat' },
+              { title: 'Tunas Diajukan' },
+              { title: 'Lintang Diajukan' },
+              { title: 'Tunas Disetujui' },
+              { title: 'Lintang Disetujui' },
+              { title: 'Total Diajukan' },
+              { title: 'Total Disetujui' },
+            ];
+            this.fields = {
+              no_ba:'no_ba',
+              kategori:'kategori',
+              pria: 'pria',
+              wanita: 'wanita',
+              meninggal: 'meninggal',
+              cacat: 'cacat',
+              total:'total',
+              tunas_diajukan: 'tunas_diajukan',
+              lintang_diajukan: 'lintang_diajukan',
+              tunas_disetujui: 'tunas_disetujui',
+              lintang_disetujui: 'lintang_disetujui',
+              tot_diajukan: 'tot_diajukan',
+              tot_disetujui: 'tot_disetujui',
+            }
+          }else{
+            this.columnData = [ 
+              { title: 'No.' },
+              { title: 'Kategori' },
+              { title: 'Laki-laki' },
+              { title: 'Perempuan' },
+              { title: 'Meninggal' },
+              { title: 'Cacat' },
+              { title: 'Total Meninggal & Cacat' },
+              { title: 'Total CU' },
+              { title: 'Tunas Diajukan' },
+              { title: 'Lintang Diajukan' },
+              { title: 'Tunas Disetujui' },
+              { title: 'Lintang Disetujui' },
+              { title: 'Total Diajukan' },
+              { title: 'Total Disetujui' },
+            ];
+            this.fields = {
+              kategori:'kategori',
+              pria: 'pria',
+              wanita: 'wanita',
+              meninggal: 'meninggal',
+              cacat: 'cacat',
+              total:'total',
+              cu:'cu',
+              tunas_diajukan: 'tunas_diajukan',
+              lintang_diajukan: 'lintang_diajukan',
+              tunas_disetujui: 'tunas_disetujui',
+              lintang_disetujui: 'lintang_disetujui',
+              tot_diajukan: 'tot_diajukan',
+              tot_disetujui: 'tot_disetujui',
+            }
+          }
         }
-
+        
         this.$store.dispatch('jalinanKlaim/' + this.url, [this.$route.params.status, this.$route.params.cu, this.$route.params.awal, this.$route.params.akhir] );
+
       },
       selectedRow(item) {
         this.selectedItem = item;
