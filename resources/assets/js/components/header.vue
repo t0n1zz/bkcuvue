@@ -517,7 +517,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
 
-									<router-link :to="{ name: 'jalinanLaporanKlaimStatus' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'jalinanLaporanKlaimCu' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
 										Berdasarkan CU
 									</router-link>
 

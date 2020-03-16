@@ -18,11 +18,11 @@
 						</message>
 
 						<!-- select data -->
-						<select-data @cari="cari"></select-data>
+						<select-data :isCu="false" @cari="cari"></select-data>
 
 						<div v-if="$route.meta.mode == 'laporan'">
 
-							<table-kelompok :title="'Klaim Per Kategori'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url"  @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
+							<table-kelompok :title="'Klaim Per Usia'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url" :isCu="false" @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
 
              	<hr/>
 								<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail">
@@ -96,11 +96,11 @@
 			},
 		},
 		methods: {
-			fetch(awal, akhir, cu, status, kategori){
-				this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'usia', kategori: kategori} });
+			fetch(awal, akhir, cu, status, dari, ke){
+				this.$router.push({name: 'jalinanLaporanKlaimUsiaTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'usia', dari: dari, ke : ke} });
 			},
 			cari(awal, akhir, cu, status){
-				this.fetch(awal, akhir, cu, status, 'semua');
+				this.fetch(awal, akhir, cu, status, 'semua','semua','semua');
 				this.isShowDetail = false;
 			},
 			checkUser(permission,id_cu){
@@ -116,7 +116,42 @@
 				}
       },
       bukaData(value){
-				this.fetch(this.$route.params.awal, this.$route.params.akhir, this.$route.params.cu, this.$route.params.status, value);
+				let _dari = '';
+				let _ke = '';
+
+				if(value == '0 s.d. 1 tahun'){
+					_dari = 1;
+					_ke = 0;
+				}else if(value == '> 1 s.d. 10 tahun'){
+					_dari = 10;
+					_ke = 1;
+				}else if(value == '> 10 s.d. 20 tahun'){
+					_dari = 20;
+					_ke = 10;
+				}else if(value == '> 20 s.d. 30 tahun'){
+					_dari = 30;
+					_ke = 20;
+				}else if(value == '> 30 s.d. 40 tahun'){
+					_dari = 40;
+					_ke = 30;
+				}else if(value == '> 40 s.d. 50 tahun'){
+					_dari = 50;
+					_ke = 40;
+				}else if(value == '> 50 s.d. 60 tahun'){
+					_dari = 60;
+					_ke = 50;
+				}else if(value == '> 60 s.d. 70 tahun'){
+					_dari = 70;
+					_ke = 60;
+				}else if(value == '> 70 tahun'){
+					_dari = 300;
+					_ke = 70;
+				}else{
+					_dari = 'semua';
+					_ke = 'semua';
+				}
+
+				this.fetch(this.$route.params.awal, this.$route.params.akhir, this.$route.params.cu, this.$route.params.status, _dari, _ke);
 				this.isShowDetail = true;
 			},
 			showDetail(){

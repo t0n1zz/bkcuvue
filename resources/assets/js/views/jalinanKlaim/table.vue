@@ -722,21 +722,25 @@
         if(this.$route.params.cu == 'semua'){
           this.$store.dispatch(this.kelas + '/index' + this.status, [params, this.$route.params.jenis, this.$route.params.kategori, this.$route.params.dari, this.$route.params.ke, this.$route.params.awal, this.$route.params.akhir]);
 
-          if(this.$route.params.jenis == 'penyebab'){
+          if(this.$route.params.jenis == 'usia'){
+            this.excelDownloadUrl = this.kelas + '/indexLaporanUsiaDetail/semua/' + this.status  + '/' + this.$route.params.dari + '/' + this.$route.params.ke + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
+          }else if(this.$route.params.jenis == 'penyebab'){
             this.excelDownloadUrl = this.kelas + '/indexLaporanPenyebabDetail/semua/' + this.status  + '/' + this.$route.params.kategori + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
-          }else if(this.$route.params.jenis == 'status'){
-            this.excelDownloadUrl = this.kelas + '/indexLaporanStatusDetail/semua/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
+          }else if(this.$route.params.jenis == 'cu'){
+            this.excelDownloadUrl = this.kelas + '/indexLaporanCuDetail/semua/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           }else{
             this.excelDownloadUrl = this.kelas + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           }
           this.columnData[4].disable = false;
         }else{
-          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.tp, this.$route.params.jenis, this.$route.params.kategori, this.$route.params.awal, this.$route.params.akhir]);
+          this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.tp, this.$route.params.jenis, this.$route.params.kategori,this.$route.params.dari, this.$route.params.ke, this.$route.params.awal, this.$route.params.akhir]);
 
-          if(this.$route.params.jenis == 'penyebab'){
+          if(this.$route.params.jenis == 'usia'){
+            this.excelDownloadUrl = this.kelas + '/indexLaporanUsiaDetail/' + this.$route.params.cu +  '/' + this.status  + '/' + this.$route.params.dari + '/' + this.$route.params.ke + '/'  + this.$route.params.awal + '/' + this.$route.params.akhir;
+          }else if(this.$route.params.jenis == 'penyebab'){
             this.excelDownloadUrl = this.kelas + '/indexLaporanPenyebabDetail/' + this.$route.params.cu +  '/' + this.status  + '/' + this.$route.params.kategori + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
-          }else if(this.$route.params.jenis == 'status'){
-            this.excelDownloadUrl = this.kelas + '/indexLaporanStatusDetail/' + this.$route.params.cu +  '/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
+          }else if(this.$route.params.jenis == 'cu'){
+            this.excelDownloadUrl = this.kelas + '/indexLaporanCuDetail/' + this.$route.params.cu +  '/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           }else{          
             this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
             this.$store.dispatch('user/indexCuPermission',this.$route.params.cu);

@@ -112,7 +112,7 @@ class JalinanKlaimController extends Controller{
 		COUNT(*) as total';
 	}
 
-	public function indexLaporanStatus($status, $awal, $akhir)
+	public function indexLaporanCu($status, $awal, $akhir)
 	{
 		if($status == '5' || $status == '6'){
 			$table_data = DB::table('jalinan_klaim')
@@ -144,7 +144,7 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function indexLaporanStatusDetail($cu, $status, $awal, $akhir)
+	public function indexLaporanCuDetail($cu, $status, $awal, $akhir)
 	{
 		if($cu == 'semua'){
 			if($status == '5' || $status == '6'){
@@ -348,7 +348,14 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia
+					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia,
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui
 				'))->addSelect(DB::raw('
 					CASE
 						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 1 THEN "0 s.d. 1 tahun"
@@ -379,10 +386,17 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia
+					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia,
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui
 				'))->addSelect(DB::raw('
 					CASE
-						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 1 THEN "0 s.d. 1 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 1 THEN "0 s.d. 1 tahun"
 						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 1 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 10 THEN "> 1 s.d. 10 tahun"
 						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 10 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 20 THEN "> 10 s.d. 20 tahun"
 						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 20 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 30 THEN "> 20 s.d. 30 tahun"
@@ -416,18 +430,25 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia
+					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia,
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui
 				'))->addSelect(DB::raw('
 					CASE
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 1 THEN "0 s.d. 1 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 1 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 10 THEN "> 1 s.d. 10 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 10 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 20 THEN "> 10 s.d. 20 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 20 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 30 THEN "> 20 s.d. 30 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 30 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 40 THEN "30 s.d. 40 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 40 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 50 THEN "40 s.d. 50 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 50 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 60 THEN "50 s.d. 60 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 60 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 70 THEN "60 s.d. 70 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 70 THEN "> 70 Tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 1 THEN "0 s.d. 1 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 1 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 10 THEN "> 1 s.d. 10 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 10 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 20 THEN "> 10 s.d. 20 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 20 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 30 THEN "> 20 s.d. 30 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 30 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 40 THEN "> 30 s.d. 40 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 40 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 50 THEN "> 40 s.d. 50 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 50 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 60 THEN "> 50 s.d. 60 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 60 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 70 THEN "> 60 s.d. 70 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 70 THEN "> 70 tahun"
 					END as kategori,
 					COUNT(*) as total
 				'))
@@ -451,18 +472,25 @@ class JalinanKlaimController extends Controller{
 					COUNT(case when anggota_cu.kelamin="PEREMPUAN" then 1 end) AS perempuan,
 					COUNT(case when tipe="MENINGGAL" then 1 end) AS meninggal, 
 					COUNT(case when tipe="CACAT" then 1 end) AS cacat, 
-					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia
+					TIMESTAMPDIFF(YEAR, max(anggota_cu.tanggal_lahir), CURDATE()) AS usia,
+					COUNT(*) as total,
+					SUM(tunas_diajukan) AS tunas_diajukan, 
+					SUM(lintang_diajukan) AS lintang_diajukan,
+					SUM(tunas_diajukan) + SUM(lintang_diajukan) as tot_diajukan,
+					SUM(tunas_disetujui) AS tunas_disetujui, 
+					SUM(lintang_disetujui) AS lintang_disetujui,
+					SUM(tunas_disetujui) + SUM(lintang_disetujui) as tot_disetujui
 				'))->addSelect(DB::raw('
 					CASE
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 1 THEN "0 s.d. 1 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 1 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 10 THEN "> 1 s.d. 10 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 10 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 20 THEN "> 10 s.d. 20 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 20 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 30 THEN "> 20 s.d. 30 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 30 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 40 THEN "30 s.d. 40 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 40 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 50 THEN "40 s.d. 50 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 50 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 60 THEN "50 s.d. 60 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 60 and TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) < 70 THEN "60 s.d. 70 Tahun"
-					WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 70 THEN "> 70 Tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 1 THEN "0 s.d. 1 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 1 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 10 THEN "> 1 s.d. 10 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 10 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 20 THEN "> 10 s.d. 20 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 20 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 30 THEN "> 20 s.d. 30 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 30 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 40 THEN "> 30 s.d. 40 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 40 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 50 THEN "> 40 s.d. 50 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 50 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 60 THEN "> 50 s.d. 60 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 60 AND TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) <= 70 THEN "> 60 s.d. 70 tahun"
+						WHEN TIMESTAMPDIFF(YEAR, anggota_cu.tanggal_lahir, CURDATE()) > 70 THEN "> 70 tahun"
 					END as kategori,
 					COUNT(*) as total
 				'))
@@ -481,16 +509,72 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanUsiaDetail($cu, $status, $dari, $ke, $awal, $akhir)
 	{
-		$dari = \Carbon\Carbon::now()->subYears($dari);
-		$ke = \Carbon\Carbon::now()->subYears($ke);
-
-		$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
-		->whereHas('anggota_cu', function($query) use ($dari, $ke){ 
-			$query->whereBetween('tanggal_lahir',[$dari, $ke]);
-		})->where('status_klaim',$status)
-		->whereHas('anggota_cu_cu', function($query) use ($cu){ 
-			$query->where('cu_id',$cu); 
-		})->whereBetween('tanggal_pencairan',[$awal, $akhir])->advancedFilter();
+		if($dari != 'semua'){
+			$dari = \Carbon\Carbon::now()->subYears($dari)->toDateString();
+			$ke = \Carbon\Carbon::now()->subYears($ke)->toDateString();
+		}
+		
+		if($cu == 'semua'){
+			if($status == '5' || $status == '6'){
+				if($dari == 'semua'){
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->where('status_klaim',$status)
+					->whereBetween('tanggal_pencairan',[$awal, $akhir])->advancedFilter();
+				}else{
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->whereHas('anggota_cu', function($query) use ($dari, $ke){ 
+						$query->whereBetween('tanggal_lahir',[$dari, $ke]);
+					})->where('status_klaim',$status)
+					->whereBetween('tanggal_pencairan',[$awal, $akhir])->advancedFilter();
+				}
+			}else{
+				if($dari == 'semua'){
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->where('status_klaim',$status)
+					->whereBetween('created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])->advancedFilter();
+				}else{
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->whereHas('anggota_cu', function($query) use ($dari, $ke){ 
+						$query->whereBetween('tanggal_lahir',[$dari, $ke]);
+					})->where('status_klaim',$status)
+					->whereBetween('created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])->advancedFilter();
+				}
+			}
+		}else{
+			if($status == '5' || $status == '6'){
+				if($dari == 'semua'){
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->where('status_klaim',$status)
+					->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+						$query->where('cu_id',$cu); 
+					})->whereBetween('tanggal_pencairan',[$awal, $akhir])->advancedFilter();
+				}else{
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->whereHas('anggota_cu', function($query) use ($dari, $ke){ 
+						$query->whereBetween('tanggal_lahir',[$dari, $ke]);
+					})->where('status_klaim',$status)
+					->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+						$query->where('cu_id',$cu); 
+					})->whereBetween('tanggal_pencairan',[$awal, $akhir])->advancedFilter();
+				}
+			}else{
+				if($dari == 'semua'){
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->where('status_klaim',$status)
+					->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+						$query->where('cu_id',$cu); 
+					})->whereBetween('created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])->advancedFilter();
+				}else{
+					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+					->whereHas('anggota_cu', function($query) use ($dari, $ke){ 
+						$query->whereBetween('tanggal_lahir',[$dari, $ke]);
+					})->where('status_klaim',$status)
+					->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+						$query->where('cu_id',$cu); 
+					})->whereBetween('created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])->advancedFilter();
+				}
+			}
+		}
 
 		return response()
 			->json([

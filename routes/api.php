@@ -492,12 +492,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/jalinanKlaim/updateCairAll/{awal}/{akhir}', 'JalinanKlaimController@updateCairAll');
     });
     Route::group(['middleware' => ['permission:laporan_jalinan_klaim']], function () {
-        Route::get('/jalinanKlaim/indexLaporanStatus/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanStatus');
-        Route::get('/jalinanKlaim/indexLaporanStatusDetail/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanStatusDetail');
+        Route::get('/jalinanKlaim/indexLaporanCu/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCu');
+        Route::get('/jalinanKlaim/indexLaporanCuDetail/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCuDetail');
         Route::get('/jalinanKlaim/indexLaporanPenyebab/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebab');
         Route::get('/jalinanKlaim/indexLaporanPenyebabDetail/{cu}/{status}/{kategori}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebabDetail'); 
         Route::get('/jalinanKlaim/indexLaporanUsia/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsia');
-        Route::get('/jalinanKlaim/indexLaporanUsiaDetail/{cu}/{status}/{kategori}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsiaDetail');
+        Route::get('/jalinanKlaim/indexLaporanUsiaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsiaDetail');
         Route::get('/jalinanKlaim/indexLaporanLama/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLama');
     });
 

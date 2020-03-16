@@ -101,7 +101,17 @@ export const jalinanKlaim = {
     index1( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 1, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS1', response.data.model );
+            commit('setDataStatS1', 'success');
+          })
+          .catch( error => {
+            commit('setDataS1', error.response);
+            commit('setDataStatS1', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, 'semua', 1, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS1', response.data.model );
@@ -111,8 +121,8 @@ export const jalinanKlaim = {
             commit('setDataS1', error.response);
             commit('setDataStatS1', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, 'semua', 1, awal, akhir)
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, 'semua', 1, awal, akhir)
           .then( function( response ){
             commit('setDataS1', response.data.model );
             commit('setDataStatS1', 'success');
@@ -136,7 +146,17 @@ export const jalinanKlaim = {
     index2( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 2, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS2', response.data.model );
+            commit('setDataStatS2', 'success');
+          })
+          .catch( error => {
+            commit('setDataS2', error.response);
+            commit('setDataStatS2', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, 'semua', 2, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS2', response.data.model );
@@ -146,8 +166,8 @@ export const jalinanKlaim = {
             commit('setDataS2', error.response);
             commit('setDataStatS2', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, 'semua', 2, awal, akhir)
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, 'semua', 2, awal, akhir)
           .then( function( response ){
             commit('setDataS2', response.data.model );
             commit('setDataStatS2', 'success');
@@ -171,7 +191,17 @@ export const jalinanKlaim = {
     index3( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 3, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS3', response.data.model );
+            commit('setDataStatS3', 'success');
+          })
+          .catch( error => {
+            commit('setDataS3', error.response);
+            commit('setDataStatS3', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, 'semua', 3, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS3', response.data.model );
@@ -181,8 +211,8 @@ export const jalinanKlaim = {
             commit('setDataS3', error.response);
             commit('setDataStatS3', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, 'semua', 3, awal, akhir)
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, 'semua', 3, awal, akhir)
           .then( function( response ){
             commit('setDataS3', response.data.model );
             commit('setDataStatS3', 'success');
@@ -206,7 +236,17 @@ export const jalinanKlaim = {
     index4( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 4, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS4', response.data.model );
+            commit('setDataStatS4', 'success');
+          })
+          .catch( error => {
+            commit('setDataS4', error.response);
+            commit('setDataStatS4', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, 'semua', 4, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS4', response.data.model );
@@ -216,8 +256,8 @@ export const jalinanKlaim = {
             commit('setDataS4', error.response);
             commit('setDataStatS4', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, 'semua', 4, awal, akhir)
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, 'semua', 4, awal, akhir)
           .then( function( response ){
             commit('setDataS4', response.data.model );
             commit('setDataStatS4', 'success');
@@ -241,7 +281,17 @@ export const jalinanKlaim = {
     index5( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 5, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS5', response.data.model );
+            commit('setDataStatS5', 'success');
+          })
+          .catch( error => {
+            commit('setDataS5', error.response);
+            commit('setDataStatS5', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, 'semua', 5, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS5', response.data.model );
@@ -251,8 +301,8 @@ export const jalinanKlaim = {
             commit('setDataS5', error.response);
             commit('setDataStatS5', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, 'semua', 5, awal, akhir)
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, 'semua', 5, awal, akhir)
           .then( function( response ){
             commit('setDataS5', response.data.model );
             commit('setDataStatS5', 'success');
@@ -276,7 +326,17 @@ export const jalinanKlaim = {
     index6( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS6', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 6, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS6', response.data.model );
+            commit('setDataStatS6', 'success');
+          })
+          .catch( error => {
+            commit('setDataS6', error.response);
+            commit('setDataStatS6', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, 'semua', 6, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS6', response.data.model );
@@ -286,8 +346,8 @@ export const jalinanKlaim = {
             commit('setDataS6', error.response);
             commit('setDataStatS6', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, 'semua', 6, awal, akhir)
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, 'semua', 6, awal, akhir)
           .then( function( response ){
             commit('setDataS6', response.data.model );
             commit('setDataStatS6', 'success');
@@ -336,10 +396,20 @@ export const jalinanKlaim = {
           commit('setDataStatS', 'fail');
         });
     },
-    indexCu1( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
+    indexCu1( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      if(jenis == 'penyebab'){
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 1, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS1', response.data.model );
+            commit('setDataStatS1', 'success');
+          })
+          .catch( error => {
+            commit('setDataS1', error.response);
+            commit('setDataStatS1', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
         JalinanKlaimAPI.indexLaporanPenyebabDetail( p, cu, 1, kategori, awal, akhir)
           .then( function( response ){
             commit('setDataS1', response.data.model );
@@ -349,8 +419,8 @@ export const jalinanKlaim = {
             commit('setDataS1', error.response);
             commit('setDataStatS1', 'fail');
           });
-      }else if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, cu, 1, awal, akhir )
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, cu, 1, awal, akhir )
         .then( function( response ){
           commit('setDataS1', response.data.model);
           commit('setDataStatS1', 'success');
@@ -371,11 +441,31 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu2( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
+    indexCu2( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, cu, 2, awal, akhir )
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 2, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS2', response.data.model );
+            commit('setDataStatS2', 'success');
+          })
+          .catch( error => {
+            commit('setDataS2', error.response);
+            commit('setDataStatS2', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
+        JalinanKlaimAPI.indexLaporanPenyebabDetail( p, cu, 2, kategori, awal, akhir)
+          .then( function( response ){
+            commit('setDataS2', response.data.model );
+            commit('setDataStatS2', 'success');
+          })
+          .catch( error => {
+            commit('setDataS2', error.response);
+            commit('setDataStatS2', 'fail');
+          });
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, cu, 2, awal, akhir )
         .then( function( response ){
           commit('setDataS2', response.data.model);
           commit('setDataStatS2', 'success');
@@ -396,11 +486,31 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu3( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
+    indexCu3( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, cu, 3, awal, akhir )
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 3, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS3', response.data.model );
+            commit('setDataStatS3', 'success');
+          })
+          .catch( error => {
+            commit('setDataS3', error.response);
+            commit('setDataStatS3', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
+        JalinanKlaimAPI.indexLaporanPenyebabDetail( p, cu, 3, kategori, awal, akhir)
+          .then( function( response ){
+            commit('setDataS3', response.data.model );
+            commit('setDataStatS3', 'success');
+          })
+          .catch( error => {
+            commit('setDataS3', error.response);
+            commit('setDataStatS3', 'fail');
+          });
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, cu, 3, awal, akhir )
         .then( function( response ){
           commit('setDataS3', response.data.model);
           commit('setDataStatS3', 'success');
@@ -421,11 +531,31 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu4( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
+    indexCu4( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
-      if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, cu, 4, awal, akhir )
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 4, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS4', response.data.model );
+            commit('setDataStatS4', 'success');
+          })
+          .catch( error => {
+            commit('setDataS4', error.response);
+            commit('setDataStatS4', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
+        JalinanKlaimAPI.indexLaporanPenyebabDetail( p, cu, 4, kategori, awal, akhir)
+          .then( function( response ){
+            commit('setDataS4', response.data.model );
+            commit('setDataStatS4', 'success');
+          })
+          .catch( error => {
+            commit('setDataS4', error.response);
+            commit('setDataStatS4', 'fail');
+          });
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, cu, 4, awal, akhir )
         .then( function( response ){
           commit('setDataS4', response.data.model);
           commit('setDataStatS4', 'success');
@@ -446,11 +576,31 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu5( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
+    indexCu5( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
-      if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, cu, 5, awal, akhir )
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 5, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS5', response.data.model );
+            commit('setDataStatS5', 'success');
+          })
+          .catch( error => {
+            commit('setDataS5', error.response);
+            commit('setDataStatS5', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
+        JalinanKlaimAPI.indexLaporanPenyebabDetail( p, cu, 5, kategori, awal, akhir)
+          .then( function( response ){
+            commit('setDataS5', response.data.model );
+            commit('setDataStatS5', 'success');
+          })
+          .catch( error => {
+            commit('setDataS5', error.response);
+            commit('setDataStatS5', 'fail');
+          });
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, cu, 5, awal, akhir )
         .then( function( response ){
           commit('setDataS5', response.data.model);
           commit('setDataStatS5', 'success');
@@ -471,11 +621,31 @@ export const jalinanKlaim = {
         });
       }
     },
-    indexCu6( { commit }, [p, cu, tp, jenis, kategori, awal, akhir] ){
+    indexCu6( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS6', 'loading');
       
-      if(jenis == 'status'){
-        JalinanKlaimAPI.indexLaporanStatusDetail( p, cu, 6, awal, akhir )
+      if(jenis == 'usia'){
+        JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 6, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS6', response.data.model );
+            commit('setDataStatS6', 'success');
+          })
+          .catch( error => {
+            commit('setDataS6', error.response);
+            commit('setDataStatS6', 'fail');
+          });
+      }else if(jenis == 'penyebab'){
+        JalinanKlaimAPI.indexLaporanPenyebabDetail( p, cu, 6, kategori, awal, akhir)
+          .then( function( response ){
+            commit('setDataS6', response.data.model );
+            commit('setDataStatS6', 'success');
+          })
+          .catch( error => {
+            commit('setDataS6', error.response);
+            commit('setDataStatS6', 'fail');
+          });
+      }else if(jenis == 'cu'){
+        JalinanKlaimAPI.indexLaporanCuDetail( p, cu, 6, awal, akhir )
         .then( function( response ){
           commit('setDataS6', response.data.model);
           commit('setDataStatS6', 'success');
@@ -524,10 +694,10 @@ export const jalinanKlaim = {
         });
     },
 
-    indexLaporanStatus( { commit }, [status, cu, awal, akhir] ){
+    indexLaporanCu( { commit }, [status, cu, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.indexLaporanStatus( status, awal, akhir )
+      JalinanKlaimAPI.indexLaporanCu( status, awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

@@ -12,12 +12,12 @@ export default {
     return axios.get('/api/jalinanKlaim/indexCair/' + tanggal);
   },
   
-  indexLaporanStatus: function( status, awal, akhir){
-    return axios.get('/api/jalinanKlaim/indexLaporanStatus/' + status + '/' + awal + '/' + akhir);
+  indexLaporanCu: function( status, awal, akhir){
+    return axios.get('/api/jalinanKlaim/indexLaporanCu/' + status + '/' + awal + '/' + akhir);
   },
 
-  indexLaporanStatusDetail: function( p, cu, status, awal, akhir  ){
-    return axios.get('/api/jalinanKlaim/indexLaporanStatusDetail/' + cu + '/' + status + '/' + awal + '/' + akhir, {params: p});
+  indexLaporanCuDetail: function( p, cu, status, awal, akhir  ){
+    return axios.get('/api/jalinanKlaim/indexLaporanCuDetail/' + cu + '/' + status + '/' + awal + '/' + akhir, {params: p});
   },
 
   indexLaporanPenyebab: function( status, cu, awal, akhir){
@@ -30,6 +30,10 @@ export default {
 
   indexLaporanUsia: function( status, cu, awal, akhir){
     return axios.get('/api/jalinanKlaim/indexLaporanUsia/' + cu + '/' + status + '/' + awal + '/' + akhir);
+  },
+
+  indexLaporanUsiaDetail: function( p, cu, status, dari, ke, awal, akhir ){
+    return axios.get('/api/jalinanKlaim/indexLaporanUsiaDetail/' + cu +  '/' + status + '/' + dari + '/' + ke + '/' + awal + '/' + akhir , {params: p});
   },
 
   indexLaporanLama: function( awal, akhir, cu){

@@ -79,7 +79,7 @@
 				titleIcon: 'icon-archive',
 				kelas: 'jalinanKlaim',
 				isShowDetail: false,
-				url: 'indexLaporanStatus',
+				url: 'indexLaporanCu',
 				status: '',
 			}
 		},
@@ -95,7 +95,7 @@
 		},
 		methods: {
 			fetch(cu, status, awal, akhir){
-				this.$router.push({name: 'jalinanLaporanKlaimStatusTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'status'} });
+				this.$router.push({name: 'jalinanLaporanKlaimCuTanggal', params:{awal: awal, akhir: akhir, status: status, cu: cu, jenis: 'cu'} });
 			},
 			cari(awal, akhir, cu, status){
 				this.fetch('semua', status, awal, akhir);
@@ -114,7 +114,14 @@
 				}
 			},
 			bukaData(value){
-				this.fetch(value, this.$route.params.status, this.$route.params.awal, this.$route.params.akhir);
+				let _cu = '';
+				if(value != 'semua'){
+					_cu = _.find(this.modelCu, {'name': value});
+					_cu = _cu.id;
+				}else{
+					_cu = value;
+				}
+				this.fetch(_cu, this.$route.params.status, this.$route.params.awal, this.$route.params.akhir);
 				this.isShowDetail = true;
 			},
 			showDetail(){
@@ -124,6 +131,10 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
+			}),
+			...mapGetters('cu',{
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 			...mapGetters('jalinanKlaim',{
 				itemData: 'dataS',
