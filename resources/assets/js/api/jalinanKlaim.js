@@ -36,8 +36,12 @@ export default {
     return axios.get('/api/jalinanKlaim/indexLaporanUsiaDetail/' + cu +  '/' + status + '/' + dari + '/' + ke + '/' + awal + '/' + akhir , {params: p});
   },
 
-  indexLaporanLama: function( awal, akhir, cu){
-    return axios.get('/api/jalinanKlaim/indexLaporanLama/' + awal + '/' + akhir + '/' + cu);
+  indexLaporanLama: function( status, cu, awal, akhir){
+    return axios.get('/api/jalinanKlaim/indexLaporanLama/' + cu + '/' + status + '/' + awal + '/' + akhir);
+  },
+
+  indexLaporanLamaDetail: function( p, cu, status, dari, ke, awal, akhir ){
+    return axios.get('/api/jalinanKlaim/indexLaporanLamaDetail/' + cu +  '/' + status + '/' + dari + '/' + ke + '/' + awal + '/' + akhir , {params: p});
   },
 
   getPencairan: function(){

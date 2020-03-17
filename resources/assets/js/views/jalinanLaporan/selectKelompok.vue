@@ -51,7 +51,7 @@
 					</div>
 
 					<!-- tanggal pencairan -->
-					<div class="col-sm-5">
+					<div class="col-sm-5" v-if="status != ''">
 						<div class="input-group">
 							<span class="input-group-prepend">
 								<span class="input-group-text">Tanggal Awal {{ detailTanggal }}</span>
@@ -69,7 +69,7 @@
 						</div>
 					</div>
 
-          <div class="col-sm-5">
+          <div class="col-sm-5" v-if="status != ''">
 						<div class="input-group">
 							<span class="input-group-prepend">
 								<span class="input-group-text">Tanggal Akhir {{ detailTanggal }}</span>
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 
-          <div class="col-sm-2">
+          <div class="col-sm-2" v-if="status != ''">
             <button type="button" class="btn btn-light btn-block" @click.prevent="cari()">Cari</button>
           </div>
 
@@ -151,7 +151,6 @@
 					this.idCu = this.$route.params.cu;
 					this.status = this.$route.params.status;
 				}
-
 				if(this.currentUser.id_cu == 0){
 					this.fetchCU();
 				}

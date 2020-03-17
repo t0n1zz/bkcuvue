@@ -101,7 +101,17 @@ export const jalinanKlaim = {
     index1( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, 'semua', 1, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS1', response.data.model );
+            commit('setDataStatS1', 'success');
+          })
+          .catch( error => {
+            commit('setDataS1', error.response);
+            commit('setDataStatS1', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 1, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS1', response.data.model );
@@ -146,7 +156,17 @@ export const jalinanKlaim = {
     index2( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, 'semua', 2, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS2', response.data.model );
+            commit('setDataStatS2', 'success');
+          })
+          .catch( error => {
+            commit('setDataS2', error.response);
+            commit('setDataStatS2', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 2, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS2', response.data.model );
@@ -191,7 +211,17 @@ export const jalinanKlaim = {
     index3( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, 'semua', 3, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS3', response.data.model );
+            commit('setDataStatS3', 'success');
+          })
+          .catch( error => {
+            commit('setDataS3', error.response);
+            commit('setDataStatS3', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 3, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS3', response.data.model );
@@ -236,7 +266,17 @@ export const jalinanKlaim = {
     index4( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, 'semua', 4, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS4', response.data.model );
+            commit('setDataStatS4', 'success');
+          })
+          .catch( error => {
+            commit('setDataS4', error.response);
+            commit('setDataStatS4', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 4, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS4', response.data.model );
@@ -281,7 +321,17 @@ export const jalinanKlaim = {
     index5( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, 'semua', 5, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS5', response.data.model );
+            commit('setDataStatS5', 'success');
+          })
+          .catch( error => {
+            commit('setDataS5', error.response);
+            commit('setDataStatS5', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 5, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS5', response.data.model );
@@ -326,7 +376,17 @@ export const jalinanKlaim = {
     index6( { commit }, [p, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS6', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, 'semua', 6, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS6', response.data.model );
+            commit('setDataStatS6', 'success');
+          })
+          .catch( error => {
+            commit('setDataS6', error.response);
+            commit('setDataStatS6', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, 'semua', 6, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS6', response.data.model );
@@ -399,7 +459,17 @@ export const jalinanKlaim = {
     indexCu1( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS1', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, cu, 1, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS1', response.data.model );
+            commit('setDataStatS1', 'success');
+          })
+          .catch( error => {
+            commit('setDataS1', error.response);
+            commit('setDataStatS1', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 1, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS1', response.data.model );
@@ -444,7 +514,17 @@ export const jalinanKlaim = {
     indexCu2( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS2', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, cu, 2, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS2', response.data.model );
+            commit('setDataStatS2', 'success');
+          })
+          .catch( error => {
+            commit('setDataS2', error.response);
+            commit('setDataStatS2', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 2, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS2', response.data.model );
@@ -489,7 +569,17 @@ export const jalinanKlaim = {
     indexCu3( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS3', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, cu, 3, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS3', response.data.model );
+            commit('setDataStatS3', 'success');
+          })
+          .catch( error => {
+            commit('setDataS3', error.response);
+            commit('setDataStatS3', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 3, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS3', response.data.model );
@@ -534,7 +624,17 @@ export const jalinanKlaim = {
     indexCu4( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS4', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, cu, 4, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS4', response.data.model );
+            commit('setDataStatS4', 'success');
+          })
+          .catch( error => {
+            commit('setDataS4', error.response);
+            commit('setDataStatS4', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 4, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS4', response.data.model );
@@ -579,7 +679,17 @@ export const jalinanKlaim = {
     indexCu5( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS5', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, cu, 5, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS5', response.data.model );
+            commit('setDataStatS5', 'success');
+          })
+          .catch( error => {
+            commit('setDataS5', error.response);
+            commit('setDataStatS5', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 5, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS5', response.data.model );
@@ -624,7 +734,17 @@ export const jalinanKlaim = {
     indexCu6( { commit }, [p, cu, tp, jenis, kategori, dari, ke, awal, akhir] ){
       commit('setDataStatS6', 'loading');
       
-      if(jenis == 'usia'){
+      if(jenis == 'lama'){
+        JalinanKlaimAPI.indexLaporanLamaDetail( p, cu, 6, dari, ke, awal, akhir)
+          .then( function( response ){
+            commit('setDataS6', response.data.model );
+            commit('setDataStatS6', 'success');
+          })
+          .catch( error => {
+            commit('setDataS6', error.response);
+            commit('setDataStatS6', 'fail');
+          });
+      }else if(jenis == 'usia'){
         JalinanKlaimAPI.indexLaporanUsiaDetail( p, cu, 6, dari, ke, awal, akhir)
           .then( function( response ){
             commit('setDataS6', response.data.model );
@@ -736,10 +856,10 @@ export const jalinanKlaim = {
         });
     },
 
-    indexLaporanLama( { commit }, [awal, akhir, cu] ){
+    indexLaporanLama( { commit }, [status, cu, awal, akhir] ){
       commit('setDataStatS', 'loading');
       
-      JalinanKlaimAPI.indexLaporanLama( awal, akhir, cu )
+      JalinanKlaimAPI.indexLaporanLama( status, cu, awal, akhir )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');

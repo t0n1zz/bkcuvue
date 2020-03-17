@@ -10,15 +10,42 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#325">Version 3.2.5 <small class="text-muted"> / 17 Maret 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="325" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini meningkatkan dan memperbaiki laporan klaim JALINAN
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Memperbaiki laporan klaim JALINAN</li>
+                      <li>Merubah penamaan menu laporan klaim JALINAN</li>
+                      <li>Merubah cara pencarian laporan klaim JALINAN menjadi lebih mendetail dan fleksibel</li>
+                      <li>Menambahkan fitur untuk mengubah identitas dan produk anggota CU yang mengajukan klaim JALINAN yang hanya bisa dilakukan oleh staf JALINAN Puskopdit BKCU Kalimantan guna memperbaiki kesalahan penginputan data anggota CU</li>
+                      <li>Perbaikan bug pada perhitungan P.E.A.R.L.S.</li>
+                      <li>Perbaikan bug pada tampilan peserta di Diklat BKCU</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.5 -->
+
               <!-- Version 3.2.4 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#324">Version 3.2.4 <small class="text-muted"> / 4 Maret 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#324">Version 3.2.4 <small class="text-muted"> / 4 Maret 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="324" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="324" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding dan perubahan laporan pada Klaim JALINAN
                     <br/><br/>

@@ -499,6 +499,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/jalinanKlaim/indexLaporanUsia/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsia');
         Route::get('/jalinanKlaim/indexLaporanUsiaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsiaDetail');
         Route::get('/jalinanKlaim/indexLaporanLama/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLama');
+        Route::get('/jalinanKlaim/indexLaporanLamaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLamaDetail');
     });
 
     //laporan cu

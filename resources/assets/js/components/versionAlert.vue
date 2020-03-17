@@ -10,6 +10,11 @@
 		<!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" :color="modalColor" :size="'modal-lg'" @backgroundClick="modalTutup">
 
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
 			<!-- keluar -->
 			<template slot="modal-body1">
 				<div>
@@ -92,8 +97,10 @@
           <div class=" d-none d-sm-block">
             <button type="button" class="btn btn-light" @click="modalTutup">
               <i class="icon-cross"></i> Tutup</button>
+						<button type="button" class="btn btn-warning" @click.prevent="reloadPage()"> <i class="icon-sync"></i> Hard Reload</button>	
           </div>
           <div class="d-block d-sm-none">
+						<button type="button" class="btn btn-warning btn-block" @click.prevent="reloadPage()"> <i class="icon-sync"></i> Hard Reload</button>
             <button type="button" class="btn btn-light btn-block" @click="modalTutup">
                 <i class="icon-cross"></i> Tutup</button>
           </div>
@@ -119,7 +126,7 @@
 					serverVersionStat: '',
 					modalShow: false,
 					modalState: "",
-					modalTitle: "",
+					modalTitle: "Hard Reload",
 					modalContent: "",
 					modalButton: "",
         	modalColor: "",
