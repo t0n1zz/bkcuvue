@@ -114,7 +114,7 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanCu($status, $awal, $akhir)
 	{
-		if($status == '5' || $status == '6'){
+		if($status == '4' || $status == '5' || $status == '6'){
 			$table_data = DB::table('jalinan_klaim')
 			->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 			->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
@@ -147,13 +147,13 @@ class JalinanKlaimController extends Controller{
 	public function indexLaporanCuDetail($cu, $status, $awal, $akhir)
 	{
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->advancedFilter();
 			}else{
 				$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('created_at',[date('Y-m-d H:i:s', strtotime($awal)), date('Y-m-d H:i:s', strtotime($akhir))])->where('status_klaim',$status)->advancedFilter();
 			}
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 					$query->where('cu_id',$cu); 
 				})->advancedFilter();
@@ -174,7 +174,7 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanPenyebab($cu, $status, $awal, $akhir){
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 				->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
 				->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
@@ -222,7 +222,7 @@ class JalinanKlaimController extends Controller{
 				->get();
 			}
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::whereHas('anggota_cu_cu', 			
 				function($query) use ($cu){ 
 					$query->where('anggota_cu_cu.cu_id',$cu); 
@@ -287,7 +287,7 @@ class JalinanKlaimController extends Controller{
 	public function indexLaporanPenyebabDetail($cu, $status, $kategori, $awal, $akhir)
 	{
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				if($kategori == 'semua'){
 					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->advancedFilter();
 				}else{
@@ -303,7 +303,7 @@ class JalinanKlaimController extends Controller{
 
 			$table_data = $this->formatQuery($table_data);
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				if($kategori == 'semua'){
 					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 						$query->where('cu_id',$cu); 
@@ -336,7 +336,7 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanUsia($cu, $status, $awal, $akhir){
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 				->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
 				->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
@@ -414,7 +414,7 @@ class JalinanKlaimController extends Controller{
 				->get();
 			}
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::whereHas('anggota_cu_cu', 			
 				function($query) use ($cu){ 
 					$query->where('anggota_cu_cu.cu_id',$cu); 
@@ -515,7 +515,7 @@ class JalinanKlaimController extends Controller{
 		}
 		
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				if($dari == 'semua'){
 					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
 					->where('status_klaim',$status)
@@ -541,7 +541,7 @@ class JalinanKlaimController extends Controller{
 				}
 			}
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				if($dari == 'semua'){
 					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
 					->where('status_klaim',$status)
@@ -584,7 +584,7 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanLama($cu, $status, $awal, $akhir){
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 					->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
 					->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
@@ -656,7 +656,7 @@ class JalinanKlaimController extends Controller{
 				->get();
 			}
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::whereHas('anggota_cu_cu',
 					function($query) use ($cu){ 
 						$query->where('anggota_cu_cu.cu_id',$cu); 
@@ -752,7 +752,7 @@ class JalinanKlaimController extends Controller{
 		}
 		
 		if($cu == 'semua'){
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				if($dari == 'semua'){
 					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
 					->where('status_klaim',$status)
@@ -778,7 +778,7 @@ class JalinanKlaimController extends Controller{
 				}
 			}
 		}else{
-			if($status == '5' || $status == '6'){
+			if($status == '4' || $status == '5' || $status == '6'){
 				if($dari == 'semua'){
 					$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
 					->where('status_klaim',$status)
@@ -1226,9 +1226,6 @@ class JalinanKlaimController extends Controller{
 		$kelas = JalinanKlaim::findOrFail($id);
 
 		$kelas->status_klaim = $request->status;
-
-		$anggota_cu_id = $kelas->anggota_cu_id;
-		$tipe = $kelas->tipe;
 		$kelas->surat_nomor = $request->surat_nomor;
 		$kelas->surat_tanggal = $request->surat_tanggal;
 
@@ -1260,7 +1257,7 @@ class JalinanKlaimController extends Controller{
 		
 		$kelas->update();
 
-		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
+		$this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 		
 		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
 	
@@ -1274,7 +1271,7 @@ class JalinanKlaimController extends Controller{
 	public function periksaKoreksi(Request $request, $id)
 	{
 		$kelas = JalinanKlaim::findOrFail($id);
-		$kelas->status = 1;
+		$kelas->status_klaim = 1;
 		$kelas->tunas_diajukan = $request->tunas_diajukan;
 		$kelas->lintang_diajukan = $request->lintang_diajukan;
 		$kelas->tunas_disetujui = NULL;
@@ -1283,14 +1280,14 @@ class JalinanKlaimController extends Controller{
 
 		$kelas->update();
 
-		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
+		$this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 		
 		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
 	
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $message
+				'message' => 'Klaim JALINAN berhasil dikoreksi'
 			]);
 	}
 

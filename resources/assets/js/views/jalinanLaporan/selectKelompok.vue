@@ -174,7 +174,7 @@
 				}
 			},
 			changeDetailTanggal(value){
-				if(value == 5 || value == 6){
+				if(value == 4 || value == 5 || value == 6){
 					this.detailTanggal = 'Pencairan';
 				}else{
 					this.detailTanggal = 'Pengajuan';
