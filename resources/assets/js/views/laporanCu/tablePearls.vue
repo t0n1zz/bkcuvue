@@ -868,9 +868,9 @@ export default {
           "}}{\\text{" +
           this.formatCurrency(this.modalKatex.form[1].value) +
           "}} \\times \\text{100} \\% = " +
-          this.formatPercentage(itemData.e6) +
+          this.formatPercentage(itemData.a2) +
           " \\% ( \\text{" +
-          (itemData.a6 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") +
+          (itemData.a2 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") +
           "})";
 
         this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
@@ -990,7 +990,7 @@ export default {
             value: itemData.beban_penyisihan_dcr
           },
           { title: "Aset", key: "aset", value: itemData.aset },
-          { title: "Aset Tahun Lalu", key: "aset", value: itemData.aset }
+          { title: "Aset Tahun Lalu", key: "aset_lalu", value: itemData.aset_lalu }
         );
 
         this.modalKatex.indikator =

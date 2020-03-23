@@ -878,7 +878,7 @@
 
 					let katex1Content1 = '\\text{A2} = \\dfrac{\\text{'+ this.modalKatex.form[0].title +'}}{\\text{'+ this.modalKatex.form[1].title +'}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
 
-					let katex2Content1 = '\\text{A2} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'}}{\\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) +' \\% ( \\text{'+ (itemData.a6 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
+					let katex2Content1 = '\\text{A2} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'}}{\\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.a2) +' \\% ( \\text{'+ (itemData.a2 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
 					
 					this.modalKatex.katex1.push({title:'',content:katex1Content1});
 					this.modalKatex.katex2.push({title:'',content:katex2Content1});
@@ -931,7 +931,7 @@
 						{title:'Total Biaya',key:'total_biaya',value:itemData.total_biaya},
 						{title:'Beban Penyisihan Cadangan Resiko',key:'beban_penyisihan_dcr',value:itemData.beban_penyisihan_dcr},
 						{title:'Aset',key:'aset',value:itemData.aset},
-						{title:'Aset Tahun Lalu',key:'aset',value:itemData.aset},
+						{title:'Aset Tahun Lalu',key:'aset_lalu',value:itemData.aset_lalu},
 					);
 					
 					this.modalKatex.indikator = 'Beban operasional terhadap rata-rata aset sebesar 5%.';

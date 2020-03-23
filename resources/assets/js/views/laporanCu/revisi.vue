@@ -28,7 +28,7 @@
 								<div class="media-body">
 									<div class="media-title">
 										<a href="#">
-											<span class="font-weight-semibold">{{ rev.user.name }}</span>
+											<span class="font-weight-semibold">{{ rev.user.username }}</span>
 										</a>
 									</div>
 
