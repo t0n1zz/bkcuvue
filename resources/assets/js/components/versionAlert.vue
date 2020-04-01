@@ -34,7 +34,7 @@
 						<!-- Google Chrome -->
 						<div class="col-lg-6">
 							<h4>Google Chrome <i class="icon-chrome"></i></h4>
-							<h5><i class="icon-circles"></i> Operasi Windows <i class="icon-windows8"></i> dan Linux <i class="icon-tux"></i></h5>
+							<h5><i class="icon-circles"></i> Sistem Operasi Windows <i class="icon-windows8"></i> dan Linux <i class="icon-tux"></i></h5>
 							<ul>
 								<li>Tahan tombol <b>Ctrl</b> dan kemudian klik tombol <b><i class="icon-reload-alt"></i> reload</b>.</li>
 								<li>Atau, tahan tombol <b>Ctrl</b> lalu tekan tombol <b>F5</b>.</li>

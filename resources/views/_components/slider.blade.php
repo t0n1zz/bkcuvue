@@ -89,7 +89,7 @@
 																data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 																data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 																data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-																data-paddingleft="[0,0,0,0]" style="z-index: 9; min-width: 360px; max-width: 360px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;"> {{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),50) }} </div>
+																data-paddingleft="[0,0,0,0]" style="z-index: 9; min-width: 360px; max-width: 360px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;"> {{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),55) }} </div>
 				
 														<!-- LAYER NR. 6 -->
 														<div class="tp-caption   tp-resizeme" id="slide-582-layer-6" data-x="['left','left','left','left']"
@@ -240,7 +240,7 @@
 																data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 																data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 																data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-																data-paddingleft="[0,0,0,0]" style="z-index: 22; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),50) }} </div>
+																data-paddingleft="[0,0,0,0]" style="z-index: 22; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),40) }} </div>
 
 														<!-- LAYER NR. 19 -->
 														<div class="tp-caption   tp-resizeme" id="slide-582-layer-30" data-x="['left','left','left','left']"
@@ -320,7 +320,7 @@
 																data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 																data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 																data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-																data-paddingleft="[0,0,0,0]" style="z-index: 29; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),50) }} </div>
+																data-paddingleft="[0,0,0,0]" style="z-index: 29; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),30) }} </div>
 
 														<!-- LAYER NR. 26 -->
 														<div class="tp-caption   tp-resizeme" id="slide-582-layer-23" data-x="['left','left','left','left']"
@@ -421,7 +421,7 @@
 															data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 															data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 															data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-															data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 640px; max-width: 640px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),50) }}</div>
+															data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 640px; max-width: 640px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),70) }}</div>
 
 													<!-- LAYER NR. 61 -->
 													<div class="tp-caption   tp-resizeme" id="slide-584-layer-4" data-x="['left','left','left','left']"
@@ -500,7 +500,7 @@
 															data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 															data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 															data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-															data-paddingleft="[0,0,0,0]" style="z-index: 15; min-width: 360px; max-width: 360px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),40) }}</div>
+															data-paddingleft="[0,0,0,0]" style="z-index: 15; min-width: 360px; max-width: 360px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),30) }}</div>
 
 													<!-- LAYER NR. 68 -->
 													<div class="tp-caption   tp-resizeme" id="slide-584-layer-15" data-x="['left','left','left','left']"
@@ -577,7 +577,7 @@
 															data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 															data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 															data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-															data-paddingleft="[0,0,0,0]" style="z-index: 22; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),40) }}</div>
+															data-paddingleft="[0,0,0,0]" style="z-index: 22; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),30) }}</div>
 
 													<!-- LAYER NR. 75 -->
 													<div class="tp-caption   tp-resizeme" id="slide-584-layer-30" data-x="['left','left','left','left']"
@@ -655,7 +655,7 @@
 															data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 															data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 															data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-															data-paddingleft="[0,0,0,0]" style="z-index: 29; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),40) }} </div>
+															data-paddingleft="[0,0,0,0]" style="z-index: 29; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),30) }} </div>
 
 													<!-- LAYER NR. 82 -->
 													<div class="tp-caption   tp-resizeme" id="slide-584-layer-23" data-x="['left','left','left','left']"
@@ -764,7 +764,7 @@
 														data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 														data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 														data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-														data-paddingleft="[0,0,0,0]" style="z-index: 9; min-width: 640px; max-width: 640px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),50) }} </div>
+														data-paddingleft="[0,0,0,0]" style="z-index: 9; min-width: 640px; max-width: 640px; white-space: normal; font-size: 30px; line-height: 35px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),60) }} </div>
 
 												<!-- LAYER NR. 90 -->
 												<div class="tp-caption   tp-resizeme" id="slide-585-layer-6" data-x="['left','left','left','left']"
@@ -832,7 +832,7 @@
 														data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 														data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 														data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-														data-paddingleft="[0,0,0,0]" style="z-index: 15; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),40) }}</div>
+														data-paddingleft="[0,0,0,0]" style="z-index: 15; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),30) }}</div>
 
 												<!-- LAYER NR. 96 -->
 												<div class="tp-caption   tp-resizeme" id="slide-585-layer-30" data-x="['left','left','left','left']"
@@ -911,7 +911,7 @@
 														data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]"
 														data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']"
 														data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-														data-paddingleft="[0,0,0,0]" style="z-index: 22; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),40) }} </div>
+														data-paddingleft="[0,0,0,0]" style="z-index: 22; min-width: 255px; max-width: 255px; white-space: normal; font-size: 20px; line-height: 25px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Roboto;">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->name),30) }} </div>
 
 												<!-- LAYER NR. 103 -->
 												<div class="tp-caption   tp-resizeme" id="slide-585-layer-23" data-x="['left','left','left','left']"
