@@ -79,7 +79,7 @@
           <li class="nav-item"><a href="#laporanGerakan" class="nav-link">18. Laporan Statistik Gerakan</a></li>
 
           {{-- laporan perkembangan --}}
-          <li class="nav-item"><a href="#laporanPerkembangan" class="nav-link">19. Laporan Perkembangan CU</a></li>
+          <li class="nav-item"><a href="#laporanPerkembangan" class="nav-link">19. Laporan Statistik CU</a></li>
 
           {{-- User --}}
           <li class="nav-item"><a href="#user" class="nav-link">20. User</a></li>

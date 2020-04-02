@@ -145,7 +145,7 @@
 		<!-- a2 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1a2_cu_penilaian == cuTabName || form.p1.p1a2_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p1.p1a1_cu_penilaian != '' && form.p1.p1a1_cu_keterangan != ''">
+			<div class="card border-info" v-if="form.p1.p1a1_cu_penilaian !=null && form.p1.p1a1_cu_keterangan !=null">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						2. P2 = Mengukur kemampuan CU menyediakan dana cadangan risiko atas piutang lalai < 12 bulan</h5>
@@ -258,7 +258,7 @@
 		<!-- B section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body bg-warning text-white" v-if="form.p1.p1a2_cu_penilaian != '' && form.p1.p1a2_cu_keterangan != ''">
+			<div class="card card-body bg-warning text-white" v-if="form.p1.p1a2_cu_penilaian !=null && form.p1.p1a2_cu_keterangan !=null">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">B. STRUKTUR KEUANGAN YANG EFEKTIF </h6>
@@ -277,7 +277,7 @@
 		<!-- b3 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b3_cu_penilaian == cuTabName || form.p1.p1b3_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p1.p1a2_cu_penilaian != '' && form.p1.p1a2_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p1.p1a2_cu_penilaian !=null && form.p1.p1a2_cu_keterangan !=null">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						3. E1 = Mengukur persentase total asset yang diinvestasikan dalam piutang</h5>
@@ -392,7 +392,7 @@
 		<!-- b4 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b4_cu_penilaian == cuTabName || form.p1.p1b4_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p1.p1b3_cu_penilaian != '' && form.p1.p1b3_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p1.p1b3_cu_penilaian !=null && form.p1.p1b3_cu_keterangan !=null">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						4. E5 = Mengukur persentase total asset yang didanai dari simpanan non saham</h5>
@@ -507,7 +507,7 @@
 		<!-- b5 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b5_cu_penilaian == cuTabName || form.p1.p1b5_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p1.p1b4_cu_penilaian != '' && form.p1.p1b4_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p1.p1b4_cu_penilaian !=null && form.p1.p1b4_cu_keterangan !=null">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						5. E6 = Mengukur persentase total asset yang didanai dari pinjaman pihak 3</h5>
@@ -623,7 +623,7 @@
 		<!-- b7 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1b7_cu_penilaian == cuTabName || form.p1.p1b7_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p1.p1b5_cu_penilaian != '' && form.p1.p1b5_cu_keterangan != ''">
+			<div class="card border-warning" v-if="form.p1.p1b5_cu_penilaian !=null && form.p1.p1b5_cu_keterangan !=null">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						6. E9 = Mengukur level nyata dari modal lembaga setelah mengeluarkan penyisihan DCR untuk menutupi P1 & P2</h5>
@@ -738,7 +738,7 @@
 		<!-- C section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua')">
-			<div class="card card-body bg-success text-white" v-if="form.p1.p1b7_cu_penilaian != '' && form.p1.p1b7_cu_keterangan != ''">
+			<div class="card card-body bg-success text-white" v-if="form.p1.p1b7_cu_penilaian !=null && form.p1.p1b7_cu_keterangan !=null">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">C. KUALITAS ASET</h6>
@@ -757,7 +757,7 @@
 		<!-- c8 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1c8_cu_penilaian == cuTabName || form.p1.p1c8_bkcu_penilaian == bkcuTabName">
-			<div class="card border-success" v-if="form.p1.p1b7_cu_penilaian != '' && form.p1.p1b7_cu_keterangan != ''">
+			<div class="card border-success" v-if="form.p1.p1b7_cu_penilaian !=null && form.p1.p1b7_cu_keterangan !=null">
 				<div class="card-header bg-success text-white">
 					<h5 class="card-title">
 						7. A1 = Mengukur persentase total kelalaian piutang terhadap total piutang</h5>
@@ -872,7 +872,7 @@
 		<!-- c9 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1c9_cu_penilaian == cuTabName || form.p1.p1c9_bkcu_penilaian == bkcuTabName">
-			<div class="card border-success" v-if="form.p1.p1c8_cu_penilaian != '' && form.p1.p1c8_cu_keterangan != ''">
+			<div class="card border-success" v-if="form.p1.p1c8_cu_penilaian !=null && form.p1.p1c8_cu_keterangan !=null">
 				<div class="card-header bg-success text-white">
 					<h5 class="card-title">
 						8. A2 = Mengukur total asset yang tidak menghasilkan income</h5>
@@ -987,7 +987,7 @@
 		<!-- D section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua')">
-			<div class="card card-body bg-brown text-white" v-if="form.p1.p1c9_cu_penilaian != '' && form.p1.p1c9_cu_keterangan != ''">
+			<div class="card card-body bg-brown text-white" v-if="form.p1.p1c9_cu_penilaian !=null && form.p1.p1c9_cu_keterangan !=null">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">D. NILAI PENGEMBALIAN ATAS PEMBIAYAAN</h6>
@@ -1006,7 +1006,7 @@
 		<!-- d10 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1d10_cu_penilaian == cuTabName || form.p1.p1d10_bkcu_penilaian == bkcuTabName">
-			<div class="card border-brown" v-if="form.p1.p1c9_cu_penilaian != '' && form.p1.p1c9_cu_keterangan != ''">
+			<div class="card border-brown" v-if="form.p1.p1c9_cu_penilaian !=null && form.p1.p1c9_cu_keterangan !=null">
 				<div class="card-header bg-brown text-white">
 					<h5 class="card-title">
 						9. R7 = Mengukur persentase pengembalian biaya atas simpanan saham</h5>
@@ -1127,7 +1127,7 @@
 		<!-- d11 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1d11_cu_penilaian == cuTabName || form.p1.p1d11_bkcu_penilaian == bkcuTabName">
-			<div class="card border-brown" v-if="form.p1.p1d10_cu_penilaian != '' && form.p1.p1d10_cu_keterangan != ''">
+			<div class="card border-brown" v-if="form.p1.p1d10_cu_penilaian !=null && form.p1.p1d10_cu_keterangan !=null">
 				<div class="card-header bg-brown text-white">
 					<h5 class="card-title">
 						10. R9 = Mengukur persentase beban untuk mengelola semua asset</h5>
@@ -1242,7 +1242,7 @@
 		<!-- E section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body bg-danger text-white" v-if="form.p1.p1d11_cu_penilaian != '' && form.p1.p1d11_cu_keterangan != ''">
+			<div class="card card-body bg-danger text-white" v-if="form.p1.p1d11_cu_penilaian !=null && form.p1.p1d11_cu_keterangan !=null">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">E. LIKUIDITAS</h6>
@@ -1261,7 +1261,7 @@
 		<!-- e12 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1e12_cu_penilaian == cuTabName || form.p1.p1e12_bkcu_penilaian == bkcuTabName">
-			<div class="card border-danger" v-if="form.p1.p1d11_cu_penilaian != '' && form.p1.p1d11_cu_keterangan != ''">
+			<div class="card border-danger" v-if="form.p1.p1d11_cu_penilaian !=null && form.p1.p1d11_cu_keterangan !=null">
 				<div class="card-header bg-danger text-white">
 					<h5 class="card-title">
 						11. L1 = Mengukur persentase cadangan likuid untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari</h5>
@@ -1376,7 +1376,7 @@
 		<!-- F section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body bg-teal text-white" v-if="form.p1.p1e12_cu_penilaian != '' && form.p1.p1e12_cu_keterangan != ''">
+			<div class="card card-body bg-teal text-white" v-if="form.p1.p1e12_cu_penilaian !=null && form.p1.p1e12_cu_keterangan !=null">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">F. PERTUMBUHAN</h6>
@@ -1395,7 +1395,7 @@
 		<!-- f13 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1ff13_cu_penilaian == cuTabName || form.p1.p1ff13_bkcu_penilaian == bkcuTabName">
-			<div class="card border-teal" v-if="form.p1.p1e12_cu_penilaian != '' && form.p1.p1e12_cu_keterangan != ''">
+			<div class="card border-teal" v-if="form.p1.p1e12_cu_penilaian !=null && form.p1.p1e12_cu_keterangan !=null">
 				<div class="card-header bg-teal text-white">
 					<h5 class="card-title">
 						12. S10 = Mengukur persentase pertumbuhan anggota dari tahun ke tahun</h5>
@@ -1510,7 +1510,7 @@
 		<!-- f14 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p1.p1f14_cu_penilaian == cuTabName || form.p1.p1f14_bkcu_penilaian == bkcuTabName">
-			<div class="card border-teal" v-if="form.p1.p1f13_cu_penilaian != '' && form.p1.p1f13_cu_keterangan != ''">
+			<div class="card border-teal" v-if="form.p1.p1f13_cu_penilaian !=null && form.p1.p1f13_cu_keterangan !=null">
 				<div class="card-header bg-teal text-white">
 					<h5 class="card-title">
 						13. S11 = Mengukur persentase pertumbuhan total  aset dari tahun ke tahun</h5>
@@ -1629,10 +1629,14 @@
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body" v-if="form.p1.p1f14_cu_penilaian != '' && form.p1.p1f14_cu_keterangan != ''">
+			<div class="card card-body" v-if="form.p1.p1f14_cu_penilaian !=null && form.p1.p1f14_cu_keterangan !=null">
 				<div class="text-center d-none d-md-block">
 					<button type="button" class="btn btn-light" @click.prevent="prev">
 						<i class="icon-arrow-left13"></i> Batal
+					</button>
+
+					<button type="button" class="btn btn-warning" v-if="$route.meta.mode != 'lihat'" @click.prevent="saveDraft"> 
+						<i class="icon-floppy-disk"></i> Simpan Draft
 					</button>
 
 					<button type="button" class="btn btn-primary" @click.prevent="next">
@@ -1642,6 +1646,10 @@
 				<div class="d-block d-md-none">
 					<button type="button" class="btn btn-primary btn-block" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
+					</button>
+
+					<button type="button" class="btn btn-warning btn-block" v-if="$route.meta.mode != 'lihat'" @click.prevent="saveDraft">
+						<i class="icon-floppy-disk"></i> Simpan Draft
 					</button>
 
 					<button type="button" class="btn btn-light btn-block" @click.prevent="prev">
@@ -1757,6 +1765,9 @@
 			},
 			reloadPearls(){
 				this.$emit('reloadPearls')
+			},
+			saveDraft(){
+				this.$emit('saveDraft');
 			},
 			next(){
 				this.$emit('next');

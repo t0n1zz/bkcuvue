@@ -10,15 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
-              <!-- Version 3.2.5 -->
+              <!-- Version 3.2.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#325">Version 3.2.5 <small class="text-muted"> / 17 Maret 2020</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#325">Version 3.2.6 <small class="text-muted"> /  April 2020</small></a>
                   </h5>
                 </div>
 
                 <div id="325" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini meningkatkan dan memperbaiki self assesment
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Menambahkan fitur simpan Draft pada pengisian self assesment ACCESS</li>
+                      <li>Menambahkan fitur simpan Draft pada penilaian self assesment ACCESS</li>
+                      <li>Memperbaiki bug tampilan pada form pengisian self assesment ACCESS</li>
+                      <li>Memperbaiki bug tampilan pada perhitungan P.E.A.R.L.S</li>
+                      <li>Memperbaiki bug tampilan pada halaman public website bagian slider berita utama</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.6 -->
+
+              <!-- Version 3.2.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="collapsed text-default" href="#325">Version 3.2.5 <small class="text-muted"> / 17 Maret 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="325" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini meningkatkan dan memperbaiki laporan klaim JALINAN
                     <br/><br/>

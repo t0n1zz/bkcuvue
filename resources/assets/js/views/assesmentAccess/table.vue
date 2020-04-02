@@ -73,6 +73,8 @@
 					<td v-if="!columnData[1].hide">
 						<span v-if="props.item.status == 'BELUM DINILAI'" class="badge badge-secondary">{{ props.item.status }}</span>
 						<span v-else-if="props.item.status == 'SUDAH DINILAI'" class="badge badge-primary">{{ props.item.status }}</span>
+						<span v-else-if="props.item.status == 'BELUM SELESAI DIISI'" class="badge badge-warning">{{ props.item.status }}</span>
+						<span v-else-if="props.item.status == 'BELUM SELESAI DINILAI'" class="badge badge-success">{{ props.item.status }}</span>
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.periode"></check-value>
@@ -468,7 +470,7 @@
 			},
 			goTo(id, tipe) {
 				if(tipe == 'edit'){
-					if(this.selectedItem.status == 'BELUM DINILAI'){
+					if(this.selectedItem.status == 'BELUM DINILAI' || this.selectedItem.status == 'BELUM SELESAI DIISI'){
 						this.$router.push({name: this.kelas + 'Edit', params: { id: id }});
 					}else{
 						this.modalShow = true;
@@ -476,7 +478,13 @@
 						this.modalTitle = 'Maaf, data ini sudah dilakukan penilaian dan tidak bisa diubah lagi.';
 					}
 				}else if(tipe == 'penilaian'){
-					this.$router.push({name: this.kelas + 'Penilaian', params: { id: id }});
+					if(this.selectedItem.status == 'BELUM SELESAI DIISI'){
+						this.modalShow = true;
+						this.modalState = 'tutup';
+						this.modalTitle = 'Maaf, data ini belum selesai diisi oleh pihak CU.';
+					}else{
+						this.$router.push({name: this.kelas + 'Penilaian', params: { id: id }});
+					}
 				}else if(tipe == 'lihat'){
 					this.$router.push({name: this.kelas + 'Lihat', params: { id: id }});
 				}
@@ -491,7 +499,7 @@
 				}
 
 				if (state == 'hapus') {
-					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+					this.modalTitle = 'Hapus ' + this.title + ' periode ' + this.selectedItem.periode + ' ini?';
 					this.modalButton = 'Iya, Hapus';
 				}
 			},

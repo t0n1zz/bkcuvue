@@ -1,6 +1,6 @@
 <div class="card" id="laporanPerkembangan">
   <div class="card-header bg-white header-elements-inline">
-    <h5 class="card-title">19. Laporan Perkembangan CU</h5>
+    <h5 class="card-title">19. Laporan Statistik CU</h5>
     <div class="header-elements">
       <div class="list-icons">
         <a class="list-icons-item" data-action="collapse"></a>

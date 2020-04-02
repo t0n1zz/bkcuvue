@@ -154,8 +154,7 @@ class AssesmentAccessController extends Controller{
 		$kelasP3 = AssesmentAccessP3::create($request->p3);
 		$kelasP4 = AssesmentAccessP4::create($request->p4);
 
-		$kelas = AssesmentAccess::create($request->except('status') + [
-			'status' => 'BELUM DINILAI',
+		$kelas = AssesmentAccess::create($request->all() + [
 			'id_p1' => $kelasP1->id,
 			'id_p2' => $kelasP2->id,
 			'id_p3' => $kelasP3->id,

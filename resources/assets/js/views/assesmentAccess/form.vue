@@ -169,6 +169,7 @@
 									:bobotSkor="'40'" 
 									:mode="$route.meta.mode" 
 									:itemData="modelPearls"
+									@saveDraft="saveDraft()"
 									@reloadPearls="reloadPearls()"
 									@next="changeTab('p2')"
 									@prev="back" 
@@ -208,6 +209,7 @@
 									:jumlahIndikator="'108'" 
 									:bobotSkor="'20'" 
 									:mode="$route.meta.mode" 
+									@saveDraft="saveDraft()"
 									@prev="changeTab('p2')" 
 									@next="changeTab('p3')"
 									@skorCUA="skorCUP2A"
@@ -230,6 +232,7 @@
 									:jumlahIndikator="'104'" 
 									:bobotSkor="'20'" 
 									:mode="$route.meta.mode" 
+									@saveDraft="saveDraft()"
 									@prev="changeTab('p3')" 
 									@next="changeTab('p4')"
 									@skorCUA="skorCUP3A"
@@ -252,6 +255,7 @@
 									:jumlahIndikator="'80'" 
 									:bobotSkor="'20'" 
 									:mode="$route.meta.mode" 
+									@saveDraft="saveDraft()"
 									@prev="changeTab('p3')" 
 									@next="changeTab('p5')"
 									@skorCUA="skorCUP4A"
@@ -606,15 +610,41 @@
 			reloadPearls(){
 				this.$store.dispatch('laporanCu/detailPearls', this.form.id_laporan_cu);
 			},
+			saveDraft() {
+				this.$validator.validateAll('form').then((result) => {
+					if (result) {
+						
+						if(this.$route.meta.mode == 'edit' || this.$route.meta.mode == 'penilaianBkcu'){
+							if(this.form.status == 'BELUM SELESAI DIISI'){
+								this.form.status = 'BELUM SELESAI DIISI';
+							} else if (this.form.status == 'BELUM DINILAI' || this.form.status == 'BELUM SELESAI DINILAI'){
+								this.form.status = 'BELUM SELESAI DINILAI';
+							}
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
+						}else{
+							this.form.status = 'BELUM SELESAI DIISI';
+							this.$store.dispatch(this.kelas + '/store', this.form);
+						}
+						this.submited = false;
+					}else{
+						window.scrollTo(0, 0);
+						this.submited = true;
+					}
+				});
+			},
 			save() {
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode == 'edit'){
+							if(this.form.status == 'BELUM SELESAI'){
+								this.form.status = 'BELUM DINILAI';
+							}
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else if(this.$route.meta.mode == 'penilaianBkcu'){
 							this.form.status = 'SUDAH DINILAI';
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else{
+							this.form.status = 'BELUM DINILAI';
 							this.$store.dispatch(this.kelas + '/store', this.form);
 						}
 						this.submited = false;
