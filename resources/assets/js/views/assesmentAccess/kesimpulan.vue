@@ -164,9 +164,16 @@
 			</div>
 		</div>
 
-		<div class="card bg-danger card-body" v-if="form.p4.p4b20_cu_penilaian == '' && form.p4.p4b20_cu_keterangan == ''">
-			<h6 class="mb-0">Silahkan melengkapi indikator sebelumnya untuk menyimpan data</h6>
+		<div class="card bg-danger card-body" v-if="form.p4.p4b20_cu_penilaian ==null || form.p4.p4b20_cu_keterangan ==null">
+			<h6 class="mb-0">Silahkan melengkapi indikator sebelumnya untuk menyimpan data atau jika belum selesai maka silahkan tekan tombol simpan draft dibagian atas</h6>
 		</div>
+
+		<div v-if="$route.meta.mode == 'penilaianBkcu'">
+			<div class="card bg-danger card-body" v-if="form.p4.p4b20_bkcu_penilaian ==null">
+				<h6 class="mb-0">Silahkan melengkapi penilaian sebelumnya untuk menyimpan data atau jika belum selesai maka silahkan tekan tombol simpan draft dibagian atas</h6>
+			</div>
+		</div>
+          
           
 	</div>
 </template>

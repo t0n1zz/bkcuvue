@@ -1,7 +1,7 @@
 <template>
 	<div>
 
-		<div class="card bg-danger card-body" v-if="form.p1.p1f14_cu_penilaian == null && form.p1.p1f14_cu_keterangan == null">
+		<div class="card bg-danger card-body" v-if="form.p1.p1f14_cu_penilaian ==null && form.p1.p1f14_cu_keterangan ==null">
 			<h6 class="mb-0">Maaf, anda tidak bisa melanjutkan mengisi perspektif ini sebelum melengkapi perspektif sebelumnya.</h6>
 		</div>
 
@@ -51,7 +51,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a1_cu_penilaian" 
@@ -132,7 +132,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a2_cu_penilaian" 
@@ -213,7 +213,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a3_cu_penilaian" 
@@ -294,7 +294,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a4_cu_penilaian" 
@@ -375,7 +375,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a5_cu_penilaian" 
@@ -456,7 +456,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a6_cu_penilaian" 
@@ -537,7 +537,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a7_cu_penilaian" 
@@ -618,7 +618,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a8_cu_penilaian" 
@@ -699,7 +699,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a9_cu_penilaian" 
@@ -780,7 +780,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a10_cu_penilaian" 
@@ -861,7 +861,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2a11_cu_penilaian" 
@@ -965,7 +965,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b12_cu_penilaian" 
@@ -1048,7 +1048,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b13_cu_penilaian" 
@@ -1131,7 +1131,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b14_cu_penilaian" 
@@ -1214,7 +1214,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b15_cu_penilaian" 
@@ -1297,7 +1297,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b16_cu_penilaian" 
@@ -1380,7 +1380,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b17_cu_penilaian" 
@@ -1463,7 +1463,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b18_cu_penilaian" 
@@ -1546,7 +1546,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b19_cu_penilaian" 
@@ -1629,7 +1629,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b20_cu_penilaian" 
@@ -1712,7 +1712,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b21_cu_penilaian" 
@@ -1795,7 +1795,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b22_cu_penilaian" 
@@ -1878,7 +1878,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b23_cu_penilaian" 
@@ -1961,7 +1961,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b24_cu_penilaian" 
@@ -2044,7 +2044,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b25_cu_penilaian" 
@@ -2127,7 +2127,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b26_cu_penilaian" 
@@ -2210,7 +2210,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p2.p2b27_cu_penilaian" 
@@ -2290,10 +2290,6 @@
 						<i class="icon-arrow-left13"></i> Kembali
 					</button>
 
-					<button type="button" class="btn btn-warning" v-if="$route.meta.mode != 'lihat'" @click.prevent="saveDraft"> 
-						<i class="icon-floppy-disk"></i> Simpan Draft
-					</button>
-
 					<button type="button" class="btn btn-primary" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
 					</button>
@@ -2301,10 +2297,6 @@
 				<div class="d-block d-md-none">
 					<button type="button" class="btn btn-primary btn-block" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
-					</button>
-
-					<button type="button" class="btn btn-warning btn-block" v-if="$route.meta.mode != 'lihat'" @click.prevent="saveDraft">
-						<i class="icon-floppy-disk"></i> Simpan Draft
 					</button>
 
 					<button type="button" class="btn btn-light btn-block" @click.prevent="prev">
@@ -2354,9 +2346,6 @@
 					this.cuTabName = 'semua';
 					this.bkcuTabName = value;
 				}
-			},
-			saveDraft(){
-				this.$emit('saveDraft');
 			},
 			prev(){
 				this.$emit('prev');

@@ -257,5 +257,15 @@ class AssesmentAccessController extends Controller{
 			->json([
 				'model' => $history
 			]);
-  }
+	}
+	
+	public function cariData($cu, $periode)
+	{
+		$table_data = AssesmentAccess::where('id_cu',$cu)->where('periode',$periode)->first();
+		
+		return response()
+		->json([
+			'periode' => $table_data
+		]);
+	}
 }

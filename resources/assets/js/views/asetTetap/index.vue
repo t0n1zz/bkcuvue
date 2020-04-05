@@ -48,7 +48,7 @@
 			}
 		},
 		created(){
-			this.checkUser('index_artikel_kategori',this.$route.params.cu);
+			this.checkUser('index_aset_tetap',this.$route.params.cu);
 		},
 		methods: {
 			checkUser(permission,id_cu){

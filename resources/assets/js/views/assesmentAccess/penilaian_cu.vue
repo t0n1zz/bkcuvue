@@ -65,22 +65,22 @@
     },
 		methods: {
 			click1(){
-				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+				if(this.$route.meta.mode != 'penilaianBkcu' && this.$route.meta.mode != 'lihat'){
 					this.$emit('click1');
 				}
 			},
 			click2(){
-				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+				if(this.$route.meta.mode != 'penilaianBkcu' && this.$route.meta.mode != 'lihat'){
 					this.$emit('click2');
 				}	
 			},
 			click3(){
-				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+				if(this.$route.meta.mode != 'penilaianBkcu' && this.$route.meta.mode != 'lihat'){
 					this.$emit('click3');
 				}
 			},
 			click4(){
-				if(this.$route.meta.mode != 'penilaian_bkcu' && this.$route.meta.mode != 'lihat'){
+				if(this.$route.meta.mode != 'penilaianBkcu' && this.$route.meta.mode != 'lihat'){
 					this.$emit('click4');
 				}
 			}

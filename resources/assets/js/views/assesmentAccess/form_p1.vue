@@ -72,7 +72,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1a1_cu_penilaian" 
@@ -186,7 +186,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1a2_cu_penilaian" 
@@ -318,7 +318,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1b3_cu_penilaian" 
@@ -433,7 +433,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1b4_cu_penilaian" 
@@ -548,7 +548,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1b5_cu_penilaian" 
@@ -664,7 +664,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1b7_cu_penilaian" 
@@ -766,7 +766,7 @@
 					<div class="row">
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- indikator -->
 							<div class="col-md-12">
 								<div class="card card-body" :class="{'bg-primary': itemData.a1 <= 0.05, 'bg-danger': itemData.a1 > 0.05}" @click.prevent="modalBuka(itemData,'a1')" style="cursor:pointer;">
@@ -913,7 +913,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1c9_cu_penilaian" 
@@ -1053,7 +1053,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1d10_cu_penilaian" 
@@ -1168,7 +1168,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1d11_cu_penilaian" 
@@ -1302,7 +1302,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1e12_cu_penilaian" 
@@ -1436,7 +1436,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1f13_cu_penilaian" 
@@ -1551,7 +1551,7 @@
 						</div>
 						<!-- penilaian cu -->
 						<div class="col-md-12">
-							<h5>Penilaian CU:</h5>
+							<h5>Penilaian CU: <wajib-badge></wajib-badge></h5>
 							<!-- penilaian -->
 							<penilaian-cu 
 								:form="form.p1.p1f14_cu_penilaian" 
@@ -1635,10 +1635,6 @@
 						<i class="icon-arrow-left13"></i> Batal
 					</button>
 
-					<button type="button" class="btn btn-warning" v-if="$route.meta.mode != 'lihat'" @click.prevent="saveDraft"> 
-						<i class="icon-floppy-disk"></i> Simpan Draft
-					</button>
-
 					<button type="button" class="btn btn-primary" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
 					</button>
@@ -1646,10 +1642,6 @@
 				<div class="d-block d-md-none">
 					<button type="button" class="btn btn-primary btn-block" @click.prevent="next">
 						<i class="icon-arrow-right14"></i> Selanjutnya
-					</button>
-
-					<button type="button" class="btn btn-warning btn-block" v-if="$route.meta.mode != 'lihat'" @click.prevent="saveDraft">
-						<i class="icon-floppy-disk"></i> Simpan Draft
 					</button>
 
 					<button type="button" class="btn btn-light btn-block" @click.prevent="prev">
@@ -1765,9 +1757,6 @@
 			},
 			reloadPearls(){
 				this.$emit('reloadPearls')
-			},
-			saveDraft(){
-				this.$emit('saveDraft');
 			},
 			next(){
 				this.$emit('next');

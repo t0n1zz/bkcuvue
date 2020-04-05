@@ -39,4 +39,8 @@ export default {
   history: function(){
     return axios.get('/api/assesmentAccess/history');
   },
+
+  cariData: function( cu, periode ){
+    return axios.get('/api/assesmentAccess/cariData/' + cu + '/' + periode);
+  },
 }

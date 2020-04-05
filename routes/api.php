@@ -353,6 +353,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     // assesment Access
     Route::get('/assesmentAccess/history', 'AssesmentAccessController@history');
+    Route::get('/assesmentAccess/cariData/{cu}/{periode}', 'AssesmentAccessController@cariData');
     Route::group(['middleware' => ['permission:index_assesment_access']], function () {
         Route::get('/assesmentAccess', 'AssesmentAccessController@index');
         Route::get('/assesmentAccess/indexCu/{id}', 'AssesmentAccessController@indexCu');

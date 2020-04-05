@@ -7,11 +7,13 @@ export const assesmentAccess = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    periode: {},
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
     dataStat: '',
     dataStatS: '',
+    periodeStat: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -25,11 +27,13 @@ export const assesmentAccess = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    periode: state => state.periode,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    periodeStat: state => state.periodeStat,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -184,6 +188,21 @@ export const assesmentAccess = {
         });
     },
 
+    // cari data
+    cariData( {commit}, [ cu, periode ] ){
+      commit('setPeriodeStat', 'loading');
+      
+      AssesmentAccessAPI.cariData( cu, periode )
+        .then( function( response ){
+          commit('setPeriode', response.data.periode);
+          commit('setPeriodeStat', 'success');
+        })
+        .catch(error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
+        });
+    },
+
     count( { commit } ){
       commit('setCountStat', 'loading');
       
@@ -212,6 +231,9 @@ export const assesmentAccess = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setPeriode ( state, data ){
+      state.periode = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -226,6 +248,9 @@ export const assesmentAccess = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setPeriodeStat( state, status ){
+      state.periodeStat = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;
