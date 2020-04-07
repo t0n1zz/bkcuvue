@@ -103,7 +103,7 @@
               <check-value :value="props.item.no_ba"></check-value>
             </td>
             <td>
-              <check-value :value="props.item.cu_name"></check-value>
+              <check-value :value="props.item.kategori"></check-value>
             </td>
             <td>
               <check-value :value="props.item.lakilaki" valueType="currency"></check-value>
@@ -242,7 +242,6 @@
     <!-- modal -->
     <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="modalSize" :button="modalButton" :content="modalContent" :color="modalColor" 
       @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
-
     </app-modal>
 
   </div>

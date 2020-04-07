@@ -50,9 +50,9 @@
 		},
 		data() {
 			return {
-				title: 'Self assesment Access branding',
+				title: 'Self assesment ACCESS branding',
 				kelas: 'assesmentAccess',
-				titleDesc: 'Mengelola data self assesment Access branding',
+				titleDesc: 'Mengelola data self assesment ACCESS branding',
 				titleIcon: 'icon-home9',
 				selectCuPath: 'assesmentAccessCu',
 			}

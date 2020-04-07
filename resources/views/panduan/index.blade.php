@@ -21,4 +21,5 @@
   @include('panduan.laporanGerakan')
   @include('panduan.laporanPerkembangan')
   @include('panduan.user')
+  @include('panduan.assesment')
 @stop

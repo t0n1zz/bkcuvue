@@ -84,6 +84,9 @@
           {{-- User --}}
           <li class="nav-item"><a href="#user" class="nav-link">20. User</a></li>
 
+          {{-- Self Assesment --}}
+          <li class="nav-item"><a href="#selfAssesment" class="nav-link">21. Self Assesment</a></li>
+
           {{-- divider --}}
           <li class="nav-item-divider"></li>
 

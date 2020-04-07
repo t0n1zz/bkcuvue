@@ -14,7 +14,7 @@ use Venturecraft\Revisionable\Revision;
 
 class AssesmentAccessController extends Controller{
 
-	protected $message = "Self Assesment ACCESS Branding";
+	protected $message = "Self assesment ACCESS branding";
 
 	public function index()
 	{

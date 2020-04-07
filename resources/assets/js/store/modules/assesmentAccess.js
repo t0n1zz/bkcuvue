@@ -220,6 +220,11 @@ export const assesmentAccess = {
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
+    },
+
+    resetPeriode( {commit} ){
+      commit('setPeriode', {});
+      commit('setPeriodeStat', '');
     }
   },
 

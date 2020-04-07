@@ -749,23 +749,24 @@ export default {
     fetch() {
       if (this.$route.meta.mode == "edit") {
         this.$store.dispatch(this.kelas + "/edit", this.$route.params.id);
-        this.title = "Ubah self assesment Access branding";
-        this.titleDesc = "Mengubah self assesment Access branding";
+        this.title = "Ubah self assesment ACCESS branding";
+        this.titleDesc = "Mengubah self assesment ACCESS branding";
         this.titleIcon = "icon-pencil5";
       } else if (this.$route.meta.mode == "penilaianBkcu") {
         this.$store.dispatch(this.kelas + "/edit", this.$route.params.id);
-        this.title = "Penilaian self assesment Access branding";
-        this.titleDesc = "Penilaian self assesment Access branding";
+        this.title = "Penilaian self assesment ACCESS branding";
+        this.titleDesc = "Penilaian self assesment ACCESS branding";
         this.titleIcon = "icon-law";
       } else if (this.$route.meta.mode == "lihat") {
         this.$store.dispatch(this.kelas + "/edit", this.$route.params.id);
-        this.title = "Melihat self assesment Access branding";
-        this.titleDesc = "Melihat data self assesment Access branding";
+        this.title = "Melihat self assesment ACCESS branding";
+        this.titleDesc = "Melihat data self assesment ACCESS branding";
         this.titleIcon = "icon-file-eye";
       } else {
-        this.title = "Tambah self assesment Access branding";
-        this.titleDesc = "Menambah self assesment Access branding";
-				this.titleIcon = "icon-plus3";
+        this.title = "Tambah self assesment ACCESS branding";
+        this.titleDesc = "Menambah self assesment ACCESS branding";
+        this.titleIcon = "icon-plus3";
+        this.$store.dispatch(this.kelas + '/resetPeriode');
 				this.$store.dispatch(this.kelas + "/create");
       }
     },
