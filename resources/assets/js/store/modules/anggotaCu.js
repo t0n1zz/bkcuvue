@@ -422,6 +422,25 @@ export const anggotaCu = {
           commit('setUpdateStat', 'fail');
         });
     },
+
+    updateNik( {commit, state, dispatch}, [id, form]){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.updateNik( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data); 
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
     
     updateDraft( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');

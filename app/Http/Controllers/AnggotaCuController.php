@@ -539,6 +539,30 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function updateNik(Request $request, $id)
+	{
+		$kelas = AnggotaCu::findOrFail($id);
+
+		$table_data = AnggotaCu::where('nik',$request->nik)->first();
+
+		if($table_data){
+			return response()
+				->json([
+					'saved' => false,
+					'message' => 'No. KTP / NIK Anggota CU sudah ada dipakai'
+				]);
+		}else{
+			$kelas->nik = $request->nik;
+			$kelas->update();	
+
+			return response()
+				->json([
+					'saved' => true,
+					'message' => 'No. KTP / NIK Anggota CU berhasil diubah'
+				]);
+		}
+	}
+
 	public function updateSystemNIK($nik)
   {
 		$kelas = System::findOrFail(1);

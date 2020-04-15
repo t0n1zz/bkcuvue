@@ -437,6 +437,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/anggotaCu/updateCu/{id}', 'AnggotaCuController@updateCu');
         Route::post('/anggotaCu/updateKeluar/{id}', 'AnggotaCuController@updateKeluar');
         Route::post('/anggotaCu/updateBatalKeluar/{id}', 'AnggotaCuController@updateBatalKeluar');
+        Route::post('/anggotaCu/updateNik/{id}', 'AnggotaCuController@updateNik');
         Route::post('/anggotaCu/restore/{id}', 'AnggotaCuController@restore');
         Route::post('/anggotaCu/updateProduk/{id}', 'AnggotaProdukCuController@update');
     });

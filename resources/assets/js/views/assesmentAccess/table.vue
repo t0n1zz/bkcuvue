@@ -39,7 +39,7 @@
 
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_assesment_access']">
-					<i class="icon-plus3"></i> Tambah {{ title }}
+					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
@@ -59,7 +59,7 @@
 
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_assesment_access']"  :disabled="!selectedItem.id">
-					<i class="icon-bin2"></i> Hapus {{ title }}
+					<i class="icon-bin2"></i> Hapus
 				</button>
 				
 			</template>

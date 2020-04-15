@@ -12,6 +12,11 @@
           <i class="icon-plus3"></i> Tambah
         </router-link>
 
+        <!-- ubah NIK -->
+        <button @click.prevent="modalConfirmOpen('nik')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']" :disabled="!selectedItem.id">
+          <i class="icon-vcard"></i> Ubah NIK / No. KTP
+        </button>
+
         <!-- ubah identitas -->
         <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
           :disabled="!selectedItem.id">
@@ -61,6 +66,11 @@
         <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && tipe == 'masih'">
           <i class="icon-plus3"></i> Tambah
         </router-link>
+
+        <!-- ubah NIK -->
+        <button @click.prevent="modalConfirmOpen('nik')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']" :disabled="!selectedItem.id">
+          <i class="icon-vcard"></i> Ubah NIK / No. KTP
+        </button>
 
         <!-- ubah identitas-->
         <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']"
@@ -231,7 +241,7 @@
       @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 
       <!-- title -->
-			<template slot="modal-title" v-if="modalState == 'normal2'">
+			<template slot="modal-title" v-if="modalState != 'normal1'">
 				{{ modalTitle }}
 			</template>
 
@@ -270,10 +280,17 @@
         </div>
 			</template>
 
+      <!-- keluar 2 -->
       <template slot="modal-body2">
         <form-keluar :anggota_cu="anggota_cu"
 				@tutup="modalTutup"></form-keluar>
 			</template>
+
+      <!-- ubah nik -->
+      <template slot="modal-body3">
+        <form-nik :anggota_cu="anggota_cu"
+				@tutup="modalTutup"></form-nik>
+			</template> 
 
     </app-modal>
 
@@ -290,6 +307,7 @@
   import collapseButton from "../../components/collapseButton.vue";
   import checkValue from "../../components/checkValue.vue";
   import formKeluar from "./formKeluar.vue";
+  import formNik from "./formNik.vue";
 
   export default {
     components: {
@@ -297,7 +315,8 @@
       appModal,
       collapseButton,
       checkValue,
-      formKeluar
+      formKeluar,
+      formNik,
     },
     props: ["title", "kelas","tipe","itemData","itemDataStat"],
     data() {
@@ -804,6 +823,11 @@
           this.modalTitle = 'Batal keluarkan anggota atas nama: ' + this.selectedItem.name + ' ?';
           this.modalButton = "Iya, Batalkan";
           this.anggota_cu = this.selectedItem.anggota_cu_cu_keluar[0];
+        }else if(state == 'nik'){
+          this.modalState = 'normal3';
+          this.modalColor = 'bg-primary';
+          this.modalTitle = 'Ubah NIK anggota atas nama: ' + this.selectedItem.name + ' ?';
+          this.anggota_cu = this.selectedItem;
         }
       },
       modalTutup() {

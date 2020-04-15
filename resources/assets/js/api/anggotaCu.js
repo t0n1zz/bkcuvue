@@ -72,6 +72,10 @@ export default {
     return axios.post('/api/anggotaCu/updateBatalKeluar/' + id);
   },
 
+  updateNik: function ( id, form ){
+    return axios.post('/api/anggotaCu/updateNik/' + id, form);
+  },
+
   destroy: function( id, cu ){
     return axios.delete('/api/anggotaCu/' + id + '/cu/' + cu);
   },
