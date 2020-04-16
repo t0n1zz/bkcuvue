@@ -712,6 +712,7 @@ export default {
     next(vm => vm.fetch());
   },
   created() {
+    
 		this.changeCU(this.currentUser.id_cu);
 	},
   watch: {

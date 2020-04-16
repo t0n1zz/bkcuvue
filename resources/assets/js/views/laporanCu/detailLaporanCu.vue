@@ -85,6 +85,7 @@
 							</div>	
 						</div>
 					</div>
+					
 					<div class="row">		
 						<div class="col-sm-3">
 							<div @click.prevent="modalBuka('Total Anggota', 'total_anggota', itemData.total_anggota, itemData.periode, itemDataBefore.total_anggota, itemDataBefore.periode, grafikData.data, [

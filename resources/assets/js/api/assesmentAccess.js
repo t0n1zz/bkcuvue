@@ -24,10 +24,6 @@ export default {
     return axios.post('/api/assesmentAccess/update/' + id, form);
   },
 
-  restore: function ( id ){
-    return axios.post('/api/assesmentAccess/restore/' + id);
-  },
-
   destroy: function( id ){
     return axios.delete('/api/assesmentAccess/' + id);
   },

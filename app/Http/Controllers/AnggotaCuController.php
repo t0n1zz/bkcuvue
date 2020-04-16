@@ -82,7 +82,7 @@ class AnggotaCuController extends Controller{
 			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
 		})->advancedFilter();
 
-		$table_data = $this->formatCuQuery($table_data, $tp);
+		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
 
 		return response()
 			->json([
@@ -102,7 +102,7 @@ class AnggotaCuController extends Controller{
 			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
 		})->advancedFilter();
 
-		$table_data = $this->formatCuKeluarQuery($table_data, $tp);
+		$table_data = $this->formatCuKeluarQuery($table_data, $cu, $tp);
 
 		return response()
 			->json([
@@ -120,7 +120,7 @@ class AnggotaCuController extends Controller{
 			}
 		})->where('status_jalinan','MENINGGAL')->advancedFilter();
 		
-		$table_data = $this->formatCuQuery($table_data, $tp);
+		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
 
 		return response()
 			->json([
@@ -162,10 +162,17 @@ class AnggotaCuController extends Controller{
 		return $table_data;
 	}
 
-	public function formatCuQuery($table_data, $tp){
+	public function formatCuQuery($table_data, $cu, $tp){
 		foreach($table_data as $t){
 			$t->nik = $t->nik ? $t->nik . "​ " : '';
 			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			if($t->anggota_cu_cu_not_keluar){
+				foreach($t->anggota_cu_cu_not_keluar as $tt){
+					if($tt->cu_id == $cu){
+						$t->anggota_cu_cu_not_keluar[0] = $tt;
+					}
+				}
+			}
 			if($tp != 'semua'){
 				$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
 				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
@@ -179,10 +186,17 @@ class AnggotaCuController extends Controller{
 		return $table_data;
 	}
 
-	public function formatCuKeluarQuery($table_data, $tp){
+	public function formatCuKeluarQuery($table_data, $cu, $tp){
 		foreach($table_data as $t){
 			$t->nik = $t->nik ? $t->nik . "​ " : '';
 			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			if($t->anggota_cu_cu_keluar){
+				foreach($t->anggota_cu_cu_keluar as $tt){
+					if($tt->cu_id == $cu){
+						$t->anggota_cu_cu_keluar[0] = $tt;
+					}
+				}
+			}
 			if($tp != 'semua'){
 				$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
 				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
@@ -258,6 +272,15 @@ class AnggotaCuController extends Controller{
 		try{
 			$this->validate($request,AnggotaCu::$rules);
 
+			$nik = '';
+
+			if($request->nik == 'AUTO'){
+				$table_data = System::select('nik')->first();
+				$nik = $table_data->nik;
+			}else{
+				$nik = $request->nik;
+			}
+
 			$name = $request->name;
 
 			if(!empty($request->gambar))
@@ -265,7 +288,8 @@ class AnggotaCuController extends Controller{
 			else
 				$fileName = '';	
 
-			$kelas = AnggotaCu::create($request->except('gambar','statusNIK') + [
+			$kelas = AnggotaCu::create($request->except('nik','gambar','statusNIK') + [
+				'nik' => $nik,
 				'gambar' => $fileName
 			]);
 			
@@ -273,7 +297,7 @@ class AnggotaCuController extends Controller{
 			// $this->syncProdukCu($request, $kelas);
 
 			if($request->statusNIK == 'tidak'){
-				$this->updateSystemNIK($request->nik);
+				$this->updateSystemNIK($nik);
 			}
 
 			\DB::commit();
@@ -282,7 +306,8 @@ class AnggotaCuController extends Controller{
 				->json([
 					'saved' => true,
 					'message' => $this->message. ' ' .$name. ' berhasil ditambah',
-					'id' => $kelas->id
+					'id' => $kelas->id,
+					'nik' => $kelas->nik,
 				]);	
 		} catch (\Exception $e){
 			\DB::rollBack();

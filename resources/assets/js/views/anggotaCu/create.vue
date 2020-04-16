@@ -49,13 +49,7 @@
 									No. KTP: <wajib-badge></wajib-badge></h6>
 
 								<!-- text -->
-								<cleave 
-									name="nik"
-									v-model="form.nik" 
-									class="form-control" 
-									:options="cleaveOption.number16"
-									placeholder="Silahkan masukkan no KTP"
-									v-validate="'required'" data-vv-as="No. KTP" readonly></cleave>
+								<input type="text" name="nik" class="form-control" placeholder="Silahkan masukkan no. KTP" v-validate="'required'" data-vv-as="No. KTP" v-model="form.nik" readonly>
 								
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.nik')">

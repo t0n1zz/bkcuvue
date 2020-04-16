@@ -29,6 +29,7 @@ import { asetTetapKelompok } from './modules/asetTetapKelompok';
 import { asetTetapJenis } from './modules/asetTetapJenis';
 import { asetTetapLokasi } from './modules/asetTetapLokasi';
 import { assesmentAccess } from './modules/assesmentAccess';
+import { monitoring } from './modules/monitoring';
 import { mitraOrang } from './modules/mitraOrang';
 import { mitraLembaga } from './modules/mitraLembaga';
 import { anggotaCu } from './modules/anggotaCu';
@@ -72,6 +73,7 @@ export default new Vuex.Store({
 		 asetTetapJenis,
 		 asetTetapLokasi,
 		 assesmentAccess,
+		 monitoring,
 		 mitraOrang,
 		 mitraLembaga,
 		 anggotaCu,

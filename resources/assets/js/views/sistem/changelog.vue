@@ -10,15 +10,39 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.7 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#327">Version 3.2.7 <small class="text-muted"> / April 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="327" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini memperkenalkan fitur monitoring cu dan perbaikan pada anggota CU
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Menambah fitur untuk mengubah No. KTP / NIK data anggota CU</li>
+                      <li>Memperbaiki bug pada menampilkan data keanggota CU di tabel Anggota CU</li>
+                      <li>Memperbaiki bug pada penambahan data anggota apabila tidak memiliki No. KTP / NIK</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.7 -->
+
               <!-- Version 3.2.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#326">Version 3.2.6 <small class="text-muted"> / 5 April 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#326">Version 3.2.6 <small class="text-muted"> / 5 April 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="326" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="326" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini meningkatkan dan memperbaiki self assesment
                     <br/><br/>

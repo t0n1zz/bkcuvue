@@ -366,10 +366,28 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:update_assesment_access']], function () {
         Route::get('/assesmentAccess/edit/{id}', 'AssesmentAccessController@edit');
         Route::post('/assesmentAccess/update/{id}', 'AssesmentAccessController@update');
-        Route::post('/assesmentAccess/restore/{id}', 'AssesmentAccessController@restore');
     });
     Route::group(['middleware' => ['permission:destroy_assesment_access']], function () {
         Route::delete('/assesmentAccess/{id}', 'AssesmentAccessController@destroy');
+    });
+
+    // monitoring
+    Route::get('/monitoring/history', 'MonitoringController@history');
+    Route::group(['middleware' => ['permission:index_monitoring']], function () {
+        Route::get('/monitoring', 'MonitoringController@index');
+        Route::get('/monitoring/indexCu/{id}', 'MonitoringController@indexCu');
+        Route::get('/monitoring/count', 'MonitoringController@count');
+    });
+    Route::group(['middleware' => ['permission:create_monitoring']], function () {
+        Route::get('/monitoring/create', 'MonitoringController@create');
+        Route::post('/monitoring/store', 'MonitoringController@store');
+    });
+    Route::group(['middleware' => ['permission:update_monitoring']], function () {
+        Route::get('/monitoring/edit/{id}', 'MonitoringController@edit');
+        Route::post('/monitoring/update/{id}', 'MonitoringController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_monitoring']], function () {
+        Route::delete('/monitoring/{id}', 'MonitoringController@destroy');
     });
 
     // mitra perserorangan

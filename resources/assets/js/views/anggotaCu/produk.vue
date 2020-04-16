@@ -232,7 +232,7 @@
 			back(){
 				if(this.$route.meta.mode == 'createJalinan'){
 					this.$router.push({name: 'jalinanKlaimCreateNik', params:{nik: this.form.nik}});
-				}if(this.$route.meta.mode == 'editJalinan'){
+				}else if(this.$route.meta.mode == 'editJalinan'){
 					if(this.currentUser.id_cu == 0){
 						this.$router.push({name: 'jalinanKlaimCu', params:{cu: 'semua', tp: 'semua'}});
 					}else{
@@ -250,7 +250,7 @@
 				if(this.$route.meta.mode == 'create'){
 					this.$router.push({name: this.kelas + 'CreateEdit', params:{id: this.$route.params.id}});	
 				}else if(this.$route.meta.mode == 'createJalinan'){
-					this.$router.push({name: this.kelas + 'CreateJalinanEdit', params:{id: this.$route.params.id}});	
+					this.$router.push({name: this.kelas + 'CreateJalinanEdit', params:{id: this.$route.params.id}})	
 				}else{
 					this.back();
 				}

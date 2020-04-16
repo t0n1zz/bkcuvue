@@ -793,7 +793,7 @@
 					</li>
 
 					<!-- tata kelola -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['index_laporan_cu'] || currentUser.can['index_assesment_access']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['create_monitoring'] || currentUser.can['index_laporan_cu'] || currentUser.can['index_assesment_access'] || currentUser.can['index_monitoring']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-microscope mr-2"></i>
 							Tata Kelola
@@ -814,6 +814,10 @@
 									<!-- tambah assesment -->
 									<router-link :to="{ name:'assesmentAccessCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_assesment_access']">
 										Self Assesment ACCESS
+									</router-link>
+									<!-- tambah assesment -->
+									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitorig']">
+										Monitoring
 									</router-link>
 								</div>
 							</div>		
@@ -871,8 +875,9 @@
 							</div>
 
 							<!-- divider -->
-							<div class="dropdown-divider" v-if="currentUser.can['index_assesment_access']"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_assesment_access'] || currentUser.can['index_monitoring']"></div> 
 
+							<!-- assesment access -->
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_assesment_access'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'assesmentAccess'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('assesmentAccess')">
@@ -899,6 +904,35 @@
 							<!-- if cu account -->
 							<router-link :to="{ name: 'assesmentAccessCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_assesment_access'] && currentUser.id_cu != 0">
 								<i class="icon-reading"></i> Self Assesment ACCESS
+							</router-link>
+
+							<!--monitoring -->
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'monitoring'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('monitoring')">
+									<i class="icon-collaboration"></i> Monitoring
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'monitoring'}">
+
+									<router-link :to="{ name: 'monitoringCu',params: { cu: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
+										 Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'monitoringCu',params: { cu: cu.id } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0' && cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'monitoringCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_monitoring'] && currentUser.id_cu != 0">
+								<i class="icon-collaboration"></i> Monitoring
 							</router-link>
 
 						</div>

@@ -234,6 +234,20 @@ export const aktivis = {
         });
     },
 
+    get2( { commit }, id){
+      commit('setDataStatS2', 'loading');
+      
+      aktivisAPI.get( id )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
+
     cariData( {commit}, nik ){
       commit('setDataStat', 'loading');
       
@@ -699,6 +713,10 @@ export const aktivis = {
     resetDataS( {commit} ){
       commit('setDataS', '');
       commit('setDataStatS', '');
+    },
+    resetDataS2( {commit} ){
+      commit('setDataS2', '');
+      commit('setDataStatS2', '');
     },
     
   },

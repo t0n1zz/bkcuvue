@@ -70,6 +70,8 @@ import user_aktivitas from './views/user/aktivitas.vue';
 import profile from './views/user/profile.vue';
 import assesmentAccess from './views/assesmentAccess/index.vue';
 import assesmentAccess_form from './views/assesmentAccess/form.vue';
+import monitoring from './views/monitoring/index.vue';
+import monitoring_form from './views/monitoring/form.vue';
 
 const routes = [
 
@@ -558,6 +560,21 @@ const routes = [
 		name: 'assesmentAccessLihat', 
 		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'lihat' } },	
+
+		// assesment access
+	{ path: '/monitoring/cu/:cu',
+	name: 'monitoringCu', 
+	components: { default: monitoring, 'header': header, 'footer': footer  }, 
+	meta: { requiresAuth: true, mode:'cu' }},	
+	{ path: '/monitoring/create',
+		name: 'monitoringCreate', 
+		components: { default: monitoring_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'create' }},
+	{ path: '/monitoring/edit/:id',
+		name: 'monitoringEdit', 
+		components: { default: monitoring_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' } },
+
 
 	// laporan cu
 	// bkcu default route

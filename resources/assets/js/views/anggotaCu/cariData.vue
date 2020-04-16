@@ -38,26 +38,6 @@
       </div>
     </div>  
 
-    <!-- tidak punya NIK -->
-    <div class="row" v-else-if="statusNIK == 'tidak'">
-      <div class="col-12">
-        <hr/>
-        <!-- text -->
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">NIK yang dibuatkan oleh SIMO*</span>
-          </div>
-          <cleave 
-            name="nikNew"
-            v-model="nikNew" 
-            class="form-control" 
-            :options="cleaveOption.number16"
-            disabled="true"></cleave>
-        </div>  
-        <small><i>*NIK diatas dibuat otomatis di SIMO dan merupakan nomor sementara yang dapat dipakai sampai dengan menemukan/mempunyai NIK resmi</i></small>
-      </div>
-    </div>
-
     <div class="row pt-2">
       <div class="col-md-7 col-lg-9 pb-2 d-none d-sm-block" v-if="statusNIK == 'iya'">
          <button class="btn btn-primary" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
@@ -83,7 +63,7 @@
     </div>
 
     <!-- loading -->
-    <div class="row" v-if="itemDataStat == 'loading' || getNIKStat == 'loading'">
+    <div class="row" v-if="itemDataStat == 'loading'">
       <div class="col-12" >
         <hr/>
         <div class="progress">
@@ -111,9 +91,7 @@
     data(){
       return {
         statusNIK: '',
-        getNIKStat: '',
         nik: '',
-        nikNew: '',
         isNew: false,
         cleaveOption: {
 					number16: {
@@ -135,30 +113,13 @@
       });
     },
     watch: {
-      getNIKStat(value){
-        if(value == 'success'){
-          this.$emit('nikNew',this.nikNew);
-        }
-      }
     },
     methods: {
       changeStatusNIK(value){
         if(value == 'tidak'){
-          this.getNIK();
+          this.$emit('nikNew','AUTO');
         }
         this.$emit('changeStatusNIK',value);
-      },
-      getNIK(){
-        this.getNIKStat = 'loading';
-        axios.get('/api/anggotaCu/systemNIK')
-        .then((response) => {
-          this.nikNew = response.data.model.nik;
-          this.getNIKStat = 'success';
-        })
-        .catch(error => {
-          console.log(error);
-          this.getNIKStat = 'fail';
-        });
       },
       cariData(){
         this.isNew = true;

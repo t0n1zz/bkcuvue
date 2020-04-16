@@ -115,6 +115,11 @@ class UserController extends Controller
 		'update_assesment_access',
 		'destroy_assesment_access',
 
+		'index_monitoring',
+		'create_monitoring',
+		'update_monitoring',
+		'destroy_monitoring',
+
 		'index_mitra_orang',
 		'create_mitra_orang',
 		'update_mitra_orang',

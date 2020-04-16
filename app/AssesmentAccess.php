@@ -34,11 +34,11 @@ class AssesmentAccess extends BaseEloquent {
     ];
 
     protected $allowedFilters = [
-        'id_cu','id_laporan_cu','periode','status',
+        'id_cu','id_laporan_cu','periode','status','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'id_cu','id_laporan_cu','periode','status',
+        'id_cu','id_laporan_cu','periode','status','created_at','updated_at',
     ];
 
     public static function initialize()

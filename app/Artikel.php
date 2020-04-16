@@ -38,13 +38,13 @@ class Artikel extends BaseEloquent {
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at',
+        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','updated_at',
         
         'artikel_kategori.name','artikel_penulis.name','cu.name'
     ];
 
     protected $orderable = [
-        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at',
+        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','updated_at',
         
         'artikel_kategori.name','artikel_penulis.name','cu.name'
     ];

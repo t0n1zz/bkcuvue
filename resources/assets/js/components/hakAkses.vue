@@ -10,7 +10,7 @@
 						<option disabled value="" selected>Silahkan pilih peran user</option>
 						<option value="penuh">Akses Penuh</option>
 						<option value="monitoring">Monitoring</option>
-						<option value="laporan">Laporan</option>
+						<option value="tataKelola">Tata Kelola</option>
 						<option value="organisasi">Organisasi</option>
 						<option value="kegiatan">Kegiatan</option>
 						<option value="publikasi">Publikasi</option>
@@ -839,6 +839,45 @@
 						]
 					},
 					{
+						name: 'Monitoring',
+						icon: 'icon-collaboration',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_monitoring',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Monitoring'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_monitoring',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Monitoring'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_monitoring',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Monitoring'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_monitoring',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Monitoring'
+							}
+						]
+					},
+					{
 						name: 'Mitra Perseorangan',
 						icon: 'icon-briefcase',
 						secondRow: true,
@@ -1231,6 +1270,12 @@
 						'create_assesment_access',
 						'update_assesment_access',
 						'destroy_assesment_access',
+
+						'index_monitoring',
+						'create_monitoring',
+						'update_monitoring',
+						'destroy_monitoring',
+						
 						
 						'index_mitra_orang',
 						'create_mitra_orang',
@@ -1336,6 +1381,11 @@
 						'update_assesment_access',
 						'destroy_assesment_access',
 
+						'index_monitoring',
+						'create_monitoring',
+						'update_monitoring',
+						'destroy_monitoring',
+
 						'index_produk_cu',
 						'create_produk_cu',
 						'update_produk_cu',
@@ -1378,11 +1428,12 @@
 						'index_laporan_tp',
 						'diskusi_laporan_tp',
 						'index_assesment_access',
+						'index_monitoring',
 						'index_mitra_orang',
 						'index_mitra_lembaga',
 						'index_saran'
 					],
-					laporan: [
+					tataKelola: [
 						'index_laporan_cu',
 						'create_laporan_cu',
 						'update_laporan_cu',
@@ -1396,6 +1447,16 @@
 						'destroy_laporan_tp',
 						'upload_laporan_tp',
 						'diskusi_laporan_tp',
+
+						'index_assesment_access',
+						'create_assesment_access',
+						'update_assesment_access',
+						'destroy_assesment_access',
+
+						'index_monitoring',
+						'create_monitoring',
+						'update_monitoring',
+						'destroy_monitoring',
 					],
 					organisasiBKCU: [
 						'index_tempat',
@@ -1587,8 +1648,8 @@
 
 				if(value == 'monitoring'){
 					this.hakForm = this.peran.monitoring;
-				}else if(value == 'laporan'){
-					this.hakForm = this.peran.laporan;
+				}else if(value == 'tataKelola'){
+					this.hakForm = this.peran.tataKelola;
 				}else if(value == 'publikasi'){
 					this.hakForm = this.peran.publikasi;
 				}else if(value == 'kosong'){
@@ -1607,8 +1668,8 @@
 						this.selectPeran = 'kegiatan';
 					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.monitoring))){
 						this.selectPeran = 'monitoring';
-					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.laporan))){
-						this.selectPeran = 'laporan';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.tataKelola))){
+						this.selectPeran = 'tataKelola';
 					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.publikasi))){
 						this.selectPeran = 'publikasi';
 					}else  if(this.hakForm.length < 1){
@@ -1625,8 +1686,8 @@
 						this.selectPeran = 'kegiatan';
 					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.monitoring))){
 					this.selectPeran = 'monitoring';
-					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.laporan))){
-						this.selectPeran = 'laporan';
+					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.tataKelola))){
+						this.selectPeran = 'tataKelola';
 					}else if(_.isEqual(_.sortBy(this.hakForm), _.sortBy(this.peran.publikasi))){
 						this.selectPeran = 'publikasi';
 					}else  if(this.hakForm.length < 1){
