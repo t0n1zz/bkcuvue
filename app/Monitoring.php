@@ -20,28 +20,28 @@ class Monitoring extends BaseEloquent {
         'id_tp' => 'required',
         'id_aktivis_cu' => 'required',
         'id_aktivis_bkcu' => 'required',
-        'temuan' => 'required',
+        'name' => 'required',
         'jenis' => 'required',
         'perspektif' => 'required',
     ];
 
     
     protected $fillable = [
-        'id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','temuan','jenis','perspektif','rekomendasi','status'
+        'id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','rekomendasi'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','temuan','jenis','perspektif','status','created_at','updated_at',
+        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','temuan','jenis','perspektif','status','created_at','updated_at',
+        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','created_at','updated_at',
     ];
 
     public static function initialize()
     {
         return [
-            'id' => '','id_cu' => '','id_tp' => '','id_aktivis_cu' => '','id_aktivis_bkcu' => '','temuan' => '','jenis' => '','perspektif' => '','rekomendasi' => '','status' => ''
+            'id' => '','id_cu' => '','id_tp' => '','id_aktivis_cu' => '','id_aktivis_bkcu' => '','name' => '','jenis' => '','perspektif' => '','rekomendasi' => ''
         ];
     }
 
@@ -63,5 +63,15 @@ class Monitoring extends BaseEloquent {
     public function aktivis_bkcu()
     {
         return $this->belongsTo('App\Aktivis','id_aktivis_bkcu','id');
+    }
+
+    public function monitoring_rekom()
+    {
+        return $this->hasMany('App\MonitoringRekom','id_monitoring','id');
+    }
+
+    public function monitoring_lanjut()
+    {
+        return $this->hasMany('App\MonitoringLanjut','id_monitoring','id');
     }
 }

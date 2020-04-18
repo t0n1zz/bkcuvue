@@ -26,11 +26,13 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.username')}">
 												<i class="icon-cross2" v-if="errors.has('form.username')"></i>
-												Username: <wajib-badge></wajib-badge> <small><i>format: namapanggilan-namacu</i></small> 
+												Username: <wajib-badge></wajib-badge>
+												<br/>
+												<small class="text-muted"><i>format penulisan "namapanggilan-namasingkatancu" tanpa spasi. contoh: tony-cubcd</i></small> 
 											</h5>
 
 											<!-- text -->
-											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5'" data-vv-as='Username' v-model="form.username">
+											<input type="text" name="username" class="form-control" placeholder="Silahkan masukkan username" v-validate="'required|min:5|alpha_dash'" data-vv-as='Username' v-model="form.username">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.username')">

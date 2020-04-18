@@ -13,7 +13,7 @@
 					</message>
 
 					<!-- main panel -->
-					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+					<form @submit.prevent="save" data-vv-scope="form">
 
 						<!-- main form -->
 						<div class="card">
@@ -23,19 +23,19 @@
 
 									<!-- temuan -->
 									<div class="col-md-12">
-										<div class="form-group" :class="{'has-error' : errors.has('form.temuan')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.temuan')}">
-												<i class="icon-cross2" v-if="errors.has('form.temuan')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
+												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
 												Temuan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="temuan" class="form-control" placeholder="Silahkan masukkan temuan artikel" v-validate="'required'" data-vv-as="Temuan" v-model="form.temuan">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan temuan artikel" v-validate="'required'" data-vv-as="Temuan" v-model="form.name">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.temuan')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.temuan') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.name')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -202,26 +202,52 @@
 											<small class="text-muted" v-else>&nbsp;
 											</small>
 										</div>
-									</div>
-									
-									<!-- rekomendasi -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Rekomendasi:</h5>
-
-											<!-- editor -->
-											<ckeditor type="classic" 
-												v-model="form.rekomendasi"
-												:config="ckeditorNoImageConfig" ></ckeditor>
-
-										</div>
-									</div>
+									</div> 
+								
 
 								</div>
 								
 							</div>
+						</div>
+
+						<!-- rekomendasi -->
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">Rekomendasi <wajib-badge></wajib-badge></h5>
+							</div>
+							<div class="card-body pb-2">
+								<div class="row">
+
+									<div class="col-md-12">
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahRekom')">
+											<i class="icon-plus22"></i> Tambah
+										</button>
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahRekom')"
+										:disabled="!selectedItemRekom.index">
+											<i class="icon-pencil5"></i> Ubah
+										</button>
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusRekom')" :disabled="!selectedItemRekom.index">
+											<i class="icon-bin2"></i> Hapus
+										</button>
+
+									</div>
+
+								</div>		
+							</div>
+
+							<data-table :items="itemDataRekom" :columnData="columnDataRekom" :itemDataStat="itemDataRekomStat">
+								<template slot="item-desktop" slot-scope="props">
+									<tr :class="{ 'bg-info': selectedItemRekom.index === props.index + 1 }" class="text-nowrap" @click="selectedRekomRow(props.index,props.item)" v-if="props.item">
+										<td>{{ props.index + 1 }}</td>
+										<td v-html="$options.filters.checkStatus(props.item.status)"></td>
+										<td>{{ props.item.rekomendasi }}</td>
+									</tr>
+								</template>	
+							</data-table>
+
 						</div>
 
 						<!-- form info -->
@@ -242,19 +268,22 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
-			
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor"
+		 @batal="modalTutup" @confirmOk="modalConfirmOk" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalBackgroundClick">
+
 			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah penulis -->
-			<template slot="modal-body1">
-			</template>
-
-			<!-- tambah kategori -->
-			<template slot="modal-body2">
+			<!-- rekomendasi -->
+			<template slot="modal-body3">
+				<form-rekom 
+				:mode="formRekomMode"
+				:selected="selectedItemRekom"
+				@createRekom="createRekom"
+				@editRekom="editRekom"
+				@tutup="modalTutup"></form-rekom>
 			</template>
 
 		</app-modal>
@@ -265,8 +294,6 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
-	import { toMulipartedForm } from '../../helpers/form';
-	import appImageUpload from '../../components/ImageUpload.vue';
 	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
@@ -274,16 +301,19 @@
 	import { getLocalUser } from "../../helpers/auth";
 	import { url_config } from '../../helpers/url.js';
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import dataTable from '../../components/datatable.vue';
+	import formRekom from "./formRekom.vue";
 
 	export default {
 		components: {
 			pageHeader,
 			appModal,
-			appImageUpload,
 			message,
 			formButton,
 			formInfo,
-			wajibBadge
+			wajibBadge,
+			dataTable,
+			formRekom
 		},
 		data() {
 			return {
@@ -292,32 +322,15 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'Monitoring',
 				kelas: 'monitoring',
-				id_cu: '',
-				ckeditorNoImageConfig: {
-					toolbar: {
-						items: [
-							'heading',
-							'|',
-							'bold',
-							'italic',
-							'link',
-							'bulletedList',
-							'numberedList',
-							'blockQuote',
-							'insertTable',
-							'mediaEmbed',
-							'undo',
-							'redo'
-						]
-					},
-					table: {
-						contentToolbar: [
-							'tableColumn',
-							'tableRow',
-							'mergeTableCells'
-						]
-					},
-				},
+				formRekomMode: '',
+				selectedItemRekom: '',
+				itemDataRekom: [],
+				itemDataRekomStat: 'success',
+				columnDataRekom:[
+					{ title: 'No.' },
+					{ title: 'Status' },
+					{ title: 'Rekomendasi' },
+				],
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -350,6 +363,7 @@
 					}else{
 						this.checkUser('update_monitoring',this.form.id_cu);
 						this.changeCU(this.form.id_cu);
+						this.fetchRekom();
 					}	
 				}
 			},
@@ -365,42 +379,15 @@
 					this.modalContent = this.updateResponse;
 				}
 			},
-			updateKategoriStat(value){
-				this.modalState = value;
-				this.modalColor = '';
-
-				if(value === "success"){
-					this.modalTitle = this.updateKategoriResponse.message;
-					this.$store.dispatch('artikelKategori/getCu', this.id_cu);
-					this.form.id_artikel_kategori = this.updateKategoriResponse.id;
-				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updateKategoriResponse.message;
-				}
-			},
-			updatePenulisStat(value){
-				this.modalState = value;
-				this.modalColor = '';
-
-				if(value === "success"){
-					this.modalTitle = this.updatePenulisResponse.message;
-					this.$store.dispatch('artikelPenulis/getCu', this.id_cu);	
-					this.form.id_artikel_penulis = this.updatePenulisResponse.id;
-				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updatePenulisResponse.message;
-				}
-			}
     },
 		methods: {
 			fetch(){
-				if(this.currentUser.id_cu === 0){
+				if(this.currentUser.id_cu == 0){
 					if(this.modelCuStat != 'success'){
 						this.$store.dispatch('cu/getHeader');
 					}
 				}
-
-				if(this.$route.meta.mode === 'edit'){
+				if(this.$route.meta.mode == 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 					this.title = 'Ubah Temuan';
 					this.titleDesc = 'Mengubah temuan';
@@ -410,6 +397,16 @@
 					this.titleDesc = 'Menambah temuan';
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
+				}
+			},
+			fetchRekom(){
+				this.itemDataRekom = [];
+				var valData;
+
+				if(this.form.monitoring_rekom){
+					for(valData of this.form.monitoring_rekom){
+						this.itemDataRekom.push(valData);
+					}
 				}
 			},
 			checkUser(permission,id_cu){
@@ -425,13 +422,13 @@
 				}
 			},
 			save() {
-				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
+				this.form.rekomendasi = this.itemDataRekom;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', formData);
+							this.$store.dispatch(this.kelas + '/store', this.form);
 						}
 						this.submited = false;
 					}else{
@@ -452,14 +449,63 @@
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}
 			},
+			createRekom(value){
+				this.itemDataRekom.push(value);
+				this.modalTutup();
+			},
+			editRekom(value){
+				_.remove(this.itemDataRekom, {
+						index: value.index
+				});
+				this.itemDataRekom.push(value);
+				this.modalTutup(); 
+			},
+			selectedRekomRow(index,item){
+				this.selectedItemRekom = item;
+				this.selectedItemRekom.index = index + 1;
+			},
+			modalOpen(state, isMobile, itemMobile) {
+				this.modalShow = true;
+				this.state = state;
+				
+				if (state == 'hapusRekom') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Rekomendasi ' + this.selectedItemRekom.cu.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+					this.modalSize = '';
+				}else if(state == 'ubahRekom'){
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah Rekomendasi';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formRekomMode = 'edit';
+				}else if(state == 'tambahRekom'){
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Rekomendasi';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formRekomMode = 'create';
+				}
+			},
+			modalConfirmOk() {
+				this.modalShow = false;
+
+				if (this.state == 'hapusRekom') {
+					_.remove(this.itemDataRekom, {
+						index: this.selectedItemRekom.index
+					});
+				}
+			},
 			modalTutup() {
- 				if(this.updateStat === 'success'){
+ 				if(this.updateStat == 'success'){
 					this.back();
+					this.$store.dispatch(this.kelas + '/resetUpdateStat');
 				}
 
 				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
@@ -469,22 +515,6 @@
 				}else{
 					this.modalShow = false
 				}
-			},
-			modalOpen_Penulis(){
-				this.id_cu = this.form.id_cu;
-
-				this.modalShow = true;
-				this.modalState = 'normal1';
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah penulis artikel';
-			},
-			modalOpen_Kategori() {
-				this.id_cu = this.form.id_cu;
-
-				this.modalShow = true;
-				this.modalState = 'normal2';
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah kategori artikel';
 			},
 		},
 		computed: {

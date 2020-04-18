@@ -6,17 +6,19 @@ export const monitoring = {
   // state
   state: {
     data: {}, //single data
+    data2: {}, //single data
     dataS: [], //collection
+    dataS2: [], //collection
     periode: {},
     dataDeletedS: [], //collection
     count: {},
-    headerDataS: [],
     dataStat: '',
+    dataStat2: '',
     dataStatS: '',
+    dataStatS2: '',
     periodeStat: '',
     dataDeletedStatS: '',
     countStat: '',
-    headerDataStatS: '',
     update: [], //update data
     updateStat: '',
     rules: [], //laravel rules
@@ -26,17 +28,19 @@ export const monitoring = {
   // getters
   getters: {
     data: state => state.data,
+    data2: state => state.data2,
     dataS: state => state.dataS,
+    dataS2: state => state.dataS2,
     periode: state => state.periode,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
-    headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
+    dataStat2: state => state.dataStat2,
     dataStatS: state => state.dataStatS,
+    dataStatS2: state => state.dataStatS2,
     periodeStat: state => state.periodeStat,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
-    headerDataStatS: state => state.headerDataStatS,
     update: state => state.update,
     updateStat: state => state.updateStat,
     rules: state => state.rules,
@@ -71,6 +75,34 @@ export const monitoring = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    get( { commit }, cu ){
+      commit('setDataStatS', 'loading');
+      
+      MonitoringAPI.get( cu )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    detail( { commit }, id ){
+      commit('setDataStat', 'loading');
+      
+      MonitoringAPI.detail( id )
+        .then( function( response ){
+          commit('setData', response.data.model );
+          commit('setDataStat', 'success');
+        })
+        .catch( error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
         });
     },
 
@@ -233,8 +265,14 @@ export const monitoring = {
     setData ( state, data ){
       state.data = data;
     },
+    setData2 ( state, data ){
+      state.data2 = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
+    },
+    setDataS2 ( state, data ){
+      state.dataS2 = data;
     },
     setPeriode ( state, data ){
       state.periode = data;
@@ -245,23 +283,23 @@ export const monitoring = {
     setCount ( state, data ){
       state.count = data;
     },
-    setHeaderDataS ( state, data ){
-      state.headerDataS = data;
-    },
     setDataStat( state, status ){
       state.dataStat = status;
     },
+    setDataStat2( state, status ){
+      state.dataStat2 = status;
+    },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatS2( state, status ){
+      state.dataStatS2 = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;
-    },
-    setHeaderDataStatS( state, status ){
-      state.headerDataStatS = status;
     },
     setCountStat( state, status ){
       state.countStat = status;

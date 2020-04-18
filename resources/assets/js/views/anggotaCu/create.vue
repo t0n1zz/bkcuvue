@@ -1197,7 +1197,7 @@
 				}
 			},
 			modalTutup() {
-				if (this.updateStat === 'success') {				
+				if (this.updateStat == 'success') {				
 					if(this.mode == 'create_new' || this.mode == 'create_old' || this.mode == 'create_edit'){
 						let idcu = '';
 						if(this.currentUser.id_cu != 0){

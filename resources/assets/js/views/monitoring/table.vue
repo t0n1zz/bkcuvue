@@ -64,13 +64,19 @@
 					<td v-if="!columnData[0].hide">
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
-					<td v-if="!columnData[1].hide">
-						<span v-if="props.item.status == 'TEMUAN BARU'" class="badge badge-secondary">{{ props.item.status }}</span>
-						<span v-else-if="props.item.status == 'SELESAI'" class="badge badge-primary">{{ props.item.status }}</span>
-						<span v-else class="badge badge-warning">{{ props.item.status }}</span>
+					<td v-if="!columnData[1].hide" >
+						<div class="progress">
+							<div class="progress-bar-striped bg-warning" style="width: 50%">
+								<span class="text-default font-size-lg">
+									&nbsp;
+									50%
+									&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+								</span>
+							</div>
+						</div>
 					</td>
 					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.temuan"></check-value>
+						<check-value :value="props.item.name"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide && !columnData[3].disable">
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
@@ -78,6 +84,7 @@
 					</td>
 					<td v-if="!columnData[4].hide">
 						<check-value :value="props.item.tp.name" v-if="props.item.tp"></check-value>
+						<span v-else-if="props.item.id_tp == 0">Semua</span>
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[5].hide">
@@ -148,7 +155,7 @@
 					},
 					{
 						title: 'Temuan',
-						name: 'temuan',
+						name: 'name',
 						tipe: 'string',
 						sort: true,
 						hide: false,

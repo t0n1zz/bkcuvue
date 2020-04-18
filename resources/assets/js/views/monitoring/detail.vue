@@ -16,10 +16,7 @@
 					</message>
 
 					<!-- select data -->
-					<select-data 
-						:kelas="kelas"
-						:isPus="false"
-						:isNo_ba="true"></select-data>
+					<select-data></select-data>
 
 
 				</div>
@@ -34,24 +31,11 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import selectData from "./selectDetail.vue";
-	import detailLaporanCu from "./detailLaporanCu.vue";
-	import detailPearls from "./detailPearls.vue";
-	import diskusi from "./diskusi.vue";
-	import revisi from "./revisi.vue";
-	import infografisData from "./infografis.vue";
-	import infografisPearlsData from "./infografisPearls.vue";
-
 	export default {
 		components: {
 			pageHeader,
 			message,
 			selectData,
-			detailLaporanCu,
-			detailPearls,
-			infografisData,
-			infografisPearlsData,
-			diskusi,
-			revisi
 		},
 		data() {
 			return {
@@ -60,25 +44,9 @@
 				titleDesc: 'Mengelola data monitoring',
 				titleIcon: 'icon-stats-bars2',
 				level2Title: 'Monitoring',
-				tabName: 'analisisLaporanCu',
-				isPearls: false,
-				isDiskusi: false,
-				isRevisi: false
 			}
 		},
 		methods:{
-			changeTab(value){
-				this.tabName = value;
-				if(value == 'analisisPearls' && !this.isPearls){
-					this.isPearls = true;
-				}
-				if(value == 'diskusi' && !this.isDiskusi){
-					this.isDiskusi = true;
-				}
-				if(value == 'revisi' && !this.isRevisi){
-					this.isRevisi = true;
-				}
-			},
 			back(){
 				if(this.itemData.id_cu){
 					if(this.itemData.id_cu != 0){
@@ -96,17 +64,10 @@
 			} 
 		},
 		computed: {
-			...mapGetters('laporanCu',{
+			...mapGetters('monitoring',{
 				itemData: 'data',
 				itemDataStat: 'dataStat',
-				itemPearls: 'pearls',
-				itemPearlsStat: 'pearlsStat',
-				columnData: 'columnData',
-				columnDataPearls: 'columnDataPearls',
 			}),
 		}
 	}
 </script>
-<style>
-	@import "../../../../../node_modules/katex/dist/katex.min.css"
-</style>

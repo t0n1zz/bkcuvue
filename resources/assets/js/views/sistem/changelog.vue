@@ -28,6 +28,7 @@
                       <li>Menambah fitur untuk mengubah No. KTP / NIK data anggota CU</li>
                       <li>Memperbaiki bug pada menampilkan data keanggota CU di tabel Anggota CU</li>
                       <li>Memperbaiki bug pada penambahan data anggota apabila tidak memiliki No. KTP / NIK</li>
+                      <li>Menambah validasi pada pembuatan username user simo yang melarang adanya username dengan spasi</li>
                     </ul>
                   </div>
                 </div>

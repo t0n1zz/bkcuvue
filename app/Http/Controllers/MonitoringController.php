@@ -5,6 +5,7 @@ use DB;
 use File;
 use Image;
 use App\Monitoring;
+use App\MonitoringRekom;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
@@ -46,25 +47,33 @@ class MonitoringController extends Controller{
 
 	public function store(Request $request)
 	{
-		$this->validate($request,Monitoring::$rules);
+		\DB::beginTransaction(); 
+		try{
+			$this->validate($request,Monitoring::$rules);
 
-		$temuan = $request->temuan;
+			$name = $request->name;
 
-		$kelas = Monitoring::create($request->except('status') + [
-			'status' => 'TEMUAN BARU'
-		]);
-		
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' temuan ' .$temuan. ' berhasil ditambah',
-				'id' => $kelas->id
-			]);	
+			$kelas = Monitoring::create($request->except('rekomendasi'));
+
+			$this->syncRekom($request, $kelas);
+
+			\DB::commit();
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' temuan ' .$name. ' berhasil ditambah',
+					'id' => $kelas->id
+				]);	
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}	
 	}
 
 	public function edit($id)
 	{
-		$kelas = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu')->findOrFail($id);
+		$kelas = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->findOrFail($id);
 
 		return response()
 				->json([
@@ -75,34 +84,68 @@ class MonitoringController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, Monitoring::$rules);
+		\DB::beginTransaction(); 
+		try{
+			$this->validate($request, Monitoring::$rules);
 
-		$periode = $request->periode;
+			$name = $request->name;
 
-		$kelas = Monitoring::findOrFail($id);
+			$kelas = Monitoring::findOrFail($id);
 
-		$kelas->update($request->all());
+			$kelas->update($request->except('rekomendasi'));
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' periode ' .$periode. ' berhasil diubah'
-			]);
+			$this->syncRekom($request, $kelas);
+
+			\DB::commit();
+
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' temuan ' .$name. ' berhasil diubah'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}	
 	}
 
 	public function destroy($id)
 	{
 		$kelas = Monitoring::findOrFail($id);
 
-		$temuan = $kelas->temuan;
+		$name = $kelas->name;
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  $this->message. ' temuan ' .$temuan. 'berhasil dihapus'
+				'message' =>  $this->message. ' temuan ' .$name. 'berhasil dihapus'
 			]);
+	}
+
+	private function syncRekom($request, $kelas)
+	{
+		if($request->rekomendasi){
+			$rekoms = $request->rekomendasi;
+			
+			foreach($rekoms as $rekom){
+				if(array_key_exists('id', $rekom)){
+					$kelasRekom = MonitoringRekom::findOrFail($rekom['id']);
+					$kelasRekom->update([
+						'id_monitoring' => $kelas->id,
+						'rekomendasi' => array_key_exists('rekomendasi', $rekom) ? $rekom['rekomendasi'] : null,
+						'status' => array_key_exists('status', $rekom) ? $rekom['status'] : null,
+					]);
+				}else{
+					MonitoringRekom::create([
+						'id_monitoring' => $kelas->id,
+						'rekomendasi' => array_key_exists('rekomendasi', $rekom) ? $rekom['rekomendasi'] : null,
+						'status' => array_key_exists('status', $rekom) ? $rekom['status'] : null,
+					]);
+				}
+			}
+		}
 	}
 
 	public function count()
