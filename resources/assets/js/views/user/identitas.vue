@@ -35,7 +35,8 @@
                 </li>
                 <li>
                   <b>Tgl. Lahir:</b>
-                  <span v-html="$options.filters.date(itemData.tanggal_lahir)"></span>
+                  <span v-if="itemData.tanggal_lahir" v-html="$options.filters.date(itemData.tanggal_lahir)"></span>
+                  <span v-else>-</span>
                 </li>
                 <li>
                   <b>Status:</b>

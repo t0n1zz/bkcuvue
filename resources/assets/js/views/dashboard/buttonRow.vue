@@ -91,6 +91,11 @@
       <count-widget :title="'Self Assesment Access'" :color="'bg-warning-400'" :icon="'icon-reading'"></count-widget>
     </div>
 
+		<!-- monitoring -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_monitoring']" @click.prevent="goTo(monitoringWidgetRoute)">
+      <count-widget :title="'Monitoring'" :color="'bg-green-400'" :icon="'icon-collaboration'"></count-widget>
+    </div>
+
     <!-- user -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_user']" @click.prevent="goTo(userWidgetRoute)">
       <count-widget :title="'User'" :color="'bg-primary-400'" :icon="'icon-users'"></count-widget>
@@ -128,6 +133,7 @@
 				laporanCUWidgetRoute: {},
 				laporanGerakanWidgetRoute: {},
 				assesmentAccessWidgetRoute: {},
+				monitoringAccessWidgetRoute: {},
 			}
 		},
 		created(){
@@ -155,6 +161,7 @@
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
+					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
@@ -164,6 +171,7 @@
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
+					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua'} };
 				}
 			},
 			goTo(route){

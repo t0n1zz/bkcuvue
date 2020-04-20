@@ -72,6 +72,7 @@ import assesmentAccess from './views/assesmentAccess/index.vue';
 import assesmentAccess_form from './views/assesmentAccess/form.vue';
 import monitoring from './views/monitoring/index.vue';
 import monitoring_form from './views/monitoring/form.vue';
+import monitoring_detail from './views/monitoring/detail.vue';
 
 const routes = [
 
@@ -563,9 +564,9 @@ const routes = [
 
 		// assesment access
 	{ path: '/monitoring/cu/:cu',
-	name: 'monitoringCu', 
-	components: { default: monitoring, 'header': header, 'footer': footer  }, 
-	meta: { requiresAuth: true, mode:'cu' }},	
+		name: 'monitoringCu', 
+		components: { default: monitoring, 'header': header, 'footer': footer  }, 
+		meta: { requiresAuth: true, mode:'cu' }},	
 	{ path: '/monitoring/create',
 		name: 'monitoringCreate', 
 		components: { default: monitoring_form, 'header': header, 'footer': footer },
@@ -574,6 +575,10 @@ const routes = [
 		name: 'monitoringEdit', 
 		components: { default: monitoring_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/monitoring/detail/:id',
+		name: 'monitoringDetail', 
+		components: { default: monitoring_detail, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true } },
 
 
 	// laporan cu

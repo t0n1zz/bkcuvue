@@ -15,7 +15,9 @@ class MonitoringController extends Controller{
 
 	public function index()
 	{
-		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu')->advancedFilter();
+		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->advancedFilter();
+		
+		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -25,7 +27,33 @@ class MonitoringController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu')->where('id_cu',$id)->advancedFilter();
+		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->where('id_cu',$id)->advancedFilter();
+		
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	private function formatQuery($table_data)
+	{
+		foreach($table_data as $t){
+			$t->total_rekom = count($t->monitoring_rekom);
+			$t->rekom_ok = 0;
+			foreach($t->monitoring_rekom as $tt){
+				if($tt->status == 1){
+					$t->rekom_ok += 1;
+				}
+			}
+		}
+		return $table_data;
+	}
+
+	public function get($id)
+	{
+		$table_data = Monitoring::where('id_cu',$id)->select('id','id_cu','name','tanggal')->orderBy('tanggal','desc')->get();
 
 		return response()
 		->json([
@@ -73,7 +101,15 @@ class MonitoringController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->findOrFail($id);
+		$kelas = Monitoring::with('cu','tp','aktivis_cu.pekerjaan_aktif','aktivis_bkcu.pekerjaan_aktif','monitoring_rekom')->findOrFail($id);
+
+		$kelas->total_rekom = count($kelas->monitoring_rekom);
+		$kelas->rekom_ok = 0;
+		foreach($kelas->monitoring_rekom as $k){
+			if($k->status == 1){
+				$kelas->rekom_ok += 1;
+			}
+		}
 
 		return response()
 				->json([
@@ -107,6 +143,27 @@ class MonitoringController extends Controller{
 			\DB::rollBack();
 			abort(500, $e->getMessage());
 		}	
+	}
+
+	public function updateRekom($id)
+	{
+		$kelas = MonitoringRekom::findOrFail($id);
+
+		$status = $kelas->status;
+
+		if($status == 0){
+			$kelas->status = 1;
+		}else{
+			$kelas->status = 0;
+		}
+
+		$kelas->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Rekomendasi berhasil diubah'
+			]);
 	}
 
 	public function destroy($id)

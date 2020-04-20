@@ -27,21 +27,21 @@ class Monitoring extends BaseEloquent {
 
     
     protected $fillable = [
-        'id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','rekomendasi'
+        'id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','rekomendasi','tanggal'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','created_at','updated_at',
+        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','tanggal','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','created_at','updated_at',
+        'id','id_cu','id_tp','id_aktivis_cu','id_aktivis_bkcu','name','jenis','perspektif','tanggal','created_at','updated_at',
     ];
 
     public static function initialize()
     {
         return [
-            'id' => '','id_cu' => '','id_tp' => '','id_aktivis_cu' => '','id_aktivis_bkcu' => '','name' => '','jenis' => '','perspektif' => '','rekomendasi' => ''
+            'id' => '','id_cu' => '','id_tp' => '','id_aktivis_cu' => '','id_aktivis_bkcu' => '','name' => '','jenis' => '','perspektif' => '','rekomendasi' => '','tanggal' => ''
         ];
     }
 

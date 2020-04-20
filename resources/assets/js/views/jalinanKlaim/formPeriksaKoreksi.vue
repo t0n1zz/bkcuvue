@@ -321,7 +321,6 @@
   import checkValue from "../../components/checkValue.vue";
   import dataTable from '../../components/datatable.vue';
   import infoIcon from "../../components/infoIcon.vue";
-  import verifikator from "./verifikator.vue";
   import dokumen from "./dokumen.vue";
 
 	export default {
@@ -334,7 +333,6 @@
       Cleave, 
       dataTable,
       infoIcon,
-      verifikator,
       dokumen
 		},
 		data() {

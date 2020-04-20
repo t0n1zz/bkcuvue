@@ -28,16 +28,12 @@ export const monitoring = {
   // getters
   getters: {
     data: state => state.data,
-    data2: state => state.data2,
     dataS: state => state.dataS,
-    dataS2: state => state.dataS2,
     periode: state => state.periode,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     dataStat: state => state.dataStat,
-    dataStat2: state => state.dataStat2,
     dataStatS: state => state.dataStatS,
-    dataStatS2: state => state.dataStatS2,
     periodeStat: state => state.periodeStat,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
@@ -183,6 +179,24 @@ export const monitoring = {
         });
     },
 
+    updateRekom( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      MonitoringAPI.updateRekom( id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     restore( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
@@ -220,21 +234,6 @@ export const monitoring = {
         });
     },
 
-    // cari data
-    cariData( {commit}, [ cu, periode ] ){
-      commit('setPeriodeStat', 'loading');
-      
-      MonitoringAPI.cariData( cu, periode )
-        .then( function( response ){
-          commit('setPeriode', response.data.periode);
-          commit('setPeriodeStat', 'success');
-        })
-        .catch(error => {
-          commit('setPeriode', error.response);
-          commit('setPeriodeStat', 'fail');
-        });
-    },
-
     count( { commit } ){
       commit('setCountStat', 'loading');
       
@@ -265,14 +264,8 @@ export const monitoring = {
     setData ( state, data ){
       state.data = data;
     },
-    setData2 ( state, data ){
-      state.data2 = data;
-    },
     setDataS ( state, data ){
       state.dataS = data;
-    },
-    setDataS2 ( state, data ){
-      state.dataS2 = data;
     },
     setPeriode ( state, data ){
       state.periode = data;
@@ -286,14 +279,8 @@ export const monitoring = {
     setDataStat( state, status ){
       state.dataStat = status;
     },
-    setDataStat2( state, status ){
-      state.dataStat2 = status;
-    },
     setDataStatS( state, status ){
       state.dataStatS = status;
-    },
-    setDataStatS2( state, status ){
-      state.dataStatS2 = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;

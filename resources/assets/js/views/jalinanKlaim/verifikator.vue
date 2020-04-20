@@ -13,8 +13,8 @@
         </div>
       </div>
       <span v-else>
-        <div class="media flex-column flex-sm-row mt-0 mb-3" v-if="isSingle">
-          <div class="mr-sm-3 mb-2 mb-sm-0">
+        <div class="media mt-0 mb-3" v-if="isSingle">
+          <div class="mr-3 mb-2 mb-0">
             <div class="card-img-actions">
               <img
                 :src="'/images/aktivis/' + itemData.aktivis.gambar + 'n.jpg'"
@@ -39,8 +39,8 @@
             <br/>
           </div>
         </div>
-        <div class="media flex-column flex-sm-row mt-0 mb-3" v-for="vr in itemData" v-else>
-          <div class="mr-sm-3 mb-2 mb-sm-0">
+        <div class="media mt-0 mb-3" v-for="vr in itemData" v-else>
+          <div class="mr-3 mb-2 mb-0">
             <div class="card-img-actions">
               <img
                 :src="'/images/aktivis/' + vr.aktivis.gambar + 'n.jpg'"

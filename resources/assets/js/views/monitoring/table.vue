@@ -66,10 +66,10 @@
 					</td>
 					<td v-if="!columnData[1].hide" >
 						<div class="progress">
-							<div class="progress-bar-striped bg-warning" style="width: 50%">
+							<div class="progress-bar-striped bg-orange" :style="{width: Math.round((props.item.rekom_ok / props.item.total_rekom) * 100) + '%'}">
 								<span class="text-default font-size-lg">
 									&nbsp;
-									50%
+									{{ Math.round((props.item.rekom_ok / props.item.total_rekom) * 100) + '%' }}
 									&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
 								</span>
 							</div>
@@ -102,8 +102,9 @@
 						<check-value :value="props.item.aktivis_bkcu.name" v-if="props.item.aktivis_bkcu"></check-value>
 						<span v-else>-</span>
 					</td> 
-					<td v-if="!columnData[9].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[9].hide" v-html="$options.filters.date(props.item.tanggal)"></td>
+					<td v-if="!columnData[10].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[11].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -136,8 +137,8 @@
 			return {
 				selectedItem: [],
 				query: {
-					order_column: "created_at",
-					order_direction: "asc",
+					order_column: "tanggal",
+					order_direction: "desc",
 					filter_match: "and",
 					limit: 10,
 					page: 1
@@ -207,6 +208,15 @@
 						title: 'PIC BKCU',
 						name: 'aktivis_bkcu.name',
 						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Monitoring',
+						name: 'tanggal',
+						tipe: 'date',
+						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,

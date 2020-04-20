@@ -20,11 +20,12 @@
 
                 <div id="327" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini memperkenalkan fitur monitoring cu dan perbaikan pada anggota CU
+                    <p class="mb-3">Update versi ini memperkenalkan form monitoring cu dan perbaikan pada anggota CU
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
+                      <li>Menambah form monitoring CU yang berguna untuk mendata kegiatan monitoring Puskopdit BKCU Kalimantan di CU</li>
                       <li>Menambah fitur untuk mengubah No. KTP / NIK data anggota CU</li>
                       <li>Memperbaiki bug pada menampilkan data keanggota CU di tabel Anggota CU</li>
                       <li>Memperbaiki bug pada penambahan data anggota apabila tidak memiliki No. KTP / NIK</li>

@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/monitoring/create');
   },
 
+  get: function( cu ){
+    return axios.get('/api/monitoring/get/' + cu);
+  },
+
   store: function ( form ){
     return axios.post('/api/monitoring/store', form);
   },
@@ -22,6 +26,10 @@ export default {
 
   update: function ( id, form ){
     return axios.post('/api/monitoring/update/' + id, form);
+  },
+
+  updateRekom: function ( id ){
+    return axios.post('/api/monitoring/updateRekom/' + id);
   },
 
   destroy: function( id ){

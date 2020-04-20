@@ -376,6 +376,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:index_monitoring']], function () {
         Route::get('/monitoring', 'MonitoringController@index');
         Route::get('/monitoring/indexCu/{id}', 'MonitoringController@indexCu');
+        Route::get('/monitoring/get/{id}', 'MonitoringController@get');
         Route::get('/monitoring/count', 'MonitoringController@count');
     });
     Route::group(['middleware' => ['permission:create_monitoring']], function () {
@@ -385,9 +386,26 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:update_monitoring']], function () {
         Route::get('/monitoring/edit/{id}', 'MonitoringController@edit');
         Route::post('/monitoring/update/{id}', 'MonitoringController@update');
+        Route::post('/monitoring/updateRekom/{id}', 'MonitoringController@updateRekom');
     });
     Route::group(['middleware' => ['permission:destroy_monitoring']], function () {
         Route::delete('/monitoring/{id}', 'MonitoringController@destroy');
+    });
+
+    // monitoring pencapaian
+    Route::get('/monitoringPencapaian/history', 'MonitoringPencapaianController@history');
+    Route::group(['middleware' => ['permission:index_monitoring']], function () {
+        Route::get('/monitoringPencapaian/get/{id}', 'MonitoringPencapaianController@get');
+        Route::get('/monitoringPencapaian/count', 'MonitoringPencapaianController@count');
+    });
+    Route::group(['middleware' => ['permission:create_monitoring']], function () {
+        Route::post('/monitoringPencapaian/store', 'MonitoringPencapaianController@store');
+    });
+    Route::group(['middleware' => ['permission:update_monitoring']], function () {
+        Route::post('/monitoringPencapaian/update/{id}', 'MonitoringPencapaianController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_monitoring']], function () {
+        Route::delete('/monitoringPencapaian/{id}', 'MonitoringPencapaianController@destroy');
     });
 
     // mitra perserorangan

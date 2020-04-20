@@ -42,7 +42,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="currentUser.id_cu === 0">
+									<div class="col-md-6" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -69,7 +69,7 @@
 									</div>
 
 									<!-- TP -->
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
 
 											<!-- title -->
@@ -97,7 +97,7 @@
 									</div>
 
 									<!-- PIC CU -->
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_aktivis_cu')}">
 
 											<!-- title -->
@@ -124,7 +124,7 @@
 									</div>
 
 									<!-- PIC BKCU -->
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_aktivis_bkcu')}">
 
 											<!-- title -->
@@ -147,6 +147,37 @@
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_aktivis_bkcu') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+									
+									<!-- tanggal -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tanggal')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.tanggal')}">
+												<i class="icon-cross2" v-if="errors.has('form.tanggal')"></i>
+												Tanggal: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+											</h5>
+
+											<!-- input -->
+											<cleave 
+												name="tanggal"
+												v-model="form.tanggal" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.date" 
+												v-validate="'required'"
+												data-vv-as="Tanggal"
+												placeholder="Silahkan masukkan tanggal"></cleave>
+
+											<!-- error message -->
+											<br/>
+											<small class="text-muted text-danger" v-if="errors.has('form.tanggal')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;
+											</small>
 										</div>
 									</div>
 
@@ -301,8 +332,10 @@
 	import { getLocalUser } from "../../helpers/auth";
 	import { url_config } from '../../helpers/url.js';
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import infoIcon from "../../components/infoIcon.vue";
 	import dataTable from '../../components/datatable.vue';
 	import formRekom from "./formRekom.vue";
+	import Cleave from 'vue-cleave-component';
 
 	export default {
 		components: {
@@ -311,9 +344,11 @@
 			message,
 			formButton,
 			formInfo,
+			infoIcon,
 			wajibBadge,
 			dataTable,
-			formRekom
+			formRekom,
+			Cleave
 		},
 		data() {
 			return {
@@ -322,6 +357,13 @@
 				titleIcon: 'icon-plus3',
 				level2Title: 'Monitoring',
 				kelas: 'monitoring',
+				cleaveOption: {
+          date:{
+            date: true,
+            datePattern: ['Y','m','d'],
+            delimiter: '-'
+					},
+				},
 				formRekomMode: '',
 				selectedItemRekom: '',
 				itemDataRekom: [],
