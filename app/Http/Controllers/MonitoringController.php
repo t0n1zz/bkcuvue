@@ -6,6 +6,7 @@ use File;
 use Image;
 use App\Monitoring;
 use App\MonitoringRekom;
+use App\MonitoringPencapaian;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
@@ -15,9 +16,7 @@ class MonitoringController extends Controller{
 
 	public function index()
 	{
-		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->advancedFilter();
-		
-		$table_data = $this->formatQuery($table_data);
+		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu')->withCount('monitoring_pencapaian','monitoring_rekom','monitoring_rekom_ok')->advancedFilter();
 
 		return response()
 		->json([
@@ -25,30 +24,18 @@ class MonitoringController extends Controller{
 		]);
 	}
 
-	public function indexCu($id)
+	public function indexCu($cu, $tp)
 	{
-		$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->where('id_cu',$id)->advancedFilter();
-		
-		$table_data = $this->formatQuery($table_data);
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
-	private function formatQuery($table_data)
-	{
-		foreach($table_data as $t){
-			$t->total_rekom = count($t->monitoring_rekom);
-			$t->rekom_ok = 0;
-			foreach($t->monitoring_rekom as $tt){
-				if($tt->status == 1){
-					$t->rekom_ok += 1;
-				}
-			}
+		if($tp != 'semua'){
+			$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu')->withCount('monitoring_pencapaian','monitoring_rekom','monitoring_rekom_ok')->where('id_cu',$cu)->where('id_tp',$tp)->advancedFilter();
+		}else{
+			$table_data = Monitoring::with('cu','tp','aktivis_cu','aktivis_bkcu','monitoring_rekom')->withCount('monitoring_pencapaian','monitoring_rekom','monitoring_rekom_ok')->where('id_cu',$cu)->advancedFilter();
 		}
-		return $table_data;
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function get($id)
@@ -168,17 +155,28 @@ class MonitoringController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = Monitoring::findOrFail($id);
+		\DB::beginTransaction(); 
+		try{
+			$kelas = Monitoring::findOrFail($id);
+			$kelas2 = MonitoringRekom::where('id_monitoring',$id);
+			$kelas3 = MonitoringPencapaian::where('id_monitoring',$id);
 
-		$name = $kelas->name;
+			$name = $kelas->name;
 
-		$kelas->delete();
-
-		return response()
-			->json([
-				'deleted' => true,
-				'message' =>  $this->message. ' temuan ' .$name. 'berhasil dihapus'
-			]);
+			$kelas->delete();
+			$kelas2->delete();
+			$kelas3->delete();
+			
+			\DB::commit();
+			return response()
+				->json([
+					'deleted' => true,
+					'message' =>  $this->message. ' temuan ' .$name. 'berhasil dihapus'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}			
 	}
 
 	private function syncRekom($request, $kelas)

@@ -66,45 +66,55 @@
 					</td>
 					<td v-if="!columnData[1].hide" >
 						<div class="progress">
-							<div class="progress-bar-striped bg-orange" :style="{width: Math.round((props.item.rekom_ok / props.item.total_rekom) * 100) + '%'}">
+							<div class="progress-bar-striped bg-orange" :style="{width: Math.round((props.item.monitoring_rekom_ok_count / props.item.monitoring_rekom_count) * 100) + '%'}">
 								<span class="text-default font-size-lg">
 									&nbsp;
-									{{ Math.round((props.item.rekom_ok / props.item.total_rekom) * 100) + '%' }}
+									{{ Math.round((props.item.monitoring_rekom_ok_count / props.item.monitoring_rekom_count) * 100) + '%' }}
 									&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
 								</span>
 							</div>
 						</div>
 					</td>
 					<td v-if="!columnData[2].hide">
+						<check-value :value="props.item.monitoring_rekom_count"></check-value>
+					</td>
+					<td v-if="!columnData[3].hide">
+						<check-value :value="props.item.monitoring_rekom_ok_count"></check-value>
+					</td>
+					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.monitoring_pencapaian_count"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide && !columnData[3].disable">
+					<td v-if="!columnData[6].hide && !columnData[6].disable">
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[4].hide">
+					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.tp.name" v-if="props.item.tp"></check-value>
 						<span v-else-if="props.item.id_tp == 0">Semua</span>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.jenis == 'MAYOR'" class="badge badge-danger">{{ props.item.jenis }}</span>
 						<span v-else-if="props.item.jenis == 'MINOR'" class="badge badge-success">{{ props.item.jenis }}</span>
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.perspektif"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.aktivis_cu.name" v-if="props.item.aktivis_cu"></check-value>
 						<span v-else>-</span>
 					</td> 
-					<td v-if="!columnData[8].hide">
+					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.aktivis_bkcu.name" v-if="props.item.aktivis_bkcu"></check-value>
 						<span v-else>-</span>
 					</td> 
-					<td v-if="!columnData[9].hide" v-html="$options.filters.date(props.item.tanggal)"></td>
-					<td v-if="!columnData[10].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[11].hide">
+					
+					<td v-if="!columnData[12].hide" v-html="$options.filters.date(props.item.tanggal)"></td>
+					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[14].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -153,6 +163,30 @@
 						title: 'Status',
 						name: 'status',
 						hide: false,
+					},
+					{
+						title: 'Rekomendasi',
+						name: 'monitoring_rekom_count',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false,
+					},
+					{
+						title: 'Tercapai',
+						name: 'monitoring_rekom_ok_count',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false,
+					},
+					{
+						title: 'Tanggapan',
+						name: 'monitoring_pencapaian_count',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false,
 					},
 					{
 						title: 'Temuan',
@@ -212,6 +246,7 @@
 						disable: false,
 						filter: true,
 					},
+					
 					{
 						title: 'Tgl. Monitoring',
 						name: 'tanggal',
@@ -281,12 +316,12 @@
 					this.excelDownloadUrl = this.kelas;
 				}else{
 					this.disableColumnCu(true);
-					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
-					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu,this.$route.params.tp]);
+					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp;
 				}
 			},
 			disableColumnCu(status){
-				this.columnData[3].disable = status;
+				this.columnData[6].disable = status;
 			},
 			selectedRow(item){
 				this.selectedItem = item;

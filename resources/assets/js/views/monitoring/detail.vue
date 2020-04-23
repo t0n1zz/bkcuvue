@@ -147,7 +147,7 @@
 								<div class="row">
 									<!-- desktop -->
 									<div class="col-md-7 col-lg-9 d-none d-sm-block">
-										<button class="btn btn-light" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-plus3"></i> Tambah Pencapaian</button>
+										<button class="btn btn-light" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-plus3"></i> Tambah Tanggapan</button>
 									</div>
 
 									<div class="col-md-5 col-lg-3 text-right d-none d-sm-block">
@@ -156,7 +156,7 @@
 
 									<!-- mobile -->
 									<div class="col-md-12 d-block d-sm-none">
-										<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-plus3"></i> Tambah Pencapaian</button>
+										<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-plus3"></i> Tambah Tanggapan</button>
 										<button class="btn btn-light btn-block" @click.prevent="back"><i class="icon-arrow-left13"></i> Kembali</button>
 									</div>
 								</div>
@@ -224,14 +224,26 @@
 														<div class="card-body">
 															<!-- desktop -->
 															<div class="d-none d-sm-block">
-																<button class="btn btn-light" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0"><i class="icon-plus3"></i> Tambah Catatan BKCU</button>
+																<!-- catatan bkcu -->
+																<button class="btn btn-light" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0">
+																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan BKCU</span>
+																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan BKCU</span>
+																</button>
+																<!-- ubah  -->
 																<button class="btn btn-light" @click.prevent="modalOpen('ubah',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-pencil5"></i> Ubah</button>
+																<!-- hapus -->
 																<button class="btn btn-light" @click.prevent="modalOpen('hapus',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-bin2"></i> Hapus</button>
 															</div>
 															<!-- mobile -->
 															<div class="d-block d-sm-none">
-																<button  class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0"><i class="icon-plus3"></i> Tambah Catatan BKCU</button>
+																<!-- catatan bkcu -->
+																<button  class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0">
+																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan BKCU</span>
+																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan BKCU</span>
+																</button>
+																<!-- ubah -->
 																<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubah',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-pencil5"></i> Ubah</button>
+																<!-- hapus -->
 																<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('hapus',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-bin2"></i> Hapus</button>
 															</div>
 														</div>
@@ -410,7 +422,11 @@
 				this.$store.dispatch('monitoringPencapaian/get', this.$route.params.id);
 			},
 			back() {
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.item.id_cu}});
+				if(this.item.id_tp == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.item.id_cu, tp: 'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.item.id_cu, tp: this.item.id_tp}});
+				}
 			},
 			ubahData() {
 				this.$router.push({name: this.kelas + 'Edit', params: { id: this.$route.params.id }});
@@ -426,27 +442,27 @@
 				if (state == 'hapus') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
-					this.modalTitle = 'Hapus pencapaian?';
+					this.modalTitle = 'Hapus Tanggapan?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
 				} else if (state == 'ubah') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Pencapaian';
+					this.modalTitle = 'Ubah Tanggapan';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.modalFormState = 'edit';
 				} else if (state == 'tambah') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Pencapaian';
+					this.modalTitle = 'Tambah Tanggapan';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.modalFormState = 'create';
 				} else if (state == 'catatan') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Pencapaian';
+					this.modalTitle = !selectedItem.catatan ? 'Tambah Catatan BKCU' : 'Ubah Catatan BKCU';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.modalFormState = 'catatan';

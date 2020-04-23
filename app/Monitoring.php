@@ -70,8 +70,13 @@ class Monitoring extends BaseEloquent {
         return $this->hasMany('App\MonitoringRekom','id_monitoring','id');
     }
 
-    public function monitoring_lanjut()
+    public function monitoring_rekom_ok()
     {
-        return $this->hasMany('App\MonitoringLanjut','id_monitoring','id');
+        return $this->hasMany('App\MonitoringRekom','id_monitoring','id')->where('status',1);
+    }
+
+    public function monitoring_pencapaian()
+    {
+        return $this->hasMany('App\MonitoringPencapaian','id_monitoring','id');
     }
 }

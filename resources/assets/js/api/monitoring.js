@@ -4,8 +4,8 @@ export default {
     return axios.get('/api/monitoring' , {params: p});
   },
 
-  indexCu: function( p, id ){
-    return axios.get('/api/monitoring/indexCu/' + id, {params: p});
+  indexCu: function( p, cu, tp ){
+    return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp, {params: p});
   },
 
   create: function(){

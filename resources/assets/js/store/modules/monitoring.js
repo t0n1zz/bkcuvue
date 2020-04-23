@@ -60,10 +60,10 @@ export const monitoring = {
     },
 
     // load by cu
-    indexCu( { commit }, [p, id] ){
+    indexCu( { commit }, [p, cu, tp] ){
       commit('setDataStatS', 'loading');
       
-      MonitoringAPI.indexCu( p, id )
+      MonitoringAPI.indexCu( p, cu, tp )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');

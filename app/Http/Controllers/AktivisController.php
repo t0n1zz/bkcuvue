@@ -211,6 +211,12 @@ class AktivisController extends Controller{
 	{
 		$table_data = AktivisPekerjaan::with('cu','tp')->where('id_aktivis',$id)->orderBy('mulai','desc')->get();
 
+		foreach($table_data as $t){
+			if($t->tipe == 3){
+				$t->id_tempat = 0;
+			}
+		}
+
 		return response()
 			->json([
 					'model' => $table_data,

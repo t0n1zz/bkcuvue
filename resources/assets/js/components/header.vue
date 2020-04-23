@@ -914,7 +914,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'monitoring'}">
 
-									<router-link :to="{ name: 'monitoringCu',params: { cu: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
+									<router-link :to="{ name: 'monitoringCu',params: { cu: 'semua', tp: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
 										 Semua CU
 									</router-link>
 
@@ -922,7 +922,7 @@
 									<div class="dropdown-divider"></div> 
 
 									<template v-for="(cu, index) in modelCu">
-										<router-link :to="{ name: 'monitoringCu',params: { cu: cu.id } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0' && cu" :key="index">
+										<router-link :to="{ name: 'monitoringCu',params: { cu: cu.id, tp: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0' && cu" :key="index">
 											CU {{ cu.name }}
 										</router-link>
 									</template>
@@ -931,7 +931,7 @@
 							</div>
 
 							<!-- if cu account -->
-							<router-link :to="{ name: 'monitoringCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_monitoring'] && currentUser.id_cu != 0">
+							<router-link :to="{ name: 'monitoringCu', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_monitoring'] && currentUser.id_cu != 0">
 								<i class="icon-collaboration"></i> Monitoring
 							</router-link>
 

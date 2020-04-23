@@ -161,7 +161,7 @@
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
-					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu} };
+					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
@@ -171,7 +171,7 @@
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
-					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua'} };
+					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };
 				}
 			},
 			goTo(route){

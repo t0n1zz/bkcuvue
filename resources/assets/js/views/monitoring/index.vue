@@ -16,11 +16,10 @@
 					</message>
 
 					<!-- select data -->
-					<select-cu 
+					<select-data 
 						:kelas="kelas"
 						:path="selectCuPath"
-						:isPus="false"
-						v-if="currentUser.id_cu == 0"></select-cu>
+						:isPus="false"></select-data>
 
 					<!-- table data -->
 					<table-data 
@@ -38,14 +37,14 @@
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
-	import selectCu from "../../components/selectCu.vue";
+	import selectData from "../../components/selectCuTp.vue";
 	import tableData from "./table.vue";
 	
 	export default {
 		components: {
 			pageHeader,
 			message,
-			selectCu,
+			selectData,
 			tableData,
 		},
 		data() {

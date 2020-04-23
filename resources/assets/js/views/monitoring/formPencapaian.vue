@@ -120,6 +120,7 @@
 				title: '',
 				kelas: 'monitoringPencapaian',
 				formDataLanjut:{
+					id: '',
 					id_monitoring: '',
 					pencapaian: '',
 					bukti: '',
@@ -148,7 +149,7 @@
 						if (this.mode == 'create') {
 							this.$store.dispatch(this.kelas + '/store', this.formDataLanjut);
 						} else {
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.formDataLanjut]);
+							this.$store.dispatch(this.kelas + '/update', [this.formDataLanjut.id, this.formDataLanjut]);
 						}
 						this.submited = false;
 					}else{

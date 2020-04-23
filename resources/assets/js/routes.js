@@ -562,8 +562,8 @@ const routes = [
 		components: { default: assesmentAccess_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'lihat' } },	
 
-		// assesment access
-	{ path: '/monitoring/cu/:cu',
+		// monitoring
+	{ path: '/monitoring/cu/:cu/:tp',
 		name: 'monitoringCu', 
 		components: { default: monitoring, 'header': header, 'footer': footer  }, 
 		meta: { requiresAuth: true, mode:'cu' }},	
