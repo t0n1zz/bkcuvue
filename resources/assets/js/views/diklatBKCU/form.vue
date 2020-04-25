@@ -900,6 +900,7 @@
 			save() {
 				this.form.sasaran = this.sasaran;
 				this.form.panitia = this.itemDataPanitia;
+				this.form.tipe_tempat = 'OFFLINE';
 				this.state = '';
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);

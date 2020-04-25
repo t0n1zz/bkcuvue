@@ -87,7 +87,7 @@
 			},
 			fetchData(){
 				if(this.modelData.length == 0){
-					this.$store.dispatch('diklatBKCU/getPeriode');
+					this.$store.dispatch(this.kelas + '/getPeriode');
 				}
 				this.periode = this.$route.params.periode;
 			},

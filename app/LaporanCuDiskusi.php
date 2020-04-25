@@ -13,7 +13,7 @@ class LaporanCuDiskusi extends BaseEloquent {
     protected static $logOnlyDirty = true;
     
     public static $rules = [
-        'content' => 'required|min:5'
+        'content' => 'required'
     ];
     
     protected $fillable = ['id_laporan','id_user','content'];

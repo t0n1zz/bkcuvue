@@ -380,9 +380,14 @@
 									<i class="icon-plus22"></i> Tambah
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahKegiatan'}">
-									<!-- tambah diklat pus -->
-									<router-link :to="{ name:'diklatBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_diklat_bkcu']">
+									<!-- tambah diklat bkcu -->
+									<router-link :to="{ name:'diklatBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
 										Diklat BKCU
+									</router-link>
+
+									<!-- tambah pertemuan bkcu -->
+									<router-link :to="{ name:'pertemuanBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+										Pertemuan BKCU
 									</router-link>
 
 									<!-- tambah tempat -->
@@ -393,11 +398,16 @@
 							</div>		
 
 							<!-- divider -->
-							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu'] || currentUser.can['create_tempat']"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu'] || currentUser.can['create_pertemuan_bkcu'] || currentUser.can['create_tempat']"></div> 
 
-							<!-- diklat pus -->
-							<router-link :to="{ name: 'diklatBKCU', params:{periode: momentYear() } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_diklat_bkcu']">
+							<!-- diklat bkcu -->
+							<router-link :to="{ name: 'diklatBKCU', params:{periode: momentYear() } }" class="dropdown-item" active-class="active" exact>
 								<i class="icon-graduation2"></i> Diklat BKCU
+							</router-link>
+
+							<!-- pertemuan bkcu -->
+							<router-link :to="{ name: 'pertemuanBKCU', params:{periode: momentYear() } }" class="dropdown-item" active-class="active" exact>
+								<i class="icon-ungroup"></i> Pertemuan BKCU
 							</router-link>
 
 							<!-- divider -->

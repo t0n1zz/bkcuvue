@@ -129,9 +129,6 @@
 											<span v-else-if="content.status === 500">
 												<b>ERROR 500</b>
 											</span>
-											<span v-else>
-												<b>ERROR</b>
-											</span>
 
 											<hr/>
 
@@ -140,8 +137,12 @@
 													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}<br/><span v-if="content.errors"><span v-for="errors in content.errors"><span v-for="e in errors">{{ e }} <br/></span></span></span>
 													</pre>
 												</span>
-												<span v-if="content.data">
+												<span v-else-if="content.data">
 													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}<br/><span v-if="content.data.errors"><span v-for="errors in content.data.errors"><span v-for="e in errors">{{ e }} <br/></span></span></span>
+													</pre>
+												</span>
+												<span v-else-if="content">
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content }}
 													</pre>
 												</span>
 											</span>

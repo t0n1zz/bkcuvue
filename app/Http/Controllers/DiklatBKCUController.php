@@ -18,10 +18,11 @@ class DiklatBKCUController extends Controller{
 	protected $width = 300;
 	protected $height = 200;
 	protected $message = "Diklat";
+	protected $tipe = "diklat_bkcu";
 
 	public function index()
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe','diklat_bkcu')->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$this->tipe)->advancedFilter();
 
 		return response()
 		->json([
@@ -31,7 +32,7 @@ class DiklatBKCUController extends Controller{
 
 	public function indexPeriode($periode)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe','diklat_bkcu')->where('periode',$periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$this->tipe)->where('periode',$periode)->advancedFilter();
 
 		return response()
 		->json([
@@ -44,13 +45,13 @@ class DiklatBKCUController extends Controller{
 		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
 		$now =\Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->whereIn('status',[1,2])->orderBy('created_at','desc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe',$this->tipe)->where('periode',$periode)->whereIn('status',[1,2])->orderBy('created_at','desc')->take(6)->get();
 
-		$countMulai = Kegiatan::where('tipe','diklat_bkcu')->where('periode',$periode)->whereIn('status',[1,2])->where('mulai','>',$now)->orderBy('mulai','asc')->count();
+		$countMulai = Kegiatan::where('tipe',$this->tipe)->where('periode',$periode)->whereIn('status',[1,2])->where('mulai','>',$now)->orderBy('mulai','asc')->count();
 
-		$countBuka = Kegiatan::where('tipe','diklat_bkcu')->where('periode',$periode)->where('status',2)->count();
+		$countBuka = Kegiatan::where('tipe',$this->tipe)->where('periode',$periode)->where('status',2)->count();
 
-		$countJalan = Kegiatan::where('tipe','diklat_bkcu')->where('periode',$periode)->where('status',4)->count();
+		$countJalan = Kegiatan::where('tipe',$this->tipe)->where('periode',$periode)->where('status',4)->count();
 
 		return response()
 		->json([
@@ -67,7 +68,7 @@ class DiklatBKCUController extends Controller{
 
 		$now =\Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->whereIn('status',[1,2])->where('mulai','>',$now)->orderBy('mulai','asc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe',$this->tipe)->where('periode',$periode)->whereIn('status',[1,2])->where('mulai','>',$now)->orderBy('mulai','asc')->take(6)->get();
 
 		return response()
 		->json([
@@ -79,7 +80,7 @@ class DiklatBKCUController extends Controller{
 	{
 		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->where('status',2)->take(6)->get();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe',$this->tipe)->where('periode',$periode)->where('status',2)->take(6)->get();
 
 		return response()
 		->json([
@@ -91,7 +92,7 @@ class DiklatBKCUController extends Controller{
 	{
 		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe','diklat_bkcu')->where('periode',$periode)->where('status',4)->take(6)->get();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe',$this->tipe)->where('periode',$periode)->where('status',4)->take(6)->get();
 
 		return response()
 		->json([
@@ -217,7 +218,7 @@ class DiklatBKCUController extends Controller{
 	
 	public function getPeriode()
 	{
-		$table_data = Kegiatan::distinct('periode')->pluck('periode');
+		$table_data = Kegiatan::where('tipe',$this->tipe)->distinct('periode')->pluck('periode');
 
 		return response()
 		->json([
@@ -248,7 +249,7 @@ class DiklatBKCUController extends Controller{
 			$fileName = '';
 
 		$kelas = Kegiatan::create($request->except('tipe','status','gambar') + [
-			'tipe' => 'diklat_bkcu', 'status' => '1', 'gambar' => $fileName
+			'tipe' => $this->tipe, 'status' => '1', 'gambar' => $fileName
 		]);
 
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
@@ -334,7 +335,7 @@ class DiklatBKCUController extends Controller{
 			$fileName = '';
 
 		$kelas->update($request->except('tipe','gambar') + [
-			'tipe' => 'diklat_bkcu',
+			'tipe' => $this->tipe,
 			'gambar' => $fileName
 		]);
 		

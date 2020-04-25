@@ -11,21 +11,21 @@ class KegiatanPeserta extends BaseEloquent {
     protected $table = 'kegiatan_peserta';
 
     protected $fillable = [
-        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga'
+        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga','tanggal_hadir'
     ];
 
     protected $allowedFilters = [
-        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga'
+        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir'
     ];
 
     protected $orderable = [
-        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga'
+        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir'
     ];
 
     public static function initialize()
     {
         return [
-            'name' => '','tempat' => '','lembaga' => '','datang' => '','pulang' => '',
+            'name' => '','tempat' => '','lembaga' => '','datang' => '','pulang' => '','tanggal_hadir' => '',
         ];
     }
     

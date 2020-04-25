@@ -199,30 +199,28 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
      // diklatBKCU
     Route::get('/diklatBKCU/history', 'DiklatBKCUController@history');
+    Route::get('/diklatBKCU/', 'DiklatBKCUController@index');
+    Route::get('/diklatBKCU/periode/{periode}', 'DiklatBKCUController@indexPeriode');
+    Route::get('/diklatBKCU/baru', 'DiklatBKCUController@indexBaru');
+    Route::get('/diklatBKCU/mulai', 'DiklatBKCUController@indexMulai');
+    Route::get('/diklatBKCU/buka', 'DiklatBKCUController@indexBuka');
+    Route::get('/diklatBKCU/jalan', 'DiklatBKCUController@indexJalan');
+    Route::get('/diklatBKCU/get', 'DiklatBKCUController@get');
+    Route::get('/diklatBKCU/getPeriode', 'DiklatBKCUController@getPeriode');
+    Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
+    Route::get('/diklatBKCU/indexPeserta/{id}', 'DiklatBKCUController@indexPeserta');
+    Route::get('/diklatBKCU/indexPesertaTerdaftar/{id}', 'DiklatBKCUController@indexPesertaTerdaftar');
+    Route::get('/diklatBKCU/indexPesertaMenunggu/{id}', 'DiklatBKCUController@indexPesertaMenunggu');
+    Route::get('/diklatBKCU/indexPesertaBerjalan/{id}', 'DiklatBKCUController@indexPesertaBerjalan');
+    Route::get('/diklatBKCU/indexPesertaBatal/{id}', 'DiklatBKCUController@indexPesertaBatal');
+    Route::get('/diklatBKCU/indexPesertaCu/{id}/cu/{cu}', 'DiklatBKCUController@indexPesertaCu');
+    Route::get('/diklatBKCU/countPeserta/{id}', 'DiklatBKCUController@countPeserta');
+    Route::get('/diklatBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'DiklatBKCUController@checkPeserta');
     Route::group(['middleware' => ['permission:index_diklat_bkcu']], function () {
-        Route::get('/diklatBKCU/', 'DiklatBKCUController@index');
-        Route::get('/diklatBKCU/baru', 'DiklatBKCUController@indexBaru');
-        Route::get('/diklatBKCU/mulai', 'DiklatBKCUController@indexMulai');
-        Route::get('/diklatBKCU/buka', 'DiklatBKCUController@indexBuka');
-        Route::get('/diklatBKCU/jalan', 'DiklatBKCUController@indexJalan');
-        Route::get('/diklatBKCU/periode/{periode}', 'DiklatBKCUController@indexPeriode');
-        Route::get('/diklatBKCU/get', 'DiklatBKCUController@get');
-        Route::get('/diklatBKCU/getPeriode', 'DiklatBKCUController@getPeriode');
-        Route::get('/diklatBKCU/edit/{id}', 'DiklatBKCUController@edit');
-
-        // peserta
-        Route::get('/diklatBKCU/indexPeserta/{id}', 'DiklatBKCUController@indexPeserta');
-        Route::get('/diklatBKCU/indexPesertaTerdaftar/{id}', 'DiklatBKCUController@indexPesertaTerdaftar');
-        Route::get('/diklatBKCU/indexPesertaMenunggu/{id}', 'DiklatBKCUController@indexPesertaMenunggu');
-        Route::get('/diklatBKCU/indexPesertaBerjalan/{id}', 'DiklatBKCUController@indexPesertaBerjalan');
-        Route::get('/diklatBKCU/indexPesertaBatal/{id}', 'DiklatBKCUController@indexPesertaBatal');
-        Route::get('/diklatBKCU/indexPesertaCu/{id}/cu/{cu}', 'DiklatBKCUController@indexPesertaCu');
-        Route::get('/diklatBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'DiklatBKCUController@checkPeserta');
         Route::post('/diklatBKCU/storePeserta/{id}', 'DiklatBKCUController@storePeserta');
         Route::post('/diklatBKCU/updatePeserta/{id}', 'DiklatBKCUController@updatePeserta');
         Route::delete('/diklatBKCU/destroyPeserta/{id}', 'DiklatBKCUController@destroyPeserta');
         Route::post('/diklatBKCU/batalPeserta/{id}', 'DiklatBKCUController@batalPeserta');
-        Route::get('/diklatBKCU/countPeserta/{id}', 'DiklatBKCUController@countPeserta');
     });
     Route::group(['middleware' => ['permission:create_diklat_bkcu']], function () {
         Route::get('/diklatBKCU/create', 'DiklatBKCUController@create');
@@ -234,6 +232,43 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
     Route::group(['middleware' => ['permission:destroy_diklat_bkcu']], function () {
         Route::delete('/diklatBKCU/{id}', 'DiklatBKCUController@destroy');
+    });
+
+    // pertemuanBKCU
+    Route::get('/pertemuanBKCU/history', 'PertemuanBKCUController@history');
+    Route::get('/pertemuanBKCU/', 'PertemuanBKCUController@index');
+    Route::get('/pertemuanBKCU/baru', 'PertemuanBKCUController@indexBaru');
+    Route::get('/pertemuanBKCU/mulai', 'PertemuanBKCUController@indexMulai');
+    Route::get('/pertemuanBKCU/buka', 'PertemuanBKCUController@indexBuka');
+    Route::get('/pertemuanBKCU/jalan', 'PertemuanBKCUController@indexJalan');
+    Route::get('/pertemuanBKCU/get', 'PertemuanBKCUController@get');
+    Route::get('/pertemuanBKCU/getPeriode', 'PertemuanBKCUController@getPeriode');
+    Route::get('/pertemuanBKCU/periode/{periode}', 'PertemuanBKCUController@indexPeriode');
+    Route::get('/pertemuanBKCU/edit/{id}', 'PertemuanBKCUController@edit');
+    Route::get('/pertemuanBKCU/indexPeserta/{id}', 'PertemuanBKCUController@indexPeserta');
+    Route::get('/pertemuanBKCU/indexPesertaHadir/{id}', 'PertemuanBKCUController@indexPesertahadir');
+    Route::get('/pertemuanBKCU/indexPesertaCu/{id}/cu/{cu}', 'PertemuanBKCUController@indexPesertaCu');
+    Route::get('/pertemuanBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@checkPeserta');
+    Route::get('/pertemuanBKCU/checkPanitia/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@checkPanitia');
+    Route::post('/pertemuanBKCU/updatePesertaHadir/{id}', 'PertemuanBKCUController@updatePesertaHadir');
+    Route::get('/pertemuanBKCU/countPeserta/{id}', 'PertemuanBKCUController@countPeserta');
+    Route::get('/pertemuanBKCU/countPesertaHadir/{id}', 'PertemuanBKCUController@countPesertaHadir');
+    Route::group(['middleware' => ['permission:index_pertemuan_bkcu']], function () {
+        Route::post('/pertemuanBKCU/storePeserta/{id}', 'PertemuanBKCUController@storePeserta');
+        Route::post('/pertemuanBKCU/updatePeserta/{id}', 'PertemuanBKCUController@updatePeserta');
+        Route::delete('/pertemuanBKCU/destroyPeserta/{id}', 'PertemuanBKCUController@destroyPeserta');
+        Route::post('/pertemuanBKCU/batalPeserta/{id}', 'PertemuanBKCUController@batalPeserta');
+    });
+    Route::group(['middleware' => ['permission:create_pertemuan_bkcu']], function () {
+        Route::get('/pertemuanBKCU/create', 'PertemuanBKCUController@create');
+        Route::post('/pertemuanBKCU/store', 'PertemuanBKCUController@store');
+    });
+    Route::group(['middleware' => ['permission:update_pertemuan_bkcu']], function () {
+        Route::post('/pertemuanBKCU/update/{id}', 'PertemuanBKCUController@update');
+        Route::post('/pertemuanBKCU/updateStatus/{id}', 'PertemuanBKCUController@updateStatus');
+    });
+    Route::group(['middleware' => ['permission:destroy_pertemuan_bkcu']], function () {
+        Route::delete('/pertemuanBKCU/{id}', 'PertemuanBKCUController@destroy');
     });
 
     // aktivis

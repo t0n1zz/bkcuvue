@@ -26,6 +26,11 @@
       <count-widget :title="'Diklat BKCU'" :color="'bg-blue-400'" :icon="'icon-graduation2'"></count-widget>
     </div>
 
+    <!-- pertemuan bkcu -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']" @click.prevent="goTo(pertemuanBKCUWidgetRoute)">
+      <count-widget :title="'Pertemuan BKCU'" :color="'bg-pink-400'" :icon="'icon-ungroup'"></count-widget>
+    </div>
+
     <!-- tempat -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_tempat'] && currentUser.id_cu == '0'" @click.prevent="goTo(tempatWidgetRoute)">
       <count-widget :title="'Tempat'" :color="'bg-purple-400'" :icon="'icon-location4'"></count-widget>
@@ -119,6 +124,7 @@
 				artikelPenulisWidgetRoute: {},
 				pengumumanWidgetRoute: {},
 				diklatBKCUWidgetRoute: {},
+				pertemuanBKCUWidgetRoute: {},
 				anggotaCuWidgetRoute: {},
 				saldoWidgetRoute: {},
 				jalinanKlaimWidgetRoute: {},
@@ -146,6 +152,7 @@
 				this.artikelKategoriWidgetRoute = { name: 'artikelKategoriCu', params:{cu: this.currentUser.id_cu} };
 				this.pengumumanWidgetRoute = { name: 'pengumumanCu', params:{cu: this.currentUser.id_cu} };
 				this.diklatBKCUWidgetRoute = { name: 'diklatBKCU', params:{periode: this.momentYear()} };
+				this.pertemuanBKCUWidgetRoute = { name: 'pertemuanBKCU', params:{periode: this.momentYear()} };
 				this.saldoWidgetRoute = { name: 'saldo' };
 				this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu, tingkat:'semua'} };
 				this.laporanGerakanWidgetRoute = { name: 'laporanGerakan' };

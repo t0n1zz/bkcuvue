@@ -288,11 +288,12 @@
 						icon: 'icon-graduation2',
 						secondRow: true,
 						tipe: 'all',
-						permission: [{
+						permission: [
+							{
 								name: 'Lihat',
 								key: 'index_diklat_bkcu',
 								icon: 'icon-eye',
-								tipe: 'all',
+								tipe: 'bkcu',
 								value: false,
 								group: 'Diklat BKCU'
 							},
@@ -319,7 +320,63 @@
 								tipe: 'bkcu',
 								value: false,
 								group: 'Diklat BKCU'
-							}
+							},
+							{
+								name: 'Daftar',
+								key: 'index_diklat_bkcu',
+								icon: 'icon-plus3',
+								tipe: 'cu',
+								value: false,
+								group: 'Diklat BKCU'
+							},
+						]
+					},
+					{
+						name: 'Pertemuan BKCU',
+						icon: 'icon-ungroup',
+						secondRow: true,
+						tipe: 'all',
+						permission: [
+							{
+								name: 'Lihat',
+								key: 'index_pertemuan_bkcu',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Pertemuan BKCU'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_pertemuan_bkcu',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Pertemuan BKCU'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_pertemuan_bkcu',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Pertemuan BKCU'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_pertemuan_bkcu',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Pertemuan BKCU'
+							},
+							{
+								name: 'Daftar',
+								key: 'index_pertemuan_bkcu',
+								icon: 'icon-plus3',
+								tipe: 'cu',
+								value: false,
+								group: 'Pertemuan BKCU'
+							},
 						]
 					},
 					{
@@ -405,45 +462,6 @@
 								tipe: 'bkcu',
 								value: false,
 								group: 'Anggota CU'
-							},
-						]
-					},
-					{
-						name: 'Saldo',
-						icon: 'icon-wallet',
-						secondRow: true,
-						tipe: 'all',
-						permission: [{
-								name: 'Lihat',
-								key: 'index_saldo',
-								icon: 'icon-eye',
-								tipe: 'all',
-								value: false,
-								group: 'Saldo'
-							},
-							{
-								name: 'Tambah',
-								key: 'create_saldo',
-								icon: 'icon-plus3',
-								tipe: 'all',
-								value: false,
-								group: 'Saldo'
-							},
-							{
-								name: 'Ubah',
-								key: 'update_saldo',
-								icon: 'icon-pencil',
-								tipe: 'all',
-								value: false,
-								group: 'Saldo'
-							},
-							{
-								name: 'Hapus',
-								key: 'destroy_saldo',
-								icon: 'icon-bin2',
-								tipe: 'all',
-								value: false,
-								group: 'Saldo'
 							},
 						]
 					},
@@ -1297,6 +1315,11 @@
 						'update_diklat_bkcu',
 						'destroy_diklat_bkcu',
 
+						'index_pertemuan_bkcu',
+						'create_pertemuan_bkcu',
+						'update_pertemuan_bkcu',
+						'destroy_pertemuan_bkcu',
+
 						'index_tempat',
 						'create_tempat',
 						'update_tempat',
@@ -1392,6 +1415,7 @@
 						'destroy_produk_cu',
 
 						'index_diklat_bkcu',
+						'index_pertemuan_bkcu',
 
 						'index_laporan_cu',
 						'create_laporan_cu',
@@ -1422,6 +1446,7 @@
 						'index_aktivis',
 						'index_produk_cu',
 						'index_diklat_bkcu',
+						'index_pertemuan_bkcu',
 						'index_tempat',
 						'index_laporan_cu',
 						'diskusi_laporan_cu',
@@ -1429,6 +1454,9 @@
 						'diskusi_laporan_tp',
 						'index_assesment_access',
 						'index_monitoring',
+						'index_aset_tetap',
+						'index_aset_tetap_jenis',
+						'index_aset_tetap_lokasi',
 						'index_mitra_orang',
 						'index_mitra_lembaga',
 						'index_saran'
@@ -1550,6 +1578,11 @@
 						'update_diklat_bkcu',
 						'destroy_diklat_bkcu',
 
+						'index_pertemuan_bkcu',
+						'create_pertemuan_bkcu',
+						'update_pertemuan_bkcu',
+						'destroy_pertemuan_bkcu',
+
 						'index_tempat',
 						'create_tempat',
 						'update_tempat',
@@ -1575,6 +1608,7 @@
 					],
 					kegiatanCU:[
 						'index_diklat_bkcu',
+						'index_pertemuan_bkcu',
 					],
 					publikasi: [
 						'index_artikel',

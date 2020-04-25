@@ -486,9 +486,9 @@
 			},
 			back(){
 				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua', tp: 'semua'}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: 'semua'}});
 				}
 			},
 			createRekom(value){

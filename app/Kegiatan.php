@@ -17,7 +17,6 @@ class Kegiatan extends BaseEloquent {
     protected $dates = ['deleted_at'];
     
     public static $rules = [
-        'id_tempat' => 'required',
         'name' => 'required'
     ];
 
@@ -32,24 +31,24 @@ class Kegiatan extends BaseEloquent {
     }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat'
     ];
 
     protected $allowedFilters = [
-        'id','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','status','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at',
+        'id','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','status','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','tipe_tempat',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','tempat.name'
     ];
 
     protected $orderable = [
-        'id','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','status','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at',
+        'id','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','status','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','tipe_tempat',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','tempat.name'
     ];
     
     public static function initialize(){
         return [
-            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => ''
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => '', 'tipe_tempat' => ''
         ];
     }
         
@@ -99,5 +98,13 @@ class Kegiatan extends BaseEloquent {
 
     public function hasPeserta(){
         return $this->hasMany('App\KegiatanPeserta','kegiatan_id','id');
+    }
+
+    public function hasDiskusi(){
+        return $this->hasMany('App\KegiatanDiskusi','kegiatan_id','id');
+    }
+
+    public function hasMateri(){
+        return $this->hasMany('App\KegiatanMateri','kegiatan_id','id');
     }
 }

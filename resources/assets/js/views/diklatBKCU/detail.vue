@@ -14,18 +14,209 @@
 					</message>
 
 					<div class="row">
-						<div class="col-lg-9 col-md-8">
+						<!-- title -->
+						<div class="col-md-12">
 							<div class="card">
-								<div class="card-header header-elements-inline">
+								<img :src="'/images/diklat/' + item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="item.gambar">
+								<div class="card-header">
 									<h5 class="card-title">{{ item.name }}</h5>	
+								</div>
+							</div>
+						</div>
+
+						<!-- sidebar -->
+						<div class="col-lg-3 col-md-4 order-md-12">
+
+							<!-- action -->
+							<div class="card">
+								<div class="card-header bg-transparent header-elements-inline">
+									<span class="text-uppercase font-size-sm font-weight-semibold">Menu</span>
 									<div class="header-elements">
-										[{{ item.kode_diklat }}]
+										<div class="list-icons">
+											<a class="list-icons-item" data-action="collapse"></a>
+										</div>
 									</div>
 								</div>
-								<div class="nav-tabs-responsive bg-light border-top">
+								<div class="card-body">
+
+									<!-- ubah -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="ubahData(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']">
+										<i class="icon-pencil5"></i> Ubah Diklat
+									</button>
+
+									<!-- status -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('status')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" >
+										<i class="icon-calendar5"></i> Status Diklat
+									</button>
+
+									<!-- status -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusPertemuan')" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu'] && item.status == 1" >
+										<i class="icon-bin2"></i> Hapus Diklat
+									</button>
+
+									<hr v-if="currentUser.can['destroy_diklat_bkcu'] || currentUser.can['update_diklat_bkcu']" />
+
+									<!-- daftar -->
+									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" v-if="currentUser.id_cu == 0">
+										<i class="icon-plus22"></i> Daftar Peserta
+									</button>
+
+									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" :disabled="item.status != 2" v-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0">
+										<i class="icon-plus22"></i> Daftar Peserta
+									</button>
+
+								</div>
+							</div>
+
+							<!-- detail -->
+							<div class="card">
+								<div class="card-header bg-transparent header-elements-inline">
+									<span class="text-uppercase font-size-sm font-weight-semibold">Info</span>
+									<div class="header-elements">
+										<div class="list-icons">
+											<a class="list-icons-item" data-action="collapse"></a>
+										</div>
+									</div>
+								</div>
+								<table class="table table-borderless table-xs border-top-0 my-2">
+									<tbody>
+										<tr>
+											<td class="font-weight-semibold">Status:</td>
+											<td class="text-right">
+												<span v-html="$options.filters.statusDiklat(item.status)"></span>
+											</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Kode:</td>
+											<td class="text-right">{{ item.kode_diklat }}</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Terdaftar:</td>
+											<td class="text-right">{{ countData }} orang</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Durasi:</td>
+											<td class="text-right">{{ item.durasi }} jam</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Tgl. Mulai:</td>
+											<td class="text-right" v-html="$options.filters.dateMonth(item.mulai)"></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Tgl. Selesai:</td>
+											<td class="text-right" v-html="$options.filters.dateMonth(item.selesai)"></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Peserta Min:</td>
+											<td class="text-right">{{item.peserta_min}} orang</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Peserta Max:</td>
+											<td class="text-right">{{item.peserta_max}} orang</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Peserta Max Per CU:</td>
+											<td class="text-right">{{item.peserta_max_cu}} orang</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+
+							<!-- sasaran -->
+							<div class="card">
+								<div class="card-header bg-transparent header-elements-inline">
+									<span class="text-uppercase font-size-sm font-weight-semibold">Sasaran Peserta</span>
+									<div class="header-elements">
+										<div class="list-icons">
+											<a class="list-icons-item" data-action="collapse"></a>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-body">
+									<span v-if="item.sasaran">
+										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
+											{{ sasaran.name }}
+										</label>
+									</span>
+								</div>
+							</div>
+
+							<!-- tempat -->
+							<div class="card" v-if="item.tempat">
+								<div class="card-header bg-transparent header-elements-inline">
+									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
+									<div class="header-elements">
+										<div class="list-icons">
+											<a class="list-icons-item" data-action="collapse"></a>
+										</div>
+									</div>
+								</div>
+								<div class="card-img-actions mx-1 mt-1">
+									<a href="#" @click.prevent="modalImageShow('/images/tempat/' + item.tempat.gambar + '.jpg')" v-if="item.tempat && item.tempat.gambar">
+										<img :src="'/images/tempat/' + item.tempat.gambar + 'n.jpg'" class="card-img img-fluid" >
+										<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
+									</a>
+									<a href="#" @click.prevent="modalImageShow('/images/no_image.jpg')" v-else>
+										<img :src="'/images/no_image.jpg'" class="card-img img-fluid" >
+										<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
+									</a>
+								</div>
+
+								<table class="table table-borderless table-xs border-top-0 my-2" v-if="itemStat == 'success'">
+									<tbody>
+										<tr>
+											<td class="font-weight-semibold">Nama:</td>
+											<td class="text-right"><check-value :value="item.tempat.name"></check-value></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Email:</td>
+											<td class="text-right"><check-value :value="item.tempat.email"></check-value></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">No. Telp:</td>
+											<td class="text-right"><check-value :value="item.tempat.telp"></check-value></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">No. Hp:</td>
+											<td class="text-right"><check-value :value="item.tempat.hp"></check-value></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Alamat:</td>
+											<td class="text-right"><check-value :value="item.tempat.alamat"></check-value></td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold">Website:</td>
+											<td class="text-right"><check-value :value="item.tempat.website"></check-value></td>
+										</tr>
+		
+									</tbody>
+								</table>
+							</div>
+							<div class="card" v-else>
+								<div class="card-header bg-transparent header-elements-inline">
+									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
+									<div class="header-elements">
+										<div class="list-icons">
+											<a class="list-icons-item" data-action="collapse"></a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									Belum menentukan tempat pelatihan
+								</div>
+							</div>
+
+						</div>
+
+						<!-- content -->
+						<div class="col-lg-9 col-md-8 order-sm-1">
+							<div class="card">
+								<div class="nav-tabs-responsive">
 									<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-menu7 mr-2"></i>
-												Informasi Diklat</a></li>
+												Umum</a></li>
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'peserta'}" @click.prevent="changeTab('peserta')"><i class="icon-people mr-2"></i>
 												Peserta</a></li>
 									</ul>
@@ -63,7 +254,7 @@
 													<td>{{ props.index + 1 }}</td>
 													<td>
 														<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-														<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+														<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 													</td>
 													<td>
 														<check-value :value="props.item.name"></check-value>
@@ -187,7 +378,7 @@
 												</td>
 												<td v-if="props.item.aktivis && !columnData[2].hide">
 													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
-													<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+													<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 												</td>
 												<td v-if="props.item.aktivis && !columnData[3].hide">
 													<check-value :value="props.item.aktivis.name"></check-value>
@@ -198,11 +389,9 @@
 												<td v-if="!columnData[5].hide">
 													<check-value :value="props.item.name_sertifikat"></check-value>
 												</td>
-												<td v-if="!columnData[6].hide">
-													<check-value :value="props.item.datang"></check-value>
+												<td v-if="!columnData[6].hide" v-html="$options.filters.date(props.item.datang)">
 												</td>
-												<td v-if="!columnData[7].hide">
-													<check-value :value="props.item.pulang"></check-value>
+												<td v-if="!columnData[7].hide" v-html="$options.filters.date(props.item.pulang)">
 												</td>
 												<td v-if="!columnData[8].hide">
 													<check-value :value="props.item.keterangan"></check-value>
@@ -271,175 +460,7 @@
 								</div>
 							</transition>
 						</div>
-
-						<!-- sidebar -->
-						<div class="col-lg-3 col-md-4">
-
-							<!-- detail -->
-							<div class="card">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Info</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-body pb-0">
-
-									<!-- ubah -->
-									<button class="btn btn-light btn-block mb-2" @click.prevent="ubahData(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']">
-										<i class="icon-pencil5"></i> Ubah
-									</button>
-
-									<!-- status -->
-									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('status')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" >
-										<i class="icon-calendar5"></i> Status
-									</button>
-
-									<!-- status -->
-									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusDiklat')" v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" >
-										<i class="icon-bin2"></i> Hapus
-									</button>
-
-									<hr v-if="currentUser.can['destroy_diklat_bkcu'] || currentUser.can['update_diklat_bkcu']" />
-
-									<!-- daftar -->
-									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" v-if="currentUser.id_cu == 0">
-										<i class="icon-plus22"></i> Daftar
-									</button>
-
-									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambah')" :disabled="item.status != 2" v-if="currentUser.id_cu != 0">
-										<i class="icon-plus22"></i> Daftar
-									</button>
-
-								</div>
-								<table class="table table-borderless table-xs border-top-0 my-2">
-									<tbody>
-										<tr>
-											<td class="font-weight-semibold">Status:</td>
-											<td class="text-right">
-												<span v-html="$options.filters.statusDiklat(item.status)"></span>
-											</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Durasi:</td>
-											<td class="text-right">{{ item.durasi }} jam</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Tgl. Mulai:</td>
-											<td class="text-right" v-html="$options.filters.dateMonth(item.mulai)"></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Tgl. Selesai:</td>
-											<td class="text-right" v-html="$options.filters.dateMonth(item.selesai)"></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Peserta Min:</td>
-											<td class="text-right">{{item.peserta_min}} orang</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Peserta Max:</td>
-											<td class="text-right">{{item.peserta_max}} orang</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Peserta Max Per CU:</td>
-											<td class="text-right">{{item.peserta_max_cu}} orang</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Terdaftar:</td>
-											<td class="text-right">{{ countData }} orang</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
-							<!-- sasaran -->
-							<div class="card">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Sasaran Peserta</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-
-								<div class="card-body">
-									<span v-if="item.sasaran">
-										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
-											{{ sasaran.name }}
-										</label>
-									</span>
-								</div>
-							</div>
-
-							<!-- tempat -->
-							<div class="card" v-if="item.tempat">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-img-actions mx-1 mt-1">
-									<a href="#" @click.prevent="modalImageShow('/images/tempat/' + item.tempat.gambar + '.jpg')" v-if="item.tempat && item.tempat.gambar">
-										<img :src="'/images/tempat/' + item.tempat.gambar + 'n.jpg'" class="card-img img-fluid" >
-										<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
-									</a>
-									<a href="#" @click.prevent="modalImageShow('/images/no_image.jpg')" v-else>
-										<img :src="'/images/no_image.jpg'" class="card-img img-fluid" >
-										<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
-									</a>
-								</div>
-
-								<table class="table table-borderless table-xs border-top-0 my-2" v-if="itemStat == 'success'">
-									<tbody>
-										<tr>
-											<td class="font-weight-semibold">Nama:</td>
-											<td class="text-right"><check-value :value="item.tempat.name"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Email:</td>
-											<td class="text-right"><check-value :value="item.tempat.email"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">No. Telp:</td>
-											<td class="text-right"><check-value :value="item.tempat.telp"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">No. Hp:</td>
-											<td class="text-right"><check-value :value="item.tempat.hp"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Alamat:</td>
-											<td class="text-right"><check-value :value="item.tempat.alamat"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Website:</td>
-											<td class="text-right"><check-value :value="item.tempat.website"></check-value></td>
-										</tr>
-		
-									</tbody>
-								</table>
-							</div>
-							<div class="card" v-else>
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									Belum menentukan tempat pelatihan
-								</div>
-							</div>
-
-						</div>
+					
 					</div>
 
 				</div>
@@ -823,13 +844,17 @@
 				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 			},
 			fetchPeserta(params){
-				if(this.currentUser.id_cu == 0){
-					this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
-					this.excelDownloadUrl = this.kelas + '/indexPeserta';
-					
+				if(this.item.status == '2'){
+					if(this.currentUser.id_cu == 0){
+						this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
+						this.excelDownloadUrl = this.kelas + '/indexPeserta';					
+					}else{
+						this.$store.dispatch(this.kelas + '/indexPesertaCu', [params,this.item.id, this.currentUser.id_cu]);
+						this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + this.$route.params.cu;
+					}
 				}else{
-					this.$store.dispatch(this.kelas + '/indexPesertaCu', [params,this.item.id, this.currentUser.id_cu]);
-					this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + this.$route.params.cu;
+					this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
+					this.excelDownloadUrl = this.kelas + '/indexPeserta';	
 				}
 			},
 			fetchCountPeserta() {
@@ -901,7 +926,7 @@
 					this.modalSize = '';
 				} else if (state == 'status') {
 					this.modalState = 'normal2';
-					this.modalTitle = 'Ubah status ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+					this.modalTitle = 'Ubah status ' + this.item.name + ' ini?';
 					this.modalColor = 'bg-primary';
 				} else if (state == 'ubah') {
 					this.modalState = 'normal1';
@@ -924,7 +949,7 @@
 						this.modalColor = '';
 						this.modalSize = '';
 						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta yang bisa CU anda daftarkan untuk pelatihan ini telah terpenuhi.';
+						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta yang bisa CU anda daftarkan untuk diklat ini telah terpenuhi.';
 					}else{
 						this.modalState = 'normal1';
 						this.modalColor = 'bg-primary';

@@ -140,6 +140,11 @@ class UserController extends Controller
 		'update_diklat_bkcu',
 		'destroy_diklat_bkcu',
 
+		'index_pertemuan_bkcu',
+		'create_pertemuan_bkcu',
+		'update_pertemuan_bkcu',
+		'destroy_pertemuan_bkcu',
+
 		'index_tempat',
 		'create_tempat',
 		'update_tempat',

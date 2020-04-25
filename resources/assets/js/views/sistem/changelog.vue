@@ -14,7 +14,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#327">Version 3.2.7 <small class="text-muted"> / April 2020</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#327">Version 3.2.7 <small class="text-muted"> / 24 April 2020</small></a>
                   </h5>
                 </div>
 
