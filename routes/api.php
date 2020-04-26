@@ -250,7 +250,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/pertemuanBKCU/indexPesertaCu/{id}/cu/{cu}', 'PertemuanBKCUController@indexPesertaCu');
     Route::get('/pertemuanBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@checkPeserta');
     Route::get('/pertemuanBKCU/checkPanitia/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@checkPanitia');
-    Route::post('/pertemuanBKCU/updatePesertaHadir/{id}', 'PertemuanBKCUController@updatePesertaHadir');
+    Route::post('/pertemuanBKCU/updatePesertaHadir/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@updatePesertaHadir');
+    Route::post('/pertemuanBKCU/updatePanitiaHadir/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@updatePanitiaHadir');
     Route::get('/pertemuanBKCU/countPeserta/{id}', 'PertemuanBKCUController@countPeserta');
     Route::get('/pertemuanBKCU/countPesertaHadir/{id}', 'PertemuanBKCUController@countPesertaHadir');
     Route::group(['middleware' => ['permission:index_pertemuan_bkcu']], function () {

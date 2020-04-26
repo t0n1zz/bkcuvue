@@ -7,6 +7,7 @@ export const pertemuanBKCU = {
   state: {
     data: {},
     data2: {}, //single data
+    data3: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
     periode: [],
@@ -14,6 +15,7 @@ export const pertemuanBKCU = {
     count2: {},
     dataStat: '',
     dataStat2: '',
+    dataStat3: '',
     periodeStat: '',
     dataStatS: '',
     dataStatS2: '',
@@ -29,6 +31,7 @@ export const pertemuanBKCU = {
   getters: {
     data: state => state.data,
     data2: state => state.data2,
+    data3: state => state.data3,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
     periode: state => state.periode,
@@ -36,6 +39,7 @@ export const pertemuanBKCU = {
     count2: state => state.count2,
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
+    dataStat3: state => state.dataStat3,
     periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
@@ -134,16 +138,16 @@ export const pertemuanBKCU = {
     },
 
     checkPanitia( { commit }, [kegiatan_id, aktivis_id] ){
-      commit('setDataStat2', 'loading');
+      commit('setDataStat3', 'loading');
       
       PERTEMUANBKCUAPI.checkPanitia(kegiatan_id, aktivis_id)
         .then( function( response ){
-          commit('setData2', response.data.model );
-          commit('setDataStat2', 'success');
+          commit('setData3', response.data.model );
+          commit('setDataStat3', 'success');
         })
         .catch( error => {
-          commit('setData2', error.response);
-          commit('setDataStat2', 'fail');
+          commit('setData3', error.response);
+          commit('setDataStat3', 'fail');
         });
     },
 
@@ -292,10 +296,28 @@ export const pertemuanBKCU = {
         });
     },
 
-    updatePesertaHadir( {commit, state, dispatch}, id ){
+    updatePesertaHadir( {commit, state, dispatch}, [kegiatan_id, aktivis_id] ){
       commit('setUpdateStat', 'loading');
 
-      PERTEMUANBKCUAPI.updatePesertaHadir( id )
+      PERTEMUANBKCUAPI.updatePesertaHadir( kegiatan_id, aktivis_id )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updatePanitiaHadir( {commit, state, dispatch}, [kegiatan_id, aktivis_id] ){
+      commit('setUpdateStat', 'loading');
+
+      PERTEMUANBKCUAPI.updatePanitiaHadir( kegiatan_id, aktivis_id )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -407,6 +429,9 @@ export const pertemuanBKCU = {
     setData2 ( state, data ){
       state.data2 = data;
     },
+    setData3 ( state, data ){
+      state.data3 = data;
+    },
     setPeriode ( state, data ){
       state.periode = data;
     },
@@ -427,6 +452,9 @@ export const pertemuanBKCU = {
     },
     setDataStat2( state, status ){
       state.dataStat2 = status;
+    },
+    setDataStat3( state, status ){
+      state.dataStat3 = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;

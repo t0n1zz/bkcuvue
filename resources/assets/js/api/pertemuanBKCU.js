@@ -88,8 +88,12 @@ export default {
     return axios.post('/api/pertemuanBKCU/updatePeserta/' + id, form);
   },
 
-  updatePesertaHadir: function ( id ){
-    return axios.post('/api/pertemuanBKCU/updatePesertaHadir/' + id);
+  updatePesertaHadir: function ( kegiatan_id, aktivis_id ){
+    return axios.post('/api/pertemuanBKCU/updatePesertaHadir/' + kegiatan_id + '/' + aktivis_id);
+  },
+
+  updatePanitiaHadir: function ( kegiatan_id, aktivis_id ){
+    return axios.post('/api/pertemuanBKCU/updatePanitiaHadir/' + kegiatan_id + '/' + aktivis_id);
   },
 
   updateStatus: function ( id, form ){

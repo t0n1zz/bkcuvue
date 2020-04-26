@@ -7,7 +7,7 @@
 		<form @submit.prevent="save" data-vv-scope="formStatus">
       <h5>Selamat Datang di {{ item.name }}</h5>
 			<div class="card card-body">
-				Pertemuan ini merupakan pertemuan yang bersifat online. Pada pertemuan ini peserta dapat mengakses materi dan juga dapat memberikan tanggapan terhadap materi yang dibahas pada pertemuan ini
+				Pertemuan ini merupakan pertemuan yang bersifat online. Pada pertemuan ini anda dapat mengakses materi dan juga dapat memberikan tanggapan terhadap materi yang dibahas pada pertemuan ini
 			</div>
 
 			<div class="card">
@@ -46,7 +46,7 @@
 
 			<checkbox 
 					:form="formStatus.status" 
-					:title="'Dengan ini saya setuju selaku peserta setuju mengikuti ' + item.name + ' dan dianggap hadir dan terlibat didalam pelaksanaan pertemuan'" 
+					:title="'Dengan ini saya setuju mengikuti ' + item.name + ' dan dianggap hadir dan terlibat didalam pelaksanaan pertemuan'" 
 					@check="formStatus.status != 0 ? formStatus.status = 0 : formStatus.status = 1"
 				></checkbox>
       <!-- divider -->
@@ -81,7 +81,7 @@
 	import checkbox from '../../components/checkbox.vue';
 
 	export default {
-		props: ['kelas','item'],
+		props: ['kelas','item','state'],
 		components: {
 			formInfo,
 			message,
@@ -103,7 +103,11 @@
 		methods: {
       save(){
 				this.$validator.validateAll('formStatus').then((result) => {
-					this.$store.dispatch(this.kelas + '/updatePesertaHadir', this.currentUser.id_aktivis);
+					if(this.state == 'pesertaTerdaftar'){
+						this.$store.dispatch(this.kelas + '/updatePesertaHadir', [this.item.id, this.currentUser.id_aktivis]);
+					}else{
+						this.$store.dispatch(this.kelas + '/updatePanitiaHadir', [this.item.id, this.currentUser.id_aktivis]);
+					}
 				});
       },
 			tutup() {

@@ -375,9 +375,9 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
-	public function updatePesertaHadir($id)
+	public function updatePesertaHadir($kegiatan_id, $aktivis_id)
 	{
-		$kelas = KegiatanPeserta::where('aktivis_id',$id)->first();
+		$kelas = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
 		$kelas->tanggal_hadir = \Carbon\Carbon::now();
 		$kelas->update();
 
@@ -385,6 +385,19 @@ class PertemuanBKCUController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => "Peserta berhasil hadir"
+			]);
+	}
+
+	public function updatePanitiaHadir($kegiatan_id, $aktivis_id)
+	{
+		$kelas = KegiatanPanitia::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
+		$kelas->tanggal_hadir = \Carbon\Carbon::now();
+		$kelas->update();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Panitia berhasil hadir"
 			]);
 	}
 

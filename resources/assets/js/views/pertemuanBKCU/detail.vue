@@ -93,15 +93,6 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="font-weight-semibold" v-if="item.tipe_tempat == 'ONLINE'">Terdaftar:</td>
-											<td class="font-weight-semibold" v-lese>Peserta:</td>
-											<td class="text-right">{{ countPeserta }} orang</td>
-										</tr>
-										<tr v-if="item.tipe_tempat == 'ONLINE'">
-											<td class="font-weight-semibold">Hadir:</td>
-											<td class="text-right">{{ countPesertaHadir }} orang</td>
-										</tr>
-										<tr>
 											<td class="font-weight-semibold">Durasi:</td>
 											<td class="text-right">{{ item.durasi }} jam</td>
 										</tr>
@@ -125,7 +116,14 @@
 											<td class="font-weight-semibold">Peserta Max Per CU:</td>
 											<td class="text-right">{{item.peserta_max_cu}} orang</td>
 										</tr>
-										
+										<tr>
+											<td class="font-weight-semibold" >Peserta Terdaftar:</td>
+											<td class="text-right">{{ countPeserta }} orang</td>
+										</tr>
+										<tr v-if="item.tipe_tempat == 'ONLINE'">
+											<td class="font-weight-semibold">Peserta Hadir:</td>
+											<td class="text-right">{{ countPesertaHadir }} orang</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -232,6 +230,8 @@
 
 						<!-- content -->
 						<div class="col-lg-9 col-md-8 order-md-1">
+
+							<!-- navbar -->
 							<div class="card">
 								<div class="nav-tabs-responsive">
 									<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
@@ -348,6 +348,24 @@
 
 								</div>
 							</transition>
+
+							<!-- materi -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'materi'">
+									<div class="card card-body">
+
+									</div>
+								</div>
+							</transition>	
+
+							<!-- tanggapan -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'tanggapan'">
+									<div class="card card-body">
+
+									</div>
+								</div>
+							</transition>		
 
 							<!-- peserta terdaftar -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
@@ -485,6 +503,28 @@
 											</tr>
 										</template>	
 									</data-viewer>
+									<hr/>
+									<div class="card">
+										<data-table :items="itemDataPesertaTerdaftarCU" :columnData="columnDataCU" :itemDataStat="itemDataStat">
+											<template slot="item-desktop" slot-scope="props">
+												<tr v-if="props.item">
+													<td>{{ props.index + 1 }}</td>
+													<td>
+														<check-value :value="props.item.name"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.lakilaki"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.perempuan"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.total"></check-value>
+													</td>
+												</tr>
+											</template>	
+										</data-table>
+									</div>
 								</div>
 							</transition>
 
@@ -579,8 +619,31 @@
 											</tr>
 										</template>	
 									</data-viewer>
+									<hr/>
+									<div class="card">
+										<data-table :items="itemDataPesertaHadirCU" :columnData="columnDataCU" :itemDataStat="itemDataStat2">
+											<template slot="item-desktop" slot-scope="props">
+												<tr v-if="props.item">
+													<td>{{ props.index + 1 }}</td>
+													<td>
+														<check-value :value="props.item.name"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.lakilaki"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.perempuan"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.total"></check-value>
+													</td>
+												</tr>
+											</template>	
+										</data-table>
+									</div>
 								</div>
 							</transition>
+
 						</div>
 					
 					</div>
@@ -606,17 +669,16 @@
 				:selected="selectedItem"
 				:kegiatan_id="item.id"
 				:tingkat="item.sasaran"
-				@tutup="modalTutup" v-if="state == 'tambahPesertaPeserta' || state == 'ubahPeserta'"></form-peserta>
+				@tutup="modalTutup" v-if="state == 'tambahPeserta' || state == 'ubahPeserta'"></form-peserta>
 				<form-peserta-batal :kelas="kelas" :id="selectedItem.id"
 				@tutup="modalTutup" v-else-if="state == 'batalPeserta'"></form-peserta-batal>
-
 			</template>
 
 			<!-- pertemuan -->
 			<template slot="modal-body2">
 				<form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
 				@tutup="modalTutup" v-if="state == 'statusPertemuan'"></form-status>
-				<form-hadir :kelas="kelas" :item="item" v-else-if="state == 'pesertaTerdaftar'"></form-hadir>
+				<form-hadir :kelas="kelas" :item="item" :state="state" v-else-if="state == 'pesertaTerdaftar' || state == 'panitiaTerdaftar'"></form-hadir>
 			</template>
 
 			<!-- batal peserta -->
@@ -1100,7 +1162,16 @@
 					{ title: 'Kontak Lain' },
 					
 				],
+				columnDataCU: [
+					{ title: 'No.' },
+					{ title: 'CU' },
+					{ title: 'Laki-Laki' },
+          { title: 'Perempuan' },
+					{ title: 'Total' },
+				],
 				itemDataPanitia: [],
+				itemDataPesertaTerdaftarCU: [],
+				itemDataPesertaHadirCU: [],
 				selectedItem: '',
 				formPesertaMode: '',
 				itemDataPanitia: [],
@@ -1140,15 +1211,77 @@
 					}
 				}
 			},
-			checkPesertaDataStat(value){
+			// peserta terdaftar
+			itemDataStat(value){
 				if(value == 'success'){
-					if(this.checkPesertaData){
-						if(!this.checkPesertaData.tanggal_hadir){
+					this.itemDataPesertaTerdaftarCU = Object.values(this.itemData.data.reduce(function(accumulator, current){
+						const cu = current.aktivis.pekerjaan_aktif.cu;
+						accumulator[cu.id] = accumulator[cu.id] || {
+							"id": cu.id,
+							"name": cu.name,
+							"total": 0,
+							"perempuan": 0,
+							"lakilaki": 0,
+						}
+
+						accumulator[cu.id].total += 1;
+						if(current.aktivis.kelamin == "LAKI-LAKI"){
+							accumulator[cu.id].lakilaki += 1;
+						}else{
+							accumulator[cu.id].perempuan += 1;
+						}
+						
+						return accumulator;
+					},{}));
+				}
+			},
+			// peserta hadir
+			itemDataStat2(value){
+				if(value == 'success'){
+					this.itemDataPesertaHadirCU = Object.values(this.itemData2.data.reduce(function(accumulator, current){
+						const cu = current.aktivis.pekerjaan_aktif.cu;
+						accumulator[cu.id] = accumulator[cu.id] || {
+							"id": cu.id,
+							"name": cu.name,
+							"total": 0,
+							"perempuan": 0,
+							"lakilaki": 0,
+						}
+
+						accumulator[cu.id].total += 1;
+						if(current.aktivis.kelamin == "LAKI-LAKI"){
+							accumulator[cu.id].lakilaki += 1;
+						}else{
+							accumulator[cu.id].perempuan += 1;
+						}
+						
+						return accumulator;
+					},{}));
+				}
+			},
+			checkPanitiaDataStat(value){
+				if(value == 'success'){
+					if(this.checkPanitiaData){
+						if(!this.checkPanitiaData.tanggal_hadir){
 							if(this.item.tipe_tempat == 'ONLINE')
-								this.modalOpen('pesertaTerdaftar');
+								this.modalOpen('panitiaTerdaftar');
 						}
 					}else{
-						this.modalOpen('pesertaTidakTerdaftar');
+						this.checkPeserta();
+					}
+				}
+			},
+			checkPesertaDataStat(value){
+				if(this.state != 'tambahPeserta' && state != 'ubahPeserta'){
+					if(value == 'success'){
+						if(this.checkPesertaData){
+							if(!this.checkPesertaData.tanggal_hadir){
+								if(this.item.tipe_tempat == 'ONLINE')
+									this.modalOpen('pesertaTerdaftar');
+							}
+						}else{
+							this.modalOpen('pesertaTidakTerdaftar');
+						}
 					}
 				}
 			},
@@ -1269,7 +1402,7 @@
 					this.modalTitle = 'Maaf anda belum bisa mengikuti pertemuan ini';
 					this.modalContent = 'Alasan penolakkan: <br/>' + this.selectedItem.keteranganBatal;
 				}else if (state == 'batalPeserta') {
-					this.modalState = 'normal3';
+					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Tolak Peserta ' + this.selectedItem.aktivis.name + ' ?';
 					this.modalButton = 'Ok';
@@ -1278,7 +1411,7 @@
 					this.modalState = 'normal2';
 					this.modalTitle = 'Ubah status ' + this.item.name + ' ini?';
 					this.modalColor = 'bg-primary';
-				} else if (state == 'ubahPesertaPeserta') {
+				} else if (state == 'ubahPeserta') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah Peserta';
@@ -1318,6 +1451,10 @@
 					this.modalState = 'normal2';
 					this.modalTitle = 'Masuk ' + this.item.name ;
 					this.modalColor = 'bg-primary';
+				}else if(state == 'panitiaTerdaftar'){
+					this.modalState = 'normal2';
+					this.modalTitle = 'Masuk ' + this.item.name ;
+					this.modalColor = 'bg-primary';
 				}
 			},
 			modalImageShow(content) {
@@ -1345,7 +1482,7 @@
 					this.back();
 				}else if(this.state == 'pesertaTidakTerdaftar'){
 					this.$router.push({name: 'dashboard'});
-				}else if(this.state == 'pesertaTerdaftar'){
+				}else if(this.state == 'pesertaTerdaftar' || this.state == 'panitiaTerdaftar'){
 					if(this.updateStat == 'success'){
 						this.modalShow = false;
 					}else{
@@ -1359,7 +1496,7 @@
 			modalBackgroundClick() {
 				if (this.modalState === 'success') {
 					this.modalTutup;
-				} else if (this.modalState === 'loading' || this.state === 'pesertaTerdaftar') {
+				} else if (this.modalState === 'loading' || this.state === 'pesertaTerdaftar' || this.state === 'panitiaTerdaftar') {
 					// do nothing
 				} else {
 					this.modalShow = false
@@ -1379,6 +1516,8 @@
 				itemStat: 'dataStat',
 				checkPesertaData: 'data2',
 				checkPesertaDataStat: 'dataStat2',
+				checkPanitiaData: 'data3',
+				checkPanitiaDataStat: 'dataStat3',
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				itemData2: 'dataS2',

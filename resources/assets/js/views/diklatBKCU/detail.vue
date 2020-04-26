@@ -90,10 +90,7 @@
 											<td class="font-weight-semibold">Kode:</td>
 											<td class="text-right">{{ item.kode_diklat }}</td>
 										</tr>
-										<tr>
-											<td class="font-weight-semibold">Terdaftar:</td>
-											<td class="text-right">{{ countData }} orang</td>
-										</tr>
+										
 										<tr>
 											<td class="font-weight-semibold">Durasi:</td>
 											<td class="text-right">{{ item.durasi }} jam</td>
@@ -118,7 +115,10 @@
 											<td class="font-weight-semibold">Peserta Max Per CU:</td>
 											<td class="text-right">{{item.peserta_max_cu}} orang</td>
 										</tr>
-										
+										<tr>
+											<td class="font-weight-semibold">Peserta Terdaftar:</td>
+											<td class="text-right">{{ countData }} orang</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -212,6 +212,8 @@
 
 						<!-- content -->
 						<div class="col-lg-9 col-md-8 order-sm-1">
+
+							<!-- navbar -->
 							<div class="card">
 								<div class="nav-tabs-responsive">
 									<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
