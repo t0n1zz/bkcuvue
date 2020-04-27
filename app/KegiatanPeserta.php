@@ -2,24 +2,27 @@
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use App\Support\Dataviewer;
 
 class KegiatanPeserta extends BaseEloquent {
 
-    use Dataviewer;
+    use LogsActivity, Dataviewer;
 
     protected $table = 'kegiatan_peserta';
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     protected $fillable = [
         'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga','tanggal_hadir'
     ];
 
     protected $allowedFilters = [
-        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir'
+        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir'
+        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir','created_at','updated_at',
     ];
 
     public static function initialize()

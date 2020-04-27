@@ -246,6 +246,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/pertemuanBKCU/periode/{periode}', 'PertemuanBKCUController@indexPeriode');
     Route::get('/pertemuanBKCU/edit/{id}', 'PertemuanBKCUController@edit');
     Route::get('/pertemuanBKCU/indexPeserta/{id}', 'PertemuanBKCUController@indexPeserta');
+    Route::get('/pertemuanBKCU/indexMateri/{id}', 'PertemuanBKCUController@indexMateri');
+    Route::get('/pertemuanBKCU/indexDiskusi/{id}', 'PertemuanBKCUController@indexDiskusi');
     Route::get('/pertemuanBKCU/indexPesertaHadir/{id}', 'PertemuanBKCUController@indexPesertahadir');
     Route::get('/pertemuanBKCU/indexPesertaCu/{id}/cu/{cu}', 'PertemuanBKCUController@indexPesertaCu');
     Route::get('/pertemuanBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@checkPeserta');
@@ -267,6 +269,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::group(['middleware' => ['permission:update_pertemuan_bkcu']], function () {
         Route::post('/pertemuanBKCU/update/{id}', 'PertemuanBKCUController@update');
         Route::post('/pertemuanBKCU/updateStatus/{id}', 'PertemuanBKCUController@updateStatus');
+        Route::post('/pertemuanBKCU/storeMateri/{id}', 'PertemuanBKCUController@storeMateri');
+        Route::post('/pertemuanBKCU/updateMateri/{id}', 'PertemuanBKCUController@updateMateri');
+        Route::delete('/pertemuanBKCU/destroyMateri/{id}', 'PertemuanBKCUController@destroyMateri');
     });
     Route::group(['middleware' => ['permission:destroy_pertemuan_bkcu']], function () {
         Route::delete('/pertemuanBKCU/{id}', 'PertemuanBKCUController@destroy');
@@ -785,6 +790,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     // file
     Route::get('download/{filename}','SystemController@download_file');
+    Route::get('download_folder/{filename}/{foldername}','SystemController@download_file_folder');
     Route::get('countOrganisasi','SystemController@countOrganisasi');
 
     // notification

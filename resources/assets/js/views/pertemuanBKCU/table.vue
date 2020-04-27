@@ -12,7 +12,7 @@
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
-				<!-- ubah-->
+				<!-- ubah--> 
 				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>

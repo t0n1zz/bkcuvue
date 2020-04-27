@@ -8,6 +8,8 @@ use App\Kegiatan;
 use App\Support\Helper;
 use App\KegiatanPanitia;
 use App\KegiatanPeserta;
+use App\KegiatanMateri;
+use App\KegiatanDiskusi;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
 use Auth;
@@ -15,6 +17,7 @@ use Auth;
 class PertemuanBKCUController extends Controller{
 
 	protected $imagepath = 'images/pertemuan/';
+	protected $materipath = 'files/pertemuan/';
 	protected $width = 300;
 	protected $height = 200;
 	protected $message = "Pertemuan";
@@ -103,6 +106,26 @@ class PertemuanBKCUController extends Controller{
 	public function indexPeserta($id)
 	{
 		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexMateri($id)
+	{
+		$table_data = KegiatanMateri::where('kegiatan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexDiskusi($id)
+	{
+		$table_data = KegiatanDiskusi::where('kegiatan_id',$id)->advancedFilter();
 
 		return response()
 		->json([
@@ -245,6 +268,48 @@ class PertemuanBKCUController extends Controller{
 			]);	
 	}
 
+	public function storeMateri(Request $request, $id)
+	{
+		$file = $request->content;
+		$name = $request->name;
+		$tipe = $file->getClientOriginalExtension();
+
+		if($tipe != 'pdf'){
+			$formatedName = Helper::image_processing($this->materipath,$this->width,$this->height,$file,'',$name);
+		}else{
+			$filename = $file->getClientOriginalName();
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$tipe;
+			$file->move($this->materipath,$formatedName);
+		}
+
+		$kelas = KegiatanMateri::create([ 
+			'kegiatan_id' => $id,
+			'name' => $request->name,
+			'filename' => $formatedName,
+			'tipe' => $tipe,
+			'keterangan' => $request->keterangan
+		]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Materi ' . $this->message. ' berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	public function storeDiskusi(Request $request, $id)
+	{
+		$kelas = KegiatanDiskusi::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Diskusi ' . $this->message. ' berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
 	public function edit($id)
 	{
 		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar')->findOrFail($id);
@@ -375,6 +440,19 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
+	public function updateMateri(Request $request, $id)
+	{
+		$kelas = KegiatanMateri::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Materi berhasil diubah"
+			]);
+	}
+
 	public function updatePesertaHadir($kegiatan_id, $aktivis_id)
 	{
 		$kelas = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
@@ -431,6 +509,27 @@ class PertemuanBKCUController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' =>  'Peserta ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function destroyMateri($id)
+	{
+		$kelas = KegiatanMateri::findOrFail($id);
+		$name = $kelas->name;
+		$tipe = $kelas->tipe;
+
+		$kelas->delete();
+		if($tipe != 'pdf'){
+			File::delete($this->materipath . $kelas->filename . '.jpg');
+			File::delete($this->materipath . $kelas->filename . 'n.jpg');
+		}else{
+			File::delete($this->materipath . $kelas->filename);
+		}
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Materi ' .$name. 'berhasil dihapus'
 			]);
 	}
 

@@ -128,7 +128,7 @@
     <div class="row">
       @foreach($artikelsCUNew as $items)
         @foreach($items as $item)
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6">
           <div class="spost clearfix">
             <div class="entry-image">
               <a href="{{ route('artikel.lihat',$item->slug) }}">

@@ -28,6 +28,14 @@ export default {
     return axios.get('/api/pertemuanBKCU/indexPeserta/' + id , {params: p});
   },
 
+  indexMateri: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexMateri/' + id , {params: p});
+  },
+
+  indexDiskusi: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexDiskusi/' + id , {params: p});
+  },
+
   indexPesertaHadir: function( p, id ){
     return axios.get('/api/pertemuanBKCU/indexPesertaHadir/' + id , {params: p});
   },
@@ -76,6 +84,10 @@ export default {
     return axios.post('/api/pertemuanBKCU/storePeserta/' + id, form);
   },
 
+  storeMateri: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storeMateri/' + id, form);
+  },
+
   edit: function( id ){
     return axios.get('/api/pertemuanBKCU/edit/' + id);
   },
@@ -86,6 +98,10 @@ export default {
 
   updatePeserta: function ( id, form ){
     return axios.post('/api/pertemuanBKCU/updatePeserta/' + id, form);
+  },
+
+  updateMateri: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updateMateri/' + id, form);
   },
 
   updatePesertaHadir: function ( kegiatan_id, aktivis_id ){
@@ -106,6 +122,10 @@ export default {
 
   destroyPeserta: function( id ){
     return axios.delete('/api/pertemuanBKCU/destroyPeserta/' + id);
+  },
+
+  destroyMateri: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyMateri/' + id);
   },
 
   batalPeserta: function( id , form){

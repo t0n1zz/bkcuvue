@@ -225,14 +225,14 @@
 															<!-- desktop -->
 															<div class="d-none d-sm-block">
 																<!-- catatan bkcu -->
-																<button class="btn btn-light" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0">
+																<button class="btn btn-light mb-1" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0">
 																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan BKCU</span>
 																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan BKCU</span>
 																</button>
 																<!-- ubah  -->
-																<button class="btn btn-light" @click.prevent="modalOpen('ubah',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-pencil5"></i> Ubah</button>
+																<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-pencil5"></i> Ubah</button>
 																<!-- hapus -->
-																<button class="btn btn-light" @click.prevent="modalOpen('hapus',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-bin2"></i> Hapus</button>
+																<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-bin2"></i> Hapus</button>
 															</div>
 															<!-- mobile -->
 															<div class="d-block d-sm-none">

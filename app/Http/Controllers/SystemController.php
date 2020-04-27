@@ -33,6 +33,14 @@ class SystemController extends Controller
     return Response::download($file);
   }
 
+  public function download_file_folder($filename, $foldername)
+  {
+    $destinationPath = public_path() . "/files/" . $foldername . "/";
+    $file= $destinationPath . $filename;
+
+    return Response::download($file);
+  }
+
   public function countOrganisasi()
   {
     $user = Auth::user();

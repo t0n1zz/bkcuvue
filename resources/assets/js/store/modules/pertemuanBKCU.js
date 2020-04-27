@@ -10,6 +10,8 @@ export const pertemuanBKCU = {
     data3: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
+    dataS3: [], //collection
+    dataS4: [], //collection
     periode: [],
     count: {},
     count2: {},
@@ -19,6 +21,8 @@ export const pertemuanBKCU = {
     periodeStat: '',
     dataStatS: '',
     dataStatS2: '',
+    dataStatS3: '',
+    dataStatS4: '',
     countStat: '',
     countStat2: '',
     update: [], //update data
@@ -34,6 +38,8 @@ export const pertemuanBKCU = {
     data3: state => state.data3,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
+    dataS3: state => state.dataS3,
+    dataS4: state => state.dataS4,
     periode: state => state.periode,
     count: state => state.count,
     count2: state => state.count2,
@@ -43,6 +49,8 @@ export const pertemuanBKCU = {
     periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
+    dataStatS3: state => state.dataStatS3,
+    dataStatS4: state => state.dataStatS4,
     countStat: state => state.countStat,
     countStat2: state => state.countStat2,
     update: state => state.update,
@@ -120,6 +128,34 @@ export const pertemuanBKCU = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexMateri( { commit }, [p, id] ){
+      commit('setDataStatS3', 'loading');
+      
+      PERTEMUANBKCUAPI.indexMateri( p, id )
+        .then( function( response ){
+          commit('setDataS3', response.data.model );
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
+        });
+    },
+
+    indexDiskusi( { commit }, [p, id] ){
+      commit('setDataStatS4', 'loading');
+      
+      PERTEMUANBKCUAPI.indexDiskusi( p, id )
+        .then( function( response ){
+          commit('setDataS4', response.data.model );
+          commit('setDataStatS4', 'success');
+        })
+        .catch( error => {
+          commit('setDataS4', error.response);
+          commit('setDataStatS4', 'fail');
         });
     },
 
@@ -221,6 +257,24 @@ export const pertemuanBKCU = {
         });
     },
 
+    storeMateri( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      PERTEMUANBKCUAPI.storeMateri( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
 
     // edit page
     edit( {commit}, id ){
@@ -282,6 +336,24 @@ export const pertemuanBKCU = {
       commit('setUpdateStat', 'loading');
 
       PERTEMUANBKCUAPI.updatePeserta( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateMateri( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      PERTEMUANBKCUAPI.updateMateri( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -369,6 +441,24 @@ export const pertemuanBKCU = {
         });
     },
 
+    destroyMateri( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      PERTEMUANBKCUAPI.destroyMateri( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     batalPeserta( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
@@ -441,6 +531,12 @@ export const pertemuanBKCU = {
     setDataS2 ( state, data ){
       state.dataS2 = data;
     },
+    setDataS3 ( state, data ){
+      state.dataS3 = data;
+    },
+    setDataS4 ( state, data ){
+      state.dataS4 = data;
+    },
     setCount ( state, data ){
       state.count = data;
     },
@@ -464,6 +560,12 @@ export const pertemuanBKCU = {
     },
     setDataStatS2( state, status ){
       state.dataStatS2 = status;
+    },
+    setDataStatS3( state, status ){
+      state.dataStatS3 = status;
+    },
+    setDataStatS4( state, status ){
+      state.dataStatS4 = status;
     },
     setCountStat( state, status ){
       state.countStat = status;

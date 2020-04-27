@@ -136,7 +136,7 @@
 					</h5>
 
 					<!-- text -->
-					<input type="text" name="name_nametag" class="form-control" placeholder="Silahkan masukkan name kategori" v-validate="'required'" data-vv-as="Nama di nametag" v-model="formPeserta.name_nametag">
+					<input type="text" name="name_nametag" class="form-control" placeholder="Silahkan masukkan nama di nametag" v-validate="'required'" data-vv-as="Nama di nametag" v-model="formPeserta.name_nametag">
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formPeserta.name_nametag')">
@@ -158,7 +158,7 @@
 					</h5>
 
 					<!-- text -->
-					<input type="text" name="name_sertifikat" class="form-control" placeholder="Silahkan masukkan name kategori" v-validate="'required'" data-vv-as="Nama di sertifikat" v-model="formPeserta.name_sertifikat">
+					<input type="text" name="name_sertifikat" class="form-control" placeholder="Silahkan masukkan nama di sertifikat" v-validate="'required'" data-vv-as="Nama di sertifikat" v-model="formPeserta.name_sertifikat">
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formPeserta.name_sertifikat')">

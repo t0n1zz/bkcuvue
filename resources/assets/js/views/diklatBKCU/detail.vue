@@ -764,7 +764,7 @@
 					},
 					{
 						title: 'Tgl. Daftar',
-						name: 'aktivis.created_at',
+						name: 'created_at',
 						tipe: 'datetime',
 						hide: false,
 						disable: false,
@@ -787,7 +787,6 @@
 					{ title: 'Email' },
 					{ title: 'No. Hp' },
 					{ title: 'Kontak Lain' },
-					
 				],
 				itemDataPanitia: [],
 				selectedItem: '',
