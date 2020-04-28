@@ -122,7 +122,8 @@
 			<template slot="item-mobile" slot-scope="props">
 				<div class="col-lg-4 col-md-6">
 
-					<div class="card border-left-3 rounded-left-0 cursor-pointer" :class="[gridColor(props.item.status)]" @click.prevent="detail(props.item.id)">
+					<div class="card cursor-pointer" @click.prevent="detail(props.item.id)">
+						
 						<div class="card-header bg-light header-elements-inline">
 							<h6 class="card-title"><check-value :value="props.item.kode_diklat"></check-value>
 								</h6>
@@ -131,32 +132,31 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<div class="d-sm-flex align-item-sm-center flex-sm-nowrap">
-								<div>
-									<h6 class="text-primary">{{ props.item.name }}</h6>
+							<img :src="'/images/diklat/' + props.item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="props.item.gambar">
+							<hr/>
+							<h6 class="text-primary">{{ props.item.name }}</h6>
 
-									<p class="mb-3" v-if="props.item.keterangan">{{ props.item.keterangan | trimString }}</p>
-									
-									<hr/>
+							<p class="mb-3" v-if="props.item.keterangan">{{ props.item.keterangan | trimString }}</p>
+							
+							<hr/>
 
-									<div class="row">
-										<div class="col-md-6">
-											<ul class="list list-unstyled">
-												<li>Mulai: <br/><span class="text-muted">{{ props.item.mulai | date }}</span></li>
-												<li>Selesai: <br/><span class="text-muted">{{ props.item.selesai | date }}</span></li>
-												<li>Peserta Maksimal: <br/><span class="text-muted"><check-value :value="props.item.peserta_max"></check-value></span></li>
-												<li>Peserta Maksimal Per-CU: <br/><span class="text-muted"><check-value :value="props.item.peserta_max_cu"></check-value></span></li>
-											</ul>
-										</div>
-										<div class="col-md-6">
-											<ul class="list list-unstyled">
-												<li>Tempat: <check-value :value="props.item.tempat.name" v-if="props.item.tempat" class="text-muted"></check-value><span class="text-muted" v-else>Belum ditentukan tempat</span></li>
-												<li>Kabupaten/Kota: <check-value :value="props.item.regencies.name" v-if="props.item.regencies" class="text-muted"></check-value><span class="text-muted" v-else>-</span></li>
-												<li>Provinsi: <check-value :value="props.item.provinces.name" v-if="props.item.provinces" class="text-muted"></check-value><span class="text-muted" v-else>-</span></li>
-											</ul>
-										</div>
-									</div>
-									
+							<div class="row">
+								<div class="col-sm-6">
+									<ul class="list list-unstyled mb-1">
+										<li>Mulai: <span class="text-muted">{{ props.item.mulai | date }}</span></li>
+										<li>Selesai: <span class="text-muted">{{ props.item.selesai | date }}</span></li>
+										<li>Durasi: <span class="text-muted"><check-value :value="props.item.durasi"></check-value> jam</span></li>
+									</ul>
+								</div>
+								<div class="col-sm-6">
+									<ul class="list list-unstyled mb-1">
+										<li>Tempat:
+										<check-value :value="props.item.tempat.name" v-if="props.item.tempat" class="text-muted"></check-value>
+										<span class="text-muted" v-else-if="props.item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>	
+										<span class="text-muted" v-else>Belum ditentukan tempat</span></li>
+										<li>Kabupaten/Kota: <check-value :value="props.item.regencies.name" v-if="props.item.regencies" class="text-muted"></check-value><span class="text-muted" v-else>-</span></li>
+										<li>Provinsi: <check-value :value="props.item.provinces.name" v-if="props.item.provinces" class="text-muted"></check-value><span class="text-muted" v-else>-</span></li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -167,11 +167,8 @@
 									{{ sasaran.name }}
 								</label>
 							</span>
-							<ul class="list-inline list-inline-dotted mb-0">
-								<li class="list-inline-item"><i class="icon-users mr-2"></i> <check-value :value="props.item.has_peserta_count"></check-value></li>
-								<li class="list-inline-item"><i class="icon-alarm mr-2"></i> <check-value :value="props.item.durasi"></check-value> jam</li>
-							</ul>
 						</div>
+						
 					</div>
 
 				</div>

@@ -16,8 +16,8 @@ export default {
     return axios.get('/api/pertemuanBKCU/buka');
   },
 
-  indexJalan: function(){
-    return axios.get('/api/pertemuanBKCU/jalan');
+  indexJalan: function( p ){
+    return axios.get('/api/pertemuanBKCU/jalan', {params: p});
   },
 
   indexPeriode: function( p, periode ){
@@ -32,8 +32,12 @@ export default {
     return axios.get('/api/pertemuanBKCU/indexMateri/' + id , {params: p});
   },
 
-  indexDiskusi: function( p, id ){
-    return axios.get('/api/pertemuanBKCU/indexDiskusi/' + id , {params: p});
+  indexTanggapan: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexTanggapan/' + id , {params: p});
+  },
+
+  indexKomentar: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexKomentar/' + id , {params: p});
   },
 
   indexPesertaHadir: function( p, id ){
@@ -88,6 +92,14 @@ export default {
     return axios.post('/api/pertemuanBKCU/storeMateri/' + id, form);
   },
 
+  storeTanggapan: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storeTanggapan/' + id, form);
+  },
+
+  storeKomentar: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storeKomentar/' + id, form);
+  },
+
   edit: function( id ){
     return axios.get('/api/pertemuanBKCU/edit/' + id);
   },
@@ -102,6 +114,14 @@ export default {
 
   updateMateri: function ( id, form ){
     return axios.post('/api/pertemuanBKCU/updateMateri/' + id, form);
+  },
+
+  updateTanggapan: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updateTanggapan/' + id, form);
+  },
+
+  updateKomentar: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updateKomentar/' + id, form);
   },
 
   updatePesertaHadir: function ( kegiatan_id, aktivis_id ){
@@ -126,6 +146,14 @@ export default {
 
   destroyMateri: function( id ){
     return axios.delete('/api/pertemuanBKCU/destroyMateri/' + id);
+  },
+
+  destroyTanggapan: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyTanggapan/' + id);
+  },
+
+  destroyKomentar: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyKomentar/' + id);
   },
 
   batalPeserta: function( id , form){

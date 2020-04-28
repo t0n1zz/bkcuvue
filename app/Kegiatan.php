@@ -92,16 +92,16 @@ class Kegiatan extends BaseEloquent {
         return $this->belongsToMany('App\Peserta','kegiatan_peserta')->withTimestamps();
     }
 
-    public function prasyarat(){
-        return $this->hasMany('App\KegiatanPrasyarat','id_prasyarat','id');
+    public function hasPilih(){
+        return $this->hasMany('App\KegiatanPilih','kegiatan_id','id');
     }
 
     public function hasPeserta(){
         return $this->hasMany('App\KegiatanPeserta','kegiatan_id','id');
     }
 
-    public function hasDiskusi(){
-        return $this->hasMany('App\KegiatanDiskusi','kegiatan_id','id');
+    public function hasTanggapan(){
+        return $this->hasMany('App\KegiatanTanggapan','kegiatan_id','id');
     }
 
     public function hasMateri(){

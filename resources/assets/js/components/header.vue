@@ -190,10 +190,34 @@
 
 					<!-- dashboard -->
 					<li class="nav-item">
-						<router-link :to="{ name: 'dashboard' }" class="navbar-nav-link" active-class="active" exact>
+						<router-link :to="{ name: 'dashboard' }" class="navbar-nav-link" exact>
 							<i class="icon-screen3"></i>
 							<span class="d-md-none ml-2"> Dashboard</span>
 						</router-link>
+					</li>
+
+					<!-- kegiatan berjalan -->
+					<li class="nav-item dropdown" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 0">
+						<a href="#" class="navbar-nav-link dropdown-toggle bg-warning" data-toggle="dropdown">
+							<i class="icon-feed mr-2"></i>
+							Kegiatan Berjalan
+						</a>
+
+						<div class="dropdown-menu">
+							<template v-for="model in modelPertemuan.data">
+								<router-link :to="{ name: 'pertemuanBKCUDetail', params:{ id: model.id } }" class="dropdown-item" :key="model.id">
+									{{ model.name }}
+								</router-link>
+							</template>
+
+							<!-- divider -->
+							<div class="dropdown-divider" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 6"></div> 
+
+							<!-- pertemuan bkcu -->
+							<router-link :to="{ name: 'pertemuanBKCUJalan' }" class="dropdown-item" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 6">
+								Kegiatan Berjalan Lainnya
+							</router-link>
+						</div>
 					</li>
 
 					<!-- publikasi -->
@@ -366,7 +390,7 @@
 					</li>
 
 					<!-- kegiatan -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_diklat_bkcu'] || currentUser.can['create_tempat'] || currentUser.can['index_diklat_bkcu'] || currentUser.can['index_tempat']">
+					<li class="nav-item dropdown">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-calendar3 mr-2"></i>
 							Kegiatan
@@ -1093,6 +1117,7 @@
 		created(){
 			this.fetchTp();
 			this.fetchCu();
+			this.fetchPertemuan();
 			this.fetchNotif();
 			this.timer = setInterval(() => {
 				this.fetchNotif();
@@ -1105,6 +1130,7 @@
 			'$route' (to, from){
 				this.fetchTp();
 				this.fetchCu();
+				this.fetchPertemuan();
 			},
 			isTokenExpired(value){ 
 				if(value == true){
@@ -1211,6 +1237,18 @@
 					}
 				}
 			},
+			fetchPertemuan(){
+				var query = {
+					order_column: "mulai",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 6,
+					page: 1
+				};
+				if(this.modelPertemuanStat != 'success'){
+					this.$store.dispatch('pertemuanBKCU/indexJalanHeader', query);
+				}
+			},
 			fetchNotif(){
 				this.$store.dispatch('notification/get');
 			},
@@ -1254,6 +1292,10 @@
 			...mapGetters('cu',{
 				modelCu: 'headerDataS',
 				modelCuStat: 'headerDataStatS',
+			}),
+			...mapGetters('pertemuanBKCU',{
+				modelPertemuan: 'dataJalan',
+				modelPertemuanStat: 'dataJalanStat',
 			}),
 			...mapGetters('saran',{
 				updateSaranResponse: 'update',

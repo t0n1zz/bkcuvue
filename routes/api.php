@@ -247,7 +247,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/pertemuanBKCU/edit/{id}', 'PertemuanBKCUController@edit');
     Route::get('/pertemuanBKCU/indexPeserta/{id}', 'PertemuanBKCUController@indexPeserta');
     Route::get('/pertemuanBKCU/indexMateri/{id}', 'PertemuanBKCUController@indexMateri');
-    Route::get('/pertemuanBKCU/indexDiskusi/{id}', 'PertemuanBKCUController@indexDiskusi');
+    Route::get('/pertemuanBKCU/indexTanggapan/{id}', 'PertemuanBKCUController@indexTanggapan');
+    Route::get('/pertemuanBKCU/indexKomentar/{id}', 'PertemuanBKCUController@indexKomentar');
     Route::get('/pertemuanBKCU/indexPesertaHadir/{id}', 'PertemuanBKCUController@indexPesertahadir');
     Route::get('/pertemuanBKCU/indexPesertaCu/{id}/cu/{cu}', 'PertemuanBKCUController@indexPesertaCu');
     Route::get('/pertemuanBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@checkPeserta');
@@ -256,6 +257,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::post('/pertemuanBKCU/updatePanitiaHadir/{kegiatan_id}/{aktivis_id}', 'PertemuanBKCUController@updatePanitiaHadir');
     Route::get('/pertemuanBKCU/countPeserta/{id}', 'PertemuanBKCUController@countPeserta');
     Route::get('/pertemuanBKCU/countPesertaHadir/{id}', 'PertemuanBKCUController@countPesertaHadir');
+    Route::post('/pertemuanBKCU/storeTanggapan/{id}', 'PertemuanBKCUController@storeTanggapan');
+    Route::post('/pertemuanBKCU/updateTanggapan/{id}', 'PertemuanBKCUController@updateTanggapan');
+    Route::delete('/pertemuanBKCU/destroyTanggapan/{id}', 'PertemuanBKCUController@destroyTanggapan');
+    Route::post('/pertemuanBKCU/storeKomentar/{id}', 'PertemuanBKCUController@storeKomentar');
+    Route::post('/pertemuanBKCU/updateKomentar/{id}', 'PertemuanBKCUController@updateKomentar');
+    Route::delete('/pertemuanBKCU/destroyKomentar/{id}', 'PertemuanBKCUController@destroyTanggapan');
     Route::group(['middleware' => ['permission:index_pertemuan_bkcu']], function () {
         Route::post('/pertemuanBKCU/storePeserta/{id}', 'PertemuanBKCUController@storePeserta');
         Route::post('/pertemuanBKCU/updatePeserta/{id}', 'PertemuanBKCUController@updatePeserta');

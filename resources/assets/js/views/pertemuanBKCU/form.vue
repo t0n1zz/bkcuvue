@@ -31,7 +31,7 @@
 											<h5>Gambar:</h5>
 
 											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/diklat/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<app-image-upload :image_loc="'/images/pertemuan/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>
 
@@ -589,16 +589,16 @@
 
 									<div class="col-md-12">
 
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambah')">
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPanitia')">
 											<i class="icon-plus22"></i> Tambah
 										</button>
 
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-										:disabled="!selectedItem.aktivis_id">
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPanitia')"
+										:disabled="!selectedItemPanitia.index">
 											<i class="icon-pencil5"></i> Ubah
 										</button>
 
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.aktivis_id">
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPanitia')" :disabled="!selectedItemPanitia.index">
 											<i class="icon-bin2"></i> Hapus
 										</button>
 
@@ -609,7 +609,7 @@
 
 							<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemDataPanitiaStat">
 								<template slot="item-desktop" slot-scope="props">
-									<tr :class="{ 'bg-info': selectedItem.aktivis_id === props.item.aktivis_id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+									<tr :class="{ 'bg-info': selectedItemPanitia.index == props.index + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'panitia')" v-if="props.item">
 										<td>{{ props.index + 1 }}</td>
 										<td>
 											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
@@ -620,6 +620,46 @@
 										<td>{{ props.item.asal }} gerakan</td>
 										<td>{{ props.item.peran }}</td>
 										<td>{{ props.item.keterangan }}</td>
+									</tr>
+								</template>	
+							</data-table>
+
+						</div>
+
+						<!-- panitia & fasilitator -->
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">5. Pilihan pada tanggapan 
+									<small>Di isi apabila pada tanggapan untuk pertemuan ini terdapat pilihan</small></h5>
+							</div>
+							<div class="card-body pb-2">
+								<div class="row">
+
+									<div class="col-md-12">
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPilih')">
+											<i class="icon-plus22"></i> Tambah
+										</button>
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPilih')"
+										:disabled="!selectedItemPilih.index">
+											<i class="icon-pencil5"></i> Ubah
+										</button>
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPilih')" :disabled="!selectedItemPilih.index">
+											<i class="icon-bin2"></i> Hapus
+										</button>
+
+									</div>
+
+								</div>		
+							</div>
+
+							<data-table :items="itemDataPilih" :columnData="columnDataPilih" :itemDataStat="itemDataPilihStat">
+								<template slot="item-desktop" slot-scope="props">
+									<tr :class="{ 'bg-info': selectedItemPilih.index == props.index  + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'pilih')" v-if="props.item">
+										<td>{{ props.index + 1 }}</td>
+										<td>{{ props.item.name }}</td>
 									</tr>
 								</template>	
 							</data-table>
@@ -651,14 +691,21 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah panitia -->
 			<template slot="modal-body1">
+				<!-- panitia -->
 				<form-panitia 
 				:mode="formPanitiaMode"
-				:selected="selectedItem"
-				@addPanitia="addPanitia"
+				:selected="selectedItemPanitia"
+				@createPanitia="createPanitia"
 				@editPanitia="editPanitia"
-				@tutup="modalTutup"></form-panitia>
+				@tutup="modalTutup" v-if="state == 'tambahPanitia' || state == 'ubahPanitia'"></form-panitia>
+				<!-- pilih -->
+				<form-pilih 
+				:mode="formPilihMode"
+				:selected="selectedItemPilih"
+				@createPilih="createPilih"
+				@editPilih="editPilih"
+				@tutup="modalTutup" v-else-if="state == 'tambahPilih' || state == 'ubahPilih'"></form-pilih>
 			</template>
 
 			<!-- tambah tempat -->
@@ -687,6 +734,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import formPanitia from "../diklatBKCU/formPanitia.vue";
+	import formPilih from "./formPilih.vue";
 	import formTempat from "../diklatBKCU/formTempat.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
@@ -700,6 +748,7 @@
 			formButton,
 			formInfo,
 			formPanitia,
+			formPilih,
 			formTempat,
 			Cleave,
 			dataTable,
@@ -781,10 +830,18 @@
 					{ title: 'Peran' },
 					{ title: 'keterangan' }
 				],
-				selectedItem: '',
+				selectedItemPanitia: '',
 				formPanitiaMode: '',
 				itemDataPanitia: [],
 				itemDataPanitiaStat: 'success',
+				columnDataPilih:[
+					{ title: 'No.' },
+					{ title: 'Nama' },
+				],
+				selectedItemPilih: '',
+				formPilihMode: '',
+				itemDataPilih: [],
+				itemDataPilihStat: 'success',
 				cancelState: 'methods',
 				state: '',
 				modalShow: false,
@@ -846,6 +903,15 @@
 							formData.lembaga = valLuar.pekerjaan;
 
 							this.itemDataPanitia.push(formData);
+						}
+
+						var valPilih;
+						for (valPilih of this.form.has_pilih) {
+							let formData = {};
+							formData.id = valPilih.id;
+							formData.name = valPilih.name;
+
+							this.itemDataPilih.push(formData);
 						}
 					}
 				}
@@ -911,20 +977,36 @@
 					});
 				}
 			},
-			addPanitia(value){
+			createPanitia(value){
 				this.itemDataPanitia.push(value);
+				this.selectedItemPanitia = {};
 				this.modalTutup();
 			},
 			editPanitia(value){
 				_.remove(this.itemDataPanitia, {
-						aktivis_id: value.aktivis_id
+						index: value.index
 				});
 				this.itemDataPanitia.push(value);
+				this.selectedItemPanitia = {};
+				this.modalTutup(); 
+			},
+			createPilih(value){
+				this.itemDataPilih.push(value);
+				this.selectedItemPilih = {};
+				this.modalTutup();
+			},
+			editPilih(value){
+				_.remove(this.itemDataPilih, {
+						index: value.index
+				});
+				this.itemDataPilih.push(value);
+				this.selectedItemPilih = {};
 				this.modalTutup(); 
 			},
 			save() {
 				this.form.sasaran = this.sasaran;
 				this.form.panitia = this.itemDataPanitia;
+				this.form.pilih = this.itemDataPilih;
 				this.state = '';
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -949,37 +1031,63 @@
 					this.$router.push({name: this.kelas, params:{periode: this.momentYear()}});
 				}
 			},
-			selectedRow(item){
-				this.selectedItem = item;
+			selectedRow(item,index,tipe){
+				if(tipe == 'panitia'){
+					this.selectedItemPanitia = item;
+					this.selectedItemPanitia.index = index;
+				}else{
+					this.selectedItemPilih = item;
+					this.selectedItemPilih.index = index;
+				}
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.state = state;
 
 				if(isMobile){
-					this.selectedItem = itemMobile;
+					this.selectedItemPanitia = itemMobile;
 				}
 
-				if (state == 'hapus') {
+				if (state == 'hapusPanitia') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
-					this.modalTitle = 'Hapus Panitia/Fasilitator ' + this.selectedItem.name + ' ?';
+					this.modalTitle = 'Hapus Panitia/Fasilitator ' + this.selectedItemPanitia.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
-				}else if(state == 'ubah'){
+				}else if(state == 'ubahPanitia'){
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah Panitia/Fasilitator';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formPanitiaMode = 'edit';
-				}else if(state == 'tambah'){
+				}else if(state == 'tambahPanitia'){
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Tambah Panitia/Fasilitator';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formPanitiaMode = 'create';
+				}else if (state == 'hapusPilih') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Pilihan ' + this.selectedItemPilih.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+					this.modalSize = '';
+				}else if(state == 'ubahPilih'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah Pilihan';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formPilihMode = 'edit';
+				}else if(state == 'tambahPilih'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Pilihan';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formPilihMode = 'create';
 				}else if(state == 'tempat'){
 					this.modalState = 'normal2';
 					this.modalColor = 'bg-primary';
@@ -1002,9 +1110,13 @@
 					this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
 				}
 
-				if (this.state == 'hapus') {
+				if (this.state == 'hapusPanitia') {
 					_.remove(this.itemDataPanitia, {
-						aktivis_id: this.selectedItem.aktivis_id
+						aktivis_id: this.selectedItemPanitia.aktivis_id
+					});
+				}else if(this.state == 'hapusPilih'){
+					_.remove(this.itemDataPilih, {
+						index: this.selectedItemPanitia.index
 					});
 				}
 			},

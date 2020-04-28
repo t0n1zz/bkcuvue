@@ -9,7 +9,9 @@ use App\Support\Helper;
 use App\KegiatanPanitia;
 use App\KegiatanPeserta;
 use App\KegiatanMateri;
-use App\KegiatanDiskusi;
+use App\KegiatanTanggapan;
+use App\KegiatanPilih;
+use App\KegiatanPilihPivot;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
 use Auth;
@@ -93,9 +95,7 @@ class PertemuanBKCUController extends Controller{
 
 	public function indexJalan()
 	{
-		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
-
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe',$this->tipe)->where('periode',$periode)->where('status',4)->take(6)->get();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('tipe',$this->tipe)->where('status',4)->advancedFilter();
 
 		return response()
 		->json([
@@ -123,9 +123,19 @@ class PertemuanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexDiskusi($id)
+	public function indexTanggapan($id)
 	{
-		$table_data = KegiatanDiskusi::where('kegiatan_id',$id)->advancedFilter();
+		$table_data = KegiatanTanggapan::with('pilih','cu','user')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_tanggapan_id')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexKomentar($id)
+	{
+		$table_data = KegiatanTanggapan::with('pilih','cu','user.aktivis')->where('kegiatan_tanggapan_id',$id)->advancedFilter();
 
 		return response()
 		->json([
@@ -229,6 +239,10 @@ class PertemuanBKCUController extends Controller{
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
 		}
+
+		if($request->pilih){
+			$this->syncPilih($request, $kelas);
+		}
  
 		return response()
 			->json([
@@ -238,27 +252,27 @@ class PertemuanBKCUController extends Controller{
 			]);	
 	}
 
+	private function syncPilih($request, $kelas)
+	{
+		foreach($request->pilih as $pilih){
+			if(array_key_exists('id', $pilih)){
+				$kelasPilih = KegiatanPilih::findOrFail($pilih['id']);
+				$kelasPilih->update([
+					'kegiatan_id' => $kelas->id,
+					'name' => array_key_exists('name', $pilih) ? $pilih['name'] : null,
+				]);
+			}else{
+				KegiatanPilih::create([
+					'kegiatan_id' => $kelas->id,
+					'name' => array_key_exists('name', $pilih) ? $pilih['name'] : null,
+				]);
+			}
+		}
+	}
+
 	public function storePeserta(Request $request, $id)
 	{
-		// check interval
-		// $id_cu = Auth::user()->getIdCu();
-		// $dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
-		// 	$query->where('id', $id_cu);
-		// })->orderBy('created_at','desc')->first();
-		// $time = \Carbon\Carbon::now();
-
-		// save data
 		$kelas = KegiatanPeserta::create($request->except('status','kegiatan_id') + [ 'kegiatan_id' => $id, 'status' => 1 ]);
-
-		// send notif if interval different is more than 2 hours
-		// if($dataPeserta){
-		// 	$diff = $time->diffInHours($dataPeserta->created_at);
-		// 	if($diff > 2){
-		// 		NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
-		// 	}
-		// }else{
-			// NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
-		// }
 		
 		return response()
 			->json([
@@ -298,21 +312,48 @@ class PertemuanBKCUController extends Controller{
 			]);	
 	}
 
-	public function storeDiskusi(Request $request, $id)
+	public function storeTanggapan(Request $request, $id)
 	{
-		$kelas = KegiatanDiskusi::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		$kelas = KegiatanTanggapan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+
+		$this->syncTanggapanPilih($request, $kelas);
 		
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Diskusi ' . $this->message. ' berhasil ditambah',
+				'message' => 'Tanggapan ' . $this->message. ' berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}
 
+	public function storeKomentar(Request $request, $id)
+	{
+		$kelas = KegiatanTanggapan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Komentar ' . $this->message. ' berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	private function syncTanggapanPilih($request, $kelas)
+	{
+		$kelas->pilih()->sync([]);
+		$pilih = array_filter($request->pilih);
+		foreach($pilih as $key => $value){
+			KegiatanPilihPivot::create([
+				'kegiatan_pilih_id' => $key,
+				'kegiatan_tanggapan_id' => $kelas->id,
+				'nilai' => $value,
+			]);
+		}
+	}
+
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','hasPilih')->findOrFail($id);
 
 		return response()
 				->json([
@@ -357,6 +398,10 @@ class PertemuanBKCUController extends Controller{
 			}
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
+		}
+
+		if($request->pilih){
+			$this->syncPilih($request, $kelas);
 		}
 
 		return response()
@@ -453,6 +498,34 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
+	public function updateTanggapan(Request $request, $id)
+	{
+		$kelas = KegiatanTanggapan::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		$this->syncTanggapanPilih($request, $kelas);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Tanggapan berhasil diubah"
+			]);
+	}
+
+	public function updateKomentar(Request $request, $id)
+	{
+		$kelas = KegiatanTanggapan::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Komentar berhasil diubah"
+			]);
+	}
+
 	public function updatePesertaHadir($kegiatan_id, $aktivis_id)
 	{
 		$kelas = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
@@ -488,6 +561,9 @@ class PertemuanBKCUController extends Controller{
 			File::delete($this->imagepath . $kelas->gambar . '.jpg');
 			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
 		}
+
+		$kelas->sasaran()->sync([]);
+		$kelas->panitia_dalam()->sync([]);
 
 		$kelas->delete();
 
@@ -532,6 +608,38 @@ class PertemuanBKCUController extends Controller{
 				'message' =>  'Materi ' .$name. 'berhasil dihapus'
 			]);
 	}
+
+	public function destroyTanggapan($id)
+	{
+		$kelas = KegiatanTanggapan::findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->pilih()->sync([]);
+		KegiatanTanggapan::where('kegiatan_tanggapan_id',$id)->delete();
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Tanggapan ' .$name. 'berhasil dihapus'
+			]);
+	}
+	
+	public function destroyKomentar($id)
+	{
+		$kelas = KegiatanTanggapan::findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Komentar ' .$name. 'berhasil dihapus'
+			]);
+	}
+
 
 	public function batalPeserta(Request $request, $id)
 	{

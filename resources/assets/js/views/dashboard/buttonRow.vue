@@ -1,5 +1,14 @@
 <template>
   <div class="row">
+
+		<!-- pertemuan berjalan -->
+		<div class="col-12 cursor-pointer" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 0" @click.prevent="goTo(pertemuanBKCUJalanWidgetRoute)">
+      <count-widget 
+				:count="'Kegiatan Berjalan'" 
+				:title="'Melihat kegiatan yang sedang berlangsung saat ini'" 
+				:color="'bg-warning'" 
+				:icon="'icon-feed'"></count-widget>
+    </div>
 		
     <!-- artikel -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_artikel']" @click.prevent="goTo(artikelWidgetRoute)">
@@ -119,6 +128,7 @@
 		},
 		data(){
 			return{
+				pertemuanBKCUJalanWidgetRoute: {},
 				artikelWidgetRoute: {},
 				artikelKategoriWidgetRoute: {},
 				artikelPenulisWidgetRoute: {},
@@ -159,6 +169,7 @@
 				this.mitraPerseoranganWidgetRoute = { name: 'mitraOrang' };
 				this.mitraLembagaWidgetRoute = { name: 'mitraLembaga' };
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
+				this.pertemuanBKCUJalanWidgetRoute = { name: 'pertemuanBKCUJalan' };
 
 				if(this.currentUser.id_cu != 0){
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
@@ -191,7 +202,11 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
-			})
+			}),
+			...mapGetters('pertemuanBKCU',{
+				modelPertemuan: 'dataJalan',
+				modelPertemuanStat: 'dataJalanStat',
+			}),
 		}
 	}
 </script>

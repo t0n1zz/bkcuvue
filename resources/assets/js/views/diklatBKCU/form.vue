@@ -631,7 +631,7 @@
 				<form-panitia 
 				:mode="formPanitiaMode"
 				:selected="selectedItem"
-				@addPanitia="addPanitia"
+				@createPanitia="createPanitia"
 				@editPanitia="editPanitia"
 				@tutup="modalTutup"></form-panitia>
 			</template>
@@ -886,7 +886,7 @@
 					});
 				}
 			},
-			addPanitia(value){
+			createPanitia(value){
 				this.itemDataPanitia.push(value);
 				this.modalTutup();
 			},

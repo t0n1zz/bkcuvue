@@ -400,7 +400,7 @@
 						if(this.mode == 'edit'){
 							this.$emit('editPanitia',this.formPanitia);
 						}else{
-							this.$emit('addPanitia',this.formPanitia);
+							this.$emit('createPanitia',this.formPanitia);
 						}
 						this.submited = false;
 					}else{

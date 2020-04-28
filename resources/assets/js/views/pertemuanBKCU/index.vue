@@ -18,7 +18,7 @@
 
 					<!-- select data -->
 					<select-data 
-						:kelas="kelas"></select-data>
+						:kelas="kelas" v-if="$route.meta.mode != 'jalan'"></select-data>
 
 					<!-- table data -->
 					<table-data 

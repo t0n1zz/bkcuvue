@@ -172,7 +172,7 @@
 						]
 					},
 					table: {
-						contentToolbar: [
+					contentToolbar: [
 							'tableColumn',
 							'tableRow',
 							'mergeTableCells'

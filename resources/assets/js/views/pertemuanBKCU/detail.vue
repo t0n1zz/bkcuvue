@@ -39,7 +39,12 @@
 								</div>
 								<div class="card-body">
 
-									<!-- ubahPeserta -->
+									<!-- tambah materi -->
+									<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']">
+										<i class="icon-plus22"></i> Tambah Materi
+									</button>
+
+									<!-- ubah pertemuan -->
 									<button class="btn btn-light btn-block mb-2" @click.prevent="ubahPesertaData(item.id)" v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']">
 										<i class="icon-pencil5"></i> Ubah Pertemuan
 									</button>
@@ -374,28 +379,33 @@
 														</div>
 													</div>
 													<div class="card-body" v-if="props.item.keterangan">
-														{{ props.item.keterangan }}
-													</div>
-													<div class="card-footer bg-white d-sm-flex justify-content-sm-between align-items-sm-center">
-														<div class="d-none d-sm-block">
-															<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button>
+														<div class="row">
+															<div class="col-md-6">
+																{{ props.item.keterangan }}
+															</div>
+															<div class="col-md-6 text-right">
+																<div class="d-none d-sm-block">
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button>
 
-															<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)"><i class="icon-file-download"></i> Unduh</button>
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)"><i class="icon-file-download"></i> Unduh</button>
 
-															<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('ubahMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-pencil5"></i> Ubah</button>
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('ubahMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-pencil5"></i> Ubah</button>
 
-															<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('hapusMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-bin2"></i> Hapus</button>
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('hapusMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-bin2"></i> Hapus</button>
+																</div>
+
+																<div class="d-block d-sm-none">
+																	<hr/>
+																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button>
+
+																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)"><i class="icon-file-download"></i> Unduh</button>
+
+																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-pencil5"></i> Ubah</button>
+
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('hapusMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-bin2"></i> Hapus</button>
+																</div>	
+															</div>
 														</div>
-
-														<div class="d-block d-sm-none">
-															<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button>
-
-															<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)"><i class="icon-file-download"></i> Unduh</button>
-
-															<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-pencil5"></i> Ubah</button>
-
-															<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('hapusMateri',true,props.item)" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']"><i class="icon-bin2"></i> Hapus</button>
-														</div>	
 													</div>
 												</div>
 											</div>
@@ -408,9 +418,87 @@
 							<!-- tanggapan -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-show="tabName == 'tanggapan'">
-									<div class="card card-body">
+									<!-- tanggapan table -->
+									<data-viewer :title="'Tanggapan'" :itemData="itemDataTanggapan" :columnData="columnDataTanggapan" :itemDataStat="itemDataTanggapanStat" :query="queryTanggapan" @fetch="fetchTanggapan"  :isNoExcel="'true'" :isDasar="'true'" :isDisable="isDisableTable" :dataview="'grid'">
 
-									</div>
+										<!-- button desktop -->
+										<template slot="button-desktop" v-if="item.status == 4">
+											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahTanggapan')"><i class="icon-plus3"></i> Tambah</button>
+										</template>	
+
+										<template slot="button-mobile" v-if="item.status == 4">
+											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahTanggapan')"><i class="icon-plus3"></i> Tambah</button>
+										</template>	
+
+										<template slot="item-mobile" slot-scope="props">
+											<div class="col-md-12">
+												<div class="card">
+													<div class="card-header bg-light header-elements-inline">
+														<h6 class="card-title" v-html="$options.filters.dateTime(props.item.created_at)"></h6>
+														<div class="header-elements">
+															<span class="badge badge-primary">
+																<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+																<span v-else>-</span>
+																|
+																<check-value :value="props.item.user.username" v-if="props.item.user"></check-value>
+																<span v-else>-</span>
+															</span>
+														</div>
+													</div>
+													<div class="card-body" v-if="props.item.keterangan">
+														<div class="row">
+															<div class="col-md-6" v-for="pilih in props.item.pilih" :key="pilih.id">
+																<div class="card" :class="{'border-primary' : pilih.pivot.nilai == 1, 'border-danger' : pilih.pivot.nilai == 2, 'border-secondary' : pilih.pivot.nilai == 3}">
+																	<div class="card-header text-white" :class="{'bg-primary' : pilih.pivot.nilai == 1, 'bg-danger' : pilih.pivot.nilai == 2, 'bg-secondary' : pilih.pivot.nilai == 3}">
+																		<span v-if="pilih.pivot.nilai == 1">SETUJU</span>
+																		<span v-else-if="pilih.pivot.nilai == 2">TIDAK SETUJU</span>
+																		<span v-else-if="pilih.pivot.nilai == 3">TIDAK PUNYA TANGGAPAN</span>
+																	</div>
+																	<div class="card-body">
+																		<check-value :value="pilih.name"></check-value>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<hr class="mt-1 mb-1"/>
+														<b>Catatan / Komentar </b>
+														<br/>
+														<div v-html="props.item.keterangan"></div>
+													</div>
+													<div class="card-footer">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="d-none d-sm-block">
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('komentarTanggapan',true,props.item)"><i class="icon-reply"></i> Komentar 
+																	<span class="badge badge-success" v-if="props.item.haskomentar_count > 0">{{ props.item.haskomentar_count }}</span></button>
+																</div>
+
+																<div class="d-block d-sm-none">
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('komentarTanggapan',true,props.item)"><i class="icon-reply"></i> Komentar 
+																	<span class="badge badge-success" v-if="props.item.haskomentar_count > 0">{{ props.item.haskomentar_count }}</span></button>
+																</div>
+															</div>
+															<div class="col-md-6 text-right">
+																<div class="d-none d-sm-block">
+
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('ubahTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('hapusTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																</div>
+
+																<div class="d-block d-sm-none">
+																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('hapusTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																</div>	
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</template>	
+									</data-viewer>
+
 								</div>
 							</transition>		
 
@@ -740,9 +828,18 @@
 				<form-hadir :kelas="kelas" :item="item" :state="state" v-else-if="state == 'pesertaTerdaftar' || state == 'panitiaTerdaftar'"></form-hadir>
 			</template>
 
-			<!-- peserta -->
+			<!-- tanggapan -->
 			<template slot="modal-body3">
-				
+				<form-tanggapan 
+				:mode="formModalMode"
+				:selected="selectedItemTanggapan"
+				:kegiatan_id="item.id"
+				:pilih="item.has_pilih"
+				@tutup="modalTutup" v-if="state == 'tambahTanggapan' || state == 'ubahTanggapan'"></form-tanggapan>
+				<form-komentar 
+				:selected="selectedItemTanggapan"
+				:kegiatan_id="item.id"
+				@tutup="modalTutup" v-else-if="state == 'komentarTanggapan'"></form-komentar>
 			</template>
 
 		</app-modal>
@@ -770,6 +867,8 @@
 	import formStatus from "./formStatus.vue";
 	import formHadir from "./formHadir.vue";
 	import formMateri from "./formMateri.vue";
+	import formTanggapan from "./formTanggapan.vue";
+	import formKomentar from "./formKomentar.vue";
 	import FileSaver from 'file-saver';
 
 	export default {
@@ -786,6 +885,8 @@
 			formStatus,
 			formHadir,
 			formMateri,
+			formTanggapan,
+			formKomentar,
 		},
 		data() {
 			return {
@@ -855,7 +956,7 @@
 					limit: 10,
 					page: 1
 				},
-				queryDiskusi: {
+				queryTanggapan: {
 					order_column: "created_at",
 					order_direction: "asc",
 					filter_match: "and",
@@ -1253,13 +1354,13 @@
 						filter: true,
 					},
 				],
-				columnDataDiskusi: [
+				columnDataTanggapan: [
 					{
 						title: 'No.',
 					},
 					{
 						title: 'Nama',
-						name: 'aktivis.name',
+						name: 'user.aktivis.name',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -1267,9 +1368,10 @@
 						filterDefault: true
 					},
 					{
-						title: 'Tgl. / Waktu Daftar',
+						title: 'Tgl. / Waktu Buat',
 						name: 'created_at',
 						tipe: 'datetime',
+						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
@@ -1305,6 +1407,7 @@
 				itemDataPesertaHadirCU: [],
 				selectedItem: '',
 				selectedItemMateri: '',
+				selectedItemTanggapan: '',
 				formModalMode: '',
 				itemDataPanitia: [],
 				itemDataPanitiaStat: 'success',
@@ -1344,7 +1447,7 @@
 				}
 			},
 			// peserta terdaftar
-			itemDataPersertaTerdaftarStat(value){
+			itemDataPesertaTerdaftarStat(value){
 				if(value == 'success'){
 					this.itemDataPesertaTerdaftarCU = Object.values(this.itemDataPesertaTerdaftar.data.reduce(function(accumulator, current){
 						const cu = current.aktivis.pekerjaan_aktif.cu;
@@ -1406,7 +1509,7 @@
 				}
 			},
 			checkPesertaDataStat(value){
-				if(this.state != 'tambahPeserta' && state != 'ubahPeserta'){
+				if(this.state != 'tambahPeserta' && this.state != 'ubahPeserta'){
 					if(value == 'success'){
 						if(this.checkPesertaData){
 							if(!this.checkPesertaData.tanggal_hadir){
@@ -1460,6 +1563,9 @@
 			fetchMateri(params) {
 				this.$store.dispatch(this.kelas + '/indexMateri', [params,this.item.id]);
 			},
+			fetchTanggapan(params) {
+				this.$store.dispatch(this.kelas + '/indexTanggapan', [params,this.item.id]);
+			},
 			fetchCountPeserta() {
 				this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
 				if(this.item.tipe_tempat == 'ONLINE')
@@ -1483,6 +1589,8 @@
 					this.fetchPesertaHadir(this.queryPesertaHadir);
 				}else if(value == 'materi'){
 					this.fetchMateri(this.queryMateri);
+				}else if(value == 'tanggapan'){
+					this.fetchTanggapan(this.queryTanggapan);
 				}
 			},
 			save() {
@@ -1520,7 +1628,11 @@
 				this.isDisableTable = true;
 
 				if (isMobile) {
-					this.selectedItemMateri = itemMobile;
+					if(this.state == 'ubahMateri' || this.state == 'hapusMateri' || this.state == 'lihatMateri'){
+						this.selectedItemMateri = itemMobile;
+					}else{
+						this.selectedItemTanggapan = itemMobile;
+					}
 				}
 
 				if (state == 'hapusPertemuan') {
@@ -1611,6 +1723,28 @@
 						this.modalState = 'normal2';
 						this.modalSize = 'modal-full';
 					}
+				} else if (state == 'tambahTanggapan') {
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Tanggapan';
+					this.formModalMode = 'create';
+					this.modalSize = 'modal-lg';
+				} else if (state == 'hapusTanggapan') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Tanggapan ini ?';
+					this.modalButton = 'Iya, Hapus';
+				} else if (state == 'ubahTanggapan') {
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah Tanggapan';
+					this.formModalMode = 'edit';
+					this.modalSize = 'modal-lg';
+				} else if (state == 'komentarTanggapan') {
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Komentar Tanggapan';
+					this.modalSize = 'modal-lg';
 				}
 			},
 			modalImageOpen(content) {
@@ -1629,6 +1763,8 @@
 					this.$store.dispatch(this.kelas + '/destroyPeserta', this.selectedItem.id);
 				}else if (this.state == 'hapusMateri') {
 					this.$store.dispatch(this.kelas + '/destroyMateri', this.selectedItemMateri.id);
+				}else if (this.state == 'hapusTanggapan') {
+					this.$store.dispatch(this.kelas + '/destroyTanggapan', this.selectedItemTanggapan.id);
 				}
 			},
 			modalTutup() {
@@ -1637,6 +1773,8 @@
 					this.fetchCountPeserta();
 				}else if(this.state == 'tambahMateri' || this.state == 'ubahMateri' || this.state == 'hapusMateri'){
 					this.changeTab('materi');
+				}else if(this.state == 'tambahTanggapan' || this.state == 'ubahTanggapan' || this.state == 'hapusTanggapan'){
+					this.changeTab('tanggapan');
 				}else if(this.state == 'hapusPertemuan'){
 					this.back();
 				}else if(this.state == 'pesertaTidakTerdaftar'){
@@ -1690,8 +1828,8 @@
 				itemDataPesertaHadirStat: 'dataStatS2',
 				itemDataMateri: 'dataS3',
 				itemDataMateriStat: 'dataStatS3',
-				itemDataDiskusi: 'dataS4',
-				itemDataDiskusiStat: 'dataStatS4',
+				itemDataTanggapan: 'dataS4',
+				itemDataTanggapanStat: 'dataStatS4',
 				countPeserta: 'count',
 				countPesertaStat: 'countStat',
 				countPesertaHadir: 'count2',
