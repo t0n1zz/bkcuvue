@@ -137,11 +137,11 @@
 
 											<span>
 												<span v-if="content.message">
-													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}<br/><span v-if="content.errors"><span v-for="errors in content.errors"><span v-for="e in errors">{{ e }} <br/></span></span></span>
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content.message }}<br/><span v-if="content.errors"><span v-for="(errors, index) in content.errors" :key="index"><span v-for="(e, index) in errors" :key="index">{{ e }} <br/></span></span></span>
 													</pre>
 												</span>
 												<span v-else-if="content.data">
-													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}<br/><span v-if="content.data.errors"><span v-for="errors in content.data.errors"><span v-for="e in errors">{{ e }} <br/></span></span></span>
+													<pre class="pre-scrollable language-markup content-group text-left">{{ content.data.message }}<br/><span v-if="content.data.errors"><span v-for="(errors, index) in content.data.errors" :key="index"><span v-for="(e, i) in errors" :key="i">{{ e }} <br/></span></span></span>
 													</pre>
 												</span>
 												<span v-else-if="content">

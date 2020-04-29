@@ -130,7 +130,7 @@
                   <ul class="dropdown-menu dropdown-menu-right">
                     <li class="dropdown-header">Pencarian berdasarkan</li>
                     <li class="divider"></li>
-                    <li v-for="column in columnData" v-if="column.filter && !column.disable" :class="{'active' : params.search_column == column.key || params.search_column === column.filterKey}">
+                    <li v-for="(column, index) in columnData" :key="index" v-if="column.filter && !column.disable" :class="{'active' : params.search_column == column.key || params.search_column === column.filterKey}">
                       <a @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)">{{column.title }}</a>
                     </li>
                   </ul>
@@ -145,7 +145,7 @@
                   <ul class="dropdown-menu dropdown-menu-right">
                     <li class="dropdown-header">Operator pencarian</li>
                     <li class="divider"></li>
-                    <li v-for="op in operator" :class="{'active' : params.search_operator === op.key}">
+                    <li v-for="(op,i) in operator" :key="i" :class="{'active' : params.search_operator === op.key}">
                       <a @click.prevent="searchOperatorData(op)">{{op.title}}</a>
                     </li>
                   </ul>
@@ -187,7 +187,7 @@
                     <a @click.prevent="showAllColumn">Semua Kolom</a>
                   </li>
                   <li class="divider"></li>
-                  <li v-for="(column,index) in columnData" :class="{'active' : !column.hide}" v-if="column.hide != null && !column.disable">
+                  <li v-for="(column,index) in columnData" :key="index" :class="{'active' : !column.hide}" v-if="column.hide != null && !column.disable">
                     <a @click.prevent="hideColumn(index)">{{column.title}}</a>
                   </li>
                 </ul>
@@ -229,7 +229,7 @@
                     <a @click.prevent="unGroupRow">Tidak dikelompokkan</a>
                   </li>
                   <li class="divider"></li>
-                  <li v-for="(column,index) in columnData" v-if="column.groupKey != null && !column.disable" :class="{'active' : column.groupKey === group.key}">
+                  <li v-for="(column,index) in columnData" :key="index" v-if="column.groupKey != null && !column.disable" :class="{'active' : column.groupKey === group.key}">
                     <a @click.prevent="groupRow(column,index)">{{column.title}}</a>
                   </li>
                 </ul>
@@ -277,7 +277,7 @@
           <!-- header -->
           <thead class="bg-primary">
             <tr class="text-nowrap">
-              <th v-for="item in columnData" v-if="!item.hide && !item.disable">
+              <th v-for="(item, index) in columnData" :key="index" v-if="!item.hide && !item.disable">
                 <div @click="sort(item.key)" v-if="item.sort" class="cursor-pointer">
                   <span v-html="item.title"></span>
                   <span v-if="params.column === item.key">
@@ -307,7 +307,7 @@
           </tbody>
 
           <!-- data body -->
-          <tbody v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open">
+          <tbody v-for="(items,index) in groupData" :key="index" v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open">
             <tr class="active border-double" v-if="group.show">
               <td :colspan="columnData.length">
                 Kelompok {{ group.title }}: <b>{{index}}</b>
@@ -352,7 +352,7 @@
                 <i class="icon-arrow-left12"></i>
               </a>
             </li>
-            <li v-for="n in pages" :class="{'active' : params.page == n}">
+            <li v-for="(n,i) in pages" :key="i" :class="{'active' : params.page == n}">
               <a @click.prevent="goToPage(n)">{{n}}</a>
             </li>
             <li :class="{'disabled' : !itemData.next_page_url}">
@@ -579,7 +579,7 @@
         </div>
       </div>
 
-      <div v-for="(items,index) in groupData" v-else-if="itemDataStat === 'success'">
+      <div v-for="(items,index) in groupData" :key="index" v-else-if="itemDataStat === 'success'">
         <slot name="item-mobile" v-for="(item,index) in items" :item="item" :index="index"></slot>
       </div>
 
@@ -600,7 +600,7 @@
               <i class="icon-arrow-left12"></i>
             </a>
           </li>
-          <li v-for="n in pages" :class="{'active' : params.page == n}">
+          <li v-for="(n, i) in pages" :key="i" :class="{'active' : params.page == n}">
             <a @click.prevent="goToPage(n)">{{n}}</a>
           </li>
           <li :class="{'disabled' : !itemData.next_page_url}">
@@ -688,7 +688,7 @@
         <div v-if="modalMobileOptionState === 'filter'">
           <h2 class="text-center">Pencarian berdasarkan</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="column in columnData" v-if="column.filter && !column.disable" :class="{'btn-primary' : params.search_column === column.key || params.search_column === column.filterKey}" @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)" >{{column.title}}</a>
+          <a class="btn btn-default btn-block" v-for="(column, index) in columnData" :key="index" v-if="column.filter && !column.disable" :class="{'btn-primary' : params.search_column === column.key || params.search_column === column.filterKey}" @click.prevent="searchColumnData(column.key,column.title,column.filterType,column.filterKey)" >{{column.title}}</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
@@ -697,7 +697,7 @@
         <div v-if="modalMobileOptionState === 'operator'">
           <h2 class="text-center">Operator pencarian</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="op in operator" :class="{'btn-primary' : params.search_operator === op.key}" @click.prevent="searchOperatorData(op)" >{{op.title}}</a>
+          <a class="btn btn-default btn-block" v-for="(op, i) in operator" :key="i" :class="{'btn-primary' : params.search_operator === op.key}" @click.prevent="searchOperatorData(op)" >{{op.title}}</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
@@ -708,7 +708,7 @@
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="showAllColumn" >Semua kolom</a>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="(column,index) in columnData" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)" >{{column.title}}</a>
+          <a class="btn btn-default btn-block" v-for="(column,index) in columnData" :key="index" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)" >{{column.title}}</a>
           <hr/>
           <a class="btn btn-default btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</a>
         </div>
@@ -728,7 +728,7 @@
         <div v-if="modalMobileOptionState === 'sort'">
           <h2 class="text-center">Urutkan berdasarkan</h2>
           <hr/>
-          <a class="btn btn-default btn-block" v-for="item in columnData" v-if="!item.hide && !item.disable && item.sort" @click.prevent="sort(item.key)">
+          <a class="btn btn-default btn-block" v-for="(item, index) in columnData" :key="index" v-if="!item.hide && !item.disable && item.sort" @click.prevent="sort(item.key)">
             {{item.title}}
             <span v-if="params.column === item.key">
               <span v-if="params.direction === 'asc'"><i class="icon-sort-amount-asc"></i></span>

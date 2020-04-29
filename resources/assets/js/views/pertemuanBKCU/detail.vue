@@ -157,7 +157,7 @@
 
 								<div class="card-body">
 									<span v-if="item.sasaran">
-										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
+										<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
 											{{ sasaran.name }}
 										</label>
 									</span>
@@ -665,8 +665,8 @@
 										<template slot="item-desktop" slot-scope="props">
 											<tr class="text-nowrap" v-if="props.item">
 												<td>{{ props.index + 1 }}</td>
-												<td v-if="props.item.aktivis && !columnDataPesertaHadir[1].hide">
-													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
+												<td v-if="!columnDataPesertaHadir[1].hide">
+													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis && props.item.aktivis.gambar">
 													<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[2].hide">
@@ -921,9 +921,9 @@
 				:kegiatan_id="item.id"
 				@tutup="modalTutup" v-if="state == 'tambahMateri' || state == 'ubahMateri'"></form-materi>
 
-				<div v-else-if="state == 'lihatMateri'">
-
-				</div>
+				<form-pdf 
+				:selected="selectedItemMateri"
+				@tutup="modalTutup" v-else-if="state == 'lihatMateri'"></form-pdf>
 
 				<form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
 				@tutup="modalTutup" v-else-if="state == 'statusPertemuan'"></form-status>
@@ -972,8 +972,9 @@
 	import formMateri from "./formMateri.vue";
 	import formTanggapan from "./formTanggapan.vue";
 	import formKomentar from "./formKomentar.vue";
+	import formPdf from "./formPdf.vue";
 	import FileSaver from 'file-saver';
-
+	
 	export default {
 		components: {
 			pageHeader,
@@ -988,6 +989,7 @@
 			formStatus,
 			formHadir,
 			formMateri,
+			formPdf,
 			formTanggapan,
 			formKomentar,
 		},
@@ -1791,7 +1793,8 @@
 					}else{
 						this.modalTitle = 'Lihat Materi';
 						this.modalState = 'normal2';
-						this.modalSize = 'modal-full';
+						this.modalColor = 'bg-primary';
+						this.modalSize = 'modal-lg';
 					}
 				} else if (state == 'tambahTanggapan') {
 					if(this.item.tanggapan_cu){

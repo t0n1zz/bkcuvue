@@ -5,7 +5,7 @@
 		<div class="alert bg-info text-white alert-styled-left alert-dismissible">
 			<span class="font-weight-semibold">Sasaran peserta untuk diklat ini adalah untuk tingkat: 
 				<br/>
-				<label v-for="sasaran in tingkat" class="badge badge-primary ml-1">
+				<label v-for="(sasaran, index) in tingkat" :key="index" class="badge badge-primary ml-1">
 					{{ sasaran.name }}
 				</label>
 			</span>

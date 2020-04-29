@@ -385,7 +385,7 @@
 													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih provinsi</span>
 												</option>
-												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
+												<option v-for="(provinces, index) in modelProvinces" :key="index" :value="provinces.id">{{provinces.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -775,7 +775,7 @@
 			Cleave,
 			dataTable,
 			infoIcon,
-			wajibBadge
+			wajibBadge,
 		},
 		data() {
 			return {
