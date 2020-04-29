@@ -418,14 +418,6 @@
     },
 		methods: {
 			fetch(params){
-				if(this.$route.params.periode == 'semua'){
-					this.$store.dispatch(this.kelas + '/index', params);
-				}else if(this.$route.meta.mode == 'jalan'){
-					this.$store.dispatch(this.kelas + '/indexJalan', params);
-				}else{
-					this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.periode]);
-				}
-
 				if(this.currentUser.id_cu == 0){
 					this.dataview = 'list';
 					this.isNoButtonRow = false;
@@ -434,6 +426,18 @@
 					this.isNoButtonRow = true;
 					this.query.limit = 15;
 				}
+
+				if(this.$route.params.periode == 'semua'){
+					this.$store.dispatch(this.kelas + '/index', params);
+				}else if(this.$route.meta.mode == 'jalan'){
+					this.$store.dispatch(this.kelas + '/indexJalan', params);
+					this.dataview = 'grid';
+					this.isNoButtonRow = true;
+					this.query.limit = 15;
+				}else{
+					this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.periode]);
+				}
+
 			},
 			selectedRow(item){
 				this.selectedItem = item;

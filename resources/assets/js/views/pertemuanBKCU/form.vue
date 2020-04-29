@@ -626,14 +626,36 @@
 
 						</div>
 
-						<!-- panitia & fasilitator -->
+						<!-- tanggapan -->
 						<div class="card">
 							<div class="card-header bg-white">
-								<h5 class="card-title">5. Pilihan pada tanggapan 
-									<small>Di isi apabila pada tanggapan untuk pertemuan ini terdapat pilihan</small></h5>
+								<h5 class="card-title">5. Pilihan pada tanggapan <br/> 
+									<small class="text-muted">Di isi apabila ada tanggapan untuk pertemuan ini terdapat pilihan</small></h5>
 							</div>
 							<div class="card-body pb-2">
+								
 								<div class="row">
+
+									<!-- jumlah tanggapan-->
+									<div class="col-md-12">
+										<div class="form-group" >
+
+											<!-- title -->
+											<h5>Batasan Jumlah Tanggapan Per-CU</h5>
+
+											<!-- input -->
+											<cleave 
+												name="tanggapan_cu"
+												v-model="form.tanggapan_cu" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan batasan"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah tanggapan yang bisa diberikan CU</small>
+										</div>
+									</div>
 
 									<div class="col-md-12">
 
@@ -906,7 +928,7 @@
 						}
 
 						var valPilih;
-						for (valPilih of this.form.has_pilih) {
+						for (valPilih of this.form.pilih) {
 							let formData = {};
 							formData.id = valPilih.id;
 							formData.name = valPilih.name;
@@ -1106,18 +1128,20 @@
 			modalConfirmOk() {
 				this.modalShow = false;
 
-				if(this.$route.meta.isDetail){
-					this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
-				}
-
 				if (this.state == 'hapusPanitia') {
 					_.remove(this.itemDataPanitia, {
-						aktivis_id: this.selectedItemPanitia.aktivis_id
-					});
-				}else if(this.state == 'hapusPilih'){
-					_.remove(this.itemDataPilih, {
 						index: this.selectedItemPanitia.index
 					});
+					this.selectedItemPanitia = {};
+				}else if(this.state == 'hapusPilih'){
+					_.remove(this.itemDataPilih, {
+						index: this.selectedItemPilih.index
+					});
+					this.selectedItemPilih = {};
+				}else{
+					if(this.$route.meta.isDetail){
+						this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
+					}
 				}
 			},
 			modalTutup() {

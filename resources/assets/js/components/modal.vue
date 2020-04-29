@@ -39,6 +39,9 @@
 
 									<!-- content tutup -->
 									<div v-if="state === 'content-tutup'" key="content-tutup" class="text-center">
+										<span class="text-warning pb-3">
+											<i class="icon-exclamation" style="font-size: 5em"></i>
+										</span>
 										<h2>{{ title }}</h2>
 										<div style="color:black;" v-html="content"></div>
 										<hr>

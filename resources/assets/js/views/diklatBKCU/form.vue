@@ -974,14 +974,15 @@
 			modalConfirmOk() {
 				this.modalShow = false;
 
-				if(this.$route.meta.isDetail){
-					this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
-				}
-
 				if (this.state == 'hapus') {
 					_.remove(this.itemDataPanitia, {
 						aktivis_id: this.selectedItem.aktivis_id
 					});
+					this.selectedItem = {};
+				}else{
+					if(this.$route.meta.isDetail){
+						this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});
+					}
 				}
 			},
 			modalTutup() {

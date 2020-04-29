@@ -13,10 +13,14 @@ export const pertemuanBKCU = {
     dataS3: [], //collection
     dataS4: [], //collection
     dataS5: [], //collection
+    dataS6: [], //collection
+    dataS7: [], //collection
+    dataS8: [], //collection
     dataJalan: [], //collection
     periode: [],
     count: {},
     count2: {},
+    count3: {},
     dataStat: '',
     dataStat2: '',
     dataStat3: '',
@@ -26,9 +30,13 @@ export const pertemuanBKCU = {
     dataStatS3: '',
     dataStatS4: '',
     dataStatS5: '',
+    dataStatS6: '',
+    dataStatS7: '',
+    dataStatS8: '',
     dataJalanStat: '',
     countStat: '',
     countStat2: '',
+    countStat3: '',
     update: [], //update data
     updateStat: '',
     update2: [], //update data
@@ -44,13 +52,17 @@ export const pertemuanBKCU = {
     data3: state => state.data3,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
-    dataS3: state => state.dataS3,
+    dataS3: state => state.dataS3, 
     dataS4: state => state.dataS4,
     dataS5: state => state.dataS5,
+    dataS6: state => state.dataS6,
+    dataS7: state => state.dataS7,
+    dataS8: state => state.dataS8,
     dataJalan: state => state.dataJalan,
     periode: state => state.periode,
     count: state => state.count,
     count2: state => state.count2,
+    count3: state => state.count3,
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
     dataStat3: state => state.dataStat3,
@@ -60,9 +72,13 @@ export const pertemuanBKCU = {
     dataStatS3: state => state.dataStatS3,
     dataStatS4: state => state.dataStatS4,
     dataStatS5: state => state.dataStatS5,
+    dataStatS6: state => state.dataStatS6,
+    dataStatS7: state => state.dataStatS7,
+    dataStatS8: state => state.dataStatS8,
     dataJalanStat: state => state.dataJalanStat,
     countStat: state => state.countStat,
     countStat2: state => state.countStat2,
+    countStat3: state => state.countStat3,
     update: state => state.update,
     updateStat: state => state.updateStat,
     update2: state => state.update2,
@@ -171,6 +187,34 @@ export const pertemuanBKCU = {
         });
     },
 
+    indexPesertaCountCu( { commit }, id ){
+      commit('setDataStatS6', 'loading');
+      
+      PERTEMUANBKCUAPI.indexPesertaCountCu( id )
+        .then( function( response ){
+          commit('setDataS6', response.data.model );
+          commit('setDataStatS6', 'success');
+        })
+        .catch( error => {
+          commit('setDataS6', error.response);
+          commit('setDataStatS6', 'fail');
+        });
+    },
+
+    indexPesertaHadirCountCu( { commit }, id ){
+      commit('setDataStatS7', 'loading');
+      
+      PERTEMUANBKCUAPI.indexPesertaHadirCountCu( id )
+        .then( function( response ){
+          commit('setDataS7', response.data.model );
+          commit('setDataStatS7', 'success');
+        })
+        .catch( error => {
+          commit('setDataS7', error.response);
+          commit('setDataStatS7', 'fail');
+        });
+    },
+
     indexMateri( { commit }, [p, id] ){
       commit('setDataStatS3', 'loading');
       
@@ -196,6 +240,20 @@ export const pertemuanBKCU = {
         .catch( error => {
           commit('setDataS4', error.response);
           commit('setDataStatS4', 'fail');
+        });
+    },
+
+    indexTanggapanCount( { commit }, id ){
+      commit('setDataStatS8', 'loading');
+      
+      PERTEMUANBKCUAPI.indexTanggapanCount( id )
+        .then( function( response ){
+          commit('setDataS8', response.data.model );
+          commit('setDataStatS8', 'success');
+        })
+        .catch( error => {
+          commit('setDataS8', error.response);
+          commit('setDataStatS8', 'fail');
         });
     },
 
@@ -667,6 +725,20 @@ export const pertemuanBKCU = {
         });
     },
 
+    countTanggapan( { commit }, [ id, cu ] ){
+      commit('setCountStat3', 'loading');
+      
+      PERTEMUANBKCUAPI.countTanggapan( id, cu )
+        .then( function( response ){
+          commit('setCount3', response.data.model);
+          commit('setCountStat3', 'success');
+        })
+        .catch( error => {
+          commit('setCount3', error.response);
+          commit('setCountStat3', 'fail');
+        });
+    },
+
     // reset
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
@@ -702,6 +774,15 @@ export const pertemuanBKCU = {
     setDataS5 ( state, data ){
       state.dataS5 = data;
     },
+    setDataS6 ( state, data ){
+      state.dataS6 = data;
+    },
+    setDataS7 ( state, data ){
+      state.dataS7 = data;
+    },
+    setDataS8 ( state, data ){
+      state.dataS8 = data;
+    },
     setDataJalan ( state, data ){
       state.dataJalan = data;
     },
@@ -710,6 +791,9 @@ export const pertemuanBKCU = {
     },
     setCount2 ( state, data ){
       state.count2 = data;
+    },
+    setCount3 ( state, data ){
+      state.count3 = data;
     },
     setDataStat( state, status ){
       state.dataStat = status;
@@ -738,6 +822,15 @@ export const pertemuanBKCU = {
     setDataStatS5( state, status ){
       state.dataStatS5 = status;
     },
+    setDataStatS6( state, status ){
+      state.dataStatS6 = status;
+    },
+    setDataStatS7( state, status ){
+      state.dataStatS7 = status;
+    },
+    setDataStatS8( state, status ){
+      state.dataStatS8 = status;
+    },
     setDataJalanStat( state, status ){
       state.dataJalanStat = status;
     },
@@ -746,6 +839,9 @@ export const pertemuanBKCU = {
     },
     setCountStat2( state, status ){
       state.countStat2 = status;
+    },
+    setCountStat3( state, status ){
+      state.countStat3 = status;
     },
     setUpdate ( state, data ){
       state.update = data;

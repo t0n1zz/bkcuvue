@@ -1194,6 +1194,7 @@
 					_.remove(this.itemDataCu, {
 						index: this.selectedItemCu.index
 					});
+					this.selectedItemCu = {};
 				}
 			},
 			modalTutup() {

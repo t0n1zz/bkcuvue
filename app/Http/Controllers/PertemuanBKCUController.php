@@ -113,36 +113,6 @@ class PertemuanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexMateri($id)
-	{
-		$table_data = KegiatanMateri::where('kegiatan_id',$id)->advancedFilter();
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
-	public function indexTanggapan($id)
-	{
-		$table_data = KegiatanTanggapan::with('pilih','cu','user')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_tanggapan_id')->advancedFilter();
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
-	public function indexKomentar($id)
-	{
-		$table_data = KegiatanTanggapan::with('pilih','cu','user.aktivis')->where('kegiatan_tanggapan_id',$id)->advancedFilter();
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
 	public function indexPesertaCu($id, $cu)
 	{
 		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($cu){
@@ -165,6 +135,114 @@ class PertemuanBKCUController extends Controller{
 		]);
 	}
 
+
+	public function indexPesertaCountCu($id)
+	{
+		$table_data = DB::table('kegiatan_peserta')
+		->join('aktivis', 'aktivis.id', '=', 'kegiatan_peserta.aktivis_id')
+		->join('aktivis_pekerjaan', 'aktivis_pekerjaan.id_aktivis', '=', 'aktivis.id')
+			->join('cu', 'cu.id', '=', 'aktivis_pekerjaan.id_tempat')
+			->select(DB::raw(
+					'MAX(cu.no_ba) as no_ba,
+					MAX(cu.name) as name,
+					COUNT(CASE WHEN aktivis.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
+					COUNT(CASE WHEN aktivis.kelamin="PEREMPUAN" THEN 1 END) AS perempuan, 
+					MAX(aktivis_pekerjaan.id_tempat) as cu_id, 
+					COUNT(*) as total'
+			))
+		->where('aktivis_pekerjaan.tipe', 1)
+		->where('aktivis_pekerjaan.status', 1)
+		->where('kegiatan_id', $id)
+		->groupBy('aktivis_pekerjaan.id_tempat')
+		->get();
+		
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPesertaHadirCountCu($id)
+	{
+		$table_data = DB::table('kegiatan_peserta')
+		->join('aktivis', 'aktivis.id', '=', 'kegiatan_peserta.aktivis_id')
+		->join('aktivis_pekerjaan', 'aktivis_pekerjaan.id_aktivis', '=', 'aktivis.id')
+			->join('cu', 'cu.id', '=', 'aktivis_pekerjaan.id_tempat')
+			->select(DB::raw(
+					'MAX(cu.no_ba) as no_ba,
+					MAX(cu.name) as name,
+					COUNT(CASE WHEN aktivis.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
+					COUNT(CASE WHEN aktivis.kelamin="PEREMPUAN" THEN 1 END) AS perempuan, 
+					MAX(aktivis_pekerjaan.id_tempat) as cu_id, 
+					COUNT(*) as total'
+			))
+		->where('aktivis_pekerjaan.tipe', 1)
+		->where('aktivis_pekerjaan.status', 1)
+		->where('kegiatan_id', $id)
+		->whereNotNull('tanggal_hadir')
+		->groupBy('aktivis_pekerjaan.id_tempat')
+		->get();
+		
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexTanggapanCount($id)
+	{
+		$table_data = DB::table('kegiatan_pilih')
+		->join('kegiatan_pilih_pivot', 'kegiatan_pilih_pivot.kegiatan_pilih_id', '=', 'kegiatan_pilih.id')
+			->select(DB::raw(
+					'MAX(kegiatan_pilih.name) as name,
+					MAX(kegiatan_pilih.id) as id, 
+					COUNT(*) as total,
+					COUNT(CASE WHEN kegiatan_pilih_pivot.nilai=1 THEN 1 END) AS setuju,
+					COUNT(CASE WHEN kegiatan_pilih_pivot.nilai=2 THEN 1 END) AS taksetuju,
+					COUNT(CASE WHEN kegiatan_pilih_pivot.nilai=3 THEN 1 END) AS takada
+					'
+			))
+		->where('kegiatan_id', $id)
+		->groupBy('kegiatan_pilih.id')
+		->get();
+		
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexMateri($id)
+	{
+		$table_data = KegiatanMateri::where('kegiatan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexTanggapan($id)
+	{
+		$table_data = KegiatanTanggapan::with('pilih','cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_tanggapan_id')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexKomentar($id)
+	{
+		$table_data = KegiatanTanggapan::with('pilih','cu','user.aktivis')->where('kegiatan_tanggapan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
 		$table_data = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
@@ -254,6 +332,15 @@ class PertemuanBKCUController extends Controller{
 
 	private function syncPilih($request, $kelas)
 	{
+		foreach($kelas->pilih as $aV){ $aTmp1[] = $aV['id']; }
+		foreach($request->pilih as $aV){ $aTmp2[] = $aV['id']; }
+		$diff = array_diff($aTmp1, $aTmp2);
+
+		if($diff){
+			$val = array_values($diff)[0];
+			KegiatanPilih::findOrFail($val)->delete();
+		}
+
 		foreach($request->pilih as $pilih){
 			if(array_key_exists('id', $pilih)){
 				$kelasPilih = KegiatanPilih::findOrFail($pilih['id']);
@@ -272,7 +359,7 @@ class PertemuanBKCUController extends Controller{
 
 	public function storePeserta(Request $request, $id)
 	{
-		$kelas = KegiatanPeserta::create($request->except('status','kegiatan_id') + [ 'kegiatan_id' => $id, 'status' => 1 ]);
+		$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
 		
 		return response()
 			->json([
@@ -353,7 +440,7 @@ class PertemuanBKCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','hasPilih')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','pilih')->findOrFail($id);
 
 		return response()
 				->json([
@@ -368,7 +455,7 @@ class PertemuanBKCUController extends Controller{
 
 		$name = $request->name;
 
-		$kelas = Kegiatan::findOrFail($id);
+		$kelas = Kegiatan::with('pilih')->findOrFail($id);
 
 			// processing single image upload
 		if(!empty($request->gambar))
@@ -681,5 +768,15 @@ class PertemuanBKCUController extends Controller{
 			->json([
 					'model' => $table_data
 			]);
+	}
+
+	public function countTanggapan($id, $cu)
+	{
+		$table_data = KegiatanTanggapan::where('kegiatan_id',$id)->whereNull('kegiatan_tanggapan_id')->where('id_cu',$cu)->count();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 }

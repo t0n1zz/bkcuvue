@@ -289,7 +289,7 @@ class DiklatBKCUController extends Controller{
 		// $time = \Carbon\Carbon::now();
 
 		// save data
-		$kelas = KegiatanPeserta::create($request->except('status','kegiatan_id') + [ 'kegiatan_id' => $id, 'status' => 1 ]);
+		$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id]);
 
 		// send notif if interval different is more than 2 hours
 		// if($dataPeserta){

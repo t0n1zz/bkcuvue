@@ -10,15 +10,42 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.8 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#328">Version 3.2.8 <small class="text-muted"> /  April 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="328" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini memperkenalkan pertemuan BKCU yang dapat digunakan untuk mendata dan menyelenggarakan pertemuan baik itu offline maupun online
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Menambah pertemuan BKCU untuk mengelola semua pertemuan yang dilaksanakan BKCU</li>
+                      <li>Menambah fitur untuk bisa melakukan dan mengikuti pertemuan BKCU secara online di dalam pertemuan online ini terdapat fitur distribusi materi, penerimaan tanggapan beserta komentar dan persetujuan, dan pendataan peserta</li>
+                      <li>Menambah fitur untuk melakukan perhitungan jumlah CU yang mendaftar, jumlah cu yang hadir, dan jumlah tanggapan pada bagian Pertemuan BKCU</li>
+                      <li>Memperbaiki bug tampilan pada bagian Diklat BKCU</li>
+                      <li>Memperbaiki bug pada saat mengubah data panitia/fasilitator pada bagian Diklat BKCU</li>
+                      <li>Memperbaiki bug pada saat mengubah keanggota CU pada bagian Anggota CU</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.8 -->
+
               <!-- Version 3.2.7 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#327">Version 3.2.7 <small class="text-muted"> / 24 April 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#327">Version 3.2.7 <small class="text-muted"> / 24 April 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="327" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="327" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperkenalkan form monitoring cu dan perbaikan pada anggota CU
                     <br/><br/>

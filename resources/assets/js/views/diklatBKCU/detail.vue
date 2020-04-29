@@ -484,7 +484,7 @@
 				<form-peserta 
 				:mode="formPesertaMode"
 				:selected="selectedItem"
-				:kegiatan_id="item.id"
+				:item="item"
 				:tingkat="item.sasaran"
 				@tutup="modalTutup"></form-peserta>
 			</template>

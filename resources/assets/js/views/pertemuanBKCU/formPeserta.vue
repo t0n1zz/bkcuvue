@@ -260,7 +260,7 @@
 	import Cleave from 'vue-cleave-component';
 
 	export default {
-		props: ['mode','selected','kegiatan_id','tingkat'],
+		props: ['mode','selected','item','tingkat'],
 		components: {
 			DataViewer,
 			checkValue,
@@ -412,7 +412,7 @@
 
 				if(this.tingkatArray.includes(this.formPeserta.tingkat)){
 					this.formPeserta.aktivis_id = item.id;
-					this.formPeserta.kegiatan_id = this.kegiatan_id;
+					this.formPeserta.kegiatan_id = this.item.id;
 					this.formPeserta.jabatan = item.pekerjaan_aktif.name;
 					if(item.pendidikan_tertinggi){
 						this.formPeserta.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
@@ -442,7 +442,7 @@
 				}
 			},
 			checkPeserta(){
-				this.$store.dispatch('pertemuanBKCU/checkPeserta', [this.kegiatan_id, this.formPeserta.aktivis_id]);
+				this.$store.dispatch('pertemuanBKCU/checkPeserta', [this.item.id, this.formPeserta.aktivis_id]);
 			},
 			save(){
 				this.$validator.validateAll('formPeserta').then((result) => {
@@ -450,7 +450,8 @@
 						if(this.mode == 'edit'){
 							this.$store.dispatch('pertemuanBKCU/updatePeserta', [this.formPeserta.id, this.formPeserta]);
 						}else{
-							this.$store.dispatch('pertemuanBKCU/storePeserta', [this.kegiatan_id, this.formPeserta]);
+							this.formPeserta.status = this.item.status;
+							this.$store.dispatch('pertemuanBKCU/storePeserta', [this.item.id, this.formPeserta]);
 						}
 					}else{
 						this.submited = true;

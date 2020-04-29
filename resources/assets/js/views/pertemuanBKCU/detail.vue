@@ -63,11 +63,16 @@
 
 									<!-- daftar -->
 									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
-										<i class="icon-plus22"></i> Daftar Peserta
+										<i class="icon-people"></i> Daftar Peserta
 									</button>
 
-									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" :disabled="item.status != 2" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0">
-										<i class="icon-plus22"></i> Daftar Peserta
+									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" :disabled="item.status != 2" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0">
+										<i class="icon-people"></i> Daftar Peserta
+									</button>
+
+									<!-- tanggapan -->
+									<button class="btn bg-success btn-block mb-2" @click.prevent="modalOpen('tambahTanggapan')" v-if="item.status == 4 && currentUser.id_cu != 0">
+										<i class="icon-bubble2"></i> Beri Tanggapan
 									</button>
 
 								</div>
@@ -109,6 +114,7 @@
 											<td class="font-weight-semibold">Tgl. Selesai:</td>
 											<td class="text-right" v-html="$options.filters.dateMonth(item.selesai)"></td>
 										</tr>
+										<tr><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
 										<tr>
 											<td class="font-weight-semibold">Peserta Min:</td>
 											<td class="text-right">{{item.peserta_min}} orang</td>
@@ -128,6 +134,11 @@
 										<tr v-if="item.tipe_tempat == 'ONLINE'">
 											<td class="font-weight-semibold">Peserta Hadir:</td>
 											<td class="text-right">{{ countPesertaHadir }} orang</td>
+										</tr>
+										<tr v-if="item.tanggapan_cu"><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
+										<tr v-if="item.tanggapan_cu">
+											<td class="font-weight-semibold">Tanggapan Max:</td>
+											<td class="text-right">{{ item.tanggapan_cu }} kali</td>
 										</tr>
 									</tbody>
 								</table>
@@ -227,7 +238,7 @@
 									</div>
 								</div>
 								<div class="card-body">
-									Belum menentukan tempat pelatihan
+									Belum menentukan tempat pertemuan
 								</div>
 							</div>
 
@@ -251,7 +262,9 @@
 											<span v-else>Peserta</span>
 										</a></li>
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-accessibility mr-2"></i>
-												Hadir</a></li>						
+												Hadir</a></li>	
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'statistik'}" @click.prevent="changeTab('statistik')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-equalizer mr-2"></i>
+												Statistik</a></li>								
 									</ul>
 								</div>
 
@@ -423,25 +436,28 @@
 
 										<!-- button desktop -->
 										<template slot="button-desktop" v-if="item.status == 4">
-											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahTanggapan')"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahTanggapan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
 										</template>	
 
 										<template slot="button-mobile" v-if="item.status == 4">
-											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahTanggapan')"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahTanggapan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
 										</template>	
 
 										<template slot="item-mobile" slot-scope="props">
 											<div class="col-md-12">
 												<div class="card">
 													<div class="card-header bg-light header-elements-inline">
-														<h6 class="card-title" v-html="$options.filters.dateTime(props.item.created_at)"></h6>
+														<h6 class="card-title">
+															<img :src="'/images/aktivis/' + props.item.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="props.item.user.aktivis.gambar">
+															<img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
+															<check-value :value="props.item.user.aktivis.name" v-if="props.item.user"></check-value>
+															<span v-else>-</span>
+															|
+															<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+															<span v-else>-</span>
+														</h6>
 														<div class="header-elements">
-															<span class="badge badge-primary">
-																<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
-																<span v-else>-</span>
-																|
-																<check-value :value="props.item.user.username" v-if="props.item.user"></check-value>
-																<span v-else>-</span>
+															<span class="badge badge-secondary" v-html="$options.filters.dateTime(props.item.created_at)">
 															</span>
 														</div>
 													</div>
@@ -638,9 +654,188 @@
 											</tr>
 										</template>	
 									</data-viewer>
-									<hr/>
+								</div>
+							</transition>
+
+							<!-- peserta hadir -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-if="tabName == 'pesertaHadir'">
+									<data-viewer :title="'peserta hadir'" :itemData="itemDataPesertaHadir" :columnData="columnDataPesertaHadir" :itemDataStat="itemDataPesertaHadirStat" :query="queryPesertaHadir" @fetch="fetchPesertaHadir" :excelDownloadUrl="excelDownloadUrl2" :isDasar="'true'" :isNoKolom="'true'" :isDisable="isDisableTable">
+
+										<template slot="item-desktop" slot-scope="props">
+											<tr class="text-nowrap" v-if="props.item">
+												<td>{{ props.index + 1 }}</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[1].hide">
+													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
+													<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[2].hide">
+													<check-value :value="props.item.aktivis.name"></check-value>
+												</td>
+												<td v-if="!columnDataPesertaHadir[3].hide">
+													<check-value :value="props.item.name_nametag"></check-value>
+												</td>
+												<td v-if="!columnDataPesertaHadir[4].hide">
+													<check-value :value="props.item.name_sertifikat"></check-value>
+												</td>
+												<td v-if="!columnDataPesertaHadir[5].hide" v-html="$options.filters.date(props.item.datang)">
+												</td>
+												<td v-if="!columnDataPesertaHadir[6].hide" v-html="$options.filters.date(props.item.pulang)">
+												</td>
+												<td v-if="!columnDataPesertaHadir[7].hide" v-html="$options.filters.dateTime(props.item.tanggal_hadir)">
+												</td>
+												<td v-if="!columnDataPesertaHadir[8].hide">
+													<check-value :value="props.item.keterangan"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[9].hide">
+													<check-value :value="props.item.aktivis.kelamin"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[10].hide">
+													<span v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 1">
+														<check-value :value="props.item.aktivis.pekerjaan_aktif.cu.name" v-if="props.item.aktivis.pekerjaan_aktif.cu"></check-value>
+														<span v-else>-</span>
+													</span>
+													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 2">
+														<check-value :value="props.item.aktivis.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.aktivis.pekerjaan_aktif.lembaga_lain"></check-value>
+														<span v-else>-</span>
+													</span>
+													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
+														Puskopdit BKCU Kalimantan
+													</span>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[11].hide" >
+													<span v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)" v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tingkat"></span>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[12].hide">
+													<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[13].hide">
+													<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[14].hide">
+													<check-value :value="props.item.aktivis.pendidikan_tertinggi.name" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
+													<span v-else>-</span>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[15].hide" v-html="$options.filters.date(props.item.aktivis.tanggal_lahir)">
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[16].hide">
+													<check-value :value="props.item.aktivis.tempat_lahir"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[17].hide">
+													<check-value :value="props.item.aktivis.tinggi"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[18].hide">
+													<check-value :value="props.item.aktivis.agama"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[19].hide">
+													<check-value :value="props.item.aktivis.status"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[20].hide">
+													<check-value :value="props.item.aktivis.email"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[21].hide">
+													<check-value :value="props.item.aktivis.hp"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[22].hide">
+													<check-value :value="props.item.aktivis.kontak"></check-value>
+												</td>
+												<td v-if="props.item.aktivis && !columnDataPesertaHadir[22].hide" v-html="$options.filters.dateTime(props.item.created_at)">
+												</td>
+											</tr>
+										</template>	
+									</data-viewer>
+								</div>
+							</transition>
+
+							<!-- statistik -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-if="tabName == 'statistik'">
+									<div class="card" v-if="itemDataTanggapanCountStat == 'success' && itemDataTanggapanCount.length > 0">
+										<div class="card-header bg-light">
+											<h6 class="card-title">Tanggapan</h6>
+										</div>
+										<div class="card-body">
+											<div v-for="p in itemDataTanggapanCount" :key="p.id">
+												<h7 class="font-weight-semibold mb-1">{{ p.name }}</h7>
+												<!-- setuju -->
+												<div class="card card-body pt-1 pb-1 mt-1 mb-1">
+													<div class="row">
+														<div class="col-sm-3 mb-1 mt-1">
+															Setuju
+														</div>
+														<div class="col-sm-8 mb-1 mt-1">
+															<div class="progress">
+																<div class="progress-bar-striped bg-primary" :style="{width: Math.round((p.setuju / p.total) * 100) + '%'}">
+																	<span class="text-default font-size-lg">
+																		&nbsp;
+																		{{ Math.round((p.setuju / p.total) * 100) + '%' }}
+																		&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+																	</span>
+																</div>
+															</div>	
+														</div>
+														<div class="col-sm-1 mb-1 mt-1">
+															{{ p.setuju }} / {{ p.total }}
+														</div>
+													</div>
+												</div>
+												<!-- tidak setuju -->
+												<div class="card card-body pt-1 pb-1 mt-1 mb-1">
+													<div class="row">
+														<div class="col-sm-3 mb-1 mt-1">
+															Tidak Setuju
+														</div>
+														<div class="col-sm-8 mb-1 mt-1">
+															<div class="progress">
+																<div class="progress-bar-striped bg-danger" :style="{width: Math.round((p.taksetuju / p.total) * 100) + '%'}">
+																	<span class="text-default font-size-lg">
+																		&nbsp;
+																		{{ Math.round((p.taksetuju / p.total) * 100) + '%' }}
+																		&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+																	</span>
+																</div>
+															</div>	
+														</div>
+														<div class="col-sm-1 mb-1 mt-1">
+															{{ p.taksetuju }} / {{ p.total }}
+														</div>
+													</div>
+												</div>
+												<!-- tak ada -->
+												<div class="card card-body pt-1 pb-1 mt-1 mb-1">
+													<div class="row">
+														<div class="col-sm-3 mb-1 mt-1">
+															Tidak Punya Tanggapan
+														</div>
+														<div class="col-sm-8 mb-1 mt-1">
+															<div class="progress">
+																<div class="progress-bar-striped bg-secondary" :style="{width: Math.round((p.takada / p.total) * 100) + '%'}">
+																	<span class="text-default font-size-lg">
+																		&nbsp;
+																		{{ Math.round((p.takada / p.total) * 100) + '%' }}
+																		&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+																	</span>
+																</div>
+															</div>	
+														</div>
+														<div class="col-sm-1 mb-1 mt-1">
+															{{ p.takada }} / {{ p.total }}
+														</div>
+													</div>
+												</div>
+												<br/>
+											</div>
+										</div>
+									</div>
 									<div class="card">
-										<data-table :items="itemDataPesertaTerdaftarCU" :columnData="columnDataCU" :itemDataStat="itemDataPesertaTerdaftarStat">
+										<div class="card-header bg-light">
+											<h6 class="card-title">CU Terdaftar</h6>
+										</div>
+										<data-table :items="itemDataPesertaTerdaftarCU" :columnData="columnDataCU" :itemDataStat="itemDataPesertaTerdaftarCUStat">
 											<template slot="item-desktop" slot-scope="props">
 												<tr v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
@@ -660,103 +855,12 @@
 											</template>	
 										</data-table>
 									</div>
-								</div>
-							</transition>
 
-							<!-- peserta hadir -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-if="tabName == 'pesertaHadir'">
-									<data-viewer :title="'peserta hadir'" :itemData="itemDataPesertaHadir" :columnData="columnDataPesertaHadir" :itemDataStat="itemDataPesertaHadirStat" :query="queryPesertaHadir" @fetch="fetchPesertaHadir" :excelDownloadUrl="excelDownloadUrl2" :isDasar="'true'" :isNoKolom="'true'" :isDisable="isDisableTable">
-
-										<template slot="item-desktop" slot-scope="props">
-											<tr class="text-nowrap" v-if="props.item">
-												<td>{{ props.index + 1 }}</td>
-												<td v-if="props.item.aktivis && !columnData[1].hide">
-													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
-													<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[2].hide">
-													<check-value :value="props.item.aktivis.name"></check-value>
-												</td>
-												<td v-if="!columnData[3].hide">
-													<check-value :value="props.item.name_nametag"></check-value>
-												</td>
-												<td v-if="!columnData[4].hide">
-													<check-value :value="props.item.name_sertifikat"></check-value>
-												</td>
-												<td v-if="!columnData[5].hide" v-html="$options.filters.date(props.item.datang)">
-												</td>
-												<td v-if="!columnData[6].hide" v-html="$options.filters.date(props.item.pulang)">
-												</td>
-												<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.tanggal_hadir)">
-												</td>
-												<td v-if="!columnData[8].hide">
-													<check-value :value="props.item.keterangan"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[9].hide">
-													<check-value :value="props.item.aktivis.kelamin"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[10].hide">
-													<span v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 1">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.cu.name" v-if="props.item.aktivis.pekerjaan_aktif.cu"></check-value>
-														<span v-else>-</span>
-													</span>
-													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 2">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.aktivis.pekerjaan_aktif.lembaga_lain"></check-value>
-														<span v-else>-</span>
-													</span>
-													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
-														Puskopdit BKCU Kalimantan
-													</span>
-													<span v-else>-</span>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[11].hide" >
-													<span v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)" v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tingkat"></span>
-													<span v-else>-</span>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[12].hide">
-													<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
-													<span v-else>-</span>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[13].hide">
-													<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
-													<span v-else>-</span>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[14].hide">
-													<check-value :value="props.item.aktivis.pendidikan_tertinggi.name" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
-													<span v-else>-</span>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[15].hide" v-html="$options.filters.date(props.item.aktivis.tanggal_lahir)">
-												</td>
-												<td v-if="props.item.aktivis && !columnData[16].hide">
-													<check-value :value="props.item.aktivis.tempat_lahir"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[17].hide">
-													<check-value :value="props.item.aktivis.tinggi"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[18].hide">
-													<check-value :value="props.item.aktivis.agama"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[19].hide">
-													<check-value :value="props.item.aktivis.status"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[20].hide">
-													<check-value :value="props.item.aktivis.email"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[21].hide">
-													<check-value :value="props.item.aktivis.hp"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[22].hide">
-													<check-value :value="props.item.aktivis.kontak"></check-value>
-												</td>
-												<td v-if="props.item.aktivis && !columnData[22].hide" v-html="$options.filters.dateTime(props.item.created_at)">
-												</td>
-											</tr>
-										</template>	
-									</data-viewer>
-									<hr/>
 									<div class="card">
-										<data-table :items="itemDataPesertaHadirCU" :columnData="columnDataCU" :itemDataStat="itemDataPesertaHadirStat">
+										<div class="card-header bg-light">
+											<h6 class="card-title">CU Hadir</h6>
+										</div>
+										<data-table :items="itemDataPesertaHadirCU" :columnData="columnDataCU" :itemDataStat="itemDataPesertaHadirCUStat">
 											<template slot="item-desktop" slot-scope="props">
 												<tr v-if="props.item">
 													<td>{{ props.index + 1 }}</td>
@@ -780,7 +884,6 @@
 							</transition>
 
 						</div>
-					
 					</div>
 
 				</div>
@@ -802,7 +905,7 @@
 				<form-peserta 
 				:mode="formModalMode"
 				:selected="selectedItem"
-				:kegiatan_id="item.id"
+				:item="item"
 				:tingkat="item.sasaran"
 				@tutup="modalTutup" v-if="state == 'tambahPeserta' || state == 'ubahPeserta'"></form-peserta>
 
@@ -834,7 +937,7 @@
 				:mode="formModalMode"
 				:selected="selectedItemTanggapan"
 				:kegiatan_id="item.id"
-				:pilih="item.has_pilih"
+				:pilih="item.pilih"
 				@tutup="modalTutup" v-if="state == 'tambahTanggapan' || state == 'ubahTanggapan'"></form-tanggapan>
 				<form-komentar 
 				:selected="selectedItemTanggapan"
@@ -1359,8 +1462,8 @@
 						title: 'No.',
 					},
 					{
-						title: 'Nama',
-						name: 'user.aktivis.name',
+						title: 'CU',
+						name: 'cu.name',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -1403,8 +1506,6 @@
 					{ title: 'Total' },
 				],
 				itemDataPanitia: [],
-				itemDataPesertaTerdaftarCU: [],
-				itemDataPesertaHadirCU: [],
 				selectedItem: '',
 				selectedItemMateri: '',
 				selectedItemTanggapan: '',
@@ -1428,12 +1529,17 @@
 		watch: {
 			itemStat(value) {
 				if (value === "success") {
-					if(this.item.status == 4){
-						this.checkPanitia();
+					if(this.currentUser.aktivis){
+						if(this.item.status == 4){
+							this.checkPanitia();
+						}
+					}else{
+						this.modalOpen('pesertaTidakTerdaftar');
 					}
 
 					this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
 					this.fetchCountPeserta();
+					this.fetchCountTanggapan();
 
 					var valDalam;
 					for(valDalam of this.item.panitia_dalam){
@@ -1443,56 +1549,6 @@
 					var valLuar;
 					for(valLuar of this.item.panitia_luar){
 						this.itemDataPanitia.push(valLuar);
-					}
-				}
-			},
-			// peserta terdaftar
-			itemDataPesertaTerdaftarStat(value){
-				if(value == 'success'){
-					this.itemDataPesertaTerdaftarCU = Object.values(this.itemDataPesertaTerdaftar.data.reduce(function(accumulator, current){
-						const cu = current.aktivis.pekerjaan_aktif.cu;
-						accumulator[cu.id] = accumulator[cu.id] || {
-							"id": cu.id,
-							"name": cu.name,
-							"total": 0,
-							"perempuan": 0,
-							"lakilaki": 0,
-						}
-
-						accumulator[cu.id].total += 1;
-						if(current.aktivis.kelamin == "LAKI-LAKI"){
-							accumulator[cu.id].lakilaki += 1;
-						}else{
-							accumulator[cu.id].perempuan += 1;
-						}
-						
-						return accumulator;
-					},{}));
-				}
-			},
-			// peserta hadir
-			itemDataPesertaHadirStat(value){
-				if(value == 'success'){
-					if(this.itemDataPesertaHadir){
-						this.itemDataPesertaHadirCU = Object.values(this.itemDataPesertaHadir.data.reduce(function(accumulator, current){
-							const cu = current.aktivis.pekerjaan_aktif.cu;
-							accumulator[cu.id] = accumulator[cu.id] || {
-								"id": cu.id,
-								"name": cu.name,
-								"total": 0,
-								"perempuan": 0,
-								"lakilaki": 0,
-							}
-	
-							accumulator[cu.id].total += 1;
-							if(current.aktivis.kelamin == "LAKI-LAKI"){
-								accumulator[cu.id].lakilaki += 1;
-							}else{
-								accumulator[cu.id].perempuan += 1;
-							}
-							
-							return accumulator;
-						},{}));
 					}
 				}
 			},
@@ -1531,6 +1587,8 @@
 					this.modalTitle = this.updateResponse.message;
 					if (this.state == 'statusPertemuan'){
 						this.fetch();
+					}else if(this.state == 'tambahTanggapan' || this.state == 'hapusTanggapan'){
+						this.fetchCountTanggapan();
 					}
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -1571,6 +1629,16 @@
 				if(this.item.tipe_tempat == 'ONLINE')
 					this.$store.dispatch(this.kelas + '/countPesertaHadir', this.item.id);
 			},
+			fetchCountTanggapan() {
+				if(this.item.tanggapan_cu){
+					this.$store.dispatch(this.kelas + '/countTanggapan', [this.item.id, this.currentUser.id_cu]);
+				}
+			},
+			fetchStatistik(){
+				this.$store.dispatch(this.kelas + '/indexPesertaCountCu', this.item.id);
+				this.$store.dispatch(this.kelas + '/indexPesertaHadirCountCu', this.item.id);
+				this.$store.dispatch(this.kelas + '/indexTanggapanCount', this.item.id);
+			},
 			checkPeserta(){
 				if(this.currentUser.aktivis){
 					this.$store.dispatch(this.kelas + '/checkPeserta', [this.item.id, this.currentUser.id_aktivis]);
@@ -1591,6 +1659,8 @@
 					this.fetchMateri(this.queryMateri);
 				}else if(value == 'tanggapan'){
 					this.fetchTanggapan(this.queryTanggapan);
+				}else if(value == 'statistik'){
+					this.fetchStatistik();
 				}
 			},
 			save() {
@@ -1679,7 +1749,7 @@
 						this.modalColor = '';
 
 						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta yang bisa CU anda daftarkan untuk pertemuan ini telah terpenuhi.';
+						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' + this.item.peserta_max_cu + ' orang.';
 					}else{
 						this.modalState = 'normal1';
 						this.modalColor = 'bg-primary';
@@ -1724,11 +1794,27 @@
 						this.modalSize = 'modal-full';
 					}
 				} else if (state == 'tambahTanggapan') {
-					this.modalState = 'normal3';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Tanggapan';
-					this.formModalMode = 'create';
-					this.modalSize = 'modal-lg';
+					if(this.item.tanggapan_cu){
+						if(this.countTanggapan >= this.item.tanggapan_cu){
+							this.modalState = 'content-tutup';
+							this.modalColor = '';
+	
+							this.modalTitle = 'CU anda tidak bisa menambahkan tanggapan lagi';
+							this.modalContent = 'Maaf anda tidak bisa memberikan tanggapan lagi, karena jumlah tanggapan maksimal per CU adalah ' + this.item.tanggapan_cu + ' kali.';
+						}else{
+							this.modalState = 'normal3';
+							this.modalColor = 'bg-primary';
+							this.modalTitle = 'Tambah Tanggapan';
+							this.formModalMode = 'create';
+							this.modalSize = 'modal-lg';
+						}
+					}else{
+						this.modalState = 'normal3';
+						this.modalColor = 'bg-primary';
+						this.modalTitle = 'Tambah Tanggapan';
+						this.formModalMode = 'create';
+						this.modalSize = 'modal-lg';
+					}
 				} else if (state == 'hapusTanggapan') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
@@ -1830,10 +1916,18 @@
 				itemDataMateriStat: 'dataStatS3',
 				itemDataTanggapan: 'dataS4',
 				itemDataTanggapanStat: 'dataStatS4',
+				itemDataPesertaTerdaftarCU: 'dataS6',
+				itemDataPesertaTerdaftarCUStat: 'dataStatS6',
+				itemDataPesertaHadirCU: 'dataS7',
+				itemDataPesertaHadirCUStat: 'dataStatS7',
+				itemDataTanggapanCount: 'dataS8',
+				itemDataTanggapanCountStat: 'dataStatS8',
 				countPeserta: 'count',
 				countPesertaStat: 'countStat',
 				countPesertaHadir: 'count2',
 				countPesertaHadirStat: 'countStat2',
+				countTanggapan: 'count3',
+				countTanggapanStat: 'countStat3',
 				updateResponse: 'update',
 				updateStat: 'updateStat',
 			}),

@@ -31,7 +31,7 @@ class Kegiatan extends BaseEloquent {
     }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','tanggapan_cu'
     ];
 
     protected $allowedFilters = [
@@ -92,7 +92,7 @@ class Kegiatan extends BaseEloquent {
         return $this->belongsToMany('App\Peserta','kegiatan_peserta')->withTimestamps();
     }
 
-    public function hasPilih(){
+    public function pilih(){
         return $this->hasMany('App\KegiatanPilih','kegiatan_id','id');
     }
 

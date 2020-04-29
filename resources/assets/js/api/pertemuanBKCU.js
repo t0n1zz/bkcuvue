@@ -28,12 +28,24 @@ export default {
     return axios.get('/api/pertemuanBKCU/indexPeserta/' + id , {params: p});
   },
 
+  indexPesertaCountCu: function( id ){
+    return axios.get('/api/pertemuanBKCU/indexPesertaCountCu/' + id);
+  },
+
+  indexPesertaHadirCountCu: function( id ){
+    return axios.get('/api/pertemuanBKCU/indexPesertaHadirCountCu/' + id);
+  },
+
   indexMateri: function( p, id ){
     return axios.get('/api/pertemuanBKCU/indexMateri/' + id , {params: p});
   },
 
   indexTanggapan: function( p, id ){
     return axios.get('/api/pertemuanBKCU/indexTanggapan/' + id , {params: p});
+  },
+
+  indexTanggapanCount: function( id ){
+    return axios.get('/api/pertemuanBKCU/indexTanggapanCount/' + id);
   },
 
   indexKomentar: function( p, id ){
@@ -166,5 +178,9 @@ export default {
 
   countPesertaHadir: function( id ){
     return axios.get('/api/pertemuanBKCU/countPesertaHadir/' + id);
+  },
+
+  countTanggapan: function( id, cu ){
+    return axios.get('/api/pertemuanBKCU/countTanggapan/' + id + '/' + cu);
   },
 }

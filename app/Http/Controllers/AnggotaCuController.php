@@ -400,7 +400,7 @@ class AnggotaCuController extends Controller{
 			$validationCertificate  = Validator::make($request->all(), $rules); 
 			$name = $request->name;
 			
-			$kelas = AnggotaCu::findOrFail($id);
+			$kelas = AnggotaCu::with('anggota_cu_cu')->findOrFail($id);
 
 			if(!empty($request->gambar))
 				$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar,$name);
@@ -665,7 +665,14 @@ class AnggotaCuController extends Controller{
 	{
 		if($request->anggota_cu_cu){
 			$cus = $request->anggota_cu_cu;
-			
+			foreach($kelas->anggota_cu_cu as $aV){ $aTmp1[] = $aV['id']; }
+			foreach($request->anggota_cu_cu as $aV){ $aTmp2[] = $aV['id']; }
+			$diff = array_diff($aTmp1, $aTmp2);
+
+			if($diff){
+				$val = array_values($diff)[0];
+				KegiatanPilih::findOrFail($val)->delete();
+			}
 			foreach($cus as $cu){
 				if(array_key_exists('id', $cu)){
 					$kelasCu = AnggotaCuCu::findOrFail($cu['id']);

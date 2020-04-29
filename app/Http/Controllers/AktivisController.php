@@ -40,8 +40,7 @@ class AktivisController extends Controller{
 
 			if($status == 'aktif'){
 				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])
-					->where('status',1);
+					$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])->where('status',1);
 				})->advancedFilter();
 			}else{
 				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){

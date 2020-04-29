@@ -116,7 +116,7 @@
 								if(Token.isValid(res.access_token)){
 									this.loadingState = 'success';
 									this.$store.dispatch('auth/loginSuccess', res);
-
+									
 									let self = this;
 									setTimeout(function(){
 										if(self.$route.name == 'loginRedirect'){
@@ -146,6 +146,16 @@
 						this.submited = true;
 					}
 				});
+			},
+			initialLoad() {
+				var query = {
+					order_column: "mulai",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 6,
+					page: 1
+				};
+				this.$store.dispatch('pertemuanBKCU/indexJalanHeader', query);
 			},
 		},
 		computed: {
