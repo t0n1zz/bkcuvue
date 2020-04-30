@@ -31,7 +31,7 @@ class Kegiatan extends BaseEloquent {
     }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','tanggapan_cu'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user'
     ];
 
     protected $allowedFilters = [
@@ -100,8 +100,8 @@ class Kegiatan extends BaseEloquent {
         return $this->hasMany('App\KegiatanPeserta','kegiatan_id','id');
     }
 
-    public function hasTanggapan(){
-        return $this->hasMany('App\KegiatanTanggapan','kegiatan_id','id');
+    public function hasKeputusan(){
+        return $this->hasMany('App\KegiatanKeputusan','kegiatan_id','id');
     }
 
     public function hasMateri(){

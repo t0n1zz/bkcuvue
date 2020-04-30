@@ -666,7 +666,11 @@ class AnggotaCuController extends Controller{
 		if($request->anggota_cu_cu){
 			$cus = $request->anggota_cu_cu;
 			foreach($kelas->anggota_cu_cu as $aV){ $aTmp1[] = $aV['id']; }
-			foreach($request->anggota_cu_cu as $aV){ $aTmp2[] = $aV['id']; }
+			foreach($request->anggota_cu_cu as $aV){ 
+				if(array_key_exists('id', $aV)){
+					$aTmp2[] = $aV['id']; 
+				}
+			}
 			$diff = array_diff($aTmp1, $aTmp2);
 
 			if($diff){

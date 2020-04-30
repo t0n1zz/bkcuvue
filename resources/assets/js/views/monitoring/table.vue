@@ -181,7 +181,7 @@
 						filter: false,
 					},
 					{
-						title: 'Tanggapan',
+						title: 'Keputusan',
 						name: 'monitoring_pencapaian_count',
 						sort: false,
 						hide: false,

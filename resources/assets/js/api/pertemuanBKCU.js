@@ -40,16 +40,28 @@ export default {
     return axios.get('/api/pertemuanBKCU/indexMateri/' + id , {params: p});
   },
 
-  indexTanggapan: function( p, id ){
-    return axios.get('/api/pertemuanBKCU/indexTanggapan/' + id , {params: p});
+  indexKeputusan: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexKeputusan/' + id , {params: p});
   },
 
-  indexTanggapanCount: function( id ){
-    return axios.get('/api/pertemuanBKCU/indexTanggapanCount/' + id);
+  indexKeputusanCount: function( id ){
+    return axios.get('/api/pertemuanBKCU/indexKeputusanCount/' + id);
   },
 
-  indexKomentar: function( p, id ){
-    return axios.get('/api/pertemuanBKCU/indexKomentar/' + id , {params: p});
+  indexKeputusanKomentar: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexKeputusanKomentar/' + id , {params: p});
+  },
+
+  indexPertanyaan: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexPertanyaan/' + id , {params: p});
+  },
+
+  indexPertanyaanCount: function( id ){
+    return axios.get('/api/pertemuanBKCU/indexPertanyaanCount/' + id);
+  },
+
+  indexPertanyaanKomentar: function( p, id ){
+    return axios.get('/api/pertemuanBKCU/indexPertanyaanKomentar/' + id , {params: p});
   },
 
   indexPesertaHadir: function( p, id ){
@@ -104,12 +116,20 @@ export default {
     return axios.post('/api/pertemuanBKCU/storeMateri/' + id, form);
   },
 
-  storeTanggapan: function ( id, form ){
-    return axios.post('/api/pertemuanBKCU/storeTanggapan/' + id, form);
+  storeKeputusan: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storeKeputusan/' + id, form);
   },
 
-  storeKomentar: function ( id, form ){
-    return axios.post('/api/pertemuanBKCU/storeKomentar/' + id, form);
+  storeKeputusanKomentar: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storeKeputusanKomentar/' + id, form);
+  },
+
+  storePertanyaan: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storePertanyaan/' + id, form);
+  },
+
+  storePertanyaanKomentar: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/storePertanyaanKomentar/' + id, form);
   },
 
   edit: function( id ){
@@ -128,12 +148,20 @@ export default {
     return axios.post('/api/pertemuanBKCU/updateMateri/' + id, form);
   },
 
-  updateTanggapan: function ( id, form ){
-    return axios.post('/api/pertemuanBKCU/updateTanggapan/' + id, form);
+  updateKeputusan: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updateKeputusan/' + id, form);
   },
 
-  updateKomentar: function ( id, form ){
-    return axios.post('/api/pertemuanBKCU/updateKomentar/' + id, form);
+  updateKeputusanKomentar: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updateKeputusanKomentar/' + id, form);
+  },
+
+  updatePertanyaan: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updatePertanyaan/' + id, form);
+  },
+
+  updatePertanyaanKomentar: function ( id, form ){
+    return axios.post('/api/pertemuanBKCU/updatePertanyaanKomentar/' + id, form);
   },
 
   updatePesertaHadir: function ( kegiatan_id, aktivis_id ){
@@ -160,12 +188,20 @@ export default {
     return axios.delete('/api/pertemuanBKCU/destroyMateri/' + id);
   },
 
-  destroyTanggapan: function( id ){
-    return axios.delete('/api/pertemuanBKCU/destroyTanggapan/' + id);
+  destroyKeputusan: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyKeputusan/' + id);
   },
 
-  destroyKomentar: function( id ){
-    return axios.delete('/api/pertemuanBKCU/destroyKomentar/' + id);
+  destroyKeputusanKomentar: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyKeputusanKomentar/' + id);
+  },
+
+  destroyPertanyaan: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyPertanyaan/' + id);
+  },
+
+  destroyPertanyaanKomentar: function( id ){
+    return axios.delete('/api/pertemuanBKCU/destroyPertanyaanKomentar/' + id);
   },
 
   batalPeserta: function( id , form){
@@ -180,7 +216,11 @@ export default {
     return axios.get('/api/pertemuanBKCU/countPesertaHadir/' + id);
   },
 
-  countTanggapan: function( id, cu ){
-    return axios.get('/api/pertemuanBKCU/countTanggapan/' + id + '/' + cu);
+  countKeputusan: function( id, cu, user ){
+    return axios.get('/api/pertemuanBKCU/countKeputusan/' + id + '/' + cu + '/' + user);
+  },
+
+  countPertanyaan: function( id, cu, user ){
+    return axios.get('/api/pertemuanBKCU/countPertanyaan/' + id + '/' + cu + '/' + user);
   },
 }

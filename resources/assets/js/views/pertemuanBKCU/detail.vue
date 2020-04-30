@@ -70,9 +70,14 @@
 										<i class="icon-people"></i> Daftar Peserta
 									</button>
 
-									<!-- tanggapan -->
-									<button class="btn bg-success btn-block mb-2" @click.prevent="modalOpen('tambahTanggapan')" v-if="item.status == 4 && currentUser.id_cu != 0">
-										<i class="icon-bubble2"></i> Beri Tanggapan
+									<!-- keputusan -->
+									<button class="btn bg-success btn-block mb-2" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0">
+										<i class="icon-hammer"></i> Beri Keputusan
+									</button>
+
+									<!-- keputusan -->
+									<button class="btn bg-info btn-block mb-2" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0">
+										<i class="icon-question7"></i> Ajukan Pertanyaan
 									</button>
 
 								</div>
@@ -127,18 +132,22 @@
 											<td class="font-weight-semibold">Peserta Max Per CU:</td>
 											<td class="text-right">{{item.peserta_max_cu}} orang</td>
 										</tr>
-										<tr>
-											<td class="font-weight-semibold" >Peserta Terdaftar:</td>
-											<td class="text-right">{{ countPeserta }} orang</td>
+										<tr v-if="item.keputusan_cu || item.pertanyaan_cu || item.keputusan_user || item.pertanyaan_user"><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
+										<tr v-if="item.keputusan_cu">
+											<td class="font-weight-semibold">Keputusan Max Per CU:</td>
+											<td class="text-right">{{ item.keputusan_cu }} kali</td>
 										</tr>
-										<tr v-if="item.tipe_tempat == 'ONLINE'">
-											<td class="font-weight-semibold">Peserta Hadir:</td>
-											<td class="text-right">{{ countPesertaHadir }} orang</td>
+										<tr v-if="item.keputusan_user">
+											<td class="font-weight-semibold">Keputusan Max Per Peserta:</td>
+											<td class="text-right">{{ item.keputusan_user }} kali</td>
 										</tr>
-										<tr v-if="item.tanggapan_cu"><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
-										<tr v-if="item.tanggapan_cu">
-											<td class="font-weight-semibold">Tanggapan Max:</td>
-											<td class="text-right">{{ item.tanggapan_cu }} kali</td>
+										<tr v-if="item.pertanyaan_cu">
+											<td class="font-weight-semibold">Pertanyaan Max Per CU:</td>
+											<td class="text-right">{{ item.pertanyaan_cu }} kali</td>
+										</tr>
+										<tr v-if="item.pertanyaan_user">
+											<td class="font-weight-semibold">Pertanyaan Max Per Peserta:</td>
+											<td class="text-right">{{ item.pertanyaan_user }} kali</td>
 										</tr>
 									</tbody>
 								</table>
@@ -255,14 +264,17 @@
 												Umum</a></li>
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'materi'}" @click.prevent="changeTab('materi')"><i class="icon-files-empty mr-2"></i>
 												Materi</a></li>	
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'tanggapan'}" @click.prevent="changeTab('tanggapan')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-bubble2 mr-2"></i>
-												Tanggapan</a></li>	
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'keputusan'}" @click.prevent="changeTab('keputusan')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-hammer mr-2"></i>
+												Keputusan <span class="badge badge-success ml-2" v-if="countKeputusanStat == 'success' && countKeputusan[0] > 0">{{ countKeputusan[0] }}</span></a></li>	
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pertanyaan'}" @click.prevent="changeTab('pertanyaan')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-question7 mr-2"></i>
+												Pertanyaan <span class="badge badge-info ml-2" v-if="countPertanyaanStat == 'success' && countPertanyaan[0] > 0">{{ countPertanyaan[0] }}</span></a></li>			
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaTerdaftar'}" @click.prevent="changeTab('pesertaTerdaftar')"><i class="icon-people mr-2"></i>
 											<span v-if="item.tipe_tempat == 'ONLINE'">Terdaftar</span>
 											<span v-else>Peserta</span>
+											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta> 0">{{ countPeserta }}</span>
 										</a></li>
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-accessibility mr-2"></i>
-												Hadir</a></li>	
+												Hadir <span class="badge badge-dark ml-2" v-if="countPesertaHadirStat == 'success' && countPesertaHadir> 0">{{ countPesertaHadir }}</span></a></li>	
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'statistik'}" @click.prevent="changeTab('statistik')" v-if="item.tipe_tempat == 'ONLINE'"><i class="icon-equalizer mr-2"></i>
 												Statistik</a></li>								
 									</ul>
@@ -398,7 +410,7 @@
 															</div>
 															<div class="col-md-6 text-right">
 																<div class="d-none d-sm-block">
-																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button>
+																	<!-- <button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button> -->
 
 																	<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)"><i class="icon-file-download"></i> Unduh</button>
 
@@ -409,7 +421,7 @@
 
 																<div class="d-block d-sm-none">
 																	<hr/>
-																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button>
+																	<!-- <button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('lihatMateri',true,props.item)"><i class="icon-file-eye"></i> Lihat</button> -->
 
 																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)"><i class="icon-file-download"></i> Unduh</button>
 
@@ -428,24 +440,24 @@
 								</div>
 							</transition>	
 
-							<!-- tanggapan -->
+							<!-- keputusan -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'tanggapan'">
-									<!-- tanggapan table -->
-									<data-viewer :title="'Tanggapan'" :itemData="itemDataTanggapan" :columnData="columnDataTanggapan" :itemDataStat="itemDataTanggapanStat" :query="queryTanggapan" @fetch="fetchTanggapan"  :isNoExcel="'true'" :isDasar="'true'" :isDisable="isDisableTable" :dataview="'grid'">
+								<div v-show="tabName == 'keputusan'">
+									<!-- keputusan table -->
+									<data-viewer :title="'Keputusan'" :itemData="itemDataKeputusan" :columnData="columnDataKeputusan" :itemDataStat="itemDataKeputusanStat" :query="queryKeputusan" @fetch="fetchKeputusan"  :isNoExcel="'true'" :isDasar="'true'" :isDisable="isDisableTable" :dataview="'grid'">
 
 										<!-- button desktop -->
 										<template slot="button-desktop" v-if="item.status == 4">
-											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahTanggapan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
 										</template>	
 
 										<template slot="button-mobile" v-if="item.status == 4">
-											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahTanggapan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
 										</template>	
 
 										<template slot="item-mobile" slot-scope="props">
 											<div class="col-md-12">
-												<div class="card">
+												<div class="card" :class="{'border-success' : props.item.id_cu == currentUser.id_cu}">
 													<div class="card-header bg-light header-elements-inline">
 														<h6 class="card-title">
 															<img :src="'/images/aktivis/' + props.item.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="props.item.user.aktivis.gambar">
@@ -485,27 +497,102 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="d-none d-sm-block">
-																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('komentarTanggapan',true,props.item)"><i class="icon-reply"></i> Komentar 
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('keputusanKomentar',true,props.item)"><i class="icon-reply"></i> Komentar 
 																	<span class="badge badge-success" v-if="props.item.haskomentar_count > 0">{{ props.item.haskomentar_count }}</span></button>
 																</div>
 
 																<div class="d-block d-sm-none">
-																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('komentarTanggapan',true,props.item)"><i class="icon-reply"></i> Komentar 
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('keputusanKomentar',true,props.item)"><i class="icon-reply"></i> Komentar 
 																	<span class="badge badge-success" v-if="props.item.haskomentar_count > 0">{{ props.item.haskomentar_count }}</span></button>
 																</div>
 															</div>
 															<div class="col-md-6 text-right">
+																<div class="d-none d-sm-block" v-if="props.item.id_cu == currentUser.id_cu">
+
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('ubahKeputusan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('hapusKeputusan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																</div>
+
+																<div class="d-block d-sm-none" v-if="props.item.id_cu == currentUser.id_cu">
+																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahKeputusan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('hapusKeputusan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																</div>	
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</template>	
+									</data-viewer>
+
+								</div>
+							</transition>		
+
+							<!-- pertanyaan -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'pertanyaan'">
+									<!-- pertanyaan table -->
+									<data-viewer :title="'Pertanyaan'" :itemData="itemDataPertanyaan" :columnData="columnDataPertanyaan" :itemDataStat="itemDataPertanyaanStat" :query="queryPertanyaan" @fetch="fetchPertanyaan"  :isNoExcel="'true'" :isDasar="'true'" :isDisable="isDisableTable" :dataview="'grid'">
+
+										<!-- button desktop -->
+										<template slot="button-desktop" v-if="item.status == 4">
+											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+										</template>	
+
+										<template slot="button-mobile" v-if="item.status == 4">
+											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+										</template>	
+
+										<template slot="item-mobile" slot-scope="props">
+											<div class="col-md-12">
+												<div class="card" :class="{'border-info' : props.item.id_cu == currentUser.id_cu}">
+													<div class="card-header bg-light header-elements-inline">
+														<h6 class="card-title">
+															<img :src="'/images/aktivis/' + props.item.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="props.item.user.aktivis.gambar">
+															<img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
+															<check-value :value="props.item.user.aktivis.name" v-if="props.item.user"></check-value>
+															<span v-else>-</span>
+															|
+															<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+															<span v-else>-</span>
+														</h6>
+														<div class="header-elements">
+															<span class="badge badge-secondary" v-html="$options.filters.dateTime(props.item.created_at)">
+															</span>
+														</div>
+													</div>
+													<div class="card-body" v-if="props.item.keterangan">
+														<b>Pertanyaan </b>
+														<br/>
+														<div v-html="props.item.keterangan"></div>
+													</div>
+													<div class="card-footer">
+														<div class="row">
+															<div class="col-md-6">
 																<div class="d-none d-sm-block">
-
-																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('ubahTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
-
-																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('hapusTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('pertanyaanKomentar',true,props.item)"><i class="icon-reply"></i> Komentar 
+																	<span class="badge badge-success" v-if="props.item.haskomentar_count > 0">{{ props.item.haskomentar_count }}</span></button>
 																</div>
 
 																<div class="d-block d-sm-none">
-																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('pertanyaanKomentar',true,props.item)"><i class="icon-reply"></i> Komentar 
+																	<span class="badge badge-success" v-if="props.item.haskomentar_count > 0">{{ props.item.haskomentar_count }}</span></button>
+																</div>
+															</div>
+															<div class="col-md-6 text-right">
+																<div class="d-none d-sm-block" v-if="props.item.id_cu == currentUser.id_cu">
 
-																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('hapusTanggapan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPertanyaan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+
+																	<button type="button" class="btn btn-light mb-1"  @click.prevent="modalOpen('hapusPertanyaan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
+																</div>
+
+																<div class="d-block d-sm-none" v-if="props.item.id_cu == currentUser.id_cu">
+																	<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahPertanyaan',true,props.item)" v-if="item.status == 4"><i class="icon-pencil5"></i> Ubah </button>
+
+																	<button type="button" class="btn btn-light btn-block mb-1"  @click.prevent="modalOpen('hapusPertanyaan',true,props.item)" v-if="item.status == 4"><i class="icon-bin2"></i> Hapus </button>
 																</div>	
 															</div>
 														</div>
@@ -573,8 +660,8 @@
 												<td>
 													<span v-html="$options.filters.statusPeserta(props.item.status)"></span>
 												</td>
-												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[2].hide">
-													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
+												<td v-if="!columnDataPesertaTerdaftar[2].hide">
+													<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis && props.item.aktivis.gambar">
 													<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[3].hide">
@@ -754,12 +841,12 @@
 							<!-- statistik -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-if="tabName == 'statistik'">
-									<div class="card" v-if="itemDataTanggapanCountStat == 'success' && itemDataTanggapanCount.length > 0">
+									<div class="card" v-if="itemDataKeputusanCountStat == 'success' && itemDataKeputusanCount.length > 0">
 										<div class="card-header bg-light">
-											<h6 class="card-title">Tanggapan</h6>
+											<h6 class="card-title">Keputusan</h6>
 										</div>
 										<div class="card-body">
-											<div v-for="p in itemDataTanggapanCount" :key="p.id">
+											<div v-for="p in itemDataKeputusanCount" :key="p.id">
 												<h7 class="font-weight-semibold mb-1">{{ p.name }}</h7>
 												<!-- setuju -->
 												<div class="card card-body pt-1 pb-1 mt-1 mb-1">
@@ -809,7 +896,7 @@
 												<div class="card card-body pt-1 pb-1 mt-1 mb-1">
 													<div class="row">
 														<div class="col-sm-3 mb-1 mt-1">
-															Tidak Punya Tanggapan
+															Tidak Punya Keputusan
 														</div>
 														<div class="col-sm-8 mb-1 mt-1">
 															<div class="progress">
@@ -920,10 +1007,10 @@
 				:selected="selectedItemMateri"
 				:kegiatan_id="item.id"
 				@tutup="modalTutup" v-if="state == 'tambahMateri' || state == 'ubahMateri'"></form-materi>
-
+<!-- 
 				<form-pdf 
 				:selected="selectedItemMateri"
-				@tutup="modalTutup" v-else-if="state == 'lihatMateri'"></form-pdf>
+				@tutup="modalTutup" v-else-if="state == 'lihatMateri'"></form-pdf> -->
 
 				<form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
 				@tutup="modalTutup" v-else-if="state == 'statusPertemuan'"></form-status>
@@ -931,18 +1018,29 @@
 				<form-hadir :kelas="kelas" :item="item" :state="state" v-else-if="state == 'pesertaTerdaftar' || state == 'panitiaTerdaftar'"></form-hadir>
 			</template>
 
-			<!-- tanggapan -->
+			<!-- keputusan -->
 			<template slot="modal-body3">
-				<form-tanggapan 
+				<form-keputusan 
 				:mode="formModalMode"
-				:selected="selectedItemTanggapan"
+				:selected="selectedItemKeputusan"
 				:kegiatan_id="item.id"
 				:pilih="item.pilih"
-				@tutup="modalTutup" v-if="state == 'tambahTanggapan' || state == 'ubahTanggapan'"></form-tanggapan>
-				<form-komentar 
-				:selected="selectedItemTanggapan"
+				@tutup="modalTutup" v-if="state == 'tambahKeputusan' || state == 'ubahKeputusan'"></form-keputusan>
+				<form-keputusan-komentar 
+				:selected="selectedItemKeputusan"
 				:kegiatan_id="item.id"
-				@tutup="modalTutup" v-else-if="state == 'komentarTanggapan'"></form-komentar>
+				@tutup="modalTutup" v-else-if="state == 'keputusanKomentar'"></form-keputusan-komentar>
+
+				<form-pertanyaan 
+				:mode="formModalMode"
+				:selected="selectedItemPertanyaan"
+				:kegiatan_id="item.id"
+				:pilih="item.pilih"
+				@tutup="modalTutup" v-if="state == 'tambahPertanyaan' || state == 'ubahPertanyaan'"></form-pertanyaan>
+				<form-pertanyaan-komentar 
+				:selected="selectedItemPertanyaan"
+				:kegiatan_id="item.id"
+				@tutup="modalTutup" v-else-if="state == 'pertanyaanKomentar'"></form-pertanyaan-komentar>
 			</template>
 
 		</app-modal>
@@ -970,9 +1068,11 @@
 	import formStatus from "./formStatus.vue";
 	import formHadir from "./formHadir.vue";
 	import formMateri from "./formMateri.vue";
-	import formTanggapan from "./formTanggapan.vue";
-	import formKomentar from "./formKomentar.vue";
-	import formPdf from "./formPdf.vue";
+	import formKeputusan from "./formKeputusan.vue";
+	import formKeputusanKomentar from "./formKeputusanKomentar.vue";
+	import formPertanyaan from "./formPertanyaan.vue";
+	import formPertanyaanKomentar from "./formPertanyaanKomentar.vue";
+	// import formPdf from "./formPdf.vue";
 	import FileSaver from 'file-saver';
 	
 	export default {
@@ -989,9 +1089,11 @@
 			formStatus,
 			formHadir,
 			formMateri,
-			formPdf,
-			formTanggapan,
-			formKomentar,
+			// formPdf,
+			formKeputusan,
+			formKeputusanKomentar,
+			formPertanyaan,
+			formPertanyaanKomentar,
 		},
 		data() {
 			return {
@@ -1061,7 +1163,14 @@
 					limit: 10,
 					page: 1
 				},
-				queryTanggapan: {
+				queryKeputusan: {
+					order_column: "created_at",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 10,
+					page: 1
+				},
+				queryPertanyaan: {
 					order_column: "created_at",
 					order_direction: "asc",
 					filter_match: "and",
@@ -1459,7 +1568,30 @@
 						filter: true,
 					},
 				],
-				columnDataTanggapan: [
+				columnDataKeputusan: [
+					{
+						title: 'No.',
+					},
+					{
+						title: 'CU',
+						name: 'cu.name',
+						tipe: 'string',
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true
+					},
+					{
+						title: 'Tgl. / Waktu Buat',
+						name: 'created_at',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+				],
+				columnDataPertanyaan: [
 					{
 						title: 'No.',
 					},
@@ -1510,7 +1642,8 @@
 				itemDataPanitia: [],
 				selectedItem: '',
 				selectedItemMateri: '',
-				selectedItemTanggapan: '',
+				selectedItemKeputusan: '',
+				selectedItemPertanyaan: '',
 				formModalMode: '',
 				itemDataPanitia: [],
 				itemDataPanitiaStat: 'success',
@@ -1541,7 +1674,8 @@
 
 					this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
 					this.fetchCountPeserta();
-					this.fetchCountTanggapan();
+					this.fetchCountKeputusan();
+					this.fetchCountPertanyaan();
 
 					var valDalam;
 					for(valDalam of this.item.panitia_dalam){
@@ -1589,8 +1723,10 @@
 					this.modalTitle = this.updateResponse.message;
 					if (this.state == 'statusPertemuan'){
 						this.fetch();
-					}else if(this.state == 'tambahTanggapan' || this.state == 'hapusTanggapan'){
-						this.fetchCountTanggapan();
+					}else if(this.state == 'tambahKeputusan' || this.state == 'hapusKeputusan'){
+						this.fetchCountKeputusan();
+					}else if(this.state == 'tambahPertanyaan' || this.state == 'hapusPertanyaan'){
+						this.fetchCountPertanyaan();
 					}
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -1623,23 +1759,32 @@
 			fetchMateri(params) {
 				this.$store.dispatch(this.kelas + '/indexMateri', [params,this.item.id]);
 			},
-			fetchTanggapan(params) {
-				this.$store.dispatch(this.kelas + '/indexTanggapan', [params,this.item.id]);
+			fetchKeputusan(params) {
+				this.$store.dispatch(this.kelas + '/indexKeputusan', [params,this.item.id]);
+			},
+			fetchPertanyaan(params) {
+				this.$store.dispatch(this.kelas + '/indexPertanyaan', [params,this.item.id]);
 			},
 			fetchCountPeserta() {
 				this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
 				if(this.item.tipe_tempat == 'ONLINE')
 					this.$store.dispatch(this.kelas + '/countPesertaHadir', this.item.id);
 			},
-			fetchCountTanggapan() {
-				if(this.item.tanggapan_cu){
-					this.$store.dispatch(this.kelas + '/countTanggapan', [this.item.id, this.currentUser.id_cu]);
+			fetchCountKeputusan() {
+				if(this.item.keputusan_cu){
+					this.$store.dispatch(this.kelas + '/countKeputusan', [this.item.id, this.currentUser.id_cu, this.currentUser.id]);
+				}
+			},
+			fetchCountPertanyaan() {
+				if(this.item.pertanyaan_cu){
+					this.$store.dispatch(this.kelas + '/countPertanyaan', [this.item.id, this.currentUser.id_cu, this.currentUser.id]);
 				}
 			},
 			fetchStatistik(){
 				this.$store.dispatch(this.kelas + '/indexPesertaCountCu', this.item.id);
 				this.$store.dispatch(this.kelas + '/indexPesertaHadirCountCu', this.item.id);
-				this.$store.dispatch(this.kelas + '/indexTanggapanCount', this.item.id);
+				this.$store.dispatch(this.kelas + '/indexKeputusanCount', this.item.id);
+				this.$store.dispatch(this.kelas + '/indexPertanyaanCount', this.item.id);
 			},
 			checkPeserta(){
 				if(this.currentUser.aktivis){
@@ -1659,8 +1804,10 @@
 					this.fetchPesertaHadir(this.queryPesertaHadir);
 				}else if(value == 'materi'){
 					this.fetchMateri(this.queryMateri);
-				}else if(value == 'tanggapan'){
-					this.fetchTanggapan(this.queryTanggapan);
+				}else if(value == 'keputusan'){
+					this.fetchKeputusan(this.queryKeputusan);
+				}else if(value == 'pertanyaan'){
+					this.fetchPertanyaan(this.queryPertanyaan);
 				}else if(value == 'statistik'){
 					this.fetchStatistik();
 				}
@@ -1702,8 +1849,10 @@
 				if (isMobile) {
 					if(this.state == 'ubahMateri' || this.state == 'hapusMateri' || this.state == 'lihatMateri'){
 						this.selectedItemMateri = itemMobile;
-					}else{
-						this.selectedItemTanggapan = itemMobile;
+					}else if(this.state == 'ubahKeputusan' || this.state == 'hapusKeputusan' || this.state == 'keputusanKomentar'){
+						this.selectedItemKeputusan = itemMobile;
+					}{
+						this.selectedItemPertanyaan = itemMobile;
 					}
 				}
 
@@ -1796,43 +1945,93 @@
 						this.modalColor = 'bg-primary';
 						this.modalSize = 'modal-lg';
 					}
-				} else if (state == 'tambahTanggapan') {
-					if(this.item.tanggapan_cu){
-						if(this.countTanggapan >= this.item.tanggapan_cu){
+				} else if (state == 'tambahKeputusan') {
+					if(this.item.keputusan_cu){
+						if(this.countKeputusan[0] >= this.item.keputusan_cu){
 							this.modalState = 'content-tutup';
 							this.modalColor = '';
 	
-							this.modalTitle = 'CU anda tidak bisa menambahkan tanggapan lagi';
-							this.modalContent = 'Maaf anda tidak bisa memberikan tanggapan lagi, karena jumlah tanggapan maksimal per CU adalah ' + this.item.tanggapan_cu + ' kali.';
+							this.modalTitle = 'CU anda tidak bisa menambahkan keputusan lagi';
+							this.modalContent = 'Maaf anda tidak bisa memberikan keputusan lagi, karena jumlah keputusan maksimal per CU adalah ' + this.item.keputusan_cu + ' kali.';
+						}else if(this.countKeputusan[1] >= this.item.keputusan_user){
+							this.modalState = 'content-tutup';
+							this.modalColor = '';
+	
+							this.modalTitle = 'Anda tidak bisa menambahkan keputusan lagi';
+							this.modalContent = 'Maaf anda tidak bisa memberikan keputusan lagi, karena jumlah keputusan maksimal per peserta adalah ' + this.item.keputusan_user + ' kali.';
 						}else{
 							this.modalState = 'normal3';
 							this.modalColor = 'bg-primary';
-							this.modalTitle = 'Tambah Tanggapan';
+							this.modalTitle = 'Tambah Keputusan';
 							this.formModalMode = 'create';
 							this.modalSize = 'modal-lg';
 						}
 					}else{
 						this.modalState = 'normal3';
 						this.modalColor = 'bg-primary';
-						this.modalTitle = 'Tambah Tanggapan';
+						this.modalTitle = 'Tambah Keputusan';
 						this.formModalMode = 'create';
 						this.modalSize = 'modal-lg';
 					}
-				} else if (state == 'hapusTanggapan') {
+				} else if (state == 'hapusKeputusan') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
-					this.modalTitle = 'Hapus Tanggapan ini ?';
+					this.modalTitle = 'Hapus Keputusan ini ?';
 					this.modalButton = 'Iya, Hapus';
-				} else if (state == 'ubahTanggapan') {
+				} else if (state == 'ubahKeputusan') {
 					this.modalState = 'normal3';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Tanggapan';
+					this.modalTitle = 'Ubah Keputusan';
 					this.formModalMode = 'edit';
 					this.modalSize = 'modal-lg';
-				} else if (state == 'komentarTanggapan') {
+				} else if (state == 'keputusanKomentar') {
 					this.modalState = 'normal3';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Komentar Tanggapan';
+					this.modalTitle = 'Komentar Keputusan';
+					this.modalSize = 'modal-lg';
+				} else if (state == 'tambahPertanyaan') {
+					if(this.item.pertanyaan_cu){
+						if(this.countPertanyaan[0] >= this.item.pertanyaan_cu){
+							this.modalState = 'content-tutup';
+							this.modalColor = '';
+	
+							this.modalTitle = 'CU anda tidak bisa menambahkan pertanyaan lagi';
+							this.modalContent = 'Maaf anda tidak bisa memberikan pertanyaan lagi, karena jumlah pertanyaan maksimal per CU adalah ' + this.item.pertanyaan_cu + ' kali.';
+						}else if(this.countPertanyaan[1] >= this.item.pertanyaan_user){
+							this.modalState = 'content-tutup';
+							this.modalColor = '';
+	
+							this.modalTitle = 'Anda tidak bisa menambahkan pertanyaan lagi';
+							this.modalContent = 'Maaf anda tidak bisa memberikan pertanyaan lagi, karena jumlah pertanyaan maksimal per peserta adalah ' + this.item.pertanyaan_user + ' kali.';
+						}else{
+							this.modalState = 'normal3';
+							this.modalColor = 'bg-primary';
+							this.modalTitle = 'Tambah Pertanyaan';
+							this.formModalMode = 'create';
+							this.modalSize = 'modal-lg';
+						}
+					}else{
+						this.modalState = 'normal3';
+						this.modalColor = 'bg-primary';
+						this.modalTitle = 'Tambah Pertanyaan';
+						this.formModalMode = 'create';
+						this.modalSize = 'modal-lg';
+					}
+				} else if (state == 'hapusPertanyaan') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Pertanyaan ini ?';
+					this.modalButton = 'Iya, Hapus';
+				} else if (state == 'ubahPertanyaan') {
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah Pertanyaan';
+					this.formModalMode = 'edit';
+					this.modalSize = 'modal-lg';
+				} else if (state == 'pertanyaanKomentar') {
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Komentar Pertanyaan';
 					this.modalSize = 'modal-lg';
 				}
 			},
@@ -1852,8 +2051,10 @@
 					this.$store.dispatch(this.kelas + '/destroyPeserta', this.selectedItem.id);
 				}else if (this.state == 'hapusMateri') {
 					this.$store.dispatch(this.kelas + '/destroyMateri', this.selectedItemMateri.id);
-				}else if (this.state == 'hapusTanggapan') {
-					this.$store.dispatch(this.kelas + '/destroyTanggapan', this.selectedItemTanggapan.id);
+				}else if (this.state == 'hapusKeputusan') {
+					this.$store.dispatch(this.kelas + '/destroyKeputusan', this.selectedItemKeputusan.id);
+				}else if (this.state == 'hapusPertanyaan') {
+					this.$store.dispatch(this.kelas + '/destroyPertanyaan', this.selectedItemPertanyaan.id);
 				}
 			},
 			modalTutup() {
@@ -1862,8 +2063,10 @@
 					this.fetchCountPeserta();
 				}else if(this.state == 'tambahMateri' || this.state == 'ubahMateri' || this.state == 'hapusMateri'){
 					this.changeTab('materi');
-				}else if(this.state == 'tambahTanggapan' || this.state == 'ubahTanggapan' || this.state == 'hapusTanggapan'){
-					this.changeTab('tanggapan');
+				}else if(this.state == 'tambahKeputusan' || this.state == 'ubahKeputusan' || this.state == 'hapusKeputusan' || this.state == 'keputusanKomentar'){
+					this.changeTab('keputusan');
+				}else if(this.state == 'tambahPertanyaan' || this.state == 'ubahPertanyaan' || this.state == 'hapusPertanyaan' || this.state == 'pertanyaanKomentar'){
+					this.changeTab('pertanyaan');	
 				}else if(this.state == 'hapusPertemuan'){
 					this.back();
 				}else if(this.state == 'pesertaTidakTerdaftar'){
@@ -1917,20 +2120,28 @@
 				itemDataPesertaHadirStat: 'dataStatS2',
 				itemDataMateri: 'dataS3',
 				itemDataMateriStat: 'dataStatS3',
-				itemDataTanggapan: 'dataS4',
-				itemDataTanggapanStat: 'dataStatS4',
+				itemDataKeputusan: 'dataS4',
+				itemDataKeputusanStat: 'dataStatS4',
+				itemDataKeputusan: 'dataS4',
+				itemDataKeputusanStat: 'dataStatS4',
+				itemDataPertanyaan: 'dataS9',
+				itemDataPertanyaanStat: 'dataStatS9',
 				itemDataPesertaTerdaftarCU: 'dataS6',
 				itemDataPesertaTerdaftarCUStat: 'dataStatS6',
 				itemDataPesertaHadirCU: 'dataS7',
 				itemDataPesertaHadirCUStat: 'dataStatS7',
-				itemDataTanggapanCount: 'dataS8',
-				itemDataTanggapanCountStat: 'dataStatS8',
+				itemDataKeputusanCount: 'dataS8',
+				itemDataKeputusanCountStat: 'dataStatS8',
+				itemDataPertanyaanCount: 'dataS10',
+				itemDataPertanyaanCountStat: 'dataStatS10',
 				countPeserta: 'count',
 				countPesertaStat: 'countStat',
 				countPesertaHadir: 'count2',
 				countPesertaHadirStat: 'countStat2',
-				countTanggapan: 'count3',
-				countTanggapanStat: 'countStat3',
+				countKeputusan: 'count3',
+				countKeputusanStat: 'countStat3',
+				countPertanyaan: 'count4',
+				countPertanyaanStat: 'countStat4',
 				updateResponse: 'update',
 				updateStat: 'updateStat',
 			}),

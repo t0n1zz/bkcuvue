@@ -9,7 +9,8 @@ use App\Support\Helper;
 use App\KegiatanPanitia;
 use App\KegiatanPeserta;
 use App\KegiatanMateri;
-use App\KegiatanTanggapan;
+use App\KegiatanKeputusan;
+use App\KegiatanPertanyaan;
 use App\KegiatanPilih;
 use App\KegiatanPilihPivot;
 use Illuminate\Http\Request;
@@ -189,7 +190,7 @@ class PertemuanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexTanggapanCount($id)
+	public function indexKeputusanCount($id)
 	{
 		$table_data = DB::table('kegiatan_pilih')
 		->join('kegiatan_pilih_pivot', 'kegiatan_pilih_pivot.kegiatan_pilih_id', '=', 'kegiatan_pilih.id')
@@ -222,9 +223,9 @@ class PertemuanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexTanggapan($id)
+	public function indexKeputusan($id)
 	{
-		$table_data = KegiatanTanggapan::with('pilih','cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_tanggapan_id')->advancedFilter();
+		$table_data = KegiatanKeputusan::with('pilih','cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->advancedFilter();
 
 		return response()
 		->json([
@@ -232,9 +233,29 @@ class PertemuanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexKomentar($id)
+	public function indexKeputusanKomentar($id)
 	{
-		$table_data = KegiatanTanggapan::with('pilih','cu','user.aktivis')->where('kegiatan_tanggapan_id',$id)->advancedFilter();
+		$table_data = KegiatanKeputusan::with('cu','user.aktivis')->where('kegiatan_keputusan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPertanyaan($id)
+	{
+		$table_data = KegiatanPertanyaan::with('cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_pertanyaan_id')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPertanyaanKomentar($id)
+	{
+		$table_data = KegiatanPertanyaan::with('cu','user.aktivis')->where('kegiatan_pertanyaan_id',$id)->advancedFilter();
 
 		return response()
 		->json([
@@ -333,7 +354,11 @@ class PertemuanBKCUController extends Controller{
 	private function syncPilih($request, $kelas)
 	{
 		foreach($kelas->pilih as $aV){ $aTmp1[] = $aV['id']; }
-		foreach($request->pilih as $aV){ $aTmp2[] = $aV['id']; }
+		foreach($request->pilih as $aV){ 
+			if(array_key_exists('id', $aV)){
+				$aTmp2[] = $aV['id']; 
+			}
+		}
 		$diff = array_diff($aTmp1, $aTmp2);
 
 		if($diff){
@@ -399,43 +424,54 @@ class PertemuanBKCUController extends Controller{
 			]);	
 	}
 
-	public function storeTanggapan(Request $request, $id)
+	public function storeKeputusan(Request $request, $id)
 	{
-		$kelas = KegiatanTanggapan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		$kelas = KegiatanKeputusan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
 
-		$this->syncTanggapanPilih($request, $kelas);
+		$this->syncKeputusanPilih($request, $kelas);
 		
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Tanggapan ' . $this->message. ' berhasil ditambah',
+				'message' => 'Keputusan ' . $this->message. ' berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}
 
-	public function storeKomentar(Request $request, $id)
+	public function storeKeputusanKomentar(Request $request, $id)
 	{
-		$kelas = KegiatanTanggapan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		$kelas = KegiatanKeputusan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
 		
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Komentar ' . $this->message. ' berhasil ditambah',
+				'message' => 'Komentar keputusan berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}
 
-	private function syncTanggapanPilih($request, $kelas)
+	public function storePertanyaan(Request $request, $id)
 	{
-		$kelas->pilih()->sync([]);
-		$pilih = array_filter($request->pilih);
-		foreach($pilih as $key => $value){
-			KegiatanPilihPivot::create([
-				'kegiatan_pilih_id' => $key,
-				'kegiatan_tanggapan_id' => $kelas->id,
-				'nilai' => $value,
-			]);
-		}
+		$kelas = KegiatanPertanyaan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Pertanyaan ' . $this->message. ' berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	public function storePertanyaanKomentar(Request $request, $id)
+	{
+		$kelas = KegiatanPertanyaan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Komentar pertanyaan berhasil ditambah',
+				'id' => $kelas->id
+			]);	
 	}
 
 	public function edit($id)
@@ -585,24 +621,50 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
-	public function updateTanggapan(Request $request, $id)
+	public function updateKeputusan(Request $request, $id)
 	{
-		$kelas = KegiatanTanggapan::findOrFail($id);
+		$kelas = KegiatanKeputusan::findOrFail($id);
 
 		$kelas->update($request->all());
 
-		$this->syncTanggapanPilih($request, $kelas);
+		$this->syncKeputusanPilih($request, $kelas);
 
 		return response()
 			->json([
 				'saved' => true,
-				'message' => "Tanggapan berhasil diubah"
+				'message' => "Keputusan berhasil diubah"
 			]);
 	}
 
-	public function updateKomentar(Request $request, $id)
+	public function updateKeputusanKomentar(Request $request, $id)
 	{
-		$kelas = KegiatanTanggapan::findOrFail($id);
+		$kelas = KegiatanKeputusan::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Komentar berhasil diubah"
+			]);
+	}
+
+	public function updatePertanyaan(Request $request, $id)
+	{
+		$kelas = KegiatanPertanyaan::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Pertanyaan berhasil diubah"
+			]);
+	}
+
+	public function updatePertanyaanKomentar(Request $request, $id)
+	{
+		$kelas = KegiatanPertanyaan::findOrFail($id);
 
 		$kelas->update($request->all());
 
@@ -696,26 +758,26 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
-	public function destroyTanggapan($id)
+	public function destroyKeputusan($id)
 	{
-		$kelas = KegiatanTanggapan::findOrFail($id);
+		$kelas = KegiatanKeputusan::findOrFail($id);
 		$name = $kelas->name;
 
 		$kelas->pilih()->sync([]);
-		KegiatanTanggapan::where('kegiatan_tanggapan_id',$id)->delete();
+		KegiatanKeputusan::where('kegiatan_keputusan_id',$id)->delete();
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Tanggapan ' .$name. 'berhasil dihapus'
+				'message' =>  'Keputusan ' .$name. 'berhasil dihapus'
 			]);
 	}
 	
-	public function destroyKomentar($id)
+	public function destroyKeputusanKomentar($id)
 	{
-		$kelas = KegiatanTanggapan::findOrFail($id);
+		$kelas = KegiatanKeputusan::findOrFail($id);
 		$name = $kelas->name;
 
 		$kelas->delete();
@@ -727,6 +789,35 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
+	public function destroyPertanyaan($id)
+	{
+		$kelas = KegiatanPertanyaan::findOrFail($id);
+		$name = $kelas->name;
+
+		KegiatanPertanyaan::where('kegiatan_pertanyaan_id',$id)->delete();
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Pertanyaan ' .$name. 'berhasil dihapus'
+			]);
+	}
+	
+	public function destroyPertanyaanKomentar($id)
+	{
+		$kelas = KegiatanPertanyaan::findOrFail($id);
+		$name = $kelas->name;
+
+		$kelas->delete();
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Komentar ' .$name. 'berhasil dihapus'
+			]);
+	}
 
 	public function batalPeserta(Request $request, $id)
 	{
@@ -770,13 +861,27 @@ class PertemuanBKCUController extends Controller{
 			]);
 	}
 
-	public function countTanggapan($id, $cu)
+	public function countKeputusan($id, $cu, $user)
 	{
-		$table_data = KegiatanTanggapan::where('kegiatan_id',$id)->whereNull('kegiatan_tanggapan_id')->where('id_cu',$cu)->count();
+		$table_data = KegiatanKeputusan::where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->where('id_cu',$cu)->count();
+
+		$table_data2 = KegiatanKeputusan::where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->where('id_user',$user)->count();
+
+		return response()
+	->json([
+			'model' => [$table_data, $table_data2]
+		]);
+	}
+
+	public function countPertanyaan($id, $cu, $user)
+	{
+		$table_data = KegiatanPertanyaan::where('kegiatan_id',$id)->whereNull('kegiatan_pertanyaan_id')->where('id_cu',$cu)->count();
+
+		$table_data2 = KegiatanPertanyaan::where('kegiatan_id',$id)->whereNull('kegiatan_pertanyaan_id')->where('id_user',$user)->count();
 
 		return response()
 		->json([
-			'model' => $table_data
+			'model' => [$table_data, $table_data2]
 		]);
 	}
 }

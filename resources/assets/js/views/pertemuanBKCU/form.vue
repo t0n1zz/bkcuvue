@@ -626,38 +626,101 @@
 
 						</div>
 
-						<!-- tanggapan -->
+						<!-- keputusan -->
 						<div class="card">
 							<div class="card-header bg-white">
-								<h5 class="card-title">5. Pilihan pada tanggapan <br/> 
-									<small class="text-muted">Di isi apabila ada tanggapan untuk pertemuan ini terdapat pilihan</small></h5>
+								<h5 class="card-title">5. Interaksi Peserta <br/> 
+									<small class="text-muted">Di isi apabila ada keputusan dan pertanyaan</small></h5>
 							</div>
 							<div class="card-body pb-2">
 								
 								<div class="row">
 
-									<!-- jumlah tanggapan-->
-									<div class="col-md-12">
+									<!-- jumlah keputusan-->
+									<div class="col-md-6">
 										<div class="form-group" >
 
 											<!-- title -->
-											<h5>Batasan Jumlah Tanggapan Per-CU</h5>
+											<h5>Batasan Jumlah Keputusan Per-CU</h5>
 
 											<!-- input -->
 											<cleave 
-												name="tanggapan_cu"
-												v-model="form.tanggapan_cu" 
+												name="keputusan_cu"
+												v-model="form.keputusan_cu" 
 												class="form-control" 
 												:raw="false" 
 												:options="cleaveOption.number3" 
 												placeholder="Silahkan masukkan batasan"></cleave>
 
 											<!-- error message -->
-											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah tanggapan yang bisa diberikan CU</small>
+											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah keputusan yang bisa diberikan CU</small>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group" >
+
+											<!-- title -->
+											<h5>Batasan Jumlah Keputusan Per-Peserta</h5>
+
+											<!-- input -->
+											<cleave 
+												name="keputusan_cu"
+												v-model="form.keputusan_user" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan batasan"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah keputusan yang bisa diberikan peserta</small>
+										</div>
+									</div>
+
+									<!-- pertanyaan keputusan-->
+									<div class="col-md-6">
+										<div class="form-group" >
+
+											<!-- title -->
+											<h5>Batasan Jumlah Pertanyaan Per-CU</h5>
+
+											<!-- input -->
+											<cleave 
+												name="pertanyaan_cu"
+												v-model="form.pertanyaan_cu" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan batasan"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah pertanyaan yang bisa diberikan CU</small>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group" >
+
+											<!-- title -->
+											<h5>Batasan Jumlah Pertanyaan Per-Peserta</h5>
+
+											<!-- input -->
+											<cleave 
+												name="pertanyaan_cu"
+												v-model="form.pertanyaan_user" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan batasan"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah pertanyaan yang bisa diberikan peserta</small>
 										</div>
 									</div>
 
 									<div class="col-md-12">
+
+										<h5>Pilihan persetujuan pada keputusan </h5>
+										<hr/>
 
 										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPilih')">
 											<i class="icon-plus22"></i> Tambah

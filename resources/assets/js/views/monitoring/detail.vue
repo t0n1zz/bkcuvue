@@ -147,7 +147,7 @@
 								<div class="row">
 									<!-- desktop -->
 									<div class="col-md-7 col-lg-9 d-none d-sm-block">
-										<button class="btn btn-light" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['create_' + kelas]"><i class="icon-plus3"></i> Tambah Tanggapan</button>
+										<button class="btn btn-light" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['create_' + kelas]"><i class="icon-plus3"></i> Tambah Keputusan</button>
 									</div>
 
 									<div class="col-md-5 col-lg-3 text-right d-none d-sm-block">
@@ -156,7 +156,7 @@
 
 									<!-- mobile -->
 									<div class="col-md-12 d-block d-sm-none">
-										<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['create_' + kelas]"><i class="icon-plus3"></i> Tambah Tanggapan</button>
+										<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambah','')" v-if="currentUser.can && currentUser.can['create_' + kelas]"><i class="icon-plus3"></i> Tambah Keputusan</button>
 										<button class="btn btn-light btn-block" @click.prevent="back"><i class="icon-arrow-left13"></i> Kembali</button>
 									</div>
 								</div>
@@ -442,20 +442,20 @@
 				if (state == 'hapus') {
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
-					this.modalTitle = 'Hapus Tanggapan?';
+					this.modalTitle = 'Hapus Keputusan?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalSize = '';
 				} else if (state == 'ubah') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Tanggapan';
+					this.modalTitle = 'Ubah Keputusan';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.modalFormState = 'edit';
 				} else if (state == 'tambah') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Tanggapan';
+					this.modalTitle = 'Tambah Keputusan';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.modalFormState = 'create';
