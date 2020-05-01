@@ -14,16 +14,8 @@ class NotificationController extends Controller
 	{
 		// $id = auth('api')->user()->getId();
 		// $kelas = User::findOrFail($id);
-		$notification = collect();
-		$unreadNotification = auth('api')->user()->unreadNotifications->take(6)->count();
-
-		foreach (auth('api')->user()->notifications->take(5) as $notif) {
-			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','id_aktivis','name')->first();
-			
-			$n = collect($notif);
-			$n->put('user',$username);
-			$notification->push($n);
-		}
+		$notification = auth('api')->user()->notifications->take(10);
+		$unreadNotification = auth('api')->user()->unreadNotifications->take(11)->count();
 
 		return response()
 			->json([
@@ -34,19 +26,10 @@ class NotificationController extends Controller
     
   public function getAll()
 	{
-		$id = auth('api')->user()->getId();
-		$kelas = User::findOrFail($id);
-		$notification = collect();
-		$unreadNotification = count($kelas->unreadNotifications);
-
-		$i = 0;
-		foreach ($kelas->notifications as $notif) {
-			$username = User::with('Cu','aktivis')->where('id',$notif->data['user'])->select('id','id_cu','id_aktivis','name')->first();
-			
-			$n = collect($notif);
-			$n->put('user',$username);
-			$notification->push($n);
-		}
+		// $id = auth('api')->user()->getId();
+		// $kelas = User::findOrFail($id);
+		$notification = auth('api')->user()->notifications->get();
+		$unreadNotification = auth('api')->user()->unreadNotifications->get()->count();
 
 		return response()
 			->json([

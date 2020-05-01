@@ -74,55 +74,17 @@
 								<a href="#" class="text-default" disabled><i class="icon-checkbox-checked"></i></a>
 							</div>
 
-							<div class="dropdown-content-body dropdown-scrollable">
+							<div class="dropdown-content-body dropdown-scrollable pb-1">
 								<ul class="media-list" v-if="notification && notification.length > 0">
-									<li class="media" v-for="(notif, index) in notification" :key="index">
+									<li class="media mt-0" v-for="(notif, index) in notification" :key="index">
 
-										<!-- notif laporan -->
-										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;" v-if="notif.type == 'App\\Notifications\\Laporan'">
-
-											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
-												<span class="font-weight-semibold">
-													<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> 
-													{{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}}
-													<br/>
-												</span>
-												<span class="font-size-xs">
-													[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
-												</span>
-												<span class="text-muted float-right font-size-xs">
-													<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
-												</span>
-											</div>
-
+										<div class="card card-body mb-2 pb-1 pt-1 pl-2 pr-2" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+											<span class="text-muted font-size-xs">
+												<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
+											</span>
 											<hr class="mt-1 mb-1">
 
 											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
-
-										</div>
-
-										<!-- notif diklatBKCU -->
-										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;" v-if="notif.type == 'App\\Notifications\\DiklatBKCU'">
-
-											<div class="media-title" :class="{'text-muted' : notif.read_at != null}">
-												<span class="font-weight-semibold">
-													<i class="icon-graduation2"></i> {{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}} <br/>
-												</span>
-												<span class="font-size-xs" v-if="notif.user.cu">
-													[ CU {{notif.user.cu.name}} ]
-												</span>
-												<span class="font-size-xs" v-else>
-													[ Puskopdit BKCU Kalimantan ]
-												</span>
-												<span class="text-muted float-right font-size-xs">
-													<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
-												</span>
-											</div>
-
-											<hr class="mt-1 mb-1">
-
-											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
-
 										</div>
 
 									</li>
@@ -1212,14 +1174,14 @@
 				this.$router.push('/notification');
 			},
 			goToPage(notif){
-				if(notif.type == 'App\\Notifications\\Laporan'){
-					if(!notif.data.tp || notif.data.tp == ""){
+				if(notif.data.tipe == 'laporanCu'){
 						this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
-					}else{
+				}else if(notif.data.tipe == 'laporanTp'){
 						this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
-					}
-				}else if(notif.type == 'App\\Notifications\\DiklatBKCU'){
+				}else if(notif.data.tipe == 'diklatBKCU'){
 					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
+				}else if(notif.data.tipe == 'pertemuanBKCU'){
+					this.$router.push({name: 'pertemuanBKCUDetail', params: { id:  notif.data.url }});
 				}
 				this.$store.dispatch('notification/markRead',notif.id);
 			},

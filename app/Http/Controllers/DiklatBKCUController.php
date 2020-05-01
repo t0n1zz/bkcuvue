@@ -281,25 +281,28 @@ class DiklatBKCUController extends Controller{
 
 	public function storePeserta(Request $request, $id)
 	{
-		// check interval
-		// $id_cu = Auth::user()->getIdCu();
-		// $dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
-		// 	$query->where('id', $id_cu);
-		// })->orderBy('created_at','desc')->first();
-		// $time = \Carbon\Carbon::now();
-
 		// save data
 		$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id]);
 
-		// send notif if interval different is more than 2 hours
-		// if($dataPeserta){
-		// 	$diff = $time->diffInHours($dataPeserta->created_at);
-		// 	if($diff > 2){
-		// 		NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
-		// 	}
-		// }else{
-			// NotificationHelper::store_diklat_bkcu($id_cu, $id,'Menambah peserta');
-		// }
+		$id_cu = Auth::user()->getIdCu();
+		if($id_cu != 0){
+
+			// check interval
+			$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
+				$query->where('id', $id_cu);
+			})->orderBy('created_at','desc')->first();
+			$time = \Carbon\Carbon::now();
+	
+			// send notif if interval different is more than 2 hours
+			if($dataPeserta){
+				$diff = $time->diffInHours($dataPeserta->created_at);
+				if($diff > 2){
+					NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
+				}
+			}else{
+				NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
+			}
+		}
 		
 		return response()
 			->json([
@@ -370,26 +373,21 @@ class DiklatBKCUController extends Controller{
 		$kelas = Kegiatan::findOrFail($id);
 
 		$kelas->status = $request->status;
-		
+		$statusPeserta = $request->status;
 		$status= '';
-		$statusPeserta = '';
 
 		if($request->status == 1){
 			$status= 'sedang menunggu';
 		}else if($request->status == 2){
 			$status= 'pendaftaran buka';
 		}else if($request->status == 3){
-			$status= 'pendaftaran tutup';
-			$statusPeserta = 2;
+			$status= 'pendaftaran tutup';			
 		}else if($request->status == 4){
-			$status= 'sedang berjalan';
-			$statusPeserta = 4;
+			$status= 'sedang berjalan';			
 		}else if($request->status == 5){
-			$status= 'terlaksana';
-			$statusPeserta = 5;
+			$status= 'terlaksana';		
 		}else if($request->status == 6){
 			$status= 'batal';
-			$statusPeserta = 6;
 		}
 
 		if($request->status == 6){
@@ -400,23 +398,22 @@ class DiklatBKCUController extends Controller{
 
 		$kelas->update();
 
-		$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->get();
+		$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif')->where('kegiatan_id', $id)->get();
 
 		if($statusPeserta){
-			$updatePeserta = KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',3)->update(['status' => $statusPeserta]);
+			$updatePeserta = KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',7)->update(['status' => $statusPeserta]);
 
 			$id_cus = [];
 			foreach($dataPeserta as $peserta){
-				if($peserta->aktivis->pekerjaan_aktif->cu){
-					array_push($id_cus,$peserta->aktivis->pekerjaan_aktif->cu->id);
+				if($peserta->aktivis->pekerjaan_aktif){
+					if($peserta->aktivis->pekerjaan_aktif->tipe == 1){
+						array_push($id_cus,$peserta->aktivis->pekerjaan_aktif->id_tempat);
+					}
 				}
 			}
 
 			$id_cus = array_unique($id_cus);
-			
-			// foreach($id_cus as $id_cu){
-			// 	NotificationHelper::status_peserta_diklat_bkcu($id_cu, $id,'Diklat ' . $kelas->name  . '  ' . $status);
-			// }
+			NotificationHelper::diklat_bkcu_status($id, $id_cus,'diklat ' . $kelas->name  . '  ' . $status);
 		}
 
 		return response()
@@ -474,17 +471,22 @@ class DiklatBKCUController extends Controller{
 
 	public function batalPeserta(Request $request, $id)
 	{
-		$kelas = KegiatanPeserta::findOrFail($id);
+		$kelas = KegiatanPeserta::with('aktivis.pekerjaan_aktif')->findOrFail($id);
 
-		$kelas->status = 3;
+		$kegiatan_id = $kelas->kegiatan_id;
+		$id_cu = $kelas->aktivis->pekerjaan_aktif->id_cu;
+		
+		$kelas->status = 7;
 		$kelas->keteranganBatal = $request->keteranganBatal;
 
 		$kelas->update();
 
-		if($request->keteranganBatal != ''){
-			NotificationHelper::store_diklat_bkcu(0, $kelas->kegiatan_id,'Maaf, peserta telah dibatalkan dengan alasan ' . $request->keteranganBatal);
-		}else{
-			NotificationHelper::store_diklat_bkcu(0, $kelas->kegiatan_id,'Maaf, peserta telah dibatalkan');
+		if($id_cu != 0){
+			if($request->keteranganBatal != ''){
+				NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
+			}else{
+				NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta');
+			}
 		}
 
 		return response()

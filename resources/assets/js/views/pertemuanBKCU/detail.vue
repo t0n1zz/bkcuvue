@@ -66,7 +66,7 @@
 										<i class="icon-people"></i> Daftar Peserta
 									</button>
 
-									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" :disabled="item.status != 2" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0">
+									<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0 && item.status != 2">
 										<i class="icon-people"></i> Daftar Peserta
 									</button>
 
@@ -387,11 +387,11 @@
 
 										<!-- button desktop -->
 										<template slot="button-desktop" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']">
-											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah Materi</button>
 										</template>	
 
 										<template slot="button-mobile" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_pertemuan_bkcu']">
-											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah Materi</button>
 										</template>	
 
 										<template slot="item-mobile" slot-scope="props">
@@ -448,11 +448,11 @@
 
 										<!-- button desktop -->
 										<template slot="button-desktop" v-if="item.status == 4">
-											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-success" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-hammer"></i> Beri Keputusan</button>
 										</template>	
 
 										<template slot="button-mobile" v-if="item.status == 4">
-											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-success btn-block" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-hammer"></i> Beri Keputusan</button>
 										</template>	
 
 										<template slot="item-mobile" slot-scope="props">
@@ -538,11 +538,11 @@
 
 										<!-- button desktop -->
 										<template slot="button-desktop" v-if="item.status == 4">
-											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-info" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-question7"></i> Ajukan Pertanyaan</button>
 										</template>	
 
 										<template slot="button-mobile" v-if="item.status == 4">
-											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-plus3"></i> Tambah</button>
+											<button type="button" class="btn btn-info btn-block" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && currentUser.id_cu != 0"><i class="icon-question7"></i> Ajukan Pertanyaan</button>
 										</template>	
 
 										<template slot="item-mobile" slot-scope="props">
@@ -612,8 +612,8 @@
 
 										<!-- if bkcu -->
 										<template slot="button-desktop" v-if="currentUser.id_cu == 0">
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPeserta')">
-												<i class="icon-plus22"></i> Tambah
+											<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')">
+												<i class="icon-people"></i> Daftar Peserta
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')"
@@ -636,8 +636,8 @@
 
 										<!-- if cu -->
 										<template slot="button-desktop" v-if="currentUser.id_cu != 0">
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="item.status == 2">
-												<i class="icon-plus22"></i> Tambah
+											<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="item.status == 2">
+												<i class="icon-people"></i> Daftar Peserta
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')"

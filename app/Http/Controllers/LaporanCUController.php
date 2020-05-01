@@ -259,7 +259,7 @@ class LaporanCuController extends Controller{
 				$kelas = LaporanCu::create($request->all());
 			}	
 			
-			NotificationHelper::store_laporan_cu($kelas,'Menambah');
+			NotificationHelper::laporan_cu($kelas,'menambah');
 			
 			return response()
 				->json([
@@ -294,7 +294,7 @@ class LaporanCuController extends Controller{
 
 		$kelas->update($request->all());
 
-		NotificationHelper::store_laporan_cu($kelas,'Mengubah');
+		NotificationHelper::laporan_cu($kelas,'mengubah');
 
 		return response()
 			->json([
@@ -309,7 +309,7 @@ class LaporanCuController extends Controller{
 
 		$kelas->delete();
 
-		NotificationHelper::store_laporan_cu($kelas,'Menghapus');
+		NotificationHelper::laporan_cu($kelas,'menghapus');
 
 		return response()
 			->json([

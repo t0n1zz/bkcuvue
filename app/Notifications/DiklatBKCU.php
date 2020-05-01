@@ -23,7 +23,8 @@ class DiklatBKCU extends Notification
      */
     public function __construct($url,$message)
     {
-        $this->user = Auth::user()->getId();
+        $this->user = Auth::user()->id;
+        $this->username = Auth::user()->username;
         $this->url = $url;
         $this->message = $message;
     }
@@ -70,6 +71,7 @@ class DiklatBKCU extends Notification
     {
         return [
             'user' => $this->user,
+            'username' => $this->username,
             'url' => $this->url,
             'message' => $this->message,
         ];

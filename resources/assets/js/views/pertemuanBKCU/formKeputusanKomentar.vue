@@ -106,7 +106,7 @@
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : queryKomentar.page == n, 'btn-light' : queryKomentar.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="(n, i) in pages" :key="i" :class="{'btn-primary' : queryKomentar.page == n, 'btn-light' : queryKomentar.page != n}"  @click.prevent="goToPage(n)">
                   {{n}}
               </button>
               <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="nextPage">

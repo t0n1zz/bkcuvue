@@ -44,20 +44,14 @@
 										<strong>NOTIFIKASI LAPORAN</strong>
 									</div>
 
-									<div class="card card-body" v-for="notif in notification" v-if="notif.type == 'App\\Notifications\\Laporan'">
+									<div class="card card-body" v-for="notif in notification" v-if="notif.data.type == 'laporanCu' || notif.data.type == 'laporanTp'">
 
 										<!-- laporan -->
 										<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
 
 											<div class="media-body">
 												<div class="media-title">
-													<span class="font-weight-semibold">
-														<span v-html="$options.filters.notificationIcon(notif.data.tipe)"></span> {{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}}
-													</span>
-													<span class="font-size-xs">
-														[ CU {{notif.data.cu}} <span v-if="notif.data.tp != ''">- {{notif.data.tp}}</span> ]
-													</span>
-													<span class="text-muted float-right">
+													<span class="text-muted">
 														<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
 													</span>
 												</div>
@@ -76,25 +70,14 @@
 										<strong>NOTIFIKASI DIKLAT BKCU</strong>
 									</div>
 
-									<div class="card card-body" v-for="notif in notification" v-if="notif.type == 'App\\Notifications\\DiklatBKCU'">
+									<div class="card card-body" v-for="notif in notification" v-if="notif.data.type == 'diklatBKCU'">
 
 										<!-- laporan -->
 										<div class="media" @click.prevent="goToPage(notif)" style="cursor:pointer;">
 
 											<div class="media-body">
 												<div class="media-title">
-													<span class="font-weight-semibold">
-														<i class="icon-graduation2"></i> {{notif.user.aktivis ? notif.user.aktivis.name : notif.user.name}}
-													</span>
-
-													<span class="font-size-xs" v-if="notif.user.cu">
-														[ CU {{notif.user.cu.name}} ]
-													</span>
-													<span class="font-size-xs" v-else>
-														[ Puskopdit BKCU Kalimantan ]
-													</span>
-
-													<span class="text-muted float-right">
+													<span class="text-muted">
 														<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
 													</span>
 												</div>
@@ -191,16 +174,16 @@
 				this.$store.dispatch(this.kelas +'/getAll');
 			},
 			goToPage(notif){
-				if(notif.type == 'App\\Notifications\\Laporan'){
-					if(!notif.data.tp || notif.data.tp == ""){
+				if(notif.data.tipe == 'laporanCu'){
 						this.$router.push({name: 'laporanCuDetail', params: { id: notif.data.url }});
-					}else{
+				}else if(notif.data.tipe == 'laporanTp'){
 						this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
-					}
-				}else if(notif.type == 'App\\Notifications\\DiklatBKCU'){
+				}else if(notif.data.tipe == 'diklatBKCU'){
 					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
+				}else if(notif.data.tipe == 'pertemuanBKCU'){
+					this.$router.push({name: 'pertemuanBKCUDetail', params: { id:  notif.data.url }});
 				}
-				this.$store.dispatch(this.kelas + '/markRead',notif.id);
+				this.$store.dispatch('notification/markRead',notif.id);
 			},
 			modalConfirmOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;

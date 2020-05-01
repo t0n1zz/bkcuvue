@@ -88,6 +88,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->id;
     }
 
+    public function getUsername(){
+        return $this->username;
+    }
+
     public function getIdCu()
     {
         return $this->id_cu;

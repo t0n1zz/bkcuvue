@@ -199,7 +199,7 @@ class LaporanTpController extends Controller{
 
 			$kelas = LaporanTp::create($request->all());
 
-			NotificationHelper::store_laporan_tp($kelas,'Menambah');
+			NotificationHelper::laporan_tp($kelas,'menambah');
 
 			// $this->konsolidasi($request);
 			LaporanTpHelper::konsolidasi($request);
@@ -251,7 +251,7 @@ class LaporanTpController extends Controller{
 
 		LaporanTpHelper::konsolidasi($request);
 
-		NotificationHelper::store_laporan_tp($request,'Mengubah');
+		NotificationHelper::laporan_tp($request,'mengubah');
 
 		return response()
 			->json([
@@ -267,7 +267,7 @@ class LaporanTpController extends Controller{
 
 		$kelas->delete();
 
-		NotificationHelper::store_laporan_tp($kelas,'Menghapus');
+		NotificationHelper::laporan_tp($kelas,'menghapus');
 
 		return response()
 			->json([

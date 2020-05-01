@@ -78,15 +78,17 @@ Vue.filter('statusPeserta', function(value){
 	if(value == 1){
 		return '<span class="badge badge-info">MENUNGGU</span>';
 	}else if(value == 2){
-		return '<span class="badge badge-warning">TERDAFTAR</span>';
+		return '<span class="badge badge-warning">MENUNGGU</span>';
 	}else if(value == 3){
-		return '<span class="badge badge-secondary">DITOLAK</span>';
+		return '<span class="badge badge-secondary">TERDAFTAR</span>';
 	}else if(value == 4){
-		return '<span class="badge badge-success">BERJALAN</span>';
+		return '<span class="badge badge-success">SEDANG MENGIKUTI</span>';
 	}else if(value == 5){
-		return '<span class="badge badge-primary">TERLAKSANA</span>';
+		return '<span class="badge badge-primary">SELESAI</span>';
 	}else if(value == 6){
 		return '<span class="badge badge-danger">BATAL</span>';
+	}else if(value == 7){
+		return '<span class="badge badge-danger">DITOLAK</span>';
 	}
 });
 Vue.filter('statusJalinan', function(value){

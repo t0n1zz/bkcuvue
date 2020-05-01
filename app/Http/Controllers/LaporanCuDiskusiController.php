@@ -42,7 +42,7 @@ class LaporanCuDiskusiController extends Controller{
 		
 		$kelas = LaporanCuDiskusi::create($request->all());	
 
-		$this->store_notification($request,'Menambah');
+		NotificationHelper::diskusi_cu($kelas,'menambah');
 
 		return response()
 			->json([
@@ -59,7 +59,7 @@ class LaporanCuDiskusiController extends Controller{
 		
 		$kelas->update($request->all());
 
-		$this->store_notification($request,'Mengubah');
+		NotificationHelper::diskusi_cu($kelas,'mengubah');
 
 		return response()
 			->json([
@@ -76,31 +76,12 @@ class LaporanCuDiskusiController extends Controller{
 
 		$request = LaporanCu::where('id',$kelas->id_laporan)->select(array('id_cu','periode', DB::RAW('id as id_laporan')))->first();
 		
-		$this->store_notification($request,'Menghapus');
+		NotificationHelper::diskusi_cu($kelas,'menghapus');
 
 		return response()
 			->json([
 				'deleted' => true,
 				'message' => $this->message. ' berhasil dihapus'
 			]);
-	}
-
-	private function store_notification($request,$tipe)
-	{
-		$id_cu = \Auth::user()->getIdCu();
-		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
-		
-		if($request->content != null){
-			$content = $request->content;
-		}else{
-			$content = "";
-		}
-
-		if($id_cu == '0'){
-			NotificationHelper::store_diskusi_laporan($request->id_cu,$request->id_laporan,'BKCU','',$periode,$tipe,$content);
-		}else{
-			$cu = Cu::where('id',$request->id_cu)->select('name')->first();
-			NotificationHelper::store_diskusi_laporan('0',$request->id_laporan,$cu->name,'',$periode,$tipe,$content);
-		}
 	}
 }

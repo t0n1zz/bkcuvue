@@ -335,19 +335,19 @@
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-											:disabled="!selectedItem.id || selectedItem.status != 1" >
+											:disabled="!selectedItem.id || (selectedItem.status != 1 && selectedItem.status != 2)" >
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || (selectedItem.status != 1 && selectedItem.status != 2)" v-if="item.status == 2 && selectedItem.status != 3">
 												<i class="icon-bin2"></i> Hapus
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('batal')" :disabled="!selectedItem.id || selectedItem.status != 1">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('batal')" :disabled="!selectedItem.id || (selectedItem.status != 1 && selectedItem.status != 2)">
 												<i class="icon-bin2"></i> Tolak
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasan')" v-if="selectedItem.status == 3">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasan')" v-if="selectedItem.status == 7">
 												<i class="icon-eye"></i> Lihat Alasan Penolakan
 											</button>
 										</template>
@@ -359,15 +359,15 @@
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah')"
-											:disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3" >
+											:disabled="!selectedItem.id || (selectedItem.status != 1 && selectedItem.status != 2)" v-if="item.status == 2 && selectedItem.status != 3" >
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 											
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapus')" :disabled="!selectedItem.id || (selectedItem.status != 1 && selectedItem.status != 2)" v-if="item.status == 2 && selectedItem.status != 3">
 												<i class="icon-bin2"></i> Hapus
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasan')" v-if="selectedItem.status == 3">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasan')" v-if="selectedItem.status == 7">
 												<i class="icon-eye"></i> Lihat Alasan Penolakan
 											</button>
 										</template>

@@ -42,7 +42,7 @@ class LaporanTpDiskusiController extends Controller{
 
 		$kelas = LaporanTpDiskusi::create($request->all());	
 
-		$this->store_notification($request,'Menulis');
+		NotificationHelper::diskusi_tp($kelas,'menambah');
 
 		return response()
 			->json([
@@ -59,7 +59,7 @@ class LaporanTpDiskusiController extends Controller{
 
 		$kelas->update($request->all());
 
-		$this->store_notification($request,'Mengubah');
+		NotificationHelper::diskusi_tp($kelas,'mengubah');
 
 		return response()
 			->json([
@@ -76,7 +76,7 @@ class LaporanTpDiskusiController extends Controller{
 
 		$request = LaporanTp::with('Tp')->where('id',$kelas->id_laporan)->select(array('id_tp','periode', DB::RAW('id as id_laporan')))->first();
 
-		$this->store_notification($request,'Menghapus');
+		NotificationHelper::diskusi_tp($kelas,'menghapus');
 
 		return response()
 			->json([
