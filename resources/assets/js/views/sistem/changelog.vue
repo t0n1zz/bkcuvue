@@ -14,13 +14,13 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#328">Version 3.2.8 <small class="text-muted"> /  April 2020</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#328">Version 3.2.8 <small class="text-muted"> / 2 Mei 2020</small></a>
                   </h5>
                 </div>
 
                 <div id="328" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini memperkenalkan pertemuan BKCU yang dapat digunakan untuk mendata dan menyelenggarakan pertemuan baik itu offline maupun online
+                    <p class="mb-3">Update versi ini memperkenalkan pertemuan BKCU yang dapat digunakan untuk mendata dan menyelenggarakan pertemuan baik itu offline maupun online serta beberapa perbaikan dan peningkatan pada diklat BKCU dan notifikasi
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -28,6 +28,11 @@
                       <li>Menambah pertemuan BKCU untuk mengelola semua pertemuan yang dilaksanakan BKCU</li>
                       <li>Menambah fitur untuk bisa melakukan dan mengikuti pertemuan BKCU secara online di dalam pertemuan online ini terdapat fitur distribusi materi, penerimaan tanggapan beserta komentar dan persetujuan, dan pendataan peserta</li>
                       <li>Menambah fitur untuk melakukan perhitungan jumlah CU yang mendaftar, jumlah cu yang hadir, dan jumlah tanggapan pada bagian Pertemuan BKCU</li>
+                      <li>Meningkatkan pengalaman penggunaan notifikasi dan kecepatan akses notifikasi</li>
+                      <li>Menambahkan dukungan notifikasi pada bagian monitoring</li>
+                      <li>Menambahkan dukungan notifikasi pada bagian self assesment access</li>
+                      <li>Menambahkan dukungan notifikasi pada bagian klaim JALINAN</li>
+                      <li>Menambahkan dukungan notifikasi pada bagian pertemuan BKCU</li>
                       <li>Memperbaiki bug tampilan pada bagian Diklat BKCU</li>
                       <li>Memperbaiki bug pada saat mengubah data panitia/fasilitator pada bagian Diklat BKCU</li>
                       <li>Memperbaiki bug pada saat mengubah keanggota CU pada bagian Anggota CU</li>

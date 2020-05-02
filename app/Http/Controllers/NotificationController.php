@@ -28,8 +28,8 @@ class NotificationController extends Controller
 	{
 		// $id = auth('api')->user()->getId();
 		// $kelas = User::findOrFail($id);
-		$notification = auth('api')->user()->notifications->get();
-		$unreadNotification = auth('api')->user()->unreadNotifications->get()->count();
+		$notification = auth('api')->user()->notifications->where('created_at');
+		$unreadNotification = auth('api')->user()->unreadNotifications->count();
 
 		return response()
 			->json([

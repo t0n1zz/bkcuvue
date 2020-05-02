@@ -1223,7 +1223,7 @@ class JalinanKlaimController extends Controller{
 
 	public function updateStatus(Request $request, $id)
 	{
-		$kelas = JalinanKlaim::findOrFail($id);
+		$kelas = JalinanKlaim::with('anggota_cu', 'anggota_cu_cu.cu')->findOrFail($id);
 
 		$kelas->status_klaim = $request->status;
 		$kelas->surat_nomor = $request->surat_nomor;
@@ -1260,6 +1260,8 @@ class JalinanKlaimController extends Controller{
 		$this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 		
 		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
+
+		NotificationHelper::klaim_jalinan_status($kelas,$message);
 	
 		return response()
 			->json([
@@ -1314,7 +1316,7 @@ class JalinanKlaimController extends Controller{
 
 	public function updateVerifikasi(Request $request, $id)
 	{
-		$kelas = JalinanKlaim::findOrFail($id);
+		$kelas = JalinanKlaim::with('anggota_cu_cu')->findOrFail($id);
 
 		if($request->can['verifikasi_pengurus_jalinan_klaim']){
 			$kelas->verifikasi_pengurus = $request->id;
@@ -1329,6 +1331,11 @@ class JalinanKlaimController extends Controller{
 		}
 
 		$kelas->update();
+
+		// TODO:: check how to make interval checking
+		// if(!empty($kelas->verifikasi_pengurus) && !empty($kelas->verifikasi_pengawas) && !empty($kelas->verifikasi_manajemen)){
+		// 	NotificationHelper::klaim_jalinan_verifikasi($klaim_jalinan,'menambah klaim JALINAN');
+		// }
 	
 		return response()
 			->json([

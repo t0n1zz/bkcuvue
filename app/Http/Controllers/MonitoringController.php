@@ -72,6 +72,8 @@ class MonitoringController extends Controller{
 
 			$this->syncRekom($request, $kelas);
 
+			NotificationHelper::monitoring($kelas,'menambah temuan');
+
 			\DB::commit();
 			
 			return response()

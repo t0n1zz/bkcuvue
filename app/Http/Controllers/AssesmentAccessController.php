@@ -160,6 +160,10 @@ class AssesmentAccessController extends Controller{
 			'id_p3' => $kelasP3->id,
 			'id_p4' => $kelasP4->id,
 		]);
+
+		if($request->status == 'BELUM DINILAI'){
+			NotificationHelper::self_assesment($kelas,'menambah');
+		}
 		
 		return response()
 			->json([
@@ -200,6 +204,12 @@ class AssesmentAccessController extends Controller{
 		$kelasP3->update($request->p3);	
 		$kelasP4->update($request->p4);	
 
+		if($request->status == 'BELUM DINILAI'){
+			NotificationHelper::self_assesment($kelas,'menambah');
+		}else if($request->status == 'SUDAH DINILAI'){
+			NotificationHelper::self_assesment($kelas,'memberikan penilaian pada');
+		}
+
 		return response()
 			->json([
 				'saved' => true,
@@ -222,6 +232,10 @@ class AssesmentAccessController extends Controller{
 		$kelasP2->delete();
 		$kelasP3->delete();
 		$kelasP4->delete();
+
+		if($request->status == 'BELUM DINILAI'){
+			NotificationHelper::self_assesment($kelas,'menghapus');
+		}
 
 		return response()
 			->json([

@@ -31,12 +31,12 @@
     </div>
 
     <!-- diklat bkcu -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" @click.prevent="goTo(diklatBKCUWidgetRoute)">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(diklatBKCUWidgetRoute)">
       <count-widget :title="'Diklat BKCU'" :color="'bg-blue-400'" :icon="'icon-graduation2'"></count-widget>
     </div>
 
     <!-- pertemuan bkcu -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']" @click.prevent="goTo(pertemuanBKCUWidgetRoute)">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(pertemuanBKCUWidgetRoute)">
       <count-widget :title="'Pertemuan BKCU'" :color="'bg-pink-400'" :icon="'icon-ungroup'"></count-widget>
     </div>
 

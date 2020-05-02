@@ -416,7 +416,7 @@
               <i class="icon-file-excel"></i> Excel
             </button>
             <button type="button" class="btn btn-light btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
-              <i class="icon-sync"></i>
+              <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i>
             </button>
           </div>
 
@@ -428,7 +428,7 @@
               <i class="icon-file-excel"></i> Excel
             </button>
             <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
-              <i class="icon-sync"></i> Reload
+              <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i> Reload
             </button>
           </div>
 
@@ -628,7 +628,7 @@
               <i class="icon-file-excel"></i> Excel
             </button>
             <button type="button" class="btn btn-light btn-icon" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
-              <i class="icon-sync"></i>
+              <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i>
             </button>
           </div>
 
@@ -637,7 +637,7 @@
               <i class="icon-file-excel"></i> Excel
             </button>
             <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
-              <i class="icon-sync"></i> Reload
+              <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i> Reload
             </button>
           </div>
 

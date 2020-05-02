@@ -116,23 +116,10 @@
                   </button>
                 </div>
 
-                <div class="col-md-6 mb-1" v-if="($route.meta.mode == 'create' && periodeStat == 'success' && periode == null) || ($route.meta.mode != 'create' && form.periode != '' && formStat == 'success')">
-                  <!-- save draft cu -->
-                  <div
-                    v-if="form.p4.p4b20_cu_penilaian ==null || form.p4.p4b20_cu_keterangan ==null"
-                  >
-                    <button
-                      type="button"
-                      class="btn btn-warning btn-block"
-                      @click.prevent="saveDraft"
-                    >
-                      <i class="icon-floppy-disk"></i> Simpan Draft
-                    </button>
-                  </div>
-
-                  <!-- save draft bkcu -->
-                  <div v-if="$route.meta.mode == 'penilaianBkcu'">
-                    <div v-if="form.p4.p4b20_bkcu_penilaian ==null">
+                <div class="col-md-6 mb-1" v-if="$route.meta.mode != 'lihat'">
+                  <div v-if="($route.meta.mode == 'create' && periodeStat == 'success' && periode == null) || ($route.meta.mode != 'create' && form.periode != '' && formStat == 'success')">
+                    <!-- save draft cu -->
+                    <div v-if="form.p4.p4b20_cu_penilaian ==null || form.p4.p4b20_cu_keterangan ==null">
                       <button
                         type="button"
                         class="btn btn-warning btn-block"
@@ -141,7 +128,21 @@
                         <i class="icon-floppy-disk"></i> Simpan Draft
                       </button>
                     </div>
+
+                    <!-- save draft bkcu -->
+                    <div v-if="$route.meta.mode == 'penilaianBkcu'">
+                      <div v-if="form.p4.p4b20_bkcu_penilaian ==null">
+                        <button
+                          type="button"
+                          class="btn btn-warning btn-block"
+                          @click.prevent="saveDraft"
+                        >
+                          <i class="icon-floppy-disk"></i> Simpan Draft
+                        </button>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>

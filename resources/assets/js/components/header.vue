@@ -74,17 +74,25 @@
 								<a href="#" class="text-default" disabled><i class="icon-checkbox-checked"></i></a>
 							</div>
 
-							<div class="dropdown-content-body dropdown-scrollable pb-1">
+							<div class="dropdown-content-body dropdown-scrollable">
 								<ul class="media-list" v-if="notification && notification.length > 0">
-									<li class="media mt-0" v-for="(notif, index) in notification" :key="index">
+									<li class="media" v-for="(notif, index) in notification" :key="index">
 
-										<div class="card card-body mb-2 pb-1 pt-1 pl-2 pr-2" @click.prevent="goToPage(notif)" style="cursor:pointer;">
-											<span class="text-muted font-size-xs">
-												<i class="icon-arrow-right5"></i>{{notif.created_at | relativeHour}}
-											</span>
-											<hr class="mt-1 mb-1">
-
-											<span :class="{'text-muted' : notif.read_at != null,'text-primary' : notif.read_at == null}">{{notif.data.message}}</span>
+										<div class="media-body" @click.prevent="goToPage(notif)" style="cursor:pointer;">
+											<div class="media-title pb-1" :class="{'text-muted' : notif.read_at != null}">
+												<span class="font-size-sm"> 
+													<span v-if="notif.data.tipe == 'laporanCu' || notif.data.tipe == 'laporanTp' "><i class="icon-stats-bars2"></i> Laporan Statistik CU</span>
+													<span v-else-if="notif.data.tipe == 'diklatBKCU'"><i class="icon-graduation2"></i> Diklat BKCU</span>
+													<span v-else-if="notif.data.tipe == 'pertemuanBKCU'"><i class="icon-ungroup"></i> Pertemuan BKCU</span>
+													<span v-else-if="notif.data.tipe == 'selfAssesment'"><i class="icon-reading"></i> Self Assesment ACCESS</span>
+													<span v-else-if="notif.data.tipe == 'monitoring'"><i class="icon-collaboration"></i> Monitoring</span>
+													<span v-else-if="notif.data.tipe == 'klaimJALINAN'"><i class="icon-accessibility2"></i> Klaim JALINAN</span>
+													<span v-else><i class="icon-bubble-notification"></i> Notifikasi</span>
+												</span>
+												<span class="float-right font-size-sm">{{notif.created_at | relativeHour}}</span>
+											</div>
+											<span :class="{'text-muted' : notif.read_at != null}">{{notif.data.message}}</span>
+											<hr v-if="index + 1 < notification.length" class="mb-0 mt-1"/>
 										</div>
 
 									</li>
@@ -1182,6 +1190,12 @@
 					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
 				}else if(notif.data.tipe == 'pertemuanBKCU'){
 					this.$router.push({name: 'pertemuanBKCUDetail', params: { id:  notif.data.url }});
+				}else if(notif.data.tipe == 'monitoring'){
+					this.$router.push({name: 'monitoringDetail', params: { id:  notif.data.url }});
+				}else if(notif.data.tipe == 'selfAssesment'){
+					this.$router.push({name: 'assesmentAccessCu', params: { cu:  notif.data.url }});
+				}else if(notif.data.tipe == 'klaimJALINAN'){
+					this.$router.push({name: 'jalinanKlaimCu', params: { cu:  notif.data.url, tp:'semua' }});
 				}
 				this.$store.dispatch('notification/markRead',notif.id);
 			},

@@ -151,4 +151,74 @@ class NotificationHelper{
 			strtolower($message)
 		));
 	}
+
+	public static function self_assesment($request, $message)
+	{
+		if(Auth::user()->id_cu == 0){
+			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+		}else{
+			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
+			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
+			$cu_name = ' (CU ' .$cu->name. ') ';	
+		}
+		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+
+		Notification::send($users, new Notif(
+			'selfAssesment',
+			$request->id_cu,
+			Auth::user()->username . $cu_name . strtolower($message). ' self assesment ACCESS pada periode ' .$periode
+		));
+	}
+
+	public static function monitoring($request, $message)
+	{
+		if(Auth::user()->id_cu == 0){
+			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+		}else{
+			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
+			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
+			$cu_name = ' (CU ' .$cu->name. ') ';	
+		}
+		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+
+		Notification::send($users, new Notif(
+			'selfAssesment',
+			$request->id,
+			Auth::user()->username . $cu_name . strtolower($message)
+		));
+	}
+
+	public static function klaim_jalinan_verifikasi($request, $message)
+	{
+		if($request->anggota_cu_cu){
+			$users = User::permission(['index_jalinan_klaim'])->where('id_cu', 0)->where('status',1)->get();
+			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
+			$cu_name = 'CU ' .$cu->name. ' ';	
+
+			Notification::send($users, new Notif(
+				'klaimJALINAN',
+				$request->anggota_cu_cu->id_cu,
+				$cu_name . strtolower($message)
+			));
+		}
+	}
+
+	public static function klaim_jalinan_status($request, $message)
+	{
+		if($request->anggota_cu_cu){
+			$users = User::permission(['index_jalinan_klaim'])->where('id_cu', $request->anggota_cu_cu->id_cu)->where('status',1)->get();	
+			$cu_name = $request->anggota_cu->cu ? '(CU' .$request->anggota_cu->cu->name. ')' : '';
+			
+			if($request->anggota_cu){
+				Notification::send($users, new Notif(
+					'klaimJALINAN',
+					$request->anggota_cu_cu->id_cu,
+					strtolower($message) . ' atas nama ' . $request->anggota_cu->name . $cu_name
+				));
+			}
+		}
+	}
+	
 }
