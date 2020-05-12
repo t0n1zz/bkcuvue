@@ -10,15 +10,37 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.2.9 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#329">Version 3.2.9 <small class="text-muted"> / Mei 2020</small></a>
+                  </h5>
+                </div>
+
+                <div id="329" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini memperkenalkan diklat BKCU Online
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Menambah diklat BKCU online</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.2.9 -->
+
               <!-- Version 3.2.8 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#328">Version 3.2.8 <small class="text-muted"> / 2 Mei 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#328">Version 3.2.8 <small class="text-muted"> / 2 Mei 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="328" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="328" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperkenalkan pertemuan BKCU yang dapat digunakan untuk mendata dan menyelenggarakan pertemuan baik itu offline maupun online serta beberapa perbaikan dan peningkatan pada diklat BKCU dan notifikasi
                     <br/><br/>

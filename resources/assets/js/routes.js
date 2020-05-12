@@ -28,6 +28,9 @@ import diklatBKCU_detail from './views/diklatBKCU/detail.vue';
 import pertemuanBKCU from './views/pertemuanBKCU/index.vue';
 import pertemuanBKCU_form from './views/pertemuanBKCU/form.vue';
 import pertemuanBKCU_detail from './views/pertemuanBKCU/detail.vue';
+import kegiatanBKCU from './views/kegiatanBKCU/index.vue';
+import kegiatanBKCU_form from './views/kegiatanBKCU/form.vue';
+import kegiatanBKCU_detail from './views/kegiatanBKCU/detail.vue';
 import tempat from './views/tempat/index.vue';
 import tempat_form from './views/tempat/form.vue';
 import cu from './views/cu/index.vue';
@@ -239,7 +242,7 @@ const routes = [
 		components: { default: diklatBKCU_detail, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true } },
 
-		// pertemuan bkcu
+	// pertemuan bkcu
 	{ path: '/pertemuanBKCU/periode/:periode',
 		name: 'pertemuanBKCU', 
 		components: { default: pertemuanBKCU, 'header': header, 'footer': footer  },
@@ -256,13 +259,39 @@ const routes = [
 		name: 'pertemuanBKCUEdit', 
 		components: { default: pertemuanBKCU_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
-		{ path: '/pertemuanBKCU/editDetail/:id',
+	{ path: '/pertemuanBKCU/editDetail/:id',
 		name: 'pertemuanBKCUEditDetail', 
 		components: { default: pertemuanBKCU_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit', isDetail: true } },	
+		meta: { requiresAuth: true, mode:'edit', isDetail: true } },
 	{ path: '/pertemuanBKCU/detail/:id',
 		name: 'pertemuanBKCUDetail', 
 		components: { default: pertemuanBKCU_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
+
+	// kegiatan bkcu
+	{ path: '/kegiatanBKCU/:tipe/periode/:periode',
+		name: 'kegiatanBKCU', 
+		components: { default: kegiatanBKCU, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
+	{ path: '/kegiatanBKCU/jalan',
+		name: 'kegiatanBKCUJalan', 
+		components: { default: kegiatanBKCU, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'jalan' }},	
+	{ path: '/kegiatanBKCU/create/:tipe',
+		name: 'kegiatanBKCUCreate', 
+		components: { default: kegiatanBKCU_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/kegiatanBKCU/edit/:id',
+		name: 'kegiatanBKCUEdit', 
+		components: { default: kegiatanBKCU_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/kegiatanBKCU/editDetail/:id',
+		name: 'kegiatanBKCUEditDetail', 
+		components: { default: kegiatanBKCU_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit', isDetail: true } },
+	{ path: '/kegiatanBKCU/detail/:id',
+		name: 'kegiatanBKCUDetail', 
+		components: { default: kegiatanBKCU_detail, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true } },
 
 	// diklat tempat

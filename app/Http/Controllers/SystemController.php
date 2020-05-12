@@ -45,50 +45,27 @@ class SystemController extends Controller
   {
     $user = Auth::user();
 
-    $countCu = '';
-    $countTp = '';
-    $countProdukCu = '';
-    $countAktivis = '';
-    $countMitraOrang = '';
-    $countMitraLembaga = '';
+    $countCu = 0;
+    $countTp = 0;
+    $countProdukCu = 0;
+    $countAktivis = 0;
+    $countMitraOrang = 0;
+    $countMitraLembaga = 0;
 
-    if($user->can['index_cu']){
-      $countCu = Cu::count();
-    }
-    if($user->can['index_tp']){
-      if($user->id_cu == 0){
-        $countTp = Tp::count();
-      }else{
-        $countTp = Tp::where('id_cu', $user->id_cu)->count();
+    if($user->id_cu != 0){
+      $kelas = Cu::withCount('hasTp')->withCount('hasAktivis')->withCount('hasProduk')->where('id', $user->id_cu)->first();
+      $countTp = $kelas->has_tp_count;
+      $countProdukCu = $kelas->has_produk_count;
+      $countAktivis = $kelas->has_aktivis_count;
+    }else{
+      $kelas = Cu::withCount('hasTp')->withCount('hasAktivis')->withCount('hasProduk')->get();
+      foreach($kelas as $k){
+        $countTp += $k->has_tp_count;
+        $countProdukCu += $k->has_produk_count;
+        $countAktivis += $k->has_aktivis_count;
       }
-    }
-    if($user->can['index_produk_cu']){
-      if($user->id_cu == 0){
-        $countProdukCu = ProdukCu::count();
-      }else{
-        $countProdukCu = ProdukCu::where('id_cu', $user->id_cu)->count();
-      }
-    }
-    if($user->can['index_aktivis']){
-      $id = $user->id_cu;
-      
-      if($user->id_cu == 0){
-        $countAktivis = Aktivis::with('pekerjaan_aktif.cu')
-        ->whereHas('pekerjaan', function($query){
-          $query->whereIn('tipe',[1,3])->where('status',1);
-        })->count();
-      }else{
-        $countAktivis = Aktivis::with('pekerjaan_aktif.cu')
-        ->whereHas('pekerjaan', function($query) use ($id){
-          $query->where('tipe','1')->where('id_tempat',$id)
-          ->where('status',1);
-        })->count();
-      } 
-    }
-    if($user->can['index_mitra_orang']){
+      $countCu = $kelas->count();
       $countMitraOrang = MitraOrang::count();
-    }
-    if($user->can['index_mitra_lembaga']){
       $countMitraLembaga = MitraLembaga::count();
     }
 

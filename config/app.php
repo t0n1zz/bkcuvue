@@ -208,7 +208,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'cdn' => [
+            "92032-259220-raikfcquaxqncofqfm.stackpathdns.com" => "css|js|eot|woff|ttf,jpg|jpeg|png|gif|svg"
+            ],
     ],
 
 ];

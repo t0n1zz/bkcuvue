@@ -243,20 +243,23 @@ class LaporanTpController extends Controller{
 	{
 		$this->validate($request,LaporanTp::$rules);
 
-		$name = $request->name;
-
 		$kelas = LaporanTp::findOrFail($id);
+
+		$time = \Carbon\Carbon::now();
+		$diff = $time->diffInHours($kelas->updated_at);
 
 		$kelas->update($request->all());
 
 		LaporanTpHelper::konsolidasi($request);
 
-		NotificationHelper::laporan_tp($request,'mengubah');
+		if($diff > 2){
+			NotificationHelper::laporan_tp($request,'mengubah');
+		}
 
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				'message' => $this->message. ' berhasil diubah'
 			]);
 	}
 

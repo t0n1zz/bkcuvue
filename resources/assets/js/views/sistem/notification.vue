@@ -34,7 +34,14 @@
 									<i class="icon-sync" :class="{'spinner' : notifStat === 'loading'}"></i> Reload
 								</button>
 							</div>
+
 						</div>
+					</div>
+
+					<!-- info -->
+					<div class="alert bg-info text-white alert-styled-left ">
+						<span class="font-weight-semibold">Notifikasi yang ditampilkan adalah notifikasi selama 3 bulan terakhir.
+						</span>
 					</div>
 
 					<div v-if="notifStat == 'loading'">
@@ -82,9 +89,8 @@
 
 							<!-- semua -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'semua'">
-									<div v-for="(notif, index) in notification" :key="index">
-
+								<div v-show="tabName == 'semua'" class="row">
+									<div v-for="(notif, index) in notification" :key="index" class="col-md-6">
 										<div class="card" :class="{'text-muted' : notif.read_at != null}" @click.prevent="goToPage(notif)" style="cursor:pointer;">
 											<div class="card-header bg-white header-elements-inline">
 												<span class="card-title">
@@ -104,7 +110,6 @@
 												{{notif.data.message}}
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</transition>
@@ -246,7 +251,6 @@
 									</div>
 								</div>
 							</transition>
-
 						</div>
 
 						<!-- no itemdata -->
@@ -373,8 +377,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('notification',{
-				notification: 'notification',
-				notifStat: 'notifStat',
+				notification: 'dataS',
+				notifStat: 'dataStatS',
 				unreadNotification: 'unreadNotification',
 				markNotifStat: 'markNotifStat',
 			}),

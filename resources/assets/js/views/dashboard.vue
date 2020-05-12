@@ -1,6 +1,5 @@
-<template><div> 
-
-
+<template>
+<div> 
 <!-- Page header -->
 <div class="page-header">
 	<div class="page-header-content header-elements-md-inline">
@@ -26,18 +25,16 @@
 
 		<div class="row align-items-stretch">
 
-			<!-- daftar diklat -->
 			<div class="col-lg-8">
-				<diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']"></diklat-bkcu-widget>
+				<kegiatan-bkcu-widget></kegiatan-bkcu-widget>
 
 				<history-organisasi-widget v-if="currentUser.id_cu == 0"></history-organisasi-widget>
 
 				<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
 			</div>
 
-			<!-- peserta diklat -->
 			<div class="col-lg-4">
-				<peserta-diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" ></peserta-diklat-bkcu-widget>
+				<!-- <peserta-diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" ></peserta-diklat-bkcu-widget> -->
 
 				<count-organisasi-widget></count-organisasi-widget>
 
@@ -49,12 +46,13 @@
 	</div>
 </div>
 <!-- page container -->
-</div></template>
-<script>
+</div>
+</template>
+<script type="text/javascript">
 	import { mapGetters } from 'vuex';
 	import newsSlider from './dashboard/newsSlider.vue';
 	import buttonRow from './dashboard/buttonRow.vue';
-	import diklatBkcuWidget from './dashboard/diklatBKCUWidget.vue';
+	import kegiatanBkcuWidget from './dashboard/kegiatanBKCUWidget.vue';
 	import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
 	import grafikLaporanCuWidget from './dashboard/grafikLaporanCuWidget.vue';
 	import tableLaporanCuWidget from './dashboard/tableLaporanCuWidget.vue';
@@ -65,17 +63,13 @@
 		components: {
 			newsSlider,
 			buttonRow,
-			diklatBkcuWidget,
+			kegiatanBkcuWidget,
 			pesertaDiklatBkcuWidget,
 			grafikLaporanCuWidget,
 			tableLaporanCuWidget,
 			historyOrganisasiWidget,
 			countOrganisasiWidget,
 		},
-		data(){return{}},
-		created(){},
-		watch: {},
-		methods:{},
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'

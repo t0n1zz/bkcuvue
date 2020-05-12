@@ -19,10 +19,10 @@ class NotificationHelper{
 	public static function laporan_cu($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -38,10 +38,10 @@ class NotificationHelper{
 	public static function diskusi_cu($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -57,10 +57,10 @@ class NotificationHelper{
 	public static function laporan_tp($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -77,10 +77,10 @@ class NotificationHelper{
 	public static function diskusi_tp($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -97,10 +97,10 @@ class NotificationHelper{
 	public static function diklat_bkcu($id_cu, $kegiatan_id, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', $id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', $id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -114,7 +114,7 @@ class NotificationHelper{
 
 	public static function diklat_bkcu_status($kegiatan_id, $id_cus, $message)
 	{
-		$users = User::permission(['index_diklat_bkcu'])->whereIn('id_cu', $id_cus)->where('status',1)->get();	
+		$users = User::permission(['index_diklat_bkcu'])->whereIn('id_cu', $id_cus)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 
 		Notification::send($users, new Notif(
 			'diklatBKCU',
@@ -126,10 +126,10 @@ class NotificationHelper{
 	public static function pertemuan_bkcu($id_cu, $kegiatan_id, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', $id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', $id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
-			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -143,7 +143,7 @@ class NotificationHelper{
 
 	public static function pertemuan_bkcu_status($kegiatan_id, $id_cus, $message)
 	{
-		$users = User::permission(['index_pertemuan_bkcu'])->whereIn('id_cu', $id_cus)->where('status',1)->get();	
+		$users = User::permission(['index_pertemuan_bkcu'])->whereIn('id_cu', $id_cus)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 
 		Notification::send($users, new Notif(
 			'pertemuanBKCU',
@@ -155,7 +155,7 @@ class NotificationHelper{
 	public static function self_assesment($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
 			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
@@ -174,7 +174,7 @@ class NotificationHelper{
 	public static function monitoring($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
 		}else{
 			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
@@ -193,7 +193,7 @@ class NotificationHelper{
 	public static function klaim_jalinan_verifikasi($request, $message)
 	{
 		if($request->anggota_cu_cu){
-			$users = User::permission(['index_jalinan_klaim'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_jalinan_klaim'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = 'CU ' .$cu->name. ' ';	
 
@@ -208,7 +208,7 @@ class NotificationHelper{
 	public static function klaim_jalinan_status($request, $message)
 	{
 		if($request->anggota_cu_cu){
-			$users = User::permission(['index_jalinan_klaim'])->where('id_cu', $request->anggota_cu_cu->id_cu)->where('status',1)->get();	
+			$users = User::permission(['index_jalinan_klaim'])->where('id_cu', $request->anggota_cu_cu->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = $request->anggota_cu->cu ? '(CU' .$request->anggota_cu->cu->name. ')' : '';
 			
 			if($request->anggota_cu){

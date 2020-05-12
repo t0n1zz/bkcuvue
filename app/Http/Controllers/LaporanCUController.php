@@ -292,9 +292,14 @@ class LaporanCuController extends Controller{
 
 		$kelas = LaporanCu::findOrFail($id);
 
+		$time = \Carbon\Carbon::now();
+		$diff = $time->diffInHours($kelas->updated_at);
+
 		$kelas->update($request->all());
 
-		NotificationHelper::laporan_cu($kelas,'mengubah');
+		if($diff > 2){
+			NotificationHelper::laporan_cu($kelas,'mengubah');
+		}
 
 		return response()
 			->json([

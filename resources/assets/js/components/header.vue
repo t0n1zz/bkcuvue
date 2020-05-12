@@ -100,7 +100,9 @@
 							</div>
 
 							<div class="dropdown-content-footer text-center p-0"  v-if="notification && notification.length > 0">
-								<a href="#" class="bg-light text-grey w-100 py-2" @click.prevent="goToNotifCenter()">LIHAT SEMUA PEMBERITAHUAN</a>
+								<router-link :to="{ name: 'notification'}" class="bg-light text-grey w-100 py-2">
+									LIHAT SEMUA PEMBERITAHUAN
+								</router-link>
 							</div>
 						</div>
 
@@ -167,24 +169,24 @@
 					</li>
 
 					<!-- kegiatan berjalan -->
-					<li class="nav-item dropdown" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 0">
+					<li class="nav-item dropdown" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 0">
 						<a href="#" class="navbar-nav-link dropdown-toggle bg-warning" data-toggle="dropdown">
 							<i class="icon-feed mr-2"></i>
 							Kegiatan Berjalan
 						</a>
 
 						<div class="dropdown-menu">
-							<template v-for="model in modelPertemuan.data">
-								<router-link :to="{ name: 'pertemuanBKCUDetail', params:{ id: model.id } }" class="dropdown-item" :key="model.id">
+							<template v-for="model in modelKegiatan.data">
+								<router-link :to="{ name: 'kegiatanBKCUDetail', params:{ id: model.id } }" class="dropdown-item" :key="model.id">
 									{{ model.name }}
 								</router-link>
 							</template>
 
 							<!-- divider -->
-							<div class="dropdown-divider" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 6"></div> 
+							<div class="dropdown-divider" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 6"></div> 
 
-							<!-- pertemuan bkcu -->
-							<router-link :to="{ name: 'pertemuanBKCUJalan' }" class="dropdown-item" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 6">
+							<!-- kegiatan bkcu -->
+							<router-link :to="{ name: 'pertemuanBKCUJalan' }" class="dropdown-item" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 6">
 								Kegiatan Berjalan Lainnya
 							</router-link>
 						</div>
@@ -375,12 +377,12 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahKegiatan'}">
 									<!-- tambah diklat bkcu -->
-									<router-link :to="{ name:'diklatBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+									<router-link :to="{ name:'kegiatanBKCUCreate', params:{tipe: 'diklat_bkcu'}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
 										Diklat BKCU
 									</router-link>
 
 									<!-- tambah pertemuan bkcu -->
-									<router-link :to="{ name:'pertemuanBKCUCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+									<router-link :to="{ name:'kegiatanBKCUCreate', params:{tipe: 'pertemuan_bkcu'} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
 										Pertemuan BKCU
 									</router-link>
 
@@ -395,12 +397,12 @@
 							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu'] || currentUser.can['create_pertemuan_bkcu'] || currentUser.can['create_tempat']"></div> 
 
 							<!-- diklat bkcu -->
-							<router-link :to="{ name: 'diklatBKCU', params:{periode: momentYear() } }" class="dropdown-item" active-class="active" exact>
+							<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'diklat_bkcu', periode: momentYear() }}" class="dropdown-item" active-class="active" exact>
 								<i class="icon-graduation2"></i> Diklat BKCU
 							</router-link>
 
 							<!-- pertemuan bkcu -->
-							<router-link :to="{ name: 'pertemuanBKCU', params:{periode: momentYear() } }" class="dropdown-item" active-class="active" exact>
+							<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu', periode: momentYear() }}" class="dropdown-item" active-class="active" exact>
 								<i class="icon-ungroup"></i> Pertemuan BKCU
 							</router-link>
 
@@ -820,7 +822,7 @@
 										Self Assesment ACCESS
 									</router-link>
 									<!-- tambah assesment -->
-									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitorig']">
+									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring']">
 										Monitoring
 									</router-link>
 								</div>
@@ -1071,7 +1073,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.2.8',
+				clientVersion: '3.2.9',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				state: '',
@@ -1087,7 +1089,7 @@
 		created(){
 			this.fetchTp();
 			this.fetchCu();
-			this.fetchPertemuan();
+			this.fetchKegiatanBerjalan();
 			this.fetchNotif();
 			this.timer = setInterval(() => {
 				this.fetchNotif();
@@ -1100,7 +1102,7 @@
 			'$route' (to, from){
 				this.fetchTp();
 				this.fetchCu();
-				this.fetchPertemuan();
+				this.fetchKegiatanBerjalan();
 			},
 			isTokenExpired(value){ 
 				if(value == true){
@@ -1213,7 +1215,7 @@
 					}
 				}
 			},
-			fetchPertemuan(){
+			fetchKegiatanBerjalan(){
 				var query = {
 					order_column: "mulai",
 					order_direction: "asc",
@@ -1221,8 +1223,8 @@
 					limit: 6,
 					page: 1
 				};
-				if(this.modelPertemuanStat != 'success'){
-					this.$store.dispatch('pertemuanBKCU/indexJalanHeader', query);
+				if(this.modelKegiatanStat != 'success'){
+					this.$store.dispatch('kegiatanBKCU/indexJalanHeader', query);
 				}
 			},
 			fetchNotif(){
@@ -1269,9 +1271,9 @@
 				modelCu: 'headerDataS',
 				modelCuStat: 'headerDataStatS',
 			}),
-			...mapGetters('pertemuanBKCU',{
-				modelPertemuan: 'dataJalan',
-				modelPertemuanStat: 'dataJalanStat',
+			...mapGetters('kegiatanBKCU',{
+				modelKegiatan: 'dataJalan',
+				modelKegiatanStat: 'dataJalanStat',
 			}),
 			...mapGetters('saran',{
 				updateSaranResponse: 'update',

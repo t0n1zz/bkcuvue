@@ -14,8 +14,8 @@ class NotificationController extends Controller
 	{
 		// $id = auth('api')->user()->getId();
 		// $kelas = User::findOrFail($id);
-		$notification = auth('api')->user()->notifications->take(10);
-		$unreadNotification = auth('api')->user()->unreadNotifications->take(11)->count();
+		$notification = auth('api')->user()->notifications->where('created_at','>=', \Carbon\Carbon::now()->subMonth(3))->take(10);
+		$unreadNotification = auth('api')->user()->unreadNotifications->where('created_at','>=', \Carbon\Carbon::now()->subMonth(3))->take(11)->count();
 
 		return response()
 			->json([
@@ -28,8 +28,8 @@ class NotificationController extends Controller
 	{
 		// $id = auth('api')->user()->getId();
 		// $kelas = User::findOrFail($id);
-		$notification = auth('api')->user()->notifications->where('created_at');
-		$unreadNotification = auth('api')->user()->unreadNotifications->count();
+		$notification = auth('api')->user()->notifications->where('created_at','>=', \Carbon\Carbon::now()->subMonth(3));
+		$unreadNotification = auth('api')->user()->unreadNotifications->where('created_at','>=', \Carbon\Carbon::now()->subMonth(3))->count();
 
 		return response()
 			->json([

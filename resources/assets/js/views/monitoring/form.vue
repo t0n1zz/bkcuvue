@@ -223,6 +223,8 @@
 												<option disabled value="">Silahkan pilih perspektif</option>
 												<option value="KEUANGAN">KEUANGAN</option>
 												<option value="KEPUASAN ANGGOTA">KEPUASAN ANGGOTA</option>
+												<option value="BISNIS INTERNAL">BISNIS INTERNAL</option>
+												<option value="PEMBELAJARAN DAN PERTUMBUHAN">PEMBELAJARAN DAN PERTUMBUHAN</option>
 											</select>
 
 											<!-- error message -->

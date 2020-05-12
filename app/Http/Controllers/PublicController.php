@@ -256,6 +256,10 @@ class PublicController extends Controller
 
     public function testroute()
     {       
+        // $users = \App\User::where('login', '>=', \Carbon\Carbon::now()->subMonth(6))->get();	
+        // return response()
+		// 	->json($users);
+            
         // $kelas = App\User::permission('verifikasi_manajemen_jalinan_klaim')->get();
 		// $from = \Carbon\Carbon::now()->subYears(30)->format('Y-m-d');
 		// $to = \Carbon\Carbon::now()->subYears(20)->format('Y-m-d');

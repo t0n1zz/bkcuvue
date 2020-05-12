@@ -17,7 +17,7 @@
 						<cari-data :itemDataStat="itemDataStat" :isBack="true" @cariData="cariData" @changeStatusNIK="changeStatusNIK" @nikNew="nikNew" @resetData="resetData" @back="back"></cari-data>
 
 						<!-- data not exist -->
-						<div class="alert bg-success text-white alert-styled-left " v-if="itemDataStat == 'fail'">
+						<div class="alert bg-success text-whi te alert-styled-left " v-if="itemDataStat == 'fail'">
 							<span class="font-weight-semibold">No. KTP tidak terdaftar di SIMO, maka silahkan menambahkan data anggota CU baru.
 							</span>
 						</div>

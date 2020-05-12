@@ -79,6 +79,11 @@ class Cu extends Model {
         return $this->hasMany('App\Tp','id_cu','id')->select('id','id_cu','name');
     }
 
+    public function hasProduk()
+    {
+        return $this->hasMany('App\ProdukCu','id_cu','id')->select('id','id_cu','name', 'tipe');
+    }
+
     public function hasSimpanan()
     {
         return $this->hasMany('App\ProdukCu','id_cu','id')->select('id','id_cu','name', 'tipe')->whereIn('tipe',['Simpanan Pokok','Simpanan Wajib','Simpanan Non Saham']);
@@ -112,6 +117,11 @@ class Cu extends Model {
     public function hasAnggotaCu()
     {
         return $this->hasMany('App\AnggotaCuCu','cu_id','id')->select('id','cu_id');
+    }
+
+    public function hasAktivis()
+    {
+        return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('status',1);
     }
 
     public function hasManajemen()

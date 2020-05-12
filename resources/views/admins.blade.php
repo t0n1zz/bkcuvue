@@ -30,7 +30,7 @@
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script type="text/javascript" src="{{ URL::asset('js/admin/libs.js') }}"></script>
+    <script type="text/javascript" src="{{ cdn('js/admin/libs.js') }}"></script>
 
     
     <!-- /core JS files -->

@@ -1,0 +1,89 @@
+<template>
+	<div>
+		<!-- Page header -->
+		<page-header 
+		:title="title" 
+		:titleDesc="titleDesc" 
+		:titleIcon="titleIcon"></page-header>
+
+		
+		<!-- page container -->
+		<div class="page-content pt-0">
+			<div class="content-wrapper">
+				<div class="content">
+
+					<!-- message -->
+					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
+					</message>
+
+					<!-- select data -->
+					<select-data 
+						:kelas="kelas" v-if="$route.meta.mode != 'jalan'"></select-data>
+
+					<!-- table data -->
+					<table-data 
+						:title="title" 
+						:kelas="kelas"></table-data>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</template>
+
+<script>
+	import { mapGetters } from 'vuex';
+	import pageHeader from "../../components/pageHeader.vue";
+	import tableData from "./table.vue";
+	import message from "../../components/message.vue";
+	import selectData from "./select.vue";
+	
+	export default {
+		components: {
+			pageHeader,
+			tableData,
+			message,
+			selectData
+		},
+		data() {
+			return {
+				title: 'Kegiatan BKCU',
+				kelas: 'kegiatanBKCU',
+				titleDesc: 'Mengelola data kegiatan BKCU',
+				titleIcon: 'icon-graduation2',
+			}
+		},
+		created(){
+			this.fetch();
+		},
+		watch: {
+			// check route changes
+			$route(to, from) {
+				this.fetch();
+			},
+		},
+		methods: {
+			fetch(){
+				if(this.$route.params.tipe == 'diklat_bkcu'){
+					this.title = 'Diklat BKCU';
+					this.titleDesc = 'Mengelola data diklat BKCU';
+					this.titleIcon = 'icon-graduation2';
+				}else if(this.$route.params.tipe == 'pertemuan_bkcu'){
+					this.title = 'Pertemuan BKCU';
+					this.titleDesc = 'Mengelola data pertemuan BKCU';
+					this.titleIcon = 'icon-ungroup';
+				}else if(this.$route.params.mode == 'jalan'){
+					this.title = 'Kegiatan BKCU Berjalan';
+					this.titleDesc = 'Mengelola data kegiatan BKCU berjalan';
+					this.titleIcon = 'icon-feed';
+				}
+			}
+		},
+		computed: {
+			...mapGetters('kegiatanBKCU',{
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS'
+			}),
+		}
+	}
+</script>

@@ -1,8 +1,8 @@
 <template>
   <div class="row">
 
-		<!-- pertemuan berjalan -->
-		<div class="col-12 cursor-pointer" v-if="modelPertemuanStat == 'success' && modelPertemuan.data.length > 0" @click.prevent="goTo(pertemuanBKCUJalanWidgetRoute)">
+		<!-- kegiatan berjalan -->
+		<div class="col-12 cursor-pointer" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 0" @click.prevent="goTo(kegiatanBKCUJalanWidgetRoute)">
       <count-widget 
 				:count="'Kegiatan Berjalan'" 
 				:title="'Melihat kegiatan yang sedang berlangsung saat ini'" 
@@ -128,7 +128,7 @@
 		},
 		data(){
 			return{
-				pertemuanBKCUJalanWidgetRoute: {},
+				kegiatanBKCUJalanWidgetRoute: {},
 				artikelWidgetRoute: {},
 				artikelKategoriWidgetRoute: {},
 				artikelPenulisWidgetRoute: {},
@@ -161,15 +161,15 @@
 				this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: this.currentUser.id_cu} };
 				this.artikelKategoriWidgetRoute = { name: 'artikelKategoriCu', params:{cu: this.currentUser.id_cu} };
 				this.pengumumanWidgetRoute = { name: 'pengumumanCu', params:{cu: this.currentUser.id_cu} };
-				this.diklatBKCUWidgetRoute = { name: 'diklatBKCU', params:{periode: this.momentYear()} };
-				this.pertemuanBKCUWidgetRoute = { name: 'pertemuanBKCU', params:{periode: this.momentYear()} };
+				this.diklatBKCUWidgetRoute = { name: 'kegiatanBKCU', params:{tipe: 'diklat_bkcu', periode: this.momentYear()} };
+				this.pertemuanBKCUWidgetRoute = { name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu', periode: this.momentYear()} };
 				this.saldoWidgetRoute = { name: 'saldo' };
 				this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu, tingkat:'semua'} };
 				this.laporanGerakanWidgetRoute = { name: 'laporanGerakan' };
 				this.mitraPerseoranganWidgetRoute = { name: 'mitraOrang' };
 				this.mitraLembagaWidgetRoute = { name: 'mitraLembaga' };
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
-				this.pertemuanBKCUJalanWidgetRoute = { name: 'pertemuanBKCUJalan' };
+				this.kegiatanBKCUJalanWidgetRoute = { name: 'kegiatanBKCUJalan' };
 
 				if(this.currentUser.id_cu != 0){
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
@@ -203,9 +203,9 @@
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('pertemuanBKCU',{
-				modelPertemuan: 'dataJalan',
-				modelPertemuanStat: 'dataJalanStat',
+			...mapGetters('kegiatanBKCU',{
+				modelKegiatan: 'dataJalan',
+				modelKegiatanStat: 'dataJalanStat',
 			}),
 		}
 	}

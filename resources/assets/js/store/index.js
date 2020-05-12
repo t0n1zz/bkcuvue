@@ -38,6 +38,7 @@ import { jalinanKlaim } from './modules/jalinanKlaim';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { pertemuanBKCU } from './modules/pertemuanBKCU';
+import { kegiatanBKCU } from './modules/kegiatanBKCU';
 import { tempat } from './modules/tempat';
 import { notification } from './modules/notification';
 import { saran } from './modules/saran';
@@ -84,6 +85,7 @@ export default new Vuex.Store({
 		 produkCu,
 		 diklatBKCU,
 		 pertemuanBKCU,
+		 kegiatanBKCU,
 		 tempat,
 		 notification,
 		 saran,
