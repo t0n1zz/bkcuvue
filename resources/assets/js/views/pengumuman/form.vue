@@ -23,7 +23,7 @@
 				<small class="text-muted text-danger" v-if="errors.has('form.name')">
 					<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 				</small>
-				<small class="text-muted" v-else>&nbsp;
+				<small class="text-muted" v-else>Maksimal karakter yang bisa dimunculkan di pengumuman adalah 160 karakter.
 				</small>
 			</div>
 
@@ -41,7 +41,7 @@
 					<option disabled value="">Silahkan pilih CU</option>
 					<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
 					<option disabled value="">----------------</option>
-					<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+					<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 				</select>
 
 				<!-- error message -->
@@ -87,6 +87,19 @@
 		created(){
 			this.fetch();
 		},
+		watch: {
+      formStat(value) {
+				if(value === "success"){
+					if(this.state == 'tambah'){
+						if(this.$route.params.cu == 'semua'){
+							this.form.id_cu = 0;
+						}else{
+							this.form.id_cu = this.$route.params.cu;
+						}
+					}
+				}
+			}
+    },
 		methods: {
 			fetch(){
 				if(this.state == 'ubah'){
@@ -96,15 +109,16 @@
 				}
 			},
 			save() {
-				this.form.id_cu = this.currentUser.id_cu;
 				this.$validator.validateAll('form').then((result) => {
 					if(result){
 						if(this.state == 'ubah'){
 							this.$store.dispatch(this.kelas + '/update',[this.id,this.form]);
 						}else{
+							if(this.currentUser.id_cu != 0){
+								this.form.id_cu = this.currentUser.id_cu;
+							}
 							this.$store.dispatch(this.kelas + '/store',this.form);
 						}
-						
 					}else{
 						window.scrollTo(0, 0);
 						this.submited = true;
@@ -118,6 +132,7 @@
 		computed: {
 			...mapGetters('pengumuman',{
 				form: 'data',
+				formStat: 'dataStat',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),

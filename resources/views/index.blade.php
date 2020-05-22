@@ -121,59 +121,75 @@
 
   <!-- artikel cu terbaru -->
   @if(!$artikelsCUNew->isEmpty())
-  <div class="container clearfix">
-    <div class="fancy-title title-border">
-      <h3>ARTIKEL CREDIT UNION</h3>
-    </div>
-    <div class="row">
-      @foreach($artikelsCUNew as $items)
-        @foreach($items as $item)
-        <div class="col-lg-4 col-md-6">
-          <div class="spost clearfix">
-            <div class="entry-image">
-              <a href="{{ route('artikel.lihat',$item->slug) }}">
-              @if(!empty($item->gambar) && is_file($imagepath.$item->gambar."n.jpg"))
-                <img class="image_fade" src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt="Image">
-              @else
-                <img class="image_fade" src="{{ asset('images/image-articlen.jpg') }}" alt="Image">
-              @endif
-              </a>
-            </div>
-            <div class="entry-c">
-              <div class="entry-title">
-                <h4><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h4>
-              </div>
-              <ul class="entry-meta clearfix">
-                <li><i class="icon-building"></i>{{ $item->cu ? "CU " . $item->cu->name : "-" }}</li>
-                @if($item->kategori)
-                  <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
-                @else 
-                  <li><i class="icon-line-grid"></i>{{"-"}}</li> 
+    <div class="container clearfix">
+      <div class="fancy-title title-border">
+        <h3>ARTIKEL CREDIT UNION</h3>
+      </div>
+      <div class="row">
+        @foreach($artikelsCUNew as $items)
+          @foreach($items as $item)
+          <div class="col-lg-4 col-md-6">
+            <div class="spost clearfix">
+              <div class="entry-image">
+                <a href="{{ route('artikel.lihat',$item->slug) }}">
+                @if(!empty($item->gambar) && is_file($imagepath.$item->gambar."n.jpg"))
+                  <img class="image_fade" src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt="Image">
+                @else
+                  <img class="image_fade" src="{{ asset('images/image-articlen.jpg') }}" alt="Image">
                 @endif
-              </ul>
+                </a>
+              </div>
+              <div class="entry-c">
+                <div class="entry-title">
+                  <h4><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h4>
+                </div>
+                <ul class="entry-meta clearfix">
+                  <li><i class="icon-building"></i>{{ $item->cu ? "CU " . $item->cu->name : "-" }}</li>
+                  @if($item->kategori)
+                    <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
+                  @else 
+                    <li><i class="icon-line-grid"></i>{{"-"}}</li> 
+                  @endif
+                </ul>
+              </div>
             </div>
+            <br/><br/>
           </div>
-          <br/><br/>
-        </div>
+          @endforeach
         @endforeach
-      @endforeach
+      </div>
     </div>
-  </div>
   @endif
 
-<!-- tentang cu -->
-<div class="container clearfix">
-  <div class="promo promo-light bottommargin">
-    <div class="heading-block bottommargin-sm">
-      <h3>Apa itu Credit Union?</h3>
+  <!-- tentang cu -->
+  <div class="container clearfix">
+    <div class="promo promo-light bottommargin">
+      <div class="heading-block bottommargin-sm">
+        <h3>Apa itu Credit Union?</h3>
+      </div>
+      <p>
+        Credit Union (CU) adalah lembaga yang dimiliki oleh sekumpulan orang yang saling percaya dalam ikatan pemersatu, yang
+        bersepakat untuk menabungkan uang mereka sehingga menciptakan modal bersama guna dipinjamkan di antara sesama mereka dengan bunga
+        yang layak untuk tujuan produktif dan kesejahteraan. 
+      </p>
     </div>
-    <p>
-      Credit Union (CU) adalah lembaga yang dimiliki oleh sekumpulan orang yang saling percaya dalam ikatan pemersatu, yang
-      bersepakat untuk menabungkan uang mereka sehingga menciptakan modal bersama guna dipinjamkan di antara sesama mereka dengan bunga
-      yang layak untuk tujuan produktif dan kesejahteraan. 
-    </p>
   </div>
-</div>
+
+  <!-- ultah cu -->
+  @if(!$birthdayList->isEmpty())
+    <div class="container divcenter clearfix">
+      <div class="heading-block center">
+        <h2>SELAMAT ULANG TAHUN</h2>
+        <span> Puskopdit BKCU Kalimantan mengucapkan selamat ulang tahun kepada:</span>
+        <br/>
+        @foreach($birthdayList as $item)
+          <a href="{{ route('home.cu',$item->slug)}}" target="_blank" class="btn btn-primary"> CU {{ $item->name }} yang ke - {{ $item->usia }} </a>
+        @endforeach
+        <hr/>
+        <span> Semoga terus berkarya, menjalankan misi sejati CU dan membawa perubahan yang lebih baik kepada anggota dan masyarakat sekitar</span>
+      </div>
+    </div>
+  @endif
 
   <!-- cu -->
   <div class="section dark nobottommargin">

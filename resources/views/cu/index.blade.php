@@ -89,6 +89,22 @@
   </div>
 </div>
 
+<!-- ultah cu -->
+@foreach($birthdayList as $item)
+  @if($item->name == $cu->name)
+    <div class="container divcenter clearfix">
+      <div class="heading-block center">
+        <h2>SELAMAT ULANG TAHUN</h2>
+        <span>Puskopdit BKCU Kalimantan mengucapkan selamat ulang tahun kepada </span>
+        <br/>
+        <a href="#" class="btn btn-primary"> CU {{ $item->name }} yang ke - {{ $item->usia }} </a>
+        <hr/>
+        <span>Semoga terus berkarya, menjalankan misi sejati CU dan membawa perubahan yang lebih baik kepada anggota dan masyarakat sekitar</span>
+      </div>
+    </div>
+  @endif
+@endforeach
+
 <div class="section">
   <div class="container clearfix">
     <h3>Temui Kami:</h3>

@@ -17,10 +17,10 @@ class KegiatanMateri extends BaseEloquent {
         'name' => 'required'
     ];
     
-    protected $fillable = ['kegiatan_id','name','filename','keterangan','tipe'];
+    protected $fillable = ['kegiatan_id','name','filename','keterangan','tipe','format','link'];
 
-    protected $allowedFilters = ['kegiatan_id','name','filename','tipe','created_at','updated_at'];
+    protected $allowedFilters = ['kegiatan_id','name','filename','tipe','created_at','updated_at','format','link'];
 
-    protected $orderable = ['kegiatan_id','name','filename','tipe','created_at','updated_at'];
+    protected $orderable = ['kegiatan_id','name','filename','tipe','created_at','updated_at','format','link'];
 
 }

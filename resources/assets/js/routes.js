@@ -22,12 +22,6 @@ import laporanCu_detail from './views/laporanCu/detail.vue';
 import laporanCu_draft from './views/laporanCu/draft.vue';
 import laporanTp_draft from './views/laporanCu/draftTp.vue';
 import laporanGerakan from './views/laporanGerakan/index.vue';
-import diklatBKCU from './views/diklatBKCU/index.vue';
-import diklatBKCU_form from './views/diklatBKCU/form.vue';
-import diklatBKCU_detail from './views/diklatBKCU/detail.vue';
-import pertemuanBKCU from './views/pertemuanBKCU/index.vue';
-import pertemuanBKCU_form from './views/pertemuanBKCU/form.vue';
-import pertemuanBKCU_detail from './views/pertemuanBKCU/detail.vue';
 import kegiatanBKCU from './views/kegiatanBKCU/index.vue';
 import kegiatanBKCU_form from './views/kegiatanBKCU/form.vue';
 import kegiatanBKCU_detail from './views/kegiatanBKCU/detail.vue';
@@ -220,54 +214,6 @@ const routes = [
 		components: { default: artikelSimo_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
 	
-	// diklat bkcu
-	{ path: '/diklatBKCU/periode/:periode',
-		name: 'diklatBKCU', 
-		components: { default: diklatBKCU, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true }},
-	{ path: '/diklatBKCU/create',
-		name: 'diklatBKCUCreate', 
-		components: { default: diklatBKCU_form, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true }},
-	{ path: '/diklatBKCU/edit/:id',
-		name: 'diklatBKCUEdit', 
-		components: { default: diklatBKCU_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit' } },
-		{ path: '/diklatBKCU/editDetail/:id',
-		name: 'diklatBKCUEditDetail', 
-		components: { default: diklatBKCU_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit', isDetail: true } },	
-	{ path: '/diklatBKCU/detail/:id',
-		name: 'diklatBKCUDetail', 
-		components: { default: diklatBKCU_detail, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true } },
-
-	// pertemuan bkcu
-	{ path: '/pertemuanBKCU/periode/:periode',
-		name: 'pertemuanBKCU', 
-		components: { default: pertemuanBKCU, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true }},
-	{ path: '/pertemuanBKCU/jalan',
-		name: 'pertemuanBKCUJalan', 
-		components: { default: pertemuanBKCU, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true, mode:'jalan' }},	
-	{ path: '/pertemuanBKCU/create',
-		name: 'pertemuanBKCUCreate', 
-		components: { default: pertemuanBKCU_form, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true }},
-	{ path: '/pertemuanBKCU/edit/:id',
-		name: 'pertemuanBKCUEdit', 
-		components: { default: pertemuanBKCU_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit' } },
-	{ path: '/pertemuanBKCU/editDetail/:id',
-		name: 'pertemuanBKCUEditDetail', 
-		components: { default: pertemuanBKCU_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit', isDetail: true } },
-	{ path: '/pertemuanBKCU/detail/:id',
-		name: 'pertemuanBKCUDetail', 
-		components: { default: pertemuanBKCU_detail, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true } },
-
 	// kegiatan bkcu
 	{ path: '/kegiatanBKCU/:tipe/periode/:periode',
 		name: 'kegiatanBKCU', 
@@ -294,7 +240,7 @@ const routes = [
 		components: { default: kegiatanBKCU_detail, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true } },
 
-	// diklat tempat
+	// kegiatan tempat
 	{ path: '/tempat',
 		name: 'tempat', 
 		components: { default: tempat, 'header': header, 'footer': footer  },

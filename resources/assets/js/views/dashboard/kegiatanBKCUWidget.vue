@@ -3,7 +3,7 @@
 
 		<!-- title -->
 		<div class="card-header bg-blue-400 text-white header-elements-inline">
-			<h5 class="card-title"><i class="icon-graduation2 mr-2"></i> Kegiatan BKCU</h5>
+			<h5 class="card-title"><i class="icon-calendar mr-2"></i> Kegiatan BKCU</h5>
 			<div class="header-elements">
 				<div class="list-icons">
 					<a class="list-icons-item" data-action="collapse"></a>
@@ -16,11 +16,11 @@
 			<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
 				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'baru'}" @click.prevent="changeTab('baru')"><i class="icon-new mr-2"></i>
 						Terbaru <span class="badge bg-blue-400 align-self-center ml-2" v-if="countBaru > 0">{{ countBaru }}</span></a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'mulai'}" @click.prevent="changeTab('mulai')"><i class="icon-feed mr-2"></i>
+				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'mulai'}" @click.prevent="changeTab('mulai')"><i class="icon-alarm mr-2"></i>
 						Waktu Mulai Terdekat <span class="badge bg-blue-400 align-self-center ml-2" v-if="countMulai > 0">{{ countMulai }}</span></a></li>
 				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'buka'}" @click.prevent="changeTab('buka')"><i class="icon-user-plus mr-2"></i>
 						Status Pendaftaran Terbuka <span class="badge bg-blue-400 align-self-center ml-2" v-if="countBuka > 0">{{ countBuka }}</span></a></li>		
-				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'jalan'}" @click.prevent="changeTab('jalan')"><i class="icon-play3 mr-2"></i>
+				<li class="nav-item"><a href="#" class="nav-link text-nowrap" :class="{'active': tabName == 'jalan'}" @click.prevent="changeTab('jalan')"><i class="icon-feed mr-2"></i>
 						Status Berjalan <span class="badge bg-blue-400 align-self-center ml-2" v-if="countJalan > 0">{{ countJalan }}</span></a></li>		
 			</ul>
 		</div>

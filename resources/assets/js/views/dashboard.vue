@@ -15,7 +15,7 @@
 <!-- /page header -->
 <!-- page container -->
 <div class="page-content pt-0">
-	<div class="content-wrapper">
+	<div class="content-wrapper"> 
 		
 		<!-- news carousel -->
 	 	<news-slider></news-slider>
@@ -53,7 +53,7 @@
 	import newsSlider from './dashboard/newsSlider.vue';
 	import buttonRow from './dashboard/buttonRow.vue';
 	import kegiatanBkcuWidget from './dashboard/kegiatanBKCUWidget.vue';
-	import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
+	// import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
 	import grafikLaporanCuWidget from './dashboard/grafikLaporanCuWidget.vue';
 	import tableLaporanCuWidget from './dashboard/tableLaporanCuWidget.vue';
 	import historyOrganisasiWidget from './dashboard/historyOrganisasiWidget.vue';
@@ -64,7 +64,7 @@
 			newsSlider,
 			buttonRow,
 			kegiatanBkcuWidget,
-			pesertaDiklatBkcuWidget,
+			// pesertaDiklatBkcuWidget,
 			grafikLaporanCuWidget,
 			tableLaporanCuWidget,
 			historyOrganisasiWidget,

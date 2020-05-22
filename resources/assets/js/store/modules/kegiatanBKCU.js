@@ -302,7 +302,7 @@ export const kegiatanBKCU = {
     },
 
     indexPertanyaanKomentar( { commit }, [p, id] ){
-      commit('setDataStatS11', 'loading');
+      commit('setDataStatS5', 'loading');
       
       KEGIATANBKCUAPI.indexPertanyaanKomentar( p, id )
         .then( function( response ){
@@ -312,6 +312,34 @@ export const kegiatanBKCU = {
         .catch( error => {
           commit('setDataS5', error.response);
           commit('setDataStatS5', 'fail');
+        });
+    },
+
+    indexTugas( { commit }, [p, id] ){
+      commit('setDataStatS10', 'loading');
+      
+      KEGIATANBKCUAPI.indexTugas( p, id )
+        .then( function( response ){
+          commit('setDataS10', response.data.model );
+          commit('setDataStatS10', 'success');
+        })
+        .catch( error => {
+          commit('setDataS10', error.response);
+          commit('setDataStatS10', 'fail');
+        });
+    },
+
+    indexTugasJawaban( { commit }, [p, id] ){
+      commit('setDataStatS11', 'loading');
+      
+      KEGIATANBKCUAPI.indexTugasJawaban( p, id )
+        .then( function( response ){
+          commit('setDataS11', response.data.model );
+          commit('setDataStatS11', 'success');
+        })
+        .catch( error => {
+          commit('setDataS11', error.response);
+          commit('setDataStatS11', 'fail');
         });
     },
 
@@ -503,6 +531,42 @@ export const kegiatanBKCU = {
         });
     },
 
+    storeTugas( {commit, state, dispatch}, [tipe, id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.storeTugas( tipe, id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    storeTugasJawaban( {commit, state, dispatch}, [tipe, id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.storeTugasJawaban( tipe, id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
 
     // edit page
     edit( {commit}, id ){
@@ -668,6 +732,42 @@ export const kegiatanBKCU = {
         });
     },
 
+    updateTugas( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.updateTugas( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateTugasJawaban( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.updateTugasJawaban( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     updatePesertaHadir( {commit, state, dispatch}, [kegiatan_id, aktivis_id] ){
       commit('setUpdateStat', 'loading');
 
@@ -700,6 +800,24 @@ export const kegiatanBKCU = {
         })
         .catch(error => {
           commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    jawabanPertanyaan( {commit, state, dispatch}, [id, tipe] ){
+      commit('setUpdateStat2', 'loading');
+
+      KEGIATANBKCUAPI.jawabanPertanyaan( id, tipe )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate2', response.data);
+            commit('setUpdateStat2', 'success');
+          }else{
+            commit('setUpdateStat2', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
           commit('setUpdateStat', 'fail');
         });
     },
@@ -823,6 +941,42 @@ export const kegiatanBKCU = {
             commit('setUpdateStat2', 'success');
           }else{
             commit('setUpdateStat2', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyTugas( {commit, state, dispatch}, [tipe, id] ){
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.destroyTugas( tipe, id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyTugasJawaban( {commit, state, dispatch}, [tipe, id] ){
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.destroyTugasJawaban( tipe, id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {

@@ -31,169 +31,189 @@
         <div v-html="selected.keterangan"></div>
       </div>
     </div>
-    
-    <div v-if="!isShowHapus">
-      <div class="card card-body bg-warning text-white text-center">
-        KOMENTAR
+
+    <!-- updatestat -->
+    <div v-if="updateStat == 'loading'">
+      <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+          <span class="sr-only">100% Complete</span>
+        </div>
       </div>
-      <!-- komentar -->
-      <template v-if="itemDataKomentarStat == 'success' && itemDataKomentar.data.length > 0">
-        <div class="card" v-for="komentar in itemDataKomentar.data" :key="komentar.id">
-          <div class="card-header bg-light header-elements-inline">
-            <h6 class="card-title">
-              <img :src="'/images/aktivis/' + komentar.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="komentar.user.aktivis.gambar">
-              <img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
-              <check-value :value="komentar.user.aktivis.name" v-if="komentar.user"></check-value>
-              <span v-else>-</span>
-              |
-              <check-value :value="komentar.cu.name" v-if="komentar.cu"></check-value>
-              <span v-else>-</span>
-            </h6>
-            <div class="header-elements">
+    </div>
+    
+    <template v-else>
+      <div v-if="!isShowHapus && !isShowJawaban && !isShowBatalJawaban">
+        <div class="card card-body bg-warning text-white text-center">
+          KOMENTAR
+        </div>
+        <!-- komentar -->
+        <template v-if="itemDataKomentarStat == 'success' && itemDataKomentar.data.length > 0">
+          <div class="card" v-for="komentar in itemDataKomentar.data" :key="komentar.id" :class="{'border-warning' : komentar.terjawab == 1}">
+            <div class="card-header bg-warning text-white text-center" v-if="komentar.terjawab">
+              <i class="icon-check"></i> JAWABAN
+            </div>
+            <div class="card-header bg-light header-elements-inline">
+              
+              <h6 class="card-title">
+                <img :src="'/images/aktivis/' + komentar.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="komentar.user.aktivis.gambar">
+                <img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
+                <check-value :value="komentar.user.aktivis.name" v-if="komentar.user"></check-value>
+                <span v-else>-</span>
+                |
+                <check-value :value="komentar.cu.name" v-if="komentar.cu"></check-value>
+                <span v-else>-</span>
+                
+              </h6>
+              <div class="d-none d-sm-block">
+                <div class="header-elements">
+                  <span class="badge badge-secondary">
+                    <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
+                  </span>
+                  <div class="list-icons ml-2">
+                    <a href="#" class="btn btn-warning list-icons-item text-white" @click.prevent="showOpen(komentar, 'jawaban')" v-if="!komentar.terjawab"><i class="icon-check"></i></a>
+                    <a href="#" class="btn btn-warning list-icons-item text-white" @click.prevent="showOpen(komentar, 'batalJawaban')" v-if="komentar.terjawab"><i class="icon-cross"></i></a>
+                    <a href="#" class="btn btn-light list-icons-item" @click.prevent="showOpen(komentar,'hapus')" v-if="komentar.id_user == currentUser.id"><i class="icon-bin2"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pb-1 pt-2" v-if="komentar.keterangan">
+              <div v-html="komentar.keterangan"></div>
+            </div>
+            <div class="card-footer d-block d-sm-none text-center">
               <span class="badge badge-secondary">
                 <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
               </span>
-              <div class="list-icons ml-2" v-if="komentar.id_user == currentUser.id">
-                <a href="#" class="list-icons-item" @click.prevent="hapusOpen(komentar)" ><i class="icon-bin2"></i></a>
+
+              <button class="btn btn-warning btn-block mt-2 mb-1" @click.prevent="showOpen(komentar,'jawaban')" v-if="!komentar.terjawab"><i class="icon-check"></i> Jadikan Jawaban</button>
+              <button class="btn btn-warning btn-block mt-2 mb-1" @click.prevent="showOpen(komentar,'batalJawaban')" v-if="komentar.terjawab"><i class="icon-check"></i> Batal Jawaban</button>
+              <button class="btn btn-light btn-block mt-2 mb-1" @click.prevent="showOpen(komentar,'hapus')" ><i class="icon-bin2"></i> Hapus Komentar</button>
+            </div>
+          </div>
+        </template>
+
+        <div v-if="itemDataKomentarStat === 'loading'" class="card card-body">
+          <h4>Mohon tunggu...</h4>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+              <span class="sr-only">100% Complete</span>
+            </div>
+          </div>
+        </div>
+        <div v-if="itemDataKomentarStat === 'fail'" class="card card-body">
+          <h4>Oops.. Terjadi kesalahan, silahkan coba lagi.</h4>
+        </div>
+
+        <!-- komentar pagination -->
+        <div class="card card-body pb-2 pt-2" v-if="itemDataKomentarStat == 'success' && itemDataKomentar.data.length > 0">
+          <div class="row pre-scrollable">
+
+            <!-- pagination -->
+            <!-- desktop -->
+            <div class="col-md-12 text-center">
+              <!-- pagination success-->
+              <div class="btn-group" v-if="itemDataKomentarStat === 'success'">
+                <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="goToPage(1)">
+                    <i class="icon-backward2"></i>
+                </button>
+                <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="prevPage">
+                    <i class="icon-arrow-left5"></i>
+                </button>
+                <button href="#" class="btn" v-for="(n, index) in pages" :key="index" :class="{'btn-primary' : queryKomentar.page == n, 'btn-light' : queryKomentar.page != n}"  @click.prevent="goToPage(n)">
+                    {{n}}
+                </button>
+                <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="nextPage">
+                    <i class="icon-arrow-right5"></i>
+                </button>
+                <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="goToPage(itemDataKomentar.last_page)">
+                    <i class="icon-forward3"></i>
+                </button>
+              </div>
+              
+              <!-- pagination loading-->
+              <div class="btn-group" v-else>
+                <button href="#" class="btn btn-light disabled">
+                    <i class="icon-backward2"></i>
+                </button>
+                <button href="#" class="btn btn-light disabled">
+                    <i class="icon-arrow-left5"></i>
+                </button>
+                <button href="#" class="btn btn-light disabled">
+                    <i class="icon-spinner2 spinner"></i>
+                </button>
+                <button href="#" class="btn btn-light disabled">
+                    <i class="icon-arrow-right5"></i>
+                </button>
+                <button href="#" class="btn btn-light disabled">
+                    <i class="icon-forward3"></i>
+                </button>
+                
               </div>
             </div>
-          </div>
-          <div class="card-body pb-1 pt-2" v-if="komentar.keterangan">
-            <div v-html="komentar.keterangan"></div>
+
           </div>
         </div>
-      </template>
 
-      <div v-if="itemDataKomentarStat === 'loading'" class="card card-body">
-        <h4>Mohon tunggu...</h4>
-        <div class="progress">
-          <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-            <span class="sr-only">100% Complete</span>
-          </div>
-        </div>
-      </div>
-      <div v-if="itemDataKomentarStat === 'fail'" class="card card-body">
-        <h4>Oops.. Terjadi kesalahan, silahkan coba lagi.</h4>
-      </div>
+        <hr/>
 
-      <!-- komentar pagination -->
-      <div class="card card-body pb-2 pt-2" v-if="itemDataKomentarStat == 'success' && itemDataKomentar.data.length > 0">
-        <div class="row pre-scrollable">
-
-          <!-- pagination -->
-          <!-- desktop -->
-          <div class="col-md-12 text-center">
-            <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataKomentarStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="goToPage(1)">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="prevPage">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : queryKomentar.page == n, 'btn-light' : queryKomentar.page != n}"  @click.prevent="goToPage(n)">
-                  {{n}}
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="nextPage">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="goToPage(itemDataKomentar.last_page)">
-                  <i class="icon-forward3"></i>
-              </button>
-            </div>
-            
-            <!-- pagination loading-->
-            <div class="btn-group" v-else>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-backward2"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-left5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-spinner2 spinner"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-arrow-right5"></i>
-              </button>
-              <button href="#" class="btn btn-light disabled">
-                  <i class="icon-forward3"></i>
-              </button>
-              
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <hr/>
-
-      <!-- tulis komentar -->
-      <div v-if="updateStat == 'loading'">
-        <div class="progress">
-          <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-            <span class="sr-only">100% Complete</span>
-          </div>
-        </div>
-      </div>
-      <div v-else>
         <form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="formMateri">
-
-        <div class="form-group">
-          <ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="formKomentar.keterangan"></ckeditor>
-        </div>
-        <button type="submit" class="btn btn-warning btn-block pb-2">
-          <i class="icon-paperplane"></i> Kirim Komentar</button>
+          <div class="form-group">
+            <ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="formKomentar.keterangan"></ckeditor>
+          </div>
+          <button type="submit" class="btn btn-warning btn-block pb-2">
+            <i class="icon-paperplane"></i> Kirim Komentar</button>
         </form>
       </div>
-    </div>
+    
+      <!-- hapus -->
+      <div v-else-if="isShowHapus || isShowJawaban || isShowBatalJawaban">
+        <div class="card card-body text-center">
+          <span class="text-warning pb-2">
+            <i class="icon-question3" style="font-size: 3em"></i>
+          </span>
+          <h3 v-if="isShowHapus">Hapus komentar ini?</h3>
+          <h3 v-if="isShowJawaban">Jadikan ini sebagai jawaban komentar ini?</h3>
+          <h3 v-if="isShowBatalJawaban">Batalkan komentar ini sebagai jawaban?</h3>
 
-    <!-- hapus -->
-    <div v-else>
-      <div class="card card-body text-center">
-        <span class="text-warning pb-2">
-          <i class="icon-question3" style="font-size: 3em"></i>
-				</span>
-        <h3>Hapus komentar ini?</h3>
-
-        <div class="card">
-          <div class="card-header bg-light header-elements-inline">
-            <h6 class="card-title">
-              <img :src="'/images/aktivis/' + selectedKomentar.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="selectedKomentar.user.aktivis.gambar">
-              <img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
-              <check-value :value="selectedKomentar.user.aktivis.name" v-if="selectedKomentar.user"></check-value>
-              <span v-else>-</span>
-              |
-              <check-value :value="selectedKomentar.cu.name" v-if="selectedKomentar.cu"></check-value>
-              <span v-else>-</span>
-            </h6>
-            <div class="header-elements">
-              <span class="badge badge-secondary">
-                <small v-html="$options.filters.dateTime(selectedKomentar.created_at)"></small>	
-              </span>
+          <div class="card">
+            <div class="card-header bg-light header-elements-inline">
+              <h6 class="card-title">
+                <img :src="'/images/aktivis/' + selectedKomentar.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="selectedKomentar.user.aktivis.gambar">
+                <img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
+                <check-value :value="selectedKomentar.user.aktivis.name" v-if="selectedKomentar.user"></check-value>
+                <span v-else>-</span>
+                |
+                <check-value :value="selectedKomentar.cu.name" v-if="selectedKomentar.cu"></check-value>
+                <span v-else>-</span>
+              </h6>
+              <div class="header-elements">
+                <span class="badge badge-secondary">
+                  <small v-html="$options.filters.dateTime(selectedKomentar.created_at)"></small>	
+                </span>
+              </div>
+            </div>
+            <div class="card-body pb-1 pt-2" v-if="selectedKomentar.keterangan">
+              <div v-html="selectedKomentar.keterangan"></div>
             </div>
           </div>
-          <div class="card-body pb-1 pt-2" v-if="selectedKomentar.keterangan">
-            <div v-html="selectedKomentar.keterangan"></div>
-          </div>
-        </div>
-        <!-- tombol desktop-->
-        <div class="text-center d-none d-md-block">
-          <button class="btn btn-light" @click.prevent="isShowHapus = false">
-            <i class="icon-arrow-left13"></i> Batal</button>
-          <button class="btn btn-warning" @click.prevent="hapus()">
-            <i class="icon-checkmark5"></i> Ok</button>
-        </div>  
+          <!-- tombol desktop-->
+          <div class="text-center d-none d-md-block">
+            <button class="btn btn-light" @click.prevent="showBatal()">
+              <i class="icon-arrow-left13"></i> Batal</button>
+            <button class="btn btn-warning" @click.prevent="showOke()">
+              <i class="icon-checkmark5"></i> Ok</button>
+          </div>  
 
-        <!-- tombol mobile-->
-        <div class="d-block d-md-none">
-          <button class="btn btn-warning btn-block pb-2" @click.prevent="hapus()">
-            <i class="icon-checkmark5"></i> Ok</button>
-          <button class="btn btn-light btn-block pb-2" @click.prevent="isShowHapus = false">
-            <i class="icon-arrow-left13"></i> Batal</button>
-        </div> 
+          <!-- tombol mobile-->
+          <div class="d-block d-md-none">
+            <button class="btn btn-warning btn-block pb-2" @click.prevent="showOke()">
+              <i class="icon-checkmark5"></i> Ok</button>
+            <button class="btn btn-light btn-block pb-2" @click.prevent="showBatal()">
+              <i class="icon-arrow-left13"></i> Batal</button>
+          </div> 
+        </div>
       </div>
-    </div>
+    </template>
 
 		<!-- divider -->
 		<hr>
@@ -277,6 +297,8 @@
 					content: ''
         },
         isShowHapus: false,
+        isShowJawaban: false,
+        isShowBatalJawaban: false,
 				submited: false,
 			}
 		},
@@ -293,7 +315,6 @@
       updateStat(value) {
 				if (value == 'success') {
           this.fetchKomentar(this.queryKomentar);
-          this.isShowHapus = false;
           this.formKomentar.keterangan = '';
 				} else if (value == 'fail') {
           this.message.show = true;
@@ -321,12 +342,37 @@
 					}	
 				});
       },
-      hapusOpen(value){
+      showOpen(value, tipe){
         this.selectedKomentar = value;
-        this.isShowHapus = true;
+        if(tipe == 'hapus'){
+          this.isShowHapus = true;
+        }else if(tipe == 'jawaban'){
+          this.isShowJawaban = true;
+        }else if(tipe == 'batalJawaban'){
+          this.isShowBatalJawaban = true;
+        }
       },
-      hapus(){
-        this.$store.dispatch('kegiatanBKCU/destroyPertanyaanKomentar', this.selectedKomentar.id);
+      showOke(){
+        if(this.isShowHapus){
+          this.$store.dispatch('kegiatanBKCU/destroyPertanyaanKomentar', this.selectedKomentar.id);
+        }else if(this.isShowJawaban){
+          this.$store.dispatch('kegiatanBKCU/jawabanPertanyaan', [this.selectedKomentar.id,'jawaban']);
+        }else if(this.isShowBatalJawaban){
+          this.$store.dispatch('kegiatanBKCU/jawabanPertanyaan', [this.selectedKomentar.id,'batalJawaban']);
+        }
+        this.isShowHapus = false;
+        this.isShowJawaban = false;
+        this.isShowBatalJawaban = false;
+      },
+      showBatal(){
+        this.selectedKomentar = {};
+        if(this.isShowHapus){
+          this.isShowHapus = false;
+        }else if(this.isShowJawaban){
+          this.isShowJawaban = false;
+        }else{
+          this.isShowBatalJawaban = false;
+        }
       },
       calculatePagination() {
         var i = 0;

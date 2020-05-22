@@ -36,19 +36,54 @@
 
       </div>
 
+			<!-- format -->
+			<div class="form-group" :class="{'has-error' : errors.has('formMateri.format')}" v-if="mode == 'create'">
+
+				<!-- title -->
+				<h5 :class="{ 'text-danger' : errors.has('formMateri.format')}">
+					<i class="icon-cross2" v-if="errors.has('formMateri.format')"></i>
+					Pilih Format:
+				</h5>
+
+				<!-- select -->
+				<select class="form-control" name="format" v-model="formMateri.format" data-width="100%" v-validate="'required'" data-vv-as="format">
+					<option disabled value="">Silahkan pilih format</option>
+					<option value="upload">Upload</option>
+					<option value="link">Link</option>
+				</select>
+
+				<!-- error message -->
+				<small class="text-muted text-danger" v-if="errors.has('formMateri.format')">
+					<i class="icon-arrow-small-right"></i> {{ errors.first('formMateri.format') }}
+				</small>
+				<small class="text-muted" v-else>&nbsp;</small>
+			</div>
+
 			<!-- upload -->
-      <div class="form-group" v-if="mode == 'create'">
+			<template v-if="mode == 'create'">
+				<div class="form-group" v-if="formMateri.format == 'upload'">
 
-        <!-- title -->
-        <h5> Upload file: </h5>
+					<!-- title -->
+					<h5> Upload dokumen: </h5>
 
-        <!-- textarea -->
-        <div class="card-card-body">
-					<input type="file" accept=".pdf,image/*" class="form-control" @change="upload" ref="fileInput">
+					<!-- textarea -->
+					<div class="card-card-body">
+						<input type="file" accept=".pdf,image/*" class="form-control" @change="upload" ref="fileInput">
+					</div>
+					<small class="text-muted">File yang diterima adalah PDF dan gambar/foto</small>
+
 				</div>
-				<small class="text-muted">File yang diterima adalah PDF dan gambar/foto</small>
+				<div class="form-group" v-else-if="formMateri.format == 'link'">
 
-      </div>
+					<!-- title -->
+					<h5>`Link dokumen: </h5>
+
+					<!-- textarea -->
+					<input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="formMateri.link">
+					<small class="text-muted">Silahkan masukkan link ke dokumen</small>
+
+				</div>
+			</template>
 
       <!-- divider -->
       <hr>
@@ -82,7 +117,7 @@
 	import formInfo from "../../components/formInfo.vue";
 
 	export default {
-		props: ['mode','selected','kegiatan_id'],
+		props: ['mode','selected','kegiatan_id','kegiatan_tipe'],
 		components: {
 			formInfo,
 			message
@@ -94,6 +129,8 @@
 					name: '',
 					keterangan: '',
 					content: '',
+					format: '',
+					link:'',
         },
         penjelasanStatus: '',
 				submited: false,
@@ -120,7 +157,7 @@
 						if(this.mode == 'edit'){
 							this.$store.dispatch('kegiatanBKCU/updateMateri', [this.formMateri.id, formData]);
 						}else{
-							this.$store.dispatch('kegiatanBKCU/storeMateri', [this.kegiatan_id, formData]);
+							this.$store.dispatch('kegiatanBKCU/storeMateri', [this.kegiatan_tipe, this.kegiatan_id, formData]);
 						}
 					}else{
 						this.submited = true;

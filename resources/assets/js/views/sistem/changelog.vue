@@ -14,18 +14,21 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#329">Version 3.2.9 <small class="text-muted"> / Mei 2020</small></a>
+                    <a data-toggle="collapse" class="text-default" href="#329">Version 3.2.9 <small class="text-muted"> / 23 Mei 2020</small></a>
                   </h5>
                 </div>
 
                 <div id="329" class="collapse show" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini memperkenalkan diklat BKCU Online
+                    <p class="mb-3">Update versi ini memperkenalkan diklat BKCU Online, serta menambahkan fitur pada pertemuan BKCU dan memperbaiki bug pada bagian pengumuman
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Menambah diklat BKCU online</li>
+                      <li>Menambah fitur diklat online pada diklat BKCU</li>
+                      <li>Menambah fitur pemberian dan pengumpulan tugas pada diklat BKCU</li>
+                      <li>Menambah fitur menandai pertanyaan sudah terjawab dan komentar pertanyaan menjadi jawaban pada diklat BKCU dan pertemuan BKCU</li>
+                      <li>Perbaikan pada bagian pengumuman untuk user BKCU</li>
                     </ul>
                   </div>
                 </div>

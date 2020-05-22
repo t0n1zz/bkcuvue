@@ -31,7 +31,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         View::composer(
-            ['_components.pengumumanBKCU'], 'App\Http\ViewComposers\PengumumanBKCUComposer'
+            ['_components.pengumumanBKCU', 'index', 'cu.index'], 'App\Http\ViewComposers\PengumumanBKCUComposer'
         );
 
         View::composer(

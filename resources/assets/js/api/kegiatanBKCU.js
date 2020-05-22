@@ -60,6 +60,14 @@ export default {
     return axios.get('/api/kegiatanBKCU/indexPertanyaanKomentar/' + id , {params: p});
   },
 
+  indexTugas: function( p, id ){
+    return axios.get('/api/kegiatanBKCU/indexTugas/' + id , {params: p});
+  },
+
+  indexTugasJawaban: function( p, id ){
+    return axios.get('/api/kegiatanBKCU/indexTugasJawaban/' + id , {params: p});
+  },
+
   indexPesertaHadir: function( p, id ){
     return axios.get('/api/kegiatanBKCU/indexPesertaHadir/' + id , {params: p});
   },
@@ -128,6 +136,14 @@ export default {
     return axios.post('/api/kegiatanBKCU/storePertanyaanKomentar/' + id, form);
   },
 
+  storeTugas: function ( tipe, id, form ){
+    return axios.post('/api/kegiatanBKCU/storeTugas/' + tipe + '/' + id, form);
+  },
+
+  storeTugasJawaban: function ( tipe, id, form ){
+    return axios.post('/api/kegiatanBKCU/storeTugasJawaban/' + tipe + '/' + id, form);
+  },
+
   edit: function( id ){
     return axios.get('/api/kegiatanBKCU/edit/' + id);
   },
@@ -160,6 +176,14 @@ export default {
     return axios.post('/api/kegiatanBKCU/updatePertanyaanKomentar/' + id, form);
   },
 
+  updateTugas: function ( id, form ){
+    return axios.post('/api/kegiatanBKCU/updateTugas/' + id, form);
+  },
+
+  updateTugasJawaban: function ( id, form ){
+    return axios.post('/api/kegiatanBKCU/updateTugasJawaban/' + id, form);
+  },
+
   updatePesertaHadir: function ( kegiatan_id, aktivis_id ){
     return axios.post('/api/kegiatanBKCU/updatePesertaHadir/' + kegiatan_id + '/' + aktivis_id);
   },
@@ -170,6 +194,10 @@ export default {
 
   updateStatus: function ( id, form ){
     return axios.post('/api/kegiatanBKCU/updateStatus/' + id, form);
+  },
+
+  jawabanPertanyaan: function( id, tipe ){
+    return axios.post('/api/kegiatanBKCU/jawabanPertanyaan/' + id + '/' + tipe);
   },
 
   destroy: function( id ){
@@ -198,6 +226,14 @@ export default {
 
   destroyPertanyaanKomentar: function( id ){
     return axios.delete('/api/kegiatanBKCU/destroyPertanyaanKomentar/' + id);
+  },
+
+  destroyTugas: function( tipe, id ){
+    return axios.delete('/api/kegiatanBKCU/destroyTugas/' + tipe + '/' + id);
+  },
+
+  destroyTugasJawaban: function( tipe, id ){
+    return axios.delete('/api/kegiatanBKCU/destroyTugasJawaban/' + tipe + '/' + id);
   },
 
   batalPeserta: function( tipe, id, form){

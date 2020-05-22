@@ -9,6 +9,8 @@ use App\Support\Helper;
 use App\KegiatanPanitia;
 use App\KegiatanPeserta;
 use App\KegiatanMateri;
+use App\KegiatanTugas;
+use App\KegiatanTugasJawaban;
 use App\KegiatanKeputusan;
 use App\KegiatanPertanyaan;
 use App\KegiatanPilih;
@@ -27,9 +29,9 @@ class KegiatanBKCUController extends Controller{
 	protected $height = 200;
 	protected $message = "Kegiatan";
 
-	public function index($tipe)
+	public function index($kegiatan_tipe)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$tipe)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->advancedFilter();
 
 		return response()
 		->json([
@@ -37,9 +39,9 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexPeriode($tipe, $periode)
+	public function indexPeriode($kegiatan_tipe, $periode)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$tipe)->where('periode',$periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->where('periode',$periode)->advancedFilter();
 
 		return response()
 		->json([
@@ -58,7 +60,7 @@ class KegiatanBKCUController extends Controller{
 
 		$countBuka = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->where('status',2)->count();
 
-		$countJalan = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->where('status',4)->count();
+		$countJalan = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->count();
 
 		return response()
 		->json([
@@ -264,6 +266,26 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
+	public function indexTugas($id)
+	{
+		$table_data = KegiatanTugas::with('cu','user.aktivis')->withCount('hasjawaban')->where('kegiatan_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexTugasJawaban($id)
+	{
+		$table_data = KegiatanTugasJawaban::with('cu','user.aktivis')->where('kegiatan_tugas_id',$id)->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
@@ -285,9 +307,9 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
-	public function getPeriode($tipe)
+	public function getPeriode($kegiatan_tipe)
 	{
-		$table_data = Kegiatan::where('tipe',$tipe)->distinct('periode')->pluck('periode');
+		$table_data = Kegiatan::where('tipe',$kegiatan_tipe)->distinct('periode')->pluck('periode');
 
 		return response()
 		->json([
@@ -305,7 +327,7 @@ class KegiatanBKCUController extends Controller{
 			]);
 	}
 
-	public function store(Request $request, $tipe)
+	public function store(Request $request, $kegiatan_tipe)
 	{	
 		$this->validate($request,Kegiatan::$rules);
 
@@ -313,7 +335,7 @@ class KegiatanBKCUController extends Controller{
 
 		// processing single image upload
 		if(!empty($request->gambar)){
-			if($tipe == 'diklat_bkcu'){
+			if($kegiatan_tipe == 'diklat_bkcu'){
 				$imagepath = $this->imagepathDiklat;
 			}else{
 				$imagepath = $this->imagepathPertemuan;
@@ -324,7 +346,7 @@ class KegiatanBKCUController extends Controller{
 		}
 
 		$kelas = Kegiatan::create($request->except('tipe','status','gambar') + [
-			'tipe' => $tipe, 'status' => '1', 'gambar' => $fileName
+			'tipe' => $kegiatan_tipe, 'status' => '1', 'gambar' => $fileName
 		]);
 
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
@@ -389,7 +411,7 @@ class KegiatanBKCUController extends Controller{
 		}
 	}
 
-	public function storePeserta(Request $request, $tipe, $id)
+	public function storePeserta(Request $request, $kegiatan_tipe, $id)
 	{
 		$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
 
@@ -406,14 +428,14 @@ class KegiatanBKCUController extends Controller{
 			if($dataPeserta){
 				$diff = $time->diffInHours($dataPeserta->created_at);
 				if($diff > 2){
-					if($tipe == 'diklat_bkcu'){
+					if($kegiatan_tipe == 'diklat_bkcu'){
 						NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
 					}else{
 						NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
 					}
 				}
 			}else{
-				if($tipe == 'diklat_bkcu'){
+				if($kegiatan_tipe == 'diklat_bkcu'){
 					NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
 				}else{
 					NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
@@ -429,31 +451,37 @@ class KegiatanBKCUController extends Controller{
 			]);	
 	}
 
-	public function storeMateri(Request $request, $tipe, $id)
+	public function storeMateri(Request $request, $kegiatan_tipe, $id)
 	{
-		$file = $request->content;
 		$name = $request->name;
-		$tipe = $file->getClientOriginalExtension();
-
-		if($tipe == 'diklat_bkcu'){
-			$materipath = $this->materipathDiklat;
-		}else{
-			$materipath = $this->materipathPertemuan;
-		}
-
-		if($tipe != 'pdf'){
-			$formatedName = Helper::image_processing($materipath,$this->width,$this->height,$file,'',$name);
-		}else{
-			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$tipe;
-			$file->move($materipath,$formatedName);
+		$format = $request->format;
+		$formatedName = '';
+		
+		if($format == 'upload'){
+			$file = $request->content;
+			if($kegiatan_tipe == 'diklat_bkcu'){
+				$materipath = $this->materipathDiklat;
+			}else{
+				$materipath = $this->materipathPertemuan;
+			}
+			
+			$fileExtension = $file->getClientOriginalExtension();
+			if($fileExtension != 'pdf'){
+				$formatedName = Helper::image_processing($materipath,$this->width,$this->height,$file,'',$name);
+			}else{
+				$filename = $file->getClientOriginalName();
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
+				$file->move($materipath,$formatedName);
+			}
 		}
 
 		$kelas = KegiatanMateri::create([ 
 			'kegiatan_id' => $id,
 			'name' => $request->name,
 			'filename' => $formatedName,
-			'tipe' => $tipe,
+			'link' => $request->link,
+			'format' => $format,
+			'tipe' => $fileExtension,
 			'keterangan' => $request->keterangan
 		]);
 		
@@ -511,6 +539,75 @@ class KegiatanBKCUController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => 'Komentar pertanyaan berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	public function storeTugas(Request $request, $kegiatan_tipe, $id)
+	{
+		$name = $request->name;
+		$tipe = $request->tipe;
+		$format = $request->format;
+		$formatedName = '';
+		$fileExtension = 'link';
+		
+		if($format == 'upload'){
+			$file = $request->filename;
+			if($kegiatan_tipe == 'diklat_bkcu'){
+				$materipath = $this->materipathDiklat;
+			}else{
+				$materipath = $this->materipathPertemuan;
+			}
+			
+			$filename = $file->getClientOriginalName();
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
+			$file->move($materipath,$formatedName);
+		}
+
+		$kelas = KegiatanTugas::create($request->except('kegiatan_id','file') +[ 
+			'kegiatan_id' => $id,
+			'file' => $formatedName,
+		]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Tugas ' . $this->message. ' berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
+	public function storeTugasJawaban(Request $request, $kegiatan_tipe, $id)
+	{
+		$name = $request->name;
+		$tipe = $request->tipe;
+		$formatedName = '';
+		$fileExtension = '';
+		
+		if($tipe == 'upload'){
+			$file = $request->filename;
+			if($kegiatan_tipe == 'diklat_bkcu'){
+				$materipath = $this->materipathDiklat;
+			}else{
+				$materipath = $this->materipathPertemuan;
+			}
+			
+			$fileExtension = $file->getClientOriginalExtension();
+			$filename = $file->getClientOriginalName();
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
+			$file->move($materipath,$formatedName);
+		}
+
+		$kelas = KegiatanTugasJawaban::create($request->except('kegiatan_id','file','tipe') +[ 
+			'kegiatan_tugas_id' => $id,
+			'file' => $formatedName,
+			'tipe' => $fileExtension,
+		]);
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Jawaban tugas ' . $this->message. ' berhasil ditambah',
 				'id' => $kelas->id
 			]);	
 	}
@@ -719,6 +816,32 @@ class KegiatanBKCUController extends Controller{
 			]);
 	}
 
+	public function updateTugas(Request $request, $id)
+	{
+		$kelas = KegiatanTugas::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Tugas berhasil diubah"
+			]);
+	}
+
+	public function updateTugasJawaban(Request $request, $id)
+	{
+		$kelas = KegiatanTugasJawaban::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Jawaban tugas berhasil diubah"
+			]);
+	}
+
 	public function updatePesertaHadir($kegiatan_id, $aktivis_id)
 	{
 		$kelas = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
@@ -742,6 +865,40 @@ class KegiatanBKCUController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => "Panitia berhasil hadir"
+			]);
+	}
+
+	public function jawabanPertanyaan($id, $tipe)
+	{
+		if($tipe == 'jawaban'){
+			$kelasKomentar = KegiatanPertanyaan::findOrFail($id);
+			$kelasPertanyaan = KegiatanPertanyaan::findOrFail($kelasKomentar->kegiatan_pertanyaan_id);
+			$kelasKomentarJawaban = KegiatanPertanyaan::where('kegiatan_pertanyaan_id', $kelasPertanyaan->id)->whereNotNull('terjawab')->first();
+
+			if($kelasKomentarJawaban){
+				$kelasKomentarJawaban->terjawab = null;
+				$kelasKomentarJawaban->update();
+			}
+
+			$kelasKomentar->terjawab = 1;
+			$kelasKomentar->update();
+
+			$kelasPertanyaan->terjawab = 1;
+			$kelasPertanyaan->update();
+		}else{
+			$kelasKomentarJawaban = KegiatanPertanyaan::findOrFail($id);
+			$kelasKomentarJawaban->terjawab = null;
+			$kelasKomentarJawaban->update();
+
+			$kelasPertanyaan = KegiatanPertanyaan::findOrFail($kelasKomentarJawaban->kegiatan_pertanyaan_id);
+			$kelasPertanyaan->terjawab = null;
+			$kelasPertanyaan->update();
+		}
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => "Jawaban pertanyaan berhasil diubah"
 			]);
 	}
 
@@ -786,25 +943,27 @@ class KegiatanBKCUController extends Controller{
 			]);
 	}
 
-	public function destroyMateri($tipe, $id)
+	public function destroyMateri($kegiatan_tipe, $id)
 	{
 		$kelas = KegiatanMateri::findOrFail($id);
 		$name = $kelas->name;
-		$tipe = $kelas->tipe;
+		$format = $kelas->format;
 
 		$kelas->delete();
 
-		if($tipe == 'diklat_bkcu'){
+		if($kegiatan_tipe == 'diklat_bkcu'){
 			$materipath = $this->materipathDiklat;
 		}else{
 			$materipath = $this->materipathPertemuan;
 		}
 
-		if($tipe != 'pdf'){
-			File::delete($materipath . $kelas->filename . '.jpg');
-			File::delete($materipath . $kelas->filename . 'n.jpg');
-		}else{
-			File::delete($materipath . $kelas->filename);
+		if(!empty($kelas->filename)){
+			if($format != 'pdf'){
+				File::delete($materipath . $kelas->filename . '.jpg');
+				File::delete($materipath . $kelas->filename . 'n.jpg');
+			}else{
+				File::delete($materipath . $kelas->filename);
+			}
 		}
 
 		return response()
@@ -875,7 +1034,75 @@ class KegiatanBKCUController extends Controller{
 			]);
 	}
 
-	public function batalPeserta(Request $request, $tipe, $id)
+	public function destroyTugas($kegiatan_tipe, $id)
+	{
+		$kelas = KegiatanTugas::findOrFail($id);
+		$name = $kelas->name;
+		$format = $kelas->format;
+
+		$kelas->delete();
+
+		if($kegiatan_tipe == 'diklat_bkcu'){
+			$materipath = $this->materipathDiklat;
+		}else{
+			$materipath = $this->materipathPertemuan;
+		}
+
+		if(!empty($kelas->filename)){
+			File::delete($materipath . $kelas->filename);
+		}
+
+		$jawaban = KegiatanTugasJawaban::where('kegiatan_pertanyaan_id',$id)->get();
+		foreach($j as $jawaban){
+			$kelasJ = KegiatanTugasJawaban::findOrFail($jawaban->id);
+			$name = $kelasJ->name;
+			$format = $kelasJ->format;
+
+			$kelasJ->delete();
+
+			if($kegiatan_tipe == 'diklat_bkcu'){
+				$materipath = $this->materipathDiklat;
+			}else{
+				$materipath = $this->materipathPertemuan;
+			}
+
+			if(!empty($kelas->filename)){
+				File::delete($materipath . $kelas->filename);
+			}
+		}
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Tugas ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function destroyTugasJawaban($kegiatan_tipe, $id)
+	{
+		$kelas = KegiatanTugasJawaban::findOrFail($id);
+		$name = $kelas->name;
+		$format = $kelas->format;
+
+		$kelas->delete();
+
+		if($kegiatan_tipe == 'diklat_bkcu'){
+			$materipath = $this->materipathDiklat;
+		}else{
+			$materipath = $this->materipathPertemuan;
+		}
+		if(!empty($kelas->filename)){
+			File::delete($materipath . $kelas->filename);
+		}
+
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Jawaban tugas ' .$name. 'berhasil dihapus'
+			]);
+	}
+
+	public function batalPeserta(Request $request, $kegiatan_tipe, $id)
 	{
 		$kelas = KegiatanPeserta::with('aktivis.pekerjaan_aktif')->findOrFail($id);
 
@@ -889,13 +1116,13 @@ class KegiatanBKCUController extends Controller{
 
 		if($id_cu != 0){
 			if($request->keteranganBatal != ''){
-				if($tipe == 'diklat_bkcu'){
+				if($kegiatan_tipe == 'diklat_bkcu'){
 					NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
 				}else{
 					NotificationHelper::pertemuan_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
 				}
 			}else{
-				if($tipe == 'diklat_bkcu'){
+				if($kegiatan_tipe == 'diklat_bkcu'){
 					NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta');
 				}else{
 					NotificationHelper::pertemuan_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta');

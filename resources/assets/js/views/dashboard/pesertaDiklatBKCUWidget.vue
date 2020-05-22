@@ -159,7 +159,7 @@
 <script type="text/javascript">
 	import { mapGetters } from 'vuex';
 	import checkValue from '../../components/checkValue.vue';
-	import DIKLATBKCUAPI from '../../api/diklatBKCU.js';
+	// import DIKLATBKCUAPI from '../../api/diklatBKCU.js';
   
 	export default{
 		components: {
@@ -190,62 +190,62 @@
 			this.fetchDaftar();
 		},
 		methods:{
-			fetchDaftar(){
-				this.itemDaftarStat = 'loading';
+			// fetchDaftar(){
+			// 	this.itemDaftarStat = 'loading';
 
-				DIKLATBKCUAPI.indexPesertaTerdaftar( this.currentUser.id_cu )
-        .then((response) => {
-					this.itemDaftar = response.data.model;
-					this.countDaftar = response.data.model.length;
-					this.countMenunggu = response.data.countMenunggu;
-					this.countIkut = response.data.countIkut;
-					this.countBatal = response.data.countBatal;
-          this.itemDaftarStat = 'success';
-        })
-        .catch((error) => {
-					this.itemDaftar = error.response;
-          this.itemDaftarStat = 'fail';
-				});
-			},
-			fetchMenunggu(){
-				this.itemMenungguStat = 'loading';
+			// 	DIKLATBKCUAPI.indexPesertaTerdaftar( this.currentUser.id_cu )
+      //   .then((response) => {
+			// 		this.itemDaftar = response.data.model;
+			// 		this.countDaftar = response.data.model.length;
+			// 		this.countMenunggu = response.data.countMenunggu;
+			// 		this.countIkut = response.data.countIkut;
+			// 		this.countBatal = response.data.countBatal;
+      //     this.itemDaftarStat = 'success';
+      //   })
+      //   .catch((error) => {
+			// 		this.itemDaftar = error.response;
+      //     this.itemDaftarStat = 'fail';
+			// 	});
+			// },
+			// fetchMenunggu(){
+			// 	this.itemMenungguStat = 'loading';
 
-				DIKLATBKCUAPI.indexPesertaMenunggu( this.currentUser.id_cu )
-        .then((response) => {
-          this.itemMenunggu = response.data.model;
-          this.itemMenungguStat = 'success';
-        })
-        .catch((error) => {
-					this.itemMenunggu = error.response;
-          this.itemMenungguStat = 'fail';
-				});
-			},
-			fetchIkut(){
-				this.itemIkutStat = 'loading';
+			// 	DIKLATBKCUAPI.indexPesertaMenunggu( this.currentUser.id_cu )
+      //   .then((response) => {
+      //     this.itemMenunggu = response.data.model;
+      //     this.itemMenungguStat = 'success';
+      //   })
+      //   .catch((error) => {
+			// 		this.itemMenunggu = error.response;
+      //     this.itemMenungguStat = 'fail';
+			// 	});
+			// },
+			// fetchIkut(){
+			// 	this.itemIkutStat = 'loading';
 
-				DIKLATBKCUAPI.indexPesertaBerjalan( this.currentUser.id_cu )
-        .then((response) => {
-          this.itemIkut = response.data.model;
-          this.itemIkutStat = 'success';
-        })
-        .catch((error) => {
-					this.itemIkut = error.response;
-          this.itemIkutStat = 'fail';
-				});
-			},
-			fetchBatal(){
-				this.itemBatalStat = 'loading';
+			// 	DIKLATBKCUAPI.indexPesertaBerjalan( this.currentUser.id_cu )
+      //   .then((response) => {
+      //     this.itemIkut = response.data.model;
+      //     this.itemIkutStat = 'success';
+      //   })
+      //   .catch((error) => {
+			// 		this.itemIkut = error.response;
+      //     this.itemIkutStat = 'fail';
+			// 	});
+			// },
+			// fetchBatal(){
+			// 	this.itemBatalStat = 'loading';
 
-				DIKLATBKCUAPI.indexPesertaBatal( this.currentUser.id_cu )
-        .then((response) => {
-          this.itemBatal = response.data.model;
-          this.itemBatalStat = 'success';
-        })
-        .catch((error) => {
-					this.itemBatal = error.response;
-          this.itemBatalStat = 'fail';
-				});
-			},
+			// 	DIKLATBKCUAPI.indexPesertaBatal( this.currentUser.id_cu )
+      //   .then((response) => {
+      //     this.itemBatal = response.data.model;
+      //     this.itemBatalStat = 'success';
+      //   })
+      //   .catch((error) => {
+			// 		this.itemBatal = error.response;
+      //     this.itemBatalStat = 'fail';
+			// 	});
+			// },
 			changeTab(value){
 				this.tabName = value;
 				this.selectedItemDaftar = [];

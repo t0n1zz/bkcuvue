@@ -64,17 +64,26 @@
               <check-value :value="komentar.cu.name" v-if="komentar.cu"></check-value>
               <span v-else>-</span>
             </h6>
-            <div class="header-elements">
-              <span class="badge badge-secondary">
-                <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
-              </span>
-              <div class="list-icons ml-2" v-if="komentar.id_user == currentUser.id">
-                <a href="#" class="list-icons-item" @click.prevent="hapusOpen(komentar)" ><i class="icon-bin2"></i></a>
+            <div class="d-none d-sm-block">
+              <div class="header-elements">
+                <span class="badge badge-secondary">
+                  <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
+                </span>
+                <div class="list-icons ml-2" v-if="komentar.id_user == currentUser.id">
+                  <a href="#" class="btn btn-light list-icons-item" @click.prevent="hapusOpen(komentar)" ><i class="icon-bin2"></i></a>
+                </div>
               </div>
-            </div>
+             </div>
           </div>
           <div class="card-body pb-1 pt-2" v-if="komentar.keterangan">
             <div v-html="komentar.keterangan"></div>
+          </div>
+          <div class="card-footer d-block d-sm-none text-center">
+            <span class="badge badge-secondary">
+              <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
+            </span>
+
+            <button class="btn btn-light btn-block mt-2 mb-1" @click.prevent="hapusOpen(komentar)" ><i class="icon-bin2"></i> Hapus Komentar</button>
           </div>
         </div>
       </template>
