@@ -196,21 +196,19 @@
               <div v-html="selectedKomentar.keterangan"></div>
             </div>
           </div>
-          <!-- tombol desktop-->
-          <div class="text-center d-none d-md-block">
-            <button class="btn btn-light" @click.prevent="showBatal()">
-              <i class="icon-arrow-left13"></i> Batal</button>
-            <button class="btn btn-warning" @click.prevent="showOke()">
-              <i class="icon-checkmark5"></i> Ok</button>
-          </div>  
 
-          <!-- tombol mobile-->
-          <div class="d-block d-md-none">
-            <button class="btn btn-warning btn-block pb-2" @click.prevent="showOke()">
-              <i class="icon-checkmark5"></i> Ok</button>
-            <button class="btn btn-light btn-block pb-2" @click.prevent="showBatal()">
+          <!-- button -->
+          <div class="row">
+            <div class="col-sm-6">
+              <button class="btn btn-light btn-block mb-2" @click.prevent="showBatal()">
               <i class="icon-arrow-left13"></i> Batal</button>
-          </div> 
+            </div>
+            <div class="col-sm-6">
+              <button class="btn btn-warning btn-block mb-2" @click.prevent="showOke()">
+              <i class="icon-checkmark5"></i> Ok</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </template>

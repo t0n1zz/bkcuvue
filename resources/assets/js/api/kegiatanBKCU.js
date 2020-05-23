@@ -140,12 +140,16 @@ export default {
     return axios.post('/api/kegiatanBKCU/storeTugas/' + tipe + '/' + id, form);
   },
 
-  storeTugasJawaban: function ( tipe, id, form ){
-    return axios.post('/api/kegiatanBKCU/storeTugasJawaban/' + tipe + '/' + id, form);
+  storeTugasJawaban: function ( tipe, form ){
+    return axios.post('/api/kegiatanBKCU/storeTugasJawaban/' + tipe, form);
   },
 
   edit: function( id ){
     return axios.get('/api/kegiatanBKCU/edit/' + id);
+  },
+
+  editTugasJawaban: function( id ){
+    return axios.get('/api/kegiatanBKCU/editTugasJawaban/' + id);
   },
 
   update: function ( id, form ){

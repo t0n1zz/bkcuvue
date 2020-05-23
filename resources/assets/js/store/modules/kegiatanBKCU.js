@@ -8,6 +8,7 @@ export const kegiatanBKCU = {
     data: {},
     data2: {}, //single data
     data3: {}, //single data
+    data4: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
     dataS3: [], //collection
@@ -28,6 +29,7 @@ export const kegiatanBKCU = {
     dataStat: '',
     dataStat2: '',
     dataStat3: '',
+    dataStat4: '',
     periodeStat: '',
     dataStatS: '',
     dataStatS2: '',
@@ -58,6 +60,7 @@ export const kegiatanBKCU = {
     data: state => state.data,
     data2: state => state.data2,
     data3: state => state.data3,
+    data4: state => state.data4,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
     dataS3: state => state.dataS3, 
@@ -78,6 +81,7 @@ export const kegiatanBKCU = {
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
     dataStat3: state => state.dataStat3,
+    dataStat4: state => state.dataStat4,
     periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
@@ -549,21 +553,21 @@ export const kegiatanBKCU = {
         });
     },
 
-    storeTugasJawaban( {commit, state, dispatch}, [tipe, id, form] ){
-      commit('setUpdateStat', 'loading');
+    storeTugasJawaban( {commit, state, dispatch}, [tipe, form] ){
+      commit('setUpdateStat2', 'loading');
 
-      KEGIATANBKCUAPI.storeTugasJawaban( tipe, id, form )
+      KEGIATANBKCUAPI.storeTugasJawaban( tipe, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
-            commit('setUpdateStat', 'success');
+            commit('setUpdate2', response.data);
+            commit('setUpdateStat2', 'success');
           }else{
-            commit('setUpdateStat', 'fail');
+            commit('setUpdateStat2', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
-          commit('setUpdateStat', 'fail');
+          commit('setUpdate2', error.response);   
+          commit('setUpdateStat2', 'fail');
         });
     },
 
@@ -584,6 +588,24 @@ export const kegiatanBKCU = {
           commit('setRules', []);
           commit('setOptions', [])
           commit('setDataStat', 'fail');
+        });
+    },
+
+    editTugasJawaban( {commit}, id ){
+      commit('setDataStat4', 'loading');
+      
+      KEGIATANBKCUAPI.editTugasJawaban( id )
+        .then( function( response ){
+          commit('setData4', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat4', 'success');
+        })
+        .catch(error => {
+          commit('setData4', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat4', 'fail');
         });
     },
 
@@ -751,20 +773,20 @@ export const kegiatanBKCU = {
     },
 
     updateTugasJawaban( {commit, state, dispatch}, [id, form] ){
-      commit('setUpdateStat', 'loading');
+      commit('setUpdateStat2', 'loading');
 
       KEGIATANBKCUAPI.updateTugasJawaban( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
-            commit('setUpdateStat', 'success');
+            commit('setUpdate2', response.data);
+            commit('setUpdateStat2', 'success');
           }else{
-            commit('setUpdateStat', 'fail');
+            commit('setUpdateStat2', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
-          commit('setUpdateStat', 'fail');
+          commit('setUpdate2', error.response);   
+          commit('setUpdateStat2', 'fail');
         });
     },
 
@@ -968,20 +990,20 @@ export const kegiatanBKCU = {
     },
 
     destroyTugasJawaban( {commit, state, dispatch}, [tipe, id] ){
-      commit('setUpdateStat', 'loading');
+      commit('setUpdateStat2', 'loading');
 
       KEGIATANBKCUAPI.destroyTugasJawaban( tipe, id )
         .then( function( response ){
           if(response.data.deleted){
-            commit('setUpdate', response.data);
-            commit('setUpdateStat', 'success');
+            commit('setUpdate2', response.data);
+            commit('setUpdateStat2', 'success');
           }else{
-            commit('setUpdateStat', 'fail');
+            commit('setUpdateStat2', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);         
-          commit('setUpdateStat', 'fail');
+          commit('setUpdate2', error.response);         
+          commit('setUpdateStat2', 'fail');
         });
     },
 
@@ -1076,6 +1098,9 @@ export const kegiatanBKCU = {
     setData3 ( state, data ){
       state.data3 = data;
     },
+    setData4 ( state, data ){
+      state.data4 = data;
+    },
     setPeriode ( state, data ){
       state.periode = data;
     },
@@ -1135,6 +1160,9 @@ export const kegiatanBKCU = {
     },
     setDataStat3( state, status ){
       state.dataStat3 = status;
+    },
+    setDataStat4( state, status ){
+      state.dataStat4 = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;

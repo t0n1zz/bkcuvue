@@ -113,7 +113,7 @@
 									</template>
 
 									<!-- keputusan -->
-									<template v-if="item.pilih.length > 0">
+									<template v-if="item.pilih && item.pilih.length > 0">
 										<button class="btn bg-success btn-block mb-2" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && tipeUser == 'peserta'">
 											<i class="icon-hammer"></i> Beri Keputusan
 										</button>
@@ -316,7 +316,7 @@
 											Tugas
 										</a></li>		
 
-										<li class="nav-item" v-if="item.pilih.length > 0"><a href="#" class="nav-link" :class="{'active': tabName == 'keputusan'}" @click.prevent="changeTab('keputusan')"><i class="icon-hammer mr-2"></i>
+										<li class="nav-item" v-if="item.pilih && item.pilih.length > 0"><a href="#" class="nav-link" :class="{'active': tabName == 'keputusan'}" @click.prevent="changeTab('keputusan')"><i class="icon-hammer mr-2"></i>
 											Keputusan 
 											<span class="badge badge-success ml-2" v-if="countKeputusanStat == 'success' && countKeputusan[0] > 0">{{ countKeputusan[0] }}</span>
 										</a></li>	
@@ -1003,7 +1003,7 @@
 							<!-- tabstatistik -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-if="tabName == 'statistik'">
-									<template v-if="item.pilih.length > 0">
+									<template v-if="item.pilih && item.pilih.length > 0">
 										<div class="card" v-if="itemDataKeputusanCountStat == 'success' && itemDataKeputusanCount.length > 0">
 											<div class="card-header bg-light">
 												<h6 class="card-title">Keputusan</h6>
@@ -1183,6 +1183,12 @@
 				:kegiatan_id="item.id"
 				:kegiatan_tipe="item.tipe"
 				@tutup="modalTutup" v-if="state == 'tambahTugas'  || state == 'ubahTugas'"></form-tugas>
+				<form-tugas-jawaban 
+				:selected="selectedItemTugas"
+				:kegiatan_id="item.id"
+				:kegiatan_tipe="item.tipe"
+				:tipeUser="tipeUser"
+				@tutup="modalTutup" v-else-if="state == 'lihatTugas'"></form-tugas-jawaban>
 
 				<form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
 				@tutup="modalTutup" v-else-if="state == 'statusPertemuan'"></form-status>
@@ -1241,6 +1247,7 @@
 	import formHadir from "./formHadir.vue";
 	import formMateri from "./formMateri.vue";
 	import formTugas from "./formTugas.vue";
+	import formTugasJawaban from "./formTugasJawaban.vue";
 	import formKeputusan from "./formKeputusan.vue";
 	import formKeputusanKomentar from "./formKeputusanKomentar.vue";
 	import formPertanyaan from "./formPertanyaan.vue";
@@ -1263,6 +1270,7 @@
 			formHadir,
 			formMateri,
 			formTugas,
+			formTugasJawaban,
 			// formPdf,
 			formKeputusan,
 			formKeputusanKomentar,

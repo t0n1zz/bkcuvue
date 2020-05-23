@@ -577,14 +577,14 @@ class KegiatanBKCUController extends Controller{
 			]);	
 	}
 
-	public function storeTugasJawaban(Request $request, $kegiatan_tipe, $id)
+	public function storeTugasJawaban(Request $request, $kegiatan_tipe)
 	{
 		$name = $request->name;
-		$tipe = $request->tipe;
+		$format = $request->format;
 		$formatedName = '';
 		$fileExtension = '';
 		
-		if($tipe == 'upload'){
+		if($format == 'upload'){
 			$file = $request->filename;
 			if($kegiatan_tipe == 'diklat_bkcu'){
 				$materipath = $this->materipathDiklat;
@@ -598,10 +598,8 @@ class KegiatanBKCUController extends Controller{
 			$file->move($materipath,$formatedName);
 		}
 
-		$kelas = KegiatanTugasJawaban::create($request->except('kegiatan_id','file','tipe') +[ 
-			'kegiatan_tugas_id' => $id,
+		$kelas = KegiatanTugasJawaban::create($request->except('file') +[ 
 			'file' => $formatedName,
-			'tipe' => $fileExtension,
 		]);
 		
 		return response()
@@ -615,6 +613,18 @@ class KegiatanBKCUController extends Controller{
 	public function edit($id)
 	{
 		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','pilih')->findOrFail($id);
+
+		return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
+	}
+
+	public function editTugasJawaban($id)
+	{
+		$id_user = Auth::user()->getId();
+		$kelas = KegiatanTugasJawaban::with('cu','user.aktivis')->where('kegiatan_tugas_id',$id)->where('id_user',$id_user)->first();
 
 		return response()
 				->json([
@@ -1052,8 +1062,8 @@ class KegiatanBKCUController extends Controller{
 			File::delete($materipath . $kelas->filename);
 		}
 
-		$jawaban = KegiatanTugasJawaban::where('kegiatan_pertanyaan_id',$id)->get();
-		foreach($j as $jawaban){
+		$jawaban = KegiatanTugasJawaban::where('kegiatan_tugas_id',$id)->get();
+		foreach($jawaban as $j){
 			$kelasJ = KegiatanTugasJawaban::findOrFail($jawaban->id);
 			$name = $kelasJ->name;
 			$format = $kelasJ->format;

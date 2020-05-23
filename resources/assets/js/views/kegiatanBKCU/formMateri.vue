@@ -76,7 +76,7 @@
 				<div class="form-group" v-else-if="formMateri.format == 'link'">
 
 					<!-- title -->
-					<h5>`Link dokumen: </h5>
+					<h5>Link dokumen: </h5>
 
 					<!-- textarea -->
 					<input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="formMateri.link">

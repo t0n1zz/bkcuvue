@@ -63,10 +63,10 @@
 
 			<!-- upload -->		
 			<template v-if="formTugas.tipe != ''">
-				<div class="form-group" v-if="formTugas.tipe == 'google'">
+				<div class="form-group" v-if="formTugas.tipe == 'google form'">
 
 					<!-- title -->
-					<h5>`Link google form: </h5>
+					<h5>Link google form: </h5>
 
 					<!-- textarea -->
 					<input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="formTugas.link">
@@ -117,7 +117,7 @@
 						<div class="form-group" v-else-if="formTugas.format == 'link'">
 
 							<!-- title -->
-							<h5>`Link dokumen: </h5>
+							<h5>Link dokumen: </h5>
 
 							<!-- textarea -->
 							<input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="formTugas.link">

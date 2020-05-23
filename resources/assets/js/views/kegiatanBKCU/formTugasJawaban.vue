@@ -1,15 +1,11 @@
 <template>
 	<div>
 		<!-- message -->
-		<message v-if="errors.any('formKomentar') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
+		<message v-if="errors.any('formJawaban') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 		</message>
 
     <message v-if="message.show" @close="messageClose" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
 		</message>
-
-    <div class="card card-body bg-info text-white text-center">
-      TUGAS
-    </div>
 
     <!-- data pertanyaan -->
     <div class="card">
@@ -23,13 +19,22 @@
           </div>
         </div>
       </div>
-      <div class="card-body" v-if="selected.keterangan">
+      <div class="card-body">
         <div v-html="selected.keterangan"></div>
+        <div v-if="selected.tipe != 'google form'">
+          <div v-if="selected.link">
+            <hr/>
+            <a type="button" class="btn btn-light btn-block mt-1 mb-1" :href="selected.link" target="_blank"><i class="icon-file-download"></i> Unduh dokumen pendukung</a>			
+          </div>
+          <div v-if="selected.filename">
+            <hr/>
+            <button type="button" class="btn btn-light btn-block mt-1 mb-1" @click.prevent="downloadMateri(selected.filename)"><i class="icon-file-download"></i> Unduh dokumen pendukung</button>	
+          </div>
+        </div>
       </div>
-      <div class="card-footer">
-        <div class="d-block d-sm-none text-center">
+      <div class="d-block d-sm-none text-center">
+        <div class="card-footer">  
           <span class="badge badge-primary">{{ selected.tipe | uppercase }}</span>
-
           <span class="badge badge-secondary" v-html="$options.filters.dateTime(selected.created_at)">
           </span>
         </div>
@@ -38,56 +43,66 @@
     
     <!-- jawaban list -->
     <div v-if="tipeUser != 'peserta'">
-      <div class="card card-body bg-warning text-white text-center">
+      <div class="card card-body bg-warning text-white text-center" v-if="itemDataStat == 'success' && itemData.data.length > 0">
         JAWABAN
       </div>
-      <!-- komentar -->
-      <template v-if="itemDataKomentarStat == 'success' && itemDataKomentar.data.length > 0">
-        <div class="card" v-for="komentar in itemDataKomentar.data" :key="komentar.id" :class="{'border-warning' : komentar.terjawab == 1}">
-          <div class="card-header bg-warning text-white text-center" v-if="komentar.terjawab">
-            <i class="icon-check"></i> JAWABAN
-          </div>
+      <div v-else>
+        <div class="card card-body bg-secondary text-white text-center" v-if="selected.tipe != 'google form'">BELUM ADA JAWABAN
+        </div>
+        <div v-else>
+          Tugas ini menggunakan google form sebagai media untuk memberikan jawaban, oleh karena itu, untuk memeriksa hasil jawaban dari peserta silahkan ke google form berikut:
+          <a type="button" class="btn bg-blue btn-block mt-2 mb-1" :href="selected.link" target="_blank" ><i class="icon-google"></i> Google Form</a>
+        </div>
+      </div>
+      <!-- data -->
+      <template v-if="itemDataStat == 'success' && itemData.data.length > 0">
+        <div class="card" v-for="jawaban in itemData.data" :key="jawaban.id" :class="{'border-warning' : jawaban.terjawab == 1}">
           <div class="card-header bg-light header-elements-inline">
             
             <h6 class="card-title">
-              <img :src="'/images/aktivis/' + komentar.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="komentar.user.aktivis.gambar">
+              <img :src="'/images/aktivis/' + jawaban.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="jawaban.user.aktivis.gambar">
               <img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
-              <check-value :value="komentar.user.aktivis.name" v-if="komentar.user"></check-value>
+              <check-value :value="jawaban.user.aktivis.name" v-if="jawaban.user"></check-value>
               <span v-else>-</span>
               |
-              <check-value :value="komentar.cu.name" v-if="komentar.cu"></check-value>
+              <check-value :value="jawaban.cu.name" v-if="jawaban.cu"></check-value>
               <span v-else>-</span>
               
             </h6>
             <div class="d-none d-sm-block">
               <div class="header-elements">
                 <span class="badge badge-secondary">
-                  <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
+                  <small v-html="$options.filters.dateTime(jawaban.created_at)"></small>	
                 </span>
                 <div class="list-icons ml-2">
-                  <a href="#" class="btn btn-warning list-icons-item text-white" @click.prevent="showOpen(komentar, 'jawaban')" v-if="!komentar.terjawab"><i class="icon-check"></i></a>
-                  <a href="#" class="btn btn-warning list-icons-item text-white" @click.prevent="showOpen(komentar, 'batalJawaban')" v-if="komentar.terjawab"><i class="icon-cross"></i></a>
-                  <a href="#" class="btn btn-light list-icons-item" @click.prevent="showOpen(komentar,'hapus')" v-if="komentar.id_user == currentUser.id"><i class="icon-bin2"></i></a>
+                  <a href="#" class="btn btn-light list-icons-item" @click.prevent="showOpen(jawaban,'hapus')" v-if="jawaban.id_user == currentUser.id"><i class="icon-bin2"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-body pb-1 pt-2" v-if="komentar.keterangan">
-            <div v-html="komentar.keterangan"></div>
+          <div class="card-body pt-2" v-if="jawaban.keterangan">
+            <div v-html="jawaban.keterangan"></div>
+            <div v-if="jawaban.link != '' || jawaban.filename != ''">
+              <hr class="mb-1"/>
+              <h5>Dokumen pendukung:</h5> 
+              <div v-if="jawaban.link">
+                <a type="button" class="btn btn-light btn-block mt-1 mb-1" :href="jawaban.link" target="_blank"><i class="icon-file-download"></i> Unduh dokumen pendukung</a>			
+              </div>
+              <div v-if="jawaban.filename">
+                <button type="button" class="btn btn-light btn-block mt-1 mb-1" @click.prevent="downloadMateri(jawaban.filename)"><i class="icon-file-download"></i> Unduh dokumen pendukung</button>	
+              </div>
+            </div>
           </div>
           <div class="card-footer d-block d-sm-none text-center">
             <span class="badge badge-secondary">
-              <small v-html="$options.filters.dateTime(komentar.created_at)"></small>	
+              <small v-html="$options.filters.dateTime(jawaban.created_at)"></small>	
             </span>
-
-            <button class="btn btn-warning btn-block mt-2 mb-1" @click.prevent="showOpen(komentar,'jawaban')" v-if="!komentar.terjawab"><i class="icon-check"></i> Jadikan Jawaban</button>
-            <button class="btn btn-warning btn-block mt-2 mb-1" @click.prevent="showOpen(komentar,'batalJawaban')" v-if="komentar.terjawab"><i class="icon-check"></i> Batal Jawaban</button>
-            <button class="btn btn-light btn-block mt-2 mb-1" @click.prevent="showOpen(komentar,'hapus')" ><i class="icon-bin2"></i> Hapus Komentar</button>
+            <button class="btn btn-light btn-block mt-2 mb-1" @click.prevent="showOpen(jawaban,'hapus')" ><i class="icon-bin2"></i> Hapus Komentar</button>
           </div>
         </div>
       </template>
 
-      <div v-if="itemDataKomentarStat === 'loading'" class="card card-body">
+      <div v-if="itemDataStat === 'loading'" class="card card-body">
         <h4>Mohon tunggu...</h4>
         <div class="progress">
           <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
@@ -95,32 +110,32 @@
           </div>
         </div>
       </div>
-      <div v-if="itemDataKomentarStat === 'fail'" class="card card-body">
+      <div v-if="itemDataStat === 'fail'" class="card card-body">
         <h4>Oops.. Terjadi kesalahan, silahkan coba lagi.</h4>
       </div>
 
-      <!-- komentar pagination -->
-      <div class="card card-body pb-2 pt-2" v-if="itemDataKomentarStat == 'success' && itemDataKomentar.data.length > 0">
+      <!-- pagination -->
+      <div class="card card-body pb-2 pt-2" v-if="itemDataStat == 'success' && itemData.data.length > 0">
         <div class="row pre-scrollable">
 
           <!-- pagination -->
           <!-- desktop -->
           <div class="col-md-12 text-center">
             <!-- pagination success-->
-            <div class="btn-group" v-if="itemDataKomentarStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="goToPage(1)">
+            <div class="btn-group" v-if="itemDataStat === 'success'">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.prev_page_url}" @click.prevent="prevPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn" v-for="(n, index) in pages" :key="index" :class="{'btn-primary' : queryKomentar.page == n, 'btn-light' : queryKomentar.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="(n, index) in pages" :key="index" :class="{'btn-primary' : queryData.page == n, 'btn-light' : queryData.page != n}"  @click.prevent="goToPage(n)">
                   {{n}}
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="nextPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
                   <i class="icon-arrow-right5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemDataKomentar.next_page_url}" @click.prevent="goToPage(itemDataKomentar.last_page)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
                   <i class="icon-forward3"></i>
               </button>
             </div>
@@ -151,78 +166,179 @@
     </div>
 
     <!-- updatestat -->
-    <div v-if="updateStat == 'loading'">
-      <div class="progress">
-        <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
-          <span class="sr-only">100% Complete</span>
+    <div v-else>
+      <div v-if="updateStat == 'loading'">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+            <span class="sr-only">100% Complete</span>
+          </div>
+        </div>
+      </div>
+      
+      <div v-else>
+        <div v-if="!isShowHapus && !isShowUbah">
+          <hr/>
+          <div v-if="selected.tipe != 'google form'">
+            <div class="card border-warning" v-if="formDataStat == 'success' && formData">
+              <div class="card-body">
+                <div class="form-group">
+                  <h5>Jawaban:</h5> 
+
+                  <textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan jawaban " v-model="formData.keterangan" readonly></textarea>         
+                </div>
+
+                <div v-if="formData.link != '' || formData.filename != ''">
+                  <h5>Dokumen pendukung:</h5> 
+                  <div v-if="formData.link">
+                    <a type="button" class="btn btn-light btn-block mt-1 mb-1" :href="formData.link" target="_blank"><i class="icon-file-download"></i> Unduh dokumen pendukung</a>			
+                  </div>
+                  <div v-if="formData.filename">
+                    <button type="button" class="btn btn-light btn-block mt-1 mb-1" @click.prevent="downloadMateri(formData.filename)"><i class="icon-file-download"></i> Unduh dokumen pendukung</button>	
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <button type="button" class="btn btn-light btn-block mt-1 mb-1" @click.prevent="showOpen(formData, 'edit')"><i class="icon-pencil5"></i> Ubah Jawaban</button>
+                  </div>
+                  <div class="col-sm-6">
+                    <button type="button" class="btn btn-light btn-block mt-1 mb-1" @click.prevent="showOpen(formData, 'hapus')"><i class="icon-bin2"></i> Hapus Jawaban</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="formJawaban" v-else>
+
+              <div class="form-group" >
+                <h5>Jawaban:</h5> 
+
+                <textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan jawaban " v-model="formJawaban.keterangan"></textarea>         
+              </div>
+
+              <div class="form-group">
+                <h5>
+                  Dokumen pendukung:
+                  <br/>
+                  <small class="text-muted">silahkan diisi apabila ada dokumen pendukung untuk mengerjakan tugas ini</small>
+                </h5>
+
+                <!-- format -->
+                <div class="form-group" :class="{'has-error' : errors.has('formJawaban.format')}" v-if="mode == 'create'">
+
+                  <!-- title -->
+                  <h5 :class="{ 'text-danger' : errors.has('formJawaban.format')}">
+                    <i class="icon-cross2" v-if="errors.has('formJawaban.format')"></i>
+                    Pilih Format:
+                  </h5>
+
+                  <!-- select -->
+                  <select class="form-control" name="format" v-model="formJawaban.format" data-width="100%" v-validate="'required'" data-vv-as="format">
+                    <option disabled value="">Silahkan pilih format</option>
+                    <option value="upload">Upload</option>
+                    <option value="link">Link</option>
+                  </select>
+
+                  <!-- error message -->
+                  <small class="text-muted text-danger" v-if="errors.has('formJawaban.format')">
+                    <i class="icon-arrow-small-right"></i> {{ errors.first('formJawaban.format') }}
+                  </small>
+                  <small class="text-muted" v-else>&nbsp;</small>
+                </div>
+
+                <div class="form-group" v-if="formJawaban.format == 'upload'">
+                  <!-- title -->
+                  <h5>Upload dokumen: </h5>
+
+                  <!-- textarea -->
+                  <div class="card-card-body">
+                    <input type="file" class="form-control" @change="upload" ref="fileInput">
+                  </div>
+                </div>
+                <div class="form-group" v-else-if="formJawaban.format == 'link'">
+
+                  <!-- title -->
+                  <h5>Link dokumen: </h5>
+
+                  <!-- textarea -->
+                  <input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="formJawaban.link">
+                  <small class="text-muted">Silahkan masukkan link ke dokumen</small>
+
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-warning btn-block pb-2">
+                <i class="icon-paperplane"></i> Kirim Jawaban</button>
+            </form>
+          </div>
+
+          <div v-else>
+            Tugas ini membutuhkan anda untuk mengisi google form, silahkan tekan tombol berikut untuk ke google form pada tugas ini dan mengikuti petunjuk selanjutnya disana.
+            <a type="button" class="btn bg-blue btn-block mt-2 mb-1" :href="selected.link" target="_blank" ><i class="icon-google"></i> Google Form</a>
+          </div>
+
+        </div>
+
+         <!-- ubah -->
+        <form @submit.prevent="save" data-vv-scope="formData" v-else-if="isShowUbah">
+
+          <div class="form-group">
+            <h5>Jawaban:</h5> 
+
+            <textarea rows="5" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan jawaban " v-model="formData.keterangan"></textarea>         
+          </div>
+
+          <h5>
+            Dokumen pendukung:
+            <br/>
+            <small class="text-muted">silahkan diisi apabila ada dokumen pendukung untuk mengerjakan tugas ini</small>
+          </h5>
+
+          <div v-if="formData.format == 'link'">
+
+            <!-- title -->
+            <h5>Link dokumen: </h5>
+
+            <!-- textarea -->
+            <input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="formData.link">
+            <small class="text-muted">Silahkan masukkan link ke dokumen</small>
+
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-light btn-block mt-1 mb-1" @click.prevent="showBatal()"><i class="icon-arrow-left13"></i> Batal</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="submit" class="btn btn-primary btn-block mt-1 mb-1" ><i class="icon-floppy-disk"></i> Simpan</button>
+            </div>
+          </div>
+        </form>
+      
+        <!-- hapus -->
+        <div v-else-if="isShowHapus">
+          <div class="card card-body text-center">
+            <span class="text-warning pb-2">
+              <i class="icon-question3" style="font-size: 3em"></i>
+            </span>
+            <h3>Hapus jawaban ini?</h3>
+
+            <!-- button -->
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="btn btn-light btn-block mb-2" @click.prevent="showBatal()">
+                <i class="icon-arrow-left13"></i> Batal</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="btn btn-warning btn-block mb-2" @click.prevent="showOke()">
+                <i class="icon-checkmark5"></i> Ok</button>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
-    
-    <template v-else>
-      <div v-if="!isShowHapus">
-        
-
-        <hr/>
-
-        <form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="formMateri">
-          <div class="form-group">
-            <ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="formKomentar.keterangan"></ckeditor>
-          </div>
-          <button type="submit" class="btn btn-warning btn-block pb-2">
-            <i class="icon-paperplane"></i> Kirim Komentar</button>
-        </form>
-      </div>
-    
-      <!-- hapus -->
-      <div v-else-if="isShowHapus">
-        <div class="card card-body text-center">
-          <span class="text-warning pb-2">
-            <i class="icon-question3" style="font-size: 3em"></i>
-          </span>
-          <h3 v-if="isShowHapus">Hapus komentar ini?</h3>
-          <h3 v-if="isShowJawaban">Jadikan ini sebagai jawaban komentar ini?</h3>
-          <h3 v-if="isShowBatalJawaban">Batalkan komentar ini sebagai jawaban?</h3>
-
-          <div class="card">
-            <div class="card-header bg-light header-elements-inline">
-              <h6 class="card-title">
-                <img :src="'/images/aktivis/' + selectedKomentar.user.aktivis.gambar + '.jpg'" width="30" height="30" class="rounded-circle"  alt="user image" v-if="selectedKomentar.user.aktivis.gambar">
-                <img src="/images/no_image_man.jpg" width="30" height="30" class="rounded-circle" alt="user image" v-else>
-                <check-value :value="selectedKomentar.user.aktivis.name" v-if="selectedKomentar.user"></check-value>
-                <span v-else>-</span>
-                |
-                <check-value :value="selectedKomentar.cu.name" v-if="selectedKomentar.cu"></check-value>
-                <span v-else>-</span>
-              </h6>
-              <div class="header-elements">
-                <span class="badge badge-secondary">
-                  <small v-html="$options.filters.dateTime(selectedKomentar.created_at)"></small>	
-                </span>
-              </div>
-            </div>
-            <div class="card-body pb-1 pt-2" v-if="selectedKomentar.keterangan">
-              <div v-html="selectedKomentar.keterangan"></div>
-            </div>
-          </div>
-          <!-- tombol desktop-->
-          <div class="text-center d-none d-md-block">
-            <button class="btn btn-light" @click.prevent="showBatal()">
-              <i class="icon-arrow-left13"></i> Batal</button>
-            <button class="btn btn-warning" @click.prevent="showOke()">
-              <i class="icon-checkmark5"></i> Ok</button>
-          </div>  
-
-          <!-- tombol mobile-->
-          <div class="d-block d-md-none">
-            <button class="btn btn-warning btn-block pb-2" @click.prevent="showOke()">
-              <i class="icon-checkmark5"></i> Ok</button>
-            <button class="btn btn-light btn-block pb-2" @click.prevent="showBatal()">
-              <i class="icon-arrow-left13"></i> Batal</button>
-          </div> 
-        </div>
-      </div>
-    </template>
 
 		<!-- divider -->
 		<hr>
@@ -248,9 +364,10 @@
 	import message from "../../components/message.vue";
   import formInfo from "../../components/formInfo.vue";
   import checkValue from '../../components/checkValue.vue';
+  import FileSaver from 'file-saver';
 
 	export default {
-		props: ['selected','kegiatan_id'],
+		props: ['selected','kegiatan_id','kegiatan_tipe','tipeUser'],
 		components: {
 			formInfo,
       message,
@@ -259,72 +376,49 @@
 		data() {
 			return {
         title: '',
-        ckeditorNoImageConfig: {
-					toolbar: {
-						items: [
-							'heading',
-							'|',
-							'bold',
-							'italic',
-							'link',
-							'bulletedList',
-							'numberedList',
-							'blockQuote',
-							'insertTable',
-							'mediaEmbed',
-							'undo',
-							'redo'
-						]
-					},
-					table: {
-						contentToolbar: [
-							'tableColumn',
-							'tableRow',
-							'mergeTableCells'
-						]
-					},
-        },
-        selectedKomentar: {},
-        formKomentar: {
+        selectedJawaban: {},
+        formJawaban: {
           id: '',
-          kegiatan_id: '',
-          kegiatan_pertanyaan_id: '',
+          kegiatan_tugas_id: '',
 					id_user: '',
 					id_cu: '',
-          keterangan: ''
+          keterangan: '',
+          content: '',
+					format: '',
+					link:'',
         },
         pages: [],
-        queryKomentar: {
+        queryData: {
 					order_column: "created_at",
 					order_direction: "desc",
 					filter_match: "and",
-					limit: 3,
+					limit: 5,
 					page: 1
 				},
         message: {
 					show: false,
 					content: ''
         },
+        mode: 'create',
         isShowHapus: false,
-        isShowJawaban: false,
-        isShowBatalJawaban: false,
+        isShowUbah: false,
 				submited: false,
 			}
 		},
 		created() {
-      this.formKomentar.kegiatan_pertanyaan_id = this.selected.id;
-      this.fetchKomentar(this.queryKomentar);
+      this.formJawaban.kegiatan_tugas_id = this.selected.id;
+      this.fetchJawaban(this.queryData);
 		},
 		watch: {
-      itemDataKomentarStat(value){
+      itemDataStat(value){
         if(value == 'success'){
           this.calculatePagination();
         }
       },
       updateStat(value) {
 				if (value == 'success') {
-          this.fetchKomentar(this.queryKomentar);
-          this.formKomentar.keterangan = '';
+          this.fetchJawaban(this.queryData);
+          this.formJawaban.keterangan = '';
 				} else if (value == 'fail') {
           this.message.show = true;
 					this.message.content = this.updateResponse;
@@ -332,19 +426,30 @@
 			}
 		},
 		methods: {
-      fetchKomentar(params){
-        this.$store.dispatch('kegiatanBKCU/indexPertanyaanKomentar', [params, this.selected.id]);
+      upload(e) {
+				let files = e.target.files || e.dataTransfer.files;
+				if (!files.length)
+					return
+				this.formJawaban.content = files[0];
+			},
+      fetchJawaban(params){
+        if(this.tipeUser == 'peserta'){
+          this.$store.dispatch('kegiatanBKCU/editTugasJawaban', this.selected.id);
+        }else{
+          this.$store.dispatch('kegiatanBKCU/indexTugasJawaban', [params, this.selected.id]);
+        }
       },
       save(){
-				this.$validator.validateAll('formKomentar').then((result) => {
+				this.$validator.validateAll('formJawaban').then((result) => {
 					if (result) {
 						if(this.mode == 'edit'){
-              this.formKomentar.id_user = this.currentUser.id;
-							this.$store.dispatch('kegiatanBKCU/updatePertanyaanKomentar', [this.formKomentar.id, this.formKomentar]);
+              this.$store.dispatch('kegiatanBKCU/updateTugasJawaban', [this.formData.id, this.formData]);
+              this.isShowUbah = false;
 						}else{
-              this.formKomentar.id_user = this.currentUser.id;
-							this.formKomentar.id_cu = this.currentUser.id_cu;
-							this.$store.dispatch('kegiatanBKCU/storePertanyaanKomentar', [this.kegiatan_id, this.formKomentar]);
+              this.formJawaban.id_user = this.currentUser.id;
+              this.formJawaban.id_cu = this.currentUser.id_cu;
+              const formData = toMulipartedForm(this.formJawaban, this.mode);
+							this.$store.dispatch('kegiatanBKCU/storeTugasJawaban', [this.kegiatan_tipe, formData]);
             }
 					}else{
 						this.submited = true;
@@ -352,35 +457,28 @@
 				});
       },
       showOpen(value, tipe){
-        this.selectedKomentar = value;
+        this.selectedJawaban = value;
         if(tipe == 'hapus'){
           this.isShowHapus = true;
-        }else if(tipe == 'jawaban'){
-          this.isShowJawaban = true;
-        }else if(tipe == 'batalJawaban'){
-          this.isShowBatalJawaban = true;
+          this.mode = 'create';
+        }else if(tipe == 'edit'){
+          this.isShowUbah = true;
+          this.mode = tipe;
         }
       },
       showOke(){
         if(this.isShowHapus){
-          this.$store.dispatch('kegiatanBKCU/destroyPertanyaanKomentar', this.selectedKomentar.id);
-        }else if(this.isShowJawaban){
-          this.$store.dispatch('kegiatanBKCU/jawabanPertanyaan', [this.selectedKomentar.id,'jawaban']);
-        }else if(this.isShowBatalJawaban){
-          this.$store.dispatch('kegiatanBKCU/jawabanPertanyaan', [this.selectedKomentar.id,'batalJawaban']);
+          this.$store.dispatch('kegiatanBKCU/destroyTugasJawaban', [this.kegiatan_tipe, this.selectedJawaban.id]);
         }
         this.isShowHapus = false;
-        this.isShowJawaban = false;
-        this.isShowBatalJawaban = false;
+        this.mode == 'create';
       },
       showBatal(){
-        this.selectedKomentar = {};
+        this.selectedJawaban = {};
         if(this.isShowHapus){
           this.isShowHapus = false;
-        }else if(this.isShowJawaban){
-          this.isShowJawaban = false;
-        }else{
-          this.isShowBatalJawaban = false;
+        }else if(this.isShowUbah){
+          this.isShowUbah = false;
         }
       },
       calculatePagination() {
@@ -389,9 +487,9 @@
         var endPage = 0;
         var diffPage = 0;
 
-        startPage = this.queryKomentar.page < 3 ? 1 : this.queryKomentar.page - 1;
+        startPage = this.queryData.page < 3 ? 1 : this.queryData.page - 1;
         endPage = 4 + startPage;
-        endPage = this.itemDataKomentar.last_page < endPage ? this.itemDataKomentar.last_page : endPage;
+        endPage = this.itemData.last_page < endPage ? this.itemData.last_page : endPage;
         diffPage = startPage - endPage + 4;
         startPage -= startPage - diffPage > 0 ? diffPage : 0;
         this.pages.length = 0;
@@ -401,21 +499,21 @@
         }
       },
       prevPage() {
-        if (this.itemDataKomentar.prev_page_url) {
-          this.queryKomentar.page = Number(this.queryKomentar.page) - 1
-          this.fetchKomentar(this.queryKomentar);
+        if (this.itemData.prev_page_url) {
+          this.queryData.page = Number(this.queryData.page) - 1
+          this.fetchJawaban(this.queryData);
         }
       },
       goToPage(value) {
-        if (this.queryKomentar.page != value) {
-          this.queryKomentar.page = value;
-          this.fetchKomentar(this.queryKomentar);;
+        if (this.queryData.page != value) {
+          this.queryData.page = value;
+          this.fetchJawaban(this.queryData);;
         }
       },
       nextPage() {
-        if (this.itemDataKomentar.next_page_url) {
-          this.queryKomentar.page = Number(this.queryKomentar.page) + 1
-          this.fetchKomentar(this.queryKomentar);
+        if (this.itemData.next_page_url) {
+          this.queryData.page = Number(this.queryData.page) + 1
+          this.fetchJawaban(this.queryData);
         }
       },
       messageClose(){
@@ -423,15 +521,32 @@
 			},
 			tutup() {
 				this.$emit('tutup');
-			}
+      },
+      downloadMateri(filename){
+				if(this.kegiatan_tipe == 'diklat_bkcu'){
+					axios.get('/api/download_folder/' + filename + '/diklat', {
+					responseType: 'blob'})
+					.then(response => {
+						FileSaver.saveAs(response.data, filename)
+					});
+				}else if(this.kegiatan_tipe == 'pertemuan_bkcu'){
+					axios.get('/api/download_folder/' + filename + '/pertemuan', {
+					responseType: 'blob'})
+					.then(response => {
+						FileSaver.saveAs(response.data, filename)
+					});
+				}
+      },
 		},
 		computed: {
 			...mapGetters('auth', {
 				currentUser: 'currentUser'
       }),
       ...mapGetters('kegiatanBKCU', {
-        itemDataKomentar: 'dataS5',
-				itemDataKomentarStat: 'dataStatS5',
+        itemData: 'dataS11',
+        itemDataStat: 'dataStatS11',
+        formData: 'data4',
+        formDataStat: 'dataStat4',
 				updateResponse: 'update2',
 				updateStat: 'updateStat2',
 			}),

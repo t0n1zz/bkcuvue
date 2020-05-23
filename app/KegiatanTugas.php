@@ -18,7 +18,7 @@ class KegiatanTugas extends Model {
         'id_cu' => 'required'
     ];
     
-    protected $fillable = ['kegiatan_id','kegiatan_tugas_id','id_user','id_cu','name','tipe','filename','terjawab','keterangan'];
+    protected $fillable = ['kegiatan_id','kegiatan_tugas_id','id_user','id_cu','name','tipe','format','filename','link','keterangan'];
 
     protected $allowedFilters = ['kegiatan_id','user.username','user.aktivis.name','cu.name','created_at','updated_at','name','keterangan'];
 

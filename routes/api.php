@@ -254,7 +254,8 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::delete('/kegiatanBKCU/destroyMateri/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyMateri');
     Route::delete('/kegiatanBKCU/{id}', 'KegiatanBKCUController@destroy');
     Route::post('/kegiatanBKCU/storeTugas/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@storeTugas');
-    Route::post('/kegiatanBKCU/storeTugasJawaban/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@storeTugasJawaban');
+    Route::post('/kegiatanBKCU/storeTugasJawaban/{kegiatan_tipe}', 'KegiatanBKCUController@storeTugasJawaban');
+    Route::get('/kegiatanBKCU/editTugasJawaban/{id}', 'KegiatanBKCUController@editTugasJawaban');
     Route::post('/kegiatanBKCU/updateTugas/{id}', 'KegiatanBKCUController@updateTugas');
     Route::post('/kegiatanBKCU/updateTugasJawaban/{id}', 'KegiatanBKCUController@updateTugasJawaban');
     Route::delete('/kegiatanBKCU/destroyTugas/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugas');
