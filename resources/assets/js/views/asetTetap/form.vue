@@ -463,15 +463,8 @@
 												Tgl. Pembelian: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 											<!-- input -->
-											<cleave 
-												name="tanggal"
-												v-model="form.tanggal" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												v-validate="'required'"
-												data-vv-as="Tanggal Pembelian"
-												placeholder="Silahkan masukkan tgl. pembelian"></cleave>
+											<date-picker @dateSelected="form.tanggal = $event" :defaultDate="form.tanggal"></date-picker>	
+											<input v-model="form.tanggal" v-show="false" v-validate="'required'" data-vv-as="Tanggal pembelian"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.tanggal')">
@@ -585,6 +578,7 @@
 	import cardData from "./card.vue";
 	import DataViewer from '../../components/dataviewer2.vue';
 	import checkValue from '../../components/checkValue.vue';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -603,7 +597,8 @@
 			DataViewer,
 			infoIcon,
 			checkValue,
-			cardData
+			cardData,
+			DatePicker
 		},
 		data() {
 			return {

@@ -459,7 +459,7 @@
 								name: 'Upload',
 								key: 'upload_anggota_cu',
 								icon: 'icon-file-upload',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Anggota CU'
 							},

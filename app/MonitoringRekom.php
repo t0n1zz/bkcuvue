@@ -19,7 +19,6 @@ class MonitoringRekom extends BaseEloquent {
         'id_monitoring' => 'required',
     ];
 
-    
     protected $fillable = [
         'id_monitoring','rekomendasi','status'
     ];

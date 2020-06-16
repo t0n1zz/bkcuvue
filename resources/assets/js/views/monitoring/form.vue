@@ -112,7 +112,7 @@
 													<span v-if="modelAktivisCUStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih PIC</span>
 												</option>
-												<option v-for="ac in modelAktivisCU" :value="ac.id">{{ac.name}}</option>
+												<option v-for="(ac, index) in modelAktivisCU" :key="index" :value="ac.id">{{ac.name}} {{ac.pekerjaan_aktif ? ' - ' + ac.pekerjaan_aktif.name : ''}}</option>
 											</select>
 
 											<!-- error message -->
@@ -139,7 +139,7 @@
 													<span v-if="modelAktivisBKCUStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih PIC</span>
 												</option>
-												<option v-for="ac in modelAktivisBKCU" :value="ac.id">{{ac.name}}</option>
+												<option v-for="(ac, index) in modelAktivisBKCU" :key="index" :value="ac.id">{{ac.name}} {{ac.pekerjaan_aktif ? ' - ' + ac.pekerjaan_aktif.name : ''}}</option>
 											</select>
 
 											<!-- error message -->
@@ -157,19 +157,12 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.tanggal')}">
 												<i class="icon-cross2" v-if="errors.has('form.tanggal')"></i>
-												Tanggal: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
+												Tanggal: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- input -->
-											<cleave 
-												name="tanggal"
-												v-model="form.tanggal" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												v-validate="'required'"
-												data-vv-as="Tanggal"
-												placeholder="Silahkan masukkan tanggal"></cleave>
+											<date-picker @dateSelected="form.tanggal = $event" :defaultDate="form.tanggal"></date-picker>	
+											<input v-model="form.tanggal" v-show="false" v-validate="'required'" data-vv-as="Tanggal"/>
 
 											<!-- error message -->
 											<br/>
@@ -338,6 +331,7 @@
 	import dataTable from '../../components/datatable.vue';
 	import formRekom from "./formRekom.vue";
 	import Cleave from 'vue-cleave-component';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -350,7 +344,8 @@
 			wajibBadge,
 			dataTable,
 			formRekom,
-			Cleave
+			Cleave,
+			DatePicker
 		},
 		data() {
 			return {

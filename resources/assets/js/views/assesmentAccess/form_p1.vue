@@ -2355,43 +2355,103 @@
 
 				//s10	
 				}else if(type == 's10'){
-					this.modalTitle = 'S10 - Pertumbuhan anggota';
+					this.modalTitle = "S10 - Pertumbuhan anggota";
 
 					this.modalKatex.form.push(
-						{title:'Lelaki Biasa',key:'l_biasa',value:itemData.l_biasa},
-						{title:'Lelaki L. Biasa',key:'l_lbiasa',value:itemData.l_lbiasa},
-						{title:'Perempuan Biasa',key:'p_biasa',value:itemData.p_biasa},
-						{title:'Perempuan L.Biasa',key:'p_lbiasa',value:itemData.p_lbiasa},
-						{title:'Total Anggota',key:'total_anggota',value:itemData.total_anggota, hideForm: true},
-						{title:'Total Anggota Tahun Lalu',key:'total_anggota_lalu',value:itemData.total_anggota_lalu},
+						{ title: "Lelaki Biasa", key: "l_biasa", value: itemData.l_biasa },
+						{
+							title: "Lelaki L. Biasa",
+							key: "l_lbiasa",
+							value: itemData.l_lbiasa
+						},
+						{ title: "Perempuan Biasa", key: "p_biasa", value: itemData.p_biasa },
+						{
+							title: "Perempuan L.Biasa",
+							key: "p_lbiasa",
+							value: itemData.p_lbiasa
+						},
+						{
+							title: "Total Anggota",
+							key: "total_anggota",
+							value: itemData.total_anggota,
+							hideForm: true
+						},
+						{
+							title: "Total Anggota Tahun Lalu",
+							key: "total_anggota_lalu",
+							value: itemData.total_anggota_lalu
+						}
 					);
-					
-					this.modalKatex.indikator = 'Pertumbuhan anggota di atas 12% per tahun.';
 
-					let katex1Content1 = '\\text{s10} = \\dfrac{\\text{'+ this.modalKatex.form[4].title +'} - \\text{'+ this.modalKatex.form[5].title +'}}{\\text{'+ this.modalKatex.form[5].title +'}} \\times \\text{100} \\% = \\text{Di Atas 12} \\% (\\text{IDEAL})';
+					this.modalKatex.indikator =
+						"Pertumbuhan anggota di atas 12% per tahun.";
 
-					let katex2Content1 = '\\text{s10} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[4].value) +'}} - \\text{'+ this.formatCurrency(this.modalKatex.form[5].value) +'}{\\text{'+ this.formatCurrency(this.modalKatex.form[5].value) +'}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.s10) +' \\% ( \\text{'+ (itemData.s10 > 0.12 ? 'IDEAL' : 'TIDAK IDEAL') +'})';
-					
-					this.modalKatex.katex1.push({title:'',content:katex1Content1});
-					this.modalKatex.katex2.push({title:'',content:katex2Content1});
-				
+					let katex1Content1 =
+						"\\text{s10} = \\dfrac{\\text{" +
+						this.modalKatex.form[4].title +
+						"} - \\text{" +
+						this.modalKatex.form[5].title +
+						"}}{\\text{" +
+						this.modalKatex.form[5].title +
+						"}} \\times \\text{100} \\% = \\text{Di Atas 12} \\% (\\text{IDEAL})";
+
+					let katex2Content1 =
+						"\\text{s10} = \\dfrac{\\text{" +
+						this.formatCurrency(this.modalKatex.form[4].value) +
+						"} - \\text{" +
+						this.formatCurrency(this.modalKatex.form[5].value) +
+						"}}{\\text{" +
+						this.formatCurrency(this.modalKatex.form[5].value) +
+						"}} \\times \\text{100} \\% = " +
+						this.formatPercentage(itemData.s10) +
+						" \\% ( \\text{" +
+						(itemData.s10 > 0.12 ? "IDEAL" : "TIDAK IDEAL") +
+						"})";
+
+					this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
+					this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 				//s11
 				}else if(type == 's11'){
-					this.modalTitle = 'S11 - Pertumbuhan aset';
+				 this.modalTitle = "S11 - Pertumbuhan aset";
 
 					this.modalKatex.form.push(
-						{title:'Aset',key:'aset',value:itemData.aset},
-						{title:'Aset Tahun Lalu',key:'aset_lalu',value:itemData.aset_lalu},
+						{ title: "Aset", key: "aset", value: itemData.aset },
+						{
+							title: "Aset Tahun Lalu",
+							key: "aset_lalu",
+							value: itemData.aset_lalu
+						}
 					);
-					
-					this.modalKatex.indikator = 'Pertumbuhan aset 10% di atas laju inflasi.';
 
-					let katex1Content1 = '\\text{s11} = \\dfrac{\\text{'+ this.modalKatex.form[0].title +'} - \\text{'+ this.modalKatex.form[1].title +'}}{\\text{'+ this.modalKatex.form[1].title +'}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Di Atas Laju Inflasi} (\\text{IDEAL})';
+					this.modalKatex.indikator =
+						"Pertumbuhan aset 10% di atas laju inflasi.";
 
-					let katex2Content1 = '\\text{S11} = \\dfrac{\\text{'+ this.formatCurrency(this.modalKatex.form[0].value) +'}} - \\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}{\\text{'+ this.formatCurrency(this.modalKatex.form[1].value) +'}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.s11) +' \\% ( \\text{'+ (itemData.s11 > (itemData.laju_inflasi + 0.1) ? 'IDEAL' : 'TIDAK IDEAL') +'})';
-					
-					this.modalKatex.katex1.push({title:'',content:katex1Content1});
-					this.modalKatex.katex2.push({title:'',content:katex2Content1});
+					let katex1Content1 =
+						"\\text{s11} = \\dfrac{\\text{" +
+						this.modalKatex.form[0].title +
+						"} - \\text{" +
+						this.modalKatex.form[1].title +
+						"}}{\\text{" +
+						this.modalKatex.form[1].title +
+						"}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Di Atas Laju Inflasi} (\\text{IDEAL})";
+
+					let katex2Content1 =
+						"\\text{S11} = \\dfrac{\\text{" +
+						this.formatCurrency(this.modalKatex.form[0].value) +
+						"} - \\text{" +
+						this.formatCurrency(this.modalKatex.form[1].value) +
+						"}}{\\text{" +
+						this.formatCurrency(this.modalKatex.form[1].value) +
+						"}} \\times \\text{100} \\% = " +
+						this.formatPercentage(itemData.s11) +
+						" \\% ( \\text{" +
+						(itemData.s11 > itemData.laju_inflasi + 0.1
+							? "IDEAL"
+							: "TIDAK IDEAL") +
+						"})";
+
+					this.modalKatex.katex1.push({ title: "", content: katex1Content1 });
+					this.modalKatex.katex2.push({ title: "", content: katex2Content1 });
 				}
 			},
 			modalKatexReset(){

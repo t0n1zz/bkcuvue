@@ -110,7 +110,7 @@
 
             <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="50" data-to="{{ $manajemenBKCUCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
-              <h5 class="nobottommargin">Manajemen BKCU</h5>
+              <h5 class="nobottommargin">Manajemen Puskopdit BKCU Kalimantan</h5>
             </div> 
 
           </div>

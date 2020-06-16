@@ -10,6 +10,30 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.3.0 -->
+              <!-- <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#330">Version 3.3.0<small class="text-muted"> /  Juni 2020</small></a> </h5>
+                </div>
+
+                <div id="330" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini merupakan perbaikan beberapa hal pada bagian diklat BKCU dan pertemuan BKCU.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug tombol daftar peserta yang tidak muncul</li>
+                      <li>Perbaikan bug tombol-tombol pada tabel peserta yang tidak muncul pada perangkat mobile</li>
+                      <li>Menghilangkan pengisian nama pada nametag, tanggal datang dan tanggal pulang apabila diklat ataupun pertemuan bersifat online pada form pendaftaran peserta</li>
+                      <li>Mengubah cara pengisian tanggal untuk semua form dari menulis manual sekarang selain menulis manual bisa juga memilih dari kalender yang akan muncul ketika di klik</li>
+                    </ul>
+                  </div>
+                </div>
+              </div> -->
+              <!-- /version 3.3.0 -->
+
               <!-- Version 3.2.9 -->
               <div class="card">
                 <div class="card-header">

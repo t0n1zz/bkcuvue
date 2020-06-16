@@ -126,7 +126,7 @@
 		<div class="row">
 
 			<!-- name nametag -->
-			<div class="col-md-6">
+			<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
 				<div class="form-group" :class="{'has-error' : errors.has('formPeserta.name_nametag')}">
 
 					<!-- title -->
@@ -148,7 +148,7 @@
 			</div>
 
 			<!-- name sertifikat -->
-			<div class="col-md-6">
+			<div :class="{'col-md-6' : item.tipe_tempat == 'OFFLINE', 'col-md-12' : item.tipe_tempat == 'ONLINE'}">
 				<div class="form-group" :class="{'has-error' : errors.has('formPeserta.name_nametag')}">
 
 					<!-- title -->
@@ -170,39 +170,27 @@
 			</div>
 
 			<!-- tgl kedatangan -->
-			<div class="col-md-6">
+			<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
 				<div class="form-group">
 
 					<!-- title -->
-					<h5>Tgl. Kedatangan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+					<h5>Tgl. Kedatangan:</h5>
 
 					<!-- input -->
-					<cleave 
-						name="datang"
-						v-model="formPeserta.datang" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. kedatangan"></cleave>
+					<date-picker @dateSelected="formPeserta.datang = $event" :defaultDate="formPeserta.datang"></date-picker>	
 
 				</div>
 			</div>
 
 			<!-- tgl pulang -->
-			<div class="col-md-6">
+			<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
 				<div class="form-group">
 
 					<!-- title -->
-					<h5>Tgl. Pulang: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+					<h5>Tgl. Pulang:</h5>
 
 					<!-- input -->
-					<cleave 
-						name="pulang"
-						v-model="formPeserta.pulang" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. pulang"></cleave>
+					<date-picker @dateSelected="formPeserta.pulang = $event" :defaultDate="formPeserta.pulang"></date-picker>	
 
 				</div>
 			</div>
@@ -257,6 +245,7 @@
 	import checkValue from '../../components/checkValue.vue';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import Message from "../../components/message.vue";
+	import DatePicker from "../../components/datePicker.vue";
 	import Cleave from 'vue-cleave-component';
 
 	export default {
@@ -265,6 +254,7 @@
 			DataViewer,
 			checkValue,
 			Message,
+			DatePicker,
 			Cleave,
 			infoIcon
 		},
@@ -442,7 +432,11 @@
 				}
 			},
 			checkPeserta(){
-				this.$store.dispatch('kegiatanBKCU/checkPeserta', [this.item.id, this.formPeserta.aktivis_id]);
+				if(this.mode != 'edit'){
+					this.$store.dispatch('kegiatanBKCU/checkPeserta', [this.item.id, this.formPeserta.aktivis_id]);
+				}else{
+					this.save();
+				}
 			},
 			save(){
 				this.$validator.validateAll('formPeserta').then((result) => {
@@ -460,7 +454,7 @@
 			},
 			messageClose(){
 				this.message.show = false;
-			},
+			}, 
 			tutup(){
 				this.$emit('tutup');
 			}

@@ -47,13 +47,8 @@
           <i class="icon-bin2"></i> Hapus
         </button>
 
-        <!-- table draft bkcu -->
-        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="btn btn-light btn-icon mb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
-          <i class="icon-table2"></i> Anggota CU [DRAFT]
-        </router-link>
-
-        <!-- table draft cu -->
-        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="btn btn-light btn-icon mb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+        <!-- table draft -->
+        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: $route.params.cu, tp: 'semua'} }" class="btn btn-light btn-icon mb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
           <i class="icon-table2"></i> Anggota CU [DRAFT]
         </router-link>
 
@@ -102,13 +97,8 @@
           <i class="icon-bin2"></i> Hapus
         </button>
 
-        <!-- table draft bkcu -->
-        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: 'semua', tp: 'semua'} }" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu == 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
-          <i class="icon-table2"></i> Anggota CU [DRAFT]
-        </router-link>
-
-        <!-- table draft cu -->
-        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && currentUser.id_cu != 0 && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
+        <!-- table draft -->
+        <router-link :to="{ name: 'anggotaCuCuDraft', params:{cu: $route.params.cu, tp: 'semua'} }" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && anggotaCuDraftCountStat == 'success' && anggotaCuDraftCount > 0">
           <i class="icon-table2"></i> Anggota CU [DRAFT]
         </router-link>
 
@@ -331,16 +321,7 @@
           page: 1
         },
         excelDownloadUrl: '',
-        excelUploads:[
-          {
-            enabled: true,
-            url: 'anggotaCu/uploadExcel',
-            format_url: 'formatAnggotaCu.xlsx',
-            next_page_route: 'anggotaCuCuDraft',
-            params: {cu:'semua', tp: 'semua'},
-            button: 'Upload Anggota CU'
-          }
-        ],
+        excelUploads:[],
         columnData: [
           {
             title: 'No.',
@@ -674,6 +655,16 @@
     },
     created() {
       this.fetch(this.query);
+      this.excelUploads =[
+        {
+          enabled: true,
+          url: 'anggotaCu/uploadExcel',
+          format_url: 'formatAnggotaCu.xlsx',
+          next_page_route: 'anggotaCuCuDraft',
+          params: {cu: this.$route.params.cu, tp: 'semua'},
+          button: 'Upload Anggota CU'
+        }
+      ];
     },
     watch: {
       // check route changes

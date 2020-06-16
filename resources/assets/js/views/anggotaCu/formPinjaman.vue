@@ -133,17 +133,11 @@
 				<div class="form-group" :class="{'has-error' : errors.has('formPinjaman.tanggal')}">
 
 					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formPinjaman.tanggal')}"><i class="icon-cross2" v-if="errors.has('formPinjaman.tanggal')"></i> Tanggal: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+					<h5 :class="{ 'text-danger' : errors.has('formPinjaman.tanggal')}"><i class="icon-cross2" v-if="errors.has('formPinjaman.tanggal')"></i> Tanggal: </h5>
 
 					<!-- input -->
-					<cleave 
-						name="tanggal"
-						v-model="formPinjaman.tanggal" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tanggal"
-						v-validate="'required'" data-vv-as="Tanggal"></cleave>
+					<date-picker @dateSelected="formPinjaman.tanggal = $event" :defaultDate="formPinjaman.tanggal"></date-picker>	
+					<input v-model="formPinjaman.tanggal" v-show="false" v-validate="'required'" data-vv-as="Tanggal"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formPinjaman.tanggal')">
@@ -172,7 +166,7 @@
 						class="form-control" 
 						:options="cleaveOption.number4"
 						placeholder="Silahkan masukkan lama pinjaman"
-						v-validate="'required'" data-vv-as="Saldo" ></cleave>
+						v-validate="'required'" data-vv-as="lama pinjaman" ></cleave>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formPinjaman.lama_pinjaman')">
@@ -219,6 +213,7 @@
 	import Cleave from 'vue-cleave-component';
 	import produkCuAPI from '../../api/produkCu.js';
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['mode','selected'],
@@ -226,7 +221,8 @@
 			checkValue,
 			Message,
 			Cleave,
-			infoIcon
+			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {

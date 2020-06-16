@@ -85,14 +85,8 @@
 						Tgl. Mulai:</h6>
 
 					<!-- input -->
-					<cleave 
-						name="datang"
-						v-model="form.datang" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. mulai"
-						v-validate="'required'" data-vv-as="Tgl. mulai"></cleave>
+					<date-picker @dateSelected="form.datang = $event" :defaultDate="form.datang"></date-picker>	
+					<input v-model="form.datang" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.datang')">
@@ -112,14 +106,8 @@
 						Tgl. Selesai:</h6>
 
 					<!-- input -->
-					<cleave 
-						name="pulang"
-						v-model="form.pulang" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. selesai"
-						v-validate="'required'" data-vv-as="Tgl. selesai"></cleave>
+					<date-picker @dateSelected="form.pulang = $event" :defaultDate="form.pulang"></date-picker>	
+					<input v-model="form.pulang" v-show="false" v-validate="'required'" data-vv-as="Tgl selesai"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.pulang')">
@@ -159,11 +147,13 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props:['formState','selected','id_aktivis'],
 		components: {
-			Cleave
+			Cleave,
+			DatePicker
 		},
 		data() {
 			return {

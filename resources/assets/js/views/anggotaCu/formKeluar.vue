@@ -18,11 +18,11 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('formDataCu.tanggal_keluar')}">
 					<i class="icon-cross2" v-if="errors.has('formDataCu.tanggal_keluar')"></i>
-					Tgl. Keluar: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+					Tgl. Keluar: <wajib-badge></wajib-badge></h6>
 
 					<!-- text -->
-					<cleave name="tanggal_keluar" v-model="formDataCu.tanggal_keluar" class="form-control" :raw="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota" :options="cleaveOption.date"
-					placeholder="Silahkan masukkan tgl. keluar"></cleave>
+					<date-picker @dateSelected="formDataCu.tanggal_keluar = $event" :defaultDate="formDataCu.tanggal_keluar"></date-picker>	
+					<input v-model="formDataCu.tanggal_keluar" v-show="false" v-validate="'required'" data-vv-as="Tgl. keluar anggota"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formDataCu.tanggal_keluar')">
@@ -83,6 +83,7 @@
 	import produkCuAPI from '../../api/produkCu.js';
 	import infoIcon from "../../components/infoIcon.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['anggota_cu'],
@@ -91,7 +92,8 @@
 			Message,
 			Cleave,
 			infoIcon,
-			wajibBadge
+			wajibBadge,
+			DatePicker
 		},
 		data() {
 			return {

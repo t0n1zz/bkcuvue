@@ -98,13 +98,7 @@
 					<h6>Tgl. Selesai</h6>
 
 					<!-- input -->
-					<cleave 
-						name="selesai"
-						v-model="form.selesai" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. selesai"></cleave>
+					<date-picker @dateSelected="form.selesai = $event" :defaultDate="form.selesai"></date-picker>
 
 					<small class="text-muted">Kosongkan apabila masih aktif / tidak memiliki periode selesai</small>
 				</div>
@@ -140,11 +134,13 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props:['formState','selected','id_aktivis'],
 		components: {
-			Cleave
+			Cleave,
+			DatePicker,
 		},
 		data() {
 			return {

@@ -119,9 +119,14 @@ class Cu extends Model {
         return $this->hasMany('App\AnggotaCuCu','cu_id','id')->select('id','cu_id');
     }
 
-    public function hasAktivis()
+    public function hasAktivisCu()
     {
         return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('status',1);
+    }
+
+    public function hasAktivisAll()
+    {
+        return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->whereIn('tipe',[1,3])->where('status',1);
     }
 
     public function hasManajemen()

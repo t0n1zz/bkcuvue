@@ -136,14 +136,8 @@
 					<h5 :class="{ 'text-danger' : errors.has('formSimpanan.tanggal')}"><i class="icon-cross2" v-if="errors.has('formSimpanan.tanggal')"></i> Tanggal: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 					<!-- input -->
-					<cleave 
-						name="tanggal"
-						v-model="formSimpanan.tanggal" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tanggal"
-						v-validate="'required'" data-vv-as="Tanggal"></cleave>
+					<date-picker @dateSelected="formSimpanan.tanggal = $event" :defaultDate="formSimpanan.tanggal"></date-picker>	
+					<input v-model="formSimpanan.tanggal" v-show="false" v-validate="'required'" data-vv-as="Tanggal"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formSimpanan.tanggal')">
@@ -191,6 +185,7 @@
 	import Cleave from 'vue-cleave-component';
 	import produkCuAPI from '../../api/produkCu.js';
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['mode','selected'],
@@ -198,7 +193,8 @@
 			checkValue,
 			Message,
 			Cleave,
-			infoIcon
+			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {

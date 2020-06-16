@@ -212,14 +212,8 @@
 														</h6>
 
 														<!-- input -->
-														<cleave 
-															name="tanggal_mati"
-															v-model="form.tanggal_mati" 
-															class="form-control" 
-															:raw="false" 
-															:options="cleaveOption.date" 
-															placeholder="Silahkan masukkan tgl. cacat/meninggal"
-															v-validate="'required'" data-vv-as="Tgl. cacat/meninggal"></cleave>
+														<date-picker @dateSelected="form.tanggal_mati = $event" :defaultDate="form.tanggal_mati"></date-picker>	
+														<input v-model="form.tanggal_mati" v-show="false" v-validate="'required'" data-vv-as="Tgl. cacat/meninggal"/>
 
 														<!-- error message -->
 														<small class="text-muted text-danger" v-if="errors.has('form.tanggal_mati')">
@@ -487,6 +481,7 @@
 	import dataTable from '../../components/datatable.vue';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import { toMulipartedForm } from '../../helpers/form';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -504,6 +499,7 @@
 			identitas,
 			dataTable,
 			appImageUpload,
+			DatePicker
 		},
 		data() {
 			return {

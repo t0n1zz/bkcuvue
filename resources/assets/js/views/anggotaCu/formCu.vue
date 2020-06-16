@@ -102,8 +102,8 @@
 					</h5>
 
 					<!-- text -->
-					<cleave name="tanggal_masuk" v-model="formDataCu.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date" v-validate="'required'" data-vv-as="Tgl. jadi anggota"
-					placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+					<date-picker @dateSelected="formDataCu.tanggal_masuk = $event" :defaultDate="formDataCu.tanggal_masuk"></date-picker>	
+					<input v-model="formDataCu.tanggal_masuk" v-show="false" v-validate="'required'" data-vv-as="Tgl. jadi anggota"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formDataCu.tanggal_masuk')">
@@ -163,6 +163,7 @@
 	import Cleave from 'vue-cleave-component';
 	import produkCuAPI from '../../api/produkCu.js';
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['mode','selected'],
@@ -170,7 +171,8 @@
 			checkValue,
 			Message,
 			Cleave,
-			wajibBadge
+			wajibBadge,
+			DatePicker
 		},
 		data() {
 			return {

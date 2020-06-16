@@ -16,7 +16,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card card-body">
-								<div class="input-group" >
+								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text">Pilih Temuan</span>
 									</div>
@@ -25,7 +25,7 @@
 									<select class="form-control" name="id_temuan" v-model="item.id" data-width="100%" @change="changeTemuan($event.target.value)" :disabled="modelTemuanStat == 'loading'">
 										<option disabled value="">Silahkan pilih data</option>
 										<slot></slot>
-										<option v-for="te in modelTemuan" :value="te.id" :key="te.id"><span v-if="te.tanggal" v-html="$options.filters.date(item.tanggal)"></span> {{te.tanggal ? ' | ' : ''}} {{te.name}} </option>
+										<option v-for="(te, index) in modelTemuan" :value="te.id" :key="index"><span v-if="te.tanggal" v-html="$options.filters.date(item.tanggal)"></span> {{te.tanggal ? ' | ' : ''}} {{te.name}} </option>
 									</select>
 
 									<!-- reload cu -->

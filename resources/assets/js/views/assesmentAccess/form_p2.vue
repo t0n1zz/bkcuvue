@@ -1623,7 +1623,7 @@
 			<div class="card border-warning" v-if="form.p2.p2b19_cu_penilaian !=null && form.p2.p2b19_cu_keterangan !=null">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
-						20. Masukan dari anggota secara rutin setiap tahun dalam perencanaan, umpan balik dari anggota diminta secara rutin dan wilayah kerja sudah dibagi untuk memastikan bahwa umpan balik terkumpul</h5>
+						20. Penggunaan Produk-produk Membangun Kekayaan</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">

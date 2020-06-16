@@ -241,16 +241,8 @@
                     Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
                   <!-- input -->
-                  <cleave 
-                    name="tanggal_pencairan"
-                    v-model="formStatus.tanggal_pencairan" 
-                    class="form-control" 
-                    :raw="false" 
-                    :options="cleaveOption.date" 
-                    :readonly="tipe == 'selesai'"
-                    v-validate="'required'"
-                    data-vv-as="Tanggal Pencairan"
-                    placeholder="Silahkan masukkan tgl. pencairan"></cleave>
+                  <date-picker @dateSelected="formStatus.tanggal_pencairan = $event" :defaultDate="formStatus.tanggal_pencairan" v-show="tipe != 'selesai'"></date-picker>	
+									<input v-model="formStatus.tanggal_pencairan"  :readonly="tipe == 'selesai'" v-show="tipe == selesai" v-validate="'required'" data-vv-as="Tgl. pencairan"/>
 
                   <!-- error message -->
                   <small class="text-muted text-danger" v-if="errors.has('formStatus.tanggal_pencairan')">
@@ -382,13 +374,7 @@
                     Tgl. Surat: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
                   <!-- input -->
-                  <cleave 
-                    name="surat_tanggal"
-                    v-model="formStatus.surat_tanggal" 
-                    class="form-control" 
-                    :raw="false" 
-                    :options="cleaveOption.date" 
-                    placeholder="Silahkan masukkan tgl. surat"></cleave>
+                  <date-picker @dateSelected="formStatus.surat_tanggal = $event" :defaultDate="formStatus.surat_tanggal"></date-picker>	
                 </div>
               </div>
 
@@ -629,6 +615,7 @@
   import infoIcon from "../../components/infoIcon.vue";
   import verifikator from "./verifikator.vue";
   import dokumen from "./dokumen.vue";
+  import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['kelas','selected','tipe'],
@@ -641,7 +628,8 @@
       dataTable,
       infoIcon,
       verifikator,
-      dokumen
+      dokumen,
+      DatePicker
 		},
 		data() {
 			return {

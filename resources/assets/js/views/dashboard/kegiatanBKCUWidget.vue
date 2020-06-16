@@ -42,7 +42,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemBaruStat === 'success'">
-							<tr v-for="item in itemBaru" :class="{ 'bg-info': selectedItemBaru.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
+							<tr v-for="(item, index) in itemBaru" :key="index" :class="{ 'bg-info': selectedItemBaru.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<span v-html="$options.filters.statusDiklat(item.status)" @click.prevent="modalKeteranganBatalOpen(item.keteranganBatal)" v-if="item.status == '6'" class="cursor-pointer"></span>
 									<span v-html="$options.filters.statusDiklat(item.status)" v-else></span>
@@ -59,12 +59,13 @@
 								</td>
 								<td>
 									<check-value :value="item.tempat.name" v-if="item.tempat"></check-value>
+									<span v-else-if="item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>	
 									<span v-else>Belum ditentukan tempat</span>	
 								</td>
 								<td v-html="$options.filters.date(item.mulai)"></td>
 								<td class="text-warp">
 									<span v-if="item.sasaran">
-										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
+										<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
 											{{ sasaran.name }}
 										</label>
 									</span>
@@ -108,7 +109,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemMulaiStat === 'success'">
-							<tr v-for="item in itemMulai" :class="{ 'bg-info': selectedItemMulai.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
+							<tr v-for="(item, index) in itemMulai" :key="index" :class="{ 'bg-info': selectedItemMulai.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<span v-html="$options.filters.statusDiklat(item.status)" @click.prevent="modalKeteranganBatalOpen(item.keteranganBatal)" v-if="item.status == '6'" style="cursor:pointer;"></span>
 									<span v-html="$options.filters.statusDiklat(item.status)" v-else></span>
@@ -125,12 +126,13 @@
 								</td>
 								<td>
 									<check-value :value="item.tempat.name" v-if="item.tempat"></check-value>
+									<span v-else-if="item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>	
 									<span v-else>Belum ditentukan tempat</span>	
 								</td>
 								<td v-html="$options.filters.date(item.mulai)"></td>
 								<td class="text-warp">
 									<span v-if="item.sasaran">
-										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
+										<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
 											{{ sasaran.name }}
 										</label>
 									</span>
@@ -173,7 +175,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemBukaStat === 'success'">
-							<tr v-for="item in itemBuka" :class="{ 'bg-info': selectedItemBuka.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
+							<tr v-for="(item, index) in itemBuka" :key="index" :class="{ 'bg-info': selectedItemBuka.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<check-value :value="item.kode_diklat"></check-value>
 								</td>
@@ -186,12 +188,13 @@
 								</td>
 								<td>
 									<check-value :value="item.tempat.name" v-if="item.tempat"></check-value>
+									<span v-else-if="item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>	
 									<span v-else>Belum ditentukan tempat</span>	
 								</td>
 								<td v-html="$options.filters.date(item.mulai)"></td>
 								<td class="text-warp">
 									<span v-if="item.sasaran">
-										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
+										<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
 											{{ sasaran.name }}
 										</label>
 									</span>
@@ -234,7 +237,7 @@
 							</tr>
 						</thead>
 						<tbody v-if="itemJalanStat === 'success'">
-							<tr v-for="item in itemJalan.data" :class="{ 'bg-info': selectedItemJalan.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
+							<tr v-for="(item, index) in itemJalan.data" :key="index" :class="{ 'bg-info': selectedItemJalan.id === item.id }" class="text-nowrap  cursor-pointer" @click="detail(item.id)">
 								<td>
 									<check-value :value="item.kode_diklat"></check-value>
 								</td>
@@ -247,12 +250,13 @@
 								</td>
 								<td>
 									<check-value :value="item.tempat.name" v-if="item.tempat"></check-value>
+									<span v-else-if="item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>	
 									<span v-else>Belum ditentukan tempat</span>	
 								</td>
 								<td v-html="$options.filters.date(item.mulai)"></td>
 								<td class="text-warp">
 									<span v-if="item.sasaran">
-										<label v-for="sasaran in item.sasaran" class="badge badge-primary ml-1">
+										<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
 											{{ sasaran.name }}
 										</label>
 									</span>

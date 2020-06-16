@@ -131,14 +131,8 @@
 					<h5 :class="{ 'text-danger' : errors.has('formProduk.tanggal')}"><i class="icon-cross2" v-if="errors.has('formProduk.tanggal')"></i> Tanggal Buat: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 					<!-- input -->
-					<cleave 
-						name="tanggal"
-						v-model="formProduk.tanggal" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tanggal"
-						v-validate="'required'" data-vv-as="Tanggal"></cleave>
+					<date-picker @dateSelected="formProduk.tanggal = $event" :defaultDate="formProduk.tanggal"></date-picker>	
+					<input v-model="formProduk.tanggal" v-show="false" v-validate="'required'" data-vv-as="Tanggal"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formProduk.tanggal')">
@@ -158,13 +152,7 @@
 					<h5>Tanggal Target: <info-icon :message="'Informasi mengenai kapan akan digunakan simpanan tersebut | Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 					<!-- input -->
-					<cleave 
-						name="tanggal_target"
-						v-model="formProduk.tanggal_target" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tanggal target"></cleave>
+					<date-picker @dateSelected="formProduk.tanggal_target = $event" :defaultDate="formProduk.tanggal_target"></date-picker>	
 
 					<small class="text-muted">&nbsp;</small>	
 
@@ -188,7 +176,7 @@
 						class="form-control" 
 						:options="cleaveOption.number4"
 						placeholder="Silahkan masukkan lama pinjaman"
-						v-validate="'required'" data-vv-as="Saldo" ></cleave>
+						v-validate="'required'" data-vv-as="Lama pinjaman" ></cleave>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formProduk.lama_pinjaman')">
@@ -256,6 +244,7 @@
 	import Cleave from 'vue-cleave-component';
 	import produkCuAPI from '../../api/produkCu.js';
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['formState','selected'],
@@ -263,7 +252,8 @@
 			checkValue,
 			Message,
 			Cleave,
-			infoIcon
+			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {

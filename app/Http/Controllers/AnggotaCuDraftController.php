@@ -110,10 +110,10 @@ class AnggotaCuDraftController extends Controller{
 		\DB::beginTransaction(); 
 		try{
 			if($cu == 'semua'){
-				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar');
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu');
 			}else{
-				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
-					$query->where('anggota_cu_cu.cu_id',$cu);
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+					$query->where('anggota_cu_cu_draft.cu_id',$cu);
 				});
 				$kelas->nik = preg_replace('/[^A-Za-z0-9]/', '',$kelas->nik);
 			}

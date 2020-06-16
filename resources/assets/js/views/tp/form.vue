@@ -112,17 +112,12 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
 												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri: <wajib-badge></wajib-badge>	<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Berdiri: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
-											<cleave 
-												name="ultah"
-												v-model="form.ultah" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. berdiri"
-												v-validate="'required'" data-vv-as="Tgl. berdiri"></cleave>
+											<date-picker @dateSelected="form.ultah = $event" :defaultDate="form.ultah"></date-picker>	
+											<input v-model="form.ultah" v-show="false" v-validate="'required'" data-vv-as="Tgl. berdiri"/>
+
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
@@ -433,6 +428,7 @@
 	import Cleave from 'vue-cleave-component';
 	import infoIcon from "../../components/infoIcon.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -444,7 +440,8 @@
 			formInfo,
 			Cleave,
 			infoIcon,
-			wajibBadge
+			wajibBadge,
+			DatePicker
 		},
 		data() {
 			return {

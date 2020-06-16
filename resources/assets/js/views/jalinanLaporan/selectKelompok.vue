@@ -58,13 +58,7 @@
 							</span>
 
               <!-- input -->
-              <cleave 
-                name="awal"
-                v-model="awal" 
-                class="form-control" 
-                :raw="false" 
-                :options="cleaveOption.date" 
-                placeholder="YYYY-MM-DD"></cleave>
+							<date-picker @dateSelected="awal = $event" :defaultDate="awal"></date-picker>	
 
 						</div>
 					</div>
@@ -76,13 +70,7 @@
 							</span>
 
               <!-- input -->
-              <cleave 
-                name="akhir"
-                v-model="akhir" 
-                class="form-control" 
-                :raw="false" 
-                :options="cleaveOption.date" 
-                placeholder="YYYY-MM-DD"></cleave>
+							<date-picker @dateSelected="akhir = $event" :defaultDate="akhir"></date-picker>
 
 						</div>
 					</div>
@@ -101,10 +89,12 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
-      Cleave, 
+			Cleave, 
+			DatePicker
 		},
 		props: ["isCu"],
 		data(){

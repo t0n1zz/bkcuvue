@@ -156,8 +156,7 @@
 											<h6>Tgl. Lahir:</h6>
 
 											<!-- input -->
-											<cleave name="tanggal_lahir" v-model="form.tanggal_lahir" class="form-control" :raw="false" :options="cleaveOption.date"
-											 placeholder="Silahkan masukkan tgl. lahir"></cleave>
+											<date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
 
 										</div>
 									</div>
@@ -413,6 +412,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -422,7 +422,8 @@
 			message,
 			formButton,
 			formInfo,
-			Cleave
+			Cleave,
+			DatePicker
 		},
 		data() {
 			return {

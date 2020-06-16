@@ -14,7 +14,7 @@
 						<option disabled value="">Silahkan pilih periode</option>
 						<option value="semua">Semua</option>
 						<option disabled value="">----------------</option>
-						<option v-for="data in modelData" :value="data">{{data}}</option>
+						<option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option>
 					</select>
 
 					<!-- reload -->
@@ -41,7 +41,7 @@
 						<option disabled value="">Silahkan pilih periode</option>
 						<option value="semua">Semua</option>
 						<option disabled value="">----------------</option>
-						<option v-for="data in modelData" :value="data">{{data}}</option>
+						<option v-for="(data, index) in modelData" :key="index" :value="data">{{data}}</option>
 					</select>
 				</div>
 

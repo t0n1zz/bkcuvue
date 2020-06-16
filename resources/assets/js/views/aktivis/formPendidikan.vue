@@ -88,14 +88,8 @@
 						Tgl. Mulai:</h6>
 
 					<!-- input -->
-					<cleave 
-						name="mulai"
-						v-model="form.mulai" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. mulai"
-						v-validate="'required'" data-vv-as="Tgl. mulai pendidikan"></cleave>
+					<date-picker @dateSelected="form.mulai = $event" :defaultDate="form.mulai"></date-picker>	
+					<input v-model="form.mulai" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai pendidikan"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
@@ -113,13 +107,7 @@
 					<h6>Tgl. Selesai</h6>
 
 					<!-- input -->
-					<cleave 
-						name="selesai"
-						v-model="form.selesai" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. selesai"></cleave>
+					<date-picker @dateSelected="form.selesai = $event" :defaultDate="form.selesai"></date-picker>	
 
 					<small class="text-muted">Kosongkan apabila masih menjalani pendidikan / belum mengetahui tanggal selesai pendidikan</small>
 				</div>
@@ -155,11 +143,13 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props:['formState','selected','id_aktivis'],
 		components: {
-			Cleave
+			Cleave,
+			DatePicker
 		},
 		data() {
 			return {

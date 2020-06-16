@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use File;
 use Image;
 use App\Kegiatan;
@@ -17,7 +18,6 @@ use App\KegiatanPilih;
 use App\KegiatanPilihPivot;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
-use Auth;
 
 class KegiatanBKCUController extends Controller{
 
@@ -722,21 +722,21 @@ class KegiatanBKCUController extends Controller{
 		if($statusPeserta){
 			$updatePeserta = KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',7)->update(['status' => $statusPeserta]);
 
-			$id_cus = [];
-			foreach($dataPeserta as $peserta){
-				if($peserta->aktivis->pekerjaan_aktif){
-					if($peserta->aktivis->pekerjaan_aktif->tipe == 1){
-						array_push($id_cus,$peserta->aktivis->pekerjaan_aktif->id_tempat);
-					}
-				}
-			}
+			// $id_cus = [];
+			// foreach($dataPeserta as $peserta){
+			// 	if($peserta->aktivis->pekerjaan_aktif){
+			// 		if($peserta->aktivis->pekerjaan_aktif->tipe == 1){
+			// 			array_push($id_cus,$peserta->aktivis->pekerjaan_aktif->id_tempat);
+			// 		}
+			// 	}
+			// }
 
-			$id_cus = array_unique($id_cus);
-			if($kelas->tipe == 'diklat_bkcu'){
-				NotificationHelper::diklat_bkcu_status($id, $id_cus,'diklat ' . $kelas->name  . '  ' . $status);
-			}else{
-				NotificationHelper::pertemuan_bkcu_status($id, $id_cus,'pertemuan ' . $kelas->name  . '  ' . $status);
-			}
+			// $id_cus = array_unique($id_cus);
+			// if($kelas->tipe == 'diklat_bkcu'){
+			// 	NotificationHelper::diklat_bkcu_status($id, $id_cus,'diklat ' . $kelas->name  . '  ' . $status);
+			// }else{
+			// 	NotificationHelper::pertemuan_bkcu_status($id, $id_cus,'pertemuan ' . $kelas->name  . '  ' . $status);
+			// }
 		}
 
 		return response()

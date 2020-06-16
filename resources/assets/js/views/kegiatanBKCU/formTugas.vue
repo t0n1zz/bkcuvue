@@ -11,7 +11,7 @@
 				<!-- title -->
 				<h5 :class="{ 'text-danger' : errors.has('formTugas.name')}">
 					<i class="icon-cross2" v-if="errors.has('formTugas.name')"></i>
-					Tugas :
+					Tugas:
 				</h5>
 
 				<!-- text -->

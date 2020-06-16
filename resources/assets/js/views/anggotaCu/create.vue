@@ -184,18 +184,11 @@
 								<!-- title -->
 								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_lahir')}">
 									<i class="icon-cross2" v-if="errors.has('form.tanggal_lahir')"></i>
-									Tgl. Lahir: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+									Tgl. Lahir: <wajib-badge></wajib-badge></h6>
 
 								<!-- input -->
-								<cleave 
-									name="tanggal_lahir"
-									v-model="form.tanggal_lahir" 
-									class="form-control" 
-									:raw="false" 
-									:options="cleaveOption.date" 
-									v-validate="'required'"
-									data-vv-as="Tanggal Lahir"
-									placeholder="Silahkan masukkan tgl. lahir"></cleave>
+								<date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
+								<input v-model="form.tanggal_lahir" v-show="false" v-validate="'required'" data-vv-as="Tanggal lahir"/>
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_lahir')">
@@ -773,8 +766,8 @@
 									Tgl. Jadi Anggota: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 									<!-- text -->
-									<cleave name="tanggal_masuk" v-model="form.tanggal_masuk" class="form-control" :raw="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota" :options="cleaveOption.date"
-									placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+									<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	
+									<input v-model="form.tanggal_masuk" v-show="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota"/>
 
 									<!-- error message -->
 									<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
@@ -911,6 +904,7 @@
 	import infoIcon from "../../components/infoIcon.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import identitas from "../../components/identitas.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props: ['mode','nik','statusNIK'],
@@ -927,7 +921,8 @@
 			appImageUpload,
 			infoIcon,
 			wajibBadge,
-			identitas
+			identitas,
+			DatePicker
 		},
 		data() {
 			return {

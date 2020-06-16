@@ -229,14 +229,8 @@
 												Tgl. Berdiri: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input -->
-											<cleave 
-												name="ultah"
-												v-model="form.ultah" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. berdiri"
-												v-validate="'required'" data-vv-as="Tgl. berdiri" ></cleave>
+											<date-picker @dateSelected="form.ultah = $event" :defaultDate="form.ultah"></date-picker>	
+											<input v-model="form.ultah" v-show="false" v-validate="'required'" data-vv-as="Tgl. berdiri"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.ultah')">
@@ -256,14 +250,8 @@
 												Tgl. Bergabung: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input  -->
-											<cleave 
-												name="bergabung"
-												v-model="form.bergabung" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. bergabung"
-												v-validate="'required'" data-vv-as="Tgl. bergabung" ></cleave>
+											<date-picker @dateSelected="form.bergabung = $event" :defaultDate="form.bergabung"></date-picker>	
+											<input v-model="form.bergabung" v-show="false" v-validate="'required'" data-vv-as="Tgl. bergabung"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.bergabung')">
@@ -676,6 +664,7 @@
 	import Cleave from 'vue-cleave-component';
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -687,7 +676,8 @@
 			formInfo,
 			Cleave,
 			wajibBadge,
-			infoIcon
+			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {

@@ -53,17 +53,22 @@ class SystemController extends Controller
     $countMitraLembaga = 0;
 
     if($user->id_cu != 0){
-      $kelas = Cu::withCount('hasTp')->withCount('hasAktivis')->withCount('hasProduk')->where('id', $user->id_cu)->first();
+      $id_cu = $user->id_cu;
+      $kelas = Cu::withCount('hasTp')->withCount('hasProduk')->where('id', $user->id_cu)->first();
       $countTp = $kelas->has_tp_count;
       $countProdukCu = $kelas->has_produk_count;
-      $countAktivis = $kelas->has_aktivis_count;
+      $countAktivis = Aktivis::with('pekerjaan_aktif.cu')->whereHas('pekerjaan',function($query) use ($id_cu){
+        $query->where('tipe',1)->where('id_tempat',$id_cu)->where('status',1);
+      })->count();
     }else{
-      $kelas = Cu::withCount('hasTp')->withCount('hasAktivis')->withCount('hasProduk')->get();
+      $kelas = Cu::withCount('hasTp')->withCount('hasProduk')->get();
       foreach($kelas as $k){
         $countTp += $k->has_tp_count;
         $countProdukCu += $k->has_produk_count;
-        $countAktivis += $k->has_aktivis_count;
       }
+      $countAktivis = Aktivis::with('pekerjaan_aktif.cu')->whereHas('pekerjaan',function($query){
+        $query->whereIn('tipe',[1,3])->where('status',1);
+      })->count();
       $countCu = $kelas->count();
       $countMitraOrang = MitraOrang::count();
       $countMitraLembaga = MitraLembaga::count();

@@ -49,7 +49,7 @@
 									<!-- diklat bkcu -->
 									<template v-if="item.tipe == 'diklat_bkcu'">
 											<!-- tambah materi -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="tipeUser != 'peserta'">
+										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="tipeUser == 'panitia'">
 											<i class="icon-plus22"></i> Tambah Materi
 										</button>
 
@@ -70,19 +70,19 @@
 
 										<!-- daftar -->
 										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
-											<i class="icon-people"></i> Daftar Peserta
+											<i class="icon-people"></i> Daftar Peserta Diklat
 										</button>
 
 										<!-- daftar -->
-										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status != 2">
-											<i class="icon-people"></i> Daftar Peserta
+										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+											<i class="icon-people"></i> Daftar Peserta Diklat
 										</button>
 									</template>
 
 									<!-- pertemuan bkcu -->
 									<template v-else-if="item.tipe == 'pertemuan_bkcu'">
 										<!-- tambah materi -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="tipeUser != 'peserta'">
+										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="tipeUser == 'panitia'">
 											<i class="icon-plus22"></i> Tambah Materi
 										</button>
 
@@ -103,12 +103,12 @@
 
 										<!-- daftar -->
 										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
-											<i class="icon-people"></i> Daftar Peserta
+											<i class="icon-people"></i> Daftar Peserta Pertemuan
 										</button>
 
 										<!-- daftar -->
-										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0 && item.status != 2">
-											<i class="icon-people"></i> Daftar Peserta
+										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+											<i class="icon-people"></i> Daftar Peserta Pertemuan
 										</button>
 									</template>
 
@@ -263,7 +263,6 @@
 											<td class="font-weight-semibold">Website:</td>
 											<td class="text-right"><check-value :value="item.tempat.website"></check-value></td>
 										</tr>
-		
 									</tbody>
 								</table>
 							</div>
@@ -778,29 +777,54 @@
 												<i class="icon-people"></i> Daftar Peserta
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')"
-											:disabled="!selectedItem.id || selectedItem.status != 1" >
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')" :disabled="!selectedItem.id" v-if="item.status == 2 && selectedItem.status != 3" >
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPeserta')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPeserta')" :disabled="!selectedItem.id" v-if="item.status == 2 && selectedItem.status != 3">
 												<i class="icon-bin2"></i> Hapus
 											</button>
 
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('batalPeserta')" :disabled="!selectedItem.id || selectedItem.status != 1">
-												<i class="icon-bin2"></i> Tolak
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('batalPeserta')" :disabled="!selectedItem.id">
+												<i class="icon-blocked"></i> Tolak
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasanPeserta')" v-if="selectedItem.status == 3">
 												<i class="icon-eye"></i> Lihat Alasan Penolakan
 											</button>
 										</template>
+										<template slot="button-mobile" v-if="currentUser.id_cu == 0">
+											<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')">
+												<i class="icon-people"></i> Daftar Peserta
+											</button>
+
+											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahPeserta')"
+											:disabled="!selectedItem.id" v-if="item.status == 2 && selectedItem.status != 3">
+												<i class="icon-pencil5"></i> Ubah
+											</button>
+
+											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('hapusPeserta')" :disabled="!selectedItem.id" v-if="item.status == 2 && selectedItem.status != 3">
+												<i class="icon-bin2"></i> Hapus
+											</button>
+
+											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('alasanPeserta')" v-if="selectedItem.status == 3">
+												<i class="icon-eye"></i> Lihat Alasan Penolakan
+											</button>
+										</template>
 
 										<!-- if cu -->
 										<template slot="button-desktop" v-if="currentUser.id_cu != 0">
-											<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="item.status == 2">
-												<i class="icon-people"></i> Daftar Peserta
-											</button>
+											<template v-if="item.tipe == 'diklat_bkcu'">
+												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta
+												</button>
+											</template>
+
+											<template v-else-if="item.tipe == 'pertemuan_bkcu'">
+												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta
+												</button>
+											</template>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')"
 											:disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3" >
@@ -812,6 +836,32 @@
 											</button>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasanPeserta')" v-if="selectedItem.status == 3">
+												<i class="icon-eye"></i> Lihat Alasan Penolakan
+											</button>
+										</template>
+										<template slot="button-mobile" v-if="currentUser.id_cu != 0">
+											<template v-if="item.tipe == 'diklat_bkcu'">
+												<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta
+												</button>
+											</template>
+
+											<template v-else-if="item.tipe == 'pertemuan_bkcu'">
+												<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta
+												</button>
+											</template>
+
+											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahPeserta')"
+											:disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3" >
+												<i class="icon-pencil5"></i> Ubah
+											</button>
+											
+											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('hapusPeserta')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+												<i class="icon-bin2"></i> Hapus
+											</button>
+
+											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('alasanPeserta')" v-if="selectedItem.status == 3">
 												<i class="icon-eye"></i> Lihat Alasan Penolakan
 											</button>
 										</template>
@@ -830,14 +880,19 @@
 													<check-value :value="props.item.aktivis.name"></check-value>
 												</td>
 												<td v-if="!columnDataPesertaTerdaftar[4].hide">
-													<check-value :value="props.item.name_nametag"></check-value>
+													<check-value :value="props.item.name_nametag" v-if="item.tipe_tempat == 'OFFLINE'"></check-value>
+													<span v-else>-</span>
 												</td>
 												<td v-if="!columnDataPesertaTerdaftar[5].hide">
 													<check-value :value="props.item.name_sertifikat"></check-value>
 												</td>
-												<td v-if="!columnDataPesertaTerdaftar[6].hide" v-html="$options.filters.date(props.item.datang)">
+												<td v-if="!columnDataPesertaTerdaftar[6].hide" >
+													<span v-html="$options.filters.date(props.item.datang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
+													<span v-else>-</span>
 												</td>
-												<td v-if="!columnDataPesertaTerdaftar[7].hide" v-html="$options.filters.date(props.item.pulang)">
+												<td v-if="!columnDataPesertaTerdaftar[7].hide">
+													<span v-html="$options.filters.date(props.item.pulang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
+													<span v-else>-</span>
 												</td>
 												<td v-if="!columnDataPesertaTerdaftar[8].hide">
 													<check-value :value="props.item.keterangan"></check-value>
@@ -922,14 +977,19 @@
 													<check-value :value="props.item.aktivis.name"></check-value>
 												</td>
 												<td v-if="!columnDataPesertaHadir[3].hide">
-													<check-value :value="props.item.name_nametag"></check-value>
+													<check-value :value="props.item.name_nametag" v-if="item.tipe_tempat == 'OFFLINE'"></check-value>
+													<span v-else>-</span>
 												</td>
 												<td v-if="!columnDataPesertaHadir[4].hide">
 													<check-value :value="props.item.name_sertifikat"></check-value>
 												</td>
-												<td v-if="!columnDataPesertaHadir[5].hide" v-html="$options.filters.date(props.item.datang)">
+												<td v-if="!columnDataPesertaHadir[5].hide">
+													<span v-html="$options.filters.date(props.item.datang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
+													<span v-else>-</span>
 												</td>
-												<td v-if="!columnDataPesertaHadir[6].hide" v-html="$options.filters.date(props.item.pulang)">
+												<td v-if="!columnDataPesertaHadir[6].hide">
+													<span v-html="$options.filters.date(props.item.pulang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
+													<span v-else>-</span>
 												</td>
 												<td v-if="!columnDataPesertaHadir[7].hide" v-html="$options.filters.dateTime(props.item.tanggal_hadir)">
 												</td>

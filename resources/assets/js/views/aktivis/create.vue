@@ -164,18 +164,12 @@
 								<!-- title -->
 								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_lahir')}">
 									<i class="icon-cross2" v-if="errors.has('form.tanggal_lahir')"></i>
-									Tgl. Lahir: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+									Tgl. Lahir: <wajib-badge></wajib-badge></h6>
 
 								<!-- input -->
-								<cleave 
-									name="tanggal_lahir"
-									v-model="form.tanggal_lahir" 
-									class="form-control" 
-									:raw="false" 
-									:options="cleaveOption.date" 
-									v-validate="'required'"
-									data-vv-as="Tanggal Lahir"
-									placeholder="Silahkan masukkan tgl. lahir"></cleave>
+								<date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
+								<input v-model="form.tanggal_lahir" v-show="false" v-validate="'required'" data-vv-as="Tanggal Lahir"/>
+									
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_lahir')">
@@ -461,8 +455,7 @@
 										<h6>Tgl. Jadi Anggota CU {{ index + 1}}: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
 
 										<!-- text -->
-										<cleave name="tanggal_masuk" v-model="cu.tanggal_masuk" class="form-control" :raw="false" :options="cleaveOption.date"
-										placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+										<date-picker @dateSelected="cu.tanggal_masuk = $event" :defaultDate="cu.tanggal_masuk"></date-picker>	
 
 									</div>
 								</div>
@@ -727,6 +720,7 @@
 	import aktivisAPI from '../../api/aktivis.js';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import identitas from "../../components/identitas2.vue";
+	import DatePicker from "../../components/datePicker.vue";
 	
 	export default {
 		props: ['mode','nik','id_aktivis'],
@@ -742,7 +736,8 @@
 			appImageUpload,
 			infoIcon,
 			wajibBadge,
-			identitas
+			identitas,
+			DatePicker
 		},
 		data() {
 			return {

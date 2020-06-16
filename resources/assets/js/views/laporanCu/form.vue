@@ -77,14 +77,14 @@
 
 											<!-- select -->
 										<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="TP" @change="changeTp($event.target.value)" :disabled="!isModelTp">
-												<option disabled value="">
-													<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih TP/KP</span>
-												</option>
-												<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
-												<option disabled value="">----------------</option>
-												<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
-											</select>
+											<option disabled value="">
+												<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
+												<span v-else>Silahkan pilih TP/KP</span>
+											</option>
+											<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
+											<option disabled value="">----------------</option>
+											<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
+										</select>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
@@ -102,18 +102,11 @@
 											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
 												<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
 												Periode: <wajib-badge></wajib-badge>
-												<info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon>
 											</h5>
 
 											<!-- input -->
-											<cleave 
-												name="periode"
-												v-model="form.periode" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan periode laporan"
-												v-validate="'required'" data-vv-as="Periode"></cleave>
+											<date-picker @dateSelected="form.periode = $event" :defaultDate="form.periode"></date-picker>	
+											<input v-model="form.periode" v-show="false" v-validate="'required'" data-vv-as="Periode"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.periode')">
@@ -856,6 +849,7 @@
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -867,7 +861,8 @@
 			formInfo,
 			Cleave,
 			infoIcon,
-			wajibBadge
+			wajibBadge,
+			DatePicker
 		},
 		data() {
 			return {

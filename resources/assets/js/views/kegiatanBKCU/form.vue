@@ -114,14 +114,8 @@
 												Tgl. Mulai: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input -->
-											<cleave 
-												name="mulai"
-												v-model="form.mulai" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. mulai"
-												v-validate="'required'" data-vv-as="Tgl. mulai"></cleave>
+											<date-picker @dateSelected="form.mulai = $event" :defaultDate="form.mulai"></date-picker>	
+											<input v-model="form.mulai" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
@@ -141,14 +135,8 @@
 												Tgl. Selesai: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
 
 											<!-- input  -->
-											<cleave 
-												name="selesai"
-												v-model="form.selesai" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.date" 
-												placeholder="Silahkan masukkan tgl. selesai"
-												v-validate="'required'" data-vv-as="Tgl. selesai"></cleave>
+											<date-picker @dateSelected="form.selesai = $event" :defaultDate="form.selesai"></date-picker>	
+											<input v-model="form.selesai" v-show="false" v-validate="'required'" data-vv-as="Tgl. selesai"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.selesai')">
@@ -828,6 +816,7 @@
 	import formTempat from "./formTempat.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -844,6 +833,7 @@
 			dataTable,
 			infoIcon,
 			wajibBadge,
+			DatePicker
 		},
 		data() {
 			return {

@@ -56,11 +56,11 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.anggota_cu.tanggal_masuk')}">
 					<i class="icon-cross2" v-if="errors.has('form.anggota_cu.tanggal_masuk')"></i>
-					Tgl. Jadi Anggota: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+					Tgl. Jadi Anggota: </h6>
 
-					<!-- text -->
-					<cleave name="tanggal_masuk" v-model="form.anggota_cu.tanggal_masuk" class="form-control" :raw="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota" :options="cleaveOption.date"
-					placeholder="Silahkan masukkan tgl. jadi anggota"></cleave>
+					<!-- input -->
+					<date-picker @dateSelected="form.anggota_cu = $event" :defaultDate="form.anggota_cu"></date-picker>	
+					<input v-model="form.anggota_cu" v-show="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.anggota_cu.tanggal_masuk')">
@@ -80,12 +80,14 @@
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		props:['form','modelCu','modelCuStat'],
 		components: {
 			Cleave,
-			infoIcon
+			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {
