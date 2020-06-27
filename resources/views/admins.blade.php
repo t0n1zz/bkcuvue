@@ -45,7 +45,9 @@
 
 <body>
 
+    {{-- vue app --}}
     <div id="app"></div>
+    {{-- /vue app --}}
 
     {{-- vue js file --}}
     <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>

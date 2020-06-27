@@ -1,9 +1,11 @@
 <template>
 <div v-if="serverVersionStat == 'success'">
 	<div class="page-content pt-2 pb-0" v-if="clientVersion != serverVersion">
-		<div class="content-wrapper pb-0 mb-0">
-			<div class="alert alert-warning alert-styled-left mb-0" >
-				<span class="font-weight-semibold">Warning!</span> Versi SIMO yang anda pakai saat ini [{{ clientVersion }}] bukanlah yang terbaru [{{ serverVersion }}] , silahkan melakukan <button type="button" class="btn btn-warning btn-sm" @click.prevent="modalConfirmOpen()"> <i class="icon-sync"></i> Hard Reload</button> agar semua fungsi dalam aplikasi berfungsi dengan normal.
+		<div class="content-wrapper">
+			<div class="content">
+				<div class="alert alert-danger alert-styled-left mb-0  cursor-pointer" @click.prevent="modalConfirmOpen()">
+					<span class="font-weight-semibold">Perhatian!</span> Versi SIMO yang anda pakai saat ini adalah <b>{{ clientVersion }}</b> bukanlah yang terbaru <b>{{ serverVersion }}</b> , silahkan melakukan hard reload agar semua fungsi dalam aplikasi berfungsi dengan normal.
+				</div>
 			</div>
 		</div>
 

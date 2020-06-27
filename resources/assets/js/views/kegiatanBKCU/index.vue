@@ -72,7 +72,7 @@
 					this.title = 'Pertemuan BKCU';
 					this.titleDesc = 'Mengelola data pertemuan BKCU';
 					this.titleIcon = 'icon-ungroup';
-				}else if(this.$route.params.mode == 'jalan'){
+				}else if(this.$route.meta.mode == 'jalan'){
 					this.title = 'Kegiatan BKCU Berjalan';
 					this.titleDesc = 'Mengelola data kegiatan BKCU berjalan';
 					this.titleIcon = 'icon-feed';

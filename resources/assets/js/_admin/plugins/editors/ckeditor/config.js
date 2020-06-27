@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -8,6 +8,25 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+
+
+	// Setup
+	// ------------------------------
+
+    // RTL version uses different config file
+    if (document.dir == "rtl") {
+		config.skin = 'default_rtl';
+	    config.contentsLangDirection = 'rtl';
+	    config.dialog_buttonsOrder = 'rtl';
+	    config.language = 'ar';
+	    config.defaultLanguage = 'en';
+    }
+    else {
+		config.skin = 'default';
+    }
+
+    // Load content styles
+	config.contentsCss = '../../../../global_assets/js/plugins/editors/ckeditor/skins/' + config.skin + '/contents.css';
 
 
 	// Toolbar
@@ -28,20 +47,15 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'about' },
-		{ name: 'pbckcode' }
+		{ name: 'about' }
 	];
 
 
 	// Extra config
 	// ------------------------------
 
-	// Remove some buttons provided by the standard plugins, which are
-	// not needed in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
-
 	// Set the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre';
+	config.format_tags = 'p;h1;h2;h3;h4;h5;h6;pre';
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
@@ -49,35 +63,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// Allow content rules
 	config.allowedContent = true;
 
-
-	// Extra plugins
-	// ------------------------------
-
-	// CKEDITOR PLUGINS LOADING
-    config.extraPlugins = 'pbckcode'; // add other plugins here (comma separated)
-
-	// PBCKCODE CUSTOMIZATION
-    config.pbckcode = {
-        // An optional class to your pre tag.
-        cls : '',
-
-        // The syntax highlighter you will use in the output view
-        highlighter : 'PRETTIFY',
-
-        // An array of the available modes for you plugin.
-        // The key corresponds to the string shown in the select tag.
-        // The value correspond to the loaded file for ACE Editor.
-        modes : [ ['HTML', 'html'], ['CSS', 'css'], ['PHP', 'php'], ['JS', 'javascript'] ],
-
-        // The theme of the ACE Editor of the plugin.
-        theme : 'textmate',
-
-        // Tab indentation (in spaces)
-        tab_size : '4',
-
-        // the root path of ACE Editor. Useful if you want to use the plugin
-        // without any Internet connection
-        js : "http://cdn.jsdelivr.net//ace/1.1.4/noconflict/"
-    };
-
+	// Allow any class and any inline style
+	config.extraAllowedContent = '*(*);*{*}';
 };

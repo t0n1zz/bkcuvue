@@ -10,14 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+							<!-- Version 3.3.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v331">Version 3.3.1<small class="text-muted"> / 28 Juni 2020</small></a> </h5>
+                </div>
+
+                <div id="v331" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini fokus pada peningkatan pada pengelolaan data user dan peningkatan pada tampilan secara umum.
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan halaman activity log yang berguna untuk menampilkan aktivitas semua user</li>
+                      <li>Peningkatan pada tampilan informasi aktivitas user</li>
+                      <li>Peningkatan pada tampilan pemilihan hak akses user</li>
+                      <li>Peningkatan pada pembuatan user dan pengubahan password yang mengharuskan password menggunakan password yang kuat</li>
+                      <li>Peningkatan komponen tampilan secara umum</li>
+                      <li>Perbaikan pada pemilihan tanggal</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.1 -->
+
               <!-- Version 3.3.0 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#330">Version 3.3.0<small class="text-muted"> /  19 Juni 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v330" aria-expanded="false">Version 3.3.0<small class="text-muted"> /  19 Juni 2020</small></a> 
+                  </h5>
                 </div>
 
-                <div id="330" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v330" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini merupakan perbaikan beberapa hal pada bagian diklat BKCU dan pertemuan BKCU.
                     <br/><br/>
@@ -39,10 +66,10 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#329">Version 3.2.9<small class="text-muted"> / 23 Mei 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v329">Version 3.2.9<small class="text-muted"> / 23 Mei 2020</small></a> </h5>
                 </div>
 
-                <div id="329" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v329" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperkenalkan diklat BKCU Online, serta menambahkan fitur pada pertemuan BKCU dan memperbaiki bug pada bagian pengumuman
                     <br/><br/>
@@ -64,11 +91,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#328">Version 3.2.8 <small class="text-muted"> / 2 Mei 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v328">Version 3.2.8 <small class="text-muted"> / 2 Mei 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="328" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v328" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperkenalkan pertemuan BKCU yang dapat digunakan untuk mendata dan menyelenggarakan pertemuan baik itu offline maupun online serta beberapa perbaikan dan peningkatan pada diklat BKCU dan notifikasi
                     <br/><br/>
@@ -96,11 +123,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#327">Version 3.2.7 <small class="text-muted"> / 24 April 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v327">Version 3.2.7 <small class="text-muted"> / 24 April 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="327" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v327" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperkenalkan form monitoring cu dan perbaikan pada anggota CU
                     <br/><br/>
@@ -122,11 +149,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#326">Version 3.2.6 <small class="text-muted"> / 5 April 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v326">Version 3.2.6 <small class="text-muted"> / 5 April 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="326" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v326" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini meningkatkan dan memperbaiki self assesment
                     <br/><br/>
@@ -150,11 +177,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#325">Version 3.2.5 <small class="text-muted"> / 17 Maret 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v325">Version 3.2.5 <small class="text-muted"> / 17 Maret 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="325" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v325" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini meningkatkan dan memperbaiki laporan klaim JALINAN
                     <br/><br/>
@@ -177,11 +204,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#324">Version 3.2.4 <small class="text-muted"> / 4 Maret 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v324">Version 3.2.4 <small class="text-muted"> / 4 Maret 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="324" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v324" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding dan perubahan laporan pada Klaim JALINAN
                     <br/><br/>
@@ -206,11 +233,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#323">Version 3.2.3 <small class="text-muted"> / 24 Februari 2020</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v323">Version 3.2.3 <small class="text-muted"> / 24 Februari 2020</small></a>
                   </h5>
                 </div>
 
-                <div id="323" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v323" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambahkan self assesment ACCESS Branding, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN
                     <br/><br/>
@@ -235,11 +262,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#322">Version 3.2.2 <small class="text-muted"> / 19 Desember 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v322">Version 3.2.2 <small class="text-muted"> / 19 Desember 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="322" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v322" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambah surat pada Klaim JALINAN, upload dokumen pada Klaim JALINAN, QR Code pada Aset Tetap dan perbaikan beberapa bug.
                     <br/><br/>
@@ -267,11 +294,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#321">Version 3.2.1 <small class="text-muted"> / 3 Desember 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v321">Version 3.2.1 <small class="text-muted"> / 3 Desember 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="321" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v321" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperbaiki beberapa bug tampilan data
                     <br/><br/>
@@ -292,11 +319,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#320">Version 3.2.0 <small class="text-muted"> / 1 Desember 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v320">Version 3.2.0 <small class="text-muted"> / 1 Desember 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="320" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v320" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambah beberapa fitur baru serta melakukan perbaikan bug, error dan peningkatan performa.
                     <br/><br/>
@@ -336,11 +363,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#319">Version 3.1.9 <small class="text-muted"> / 26 Oktober 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v319">Version 3.1.9 <small class="text-muted"> / 26 Oktober 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="319" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v319" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada perbaikan di bagian anggota CU, user, aktivis dan klaim jalinan
                     <br/><br/>
@@ -364,11 +391,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#318">Version 3.1.8 <small class="text-muted"> / 18 Oktober 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v318">Version 3.1.8 <small class="text-muted"> / 18 Oktober 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="318" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v318" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada perbaikan di bagian aktivis, penambahan tampilan pada form analisis klaim JALINAN, perubahan tampilan pada daftar produk dan pelayanan CU dan perubahan pada informasi user
                     <br/><br/>
@@ -390,11 +417,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#317">Version 3.1.7 <small class="text-muted"> / 16 Oktober 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v317">Version 3.1.7 <small class="text-muted"> / 16 Oktober 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="317" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v317" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU, Klaim JALINAN dan penambahan fitur baru untuk pengelolaan aset tetap lembaga, mengabungkan informasi data aktivis dengan user.
                     <br/><br/>
@@ -418,11 +445,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#316">Version 3.1.6 <small class="text-muted"> / 28 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v316">Version 3.1.6 <small class="text-muted"> / 28 September 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="316" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v316" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU dan Klaim JALINAN.
                     <br/><br/>
@@ -446,11 +473,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#315">Version 3.1.5 <small class="text-muted"> / 23 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v315">Version 3.1.5 <small class="text-muted"> / 23 September 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="315" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v315" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada perbaikan beberapa bug
                     <br/><br/>
@@ -473,11 +500,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v314">Version 3.1.4 <small class="text-muted"> / 19 September 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="314" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v314" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada fitur klaim JALINAN
                     <br/><br/>
@@ -504,11 +531,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#313">Version 3.1.3 <small class="text-muted"> / 6 September 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v313">Version 3.1.3 <small class="text-muted"> / 6 September 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="313" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v313" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada peningkatan pada data aktivis, anggota CU dan klaim JALINAN
                     <br/><br/>
@@ -531,11 +558,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#312">Version 3.1.2 <small class="text-muted"> / 24 Agustus 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v312">Version 3.1.2 <small class="text-muted"> / 24 Agustus 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="312" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v312" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini lebih kepada perbaikan bug-bug yang ada pada fitur-fitur yang sudah ada serta peningkatan pengalaman penoperasian pada beberapa bagian.
                     <br/><br/>
@@ -559,11 +586,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#311">Version 3.1.1 <small class="text-muted"> / 16 Juli 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v311">Version 3.1.1 <small class="text-muted"> / 16 Juli 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="311" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v311" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Perbaikan bug pada perhitungan laporan PEARLS dan penambahan field baru untuk mitra
                     <br/><br/>
@@ -583,11 +610,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#310">Version 3.1.0 <small class="text-muted"> / 26 April 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v310">Version 3.1.0 <small class="text-muted"> / 26 April 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="310" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v310" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan Puskopdit BKCU Kalimantan untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. 
                     <br/><br/> 
@@ -610,11 +637,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#309">Version 3.0.9 <small class="text-muted"> / 20 Februari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v309">Version 3.0.9 <small class="text-muted"> / 20 Februari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="309" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v309" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan di beberapa bagian dan penambahan fitur pelaporan error/
                     <br/><br/>
@@ -635,11 +662,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#308">Version 3.0.8 <small class="text-muted"> / 8 Februari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v308">Version 3.0.8 <small class="text-muted"> / 8 Februari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="308" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v308" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan data aktivis dan penambahan fitur pada aktivis
                     <br/><br/>
@@ -659,11 +686,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#307">Version 3.0.7 <small class="text-muted"> / 29 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v307">Version 3.0.7 <small class="text-muted"> / 29 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="307" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v307" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan artikel, aktivis dan peningkatan pada diklat BKCU.
                     <br/><br/>
@@ -686,11 +713,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#306">Version 3.0.6 <small class="text-muted"> / 25 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v306">Version 3.0.6 <small class="text-muted"> / 25 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="306" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v306" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan pada halaman produk CU dan perbaikan pada halaman diklat BKCU.
                     <br/><br/>
@@ -714,11 +741,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#305">Version 3.0.5 <small class="text-muted"> / 22 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v305">Version 3.0.5 <small class="text-muted"> / 22 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="305" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v305" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU, profile user dan penambahan widget untuk halaman dashboard.
                     <br/><br/>
@@ -747,11 +774,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#304">Version 3.0.4 <small class="text-muted"> / 13 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v304">Version 3.0.4 <small class="text-muted"> / 13 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="304" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v304" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update untuk versi ini berfokus pada penyelesaian/perbaikan pada fitur diklat BKCU dan pendaftaran peserta diklat BKCU, perbaikan pada laporan gerakan dan laporan statistik CU, peningkatan kecepatan dan keamanan dengan menggunakan layanan dari pihak ketiga, dan perbaikan serta peningkatan sistem secara keseluruhan agar pengalaman pengoperasian lebih konsisten, cepat dan menyenangkan.
                     <br/><br/>
@@ -777,11 +804,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#303">Version 3.0.3 <small class="text-muted"> / 9 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v303">Version 3.0.3 <small class="text-muted"> / 9 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="303" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v303" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
                     <br/><br/>
@@ -805,11 +832,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#302">Version 3.0.2 <small class="text-muted"> / 4 Januari 2019</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v302">Version 3.0.2 <small class="text-muted"> / 4 Januari 2019</small></a>
                   </h5>
                 </div>
 
-                <div id="302" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v302" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
                     <br/><br/>
@@ -830,11 +857,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#301">Version 3.0.1 <small class="text-muted"> / 31 Desember 2018</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v301">Version 3.0.1 <small class="text-muted"> / 31 Desember 2018</small></a>
                   </h5>
                 </div>
 
-                <div id="301" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v301" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya
                     <br/><br/>
@@ -856,11 +883,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#300">Version 3.0.0 <small class="text-muted"> / 27 Desember 2018</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v300">Version 3.0.0 <small class="text-muted"> / 27 Desember 2018</small></a>
                   </h5>
                 </div>
 
-                <div id="300" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v300" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Pada versi ini SIMO yang berbasis sepenuhnya PHP dengan framework laravel telah berubah menjadi Single Page Application (SPA) berbasis javascript dengan framework Vue.js yang menawarkan pengalaman interaksi desktop pada browser.
                     <br/><br/>
@@ -913,11 +940,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#213">Version 2.1.3 <small class="text-muted"> / 20 April 2017</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v213">Version 2.1.3 <small class="text-muted"> / 20 April 2017</small></a>
                   </h5>
                 </div>
 
-                <div id="213" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v213" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Pada versi ini <b>AdminBKCU</b> berubah nama menjadi <b>SIMO</b> yang merupakan singkatan dari <b>S</b>istem <b>I</b>nformasi <b>M</b>anajemen <b>O</b>rganisasi. Pemilihan nama ini adalah didasarkan dari fitur yang ditawarkan oleh aplikasi ini yaitu memanajemen informasi dari organisasi (bukan bidang organisasi, melainkan organisasi dalam artian Puskopdit BKCU Kalimantan dan CU Primer anggota).
                     <br/><br/>
@@ -967,11 +994,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#212">Version 2.1.2 <small class="text-muted"> / 11 Maret 2017</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v212">Version 2.1.2 <small class="text-muted"> / 11 Maret 2017</small></a>
                   </h5>
                 </div>
 
-                <div id="212" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v212" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Penambahan fitur bagian laporan P.E.A.R.L.S Berikut adalah rincian perubahan pada versi ini</p>
                     <ul class="list">
@@ -991,11 +1018,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#211">Version 2.1.1 <small class="text-muted"> / 14 Februari 2017</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v211">Version 2.1.1 <small class="text-muted"> / 14 Februari 2017</small></a>
                   </h5>
                 </div>
 
-                <div id="211" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v211" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Penambahan fitur bagian laporan CU serta fitur diskusi pada laporan CU Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -1059,11 +1086,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#210">Version 2.1.0 <small class="text-muted"> / 9 Desember 2016</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v210">Version 2.1.0 <small class="text-muted"> / 9 Desember 2016</small></a>
                   </h5>
                 </div>
 
-                <div id="210" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v210" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Penambahan fitur bagian laporan CU yang berfungsi untuk menampilkan perkembangan Credit Union diserta dengan perhitungan analisis P.E.A.R.L.S serta upgrade sistem utama aplikasi dari versi 4.2 ke versi 5.2 dan peningkatan fitur-fitur pada plugin yang dipakai. Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -1124,11 +1151,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#201">Version 2.0.1 <small class="text-muted"> / 2 Januari 2016</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v201">Version 2.0.1 <small class="text-muted"> / 2 Januari 2016</small></a>
                   </h5>
                 </div>
 
-                <div id="201" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v201" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Pengubahan penggunaan rich text editor dari CKeditor menjadi Summernote. Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -1149,11 +1176,11 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="collapsed text-default" href="#200">Version 2.0.0 <small class="text-muted"> / 31 Desember 2015</small></a>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#v200">Version 2.0.0 <small class="text-muted"> / 31 Desember 2015</small></a>
                   </h5>
                 </div>
 
-                <div id="200" class="collapse" data-parent="#accordion-control-right" style="">
+                <div id="v200" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Rombak ulang keseluruhan tampilan admin menjadi lebih mudah di operasikan, lebih <i>responsive/mobile friendly</i> dan pengubahan code php pada controller dan model untuk peningkatan performa dan konsistensi pada tiap pengoperasian. Berikut adalah rincian perubahan pada versi ini:</p>
 

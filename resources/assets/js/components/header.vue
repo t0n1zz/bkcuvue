@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- first navbar -->
-		<div class="navbar navbar-expand-md navbar-dark bg-indigo">
+		<div class="navbar navbar-expand-lg navbar-dark bg-indigo">
 
 			<div class="navbar-brand wmin-0 mr-0">
 				<router-link :to="{ name: 'dashboard' }" class="d-inline-block">
@@ -9,14 +9,14 @@
 				</router-link>
 			</div>
 
-			<div class="d-md-none">
+			<div class="d-lg-none">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
 					<i class="icon-tree5"></i>
 				</button>
 			</div>
 
 			<div class="collapse navbar-collapse" id="navbar-mobile">
-				<span class="navbar-text ml-md-3 mr-md-1">
+				<span class="navbar-text ml-lg-3 mr-lg-1">
 					<span class="badge bg-info-400">
 						<router-link :to="{ name:'changelog' }">
 							<span>VERSION {{ clientVersion }}</span>
@@ -24,7 +24,7 @@
 					</span>
 				</span>
 
-				<span class="navbar-text ml-md-3 mr-md-auto">
+				<span class="navbar-text ml-lg-3 mr-lg-auto">
 					<span class="badge bg-success-400">
 						<span v-if="currentUser && currentUser.id_cu != 0">CU {{currentUser.cu.name.toUpperCase()}}</span>
 						<span v-else-if="currentUser && currentUser.id_cu == 0">PUSKOPDIT BKCU KALIMANTAN</span>
@@ -52,17 +52,17 @@
 					<li class="nav-item dropdown">
 						<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
 							<i class="icon-bell2"></i>
-							<span class="d-md-none ml-2">Pemberitahuan</span>
+							<span class="d-lg-none ml-2">Pemberitahuan</span>
 
 							<!-- loading -->
-							<span class="badge badge-pill ml-auto ml-md-0" v-if="unreadNotificationStat == 'loading'"><i class="icon-spinner2 spinner font-size-xs"></i></span>
+							<span class="badge badge-pill ml-auto ml-lg-0" v-if="unreadNotificationStat == 'loading'"><i class="icon-spinner2 spinner font-size-xs"></i></span>
 							
 							<!-- success -->
-							<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0" v-if="unreadNotificationStat == 'success' && unreadNotification && unreadNotification > 0">{{unreadNotification}}</span>
+							<span class="badge badge-pill bg-warning-400 ml-auto ml-lg-0" v-if="unreadNotificationStat == 'success' && unreadNotification && unreadNotification > 0">{{unreadNotification}}</span>
 							
 						</a>			
 
-						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350" v-if="unreadNotificationStat == 'success'">
+						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-350" v-if="unreadNotificationStat == 'success'">
 							<div class="dropdown-content-header" v-if="unreadNotification > 0">
 								<a href="#" class="text-default" @click.prevent="fetchNotif()" v-tooltip:right="'Refresh'"><i class="icon-sync"></i></a>
 								<span class="font-weight-semibold">TERDAPAT {{unreadNotification}} PEMBERITAHUAN</span>
@@ -106,7 +106,7 @@
 							</div>
 						</div>
 
-						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350" v-if="unreadNotificationStat == 'loading'">
+						<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-lg-350" v-if="unreadNotificationStat == 'loading'">
 							<div class="dropdown-content-header">
 								<span class="font-weight-semibold">Mohon tunggu...</span>
 							</div>
@@ -147,8 +147,8 @@
 		</div>
 
 		<!-- second navbar -->
-		<div class="navbar navbar-expand-md navbar-light">
-			<div class="text-center d-md-none w-100">
+		<div class="navbar navbar-expand-lg navbar-light">
+			<div class="text-center d-lg-none w-100">
 				<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-navigation">
 					<i class="icon-unfold mr-2"></i>
 					Menu
@@ -162,34 +162,10 @@
 
 					<!-- dashboard -->
 					<li class="nav-item">
-						<router-link :to="{ name: 'dashboard' }" class="navbar-nav-link" exact>
+						<router-link :to="{ name: 'dashboard' }" class="navbar-nav-link active" exact>
 							<i class="icon-screen3"></i>
-							<span class="d-md-none ml-2"> Dashboard</span>
+							<span class="d-lg-none ml-2"> Dashboard</span>
 						</router-link>
-					</li>
-
-					<!-- kegiatan berjalan -->
-					<li class="nav-item dropdown" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 0">
-						<a href="#" class="navbar-nav-link dropdown-toggle bg-warning" data-toggle="dropdown">
-							<i class="icon-feed mr-2"></i>
-							Kegiatan Berjalan
-						</a>
-
-						<div class="dropdown-menu">
-							<template v-for="model in modelKegiatan.data">
-								<router-link :to="{ name: 'kegiatanBKCUDetail', params:{ id: model.id } }" class="dropdown-item" :key="model.id">
-									{{ model.name }}
-								</router-link>
-							</template>
-
-							<!-- divider -->
-							<div class="dropdown-divider" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 6"></div> 
-
-							<!-- kegiatan bkcu -->
-							<router-link :to="{ name: 'pertemuanBKCUJalan' }" class="dropdown-item" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 6">
-								Kegiatan Berjalan Lainnya
-							</router-link>
-						</div>
 					</li>
 
 					<!-- publikasi -->
@@ -206,7 +182,7 @@
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahPublikasi')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahPublikasi'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahPublikasi'}">
 									<!-- tambah artikel -->
 									<router-link :to="{ name:'artikelCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_artikel']">
 										Artikel
@@ -229,11 +205,11 @@
 
 							<!-- artikel -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_artikel'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'artikel'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_artikel'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'artikel'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('artikel')">
 									<i class="icon-magazine"></i> Artikel
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'artikel'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'artikel'}">
 									
 									<router-link :to="{ name: 'artikelCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -261,11 +237,11 @@
 
 							<!-- kategori artikel -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_artikel_kategori'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'kategoriArtikel'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_artikel_kategori'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'kategoriArtikel'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('kategoriArtikel')">
 									<i class="icon-grid6"></i> Kategori Artikel
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'kategoriArtikel'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'kategoriArtikel'}">
 
 									<router-link :to="{ name: 'artikelKategoriCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -293,11 +269,11 @@
 
 							<!-- penulis artikel -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_artikel_penulis'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'penulisArtikel'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_artikel_penulis'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'penulisArtikel'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('penulisArtikel')">
 									<i class="icon-pencil6"></i> Penulis Artikel
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'penulisArtikel'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'penulisArtikel'}">
 
 									<router-link :to="{ name: 'artikelPenulisCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -328,11 +304,11 @@
 
 							<!-- pengumuman -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_pengumuman'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'pengumuman'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_pengumuman'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'pengumuman'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('pengumuman')">
 									<i class="icon-megaphone"></i> Pengumuman
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'pengumuman'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'pengumuman'}">
 
 									<router-link :to="{ name: 'pengumumanCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -375,7 +351,7 @@
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahKegiatan')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahKegiatan'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahKegiatan'}">
 									<!-- tambah diklat bkcu -->
 									<router-link :to="{ name:'kegiatanBKCUCreate', params:{tipe: 'diklat_bkcu'}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
 										Diklat BKCU
@@ -406,6 +382,10 @@
 								<i class="icon-ungroup"></i> Pertemuan BKCU
 							</router-link>
 
+							<router-link :to="{ name: 'kegiatanBKCUJalan' }" class="dropdown-item" active-class="active" exact>
+								<i class="icon-feed"></i> Kegiatan Berjalan
+							</router-link>
+
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_tempat']"></div> 
 
@@ -431,7 +411,7 @@
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahAnggotaCU')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahAnggotaCU'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahAnggotaCU'}">
 									<!-- tambah anggota cu -->
 									<router-link :to="{ name:'anggotaCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_anggota_cu']">
 										Anggota CU
@@ -449,11 +429,11 @@
 
 							<!-- anggota cu -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'anggota_cu'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_anggota_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'anggota_cu'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('anggota_cu')">
 									<i class="icon-man-woman"></i> Anggota CU
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'anggota_cu'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'anggota_cu'}">
 
 									<router-link :to="{ name: 'anggotaCuCu', params:{cu:'semua', tp:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -485,11 +465,11 @@
 							<div class="dropdown-divider"></div> 
 
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'jalinan_klaim'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'jalinan_klaim'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('jalinan_klaim')">
 									<i class="icon-accessibility2"></i> Klaim JALINAN
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'jalinan_klaim'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'jalinan_klaim'}">
 
 									<router-link :to="{ name: 'jalinanKlaimCu', params:{cu:'semua', tp:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -517,11 +497,11 @@
 								<i class="icon-square-down"></i> Pencairan JALINAN
 							</router-link>
 
-							<div class="dropdown-submenu" v-if="currentUser.can['laporan_jalinan_klaim']" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['laporan_jalinan_klaim']" :class="{'show' : dropdownMenu2 == 'laporan_jalinan_klaim'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporan_jalinan_klaim')">
 									<i class="icon-archive"></i> Laporan Klaim JALINAN
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporan_jalinan_klaim'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'laporan_jalinan_klaim'}">
 
 									<router-link :to="{ name: 'jalinanLaporanKlaimCu' }" v-if="currentUser.id_cu == 0" class="dropdown-item" active-class="active" exact >
 										Berdasarkan CU
@@ -559,7 +539,7 @@
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahOrganisasi')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahOrganisasi'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahOrganisasi'}">
 
 										<!-- tambah cu -->
 										<router-link :to="{ name:'cuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_cu']">
@@ -623,11 +603,11 @@
 
 							<!-- tp -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_tp'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'tp'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_tp'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'tp'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tp')">
 									<i class="icon-home9"></i> TP/KP
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tp'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tp'}">
 
 									<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -652,11 +632,11 @@
 
 							<!-- produkcu -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_produk_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'produkCu'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_produk_cu'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'produkCu'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('produkCu')">
 									<i class="icon-list3"></i> Produk & Pelayanan
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'produkCu'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'produkCu'}">
 
 									<router-link :to="{ name: 'produkCuCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -682,11 +662,11 @@
 							<!-- aktivis -->
 
 							<!-- if cu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_aktivis']" :class="{'show' : dropdownMenu == 'aktivis'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_aktivis']" :class="{'show' : dropdownMenu2 == 'aktivis'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('aktivis')">
 									<i class="icon-user-tie"></i> Aktivis
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'aktivis'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'aktivis'}">
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua Tingkat
@@ -741,12 +721,12 @@
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']"></div> 
 
-							<div class="dropdown-submenu" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']" :class="{'show' : dropdownMenu == 'aset'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']" :class="{'show' : dropdownMenu2 == 'aset'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('aset')">
 									<i class="icon-drawer3"></i> Arsip
 								</a>
 
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'aset'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'aset'}">
 
 									<router-link :to="{ name: 'asetTetap'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap'] && currentUser.id_cu == 0">
 										Aset Tetap
@@ -774,12 +754,12 @@
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
 
-							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu == 'mitra'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu2 == 'mitra'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('mitra')">
 									<i class="icon-briefcase"></i> Mitra
 								</a>
 
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'mitra'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'mitra'}">
 	
 									<!-- mitra perseorangan -->
 									<router-link :to="{ name: 'mitraOrang' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_mitra_orang']">
@@ -812,7 +792,7 @@
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahKeuangan')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahKeuangan'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahKeuangan'}">
 									<!-- tambah laporan -->
 									<router-link :to="{ name:'laporanCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_laporan_cu']">
 										Laporan Statistik CU
@@ -836,11 +816,11 @@
 							</router-link>
 
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'laporanCu'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'laporanCu'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporanCu')">
 									<i class="icon-stats-bars2"></i> Laporan Statistik CU
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporanCu'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'laporanCu'}">
 
 									<router-link :to="{ name: 'laporanCu' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu == '0'">
 										 Semua CU
@@ -859,12 +839,12 @@
 							</div>
 
 							<!-- if cu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu != '0'" :class="{'show' : dropdownMenu == 'laporanTp'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_laporan_cu'] && currentUser.id_cu != '0'" :class="{'show' : dropdownMenu2 == 'laporanTp'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporanTp')">
 									<i class="icon-stats-growth"></i> Laporan Statistik CU
 								</a>
 
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'laporanTp'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'laporanTp'}">
 									<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Konsolidasi
 									</router-link>
@@ -885,11 +865,11 @@
 
 							<!-- assesment access -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_assesment_access'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'assesmentAccess'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_assesment_access'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'assesmentAccess'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('assesmentAccess')">
 									<i class="icon-reading"></i> Self Assesment ACCESS
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'assesmentAccess'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'assesmentAccess'}">
 
 									<router-link :to="{ name: 'assesmentAccessCu',params: { cu: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_assesment_access'] && currentUser.id_cu == '0'">
 										 Semua CU
@@ -914,11 +894,11 @@
 
 							<!--monitoring -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu" v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu == 'monitoring'}">
+							<div class="dropdown-submenu" v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'monitoring'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('monitoring')">
 									<i class="icon-collaboration"></i> Monitoring
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'monitoring'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'monitoring'}">
 
 									<router-link :to="{ name: 'monitoringCu',params: { cu: 'semua', tp: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
 										 Semua CU
@@ -947,13 +927,13 @@
 				</ul>
 				
 				<!-- navbar right -->
-				<ul class="navbar-nav ml-md-auto">
+				<ul class="navbar-nav ml-lg-auto">
 
 					<!-- pengaturan -->
 					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_user'] || currentUser.can['index_user'] ">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-cog3"></i>
-							<span class="d-md-none ml-2">Pengaturan</span>
+							<span class="d-lg-none ml-2">Pengaturan</span>
 						</a>
 						
 						<div class="dropdown-menu dropdown-menu-right">
@@ -963,7 +943,7 @@
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahPengaturan')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'tambahPengaturan'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahPengaturan'}">
 									<!-- tambah user -->
 									<router-link :to="{ name:'userCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_user']">
 										User
@@ -981,11 +961,11 @@
 
 							<!-- user -->
 							<!-- if bkcu account -->
-							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser.can['index_user'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'user'}">
+							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser.can['index_user'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'user'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('user')">
 									<i class="icon-users"></i> User
 								</a>
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'user'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'user'}">
 
 									<router-link :to="{ name: 'userCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
@@ -1077,8 +1057,8 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.3.0',
-				dropdownMenu: '',
+				clientVersion: '3.3.1',
+				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',
 				timer: '',
@@ -1088,12 +1068,12 @@
 				modalContent: '',
 				modalColor: '',
 				modalButton: '',
+				prevRoute: null
 			}
 		},
 		created(){
 			this.fetchTp();
 			this.fetchCu();
-			this.fetchKegiatanBerjalan();
 			this.fetchNotif();
 			this.timer = setInterval(() => {
 				this.fetchNotif();
@@ -1101,12 +1081,16 @@
 		},
 		beforeDestroy () {
       clearInterval(this.timer)
-    },
+		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => {
+				vm.prevRoute = from
+			})
+		},
 		watch: {
 			'$route' (to, from){
 				this.fetchTp();
 				this.fetchCu();
-				this.fetchKegiatanBerjalan();
 			},
 			isTokenExpired(value){ 
 				if(value == true){
@@ -1171,17 +1155,12 @@
 				}
 			},
 			dropdown(value){
-				if(this.dropdownMenu != value){
-					this.dropdownMenu = value;
-				}else{
-					this.dropdownMenu = '';
-				}
-			},
-			dropdown2(value){
-				if(this.dropdownMenu2 != value){
-					this.dropdownMenu2 = value;
-				}else{
-					this.dropdownMenu2 = '';
+				if(this.prevRoute.name == 'login'){
+					if(this.dropdownMenu2 != value){
+						this.dropdownMenu2 = value;
+					}else{
+						this.dropdownMenu2 = '';
+					}
 				}
 			},
 			goToNotifCenter(){

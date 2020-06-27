@@ -4,8 +4,8 @@
 		<!-- kegiatan berjalan -->
 		<div class="col-12 cursor-pointer" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 0" @click.prevent="goTo(kegiatanBKCUJalanWidgetRoute)">
       <count-widget 
-				:count="'Kegiatan Berjalan'" 
-				:title="'Melihat kegiatan yang sedang berlangsung saat ini'" 
+				:count="'Terdapat ' + modelKegiatan.data.length + ' Kegiatan Berjalan'" 
+				:title="'Silahkan menekan tombol ini untuk melihat kegiatan yang sedang berlangsung'" 
 				:color="'bg-warning'" 
 				:icon="'icon-feed'"></count-widget>
     </div>
@@ -154,6 +154,7 @@
 		},
 		created(){
 			this.countWidgetRoute();
+			this.fetchKegiatanBerjalan();
 		},
 		methods:{
 			countWidgetRoute(){
@@ -194,6 +195,18 @@
 			},
 			goTo(route){
 				this.$router.push(route);
+			},
+			fetchKegiatanBerjalan(){
+				var query = {
+					order_column: "mulai",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 6,
+					page: 1
+				};
+				if(this.modelKegiatanStat != 'success'){
+					this.$store.dispatch('kegiatanBKCU/indexJalanHeader', query);
+				}
 			},
 			momentYear(){
 				return moment().year();

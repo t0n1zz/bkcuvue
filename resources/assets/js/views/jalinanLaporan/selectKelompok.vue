@@ -6,11 +6,9 @@
 				<div class="row">
 					
 					<!-- cu -->
-					<div class="col-sm-5 mb-2" v-if="this.currentUser.id_cu == 0 && !isCu">
+					<div class="col-sm-6 mb-3" v-if="this.currentUser.id_cu == 0 && !isCu">
+						<h6>Pilih CU</h6>
 						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Pilih CU</span>
-							</div>
 
 							<!-- select -->
 							<select class="form-control" name="idCu" v-model="idCu" data-width="100%" :disabled="modelCuStat === 'loading'">
@@ -31,12 +29,9 @@
 					</div>
 
 					<!-- status -->
-					<div class="mb-2" :class="{'col-sm-5' : this.currentUser.id_cu == 0, 'col-sm-10' : this.currentUser.id_cu != 0 , 'col-sm-10' : this.isCu}">
+					<div class="mb-3" :class="{'col-sm-6' : this.currentUser.id_cu == 0, 'col-sm-12' : this.currentUser.id_cu != 0 , 'col-sm-12' : this.isCu}">
+						<h6>Pilih Status</h6>
 						<div class="input-group">
-							<span class="input-group-prepend">
-								<span class="input-group-text">Pilih Status</span>
-							</span>
-
 							<!-- select -->
 							<select class="form-control" name="status" v-model="status" data-width="100%" @change="changeDetailTanggal($event.target.value)">
 								<option disabled value="">Silahkan pilih status</option>
@@ -51,32 +46,20 @@
 					</div>
 
 					<!-- tanggal pencairan -->
-					<div class="col-sm-5" v-if="status != ''">
-						<div class="input-group">
-							<span class="input-group-prepend">
-								<span class="input-group-text">Tanggal Awal {{ detailTanggal }}</span>
-							</span>
-
-              <!-- input -->
-							<date-picker @dateSelected="awal = $event" :defaultDate="awal"></date-picker>	
-
-						</div>
+					<div class="col-sm-6 mb-3" v-if="status != ''">
+						<h6>Tanggal Awal {{ detailTanggal }}</h6>
+						<!-- input -->
+						<date-picker @dateSelected="awal = $event" :defaultDate="awal"></date-picker>	
 					</div>
 
-          <div class="col-sm-5" v-if="status != ''">
-						<div class="input-group">
-							<span class="input-group-prepend">
-								<span class="input-group-text">Tanggal Akhir {{ detailTanggal }}</span>
-							</span>
-
-              <!-- input -->
-							<date-picker @dateSelected="akhir = $event" :defaultDate="akhir"></date-picker>
-
-						</div>
+          <div class="col-sm-6 mb-3" v-if="status != ''">
+						<h6>Tanggal Akhir {{ detailTanggal }}</h6>
+						<!-- input -->
+						<date-picker @dateSelected="akhir = $event" :defaultDate="akhir"></date-picker>
 					</div>
 
-          <div class="col-sm-2" v-if="status != ''">
-            <button type="button" class="btn btn-light btn-block" @click.prevent="cari()">Cari</button>
+          <div class="col-sm-12" v-if="status != ''">
+            <button type="button" class="btn btn-light btn-block" @click.prevent="cari()"><i class="icon-folder-open3"></i> Tampilkan</button>
           </div>
 
 				</div>					

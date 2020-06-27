@@ -345,7 +345,14 @@ class UserController extends Controller
 		$kelas = User::findOrFail($id);
 
 		$this->hakAksesSave($request->all(),$kelas);
+		
+		$user = Auth::user();
 
+	  // add activity log for changing hak akses
+		Activity()->performedOn($kelas)->causedBy($user)
+		->withProperties(['attributes' => ['hak akses']])
+		->log('updated');
+		
 		return response()
 			->json([
 				'saved' => true,

@@ -17,6 +17,7 @@ export const auth = {
     markNotifStat:'',
     tokenExp: null,
     redirect: '/',
+    
   },
 
   getters: {
