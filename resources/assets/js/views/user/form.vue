@@ -20,7 +20,7 @@
 								<div class="row">
 
 									<!-- username -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form.username')}">
 
 											<!-- title -->
@@ -51,10 +51,12 @@
 											<h5 :class="{ 'text-danger' : errors.has('form.password')}">
 												<i class="icon-cross2" v-if="errors.has('form.password')"></i>
 												Password: <wajib-badge></wajib-badge>
+												<br/>
+												<small class="text-muted"><i>Password harus minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka</i></small> 
 											</h5>
 
 											<!-- text -->
-											<input type="password" name="password" ref="password" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" v-model="form.password">
+											<input type="password" name="password" ref="password" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:8|verify_password'" v-model="form.password">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.password')">
@@ -73,6 +75,8 @@
 											<h5 :class="{ 'text-danger' : errors.has('form.passwordConfirm')}">
 												<i class="icon-cross2" v-if="errors.has('form.passwordConfirm')"></i>
 												Konfirmasi Password: <wajib-badge></wajib-badge>
+												<br/>
+												<small class="text-muted"><i>Mengisi ulang password</i></small> 
 											</h5>
 
 											<!-- text -->
@@ -91,7 +95,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h5>Tipe:</h5>
+											<h5>Tipe: <wajib-badge></wajib-badge></h5>
 
 											<!-- select -->
 											<select name="cu" data-width="100%" class="form-control" v-model="form.id_cu" @change="changeCU($event.target.value)">
@@ -105,7 +109,10 @@
 
 									<!-- aktivis -->
 									<div class="col-md-12" v-if="form.id_cu != '' && formStat == 'success'">
-										<h5>Data Aktivis User:</h5>
+										<h5>Data Aktivis User: <wajib-badge></wajib-badge>
+											<br/>
+											<small class="text-muted"><i>Silahkan memilih dari tabel dibawah data user ini terikat dengan data aktivis mana. untuk memilih dengan menekan nama di dalam tabel aktivis</i></small> 
+										</h5>
 
 										<identitas v-if="form.id_aktivis != ''" :itemData="form.aktivis" @deleteSelected="deleteSelected"></identitas>
 
@@ -180,9 +187,16 @@
 									<div class="col-md-12" v-if="form.id_aktivis != '' && formStat == 'success'">
 										<br/>
 										<!-- title -->
-										<h5>Hak Akses:</h5>
+										<h5>Hak Akses: <wajib-badge></wajib-badge>
+											<br/>
+											<small class="text-muted"><i>Silahkan memilih apa saja yang bisa dilakukan user.</i></small>
+										</h5>
 
-										<hak-akses :tipeUser="tipeUser" @hakForm="hakForm"></hak-akses>
+										<hak-akses 
+										:isPeran="true"
+										:tipeUser="tipeUser" 
+										@hakForm="hakForm"
+										></hak-akses>
 									</div>
 								</div>
 

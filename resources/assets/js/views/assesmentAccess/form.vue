@@ -47,7 +47,7 @@
                       :disabled="modelCU.length == 0 || $route.meta.mode == 'penilaian_bkcu' || $route.meta.mode == 'lihat' || $route.meta.mode == 'edit'"
                     >
                       <option disabled value="0">Silahkan pilih CU</option>
-                      <option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+                      <option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
                     </select>
 
                     <!-- error message -->
@@ -88,8 +88,8 @@
                         <span v-else>Silahkan pilih periode</span>
                       </option>
                       <option
-                        v-for="periode in modelPeriode"
-                        :value="periode.id"
+                        v-for="(periode, index) in modelPeriode"
+                        :value="periode.id" :key="index"
                       >{{periode.periode}}</option>
                     </select>
 
@@ -118,8 +118,7 @@
 
                 <div class="col-md-6 mb-1" v-if="$route.meta.mode != 'lihat'">
                   <div v-if="($route.meta.mode == 'create' && periodeStat == 'success' && periode == null) || ($route.meta.mode != 'create' && form.periode != '' && formStat == 'success')">
-                    <!-- save draft cu -->
-                    <div v-if="form.p4.p4b20_cu_penilaian ==null || form.p4.p4b20_cu_keterangan ==null">
+
                       <button
                         type="button"
                         class="btn btn-warning btn-block"
@@ -127,20 +126,7 @@
                       >
                         <i class="icon-floppy-disk"></i> Simpan Draft
                       </button>
-                    </div>
-
-                    <!-- save draft bkcu -->
-                    <div v-if="$route.meta.mode == 'penilaianBkcu'">
-                      <div v-if="form.p4.p4b20_bkcu_penilaian ==null">
-                        <button
-                          type="button"
-                          class="btn btn-warning btn-block"
-                          @click.prevent="saveDraft"
-                        >
-                          <i class="icon-floppy-disk"></i> Simpan Draft
-                        </button>
-                      </div>
-                    </div>
+                      
                   </div>
 
                 </div>
@@ -230,7 +216,7 @@
                     <hr class="mt-1 mb-1" />
                     <ul class="list-inline mb-0">
                       <li>Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ (nilaiBobotCUP4A + nilaiBobotCUP4B) | round(2) }}%</li>
-                      <li>Skor BKCU: {{ nilaiBobotBKCUP4A + nilaiBobotBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }}%</li>
+                      <li>Skor BKCU: {{ nilaiSkorBKCUP4A + nilaiSkorBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }}%</li>
                     </ul>
                   </div>
                 </li>

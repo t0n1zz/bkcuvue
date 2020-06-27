@@ -27,6 +27,14 @@ Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 Vue.use(VTooltip);
 
+VeeValidate.Validator.extend('verify_password', {
+  getMessage: field => `Password harus mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka`,
+  validate: value => {
+      var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+      return strongRegex.test(value);
+  }
+});
+
 const options = {
   editors: {
     classic: ClassicEditor,

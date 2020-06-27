@@ -104,7 +104,6 @@ class AnggotaCuDraftController extends Controller{
 		}		
 	}
 
-
 	public function storeAll($cu)
 	{
 		\DB::beginTransaction(); 
@@ -115,10 +114,11 @@ class AnggotaCuDraftController extends Controller{
 				$kelas = AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 					$query->where('anggota_cu_cu_draft.cu_id',$cu);
 				});
-				$kelas->nik = preg_replace('/[^A-Za-z0-9]/', '',$kelas->nik);
+				// $kelas->nik = preg_replace('/[^A-Za-z0-9]/', '',$kelas->nik);
 			}
 
-			foreach($kelas->get() as $item){
+			$datas = $kelas->get();
+			foreach($datas as $item){
 				$kelas2 = AnggotaCuCuDraft::where('anggota_cu_draft_id', $item->id);
 
 				$data = $item->toArray(); 
@@ -130,18 +130,18 @@ class AnggotaCuDraftController extends Controller{
 				$kelas3 = AnggotaCu::create($data);
 
 				$data2 = array_map(function($dat) use ($kelas3) {
-						return array(
-								'anggota_cu_id' => $kelas3->id,
-								'cu_id' => $dat['cu_id'],
-								'tp_id' => $dat['tp_id'],
-								'no_ba' => $dat['no_ba'],
-								'tanggal_masuk' => $dat['tanggal_masuk'],
-								'tanggal_keluar' => $dat['tanggal_keluar'],
-								'keterangan_masuk' => $dat['keterangan_masuk'],
-								'keterangan_keluar' => $dat['keterangan_keluar'],
-								'created_at' => $dat['created_at'],
-								'updated_at' => $dat['updated_at'],
-						);
+					return array(
+							'anggota_cu_id' => $kelas3->id,
+							'cu_id' => $dat['cu_id'],
+							'tp_id' => $dat['tp_id'],
+							'no_ba' => $dat['no_ba'],
+							'tanggal_masuk' => $dat['tanggal_masuk'],
+							'tanggal_keluar' => $dat['tanggal_keluar'],
+							'keterangan_masuk' => $dat['keterangan_masuk'],
+							'keterangan_keluar' => $dat['keterangan_keluar'],
+							'created_at' => $dat['created_at'],
+							'updated_at' => $dat['updated_at'],
+					);
 				}, $data2);
 
 				$kelas4 = AnggotaCuCu::insert($data2);

@@ -140,7 +140,7 @@
 														<span v-if="modelGolonganStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih golongan</span>
 													</option>
-													<option v-for="datas in modelGolongan" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
+													<option v-for="(datas, index) in modelGolongan" :value="datas.id" :key="index">{{datas.kode + ' | ' + datas.name}}</option>
 												</select>
 
 												<!-- button -->
@@ -178,7 +178,7 @@
 														<span v-if="modelKelompokStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih kelompok</span>
 													</option>
-													<option v-for="datas in modelKelompok" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
+													<option v-for="(datas, index) in modelKelompok" :value="datas.id" :key="index">{{datas.kode + ' | ' + datas.name}}</option>
 												</select>
 
 												<!-- button -->
@@ -216,7 +216,7 @@
 														<span v-if="modelJenisStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih jenis</span>
 													</option>
-													<option v-for="datas in modelJenis" :value="datas.id" v-if="datas">{{datas.kode + ' | ' + datas.name}}</option>
+													<option v-for="(datas, index) in modelJenis" :value="datas.id" :key="index">{{datas.kode + ' | ' + datas.name}}</option>
 												</select>
 
 												<!-- button -->
@@ -347,7 +347,7 @@
 														<span v-if="modelLokasiStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih lokasi</span>
 													</option>
-													<option v-for="datas in modelLokasi" :value="datas.id" v-if="datas">{{datas.name}}</option>
+													<option v-for="(datas, index) in modelLokasi" :value="datas.id" :key="index">{{datas.name}}</option>
 												</select>
 
 												<!-- button -->
@@ -383,7 +383,7 @@
 													<span v-if="modelAktivisStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih penangungjawab</span>
 												</option>
-												<option v-for="datas in modelAktivis" :value="datas.id" v-if="datas">{{datas.name}}</option>
+												<option v-for="(datas, index) in modelAktivis" :value="datas.id" :key="index">{{datas.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -442,7 +442,7 @@
 													<span v-if="modelAktivisStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih pembeli</span>
 												</option>
-												<option v-for="datas in modelAktivis" :value="datas.id" v-if="datas">{{datas.name}}</option>
+												<option v-for="(datas, index) in modelAktivis" :value="datas.id" :key="index">{{datas.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -460,7 +460,7 @@
 											<!-- title -->
 											<h6 :class="{ 'text-danger' : errors.has('form.tanggal')}">
 												<i class="icon-cross2" v-if="errors.has('form.tanggal')"></i>
-												Tgl. Pembelian: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+												Tgl. Pembelian: <wajib-badge></wajib-badge></h6>
 
 											<!-- input -->
 											<date-picker @dateSelected="form.tanggal = $event" :defaultDate="form.tanggal"></date-picker>	

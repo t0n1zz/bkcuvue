@@ -352,24 +352,26 @@
 						</div>
 						
 						<!-- anak -->
-						<div class="col-md-4" v-if="form.status == 'MENIKAH' || form.status == 'Duda/Janda'" v-for="(anak,index) in formAnak">
-							<div class="form-group">
+						<div v-if="form.status == 'MENIKAH' || form.status == 'Duda/Janda'">
+							<div class="col-md-4"  v-for="(anak,index) in formAnak" :key="index">
+								<div class="form-group">
 
-								<!-- title -->
-								<h6>Anak {{ index + 1}}:</h6>
+									<!-- title -->
+									<h6>Anak {{ index + 1}}:</h6>
 
-								<div class="input-group">
-									<!-- text -->
-									<input type="text" name="anak" class="form-control" placeholder="Silahkan masukkan nama anak" v-model="anak.name">
-									
-									<div class="input-group-btn">
-										<button class="btn btn-light" @click.prevent="removeAnak(index)">
-											<i class="icon-cross"></i>
-										</button>
+									<div class="input-group">
+										<!-- text -->
+										<input type="text" name="anak" class="form-control" placeholder="Silahkan masukkan nama anak" v-model="anak.name">
+										
+										<div class="input-group-btn">
+											<button class="btn btn-light" @click.prevent="removeAnak(index)">
+												<i class="icon-cross"></i>
+											</button>
+										</div>
 									</div>
-								</div>
 
-								<small class="text-muted">&nbsp;</small>
+									<small class="text-muted">&nbsp;</small>
+								</div>
 							</div>
 						</div>
 
@@ -392,7 +394,7 @@
 				</div>
 				<div class="card-body" v-if="form.anggota_cu">
 					<div class="row">
-						<div class="col-md-12" v-for="(cu,index) in formCU">
+						<div class="col-md-12" v-for="(cu,index) in formCU" :key="index">
 							<div class="row">
 								<!-- cu -->
 								<div class="col-md-4">
@@ -415,7 +417,7 @@
 												</option>
 												<option value="0">CU BUKAN ANGGOTA PUSKOPDIT BKCU KALIMANTAN</option>
 												<option disabled value="-">---------------</option>
-												<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
+												<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 											</select>
 										</div>
 
@@ -452,7 +454,7 @@
 									<div class="form-group">
 
 										<!-- title -->
-										<h6>Tgl. Jadi Anggota CU {{ index + 1}}: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+										<h6>Tgl. Jadi Anggota CU {{ index + 1}}:</h6>
 
 										<!-- text -->
 										<date-picker @dateSelected="cu.tanggal_masuk = $event" :defaultDate="cu.tanggal_masuk"></date-picker>	
@@ -500,7 +502,7 @@
 										<span v-else>Silahkan pilih tempat bekerja</span>
 									</option>
 									<option value="0">Puskopdit BKCU Kalimantan</option>
-									<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
+									<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 								</select>
 
 								<!-- error message -->
@@ -601,7 +603,9 @@
 										<span v-else>Silahkan pilih TP/KP</span>
 									</option>
 									<option value="0">Kantor Pusat</option>
-									<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
+									<template v-if="modelTp">
+										<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index" >{{tp.name}}</option>
+									</template>
 								</select>
 
 								<!-- error message -->

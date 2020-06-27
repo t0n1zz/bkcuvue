@@ -5,11 +5,11 @@
 		<div class="alert bg-info text-white alert-styled-left alert-dismissible">
 			<span class="font-weight-semibold">Sasaran peserta untuk kegiatan ini adalah untuk tingkat: 
 				<br/>
-				<label v-for="sasaran in tingkat" class="badge badge-primary ml-1">
+				<label v-for="(sasaran, index) in tingkat" :key="index" class="badge badge-primary ml-1">
 					{{ sasaran.name }}
 				</label>
 			</span>
-		</div>
+		</div>  
 
 		<!-- message -->
 		<message v-if="message.show" @close="messageClose" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
@@ -399,6 +399,7 @@
 			selectedRow(item){
 				this.selectedItem = item;
 				this.formPeserta.tingkat = item.pekerjaan_aktif.tingkat;
+				this.formPeserta.name_sertifikat = item.name;
 
 				if(this.tingkatArray.includes(this.formPeserta.tingkat)){
 					this.formPeserta.aktivis_id = item.id;

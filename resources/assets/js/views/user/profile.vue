@@ -56,10 +56,13 @@
 													<h6 :class="{ 'text-danger' : errors.has('formPassword.password_old')}">
 														<i class="icon-cross2" v-if="errors.has('formPassword.password_old')"></i>
 														Password Saat Ini:
+														<wajib-badge></wajib-badge>
+														<br/>
+														<small class="text-muted"><i>Mengisi password lama anda atau yang saat ini anda gunakan untuk login</i></small> 
 													</h6>
 
 													<!-- text -->
-													<input type="password" name="password_old" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" data-vv-as="Password Lama" v-model="formPassword.password_old">
+													<input type="password" name="password_old" class="form-control" placeholder="Silahkan masukkan password" v-validate="'required'" data-vv-as="Password Lama" v-model="formPassword.password_old">
 
 													<!-- error message -->
 													<small class="text-muted text-danger" v-if="errors.has('formPassword.password_old')">
@@ -76,11 +79,13 @@
 													<!-- title -->
 													<h6 :class="{ 'text-danger' : errors.has('formPassword.password')}">
 														<i class="icon-cross2" v-if="errors.has('formPassword.password')"></i>
-														Password Baru:
+														Password Baru: <wajib-badge></wajib-badge>
+														<br/>
+														<small class="text-muted"><i>Password harus minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka</i></small> 
 													</h6>
 
 													<!-- text -->
-													<input type="password" name="password" ref="password"  class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:5'" v-model="formPassword.password">
+													<input type="password" name="password" ref="password"  class="form-control" placeholder="Silahkan masukkan password" v-validate="'required|min:8|verify_password'" v-model="formPassword.password">
 
 													<!-- error message -->
 													<small class="text-muted text-danger" v-if="errors.has('formPassword.password')">
@@ -98,6 +103,9 @@
 													<h6 :class="{ 'text-danger' : errors.has('formPassword.passwordConfirm')}">
 														<i class="icon-cross2" v-if="errors.has('formPassword.passwordConfirm')"></i>
 														Konfirmasi Password:
+														<wajib-badge></wajib-badge>
+														<br/>
+														<small class="text-muted"><i>Mengisi ulang password</i></small> 
 													</h6>
 
 													<!-- text -->
@@ -188,6 +196,7 @@
 	import aktivitas from "./_component/aktivitas";
 	import formIdentitas from "../aktivis/create";	
 	import formRiwayat from "../aktivis/riwayatContent";	
+	import wajibBadge from "../../components/wajibBadge.vue";
 	
 	export default {
 		name: 'UserIndex',
@@ -201,7 +210,8 @@
 			formButton,
 			aktivitas,
 			formIdentitas,
-			formRiwayat
+			formRiwayat,
+			wajibBadge
 		},
 		data() {
 			return {

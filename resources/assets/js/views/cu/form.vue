@@ -226,7 +226,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.ultah')}">
 												<i class="icon-cross2" v-if="errors.has('form.ultah')"></i>
-												Tgl. Berdiri: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Berdiri: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<date-picker @dateSelected="form.ultah = $event" :defaultDate="form.ultah"></date-picker>	
@@ -247,7 +247,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.bergabung')}">
 												<i class="icon-cross2" v-if="errors.has('form.bergabung')"></i>
-												Tgl. Bergabung: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Bergabung: <wajib-badge></wajib-badge></h5>
 
 											<!-- input  -->
 											<date-picker @dateSelected="form.bergabung = $event" :defaultDate="form.bergabung"></date-picker>	
@@ -289,7 +289,7 @@
 													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih provinsi</span>
 												</option>
-												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
+												<option v-for="(provinces, index) in modelProvinces" :value="provinces.id" :key="index">{{provinces.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -316,7 +316,7 @@
 													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
-												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+												<option v-for="(regencies, index) in modelRegencies" :value="regencies.id" :key="index">{{regencies.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -343,7 +343,7 @@
 													<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kecamatan</span>
 												</option>
-												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
+												<option v-for="(districts, index) in modelDistricts" :value="districts.id" :key="index">{{districts.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -370,7 +370,7 @@
 													<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
 													<span v-else>Silahkan pilih kelurahan</span>
 												</option>
-												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
+												<option v-for="(villages, index) in modelVillages" :value="villages.id" :key="index">{{villages.name}}</option>
 											</select>
 
 											<!-- error message -->

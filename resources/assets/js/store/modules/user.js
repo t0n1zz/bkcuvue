@@ -68,6 +68,20 @@ export const user = {
         });
     },
 
+    indexActivity( { commit }, page ){
+      commit('setDataStatS', 'loading');
+      
+      UserAPI.indexActivity( page )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // load by cu
     indexCu( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');

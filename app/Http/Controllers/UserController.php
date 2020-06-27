@@ -213,7 +213,7 @@ class UserController extends Controller
 
 	public function indexActivity()
 	{
-		$table_data = Activity::orderBy('created_at','desc')->advancedFilter();
+		$table_data = Activity::orderBy('created_at','desc')->paginate();
 
 		return response()
 			->json([
@@ -423,7 +423,7 @@ class UserController extends Controller
 	public function updateResetPassword($id)
 	{
 		$kelas = User::findOrFail($id);
-		$password = 'solusi';
+		$password = \Config::get('values.reset_password');
 
 		$password = Hash::make($password);
 

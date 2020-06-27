@@ -6,6 +6,7 @@ import notification from './views/sistem/notification.vue';
 import changelog from './views/sistem/changelog.vue';
 import saran from './views/saran/index.vue';
 import errorLog from './views/errorLog/index.vue';
+import activityLog from './views/user/indexAktivitas.vue';
 import pengumuman from './views/pengumuman/index.vue';
 import notFound from './views/notFound.vue';
 import artikel from './views/artikel/index.vue';
@@ -137,6 +138,12 @@ const routes = [
 		name: 'errorLog', 
 		components: { default: errorLog,'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
+	
+	// activityLog
+	{ path: '/activityLog',
+		name: 'activityLog', 
+		components: { default: activityLog,'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},	
 
 	// pengumuman
 	{ path: '/pengumuman/cu/:cu',

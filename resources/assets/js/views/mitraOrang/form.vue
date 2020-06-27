@@ -153,7 +153,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Tgl. Lahir: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+											<h6>Tgl. Lahir:</h6>
 
 											<!-- input -->
 											<date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
@@ -283,7 +283,7 @@
 													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih provinsi</span>
 												</option>
-												<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
+												<option v-for="(provinces, index) in modelProvinces" :value="provinces.id" :key="index">{{provinces.name}}</option>
 											</select>
 
 										</div>
@@ -302,7 +302,7 @@
 													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
-												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+												<option v-for="(regencies, index) in modelRegencies" :value="regencies.id" :key="index">{{regencies.name}}</option>
 											</select>
 
 										</div>
@@ -321,7 +321,7 @@
 													<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kecamatan</span>
 												</option>
-												<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
+												<option v-for="(districts, index) in modelDistricts" :value="districts.id" :key="index">{{districts.name}}</option>
 											</select>
 
 										</div>
@@ -340,7 +340,7 @@
 													<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
 													<span v-else>Silahkan pilih kelurahan</span>
 												</option>
-												<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
+												<option v-for="(villages, index) in modelVillages" :value="villages.id" :key="index">{{villages.name}}</option>
 											</select>
 
 										</div>

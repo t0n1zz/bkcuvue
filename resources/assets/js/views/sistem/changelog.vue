@@ -11,10 +11,10 @@
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
               <!-- Version 3.3.0 -->
-              <!-- <div class="card">
+              <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#330">Version 3.3.0<small class="text-muted"> /  Juni 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default" href="#330">Version 3.3.0<small class="text-muted"> /  19 Juni 2020</small></a> </h5>
                 </div>
 
                 <div id="330" class="collapse show" data-parent="#accordion-control-right" style="">
@@ -24,24 +24,25 @@
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Perbaikan bug tombol daftar peserta yang tidak muncul</li>
-                      <li>Perbaikan bug tombol-tombol pada tabel peserta yang tidak muncul pada perangkat mobile</li>
+                      <li>Perbaikan bug tombol daftar peserta dibagian diklat dan pertemuan BKCU yang tidak muncul</li>
+                      <li>Perbaikan bug tombol-tombol pada tabel peserta dibagian diklat dan pertemuan BKCU yang tidak muncul pada perangkat mobile</li>
                       <li>Menghilangkan pengisian nama pada nametag, tanggal datang dan tanggal pulang apabila diklat ataupun pertemuan bersifat online pada form pendaftaran peserta</li>
                       <li>Mengubah cara pengisian tanggal untuk semua form dari menulis manual sekarang selain menulis manual bisa juga memilih dari kalender yang akan muncul ketika di klik</li>
+                      <li>Perbaikan bug tampilan pada form self assesment</li>
                     </ul>
                   </div>
                 </div>
-              </div> -->
+              </div>
               <!-- /version 3.3.0 -->
 
               <!-- Version 3.2.9 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#329">Version 3.2.9<small class="text-muted"> / 23 Mei 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="collapsed text-default" href="#329">Version 3.2.9<small class="text-muted"> / 23 Mei 2020</small></a> </h5>
                 </div>
 
-                <div id="329" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="329" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini memperkenalkan diklat BKCU Online, serta menambahkan fitur pada pertemuan BKCU dan memperbaiki bug pada bagian pengumuman
                     <br/><br/>
@@ -1262,7 +1263,6 @@
               </div>
               <!-- /initial release -->
             </div>
-          </div>
 
         </div>
       </div>

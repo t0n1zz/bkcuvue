@@ -23,8 +23,11 @@ export default {
             const today = new Date();
             const date = today.getDate() +'-0'+(today.getMonth()+1)+ '-' + today.getFullYear();
             this.time = date;
+            this.dateVal = moment(this.time, "DD-MM-YYYY").format("YYYY-MM-DD");
+            this.$emit('dateSelected', this.dateVal );
         }else{
            this.time = moment(this.defaultDate, "YYYY-MM-DD").format("DD-MM-YYYY"); 
+           this.$emit('dateSelected', this.time );
         }
     },
     watch: {

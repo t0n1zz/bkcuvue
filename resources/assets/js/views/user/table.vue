@@ -247,11 +247,60 @@
 
       <!-- hak akses -->
       <template slot="modal-body1">
+
+        <!-- identitas -->
+        <div class="card">
+          <div class="card-body">
+            <div class="media flex-column flex-sm-row mt-0 mb-3">
+              <div class="mr-sm-3 mb-2 mb-sm-0">
+                <img :src="'/images/aktivis/' + selectedItem.aktivis.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="selectedItem.aktivis && selectedItem.aktivis.gambar" >
+                <img :src="'/images/no_image_man.jpg'" class="img-fluid img-preview rounded" v-else>
+              </div>
+
+              <div class="media-body">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ul class="list list-unstyled mb-0">
+                      <li><b>Username:</b> {{ selectedItem.username }}</li>
+                      <li><b>Nama:</b> {{ selectedItem.aktivis? selectedItem.aktivis.name : '-' }}</li>
+                      <li><b>Email:</b> {{ selectedItem.aktivis? selectedItem.aktivis.email : '-' }}</li>
+                      <li><b>CU:</b> {{ selectedItem.cu ? selectedItem.cu.name : 'Puskopdit BKCU Kalimantan' }}</li>
+                      <li><b>Tingkat:</b> 
+                        <span v-if="selectedItem.aktivis && selectedItem.aktivis.pekerjaan_aktif" v-html="$options.filters.checkTingkatAktivis(selectedItem.aktivis.pekerjaan_aktif.tingkat)"></span>
+                        <span v-else>-</span>
+                      </li>
+                      <li><b>Jabatan:</b>
+                        <check-value :value="selectedItem.aktivis.pekerjaan_aktif.name" v-if="selectedItem.aktivis && selectedItem.aktivis.pekerjaan_aktif"></check-value>
+                        <span v-else>-</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-6">
+                    <ul class="list list-unstyled mb-0">
+                      <li><b>Status:</b> 
+                        <span v-if="selectedItem.status > 0"> Aktif</span>
+                        <span v-else> Tidak Aktif</span>
+                      </li>
+                      <li><b>Login:</b> <span v-html="$options.filters.dateTime(selectedItem.login)"></span></li>
+                      <li><b>Tgl. Buat:</b> <span v-html="$options.filters.dateTime(selectedItem.created_at)"></span></li>
+                      <li><b>Tgl. Ubah:</b> <span v-html="$options.filters.dateTime(selectedItem.updated_at)"></span></li>
+                    </ul>
+                  </div>
+                </div>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+
         <!-- hak-akses -->
         <hak-akses-form
+          :selectedItem="selectedItem"
           :form="modalHakAksesForm"
           :tipeUser="tipeUser"
           :data-stat="hakAksesStat"
+          :isPeran="false"
           @hakForm="hakForm"
         ></hak-akses-form>
 

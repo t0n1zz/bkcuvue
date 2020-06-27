@@ -18,7 +18,7 @@
 								<slot></slot>
 								<option value="semua">Semua CU</option>
 								<option disabled value="">----------------</option>
-								<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
+								<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 							</select>
 
 							<!-- reload cu -->

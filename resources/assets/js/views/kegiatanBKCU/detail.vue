@@ -14,6 +14,7 @@
 					</message>
 
 					<div class="row">
+						
 						<!-- title -->
 						<div class="col-md-12">
 							<div class="card">
@@ -1195,6 +1196,7 @@
 							</transition>
 
 						</div>
+
 					</div>
 
 				</div>
@@ -1232,8 +1234,8 @@
 				:kegiatan_id="item.id"
 				:kegiatan_tipe="item.tipe"
 				@tutup="modalTutup" v-if="state == 'tambahMateri' || state == 'ubahMateri'"></form-materi>
-<!-- 
-				<form-pdf 
+
+				<!-- <form-pdf 
 				:selected="selectedItemMateri"
 				@tutup="modalTutup" v-else-if="state == 'lihatMateri'"></form-pdf> -->
 
@@ -1243,6 +1245,7 @@
 				:kegiatan_id="item.id"
 				:kegiatan_tipe="item.tipe"
 				@tutup="modalTutup" v-if="state == 'tambahTugas'  || state == 'ubahTugas'"></form-tugas>
+
 				<form-tugas-jawaban 
 				:selected="selectedItemTugas"
 				:kegiatan_id="item.id"
@@ -1264,6 +1267,7 @@
 				:kegiatan_id="item.id"
 				:pilih="item.pilih"
 				@tutup="modalTutup" v-if="state == 'tambahKeputusan' || state == 'ubahKeputusan'"></form-keputusan>
+
 				<form-keputusan-komentar 
 				:selected="selectedItemKeputusan"
 				:kegiatan_id="item.id"
@@ -1275,6 +1279,7 @@
 				:kegiatan_id="item.id"
 				:pilih="item.pilih"
 				@tutup="modalTutup" v-if="state == 'tambahPertanyaan' || state == 'ubahPertanyaan'"></form-pertanyaan>
+
 				<form-pertanyaan-komentar 
 				:selected="selectedItemPertanyaan"
 				:kegiatan_id="item.id"
@@ -2083,13 +2088,13 @@
 				this.titleDesc = 'Informasi detail ' + this.level2Title;
 			},
 			checkPeserta(){
-				if(this.currentUser.aktivis){
-					this.$store.dispatch(this.kelas + '/checkPeserta', [this.item.id, this.currentUser.id_aktivis]);
-				}
+				this.$store.dispatch(this.kelas + '/checkPeserta', [this.item.id, this.currentUser.id_aktivis]);
 			},
 			checkPanitia(){
 				if(this.currentUser.aktivis){
 					this.$store.dispatch(this.kelas + '/checkPanitia', [this.item.id, this.currentUser.id_aktivis]);
+				}else{
+					this.modalOpen('userTidakAktivis');
 				}
 			},
 			changeTab(value){
@@ -2194,6 +2199,11 @@
 					this.modalColor = '';
 					this.modalTitle = 'Maaf anda tidak terdaftar dalam pertemuan ini';
 					this.modalContent = 'Maaf anda tidak terdaftar dalam pertemuan ini, silahkan pastikan anda sudah mendaftar di pertemuan ini';
+				}else if(state == 'userTidakAktivis'){
+					this.modalState = 'fail';
+					this.modalColor = '';
+					this.modalTitle = 'Maaf anda tidak bisa melanjutkan';
+					this.modalContent = 'Anda tidak bisa melanjutkan karena user anda tidak memiliki informasi aktivis, silahkan tambahkan data aktivis kepada user anda.';
 				}else if(state == 'pesertaTerdaftar'){
 					this.modalState = 'normal2';
 					this.modalTitle = 'Masuk ' + this.item.name ;

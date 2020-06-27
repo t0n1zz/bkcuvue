@@ -24,7 +24,7 @@
 							<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih CU</span>
 						</option>
-						<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+						<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 					</select>
 
 					<!-- error message -->
@@ -61,7 +61,7 @@
 							<span v-if="modelProdukCuStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih Produk CU</span>
 						</option>
-						<option v-for="produk in modelProdukCu" :value="produk.id">{{produk.name}}</option>
+						<option v-for="(produk, index) in modelProdukCu" :key="index" :value="produk.id">{{produk.name}}</option>
 					</select>
 
 					<!-- error message -->
@@ -133,7 +133,7 @@
 				<div class="form-group" :class="{'has-error' : errors.has('formSimpanan.tanggal')}">
 
 					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formSimpanan.tanggal')}"><i class="icon-cross2" v-if="errors.has('formSimpanan.tanggal')"></i> Tanggal: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+					<h5 :class="{ 'text-danger' : errors.has('formSimpanan.tanggal')}"><i class="icon-cross2" v-if="errors.has('formSimpanan.tanggal')"></i> Tanggal:</h5>
 
 					<!-- input -->
 					<date-picker @dateSelected="formSimpanan.tanggal = $event" :defaultDate="formSimpanan.tanggal"></date-picker>	

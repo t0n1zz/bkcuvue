@@ -238,7 +238,7 @@
                   <!-- title -->
                   <h5 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
                     <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
-                    Tgl. Pencairan: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+                    Tgl. Pencairan:</h5>
 
                   <!-- input -->
                   <date-picker @dateSelected="formStatus.tanggal_pencairan = $event" :defaultDate="formStatus.tanggal_pencairan" v-show="tipe != 'selesai'"></date-picker>	
@@ -371,7 +371,7 @@
 
                   <!-- title -->
                   <h5>
-                    Tgl. Surat: <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+                    Tgl. Surat:</h5>
 
                   <!-- input -->
                   <date-picker @dateSelected="formStatus.surat_tanggal = $event" :defaultDate="formStatus.surat_tanggal"></date-picker>	

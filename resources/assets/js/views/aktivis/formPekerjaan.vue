@@ -21,7 +21,7 @@
 						</option>
 						<option value="0">Puskopdit BKCU Kalimantan</option>
 						<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
-						<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
+						<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 					</select>
 
 					<!-- error message -->
@@ -142,7 +142,9 @@
 							<span v-else>Silahkan pilih TP/KP</span>
 						</option>
 						<option value="0">Kantor Pusat</option>
-						<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
+						<template v-if="modelTp">
+							<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index">{{tp.name}}</option>
+						</template>
 					</select>
 
 					<!-- error message -->

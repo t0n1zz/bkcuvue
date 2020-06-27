@@ -1019,6 +1019,10 @@
 								<i class="icon-lifebuoy"></i> Saran
 							</router-link>
 
+							<router-link :to="{ name: 'activityLog' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_error_log']">
+								<i class="icon-eye2"></i> Activity Log
+							</router-link>
+
 							<router-link :to="{ name: 'errorLog' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_error_log']">
 								<i class="icon-cancel-square2"></i> Error Log
 							</router-link>
@@ -1073,7 +1077,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.2.9',
+				clientVersion: '3.3.0',
 				dropdownMenu: '',
 				dropdownMenu2: '',
 				state: '',

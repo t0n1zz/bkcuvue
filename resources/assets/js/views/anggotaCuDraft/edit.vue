@@ -158,7 +158,7 @@
 								<!-- title -->
 								<h6 :class="{ 'text-danger' : errors.has('form.tanggal_lahir')}">
 									<i class="icon-cross2" v-if="errors.has('form.tanggal_lahir')"></i>
-									Tgl. Lahir: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+									Tgl. Lahir: <wajib-badge></wajib-badge></h6>
 
 								<!-- input -->
 								<date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
@@ -206,7 +206,7 @@
 										<span v-if="modelSukuStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih suku</span>
 									</option>
-									<option v-for="suku in modelSuku" :value="suku.name">{{suku.name}}</option>
+									<option v-for="(suku, index) in modelSuku" :key="index" :value="suku.name">{{suku.name}}</option>
 								</select>
 
 							</div>
@@ -344,7 +344,7 @@
 										<span v-if="modelPekerjaanStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih pekerjaan</span>
 									</option>
-									<option v-for="pekerjaan in modelPekerjaan" :value="pekerjaan.name">{{pekerjaan.name}}</option>
+									<option v-for="(pekerjaan, index) in modelPekerjaan" :value="pekerjaan.name" :key="index">{{pekerjaan.name}}</option>
 								</select>
 
 							</div>
@@ -446,7 +446,7 @@
 										<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih provinsi</span>
 									</option>
-									<option v-for="provinces in modelProvinces" :value="provinces.id">{{provinces.name}}</option>
+									<option v-for="(provinces, index) in modelProvinces" :value="provinces.id" :key="index">{{provinces.name}}</option>
 								</select>
 
 								<!-- error message -->
@@ -473,7 +473,7 @@
 										<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih kabupaten</span>
 									</option>
-									<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+									<option v-for="(regencies, index) in modelRegencies" :value="regencies.id" :key="index">{{regencies.name}}</option>
 								</select>
 
 								<!-- error message -->
@@ -500,7 +500,7 @@
 										<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih kecamatan</span>
 									</option>
-									<option v-for="districts in modelDistricts" :value="districts.id">{{districts.name}}</option>
+									<option v-for="(districts, index) in modelDistricts" :value="districts.id" :key="index">{{districts.name}}</option>
 								</select>
 
 								<!-- error message -->
@@ -527,7 +527,7 @@
 										<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
 										<span v-else>Silahkan pilih kelurahan</span>
 									</option>
-									<option v-for="villages in modelVillages" :value="villages.id">{{villages.name}}</option>
+									<option v-for="(villages, index) in modelVillages" :value="villages.id" :key="index">{{villages.name}}</option>
 								</select>
 
 								<!-- error message -->
@@ -678,7 +678,7 @@
 											<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
 											<span v-else>Silahkan pilih TP/KP</span>
 										</option>
-										<option v-for="tp in modelTp" :value="tp.id">{{tp.name}}</option>
+										<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index">{{tp.name}}</option>
 									</select>
 
 									<!-- error message -->
@@ -723,7 +723,7 @@
 									<!-- title -->
 									<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
 									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
-									Tgl. Jadi Anggota: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+									Tgl. Jadi Anggota: <wajib-badge></wajib-badge></h6>
 
 									<!-- text -->
 									<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	

@@ -24,7 +24,7 @@
 							<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih CU</span>
 						</option>
-						<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+						<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 					</select>
 
 					<!-- error message -->
@@ -51,7 +51,7 @@
 							<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih TP/KP</span>
 						</option>
-						<option v-for="tp in modelTp" :value="tp.id">{{tp.name}}</option>
+						<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index">{{tp.name}}</option>
 					</select>
 
 					<!-- error message -->

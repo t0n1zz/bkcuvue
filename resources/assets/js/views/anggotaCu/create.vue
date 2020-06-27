@@ -763,7 +763,7 @@
 									<!-- title -->
 									<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
 									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
-									Tgl. Jadi Anggota: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h6>
+									Tgl. Jadi Anggota: <wajib-badge></wajib-badge></h6>
 
 									<!-- text -->
 									<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	

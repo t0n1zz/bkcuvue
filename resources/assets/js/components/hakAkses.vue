@@ -1,11 +1,14 @@
 <template>
 <div>
+
 	<div class="row">
 
-		<div class="col-lg-12">
-				<div class="form-group">
-					
-					<!-- select -->
+		<div class="col-lg-12" v-if="isPeran">
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Pilih Peran</span>
+					</div>
 					<select name="peran" data-width="100%" class="form-control" @change="changePeran($event.target.value)" v-model="selectPeran">
 						<option disabled value="" selected>Silahkan pilih peran user</option>
 						<option value="penuh">Akses Penuh</option>
@@ -17,8 +20,8 @@
 						<option value="kosong">kosong</option>
 						<option value="custom">Custom</option>
 					</select>
-
 				</div>
+			</div>	
 		</div>
 
 		<!-- hak akses -->
@@ -42,6 +45,8 @@
 				</div>
 
 				<div class="card-body">
+					<span>{{ akses.keterangan }}</span>
+					<hr class="mt-1" />
 					<div class="row">
 						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser == permission.tipe || permission.tipe == 'all' || permission.tipe == 'bkcu approve'">
 							<div v-if="permission.tipe == 'bkcu approve'">
@@ -65,6 +70,7 @@
 			</div>
 
 		</div>
+
 	</div>
 </div>	
 </template>
@@ -72,8 +78,9 @@
 <script>
 	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
+
 	export default {
-		props: ['tipeUser','form','dataStat'],
+		props: ['tipeUser','form','dataStat','isPeran'],
 		data() {
 			return {
 				isCheckAll: false,
@@ -81,6 +88,7 @@
 				hakAkses: [
 					{
 						name: 'Artikel',
+						keterangan: 'Mengelola data artikel yang akan muncul pada halaman website',
 						icon: 'icon-newspaper',
 						secondRow: true,
 						tipe: 'all',
@@ -136,6 +144,7 @@
 					},
 					{
 						name: 'Artikel SIMO',
+						keterangan: 'Mengelola data artikel yang muncul di dashboard SIMO',
 						icon: 'icon-newspaper',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -168,6 +177,7 @@
 					},
 					{
 						name: 'Kategori Artikel',
+						keterangan: 'Mengelola kategori pada artikel',
 						icon: 'icon-grid6',
 						secondRow: true,
 						tipe: 'all',
@@ -207,6 +217,7 @@
 					},
 					{
 						name: 'Penulis Artikel',
+						keterangan: 'Mengelola data penulis untuk artikel',
 						icon: 'icon-pencil6',
 						secondRow: true,
 						tipe: 'all',
@@ -246,6 +257,7 @@
 					},
 					{
 						name: 'Pengumuman',
+						keterangan: 'Mengelola data pengumuman yang akan muncul di website',
 						icon: 'icon-megaphone',
 						secondRow: true,
 						tipe: 'all',
@@ -285,6 +297,7 @@
 					},
 					{
 						name: 'Diklat BKCU',
+						keterangan: 'Mengelola data diklat yang diselenggarakan oleh BKCU Kalimantan',
 						icon: 'icon-graduation2',
 						secondRow: true,
 						tipe: 'all',
@@ -333,6 +346,7 @@
 					},
 					{
 						name: 'Pertemuan BKCU',
+						keterangan: 'Mengelola data pertemuan yang diselenggarakan oleh BKCU Kalimantan',
 						icon: 'icon-ungroup',
 						secondRow: true,
 						tipe: 'all',
@@ -381,6 +395,7 @@
 					},
 					{
 						name: 'Tempat',
+						keterangan: 'Mengelola data tempat diklat dan pertemuan yang diselenggarakan oleh BKCU Kalimantan',
 						icon: 'icon-location4',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -420,6 +435,7 @@
 					},
 					{
 						name: 'Anggota CU',
+						keterangan: 'Mengelola data anggota per-CU',
 						icon: 'icon-man-woman',
 						secondRow: true,
 						tipe: 'all',
@@ -467,6 +483,7 @@
 					},
 					{
 						name: 'Klaim JALINAN',
+						keterangan: 'Mengelola data pengajuan klaim JALINAN dan mengatur tingkat aktivis yang melakukan verifikasi dimana 1 user hanya boleh memiliki 1 hak akses verifikasi',
 						icon: 'icon-accessibility2',
 						secondRow: true,
 						tipe: 'all',
@@ -546,6 +563,7 @@
 					},
 					{
 						name: 'CU',
+						keterangan: 'Mengelola data profil CU yang juga akan muncul di website',
 						icon: 'icon-office',
 						secondRow: true,
 						tipe: 'all',
@@ -585,6 +603,7 @@
 					},
 					{
 						name: 'TP/KP',
+						keterangan: 'Mengelola data profil TP/KP dari CU yang akan muncul di website',
 						icon: 'icon-home9',
 						secondRow: true,
 						tipe: 'all',
@@ -624,6 +643,7 @@
 					},
 					{
 						name: 'Produk dan Pelayanan',
+						keterangan: 'Mengelola data produk dan pelayanan CU yang akan muncul di website',
 						icon: 'icon-list3',
 						secondRow: true,
 						tipe: 'all',
@@ -663,6 +683,7 @@
 					},
 					{
 						name: 'Aktivis CU',
+						keterangan: 'Mengelola data aktivis CU yang terdiri dari pengurus, pengawas, komite, penasihat, dan manajemen',
 						icon: 'icon-user-tie',
 						secondRow: true,
 						tipe: 'all',
@@ -702,6 +723,7 @@
 					},
 					{
 						name: 'Aset Tetap',
+						keterangan: 'Mengelola data aset tetap pada lembaga',
 						icon: 'icon-drawer3',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -741,6 +763,7 @@
 					},
 					{
 						name: 'Jenis Aset Tetap',
+						keterangan: 'Mengelola data jenis aset tetap',
 						icon: 'icon-drawer3',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -780,6 +803,7 @@
 					},
 					{
 						name: 'Lokasi Aset Tetap',
+						keterangan: 'Mengelola data lokasi aset tetap',
 						icon: 'icon-drawer3',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -819,6 +843,7 @@
 					},
 					{
 						name: 'Assesment Access',
+						keterangan: 'Mengelola data self assesment Access',
 						icon: 'icon-reading',
 						secondRow: true,
 						tipe: 'all',
@@ -858,6 +883,7 @@
 					},
 					{
 						name: 'Monitoring',
+						keterangan: 'Mengelola data monitoring CU',
 						icon: 'icon-collaboration',
 						secondRow: true,
 						tipe: 'all',
@@ -897,6 +923,7 @@
 					},
 					{
 						name: 'Mitra Perseorangan',
+						keterangan: 'Mengelola data mitra perseorangan yang dimiliki lembaga',
 						icon: 'icon-briefcase',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -936,6 +963,7 @@
 					},
 					{
 						name: 'Lembaga Mitra',
+						keterangan: 'Mengelola data lembaga mitra yang dimiliki lembaga',
 						icon: 'icon-briefcase',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -975,6 +1003,7 @@
 					},
 					{
 						name: 'Laporan CU',
+						keterangan: 'Mengelola data statistik laporan CU yang merupakan konsolidasi dari laporan TP/KP',
 						icon: 'icon-stats-growth',
 						secondRow: true,
 						tipe: 'all',
@@ -1030,6 +1059,7 @@
 					},
 					{
 						name: 'Laporan TP/KP',
+						keterangan: 'Mengelola data statistik laporan TP/KP',
 						icon: 'icon-stats-growth',
 						secondRow: true,
 						tipe: 'all',
@@ -1085,6 +1115,7 @@
 					},
 					{
 						name: 'User',
+						keterangan: 'Mengelola data user pada SIMO',
 						icon: 'icon-users',
 						secondRow: true,
 						tipe: 'all',
@@ -1148,6 +1179,7 @@
 					},
 					{
 						name: 'Saran',
+						keterangan: 'Melihat saran yang diberikan user untuk SIMO',
 						icon: 'icon-lifebuoy',
 						secondRow: true,
 						tipe: 'bkcu',
@@ -1170,7 +1202,8 @@
 						]
 					},
 					{
-						name: 'Error Log',
+						name: 'System Log',
+						keterangan: 'Melihat log sistem',
 						icon: 'icon-cancel-square2',
 						secondRow: true,
 						tipe: 'bkcu',

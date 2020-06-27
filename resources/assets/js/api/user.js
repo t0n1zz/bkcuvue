@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/user/indexCuPermission/' + id);
   },
 
+  indexActivity: function( page ){
+    return axios.get('/api/user/indexActivity?page=' + page);
+  },
+
   getActivity: function( page, id ){
     return axios.get('/api/user/getActivity/' + id + '?page=' + page);
   },

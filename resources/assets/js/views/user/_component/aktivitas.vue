@@ -5,7 +5,7 @@
 			<div class="card" v-for="item in activity.data" :key="item.id">
 				<div class="card-header text-white" :class="{'bg-primary' : item.description == 'created', 'bg-warning' : item.description == 'updated', 'bg-danger' : item.description == 'deleted'}">
 					<h6 class="card-title">
-						<a data-toggle="collapse" class="text-white collapsed" :href="'#' + item.id" aria-expanded="false">{{ item.description | description }} data <b>{{ item.subject_type | subjectType }}</b> {{ item.created_at | relativeHour }}</a>
+						<a data-toggle="collapse" class="text-white collapsed" :href="'#' + item.id" aria-expanded="false">{{ item.description | description }} data <b>{{ item.subject_type | subjectType }}</b> dengan id {{ item.subject_id}} pada {{ item.created_at | relativeHour }}</a>
 					</h6>
 				</div>
 
@@ -85,65 +85,7 @@
 				}
 			},
 			subjectType: function (value) {
-				if(value == 'App\\Aktivis'){
-					return 'Aktivis';
-				}else if(value == 'App\\AktivisAnggotaCu'){
-					return 'Anggota CU Aktivis';
-				}else if(value == 'App\\AktivisKeluarga'){
-					return 'Keluarga Aktivis';
-				}else if(value == 'App\\AktivisOrganisasi'){
-					return 'Organisasi Aktivis';
-				}else if(value == 'App\\AktivisPekerjaan'){
-					return 'Pekerjaan Aktivis';
-				}else if(value == 'App\\AktivisPendidikan'){
-					return 'Pendidikan Aktivis';
-				}else if(value == 'App\\Artikel'){
-					return 'Artikel';
-				}else if(value == 'App\\ArtikelKategori'){
-					return 'Kategori Artikel';
-				}else if(value == 'App\\ArtikelPenulis'){
-					return 'Penulis Artikel';
-				}else if(value == 'App\\Cu'){
-					return 'CU';
-				}else if(value == 'App\\Download'){
-					return 'Download';
-				}else if(value == 'App\\Kegiatan'){
-					return 'Kegiatan';
-				}else if(value == 'App\\KegiatanPanitia'){
-					return 'Panitia Kegiatan';
-				}else if(value == 'App\\KegiatanPeserta'){
-					return 'Peserta Kegiatan';
-				}else if(value == 'App\\KegiatanSasaran'){
-					return 'Sasaran Kegiatan';
-				}else if(value == 'App\\LaporanCu'){
-					return 'Laporan CU';
-				}else if(value == 'App\\LaporanCuDiskusi'){
-					return 'Diskusi Laporan CU';
-				}else if(value == 'App\\LaporanCuDraft'){
-					return 'Draft Laporan CU';
-				}else if(value == 'App\\LaporanTp'){
-					return 'Laporan TP/KP';
-				}else if(value == 'App\\LaporanTpDiskusi'){
-					return 'Diskusi Laporan TP/KP';
-				}else if(value == 'App\\LaporanTpDraft'){
-					return 'Draft Laporan TP/KP';
-				}else if(value == 'App\\MitraLembaga'){
-					return 'Lembaga Mitra';
-				}else if(value == 'App\\MitraOrang'){
-					return 'Mitra Perseorangan';
-				}else if(value == 'App\\Pengumuman'){
-					return 'Pengumuman';
-				}else if(value == 'App\\ProdukCu'){ 
-					return 'Produk CU';
-				}else if(value == 'App\\Saran'){
-					return 'Saran';
-				}else if(value == 'App\\Tempat'){
-					return 'Tempat';
-				}else if(value == 'App\\Tp'){
-					return 'TP/KP';
-				}else if(value == 'App\\User'){
-					return 'User';
-				}
+				return value;
 			}
 		}
 	}

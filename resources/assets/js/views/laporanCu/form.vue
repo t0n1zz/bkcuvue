@@ -27,7 +27,7 @@
 										<span v-if="listLaporanTpDataStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih laporan</span>
 									</option>
-									<option v-for="tp in listLaporanTpData" :value="tp.id" v-if="tp">{{tp.tp.name}}</option>
+									<option v-for="(tp, index) in listLaporanTpData" :value="tp.id" :key="index">{{tp.tp.name}}</option>
 								</select>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 											<!-- select -->
 											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 												<option disabled value="0">Silahkan pilih CU</option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -83,7 +83,7 @@
 											</option>
 											<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
 											<option disabled value="">----------------</option>
-											<option v-for="tp in modelTp" :value="tp.id" v-if="modelTp">{{tp.name}}</option>
+											<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index">{{tp.name}}</option>
 										</select>
 
 											<!-- error message -->

@@ -2,7 +2,7 @@
 
 return [
 
-    'reset' => env('RESET_PASSWORD',null),
+    'reset_password' => env('RESET_PASSWORD',null),
 
 ];
 

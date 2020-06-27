@@ -256,6 +256,9 @@ class PublicController extends Controller
 
     public function testroute()
     {       
+        $a = \Spatie\Activitylog\Models\Activity::orderBy('created_at','desc')->paginate();
+        return response()->json($a);
+
         // $users = \App\User::where('login', '>=', \Carbon\Carbon::now()->subMonth(6))->get();	
         // return response()
 		// 	->json($users);

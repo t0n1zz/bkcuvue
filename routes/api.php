@@ -20,6 +20,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/system/version', 'SystemController@version');
 
     // user
+    Route::get('/user/indexActivity', 'UserController@indexActivity');
     Route::get('/user/getActivity/{id}', 'UserController@getActivity');
     Route::post('/user/updatePassword/{id}', 'UserController@updatePassword');
     Route::post('/user/updateFoto/{id}', 'UserController@updateFoto');

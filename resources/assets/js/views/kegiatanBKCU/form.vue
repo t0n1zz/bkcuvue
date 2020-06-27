@@ -111,7 +111,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.mulai')}">
 												<i class="icon-cross2" v-if="errors.has('form.mulai')"></i>
-												Tgl. Mulai: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Mulai: <wajib-badge></wajib-badge></h5>
 
 											<!-- input -->
 											<date-picker @dateSelected="form.mulai = $event" :defaultDate="form.mulai"></date-picker>	
@@ -132,7 +132,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.selesai')}">
 												<i class="icon-cross2" v-if="errors.has('form.selesai')"></i>
-												Tgl. Selesai: <wajib-badge></wajib-badge> <info-icon :message="'Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+												Tgl. Selesai: <wajib-badge></wajib-badge></h5>
 
 											<!-- input  -->
 											<date-picker @dateSelected="form.selesai = $event" :defaultDate="form.selesai"></date-picker>	
@@ -400,7 +400,7 @@
 													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
 												</option>
-												<option v-for="regencies in modelRegencies" :value="regencies.id">{{regencies.name}}</option>
+												<option v-for="(regencies, index) in modelRegencies" :value="regencies.id" :key="index">{{regencies.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -430,7 +430,7 @@
 													</option>
 													<option value="0">Belum ditentukan tempat</option>
 													<option disabled value="">----------------</option>
-													<option v-for="tempat in modelTempat" :value="tempat.id">{{tempat.name}}</option>
+													<option v-for="(tempat, index) in modelTempat" :value="tempat.id" :key="index">{{tempat.name}}</option>
 												</select>
 
 												<!-- button -->

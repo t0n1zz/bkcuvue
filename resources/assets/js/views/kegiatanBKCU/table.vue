@@ -168,7 +168,7 @@
 					</td>
 					<td v-if="!columnData[12].hide" class="text-warp">
 						<span v-if="props.item.sasaran">
-							<label v-for="sasaran in props.item.sasaran" class="badge badge-primary ml-1">
+							<label v-for="(sasaran, index) in props.item.sasaran" :key="index" class="badge badge-primary ml-1">
 								{{ sasaran.name }}
 							</label>
 						</span>
@@ -231,7 +231,7 @@
 
 						<div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
 							<span v-if="props.item.sasaran">
-								<label v-for="sasaran in props.item.sasaran" class="badge badge-primary ml-1">
+								<label v-for="(sasaran, index) in props.item.sasaran" :key="index" class="badge badge-primary ml-1">
 									{{ sasaran.name }}
 								</label>
 							</span>
