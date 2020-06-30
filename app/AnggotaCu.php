@@ -57,7 +57,7 @@ class AnggotaCu extends BaseEloquent {
     public static function initialize()
     {
         return [
-            'nik' => '','name' => '','ahli_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','penghasilan' => '','pengeluaran' => '', 'pendidikan' => '','organisasi' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '','gambar'=> '','npwp' => '','tanggal_meninggal'=> '','tanggal_cacat'=> '','pekerjaan' => '','suku' => '','nama_ibu' => '','kk' => '','kontak_ahli_waris' => '','rt' => '','rw' => '',
+            'nik' => '','name' => '','ahli_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','penghasilan' => '','pengeluaran' => '', 'pendidikan' => '','organisasi' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '','gambar'=> '','npwp' => '','tanggal_meninggal'=> '','tanggal_cacat'=> '','pekerjaan' => '','suku' => '','nama_ibu' => '','kk' => '','kontak_ahli_waris' => '','rt' => '','rw' => '','tanggal_masuk' => '','tp_id' => ''
         ];
     }
 

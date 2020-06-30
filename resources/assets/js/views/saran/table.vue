@@ -31,17 +31,14 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.name"></check-value>
-					</td>
-					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.user.name" v-if="props.item.user"></check-value>
+						<check-value :value="props.item.user.username" v-if="props.item.user"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[3].hide">
+					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.content"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[3].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[4].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -87,23 +84,14 @@
 						name: 'No.',
 					},
 					{
-						title: 'Name',
-						name: 'name',
+						title: 'Username',
+						name: 'user.username',
 						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
 						filterDefault: true
-					},
-					{
-						title: 'Nama [User]',
-						name: 'user.name',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
 					},
 					{
 						title: 'content',

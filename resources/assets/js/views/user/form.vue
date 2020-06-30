@@ -18,6 +18,16 @@
 							<div class="card-body">
 								
 								<div class="row">
+									<div class="col-md-12">
+										<div class="alert alert-info alert-styled-left">
+											<span class="font-weight-semibold">Informasi!</span> Mari menggunakan password dengan tingkat keamanan yang lebih tinggi!! 
+											<br/>
+											Dimana password anda harus minimal terdiri dari 8 karakter yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka. 
+											<br/>
+											Usahakan password anda bukan dari tanggal lahir, alamat, nomor telepon/hp dan dari kata yang sering anda gunakan atau mudah diketahui oleh orang lain.
+										</div>
+									</div>
+
 
 									<!-- username -->
 									<div class="col-md-12">
@@ -52,7 +62,7 @@
 												<i class="icon-cross2" v-if="errors.has('form.password')"></i>
 												Password: <wajib-badge></wajib-badge>
 												<br/>
-												<small class="text-muted"><i>Password harus minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka</i></small> 
+												<small class="text-muted"><i>Minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka</i></small> 
 											</h5>
 
 											<!-- text -->
@@ -76,7 +86,8 @@
 												<i class="icon-cross2" v-if="errors.has('form.passwordConfirm')"></i>
 												Konfirmasi Password: <wajib-badge></wajib-badge>
 												<br/>
-												<small class="text-muted"><i>Mengisi ulang password</i></small> 
+												<small class="text-muted"><i>Mengisi ulang password</i></small>
+												<br/><br/>
 											</h5>
 
 											<!-- text -->
@@ -101,7 +112,7 @@
 											<select name="cu" data-width="100%" class="form-control" v-model="form.id_cu" @change="changeCU($event.target.value)">
 												<option disabled value="">Silahkan pilih CU</option>
 												<option value="0">Puskopdit BKCU Kalimantan</option>
-												<option v-for="cu in modelCu" :value="cu.id">{{cu.name}}</option>
+												<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 											</select>
 
 										</div>

@@ -14,7 +14,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v331">Version 3.3.1<small class="text-muted"> / 28 Juni 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default" href="#v331">Version 3.3.1<small class="text-muted"> / 1 Juli 2020</small></a> </h5>
                 </div>
 
                 <div id="v331" class="collapse show" data-parent="#accordion-control-right" style="">
@@ -28,8 +28,9 @@
                       <li>Peningkatan pada tampilan informasi aktivitas user</li>
                       <li>Peningkatan pada tampilan pemilihan hak akses user</li>
                       <li>Peningkatan pada pembuatan user dan pengubahan password yang mengharuskan password menggunakan password yang kuat</li>
-                      <li>Peningkatan komponen tampilan secara umum</li>
+                      <li>Peningkatan komponen dasar pada tampilan</li>
                       <li>Perbaikan pada pemilihan tanggal</li>
+                      <li>Perbaikan bug pada beberapa tempat</li>
                     </ul>
                   </div>
                 </div>

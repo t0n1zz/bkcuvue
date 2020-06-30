@@ -17,7 +17,7 @@ export const auth = {
     markNotifStat:'',
     tokenExp: null,
     redirect: '/',
-    
+    isFromLogin: false,
   },
 
   getters: {
@@ -31,6 +31,7 @@ export const auth = {
     markNotifStat: state => state.markNotifStat,
     tokenExp: state => state.tokenExp,
     redirect: state => state.redirect,
+    isFromLogin: state => state.isFromLogin,
   },
 
   actions: {
@@ -45,6 +46,7 @@ export const auth = {
       commit('setCurrentUser', Object.assign({}, payload.user, {token: payload.access_token}));
       localStorage.setItem("user", JSON.stringify(state.currentUser));
       commit('setIsTokenExpired', false);
+      commit('isFromLogin',true);
     },
     loginFailed({ commit, state }, payload){
       commit('setIsLoading', false);
@@ -90,6 +92,9 @@ export const auth = {
     },
     setRedirect( state, data ){
       state.redirect = data;
+    },
+    isFromLogin( state, data ){
+      state.isFromLogin = data;
     },
   } 
 }

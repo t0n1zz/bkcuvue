@@ -39,7 +39,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $fillable = [
-        'id_pus','id_cu','id_aktivis','name','email','username', 'password','gambar','status','login'
+        'id_pus','id_cu','id_aktivis','name','email','username', 'password','gambar','status','login','isChangePassword'
     ];
 
     protected $allowedFilters = [

@@ -49,6 +49,17 @@
 										
 										<div class="row">
 											<div class="col-lg-12">
+												<div class="alert alert-info alert-styled-left">
+													<span class="font-weight-semibold">Informasi!</span> Mari menggunakan password dengan tingkat keamanan yang lebih tinggi!! 
+													<br/>
+													Dimana password anda harus minimal terdiri dari 8 karakter yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka. 
+													<br/>
+													Usahakan password anda bukan dari tanggal lahir, alamat, nomor telepon/hp dan dari kata yang sering anda gunakan atau mudah diketahui oleh orang lain.
+												</div>
+											</div>
+
+											<div class="col-lg-12">	
+
 												<!-- password sekarang -->
 												<div class="form-group" :class="{'has-error' : errors.has('formPassword.password_old')}">
 
@@ -81,7 +92,7 @@
 														<i class="icon-cross2" v-if="errors.has('formPassword.password')"></i>
 														Password Baru: <wajib-badge></wajib-badge>
 														<br/>
-														<small class="text-muted"><i>Password harus minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka</i></small> 
+														<small class="text-muted"><i>Minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka</i></small> 
 													</h6>
 
 													<!-- text -->
@@ -105,7 +116,7 @@
 														Konfirmasi Password:
 														<wajib-badge></wajib-badge>
 														<br/>
-														<small class="text-muted"><i>Mengisi ulang password</i></small> 
+														<small class="text-muted"><i>Mengisi ulang password</i></small>
 													</h6>
 
 													<!-- text -->
@@ -301,7 +312,8 @@
 				if(this.tabName == 'foto' || this.tabName == 'email'){
 					
 				}else if(this.tabName == 'password'){
-					this.formPasswordReset();
+					this.formPasswordReset();		
+					this.currentUser.isChangePassword = 1;
 				}
 			},
 			modalImageTutup() {

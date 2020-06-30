@@ -1014,7 +1014,19 @@
 			</div>
 		</div>
 
+		<!-- version notice -->
 		<version-alert :clientVersion="clientVersion"></version-alert>
+
+		<!-- change password notice -->
+		<div class="page-content pt-2 pb-0" v-if="!currentUser.isChangePassword">
+			<div class="content-wrapper">
+				<div class="content">
+					<div class="alert alert-warning alert-styled-left mb-0  cursor-pointer"  @click.prevent="goToProfil()">
+						<span class="font-weight-semibold">Perhatian!</span> Demi meningkatkan keamanan dari SIMO dan memperkenalkan cara pembuatan password yang lebih kuat dan tidak mudah ditebak, maka diharapkan untuk mengganti password user anda sekarang dengan menuju ke halaman profil dan mengikuti petunjuk penggantian password.
+					</div>
+				</div>
+			</div>
+		</div>	
 
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :button="modalButton" :color="modalColor" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
@@ -1068,7 +1080,6 @@
 				modalContent: '',
 				modalColor: '',
 				modalButton: '',
-				prevRoute: null
 			}
 		},
 		created(){
@@ -1081,11 +1092,6 @@
 		},
 		beforeDestroy () {
       clearInterval(this.timer)
-		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => {
-				vm.prevRoute = from
-			})
 		},
 		watch: {
 			'$route' (to, from){
@@ -1155,13 +1161,16 @@
 				}
 			},
 			dropdown(value){
-				if(this.prevRoute.name == 'login'){
+				if(this.isFromLogin){
 					if(this.dropdownMenu2 != value){
 						this.dropdownMenu2 = value;
 					}else{
 						this.dropdownMenu2 = '';
 					}
 				}
+			},
+			goToProfil(){
+				this.$router.push({name: 'profile', params: {id: this.currentUser.id}});
 			},
 			goToNotifCenter(){
 				this.$router.push('/notification');
@@ -1238,7 +1247,8 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser',
-				isTokenExpired: 'isTokenExpired'
+				isTokenExpired: 'isTokenExpired',
+				isFromLogin: 'isFromLogin',
 			}),
 			...mapGetters('notification',{
 				notification: 'notification',

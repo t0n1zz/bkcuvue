@@ -84,7 +84,7 @@
 			}
 		},
 		created(){
-			this.checkUser('index_anggota_cu',this.$route.params.cu);
+			this.checkUser('laporan_jalinan_klaim',this.$route.params.cu);
 			this.status = this.$route.params.status;
 		},
 		watch: {

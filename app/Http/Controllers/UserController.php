@@ -418,6 +418,7 @@ class UserController extends Controller
 		$username = $kelas->username;
 
 		$kelas->password = $password;
+		$kelas->isChangePassword = 1;
 		$kelas->update();
 
 		return response()
@@ -431,6 +432,7 @@ class UserController extends Controller
 	{
 		$kelas = User::findOrFail($id);
 		$password = \Config::get('values.reset_password');
+		$a = $password;
 
 		$password = Hash::make($password);
 
@@ -442,7 +444,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Password user ' .$username. ' telah berhasil direset'
+				'message' => 'Password user ' .$username. ' telah berhasil direset menjadi ' . $a
 			]);
 	}
 

@@ -73,12 +73,12 @@
       }
     },
     mounted() {
-      document.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) {
-          if(this.nik != '')
-            this.cariData();
-        }
-      });
+      // document.addEventListener("keydown", (e) => {
+      //   if (e.keyCode == 13) {
+      //     if(this.nik != '')
+      //       this.cariData();
+      //   }
+      // });
     },
     methods: {
       cariData(){

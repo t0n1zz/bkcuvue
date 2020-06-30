@@ -34,16 +34,13 @@ class SaranController extends Controller{
 	public function store(Request $request)
 	{
 		$this->validate($request,Saran::$rules);
-
-		$name = $request->name;
 	
-		
 		$kelas = Saran::create($request->all());
 
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah'
+				'message' => $this->message. ' berhasil ditambah'
 			]);
 	}
 
@@ -60,14 +57,13 @@ class SaranController extends Controller{
 	public function destroy($id)
 	{
 		$kelas = Saran::findOrFail($id);
-		$name = $kelas->name;
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+				'message' => $this->message. 'berhasil dihapus'
 			]);
 	}
 

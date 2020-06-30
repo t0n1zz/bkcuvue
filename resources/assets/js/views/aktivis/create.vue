@@ -352,7 +352,7 @@
 						</div>
 						
 						<!-- anak -->
-						<div v-if="form.status == 'MENIKAH' || form.status == 'Duda/Janda'">
+						<template v-if="form.status == 'MENIKAH' || form.status == 'Duda/Janda'">
 							<div class="col-md-4"  v-for="(anak,index) in formAnak" :key="index">
 								<div class="form-group">
 
@@ -373,7 +373,7 @@
 									<small class="text-muted">&nbsp;</small>
 								</div>
 							</div>
-						</div>
+						</template>
 
 						<!-- punya anak -->
 						<div class="col-md-12" v-if="form.status == 'MENIKAH' || form.status == 'JANDA/DUDA'">
@@ -626,14 +626,8 @@
 									Tgl. Mulai: <wajib-badge></wajib-badge></h6>
 
 								<!-- input -->
-								<cleave 
-									name="pekerjaan_mulai"
-									v-model="form.pekerjaan.mulai" 
-									class="form-control" 
-									:raw="false" 
-									:options="cleaveOption.date" 
-									placeholder="Silahkan masukkan tgl. mulai"
-									v-validate="'required'" data-vv-as="Tgl. mulai pekerjaan"></cleave>
+								<date-picker @dateSelected="form.pekerjaan.mulai = $event" :defaultDate="form.pekerjaan.mulai"></date-picker>	
+								<input v-model="form.pekerjaan.mulai" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan.mulai')">
@@ -651,13 +645,7 @@
 								<h6>Tgl. Selesai</h6>
 
 								<!-- input -->
-								<cleave 
-									name="pekerjaan_selesai"
-									v-model="form.pekerjaan.selesai" 
-									class="form-control" 
-									:raw="false" 
-									:options="cleaveOption.date" 
-									placeholder="Silahkan masukkan tgl. selesai"></cleave>
+								<date-picker @dateSelected="form.pekerjaan.selesai = $event" :defaultDate="form.pekerjaan.selesai"></date-picker>
 
 								<small class="text-muted">Kosongkan apabila masih bekerja / tidak memiliki periode selesai</small>
 							</div>

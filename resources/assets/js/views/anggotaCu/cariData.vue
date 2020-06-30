@@ -105,12 +105,12 @@
       }
     },
     mounted() {
-      document.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) {
-          if(this.nik != '' && this.statusNIK == 'iya')
-            this.cariData();
-        }
-      });
+      // document.addEventListener("keydown", (e) => {
+      //   if (e.keyCode == 13) {
+      //     if(this.nik != '' && this.statusNIK == 'iya')
+      //       this.cariData();
+      //   }
+      // });
     },
     watch: {
     },

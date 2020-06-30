@@ -366,10 +366,7 @@
 
 								<!-- select -->
 								<select class="form-control" name="pekerjaan" v-model="form.pekerjaan" data-width="100%" :disabled="modelPekerjaan.length == 0">
-									<option disabled value="">
-										<span v-if="modelPekerjaanStat === 'loading'">Mohon tunggu...</span>
-										<span v-else>Silahkan pilih pekerjaan</span>
-									</option>
+									<option disabled value="">Silahkan pilih pekerjaan</option>
 									<option v-for="(pekerjaan, index) in modelPekerjaan" :key="index" :value="pekerjaan.name">{{pekerjaan.name}}</option>
 								</select>
 
@@ -469,10 +466,7 @@
 
 								<!-- select -->
 								<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length == 0" @change="changeProvinces($event.target.value)">
-									<option disabled value="">
-										<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
-										<span v-else>Silahkan pilih provinsi</span>
-									</option>
+									<option disabled value="">Silahkan pilih provinsi</option>
 									<option v-for="(provinces, index) in modelProvinces" :key="index" :value="provinces.id">{{provinces.name}}</option>
 								</select>
 
@@ -714,10 +708,7 @@
 
 									<!-- select -->
 									<select class="form-control" name="id_tp" v-model="form.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP">
-										<option disabled value="">
-											<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
-											<span v-else>Silahkan pilih TP/KP</span>
-										</option>
+										<option disabled value="">Silahkan pilih TP/KP</option>
 										<option v-for="(tp, index) in modelTp" :key="index" :value="tp.id">{{tp.name}}</option>
 									</select>
 
