@@ -612,7 +612,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','pilih')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','panitia_luar_lembaga','pilih')->findOrFail($id);
 
 		return response()
 				->json([
@@ -674,6 +674,9 @@ class KegiatanBKCUController extends Controller{
 			}
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
+			\App\Aktivis::flushCache();
+			\App\MitraOrang::flushCache();
+			\App\MitraLembaga::flushCache();
 		}
 
 		if($request->pilih){

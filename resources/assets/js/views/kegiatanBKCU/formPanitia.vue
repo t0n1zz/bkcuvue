@@ -15,7 +15,8 @@
 			<select class="form-control" name="asal" v-model="formPanitia.asal" data-width="100%" @change="changeAsal($event.target.value)" v-validate="'required'" data-vv-as="asal">
 				<option disabled value="">Silahkan pilih asal</option>
 				<option value="dalam">Dalam gerakan</option>
-				<option value="luar">Luar gerakan</option>
+				<option value="luar">Luar gerakan (Perseorangan)</option>
+				<option value="luar lembaga">Luar gerakan (Lembaga)</option>
 			</select>
 
 			<!-- error message -->
@@ -27,13 +28,13 @@
 
 		<div class="card" v-if="formPanitia.aktivis_id">
 			<div class="card-header bg-info text-white header-elements-inline">
-				<h6 class="card-title">{{ formPanitia.name }}</h6>
+				<h6 class="card-title"></h6>
 				<div class="header-elements" v-if="mode != 'edit'">
 					<button type="button" class="btn btn-danger" @click.prevent="deleteSelected"><i class="icon-cross2 mr-2"></i> Batal</button>
 				</div>
 			</div>
 			<div class="card-body">
-				<div class="media flex-column flex-sm-row mt-0 mb-3">
+				<div class="media flex-column flex-sm-row mt-0">
 					<div class="mr-sm-3 mb-2 mb-sm-0">
 						<div class="card-img-actions" v-if="formPanitia.asal == 'dalam'">
 								<img :src="'/images/aktivis/' + formPanitia.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
@@ -43,29 +44,19 @@
 								<img :src="'/images/mitra_orang/' + formPanitia.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
 								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
 						</div>
+						<div class="card-img-actions" v-if="formPanitia.asal == 'luar lembaga'">
+								<img :src="'/images/mitra_lembaga/' + formPanitia.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formPanitia.gambar" >
+								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
+						</div>
 					</div>
 
 					<div class="media-body">
-						<div class="row">
-							<div class="col-sm-6">
-								<ul class="list list-unstyled mb-0">
-									<li><b>Gender:</b> {{ formPanitia.kelamin}}</li>
-									<li><b>Tempat Lahir:</b> {{ formPanitia.tempat_lahir}}</li>
-									<li><b>Tgl. Lahir:</b> <span v-html="$options.filters.date(formPanitia.tanggal_lahir)"></span></li>
-									<li><b>Status:</b> {{ formPanitia.status}}</li>
-									<li><b>Tinggi:</b> {{ formPanitia.tinggi}}</li>
-									<li><b>Agama:</b> {{ formPanitia.agama}}</li>
-								</ul>
-							</div>
-							<div class="col-sm-6">
-								<ul class="list list-unstyled mb-0">
-									<li><b>Lembaga:</b> <br/>{{ formPanitia.lembaga}}</li>
-									<li><b>Jabatan:</b> <br/>{{ formPanitia.jabatan}}</li>
-									<li><b>Pendidikan:</b> <br/>{{ formPanitia.pendidikan}}</li>
-								</ul>
-							</div>
-						</div>
-						
+						<ul class="list list-unstyled mb-0">
+							<li><b>Nama:</b> {{ formPanitia.name }}</li>
+							<li><b>Lembaga:</b> {{ formPanitia.lembaga }}</li>
+							<li><b>Email:</b> {{ formPanitia.email }}</li>
+							<li><b>Hp:</b> {{ formPanitia.hp }}</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -124,21 +115,43 @@
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
 					<td>
-						<check-value :value="props.item.tinggi"></check-value>
-					</td>
-					<td>
 						<check-value :value="props.item.agama"></check-value>
 					</td>
 					<td>
 						<check-value :value="props.item.status"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.alamat"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.email"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.hp"></check-value>
 					</td>
 				</tr>
 			</template>
 
 		</data-viewer>
 
-		<!-- if asal luar -->
-		<data-viewer :title="'Mitra'" :columnData="columnDataLuar" :itemData="itemDataLuar" :query="query" :itemDataStat="itemDataLuarStat" @fetch="fetchLuar" :isDasar="'true'" :isNoButtonRow="'true'"  v-if="formPanitia.asal == 'luar' && formPanitia.aktivis_id == '' && mode == 'create'">
+		<!-- if asal luar orang -->
+		<data-viewer :title="'Mitra Perseorangan'" :columnData="columnDataLuar" :itemData="itemDataLuar" :query="query" :itemDataStat="itemDataLuarStat" @fetch="fetchLuar" :isDasar="'true'" :isNoButtonRow="'true'"  v-if="formPanitia.asal == 'luar' && formPanitia.aktivis_id == '' && mode == 'create'">
 
 			<!-- item  -->
 			<template slot="item-desktop" slot-scope="props">
@@ -171,20 +184,97 @@
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
 					<td>
-						<check-value :value="props.item.tinggi"></check-value>
-					</td>
-					<td>
 						<check-value :value="props.item.agama"></check-value>
 					</td>
 					<td>
 						<check-value :value="props.item.status"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.alamat"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.email"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.hp"></check-value>
 					</td>
 				</tr>
 			</template>
 
 		</data-viewer>
 
-				<!-- peran -->
+		<!-- if asal luar lembaga -->
+		<data-viewer :title="'Lembaga Mitra'" :columnData="columnDataLuarLembaga" :itemData="itemDataLuarLembaga" :query="query" :itemDataStat="itemDataLuarLembagaStat" @fetch="fetchLuarLembaga" :isDasar="'true'" :isNoButtonRow="'true'"  v-if="formPanitia.asal == 'luar lembaga' && formPanitia.aktivis_id == '' && mode == 'create'">
+
+			<!-- item  -->
+			<template slot="item-desktop" slot-scope="props">
+				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
+					<td>
+						{{ props.index + 1 + (+itemDataLuarLembaga.current_page-1) * +itemDataLuarLembaga.per_page + '.'}}
+					</td>
+					<td>
+						<img :src="'/images/mitra_orang/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+					</td>
+					<td>
+						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.bidang"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.alamat"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.website"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.email"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.telp"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.hp"></check-value>
+					</td>
+				</tr>
+			</template>
+
+		</data-viewer>
+
+		<!-- peran -->
 		<div class="form-group" :class="{'has-error' : errors.has('formPanitia.peran')}">
 
 			<!-- title -->
@@ -304,9 +394,15 @@
 					{ title: 'Jurusan' },
 					{ title: 'Tgl. Lahir' },
 					{ title: 'Tempat Lahir' },
-					{ title: 'Tinggi' },
 					{ title: 'Agama' },
 					{ title: 'Status' },
+					{ title: 'Provinsi' },
+					{ title: 'Kabupaten/Kota' },
+					{ title: 'Kecamatan'},
+					{ title: 'Kelurahan' },
+					{ title: 'Alamat' },
+					{ title: 'Email' },
+					{ title: 'Hp' },
 				],
 				columnDataLuar: [
 					{ title: 'No.' },
@@ -327,9 +423,39 @@
 					{ title: 'Pendidikan'},
 					{ title: 'Tgl. Lahir' },
 					{ title: 'Tempat Lahir' },
-					{ title: 'Tinggi' },
 					{ title: 'Agama' },
 					{ title: 'Status' },
+					{ title: 'Provinsi' },
+					{ title: 'Kabupaten/Kota' },
+					{ title: 'Kecamatan'},
+					{ title: 'Kelurahan' },
+					{ title: 'Alamat' },
+					{ title: 'Email' },
+					{ title: 'Hp' },
+				],
+				columnDataLuarLembaga: [
+					{ title: 'No.' },
+					{ title: 'Foto' },
+					{
+						title: 'Nama',
+						name: 'name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true
+					},
+					{ title: 'Bidang' },
+					{ title: 'Provinsi' },
+					{ title: 'Kabupaten/Kota' },
+					{ title: 'Kecamatan'},
+					{ title: 'Kelurahan' },
+					{ title: 'Alamat' },
+					{ title: 'Website' },
+					{ title: 'Email' },
+					{ title: 'No. Telp' },
+					{ title: 'Hp' },
 				],
 				submited: false,
 			}
@@ -345,11 +471,15 @@
 				this.$store.commit('aktivis/setDataStatS','');
 				this.$store.commit('mitraOrang/setDataS',[]);
 				this.$store.commit('mitraOrang/setDataStatS','');
+				this.$store.commit('mitraLembaga/setDataS',[]);
+				this.$store.commit('mitraLembaga/setDataStatS','');
 
 				this.deleteSelected();
 
 				if(value == 'luar'){
 					this.fetchLuar(this.query);
+				}else if(value == 'luar lembaga'){
+					this.fetchLuarLembaga(this.query);
 				}else if(value == 'dalam'){
 					this.fetchDalam(this.query);
 				}
@@ -360,6 +490,9 @@
 			fetchLuar(params){
 				this.$store.dispatch('mitraOrang/index');
 			},
+			fetchLuarLembaga(params){
+				this.$store.dispatch('mitraLembaga/index');
+			},
 			deleteSelected(){
 				this.formPanitia.aktivis_id = '';
 				this.selectedItem = '';
@@ -369,12 +502,9 @@
 				this.formPanitia.aktivis_id = item.id;
 				this.formPanitia.name = item.name;
 				this.formPanitia.gambar = item.gambar;
-				this.formPanitia.status = item.status;
-				this.formPanitia.kelamin = item.kelamin;
-				this.formPanitia.agama = item.agama;
-				this.formPanitia.tinggi = item.tinggi;
-				this.formPanitia.tanggal_lahir = item.tanggal_lahir;
-				this.formPanitia.tempat_lahir = item.tempat_lahir;
+				this.formPanitia.email = item.email != '' ? item.email : '-';
+				this.formPanitia.hp = item.hp != '' ? item.hp : '-';
+				
 
 				if(this.formPanitia.asal == 'dalam'){
 					if(item.pekerjaan_aktif.tipe == 1){
@@ -384,15 +514,9 @@
 					}else if(item.pekerjaan_aktif.tipe == 3){
 						this.formPanitia.lembaga = "Puskopdit BKCU Kalimantan"
 					}
-
-					this.formPanitia.jabatan = item.pekerjaan_aktif.name;
-					this.formPanitia.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
 				}else{
-					this.formPanitia.lembaga = item.lembaga;
-					this.formPanitia.jabatan = item.jabatan;
-					this.formPanitia.pendidikan = item.pendidikan;
+					this.formPanitia.lembaga = item.lembaga != '' ? item.lembaga : '-';
 				}
-				
 			},
 			save(){
 				this.$validator.validateAll('formPanitia').then((result) => {
@@ -423,6 +547,10 @@
 			...mapGetters('mitraOrang',{
 				itemDataLuar: 'dataS',
 				itemDataLuarStat: 'dataStatS'
+			}),
+			...mapGetters('mitraLembaga',{
+				itemDataLuarLembaga: 'dataS',
+				itemDataLuarLembagaStat: 'dataStatS'
 			})
 		}
 	}

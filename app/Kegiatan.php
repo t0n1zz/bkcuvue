@@ -7,7 +7,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Kegiatan extends BaseEloquent {
+class Kegiatan extends Model {
     
     use Dataviewer, LogsActivity, Sluggable,  SoftDeletes;
 
@@ -86,6 +86,10 @@ class Kegiatan extends BaseEloquent {
 
     public function panitia_luar(){
         return $this->belongsToMany('App\MitraOrang','kegiatan_panitia','kegiatan_id','aktivis_id')->where('asal','luar')->withPivot('peran','keterangan','asal')->withTimestamps();
+    }
+
+    public function panitia_luar_lembaga(){
+        return $this->belongsToMany('App\MitraLembaga','kegiatan_panitia','kegiatan_id','aktivis_id')->where('asal','luar lembaga')->withPivot('peran','keterangan','asal')->withTimestamps();
     }
 
     public function peserta(){

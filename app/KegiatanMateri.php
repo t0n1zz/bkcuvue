@@ -5,7 +5,7 @@ use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use App\Support\Dataviewer;
 
-class KegiatanMateri extends BaseEloquent {
+class KegiatanMateri extends Model {
     
     use LogsActivity, Dataviewer;
 

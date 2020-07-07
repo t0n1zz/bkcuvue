@@ -256,8 +256,11 @@ class PublicController extends Controller
 
     public function testroute()
     {       
-        $a = \Spatie\Activitylog\Models\Activity::orderBy('created_at','desc')->paginate();
-        return response()->json($a);
+        // $kelas = \App\AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query){ 
+        //     $query->where('anggota_cu_cu_draft.cu_id', '43');
+        // });
+        // $kelas = \App\KegiatanPanitia::where('kegiatan_id',97)->get();
+        // return response()->json($kelas);
 
         // $users = \App\User::where('login', '>=', \Carbon\Carbon::now()->subMonth(6))->get();	
         // return response()

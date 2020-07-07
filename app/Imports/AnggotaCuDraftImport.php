@@ -65,7 +65,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
         }
         if(array_key_exists('kabupaten', $row) && $row['kabupaten']){
             if($provinces != ''){
-                $regencies = Regencies::where('provinces_id',$provinces)->where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
+                $regencies = Regencies::where('province_id',$provinces)->where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
             }else{
                 $regencies = Regencies::where('name','like', '%' .strtoupper($row['kabupaten']). '%')->first();
             }

@@ -13,11 +13,11 @@ class Helper{
 	public static function image_processing($imagepath, $thumb_width, $thumb_height, $request, $kelas, $name)
 	{
 		$path = public_path($imagepath);
+		$formatedName = '';
 
 		if($kelas != '' && $request == "no_image"){// no image
 			File::delete($path . $kelas . '.jpg');
 			File::delete($path . $kelas . 'n.jpg');
-			$formatedName = '';
 		}else{
 
 			// validate image request
@@ -45,31 +45,33 @@ class Helper{
 				File::delete($path . $kelas . 'n.jpg');
 			}
 
-			$imageData = $request;
-			list($width, $height) = getimagesize($imageData);
-
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid();
-			
-			$fileName =  $formatedName. '.jpg';
-			$fileName2 =  $formatedName. 'n.jpg';
-
-			//image
-			if($width > 1920){
-					Image::make($imageData->getRealPath())->resize(1920, null,
-						function ($constraint) {
-								$constraint->aspectRatio();
-						})
-						->save($path . $fileName);
-			}else{
-					Image::make($imageData->getRealPath())->save($path . $fileName);
+			if($request != 'no_image'){
+				$imageData = $request;
+				list($width, $height) = getimagesize($imageData);
+	
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid();
+				
+				$fileName =  $formatedName. '.jpg';
+				$fileName2 =  $formatedName. 'n.jpg';
+	
+				//image
+				if($width > 1920){
+						Image::make($imageData->getRealPath())->resize(1920, null,
+							function ($constraint) {
+									$constraint->aspectRatio();
+							})
+							->save($path . $fileName);
+				}else{
+						Image::make($imageData->getRealPath())->save($path . $fileName);
+				}
+	
+				//thumbnail image
+				Image::make($imageData->getRealPath())->resize($thumb_width, $thumb_height,
+					function ($constraint) {
+							$constraint->aspectRatio();
+					})
+					->save($path . $fileName2);
 			}
-
-			//thumbnail image
-			Image::make($imageData->getRealPath())->resize($thumb_width, $thumb_height,
-				function ($constraint) {
-						$constraint->aspectRatio();
-				})
-				->save($path . $fileName2);
 		}
 
 		return $formatedName;

@@ -19,9 +19,9 @@ class AnggotaCuDraftController extends Controller{
 	public function index($cu, $tp)
 	{
 		if($cu == 'semua'){
-			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->advancedFilter();
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu.cu','anggota_cu_cu.tp','Villages','Districts','Regencies','Provinces')->advancedFilter();
 		}else{
-			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu.cu','anggota_cu_cu.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu', function($query) use ($cu, $tp){ 
 				if($tp != 'semua'){
 					$query->where('anggota_cu_cu_draft.cu_id',$cu)->where('anggota_cu_cu_draft.tp_id',$tp);
 				}else{
@@ -145,12 +145,11 @@ class AnggotaCuDraftController extends Controller{
 				}, $data2);
 
 				$kelas4 = AnggotaCuCu::insert($data2);
-				
 				$kelas2->delete();
 			}
 
 			$kelas->delete();
-			
+
 			\DB::commit();
 			
 			return response()
@@ -279,16 +278,22 @@ class AnggotaCuDraftController extends Controller{
 		\DB::beginTransaction(); 
 		try{
 			if($cu == 'semua'){
-				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar');
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu');
+				$kelas->delete();
+				$kelas2 = AnggotaCuCuDraft::get();
+				$kelas2->delete();
 			}else{
-				$kelas = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
-					$query->where('anggota_cu_cu.cu_id',$cu);
+				$kelas = AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query) use ($cu){ 
+					$query->where('anggota_cu_cu_draft.cu_id',$cu);
 				});
+				$datas = $kelas->get();
+				foreach($datas as $item){
+					$kelas2 = AnggotaCuCuDraft::where('anggota_cu_draft_id', $item->id);
+					$kelas2->delete();
+				}
+				$kelas->delete();
 			}
-			$kelas->delete();
-
-			$kelas2 = AnggotaCuCuDraft::where('cu_id',$cu);
-			$kelas2->delete();
+			
 			\DB::commit();
 
 			return response()

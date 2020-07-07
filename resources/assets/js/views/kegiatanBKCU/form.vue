@@ -605,9 +605,11 @@
 										</td>
 										<td>{{ props.item.name }}</td>
 										<td>{{ props.item.lembaga }}</td>
-										<td>{{ props.item.asal }} gerakan</td>
+										<td>{{ props.item.asal }}</td>
 										<td>{{ props.item.peran }}</td>
 										<td>{{ props.item.keterangan }}</td>
+										<td>{{ props.item.email }}</td>
+										<td>{{ props.item.hp }}</td>
 									</tr>
 								</template>	
 							</data-table>
@@ -908,7 +910,9 @@
 					{ title: 'Lembaga' },
 					{ title: 'Asal' },
 					{ title: 'Peran' },
-					{ title: 'keterangan' }
+					{ title: 'Keterangan' },
+					{ title: 'Email' },
+					{ title: 'No. Hp' },
 				],
 				selectedItemPanitia: '',
 				formPanitiaMode: '',
@@ -958,6 +962,8 @@
 							formData.peran = valDalam.pivot.peran;
 							formData.asal = 'dalam';
 							formData.keterangan = valDalam.pivot.keterangan;
+							formData.email = valDalam.email;
+							formData.hp = valDalam.hp;
 
 							if(valDalam.pekerjaan_aktif){
 								if(valDalam.pekerjaan_aktif.tipe == 1){
@@ -981,7 +987,25 @@
 							formData.peran = valLuar.pivot.peran;
 							formData.asal = 'luar';
 							formData.keterangan = valLuar.pivot.keterangan;
-							formData.lembaga = valLuar.pekerjaan;
+							formData.lembaga = valLuar.lembaga;
+							formData.email = valLuar.email;
+							formData.hp = valLuar.hp;
+
+							this.itemDataPanitia.push(formData);
+						}
+
+						var valLuarLembaga;
+						for (valLuarLembaga of this.form.panitia_luar_lembaga) {
+							let formData = {};
+							formData.aktivis_id = valLuarLembaga.id;
+							formData.name = valLuarLembaga.name;
+							formData.gambar = valLuarLembaga.gambar;
+							formData.peran = valLuarLembaga.pivot.peran;
+							formData.asal = 'luar lembaga';
+							formData.keterangan = valLuarLembaga.pivot.keterangan;
+							formData.lembaga = valLuarLembaga.name;
+							formData.email = valLuarLembaga.email;
+							formData.hp = valLuarLembaga.hp;
 
 							this.itemDataPanitia.push(formData);
 						}

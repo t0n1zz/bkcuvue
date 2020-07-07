@@ -304,8 +304,6 @@ class UserController extends Controller
 		else
 			$fileName = '';
 
-		
-
 		$kelas->update($request->except('gambar') + [
 			'gambar' => $fileName
 		]);

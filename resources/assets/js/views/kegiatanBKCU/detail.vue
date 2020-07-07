@@ -379,15 +379,6 @@
 													<td>
 														<check-value :value="props.item.name"></check-value>
 													</td>
-													<td>
-														<check-value :value="props.item.kelamin"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.pivot.peran"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.pivot.keterangan"></check-value>
-													</td>
 													<td v-if="props.item.pivot.asal == 'dalam'">
 														<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
 															<check-value :front-text="'CU'" :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
@@ -402,26 +393,20 @@
 														</span>
 														<span v-else>-</span>
 													</td>
-													<td v-if="props.item.pivot.asal == 'dalam'">
-														<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
-														<span v-else>-</span>
-													</td>
-													<td v-if="props.item.pivot.asal == 'luar'">
+													<td v-else-if="props.item.pivot.asal == 'luar'">
 														<check-value :value="props.item.lembaga"></check-value>
 													</td>
-													<td v-if="props.item.pivot.asal == 'luar'">
-														<check-value :value="props.item.pekerjaan"></check-value>
-													</td>
-													<td v-html="$options.filters.date(props.item.tanggal_lahir)">
+													<td v-else-if="props.item.pivot.asal == 'luar lembaga'">
+														<check-value :value="props.item.name"></check-value>
 													</td>
 													<td>
-														<check-value :value="props.item.tempat_lahir"></check-value>
+														<check-value :value="props.item.pivot.asal"></check-value>
 													</td>
 													<td>
-														<check-value :value="props.item.agama"></check-value>
+														<check-value :value="props.item.pivot.peran"></check-value>
 													</td>
 													<td>
-														<check-value :value="props.item.status"></check-value>
+														<check-value :value="props.item.pivot.keterangan"></check-value>
 													</td>
 													<td>
 														<check-value :value="props.item.email"></check-value>
@@ -429,10 +414,6 @@
 													<td>
 														<check-value :value="props.item.hp"></check-value>
 													</td>
-													<td>
-														<check-value :value="props.item.kontak"></check-value>
-													</td>
-													
 												</tr>
 											</template>	
 										</data-table>
@@ -1905,19 +1886,12 @@
 					{ title: 'No.' },
 					{ title: 'Foto' },
 					{ title: 'Nama' },
-					{ title: 'Gender' },
+					{ title: 'Lembaga' },
+					{ title: 'Asal' },
 					{ title: 'Peran' },
 					{ title: 'keterangan' },
-					{ title: 'Lembaga' },
-					{ title: 'Jabatan' },
-					{ title: 'Tgl. Lahir' },
-					{ title: 'Tempat Lahir' },
-					{ title: 'Agama' },
-					{ title: 'Status' },
 					{ title: 'Email' },
 					{ title: 'No. Hp' },
-					{ title: 'Kontak Lain' },
-					
 				],
 				columnDataCU: [
 					{ title: 'No.' },
@@ -1975,6 +1949,11 @@
 					var valLuar;
 					for(valLuar of this.item.panitia_luar){
 						this.itemDataPanitia.push(valLuar);
+					}
+
+					var valLuarLembaga;
+					for(valLuarLembaga of this.item.panitia_luar_lembaga){
+						this.itemDataPanitia.push(valLuarLembaga);
 					}
 				}
 			},

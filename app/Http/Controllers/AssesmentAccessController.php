@@ -234,7 +234,7 @@ class AssesmentAccessController extends Controller{
 		$kelasP3->delete();
 		$kelasP4->delete();
 
-		if($request->status == 'BELUM DINILAI'){
+		if($kelas->status == 'BELUM DINILAI'){
 			NotificationHelper::self_assesment($kelas,'menghapus');
 		}
 

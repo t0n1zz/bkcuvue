@@ -149,7 +149,7 @@
 				<div class="form-group" v-if="tipeProduk != 'pinjaman'">
 
 					<!-- title -->
-					<h5>Tanggal Target: <info-icon :message="'Informasi mengenai kapan akan digunakan simpanan tersebut | Format: tahun-bulan-tanggal dalam angka. Contoh: 2019-01-23'"></info-icon></h5>
+					<h5>Tanggal Target:</h5>
 
 					<!-- input -->
 					<date-picker @dateSelected="formProduk.tanggal_target = $event" :defaultDate="formProduk.tanggal_target"></date-picker>	
