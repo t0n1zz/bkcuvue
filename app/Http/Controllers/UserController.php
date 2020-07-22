@@ -167,36 +167,36 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->advancedFilter();
-			
-    	return response()
-			->json([
-				'model' => $table_data
-			]);
+		$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->advancedFilter();
+		
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function indexCu($id)
 	{
-			$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
-			
-    	return response()
-			->json([
-				'model' => $table_data
-			]);
+		$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
+		
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function indexCuPermission($id)
 	{
-			$table_data1 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_pengurus_jalinan_klaim')->get();
-			$table_data2 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_pengawas_jalinan_klaim')->get();
-			$table_data3 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_manajemen_jalinan_klaim')->get();
-			
-    	return response()
-			->json([
-				'model1' => $table_data1,
-				'model2' => $table_data2,
-				'model3' => $table_data3,
-			]);
+		$table_data1 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_pengurus_jalinan_klaim')->get();
+		$table_data2 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_pengawas_jalinan_klaim')->get();
+		$table_data3 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_manajemen_jalinan_klaim')->get();
+		
+		return response()
+		->json([
+			'model1' => $table_data1,
+			'model2' => $table_data2,
+			'model3' => $table_data3,
+		]);
 	}
 
 	public function getActivity($id)
@@ -354,7 +354,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah'
+				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah. Apabila user tersebut saat ini sudah login ke SIMO, maka untuk melihat perubahannya user tersebut mesti logout dan login lagin.'
 			]);
 	}
 

@@ -283,7 +283,7 @@
           data: [],
           fields: {
             no_ba:'no_ba',
-            cu: 'cu_name',
+            cu: 'kategori',
             status_klaim_cair: 'status_klaim_cair',
             status_klaim_setuju: 'status_klaim_setuju',
             lakilaki: 'lakilaki',

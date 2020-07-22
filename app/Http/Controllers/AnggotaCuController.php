@@ -675,7 +675,7 @@ class AnggotaCuController extends Controller{
 
 			if($diff){
 				$val = array_values($diff)[0];
-				KegiatanPilih::findOrFail($val)->delete();
+				AnggotaCuCu::findOrFail($val)->delete();
 			}
 			foreach($cus as $cu){
 				if(array_key_exists('id', $cu)){
@@ -702,10 +702,10 @@ class AnggotaCuController extends Controller{
 		}
 		
 		if($request->id_cu){
-			$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->first();
+			$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->where('cu_id', $request->id_cu)->first();
 
 			if($kelasCu){
-				$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id);
+				$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->where('cu_id', $request->id_cu);
 				$kelasCu->update([
 					'anggota_cu_id' => $kelas->id,
 					'cu_id' => $request->id_cu,
@@ -750,6 +750,7 @@ class AnggotaCuController extends Controller{
 
 	public function uploadExcel(Request $request)
 	{
+
 		Excel::import(new AnggotaCuDraftImport, request()->file('file'));
 
 		return response()

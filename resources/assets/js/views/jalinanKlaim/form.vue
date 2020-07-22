@@ -49,7 +49,7 @@
 							<div class="card card-body" >
 								<div class="row">
 									<!-- check cu -->
-									<div class="col-sm-5">
+									<div class="col-md-5 mb-2">
 										<div class="input-group">
 
 											<span class="input-group-prepend">
@@ -69,7 +69,7 @@
 									</div>
 
 									<!-- check tipe  -->
-									<div class="col-md-5">
+									<div class="col-md-5 mb-2">
 										<div class="input-group">
 
 											<span class="input-group-prepend">

@@ -379,7 +379,9 @@ Route::group(['middleware'=>'jwt.auth'],function(){
 
     // assesment Access
     Route::get('/assesmentAccess/history', 'AssesmentAccessController@history');
-    Route::get('/assesmentAccess/cariData/{cu}/{periode}', 'AssesmentAccessController@cariData');
+    Route::get('/assesmentAccess/cariData/{cu}/{periode}', 
+    'AssesmentAccessController@cariData');
+    Route::get('/assesmentAccess/edit/{id}', 'AssesmentAccessController@edit');
     Route::group(['middleware' => ['permission:index_assesment_access']], function () {
         Route::get('/assesmentAccess', 'AssesmentAccessController@index');
         Route::get('/assesmentAccess/indexCu/{id}', 'AssesmentAccessController@indexCu');
@@ -390,7 +392,6 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::post('/assesmentAccess/store', 'AssesmentAccessController@store');
     });
     Route::group(['middleware' => ['permission:update_assesment_access']], function () {
-        Route::get('/assesmentAccess/edit/{id}', 'AssesmentAccessController@edit');
         Route::post('/assesmentAccess/update/{id}', 'AssesmentAccessController@update');
     });
     Route::group(['middleware' => ['permission:destroy_assesment_access']], function () {

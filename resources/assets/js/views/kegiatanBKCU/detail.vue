@@ -861,20 +861,17 @@
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[3].hide">
 													<check-value :value="props.item.aktivis.name"></check-value>
 												</td>
-												<td v-if="!columnDataPesertaTerdaftar[4].hide">
-													<check-value :value="props.item.name_nametag" v-if="item.tipe_tempat == 'OFFLINE'"></check-value>
-													<span v-else>-</span>
+												<td v-if="!columnDataPesertaTerdaftar[4].hide && !columnDataPesertaTerdaftar[4].disable">
+													<check-value :value="props.item.name_nametag"></check-value>
 												</td>
 												<td v-if="!columnDataPesertaTerdaftar[5].hide">
 													<check-value :value="props.item.name_sertifikat"></check-value>
 												</td>
-												<td v-if="!columnDataPesertaTerdaftar[6].hide" >
-													<span v-html="$options.filters.date(props.item.datang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
-													<span v-else>-</span>
+												<td v-if="!columnDataPesertaTerdaftar[6].hide && !columnDataPesertaTerdaftar[6].disable" >
+													<span v-html="$options.filters.date(props.item.datang)"></span>
 												</td>
-												<td v-if="!columnDataPesertaTerdaftar[7].hide">
-													<span v-html="$options.filters.date(props.item.pulang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
-													<span v-else>-</span>
+												<td v-if="!columnDataPesertaTerdaftar[7].hide && !columnDataPesertaTerdaftar[7].disable">
+													<span v-html="$options.filters.date(props.item.pulang)"></span>
 												</td>
 												<td v-if="!columnDataPesertaTerdaftar[8].hide">
 													<check-value :value="props.item.keterangan"></check-value>
@@ -958,20 +955,17 @@
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[2].hide">
 													<check-value :value="props.item.aktivis.name"></check-value>
 												</td>
-												<td v-if="!columnDataPesertaHadir[3].hide">
-													<check-value :value="props.item.name_nametag" v-if="item.tipe_tempat == 'OFFLINE'"></check-value>
-													<span v-else>-</span>
+												<td v-if="!columnDataPesertaHadir[3].hide && !columnDataPesertaHadir[3].disable">
+													<check-value :value="props.item.name_nametag"></check-value>
 												</td>
 												<td v-if="!columnDataPesertaHadir[4].hide">
 													<check-value :value="props.item.name_sertifikat"></check-value>
 												</td>
-												<td v-if="!columnDataPesertaHadir[5].hide">
-													<span v-html="$options.filters.date(props.item.datang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
-													<span v-else>-</span>
+												<td v-if="!columnDataPesertaHadir[5].hide && !columnDataPesertaHadir[5].disable">
+													<span v-html="$options.filters.date(props.item.datang)"></span>
 												</td>
-												<td v-if="!columnDataPesertaHadir[6].hide">
-													<span v-html="$options.filters.date(props.item.pulang)" v-if="item.tipe_tempat == 'OFFLINE'"></span>
-													<span v-else>-</span>
+												<td v-if="!columnDataPesertaHadir[6].hide && !columnDataPesertaHadir[6].disable">
+													<span v-html="$options.filters.date(props.item.pulang)"></span>
 												</td>
 												<td v-if="!columnDataPesertaHadir[7].hide" v-html="$options.filters.dateTime(props.item.tanggal_hadir)">
 												</td>
@@ -1926,6 +1920,7 @@
 		watch: {
 			itemStat(value) {
 				if (value === "success") {
+					this.hideColumn();
 					this.checkTipe(this.item.tipe);
 					
 					if(this.currentUser.aktivis){
@@ -2056,6 +2051,23 @@
 				this.$store.dispatch(this.kelas + '/indexPesertaCountCu', this.item.id);
 				this.$store.dispatch(this.kelas + '/indexPesertaHadirCountCu', this.item.id);
 				this.$store.dispatch(this.kelas + '/indexKeputusanCount', this.item.id);
+			},
+			hideColumn(){
+				if(this.item.tipe_tempat == 'ONLINE'){
+					this.columnDataPesertaTerdaftar[4].disable = true;
+					this.columnDataPesertaTerdaftar[6].disable = true;
+					this.columnDataPesertaTerdaftar[7].disable = true;
+					this.columnDataPesertaHadir[3].disable = true;
+					this.columnDataPesertaHadir[5].disable = true;
+					this.columnDataPesertaHadir[6].disable = true;
+				}else{
+					this.columnDataPesertaTerdaftar[4].disable = false;
+					this.columnDataPesertaTerdaftar[6].disable = false;
+					this.columnDataPesertaTerdaftar[7].disable = false;
+					this.columnDataPesertaHadir[3].disable = false;
+					this.columnDataPesertaHadir[5].disable = false;
+					this.columnDataPesertaHadir[6].disable = false;
+				}
 			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){

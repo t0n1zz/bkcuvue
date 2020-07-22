@@ -187,6 +187,22 @@ class AssesmentAccessController extends Controller{
 				]);
 	}
 
+	public function editPenilaian($id)
+	{
+		$kelas2 = AssesmentAccess::findOrFail($id);
+		$kelas2->status = 'BELUM SELESAI DINILAI';
+		$kelas2->update();
+
+		$kelas = AssesmentAccess::with('cu','p1','p2','p3','p4')->findOrFail($id);
+		$kelas = $this->formatSingleQuery($kelas);
+
+		return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
+	}
+
 	public function update(Request $request, $id)
 	{
 		$this->validate($request, AssesmentAccess::$rules);

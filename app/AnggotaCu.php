@@ -62,7 +62,12 @@ class AnggotaCu extends BaseEloquent {
     }
 
     public function anggota_cu_cu(){
-        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id');
+        $cu = \Auth::user()->id_cu;
+        if($cu != 0){
+            return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id')->where('cu_id',$cu);
+        }else{
+            return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id');
+        }
     }
 
     public function anggota_cu_cu_not_keluar(){

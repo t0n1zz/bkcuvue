@@ -740,11 +740,21 @@ class AktivisController extends Controller{
 
 		$kelas->kegiatan_id = 0;
 		$kelas->name = $request->diklat['name'];
-		$kelas->tempat = $request->diklat['tempat'];
-		$kelas->lembaga = $request->diklat['lembaga'];
-		$kelas->fasilitator = $request->diklat['fasilitator'];
-		$kelas->datang = $request->diklat['datang'];
-		$kelas->pulang = $request->diklat['pulang'];
+		if(array_key_exists('tempat', $request->diklat)){
+			$kelas->tempat = $request->diklat['tempat'];
+		}
+		if(array_key_exists('lembaga', $request->diklat)){
+			$kelas->lembaga = $request->diklat['lembaga'];
+		}
+		if(array_key_exists('fasilitator', $request->diklat)){
+			$kelas->fasilitator = $request->diklat['fasilitator'];
+		}
+		if(array_key_exists('datang', $request->diklat)){
+			$kelas->datang = $request->diklat['datang'];
+		}
+		if(array_key_exists('pulang', $request->diklat)){
+			$kelas->pulang = $request->diklat['pulang'];
+		}
 
 		$kelas->save();
 

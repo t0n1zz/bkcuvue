@@ -1470,7 +1470,7 @@ class JalinanKlaimController extends Controller{
 	public function cariData($nik)
 	{
 		$table_data = AnggotaCu::with('anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
-		
+
 		if($table_data){
 			return response()
 			->json([

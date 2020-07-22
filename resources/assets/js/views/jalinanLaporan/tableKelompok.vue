@@ -324,10 +324,10 @@
               { title: 'Total Diajukan' },
               { title: 'Total Disetujui' },
             ];
-            this.fields = {
+            this.excel.fields = {
               kategori:'kategori',
-              pria: 'pria',
-              wanita: 'wanita',
+              lakilaki: 'lakilaki',
+              perempuan: 'perempuan',
               meninggal: 'meninggal',
               cacat: 'cacat',
               total:'total',
@@ -342,7 +342,7 @@
             this.columnData = [ 
               { title: 'No.' },
               { title: 'Kategori' },
-              { title: 'Laki-laki' },
+              { title: 'Lakilaki' },
               { title: 'Perempuan' },
               { title: 'Meninggal' },
               { title: 'Cacat' },
@@ -355,10 +355,10 @@
               { title: 'Total Diajukan' },
               { title: 'Total Disetujui' },
             ];
-            this.fields = {
+            this.excel.fields = {
               kategori:'kategori',
-              pria: 'pria',
-              wanita: 'wanita',
+              lakilaki: 'laki-laki',
+              perempuan: 'perempuan',
               meninggal: 'meninggal',
               cacat: 'cacat',
               total:'total',
@@ -375,7 +375,7 @@
           this.columnData = [ 
             { title: 'No.' },
             { title: 'Kategori' },
-            { title: 'Laki-laki' },
+            { title: 'Lakilaki' },
             { title: 'Perempuan' },
             { title: 'Meninggal' },
             { title: 'Cacat' },
@@ -387,11 +387,11 @@
             { title: 'Total Diajukan' },
             { title: 'Total Disetujui' },
           ];
-          this.fields = {
+          this.excel.fields = {
             no_ba:'no_ba',
             kategori:'kategori',
-            pria: 'pria',
-            wanita: 'wanita',
+            lakilaki: 'lakilaki',
+            perempuan: 'perempuan',
             meninggal: 'meninggal',
             cacat: 'cacat',
             total:'total',

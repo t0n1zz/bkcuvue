@@ -3,11 +3,10 @@
 
 		<div class="card d-print-none">
 			<div class="card-body">  
-
 				<div class="row">
 
 					<!-- cu -->
-					<div :class="{'col-md-6' : cu_id != 'semua', 'col-md-12' : cu_id == 'semua'}" v-if="currentUser.id_cu == 0">
+					<div class="mb-2" :class="{'col-md-6' : cu_id != 'semua', 'col-md-12' : cu_id == 'semua'}" v-if="currentUser.id_cu == 0">
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Pilih CU</span>
@@ -57,7 +56,6 @@
 					</div>
 
 				</div>		
-				
 			</div>
 		</div>		
 

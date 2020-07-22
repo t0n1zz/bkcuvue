@@ -10,7 +10,7 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.name')}">
 						<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-						Nama Diklat:</h6>
+						Nama Diklat: <wajib-badge></wajib-badge></h6>
 
 					<!-- text -->
 					<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required'" data-vv-as="Nama Diklat" v-model="form.name">
@@ -30,7 +30,7 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.tempat')}">
 						<i class="icon-cross2" v-if="errors.has('form.tempat')"></i>
-						Tempat:</h6>
+						Tempat: <wajib-badge></wajib-badge></h6>
 
 					<!-- text -->
 					<input type="text" name="tempat" class="form-control" placeholder="Silahkan masukkan tempat diklat" v-validate="'required'" data-vv-as="Tempat diklat" v-model="form.tempat">
@@ -50,7 +50,7 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.lembaga')}">
 						<i class="icon-cross2" v-if="errors.has('form.lembaga')"></i>
-						Nama Lembaga Penyelenggara:</h6>
+						Nama Lembaga Penyelenggara: <wajib-badge></wajib-badge></h6>
 
 					<!-- text -->
 					<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga penyelenggara diklat" v-validate="'required'" data-vv-as="Tempat diklat" v-model="form.lembaga">
@@ -82,7 +82,7 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.datang')}">
 						<i class="icon-cross2" v-if="errors.has('form.datang')"></i>
-						Tgl. Mulai:</h6>
+						Tgl. Mulai: <wajib-badge></wajib-badge></h6>
 
 					<!-- input -->
 					<date-picker @dateSelected="form.datang = $event" :defaultDate="form.datang"></date-picker>	
@@ -103,7 +103,7 @@
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('form.pulang')}">
 						<i class="icon-cross2" v-if="errors.has('form.pulang')"></i>
-						Tgl. Selesai:</h6>
+						Tgl. Selesai: <wajib-badge></wajib-badge></h6>
 
 					<!-- input -->
 					<date-picker @dateSelected="form.pulang = $event" :defaultDate="form.pulang"></date-picker>	
@@ -135,7 +135,7 @@
 		<div class="d-block d-md-none">
 
 			<button type="submit" class="btn btn-primary btn-block pb-2">
-				<i class="icon-floppy-disk"></i> Simpan</button>
+				<i class="icon-floppy-d isk"></i> Simpan</button>
 
 			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
 				<i class="icon-cross"></i> Tutup</button>
@@ -148,12 +148,14 @@
 	import { mapGetters } from 'vuex';
 	import Cleave from 'vue-cleave-component';
 	import DatePicker from "../../components/datePicker.vue";
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		props:['formState','selected','id_aktivis'],
 		components: {
 			Cleave,
-			DatePicker
+			DatePicker,
+			wajibBadge
 		},
 		data() {
 			return {
