@@ -194,7 +194,6 @@
 												<option value="0">Tidak jadikan artikel utama</option>
 											</select>
 
-
 											<!-- error message -->
 											<br/>
 											<small class="text-muted text-danger" v-if="errors.has('form.utamakan')">

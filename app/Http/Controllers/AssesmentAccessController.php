@@ -205,33 +205,44 @@ class AssesmentAccessController extends Controller{
 
 	public function update(Request $request, $id)
 	{
+		$cu = \Auth::user()->id_cu;
+
 		$this->validate($request, AssesmentAccess::$rules);
 
 		$periode = $request->periode;
 
 		$kelas = AssesmentAccess::findOrFail($id);
-		$kelasP1 = AssesmentAccessP1::findOrFail($kelas->id_p1);
-		$kelasP2 = AssesmentAccessP2::findOrFail($kelas->id_p2);
-		$kelasP3 = AssesmentAccessP3::findOrFail($kelas->id_p3);
-		$kelasP4 = AssesmentAccessP4::findOrFail($kelas->id_p4);
+		if($kelas->status == 'BELUM SELESAI DINILAI' && $cu != 0){
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' periode ' .$periode. ' tidak bisa diubah karena sedang dalam proses penilaian BKCU Kalimantan'
+				]);
+		}else{
+			$kelasP1 = AssesmentAccessP1::findOrFail($kelas->id_p1);
+			$kelasP2 = AssesmentAccessP2::findOrFail($kelas->id_p2);
+			$kelasP3 = AssesmentAccessP3::findOrFail($kelas->id_p3);
+			$kelasP4 = AssesmentAccessP4::findOrFail($kelas->id_p4);
+	
+			$kelas->update($request->all());	
+			$kelasP1->update($request->p1);	
+			$kelasP2->update($request->p2);	
+			$kelasP3->update($request->p3);	
+			$kelasP4->update($request->p4);	
+	
+			if($request->status == 'BELUM DINILAI'){
+				NotificationHelper::self_assesment($kelas,'menambah');
+			}else if($request->status == 'SUDAH DINILAI'){
+				NotificationHelper::self_assesment($kelas,'memberikan penilaian pada');
+			}
 
-		$kelas->update($request->all());	
-		$kelasP1->update($request->p1);	
-		$kelasP2->update($request->p2);	
-		$kelasP3->update($request->p3);	
-		$kelasP4->update($request->p4);	
-
-		if($request->status == 'BELUM DINILAI'){
-			NotificationHelper::self_assesment($kelas,'menambah');
-		}else if($request->status == 'SUDAH DINILAI'){
-			NotificationHelper::self_assesment($kelas,'memberikan penilaian pada');
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' periode ' .$periode. ' berhasil diubah'
+				]);
 		}
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' periode ' .$periode. ' berhasil diubah'
-			]);
 	}
 
 	public function destroy($id)

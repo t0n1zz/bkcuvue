@@ -20,6 +20,10 @@ export default {
     return axios.get('/api/assesmentAccess/edit/' + id);
   },
 
+  editPenilaian: function( id ){
+    return axios.get('/api/assesmentAccess/editPenilaian/' + id);
+  },
+
   update: function ( id, form ){
     return axios.post('/api/assesmentAccess/update/' + id, form);
   },

@@ -10,14 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.3.2 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v332">Version 3.3.2<small class="text-muted"> / 27 Agustus 2020</small></a> </h5>
+                </div>
+
+                <div id="v331" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan peningkatan fungsi pemakaian pada beberapa bagian dan juga meningkatkan kecepatan dalam penyaluran update versi SIMO
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Peningkatan dalam kecepatan untuk menyalurkan update versi SIMO kepada para pengguna</li>
+                      <li>Peningkatan pada fitur upload data anggota cu</li>
+                      <li>Penambahan kategori pekerjaan di aktivis yaitu kolektor dan kelompok inti</li>
+                      <li>Penambahan informasi mutasi transaksi untuk simpanan dan pinjaman anggota cu pada form analisa klaim JALINAN</li>
+                      <li>Perubahan pada format surat untuk JALINAN</li>
+                      <li>Perbaikan pada bagian self assesment agar ketika BKCU melakukan penilaian maka CU tidak dapat melakukan pengubahan data lagi</li>
+                      <li>Perbaikan bug pada beberapa tempat</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.2 -->
+
 							<!-- Version 3.3.1 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v331">Version 3.3.1<small class="text-muted"> / 1 Juli 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v331">Version 3.3.1<small class="text-muted"> / 1 Juli 2020</small></a> </h5>
                 </div>
 
-                <div id="v331" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v331" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini fokus pada peningkatan pada pengelolaan data user dan peningkatan pada tampilan secara umum.
                     <br/><br/>

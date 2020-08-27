@@ -95,6 +95,8 @@
 						<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
 						<option value="8">Staf</option>
 						<option value="9">Kontrak</option>
+						<option value="10">Kolektor</option>
+						<option value="11">Kelompok Inti</option>
 					</select>
 
 					<!-- error message -->

@@ -34,7 +34,7 @@ class AnggotaProdukCuTransaksi extends BaseEloquent {
     ];
     
     protected $orderable = [
-        'anggota_produk_cu_id','saldo','tanggal'
+        'anggota_produk_cu_id','saldo','tanggal','created_at'
     ];
 
     public static function initialize()

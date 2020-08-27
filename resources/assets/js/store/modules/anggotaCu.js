@@ -11,11 +11,13 @@ export const anggotaCu = {
     dataS2: [],
     dataS3: [],
     dataProduk: [],//collection
+    dataProdukSaldo: [],//collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
     dataStat: '',
     dataProdukStat: '',
+    dataProdukSaldoStat: '',
     dataStatS: '',
     dataStatS2: '',
     dataStatS3: '',
@@ -35,11 +37,13 @@ export const anggotaCu = {
     dataS2: state => state.dataS2,
     dataS3: state => state.dataS3,
     dataProduk: state => state.dataProduk,
+    dataProdukSaldo: state => state.dataProdukSaldo,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataProdukStat: state => state.dataProdukStat,
+    dataProdukSaldoStat: state => state.dataProdukSaldoStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
     dataStatS3: state => state.dataStatS3,
@@ -176,6 +180,20 @@ export const anggotaCu = {
         .catch( error => {
           commit('setDataProduk', error.response);
           commit('setDataProdukStat', 'fail');
+        });
+    },
+
+    indexProdukSaldo( { commit }, [p, id] ){
+      commit('setDataProdukSaldoStat', 'loading');
+      
+      AnggotaCuAPI.indexProdukSaldo( p, id )
+        .then( function( response ){
+          commit('setDataProdukSaldo', response.data.model );
+          commit('setDataProdukSaldoStat', 'success');
+        })
+        .catch( error => {
+          commit('setDataProdukSaldo', error.response);
+          commit('setDataProdukSaldoStat', 'fail');
         });
     },
 
@@ -623,6 +641,10 @@ export const anggotaCu = {
     resetDataProduk( {commit} ){
       commit('setDataProduk', []);
       commit('setDataProdukStat', '');
+    },
+    resetDataProdukSaldo( {commit} ){
+      commit('setDataProdukSaldo', []);
+      commit('setDataProdukSaldoStat', '');
     }
   },
 
@@ -633,6 +655,9 @@ export const anggotaCu = {
     },
     setDataProduk ( state, data ){
       state.dataProduk = data;
+    },
+    setDataProdukSaldo ( state, data ){
+      state.dataProdukSaldo = data;
     },
     setDataS ( state, data ){
       state.dataS = data;
@@ -657,6 +682,9 @@ export const anggotaCu = {
     },
     setDataProdukStat( state, status ){
       state.dataProdukStat = status;
+    },
+    setDataProdukSaldoStat( state, status ){
+      state.dataProdukSaldoStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;

@@ -20,7 +20,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
+class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading, ShouldQueue
 {
 
 
@@ -134,7 +134,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                 }
             }
             // no old data exist
-            if(!$anggotaCu && !$anggotaCuDraft){
+            else if(!$anggotaCu && !$anggotaCuDraft){
                 $anggotaCuDraft = AnggotaCuDraft::create([
                     'name' => array_key_exists('nama', $row) ? $row['nama'] : '',
                     'id_provinces' => $provinces,
@@ -183,10 +183,10 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
         }
     }
     
-    public function batchSize(): int
-    {
-        return 1000;
-    }
+    // public function batchSize(): int
+    // {
+    //     return 5000;
+    // }
     
     public function chunkSize(): int
     {

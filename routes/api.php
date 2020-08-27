@@ -382,6 +382,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/assesmentAccess/cariData/{cu}/{periode}', 
     'AssesmentAccessController@cariData');
     Route::get('/assesmentAccess/edit/{id}', 'AssesmentAccessController@edit');
+    Route::get('/assesmentAccess/editPenilaian/{id}', 'AssesmentAccessController@editPenilaian');
     Route::group(['middleware' => ['permission:index_assesment_access']], function () {
         Route::get('/assesmentAccess', 'AssesmentAccessController@index');
         Route::get('/assesmentAccess/indexCu/{id}', 'AssesmentAccessController@indexCu');
@@ -479,14 +480,15 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     Route::get('/anggotaCu/count', 'AnggotaCuController@count');
     Route::get('/anggotaCu/cariDataKTP/{nik}', 'AnggotaCuController@cariDataKTP');
     Route::get('/anggotaCu/cariDataBA/{cu}/{noba}', 'AnggotaCuController@cariDataBA');
+    Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaProdukCuController@index');
+    Route::get('/anggotaCu/indexProdukSaldo/{id}', 'AnggotaProdukCuController@indexSaldo'); 
     Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
         Route::get('/anggotaCu', 'AnggotaCuController@index');
         Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
         Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
         Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
         Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
-        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal'); 
-        Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaProdukCuController@index'); 
+        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
     });
     Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
         Route::get('/anggotaCu/create', 'AnggotaCuController@create');

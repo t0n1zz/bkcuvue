@@ -741,7 +741,7 @@ export default {
         this.titleDesc = "Mengubah self assesment ACCESS branding";
         this.titleIcon = "icon-pencil5";
       } else if (this.$route.meta.mode == "penilaianBkcu") {
-        this.$store.dispatch(this.kelas + "/edit", this.$route.params.id);
+        this.$store.dispatch(this.kelas + "/editPenilaian", this.$route.params.id);
         this.title = "Penilaian self assesment ACCESS branding";
         this.titleDesc = "Penilaian self assesment ACCESS branding";
         this.titleIcon = "icon-law";

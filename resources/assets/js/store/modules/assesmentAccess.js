@@ -132,6 +132,24 @@ export const assesmentAccess = {
         });
     },
 
+    editPenilaian( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      AssesmentAccessAPI.editPenilaian( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // update data
     update( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');

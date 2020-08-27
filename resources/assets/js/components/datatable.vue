@@ -3,7 +3,7 @@
 		<table class="table table-striped">
 			<thead class="bg-primary">
 				<tr class="text-nowrap">
-					<th v-for="item in columnData">
+					<th v-for="(item, index) in columnData" :key="index">
 						<span v-html="item.title"></span>  
 					</th>
 				</tr>
@@ -36,6 +36,13 @@
 					<td :colspan="columnData.length">
 						Oops.. Terjadi kesalahan, silahkan coba lagi.
 					</td>
+				</tr>
+			</tbody>
+
+			<!-- error -->
+			<tbody v-else>
+				<tr>
+					<td :colspan="columnData.length">-</td>
 				</tr>
 			</tbody>
 

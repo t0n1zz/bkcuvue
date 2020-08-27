@@ -31,7 +31,7 @@ class PublicController extends Controller
 
         $artikelsCUNew = Artikel::with('kategori','penulis','Cu')->where('id_cu','!=',0)->where('terbitkan',1)->orderBy('created_at','desc')->take(15)->get()->chunk(5);
 
-        $cus = Cu::with('Provinces')->withCount('hasTp')->inRandomOrder()->take(10)->get();
+        $cus = Cu::with('Provinces')->withCount('hasTp')->inRandomOrder()->take(6)->get();
 
         // seo
         SEO::setTitle('Home - Puskopdit BKCU Kalimantan');

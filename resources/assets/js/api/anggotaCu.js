@@ -28,6 +28,10 @@ export default {
     return axios.get('/api/anggotaCu/indexProduk/' + id + '/cu/' + cu);
   },
 
+  indexProdukSaldo: function( p, id ){
+    return axios.get('/api/anggotaCu/indexProdukSaldo/' + id, {params: p});
+  },
+
   detail: function( id ){
     return axios.get('/api/anggotaCu/detail/' + id);
   },

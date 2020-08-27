@@ -72,7 +72,7 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($cu, $tp)
 	{
-		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_not_keluar', function($query) use ($cu, $tp){ 
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
 			if($tp != 'semua'){
 				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar'); 
 			}else{
@@ -164,22 +164,24 @@ class AnggotaCuController extends Controller{
 
 	public function formatCuQuery($table_data, $cu, $tp){
 		foreach($table_data as $t){
-			$t->nik = $t->nik ? $t->nik . "​ " : '';
-			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
 			if($t->anggota_cu_cu_not_keluar){
-				foreach($t->anggota_cu_cu_not_keluar as $tt){
-					if($tt->cu_id == $cu){
-						$t->anggota_cu_cu_not_keluar[0] = $tt;
+				$t->nik = $t->nik ? $t->nik . "​ " : '';
+				$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+				if($t->anggota_cu_cu_not_keluar){
+					foreach($t->anggota_cu_cu_not_keluar as $tt){
+						if($tt->cu_id == $cu){
+							$t->anggota_cu_cu_not_keluar[0] = $tt;
+						}
 					}
 				}
-			}
-			if($tp != 'semua'){
-				$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
-				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
-			}else{
-				$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name : '';
-				$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_not_keluar[0]->no_ba;
-				$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+				if($tp != 'semua'){
+					$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
+					$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+				}else{
+					$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name : '';
+					$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_not_keluar[0]->no_ba;
+					$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+				}
 			}
 		};
 
@@ -188,22 +190,24 @@ class AnggotaCuController extends Controller{
 
 	public function formatCuKeluarQuery($table_data, $cu, $tp){
 		foreach($table_data as $t){
-			$t->nik = $t->nik ? $t->nik . "​ " : '';
-			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
 			if($t->anggota_cu_cu_keluar){
-				foreach($t->anggota_cu_cu_keluar as $tt){
-					if($tt->cu_id == $cu){
-						$t->anggota_cu_cu_keluar[0] = $tt;
+				$t->nik = $t->nik ? $t->nik . "​ " : '';
+				$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+				if($t->anggota_cu_cu_keluar){
+					foreach($t->anggota_cu_cu_keluar as $tt){
+						if($tt->cu_id == $cu){
+							$t->anggota_cu_cu_keluar[0] = $tt;
+						}
 					}
 				}
-			}
-			if($tp != 'semua'){
-				$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
-				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
-			}else{
-				$tp_name = $t->anggota_cu_cu_keluar[0]->tp ? $t->anggota_cu_cu_keluar[0]->tp->name : '';
-				$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_not_keluar[0]->no_ba;
-				$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
+				if($tp != 'semua'){
+					$t->no_ba = $t->anggota_cu_cu_keluar[0]->no_ba . "​ ";
+					$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
+				}else{
+					$tp_name = $t->anggota_cu_cu_keluar[0]->tp ? $t->anggota_cu_cu_keluar[0]->tp->name : '';
+					$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_keluar[0]->no_ba;
+					$t->tanggal_masuk = $t->anggota_cu_cu_keluar[0]->tanggal_masuk;
+				}
 			}
 		};
 
@@ -331,32 +335,6 @@ class AnggotaCuController extends Controller{
 			]);	
 	}
 
-	public function storeProduk(Request $request, $id)
-	{
-		$kelas = AnggotaProdukCu::create([
-			'anggota_cu_id' => $id,
-			'produk_cu_id' => $request->produk_cu['id'],
-			'saldo' => $request->saldo,
-			'no_rek' => $request->no_rek,
-			'tanggal' => $request->tanggal,
-			'tanggal_target' => $request->tanggal_target,
-			'lama_pinjaman' => $request->lama_pinjaman,
-			'tujuan' => $request->tujuan,
-		]);
-
-		AnggotaProdukCuTransaksi::create([
-			'anggota_produk_cu_id' => $kelas->id,
-			'saldo' => $request->saldo,
-			'tanggal' => $request->tanggal,
-		]);
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => 'Produk anggota CU berhasil ditambah'
-			]);	
-	}
-
 	public function storeKlaim(Request $request, $id)
 	{
 		AnggotaCuKlaim::create($request->all());
@@ -437,6 +415,8 @@ class AnggotaCuController extends Controller{
 			'keterangan_keluar' => $request->keterangan_keluar,
 		]);	
 
+		AnggotaCu::flushCache();
+
 		return response()
 			->json([
 				'saved' => true,
@@ -453,6 +433,8 @@ class AnggotaCuController extends Controller{
 			'keterangan_keluar' => '',
 		]);	
 
+		AnggotaCu::flushCache();
+
 		return response()
 			->json([
 				'saved' => true,
@@ -466,39 +448,12 @@ class AnggotaCuController extends Controller{
 
 		$kelas->update($request->all());	
 
+		AnggotaCu::flushCache();
+
 		return response()
 			->json([
 				'saved' => true,
 				'message' => 'Keanggotaan CU berhasil diubah'
-			]);
-	}
-
-	public function updateProduk(Request $request, $id)
-	{
-		$kelas = AnggotaProdukCu::findOrFail($id);
-
-		$selisih_saldo = $request->saldo - $kelas->saldo;
-
-		$kelas->update([
-			'produk_cu_id' => $request->produk_cu['id'],
-			'saldo' => $request->saldo,
-			'no_rek' => $request->no_rek,
-			'tanggal' => $request->tanggal,
-			'tanggal_target' => $request->tanggal_target,
-			'lama_pinjaman' => $request->lama_pinjaman,
-			'tujuan' => $request->tujuan,
-		]);	
-
-		AnggotaProdukCuTransaksi::create([
-			'anggota_produk_cu_id' => $kelas->id,
-			'saldo' => $selisih_saldo,
-			'tanggal' => $kelas->updated_at,
-		]);
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => 'Produk anggota CU berhasil diubah'
 			]);
 	}
 
@@ -520,6 +475,8 @@ class AnggotaCuController extends Controller{
 		$kelas = AnggotaCuKlaim::findOrFail($id);
 
 		$kelas->update($request->all());	
+
+		AnggotaCu::flushCache();
 
 		return response()
 			->json([
@@ -600,29 +557,36 @@ class AnggotaCuController extends Controller{
 	{
 		$kelas = AnggotaCu::findOrFail($id);
 		$kelasAnggotaCU = AnggotaCuCu::where('anggota_cu_id',$id)->get();
-
 		$name = $kelas->name;
 
-		if($kelasAnggotaCU->count() > 1){
-			AnggotaCuCu::where('anggota_cu_id', $id)->where('cu_id',$cu)->delete();
-			AnggotaProdukCu::with('produk_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
-				$query->where('id_cu',$cu); 
-			})->delete();
-		}else{
-			if(!empty($kelas->gambar)){
-				File::delete($this->imagepath . $kelas->gambar . '.jpg');
-				File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
-			}
-			AnggotaCuCu::where('anggota_cu_id', $id)->delete();
-			AnggotaProdukCu::where('anggota_cu_id', $id)->delete();
-			$kelas->delete();
-		}
-
-		return response()
+		if($kelas->tanggal_meninggal != null || $kelas->tanggal_cacat != null || $kelasAnggotaCU->tanggal_keluar != null){
+			return response()
 			->json([
-				'deleted' => true,
-				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+				'deleted' => false,
+				'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah pernah mengajukan klaim JALINAN atau sudah dikeluarkan. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
 			]);
+		}else{
+			if($kelasAnggotaCU->count() > 1){
+				AnggotaCuCu::where('anggota_cu_id', $id)->where('cu_id',$cu)->delete();
+				AnggotaProdukCu::with('produk_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
+					$query->where('id_cu',$cu); 
+				})->delete();
+			}else{
+				if(!empty($kelas->gambar)){
+					File::delete($this->imagepath . $kelas->gambar . '.jpg');
+					File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+				}
+				AnggotaCuCu::where('anggota_cu_id', $id)->delete();
+				AnggotaProdukCu::where('anggota_cu_id', $id)->delete();
+				$kelas->delete();
+			}
+
+			return response()
+				->json([
+					'deleted' => true,
+					'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+				]);
+		}
 	}
 
 	public function destroyCu($id)
@@ -634,18 +598,6 @@ class AnggotaCuController extends Controller{
 			->json([
 				'deleted' => true,
 				'message' => 'Keanggotaan CU berhasil dihapus'
-			]);
-	}
-
-	public function destroyProduk($id)
-	{
-		$kelas = AnggotaProdukCu::findOrFail($id);
-		$kelas->delete();
-
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => 'Produk anggota CU berhasil dihapus'
 			]);
 	}
 

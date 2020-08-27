@@ -1,6 +1,10 @@
 <template>
   <div>
 
+    <div class="alert alert-warning alert-styled-left cursor-pointer" @click.prevent="fetch(query)">
+      <span class="font-weight-semibold">Perhatian!</span> Dikarenakan proses pengelolaan data hasil upload yang memakan waktu lebih lama, maka mohon menunggu dan mencoba menekan kotak dialog ini dalam beberapa saat kedepan untuk memeriksa apakah proses upload data sudah selesai dan dapat dilihat di tabel dibawah.
+    </div>
+
     <!-- main panel -->
     <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :excelDownloadUrl="excelDownloadUrl" :itemDataStat="itemDataStat" @fetch="fetch">
 

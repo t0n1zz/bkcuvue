@@ -140,7 +140,7 @@ class AnggotaProdukCuController extends Controller{
 	{
 		$kelas = AnggotaProdukCu::findOrFail($id);
 
-		$selisih_saldo = $request->saldo - $kelas->saldo;
+		// $selisih_saldo = $request->saldo - $kelas->saldo;
 
 		$kelas->update([
 			'produk_cu_id' => $request->produk_cu['id'],
@@ -154,7 +154,7 @@ class AnggotaProdukCuController extends Controller{
 
 		AnggotaProdukCuTransaksi::create([
 			'anggota_produk_cu_id' => $kelas->id,
-			'saldo' => $selisih_saldo,
+			'saldo' => $request->saldo,
 			'tanggal' => $kelas->updated_at,
 		]);
 

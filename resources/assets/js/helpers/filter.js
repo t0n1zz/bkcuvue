@@ -55,6 +55,10 @@ Vue.filter('checkTingkatAktivis', function(value){
 		return 'Staf';
 	} else if(value == 9) {
 		return 'Kontrak';
+	} else if(value == 10) {
+		return 'Kolektor';
+	} else if(value == 11) {
+		return 'Kelompok Inti';
 	} else {
 		return '-';
 	}

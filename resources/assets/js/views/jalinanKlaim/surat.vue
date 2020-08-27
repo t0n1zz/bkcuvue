@@ -135,7 +135,10 @@
 
               <p class="mt-2" style="text-indent: 30px; font-size: 18px;">Demikian surat ini disampaikan, atas perhatian dan kerjasama yang terjalin selama ini, kami ucapkan terima kasih</p>
             </div>
-            <div class="col-6">
+            <div class="col-6 text-right">
+              &nbsp;
+            </div>
+            <div class="col-6 text-right">
               <ul class="list list-unstyled mb-0">
                 <li>Mengetahui</li>
                 <li>General Manager,</li>
@@ -148,7 +151,7 @@
                 <li>Nim.19781217 200408 1 011</li>
               </ul>
             </div> 
-            <div class="col-6 text-right">
+            <!-- <div class="col-6 text-right">
               <ul class="list list-unstyled mb-0">
                 <li>&nbsp;</li>
                 <li>Manajer Pelayanan Keuangan,</li>
@@ -160,7 +163,7 @@
                 <li><b>Dominikus Dakota H., S.Hut</b></li>
                 <li>Nim.19790521 200408 1 010</li>
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- <div class="col-12 mt-3"><img :src="'/files/footer.jpg'" class="img-fluid wmin-sm" /></div> -->

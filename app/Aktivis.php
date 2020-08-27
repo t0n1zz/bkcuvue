@@ -53,7 +53,7 @@ class Aktivis extends BaseEloquent {
     }
 
     public function pendidikan_tertinggi(){
-        return $this->hasOne('App\AktivisPendidikan','id_aktivis','id')->oldest();
+        return $this->hasOne('App\AktivisPendidikan','id_aktivis','id')->latest('mulai');
     }
 
     public function pekerjaan(){

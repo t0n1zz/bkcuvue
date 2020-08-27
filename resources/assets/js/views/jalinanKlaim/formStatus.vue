@@ -11,7 +11,7 @@
           <a href="#" class="nav-link" :class="{'active' : tabName == 'verifikator'}" @click.prevent="changeTab('verifikator')"><i class="icon-file-check mr-2"></i> Verifikator</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i class="icon-stack mr-2"></i> Dokumen</a>
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i clafdss="icon-stack mr-2"></i> Dokumen</a>
         </li>
       </ul>
     </div>
@@ -119,44 +119,199 @@
 
           <!-- data produk -->
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header bg-white">
-                <h5 class="card-title">Daftar Produk</h5>
+            <!-- produk list -->
+            <h5>Daftar Produk 
+              <br/><small class="text-muted" v-if="itemData.length > 0">Tekan kotak dibawah untuk melihat transaksi masing-masing produk</small>
+            </h5>
+            <div class="row" v-if="itemDataStat == 'success' && itemData.length > 0">
+              <div class="col-sm-6 col-xl-3 cursor-pointer" v-for="(item, index) in itemData" :key="index" @click.prevent="fetchProdukSaldo(item)">
+                <div class="card card-body has-bg-image" :class="{'bg-success-400': item.produk_cu.tipe == 'Simpanan Pokok' || item.produk_cu.tipe == 'Simpanan Wajib' || item.produk_cu.tipe == 'Simpanan Non Saham','bg-indigo-400': item.produk_cu.tipe == 'Pinjaman Kapitalisasi'|| item.produk_cu.tipe == 'Pinjaman Umum' || item.produk_cu.tipe == 'Pinjaman Produktif'}" v-if="item.produk_cu">
+                  <div class="media mb-2">
+                    <div class="media-body">
+                      <h6 class="font-weight-semibold mb-0"><check-value :value="item.saldo" valueType="currency"></check-value></h6>
+                      <span class="opacity-75"><b>No. Rek:</b> {{ item.no_rek }}</span>
+                      <br/>
+                      <span class="opacity-75"><b>Usia Saat membuka:</b> 
+                        <span v-if="item.tanggal" v-html="$options.filters.ageDiff(item.tanggal,selectedData.anggota_cu.tanggal_lahir)">
+                        </span>
+                        <span v-else>-</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="progress bg-blue mb-2" style="height: 0.125rem;">
+                    <div class="progress-bar bg-white" style="width: 100%">
+                      <span class="sr-only">100% Complete</span>
+                    </div>
+                  </div>  
+                  <div>
+                    <b>Jenis:</b> 
+                    <check-value :value="item.produk_cu.tipe" v-if="item.produk_cu"></check-value>
+                    <span v-else>-</span> 
+                    <br/>
+                    <b>Nama:</b> 
+                    <check-value :value="item.produk_cu.name" v-if="item.produk_cu"></check-value>
+                    <span v-else>-</span>
+                    <span v-if="item.produk_cu.tipe == 'Pinjaman Kapitalisasi'|| item.produk_cu.tipe == 'Pinjaman Umum' || item.produk_cu.tipe == 'Pinjaman Produktif'">
+                      <br/>  
+                      <b>Lama Pinjaman (Bulan):</b> 
+                      <check-value :value="item.lama_pinjaman"></check-value>
+                    </span>
+                    <span v-else>
+                      <br/>
+                      &nbsp;
+                    </span>
+                  </div>
+                </div>
               </div>
-              <data-table :items="itemData" :columnData="columnData" :itemDataStat="itemDataStat">
+            </div>
+            <div class="card card-body" v-else>
+              Belum terdapat produk pada anggota ini...
+            </div>
+
+            <!-- table transaksi -->
+            <div class="card" v-if="itemDataSaldoStat != ''">
+              <div class="card-header bg-white">
+                <h5 class="card-title">Tabel Transaksi {{ selectedProduk.produk_cu.name }} dengan no rek: {{ selectedProduk.no_rek  }}</h5>
+              </div>
+
+              <!-- table -->
+              <data-table :items="itemDataSaldo.data" :columnData="columnDataSaldo" :itemDataStat="itemDataSaldoStat">
                 <template slot="item-desktop" slot-scope="props">
                   <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
                     <td>{{ props.index + 1 }}</td>
                     <td>
-                      <check-value :value="props.item.no_rek"></check-value>
-                    </td>
-                    <td>
-                      <check-value :value="props.item.produk_cu.name" v-if="props.item.produk_cu"></check-value>
-                      <span v-else>-</span>
-                    </td>
-                    <td>
-                      <check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
-                      <span v-else>-</span>
-                    </td>
-                    <td>
                       <check-value :value="props.item.saldo" valueType="currency"></check-value>
                     </td>
                     <td>
-                      <check-value :value="props.item.lama_pinjaman"></check-value>
-                    </td>
-                    <td>
-                      <span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
-                      <span v-else>-</span>
-                    </td>
-                    <td>
-                      <span v-if="props.item.tanggal" v-html="$options.filters.ageDiff(props.item.tanggal,selectedData.anggota_cu.tanggal_lahir)">
-                      </span>
+                      <span v-if="props.item.tanggal" v-html="$options.filters.dateTime(props.item.created_at)"></span>
                       <span v-else>-</span>
                     </td>
                   </tr>
                 </template>	
               </data-table>
+
+              <!-- pagination -->
+              <div class="card-footer">
+                <div class="row pre-scrollable" v-if="itemDataSaldoStat != ''">
+
+                  <!-- entri info -->
+                  <div class="col-md-4 pt-2">
+                      <!-- total entri note success-->
+                      <!-- desktop -->
+                      <div v-if="itemDataSaldoStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemDataSaldo.from}} -
+                        {{itemDataSaldo.to}} entri dari {{itemDataSaldo.total}} entri
+                      </div>
+
+                      <!-- mobile -->
+                      <div v-if="itemDataSaldoStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemDataSaldo.from}} -
+                        {{itemDataSaldo.to}} entri dari {{itemDataSaldo.total}} entri
+                      </div>
+
+                      <!-- total entri note loading -->
+                      <div v-else>Menampilkan
+                        <i class="icon-spinner2 spinner"></i> -
+                        <i class="icon-spinner2 spinner"></i> entri dari
+                        <i class="icon-spinner2 spinner"></i> entri
+                      </div>
+
+                  </div>
+
+                  <!-- pagination -->
+                  <!-- desktop -->
+                  <div class="col-md-8 pt-2 text-right d-none d-sm-block">
+                    <!-- pagination success-->
+                    <div class="btn-group" v-if="itemDataSaldoStat === 'success'">
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="goToPageSaldo(1)">
+                          <i class="icon-backward2"></i>
+                      </button>
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="prevPageSaldo">
+                          <i class="icon-arrow-left5"></i>
+                      </button>
+                      <button type="button" href="#" class="btn" v-for="(n, index) in pagesSaldo" :key="index" :class="{'btn-primary' : querySaldo.page == n, 'btn-light' : querySaldo.page != n}"  @click.prevent="goToPageSaldo(n)">
+                          {{n}}
+                      </button>
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="nextPageSaldo">
+                          <i class="icon-arrow-right5"></i>
+                      </button>
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="goToPageSaldo(itemDataSaldo.last_page)">
+                          <i class="icon-forward3"></i>
+                      </button>
+                    </div>
+                    
+                    <!-- pagination loading-->
+                    <div class="btn-group" v-else>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-backward2"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-arrow-left5"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-spinner2 spinner"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-arrow-right5"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-forward3"></i>
+                      </button>
+                      
+                    </div>
+                  </div>
+
+                  <!-- mobile -->
+                  <div class="col-md-12 pt-2 text-center d-block d-sm-none">
+
+                    <!-- pagination success-->
+                    <div class="btn-group" v-if="itemDataSaldoStat === 'success'">
+                      <button type="button" href="#" class="btn" v-for="(n, index) in pagesSaldo" :key="index" :class="{'btn-primary' : querySaldo.page == n, 'btn-light' : querySaldo.page != n}"  @click.prevent="goToPageSaldo(n)">
+                          {{n}}
+                      </button>
+                    </div>
+
+                    <br/>
+
+                    <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="goToPageSaldo(1)">
+                          <i class="icon-backward2"></i>
+                      </button>
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="prevPageSaldo">
+                          <i class="icon-arrow-left5"></i>
+                      </button>
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="nextPageSaldo">
+                          <i class="icon-arrow-right5"></i>
+                      </button>
+                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="goToPageSaldo(itemDataSaldo.last_page)">
+                          <i class="icon-forward3"></i>
+                      </button>
+                    </div>
+                    
+                    <!-- pagination loading-->
+                    <div class="btn-group" v-else>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-backward2"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-arrow-left5"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-spinner2 spinner"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-arrow-right5"></i>
+                      </button>
+                      <button href="#" class="btn btn-light disabled">
+                          <i class="icon-forward3"></i>
+                      </button>
+                      
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
             </div>
+
           </div>
 
           <div class="col-md-12"><hr/></div>
@@ -664,21 +819,26 @@
 					},
         },
         selectedItem: {},
-        columnData:[
+        selectedProduk: {},
+        pagesSaldo: [],
+        querySaldo: {
+          order_column: "created_at",
+          order_direction: "desc",
+          filter_match: "and",
+          limit: 10,
+          page: 1
+        },
+        columnDataSaldo:[
 					{ title: 'No.' },
-					{ title: 'No. Rek' },
-					{ title: 'Nama' },
-					{ title: 'Jenis' },
-					{ title: 'Saldo Awal' },
-					{ title: 'Lama Pinjaman (Bulan)' },
-					{ title: 'Tgl. Buat' },
-					{ title: 'Usia Saat Membuka' },
+					{ title: 'Saldo' },
+					{ title: 'Tgl. Transaksi' },
 				],
         penjelasanStatus: '',
 				submited: false,
 			}
 		},
 		created() {
+      this.$store.dispatch('anggotaCu/resetDataProdukSaldo'); 
       this.selectedData = Object.assign({}, this.selected);
 			this.formStatus.status = this.selectedData.status_klaim;
 			this.formStatus.keterangan_klaim = this.selectedData.keterangan_klaim;
@@ -691,6 +851,11 @@
       this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.selectedData.anggota_cu_cu.cu_id]); 
 		},
 		watch: {
+      itemDataSaldoStat(value){
+        if(value == 'success'){
+          this.calculatePagination();
+        }
+      }
 		},
 		methods: {
       selectedRow(item) {
@@ -717,6 +882,45 @@
         this.$store.dispatch('jalinanKlaim/getVerifikator',[
           this.selectedData.verifikasi_pengurus,this.selectedData.verifikasi_pengawas,this.selectedData.verifikasi_manajemen
         ]);
+      },
+      fetchProdukSaldo(value){
+        this.selectedProduk = value;
+        this.$store.dispatch('anggotaCu/indexProdukSaldo',[this.querySaldo, value.id]);
+      },
+      calculatePagination() {
+        var i = 0;
+        var startPage = 0;
+        var endPage = 0;
+        var diffPage = 0;
+
+        startPage = this.querySaldo.page < 3 ? 1 : this.querySaldo.page - 1;
+        endPage = 4 + startPage;
+        endPage = this.itemDataSaldo.last_page < endPage ? this.itemDataSaldo.last_page : endPage;
+        diffPage = startPage - endPage + 4;
+        startPage -= startPage - diffPage > 0 ? diffPage : 0;
+        this.pagesSaldo.length = 0;
+
+        for (i = startPage; i <= endPage; i++) {
+          this.pagesSaldo.push(i);
+        }
+      },
+      prevPageSaldo() {
+        if (this.itemDataSaldo.prev_page_url) {
+          this.querySaldo.page = Number(this.querySaldo.page) - 1;
+          this.fetchProdukSaldo(this.selectedProduk);
+        }
+      },
+      goToPageSaldo(value) {
+        if (this.querySaldo.page != value) {
+          this.querySaldo.page = value;
+          this.fetchProdukSaldo(this.selectedProduk);
+        }
+      },
+      nextPageSaldo() {
+        if (this.itemDataSaldo.next_page_url) {
+          this.querySaldo.page = Number(this.querySaldo.page) + 1;
+          this.fetchProdukSaldo(this.selectedProduk);
+        }
       },
       save(){
         if(this.formStatus != '1'){
@@ -752,7 +956,9 @@
       }),
       ...mapGetters('anggotaCu',{
 				itemData: 'dataProduk',
+				itemDataSaldo: 'dataProdukSaldo',
 				itemDataStat: 'dataProdukStat',
+				itemDataSaldoStat: 'dataProdukSaldoStat',
       }),
       ...mapGetters('user', {
 				modelVeriPilihPengurus: "dataS1",

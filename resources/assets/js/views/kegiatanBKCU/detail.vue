@@ -308,8 +308,8 @@
 											Umum
 										</a></li>
 
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'materi'}" @click.prevent="changeTab('materi')"><i class="icon-files-empty mr-2"></i>
-											Materi
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'materi'}" @click.prevent="changeTab('materi')"><i class="icon-folder-download2 mr-2"></i>
+											Unduhan
 										</a></li>
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'tugas'}" @click.prevent="changeTab('tugas')"><i class="icon-paste mr-2"></i>
@@ -426,15 +426,15 @@
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-show="tabName == 'materi'">
 									<!-- materi table -->
-									<data-viewer :title="'Materi'" :itemData="itemDataMateri" :columnData="columnDataMateri" :itemDataStat="itemDataMateriStat" :query="queryMateri" @fetch="fetchMateri"  :isNoExcel="'true'" :isDasar="'true'" :isDisable="isDisableTable" :dataview="'grid'">
+									<data-viewer :title="'Unduhan'" :itemData="itemDataMateri" :columnData="columnDataMateri" :itemDataStat="itemDataMateriStat" :query="queryMateri" @fetch="fetchMateri"  :isNoExcel="'true'" :isDasar="'true'" :isDisable="isDisableTable" :dataview="'grid'">
 
 										<!-- button desktop -->
 										<template slot="button-desktop" v-if="tipeUser != 'peserta'">
-											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah Materi</button>
+											<button type="button" class="btn btn-light" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah Unduhan</button>
 										</template>	
 
 										<template slot="button-mobile" v-if="tipeUser != 'peserta'">
-											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah Materi</button>
+											<button type="button" class="btn btn-light btn-block" @click.prevent="modalOpen('tambahMateri')"><i class="icon-plus3"></i> Tambah Unduhan</button>
 										</template>	
 
 										<template slot="item-mobile" slot-scope="props">
