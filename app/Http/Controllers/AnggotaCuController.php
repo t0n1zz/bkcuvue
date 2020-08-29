@@ -559,26 +559,43 @@ class AnggotaCuController extends Controller{
 		$kelasAnggotaCU = AnggotaCuCu::where('anggota_cu_id',$id)->get();
 		$name = $kelas->name;
 
-		if($kelas->tanggal_meninggal != null || $kelas->tanggal_cacat != null || $kelasAnggotaCU->tanggal_keluar != null){
+		if($kelas->tanggal_meninggal != null || $kelas->tanggal_cacat != null){
 			return response()
 			->json([
 				'deleted' => false,
-				'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah pernah mengajukan klaim JALINAN atau sudah dikeluarkan. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
+				'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah pernah mengajukan klaim JALINAN. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
 			]);
 		}else{
 			if($kelasAnggotaCU->count() > 1){
-				AnggotaCuCu::where('anggota_cu_id', $id)->where('cu_id',$cu)->delete();
-				AnggotaProdukCu::with('produk_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
-					$query->where('id_cu',$cu); 
-				})->delete();
-			}else{
-				if(!empty($kelas->gambar)){
-					File::delete($this->imagepath . $kelas->gambar . '.jpg');
-					File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+				$kelasAnggotaCUSingle = AnggotaCuCu::where('anggota_cu_id', $id)->where('cu_id',$cu)->first();
+				if($kelasAnggotaCUSingle->tanggal_keluar != null){
+					return response()
+					->json([
+						'deleted' => false,
+						'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah dikeluarkan. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
+					]);
+				}else{
+					$kelasAnggotaCUSingle->delete();
+					AnggotaProdukCu::with('produk_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
+						$query->where('id_cu',$cu); 
+					})->delete();
 				}
-				AnggotaCuCu::where('anggota_cu_id', $id)->delete();
-				AnggotaProdukCu::where('anggota_cu_id', $id)->delete();
-				$kelas->delete();
+			}else{
+				if($kelasAnggotaCU[0]->tanggal_keluar != null){
+					return response()
+					->json([
+						'deleted' => false,
+						'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah dikeluarkan. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
+					]);
+				}else{
+					if(!empty($kelas->gambar)){
+						File::delete($this->imagepath . $kelas->gambar . '.jpg');
+						File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+					}
+					$kelas->delete();
+					$kelasAnggotaCU[0]->delete();
+					AnggotaProdukCu::where('anggota_cu_id', $id)->delete();
+				}
 			}
 
 			return response()

@@ -73,14 +73,8 @@
 						Tgl. Mulai:</h6>
 
 					<!-- input -->
-					<cleave 
-						name="mulai"
-						v-model="form.mulai" 
-						class="form-control" 
-						:raw="false" 
-						:options="cleaveOption.date" 
-						placeholder="Silahkan masukkan tgl. mulai"
-						v-validate="'required'" data-vv-as="Tgl. mulai organisasi"></cleave>
+					<date-picker @dateSelected="form.mulai = $event" :defaultDate="form.mulai"></date-picker>
+					<input v-model="form.mulai" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai organisasi"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
