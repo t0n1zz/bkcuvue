@@ -300,7 +300,7 @@ class AnggotaCuController extends Controller{
 			$this->syncCu($request, $kelas);
 			// $this->syncProdukCu($request, $kelas);
 
-			if($request->statusNIK == 'tidak'){
+			if($request->nik == 'AUTO'){
 				$this->updateSystemNIK($nik);
 			}
 

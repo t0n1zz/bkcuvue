@@ -116,6 +116,8 @@ class NotificationHelper{
 	{
 		$users = User::permission(['index_diklat_bkcu'])->whereIn('id_cu', $id_cus)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 
+
+
 		Notification::send($users, new Notif(
 			'diklatBKCU',
 			$kegiatan_id,

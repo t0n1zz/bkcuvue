@@ -20,7 +20,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading, ShouldQueue
+class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
 {
 
 
@@ -31,8 +31,8 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
         $agama = array_key_exists('agama', $row) ? strtoupper($row['agama']) : '';
         $ktp = array_key_exists('ktp', $row)? preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']) : '';
         $no_ba = array_key_exists('no_ba', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['no_ba']) : '';
-        $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
-        $tp = Tp::where('id_cu', $cu->id)->where('no_tp', $row['kode_tp'])->select('id','id_cu','no_tp')->first();
+        $cu = Cu::where('no_ba', (int)$row['no_ba_cu'])->select('id','no_ba')->first();
+        $tp = Tp::where('id_cu', $cu->id)->where('no_tp', (int)$row['kode_tp'])->select('id','id_cu','no_tp')->first();
 
         // check gender
         if($gender == 'L'){
@@ -124,7 +124,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
                 // no old no_ba exist
                 if(!$anggotaCuCu){
                     AnggotaCuCuDraft::create([
-                        'anggota_cu_draft_id' => $anggotaCu->id,
+                        'anggota_cu_id' => $anggotaCu->id,
                         'cu_id' => $cu->id,
                         'tp_id' => $tp->id,
                         'no_ba' => $no_ba,
@@ -183,10 +183,10 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithChunkReading,
         }
     }
     
-    // public function batchSize(): int
-    // {
-    //     return 5000;
-    // }
+    public function batchSize(): int
+    {
+        return 1000;
+    }
     
     public function chunkSize(): int
     {
