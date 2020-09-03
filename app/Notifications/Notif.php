@@ -3,16 +3,21 @@
 namespace App\Notifications;
 
 use Auth;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Support\Carbon;
 
-class Notif extends Notification
+class Notif extends Notification implements ShouldQueue
 {
     use Queueable;
 
     private $user_id;
+    private $aktivis;
+    private $created_at;
     private $tipe;
     private $url;
     private $message;
@@ -25,6 +30,8 @@ class Notif extends Notification
     public function __construct($tipe, $url, $message)
     {   
         $this->user_id = Auth::id();
+        $this->aktivis = User::with('Cu','aktivis')->where('id',$this->user_id)->select('id','id_cu','id_aktivis','name')->first();
+        $this->created_at = Carbon::now()->toDateTimeString();
         $this->tipe = $tipe;
         $this->url = $url;
         $this->message = $message;
@@ -38,7 +45,7 @@ class Notif extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -76,5 +83,17 @@ class Notif extends Notification
             'url' => $this->url,
             'message' => $this->message
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'aktivis'=> $this->aktivis,
+            'created_at'=> $this->created_at,
+            'user_id' => $this->user_id,
+            'tipe' => $this->tipe,
+            'url' => $this->url,
+            'message' => $this->message,
+        ]);
     }
 }
