@@ -1059,7 +1059,10 @@
 	import appModal from './modal';
 	import formLogin from './loginForm';
 	import versionAlert from './versionAlert';
-
+	import { PusherAuth } from '../helpers/pusherAuth.js';
+	import Echo from 'laravel-echo';
+	import Pusher from "pusher-js";
+	 
 	export default {
 		components: {
 			formSaran,
@@ -1074,6 +1077,8 @@
 				dropdownMenu2: '',
 				state: '',
 				timer: '',
+				notifData:{},
+ 				data:{},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -1086,12 +1091,9 @@
 			this.fetchTp();
 			this.fetchCu();
 			this.fetchNotif();
-			this.timer = setInterval(() => {
-				this.fetchNotif();
-			}, 900000);
 		},
-		beforeDestroy () {
-      clearInterval(this.timer)
+		mounted(){
+			this.listenNotif();
 		},
 		watch: {
 			'$route' (to, from){
@@ -1127,6 +1129,28 @@
 			}
 		},
 		methods: {
+			listenNotif(){
+ 				PusherAuth();
+ 				if(JSON.parse(localStorage.getItem('user')).token) {
+ 					window.Echo.private(`App.User.`+this.currentUser.id)
+ 					.notification((notification) => {
+						let tempUnread = this.unreadNotification + 1;
+						this.data.user = notification.user_id;
+						this.data.tipe = notification.tipe;
+						this.data.url = notification.url;
+						this.data.message = notification.message;
+						this.notifData.id = notification.id;
+						this.notifData.read_at = null;
+						this.notifData.notifiable_type = 'App\\User';
+						this.notifData.notifiable_id = this.currentUser.id;
+						this.notifData.data = this.data;
+						this.notifData.created_at = notification.created_at;
+						this.$store.commit('notification/pushNotif', this.notifData);
+						this.$store.commit('notification/setUnreadNotification', tempUnread);
+						// add ui
+ 					});
+ 				}
+ 			},
 			modalOpen(state) {
 				this.state = state;
 				this.modalShow = true;
@@ -1181,9 +1205,9 @@
 				}else if(notif.data.tipe == 'laporanTp'){
 						this.$router.push({name: 'laporanTpDetail', params: { id: notif.data.url }});
 				}else if(notif.data.tipe == 'diklatBKCU'){
-					this.$router.push({name: 'diklatBKCUDetail', params: { id:  notif.data.url }});
+					this.$router.push({name: 'kegiatanBKCUDetail', params: { id:  notif.data.url }});
 				}else if(notif.data.tipe == 'pertemuanBKCU'){
-					this.$router.push({name: 'pertemuanBKCUDetail', params: { id:  notif.data.url }});
+					this.$router.push({name: 'kegiatanBKCUDetail', params: { id:  notif.data.url }});
 				}else if(notif.data.tipe == 'monitoring'){
 					this.$router.push({name: 'monitoringDetail', params: { id:  notif.data.url }});
 				}else if(notif.data.tipe == 'selfAssesment'){

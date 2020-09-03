@@ -110,6 +110,9 @@ export const notification = {
     setCountStat( state, status ){
       state.countStat = status;
     },
+    pushNotif(state, data){
+      state.notification.unshift(data);
+    }
   }
 
 }
