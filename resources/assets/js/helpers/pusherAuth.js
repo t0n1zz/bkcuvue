@@ -1,5 +1,4 @@
 import Echo from 'laravel-echo';
-import Pusher from "pusher-js";
 
 export function PusherAuth() {
     window.Echo = new Echo({
@@ -12,6 +11,5 @@ export function PusherAuth() {
                 Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
             },
         },
-
     });
 }
