@@ -1078,7 +1078,6 @@
 				state: '',
 				timer: '',
 				notifData:{},
- 				data:{},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -1134,17 +1133,21 @@
  				if(JSON.parse(localStorage.getItem('user')).token) {
  					window.Echo.private(`App.User.`+this.currentUser.id)
  					.notification((notification) => {
+						let data = {};
 						let tempUnread = this.unreadNotification + 1;
-						this.data.user = notification.user_id;
-						this.data.tipe = notification.tipe;
-						this.data.url = notification.url;
-						this.data.message = notification.message;
+
+						data.user = notification.user_id;
+						data.tipe = notification.tipe;
+						data.url = notification.url;
+						data.message = notification.message;
+
 						this.notifData.id = notification.id;
 						this.notifData.read_at = null;
 						this.notifData.notifiable_type = 'App\\User';
 						this.notifData.notifiable_id = this.currentUser.id;
-						this.notifData.data = this.data;
+						this.notifData.data = data;
 						this.notifData.created_at = notification.created_at;
+						
 						this.$store.commit('notification/pushNotif', this.notifData);
 						this.$store.commit('notification/setUnreadNotification', tempUnread);
 						// add ui
