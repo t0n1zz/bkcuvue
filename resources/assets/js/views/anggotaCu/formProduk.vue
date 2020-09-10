@@ -128,7 +128,9 @@
 				<div class="form-group" :class="{'has-error' : errors.has('formProduk.tanggal')}">
 
 					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formProduk.tanggal')}"><i class="icon-cross2" v-if="errors.has('formProduk.tanggal')"></i> Tanggal Buat:</h5>
+					<h5 :class="{ 'text-danger' : errors.has('formProduk.tanggal')}"><i class="icon-cross2" v-if="errors.has('formProduk.tanggal')"></i> Tanggal Buat:
+					<br/><small class="text-muted"><i>Diisi dengan tanggal pembuatan rekening</i></small>
+					</h5>
 
 					<!-- input -->
 					<date-picker @dateSelected="formProduk.tanggal = $event" :defaultDate="formProduk.tanggal"></date-picker>	
@@ -149,7 +151,10 @@
 				<div class="form-group" v-if="tipeProduk != 'pinjaman'">
 
 					<!-- title -->
-					<h5>Tanggal Target:</h5>
+					<h5>
+						Tanggal Target:
+						<br/><small class="text-muted"><i>Untuk simpanan rencana khusus (mis: kendaraan, perumahan) dan diisi dengan tanggal kapan rencana tersebut akan tercapai</i></small>
+					</h5>
 
 					<!-- input -->
 					<date-picker @dateSelected="formProduk.tanggal_target = $event" :defaultDate="formProduk.tanggal_target"></date-picker>	
@@ -193,7 +198,8 @@
 
 					<!-- title -->
 					<h6>
-					Tujuan:</h6>
+						Tujuan:
+					</h6>
 
 					<!-- text -->
 					<input type="text" name="tujuan" class="form-control" placeholder="Silahkan masukkan tujuan" v-model="formProduk.tujuan">

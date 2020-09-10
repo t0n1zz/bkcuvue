@@ -405,6 +405,24 @@ export const anggotaCu = {
         });
     },
 
+    updatePindahTp( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaCuAPI.updatePindahTp( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     updateKeluar( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 

@@ -68,6 +68,10 @@ export default {
     return axios.post('/api/anggotaCu/updateProduk/' + id, form);
   },
 
+  updatePindahTp: function ( id, form ){
+    return axios.post('/api/anggotaCu/updatePindahTp/' + id, form);
+  },
+
   updateKeluar: function ( id, form ){
     return axios.post('/api/anggotaCu/updateKeluar/' + id, form);
   },

@@ -10,6 +10,7 @@ use App\AnggotaCu;
 use App\AnggotaCuCu;
 use App\AnggotaCuCuDraft;
 use App\AnggotaCuDraft;
+use App\AnggotaCuDraftFailed;
 use App\Region\Villages;
 use App\Region\Districts;
 use App\Region\Provinces;
@@ -20,7 +21,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
+class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
 
 
@@ -116,7 +117,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
             }else{
                 $villages = '';
             }
-
+            
             // old data exist
             if($anggotaCu){
                 // check for no_ba
@@ -130,6 +131,15 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                         'no_ba' => $no_ba,
                         'tanggal_masuk' => array_key_exists('tanggal_jadi_anggota', $row) ?\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']) : '',
                         'keterangan_masuk' => array_key_exists('keterangan_jadi_anggota', $row) ? $row['keterangan_jadi_anggota'] : '',
+                    ]);
+                }else{
+                    AnggotaCuDraftFailed::create([
+                        'name' => array_key_exists('nama', $row) ? $row['nama'] : '',
+                        'nik' => array_key_exists('ktp', $row) ? $row['ktp'] : '',
+                        'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
+                        'no_cu' => array_key_exists('no_ba_cu', $row) ? $row['no_ba_cu'] : '',
+                        'no_tp' => array_key_exists('no_tp', $row) ? $row['no_tp'] : '',
+                        'tipe' => 'fail 3'
                     ]);
                 }
             }
@@ -178,7 +188,25 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                         'tanggal_masuk' => array_key_exists('tanggal_jadi_anggota', $row) ?\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_jadi_anggota']) : '',
                         'keterangan_masuk' => array_key_exists('keterangan_jadi_anggota', $row) ? $row['keterangan_jadi_anggota'] : '',
                     ]);
+                }else{
+                    AnggotaCuDraftFailed::create([
+                        'name' => array_key_exists('nama', $row) ? $row['nama'] : '',
+                        'nik' => array_key_exists('ktp', $row) ? $row['ktp'] : '',
+                        'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
+                        'no_cu' => array_key_exists('no_ba_cu', $row) ? $row['no_ba_cu'] : '',
+                        'no_tp' => array_key_exists('no_tp', $row) ? $row['no_tp'] : '',
+                        'tipe' => 'fail 4'
+                    ]);
                 }
+            }else {
+                AnggotaCuDraftFailed::create([
+                    'name' => array_key_exists('nama', $row) ? $row['nama'] : '',
+                    'nik' => array_key_exists('ktp', $row) ? $row['ktp'] : '',
+                    'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
+                    'no_cu' => array_key_exists('no_ba_cu', $row) ? $row['no_ba_cu'] : '',
+                    'no_tp' => array_key_exists('no_tp', $row) ? $row['no_tp'] : '',
+                    'tipe' => 'fail 2'
+                ]);
             }
         }
     }

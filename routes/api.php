@@ -500,6 +500,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/anggotaCu/edit/{id}', 'AnggotaCuController@edit');
         Route::post('/anggotaCu/update/{id}', 'AnggotaCuController@update');
         Route::post('/anggotaCu/updateCu/{id}', 'AnggotaCuController@updateCu');
+        Route::post('/anggotaCu/updatePindahTp/{id}', 'AnggotaCuController@updatePindahTp');
         Route::post('/anggotaCu/updateKeluar/{id}', 'AnggotaCuController@updateKeluar');
         Route::post('/anggotaCu/updateBatalKeluar/{id}', 'AnggotaCuController@updateBatalKeluar');
         Route::post('/anggotaCu/updateNik/{id}', 'AnggotaCuController@updateNik');

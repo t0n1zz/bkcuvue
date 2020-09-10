@@ -342,7 +342,7 @@
             this.columnData = [ 
               { title: 'No.' },
               { title: 'Kategori' },
-              { title: 'Lakilaki' },
+              { title: 'Laki-laki' },
               { title: 'Perempuan' },
               { title: 'Meninggal' },
               { title: 'Cacat' },
@@ -357,7 +357,7 @@
             ];
             this.excel.fields = {
               kategori:'kategori',
-              lakilaki: 'laki-laki',
+              lakilaki: 'lakilaki',
               perempuan: 'perempuan',
               meninggal: 'meninggal',
               cacat: 'cacat',
@@ -375,7 +375,7 @@
           this.columnData = [ 
             { title: 'No.' },
             { title: 'Kategori' },
-            { title: 'Lakilaki' },
+            { title: 'Laki-laki' },
             { title: 'Perempuan' },
             { title: 'Meninggal' },
             { title: 'Cacat' },

@@ -406,6 +406,33 @@ class AnggotaCuController extends Controller{
 		}	
 	}
 
+	public function updatePindahTp(Request $request, $id)
+	{
+		$kelas = AnggotaCuCu::findOrFail($id);
+
+		$kelas->update([
+			'tanggal_keluar' => $request->tanggal_pindah,
+			'keterangan_keluar' => 'mutasi anggota',
+		]);	
+
+		AnggotaCuCu::create([
+			'anggota_cu_id' => $kelas->anggota_cu_id,
+			'cu_id' => $kelas->cu_id,
+			'tp_id' => $request->tp_id,
+			'no_ba' => $kelas->no_ba,
+			'tanggal_masuk' => $request->tanggal_pindah,
+			'keterangan_masuk' => 'mutasi anggota'
+		]);
+
+		AnggotaCu::flushCache();
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Anggota CU berhasil dipindah'
+			]);
+	}
+
 	public function updateKeluar(Request $request, $id)
 	{
 		$kelas = AnggotaCuCu::findOrFail($id);
@@ -426,11 +453,11 @@ class AnggotaCuController extends Controller{
 
 	public function updateBatalKeluar($id)
 	{
-		$kelas = AnggotaCuCu::findOrFail($id);
+		$kelas = AnggotaCuCu::where('anggota_cu_id',$id);
 
 		$kelas->update([
-			'tanggal_keluar' => '',
-			'keterangan_keluar' => '',
+			'tanggal_keluar' => NULL,
+			'keterangan_keluar' => NULL,
 		]);	
 
 		AnggotaCu::flushCache();

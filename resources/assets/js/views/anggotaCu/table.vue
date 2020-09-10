@@ -34,6 +34,11 @@
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
         </button>
 
+        <!-- pindah tp -->
+        <button @click.prevent="modalConfirmOpen('pindahTp')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
+          <i class="icon-flip-vertical4"></i> Pindah TP
+        </button>
+
         <!-- anggota keluar -->
         <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
           <i class="icon-exit2"></i> 
@@ -82,6 +87,11 @@
         <!-- klaim jalinan -->
         <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
+        </button>
+
+        <!-- pindah tp -->
+        <button @click.prevent="modalConfirmOpen('pindahTp')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
+          <i class="icon-flip-vertical4"></i> Pindah TP
         </button>
 
         <!-- anggota keluar -->
@@ -273,7 +283,9 @@
       <!-- keluar 2 -->
       <template slot="modal-body2">
         <form-keluar :anggota_cu="anggota_cu"
-				@tutup="modalTutup"></form-keluar>
+				@tutup="modalTutup" v-if="state == 'keluar'"></form-keluar>
+        <form-pindah-tp :anggota_cu="anggota_cu"
+				@tutup="modalTutup" v-else-if="state == 'pindahTp'"></form-pindah-tp>
 			</template>
 
       <!-- ubah nik -->
@@ -297,6 +309,7 @@
   import collapseButton from "../../components/collapseButton.vue";
   import checkValue from "../../components/checkValue.vue";
   import formKeluar from "./formKeluar.vue";
+  import formPindahTp from "./formPindahTp.vue";
   import formNik from "./formNik.vue";
 
   export default {
@@ -306,6 +319,7 @@
       collapseButton,
       checkValue,
       formKeluar,
+      formPindahTp,
       formNik,
     },
     props: ["title", "kelas","tipe","itemData","itemDataStat"],
@@ -778,6 +792,11 @@
           this.modalColor = 'bg-primary';
           this.modalTitle = 'Keluarkan anggota atas nama: ' + this.selectedItem.name + ' ?';
           this.anggota_cu = value;
+        }else if(this.state == 'pindahTp'){
+          this.modalState = 'normal2';
+          this.modalColor = 'bg-primary';
+          this.modalTitle = 'Pindah TP untuk anggota atas nama: ' + this.selectedItem.name + ' ?';
+          this.anggota_cu = value;
         }
       },
       modalConfirmOpen(state, isMobile, itemMobile) {
@@ -800,6 +819,14 @@
             this.modalTitle =
               "Maaf " + this.title + " " + this.selectedItem.name + " tidak bisa dihapus karena memiliki riwayat klaim JALINAN, silahkan periksa kembali lagi.";
           }
+        }else if(state == 'pindahTp' && this.selectedItem.anggota_cu_cu_not_keluar && this.selectedItem.anggota_cu_cu_not_keluar.length > 1){
+          this.modalState = 'normal1';
+					this.modalTitle = 'anggota atas nama: ' + this.selectedItem.name + ' memiliki keanggota di beberapa CU, silahkan pilih di CU mana ia akan pindah TP';
+        }else if(state == 'pindahTp' && this.selectedItem.anggota_cu_cu_not_keluar  && this.selectedItem.anggota_cu_cu_not_keluar.length < 2){
+          this.modalState = 'normal2';
+          this.modalColor = 'bg-primary';
+          this.modalTitle = 'Pindah TP untuk anggota atas nama: ' + this.selectedItem.name + ' ?';
+          this.anggota_cu = this.selectedItem.anggota_cu_cu_not_keluar[0];
         }else if(state == 'keluar' && this.selectedItem.anggota_cu_cu_not_keluar && this.selectedItem.anggota_cu_cu_not_keluar.length > 1){
           this.modalState = 'normal1';
 					this.modalTitle = 'anggota atas nama: ' + this.selectedItem.name + ' memiliki keanggota di beberapa CU, silahkan pilih di CU mana ia akan keluar';
