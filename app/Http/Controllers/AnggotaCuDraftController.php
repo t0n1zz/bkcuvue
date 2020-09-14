@@ -30,7 +30,12 @@ class AnggotaCuDraftController extends Controller{
 			})->advancedFilter();
 		}
 
-		$table_data = $this->formatQuery($table_data);
+		if($cu == 'semua'){
+			$table_data = $this->formatQuery($table_data);
+		}else{
+
+			$table_data = $this->formatCuQuery($table_data, $cu, $tp);
+		}
 		
 		return response()
 		->json([
@@ -49,6 +54,32 @@ class AnggotaCuDraftController extends Controller{
 				$cu_name = $ta->cu ? $ta->cu->name : '';
 				$t->no_ba .= $cu_name . $tp_name . ' : ' .$ta->no_ba;
 				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
+			}
+		};
+
+		return $table_data;
+	}
+
+	public function formatCuQuery($table_data, $cu, $tp){
+		foreach($table_data as $t){
+			if($t->anggota_cu_cu_not_keluar){
+				$t->nik = $t->nik ? $t->nik . "​ " : '';
+				$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+				if($t->anggota_cu_cu_not_keluar){
+					foreach($t->anggota_cu_cu_not_keluar as $tt){
+						if($tt->cu_id == $cu){
+							$t->anggota_cu_cu_not_keluar[0] = $tt;
+						}
+					}
+				}
+				if($tp != 'semua'){
+					$t->no_ba = $t->anggota_cu_cu_not_keluar[0]->no_ba . "​ ";
+					$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+				}else{
+					$tp_name = $t->anggota_cu_cu_not_keluar[0]->tp ? $t->anggota_cu_cu_not_keluar[0]->tp->name : '';
+					$t->no_ba = $tp_name . " : " . $t->anggota_cu_cu_not_keluar[0]->no_ba;
+					$t->tanggal_masuk = $t->anggota_cu_cu_not_keluar[0]->tanggal_masuk;
+				}
 			}
 		};
 

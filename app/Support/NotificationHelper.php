@@ -186,7 +186,7 @@ class NotificationHelper{
 		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
 
 		Notification::send($users, new Notif(
-			'selfAssesment',
+			'monitoring',
 			$request->id,
 			Auth::user()->username . $cu_name . strtolower($message)
 		));

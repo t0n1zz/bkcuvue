@@ -4,7 +4,8 @@
   <!-- surat -->
   <div class="card card-body d-flex align-items-center">
     <div ref="printable" id="printable">
-      <img :src="'/images/jalinan/' + image + '.jpg'"  class="img-fluid"/>
+      <img :src="'/images/jalinan/' + image + '.jpg'"  class="img-fluid" v-if="image">
+      <img :src="'/images/no_image.jpg'" style="width:15em;" v-else>
     </div>
   </div>
 

@@ -21,7 +21,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
+class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
 {
 
 
@@ -47,6 +47,13 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
             $status_pernikahan = 'MENIKAH';
         }else if($status_pernikahan == 'TK'){
             $status_pernikahan = 'BELUM MENIKAH';
+        }
+
+        // check ahli waris
+        if(array_key_exists('ahli_waris', $row)){
+            $ahli_waris = array_key_exists('ahli_waris', $row) ? $row['ahli_waris'] : '';
+        }else{
+            $ahli_waris = array_key_exists('alih_waris', $row) ? $row['alih_waris'] : '';
         }
 
         // check nik / ktp
@@ -138,7 +145,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                         'nik' => array_key_exists('ktp', $row) ? $row['ktp'] : '',
                         'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
                         'no_cu' => array_key_exists('no_ba_cu', $row) ? $row['no_ba_cu'] : '',
-                        'no_tp' => array_key_exists('no_tp', $row) ? $row['no_tp'] : '',
+                        'no_tp' => array_key_exists('kode_tp', $row) ? $row['kode_tp'] : '',
                         'tipe' => 'fail 3'
                     ]);
                 }
@@ -170,7 +177,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                     'lembaga' => array_key_exists('tempat_kerja', $row) ? $row['tempat_kerja'] : '',
                     'jabatan' => array_key_exists('jabatan', $row) ? strtoupper($row['jabatan']) : '',
                     'organisasi' => array_key_exists('organisasi', $row) ? $row['organisasi'] : '',
-                    'ahli_waris' => array_key_exists('ahli_waris', $row) ? $row['ahli_waris'] : '',
+                    'ahli_waris' => $ahli_waris,
                     'pekerjaan' => array_key_exists('pekerjaan', $row) ? strtoupper($row['pekerjaan']) : '',
                     'penghasilan' => array_key_exists('rata_rata_penghasilan_perbulan', $row) ? $row['rata_rata_penghasilan_perbulan'] : 0,
                     'pengeluaran' => array_key_exists('rata_rata_pengeluaran_perbulan', $row) ? $row['rata_rata_pengeluaran_perbulan'] : 0,
@@ -194,7 +201,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                         'nik' => array_key_exists('ktp', $row) ? $row['ktp'] : '',
                         'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
                         'no_cu' => array_key_exists('no_ba_cu', $row) ? $row['no_ba_cu'] : '',
-                        'no_tp' => array_key_exists('no_tp', $row) ? $row['no_tp'] : '',
+                        'no_tp' => array_key_exists('kode_tp', $row) ? $row['kode_tp'] : '',
                         'tipe' => 'fail 4'
                     ]);
                 }
@@ -204,7 +211,7 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
                     'nik' => array_key_exists('ktp', $row) ? $row['ktp'] : '',
                     'no_ba' => array_key_exists('no_ba', $row) ? $row['no_ba'] : '',
                     'no_cu' => array_key_exists('no_ba_cu', $row) ? $row['no_ba_cu'] : '',
-                    'no_tp' => array_key_exists('no_tp', $row) ? $row['no_tp'] : '',
+                    'no_tp' => array_key_exists('kode_tp', $row) ? $row['kode_tp'] : '',
                     'tipe' => 'fail 2'
                 ]);
             }

@@ -15,7 +15,7 @@
 
 			<!-- tp -->
 			<div class="col-sm-12">
-				<div class="form-group" :class="{'has-error' : errors.has('formDataCu.tp_id')}">
+		<div class="form-group" :class="{'has-error' : errors.has('formDataCu.tp_id')}">
 
 					<!-- title -->
 					<h6 :class="{ 'text-danger' : errors.has('formDataCu.tp_id')}">

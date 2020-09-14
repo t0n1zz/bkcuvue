@@ -9,6 +9,18 @@ class AnggotaCuDraft extends Model {
     use Dataviewer;
 
     protected $table = 'anggota_cu_draft';
+
+    public static $rules = [
+        'nik'=> 'required',
+        'name' => 'required',
+        'ahli_waris' => 'required',
+        'kelamin' => 'required',
+        'tanggal_lahir' => 'required',
+        'tempat_lahir' => 'required',
+        'id_provinces' => 'required',
+        'alamat' => 'required',
+    ];
+
     
     public static function boot()
     {
