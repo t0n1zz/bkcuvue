@@ -355,7 +355,7 @@
             filter: true,
           },
           {
-            title: 'Alih Waris',
+            title: 'Ahli Waris',
             name: 'ahli_waris',
             tipe: 'string',
             sort: true,

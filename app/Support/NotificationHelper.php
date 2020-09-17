@@ -192,6 +192,25 @@ class NotificationHelper{
 		));
 	}
 
+	public static function monitoring_pencapaian($request, $message)
+	{
+		if(Auth::user()->id_cu == 0){
+			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
+			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+		}else{
+			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
+			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
+			$cu_name = ' (CU ' .$cu->name. ') ';	
+		}
+		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+
+		Notification::send($users, new Notif(
+			'monitoring',
+			$request->id_monitoring,
+			Auth::user()->username . $cu_name . strtolower($message)
+		));
+	}
+
 	public static function klaim_jalinan_verifikasi($request, $message)
 	{
 		if($request->anggota_cu_cu){

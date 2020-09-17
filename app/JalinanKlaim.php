@@ -26,8 +26,8 @@ class JalinanKlaim extends Model {
         'kategori_penyakit' => 'required',
         'tanggal_mati' => 'required',
         'status_klaim' => 'required',
-        'tunas_diajukan' => 'required',
-        'tunas_disetujui' => 'required'
+        'lintang_diajukan' => 'required',
+        'lintang_disetujui' => 'required'
     ];
 
     public static function boot()
@@ -41,7 +41,7 @@ class JalinanKlaim extends Model {
 
     protected $fillable = [
         'anggota_cu_id', 'anggota_cu_cu_id', 'tipe','kategori_penyakit', 'tanggal_mati','keterangan_mati','keterangan','status_klaim','keterangan_klaim','tunas_diajukan','tunas_disetujui','lintang_diajukan','lintang_disetujui','tanggal_pencairan','verifikasi_pengurus','verifikasi_pengawas','verifikasi_manajemen','surat_nomor','surat_tanggal',
-        'dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6',
+        'dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3',
         'id_koreksi'
     ];
 
@@ -61,7 +61,7 @@ class JalinanKlaim extends Model {
     public static function initialize()
     {
         return [
-            'anggota_cu_id' => '', 'anggota_cu_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '0','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '','tanggal_pencairan' => '','verifikasi_pengurus' => '','verifikasi_pengawas' => '','verifikasi_manajemen' => '','surat_nomor'  => '','surat_tanggal'  => '','dokumen_ktp' => '','dokumen_meninggal' => '','dokumen_pinjaman_1' => '','dokumen_pinjaman_2' => '','dokumen_pinjaman_3' => '','dokumen_pinjaman_4' => '','dokumen_pinjaman_5' => '','dokumen_pinjaman_6' => '', 'id_koreksi' => ''
+            'anggota_cu_id' => '', 'anggota_cu_cu_id' => '','tipe' => '','kategori_penyakit' => '','tanggal_mati' => '', 'keterangan_mati' => '', 'keterangan' => '', 'status_klaim' => '0','keterangan_klaim'=> '','tunas_diajukan'=> '','tunas_disetujui'=> '','lintang_diajukan'=> '','lintang_disetujui'=> '','tanggal_pencairan' => '','verifikasi_pengurus' => '','verifikasi_pengawas' => '','verifikasi_manajemen' => '','surat_nomor'  => '','surat_tanggal'  => '','dokumen_ktp' => '','dokumen_meninggal' => '','dokumen_pinjaman_1' => '','dokumen_pinjaman_2' => '','dokumen_pinjaman_3' => '','dokumen_pinjaman_4' => '','dokumen_pinjaman_5' => '','dokumen_pinjaman_6' => '', 'id_koreksi' => '','buku_simpanan_1' => '','buku_simpanan_2' => '','buku_simpanan_3' => '','buku_simpanan_4' => '','buku_simpanan_5' => '','buku_pinjaman_1' => '','buku_pinjaman_2' => '','buku_pinjaman_3' => '',
         ];
     }
 

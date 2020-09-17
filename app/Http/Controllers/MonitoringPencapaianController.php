@@ -28,7 +28,7 @@ class MonitoringPencapaianController extends Controller{
 
 		$kelas = MonitoringPencapaian::create($request->all());
 
-		NotificationHelper::monitoring($kelas,'menambah keputusan');
+		NotificationHelper::monitoring_pencapaian($kelas,'menambah keputusan');
 		
 		return response()
 			->json([
@@ -48,7 +48,7 @@ class MonitoringPencapaianController extends Controller{
 
 		$kelas->update($request->all());
 
-		NotificationHelper::monitoring($kelas,'mengubah keputusan');
+		NotificationHelper::monitoring_pencapaian($kelas,'mengubah keputusan');
 
 		return response()
 			->json([
@@ -65,7 +65,7 @@ class MonitoringPencapaianController extends Controller{
 
 		$kelas->delete();
 
-		NotificationHelper::monitoring($kelas,'menghapus keputusan');
+		NotificationHelper::monitoring_pencapaian($kelas,'menghapus keputusan');
 
 		return response()
 			->json([

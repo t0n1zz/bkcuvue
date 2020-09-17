@@ -677,11 +677,35 @@
 
         <div class="nav-tabs-responsive mb-3">
           <ul class="nav nav-tabs nav-tabs-solid bg-light">
-          <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'meninggal'}" @click.prevent="changeTabDokumen('meninggal')"><i class="icon-person mr-2"></i> Keterangan Meninggal Dunia</a>
             </li>
             <li class="nav-item" v-if="selected.status_klaim != 0">
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'ktp'}" @click.prevent="changeTabDokumen('ktp')"><i class="icon-vcard mr-2"></i> Identitas Diri</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_1'}" @click.prevent="changeTabDokumen('buku_simpanan_1')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_2'}" @click.prevent="changeTabDokumen('buku_simpanan_2')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 2</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_3'}" @click.prevent="changeTabDokumen('buku_simpanan_3')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 3</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_4'}" @click.prevent="changeTabDokumen('buku_simpanan_4')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 4</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_5'}" @click.prevent="changeTabDokumen('buku_simpanan_5')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 5</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_1'}" @click.prevent="changeTabDokumen('buku_pinjaman_1')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_2'}" @click.prevent="changeTabDokumen('buku_pinjaman_2')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman 2</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_3'}" @click.prevent="changeTabDokumen('buku_pinjaman_3')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman 3</a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_1'}" @click.prevent="changeTabDokumen('pinjaman_1')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 1</a>
@@ -713,6 +737,54 @@
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabNameDokumen == 'ktp'">
             <dokumen :image="selected.dokumen_ktp" :name="'dokumen_ktp'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_simpanan_1'">
+            <dokumen :image="selected.buku_simpanan_1" :name="'buku_simpanan_1'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_simpanan_2'">
+            <dokumen :image="selected.buku_simpanan_2" :name="'buku_simpanan_2'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_simpanan_3'">
+            <dokumen :image="selected.buku_simpanan_3" :name="'buku_simpanan_3'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_simpanan_4'">
+            <dokumen :image="selected.buku_simpanan_4" :name="'buku_simpanan_4'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_simpanan_5'">
+            <dokumen :image="selected.buku_simpanan_5" :name="'buku_simpanan_5'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_pinjaman_1'">
+            <dokumen :image="selected.buku_pinjaman_1" :name="'buku_pinjaman_1'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_pinjaman_2'">
+            <dokumen :image="selected.buku_pinjaman_2" :name="'buku_pinjaman_2'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'buku_pinjaman_3'">
+            <dokumen :image="selected.buku_pinjaman_3" :name="'buku_pinjaman_3'" @tutup="tutup"></dokumen>
           </div>    
         </transition>
 

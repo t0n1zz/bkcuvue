@@ -252,7 +252,7 @@
 												</div>
 
 												<!-- TUNAS -->
-												<div class="col-md-6" v-if="formStat == 'success' && tipe != 'cacat'">
+												<div class="col-md-6" v-if="formStat == 'success' && tipe != 'CACAT'">
 													<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
 
 														<!-- title -->
@@ -276,7 +276,7 @@
 												</div>
 
 												<!-- LINTANG -->
-												<div class="col-md-6">
+												<div class="col-md-6"> 
 													<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
 
 														<!-- title -->
@@ -319,6 +319,12 @@
 													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
 														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-person mr-2"></i> Keterangan meninggal dunia</a>
 													</li>
+													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'bukusimpanan'}" @click.prevent="changeTab('bukusimpanan')"><i class="icon-credit-card mr-2"></i> Buku Simpanan </a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'bukupinjaman'}" @click.prevent="changeTab('bukupinjaman')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman </a>
+													</li>
 													<li class="nav-item">
 														<a href="#" class="nav-link" :class="{'active' : tabName == 'pinjaman'}" @click.prevent="changeTab('pinjaman')"><i class="icon-clipboard3 mr-2"></i> Permohonan dan perjanjian pinjaman</a>
 													</li>
@@ -345,6 +351,102 @@
 
 														<!-- imageupload -->
 														<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_ktp" v-model="form.dokumen_ktp"></app-image-upload>
+													</div>
+												</div>
+											</transition>
+
+											<transition enter-active-class="animated fadeIn" mode="out-in">
+												<div v-show="tabName == 'bukusimpanan'">
+													<div class="row">
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Simpanan 1:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_simpanan_1" v-model="form.buku_simpanan_1"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Simpanan 2:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_simpanan_2" v-model="form.buku_simpanan_2"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Simpanan 3:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_simpanan_3" v-model="form.buku_simpanan_3"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Simpanan 4:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_simpanan_4" v-model="form.buku_simpanan_4"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Simpanan 5:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_simpanan_5" v-model="form.buku_simpanan_5"></app-image-upload>
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</transition>
+
+											<transition enter-active-class="animated fadeIn" mode="out-in">
+												<div v-show="tabName == 'bukupinjaman'">
+													<div class="row">
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Pinjaman 1:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_pinjaman_1" v-model="form.buku_pinjaman_1"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Pinjaman 2:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_pinjaman_2" v-model="form.buku_pinjaman_2"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Buku Pinjaman 3:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.buku_pinjaman_3" v-model="form.buku_pinjaman_3"></app-image-upload>
+															</div>
+														</div>
+
 													</div>
 												</div>
 											</transition>
@@ -729,6 +831,10 @@
 				this.form.anggota_cu_cu_id = this.anggota_cu_cu_id;
 				this.form.tipe = this.tipe;
 				this.form.cu_id = this.cu_id;
+				
+				if(this.tipe == 'CACAT'){
+					this.form.tunas_diajukan = 0;
+				}
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
