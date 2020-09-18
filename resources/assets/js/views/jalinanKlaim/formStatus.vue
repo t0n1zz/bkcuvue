@@ -684,6 +684,12 @@
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'ktp'}" @click.prevent="changeTabDokumen('ktp')"><i class="icon-vcard mr-2"></i> Identitas Diri</a>
             </li>
             <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'spma_1'}" @click.prevent="changeTabDokumen('spma_1')"><i class="icon-magazine mr-2"></i> Surat Permohonan Jadi Anggota 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'spma_2'}" @click.prevent="changeTabDokumen('spma_2')"><i class="icon-magazine mr-2"></i> Surat Permohonan Jadi Anggota 2</a>
+            </li>
+            <li class="nav-item">
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_1'}" @click.prevent="changeTabDokumen('buku_simpanan_1')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 1</a>
             </li>
             <li class="nav-item">
@@ -737,6 +743,18 @@
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabNameDokumen == 'ktp'">
             <dokumen :image="selected.dokumen_ktp" :name="'dokumen_ktp'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'spma_1'">
+            <dokumen :image="selected.spma_1" :name="'spma_1'" @tutup="tutup"></dokumen>
+          </div>    
+        </transition>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == 'spma_2'">
+            <dokumen :image="selected.spma_2" :name="'spma_2'" @tutup="tutup"></dokumen>
           </div>    
         </transition>
 

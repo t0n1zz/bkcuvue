@@ -319,6 +319,9 @@
 													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
 														<a href="#" class="nav-link" :class="{'active' : tabName == 'meninggal'}" @click.prevent="changeTab('meninggal')"><i class="icon-person mr-2"></i> Keterangan meninggal dunia</a>
 													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link" :class="{'active' : tabName == 'spma'}" @click.prevent="changeTab('spma')"><i class="icon-magazine mr-2"></i> Surat Permohonan Menjadi Anggota </a>
+													</li>
 													<li class="nav-item" v-if="tipe == 'MENINGGAL'">
 														<a href="#" class="nav-link" :class="{'active' : tabName == 'bukusimpanan'}" @click.prevent="changeTab('bukusimpanan')"><i class="icon-credit-card mr-2"></i> Buku Simpanan </a>
 													</li>
@@ -351,6 +354,34 @@
 
 														<!-- imageupload -->
 														<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.dokumen_ktp" v-model="form.dokumen_ktp"></app-image-upload>
+													</div>
+												</div>
+											</transition>
+
+											<transition enter-active-class="animated fadeIn" mode="out-in">
+												<div v-show="tabName == 'spma'">
+													<div class="row">
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Surat Permohonan Menjadi Anggota 1:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.spma_1" v-model="form.spma_1"></app-image-upload>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<!-- title -->
+																<h5>Surat Permohonan Menjadi Anggota 2:</h5>
+
+																<!-- imageupload -->
+																<app-image-upload :image_loc="'/images/jalinan/'" :image_temp="form.spma_2" v-model="form.spma_2"></app-image-upload>
+															</div>
+														</div>
+
 													</div>
 												</div>
 											</transition>

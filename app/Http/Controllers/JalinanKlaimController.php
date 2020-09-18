@@ -1028,74 +1028,84 @@ class JalinanKlaimController extends Controller{
 				$dokumen_ktp = '';
 
 			if(!empty($request->dokumen_pinjaman_1))
-				$dokumen_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,$kelasLama->dokumen_pinjaman_1,$anggota_cu_id . 'pinjaman1');
+				$dokumen_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,$kelasLama->dokumen_pinjaman_1,$anggota_cu_id . 'pjm1');
 			else
 				$dokumen_pinjaman_1 = '';
 
 			if(!empty($request->dokumen_pinjaman_2))
-				$dokumen_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,$kelasLama->dokumen_pinjaman_2,$anggota_cu_id . 'pinjaman2');
+				$dokumen_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,$kelasLama->dokumen_pinjaman_2,$anggota_cu_id . 'pjm2');
 			else
 				$dokumen_pinjaman_2 = '';
 
 			if(!empty($request->dokumen_pinjaman_3))
-				$dokumen_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,$kelasLama->dokumen_pinjaman_3,$anggota_cu_id . 'pinjaman3');
+				$dokumen_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,$kelasLama->dokumen_pinjaman_3,$anggota_cu_id . 'pjm3');
 			else
 				$dokumen_pinjaman_3 = '';
 
 			if(!empty($request->dokumen_pinjaman_4))
-				$dokumen_pinjaman_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,$kelasLama->dokumen_pinjaman_4,$anggota_cu_id . 'pinjaman4');
+				$dokumen_pinjaman_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,$kelasLama->dokumen_pinjaman_4,$anggota_cu_id . 'pjm4');
 			else
 				$dokumen_pinjaman_4 = '';
 
 			if(!empty($request->dokumen_pinjaman_5))
-				$dokumen_pinjaman_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,$kelasLama->dokumen_pinjaman_5,$anggota_cu_id . 'pinjaman5');
+				$dokumen_pinjaman_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,$kelasLama->dokumen_pinjaman_5,$anggota_cu_id . 'pjm5');
 			else
 				$dokumen_pinjaman_5 = '';
 
 			if(!empty($request->dokumen_pinjaman_6))
-				$dokumen_pinjaman_6 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,$kelasLama->dokumen_pinjaman_6,$anggota_cu_id . 'pinjaman6');
+				$dokumen_pinjaman_6 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,$kelasLama->dokumen_pinjaman_6,$anggota_cu_id . 'pjm6');
 			else
 				$dokumen_pinjaman_6 = '';
 
 			if(!empty($request->buku_simpanan_1))
-				$buku_simpanan_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_1,$kelasLama->buku_simpanan_1,$anggota_cu_id . 'bukusimpanan1');
+				$buku_simpanan_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_1,$kelasLama->buku_simpanan_1,$anggota_cu_id . 'bks1');
 			else
 				$buku_simpanan_1 = '';
 
 			if(!empty($request->buku_simpanan_2))
-				$buku_simpanan_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_2,$kelasLama->buku_simpanan_2,$anggota_cu_id . 'bukusimpanan2');
+				$buku_simpanan_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_2,$kelasLama->buku_simpanan_2,$anggota_cu_id . 'bks2');
 			else
 				$buku_simpanan_2 = '';
 
 			if(!empty($request->buku_simpanan_3))
-				$buku_simpanan_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_3,$kelasLama->buku_simpanan_3,$anggota_cu_id . 'bukusimpanan3');
+				$buku_simpanan_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_3,$kelasLama->buku_simpanan_3,$anggota_cu_id . 'bks3');
 			else
 				$buku_simpanan_3 = '';
 
 			if(!empty($request->buku_simpanan_4))
-				$buku_simpanan_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_4,$kelasLama->buku_simpanan_4,$anggota_cu_id . 'bukusimpanan4');
+				$buku_simpanan_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_4,$kelasLama->buku_simpanan_4,$anggota_cu_id . 'bks4');
 			else
 				$buku_simpanan_4 = '';
 
 			if(!empty($request->buku_simpanan_5))
-				$buku_simpanan_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_5,$kelasLama->buku_simpanan_5,$anggota_cu_id . 'bukusimpanan5');
+				$buku_simpanan_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_5,$kelasLama->buku_simpanan_5,$anggota_cu_id . 'bks5');
 			else
 				$buku_simpanan_5 = '';	
 
 			if(!empty($request->buku_pinjaman_1))
-				$buku_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_1,$kelasLama->buku_pinjaman_1,$anggota_cu_id . 'bukupinjaman1');
+				$buku_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_1,$kelasLama->buku_pinjaman_1,$anggota_cu_id . 'bkp1');
 			else
 				$buku_pinjaman_1 = '';
 
 			if(!empty($request->buku_pinjaman_2))
-				$buku_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_2,$kelasLama->buku_pinjaman_2,$anggota_cu_id . 'bukupinjaman2');
+				$buku_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_2,$kelasLama->buku_pinjaman_2,$anggota_cu_id . 'bkp2');
 			else
 				$buku_pinjaman_2 = '';
 
 			if(!empty($request->buku_pinjaman_3))
-				$buku_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_3,$kelasLama->buku_pinjaman_3,$anggota_cu_id . 'bukupinjaman3');
+				$buku_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_3,$kelasLama->buku_pinjaman_3,$anggota_cu_id . 'bkp3');
 			else
 				$buku_pinjaman_3 = '';
+
+			if(!empty($request->spma_1))
+				$spma_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_1,$kelasLama->spma_1,$anggota_cu_id . 'spma1');
+			else
+				$spma_1 = '';
+
+			if(!empty($request->spma_2))
+				$spma_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_2,$kelasLama->spma_2,$anggota_cu_id . 'spma2');
+			else
+				$spma_2 = '';	
 		}else{
 			if(!empty($request->dokumen_meninggal))
 				$dokumen_meninggal = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_meninggal,'',$name . 'meninggal');
@@ -1108,77 +1118,87 @@ class JalinanKlaimController extends Controller{
 				$dokumen_ktp = '';
 	
 			if(!empty($request->dokumen_pinjaman_1))
-				$dokumen_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,'',$name . 'pinjaman1');
+				$dokumen_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,'',$name . 'pjm1');
 			else
 				$dokumen_pinjaman_1 = '';
 	
 			if(!empty($request->dokumen_pinjaman_2))
-				$dokumen_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,'',$name . 'pinjaman2');
+				$dokumen_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,'',$name . 'pjm2');
 			else
 				$dokumen_pinjaman_2 = '';
 	
 			if(!empty($request->dokumen_pinjaman_3))
-				$dokumen_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,'',$name . 'pinjaman3');
+				$dokumen_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,'',$name . 'pjm3');
 			else
 				$dokumen_pinjaman_3 = '';
 	
 			if(!empty($request->dokumen_pinjaman_4))
-				$dokumen_pinjaman_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,'',$name . 'pinjaman4');
+				$dokumen_pinjaman_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,'',$name . 'pjm4');
 			else
 				$dokumen_pinjaman_4 = '';
 	
 			if(!empty($request->dokumen_pinjaman_5))
-				$dokumen_pinjaman_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,'',$name . 'pinjaman5');
+				$dokumen_pinjaman_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,'',$name . 'pjm5');
 			else
 				$dokumen_pinjaman_5 = '';
 	
 			if(!empty($request->dokumen_pinjaman_6))
-				$dokumen_pinjaman_6 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,'',$name . 'pinjaman6');
+				$dokumen_pinjaman_6 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,'',$name . 'pjm6');
 			else
 				$dokumen_pinjaman_6 = '';
 
 			if(!empty($request->buku_simpanan_1))
-				$buku_simpanan_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_1,'',$name . 'bukusimpanan1');
+				$buku_simpanan_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_1,'',$name . 'bks1');
 			else
 				$buku_simpanan_1 = '';
 	
 			if(!empty($request->buku_simpanan_2))
-				$buku_simpanan_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_2,'',$name . 'bukusimpanan2');
+				$buku_simpanan_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_2,'',$name . 'bks2');
 			else
 				$buku_simpanan_2 = '';
 	
 			if(!empty($request->buku_simpanan_3))
-				$buku_simpanan_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_3,'',$name . 'bukusimpanan3');
+				$buku_simpanan_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_3,'',$name . 'bks3');
 			else
 				$buku_simpanan_3 = '';
 	
 			if(!empty($request->buku_simpanan_4))
-				$buku_simpanan_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_4,'',$name . 'bukusimpanan4');
+				$buku_simpanan_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_4,'',$name . 'bks4');
 			else
 				$buku_simpanan_4 = '';
 	
 			if(!empty($request->buku_simpanan_5))
-				$buku_simpanan_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_5,'',$name . 'bukusimpanan5');
+				$buku_simpanan_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_5,'',$name . 'bks5');
 			else
 				$buku_simpanan_5 = '';
 
-				if(!empty($request->buku_pinjaman_1))
-				$buku_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_1,'',$name . 'bukupinjaman1');
+			if(!empty($request->buku_pinjaman_1))
+				$buku_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_1,'',$name . 'bkp1');
 			else
 				$buku_pinjaman_1 = '';
 	
 			if(!empty($request->buku_pinjaman_2))
-				$buku_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_2,'',$name . 'bukupinjaman2');
+				$buku_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_2,'',$name . 'bkp2');
 			else
 				$buku_pinjaman_2 = '';
 	
 			if(!empty($request->buku_pinjaman_3))
-				$buku_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_3,'',$name . 'bukupinjaman3');
+				$buku_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_3,'',$name . 'bkp3');
 			else
 				$buku_pinjaman_3 = '';
+
+			if(!empty($request->spma_1))
+				$spma_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_1,'',$name . 'spma1');
+			else
+				$spma_1 = '';
+	
+			if(!empty($request->spma_2))
+				$spma_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_2,'',$name . 'spma2');
+			else
+				$spma_2 = '';	
 		}
 
-		$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3') + [
+		$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_2') + [
 			'dokumen_ktp' => $dokumen_ktp,
 			'dokumen_meninggal' => $dokumen_meninggal,
 			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
@@ -1195,6 +1215,8 @@ class JalinanKlaimController extends Controller{
 			'buku_pinjaman_1' => $buku_pinjaman_1,
 			'buku_pinjaman_2' => $buku_pinjaman_2,
 			'buku_pinjaman_3' => $buku_pinjaman_3,
+			'spma_1' => $spma_1,
+			'spma_2' => $spma_2,
 		]);
 
 		$this->updateStatusAnggotaCu($request->anggota_cu_id, $request->tipe, $request->tanggal_mati);
@@ -1261,76 +1283,86 @@ class JalinanKlaimController extends Controller{
 			$dokumen_ktp = '';
 
 		if(!empty($request->dokumen_pinjaman_1))
-			$dokumen_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,$kelas->dokumen_pinjaman_1,$anggota_cu_id . 'pinjaman1');
+			$dokumen_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_1,$kelas->dokumen_pinjaman_1,$anggota_cu_id . 'pjm1');
 		else
 			$dokumen_pinjaman_1 = '';
 
 		if(!empty($request->dokumen_pinjaman_2))
-			$dokumen_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,$kelas->dokumen_pinjaman_2,$anggota_cu_id . 'pinjaman2');
+			$dokumen_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_2,$kelas->dokumen_pinjaman_2,$anggota_cu_id . 'pjm2');
 		else
 			$dokumen_pinjaman_2 = '';
 
 		if(!empty($request->dokumen_pinjaman_3))
-			$dokumen_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,$kelas->dokumen_pinjaman_3,$anggota_cu_id . 'pinjaman3');
+			$dokumen_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_3,$kelas->dokumen_pinjaman_3,$anggota_cu_id . 'pjm3');
 		else
 			$dokumen_pinjaman_3 = '';
 
 		if(!empty($request->dokumen_pinjaman_4))
-			$dokumen_pinjaman_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,$kelas->dokumen_pinjaman_4,$anggota_cu_id . 'pinjaman4');
+			$dokumen_pinjaman_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_4,$kelas->dokumen_pinjaman_4,$anggota_cu_id . 'pjm4');
 		else
 			$dokumen_pinjaman_4 = '';
 
 		if(!empty($request->dokumen_pinjaman_5))
-			$dokumen_pinjaman_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,$kelas->dokumen_pinjaman_5,$anggota_cu_id . 'pinjaman5');
+			$dokumen_pinjaman_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_5,$kelas->dokumen_pinjaman_5,$anggota_cu_id . 'pjm5');
 		else
 			$dokumen_pinjaman_5 = '';
 
 		if(!empty($request->dokumen_pinjaman_6))
-			$dokumen_pinjaman_6 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,$kelas->dokumen_pinjaman_6,$anggota_cu_id . 'pinjaman6');
+			$dokumen_pinjaman_6 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_pinjaman_6,$kelas->dokumen_pinjaman_6,$anggota_cu_id . 'pjm6');
 		else
 			$dokumen_pinjaman_6 = '';
 
 		if(!empty($request->buku_simpanan_1))
-			$buku_simpanan_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_1,$kelas->buku_simpanan_1,$anggota_cu_id . 'bukusimpanan1');
+			$buku_simpanan_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_1,$kelas->buku_simpanan_1,$anggota_cu_id . 'bks1');
 		else
 			$buku_simpanan_1 = '';
 
 		if(!empty($request->buku_simpanan_2))
-			$buku_simpanan_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_2,$kelas->buku_simpanan_2,$anggota_cu_id . 'bukusimpanan2');
+			$buku_simpanan_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_2,$kelas->buku_simpanan_2,$anggota_cu_id . 'bks2');
 		else
 			$buku_simpanan_2 = '';
 
 		if(!empty($request->buku_simpanan_3))
-			$buku_simpanan_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_3,$kelas->buku_simpanan_3,$anggota_cu_id . 'bukusimpanan3');
+			$buku_simpanan_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_3,$kelas->buku_simpanan_3,$anggota_cu_id . 'bks3');
 		else
 			$buku_simpanan_3 = '';
 
 		if(!empty($request->buku_simpanan_4))
-			$buku_simpanan_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_4,$kelas->buku_simpanan_4,$anggota_cu_id . 'bukusimpanan4');
+			$buku_simpanan_4 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_4,$kelas->buku_simpanan_4,$anggota_cu_id . 'bks4');
 		else
 			$buku_simpanan_4 = '';
 
 		if(!empty($request->buku_simpanan_5))
-			$buku_simpanan_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_5,$kelas->buku_simpanan_5,$anggota_cu_id . 'bukusimpanan5');
+			$buku_simpanan_5 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_simpanan_5,$kelas->buku_simpanan_5,$anggota_cu_id . 'bks5');
 		else
 			$buku_simpanan_5 = '';	
 
 		if(!empty($request->buku_pinjaman_1))
-			$buku_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_1,$kelas->buku_pinjaman_1,$anggota_cu_id . 'bukupinjaman1');
+			$buku_pinjaman_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_1,$kelas->buku_pinjaman_1,$anggota_cu_id . 'bkp1');
 		else
 			$buku_pinjaman_1 = '';
 
 		if(!empty($request->buku_pinjaman_2))
-			$buku_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_2,$kelas->buku_pinjaman_2,$anggota_cu_id . 'bukupinjaman2');
+			$buku_pinjaman_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_2,$kelas->buku_pinjaman_2,$anggota_cu_id . 'bkp2');
 		else
 			$buku_pinjaman_2 = '';
 
 		if(!empty($request->buku_pinjaman_3))
-			$buku_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_3,$kelas->buku_pinjaman_3,$anggota_cu_id . 'bukupinjaman3');
+			$buku_pinjaman_3 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->buku_pinjaman_3,$kelas->buku_pinjaman_3,$anggota_cu_id . 'bkp3');
 		else
 			$buku_pinjaman_3 = '';
 
-		$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3') + [
+		if(!empty($request->spma_1))
+			$spma_1 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_1,$kelas->spma_1,$anggota_cu_id . 'spma1');
+		else
+			$spma_1 = '';
+
+		if(!empty($request->spma_2))
+			$spma_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_2,$kelas->spma_2,$anggota_cu_id . 'spma2');
+		else
+			$spma_2 = '';	
+
+		$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','smpa_1','smpa_2') + [
 			'dokumen_ktp' => $dokumen_ktp,
 			'dokumen_meninggal' => $dokumen_meninggal,
 			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
@@ -1347,6 +1379,8 @@ class JalinanKlaimController extends Controller{
 			'buku_pinjaman_1' => $buku_pinjaman_1,
 			'buku_pinjaman_2' => $buku_pinjaman_2,
 			'buku_pinjaman_3' => $buku_pinjaman_3,
+			'spma_1' => $spma_1,
+			'spma_2' => $spma_2,
 		]);	
 
 		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
@@ -1610,6 +1644,12 @@ class JalinanKlaimController extends Controller{
 		}
 		if(!empty($kelas->buku_pinjaman_3)){
 			File::delete($this->imagepath . $kelas->buku_pinjaman_3 . '.jpg');
+		}
+		if(!empty($kelas->spma_1)){
+			File::delete($this->imagepath . $kelas->spma_1 . '.jpg');
+		}
+		if(!empty($kelas->spma_2)){
+			File::delete($this->imagepath . $kelas->spma_2 . '.jpg');
 		}
 
 		$kelas->delete();

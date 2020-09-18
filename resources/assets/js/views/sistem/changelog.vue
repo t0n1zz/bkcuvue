@@ -9,15 +9,40 @@
         <div class="content">
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
+              
+              <!-- Version 3.3.3 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v333">Version 3.3.3<small class="text-muted"> / 18 September 2020</small></a> </h5>
+                </div>
+
+                <div id="v333" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan perbaikan dan peningkatan pada klaim JALINAN, notifikasi, dan anggota CU
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan upload foto buku simpanan, buku pinjaman anggota CU, dan surat permohonan menjadi anggota yang akan melakukan Klaim JALINAN</li>
+                      <li>Penambahan fitur untuk mutasi anggota CU</li>
+                      <li>Peningkatan sistem notifikasi yang menampilkan notifikasi secara real time</li>
+                      <li>Peningkatan sistem upload anggota CU dengan excel</li>
+                      <li>Perbaikan bug pada notifikasi monitoring</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.2 -->
 
               <!-- Version 3.3.2 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v332">Version 3.3.2<small class="text-muted"> / 27 Agustus 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v332">Version 3.3.2<small class="text-muted"> / 27 Agustus 2020</small></a> </h5>
                 </div>
 
-                <div id="v331" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v332" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menawarkan peningkatan fungsi pemakaian pada beberapa bagian dan juga meningkatkan kecepatan dalam penyaluran update versi SIMO
                     <br/><br/>
