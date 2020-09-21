@@ -26,15 +26,15 @@ class AnggotaProdukCuTransaksi extends BaseEloquent {
     }
 
     protected $fillable = [
-        'anggota_produk_cu_id','saldo','tanggal'
+        'anggota_produk_cu_id','saldo','tanggal','lama_sisa_pinjaman'
     ];
 
     protected $allowedFilters = [
-        'anggota_produk_cu_id','saldo','tanggal'
+        'anggota_produk_cu_id','saldo','tanggal','lama_sisa_pinjaman'
     ];
     
     protected $orderable = [
-        'anggota_produk_cu_id','saldo','tanggal','created_at'
+        'anggota_produk_cu_id','saldo','tanggal','lama_sisa_pinjaman','created_at'
     ];
 
     public static function initialize()

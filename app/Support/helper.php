@@ -103,7 +103,6 @@ class Helper{
 				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid();
 				
 				$fileName =  $formatedName. '.jpg';
-				$fileName2 =  $formatedName. 'n.jpg';
 	
 				//image
 				if($width > 1920){

@@ -18,6 +18,7 @@ use App\AnggotaProdukCuTransaksi;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 use App\Imports\AnggotaCuDraftImport;
+use App\Imports\ProdukCuDraftImport;
 
 class AnggotaCuController extends Controller{
 
@@ -748,6 +749,18 @@ class AnggotaCuController extends Controller{
 	{
 
 		Excel::import(new AnggotaCuDraftImport, request()->file('file'));
+
+		return response()
+			->json([
+				'uploaded' => true,
+				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+			]);
+	}
+
+	public function uploadExcelProduk(Request $request)
+	{
+
+		Excel::import(new ProdukCuDraftImport, request()->file('file'));
 
 		return response()
 			->json([

@@ -1360,9 +1360,9 @@ class JalinanKlaimController extends Controller{
 		if(!empty($request->spma_2))
 			$spma_2 = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->spma_2,$kelas->spma_2,$anggota_cu_id . 'spma2');
 		else
-			$spma_2 = '';	
+			$spma_2 = '';
 
-		$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','smpa_1','smpa_2') + [
+		$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_1') + [
 			'dokumen_ktp' => $dokumen_ktp,
 			'dokumen_meninggal' => $dokumen_meninggal,
 			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
