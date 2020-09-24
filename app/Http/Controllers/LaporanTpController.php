@@ -199,10 +199,10 @@ class LaporanTpController extends Controller{
 
 			$kelas = LaporanTp::create($request->all());
 
-			NotificationHelper::laporan_tp($kelas,'menambah');
-
 			// $this->konsolidasi($request);
 			LaporanTpHelper::konsolidasi($request);
+			
+			NotificationHelper::laporan_tp($request,'menambah');
 
 			return response()
 				->json([

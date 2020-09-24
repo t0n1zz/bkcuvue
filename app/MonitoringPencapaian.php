@@ -21,21 +21,21 @@ class MonitoringPencapaian extends BaseEloquent {
 
     
     protected $fillable = [
-        'id_monitoring','pencapaian','bukti','kendala','tindak','catatan'
+        'id_monitoring','pencapaian','bukti','kendala','tindak','catatan','gambar'
     ];
 
     protected $allowedFilters = [
-        'id','id_monitoring','pencapaian','bukti','kendala','tindak','catatan','created_at','updated_at',
+        'id','id_monitoring','id_user','pencapaian','bukti','kendala','tindak','catatan','created_at','updated_at','gambar'
     ];
 
     protected $orderable = [
-        'id','id_monitoring','pencapaian','bukti','kendala','tindak','catatan','created_at','updated_at',
+        'id','id_monitoring','id_user','pencapaian','bukti','kendala','tindak','catatan','created_at','updated_at','gambar'
     ];
 
     public static function initialize()
     {
         return [
-            'id' => '','id_monitoring' => '','pencapaian' => '','bukti' => '','kendala' => '','tindak' => '','catatan' => ''
+            'id' => '','id_monitoring' => '','pencapaian' => '','bukti' => '','kendala' => '','tindak' => '','catatan' => '','gambar' => ''
         ];
     }
 }

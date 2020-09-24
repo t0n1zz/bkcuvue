@@ -147,7 +147,7 @@
 			return {
 				selectedItem: [],
 				query: {
-					order_column: "tanggal",
+					order_column: "perspektif",
 					order_direction: "desc",
 					filter_match: "and",
 					limit: 10,

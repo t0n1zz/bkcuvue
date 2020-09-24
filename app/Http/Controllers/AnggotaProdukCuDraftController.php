@@ -26,49 +26,19 @@ class AnggotaProdukCuDraftController extends Controller{
 	protected $height = 200;
 	protected $message = "Anggota CU";
 
-	public function index($id, $cu)
+	public function index($cu, $tp)
 	{
-		if($cu != 'semua'){
+		if($cu == 'semua'){
+			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu')->where('anggota_cu_id', $id)->get();	
+		}else{
 			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
 				$query->where('id_cu',$cu); 
 			})->get();
-		}else{
-			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu')->where('anggota_cu_id', $id)->get();
 		}
 		
 		return response()
 			->json([
 				'model' => $table_data
-			]);
-	}
-
-	public function indexSaldo($id)
-	{
-		$table_data = AnggotaProdukCuDraftTransaksi::where('anggota_produk_cu_id', $id)->advancedFilter();
-		
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function create()
-	{
-		return response()
-			->json([
-					'form' => AnggotaProdukCuDraft::initialize(),
-					'rules' => AnggotaProdukCuDraft::$rules,
-					'option' => []
-			]);
-	}
-
-	public function createSaldo()
-	{
-		return response()
-			->json([
-					'form' => AnggotaProdukCuDraftTransaksi::initialize(),
-					'rules' => AnggotaProdukCuDraftTransaksi::$rules,
-					'option' => []
 			]);
 	}
 

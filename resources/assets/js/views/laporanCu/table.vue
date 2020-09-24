@@ -269,7 +269,7 @@
 				<hr>
 
 				<div class="row">
-					<div class="col-md-6  pt-1 pb-1" v-for="laporanTp in listLaporanTpData">
+					<div class="col-md-6  pt-1 pb-1" v-for="(index, laporanTp) in listLaporanTpData" :key="index">
 						<a class="btn btn-light btn-block" @click.prevent="ubahLaporanTp(laporanTp.id)"><i class="icon-pencil5"></i>
 							Ubah Laporan {{laporanTp.tp.name}}</a>
 					</div>
@@ -431,7 +431,7 @@ export default {
         } else { // laporan tp/kp per tp
           
 					for(i = 0; i < this.columnData.length ; i++){
-						if([6].includes(i)){
+						if([1,2,3,4,6].includes(i)){
 							this.columnData[i].disable = true;
 						}else{
 							this.columnData[i].disable = false;

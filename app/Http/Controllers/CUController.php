@@ -31,6 +31,8 @@ class CuController extends Controller{
 		->withCount('hasSupervisor')
 		->withCount('hasStaf')
 		->withCount('hasKontrak')
+		->withCount('hasKolektor')
+		->withCount('hasKelompokInti')
 		->withCount('hasAktivisTidakAktif')
 		->withCount('hasSimpanan')
 		->withCount('hasPinjaman')

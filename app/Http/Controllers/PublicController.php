@@ -111,9 +111,10 @@ class PublicController extends Controller
 
         if($artikel && $artikel->kategori){
             $artikelsKategori = Artikel::where('id','!=',$artikel->id)->where('id_cu',0)->where('id_artikel_kategori',$artikel->kategori->id)->inRandomOrder()->take(4)->get();
+            $artikelsKategoriCount = $artikelsKategori->count();
+        }else{
+            $artikelsKategoriCount = 0;
         }
-
-        $artikelsKategoriCount = $artikelsKategori->count();
         
         $artikelLain = "";
         if($artikelsKategoriCount < 4){
@@ -255,7 +256,27 @@ class PublicController extends Controller
     }
 
     public function testroute()
-    {       
+    {    
+        // $cu = 4;
+        // $tp = 31;  
+        // $kelas = \App\AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
+		// 	if($tp != 'semua'){
+		// 		$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		// 	}else{
+		// 		$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		// 	}
+		// })->where(function($query){
+		// 	$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+        // });
+        // $datas = $kelas->get();
+        // foreach($datas as $item){
+        //     $kelas1 = \App\AnggotaCu::findOrFail($item->id);
+        //     $kelas1->forceDelete();
+
+        //     $kelas2 = \App\AnggotaCuCu::where('anggota_cu_id', $item->id);
+        //     $kelas2->forceDelete();
+        // }
+        
         // $kelas = \App\AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query){ 
         //     $query->where('anggota_cu_cu_draft.cu_id', '43');
         // });

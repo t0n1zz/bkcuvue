@@ -42,12 +42,15 @@
 							<select class="form-control" name="tingkat" v-model="tingkat" data-width="100%" @change="changeTingkat($event.target.value)" :disabled="modelCUStat === 'loading'">
 								<option disabled value="">Silahkan pilih tingkat</option>
 								<option value="semua">Semua Tingkat</option>
-								<option value="manajemen"> Manajemen</option>
 								<option disabled value="">----------------</option>
 								<option value="pengurus">Pengurus</option>
 								<option value="pengawas">Pengawas</option>
 								<option value="komite">Komite</option>
 								<option value="penasihat">Penasihat</option>
+								<option value="manajemen"> Manajemen</option>
+								<option value="kolektor">Kolektor</option>
+								<option value="kelompok_inti">Kelompok Inti</option>
+								<option disabled value="">----------------</option>
 								<option value="senior_manajer">Senior Manajer</option>
 								<option value="manajer">Manajer</option>
 								<option value="supervisor">Supervisor</option>
@@ -108,12 +111,15 @@
 					<select class="form-control" name="tingkat" v-model="tingkat" data-width="100%" @change="changeTingkat($event.target.value)" :disabled="modelCUStat === 'loading'">
 						<option disabled value="">Silahkan pilih tingkat</option>
 						<option value="semua">Semua Tingkat</option>
-						<option value="manajemen"> Manajemen</option>
 						<option disabled value="">----------------</option>
 						<option value="pengurus">Pengurus</option>
 						<option value="pengawas">Pengawas</option>
 						<option value="komite">Komite</option>
 						<option value="penasihat">Penasihat</option>
+						<option value="manajemen"> Manajemen</option>
+						<option value="kolektor">Kolektor</option>
+						<option value="kelompok_inti">Kelompok Inti</option>
+						<option disabled value="">----------------</option>
 						<option value="senior_manajer">Senior Manajer</option>
 						<option value="manajer">Manajer</option>
 						<option value="supervisor">Supervisor</option>

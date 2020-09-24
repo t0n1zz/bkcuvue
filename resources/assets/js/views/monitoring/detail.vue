@@ -208,6 +208,13 @@
 																		<span v-else>-</span>
 																	</div>
 																</div>
+																<div class="col-md-12">
+																	<h5>Foto:</h5>
+																	<div class="card card-body d-flex align-items-center">
+																		<img :src="'/images/monitoring/' + pc.gambar + '.jpg'"  class="img-fluid" v-if="pc.gambar">
+      															<img :src="'/images/no_image.jpg'" style="width:15em;" v-else>
+																	</div>
+																</div>
 															</div>
 														</div>
 														<div class="card-body pb-0">

@@ -669,51 +669,64 @@
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'aktivis'}">
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'semua'} }" class="dropdown-item" active-class="active" exact >
-										Semua Tingkat
-									</router-link>
-
-									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'manajemen'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Manajemen
+										Semua
 									</router-link>
 
 									<!-- divider -->
 									<div class="dropdown-divider"></div> 
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'pengurus'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Pengurus
+										Pengurus
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'pengawas'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Pengawas
+										Pengawas
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'komite'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Komite
+										Komite
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'penasihat'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Penasihat
+										Penasihat
 									</router-link>
 
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'manajemen'} }" class="dropdown-item" active-class="active" exact >
+										Manajemen
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'kolektor'} }" class="dropdown-item" active-class="active" exact >
+										Kolektor
+									</router-link>
+
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'kelompok_inti'} }" class="dropdown-item" active-class="active" exact >
+										Kelompok Inti
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+								
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'senior_manajer'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Senior Manajer
+										Senior Manajer
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'manajer'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Manajer
+										Manajer
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'supervisor'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Supervisor
+										Supervisor
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'staf'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Staf
+										Staf
 									</router-link>
 
 									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'kontrak'} }" class="dropdown-item" active-class="active" exact >
-										Tingkat Kontrak
+										Kontrak
 									</router-link>
+
+									
 
 								</div>
 							</div>

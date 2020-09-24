@@ -135,6 +135,7 @@ class AnggotaCuController extends Controller{
 			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
 			$t->no_ba = '';
 			$t->tanggal_masuk = '';
+			$t->hp = $t->hp ? $t->hp . "​ " : '';
 			foreach($t->anggota_cu_cu_not_keluar as $ta){
 				$tp_name = $ta->tp ? ' | ' . $ta->tp->name : '';
 				$cu_name = $ta->cu ? $ta->cu->name : '';
@@ -152,6 +153,7 @@ class AnggotaCuController extends Controller{
 			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
 			$t->no_ba = '';
 			$t->tanggal_masuk = '';
+			$t->hp = $t->hp ? $t->hp . "​ " : '';
 			foreach($t->anggota_cu_cu_keluar as $ta){
 				$tp_name = $ta->tp ? ' | ' . $ta->tp->name : '';
 				$cu_name = $ta->cu ? $ta->cu->name : '';
@@ -168,6 +170,7 @@ class AnggotaCuController extends Controller{
 			if($t->anggota_cu_cu_not_keluar){
 				$t->nik = $t->nik ? $t->nik . "​ " : '';
 				$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+				$t->hp = $t->hp ? $t->hp . "​ " : '';
 				if($t->anggota_cu_cu_not_keluar){
 					foreach($t->anggota_cu_cu_not_keluar as $tt){
 						if($tt->cu_id == $cu){
@@ -194,6 +197,7 @@ class AnggotaCuController extends Controller{
 			if($t->anggota_cu_cu_keluar){
 				$t->nik = $t->nik ? $t->nik . "​ " : '';
 				$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+				$t->hp = $t->hp ? $t->hp . "​ " : '';
 				if($t->anggota_cu_cu_keluar){
 					foreach($t->anggota_cu_cu_keluar as $tt){
 						if($tt->cu_id == $cu){

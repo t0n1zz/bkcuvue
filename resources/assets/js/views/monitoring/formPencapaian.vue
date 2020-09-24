@@ -61,6 +61,19 @@
 			</div>
 
 			<!-- tindak -->
+			<div class="col-md-12" v-if="mode != 'catatan'">
+				<div class="form-group">
+
+					<!-- title -->
+					<h6>Upload Foto:</h6>
+
+						<!-- imageupload -->
+						<app-image-upload :image_loc="'/images/monitoring/'" :image_temp="formDataLanjut.gambar" v-model="formDataLanjut.gambar"></app-image-upload>
+
+				</div>
+			</div>
+
+			<!-- tindak -->
 			<div class="col-md-12" v-if="mode == 'catatan'">
 				<div class="form-group">
 
@@ -107,13 +120,16 @@
 	import checkValue from '../../components/checkValue.vue';
 	import Message from "../../components/message.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import appImageUpload from '../../components/ImageUpload.vue';
+	import { toMulipartedForm } from '../../helpers/form';
 
 	export default {
 		props: ['mode','selected'],
 		components: {
 			checkValue,
 			Message,
-			wajibBadge
+			wajibBadge,
+			appImageUpload
 		},
 		data() {
 			return {
@@ -121,12 +137,14 @@
 				kelas: 'monitoringPencapaian',
 				formDataLanjut:{
 					id: '',
+					id_user: '',
 					id_monitoring: '',
 					pencapaian: '',
 					bukti: '',
 					kendala: '',
 					tindak: '',
 					catatan: '',
+					gambar: '',
 				},
 				message: {
 					show: false,
@@ -144,12 +162,13 @@
 		methods: {
 			save(){
 				this.formDataLanjut.id_monitoring = this.$route.params.id;
+				const formData = toMulipartedForm(this.formDataLanjut, this.$route.meta.mode);
 				this.$validator.validateAll('formDataLanjut').then((result) => {
 					if (result) {
 						if (this.mode == 'create') {
-							this.$store.dispatch(this.kelas + '/store', this.formDataLanjut);
+							this.$store.dispatch(this.kelas + '/store', formData);
 						} else {
-							this.$store.dispatch(this.kelas + '/update', [this.formDataLanjut.id, this.formDataLanjut]);
+							this.$store.dispatch(this.kelas + '/update', [this.formDataLanjut.id, formData]);
 						}
 						this.submited = false;
 					}else{

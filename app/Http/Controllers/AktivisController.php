@@ -67,6 +67,10 @@ class AktivisController extends Controller{
 				$param_tingkat = 8;
 			}elseif($tingkat == 'kontrak'){
 				$param_tingkat = 9;
+			}elseif($tingkat == 'kolektor'){
+				$param_tingkat = 10;
+			}elseif($tingkat == 'kelompok_inti'){
+				$param_tingkat = 11;
 			}
 
 			if($status == 'aktif'){
@@ -80,11 +84,7 @@ class AktivisController extends Controller{
 			}
 		}
 
-		foreach($table_data as $t){
-			$t->nik = $t->nik . " ";
-			$t->nim_cu = $t->nim_cu . " ";
-			$t->npwp = $t->npwp . " ";
-		}
+		$table_data = $this->formatQuery($table_data);
 	
 		return response()
 		->json([
@@ -152,6 +152,10 @@ class AktivisController extends Controller{
 				$param_tingkat = 8;
 			}elseif($tingkat == 'kontrak'){
 				$param_tingkat = 9;
+			}elseif($tingkat == 'kolektor'){
+				$param_tingkat = 10;
+			}elseif($tingkat == 'kelompok_inti'){
+				$param_tingkat = 11;
 			}
 
 			if($status == 'aktif'){
@@ -168,16 +172,23 @@ class AktivisController extends Controller{
 			}
 		}
 
-		foreach($table_data as $t){
-			$t->nik = $t->nik . " ";
-			$t->nim_cu = $t->nim_cu . " ";
-			$t->npwp = $t->npwp . " ";
-		}
+		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
 			'model' => $table_data
 		]);
+	}
+
+	public function formatQuery($table_data){
+		foreach($table_data as $t){
+			$t->nik = $t->nik ? $t->nik . "​ " : '';
+			$t->nim_cu = $t->nim_cu ? $t->nim_cu . "​ " : '';
+			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
+			$t->hp = $t->hp ? $t->hp . "​ " : '';
+		}
+
+		return $table_data;
 	}
 
 	public function indexTingkat(Request $request)

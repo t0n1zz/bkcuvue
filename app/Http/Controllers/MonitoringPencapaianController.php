@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 use App\MonitoringPencapaian;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
+use App\Support\Helper;
+use File;
 use Venturecraft\Revisionable\Revision;
 
 class MonitoringPencapaianController extends Controller{
 
+	protected $imagepath = 'images/monitoring/';
 	protected $message = "Pencapaian";
+	protected $width = 300;
+	protected $height = 424;
 
 	public function get($id)
 	{
@@ -26,7 +31,14 @@ class MonitoringPencapaianController extends Controller{
 
 		$name = $request->pencapaian;
 
-		$kelas = MonitoringPencapaian::create($request->all());
+		if(!empty($request->gambar))
+			$gambar = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->gambar,'',$request->pencapaian . 'gmbr');
+		else
+			$gambar = '';	
+
+		$kelas = MonitoringPencapaian::create($request->except('gambar') + [
+			'gambar' => $gambar
+		]);
 
 		NotificationHelper::monitoring_pencapaian($kelas,'menambah keputusan');
 		
@@ -42,11 +54,18 @@ class MonitoringPencapaianController extends Controller{
 	{
 		$this->validate($request, MonitoringPencapaian::$rules);
 
-		$name = $request->name;
+		$name = $request->pencapaian;
 
 		$kelas = MonitoringPencapaian::findOrFail($id);
 
-		$kelas->update($request->all());
+		if(!empty($request->gambar))
+			$gambar = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar,$kelas->pencapaian . 'gmbr');
+		else
+			$gambar = '';
+
+		$kelas->update($request->except('gambar') + [
+			'gambar' => $gambar
+		]);
 
 		NotificationHelper::monitoring_pencapaian($kelas,'mengubah keputusan');
 
@@ -62,6 +81,10 @@ class MonitoringPencapaianController extends Controller{
 		$kelas = MonitoringPencapaian::findOrFail($id);
 
 		$name = $kelas->pencapaian;
+
+		if(!empty($kelas->gambar)){
+			File::delete($this->imagepath . $kelas->gambar . '.jpg');
+		}
 
 		$kelas->delete();
 

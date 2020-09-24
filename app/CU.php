@@ -179,6 +179,16 @@ class Cu extends Model {
         return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('tingkat',9)->where('status',1);
     }
 
+    public function hasKolektor()
+    {
+        return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('tingkat',10)->where('status',1);
+    }
+
+    public function hasKelompokInti()
+    {
+        return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('tingkat',11)->where('status',1);
+    }
+
     public function hasAktivisTidakAktif()
     {
         return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('status',3);

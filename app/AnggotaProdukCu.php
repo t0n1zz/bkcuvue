@@ -15,6 +15,12 @@ class AnggotaProdukCu extends BaseEloquent {
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
 
+    public static $rules = [
+        'anggota_cu_id' => 'required',
+        'produk_cu_id' => 'required',
+        'no_rek' => 'required',
+    ];
+
     protected $fillable = [
         'no_rek','anggota_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','tujuan'
     ];
