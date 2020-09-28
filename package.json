@@ -32,7 +32,6 @@
         "babel-runtime-regenerator": "^7.8.4",
         "echarts": "^4.5.0",
         "file-saver": "^2.0.2",
-        "fsevents": "^2.1.3",
         "hooper": "^0.3.4",
         "imagemin": "^5.0.0",
         "laravel-echo": "^1.8.1",

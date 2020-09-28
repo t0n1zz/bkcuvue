@@ -3,7 +3,7 @@ import Echo from 'laravel-echo';
 export function PusherAuth() {
     window.Echo = new Echo({
         broadcaster: 'pusher',
-        key: 'a34885976ae0803ba2a7',
+        key: 'ed245ede9de31499ae1b',
         cluster: 'ap1',
         encrypted: true,
         auth: {

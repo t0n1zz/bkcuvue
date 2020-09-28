@@ -752,12 +752,13 @@ class AnggotaCuController extends Controller{
 	public function uploadExcel(Request $request)
 	{
 
-		Excel::import(new AnggotaCuDraftImport, request()->file('file'));
+		$type = "anggotaCU";
+		Excel::import(new AnggotaCuDraftImport, request()->file('file'), null, null, $type);
 
 		return response()
 			->json([
 				'uploaded' => true,
-				'message' => $this->message.' berhasil diupload ke tabel draft, silahkan selanjutnya memeriksa hasil upload sebelum dimasukkan ke tabel utama'
+				'message' => 'Upload ' . $this->message . ' Sedang diproses, silahkan selanjutnya memeriksa notifikasi hasil upload sebelum dimasukkan ke tabel utama'
 			]);
 	}
 
