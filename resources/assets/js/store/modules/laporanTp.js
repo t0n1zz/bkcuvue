@@ -1,4 +1,5 @@
 import laporanTpAPI from '../../api/laporanTp.js';
+import laporanTpDraftAPI from '../../api/laporanTpDraft.js';
 
 export const laporanTp = {
   namespaced: true,
@@ -14,9 +15,9 @@ export const laporanTp = {
     columnData: [],
     dataStat: '',
     dataStatS: '',
-    dataStat2S:'',
-    grafikStat:'',
-    pearlsStat:'',
+    dataStat2S: '',
+    grafikStat: '',
+    pearlsStat: '',
     periodeStat: '',
     update: [], //update data
     updateStat: '',
@@ -48,116 +49,132 @@ export const laporanTp = {
 
   actions: {
     //load collection with params
-    index( { commit }, [p, id] ){
+    index({
+      commit
+    }, [p, id]) {
       commit('setDataStatS', 'loading');
-      
-      laporanTpAPI.index( p, id )
-        .then( function( response ){
-          commit('setDataS', response.data.model );
+
+      laporanTpAPI.index(p, id)
+        .then(function (response) {
+          commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
 
     // load by cu
-    indexCu( { commit }, [p, id] ){
+    indexCu({
+      commit
+    }, [p, id]) {
       commit('setDataStatS', 'loading');
-      
-      laporanTpAPI.indexCu( p, id )
-        .then( function( response ){
+
+      laporanTpAPI.indexCu(p, id)
+        .then(function (response) {
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
 
     // load by periode
-    indexPeriode( { commit }, [p, periode] ){
+    indexPeriode({
+      commit
+    }, [p, periode]) {
       commit('setDataStatS', 'loading');
-      
-      laporanTpAPI.indexPeriode( p, periode )
-        .then( function( response ){
+
+      laporanTpAPI.indexPeriode(p, periode)
+        .then(function (response) {
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
 
     //load collection with params
-    indexPearls( { commit }, p ){
+    indexPearls({
+      commit
+    }, p) {
       commit('setPearlsStat', 'loading');
-      
-      laporanTpAPI.indexPearls( p )
-        .then( function( response ){
-          commit('setPearls', response.data.model );
+
+      laporanTpAPI.indexPearls(p)
+        .then(function (response) {
+          commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setPearls', error.response);
           commit('setPearlsStat', 'fail');
         });
     },
 
     // load by cu
-    indexPearlsCu( { commit }, [p, id] ){
+    indexPearlsCu({
+      commit
+    }, [p, id]) {
       commit('setPearlsStat', 'loading');
-      
-      laporanTpAPI.indexPearlsCu( p, id )
-        .then( function( response ){
+
+      laporanTpAPI.indexPearlsCu(p, id)
+        .then(function (response) {
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setPearls', error.response);
           commit('setPearlsStat', 'fail');
         });
     },
 
     // load by periode
-    indexPearlsPeriode( { commit }, [p, periode] ){
+    indexPearlsPeriode({
+      commit
+    }, [p, periode]) {
       commit('setPearlsStat', 'loading');
-      
-      laporanTpAPI.indexPearlsPeriode( p, periode )
-        .then( function( response ){
+
+      laporanTpAPI.indexPearlsPeriode(p, periode)
+        .then(function (response) {
           commit('setPearls', response.data.model);
           commit('setPearlsStat', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setPearls', error.response);
           commit('setPearlsStat', 'fail');
         });
     },
 
     // get list of laporan tp for laporan cu
-    listLaporanTp( { commit }, [cu, periode] ){
+    listLaporanTp({
+      commit
+    }, [cu, periode]) {
       commit('setDataStat2S', 'loading');
-      
-      laporanTpAPI.listLaporanTp( cu, periode )
-        .then( function( response ){
+
+      laporanTpAPI.listLaporanTp(cu, periode)
+        .then(function (response) {
           commit('setData2S', response.data.model);
           commit('setDataStat2S', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setData2S', error.response);
           commit('setDataStat2S', 'fail');
         });
     },
-    
+
     // load collection of periode
-    getPeriode( {commit} ){
+    getPeriode({
+      commit
+    }) {
       commit('setPeriodeStat', 'loading');
-      
+
       laporanTpAPI.getPeriode()
-        .then( function( response ){
+        .then(function (response) {
           commit('setPeriode', response.data.model);
           commit('setPeriodeStat', 'success');
         })
@@ -167,11 +184,13 @@ export const laporanTp = {
         });
     },
 
-    getPeriodeTp( {commit}, [id, periode] ){
+    getPeriodeTp({
+      commit
+    }, [id, periode]) {
       commit('setDataStatS', 'loading');
-      
-      laporanTpAPI.getPeriodeTp( id,periode )
-        .then( function( response ){
+
+      laporanTpAPI.getPeriodeTp(id, periode)
+        .then(function (response) {
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
@@ -182,42 +201,63 @@ export const laporanTp = {
     },
 
     // load by periode
-    grafikPeriode( { commit }, [p, periode] ){
+    grafikPeriode({
+      commit
+    }, [p, periode]) {
       commit('setGrafikStat', 'loading');
-      
-      laporanTpAPI.indexPeriode( p, periode )
-        .then( function( response ){
+
+      laporanTpAPI.indexPeriode(p, periode)
+        .then(function (response) {
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setGrafik', error.response);
           commit('setGrafikStat', 'fail');
         });
     },
 
     // load by cu
-    grafikTp( { commit }, [p, id] ){
+    grafikTp({
+      commit
+    }, [p, id]) {
       commit('setGrafikStat', 'loading');
-      
-      laporanTpAPI.indexTp( p, id )
-        .then( function( response ){
+
+      laporanTpAPI.indexTp(p, id)
+        .then(function (response) {
           commit('setGrafik', response.data.model);
           commit('setGrafikStat', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setGrafik', error.response);
           commit('setGrafikStat', 'fail');
         });
     },
 
+    // load tp draft
+    indexTpDraft({
+      commit
+    }, id) {
+      commit('setDataStatS', 'loading');
 
+      laporanTpDraftAPI.index(id)
+        .then(function (response) {
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch(error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
 
-    create( {commit} ){
+    create({
+      commit
+    }) {
       commit('setDataStat', 'loading');
-      
+
       laporanTpAPI.create()
-        .then( function( response ){
+        .then(function (response) {
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
           commit('setOptions', response.data.options)
@@ -232,31 +272,37 @@ export const laporanTp = {
     },
 
     //store data
-    store( {commit, state, dispatch}, form ){
+    store({
+      commit,
+      state,
+      dispatch
+    }, form) {
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.store( form )
-        .then( function( response ){
-          if(response.data.saved){
+      laporanTpAPI.store(form)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
           commit('setUpdate', response.data);
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
 
     // edit page
-    edit( {commit}, id ){
+    edit({
+      commit
+    }, id) {
       commit('setDataStat', 'loading');
-      
-      laporanTpAPI.edit( id )
-        .then( function( response ){
+
+      laporanTpAPI.edit(id)
+        .then(function (response) {
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
           commit('setOptions', response.data.options)
@@ -271,152 +317,176 @@ export const laporanTp = {
     },
 
     // update data
-    update( {commit, state, dispatch}, [id, form] ){
+    update({
+      commit,
+      state,
+      dispatch
+    }, [id, form]) {
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.update( id, form )
-        .then( function( response ){
-          if(response.data.saved){
+      laporanTpAPI.update(id, form)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
           commit('setUpdate', response.data);
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
-    updateTerbitkan( {commit, state, dispatch}, id ){
+    updateTerbitkan({
+      commit,
+      state,
+      dispatch
+    }, id) {
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.updateTerbitkan( id )
-        .then( function( response ){
-          if(response.data.saved){
+      laporanTpAPI.updateTerbitkan(id)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
-    updateUtamakan( {commit, state, dispatch}, id ){
+    updateUtamakan({
+      commit,
+      state,
+      dispatch
+    }, id) {
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.updateUtamakan( id )
-        .then( function( response ){
-          if(response.data.saved){
+      laporanTpAPI.updateUtamakan(id)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
     // destroy data
-    destroy( {commit, state, dispatch}, id ){
+    destroy({
+      commit,
+      state,
+      dispatch
+    }, id) {
       commit('setUpdateStat', 'loading');
 
-      laporanTpAPI.destroy( id )
-        .then( function( response ){
-          if(response.data.deleted){
+      laporanTpAPI.destroy(id)
+        .then(function (response) {
+          if (response.data.deleted) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);         
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
-    addColumnData( {commit}, data){
+    addColumnData({
+      commit
+    }, data) {
       commit('setColumnData', data);
     },
 
     // reset
-    resetUpdateStat( {commit} ){
+    resetUpdateStat({
+      commit
+    }) {
       commit('setUpdateStat', '');
     },
-    resetData( {commit} ){
+    resetData({
+      commit
+    }) {
       commit('setData', '');
       commit('setDataStat', '');
     },
-    resetDataS( {commit} ){
+    resetDataS({
+      commit
+    }) {
       commit('setDataS', '');
       commit('setDataStatS', '');
     },
-    
+
   },
 
   // mutations
   mutations: {
-    setData ( state, data ){
+    setData(state, data) {
       state.data = data;
     },
-    setDataS ( state, data ){
+    setDataS(state, data) {
       state.dataS = data;
     },
-    setData2S ( state, data ){
+    setData2S(state, data) {
       state.data2S = data;
     },
-    setGrafik( state, data ){
+    setGrafik(state, data) {
       state.grafik = data;
     },
-    setPearls( state, data ){
+    setPearls(state, data) {
       state.pearls = data;
     },
-    setPeriode( state, data ){
+    setPeriode(state, data) {
       state.periode = data;
     },
-    setColumnData(state, data){
+    setColumnData(state, data) {
       state.columnData = data;
     },
-    setDataStat( state, status ){
+    setDataStat(state, status) {
       state.dataStat = status;
     },
-    setDataStatS( state, status ){
+    setDataStatS(state, status) {
       state.dataStatS = status;
     },
-    setDataStat2S( state, status ){
+    setDataStat2S(state, status) {
       state.dataStat2S = status;
     },
-    setPearlsStat( state, status ){
+    setPearlsStat(state, status) {
       state.pearlsStat = status;
     },
-    setGrafikStat( state, status ){
+    setGrafikStat(state, status) {
       state.grafikStat = status;
     },
-    setPeriodeStat( state, status ){
+    setPeriodeStat(state, status) {
       state.periodeStat = status;
     },
-    setIdCU ( state, id ){
+    setIdCU(state, id) {
       state.idCU = id;
     },
-    setUpdate ( state, data ){
+    setUpdate(state, data) {
       state.update = data;
     },
-    setUpdateStat( state,status ){
+    setUpdateStat(state, status) {
       state.updateStat = status;
     },
-    setRules( state, rules ){
+    setRules(state, rules) {
       state.rules = rules;
     },
-    setOptions( state, options ){
+    setOptions(state, options) {
       state.options = options;
     }
   }

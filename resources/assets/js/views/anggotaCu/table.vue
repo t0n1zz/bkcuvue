@@ -674,7 +674,7 @@
           enabled: true,
           url: 'anggotaCu/uploadExcel',
           format_url: 'formatAnggotaCu.xlsx',
-          next_page_route: 'anggotaCuCuDraft',
+          next_page_route: 'anggotaCuCu',
           params: {cu: this.$route.params.cu, tp: 'semua'},
           button: 'Upload Anggota CU'
         },
