@@ -9,15 +9,40 @@
         <div class="content">
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
+
+              <!-- Version 3.3.4 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v334">Version 3.3.4<small class="text-muted"> / 12 Oktober 2020</small></a> </h5>
+                </div>
+
+                <div id="v334" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan penambahan pada bagian tata kelola
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan upload bukti pada monitoring</li>
+                      <li>Penambahan fitur real time data update di monitoring dimana ketika dilakukan penambahan di salah satu perangkat, maka di perangkat lain otomatis akan muncul perubahannya</li>
+                      <li>Penambahan tombol simpan draft untuk masing-masing perspektif pada seft assesment yang memungkinkan untuk melakukan penyimpanan di tiap bagian per perspektif</li>
+                      <li>Peningkatan sistem upload anggota CU dengan excel</li>
+                      <li>Perbaikan bug tampilan dibeberapa bagian</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.4 -->
               
               <!-- Version 3.3.3 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v333">Version 3.3.3<small class="text-muted"> / 18 September 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v333">Version 3.3.3<small class="text-muted"> / 18 September 2020</small></a> </h5>
                 </div>
 
-                <div id="v333" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v333" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menawarkan perbaikan dan peningkatan pada klaim JALINAN, notifikasi, dan anggota CU
                     <br/><br/>
@@ -33,7 +58,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /version 3.3.2 -->
+              <!-- /version 3.3.3 -->
 
               <!-- Version 3.3.2 -->
               <div class="card">

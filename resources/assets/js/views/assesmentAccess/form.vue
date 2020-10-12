@@ -262,6 +262,8 @@
                   :bobotSkor="'40'"
                   :mode="$route.meta.mode"
                   :itemData="modelPearls"
+                  :updateSingleStat="updateSingleStat"
+                  @saveSingle="saveSingle"
                   @reloadPearls="reloadPearls()"
                   @next="changeTab('p2')"
                   @prev="back"
@@ -301,6 +303,8 @@
                   :jumlahIndikator="'108'"
                   :bobotSkor="'20'"
                   :mode="$route.meta.mode"
+                  :updateSingleStat="updateSingleStat"
+                  @saveSingle="saveSingle"
                   @prev="changeTab('p2')"
                   @next="changeTab('p3')"
                   @skorCUA="skorCUP2A"
@@ -323,6 +327,8 @@
                   :jumlahIndikator="'104'"
                   :bobotSkor="'20'"
                   :mode="$route.meta.mode"
+                  :updateSingleStat="updateSingleStat"
+                  @saveSingle="saveSingle"
                   @prev="changeTab('p3')"
                   @next="changeTab('p4')"
                   @skorCUA="skorCUP3A"
@@ -345,6 +351,8 @@
                   :jumlahIndikator="'80'"
                   :bobotSkor="'20'"
                   :mode="$route.meta.mode"
+                  :updateSingleStat="updateSingleStat"
+                  @saveSingle="saveSingle"
                   @prev="changeTab('p3')"
                   @next="changeTab('p5')"
                   @skorCUA="skorCUP4A"
@@ -585,6 +593,9 @@ import scoreP2 from "./score_p2.vue";
 import scoreP3 from "./score_p3.vue";
 import scoreP4 from "./score_p4.vue";
 import kesimpulan from "./kesimpulan.vue";
+import { PusherAuth } from '../../helpers/pusherAuth.js';
+import Echo from 'laravel-echo';
+import Pusher from "pusher-js";
 
 export default {
   components: {
@@ -698,8 +709,26 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fetch());
   },
+  mounted(){
+    PusherAuth();
+    window.Echo.private(`assesment.channel.` + this.$route.params.id)
+    .listen('AssesmentEvent',(data) => {      
+      if(data.tipe == 'p1'){
+        this.form.p1 = data.datas;
+      }
+      if(data.tipe == 'p2'){
+        this.form.p2 = data.datas;
+      }
+      if(data.tipe == 'p3'){
+        this.form.p3 = data.datas;
+      }
+      if(data.tipe == 'p4'){
+        this.form.p4 = data.datas;
+      }
+      console.log(data);
+    });
+  },
   created() {
-    
 		this.changeCU(this.currentUser.id_cu);
 	},
   watch: {
@@ -728,6 +757,15 @@ export default {
       if (value === "success") {
         this.modalTitle = this.updateResponse.message;
       } else {
+        this.modalTitle = "Oops terjadi kesalahan :(";
+        this.modalContent = this.updateResponse;
+      }
+    },
+    updateSingleStat(value) {
+      if (value == "fail") {
+        this.modalShow = true;
+        this.modalState = value;
+        this.modalColor = "";
         this.modalTitle = "Oops terjadi kesalahan :(";
         this.modalContent = this.updateResponse;
       }
@@ -786,6 +824,35 @@ export default {
             this.form.status = "BELUM SELESAI DINILAI";
             this.$store.dispatch(this.kelas + "/update", [
               this.$route.params.id,
+              this.form
+            ]);
+          } else {
+            this.form.status = "BELUM SELESAI DIISI";
+            this.$store.dispatch(this.kelas + "/store", this.form);
+          }
+          this.submited = false;
+        } else {
+          window.scrollTo(0, 0);
+          this.submited = true;
+        }
+      });
+    },
+    saveSingle(perspektif) {
+      console.log(perspektif);
+      this.$validator.validateAll("form").then(result => {
+        if (result) {
+          if (this.$route.meta.mode == "edit") {
+            this.form.status = "BELUM SELESAI DIISI";
+            this.$store.dispatch(this.kelas + "/updateSingle", [
+              this.$route.params.id,
+              perspektif,
+              this.form
+            ]);
+          } else if (this.$route.meta.mode == "penilaianBkcu") {
+            this.form.status = "BELUM SELESAI DINILAI";
+            this.$store.dispatch(this.kelas + "/updateSingle", [
+              this.$route.params.id,
+              perspektif,
               this.form
             ]);
           } else {
@@ -1093,6 +1160,8 @@ export default {
       options: "options",
       updateResponse: "update",
 			updateStat: "updateStat",
+      updateSingleResponse: "updateSingle",
+			updateSingleStat: "updateSingleStat",
 			periode: "periode",
 			periodeStat: "periodeStat"
     }),

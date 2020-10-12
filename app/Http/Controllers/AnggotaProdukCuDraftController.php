@@ -29,9 +29,9 @@ class AnggotaProdukCuDraftController extends Controller{
 	public function index($cu, $tp)
 	{
 		if($cu == 'semua'){
-			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu')->where('anggota_cu_id', $id)->get();	
+			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu','anggota_cu')->where('anggota_cu_id', $id)->get();	
 		}else{
-			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
+			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu','anggota_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
 				$query->where('id_cu',$cu); 
 			})->get();
 		}

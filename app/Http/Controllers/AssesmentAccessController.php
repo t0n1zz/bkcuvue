@@ -9,6 +9,7 @@ use App\AssesmentAccessP1;
 use App\AssesmentAccessP2;
 use App\AssesmentAccessP3;
 use App\AssesmentAccessP4;
+use App\Events\AssesmentEvent;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
@@ -229,6 +230,11 @@ class AssesmentAccessController extends Controller{
 			$kelasP2->update($request->p2);	
 			$kelasP3->update($request->p3);	
 			$kelasP4->update($request->p4);	
+
+			event(new AssesmentEvent($kelasP1, $id, 'p1'));
+			event(new AssesmentEvent($kelasP2, $id, 'p2'));
+			event(new AssesmentEvent($kelasP3, $id, 'p3'));
+			event(new AssesmentEvent($kelasP4, $id, 'p4'));
 	
 			if($request->status == 'BELUM DINILAI'){
 				NotificationHelper::self_assesment($kelas,'menambah');
@@ -242,7 +248,53 @@ class AssesmentAccessController extends Controller{
 					'message' => $this->message. ' periode ' .$periode. ' berhasil diubah'
 				]);
 		}
+	}
 
+	public function updateSingle(Request $request, $id, $perspektif)
+	{
+		$cu = \Auth::user()->id_cu;
+		$periode = $request->periode;
+		$kelas = AssesmentAccess::findOrFail($id);
+
+		if($kelas->status == 'BELUM SELESAI DINILAI' && $cu != 0){
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' periode ' .$periode. ' tidak bisa diubah karena sedang dalam proses penilaian BKCU Kalimantan'
+				]);
+		}else{
+			$kelas->update($request->all());
+
+			if($perspektif == 'p1'){
+				$kelasP1 = AssesmentAccessP1::findOrFail($kelas->id_p1);
+				$kelasP1->update($request->p1);	
+				event(new AssesmentEvent($kelasP1, $id, 'p1'));
+			}else if($perspektif == 'p2'){
+				$kelasP2 = AssesmentAccessP2::findOrFail($kelas->id_p2);
+				$kelasP2->update($request->p2);	;
+				event(new AssesmentEvent($kelasP2, $id, 'p2'));
+			}else if($perspektif == 'p3'){
+				$kelasP3 = AssesmentAccessP3::findOrFail($kelas->id_p3);
+				$kelasP3->update($request->p3);	
+				event(new AssesmentEvent($kelasP3, $id, 'p3'));
+			}else if($perspektif == 'p4'){
+				$kelasP4 = AssesmentAccessP4::findOrFail($kelas->id_p4);	
+				$kelasP4->update($request->p4);	
+				event(new AssesmentEvent($kelasP4, $id, 'p4'));
+			}
+
+			if($request->status == 'BELUM DINILAI'){
+				NotificationHelper::self_assesment($kelas,'menambah');
+			}else if($request->status == 'SUDAH DINILAI'){
+				NotificationHelper::self_assesment($kelas,'memberikan penilaian pada');
+			}
+		}
+		
+		return response()
+			->json([
+				'saved' => true,
+				'message' => $this->message. ' periode ' .$periode. ' berhasil diubah'
+			]);
 	}
 
 	public function destroy($id)

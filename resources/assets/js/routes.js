@@ -55,6 +55,8 @@ import anggotaCu_form from './views/anggotaCu/form.vue';
 import anggotaCu_produk from './views/anggotaCu/produk.vue';
 import anggotaCuDraft from './views/anggotaCuDraft/index.vue';
 import anggotaCuDraft_form from './views/anggotaCuDraft/form.vue';
+import anggotaProdukCuDraft from './views/anggotaProdukCuDraft/index.vue';
+import anggotaProdukCuDraft_form from './views/anggotaProdukCuDraft/form.vue';
 import saldo from './views/saldo/index.vue';
 import jalinanKlaim from './views/jalinanKlaim/index.vue';
 import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
@@ -465,7 +467,7 @@ const routes = [
 		components: { default: anggotaCu_produk, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'editJalinan' }},		
 
-	// anggota cu
+	// anggota cu draft
 	{ path: '/anggotaCuDraft/cu/:cu/:tp',
 		name: 'anggotaCuCuDraft', 
 		components: { default: anggotaCuDraft, 'header': header, 'footer': footer  }, 
@@ -473,7 +475,17 @@ const routes = [
 	{ path: '/anggotaCuDraft/edit/:id',
 		name: 'anggotaCuDraftEdit', 
 		components: { default: anggotaCuDraft_form, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth: true, mode:'edit' } },	
+		meta: { requiresAuth: true, mode:'edit' }},
+	
+	// anggota produk cu draft
+	{ path: '/anggotaProdukCuDraft/cu/:cu/:tp',
+		name: 'anggotaProdukCuCuDraft', 
+		components: { default: anggotaProdukCuDraft, 'header': header, 'footer': footer  }, 
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/anggotaProdukCuDraft/edit/:id',
+		name: 'anggotaProdukCuDraftEdit', 
+		components: { default: anggotaProdukCuDraft_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' }},
 		
 	// saldo	
 	{ path: '/saldo',

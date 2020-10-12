@@ -116,6 +116,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -196,6 +215,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 					</div>
 				</div>
@@ -278,6 +316,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -358,6 +415,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 					</div>
 				</div>
@@ -440,6 +516,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -520,6 +615,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 					</div>
 				</div>
@@ -602,6 +716,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -683,6 +816,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -763,6 +915,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 					</div>
 				</div>
@@ -871,6 +1042,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -953,6 +1143,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -1037,6 +1246,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -1119,6 +1347,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -1203,6 +1450,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -1285,6 +1551,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -1369,6 +1654,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -1451,6 +1755,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -1535,6 +1858,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -1617,6 +1959,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -1701,6 +2062,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -1783,6 +2163,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -1867,6 +2266,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -1949,6 +2367,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -2033,6 +2470,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -2115,6 +2571,25 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
 						</div>
 
 					</div>
@@ -2199,6 +2674,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12" v-if="$route.meta.mode != 'lihat'">
+							<hr />
+							<button
+								type="button"
+								class="btn btn-light btn-block"
+								disabled
+								v-if="updateSingleStat == 'loading'"
+							>
+								<i class="icon-sync spinner"></i>
+							</button>	
+							<button
+								type="button"
+								class="btn btn-warning btn-block"
+								@click.prevent="saveSingle"
+								v-else
+							>
+								<i class="icon-floppy-disk"></i> Simpan Draft Untuk Perspektif Ini
+							</button>	
+						</div>
 
 					</div>
 				</div>
@@ -2242,7 +2736,7 @@
 	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
-		props: ['form','mode','jumlahIndikator','bobotSkor'],
+		props: ['form','mode','jumlahIndikator','bobotSkor','updateSingleStat'],
 		components: {
 			penilaianCu,
 			penilaianBkcu,
@@ -2271,6 +2765,9 @@
 					this.cuTabName = 'semua';
 					this.bkcuTabName = value;
 				}
+			},
+			saveSingle(){
+				this.$emit('saveSingle', 'p3');
 			},
 			next(){
 				this.$emit('next');

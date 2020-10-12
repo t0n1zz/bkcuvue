@@ -264,12 +264,12 @@ export const anggotaCu = {
 
       AnggotaCuAPI.store( form )
         .then( function( response ){
-          if(response.data.saved){
-            commit('setUpdate', response.data);
+           if(response.data.saved){
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -282,12 +282,12 @@ export const anggotaCu = {
 
       AnggotaCuAPI.storeProduk( id, form )
         .then( function( response ){
-          if(response.data.saved){
-            commit('setUpdate', response.data);
+           if(response.data.saved){
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -300,12 +300,13 @@ export const anggotaCu = {
 
       AnggotaCuDraftAPI.store( id )
         .then( function( response ){
-          if(response.data.saved){
+           if(response.data.saved){
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
           commit('setUpdate', response.data);
+          
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -317,7 +318,7 @@ export const anggotaCu = {
 
       AnggotaCuDraftAPI.storeAll( cu )
         .then( function( response ){
-          if(response.data.saved){
+           if(response.data.saved){
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
@@ -375,11 +376,11 @@ export const anggotaCu = {
       AnggotaCuAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -393,11 +394,11 @@ export const anggotaCu = {
       AnggotaCuAPI.updateProduk( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -411,11 +412,11 @@ export const anggotaCu = {
       AnggotaCuAPI.updatePindahTp( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -429,11 +430,11 @@ export const anggotaCu = {
       AnggotaCuAPI.updateKeluar( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -447,11 +448,11 @@ export const anggotaCu = {
       AnggotaCuAPI.updateBatalKeluar( id )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -465,12 +466,11 @@ export const anggotaCu = {
       AnggotaCuAPI.updateNik( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
-            commit('setUpdate', response.data); 
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data); 
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -484,11 +484,11 @@ export const anggotaCu = {
       AnggotaCuDraftAPI.update( id, form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -505,6 +505,7 @@ export const anggotaCu = {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
+            commit('setUpdate', response.data);
             commit('setUpdateStat', 'fail');
           }
         })
@@ -521,11 +522,11 @@ export const anggotaCu = {
       AnggotaCuAPI.destroy( id, cu )
         .then( function( response ){
           if(response.data.deleted){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);         
@@ -538,11 +539,11 @@ export const anggotaCu = {
       AnggotaCuAPI.destroyProduk( id )
         .then( function( response ){
           if(response.data.deleted){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);         
@@ -555,11 +556,11 @@ export const anggotaCu = {
       AnggotaCuDraftAPI.destroy( id )
         .then( function( response ){
           if(response.data.deleted){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);         
@@ -572,11 +573,11 @@ export const anggotaCu = {
       AnggotaCuDraftAPI.destroyAll( cu )
         .then( function( response ){
           if(response.data.deleted){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);         
@@ -590,11 +591,11 @@ export const anggotaCu = {
       AnggotaCuAPI.uploadExcel( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   
@@ -608,11 +609,11 @@ export const anggotaCu = {
       AnggotaCuAPI.uploadExcelNew( form )
         .then( function( response ){
           if(response.data.saved){
-            commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
             commit('setUpdateStat', 'fail');
           }
+          commit('setUpdate', response.data);
         })
         .catch(error => {
           commit('setUpdate', error.response);   

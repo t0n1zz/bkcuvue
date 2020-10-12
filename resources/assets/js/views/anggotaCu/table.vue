@@ -678,14 +678,14 @@
           params: {cu: this.$route.params.cu, tp: 'semua'},
           button: 'Upload Anggota CU'
         },
-        // {
-        //   enabled: true,
-        //   url: 'anggotaCu/uploadExcelProduk',
-        //   format_url: 'formatProdukAnggotaCu.xlsx',
-        //   next_page_route: 'anggotaProdukCuDraft',
-        //   params: {cu: this.$route.params.cu, tp: 'semua'},
-        //   button: 'Upload Produk Anggota CU'
-        // }
+        {
+          enabled: true,
+          url: 'anggotaCu/uploadExcelProduk',
+          format_url: 'formatProdukAnggotaCu.xlsx',
+          next_page_route: 'anggotaProdukCuDraft',
+          params: {cu: this.$route.params.cu, tp: 'semua'},
+          button: 'Upload Produk Anggota CU'
+        }
       ];
     },
     watch: {

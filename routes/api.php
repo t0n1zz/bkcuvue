@@ -394,6 +394,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
     });
     Route::group(['middleware' => ['permission:update_assesment_access']], function () {
         Route::post('/assesmentAccess/update/{id}', 'AssesmentAccessController@update');
+        Route::post('/assesmentAccess/updateSingle/{id}/{perspektif}', 'AssesmentAccessController@updateSingle');
     });
     Route::group(['middleware' => ['permission:destroy_assesment_access']], function () {
         Route::delete('/assesmentAccess/{id}', 'AssesmentAccessController@destroy');

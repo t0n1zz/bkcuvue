@@ -19,6 +19,8 @@ export const assesmentAccess = {
     headerDataStatS: '',
     update: [], //update data
     updateStat: '',
+    updateSingle: [], //update data
+    updateSingleStat: '',
     rules: [], //laravel rules
     options: [], //laravel options
   },
@@ -39,6 +41,8 @@ export const assesmentAccess = {
     headerDataStatS: state => state.headerDataStatS,
     update: state => state.update,
     updateStat: state => state.updateStat,
+    updateSingle: state => state.updateSingle,
+    updateSingleStat: state => state.updateSingleStat,
     rules: state => state.rules,
     options: state => state.options,
   },
@@ -169,6 +173,24 @@ export const assesmentAccess = {
         });
     },
 
+    updateSingle( {commit, state, dispatch}, [id, perspektif, form] ){
+      commit('setUpdateSingleStat', 'loading');
+
+      AssesmentAccessAPI.updateSingle( id, perspektif, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdateSingle', response.data);
+            commit('setUpdateSingleStat', 'success');
+          }else{
+            commit('setUpdateSingleStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdateSingle', error.response);   
+          commit('setUpdateSingleStat', 'fail');
+        });
+    },
+
     restore( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
@@ -289,6 +311,12 @@ export const assesmentAccess = {
     },
     setUpdateStat( state,status ){
       state.updateStat = status;
+    },
+    setUpdateSingle ( state, data ){
+      state.updateSingle = data;
+    },
+    setUpdateSingleStat( state,status ){
+      state.updateSingleStat = status;
     },
     setRules( state, rules ){
       state.rules = rules;

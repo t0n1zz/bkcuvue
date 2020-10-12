@@ -64,6 +64,7 @@ class UserController extends Controller
 		'update_anggota_cu',
 		'destroy_anggota_cu',
 		'upload_anggota_cu',
+		'upload_anggota_cu_produk',
 
 		'index_saldo',
 		'create_saldo',

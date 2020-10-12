@@ -28,6 +28,10 @@ export default {
     return axios.post('/api/assesmentAccess/update/' + id, form);
   },
 
+  updateSingle: function ( id, perspektif,  form ){
+    return axios.post('/api/assesmentAccess/updateSingle/' + id + '/' + perspektif, form);
+  },
+
   destroy: function( id ){
     return axios.delete('/api/assesmentAccess/' + id);
   },

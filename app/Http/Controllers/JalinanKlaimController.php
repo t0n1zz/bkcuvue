@@ -1428,7 +1428,7 @@ class JalinanKlaimController extends Controller{
 		
 		$kelas->update();
 
-		$this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
+		// $this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 		
 		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
 
@@ -1453,7 +1453,7 @@ class JalinanKlaimController extends Controller{
 
 		$kelas->update();
 
-		$this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
+		// $this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 		
 		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
 	

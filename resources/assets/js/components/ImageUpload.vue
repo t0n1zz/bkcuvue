@@ -13,7 +13,7 @@
 		<!-- upload button -->
 		<div class="row">
 			<div class="col-md-10">
-				<input type="file" class="form-control" accept="image/*" @change="upload" ref="fileInput">
+				<input type="file" class="form-control" accept=".jpg, .jpeg, .png" @change="upload" ref="fileInput">
 			</div>
 			<div class="col-md-2">
 				<button type="button" class="btn btn-light btn-block" @click.prevent="close()" :disabled="image_temp === ''"><i class="icon-cross"></i> Batal</button>
