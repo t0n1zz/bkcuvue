@@ -12,6 +12,28 @@
 					</div>
 				</div>
 			</div>
+			<div class="card-body">
+				<div class="text-right d-none d-sm-block">
+					<json-excel 
+              class="btn bg-green-300 btn-icon"
+              :data="excel.data"
+              :exportFields="excel.fields" 
+              :meta="excel.meta" 
+              :title="'Data ' + title" 
+              :name="title + '.xls'"
+              ><i class="icon-folder-download2"></i> Download Excel</json-excel> 
+				</div>	
+				<div class="d-block d-sm-none">
+					<json-excel 
+              class="btn bg-green-300 btn-icon btn-block"
+              :data="excel.data"
+              :exportFields="excel.fields" 
+              :meta="excel.meta" 
+              :title="'Data ' + title" 
+              :name="title + '.xls'"
+              ><i class="icon-folder-download2"></i> Download Excel</json-excel> 
+				</div>	
+			</div>
 			<div class="table-responsive" v-show="!collapsed">
 				<table class="table table-bordered">
 					<thead class="bg-primary">
@@ -272,6 +294,7 @@
 
 <script>
 	import checkValue from "../../components/checkValue.vue";
+	import jsonExcel from 'vue-json-excel';
 
 	export default {
 		props: ['form','mode','jumlahIndikator','bobotSkor',
@@ -285,14 +308,237 @@
 			'nilaiBobotBKCUP4B',
 		],
 		components: {
-			checkValue
+			checkValue,
+			jsonExcel
 		},
 		data() {
 			return {
 				collapsed: false,
+				title: 'perspektif_pembelajaran_' + this.form.cu.no_ba,
+				excel: {
+          fields: {
+						perspektif: 'perspektif',
+						skor_cu: 'skor_cu',
+						bobot_cu: 'bobot_cu',
+						skor_bkcu: 'skor_bkcu',
+						bobot_bkcu: 'bobot_bkcu',
+						keterangan_cu: 'keterangan_cu',
+						keterangan_bkcu: 'keterangan_bkcu',
+						rekomendasi_bkcu: 'rekomendasi_bkcu',
+					},
+					data: [],
+          meta: [
+            [{
+              "key": "charset",
+              "value": "utf-8"
+            }]
+          ]
+        },
 			}
 		},
 		created(){
+			this.excel.data = [
+				{
+					perspektif: '1. Pusat Keputusan Yang Utama',
+					skor_cu: this.form.p4.p4a1_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a1_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a1_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a1_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a1_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a1_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a1_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '2. Peran Penasehat (advisory)',
+					skor_cu: this.form.p4.p4a2_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a2_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a2_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a2_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a2_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a2_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a2_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '3. Peran Pengabadian (Perpetuating)',
+					skor_cu: this.form.p4.p4a3_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a3_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a3_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a3_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a3_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a3_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a3_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '4. Fungsi Wali',
+					skor_cu: this.form.p4.p4a4_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a4_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a4_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a4_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a4_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a4_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a4_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '5. Sebagai Simbol',
+					skor_cu: this.form.p4.p4a5_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a5_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a5_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a5_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a5_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a5_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a5_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '6. Komposisi dan Komitmen',
+					skor_cu: this.form.p4.p4a6_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a6_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a6_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a6_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a6_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a6_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a6_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '7. Service delivery kepada anggota – Penarikan Simpanan',
+					skor_cu: this.form.p4.p4a7_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a7_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a7_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a7_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a7_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a7_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a7_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '8. Tata Kelola',
+					skor_cu: this.form.p4.p4a8_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a8_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a8_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a8_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a8_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a8_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a8_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '9. Evaluasi Kinerja',
+					skor_cu: this.form.p4.p4a9_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a9_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a9_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a9_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a9_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a9_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a9_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '10. Kesetaraan Gender Dalam Kepemimpinan',
+					skor_cu: this.form.p4.p4a10_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4a10_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4a10_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4a10_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4a10_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4a10_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4a10_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '11. Rancangan Kerja (Job Design)',
+					skor_cu: this.form.p4.p4b11_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b11_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b11_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b11_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b11_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b11_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b11_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '12. Rekruitmen dan Seleksi',
+					skor_cu: this.form.p4.p4b12_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b12_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b12_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b12_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b12_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b12_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b12_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '13. Kompensasi',
+					skor_cu: this.form.p4.p4b13_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b13_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b13_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b13_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b13_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b13_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b13_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '14. Pembagian Tingkatan Staf',
+					skor_cu: this.form.p4.p4b14_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b14_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b14_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b14_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b14_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b14_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b14_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '15. Tujuan Kinerja',
+					skor_cu: this.form.p4.p4b15_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b15_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b15_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b15_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b15_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b15_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b15_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '16. Standar-standar penilaian',
+					skor_cu: this.form.p4.p4b16_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b16_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b16_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b16_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b16_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b16_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b16_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '17. Kinerja sebagai nilai bersama',
+					skor_cu: this.form.p4.p4b17_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b17_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b17_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b17_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b17_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b17_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b17_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '18. Kecakapan Tim',
+					skor_cu: this.form.p4.p4b18_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b18_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b18_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b18_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b18_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b18_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b18_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '19. Jenjang Karir',
+					skor_cu: this.form.p4.p4b19_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b19_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b19_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b19_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b19_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b19_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b19_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '20. Program Pengembangan',
+					skor_cu: this.form.p4.p4b20_cu_penilaian/1,
+					bobot_cu: ((this.form.p4.p4b20_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p4.p4b20_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p4.p4b20_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p4.p4b20_cu_keterangan,
+					keterangan_bkcu: this.form.p4.p4b20_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p4.p4b20_bkcu_rekomendasi,
+				},
+			];
 		},
 		watch: {
     },

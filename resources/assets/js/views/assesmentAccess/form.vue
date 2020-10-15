@@ -725,7 +725,6 @@ export default {
       if(data.tipe == 'p4'){
         this.form.p4 = data.datas;
       }
-      console.log(data);
     });
   },
   created() {

@@ -12,6 +12,28 @@
 					</div>
 				</div>
 			</div>
+			<div class="card-body">
+				<div class="text-right d-none d-sm-block">
+					<json-excel 
+              class="btn bg-green-300 btn-icon"
+              :data="excel.data"
+              :exportFields="excel.fields" 
+              :meta="excel.meta" 
+              :title="'Data ' + title" 
+              :name="title + '.xls'"
+              ><i class="icon-folder-download2"></i> Download Excel</json-excel> 
+				</div>	
+				<div class="d-block d-sm-none">
+					<json-excel 
+              class="btn bg-green-300 btn-icon btn-block"
+              :data="excel.data"
+              :exportFields="excel.fields" 
+              :meta="excel.meta" 
+              :title="'Data ' + title" 
+              :name="title + '.xls'"
+              ><i class="icon-folder-download2"></i> Download Excel</json-excel> 
+				</div>	
+			</div>
 			<div class="table-responsive" v-show="!collapsed">
 				<table class="table table-bordered">
 					<thead class="bg-primary">
@@ -333,6 +355,7 @@
 
 <script>
 	import checkValue from "../../components/checkValue.vue";
+	import jsonExcel from 'vue-json-excel';
 
 	export default {
 		props: ['form','mode','jumlahIndikator','bobotSkor',
@@ -346,14 +369,307 @@
 			'nilaiBobotBKCUP2B',
 		],
 		components: {
-			checkValue
+			checkValue,
+			jsonExcel
 		},
 		data() {
 			return {
 				collapsed: false,
+				title: 'perspektif_anggota_' + this.form.cu.no_ba,
+				excel: {
+          fields: {
+						perspektif: 'perspektif',
+						skor_cu: 'skor_cu',
+						bobot_cu: 'bobot_cu',
+						skor_bkcu: 'skor_bkcu',
+						bobot_bkcu: 'bobot_bkcu',
+						keterangan_cu: 'keterangan_cu',
+						keterangan_bkcu: 'keterangan_bkcu',
+						rekomendasi_bkcu: 'rekomendasi_bkcu',
+					},
+					data: [],
+          meta: [
+            [{
+              "key": "charset",
+              "value": "utf-8"
+            }]
+          ]
+        },
 			}
 		},
 		created(){
+			this.excel.data = [
+				{
+					perspektif: '1. Target Produk dan Pelayanan',
+					skor_cu: this.form.p2.p2a1_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a1_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a1_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a1_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a1_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a1_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a1_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '2. Tampilan Produk',
+					skor_cu: this.form.p2.p2a2_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a2_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a2_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a2_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a2_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a2_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a2_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '3. Rentangan Produk Keuangan',
+					skor_cu: this.form.p2.p2a3_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a3_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a3_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a3_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a3_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a3_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a3_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '4. Brand sebagai Pola Pikir',
+					skor_cu: this.form.p2.p2a4_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a4_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a4_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a4_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a4_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a4_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a4_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '5. Produk Pendorong Kesejahteraan',
+					skor_cu: this.form.p2.p2a5_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a5_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a5_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a5_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a5_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a5_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a5_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '6. Capacitiy Based Landing (Pinjaman berbasis kemampuan mengembalikan)',
+					skor_cu: this.form.p2.p2a6_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a6_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a6_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a6_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a6_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a6_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a6_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '7. Akses dan Kenyamanan',
+					skor_cu: this.form.p2.p2a7_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a7_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a7_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a7_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a7_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a7_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a7_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '8. Price Value',
+					skor_cu: this.form.p2.p2a8_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a8_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a8_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a8_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a8_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a8_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a8_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '9. Pemasaran dan Promosi',
+					skor_cu: this.form.p2.p2a9_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a9_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a9_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a9_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a9_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a9_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a9_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '10. Insentif Loyalitas',
+					skor_cu: this.form.p2.p2a10_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a10_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a10_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a10_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a10_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a10_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a10_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '11. Kemasan Produk',
+					skor_cu: this.form.p2.p2a11_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2a11_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2a11_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2a11_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2a11_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2a11_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2a11_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '12. Pemahaman tentang Anggota',
+					skor_cu: this.form.p2.p2b12_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b12_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b12_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b12_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b12_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b12_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b12_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '13. Membina Hubungan Berkelanjutan dengan Anggota',
+					skor_cu: this.form.p2.p2b13_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b13_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b13_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b13_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b13_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b13_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b13_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '14. Evaluasi Kepuasan Anggota',
+					skor_cu: this.form.p2.p2b14_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b14_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b14_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b14_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b14_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b14_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b14_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '15. Share of Wallet (Hanya menjadi anggota CU kita)',
+					skor_cu: this.form.p2.p2b15_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b15_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b15_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b15_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b15_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b15_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b15_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '16. Customer Care Excellence yang dilembagakan',
+					skor_cu: this.form.p2.p2b16_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b16_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b16_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b16_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b16_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b16_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b16_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '17. Manfaat bagi anggota (Member benefit)',
+					skor_cu: this.form.p2.p2b17_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b17_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b17_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b17_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b17_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b17_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b17_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '18. Rapat Anggota',
+					skor_cu: this.form.p2.p2b18_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b18_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b18_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b18_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b18_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b18_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b18_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '19. Partisipasi anggota',
+					skor_cu: this.form.p2.p2b19_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b19_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b19_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b19_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b19_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b19_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b19_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '20. Masukan dari anggota secara rutin setiap tahun dalam perencanaan, umpan balik dari anggota diminta secara rutin dan wilayah kerja sudah dibagi untuk memastikan bahwa umpan balik terkumpul',
+					skor_cu: this.form.p2.p2b20_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b20_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b20_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b20_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b20_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b20_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b20_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '21. Pengguna Produk-produk Pinjaman',
+					skor_cu: this.form.p2.p2b21_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b21_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b21_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b21_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b21_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b21_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b21_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '22. Pemahaman Tanggung jawab Peminjam - dilihat dari % Kelalaian',
+					skor_cu: this.form.p2.p2b22_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b22_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b22_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b22_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b22_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b22_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b22_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '23. Infrastruktur Fisik-Bangunan dan Ruang Kantor',
+					skor_cu: this.form.p2.p2b23_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b23_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b23_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b23_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b23_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b23_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b23_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '24. Infrastruktur teknologi –telefon dan faks',
+					skor_cu: this.form.p2.p2b24_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b24_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b24_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b24_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b24_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b24_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b24_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '25. Komputer, Aplikasi, Network dan Email',
+					skor_cu: this.form.p2.p2b25_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b25_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b25_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b25_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b25_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b25_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b25_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '26. Website',
+					skor_cu: this.form.p2.p2b26_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b26_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b26_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b26_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b26_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b26_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b26_bkcu_rekomendasi,
+				},
+				{
+					perspektif: '27. Sistem Pelaporan Manajemen & Pusat Data',
+					skor_cu: this.form.p2.p2b27_cu_penilaian/1,
+					bobot_cu: ((this.form.p2.p2b27_cu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					skor_bkcu: this.form.p2.p2b27_bkcu_penilaian/1,
+					bobot_bkcu: ((this.form.p2.p2b27_bkcu_penilaian/this.jumlahIndikator)*this.bobotSkor).toFixed(2).replace('.', ','),
+					keterangan_cu: this.form.p2.p2b27_cu_keterangan,
+					keterangan_bkcu: this.form.p2.p2b27_bkcu_keterangan,
+					rekomendasi_bkcu: this.form.p2.p2b27_bkcu_rekomendasi,
+				},
+			];
 		},
 		watch: {
     },
