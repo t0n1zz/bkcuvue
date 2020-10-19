@@ -50,7 +50,7 @@
     {{-- /vue app --}}
 
     {{-- vue js file --}}
-    <script type="text/javascript" src="{{ URL::asset('js/app.js?v=334x02') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/app.js?v=334x04') }}"></script>
     {{-- /vue js file --}}
 </body>
 </Html>

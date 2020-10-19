@@ -352,7 +352,7 @@ class AnggotaCuDraftController extends Controller{
 		if($cu == 'semua'){
 			$table_data = AnggotaCuDraft::count();
 		}else{
-			$table_data = AnggotaCuDraft::with('anggota_cu_cu_not_keluar')->whereHas('anggota_cu_not_keluar', function($query) use ($cu){ 
+			$table_data = AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 				$query->where('anggota_cu_cu.cu_id',$cu);
 			})->count();
 		}

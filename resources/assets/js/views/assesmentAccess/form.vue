@@ -596,6 +596,7 @@ import kesimpulan from "./kesimpulan.vue";
 import { PusherAuth } from '../../helpers/pusherAuth.js';
 import Echo from 'laravel-echo';
 import Pusher from "pusher-js";
+import _ from 'lodash';
 
 export default {
   components: {
@@ -710,22 +711,24 @@ export default {
     next(vm => vm.fetch());
   },
   mounted(){
-    PusherAuth();
-    window.Echo.private(`assesment.channel.` + this.$route.params.id)
-    .listen('AssesmentEvent',(data) => {      
-      if(data.tipe == 'p1'){
-        this.form.p1 = data.datas;
-      }
-      if(data.tipe == 'p2'){
-        this.form.p2 = data.datas;
-      }
-      if(data.tipe == 'p3'){
-        this.form.p3 = data.datas;
-      }
-      if(data.tipe == 'p4'){
-        this.form.p4 = data.datas;
-      }
-    });
+    if(this.$route.meta.mode == "lihat" || this.$route.meta.mode == "penilaianBkcu"){
+      PusherAuth();
+      window.Echo.private(`assesment.channel.` + this.$route.params.id)
+      .listen('AssesmentEvent',(data) => {      
+        if(data.tipe == 'p1'){
+          _.merge(this.form.p1, data.datas);
+        }
+        if(data.tipe == 'p2'){
+          _.merge(this.form.p2, data.datas);
+        }
+        if(data.tipe == 'p3'){
+          _.merge(this.form.p3, data.datas);
+        }
+        if(data.tipe == 'p4'){
+          _.merge(this.form.p4, data.datas);
+        }
+      });
+    }
   },
   created() {
 		this.changeCU(this.currentUser.id_cu);

@@ -74,7 +74,7 @@
 								type="text" 
 								name="p1a1_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a1_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a1_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -100,7 +100,7 @@
 										type="text" 
 										name="p1a1_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a1_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a1_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -111,7 +111,7 @@
 										type="text" 
 										name="p1a1_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a1_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a1_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 								type="text" 
 								name="p1a2_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a2_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a2_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -200,7 +200,7 @@
 										type="text" 
 										name="p1a2_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a2_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a2_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -211,7 +211,7 @@
 										type="text" 
 										name="p1a2_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a2_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a2_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -274,7 +274,7 @@
 								type="text" 
 								name="p1a3_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a3_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a3_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -300,7 +300,7 @@
 										type="text" 
 										name="p1a3_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a3_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a3_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -311,7 +311,7 @@
 										type="text" 
 										name="p1a3_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a3_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a3_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -374,7 +374,7 @@
 								type="text" 
 								name="p1a4_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a4_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a4_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -400,7 +400,7 @@
 										type="text" 
 										name="p1a4_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a4_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a4_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -411,7 +411,7 @@
 										type="text" 
 										name="p1a4_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a4_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a4_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -474,7 +474,7 @@
 								type="text" 
 								name="p1a5_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a5_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a5_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -500,7 +500,7 @@
 										type="text" 
 										name="p1a5_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a5_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a5_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -511,7 +511,7 @@
 										type="text" 
 										name="p1a5_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a5_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a5_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -574,7 +574,7 @@
 								type="text" 
 								name="p1a6_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a6_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a6_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -600,7 +600,7 @@
 										type="text" 
 										name="p1a6_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a6_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a6_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -611,7 +611,7 @@
 										type="text" 
 										name="p1a6_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a6_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a6_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -674,7 +674,7 @@
 								type="text" 
 								name="p1a7_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a7_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a7_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -700,7 +700,7 @@
 										type="text" 
 										name="p1a7_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a7_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a7_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -711,7 +711,7 @@
 										type="text" 
 										name="p1a7_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a7_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a7_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -774,7 +774,7 @@
 								type="text" 
 								name="p1a8_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a8_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a8_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -800,7 +800,7 @@
 										type="text" 
 										name="p1a8_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a8_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a8_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -811,7 +811,7 @@
 										type="text" 
 										name="p1a8_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a8_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a8_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -874,7 +874,7 @@
 								type="text" 
 								name="p1a9_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a9_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a9_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 						<!-- penilaian bkcu -->
@@ -900,7 +900,7 @@
 										type="text" 
 										name="p1a9_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a9_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3a9_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -911,7 +911,7 @@
 										type="text" 
 										name="p1a9_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a9_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3a9_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -999,7 +999,7 @@
 								type="text" 
 								name="p1b10_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b10_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b10_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1026,7 +1026,7 @@
 										type="text" 
 										name="p1b10_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b10_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b10_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1037,7 +1037,7 @@
 										type="text" 
 										name="p1b10_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b10_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b10_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1101,7 +1101,7 @@
 								type="text" 
 								name="p1b11_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b11_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b11_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1128,7 +1128,7 @@
 										type="text" 
 										name="p1b11_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b11_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b11_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1139,7 +1139,7 @@
 										type="text" 
 										name="p1b11_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b11_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b11_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1203,7 +1203,7 @@
 								type="text" 
 								name="p1b12_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b12_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b12_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1230,7 +1230,7 @@
 										type="text" 
 										name="p1b12_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b12_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b12_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1241,7 +1241,7 @@
 										type="text" 
 										name="p1b12_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b12_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b12_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1305,7 +1305,7 @@
 								type="text" 
 								name="p1b13_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b13_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b13_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1332,7 +1332,7 @@
 										type="text" 
 										name="p1b13_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b13_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b13_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1343,7 +1343,7 @@
 										type="text" 
 										name="p1b13_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b13_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b13_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1407,7 +1407,7 @@
 								type="text" 
 								name="p1b14_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b14_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b14_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1434,7 +1434,7 @@
 										type="text" 
 										name="p1b14_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b14_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b14_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1445,7 +1445,7 @@
 										type="text" 
 										name="p1b14_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b14_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b14_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1509,7 +1509,7 @@
 								type="text" 
 								name="p1b15_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b15_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b15_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1536,7 +1536,7 @@
 										type="text" 
 										name="p1b15_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b15_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b15_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1547,7 +1547,7 @@
 										type="text" 
 										name="p1b15_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b15_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b15_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1611,7 +1611,7 @@
 								type="text" 
 								name="p1b16_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b16_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b16_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1638,7 +1638,7 @@
 										type="text" 
 										name="p1b16_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b16_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b16_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1649,7 +1649,7 @@
 										type="text" 
 										name="p1b16_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b16_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b16_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1713,7 +1713,7 @@
 								type="text" 
 								name="p1b17_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b17_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b17_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1740,7 +1740,7 @@
 										type="text" 
 										name="p1b17_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b17_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b17_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1751,7 +1751,7 @@
 										type="text" 
 										name="p1b17_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b17_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b17_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1815,7 +1815,7 @@
 								type="text" 
 								name="p1b18_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b18_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b18_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1842,7 +1842,7 @@
 										type="text" 
 										name="p1b18_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b18_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b18_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1853,7 +1853,7 @@
 										type="text" 
 										name="p1b18_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b18_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b18_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -1917,7 +1917,7 @@
 								type="text" 
 								name="p1b19_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b19_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b19_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -1944,7 +1944,7 @@
 										type="text" 
 										name="p1b19_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b19_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b19_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -1955,7 +1955,7 @@
 										type="text" 
 										name="p1b19_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b19_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b19_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2019,7 +2019,7 @@
 								type="text" 
 								name="p1b20_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b20_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b20_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2046,7 +2046,7 @@
 										type="text" 
 										name="p1b20_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b20_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b20_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2057,7 +2057,7 @@
 										type="text" 
 										name="p1b20_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b20_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b20_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2121,7 +2121,7 @@
 								type="text" 
 								name="p1b21_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b21_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b21_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2148,7 +2148,7 @@
 										type="text" 
 										name="p1b21_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b21_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b21_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2159,7 +2159,7 @@
 										type="text" 
 										name="p1b21_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b21_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b21_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2223,7 +2223,7 @@
 								type="text" 
 								name="p1b22_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b22_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b22_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2250,7 +2250,7 @@
 										type="text" 
 										name="p1b22_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b22_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b22_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2261,7 +2261,7 @@
 										type="text" 
 										name="p1b22_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b22_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b22_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2325,7 +2325,7 @@
 								type="text" 
 								name="p1b23_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b23_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b23_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2352,7 +2352,7 @@
 										type="text" 
 										name="p1b23_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b23_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b23_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2363,7 +2363,7 @@
 										type="text" 
 										name="p1b23_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b23_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b23_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2427,7 +2427,7 @@
 								type="text" 
 								name="p1b24_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b24_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b24_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2454,7 +2454,7 @@
 										type="text" 
 										name="p1b24_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b24_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b24_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2465,7 +2465,7 @@
 										type="text" 
 										name="p1b24_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b24_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b24_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2529,7 +2529,7 @@
 								type="text" 
 								name="p1b25_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b25_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b25_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2556,7 +2556,7 @@
 										type="text" 
 										name="p1b25_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b25_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b25_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2567,7 +2567,7 @@
 										type="text" 
 										name="p1b25_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b25_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b25_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
@@ -2631,7 +2631,7 @@
 								type="text" 
 								name="p1b26_cu_keterangan" 
 								class="form-control"
-								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b26_cu_keterangan" :disabled="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
+								placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b26_cu_keterangan" :readonly="$route.meta.mode == 'penilaianBkcu' || $route.meta.mode == 'lihat'"></textarea>
 							</div>
 						</div>
 
@@ -2658,7 +2658,7 @@
 										type="text" 
 										name="p1b26_bkcu_keterangan" 
 										class="form-control"
-										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b26_bkcu_keterangan" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan keterangan " v-model="form.p3.p3b26_bkcu_keterangan" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -2669,7 +2669,7 @@
 										type="text" 
 										name="p1b26_bkcu_rekomendasi" 
 										class="form-control"
-										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b26_bkcu_rekomendasi" :disabled="$route.meta.mode == 'lihat'"></textarea>
+										placeholder="Silahkan masukkan rekomendasi " v-model="form.p3.p3b26_bkcu_rekomendasi" :readonly="$route.meta.mode == 'lihat'"></textarea>
 									</div>
 								</div>
 							</div>
