@@ -138,6 +138,9 @@
 														<check-value :value="props.item.lama_pinjaman"></check-value>
 													</td>
 													<td>
+														<check-value :value="props.item.lama_sisa_pinjaman"></check-value>
+													</td>
+													<td>
 														<span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
 														<span v-else>-</span>
 													</td>
@@ -689,6 +692,7 @@
 					{ title: 'Jenis' },
 					{ title: 'Saldo Awal' },
 					{ title: 'Lama Pinjaman (Bulan)' },
+					{ title: 'Lama Sisa Pinjaman (Bulan)' },
 					{ title: 'Tgl. Buat' },
 					{ title: 'Usia Saat Membuka' },
 				],

@@ -67,6 +67,10 @@ class PublicController extends Controller
     {
         $kategori = ArtikelKategori::where('slug',$slug)->first();
 
+        if(!$kategori){
+            abort(404);
+        }
+
         $title = $kategori->name;
         $subtitle = 'Menampilkan ' . $kategori->name;
         $tipe = 'kategori';
@@ -85,6 +89,10 @@ class PublicController extends Controller
     public function artikelPenulis($slug)
     {
         $penulis = ArtikelPenulis::where('slug',$slug)->first();
+
+        if(!$penulis){
+            abort(404);
+        }
 
         $title = 'Artikel oleh ' . $penulis->name;
         $subtitle = 'Menampilkan artikel yang ditulis oleh ' . $penulis->name;
@@ -108,6 +116,10 @@ class PublicController extends Controller
     public function artikelLihat($slug)
     {
         $artikel = Artikel::with('kategori','penulis')->where('slug',$slug)->where('terbitkan',1)->first();
+
+        if(!$artikel){
+            abort(404);
+        }
 
         if($artikel && $artikel->kategori){
             $artikelsKategori = Artikel::where('id','!=',$artikel->id)->where('id_cu',0)->where('id_artikel_kategori',$artikel->kategori->id)->inRandomOrder()->take(4)->get();
@@ -187,6 +199,10 @@ class PublicController extends Controller
     {
         $diklat = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->whereIn('status',[1,2,3,4,5])->where('slug', $slug)->first();
 
+        if(!$diklat){
+            abort(404);
+        }
+
          // seo
          SEO::setTitle($diklat->name. ' - Puskopdit BKCU Kalimantan');
          SEO::setDescription(str_limit(strip_tags($diklat->keterangan),200));
@@ -257,6 +273,7 @@ class PublicController extends Controller
 
     public function testroute()
     {    
+        abort(404);
         // $cu = 4;
         // $tp = 31;  
         // $kelas = \App\AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 

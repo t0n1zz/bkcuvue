@@ -33,6 +33,26 @@
 						</div>
 					</div>
 
+					<!-- identitas -->
+					<div class="card">
+						<div class="card-header bg-white">
+							<h5 class="card-title">Ke Anggotaan Di CU</h5>
+						</div>
+						<div class="card-body">
+
+							<div class="card card-body text-center" v-for="(item, index) in form.anggota_cu_cu" :key="index">
+								<ul class="list-inline list-inline-consensed mb-0 font-size-lg">
+									<li class="list-inline-item"><b>CU:</b> {{ item.cu ? item.cu.name : "-" }}</li>
+									<li class="list-inline-item"><b>TP:</b> {{ item.tp ? item.tp.name : "-" }}</li>
+									<li class="list-inline-item"><b>No. BA:</b> {{ item.no_ba }}</li>
+									<li class="list-inline-item"><b>Tgl. Masuk:</b> {{ $options.filters.date(item.tanggal_masuk) }}</li>
+									<li class="list-inline-item" v-if="item.tanggal_keluar"><b>Tgl. Keluar:</b> {{ $options.filters.date(item.tanggal_keluar) }}</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+
 					<!-- produk -->
 					<div class="card">
 						<div class="card-header bg-white">
@@ -43,16 +63,21 @@
 
 								<div class="col-md-12">
 
-									<button class="btn btn-light mb-1" @click.prevent="createProduk()">
+									<button class="btn btn-light mb-1" @click.prevent="modalOpen('create')">
 										<i class="icon-plus22"></i> Tambah
 									</button>
 
-									<button class="btn btn-light mb-1" @click.prevent="updateProduk()"
+									<button class="btn btn-light mb-1" @click.prevent="modalOpen('edit')"
 									:disabled="!selectedItem.id">
 										<i class="icon-pencil5"></i> Ubah
 									</button>
 
-									<button class="btn btn-light mb-1" @click="destroyProduk()" :disabled="!selectedItem.id">
+									<button class="btn btn-light mb-1" @click.prevent="modalOpen('transaksi')"
+									:disabled="!selectedItem.id">
+										<i class="icon-file-text"></i> Transaksi
+									</button>
+
+									<button class="btn btn-light mb-1" @click="modalOpen('delete')" :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
 									</button>
 
@@ -88,6 +113,9 @@
 									</td>
 									<td>
 										<check-value :value="props.item.lama_pinjaman"></check-value>
+									</td>
+									<td>
+										<check-value :value="props.item.lama_sisa_pinjaman"></check-value>
 									</td>
 									<td>
 										<span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
@@ -137,6 +165,10 @@
 			 <template slot="modal-body1">
 					<form-produk :formState="formState" :selected="formModel" @tutup="modalTutup" @tambahProduk="tambahProduk"></form-produk>
 			 </template>
+
+			 <template slot="modal-body2">
+					<form-transaksi :selected="formModel" @tutup="modalTutup" ></form-transaksi>
+			 </template>
 		</app-modal>
 
 	</div>
@@ -154,6 +186,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import formProduk from "./formProduk.vue";
+	import formTransaksi from "./formTransaksi.vue";
 	import checkValue from '../../components/checkValue.vue';
 	import identitas from "../../components/identitas.vue";
 
@@ -167,6 +200,7 @@
 			formInfo,
 			formButton,
 			formProduk,
+			formTransaksi,
 			checkValue,
 			identitas
 		},
@@ -188,6 +222,7 @@
 					{ title: 'Jenis' },
 					{ title: 'Saldo Awal' },
 					{ title: 'Lama Pinjaman (BLN)' },
+					{ title: 'Lama Sisa Pinjaman (BLN)' },
 					{ title: 'Tgl. Buat' },
 					{ title: 'Tgl. Target' },
 					{ title: 'Tujuan' },
@@ -214,6 +249,7 @@
 				this.modalState = value;
 				this.modalColor = '';
 				this.modalContent = '';
+				this.selectedItem = {};
 
 				if(value === "success"){
 					this.modalTitle = this.updateResponse.message;
@@ -258,32 +294,33 @@
 			selectedRow(item){
 				this.selectedItem = item;
 			},
-			createProduk(){
+			modalOpen(state){
 				this.modalShow = true;
-				this.modalState = 'normal1';
-				this.modalColor = 'bg-primary';
-				this.formState = 'create';
 
-				if(this.modelCuStat != 'success'){
-					this.$store.dispatch('cu/getHeader');
+				if(state == 'create'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.formState = 'create';
+					if(this.modelCuStat != 'success'){
+						this.$store.dispatch('cu/getHeader');
+					}
+					this.modalTitle = 'Tambah produk';
+				}else if(state == 'edit'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.formState = 'edit';
+					this.modalTitle = 'Ubah produk';
+					this.formModel = Object.assign({}, this.selectedItem);
+				}else if(state == 'transaksi'){
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Transaksi';
+					this.formModel = Object.assign({}, this.selectedItem);
+				}else if(state == 'delete'){
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = this.modalTitle = 'Hapus produk ' + this.selectedItem.produk_cu.name + ' dengan no rekening ' + this.selectedItem.no_rek + ' ?';
 				}
-
-				this.modalTitle = 'Tambah produk';
-			},
-			updateProduk(){
-				this.modalShow = true;
-				this.modalState = 'normal1';
-				this.modalColor = 'bg-primary';
-				this.formState = 'edit';
-				this.modalTitle = 'Ubah produk';
-				this.formModel = Object.assign({}, this.selectedItem);
-			},		
-			destroyProduk(data, type){
-				this.modalShow = true;
-				this.modalState = 'confirm-tutup';
-				this.modalColor = '';
-
-				this.modalTitle = this.modalTitle = 'Hapus produk ' + this.selectedItem.produk_cu.name + ' dengan no rekening ' + this.selectedItem.no_rek + ' ?';
 			},
 			modalTutup() {
 				this.modalShow = false;

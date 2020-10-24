@@ -321,7 +321,7 @@ class AnggotaCuDraftController extends Controller{
 				$kelas = AnggotaCuDraft::with('anggota_cu_cu');
 				$kelas->delete();
 				$kelas2 = AnggotaCuCuDraft::get();
-				$kelas2->delete();
+				$kelas2->each->delete();
 			}else{
 				$kelas = AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query) use ($cu){ 
 					$query->where('anggota_cu_cu_draft.cu_id',$cu);
@@ -353,7 +353,7 @@ class AnggotaCuDraftController extends Controller{
 			$table_data = AnggotaCuDraft::count();
 		}else{
 			$table_data = AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query) use ($cu){ 
-				$query->where('anggota_cu_cu.cu_id',$cu);
+				$query->where('anggota_cu_cu_draft.cu_id',$cu);
 			})->count();
 		}
 		

@@ -229,19 +229,27 @@ class AssesmentAccessController extends Controller{
 
 			$kelasP1->update($request->p1);	
 			$changes1 = $kelasP1->getChanges();
-			event(new AssesmentEvent($changes1, $id, 'p1'));
+			if(!empty($changes1)){
+				event(new AssesmentEvent($changes1, $id, 'p1'));
+			}
 
 			$kelasP2->update($request->p2);
 			$changes2 = $kelasP2->getChanges();
-			event(new AssesmentEvent($changes2, $id, 'p2'));
+			if(!empty($changes2)){
+				event(new AssesmentEvent($changes2, $id, 'p2'));
+			}
 
 			$kelasP3->update($request->p3);
 			$changes3 = $kelasP3->getChanges();
-			event(new AssesmentEvent($changes3, $id, 'p3'));
+			if(!empty($changes3)){
+				event(new AssesmentEvent($changes3, $id, 'p3'));
+			}
 
 			$kelasP4->update($request->p4);
 			$changes4 = $kelasP4->getChanges();
-			event(new AssesmentEvent($changes4, $id, 'p4'));	
+			if(!empty($changes4)){
+				event(new AssesmentEvent($changes4, $id, 'p4'));	
+			}
 	
 			if($request->status == 'BELUM DINILAI'){
 				NotificationHelper::self_assesment($kelas,'menambah');
@@ -275,23 +283,31 @@ class AssesmentAccessController extends Controller{
 			if($perspektif == 'p1'){
 				$kelasP1 = AssesmentAccessP1::findOrFail($kelas->id_p1);
 				$kelasP1->update($request->p1);	
-				$changes = $kelasP1->getChanges();
-				event(new AssesmentEvent($changes, $id, 'p1'));
+				$changes1 = $kelasP1->getChanges();
+				if(!empty($changes1)){
+					event(new AssesmentEvent($changes1, $id, 'p1'));
+				}
 			}else if($perspektif == 'p2'){
 				$kelasP2 = AssesmentAccessP2::findOrFail($kelas->id_p2);
 				$kelasP2->update($request->p2);
-				$changes = $kelasP2->getChanges();
-				event(new AssesmentEvent($changes, $id, 'p2'));
+				$changes2 = $kelasP2->getChanges();
+				if(!empty($changes2)){
+					event(new AssesmentEvent($changes2, $id, 'p2'));
+				}
 			}else if($perspektif == 'p3'){
 				$kelasP3 = AssesmentAccessP3::findOrFail($kelas->id_p3);
 				$kelasP3->update($request->p3);	
-				$changes = $kelasP3->getChanges();
-				event(new AssesmentEvent($changes, $id, 'p3'));
+				$changes3 = $kelasP3->getChanges();
+				if(!empty($changes3)){
+					event(new AssesmentEvent($changes3, $id, 'p3'));
+				}
 			}else if($perspektif == 'p4'){
 				$kelasP4 = AssesmentAccessP4::findOrFail($kelas->id_p4);	
 				$kelasP4->update($request->p4);	
-				$changes = $kelasP4->getChanges();
-				event(new AssesmentEvent($changes, $id, 'p4'));
+				$changes4 = $kelasP4->getChanges();
+				if(!empty($changes4)){
+					event(new AssesmentEvent($changes4, $id, 'p4'));
+				}
 			}
 
 			if($request->status == 'BELUM DINILAI'){

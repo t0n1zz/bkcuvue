@@ -1,5 +1,6 @@
 import AnggotaCuAPI from '../../api/anggotaCu.js';
 import AnggotaCuDraftAPI from '../../api/anggotaCuDraft.js';
+import AnggotaProdukCuDraftAPI from '../../api/anggotaProdukCuDraft.js';
 
 export const anggotaCu = {
   namespaced: true,
@@ -159,6 +160,20 @@ export const anggotaCu = {
       commit('setDataStatS', 'loading');
       
       AnggotaCuDraftAPI.index( p, cu, tp )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexProdukCuDraft( { commit }, [p, cu] ){
+      commit('setDataStatS', 'loading');
+      
+      AnggotaProdukCuDraftAPI.index( p, cu )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
@@ -331,6 +346,42 @@ export const anggotaCu = {
         });
     },
 
+    storeProdukCuDraft( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaProdukCuDraftAPI.store( id )
+        .then( function( response ){
+           if(response.data.saved){
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+          commit('setUpdate', response.data);
+          
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    storeProdukCuDraftAll( {commit, state, dispatch}, cu ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaProdukCuDraftAPI.storeAll( cu )
+        .then( function( response ){
+           if(response.data.saved){
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+          commit('setUpdate', response.data);
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
 
     // edit page
     edit( {commit}, id ){
@@ -355,6 +406,23 @@ export const anggotaCu = {
       commit('setDataStat', 'loading');
       
       AnggotaCuDraftAPI.edit( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+    editProdukCuDraft( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      AnggotaProdukCuDraftAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
@@ -496,6 +564,24 @@ export const anggotaCu = {
         });
     },
 
+    updateProdukCuDraft( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaProdukCuDraftAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+          commit('setUpdate', response.data);
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     restore( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
@@ -571,6 +657,41 @@ export const anggotaCu = {
       commit('setUpdateStat', 'loading');
 
       AnggotaCuDraftAPI.destroyAll( cu )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+          commit('setUpdate', response.data);
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyProdukCuDraft( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaProdukCuDraftAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+          commit('setUpdate', response.data);
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+    destroyProdukCuDraftAll( {commit, state, dispatch}, cu ){
+      commit('setUpdateStat', 'loading');
+
+      AnggotaProdukCuDraftAPI.destroyAll( cu )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdateStat', 'success');

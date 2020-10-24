@@ -70,7 +70,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a1_cu_keterangan" 
 								class="form-control"
@@ -96,7 +96,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a1_bkcu_keterangan" 
 										class="form-control"
@@ -107,7 +107,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a1_bkcu_rekomendasi" 
 										class="form-control"
@@ -170,7 +170,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a2_cu_keterangan" 
 								class="form-control"
@@ -196,7 +196,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a2_bkcu_keterangan" 
 										class="form-control"
@@ -207,7 +207,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a2_bkcu_rekomendasi" 
 										class="form-control"
@@ -270,7 +270,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a3_cu_keterangan" 
 								class="form-control"
@@ -296,7 +296,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a3_bkcu_keterangan" 
 										class="form-control"
@@ -307,7 +307,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a3_bkcu_rekomendasi" 
 										class="form-control"
@@ -370,7 +370,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a4_cu_keterangan" 
 								class="form-control"
@@ -396,7 +396,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a4_bkcu_keterangan" 
 										class="form-control"
@@ -407,7 +407,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a4_bkcu_rekomendasi" 
 										class="form-control"
@@ -470,7 +470,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a5_cu_keterangan" 
 								class="form-control"
@@ -496,7 +496,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a5_bkcu_keterangan" 
 										class="form-control"
@@ -507,7 +507,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a5_bkcu_rekomendasi" 
 										class="form-control"
@@ -570,7 +570,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a6_cu_keterangan" 
 								class="form-control"
@@ -596,7 +596,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a6_bkcu_keterangan" 
 										class="form-control"
@@ -607,7 +607,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a6_bkcu_rekomendasi" 
 										class="form-control"
@@ -670,7 +670,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a7_cu_keterangan" 
 								class="form-control"
@@ -696,7 +696,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a7_bkcu_keterangan" 
 										class="form-control"
@@ -707,7 +707,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a7_bkcu_rekomendasi" 
 										class="form-control"
@@ -770,7 +770,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a8_cu_keterangan" 
 								class="form-control"
@@ -796,7 +796,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a8_bkcu_keterangan" 
 										class="form-control"
@@ -807,7 +807,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a8_bkcu_rekomendasi" 
 										class="form-control"
@@ -870,7 +870,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1a9_cu_keterangan" 
 								class="form-control"
@@ -896,7 +896,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a9_bkcu_keterangan" 
 										class="form-control"
@@ -907,7 +907,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1a9_bkcu_rekomendasi" 
 										class="form-control"
@@ -995,7 +995,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b10_cu_keterangan" 
 								class="form-control"
@@ -1022,7 +1022,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b10_bkcu_keterangan" 
 										class="form-control"
@@ -1033,7 +1033,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b10_bkcu_rekomendasi" 
 										class="form-control"
@@ -1097,7 +1097,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b11_cu_keterangan" 
 								class="form-control"
@@ -1124,7 +1124,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b11_bkcu_keterangan" 
 										class="form-control"
@@ -1135,7 +1135,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b11_bkcu_rekomendasi" 
 										class="form-control"
@@ -1199,7 +1199,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b12_cu_keterangan" 
 								class="form-control"
@@ -1226,7 +1226,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b12_bkcu_keterangan" 
 										class="form-control"
@@ -1237,7 +1237,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b12_bkcu_rekomendasi" 
 										class="form-control"
@@ -1301,7 +1301,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b13_cu_keterangan" 
 								class="form-control"
@@ -1328,7 +1328,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b13_bkcu_keterangan" 
 										class="form-control"
@@ -1339,7 +1339,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b13_bkcu_rekomendasi" 
 										class="form-control"
@@ -1403,7 +1403,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b14_cu_keterangan" 
 								class="form-control"
@@ -1430,7 +1430,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b14_bkcu_keterangan" 
 										class="form-control"
@@ -1441,7 +1441,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b14_bkcu_rekomendasi" 
 										class="form-control"
@@ -1505,7 +1505,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b15_cu_keterangan" 
 								class="form-control"
@@ -1532,7 +1532,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b15_bkcu_keterangan" 
 										class="form-control"
@@ -1543,7 +1543,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b15_bkcu_rekomendasi" 
 										class="form-control"
@@ -1607,7 +1607,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b16_cu_keterangan" 
 								class="form-control"
@@ -1634,7 +1634,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b16_bkcu_keterangan" 
 										class="form-control"
@@ -1645,7 +1645,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b16_bkcu_rekomendasi" 
 										class="form-control"
@@ -1709,7 +1709,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b17_cu_keterangan" 
 								class="form-control"
@@ -1736,7 +1736,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b17_bkcu_keterangan" 
 										class="form-control"
@@ -1747,7 +1747,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b17_bkcu_rekomendasi" 
 										class="form-control"
@@ -1811,7 +1811,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b18_cu_keterangan" 
 								class="form-control"
@@ -1838,7 +1838,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b18_bkcu_keterangan" 
 										class="form-control"
@@ -1849,7 +1849,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b18_bkcu_rekomendasi" 
 										class="form-control"
@@ -1913,7 +1913,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b19_cu_keterangan" 
 								class="form-control"
@@ -1940,7 +1940,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b19_bkcu_keterangan" 
 										class="form-control"
@@ -1951,7 +1951,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b19_bkcu_rekomendasi" 
 										class="form-control"
@@ -2015,7 +2015,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b20_cu_keterangan" 
 								class="form-control"
@@ -2042,7 +2042,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b20_bkcu_keterangan" 
 										class="form-control"
@@ -2053,7 +2053,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b20_bkcu_rekomendasi" 
 										class="form-control"
@@ -2117,7 +2117,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b21_cu_keterangan" 
 								class="form-control"
@@ -2144,7 +2144,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b21_bkcu_keterangan" 
 										class="form-control"
@@ -2155,7 +2155,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b21_bkcu_rekomendasi" 
 										class="form-control"
@@ -2219,7 +2219,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b22_cu_keterangan" 
 								class="form-control"
@@ -2246,7 +2246,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b22_bkcu_keterangan" 
 										class="form-control"
@@ -2257,7 +2257,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b22_bkcu_rekomendasi" 
 										class="form-control"
@@ -2321,7 +2321,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b23_cu_keterangan" 
 								class="form-control"
@@ -2348,7 +2348,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b23_bkcu_keterangan" 
 										class="form-control"
@@ -2359,7 +2359,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b23_bkcu_rekomendasi" 
 										class="form-control"
@@ -2423,7 +2423,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b24_cu_keterangan" 
 								class="form-control"
@@ -2450,7 +2450,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b24_bkcu_keterangan" 
 										class="form-control"
@@ -2461,7 +2461,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b24_bkcu_rekomendasi" 
 										class="form-control"
@@ -2525,7 +2525,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b25_cu_keterangan" 
 								class="form-control"
@@ -2552,7 +2552,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b25_bkcu_keterangan" 
 										class="form-control"
@@ -2563,7 +2563,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b25_bkcu_rekomendasi" 
 										class="form-control"
@@ -2627,7 +2627,7 @@
 							<div class="form-group">
 								<h5>Keterangan CU: <wajib-badge></wajib-badge></h5>
 								<!-- textarea -->
-								<textarea rows="3" 
+								<textarea rows="6" 
 								type="text" 
 								name="p1b26_cu_keterangan" 
 								class="form-control"
@@ -2654,7 +2654,7 @@
 									<div class="form-group">
 										<h5>Keterangan BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b26_bkcu_keterangan" 
 										class="form-control"
@@ -2665,7 +2665,7 @@
 									<div class="form-group">
 										<h5>Rekomendasi BKCU Kalimantan:</h5>
 										<!-- textarea -->
-										<textarea rows="3" 
+										<textarea rows="6" 
 										type="text" 
 										name="p1b26_bkcu_rekomendasi" 
 										class="form-control"

@@ -18,10 +18,10 @@
 						</message>
 
 						<!-- select data -->
-						<select-cu-tp 
+						<select-cu 
 							:kelas="kelas"
 							:path="selectCuPath"
-							:isPus="false"></select-cu-tp>
+							:isPus="false"></select-cu>
 
 						<table-data 
 							:title="title" 
@@ -42,18 +42,18 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
-	import selectCuTp from "../../components/selectCuTp.vue";
+	import selectCu from "../../components/selectCu.vue";
 	
 	export default {
 		components: {
 			pageHeader,
 			tableData,
 			message,
-			selectCuTp
+			selectCu
 		},
 		data() {
 			return {
-				title: 'Anggota Produk CU [DRAFT]',
+				title: 'Produk Anggota CU [DRAFT]',
 				kelas: 'anggotaCu',
 				titleDesc: 'Mengelola produk anggota CU [DRAFT]',
 				titleIcon: 'icon-list2',
@@ -61,7 +61,7 @@
 			}
 		},
 		created(){
-			this.checkUser('upload_anggota_cu_produk',this.$route.params.cu);
+			this.checkUser('upload_anggota_cu',this.$route.params.cu);
 		},
 		methods: {
 			checkUser(permission,id_cu){
@@ -80,6 +80,10 @@
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
+			}),
+			...mapGetters('anggotaCu',{
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS',
 			}),
 		}
 	}

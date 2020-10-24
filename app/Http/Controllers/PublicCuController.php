@@ -124,6 +124,14 @@ class PublicCuController extends Controller
         $cu = Cu::where('slug',$cu)->first();
         $kategori = ArtikelKategori::where('slug',$slug)->first();
 
+        if(!$cu){
+            abort(404);
+        }
+
+        if(!$kategori){
+            abort(404);
+        }
+
         $title = $kategori->name;
         $subtitle = 'Menampilkan ' . $kategori->name;
         $tipe = 'kategori';
@@ -142,6 +150,14 @@ class PublicCuController extends Controller
     {
         $cu = Cu::where('slug',$cu)->first();
         $penulis = ArtikelPenulis::where('slug',$slug)->first();
+
+        if(!$cu){
+            abort(404);
+        }
+
+        if(!$penulis){
+            abort(404);
+        }
 
         $title = 'Artikel oleh ' . $penulis->name;
         $subtitle = 'Menampilkan artikel yang ditulis oleh ' . $penulis->name;
@@ -165,11 +181,15 @@ class PublicCuController extends Controller
     {
         $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$cu)->first();
 
+        $artikel = Artikel::with('kategori','penulis')->where('slug',$slug)->where('terbitkan',1)->first();
+
         if(!$cu){
             abort(404);
         }
 
-        $artikel = Artikel::with('kategori','penulis')->where('slug',$slug)->where('terbitkan',1)->first();
+        if(!$artikel){
+            abort(404);
+        }
 
         if($artikel->kategori){
             $artikelsKategori = Artikel::where('id','!=',$artikel->id)->where('id_cu',$cu->id)->where('id_artikel_kategori',$artikel->kategori->id)->inRandomOrder()->take(4)->get();

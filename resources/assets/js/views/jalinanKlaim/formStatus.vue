@@ -155,6 +155,9 @@
                       <br/>  
                       <b>Lama Pinjaman (Bulan):</b> 
                       <check-value :value="item.lama_pinjaman"></check-value>
+                      <br/>  
+                      <b>Lama Sisa Pinjaman (Bulan):</b> 
+                      <check-value :value="item.lama_sisa_pinjaman"></check-value>
                     </span>
                     <span v-else>
                       <br/>
@@ -181,6 +184,9 @@
                     <td>{{ props.index + 1 }}</td>
                     <td>
                       <check-value :value="props.item.saldo" valueType="currency"></check-value>
+                    </td>
+                    <td v-if="tipeProduk == 'pinjaman'">
+                      <check-value :value="props.item.lama_sisa_pinjaman"></check-value>
                     </td>
                     <td>
                       <span v-if="props.item.tanggal" v-html="$options.filters.dateTime(props.item.created_at)"></span>
@@ -271,7 +277,7 @@
 
                     <br/>
 
-                    <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
+                    <div class="btn-group pt-2" v-if="itemDataSaldoStat === 'success'">
                       <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="goToPageSaldo(1)">
                           <i class="icon-backward2"></i>
                       </button>
@@ -310,6 +316,7 @@
 
                 </div>
               </div>
+
             </div>
 
           </div>
@@ -918,11 +925,8 @@
           limit: 10,
           page: 1
         },
-        columnDataSaldo:[
-					{ title: 'No.' },
-					{ title: 'Saldo' },
-					{ title: 'Tgl. Transaksi' },
-				],
+        tipeProduk: '',
+        columnDataSaldo:[],
         penjelasanStatus: '',
 				submited: false,
 			}
@@ -975,6 +979,22 @@
       },
       fetchProdukSaldo(value){
         this.selectedProduk = value;
+        if(value.produk_cu.tipe == 'Simpanan Pokok' || value.produk_cu.tipe == 'Simpanan Wajib' || value.produk_cu.tipe == 'Simpanan Non Saham'){
+          this.tipeProduk = 'simpanan';
+          this.columnDataSaldo = [
+						{ title: 'No.' },
+						{ title: 'Nominal' },
+						{ title: 'Tgl. Transaksi' },
+					]
+        }else{
+          this.tipeProduk = 'pinjaman';
+          this.columnDataSaldo = [
+						{ title: 'No.' },
+						{ title: 'Nominal' },
+						{ title: 'Bulan Angsuran' },
+						{ title: 'Tgl. Transaksi' },
+					]
+        }
         this.$store.dispatch('anggotaCu/indexProdukSaldo',[this.querySaldo, value.id]);
       },
       calculatePagination() {

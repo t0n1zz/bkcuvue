@@ -293,20 +293,20 @@
 						<check-value :value="props.item.keterangan"></check-value>
 					</td>
           <td v-if="!columnData[25].hide">
-						<check-value :value="props.item.anggota_cu.kelamin"></check-value>
+						<check-value :value="props.item.anggota_cu.kelamin" v-if="props.item.anggota_cu"></check-value>
 					</td>
           <td v-if="!columnData[26].hide">
-						<check-value :value="props.item.anggota_cu.ahli_waris"></check-value>
+						<check-value :value="props.item.anggota_cu.ahli_waris" v-if="props.item.anggota_cu"></check-value>
 					</td>
           <td v-if="!columnData[27].hide">
-						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu.provinces"></check-value>
+						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu"></check-value>
 						<span v-else>-</span>	
 					</td>
           <td v-if="!columnData[28].hide">
-						<check-value :value="props.item.anggota_cu.alamat"></check-value>
+						<check-value :value="props.item.anggota_cu.alamat" v-if="props.item.anggota_cu"></check-value>
 					</td>
           <td v-if="!columnData[29].hide">
-						<check-value :value="props.item.anggota_cu.hp"></check-value>
+						<check-value :value="props.item.anggota_cu.hp" v-if="props.item.anggota_cu"></check-value>
 					</td>
 					<td v-if="!columnData[30].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
 					<td v-if="!columnData[31].hide">

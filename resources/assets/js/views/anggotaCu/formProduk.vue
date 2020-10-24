@@ -172,6 +172,7 @@
 					<h5 :class="{ 'text-danger' : errors.has('formProduk.lama_pinjaman')}">
 						<i class="icon-cross2" v-if="errors.has('formProduk.lama_pinjaman')"></i>
 						Lama Pinjaman (bulan):
+						<br/><small class="text-muted"><i>Lama Pinjaman yang diberikan oleh CU kepada anggota sesuai perjanjian</i></small>
 					</h5>
 
 					<!-- text -->
@@ -186,6 +187,35 @@
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('formProduk.lama_pinjaman')">
 						<i class="icon-arrow-small-right"></i> {{ errors.first('formProduk.lama_pinjaman') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
+
+			<!-- lama pinjaman -->
+			<div class="col-md-12"  v-if="tipeProduk == 'pinjaman'">
+				<div class="form-group" :class="{'has-error' : errors.has('formProduk.lama_sisa_pinjaman')}">
+
+					<!-- title -->
+					<h5 :class="{ 'text-danger' : errors.has('formProduk.lama_sisa_pinjaman')}">
+						<i class="icon-cross2" v-if="errors.has('formProduk.lama_sisa_pinjaman')"></i>
+						Lama Sisa Pinjaman (bulan):
+						<br/><small class="text-muted"><i>Sisa waktu (bulan) pinjaman yang masih dimiliki oleh anggota CU</i></small>
+					</h5>
+
+					<!-- text -->
+					<cleave 
+						name="lama_sisa_pinjaman"
+						v-model="formProduk.lama_sisa_pinjaman" 
+						class="form-control" 
+						:options="cleaveOption.number4"
+						placeholder="Silahkan masukkan lama pinjaman"
+						v-validate="'required'" data-vv-as="Lama sisa pinjaman" ></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formProduk.lama_sisa_pinjaman')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formProduk.lama_sisa_pinjaman') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;
 					</small>

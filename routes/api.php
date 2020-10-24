@@ -524,14 +524,14 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/anggotaCuDraft/destroy/{id}', 'AnggotaCuDraftController@destroy');
         Route::delete('/anggotaCuDraft/destroyAll/{cu}', 'AnggotaCuDraftController@destroyAll');
         Route::get('/anggotaCuDraft/count/{cu}/{tp}', 'AnggotaCuDraftController@count');
-        Route::get('/anggotaProdukCuDraft/index/{cu}/{tp}', 'AnggotaProdukCuDraftController@index');
+        Route::get('/anggotaProdukCuDraft/index/{cu}', 'AnggotaProdukCuDraftController@index');
         Route::post('/anggotaProdukCuDraft/store/{id}', 'AnggotaProdukCuDraftController@store');
         Route::post('/anggotaProdukCuDraft/storeAll/{cu}', 'AnggotaProdukCuDraftController@storeAll');
         Route::get('/anggotaProdukCuDraft/edit/{id}', 'AnggotaProdukCuDraftController@edit');
         Route::post('/anggotaProdukCuDraft/update/{id}', 'AnggotaProdukCuDraftController@update');
         Route::delete('/anggotaProdukCuDraft/destroy/{id}', 'AnggotaProdukCuDraftController@destroy');
         Route::delete('/anggotaProdukCuDraft/destroyAll/{cu}', 'AnggotaProdukCuDraftController@destroyAll');
-        Route::get('/anggotaProdukCuDraft/count/{cu}/{tp}', 'AnggotaProdukCuDraftController@count');
+        Route::get('/anggotaProdukCuDraft/count/{cu}', 'AnggotaProdukCuDraftController@count');
     });
 
     // jalinan klaim

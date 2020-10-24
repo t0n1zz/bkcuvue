@@ -53,7 +53,7 @@
 			</div>
 
 			<!-- status -->
-			<div class="col-md-12" v-if="form.id_tempat != ''">
+			<div class="col-md-12">
 				<div class="form-group">
 
 					<!-- title -->

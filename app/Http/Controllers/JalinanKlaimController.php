@@ -1251,7 +1251,7 @@ class JalinanKlaimController extends Controller{
 
 	public function edit($nik, $cu, $tipe)
 	{
-		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('anggota_cu_cu_id', $cu)->where('tipe', $tipe)->whereNotIn('status_klaim',[2,3,4])->whereHas('anggota_cu', function($query) use ($nik){ 
+		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('anggota_cu_cu_id', $cu)->where('tipe', $tipe)->whereHas('anggota_cu', function($query) use ($nik){ 
 			$query->where('nik',$nik); 
 		})->first();
 

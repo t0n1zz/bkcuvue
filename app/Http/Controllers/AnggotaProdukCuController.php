@@ -140,7 +140,8 @@ class AnggotaProdukCuController extends Controller{
 	{
 		$kelas = AnggotaProdukCu::findOrFail($id);
 
-		// $selisih_saldo = $request->saldo - $kelas->saldo;
+		$selisih_saldo = $request->saldo - $kelas->saldo;
+		$selisih_lama_pinjaman = $request->lama_sisa_pinjaman - $kelas->lama_sisa_pinjaman;
 
 		$kelas->update([
 			'produk_cu_id' => $request->produk_cu['id'],
@@ -149,13 +150,15 @@ class AnggotaProdukCuController extends Controller{
 			'tanggal' => $request->tanggal,
 			'tanggal_target' => $request->tanggal_target,
 			'lama_pinjaman' => $request->lama_pinjaman,
+			'lama_sisa_pinjaman' => $request->lama_sisa_pinjaman,
 			'tujuan' => $request->tujuan,
 		]);	
-
+			
 		AnggotaProdukCuTransaksi::create([
 			'anggota_produk_cu_id' => $kelas->id,
-			'saldo' => $request->saldo,
+			'saldo' => $selisih_saldo,
 			'tanggal' => $kelas->updated_at,
+			'lama_sisa_pinjaman' => $selisih_lama_pinjaman,
 		]);
 
 		return response()

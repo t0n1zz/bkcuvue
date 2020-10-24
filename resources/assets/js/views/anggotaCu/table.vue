@@ -57,6 +57,11 @@
           <i class="icon-table2"></i> Anggota CU [DRAFT]
         </router-link>
 
+        <!-- table draft -->
+        <router-link :to="{ name: 'anggotaProdukCuDraft', params:{cu: $route.params.cu} }" class="btn btn-light btn-icon mb-1" v-if="currentUser && currentUser.can['upload_anggota_cu'] && anggotaProdukCuDraftCountStat == 'success' && anggotaProdukCuDraftCount > 0">
+          <i class="icon-table2"></i> Produk Anggota CU [DRAFT]
+        </router-link>
+
       </template>
 
       <!-- button mobile -->
@@ -658,6 +663,8 @@
         ],
         anggotaCuDraftCount: [],
 				anggotaCuDraftCountStat: '',
+        anggotaProdukCuDraftCount: [],
+				anggotaProdukCuDraftCountStat: '',
         state: '',
         modalShow: false,
         modalState: "",
@@ -683,7 +690,7 @@
           url: 'anggotaCu/uploadExcelProduk',
           format_url: 'formatProdukAnggotaCu.xlsx',
           next_page_route: 'anggotaProdukCuDraft',
-          params: {cu: this.$route.params.cu, tp: 'semua'},
+          params: {cu: this.$route.params.cu},
           button: 'Upload Produk Anggota CU'
         }
       ];
@@ -747,6 +754,7 @@
 				}
 
 				if(this.currentUser.can['upload_anggota_cu']){
+          // check anggota cu draft
 					axios.get('/api/anggotaCuDraft/count/' + cu + '/' + tp)
 						.then(response => {
 							this.anggotaCuDraftCount = response.data.model;
@@ -755,6 +763,17 @@
 						.catch(error => {
 							this.anggotaCuDraftCount = error.response;
 							this.anggotaCuDraftCountStat = 'fail';
+            });
+            
+          // check produk anggota cu draft
+					axios.get('/api/anggotaProdukCuDraft/count/' + cu )
+						.then(response => {
+							this.anggotaProdukCuDraftCount = response.data.model;
+							this.anggotaProdukCuDraftCountStat = 'success';
+						})
+						.catch(error => {
+							this.anggotaProdukCuDraftCount = error.response;
+							this.anggotaProdukCuDraftCountStat = 'fail';
 						});
 				}
 			},

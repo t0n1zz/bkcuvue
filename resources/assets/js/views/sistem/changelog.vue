@@ -10,14 +10,39 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.3.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v335">Version 3.3.5<small class="text-muted"> / 24 Oktober 2020</small></a> </h5>
+                </div>
+
+                <div id="v335" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan perbaikan dan peningkatan pada self assesment dan penambahan fitur untuk mengisi dan mengupload transaksi anggota CU
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan download excel untuk hasil self assesment untuk masing-masing perspektif</li>
+                      <li>Peningkatan dan perbaikan pada update data secara real time untuk self assesment</li>
+                      <li>Penambahan fitur upload excel transaksi simpanan dan pinjaman anggota CU</li>
+                      <li>Penambahan fitur mengisi transaksi simpanan dan pinjaman anggota CU</li>
+                      <li>Perbaikan bug tampilan dibeberapa bagian</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.5 -->
+
               <!-- Version 3.3.4 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v334">Version 3.3.4<small class="text-muted"> / 12 Oktober 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v334">Version 3.3.4<small class="text-muted"> / 12 Oktober 2020</small></a> </h5>
                 </div>
 
-                <div id="v334" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v334" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menawarkan penambahan pada bagian tata kelola
                     <br/><br/>

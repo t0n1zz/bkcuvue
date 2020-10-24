@@ -478,8 +478,8 @@ const routes = [
 		meta: { requiresAuth: true, mode:'edit' }},
 	
 	// anggota produk cu draft
-	{ path: '/anggotaProdukCuDraft/cu/:cu/:tp',
-		name: 'anggotaProdukCuCuDraft', 
+	{ path: '/anggotaProdukCuDraft/cu/:cu',
+		name: 'anggotaProdukCuDraft', 
 		components: { default: anggotaProdukCuDraft, 'header': header, 'footer': footer  }, 
 		meta: { requiresAuth: true, mode:'cu' }},
 	{ path: '/anggotaProdukCuDraft/edit/:id',

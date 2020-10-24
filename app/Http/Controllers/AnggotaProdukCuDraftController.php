@@ -26,14 +26,12 @@ class AnggotaProdukCuDraftController extends Controller{
 	protected $height = 200;
 	protected $message = "Anggota CU";
 
-	public function index($cu, $tp)
+	public function index($cu)
 	{
 		if($cu == 'semua'){
-			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu','anggota_cu')->where('anggota_cu_id', $id)->get();	
+			$table_data = AnggotaProdukCuDraft::with('cu','produk_cu','anggota_cu')->advancedFilter();	
 		}else{
-			$table_data = AnggotaProdukCuDraft::with('produk_cu.cu','anggota_cu')->where('anggota_cu_id', $id)->whereHas('produk_cu', function($query) use ($cu){ 
-				$query->where('id_cu',$cu); 
-			})->get();
+			$table_data = AnggotaProdukCuDraft::with('cu','produk_cu','anggota_cu')->where('id_cu', $cu)->advancedFilter();	
 		}
 		
 		return response()
@@ -55,7 +53,7 @@ class AnggotaProdukCuDraftController extends Controller{
 					'produk_cu_id' => $anggotaProdukCuDraft->produk_cu_id,
 					'saldo' => $anggotaProdukCuDraft->saldo,
 					'no_rek' => $anggotaProdukCuDraft->no_rek,
-					'tanggal' => $anggotaProdukCuDraft->tanggal,
+					'tanggal' => $anggotaProdukCuDraft->tanggal_buka,
 					'tanggal_target' => $anggotaProdukCuDraft->tanggal_target,
 					'lama_pinjaman' => $anggotaProdukCuDraft->lama_pinjaman,
 					'tujuan' => $anggotaProdukCuDraft->tujuan,
@@ -75,7 +73,7 @@ class AnggotaProdukCuDraftController extends Controller{
 					'produk_cu_id' => $anggotaProdukCuDraft->produk_cu_id,
 					'saldo' => $anggotaProdukCuDraft->saldo,
 					'no_rek' => $anggotaProdukCuDraft->no_rek,
-					'tanggal' => $anggotaProdukCuDraft->tanggal,
+					'tanggal' => $anggotaProdukCuDraft->tanggal_buka,
 					'tanggal_target' => $anggotaProdukCuDraft->tanggal_target,
 					'lama_pinjaman' => $anggotaProdukCuDraft->lama_pinjaman,
 					'tujuan' => $anggotaProdukCuDraft->tujuan,
@@ -107,7 +105,7 @@ class AnggotaProdukCuDraftController extends Controller{
 	public function storeAll($cu)
 	{
 		if($cu == 'semua'){
-			$anggotaProdukCuDraft = AnggotaProdukCuDraft::all();
+			$anggotaProdukCuDraft = AnggotaProdukCuDraft::get();
 		}else{
 			$anggotaProdukCuDraft = AnggotaProdukCuDraft::where('id_cu', $cu)->get();
 		}
@@ -118,19 +116,21 @@ class AnggotaProdukCuDraftController extends Controller{
 				$anggotaProdukCu = AnggotaProdukCu::where('anggota_cu_id', $item->anggota_cu_id)->where('produk_cu_id', $item->produk_cu_id)->where('no_rek', $item->no_rek)->first();
 
 				if($anggotaProdukCu){
+					$selisih_saldo = $item->saldo - $anggotaProdukCu->saldo;
+					
 					$anggotaProdukCu->update([
 						'produk_cu_id' => $item->produk_cu_id,
 						'saldo' => $item->saldo,
 						'no_rek' => $item->no_rek,
-						'tanggal' => $item->tanggal,
+						'tanggal' => $item->tanggal_buka,
 						'tanggal_target' => $item->tanggal_target,
 						'lama_pinjaman' => $item->lama_pinjaman,
 						'tujuan' => $item->tujuan,
 					]);	
 			
-					AnggotaProdukCuDraftTransaksi::create([
-						'anggota_produk_cu_id' => $kelas->id,
-						'saldo' => $item->saldo,
+					AnggotaProdukCuTransaksi::create([
+						'anggota_produk_cu_id' => $anggotaProdukCu->id,
+						'saldo' => $selisih_saldo,
 						'tanggal' => $item->tanggal_transaksi,
 						'lama_sisa_pinjaman' => $item->lama_sisa_pinjaman,
 					]);
@@ -140,7 +140,7 @@ class AnggotaProdukCuDraftController extends Controller{
 						'produk_cu_id' => $item->produk_cu_id,
 						'saldo' => $item->saldo,
 						'no_rek' => $item->no_rek,
-						'tanggal' => $item->tanggal,
+						'tanggal' => $item->tanggal_buka,
 						'tanggal_target' => $item->tanggal_target,
 						'lama_pinjaman' => $item->lama_pinjaman,
 						'tujuan' => $item->tujuan,
@@ -155,7 +155,7 @@ class AnggotaProdukCuDraftController extends Controller{
 				}
 			}
 			
-			$anggotaProdukCuDraft->delete();
+			$anggotaProdukCuDraft->each->delete();
 
 			\DB::commit();
 
@@ -172,7 +172,7 @@ class AnggotaProdukCuDraftController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = AnggotaProdukCuDraft::findOrFail($id);
+		$kelas = AnggotaProdukCuDraft::with('anggota_cu')->findOrFail($id);
 
 		return response()
 			->json([
@@ -195,13 +195,7 @@ class AnggotaProdukCuDraftController extends Controller{
 			'lama_pinjaman' => $request->lama_pinjaman,
 			'tujuan' => $request->tujuan,
 		]);	
-
-		AnggotaProdukCuDraftTransaksi::create([
-			'anggota_produk_cu_id' => $kelas->id,
-			'saldo' => $request->saldo,
-			'tanggal' => $kelas->updated_at,
-		]);
-
+		
 		return response()
 			->json([
 				'saved' => true,
@@ -222,13 +216,34 @@ class AnggotaProdukCuDraftController extends Controller{
 			]);
 	}
 
-	public function count()
+	public function destroyAll($cu)
 	{
-			$table_data = AnggotaProdukCuDraft::count();
+		if($cu == 'semua'){
+			$kelas = AnggotaProdukCuDraft::get();
+			$kelas->each->delete();
+		}else{
+			$kelas = AnggotaProdukCuDraft::where('id_cu', $cu)->get();
+			$kelas->each->delete();
+		}
 
-			return response()
+		return response()
 			->json([
-					'model' => $table_data
+				'deleted' => true,
+				'message' => 'Produk anggota CU berhasil dihapus'
 			]);
+	}
+
+	public function count($cu)
+	{
+		if($cu == 'semua'){
+			$table_data = AnggotaProdukCuDraft::count();
+		}else{
+			$table_data = AnggotaProdukCuDraft::where('id_cu', $cu)->count();
+		}
+
+		return response()
+		->json([
+				'model' => $table_data
+		]);
 	}
 }
